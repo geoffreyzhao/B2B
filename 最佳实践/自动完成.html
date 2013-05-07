@@ -1,0 +1,65 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<!-- Common Kendo UI Web CSS -->
+	<link href="http://static.b2b.com/css/kendo.common.min.css" rel="stylesheet" />
+	<!-- Default Kendo UI Web theme CSS -->
+	<link href="http://static.b2b.com/css/kendo.default.min.css" rel="stylesheet" />
+	<!-- jQuery JavaScript -->
+	<script src="http://static.b2b.com/js/jquery.min.js"></script>
+	<!-- Kendo UI Web combined JavaScript -->
+	<script src="http://static.b2b.com/js/kendo.web.min.js"></script>
+
+    </head>
+    <body>
+	
+	<h1>示例1   数据 Apples , Oranges ,Grapes ,'靴子'(不支持拼音)</h1>
+	<input id="autocomplete" />
+	<script>
+	$(function() {
+	    // Initialize the Kendo DatePicker by calling the kendoDatePicker jQuery plugin
+	    $("#autocomplete").kendoAutoComplete(["Apples", "Oranges", "Grapes" , "靴子"]);
+	    
+	    //Example - get reference to a Kendo UI widget ,获得引用
+	    var autocomplete = $("#autocomplete").data("kendoAutoComplete");
+	    
+	    //设置值
+	    autocomplete.value("Cherries");
+	    //取回值
+	    var value = autocomplete.value();
+	    //alert(value); // Displays "Cherries"
+	});
+	
+	</script>
+	
+	<h1>示例2   数据改变事件,在输入框中输入改变数据，转移焦点</h1>
+	<input id="autocomplete2" />
+	<script>
+	$(function() {
+	    // Initialize the Kendo DatePicker by calling the kendoDatePicker jQuery plugin
+	    $("#autocomplete2").kendoAutoComplete(
+		{
+		    change:autocomplete_change
+		}
+	    );
+		
+	    //用bind 会触发两次， 分别在捕获以及冒泡阶段
+	    //$("#autocomplete2").bind("change",autocomplete_change);
+	    function autocomplete_change(e) {
+		var autocomplete = this;
+		var value = autocomplete.value();
+		alert(value); // Displays the value of the AutoComplete widget
+	    }
+
+	});
+	
+	</script>
+    </body>
+</html>
