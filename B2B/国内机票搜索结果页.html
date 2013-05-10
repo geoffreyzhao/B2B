@@ -15,12 +15,7 @@ and open the template in the editor.
 	<!-- Common Kendo UI Web CSS -->
 	<link href="http://static.b2b.com/css/kendo.common.min.css" rel="stylesheet" />
 	<link href="http://static.b2b.com/css/kendo.uniform.min.css" rel="stylesheet" />
-	<!-- jQuery JavaScript -->
-	<script src="http://static.b2b.com/js/jquery.min.js"></script>
-	<!-- Kendo UI Web combined JavaScript -->
-	<script src="http://static.b2b.com/js/kendo.web.js"></script>
-	<script src="http://static.b2b.com/js/cityList.js"></script>
-
+	
     </head>
     <body>
 	
@@ -85,6 +80,14 @@ and open the template in the editor.
 						<td><input class="l Datepicker" name="returnDate"  type="text"></td>
 					</tr>
 					<tr>
+						<td style="text-align:right"><span class="redImportant">*</span>成人数量：</td>
+						<td><input  name="adultNo" id="adultNumeric" type="number" value="1" min="1" max="100" ></td>
+					</tr>
+					<tr>
+						<td style="text-align:right"><span class="redImportant">*</span>儿童数量：</td>
+						<td><input  name="childNo" id="childNumeric" type="number" value="0" type="text" min="0" max="50" ></td>
+					</tr>
+					<tr>
 						<td></td>
 						<td>
 							<div style="text-align:center;margin:20px 0"><input type="submit" class="button_main_m" name="submit" value="查询"/></div>
@@ -99,52 +102,12 @@ and open the template in the editor.
 		</div>
 	</div>
 	
-	<script>
-		$(document).ready(function() {
-			$("#menu").kendoMenu({
-				direction:'default' //该参数可控制 子菜单弹出的方向,  left, right, top ,top right,top left 
-			});
-			
-			$("select").kendoDropDownList();
-            $(".Datepicker").kendoDatePicker();
-			
-			$("#TripType").change(function(){
-				if($(this).val() == 'RoundTrip'){
-					$("#returnDate").show();
-				}else{
-					$("#returnDate").hide();
-				}
-			})
-			
-            var data=$.map(_cityList,function(n){return {"szm":n[0],"name":n[1],"py":n[2],"sx":n[3]}});
-			
-			var cityData = {
-				dataTextField:"name",
-                filter:function(d,f){
-                        return {
-                            filters:
-                                    [
-                                        {ignoreCase: true,value:  d,operator: 'startswith',field: 'szm'},
-                                        {ignoreCase: true,value:  d,operator: 'startswith',field: 'py'},
-                                        {ignoreCase: true,value:  d,operator: 'startswith',field: 'sx'},
-                                        {ignoreCase: true,value:  d,operator: 'startswith',field: 'name'}
-                                    ],
-                        logic:"or"
-                    }
-                },
-                template:"#:name#",
-                dataSource:data,
-                select:function(item){
-                    item.sender.element.val(item.item.text());
-                    item.preventDefault();
-                }
-				
-			}
-            $("#departureCity").kendoAutoComplete(cityData);
-            $("#arrivedCity").kendoAutoComplete(cityData);
-			
-		});
-	</script>
+	<!-- jQuery JavaScript -->
+	<script src="http://static.b2b.com/js/jquery.min.js"></script>
+	<!-- Kendo UI Web combined JavaScript -->
+	<script src="http://static.b2b.com/js/kendo.web.js"></script>
+	<script src="http://static.b2b.com/js/cityList.js"></script>
+	<script src="http://static.b2b.com/js/flight.js"></script>
 	
     </body>
 </html>
