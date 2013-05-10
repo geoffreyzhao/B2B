@@ -1,0 +1,150 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<link href="http://static.b2b.com/css/b2b_common.css" rel="stylesheet" />
+	<link href="http://static.b2b.com/css/flight.css" rel="stylesheet" />
+
+	
+	<!-- Common Kendo UI Web CSS -->
+	<link href="http://static.b2b.com/css/kendo.common.min.css" rel="stylesheet" />
+	<link href="http://static.b2b.com/css/kendo.uniform.min.css" rel="stylesheet" />
+	<!-- jQuery JavaScript -->
+	<script src="http://static.b2b.com/js/jquery.min.js"></script>
+	<!-- Kendo UI Web combined JavaScript -->
+	<script src="http://static.b2b.com/js/kendo.web.js"></script>
+	<script src="http://static.b2b.com/js/cityList.js"></script>
+
+    </head>
+    <body>
+	
+	<div id="container">
+		<div class="top_header">
+			<h1></h1>
+			<div class="profile">
+				<span>欢迎 <a href="javascript:void(0);">吕小名</a></span>
+				<span><a href="javascript:void(0);">退出</a></span>
+
+			</div>
+		
+	    </div>
+		<div class="clear"></div>
+	    <ul id="menu">
+			<li class="k-state-selected">
+				<a href="国内机票搜索页.html">国内机票</a>
+			</li>
+			<li>
+				<a href="javascript:void(0);">国际机票</a>
+			</li>
+			<li>
+				<a href="javascript:void(0);">酒店</a>
+			</li>
+		</ul>
+	    
+		<div class="b2b_ad_h60">广告通栏</div>
+		
+		<div class="breadcrum"> >> <a href="国内机票搜索页.html">国内机票</a> </div>
+		<div class="searchbox">
+			<form name="flightSearch" action="国内机票搜索结果页.html" method="get">
+				<div class="title">国内机票查询</div>
+				<table width="400">
+					<tr>
+						<td style="text-align:right" width="15%"><span class="redImportant">*</span>行程类型：</td>
+						<td width="35%">
+							<select name="TripType" id="TripType">
+								<option value="OneWay">单程</option>
+								<option value="RoundTrip">往返</option>
+							</select>
+						</td>
+
+					</tr>
+					<tr>
+						<td style="text-align:right"><span class="redImportant">*</span>出发城市：</td>
+						<td><input id="departureCity" name="departureCity" class="m" type="text"></td>
+
+					</tr>
+
+					<tr>
+						<td style="text-align:right"><span class="redImportant">*</span>目的城市：</td>
+						<td><input id="arrivedCity" name="arrivedCity" class="m" type="text"></td>
+
+					</tr>
+					<tr>
+						<td style="text-align:right"><span class="redImportant">*</span>出发日期：</td>
+						<td><input class="l Datepicker" name="departureDate" type="text"></td>
+
+					</tr>
+					<tr id="returnDate" style="display:none;">
+						<td style="text-align:right"><span class="redImportant">*</span>返程日期：</td>
+						<td><input class="l Datepicker" name="returnDate"  type="text"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<div style="text-align:center;margin:20px 0"><input type="submit" class="button_main_m" name="submit" value="查询"/></div>
+						</td>
+					</tr>
+				</table>
+			</form>
+			
+		</div>
+		
+		<div class="flightList">
+		</div>
+	</div>
+	
+	<script>
+		$(document).ready(function() {
+			$("#menu").kendoMenu({
+				direction:'default' //该参数可控制 子菜单弹出的方向,  left, right, top ,top right,top left 
+			});
+			
+			$("select").kendoDropDownList();
+            $(".Datepicker").kendoDatePicker();
+			
+			$("#TripType").change(function(){
+				if($(this).val() == 'RoundTrip'){
+					$("#returnDate").show();
+				}else{
+					$("#returnDate").hide();
+				}
+			})
+			
+            var data=$.map(_cityList,function(n){return {"szm":n[0],"name":n[1],"py":n[2],"sx":n[3]}});
+			
+			var cityData = {
+				dataTextField:"name",
+                filter:function(d,f){
+                        return {
+                            filters:
+                                    [
+                                        {ignoreCase: true,value:  d,operator: 'startswith',field: 'szm'},
+                                        {ignoreCase: true,value:  d,operator: 'startswith',field: 'py'},
+                                        {ignoreCase: true,value:  d,operator: 'startswith',field: 'sx'},
+                                        {ignoreCase: true,value:  d,operator: 'startswith',field: 'name'}
+                                    ],
+                        logic:"or"
+                    }
+                },
+                template:"#:name#",
+                dataSource:data,
+                select:function(item){
+                    item.sender.element.val(item.item.text());
+                    item.preventDefault();
+                }
+				
+			}
+            $("#departureCity").kendoAutoComplete(cityData);
+            $("#arrivedCity").kendoAutoComplete(cityData);
+			
+		});
+	</script>
+	
+    </body>
+</html>
