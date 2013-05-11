@@ -24,7 +24,7 @@ and open the template in the editor.
 			<h1></h1>
 			<div class="profile">
 				<span>欢迎 <a href="javascript:void(0);">吕小名</a></span>
-				<span><a href="javascript:void(0);">退出</a></span>
+				<span><a href="登陆.html">退出</a></span>
 
 			</div>
 		
@@ -34,7 +34,7 @@ and open the template in the editor.
 			<li class="k-state-selected">
 				<a href="国内机票搜索页.html">国内机票</a>
 				<ul>
-					<li><a href="javascript:void(0);">PNR导入预订</a></li>
+					<li><a href="PNR导入生成预订单.html">PNR导入生成预订单</a></li>
 				</ul>
 			</li>
 			<li>
@@ -45,65 +45,71 @@ and open the template in the editor.
 			</li>
 		</ul>
 	    
-		<div class="b2b_ad_h60">广告通栏</div>
+		<div class="b2b_ad_h60"><img src="http://static.b2b.com/images/adv/banner2.png" /></div>
 		
 		<div class="breadcrum"> >> <a href="国内机票搜索页.html">国内机票</a> </div>
-		<div class="searchbox">
-			<form name="flightSearch" action="国内机票搜索结果页.html" method="get">
-				<div class="title">国内机票查询</div>
-				<table width="400">
-					<tr>
-						<td style="text-align:right" width="15%"><span class="redImportant">*</span>行程类型：</td>
-						<td width="35%">
-							<select name="TripType" id="TripType">
-								<option value="OneWay">单程</option>
-								<option value="RoundTrip">往返</option>
-							</select>
-						</td>
+		
+		<div class="tabstrip">
+			<ul>
+				<li class="k-state-active">
+					国内机票
+				</li>
+				
+			</ul>
+			<div>
+				
+				
+				<form name="flightSearch" action="国内机票搜索结果页.html" method="get">
+					<table width="400">
+						<tr>
+							<td><span class="redImportant">*</span>行程类型：</td>
+							<td>
+								<select name="TripType" id="TripType">
+									<option value="OneWay">单程</option>
+									<option value="RoundTrip">往返</option>
+								</select>
+							</td>
 
-					</tr>
-					<tr>
-						<td style="text-align:right"><span class="redImportant">*</span>出发城市：</td>
-						<td><input id="departureCity" name="departureCity" class="m" type="text"></td>
+						</tr>
+						<tr>
+							<td><span class="redImportant">*</span>出发城市：</td>
+							<td><input id="departureCity" name="departureCity" class="m" type="text"></td>
 
-					</tr>
+						</tr>
 
-					<tr>
-						<td style="text-align:right"><span class="redImportant">*</span>目的城市：</td>
-						<td><input id="arrivedCity" name="arrivedCity" class="m" type="text"></td>
+						<tr>
+							<td><span class="redImportant">*</span>目的城市：</td>
+							<td><input id="arrivedCity" name="arrivedCity" class="m" type="text"></td>
 
-					</tr>
-					<tr>
-						<td style="text-align:right"><span class="redImportant">*</span>出发日期：</td>
-						<td><input class="l Datepicker" name="departureDate" type="text"></td>
+						</tr>
+						<tr>
+							<td><span class="redImportant">*</span>出发日期：</td>
+							<td><input class="l Datepicker" name="departureDate" type="text"></td>
 
-					</tr>
-					<tr id="returnDate" style="display:none;">
-						<td style="text-align:right"><span class="redImportant">*</span>返程日期：</td>
-						<td><input class="l Datepicker" name="returnDate"  type="text"></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><span class="redImportant">*</span>成人数量：</td>
-						<td><input  name="adultNo" id="adultNumeric" type="number" value="1" min="1" max="100" ></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><span class="redImportant">*</span>儿童数量：</td>
-						<td><input  name="childNo" id="childNumeric" type="number" value="0" type="text" min="0" max="50" ></td>
-					</tr>
-					
-					<tr>
-						<td></td>
-						<td>
-							<div style="text-align:center;margin:20px 0"><input type="submit" class="button_main_m" name="submit" value="查询"/></div>
-						</td>
-					</tr>
-				</table>
-			</form>
-			
+						</tr>
+						<tr id="returnDate" style="display:none;">
+							<td style="text-align:right"><span class="redImportant">*</span>返程日期：</td>
+							<td><input class="l Datepicker" name="returnDate"  type="text"></td>
+						</tr>
+						<tr>
+							<td><span class="redImportant">*</span>成人数量：</td>
+							<td><input  name="adultNo" id="adultNumeric" type="number" value="1" min="1" max="100" ></td>
+						</tr>
+						<tr>
+							<td><span class="redImportant">*</span>儿童数量：</td>
+							<td><input  name="childNo" id="childNumeric" type="number" value="0" type="text" min="0" max="50" ></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div style="text-align:center;margin:20px 0"><input type="submit" class="button_main_m" name="submit" value="查询"/></div>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
 		</div>
 		
-		<div class="flightList">
-		</div>
 	</div>
 	<!-- jQuery JavaScript -->
 	<script src="http://static.b2b.com/js/jquery.min.js"></script>
@@ -111,6 +117,7 @@ and open the template in the editor.
 
 	<script src="http://static.b2b.com/js/kendo.web.js"></script>
 	<script src="http://static.b2b.com/js/cityList.js"></script>
+	<script src="http://static.b2b.com/js/common.js"></script>
 	<script src="http://static.b2b.com/js/flight.js"></script>
 	
     </body>
