@@ -1,3 +1,22 @@
+var orderDetail = function(orderId){
+	if (!$("#orderDetail").data("kendoWindow")) {
+		$("#orderDetail").kendoWindow({
+			width: "630px",
+			height: "315px",
+			title: "订单详情",
+			actions: ["Refresh", "Close"],
+			content: "订单详情.html?orderID=" + orderId + "&timestamp=" + (new Date()).toString(),
+			width:$(document).width() - 200,
+			minHeight:600,
+			visible: false,
+			modal:true
+		}).data("kendoWindow").open().center();
+	}else{
+		$("#orderDetail").data("kendoWindow").open().center();
+	}
+};
+	
+
 $(function(){
 	$("#orderList").kendoGrid({
 		dataSource: {
@@ -25,6 +44,7 @@ $(function(){
 		sortable: true,
 		pageable: true,
 		resizable: true,
+		selectable: "single",
 		dataBound: function() {
 			//
 		},
@@ -32,7 +52,8 @@ $(function(){
 			{
 				field:"OrderID",
 				title: "订单编号",
-				width:100
+				width:100,
+				template:"<a href=\"javascript:orderDetail('#=OrderID#');\">#=OrderID#</a>"
 			},
 			{
 				field: "OrderDate",
