@@ -6,9 +6,9 @@ $(document).ready(function() {
 	
 	$("#TripType").change(function(){
 		if($(this).val() == 'RoundTrip'){
-			$("#returnDate").show();
+			$(".returnDate").show();
 		}else{
-			$("#returnDate").hide();
+			$(".returnDate").hide();
 		}
 	})
 
