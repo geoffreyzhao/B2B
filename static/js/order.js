@@ -1,13 +1,11 @@
 var orderDetail = function(orderId){
 	if (!$("#orderDetail").data("kendoWindow")) {
 		$("#orderDetail").kendoWindow({
-			width: "630px",
-			height: "315px",
+			width: "1000px",
+			minHeight: "1200px",
 			title: "订单详情",
 			actions: ["Refresh", "Close"],
-			content: "订单详情.html?orderID=" + orderId + "&timestamp=" + (new Date()).toString(),
-			width:1000,
-			minHeight:1200,
+			content: encodeURI("订单详情.html")  + "?orderID=" + orderId + "&timestamp=" + (new Date()).toString(),
 			visible: false,
 			modal:true
 		}).data("kendoWindow").open().center();
