@@ -6,7 +6,7 @@ var orderDetail = function(orderId){
 			title: "订单详情",
 			actions: ["Refresh", "Close"],
 			content: "订单详情.html?orderID=" + orderId + "&timestamp=" + (new Date()).toString(),
-			width:$(document).width() - 200,
+			width:1000,
 			minHeight:600,
 			visible: false,
 			modal:true
@@ -35,12 +35,12 @@ $(function(){
 					}
 			    }
 			},
-			pageSize: 20,
+			pageSize: 30,
 			serverPaging: true,
 			serverFiltering: true,
 			serverSorting: true
 		},
-		height: 430,
+		height: 1000,
 		sortable: true,
 		pageable: true,
 		resizable: true,

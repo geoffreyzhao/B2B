@@ -8,8 +8,6 @@ $(document).ready(function() {
 	
 	$(".tabstrip").kendoTabStrip({ animation: { open: { effects: 'toggle' } } });
 	
-	
-	
 	var recentOper = '<div id="slide-in-share">' +
 			'<a id="slide-in-handle" href="javascript:void(0);">最近操作</a>' +
 			'<ul>' + 
