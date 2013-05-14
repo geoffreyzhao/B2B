@@ -7,7 +7,7 @@ var orderDetail = function(orderId){
 			actions: ["Refresh", "Close"],
 			content: "订单详情.html?orderID=" + orderId + "&timestamp=" + (new Date()).toString(),
 			width:1000,
-			minHeight:600,
+			minHeight:1200,
 			visible: false,
 			modal:true
 		}).data("kendoWindow").open().center();
