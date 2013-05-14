@@ -8,28 +8,4 @@ $(document).ready(function() {
 	
 	$(".tabstrip").kendoTabStrip({ animation: { open: { effects: 'toggle' } } });
 	
-	var recentOper = '<div id="slide-in-share">' +
-			'<a id="slide-in-handle" href="javascript:void(0);">最近操作</a>' +
-			'<ul>' + 
-				'<li><a href="javascript:void(0);">订单管理</a></li>' + 
-				'<li><a href="javascript:void(0);">政策管理</a></li>' + 
-				'<li><a href="javascript:void(0);">角色管理</a></li>' + 
-			'</ul>' +
-		'</div>' ;
-	
-	
-	$("body").append(recentOper);
-	
-	var slide = kendo.fx($("#slide-in-share")).slideIn("left"),
-	visible = true;
-
-	$("#slide-in-handle").click(function(e) {
-		if (visible) {
-			slide.reverse();
-		} else {
-			slide.play();
-		}
-		visible = !visible;
-		e.preventDefault();
-	});
 });

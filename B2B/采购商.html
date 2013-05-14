@@ -5,12 +5,12 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html>
     <head>
-	<title>国内机票搜索页</title>
+	<title>采购商</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
 	
 	<link href="http://static.b2b.com/css/b2b_common.css" rel="stylesheet" />
-	<link href="http://static.b2b.com/css/flight.css" rel="stylesheet" />
+	<link href="http://static.b2b.com/css/order.css" rel="stylesheet" />
 	
 	<!-- Common Kendo UI Web CSS -->
 	<link href="http://static.b2b.com/css/kendo.common.css" rel="stylesheet" />
@@ -72,74 +72,65 @@ and open the template in the editor.
 				</ul>
 			</li>
 		</ul>
-	    
-		<div class="b2b_ad_h60"><img src="http://static.b2b.com/images/adv/banner2.png" /></div>
-		
-		<div class="breadcrum"> >> <a href="国内机票搜索页.html">国内机票</a> </div>
+		<div class="breadcrum"> >> <a href="采购商.html">采购商</a> </div>
 		
 		<div class="tabstrip">
 			<ul>
 				<li class="k-state-active">
-					国内机票
+					采购商查询
 				</li>
 			</ul>
 			<div>
-				<form name="flightSearch" action="国内机票搜索结果页.html" method="get">
+				<form name="customerSearch" action="采购商.html" method="get">
 					<table>
 						<tr>
-							<td><span class="redImportant">*</span>行程类型：</td>
+							<td><span class="redImportant">*</span>公司名称：</td>
+							<td ><input type="text" name="" value="" class="k-textbox"/></td>
+							<td><span class="redImportant">*</span>公司简称：</td>
+							<td ><input type="text" name="" value="" class="k-textbox"/></td>
+						</tr>
+						<tr>
+							<td><span class="redImportant">*</span>注册开始日期：</td>
+							<td><input class="l Datepicker" name="startDate" type="text"></td>
+							<td><span class="redImportant">*</span>注册结束日期：</td>
+							<td><input class="l Datepicker" name="endDate"  type="text"></td>
+						</tr>
+						<tr>
+							<td><span class="redImportant">*</span>客户类型：</td>
 							<td>
-								<select name="TripType" id="TripType">
-									<option value="OneWay">单程</option>
-									<option value="RoundTrip">往返</option>
+								<select name="type">
+									<option selected="selected" value="all">全部</option>
+									<option value="">旅行社</option>
+									<option value="">业务部</option>
+									<option value="">加盟商</option>
 								</select>
 							</td>
 							<td></td>
 							<td></td>
 						</tr>
 						<tr>
-							<td><span class="redImportant">*</span>出发城市：</td>
-							<td><input id="departureCity" name="departureCity" class="m" type="text"></td>
-							<td><span class="redImportant">*</span>目的城市：</td>
-							<td><input id="arrivedCity" name="arrivedCity" class="m" type="text"></td>
-
-						</tr>
-						<tr>
-							<td><span class="redImportant">*</span>出发日期：</td>
-							<td><input class="l Datepicker" name="departureDate" type="text"></td>
-							
-							<td class="returnDate"><span class="redImportant">*</span>返程日期：</td>
-							<td class="returnDate"><input class="l Datepicker" name="returnDate"  type="text"></td>
-						</tr>
-						<tr>
-							<td><span class="redImportant">*</span>成人数量：</td>
-							<td><input  name="adultNo" id="adultNumeric" type="number" value="1" min="1" max="100" ></td>
-							<td><span class="redImportant">*</span>儿童数量：</td>
-							<td><input  name="childNo" id="childNumeric" type="number" value="0" type="text" min="0" max="50" ></td>
-						</tr>
-						<tr>
+							<td></td>
+							<td><div style="text-align:center;margin:20px 0"><input type="submit" class="button_main_m" name="submit" value="查询"/></div></td>
 							<td></td>
 							<td>
-								<div style="text-align:center;margin:20px 0"><input type="submit" class="button_main_m" name="submit" value="查询"/></div>
 							</td>
-							<td></td>
-							<td></td>
 						</tr>
 					</table>
 				</form>
 			</div>
 		</div>
-		
+		<style scoped>#customerDetail {text-align:left;}</style>
+		<div id="customerList"></div>
+		<div id="customerDetail"></div>
 	</div>
 	<!-- jQuery JavaScript -->
 	<script src="http://static.b2b.com/js/jquery.min.js"></script>
 	<!-- Kendo UI Web combined JavaScript -->
 
-	<script src="http://static.b2b.com/js/kendo.web.min.js"></script>
+	<script src="http://static.b2b.com/js/kendo.web.js"></script>
 	<script src="http://static.b2b.com/js/cultures/kendo.culture.zh-CN.min.js"></script>
-	<script src="http://static.b2b.com/js/cityList.js"></script>
 	<script src="http://static.b2b.com/js/common.js"></script>
-	<script src="http://static.b2b.com/js/flight.js"></script>
-		
+	<script src="http://static.b2b.com/js/customer.js"></script>
+	
     </body>
 </html>
