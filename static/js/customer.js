@@ -16,6 +16,8 @@ var customerDetail = function(id){
 	
 
 $(function(){
+	
+	
 	$("#customerList").kendoGrid({
 		dataSource: {
 			type: "odata",
