@@ -6,6 +6,8 @@ $(document).ready(function() {
 	$("select").kendoDropDownList();
 	$(".Datepicker").kendoDatePicker({format: "yyyy-MM-dd",culture:"zh-CN"});
 	
+	$(".Timepicker").kendoTimePicker({format: "HH",culture:"zh-CN"});
+	
 	$(".tabstrip").kendoTabStrip({ animation: { open: { effects: 'toggle' } } });
 	
 });

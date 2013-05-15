@@ -17,6 +17,7 @@ var customerDetail = function(id){
 
 $(function(){
 	
+	$("input[type=number]").kendoNumericTextBox({format: "#"})
 	
 	$("#customerList").kendoGrid({
 		dataSource: {
