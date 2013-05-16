@@ -1,22 +1,21 @@
-var orderDetail = function(orderId){
-	if (!$("#orderDetail").data("kendoWindow")) {
-		$("#orderDetail").kendoWindow({
-			width: "1000px",
-			minHeight: "1200px",
-			title: "订单详情",
+var userDetail = function(orderId){
+	if (!$("#userDetail").data("kendoWindow")) {
+		$("#userDetail").kendoWindow({
+			width: "600px",
+			minHeight: "600px",
+			title: "所属角色列表",
 			actions: ["Refresh", "Close"],
-			content: encodeURI("订单详情.html")  + "?orderID=" + orderId + "&timestamp=" + (new Date()).toString(),
+			content: encodeURI("角色列表.html")  + "?orderID=" + orderId + "&timestamp=" + (new Date()).toString(),
 			visible: false,
 			modal:true
 		}).data("kendoWindow").open().center();
 	}else{
-		$("#orderDetail").data("kendoWindow").open().center();
+		$("#userDetail").data("kendoWindow").open().center();
 	}
 };
-	
 
 $(function(){
-	$("#orderList").kendoGrid({
+	$("#userList").kendoGrid({
 		dataSource: {
 			type: "odata",
 			transport: {
@@ -49,31 +48,31 @@ $(function(){
 		columns: [
 			{
 				field:"OrderID",
-				title: "订单编号",
+				title: "用户编号",
 				width:100,
 				template:"<a href=\"javascript:orderDetail('#=OrderID#');\">#=OrderID#</a>"
 			},
 			{
-				field: "OrderDate",
-				title: "订单日期",
-				width: 120,
-				format: "{0:yyyy-MM-dd}"
-			}, 
-			{
 				field: "ShipName",
-				title: "客户名称",
+				title: "用户名称",
 				width: 260
 			}, 
 			{
 				field: "ShipCity",
-				title: "来源城市",
+				title: "用户备注",
 				width: 150
+			},
+			{
+				field: "OrderDate",
+				title: "创建日期",
+				width: 120,
+				format: "{0:yyyy-MM-dd}"
 			},
 			{
 				field:"OrderID",
 				title: "操作",
 				width:100,
-				template: kendo.template($("#orderButton").html())
+				template: kendo.template($("#userButton").html())
 			}
 		]
 	});
