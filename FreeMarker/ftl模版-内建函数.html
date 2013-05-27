@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>FreeMarker 模版语法 以及 内建函数 </title>
+	<script src="http://static.b2b.com/js/jquery.min.js"></script>
+	<script src="/最佳实践/formatPage.js"></script>
+	<style>
+	ul,ol {margin:0;padding:0;list-style:none;}
+	.example {background:none repeat scroll 0 0 #D0D0D0;border:2px solid black;width:800px;padding:5px;}
+	.output {background:none repeat scroll 0 0 #CCFFCC;border:2px solid black;width:800px;padding:5px;}
+	.info {background:none repeat scroll 0 0 #FFFF00;border:2px solid black;width:800px;padding:5px;}
+	</style>
+</head>
+<body>
+	
+	<h1>substring 子串</h1>
+	<p class="info">exp?substring(from,  toExclusive) 一个字符串的子串。 from是第一个字符开始的索引。它必须是一个数字而且至少是0，而且要小于或等于 toExclusive，否则错误就会中断模板的处理</p>
+	<ul class="example">
+		<li>${"abc"?substring(0)}</li>
+		<li>${"abc"?substring(1)}</li>
+		<li>${"abc"?substring(1,2)}</li>
+	</ul>
+	<ul class="output">
+		<li>abc</li>
+		<li>bc</li>
+		<li>b</li>
+	</ul>
+	
+	<h1>cap_first 首字母大写</h1>
+	<ul class="example">
+		<li>${"green flower"?cap_first}</li>
+	</ul>
+	<div class="output">Green flower</div>
+	
+	<h1>uncap_first 首字母小写</h1>
+	<ul class="example">
+		<li>${"Green flower"?uncap_first}</li>
+	</ul>
+	<ul class="output">
+		<li>Green flower</li>
+	</ul>
+	
+	<h1> lower_case 小写形式 </h1>
+	<ul class="example">
+		<li>${"GrEeN MoUsE"?lower_case}</li>
+	</ul>
+	<ul class="output">
+		<li>green mouse</li>
+	</ul>
+	
+	<h1>  upper_case  大写形式 </h1>
+	<ul class="example">
+		<li>${"GrEeN MoUsE"?upper_case}</li>
+	</ul>
+	<ul class="output">
+		<li>GREEN MOUSE</li>
+	</ul>
+	
+	<h1> starts_with 以…开头</h1>
+	<p class="info">返回布尔值 true 或者 false</p>
+	<ul class="example">
+		<li>${"redhead"?starts_with("red")}</li>
+	</ul>
+	
+	<h1>ends_with  以…结尾 </h1>
+	<p class="info">返回布尔值 true 或者 false</p>
+	<ul class="example">
+		<li>${"redhead"?ends_with("head")}</li>
+	</ul>
+	
+	<h1> contains  包含</h1>
+	<ul class="example">
+		<li>&lt;#if "piceous"?contains("ice")&gt;It contains "ice"&lt;/#if&gt;</li>
+	</ul>
+	<ul class="output">
+		<li>It contains "ice" </li>
+	</ul>
+	
+	<h1> replace  替换 </h1>
+	<p class="info">如 果 第 一个 参 数是 空 字符 串 ，那 么所 有 的空 字 符串 将 会被 替 换， 比 如"foo"?replace("","|")，就会得到"|f|o|o|"。 </p>
+	<ul class="example">
+		<li>${"this is a car acarus"?replace("car", "bulldozer")}</li>
+		<li>${"aaaaa"?replace("aaa", "X")} </li>
+	</ul>
+	<ul class="output">
+		<li>this is a bulldozer abulldozerus</li>
+		<li>Xaa</li>
+	</ul>
+	
+	<h1>date，time，datetime 日期，时间，时间日期</h1>
+	<ul class="example">
+		<li>&lt;#assign test1 = "10/25/1995"?date("MM/dd/yyyy")&gt;</li>
+		<li>&lt;#assign test2 = "15:05:30"?time("HH:mm:ss")&gt;</li>
+		<li>&lt;#assign test3 = "1995-10-25 03:05 PM"?datetime("yyyy-MM-dd hh:mm a")&gt;</li>
+		<li>${test1}</li>
+		<li>${test2}</li>
+		<li>${test3}</li>
+	</ul>
+	<ul class="output">
+		<li>Oct 25, 1995</li>
+		<li>3:05:30 PM</li> 
+		<li>Oct 25, 1995 3:05:00 PM</li>
+	</ul>
+	
+	<h1>html HTML格式的转义文本 </h1>
+	<p class="info">字符串按照 HTML 标记输出。也就是说，下面字符串将会被替代:<br/>
+		&lt;用&amp;lt; 替换； <br/>
+		&gt;用&amp;gt; 替换； <br/>
+		&amp;用&amp;amp; 替换； <br/>
+		"用&amp;quot; 替换；<br/>
+		
+		注意如果你想安全地插入一个属性，你必须在 HTML 模板中使用引号标记（是"，而不是'）为属性值加引号
+	</p>
+	<ul class="example">
+		<li>&lt;input type=text name=user value="${user?html}"&gt;</li>
+	</ul>
+	
+	<h1>url URL转义 </h1>
+	<ul class="example">
+		<li>&lt;#assign x = 'a/b c'&gt;</li>
+		<li>${x?url}</li>
+	</ul>
+	<ul class="output">
+		<li>a%2Fb%20c</li>
+	</ul>
+	
+	<h1> index_of  索引所在位置</h1>
+	<p class="info">返回第一次字符串中出现子串时的索引位置</p>
+	<ul class="example">
+		<li>${"abcabc"?index_of("bc")}</li>
+	</ul>
+	<ul class="output">
+		<li>1</li>
+	</ul>
+	
+	<h1>last_index_of  最后的索引所在位置 </h1>
+	<p class="info">返回最后一次（最右边）字符串中出现子串时的索引位置</p>
+	<ul class="example">
+		<li>${"abcabc"?last_index_of("bc")}</li>
+	</ul>
+	<ul class="output">
+		<li>4</li>
+	</ul>
+	
+	<h1>j_string Java语言规则的字符串转义 </h1>
+	<ul class="example">
+		<li>&lt;#assign beanName = 'The "foo" bean.'&gt;<br/> String BEAN_NAME = "${beanName?j_string}";  </li>
+	</ul>
+	<ul class="output">
+		<li>String BEAN_NAME = "The \"foo\" bean."; </li>
+	</ul>
+	
+	<h1> js_string JavaScript语言规则的字符串转义 </h1>
+	<ul class="example">
+		<li>&lt;#assign user = "Big Joe's \"right hand\""&gt;<br/>&lt;script&gt; alert("Welcome ${user?js_string}!"); &lt;/script&gt;  </li>
+	</ul>
+	<ul class="output">
+		<li>&lt;script&gt;alert("Welcome Big Joe\'s \"right hand\"!"); &lt;/script&gt; </li>
+	</ul>
+	
+	<h1> json_string JSON规则的字符串转义</h1>
+	<p class="info">参考  j_string  js_string 的调用方式</p>
+	
+	<h1>length  字符串长度 </h1>
+	<ul class="example">
+		<li>${'abc'?length}</li>
+	</ul>
+	<ul class="output">
+		<li>3</li>
+	</ul>
+	
+	
+	<h1> split  分割 </h1>
+	<ul class="example">
+		<li>
+			&lt;#list "some,,test,text,"?split(",") as x&gt; <br/>
+			- "${x}"<br/>
+			&lt;/#list&gt;
+		</li>
+	</ul>
+	<ul class="output">
+		<li>- "some" <br/>
+			- "" 	<br/>
+			- "test" <br/>
+			- "text" <br/>
+			- "" 
+		</li>
+	</ul>
+	
+	<h1> trim  修整字符串 </h1>
+	<ul class="example">
+		<li>${"  green mouse  "?trim}</li>
+	</ul>
+	<ul class="output">
+		<li>green mouse</li>
+	</ul>
+	
+	
+	<h1> word_list 词列表</h1>
+	<p class="info">包含字符串词的列表，并按它们在字符串中的顺序出现。词是连续的字符序列，包含任意字符，但是不包括空格</p>
+	<ul class="example">
+		<li>
+			&lt;#assign words = "   a bcd, .   1-2-3"?word_list&gt;<br/>
+			&lt;#list words as word&gt;[${word}]&lt;/#list&gt; 
+		</li>
+	</ul>
+	<ul class="output">
+		<li>[a][bcd,][.][1-2-3]</li>
+	</ul>
+	
+	<h1>通用标记</h1>
+	<p class="info">
+			很多字符串函数接受一个可选的被称为“标记”的字符串参数。在这些字符串中，每一
+		个字符都影响着内建函数行为的一个特定方面。比如，字母 i 表示内建函数不应该在同一
+		个字母的大小写上有差异。标记中字母的顺序并不重要。 
+		  下面是标记字母的完整列表： <br/>
+		  i：大小写不敏感：不区分同一个字母大小写之间的差异。 <br/>
+		  f：仅仅是第一。也就是说，替换/查找等，只是第一次出现的东西。 <br/>
+		  r：查找的子串是正则表达式。FreeMarker 使用变化的正则表达式，在
+				http://java.sun.com/j2se/1.4.1/docs/api/java/util/regex/Pattern.html 中描述。只有
+				你使用 Java2 平台的 1.4 版本以后，标记才会起作用。否则它会发生错误导致模板
+				处理停止。 <br/>
+		  m：正则表达式多行模式。在多行模式下，表达式^和$仅仅匹配前后，分别是一
+				行结尾或者是字符串的结束。默认这些表达式仅仅匹配整个字符串的开头和结尾。
+		s：启用正则表达式的 do-tall 模式（和 Perl 的单行模式一样）。在 do-tall 模式下，
+				表达式.匹配任意字符串，包括行结束符。默认这个表达式不匹配行结束符。 <br/>
+			c：在正则表达式中许可空白和注释<br/>
+	</p>
+	<ul class="example">
+		<li>&lt;#assign s = 'foo bAr baar' &gt;</li>
+		<li>${s?replace('ba', 'XY')} </li>
+		<li>i: ${s?replace('ba', 'XY', 'i')} </li>
+		<li>if: ${s?replace('ba', 'XY', 'if')} </li>
+		<li>r: ${s?replace('ba*', 'XY', 'r')} </li>
+		<li>ri: ${s?replace('ba*', 'XY', 'ri')} </li>
+		<li>rif: ${s?replace('ba*', 'XY', 'rif')} </li>
+	</ul>
+	<ul class="output">
+		<li>foo bAr XYar </li>
+		<li>i: foo XYr XYar </li>
+		<li>if: foo XYr baar </li>
+		<li>r: foo XYAr XYr </li>
+		<li>ri: foo XYr XYr </li>
+		<li>rif: foo XYr baar </li>
+	</ul>
+	
+	
+	<h1> string（当用作是数值类型时） 数字转字符串</h1>
+	<p class="info">将一个数字转换成字符串。它使用程序员已经指定的默认格式。你也可以明确地用这个
+函数再指定一个数字格式，这在后面会展示。 
+  有四种预定义的数字格式：computer，currency，number 和percent。这
+些格式的明确含义是本地化（国家）指定的，受Java平台安装环境所控制，而不是FreeMarker，
+除了 computer，用作和函数 c 是相同的格式</p>
+	<ul class="example">
+		<li>&lt;#assign x=42&gt; </li>
+		<li>${x} </li>
+		<li>${x?string}</li>
+		<li>${x?string.number} </li>
+		<li>${x?string.currency} </li>
+		<li>${x?string.percent} </li>
+		<li>${x?string.computer} </li>
+	</ul>
+	<ul class="output">
+		<li>42 </li>
+		<li>42 </li>
+		<li>42 </li>
+		<li>$42.00 </li>
+		<li>4,200% </li>
+		<li>42 </li>
+	</ul>
+	
+	<p class="info">使用 Java 中数字格式语法写的任意的数字格式</p>
+	<ul class="example">
+		<li>&lt;#assign x = 1.234&gt; </li>
+		<li>${x?string("0")} </li>
+		<li>${x?string("0.#")} </li>
+		<li>${x?string("0.##")} </li>
+		<li>${x?string("0.###")} </li>
+		<li>${x?string("0.####")} </li>
+		<li>${1?string("000.00")} </li>
+		<li>${12.1?string("000.00")} </li>
+		<li>${123.456?string("000.00")} </li>
+		<li>${1.2?string("0")} </li>
+		<li>${1.8?string("0")} </li>
+		<li>${1.5?string("0")} </li>
+		<li>${2.5?string("0")}</li>
+		<li>${12345?string("0.##E0")} </li>
+		<li>${lastUpdated?string("yyyy-MM-dd HH:mm:ss zzzz")} </li>
+		<li>${lastUpdated?string("EEE, MMM d, ''yy")} </li>
+		<li>${lastUpdated?string("EEEE, MMMM dd, yyyy, hh:mm:ss a '('zzz')'")} </li>
+	</ul>
+	<ul class="output">
+		<li>1 </li>
+		<li>1.2 </li>
+		<li>1.23 </li>
+		<li>1.234 </li>
+		<li>1.234 </li>
+		<li>001.00 </li>
+		<li>012.10 </li>
+		<li>123.46 </li>
+		<li>1 </li>
+		<li>2 </li>
+		<li>2 </li>
+		<li>2 </li>
+		<li>1.23E4 </li>
+		<li>2003-04-08 21:24:44 Pacific Daylight Time </li>
+		<li>Tue, Apr 8, '03 </li>
+		<li>Tuesday, April 08, 2003, 09:24:44 PM (PDT)</li>
+	</ul>
+	
+	<h1>round,floor,ceiling 数字的舍入处理 </h1>
+	<ul class="example">
+		<li>&lt;#assign testlist=[0, 1, -1, 0.5, 1.5, -0.5, -1.5, 0.25, -0.25, 1.75, -1.75]&gt;<br/>
+		&lt;#list testlist as result&gt;  <br/>
+		${result} ?floor=${result?floor} ?ceiling=${result?ceiling} <br/>
+		?round=${result?round} <br/>
+		&lt;/#list&gt; </li> 
+	</ul>
+	<ul class="output">
+		<li>0 ?floor=0 ?ceiling=0 ?round=0             </li>
+		<li>1 ?floor=1 ?ceiling=1 ?round=1         </li>
+		<li>-1 ?floor=-1 ?ceiling=-1 ?round=-1       </li>
+		<li>0.5 ?floor=0 ?ceiling=1 ?round=1       </li>
+		<li>1.5 ?floor=1 ?ceiling=2 ?round=2       </li>
+		<li>-0.5 ?floor=-1 ?ceiling=0 ?round=0      </li>
+		<li>-1.5 ?floor=-2 ?ceiling=-1 ?round=-1     </li>
+		<li>0.25 ?floor=0 ?ceiling=1 ?round=0      </li>
+		<li>-0.25 ?floor=-1 ?ceiling=0 ?round=0     </li>
+		<li>1.75 ?floor=1 ?ceiling=2 ?round=2      </li>
+		<li>-1.75 ?floor=-2 ?ceiling=-1 ?round=-2 </li>
+	</ul>
+	
+	<h1>seq_contanis  序列包含… </h1>
+	<ul class="example">
+		<li>&lt;#assign x = ["red", 16, "blue", "cyan"]&gt; <br/>
+"blue": ${x?seq_contains("blue")?string("yes", "no")} <br/>
+"yellow": ${x?seq_contains("yellow")?string("yes", "no")} <br/>
+16: ${x?seq_contains(16)?string("yes", "no")} <br/>
+"16": ${x?seq_contains("16")?string("yes", "no")} </li>
+	</ul>
+	<ul class="output">
+		<li>"blue": yes </li>
+		<li>"yellow": no </li>
+		<li>16: yes </li>
+		<li>"16": no </li>
+	</ul>
+	
+	<h1>seq_index_of  第一次出现…时的位置</h1>
+	
+	<ul class="example">
+		<li>&lt;#assign colors = ["red", "green", "blue"]&gt; </li>
+		<li>${colors?seq_index_of("blue")} </li>
+		<li>${colors?seq_index_of("red")} </li>
+		<li>${colors?seq_index_of("purple")} </li>
+	</ul>
+	<ul class="output">
+		<li>2</li>
+		<li>0</li>
+		<li>-1</li>
+	</ul>
+	
+	<h1>seq_last_index_of 最后一次出现..的位置</h1>
+	<p class="info">参考  seq_index_of  第一次出现…时的位置</p>
+	
+	<h1> reverse 反转序列</h1>
+	<ul class="example">
+		<li>&lt;#assign testlist=[0, 1, -1, 0.5, 1.5, -0.5, -1.5, 0.25, -0.25, 1.75, -1.75]&gt;</li>
+		<li>&lt;#assign test2list = testlist?reverse&gt;  </li>
+	</ul>
+	
+	
+	<h1> size  序列大小</h1>
+	<ul class="example">
+		<li>&lt;#assign colors = ["red", "green", "blue"]&gt; </li>
+		<li>${colors?size}</li>
+	</ul>
+	<ul class="output">
+		<li>3</li>
+	</ul>
+	
+	<h1>sort  排序 </h1>
+	
+	<ul class="example">
+		<li>&lt;#assign ls = ["whale", "Barbara", "zeppelin", "aardvark","beetroot"]?sort&gt;</li> 
+		<li>&lt;#list ls as i&gt;${i} &lt;/#list&gt; </li>
+	</ul>
+	<ul class="output">
+		<li>aardvark Barbara beetroot whale zeppelin</li>
+	</ul>
+	
+	<h1>sort_by 以…来排序</h1>
+	<ul class="example">
+		<li>&lt;#assign ls = [ </li>
+		<li>  {"name":"whale", "weight":2000}, </li>
+		<li>  {"name":"Barbara", "weight":53}, </li>
+		<li>  {"name":"zeppelin", "weight":-200}, </li>
+		<li>  {"name":"aardvark", "weight":30}, </li>
+		<li>  {"name":"beetroot", "weight":0.3} </li>
+		<li>]&gt; </li>
+		<li>Order by name: </li>
+		<li>&lt;#list ls?sort_by("name") as i&gt; </li>
+		<li>- ${i.name}: ${i.weight} </li>
+		<li>&lt;/#list&gt; </li>
+		<li>Order by weight: </li>
+		<li>&lt;#list ls?sort_by("weight") as i&gt; </li>
+		<li>- ${i.name}: ${i.weight} </li>
+		<li>&lt;/#list&gt; :</li>
+	</ul>
+	
+	<ul class="output">
+		<li>Order by name: </li>
+		<li>- aardvark: 30 </li>
+		<li>- Barbara: 53 </li>
+		<li>- beetroot: 0.3 </li>
+		<li>- whale: 2000 </li>
+		<li>- zeppelin: -200 </li>
+		<li>Order by weight: </li>
+		<li>- zeppelin: -200 </li>
+		<li>- beetroot: 0.3 </li>
+		<li>- aardvark: 30 </li>
+		<li>- Barbara: 53 </li>
+		<li>- whale: 2000</li>
+	</ul>
+	<p class="info">如果你用来排序的子变量的层次很深（也就是说，它是子变量的子变量的子变量，以此类推），那么你可以使用序列来作为参数，它指定了子变量的名字，来向下引导所需的子变量。比如</p>
+	<ul class="example">
+		<li>&lt;#assign members = [ </li>
+		<li>    {"name": {"first": "Joe", "last": "Smith"}, "age": 40}, </li>
+		<li>    {"name": {"first": "Fred", "last": "Crooger"}, "age": 35}, </li>
+		<li>    {"name": {"first": "Amanda", "last": "Fox"}, "age": 25}]&gt; </li>
+		<li>Sorted by name.last:  </li>
+		<li>&lt;#list members?sort_by(['name', 'last']) as m&gt; </li>
+		<li>- ${m.name.last}, ${m.name.first}: ${m.age} years old </li>
+		<li>&lt;/#list&gt; </li>
+	</ul>
+	<ul class="output">
+		<li>Sorted by name.last:  </li>
+		<li>- Crooger, Fred: 35 years old </li>
+		<li>- Fox, Amanda: 25 years old </li>
+		<li>- Smith, Joe: 40 years old </li>
+	</ul>
+	
+	<h1>chunk  区块</h1>
+	<p class="info">这个内建函数分割序列到多个大小为函数的第一个参数给定的序列（就像mySeq?chunk(3)）。结果是包含这些序列的一个序列。最后一个序列可能比给定的大小要小，处分第二个参数也给定了（比如 mySeq?chunk(3, '-')），
+		那个就是用来填充最后一个序列，以达到给定的大小,这个函数通常在输出的序列中使用表格/柱状的格式。当被用于 HTML 表格时，第二个
+参数通常是"\xA0"（也就是不换行的空格代码，也就是我们所知的“nbsp”），所以空 TD
+的边界就不会不显示。 
+  第一个参数必须是一个数字，而且至少是 1.如果这个数字不是整数，那么它会被静默地
+去掉小数部分（也就是说 3.1和 3.9 都会被规整为 3）。第二个参数可以是任意类型的值。</p>
+	<ul class="example">
+		<li>&lt;#assign seq = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']&gt; </li>
+		<li>&lt;#list seq?chunk(4) as row&gt; </li>
+		<li>  &lt;#list row as cell&gt;${cell} &lt;/#list&gt; </li>
+		<li>&lt;/#list&gt; </li>
+		<li>&lt;#list seq?chunk(4, '-') as row&gt; </li>
+		<li>  &lt;#list row as cell&gt;${cell} &lt;/#list&gt; </li>
+		<li>&lt;/#list&gt;</li>
+	</ul>
+	
+	<ul class="output">
+		<li>a b c d  </li>
+		<li>  e f g h  </li>
+		<li>  i j  </li>
+		<li> </li>
+		<li>  a b c d  </li>
+		<li>  e f g h  </li>
+		<li>  i j - - </li>
+	</ul>
+</body>
+</html>
