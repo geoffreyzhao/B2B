@@ -2,7 +2,8 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>FreeMarker 模版语法 以及 内建函数 </title>
+	<title>FreeMarker 内建函数 </title>
+	<link href="back.css" rel="stylesheet" />
 	<script src="http://static.b2b.com/js/jquery.min.js"></script>
 	<script src="/最佳实践/formatPage.js"></script>
 	<style>
@@ -466,5 +467,19 @@
 		<li>  e f g h  </li>
 		<li>  i j - - </li>
 	</ul>
+	
+	<h1>keys  键的集合 </h1>
+	<ul class="example">
+		<li>&lt;#assign h = {"name":"mouse", "price":50}&gt; </li>
+		<li>&lt;#assign keys = h?keys&gt; </li>
+		<li>&lt;#list keys as key&gt;${key} = ${h[key]}; &lt;/#list&gt; </li>
+	</ul>
+	
+	<ul class="output">
+		<li>name = mouse; price = 50; </li>
+	</ul>
+	
+	<h1>values  值的集合 </h1>
+	<p class="info">参考 keys</p>
 </body>
 </html>

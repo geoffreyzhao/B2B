@@ -1,0 +1,399 @@
+<!DOCTYPE html >
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>FreeMarker 指令</title>
+	<link href="back.css" rel="stylesheet" />
+	<script src="http://static.b2b.com/js/jquery.min.js"></script>
+	<script src="/最佳实践/formatPage.js"></script>
+	<style>
+	ul,ol {margin:0;padding:0;list-style:none;}
+	.example {background:none repeat scroll 0 0 #D0D0D0;border:2px solid black;width:800px;padding:5px;}
+	.output {background:none repeat scroll 0 0 #CCFFCC;border:2px solid black;width:800px;padding:5px;}
+	.info {background:none repeat scroll 0 0 #FFFF00;border:2px solid black;width:800px;padding:5px;}
+	.example li span {text-indent:1em;display:inline-block;}
+	</style>
+</head>
+<body>
+
+	<h1>变量引用</h1>
+	<p class="info">
+	标量: 字符串 , 数字 ,布尔值 ,日期<br/>
+	容器：哈希表,序列,集<br/>
+	子程序:方法和函数,用户自定义指令<br/>
+	其它/很少使用:节点 
+	</p>
+	<ul class="example">
+		<li>${10}</li>
+		<li>${0.3}</li>
+		<li>${"Hello"}</li>
+		<li>${"Hello ${user}!"}</li>
+		<li>${true}</li>
+		<li>${false}</li>
+		<li>${user[0]}</li>
+		<li>${user[0]["name"]}</li>
+		<li>${user["name"]}</li>
+		<li>${r"${name}"}&lt;#-- 一种特殊的字符串就是原生字符串 --&gt;</li>
+		
+		<li>${100 – x*x} </li>
+		<li>${x/2} </li>
+		<li>${12%10} </li>
+	</ul>
+
+	<h1>注释 指令</h1>
+	
+	<ul class="example">
+		<li>&lt;#-- 这里是注释 --&gt;</li>
+	</ul>
+
+	<h1>if，else，elseif 指令 </h1>
+	<p class="info">  你可以使用 if，elseif 和 else 指令来条件判断是否越过模板的一个部分。这些
+condition-s 必须计算成布尔值，否则错误将会中止模板处理。elseif-s 和 else-s
+必须出现在 if 的内部（也就是，在 if 的开始标签和技术标签之间）。if 中可以包含任意
+数量的 elseif-s（包括 0 个）而且结束时else 是可选的。 </p>
+	
+	<ul class="example">
+		<li>&lt;#if x == 1&gt;</li>
+		<li>  x is 1 </li>
+		<li>&lt;/#if</li>
+	</ul>
+	<ul class="example">
+		<li>&lt;#if x == 1&gt; </li>
+		<li>  x is 1 </li>
+		<li>&lt;#else&gt; </li>
+		<li>  x is not 1 </li>
+		<li>&lt;/#if&gt; </li>
+	</ul>
+	<ul class="example">
+		<li>&lt;#if x == 1&gt; </li>
+		<li>  x is 1 </li>
+		<li>&lt;#elseif x == 2&gt; </li>
+		<li>  x is 2 </li>
+		<li>&lt;#elseif x == 3&gt; </li>
+		<li>  x is 3 </li>
+		<li>&lt;/#if&gt;</li>
+	</ul>
+	
+	<ul class="example">
+		<li>&lt;#if x == 1&gt; </li>
+		<li>  x is 1 </li>
+		<li>&lt;#elseif x == 2&gt; </li>
+		<li>  x is 2 </li>
+		<li>&lt;#elseif x == 3&gt; </li>
+		<li>  x is 3 </li>
+		<li>&lt;#elseif x == 4&gt; </li>
+		<li>  x is 4 </li>
+		<li>&lt;#else&gt; </li>
+		<li>  x is not 1 nor 2 nor 3 nor 4 </li>
+		<li>&lt;/#if&gt; </li>
+	</ul>
+	
+	<ul class="example">
+		<li>&lt;#if x == 1&gt; </li>
+		<li>  x is 1 </li>
+		<li><span> &lt;#if y == 1&gt; </span> </li>
+		<li><span>    and y is 1 too </span></li>
+		<li><span>  &lt;#else&gt; </span></li>
+		<li><span>    but y is not </span></li>
+		<li><span>  &lt;/#if&gt; </span></li>
+		<li>&lt;#else&gt; </li>
+		<li>  x is not 1 </li>
+		<li><span>  &lt;#if y &lt; 0&gt; </span></li>
+		<li><span>    and y is less than 0 </span></li>
+		<li><span>  &lt;/#if&gt; </span></li>
+		<li>&lt;/#if&gt;</li>
+	</ul>
+
+	
+	<h1>list，break  指令</h1>
+	<p class="info">
+	&lt;#list sequence as item&gt; <br/>
+    ... <br/>
+	&lt;/#list&gt;  <br/>
+	  这里： <br/>
+	  sequence：表达式将被算作序列或集合 <br/>
+	  item：循环变量（不是表达式）的名称 <br/>
+	  
+	  
+	  你可以使用 list 指令来处理模板的一个部分中的一个序列中包含的各个变量。在开
+始标签和结束标签中的代码将会被处理，首先是第一个子变量，然后是第二个子变量，接着
+是第三个子变量，等等，直到超过最后一个。对于每个变量，这样的迭代中循环变量将会包
+含当前的子变量。 <br/>
+  在 list 循环中，有两个特殊的循环变量可用： <br/>
+  item_index：这是一个包含当前项在循环中的步进索引的数值。 <br/>
+  item_has_next：来辨别当前项是否是序列的最后一项的布尔值。
+	</p>
+	<ul class="example">
+		<li>&lt;#assign seq = ["winter", "spring", "summer", "autumn"]&gt; </li>
+		<li>&lt;#list seq as x&gt; </li>
+		<li>  ${x_index + 1}. ${x}&lt;#if x_has_next&gt;,&lt;/#if&gt; </li>
+		<li>&lt;/#list&gt; </li>
+	</ul>
+	
+	<ul class="output">
+		<li> 1. winter, </li>
+		<li> 2. spring, </li>
+		<li> 3. summer, </li>
+		<li> 4. autumn </li>
+	</ul>
+	<p class="info">你可以使用 list 在两个数字中来计数，使用一个数字范围序列表达式</p>
+	<ul class="example">
+		<li>&lt;#assign x=3&gt; </li>
+		<li>&lt;#list 1..x as i&gt; </li>
+		<li> ${i}</li>
+		<li>&lt;/#list&gt; </li>
+	</ul>
+	<ul class="output">
+		<li> 1 </li>
+		<li> 2 </li>
+		<li> 3</li>
+	</ul>
+	
+	<p class="info">你可以使用 break 指令在它通过最后一个序列的子变量之前离开 list 循环。比如这会仅仅打印“winter”和“spring”</p>
+	<ul class="example">
+		<li>&lt;#list seq as x&gt; </li>
+		<li>    ${x} </li>
+		<li>  &lt;#if x = "spring"&gt;&lt;#break&gt;&lt;/#if&gt; </li>
+		<li>&lt;/#list&gt; </li>
+	</ul>
+	
+	<h1>include 指令</h1>
+	<p class="info">
+		&lt;#include path&gt; 或者  &lt;#include path options&gt;<br/>
+		path：要包含文件的路径；一个算作是字符串的表达式。（用其他话说，它不用是一个固定的字符串，它也可以是像 profile.baseDir + "/menu.ftl"这样的东西。）,
+		
+			path 参数可以是如"foo.ftl"和"../foo.ftl"一样的相对路径，或者是如
+			"/foo.ftl"这样的绝对路径。相对路径是相对于使用import 指令的模板文件夹。绝
+			对路径是相对于程序员在配置 FreeMarker 时定义的基路径（通常指代“模板的根路径”）。 
+		<br/>
+		options： 一个或多个这样的选项： encoding=encoding, parse=parse <br/>
+	</p>
+	<ul class="example">
+		<li>假设/common/copyright.ftl 包含</li>
+		<li>Copyright 2001-2002 ${me}<br> All rights reserved. </li>
+		
+		<li> 那么</li>
+		<li>&lt;#assign me = "Juila Smith"&gt; </li>
+		<li>&lt;h1&gt;Some test&lt;/h1&gt; </li>
+		<li>&lt;p&gt;Yeah. </li>
+		<li>&lt;hr&gt; </li>
+		<li>&lt;#include "/common/copyright.ftl"&gt; </li>
+	</ul>
+	<ul class="output">
+		<li>&lt;h1&gt;Some test&lt;/h1&gt; </li>
+		<li>&lt;p&gt;Yeah. </li>
+		<li>&lt;hr&gt; </li>
+		<li>Copyright 2001-2002 Juila Smith </li>
+		<li>All rights reserved.</li>
+	</ul>
+	
+	<h1>import  指令</h1>
+	<p class="info">&lt;#import path as hash&gt;<br/>
+		引入一个库。也就是说，它创建一个新的命名空间，然后在那个命名空间中执行给定
+		path 参数中的模板，所以模板用变量（宏，函数等）填充命名空间。然后使得新创建的命
+		名空间对哈希表的调用者可用。这个哈希表变量将会在命名空间中，由 import（就像你
+		可以用 assign 指令来创建一样。）的调用者被创建成一个普通变量，名字就是hash 参数给定的。 
+		  如果你用同一个 path 多次调用 import，它会创建命名空间，但是只运行第一次
+		import 的调用。后面的调用仅仅创建一个哈希表变量，你只是通过它来访问同一个命名
+		空间.
+	</p>
+	
+	<h1>noparse 指令 </h1>
+	<p class="info">FreeMarker 不会在这个指令体中间寻找 FTL 标签，插值和其他特殊的字符序列</p>
+	<ul class="example">
+		<li>&lt;#noparse&gt; </li>
+		<li>  &lt;#list animals as being&gt; </li>
+		<li>  &lt;tr&gt;&lt;td&gt;${being.name}&lt;td&gt;${being.price} Euros </li>
+		<li>  &lt;/#list&gt; </li>
+		<li>&lt;/#noparse&gt;  </li>
+	</ul>
+	<ul class="output">
+		<li>  &lt;#list animals as being&gt; </li>
+		<li>  &lt;tr&gt;&lt;td&gt;${being.name}&lt;td&gt;${being.price} Euros </li>
+		<li>  &lt;/#list&gt; </li>
+	</ul>
+	
+	
+	<h1>escape，noescape 指令</h1>
+	<p class="info">当你使用 escape 指令包围模板中的一部分时，在块中出现的插值（${...}）会和转义表达式自动结合。这是一个避免编写相似表达式的很方便的方法</p>
+	<ul class="example">
+		<li>&lt;#escape x as x?html&gt; </li>
+		<li>  First name: ${firstName} </li>
+		<li>  Last name: ${lastName} </li>
+		<li>  Maiden name: ${maidenName} </li>
+		<li>&lt;/#escape&gt; </li>
+	</ul>
+	<p class="info">有时需要暂时为一个或两个在转义区块中的插值关闭转义。你可以通过关闭，过后再重新开启转义区块来达到这个功能，但是那么你不得不编写两遍转义表达式。你可以使用非转义指令来替代</p>
+	<ul class="example">
+		<li>&lt;#escape x as x?html&gt; </li>
+		<li>  From: ${mailMessage.From} </li>
+		<li>  Subject: ${mailMessage.Subject} </li>
+		<li>  &lt;#noescape&gt;Message: </li>
+		<li>${mailMessage.htmlFormattedBody}&lt;/#noescape&gt; </li>
+		<li>  ... </li>
+		<li>&lt;/#escape&gt; </li>
+	</ul>
+	
+	<h1>assign  指令 </h1>
+	<p class="info">
+		
+		&lt;#assign name=value&gt;
+		或者 
+		&lt;#assign name1=value1 name2=value2 ... nameN=valueN&gt; <br/>
+		
+		&lt;#assign name&gt; <br/>
+		  capture this <br/>
+		&lt;/#assign&gt; 
+	</p>
+	<h1>global  指令 </h1>
+	<p class="info">
+		
+		&lt;#global name=value&gt;
+		或者 
+		&lt;#global name1=value1 name2=value2 ... nameN=valueN&gt; <br/>
+		
+		&lt;#global name&gt; <br/>
+		  capture this <br/>
+		&lt;/#global&gt; 
+	</p>
+	<p class="info">
+		这个指令和 assign 相似，但是被创建的变量在所有的命名空间中都可见，但又不会
+		存在于任何一个命名空间之中。精确地说，正如你会创建（或替换）一个数据模型变量。因
+		此，这个变量是全局的。如果在数据模型中，一个相同名称的变量存在的话，它会被使用这
+		个指令创建的变量隐藏。如果在当前的命名空间中，一个相同名称的变量存在的话，那么会
+		隐藏由 global 指令创建的变量。 
+	</p>
+	
+	<h1>local  指令 </h1>
+	<p class="info">
+		&lt;#local name=value&gt;
+		或者 
+		&lt;#local name1=value1 name2=value2 ... nameN=valueN&gt; <br/>
+		
+		&lt;#local name&gt; <br/>
+		  capture this <br/>
+		&lt;/#local&gt; 
+	</p>
+	<p class="info">它和 assign 指令类似，但是它创建或替换局部变量。这仅仅在宏和方法的内部定义才会有作用。</p>
+	
+	
+	<h1> macro  指令 </h1>
+	<p class="info">示例：没有参数的宏</p>
+	<ul class="example">
+		<li>&lt;#macro test&gt; </li>
+		<li>  Test text </li>
+		<li>&lt;/#macro&gt; </li>
+		<li>&lt;#-- call the macro: --&gt; </li>
+		<li>&lt;@test/&gt; </li>
+	</ul>
+	<ul class="output">
+		<li> Test text </li>
+	</ul>
+	
+	<p class="info">示例：有参数的宏</p>
+	<ul class="example">
+		<li>&lt;#macro test foo bar baaz&gt; </li>
+		<li>Test text, and the params: ${foo}, ${bar}, ${baaz} </li>
+		<li>&lt;/#macro&gt; </li>
+		<li>&lt;#-- call the macro: --&gt; </li>
+		<li>&lt;@test foo="a" bar="b" baaz=5*5-2/&gt; </li>
+	</ul>
+	<ul class="output">
+		<li> Test text, and the params: a, b, 23</li>
+	</ul>
+	<p class="info">示例：有参数和默认值参数的宏</p>
+	<ul class="example">
+	
+		<li>&lt;#macro test foo bar="Bar" baaz=-1&gt; </li>
+		<li>  Test text, and the params: ${foo}, ${bar}, ${baaz} </li>
+		<li>&lt;/#macro&gt; </li>
+		<li>&lt;@test foo="a" bar="b" baaz=5*5-2/&gt; </li>
+		<li>&lt;@test foo="a" bar="b"/&gt; </li>
+		<li>&lt;@test foo="a" baaz=5*5-2/&gt; </li>
+		<li>&lt;@test foo="a"/&gt; </li>
+	</ul>
+	<ul class="output">
+		<li> Test text, and the params: a, b, 23 </li>
+		<li>  Test text, and the params: a, b, -1 </li>
+		<li>  Test text, and the params: a, Bar, 23 </li>
+		<li>  Test text, and the params: a, Bar, -1 </li>
+	</ul>
+	
+	<h1>nested 指令</h1>
+	<p class="info">nested 指令执行自定义指令开始和结束标签中间的模板片段</p>
+	<ul class="example">
+		<li>&lt;#macro do_twice&gt; </li>
+		<li>  1. &lt;#nested&gt; </li>
+		<li>  2. &lt;#nested&gt; </li>
+		<li>&lt;/#macro&gt; </li>
+		<li>&lt;@do_twice&gt;something&lt;/@do_twice&gt;</li>
+	</ul>
+	
+	<ul class="output">
+		<li>1. something</li>
+  		<li>2. something</li> 
+	</ul>
+	<p class="info">嵌套指令可以对嵌套内容创建循环变量</p>
+	<ul class="example">
+		<li>&lt;#macro do_thrice&gt; </li>
+		<li>  &lt;#nested 1&gt; </li>
+		<li>  &lt;#nested 2&gt; </li>
+		<li>  &lt;#nested 3&gt; </li>
+		<li>&lt;/#macro&gt; </li>
+		<li>&lt;@do_thrice ; x&gt; </li>
+		<li>  ${x} Anything. </li>
+		<li>&lt;/@do_thrice&gt; </li>
+	</ul>
+	
+	<ul class="output">
+		<li>1 Anything</li>
+  		<li>2 Anything</li> 
+  		<li>3 Anything</li> 
+	</ul>
+	
+	<h1>return 指令</h1>
+	<ul class="example">
+		<li>&lt;#macro test&gt; </li>
+		<li>  Test text </li>
+		<li>  &lt;#return&gt; </li>
+		<li>  Will not be printed. </li>
+		<li>&lt;/#macro&gt; </li>
+		<li>&lt;@test/&gt;</li>
+	</ul>
+	<ul class="output">
+		<li>Test text</li>
+	</ul>
+	
+	<h1>function 指令</h1>
+	<ul class="example">
+		<li>&lt;#function avg x y&gt; </li>
+		<li>  &lt;#return (x + y) / 2&gt; </li>
+		<li>&lt;/#function&gt; </li>
+		<li>${avg(10, 20)} </li>
+	</ul>
+	<ul class="output">
+		<li>15</li>
+	</ul>
+	
+	<ul class="example">
+		<li>&lt;#function avg nums...&gt; </li>
+		<li>  &lt;#local sum = 0&gt; </li>
+		<li>  &lt;#list nums as num&gt; </li>
+		<li>    &lt;#local sum = sum + num&gt; </li>
+		<li>  &lt;/#list&gt; </li>
+		<li>  &lt;#if nums?size != 0&gt; </li>
+		<li>    &lt;#return sum / nums?size&gt; </li>
+		<li>  &lt;/#if&gt; </li>
+		<li>&lt;/#function&gt; </li>
+		<li>${avg(10, 20)} </li>
+		<li>${avg(10, 20, 30, 40)} </li>
+		<li>${avg()!"N/A"} </li>
+	</ul>
+	<ul class="output">
+		<li>15 </li>
+		<li>25 </li>
+		<li>N/A</li>
+	</ul>
+	
+</body>
+</html>
