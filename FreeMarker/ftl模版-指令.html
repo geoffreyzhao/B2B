@@ -16,7 +16,7 @@
 </head>
 <body>
 
-	<h1>变量引用</h1>
+	<h1>变量引用 范例</h1>
 	<p class="info">
 	标量: 字符串 , 数字 ,布尔值 ,日期<br/>
 	容器：哈希表,序列,集<br/>
@@ -38,6 +38,77 @@
 		<li>${100 – x*x} </li>
 		<li>${x/2} </li>
 		<li>${12%10} </li>
+	</ul>
+
+	<h1>直接量  字符串</h1>
+	<ul class="example">
+		<li>${"It's \"quoted\" and this is a backslash: \\"}</li>
+		<li>${'It\'s "quoted" and this is a backslash: \\'} </li>
+		<li>${r"${foo}"} &lt;#-- 原生字符串 , 注意最前面那个 r 字符，告诉模版引擎不要对字符串变量进行解析  --&gt;</li>
+		<li>${r"C:\foo\bar"} &lt;#-- 原生字符串 --&gt;</li>
+	</ul>
+	<ul class="output">
+		<li>It's "quoted" and this is a backslash: \</li>
+		<li>It's "quoted" and this is a backslash: \ </li>
+		<li>${foo}</li>
+		<li>C:\foo\bar</li>
+	</ul>
+	
+	<h1>直接量  数字</h1>
+	<p class="info">科学记数法暂不支持使用（1E3 就是错误的），而且也不能在小数点之前不写 0（.5 也是错误的）</p>
+	<ul class="example">
+		<li>${0.08}</li>
+		<li>${-5.013}</li>
+		<li>${8}</li>
+		<li>${0.08}</li>
+	</ul>
+	<ul class="output">
+		<li>0.08</li>
+		<li>-5.013</li>
+		<li>8</li>
+		<li>0.08</li>
+	</ul>
+	
+	<h1>布尔值</h1>
+	<p class="info">直接写 true 或 false 就表征一个布尔值了，不需使用引号</p>
+	
+	<h1>序列</h1>
+	
+	<ul class="output">
+		<li>&lt;#list ["winter", "spring", "summer", "autumn"] as x&gt; 
+		<li>${x}</li>
+		<li>&lt;/#list&gt;</li>
+	</ul>
+	<ul class="output">
+		<li>winter</li>
+		<li>spring</li>
+		<li>summer</li>
+		<li>autumn</li>
+	</ul>
+	
+	<h1>哈希表</h1>
+	<p class="info">book["author"]["name"]</p>
+	
+	<h1>默认值 </h1>
+	<p class="info">假设下面展示的代码中一开始没有名为 mouse 的变量</p>
+	<ul class="example">
+		<li>${mouse!"No mouse."}</li>
+		<li>&lt;#assign mouse="Jerry"&gt;</li>
+		<li>${mouse!"No mouse."}</li>
+	</ul>
+	<ul class="output">
+		<li>No mouse.</li>s
+		<li>Jerry</li>
+	</ul>
+	
+	<h1>检测不存在的值 </h1>
+	<p class="info">使用形式：unsafe_expr??或(unsafe_expr)??</p>
+	<ul class="example">
+		<li>&lt;#if mouse??&gt;</li>
+		<li>	Mouse found </li>
+		<li>&lt;#else&gt; </li>
+		<li>  No mouse found </li>
+		<li>&lt;/#if&gt;</li>
 	</ul>
 
 	<h1>注释 指令</h1>
