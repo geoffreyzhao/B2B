@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>${title!"天地行"}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+        <link href="http://static.b2b.com/css/phase1/b2b_common.css" rel="stylesheet" />
+
+        <link href="http://static.b2b.com/css/kendo.common.css" rel="stylesheet" />
+        <link href="http://static.b2b.com/css/kendo.default.css" rel="stylesheet" />
+        <script type="text/javascript" src="http://static.b2b.com/js/jquery.min.js"></script>
+        <script type="text/javascript" src="http://static.b2b.com/js/kendo.web.js"></script>
+        <script type="text/javascript" src="http://static.b2b.com/js/cultures/kendo.culture.zh-CN.min.js"></script>
+        <style type="text/css">
+
+            body {text-align:left;}
+            #agreement {width:800px;border:1px solid red; padding:10px;}
+            #agreement ul {width:500px;border:1px solid blue;float:left;}
+            #agreement ul li label {display:inline-block;width:80px;padding:5px;}
+
+            #agreement .related_policy {float:right;width:220px;height:500px;border:1px solid blue;}
+
+        </style>
+    </head>
+    <body>
+        <div id="agreement">
+            <h2>添加政策</h2>
+            <form method="post" action="">
+                <ul>
+                    <li><label id="" for="agreement_id">协议编号</label><input id="agreement_id" type="text" name="agreement_id" /><em></em></li>
+                    <li><label id="" for="agreement_code">协议代码</label><input id="agreement_code" type="text" name="agreement_code" /><em></em></li>
+                    <li><label>
+                        协议类型</label><input id="agreement_type" type="checkbox" name="agreement_type" /><b>现返</b>
+                        <input id="agreement_type" type="checkbox" name="agreement_type" /><b>后返</b></li>
+                    <li><label id="" for="agreement_name">协议名称</label><input id="agreement_name" type="text" name="agreement_name" /><em></em></li>
+                    <li><label for="">协议开始日期</label><input type="text" id="dateStart" class="Datepicker"/></li>
+                    <li><label for="">协议结束日期</label><input type="text" id="dateEnd" class="Datepicker" /></li>
+                    <li><label id="" for="airline">航空公司</label><input id="airline" type="text" name="airline" /><em></em></li>
+                    <li><label id="" for="keywords">关键字</label><input id="keywords" type="text" name="keywords" /><em></em></li>
+                    <li><label id="" for="remark">备注</span><textarea id="remark" name="remark" cols="30" rows="10" placeholder="请填写备注到这里"></textarea></label><em></em></li>
+                <li><label id="" for="agreement_file">附件</label><input id="agreement_file" type="file" name="agreement_file" /><em></em></li>
+                <li><input id="save" type="submit" name="save" value="保存" /><input id="cancel" type="button" name="cancel" value="取消" /></li>
+                <li><div class="consloe"></div></li>
+                    
+            </ul>
+        </form>
+
+        <div class="related_policy">关联政策</div>
+        <div class="clear"></div>
+
+        <table width="80%">
+            <thead>
+                <tr>
+                    <th width="60">序号</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>操作日志</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>操作日志</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>操作日志</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>操作日志</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>操作日志</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>操作日志</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>操作日志</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>操作日志</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>操作日志</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>操作日志</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<script type="text/javascript">
+$(document).ready(function() {
+	function startChange() {
+		var startDate = start.value(),
+		endDate = end.value();
+
+		if (startDate) {
+			startDate = new Date(startDate);
+			startDate.setDate(startDate.getDate());
+			end.min(startDate);
+		} else if (endDate) {
+			start.max(new Date(endDate));
+		} else {
+			endDate = new Date();
+			start.max(endDate);
+			end.min(endDate);
+		}
+	}
+
+	function endChange() {
+		var endDate = end.value(),
+		startDate = start.value();
+
+		if (endDate) {
+			endDate = new Date(endDate);
+			endDate.setDate(endDate.getDate());
+			start.max(endDate);
+		} else if (startDate) {
+			end.min(new Date(startDate));
+		} else {
+			endDate = new Date();
+			start.max(endDate);
+			end.min(endDate);
+		}
+	}
+
+	var start = $("#dateStart").kendoDatePicker({
+		change: startChange,
+		format: 'yyyy-MM-dd',
+		culture: 'zh-CN'
+
+	}).data("kendoDatePicker");
+
+	var end = $("#dateEnd").kendoDatePicker({
+		change: endChange,
+		format: 'yyyy-MM-dd',
+		culture: 'zh-CN'
+	}).data("kendoDatePicker");
+
+	start.max(end.value());
+	end.min(start.value());
+
+	function onSelect(e) {
+		console.log("Select :: " + getFileInfo(e));
+	}
+	
+	function onUpload(e) {
+		console.log("Upload :: " + getFileInfo(e));
+	}
+	
+	function onSuccess(e) {
+		console.log("Success (" + e.operation + ") :: " + getFileInfo(e));
+	}
+	
+	function onError(e) {
+		console.log("Error (" + e.operation + ") :: " + getFileInfo(e));
+	}
+	
+	function onComplete(e) {
+		console.log("Complete");
+	}
+	
+	function onCancel(e) {
+		console.log("Cancel :: " + getFileInfo(e));
+	}
+	
+	function onRemove(e) {
+		console.log("Remove :: " + getFileInfo(e));
+	}
+	
+	function onProgress(e) {
+		console.log("Upload progress :: " + e.percentComplete + "% :: " + getFileInfo(e));
+	}
+	
+	function getFileInfo(e) {
+		return $.map(e.files, function(file) {
+			var info = file.name;
+	
+			// File size is not available in all browsers
+			if (file.size > 0) {
+				info += " (" + Math.ceil(file.size / 1024) + " KB)";
+			}
+			return info;
+		}).join(", ");
+	}
+	
+	$("#agreement_file").kendoUpload({
+		async: {
+			saveUrl: "save",
+			removeUrl: "remove",
+			autoUpload: true
+		},
+		cancel: onCancel,
+		complete: onComplete,
+		error: onError,
+		progress: onProgress,
+		remove: onRemove,
+		select: onSelect,
+		success: onSuccess,
+		upload: onUpload
+	});
+
+
+    //航司自动完成
+
+});
+
+
+</script>
+</body>
+</html>
+
+
