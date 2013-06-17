@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>${title!"天地行"}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+
+    <link href="http://static.b2b.com/css/common.css" rel="stylesheet" />
+    <link href="http://static.b2b.com/css/kendo.common.css" rel="stylesheet" />
+    <link href="http://static.b2b.com/css/kendo.default.css" rel="stylesheet" />
+    <script type="text/javascript" src="http://static.b2b.com/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://static.b2b.com/js/kendo.web.js"></script>
+    <script type="text/javascript" src="http://static.b2b.com/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <style type="text/css">
+
+        body {text-align:left;}
+        #cn_policy_add {width:100%;padding:10px;}
+        #cn_policy_add ul {width:800px;border: 1px solid red;}
+        #cn_policy_add ul li {clear:both;}
+        #cn_policy_add ul li label.item_title {float:left;display:inline-block;width:100px;padding:5px;}
+        #cn_policy_add ul li div {display:inline-block;width:400px;padding:5px;}
+        #cn_policy_add ul li.dp div {width:300px;float:left;border:1px solid red;}
+
+    </style>
+</head>
+<body>
+    <div id="cn_policy_add">
+        <form method="get" action="">
+        <ul>
+            <li>
+                <label for="" class="item_title">航空公司</label>
+                <div>
+                    <input id="airline" type="text" name="airline" />
+                    <label for="">政策文件</label><input id="policy_name" type="text" name="policy_name" />
+                </div>
+                <span></span>
+            </li>
+            <li>
+                <label for="" class="item_title">政策类型</label>
+                <div>
+                    <input id="normal_policy" type="radio" name="policy_type" /><label for="normal_policy">普通政策</label>
+                    <input id="nation_policy" type="radio" name="policy_type" /><label for="nation_policy">全国政策</label>
+                </div>
+                <span></span>
+            </li>
+            <li>
+                <label for="" class="item_title">票证类型</label>
+                <div>
+                    <input id="" type="checkbox" name="ticket_checkAll" /><label for="">全选</label>
+                    <input id="" type="checkbox" name="ticket_BSP" /><label for="">BSP</label>
+                    <input id="" type="checkbox" name="ticket_CRS" /><label for="">CRS</label>
+                    <input id="" type="checkbox" name="ticket_B2B" /><label for="">B2B</label>
+                    <input id="" type="checkbox" name="allow_auto_ticket" /><label for="">允许自动出票</label>
+                    <input id="" type="checkbox" name="exchange_ticket" /><label for="">必须换编码才能出票</label>
+                </div>
+                <span></span>
+            </li>
+            <li>
+                <label for="" class="item_title">航程类型</label>
+                <div>
+                    <input id="one_way" type="checkbox" name="one_way" /><label for="one_way">单程</label>
+                    <input id="round_trip" type="checkbox" name="round_trip" /><label for="round_trip">往返</label>
+                </div>
+                <span></span>
+            </li>
+            <li>
+                <label for="" class="item_title">乘客类型</label>
+                <div>
+                    <input id="adult" type="checkbox" name="adult" /><label for="adult">成人</label>
+                    <input id="child" type="checkbox" name="child" /><label for="child">儿童</label>
+                </div>
+                <span></span>
+            </li>
+            <li>
+                <label for="" class="item_title">Office号</label>
+                <div>
+                    <select id="officeId" name="officeId">
+                        <option value="SHA255">SHA255</option>
+                        <option value="SHA836">SHA836</option>
+                    </select>
+                    <input type="button" name="addOffice" value="添加"/>
+                    <ol>
+                        <li>
+                            <span>SHA255</span>
+                            <a href="javascript:void(0);">删除</a>
+                        </li>
+                    </ol>
+                        
+                </div>
+                <span></span>
+            </li>
+            <li>
+                <label for="" class="item_title">是否需要授权</label>
+                <div><input id="need_auth" type="checkbox" name="need_auth" /><label for="need_auth"></label></div>
+                <span></span>
+            </li>
+            <li class="dp">
+                <label for="" class="item_title">出发机场</label>
+                <div>
+                    <input id="" type="radio" name="departure_airport" /><label for="">所有</label>
+                    <input id="" type="radio" name="departure_airport" /><label for="">包含</label>
+                    <input id="" type="radio" name="departure_airport" /><label for="">排除</label>
+                    <br/>
+                    <textarea id="" name="" cols="30" rows="10"></textarea>
+                </div>
+            </li>
+            <li class="dp">
+                <label for="" class="item_title">到达机场</label>
+                <div>
+                    <input id="" type="radio" name="arrive_airport" /><label for="">所有</label>
+                    <input id="" type="radio" name="arrive_airport" /><label for="">包含</label>
+                    <input id="" type="radio" name="arrive_airport" /><label for="">排除</label>
+                    <br/>
+                    <textarea id="" name="" cols="30" rows="10"></textarea>
+                </div>
+                <span><em>*</em>可输入多个机场三字母，用"/" 字符隔开,如PEK/NAY/SHA/PVG</span>
+            </li>
+            <li>
+                <label for="" class="item_title">排除航段</label>
+                <div>
+                    <ol>
+                        <li>
+                            <input id="" type="text" name="" />--<input id="" type="text" name="" /><a href="javascript:void(0);">删除</a>
+                        </li>
+                        <li>
+                            <input id="" type="text" name="" />--<input id="" type="text" name="" /><a href="javascript:void(0);">删除</a>
+                        </li>
+                    </ol> 
+                </div>
+                <span>排除指定的航段,如SHA-PEK,表示只排除SHA-PEK这个一段</span>
+            </li>
+            <li>
+                <label for="" class="item_title">去程航班限制</label>
+                <div>
+                    <input id="" type="radio" name="" /><label>所有</label>
+                    <input id="" type="radio" name="" /><label>包含</label>
+                    <input id="" type="radio" name="" /><label>排除</label>
+                    <br/>
+                    <textarea id="" name="" cols="30" rows="10"></textarea>
+                </div>
+            </li>
+            <li>
+                <label for="" class="item_title">回程航班限制</label>
+                <div>
+                    <input id="" type="radio" name="" /><label>所有</label>
+                    <input id="" type="radio" name="" /><label>包含</label>
+                    <input id="" type="radio" name="" /><label>排除</label>
+                    <br/>
+                    <textarea id="" name="" cols="30" rows="10"></textarea>
+                </div>
+                <span></span>
+            </li>
+            <li>
+                <label for="" class="item_title"></label>
+                <div></div>
+                <span></span>
+            </li>
+            <li>
+                <label for="" class="item_title"></label>
+                <div></div>
+                <span></span>
+            </li>
+            <li>
+                <label for="" class="item_title"></label>
+                <div></div>
+                <span></span>
+            </li>
+            <li>
+                <label for="" class="item_title"></label>
+                <div></div>
+                <span></span>
+            </li>
+            <li>
+                <label for="" class="item_title"></label>
+                <div></div>
+                <span></span>
+            </li>
+            <li>
+                <label for="" class="item_title"></label>
+                <div></div>
+                <span></span>
+            </li>
+            <li>
+                <label for="" class="item_title"></label>
+                <div></div>
+                <span></span>
+            </li>
+            <li>
+                <label for="" class="item_title"></label>
+                <div></div>
+                <span></span>
+            </li>
+        </ul>
+    </form>
+    </div>
+		
+</body>
+</html>
+
