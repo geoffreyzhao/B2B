@@ -51,8 +51,8 @@
                 <li><a href="javascript:void(0);">基础数据</a></li>
             </ol>
             <div id="message">
-            	<a href="javascript:void(0);">消息</a>
-                <span>New</span>
+            	<a href="javascript:void(0);">&nbsp;</a>
+                <span>&nbsp;</span>
             </div>
         </div>
         <div class="clear"></div>
@@ -65,7 +65,7 @@
                <div class="yuangongguanli">
                  <h2>组织架构和员工管理</h2>
                   <div class="tianjia-btn">
-                    <a class="tianjia-btn-a" href="#">添加部门</a>
+                    <a class="tianjia-btn-a" href="#" onClick="add_department();">添加部门</a>
                     <a class="tianjia-btn-a" href="#">添加员工</a>
                   </div>
                </div>
@@ -221,7 +221,10 @@
         
         <!-- end of zhuzhijiagou -->
     </div>
-		
+	
+    <div id="add_department"></div>
+    <div id="add_employe"></div>
+    
     <div id="extFooter">
         <div>
             <p>
@@ -233,5 +236,25 @@
             <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
+    
+    <script type="application/javascript">
+		var add_department = function(id){
+			id = 0;
+			if (!$("#add_department").data("kendoWindow")) {
+				$("#add_department").kendoWindow({
+					width: "100%",
+					minHeight: "100%",
+					title: "操作提示",
+					actions: ["Refresh", "Close"],
+					content: encodeURI("添加部门.html")  + "?orderID=" + id + "&timestamp=" + (new Date()).toString(),
+					visible: false,
+					modal:true
+				}).data("kendoWindow").open().center();
+			}else{
+				$("#add_department").data("kendoWindow").open().center();
+			}
+		};
+	
+	</script>
 </body>
 </html>
