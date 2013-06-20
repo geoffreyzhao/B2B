@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html class="k-webkit k-webkit27">
+<head>
+    <title>${title!"天地行"}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+    <link href="http://static.b2b.com/css/common.css" rel="stylesheet">
+    <link href="http://static.b2b.com/css/kendo.common.css" rel="stylesheet">
+    <link href="http://static.b2b.com/css/kendo.default.css" rel="stylesheet">
+    <link href="http://static.b2b.com/css/b2b.css" rel="stylesheet">
+    <link href="http://static.b2b.com/css/policy.css" rel="stylesheet">
+
+    <script type="text/javascript" src="http://static.b2b.com/js/jquery.min.js"></script>
+
+    <script type="text/javascript" src="http://static.b2b.com/js/kendo.web.js"></script>
+
+    <script type="text/javascript" src="http://static.b2b.com/js/common.js"></script>
+
+    <script type="text/javascript" src="http://static.b2b.com/js/kendo.culture.zh-CHS.min.js"></script>
+
+    <script type="text/javascript">
+        var fileData = [
+            { id: "1", code: "DDD", name: "***协议", company: "×××航空公司", fileName: "×××.doc", remark: "备注", a: "×××规则", date: "2013-09-12", updateDate: "2013-08-12", status: "可用" },
+            { id: "2", code: "DDD", name: "***协议", company: "×××航空公司", fileName: "×××.doc", remark: "备注", a: "×××规则", date: "2013-09-12", updateDate: "2013-08-12", status: "可用" },
+            { id: "3", code: "DDD", name: "***协议", company: "×××航空公司", fileName: "×××.doc", remark: "备注", a: "×××规则", date: "2013-09-12", updateDate: "2013-08-12", status: "可用" },
+            { id: "4", code: "DDD", name: "***协议", company: "×××航空公司", fileName: "×××.doc", remark: "备注", a: "×××规则", date: "2013-09-12", updateDate: "2013-08-12", status: "可用" },
+            { id: "5", code: "DDD", name: "***协议", company: "×××航空公司", fileName: "×××.doc", remark: "备注", a: "×××规则", date: "2013-09-12", updateDate: "2013-08-12", status: "可用" }
+        ];
+        var columns = [
+            { title: "序号", field: "id", width: 50 },
+            { title: "协议代码", field: "code", width: 70 },
+            { title: "协议名称", field: "name", width: 70 },
+            { title: "航空公司", field: "company", width: 100 },
+            { title: "文件", field: "fileName", width: 100 },
+            { title: "备注", field: "remark", width: 80 },
+            { title: "规则数", field: "a", width: 50 },
+            { title: "有效期", field: "date", width: 80 },
+            { title: "修改时间", field: "updateDate", width: 80 },
+            { title: "状态", field: "status", width: 80 },
+            { command: [{ text: "维护政策", click: manage }, { text: "修改", click: null }, { text: "作废", click: null }, { text: "挂起", click: null}], title: "操作", width: 300 }
+        ];
+        function manage(e) {
+            e.preventDefault();
+            var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+            alert(dataItem.id);
+        }
+        $(function() {
+            $("#search").click(function() {
+                $("#result").kendoGrid({
+                    dataSource: fileData,
+                    columns: columns,
+                    pageable: {
+                        messages: {
+                            display: "{0} - {1} 共 {2} 条数据",
+                            empty: "没有要显示的数据",
+                            page: "Page",
+                            of: "of {0}", // {0} is total amount of pages
+                            itemsPerPage: "items per page",
+                            first: "首页",
+                            previous: "前一页",
+                            next: "下一页",
+                            last: "最后一页",
+                            refresh: "刷新"
+                        }
+                    },
+                    selectable: true,
+                    sortable: true
+                })
+            });
+
+        });
+    </script>
+
+</head>
+<body>
+    <div id="extHeader">
+        <div>
+        </div>
+    </div>
+    <div id="container">
+        <div class="header">
+            <h1>
+            </h1>
+            <div>
+                <span>你好,${name}</span> <a href="javascript:void(0);">退出</a>
+            </div>
+            <ul id="top_menu">
+                <li><a href="javascript:void(0);">国内机票</a></li>
+                <li><a href="javascript:void(0);">国际机票</a></li>
+                <li><a href="javascript:void(0);">酒店</a></li>
+                <li><a href="javascript:void(0);">票证中心</a></li>
+                <li><a href="javascript:void(0);">财务管理</a></li>
+                <li><a href="javascript:void(0);">客户管理</a></li>
+                <li class="current"><a href="javascript:void(0);">系统设置</a></li>
+            </ul>
+            <ol class="sub_menu">
+                <li class="current"><a href="javascript:void(0);">公告信息</a></li>
+                <li><a href="javascript:void(0);">公司信息</a></li>
+                <li><a href="javascript:void(0);">组织架构</a></li>
+                <li><a href="javascript:void(0);">角色维护</a></li>
+                <li><a href="javascript:void(0);">基础数据</a></li>
+            </ol>
+            <div id="message">
+                <a href="javascript:void(0);">消息</a> <span>New</span>
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        <div id="sub_menu_bar">
+        </div>
+        <div id="mainContent">
+            <div class="breadcrum">
+                &gt;&gt; <a href="#">政策文件管理</a>
+            </div>
+            <div class="condition">
+                <table>
+                    <tr>
+                        <td>
+                            航空公司：
+                        </td>
+                        <td>
+                            <input type="text" class="k-textbox" />
+                        </td>
+                        <td>
+                            协议代码：
+                        </td>
+                        <td>
+                            <input type="text" class="k-textbox" />
+                        </td>
+                        <td>
+                            协议名称：
+                        </td>
+                        <td>
+                            <input type="text" class="k-textbox" />
+                        </td>
+                        <td>
+                            文件名：
+                        </td>
+                        <td>
+                            <input type="text" class="k-textbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            有效期：
+                        </td>
+                        <td colspan="3">
+                            <input type="text" class="Datepicker" />--<input type="text" class="Datepicker" />
+                        </td>
+                        <td>
+                            修改时间：
+                        </td>
+                        <td colspan="3">
+                            <input type="text" class="Datepicker" />--<input type="text" class="Datepicker" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            关键字：
+                        </td>
+                        <td>
+                            <input type="text" class="k-textbox" />
+                        </td>
+                        <td>
+                            底价协议<input type="checkbox" />
+                        </td>
+                        <td>
+                            后返协议<input type="checkbox" />
+                        </td>
+                        <td colspan="3">
+                            <a href="#" class="k-button" id="search"><span class="k-icon k-i-search"></span>查看</a> <a href="PolicyFileAdd.aspx" class="k-button"><span class="k-icon k-add"></span>添加</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="result">
+            </div>
+        </div>
+    </div>
+    <div id="extFooter">
+        <div>
+            <p>
+                <a href="javascript:void(0);">关于我们</a>&nbsp;| <a href="javascript:void(0);">微博</a>&nbsp;| <a href="javascript:void(0);">服务条款</a>&nbsp;| <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>
+                客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+</body>
+</html>
