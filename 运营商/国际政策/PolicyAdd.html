@@ -1,0 +1,562 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html class="k-webkit k-webkit27">
+<head>
+    <title>${title!"天地行"}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+    <link href="http://static.b2b.com/css/common.css" rel="stylesheet">
+    <link href="http://static.b2b.com/css/kendo.common.css" rel="stylesheet">
+    <link href="http://static.b2b.com/css/kendo.default.css" rel="stylesheet">
+    <link href="http://static.b2b.com/css/b2b.css" rel="stylesheet">
+    <link href="http://static.b2b.com/css/policy.css" rel="stylesheet">
+
+    <script type="text/javascript" src="http://static.b2b.com/js/jquery.min.js"></script>
+
+    <script type="text/javascript" src="http://static.b2b.com/js/kendo.web.js"></script>
+
+    <script type="text/javascript" src="http://static.b2b.com/js/common.js"></script>
+
+    <script type="text/javascript" src="http://static.b2b.com/js/kendo.culture.zh-CHS.min.js"></script>
+
+    <script>
+        $(function() {
+            $("#startTabs,#endTabs").kendoTabStrip();
+            $("#startAll").click(function() {
+                $(this).closest("ul").find("input[name=startCity]").prop("checked", true);
+                drawCity(this);
+            });
+            $("#startTabs").find("input[name=startCity]").click(function() {
+                drawCity(this);
+            });
+            $("#startUnAll").click(function() {
+                $(this).closest("ul").find("input[name=startCity]").each(function() {
+                    $(this).prop("checked", !(this.checked))
+                });
+                drawCity(this);
+            });
+            $("#cangweiAll").click(function() {
+                $("#cangwei").find("input[type=checkbox]").prop("checked", true);
+            });
+            $("#cangweiUnAll").click(function() {
+                $("#cangwei").find("input[type=checkbox]").each(function() {
+                    $(this).prop("checked", !(this.checked));
+                })
+            })
+        })
+        function drawCity(obj) {
+            $("#scityed").html("");
+            var lidata = $(obj).closest("ul").find('input[name=startCity]:checked');
+            var liHtml = '';
+            $("#scityed").append("<div>已选城市：</div><ul class='ul_city' id='ul_city'></ul>");
+            lidata.each(function() {
+                liHtml += "<li code=" + $(this).val() + ">" + $(this).next().text() + "</li>";
+            });
+            $("#ul_city").html(liHtml);
+            $("#ul_city").append("<div class='clr'></div>");
+        };
+    </script>
+
+</head>
+<body>
+    <div id="extHeader">
+        <div>
+        </div>
+    </div>
+    <div id="container">
+        <div class="header">
+            <h1>
+            </h1>
+            <div>
+                <span>你好,${name}</span> <a href="javascript:void(0);">退出</a>
+            </div>
+            <ul id="top_menu">
+                <li><a href="javascript:void(0);">国内机票</a></li>
+                <li><a href="javascript:void(0);">国际机票</a></li>
+                <li><a href="javascript:void(0);">酒店</a></li>
+                <li><a href="javascript:void(0);">票证中心</a></li>
+                <li><a href="javascript:void(0);">财务管理</a></li>
+                <li><a href="javascript:void(0);">客户管理</a></li>
+                <li class="current"><a href="javascript:void(0);">系统设置</a></li>
+            </ul>
+            <ol class="sub_menu">
+                <li class="current"><a href="javascript:void(0);">公告信息</a></li>
+                <li><a href="javascript:void(0);">公司信息</a></li>
+                <li><a href="javascript:void(0);">组织架构</a></li>
+                <li><a href="javascript:void(0);">角色维护</a></li>
+                <li><a href="javascript:void(0);">基础数据</a></li>
+            </ol>
+            <div id="message">
+                <a href="javascript:void(0);">消息</a> <span>New</span>
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        <div id="sub_menu_bar">
+        </div>
+        <div id="mainContent">
+            <div class="breadcrum">
+                &gt;&gt; <a href="#">普通政策添加</a>
+            </div>
+            <div class="addcontent">
+                <table>
+                    <tr>
+                        <td>
+                            政策类型：
+                        </td>
+                        <td>
+                            <input type="radio" name="radio" />单程<input type="radio" name="radio" />往返<input type="radio" name="radio" />单程及往返<input type="radio" name="radio" />联城<input type="radio" name="radio" />缺口
+                        </td>
+                        <td>
+                            政策文件：
+                        </td>
+                        <td>
+                            <input type="text" class="k-textbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            政策有效期：
+                        </td>
+                        <td colspan="3">
+                            <input type="text" class="Datepicker" />-<input type="text" class="Datepicker" />&nbsp;&nbsp;&nbsp;回城奖励政策沿用至：<input type="text" class="Datepicker" style="width: 92px;" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            政策有效期：
+                        </td>
+                        <td colspan="3">
+                            <input type="text" class="Datepicker" />-<input type="text" class="Datepicker" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            政策返点类型：
+                        </td>
+                        <td colspan="3">
+                            <select>
+                                <option>无类型</option>
+                                <option>国内直飞</option>
+                                <option>直飞SOTO</option>
+                                <option>国内始发ADD-ON</option>
+                                <option>国外始发ADD-ON</option>
+                                <option>无类型</option>
+                                <option>无类型</option>
+                                <option>无类型</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            授权号1：
+                        </td>
+                        <td colspan="3">
+                            <input type="text" class="k-textbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            授权号2：
+                        </td>
+                        <td colspan="3">
+                            <input type="text" class="k-textbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            航空公司：
+                        </td>
+                        <td colspan="3">
+                            <input type="text" class="k-textbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            航空公司2字码：
+                        </td>
+                        <td>
+                            <input type="text" class="k-textbox" />
+                        </td>
+                        <td>
+                            仓位：
+                        </td>
+                        <td>
+                            <input type="text" class="k-textbox" />所有填*
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            基本代理费：
+                        </td>
+                        <td>
+                            <input type="text" class="k-textbox" />%
+                        </td>
+                        <td>
+                            奖励扣率：
+                        </td>
+                        <td>
+                            <input type="text" class="k-textbox" />%
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            奖励金额：
+                        </td>
+                        <td>
+                            <input type="text" class="k-textbox" />元
+                        </td>
+                        <td>
+                            开票费：
+                        </td>
+                        <td>
+                            <input type="text" class="k-textbox" />元
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            去成航班包含：
+                        </td>
+                        <td>
+                            <input type="text" class="k-textbox" />
+                        </td>
+                        <td>
+                            回城航班包含：
+                        </td>
+                        <td>
+                            <input type="text" class="k-textbox" />/分割
+                        </td>
+                    </tr>
+                </table>
+                <p class="tishi">
+                    (选择好航空公司后展开始发城市、舱位选择、目的城市，航司二字码自动填充)</p>
+                <div id="startTabs">
+                    <h2 class="title">
+                        始发城市</h2>
+                    <ul>
+                        <li class="k-state-active">A-F</li>
+                        <li>G-L</li>
+                        <li>M-R</li>
+                        <li>S-Z</li>
+                    </ul>
+                    <div>
+                        <ul class="cityspan">
+                            <li><span>
+                                <input type="checkbox" name="startCity" value="CGQ" /><i>CGQ-长春</i></span><span><input type="checkbox" name="startCity" value="CAA" /><i>CAA-长沙</i></span><span><input type="checkbox" name="startCity" value="CTU" /><i>CTU-成都</i></span><span><input type="checkbox" name="startCity" value="CKG" /><i>CKG-重庆</i></span></li>
+                            <li><span>
+                                <input type="checkbox" name="startCity" value="DLC" /><i>DLC-大连</i></span><span><input type="checkbox" name="startCity" value="FOC" /><i>FOC-福州</i></span><span><input type="checkbox" name="startCity" value="CAN" /><i>CAN-广州</i></span><span><input type="checkbox" name="startCity" value="DYG" /><i>DYG-张家界</i></span></li>
+                            <li><span>
+                                <input type="checkbox" name="startCity" value="CGO" /><i>CGO-郑州</i></span><span><input type="checkbox" name="startCity" value="BJS" /><i>BJS-北京</i></span></li>
+                            <li><a class="k-button" id="startAll">全选</a><a class="k-button" id="startUnAll">反选</a><a class="k-button" id="addCity">添加城市</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        G-L
+                    </div>
+                    <div>
+                        M-R
+                    </div>
+                    <div>
+                        S-Z
+                    </div>
+                </div>
+                <div id="scityed" class="b1px cen">
+                </div>
+                <div id="cangwei" class="b1px">
+                    <h4>
+                        仓位选择</h4>
+                    <ul class="ul_cangwei">
+                        <li>
+                            <input type="checkbox" />&nbsp;A</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;B</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;C</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;D</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;E</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;F</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;G</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;H</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;I</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;J</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;K</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;L</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;M</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;N</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;O</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;P</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;Q</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;R</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;S</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;T</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;U</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;W</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;X</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;Y</li>
+                        <li>
+                            <input type="checkbox" />&nbsp;Z</li>
+                    </ul>
+                    <div class="clr">
+                    </div>
+                    <div class="pd10">
+                        <a class="k-button" id="cangweiAll">全选</a>&nbsp;&nbsp;<a class="k-button" id="cangweiUnAll">反选</a></div>
+                </div>
+                <div id="endTabs">
+                    <h2 class="title">
+                        目的城市</h2>
+                    <ul>
+                        <li class="k-state-active">A-F</li>
+                        <li>G-L</li>
+                        <li>M-R</li>
+                        <li>S-Z</li>
+                    </ul>
+                    <div>
+                        <ul class="cityspan">
+                            <li><span>
+                                <input type="checkbox" />&nbsp;CGQ-长春</span><span><input type="checkbox" />&nbsp;CAA-长沙</span><span><input type="checkbox" />&nbsp;CTU-成都</span><span><input type="checkbox" />&nbsp;CKG-重庆</span></li>
+                            <li><span>
+                                <input type="checkbox" />&nbsp;CGQ-长春</span><span><input type="checkbox" />&nbsp;CAA-长沙</span><span><input type="checkbox" />&nbsp;CTU-成都</span><span><input type="checkbox" />&nbsp;CKG-重庆</span></li>
+                            <li><span>
+                                <input type="checkbox" />&nbsp;CGQ-长春</span><span><input type="checkbox" />&nbsp;CAA-长沙</span></li>
+                            <li><a class="k-button">全选</a><a class="k-button">反选</a><a class="k-button">添加城市</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        G-L
+                    </div>
+                    <div>
+                        M-R
+                    </div>
+                    <div>
+                        S-Z
+                    </div>
+                </div>
+                <div id="ecityed" class="b1px cen">
+                    <h4>
+                        已选城市</h4>
+                </div>
+                <div class="b1px cen" style="text-align: center;">
+                    <a class="k-button" style="margin: 14px;">确定</a>&nbsp;&nbsp;&nbsp;<a class="k-button">取消</a>
+                </div>
+                <div class="cen bg1">
+                    <p class="m10">
+                        <label>
+                            类别：</label><input type="checkbox" />BSP&nbsp;&nbsp;<input type="checkbox" />B2B&nbsp;&nbsp;<input type="checkbox" />CRS&nbsp;&nbsp;<input type="checkbox" />境外电子&nbsp;</p>
+                    <p class="m10">
+                        <label>
+                            作废：</label><input type="checkbox" />不允许作废</p>
+                </div>
+                <div class="b1px cen">
+                    <h4 class="pdl14">
+                        乘客类型</h4>
+                    <ul class="psg">
+                        <li><span>
+                            <input type="checkbox" />&nbsp;成人：</span><span><input type="checkbox" />&nbsp;一般成人</span><span><input type="checkbox" />&nbsp;学生</span><span><input type="checkbox" />&nbsp;青年</span><span><input type="checkbox" />&nbsp;移民</span><span><input type="checkbox" />&nbsp;劳务</span><span><input type="checkbox" />&nbsp;海员</span><span><input type="checkbox" />&nbsp;特殊身份</span></li>
+                        <li><span>
+                            <input type="checkbox" />&nbsp;儿童：</span><span><input type="checkbox" />&nbsp;返点与成人一致</span><span><input type="checkbox" />&nbsp;可开无返点</span><span><input type="checkbox" />&nbsp;可开无奖励</span><span><input type="checkbox" />&nbsp;不可开</span></li>
+                        <li><span>
+                            <input type="checkbox" />&nbsp;婴儿：</span><span><input type="checkbox" />&nbsp;可开</span><span><input type="checkbox" />&nbsp;不可开</span>（婴儿无代理费和奖励）</li>
+                    </ul>
+                </div>
+                <div class="b1px cen">
+                    <h4 class="pdl14">
+                        返点不使用</h4>
+                    <ul class="psg">
+                        <li><span>
+                            <input type="checkbox" />&nbsp;三方协议</span><span><input type="checkbox" />&nbsp;套票</span><span><input type="checkbox" />&nbsp;小团</span><span><input type="checkbox" />&nbsp;整团</span><span><input type="checkbox" />&nbsp;SOTO</span></li>
+                    </ul>
+                    <p>
+                        （返点：代理费+奖励）</p>
+                </div>
+                <div class="b1px cen">
+                    <h4 class="pdl14">
+                        PNR</h4>
+                    <ul class="psg">
+                        <li><span>
+                            <input type="checkbox" />&nbsp;不限</span><span><input type="checkbox" />&nbsp;换编码出票</span><span><input type="checkbox" />&nbsp;大编码出票（无需换编）</span><span><input type="checkbox" />&nbsp;大编码出票（需换编）</span></li>
+                    </ul>
+                </div>
+                <div class="b1px cen" style="float: left;">
+                    <h4 class="pdl14">
+                        政策规则</h4>
+                    <dl>
+                        <dt>同一承运人的SPA：</dt>
+                    </dl>
+                    <dl class="dl_zcgz">
+                        <dd>
+                            <input type="checkbox" />&nbsp;与实际承运第一国际段同样计入奖励</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;该段不计入奖励</dd>
+                    </dl>
+                    <dl>
+                        <dt>非同一承运人的SPA：</dt>
+                    </dl>
+                    <dl class="dl_zcgz">
+                        <dd>
+                            <input type="checkbox" />&nbsp;与实际承运第一国际段同样计入奖励</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;该段不计入奖励</dd>
+                    </dl>
+                    <dl>
+                        <dt>同一承运人的ADDON：</dt>
+                    </dl>
+                    <dl class="dl_zcgz">
+                        <dd>
+                            <input type="checkbox" />&nbsp;该段也计入整体奖励</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;该段不计入整体奖励</dd>
+                    </dl>
+                    <dl>
+                        <dt>非同一承运人的ADDON：</dt>
+                    </dl>
+                    <dl class="dl_zcgz">
+                        <dd>
+                            <input type="checkbox" />&nbsp;该段也计入整体奖励</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;该段不计入整体奖励</dd>
+                    </dl>
+                    <dl>
+                        <dt>混舱：</dt>
+                    </dl>
+                    <dl class="dl_zcgz">
+                        <dd>
+                            <input type="checkbox" />&nbsp;返点取1/2值</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;返点取小值</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;返款累加</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;返款取小</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;返款取大</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;按实际承运第一国际段计入奖励</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;按各段实际奖励分别计入</dd>
+                    </dl>
+                    <dl>
+                        <dt>跨季：</dt>
+                    </dl>
+                    <dl class="dl_zcgz">
+                        <dd>
+                            <input type="checkbox" />&nbsp;返点取1/2值</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;返点取小值</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;返款累加</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;返款取小</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;返款取大</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;按实际承运第一国际段计入奖励</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;按各段实际奖励分别计入</dd>
+                    </dl>
+                    <dl>
+                        <dt>混舱并跨季：</dt>
+                    </dl>
+                    <dl class="dl_zcgz">
+                        <dd>
+                            <input type="checkbox" />&nbsp;返点取1/2值</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;返点取小值</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;返款累加</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;返款取小</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;返款取大</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;按实际承运第一国际段计入奖励</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;按各段实际奖励分别计入</dd>
+                    </dl>
+                    <dl>
+                        <dt>OPEN票：</dt>
+                    </dl>
+                    <dl class="dl_zcgz">
+                        <dd>
+                            <input type="checkbox" />&nbsp;按实际承运第一国际段计入奖励</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;按跨季算</dd>
+                    </dl>
+                    <dl>
+                        <dt>缺口程：</dt>
+                    </dl>
+                    <dl class="dl_zcgz">
+                        <dd>
+                            <input type="checkbox" />&nbsp;返点取1/2值</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;返点取小值</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;返款累加</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;返款取小</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;返款取大</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;按实际承运第一国际段计入奖励</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;按各段实际奖励分别计入</dd>
+                    </dl>
+                    <dl>
+                        <dt>代码共享：</dt>
+                    </dl>
+                    <dl class="dl_zcgz">
+                        <dd>
+                            <input type="checkbox" />&nbsp;全程不计奖励</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;全程计入奖励</dd>
+                        <dd>
+                            <input type="checkbox" />&nbsp;代码共享段无奖励</dd>
+                    </dl>
+                </div>
+                <div class="clr">
+                </div>
+                <div class="b1px cen pd20 b1px_b">
+                    <label class="top">
+                        内部备注：</label><textarea class="txta"></textarea><p class="p_zysx">
+                            （此备注的内容运营商内部查看）</p>
+                    <br />
+                    <br />
+                    <label class="top">
+                        外部备注：</label><textarea class="txta"></textarea><p class="p_zysx">
+                            （此备注的内容将在订单中显示，用于提示采购商需要注意的事项）</p>
+                    <div class="btn">
+                        <a class="k-button">发布政策</a>&nbsp;&nbsp;&nbsp;<a class="k-button">重置页面</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="extFooter">
+        <div>
+            <p>
+                <a href="javascript:void(0);">关于我们</a>&nbsp;| <a href="javascript:void(0);">微博</a>&nbsp;| <a href="javascript:void(0);">服务条款</a>&nbsp;| <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>
+                客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+</body>
+</html>
