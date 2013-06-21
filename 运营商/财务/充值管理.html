@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>${title!"天地行"}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+	<link href="http://static.b2b.com/css/common.css" rel="stylesheet" />
+	<link href="http://static.b2b.com/css/kendo.common.css" rel="stylesheet" />
+	<link href="http://static.b2b.com/css/kendo.default.css" rel="stylesheet" />
+	<link href="http://static.b2b.com/css/b2b_commom.css" rel="stylesheet" type="text/css" />
+	<link href="http://static.b2b.com/css/account.css" rel="stylesheet" />
+	
+	<link href="http://static.b2b.com/css/b2b.css" rel="stylesheet" />
+    <script type="text/javascript" src="http://static.b2b.com/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://static.b2b.com/js/kendo.web.js"></script>
+	<script type="text/javascript" src="http://static.b2b.com/js/caiwuCommon.js"></script>
+
+</head>
+<body>
+    <div id="extHeader">
+        <div></div>
+    </div>
+
+    <div id="container">
+        <div class="header">
+            <h1></h1>
+            <div>
+                <span>你好,${name}</span>
+                <a href="javascript:void(0);">退出</a>
+            </div>
+            <ul id="top_menu">
+                <li><a href="javascript:void(0);">国内机票</a></li>
+                <li><a href="javascript:void(0);">国际机票</a></li>
+                <li><a href="javascript:void(0);">酒店</a></li>
+                <li><a href="javascript:void(0);">票证中心</a></li>
+                <li><a href="javascript:void(0);">财务管理</a></li>
+                <li><a href="javascript:void(0);">客户管理</a></li>
+                <li class="current"><a href="javascript:void(0);">系统设置</a></li>
+            </ul>
+            <ol class="sub_menu">
+                <li class="current"><a href="javascript:void(0);">公告信息</a></li>
+                <li><a href="javascript:void(0);">公司信息</a></li>
+                <li><a href="javascript:void(0);">组织架构</a></li>
+                <li><a href="javascript:void(0);">角色维护</a></li>
+                <li><a href="javascript:void(0);">基础数据</a></li>
+            </ol>
+            <div id="message">
+            	<a href="javascript:void(0);">消息</a>
+                <span>New</span>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="sub_menu_bar"></div>
+		<div><a href="../财务/资金汇总.html">资金汇总</a> &nbsp;&nbsp;| &nbsp;&nbsp;<a href="../财务/充值管理.html">充值管理</a>&nbsp;&nbsp;| &nbsp;&nbsp;<a href="../财务/提现管理.html">提现管理</a>&nbsp;&nbsp;| &nbsp;&nbsp;<a href="../财务/授信管理.html">授信管理</a>&nbsp;&nbsp;| &nbsp;&nbsp;<a href="../财务/押金管理.html">押金管理</a>&nbsp;&nbsp;| &nbsp;&nbsp;<a href="../财务/冻结管理.html">冻结管理</a>&nbsp;&nbsp;| &nbsp;&nbsp;<a href="../财务/收支明细.html">收支明细</a>&nbsp;&nbsp;| &nbsp;&nbsp;<a href="../财务/交易明细.html">交易明细</a></div>
+		<div class="breadcrum"> &gt;&gt; <a href="#">充值管理</a> <a href="../财务/充值单管理.html" class="k-button">充值单管理</a></div>
+		 <div id="edit">
+    	</div>
+        <div id="mainContent">
+           <table width="90%">
+				<tr>
+					<td>客户简称 </td>
+					<td><input type="text" class="k-textbox" id="countries"/>
+					</td>
+						<td>帐号</td>
+						<td><input type="text" class="k-textbox" />
+					</td>
+					<td>充值方式</td>
+					<td>
+						<select>
+							<option>全部</option>
+							<option>中国银行</option>
+							<option>农业银行</option>
+							<option>建设银行</option>
+						</select>
+					</td>
+					<td></td>
+					</td>
+						<td><a href="#" class="k-button" id="search"><span class="k-icon k-i-search"></span>查询</a> </td>
+			   </tr>
+				<tr>
+						<td>充值日期</td>
+                		<td><input type="text" id="datepicker"/></td>
+						</td>
+						<td>到账日期</td>
+						<td><input type="text" id="datepickerdata"/>
+					</td>
+					<td>审核状态</td>
+					<td>
+						<select>
+							<option>全部</option>
+							<option>审核通过</option>
+							<option>等待审核</option>
+							<option>审核退回</option>
+						</select>
+					</td>
+			   </tr>
+					
+				<tr>
+						<td colspan="7" align="center"></td>
+			   </tr>
+			</table>
+        </div>
+		<div id="result"> </div>
+    </div>
+		
+    <div id="extFooter">
+        <div>
+            <p>
+                <a href="javascript:void(0);">关于我们</a>&nbsp;|
+                <a href="javascript:void(0);">微博</a>&nbsp;|
+                <a href="javascript:void(0);">服务条款</a>&nbsp;|
+                <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+var policyData = [
+		{ policyID: "1", jiancheng: "aa", zhuzhanghao: "1234567", chongzhiejin: "30.30", chongzhifangshi: "网上支付", chongzhishij: "2012-09-20", daozhangshij: "2012-09-21", usernames: "mengxia.wu",  zhaiyao: "摘要" },	
+		{ policyID: "2", jiancheng: "bb", zhuzhanghao: "0000000000000000", chongzhiejin: "30.30", chongzhifangshi: "网上支付", chongzhishij: "2012-09-20", daozhangshij: "2012-09-21", usernames: "mengxia.wu",  zhaiyao: "摘要" }
+	];
+    var columns = [
+              { title: "&nbsp;", template: '<input class="checkall_item"  type="checkbox" checked=true />', width: 40, headerTemplate: '<input type="checkbox" class="checkall" checked=true/>',hidden:true },
+              { title: "&nbsp;", field: "policyID", hidden: true },
+              { title: "客户", field: "jiancheng", width: 100 },
+			  { title: "充值金额", field: "chongzhiejin", width: 100 },
+              { title: "充值方式", field: "chongzhifangshi", width: 100 },
+              { title: "充值时间", field: "chongzhishij", width: 100 },
+              { title: "到账时间", field: "daozhangshij", width: 100 },
+              { title: "摘要", field: "zhaiyao", width: 100 },
+              { title: "操作人", field: "usernames", width: 100 }
+        ]
+    $(function() {
+		$("#datepicker").kendoDatePicker({
+            format: "yyyy-MM-dd"
+        });
+	$("#datepickerdata").kendoDatePicker({
+            format: "yyyy-MM-dd"
+        });
+	
+        $("#search").click(function() {
+            $("#result").kendoGrid({
+                dataSource: policyData,
+                columns: columns,
+                pageable: {
+                    messages: {
+                        display: "{0} - {1} 共 {2} 条数据",
+                        empty: "没有要显示的数据",
+                        page: "Page",
+                        of: "of {0}", // {0} is total amount of pages
+                        itemsPerPage: "items per page",
+                        first: "首页",
+                        previous: "前一页",
+                        next: "下一页",
+                        last: "最后一页",
+                        refresh: "刷新"
+                    }
+                },
+                toolbar: kendo.template($("#toolbar").html()),
+                selectable: true,
+                sortable: true
+            })
+        });
+
+    });
+    $('body').delegate('.checkall', 'click', function() {
+        $(this).closest('#result').find(':checkbox').prop('checked', this.checked);
+    });
+    $('body').delegate('.checkall_item', 'change', function() {
+        if (typeof $(this).attr('checked') == 'undefined') {
+            $('.checkall').removeAttr('checked');
+        }
+    });
+    $("body").delegate("#guaqi", "click", function() {
+        var trs = $("#result").find(":checkbox:checked").closest("tr");
+        var ids = [];
+        trs.each(function() {
+            var id = $(this).find("td:eq(1)").text();
+            if (id != "") {
+                ids.push(id);
+            }
+        });
+        alert(ids);
+
+    })
+</script>
+<script id="toolbar" type="text/x-kendo-template">
+<a class="k-button" id="guaqi" class="checkall">导出excel</a>
+</script>
+<script>
+                $(document).ready(function () {
+                    var data = [
+                            "Albania",
+                            "Andorra",
+                            "Armenia",
+                            "Austria",
+                            "Azerbaijan",
+                            "Belarus",
+                            "Belgium",
+                            "Bosnia & Herzegovina",
+                            "Bulgaria",
+                            "Croatia",
+                            "Cyprus",
+                            "Czech Republic",
+                            "Denmark",
+                            "Estonia",
+                            "Finland",
+                            "France",
+                            "Georgia",
+                            "Germany",
+                            "Greece",
+                            "Hungary",
+                            "Iceland",
+                            "Ireland",
+                            "Italy",
+                            "Kosovo",
+                            "Latvia",
+                            "Liechtenstein",
+                            "Lithuania",
+                            "Luxembourg",
+                            "Macedonia",
+                            "Malta",
+                            "Moldova",
+                            "Monaco",
+                            "Montenegro",
+                            "Netherlands",
+                            "Norway",
+                            "Poland",
+                            "Portugal",
+                            "Romania",
+                            "Russia",
+                            "San Marino",
+                            "Serbia",
+                            "Slovakia",
+                            "Slovenia",
+                            "Spain",
+                            "Sweden",
+                            "Switzerland",
+                            "Turkey",
+                            "Ukraine",
+                            "United Kingdom",
+                            "Vatican City"
+                        ];
+					 $.autoComplete(data,'countries');
+                    //create AutoComplete UI component
+                    
+                });
+            </script>
