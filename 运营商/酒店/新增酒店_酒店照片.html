@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html" charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="http://static.b2b.com/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://static.b2b.com/js/uploadify/jquery.uploadify.min.js"></script>
+    <script type="text/javascript" src="http://static.b2b.com/js/kendo.web.js"></script>
+    <link rel="stylesheet" href="http://static.b2b.com/css/common.css">
+    <link rel="stylesheet" href="http://static.b2b.com/js/uploadify/uploadify.css">
+    <link rel="stylesheet" href="http://static.b2b.com/css/comm.css">
+</head>
+<body>
+<input type="file" id="btn_upload" name="btn_upload" multiple="true">
+<div id="queue"></div>
+
+<script type="text/x-kendo-template" id="picTemplate">
+    <div style="float:left">
+        <p>
+            <img src="#= name #" alt="">
+        </p>
+        <a href="">设为默认</a>
+        <a href="">删除</a>
+    </div>
+</script>
+
+<script type="text/javascript">
+    $(function(){
+        var picTemplate=kendo.template($("#picTemplate").html());
+        $("#btn_upload").uploadify({
+            uploader      : 'test.asp',
+            swf           : 'http://static.b2b.com/js/uploadify/uploadify.swf',
+            queueID       : 'queue',
+            removeTimeout :0,
+            itemTemplate  : '<div id="${fileID}" class="uploadify-queue-item" style="float:left;width:234px;height:281px">\
+								<div class="uploadify-progress" style="margin-top:136px">\
+									<div class="uploadify-progress-bar" style="width: 81%;height:6px "><!--Progress Bar--></div>\
+								</div>\
+                			</div>',
+            onUploadSuccess:function(file,data,response){$("#queue").append(picTemplate({name:"15145042443.png"}))},
+            onUploadError:function(file,errorCode,errorMsg,errorString){alert(errorString);}
+        })
+    })
+</script>
+</body>
+</html>
