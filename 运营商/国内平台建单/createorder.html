@@ -1,0 +1,253 @@
+<!DOCTYPE html><html><head><title>平台建单</title><link href="http://static.b2b.com/css/common.css" rel="stylesheet" />
+<link href="http://static.b2b.com/css/kendo.common.css" rel="stylesheet" />
+<link href="http://static.b2b.com/css/kendo.default.css" rel="stylesheet" />
+<link href="http://static.b2b.com/css/b2b.css" rel="stylesheet" />
+
+<link rel="stylesheet" href="/css/global.css" />
+<script type="text/javascript" src="/js/vendor/jquery.js"></script>
+<script type="text/javascript" src="/js/vendor/kendo.all.min.js"></script>
+<script type="text/javascript" src="/js/jquery.fixedBar.js"></script>
+<script type="text/javascript">
+$(function(){
+    $('.actions').fixedBar();
+});
+</script>
+
+</head><body>    <div id="extHeader">
+        <div></div>
+    </div>
+
+    <div id="container">
+        <div class="header">
+            <h1></h1>
+            <div>
+                <span>你好,${name}</span>
+                <a href="javascript:void(0);">退出</a>
+            </div>
+            <ul id="top_menu">
+                <li><a href="javascript:void(0);">国内机票</a></li>
+                <li><a href="javascript:void(0);">国际机票</a></li>
+                <li><a href="javascript:void(0);">酒店</a></li>
+                <li><a href="javascript:void(0);">票证中心</a></li>
+                <li><a href="javascript:void(0);">财务管理</a></li>
+                <li><a href="javascript:void(0);">客户管理</a></li>
+                <li class="current"><a href="javascript:void(0);">系统设置</a></li>
+            </ul>
+            <ol class="sub_menu">
+                <li class="current"><a href="javascript:void(0);">公告信息</a></li>
+                <li><a href="javascript:void(0);">公司信息</a></li>
+                <li><a href="javascript:void(0);">组织架构</a></li>
+                <li><a href="javascript:void(0);">角色维护</a></li>
+                <li><a href="javascript:void(0);">基础数据</a></li>
+            </ol>
+            <div id="message">
+            	<a href="javascript:void(0);">消息</a>
+                <span>New</span>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="sub_menu_bar"></div>
+        <div id="mainContent">
+<div class="actions">
+    <button>返回</button>
+    <button>保存</button>
+    <button>退回</button>
+    <button>审核通过</button>
+</div>
+
+<div class="block">
+    <ul class="flat-list">
+        <li>
+        <span>订单号：1234567890</span>
+        </li> 
+        <li>
+        <div class="instr">
+            <span class="current">创建</span>
+            <span>审核</span>
+            <span>支付</span>
+            <span>出票</span>
+            <span>派送</span>
+            <span>完成</span>
+            <span>取消</span>
+            <span>收款</span>
+            <span>结算</span>
+        </div> 
+        </li>
+        <li>
+             <span>附属订单</span>
+             <span>3</span>
+        </li>
+    </ul>
+    <div class="note">
+        最后更新：航班号更改为CZ3609。更新时间：2013-06-15 11:23 【更多操作日志】
+    </div>
+</div>
+
+<!-- 订单信息 -->
+<div class="block">
+    <h3>订单信息</h3>
+            <button>查询</button>
+    <ul class="flat-list">
+      <li>
+            <label class="vertical-head">客户名称</label>
+            <input />
+      </li>
+      <li>
+            <label class="vertical-head">结算方式</label>
+            <input />
+      </li>
+      <li>
+            <label class="vertical-head">可用余额</label>
+            <input />
+      </li>
+      <li>
+            <label class="vertical-head">联系人</label>
+            <input />
+      </li>
+      <li>
+            <label class="vertical-head">联系电话</label>
+            <input />
+      </li>
+      <li>
+            <label class="vertical-head">手机号码</label>
+            <input />
+      </li>
+      <li>
+            <label class="vertical-head">三方协议编号</label>
+            <input />
+      </li>
+      <li>
+            <label class="vertical-head">客户订单编号</label>
+            <input />
+      </li>
+      <li>
+            <label class="vertical-head">外部订单号</label>
+            <input />
+      </li>
+      <li>
+            <label class="vertical-head">建单营业点</label>
+            <input />
+      </li>
+      <li>
+            <label class="vertical-head">出票营业点</label>
+            <input />
+      </li>
+      <li>
+            <label class="vertical-head">客户备注</label>
+            <textarea name=""></textarea>
+      </li>
+      <li>
+            <label class="vertical-head">内部备注</label>
+            <textarea name=""></textarea>
+      </li>
+    </ul>
+</div>
+
+
+<div class="block">
+   <h3>航班信息</h3> 
+   <div id="flight_info_grid">
+         
+   </div>
+</div>
+
+<div class="block">
+   <h3>旅客信息</h3> 
+   <label id="save_as_frequent">
+        <input type="checkbox">自动保存到长旅客 
+   </label>
+   <div id="passenger_info_grid">
+         
+   </div>
+</div>
+
+<div class="block">
+    <h3>报价信息</h3>
+</div>
+
+<div class="block">
+    <div id="order_calc">
+        <ul class="flat-list">
+            <li>
+                <label>
+                    <span>应收合计</span> 
+                    <input> 
+                </label>
+            </li> 
+            <li>
+                <label>
+                    <span>票款合计</span>
+                    <input>
+                </label>
+            </li>
+            <li>
+                <label>
+                    <span>税款合计(机建/燃油)</span>
+                    <input>
+                </label>
+            </li>
+            <li>
+                <label>
+                    <span>附加费</span>
+                    <input>
+                </label>
+            </li>
+            <li>
+                <label>
+                    <span>客户返佣</span>
+                    <input>
+                </label>
+            </li>
+            <li>
+                <label>
+                    <span>客户后返</span>
+                    <input>
+                </label>
+            </li>
+            <li>
+                <label>
+                    <span>支付手续费</span>
+                    <input>
+                </label>
+            </li>
+            <li>
+                <label>
+                    <span>利润</span>
+                    <input>
+                </label>
+            </li>
+            <li>
+                <label>
+                    <span>服务费</span>
+                    <input>
+                </label>
+            </li>
+        </ul> 
+    </div>
+</div>
+
+<div class="block">
+    <h3>配送信息</h3>
+</div>
+
+<script type="text/javascript" src="/js/createorder.js"></script>
+
+        </div>
+
+    </div>
+		
+    <div id="extFooter">
+        <div>
+            <p>
+                <a href="javascript:void(0);">关于我们</a>&nbsp;|
+                <a href="javascript:void(0);">微博</a>&nbsp;|
+                <a href="javascript:void(0);">服务条款</a>&nbsp;|
+                <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+</body>
+</html>
+
+</body></html>

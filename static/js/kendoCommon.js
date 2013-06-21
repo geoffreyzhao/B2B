@@ -66,7 +66,16 @@ $.extend({
             //actions: ["Custom", "Minimize", "Maximize", "Close"] 大小控制
         });
         return $("#" + divID).data("kendoWindow");
-    }
+    },
+	
+	autoComplete:function(data,id) {
+			$("#"+id).kendoAutoComplete({
+                        dataSource: data,
+                        filter: "startswith",
+                        placeholder: "",
+                        separator: ""
+                    });
+		}
 });
 
 
