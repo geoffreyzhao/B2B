@@ -3,6 +3,8 @@
 <head>
     <meta content="text/html" charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="http://static.b2b.com/css/kendo.common.css">
+    <link rel="stylesheet" href="http://static.b2b.com/css/kendo.uniform.css">
     <link rel="stylesheet" href="http://static.b2b.com/css/common.css">
     <link rel="stylesheet" href="http://static.b2b.com/css/comm.css">
     <style type="text/css">
@@ -50,7 +52,7 @@
         基本信息
     </div>
     <div style="float:left">
-        <a class="button_3_3" href="javascipt:;">编辑</a>
+        <a class="button_3_3" href="javascipt:;" data='{"url":"新增酒店_基本信息.html","width":760,"height":560,"title":"基本信息"}'>编辑</a>
     </div>
     <div class="map">
         <img src="20130621160413.png" alt="">
@@ -141,7 +143,7 @@
         酒店照片
     </div>
     <div style="float:left">
-        <a class="button_3_3" href="javascipt:;">编辑</a>
+        <a class="button_3_3" href="javascipt:;" data='{"url":"新增酒店_酒店照片.html","width":700,"height":460,"title":"酒店照片"}'>编辑</a>
     </div>
     <div class="panelContent clearfix">
         <img src="15145042443.png" alt="">
@@ -156,7 +158,7 @@
         酒店规定
     </div>
     <div style="float:left">
-        <a class="button_3_3" href="javascipt:;">编辑</a>
+        <a class="button_3_3" href="javascipt:;" data='{"url":"新增酒店_酒店规定.html","width":700,"height":460,"title":"酒店规定"}'>编辑</a>
     </div>
     <div class="panelContent clearfix">
         <table>
@@ -203,7 +205,7 @@
         服务费用
     </div>
     <div style="float:left">
-        <a class="button_3_3" href="javascipt:;">编辑</a>
+        <a class="button_3_3" href="javascipt:;" data='{"url":"新增酒店_服务费用.html","width":700,"height":460,"title":"服务费用"}'>编辑</a>
     </div>
     <div class="panelContent clearfix">
         <ul class="servicePrice">
@@ -229,7 +231,7 @@
         服务设施
     </div>
     <div style="float:left">
-        <a class="button_3_3" href="javascipt:;">编辑</a>
+        <a class="button_3_3" href="javascipt:;" data='{"url":"新增酒店_服务设施.html","width":700,"height":460,"title":"服务设施"}'>编辑</a>
     </div>
     <div class="panelContent clearfix">
         <table>
@@ -286,7 +288,7 @@
         备注
     </div>
     <div style="float:left">
-        <a class="button_3_3" href="javascipt:;">编辑</a>
+        <a class="button_3_3" href="javascipt:;" data='{"url":"新增酒店_备注信息.html","width":700,"height":460,"title":"备注"}'>编辑</a>
     </div>
     <div class="panelContent clearfix">
         <span>内部备注</span>
@@ -301,24 +303,63 @@
         操作日志
     </div>
     <div class="panelContent clearfix">
-    <table class="operation_records">
-        <thead>
-            <tr>
-                <td>日期</td>
-                <td>操作人员</td>
-                <td>操作项目</td>
-                <td>操作类型</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>20130606 14:55</td>
-                <td>liuwei</td>
-                <td>增加行政商务套房</td>
-                <td>新增</td>
-            </tr>
-        </tbody>
-    </table>
+        <table class="operation_records">
+            <thead>
+                <tr>
+                    <td>日期</td>
+                    <td>操作人员</td>
+                    <td>操作项目</td>
+                    <td>操作类型</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>20130606 14:55</td>
+                    <td>liuwei</td>
+                    <td>增加行政商务套房</td>
+                    <td>新增</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
+
+<div id="window"></div>
+
+<script type="text/javascript" src="http://static.b2b.com/js/jquery.min.js"></script>
+<script type="text/javascript" src="http://static.b2b.com/js/kendo.web.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var dt=new Date().getMilliseconds();
+        $(".button_3_3").click(function(){
+            var tar= $.parseJSON($(this).attr("data"));
+            var kendoWindowData=$("#window").data("kendoWindow");
+            if(!kendoWindowData)
+            {
+                $("#window").kendoWindow({
+                    animation:false,
+                    iframe:true,
+                    content:tar.url+"?dt="+dt,
+                    modal:true,
+                    width:tar.width,
+                    height:tar.height,
+                    title:tar.title
+                }).data("kendoWindow").center();
+            }
+            else
+            {
+                //kendoWindowData.setOptions({content:tar.url+"?dt="+dt});
+                kendoWindowData.refresh(tar.url+"?dt="+dt);
+                kendoWindowData.setOptions({
+                    width:tar.width,
+                    height:tar.height,
+                    title:tar.title
+                })
+                $("#window").data("kendoWindow").open();
+            }
+            return false;
+        });
+    });
+</script>
 </body>
 </html>
