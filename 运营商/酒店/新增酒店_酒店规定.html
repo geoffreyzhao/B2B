@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="http://static.b2b.com/css/comm.css">
 
 </head>
-<body>
+<body style="background:#ffffff">
     <table>
         <tr>
-            <td><span>宾客类型</span></td>
+            <td style="width:83px"><span class="important">*</span><span class="head">宾客类型：</span></td>
             <td>
                 <label for="">
                     <input type="checkbox">中宾
@@ -25,7 +25,7 @@
             </td>
         </tr>
         <tr>
-            <td><span>儿童标准</span></td>
+            <td><span class="head">儿童标准：</span></td>
             <td>
                 <label for="">
                     <input type="checkbox">年龄
@@ -60,7 +60,18 @@
             </td>
         </tr>
         <tr>
-            <td><span>入住时间</span></td>
+            <td><span class="important">*</span><span class="head">入住证件：</span></td>
+            <td><label for=""><input type="checkbox">酒店入住时需要携带有效身份证件</label></td>
+        </tr>
+        <tr>
+            <td><span class="head">宠物：</span></td>
+            <td>
+                <label for=""><input name="pet" type="radio">不可带宠物</label>
+                <label for=""><input name="pet" type="radio">可带宠物</label>
+            </td>
+        </tr>
+        <tr>
+            <td><span class="important">*</span><span class="head">入住时间：</span></td>
             <td>
                 <select>
                     <option value="请选择" selected="">请选择</option>
@@ -68,7 +79,7 @@
                     <option value="13:00">13:00</option>
                     <option value="14:00">14:00</option>
                 </select>
-                <span>退房时间</span>
+                <span class="important">*</span><span class="head">退房时间：</span>
                 <select>
                     <option value="请选择" selected="">请选择</option>
                     <option value="12:00">12:00</option>
@@ -77,7 +88,7 @@
                     <option value="15:00">15:00</option>
                     <option value="16:00">16:00</option>
                 </select>
-                <span>保留时间</span>
+                <span class="important">*</span><span class="head">保留时间：</span>
                 <select>
                     <option value="请选择" selected="">请选择</option>
                     <option value="19:00">19:00</option>
@@ -90,7 +101,7 @@
             </td>
         </tr>
         <tr>
-            <td><span>变更/取消</span></td>
+            <td><span class="important">*</span><span class="head">变更/取消：</span></td>
             <td>
                 <div>
                     入住前<input type="text">天<input type="text">点/
@@ -100,7 +111,7 @@
                         <option value="全部房费的一半">全部房费的一半</option>
                         <option value="首晚房费">首晚房费</option>
                     </select>
-                    <input value="添加" type="button">
+                    <a href="javascript:;" class="otherbutton">添加</a>
                 </div>
                 <div>
                     入住前1天12点之前更改或取消，不收取任何费用；入住前1天的12点之后变更或取消，酒店将扣除首晚房费。
@@ -117,7 +128,10 @@
         </tr>
         <tr>
             <td><span></span></td>
-            <td></td>
+            <td>
+                <p>未入住且事前未申请取消，将不会获得退款；</p>
+                <p>已入住提前退房，请电话或邮件与客服联系，客服将尽快与酒店确认并为您办理</p>
+            </td>
         </tr>
         <tr>
             <td><span></span></td>
@@ -133,5 +147,17 @@
         </tr>
 
     </table>
+    <div style="text-align:right">
+        <a href="javascript:;" class="button_1_2">保&nbsp;存</a>
+        <a href="javascript:;" class="button_2_2 close">取&nbsp;消</a>
+    </div>
+    <script type="text/javascript" src="http://static.b2b.com/js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("a.close").click(function(){
+                window.parent.$("span.k-i-close").trigger("click")
+            })
+        });
+    </script>
 </body>
 </html>
