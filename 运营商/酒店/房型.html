@@ -18,8 +18,8 @@
         酒店房型
     </div>
     <div style="float:left">
-        <a class="button_3_3" href="javascipt:;" data='{"url":"编辑合同.html","width":700,"height":360,"title":"编辑合同"}'>修改排序</a>
-        <a class="button_3_3" href="javascipt:;" data='{"url":"编辑合同.html","width":700,"height":360,"title":"编辑合同"}'>添加房型</a>
+        <a class="button_3_3" href="javascipt:;" data='{"url":"修改排序.html","width":700,"height":360,"title":"编辑合同"}'>修改排序</a>
+        <a class="button_3_3" href="javascipt:;" data='{"url":"添加房型.html","width":700,"height":480,"title":"编辑合同"}'>添加房型</a>
     </div>
     <div class="ulRoomStyleList clearfix">
         <ul>
@@ -31,7 +31,7 @@
                         <td></td>
                         <td></td>
                         <td rowspan="3" style="width:125px">
-                            <ul class="ulRoomStyleButtonList">
+                            <ul class="ulroomstylebuttonlist">
                                 <li><a class="button_3_2" href="javascipt:;">编辑</a></li>
                                 <li><a class="button_3_2" href="javascipt:;">查看价格计划</a></li>
                                 <li><a class="button_3_2" href="javascipt:;">挂起</a></li>
@@ -138,5 +138,42 @@
         </table>
     </div>
 </div>
+<div id="window"></div>
+
+<script type="text/javascript" src="http://static.b2b.com/js/jquery.min.js"></script>
+<script type="text/javascript" src="http://static.b2b.com/js/kendo.web.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var dt=new Date().getMilliseconds();
+        $(".button_3_3").click(function(){
+            var tar= $.parseJSON($(this).attr("data"));
+            var kendoWindowData=$("#window").data("kendoWindow");
+            if(!kendoWindowData)
+            {
+                $("#window").kendoWindow({
+                    animation:false,
+                    iframe:true,
+                    content:tar.url+"?dt="+dt,
+                    modal:true,
+                    width:tar.width,
+                    height:tar.height,
+                    title:tar.title
+                }).data("kendoWindow").center();
+            }
+            else
+            {
+                //kendoWindowData.setOptions({content:tar.url+"?dt="+dt});
+                kendoWindowData.refresh(tar.url+"?dt="+dt);
+                kendoWindowData.setOptions({
+                    width:tar.width,
+                    height:tar.height,
+                    title:tar.title
+                })
+                $("#window").data("kendoWindow").open();
+            }
+            return false;
+        });
+    });
+</script>
 </body>
 </html>
