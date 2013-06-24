@@ -1,19 +1,32 @@
-<!DOCTYPE html><html><head><title>平台建单</title><link href="http://static.b2b.com/css/common.css" rel="stylesheet" />
-<link href="http://static.b2b.com/css/kendo.common.css" rel="stylesheet" />
-<link href="http://static.b2b.com/css/kendo.default.css" rel="stylesheet" />
-<link href="http://static.b2b.com/css/b2b.css" rel="stylesheet" />
+<!DOCTYPE html><html><head><title>平台建单</title><script src="http://localhost:35729/livereload.js"></script><meta charset="utf-8" />
+<link rel="stylesheet" href="/css/kendo/kendo.common.min.css" />
+<link rel="stylesheet" href="/css/kendo.gray.css" />
+<link href="http://192.168.160.172/static/css/common.css" rel="stylesheet" />
+<link href="http://192.168.160.172/static/css/b2b.css" rel="stylesheet" />
 
 <link rel="stylesheet" href="/css/global.css" />
-<script type="text/javascript" src="/js/vendor/jquery.js"></script>
-<script type="text/javascript" src="/js/vendor/kendo.all.min.js"></script>
-<script type="text/javascript" src="/js/jquery.fixedBar.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/kendo/kendo.web.js"></script>
+<script type="text/javascript" src="/js/plugins/jquery.fixedBar.js"></script>
 <script type="text/javascript">
 $(function(){
     $('.actions').fixedBar();
+    var lensf = function (){
+        $.each($('.instr'),function(){
+            var that = $(this);
+            if(that.find('.highlight-fl').size()>0){
+                var ele = that.find('.highlight');
+                var len = ele.size();
+                var wid = ele.width()*len + 15;
+                that.find('.line').prepend('<div style="background-color:#FF6608;height:2px;width:'+wid+'px" />')
+            }
+        });
+    }
+    lensf();
 });
 </script>
 
-</head><body>    <div id="extHeader">
+</head><body>  <div id="extHeader">
         <div></div>
     </div>
 
@@ -48,42 +61,43 @@ $(function(){
         <div class="clear"></div>
         <div id="sub_menu_bar"></div>
         <div id="mainContent">
-<div class="actions">
-        <button>白屏预订</button>
-</div>
-<div class="block">
-    <h1 class="page-title">
-        黑屏创建订单
-    </h1>
-    <div>
-        <!-- search_form -->
-        <ul class="flat-list">
-            <li>
-            <label class="vertical-head">客户名称</label>
-            <input />
-            <button>查询</button>
-            </li>
-            <li>
-            <label class="vertical-head">OFFICE号</label>
-            <input data-role="dropdownlist" 
-            data-source="['SHA888','SHA999','SHA222']" 
-            />
-            </li>
-            <li>
-            <label class="vertical-head">联系人</label>
-            <input />
-            </li>
-            <li>
-            <label class="vertical-head">建单营业点</label>
-            <input />
-            <button>查询</button>
-            </li>
-        </ul>
+<link href="/css/pnr.css" rel="stylesheet"><div id="page-importpnr"><div class="actions block">
+    <div class="col col-r sep-l">
+        <button class="btns btn-blue">白屏预订</button>
     </div>
+    <span class="page-title">
+        黑屏创建订单
+    </span>
+</div>
+<div class="block block1">
+    <!-- search_form -->
+    <ul class="flat-list">
+        <li>
+        <label class="vertical-head">客户名称</label>
+        <input style="width:120px" />
+        <button class="btns btn-search">查询</button>
+        </li>
+        <li>
+        <label class="vertical-head">OFFICE号</label>
+        <input style="width:120px" data-role="dropdownlist" 
+        data-source="['SHA888','SHA999','SHA222']" 
+        />
+        </li>
+        <li>
+        <label class="vertical-head">联系人</label>
+        <input style="width:120px" />
+        </li>
+        <li>
+        <label class="vertical-head">建单营业点</label>
+        <input style="width:120px" />
+        <button class="btns btn-search">查询</button>
+        <button class="btns ac-default">默认</button>
+        </li>
+    </ul>
 </div>
 
-<div class="block">
-    <div id="tabstrip" data-role="tabstrip">
+<div class="block block2">
+    <div id="tabstrip" data-animation="false" data-role="tabstrip">
         <ul class="tab-head-list">
             <li class="k-state-active">
             成人 
@@ -99,28 +113,21 @@ $(function(){
         <div>
             <div class="row">
                 <form action="#">
-                    <h3>PNR编码方式创建</h3>
                 <ul class="flat-list">
+                    <li class="row-title">PNR编码方式创建</li>
                   <li>
-                  <input value="HYGNKR">
+                  <input class="input-pnrcode" value="HYGNKR">
                   </li>
                   <li>
-                    <label><input id="" type="radio" checked name="pnrCodeType" />小编码</label>
-                    <label><input id="" type="radio" name="pnrCodeType" />大编码</label>
-                  </li>
-                  <li>
-<a href="#" target="_blank">查看获取大编码的方法》</a>
-                  </li>
-                  <li>
-                        <button>创建订单</button> 
+                        <button class="btns btn-orange-n">创建订单</button> 
                   </li>
                 </ul>
                 </form>
             </div>
-            <div class="row">
+            <div class="row row2 clearfix">
                 <form action="#">
-                 <h3>黑屏粘贴方式创建</h3>
-                 <div>
+                 <h3 class="row-title">黑屏粘贴方式创建</h3>
+                 <div class="col1 col">
                     <textarea class="pnr-console" name="">
 温馨提示:
 1. 请使用您的Eterm系统提取PNR内容。
@@ -132,12 +139,9 @@ $(function(){
 4. 根据航空公司出票要求,PNR内容中必须备注手机号码。
 
 5. 注意:复制的内容建议从RT编码开始复制到PAT:A结果的所有内容。儿童PNR编码,请走儿童订单专用通道。</textarea> 
+                        <button class="btns btn-orange-n">创建订单</button> 
                  </div>
                  <div>
-                     <button>创建订单</button> 
-                 </div>
-                </form>
-            </div>
             <div class="row">
                 <dl>
                   <dt>注意事项</dt>
@@ -158,6 +162,10 @@ $(function(){
                   </dd>
                 </dl>
             </div>
+                         
+                 </div>
+                </form>
+            </div>
         </div>
         <!-- CHD tab -->
         <div>
@@ -168,21 +176,21 @@ $(function(){
             </div>
             <div class="row">
                 <form action="#">
-                    <h3>PNR编码方式创建</h3>
                 <ul class="flat-list">
+                    <li class="row-title">PNR编码方式创建</li>
                   <li>
-                  <input value="HYGNKR">
+                  <input class="input-pnrcode" value="HYGNKR">
                   </li>
                   <li>
-                        <button>创建订单</button> 
+                        <button class="btns btn-orange-n">创建订单</button> 
                   </li>
                 </ul>
                 </form>
             </div>
-            <div class="row">
+            <div class="row row2 clearfix">
                 <form action="#">
-                 <h3>黑屏粘贴方式创建</h3>
-                 <div>
+                 <h3 class="row-title">黑屏粘贴方式创建</h3>
+                 <div class="col1 col1">
                     <textarea class="pnr-console" name="">
 温馨提示:
 1.请使用您的Eterm系统提取PNR内容。
@@ -192,12 +200,9 @@ $(function(){
 3.根据航空公司出票要求,PNR内容中必须备注手机号码.
 
 4. 注意:复制的内容建议从RT编码开始复制到PAT:A*CH结果的所有内容。</textarea> 
+                        <button class="btns btn-orange-n">创建订单</button> 
                  </div>
                  <div>
-                     <button>创建订单</button> 
-                 </div>
-                </form>
-            </div>
             <div class="row">
                 <dl>
                   <dt>注意事项</dt>
@@ -221,33 +226,29 @@ $(function(){
                   </dd>
                 </dl>
             </div>
+                 </div>
+                </form>
+            </div>
         </div>
         <!-- TEAM tab -->
         <div>
             <div class="row">
                 <form action="#">
-                    <h3>PNR编码方式创建</h3>
                 <ul class="flat-list">
+                    <li class="row-title">PNR编码方式创建</li>
                   <li>
-                  <input value="HYGNKR">
+                  <input class="input-pnrcode" value="HYGNKR">
                   </li>
                   <li>
-                    <label><input id="" type="radio" checked name="pnrCodeType" />小编码</label>
-                    <label><input id="" type="radio" name="pnrCodeType" />大编码</label>
-                  </li>
-                  <li>
-<a href="#" target="_blank">查看获取大编码的方法》</a>
-                  </li>
-                  <li>
-                        <button>创建订单</button> 
+                        <button class="btns btn-orange-n">创建订单</button> 
                   </li>
                 </ul>
                 </form>
             </div>
-            <div class="row">
+            <div class="row row2 clearfix">
                 <form action="#">
-                 <h3>黑屏粘贴方式创建</h3>
-                 <div>
+                 <h3 class="row-title">黑屏粘贴方式创建</h3>
+                 <div class="col1 col">
                     <textarea class="pnr-console" name="">
 温馨提示:
 1. 请使用您的Eterm系统提取PNR内容。
@@ -259,12 +260,9 @@ $(function(){
 4. 根据航空公司出票要求,PNR内容中必须备注手机号码。
 
 5. 注意:复制的内容建议从RT编码开始复制到PAT:A结果的所有内容。儿童PNR编码,请走儿童订单专用通道。</textarea> 
+<button class="btns btn-orange-n">创建订单</button>
                  </div>
                  <div>
-                     <button>创建订单</button> 
-                 </div>
-                </form>
-            </div>
             <div class="row">
                 <dl>
                   <dt>注意事项</dt>
@@ -285,6 +283,9 @@ $(function(){
                   </dd>
                 </dl>
             </div>
+                 </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -299,8 +300,7 @@ $(function(){
 
 <script type="text/javascript" src="/js/importpnr.js"></script>
 
-
-        </div>
+</div>        </div>
 
     </div>
 		
@@ -315,7 +315,4 @@ $(function(){
             <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
-</body>
-</html>
-
 </body></html>
