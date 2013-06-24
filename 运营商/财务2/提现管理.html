@@ -66,11 +66,15 @@ $(function(){
         <div id="window"></div>
 
         <div class="actions block">
-            <div class="col col-l sep-r">
-                <button class="btns btn-return">返回</button>
-            </div>
-            <div class="col col-l" style="margin-left:10px;">
-                <a class="item highlight" href="#">充值单管理</a> 
+            <div class="col col-l">
+                <a class="item" href="#">资金汇总</a> 
+                <a class="item" href="#">充值管理</a> 
+                <a class="item highlight" href="#">提现管理</a> 
+                <a class="item" href="#">授信管理</a> 
+                <a class="item" href="#">押金管理</a> 
+                <a class="item" href="#">冻结管理</a> 
+                <a class="item" href="#">收支明细</a> 
+                <a class="item" href="#">交易明细</a> 
             </div>
         </div>
 
@@ -87,29 +91,33 @@ $(function(){
                     <input style="width:100px">
                     </li>
                     <li>
-                    <label class="vertical-head">充值方式</label>
-                    <input style="width:100px" data-role="dropdownlist" data-source="['全部','支付宝']">
+                    <label class="vertical-head" style="width:40px;">状态</label>
+                    <input style="width:100px" data-role="dropdownlist" data-source="['全部']">
                     </li>
-                    <li>
-                    <label class="vertical-head">审核人</label>
-                    <input style="width:100px">
-                    <button class="btns btn-search">查询</button>
+                    <li style="width:120px;">
+                    <label class="vertical-head" style="width:40px;">渠道</label>
+                    <input style="width:60px;" data-role="dropdownlist" data-source="['全部']">
+                    </li>
+                    <li style="width:110px;">
+                    <label class="vertical-head" style="width:40px;">类型</label>
+                    <input style="width:60px;" data-role="dropdownlist" data-source="['全部']">
                     </li>
                     <li>
                     <label class="vertical-head">申请日期</label>
-                    <input data-role="datepicker" style="width:100px">
+                    <input style="width:100px;" data-role="datepicker"> 
                     </li>
                     <li>
-                    <label class="vertical-head">审核日期</label>
-                    <input data-role="datepicker" style="width:100px">
+                    <label class="vertical-head">到帐日期</label>
+                    <input style="width:100px;" data-role="datepicker"> 
                     </li>
                     <li>
-                    <label class="vertical-head">审核状态</label>
-                    <input data-role="dropdownlist" data-source="['等待审核','已审核']" style="width:100px">
+                    <label class="vertical-head" style="width:40px;">审核人</label>
+                    <input style="width:80px">
+                    <button class="btns btn-search">查询</button>
                     </li>
                     <li>
-                    <label class="vertical-head">申请人</label>
-                    <input style="width:100px">
+                    <label class="vertical-head" style="width:40px;">申请人</label>
+                    <input style="width:80px">
                     <button class="btns btn-search">查询</button>
                     </li>
                 </ul>
@@ -123,10 +131,10 @@ $(function(){
             <div class="block-header">
                 <ul class="flat-list">
                     <li>
-                    <button class="btns btn-ac-blue">审核通过</button> 
+                    <button class="btns btn-ac-blue">确认提取</button> 
                     </li> 
                     <li>
-                    <button class="btns">审核退回</button> 
+                    <button class="btns">拒绝提取</button> 
                     </li>
                     <li>
                     <span style="color:#aaa">&nbsp;|&nbsp;</span>
@@ -139,139 +147,67 @@ $(function(){
             <table class="grid-table">
                 <tr class="thead">
                     <td>
-                        <input type="checkbox" /> 
-                    </td>    
-                    <td>凭单号</td>
-                    <td>客户</td>
-                    <td>银行</td>
-                    <td>银行卡号</td>
-                    <td>账户余额</td>
-                    <td>充值金额</td>
-                    <td>付款人</td>
-                    <td>审核状态</td>
-                    <td>摘要</td>
+                        <input type="checkbox"> 
+                    </td>
+                    <td>客户简称</td>
+                    <td>提现金额</td>
+                    <td>渠道</td>
+                    <td>类型</td>
+                    <td>状态</td>
+                    <td>备注</td>
                     <td>申请时间</td>
                     <td>审核时间</td>
                     <td>操作</td>
                 </tr>
                 <tr>
-                <td>
-                <input type="checkbox" /> 
-                </td>
-                  <td>123</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>123</td>
-                  <td>180,000,000.00</td>
+                    <td>
+                        <input type="checkbox"> 
+                    </td>
+                    <td>xxx</td>
                   <td class="text1">180,000,000.00</td>
+                  <td>xxx</td>
                   <td>xxx</td>
                   <td>xxx</td>
                   <td>xxx</td>
                   <td>2012-04-23<br>张小黑</td>
                   <td>2012-04-23<br>张小黑</td>
                   <td class="grid-row-ac">
-                        <button class="btns ac-pass">通过</button> 
-                        <button class="btns ac-return">退回</button> 
+                        <button class="btns ac-confirm">确认</button> 
+                        <button class="btns ac-delete">删除</button> 
                   </td>
                 </tr>
                 <tr class="highlight">
-                <td>
-                <input type="checkbox" /> 
-                </td>
-                  <td>123</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>123</td>
-                  <td>180,000,000.00</td>
+                    <td>
+                        <input type="checkbox"> 
+                    </td>
+                    <td>xxx</td>
                   <td class="text1">180,000,000.00</td>
+                  <td>xxx</td>
                   <td>xxx</td>
                   <td>xxx</td>
                   <td>xxx</td>
                   <td>2012-04-23<br>张小黑</td>
                   <td>2012-04-23<br>张小黑</td>
                   <td class="grid-row-ac">
-                        <button class="btns ac-pass">通过</button> 
-                        <button class="btns ac-return">退回</button> 
+                        <button class="btns ac-confirm">确认</button> 
+                        <button class="btns ac-delete">删除</button> 
                   </td>
                 </tr>
                 <tr>
-                <td>
-                <input type="checkbox" /> 
-                </td>
-                  <td>123</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>123</td>
-                  <td>180,000,000.00</td>
+                    <td>
+                        <input type="checkbox"> 
+                    </td>
+                    <td>xxx</td>
                   <td class="text1">180,000,000.00</td>
+                  <td>xxx</td>
                   <td>xxx</td>
                   <td>xxx</td>
                   <td>xxx</td>
                   <td>2012-04-23<br>张小黑</td>
                   <td>2012-04-23<br>张小黑</td>
                   <td class="grid-row-ac">
-                        <button class="btns ac-pass">通过</button> 
-                        <button class="btns ac-return">退回</button> 
-                  </td>
-                </tr>
-                <tr>
-                <td>
-                <input type="checkbox" /> 
-                </td>
-                  <td>123</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>123</td>
-                  <td>180,000,000.00</td>
-                  <td class="text1">180,000,000.00</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>2012-04-23<br>张小黑</td>
-                  <td>2012-04-23<br>张小黑</td>
-                  <td class="grid-row-ac">
-                        <button class="btns ac-pass">通过</button> 
-                        <button class="btns ac-return">退回</button> 
-                  </td>
-                </tr>
-                <tr>
-                <td>
-                <input type="checkbox" /> 
-                </td>
-                  <td>123</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>123</td>
-                  <td>180,000,000.00</td>
-                  <td class="text1">180,000,000.00</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>2012-04-23<br>张小黑</td>
-                  <td>2012-04-23<br>张小黑</td>
-                  <td class="grid-row-ac">
-                        <button class="btns ac-pass">通过</button> 
-                        <button class="btns ac-return">退回</button> 
-                  </td>
-                </tr>
-                <tr>
-                <td>
-                <input type="checkbox" /> 
-                </td>
-                  <td>123</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>123</td>
-                  <td>180,000,000.00</td>
-                  <td class="text1">180,000,000.00</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>2012-04-23<br>张小黑</td>
-                  <td>2012-04-23<br>张小黑</td>
-                  <td class="grid-row-ac">
-                        <button class="btns ac-pass">通过</button> 
-                        <button class="btns ac-return">退回</button> 
+                        <button class="btns ac-confirm">确认</button> 
+                        <button class="btns ac-delete">删除</button> 
                   </td>
                 </tr>
             </table>
