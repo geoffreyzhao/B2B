@@ -1,13 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html" charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="http://static.b2b.com/css/kendo.common.css">
+    <link rel="stylesheet" href="http://static.b2b.com/css/kendo.uniform.css">
+    <link rel="stylesheet" href="http://static.b2b.com/css/common.css">
+    <link rel="stylesheet" href="http://static.b2b.com/css/hotel.css">
+    <style type="text/css">
+        .roomFacilities li{float:left;width:110px}
+    </style>
+</head>
+<body style="background:#ffffff">
 <div class="addroomtype">
     <form method="get" action="">
     
         <table class="tbform">
             <tr>
-                <td style="width:80px;"><em>*</em>房间名称</td>
-                        <td><input type="text" name="roomtypename"/><strong>套内面积</strong><input class="stext" name="innerSquare" value="0"/><strong>楼层</strong><input class="stext" type="text" name="floorNum" value="1"/></td>
+                <td style="width:80px;"><span class="important">*</span><span class="head">房间名称</span></td>
+                <td>
+                    <input type="text" name="roomtypename" style="width:280px"/>
+                    <span class="head" style="padding:0 10px">套内面积</span><input class="stext" name="innerSquare" value="0" style="width:50px"/>
+                    <span class="head" style="padding:0 10px">楼层</span><input class="stext" type="text" name="floorNum" value="1" style="width:50px"/>
+                </td>
             </tr>
             <tr>
-                <td><em>*</em>房屋床型</td>
+                <td><span class="important">*</span><span class="head">房屋床型</span></td>
                 <td>
                     <label><input id="" type="radio" name="bednumber" />单人床</label>
                     <label><input id="" type="radio" name="bednumber" />大床</label>
@@ -16,11 +34,10 @@
                     <label><input id="" type="radio" name="bednumber" />3床</label>
                     <label><input id="" type="radio" name="bednumber" />4床</label>
                     <label><input id="" type="radio" name="bednumber" />套房</label>
-                    <input class="stext" type="text" name="bednumber" value="床数"/>
                 </td>
             </tr>
             <tr>
-                <td>房型尺寸</td>
+                <td><span class="head">房型尺寸</span></td>
                 <td>
                     <select name="bedsize">
                         <option value="选择尺寸" selected="">选择尺寸</option>
@@ -39,16 +56,16 @@
                 </td>
             </tr>
             <tr>
-                <td>加床信息</td>
+                <td><span class="head">加床信息</span></td>
                 <td>
                     <label><input type="checkbox" name="can_add_bed" value="can"/>可加床</label><span>*勾选后，预定此房时可以选择加床类型和价格</span>
 
                 </td>
             </tr>
             <tr>
-                <td>房间设施</td>
+                <td><span class="head">房间设施</span></td>
                 <td>
-                    <ul>
+                    <ul class="roomFacilities">
                         <li><label><input type="checkbox" name="facility" />无窗</label></li>
                         <li><label><input type="checkbox" name="facility" />可安排无烟楼层</label></li>
                         <li><label><input type="checkbox" name="facility" />有无烟房</label></li>
@@ -75,15 +92,25 @@
                 </td>
             </tr>
             <tr>
-                <td>房型备注</td>
+                <td><span class="head">房型备注</span></td>
                 <td>
-                    <textarea name="remark" cols="80" rows="5">房型备注</textarea>
+                    <textarea name="remark" cols="80" rows="5" style="width:530px">房型备注</textarea>
                 </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td colspan="3"><input type="submit" name="submit" value="添加" class="k-button"/></td>
             </tr>
         </table>
     </form>
 </div>
+<div style="text-align:right">
+    <a href="javascript:;" class="button_1_2">保&nbsp;存</a>
+    <a href="javascript:;" class="button_2_2 close">取&nbsp;消</a>
+</div>
+<script type="text/javascript" src="http://static.b2b.com/js/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("a.close").click(function(){
+            window.parent.$("span.k-i-close").trigger("click")
+        })
+    });
+</script>
+</body>
+</html>
