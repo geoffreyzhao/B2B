@@ -13,6 +13,21 @@
     </style>
 </head>
 <body>
+<div class="topFixedToolsBar">
+    <div style="float:left;border-right:1px solid #ffffff">
+        <a href="#" style="display:inline-block;line-height:33px;font-size: 14px;font-weight: bold;border-right: 1px solid #CDCECE;padding: 0 8px;">◀ 返回</a>
+    </div>
+    <div class="fixedMenu">
+        <a href="#">酒店信息</a>
+        <a href="#">供应商信息</a>
+        <a href="#" class="current">房型</a>
+        <a href="#">价格计划</a>
+    </div>
+    <div class="fixedButton">
+        <a class="button_4_3" href="#" style="color:#ffffff;margin-top:4px;">提交</a>
+        <a class="button_4_3" href="#" style="color:#ffffff;margin-top:4px">关闭</a>
+    </div>
+</div>
 <div class="panel">
     <div class="panelTitle">
         酒店房型
@@ -142,38 +157,6 @@
 
 <script type="text/javascript" src="http://static.b2b.com/js/jquery.min.js"></script>
 <script type="text/javascript" src="http://static.b2b.com/js/kendo.web.js"></script>
-<script type="text/javascript">
-    $(function(){
-        var dt=new Date().getMilliseconds();
-        $(".button_3_3").click(function(){
-            var tar= $.parseJSON($(this).attr("data"));
-            var kendoWindowData=$("#window").data("kendoWindow");
-            if(!kendoWindowData)
-            {
-                $("#window").kendoWindow({
-                    animation:false,
-                    iframe:true,
-                    content:tar.url+"?dt="+dt,
-                    modal:true,
-                    width:tar.width,
-                    height:tar.height,
-                    title:tar.title
-                }).data("kendoWindow").center();
-            }
-            else
-            {
-                //kendoWindowData.setOptions({content:tar.url+"?dt="+dt});
-                kendoWindowData.refresh(tar.url+"?dt="+dt);
-                kendoWindowData.setOptions({
-                    width:tar.width,
-                    height:tar.height,
-                    title:tar.title
-                })
-                $("#window").data("kendoWindow").open();
-            }
-            return false;
-        });
-    });
-</script>
+<script type="text/javascript" src="http://static.b2b.com/js/hotel.js"></script>
 </body>
 </html>

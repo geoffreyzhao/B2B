@@ -21,10 +21,27 @@
     <style type="text/css">
         span.k-i-close{bakcground-position:-32px -16px;text-indent:0}
         div.k-header{height:25px;line-height:20px;margin-top:-14px}
+        div.k-overlay{position:absolute;}
     </style>
     <![endif]-->
 </head>
 <body>
+<div class="topFixedToolsBar">
+    <div style="float:left;border-right:1px solid #ffffff">
+        <a href="#" style="display:inline-block;line-height:33px;font-size: 14px;font-weight: bold;border-right: 1px solid #CDCECE;padding: 0 8px;">◀ 返回</a>
+    </div>
+    <div class="fixedMenu">
+        <a href="#" class="current">酒店信息</a>
+        <a href="#">供应商信息</a>
+        <a href="#">房型</a>
+        <a href="#">价格计划</a>
+    </div>
+    <div class="fixedButton">
+        <a class="button_4_3" href="#" style="color:#ffffff;margin-top:4px;">提交</a>
+        <a class="button_4_3" href="#" style="color:#ffffff;margin-top:4px">关闭</a>
+    </div>
+</div>
+
 <div class="panel" style="height:21px">
     <div class="panelTitle">签约信息</div>
     <div style="float:left;">
@@ -58,7 +75,7 @@
         基本信息
     </div>
     <div style="float:left">
-        <a class="button_3_3" href="javascipt:;" data='{"url":"新增酒店_基本信息.html","width":760,"height":560,"title":"基本信息"}'>编辑</a>
+        <a class="button_3_3 popwin" href="javascipt:;" data='{"content":"$(\".panelTitle:eq(0)\").text()","width":760,"height":560,"title":"基本信息","contentFunction":true}'>编辑</a>
     </div>
     <div class="map">
         <img src="20130621160413.png" alt="">
@@ -149,7 +166,7 @@
         酒店照片
     </div>
     <div style="float:left">
-        <a class="button_3_3" href="javascipt:;" data='{"url":"新增酒店_酒店照片.html","width":700,"height":460,"title":"酒店照片"}'>编辑</a>
+        <a class="button_3_3 popwin" href="javascipt:;" data='{"url":"新增酒店_酒店照片.html","width":700,"height":460,"title":"酒店照片"}'>编辑</a>
     </div>
     <div class="panelContent clearfix">
         <img src="15145042443.png" alt="">
@@ -164,7 +181,7 @@
         酒店规定
     </div>
     <div style="float:left">
-        <a class="button_3_3" href="javascipt:;" data='{"url":"新增酒店_酒店规定.html","width":700,"height":460,"title":"酒店规定"}'>编辑</a>
+        <a class="button_3_3 popwin" href="javascipt:;" data='{"url":"新增酒店_酒店规定.html","width":700,"height":460,"title":"酒店规定"}'>编辑</a>
     </div>
     <div class="panelContent clearfix">
         <table>
@@ -211,7 +228,7 @@
         服务费用
     </div>
     <div style="float:left">
-        <a class="button_3_3" href="javascipt:;" data='{"url":"新增酒店_服务费用.html","width":700,"height":460,"title":"服务费用"}'>编辑</a>
+        <a class="button_3_3 popwin" href="javascipt:;" data='{"url":"新增酒店_服务费用.html","width":700,"height":460,"title":"服务费用"}'>编辑</a>
     </div>
     <div class="panelContent clearfix">
         <ul class="servicePrice">
@@ -237,7 +254,7 @@
         服务设施
     </div>
     <div style="float:left">
-        <a class="button_3_3" href="javascipt:;" data='{"url":"新增酒店_服务设施.html","width":700,"height":460,"title":"服务设施"}'>编辑</a>
+        <a class="button_3_3 popwin" href="javascipt:;" data='{"url":"新增酒店_服务设施.html","width":700,"height":460,"title":"服务设施"}'>编辑</a>
     </div>
     <div class="panelContent clearfix">
         <table>
@@ -294,7 +311,7 @@
         备注
     </div>
     <div style="float:left">
-        <a class="button_3_3" href="javascipt:;" data='{"url":"新增酒店_备注信息.html","width":700,"height":460,"title":"备注"}'>编辑</a>
+        <a class="button_3_3 popwin" href="javascipt:;" data='{"url":"新增酒店_备注信息.html","width":700,"height":460,"title":"备注"}'>编辑</a>
     </div>
     <div class="panelContent clearfix">
         <span>内部备注</span>
@@ -333,39 +350,8 @@
 <div id="window"></div>
 
 <script type="text/javascript" src="http://static.b2b.com/js/jquery.min.js"></script>
+<script type="text/javascript" src="http://static.b2b.com/js/jquery-migrate-1.2.1.js"></script>
 <script type="text/javascript" src="http://static.b2b.com/js/kendo.web.js"></script>
-<script type="text/javascript">
-    $(function(){
-        var dt=new Date().getMilliseconds();
-        $(".button_3_3").click(function(){
-            var tar= $.parseJSON($(this).attr("data"));
-            var kendoWindowData=$("#window").data("kendoWindow");
-            if(!kendoWindowData)
-            {
-                $("#window").kendoWindow({
-                    animation:false,
-                    iframe:true,
-                    content:tar.url+"?dt="+dt,
-                    modal:true,
-                    width:tar.width,
-                    height:tar.height,
-                    title:tar.title
-                }).data("kendoWindow").center();
-            }
-            else
-            {
-                //kendoWindowData.setOptions({content:tar.url+"?dt="+dt});
-                kendoWindowData.refresh(tar.url+"?dt="+dt);
-                kendoWindowData.setOptions({
-                    width:tar.width,
-                    height:tar.height,
-                    title:tar.title
-                })
-                $("#window").data("kendoWindow").open();
-            }
-            return false;
-        });
-    });
-</script>
+<script type="text/javascript" src="http://static.b2b.com/js/hotel.js"></script>
 </body>
 </html>

@@ -4,361 +4,234 @@
 	<title>${title!"天地行"}</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+	<link href="../../static/css/common.css" rel="stylesheet" />
+	<link href="../../static/css/kendo.common.css" rel="stylesheet" />
+	<link href="../../static/css/kendo.default.css" rel="stylesheet" />
+	<link href="../../static/css/b2b.css" rel="stylesheet" />
+    <link href="../../static/css/tianjiaxiugai.css" rel="stylesheet"  type="text/css"/>
+    <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
 
-    <link href="http://static.b2b.com/css/common.css" rel="stylesheet" />
-    <link href="http://static.b2b.com/css/kendo.common.css" rel="stylesheet" />
-    <link href="http://static.b2b.com/css/kendo.default.css" rel="stylesheet" />
-    <script type="text/javascript" src="http://static.b2b.com/js/jquery.min.js"></script>
-    <script type="text/javascript" src="http://static.b2b.com/js/kendo.web.js"></script>
-    <script type="text/javascript" src="http://static.b2b.com/js/cultures/kendo.culture.zh-CN.min.js"></script>
-    <style type="text/css">
-
-        body {text-align:left;}
-        #cn_policy_add {width:100%;padding:10px;}
-        #cn_policy_add ul {width:800px;}
-        #cn_policy_add ul li label.item_title {float:left;display:inline-block;width:100px;padding:5px;}
-        #cn_policy_add ul li div {display:inline-block;width:400px;padding:5px;}
-        #cn_policy_add ul li.dp div {width:200px;}
-
-    </style>
+  
 </head>
 <body>
-    <div id="cn_policy_add">
-        <form method="get" action="">
-        <ul>
-            <li>
-                <label  class="item_title">航空公司</label>
-                <div>
-                    <input id="airline" type="text" name="airline" />
-                    <label >政策文件</label><input id="policy_name" type="text" name="policy_name" />
-                </div>
-                <span></span>
-            </li>
-            <li>
-                <label  class="item_title">政策类型</label>
-                <div>
-                    <input id="normal_policy" type="radio" name="policy_type" /><label for="normal_policy">普通政策</label>
-                    <input id="nation_policy" type="radio" name="policy_type" /><label for="nation_policy">全国政策</label>
-                </div>
-                <span></span>
-            </li>
-            <li>
-                <label  class="item_title">票证类型</label>
-                <div>
-                    <label><input id="" type="checkbox" name="ticket_checkAll" />全选</label>
-                    <label><input id="" type="checkbox" name="ticket_BSP" />BSP</label>
-                    <label><input id="" type="checkbox" name="ticket_CRS" />CRS</label>
-                    <label><input id="" type="checkbox" name="ticket_B2B" />B2B</label>
-                    <label><input id="" type="checkbox" name="allow_auto_ticket" />允许自动出票</label>
-                    <label><input id="" type="checkbox" name="exchange_ticket" />必须换编码才能出票</label>
-                </div>
-                <span></span>
-            </li>
-            <li>
-                <label  class="item_title">航程类型</label>
-                <div>
-                    <input id="one_way" type="checkbox" name="one_way" /><label for="one_way">单程</label>
-                    <input id="round_trip" type="checkbox" name="round_trip" /><label for="round_trip">往返</label>
-                </div>
-                <span></span>
-            </li>
-            <li>
-                <label  class="item_title">乘客类型</label>
-                <div>
-                    <input id="adult" type="checkbox" name="adult" /><label for="adult">成人</label>
-                    <input id="child" type="checkbox" name="child" /><label for="child">儿童</label>
-                </div>
-                <span></span>
-            </li>
-            <li>
-                <label  class="item_title">Office号</label>
-                <div>
-                    <select id="officeId" name="officeId">
-                        <option value="SHA255">SHA255</option>
-                        <option value="SHA836">SHA836</option>
-                    </select>
-                    <input type="button" name="addOffice" value="添加"/>
-                    <ol>
-                        <li>
-                            <span>SHA255</span>
-                            <a href="javascript:void(0);">删除</a>
-                        </li>
-                    </ol>
-                        
-                </div>
-                <span></span>
-            </li>
-            <li>
-                <label  class="item_title">是否需要授权</label>
-                <div><input type="checkbox" name="need_auth" /></div>
-                <span></span>
-            </li>
-            <li class="dp">
-                <label  class="item_title">出发机场</label>
-                <div>
-                    <label><input id="" type="radio" name="departure_airport" />所有</label>
-                    <label><input id="" type="radio" name="departure_airport" />包含</label>
-                    <label><input id="" type="radio" name="departure_airport" />排除</label>
-                    <br/>
-                    <textarea id="" name="" cols="30" rows="10"></textarea>
-                </div>
-             </li>
-             <li class="dp">
-                <label  class="item_title">到达机场</label>
-                <div>
-                    <label><input id="" type="radio" name="arrive_airport" />所有</label>
-                    <label><input id="" type="radio" name="arrive_airport" />包含</label>
-                    <label><input id="" type="radio" name="arrive_airport" />排除</label>
-                    <br/>
-                    <textarea id="" name="" cols="30" rows="10"></textarea>
-                </div>
-                <span><em>*</em>可输入多个机场三字母，用"/" 字符隔开,如PEK/NAY/SHA/PVG</span>
-            </li>
-            <li>
-                <label  class="item_title">排除航段</label>
-                <div>
-                    <ol>
-                        <li>
-                            <input id="" type="text" name="" />--<input id="" type="text" name="" /><a href="javascript:void(0);">添加</a>
-                        </li>
-                        <li>
-                            <input id="" type="text" name="" />--<input id="" type="text" name="" /><a href="javascript:void(0);">删除</a>
-                        </li>
-                    </ol> 
-                </div>
-                <span>排除指定的航段,如SHA-PEK,表示只排除SHA-PEK这个一段</span>
-            </li>
-            <li class="dp">
-                <label  class="item_title">去程航班限制</label>
-                <div>
-                    <label><input id="" type="radio" name="" />所有</label>
-                    <label><input id="" type="radio" name="" />包含</label>
-                    <label><input id="" type="radio" name="" />排除</label>
-                    <br/>
-                    <textarea id="" name="" cols="30" rows="10"></textarea>
-                </div>
-            </li>
-            <li class="dp">
-                <label  class="item_title">回程航班限制</label>
-                <div>
-                    <input id="" type="radio" name="" /><label>所有</label>
-                    <input id="" type="radio" name="" /><label>包含</label>
-                    <input id="" type="radio" name="" /><label>排除</label>
-                    <br/>
-                    <textarea id="" name="" cols="30" rows="10"></textarea>
-                </div>
-                <span></span>
-            </li>
-            <li>
-                <label  class="item_title">适用舱位</label>
-                <div>
-                
-                    <table>
-                        <tr>
-                            <td><label ><input type="checkbox" name="cabin" />全选</label></td>
-                            <td><label ><input type="checkbox" name="cabin" />反选</label></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><label><input type="checkbox" name="cabin" />A</label></td>
-                            <td><label><input type="checkbox" name="cabin" />B</label></td>
-                            <td><label><input type="checkbox" name="cabin" />C</label></td>
-                            <td><label><input type="checkbox" name="cabin" />D</label></td>
-                            <td><label><input type="checkbox" name="cabin" />E</label></td>
-                            <td><label><input type="checkbox" name="cabin" />F</label></td>
-                            <td><label><input type="checkbox" name="cabin" />G</label></td>
-                        </tr>
-                        <tr>
-                            <td><label><input type="checkbox" name="cabin" />H</label></td>
-                            <td><label><input type="checkbox" name="cabin" />I</label></td>
-                            <td><label><input type="checkbox" name="cabin" />J</label></td>
-                            <td><label><input type="checkbox" name="cabin" />K</label></td>
-                            <td><label><input type="checkbox" name="cabin" />L</label></td>
-                            <td><label><input type="checkbox" name="cabin" />M</label></td>
-                            <td><label><input type="checkbox" name="cabin" />N</label></td>
-                        </tr>
-                        <tr>
-                            <td><label><input type="checkbox" name="cabin" />O</label></td>
-                            <td><label><input type="checkbox" name="cabin" />P</label></td>
-                            <td><label><input type="checkbox" name="cabin" />Q</label></td>
-                            <td><label><input type="checkbox" name="cabin" />R</label></td>
-                            <td><label><input type="checkbox" name="cabin" />S</label></td>
-                            <td><label><input type="checkbox" name="cabin" />T</label></td>
-                            <td><label><input type="checkbox" name="cabin" />U</label></td>
-                        </tr>
-                        <tr>
-                            <td><label><input type="checkbox" name="cabin" />V</label></td>
-                            <td><label><input type="checkbox" name="cabin" />W</label></td>
-                            <td><label><input type="checkbox" name="cabin" />X</label></td>
-                            <td><label><input type="checkbox" name="cabin" />Y</label></td>
-                            <td><label><input type="checkbox" name="cabin" />Z</label></td>
-                            <td><label></td>
-                            <td><label></td>
-                        </tr>
-                    </table>
-                </div>
-                <span></span>
-            </li>
-            <li>
-                <label  class="item_title">乘机日期</label>
-                <div>
-                    <ol>
-                        <li>
-                        <input type="text" name="boarding_sdate" class="Datepicker"/> 至 <input type="text" name="boarding_edate" class="Datepicker"/>&nbsp;<a href="javascript:void(0);">添加</a>
-                        </li>
-                        <li>
-                        <input type="text" name="boarding_sdate" class="Datepicker"/> 至 <input type="text" name="boarding_edate" class="Datepicker"/>&nbsp;<a href="javascript:void(0);">删除</a>
-                        </li>
-                    </ol>
-                </div>
-                <span>注：在此乘机范围内的航班才适用此政策</span>
-            </li>
-            <li>
-                <label  class="item_title">适用班期</label>
-                <div>
-                
-                    <label ><input type="checkbox" name="flightSchedule" />周一</label>
-                    <label ><input type="checkbox" name="flightSchedule" />周二</label>
-                    <label ><input type="checkbox" name="flightSchedule" />周三</label>
-                    <label ><input type="checkbox" name="flightSchedule" />周四</label>
-                    <label ><input type="checkbox" name="flightSchedule" />周五</label>
-                    <label ><input type="checkbox" name="flightSchedule" />周六</label>
-                    <label ><input type="checkbox" name="flightSchedule" />周日</label>
-                </div>
-                <span>注：若全部使用，可以不选</span>
-            </li>
-            <li>
-                <label  class="item_title">出票日期</label>
-                <div>
-                    <input class="Datepicker" type="text" name="" ticket_sdate="" /> 至 <input class="Datepicker" type="text" name="" ticket_edate="" />
-                    <input class="Timepicker" type="text" name="" ticket_stime="" /> -- <input class="Timepicker" type="text" name="" ticket_etime="" />
-                </div>
-                <span></span>
-            </li>
-            <li>
-                <label  class="item_title">对内销售说明</label>
-                <div>
-                    <textarea id="" name="inner_sale_desc" cols="30" rows="10"></textarea>
-                </div>
-                <span></span>
-            </li>
-            <li>
-                <label  class="item_title">对外销售说明</label>
-                <div>
-                    <textarea id="" name="outter_sale_desc" cols="30" rows="10"></textarea>
-                </div>
-                <span></span>
-            </li>
-            <li>
-                <label  class="item_title">其他</label>
-                <div>
-                    <label><input id="" type="text" name="" />签转回收促销费</label>
-                    <label><input id="" type="text" name="" />其他</label>
-                </div>
-                <span></span>
-            </li>
-            <li>
-                <label  class="item_title">现结低价</label>
-                <div>
-                    <input  type="text" name="base_rate" value="3" /> + <input type="text" name="float_rate" value="2" /> %
-                </div>
-                <span>注：航空公司现结低价政策3+Z值,用于计算利润,仅供应商自己可见</span>
-            </li>
-            <li>
-                <label class="item_title" >预期后返</label>
-                <div>
-                    <input type="text" name="back_return" value="2" /> %
-                    <label >奖励<input  type="text" name="prize" /></label>
-                    <select id="prize_type" name="prize_type">
-                        <option value="rate">%</option>
-                        <option value="amout">元</option>
-                    </select>
-                </div>
-                <span>注：可不设置,仅供应商可见，用于计算利润</span>
-            </li>
-            <li>
-                <label class="item_title" >限定最高值</label>
-                <div><input type="text" name="top_rate_limite" value="8"/></div>
-                <span>注：可不设置，主要用于业务员手动开单时限制最高值，仅内部可见</span>
-            </li>
-            <li>
-                <label class="item_title" >是否累计积分</label>
-                <div>
-                    <label><input id="" type="radio" name="cal_point" value="unaddup"/>不累计</label>
-                    <label><input id="" type="radio" name="cal_point" value="addup"/>累计</label>
-                </div>
-                <span></span>
-            </li>
-            <li>
-                <label class="item_title" >运价计算</label>
-                <div><input type="text" name="fee_cal" value="2"/></div>
-            </li>
-            <li>
-                <label class="item_title" >运价基础</label>
-                <div><input type="text" name="fee_base" value="2"/></div>
-            </li>
-            <li>
-                <label class="item_title" >RMK项</label>
-                <div><input type="text" name="rmk" value="RMK备注内容"/></div>
-            </li>
-            <li>
-                <label class="item_title" >是否发布</label>
-                <div>
-                    <label><input id="" type="radio" name="be_publish" value="publish"/>发布</label>
-                    <label><input id="" type="radio" name="be_publish" value="unpublish"/>不发布</label>
-                </div>
-            </li>
-            <li>
-                <ol>
-                    <li><a href="javascript:void(0);">保存</a></li>
-                    <li><a href="javascript:void(0);">保存并继续</a></li>
-                    <li><a href="javascript:void(0);">清除</a></li>
-                </ol>
-            </li>
-            <li>
-                <div class="notice">操作提示:</div>
-                <ol>
-                    <li>点击发布政策完成发布,点击发布并继续完成发布但停留在本页面，页面内容不清楚，点击清楚恢复空白页面。</li>
-                    <li>特价要到航空公司去申请，必须设置有效期，不适用默认设置（航空公司5:30下班以后申请不到特价）</li>
-                </ol>
-            </li>
-            <li>
-                <label class="item_title" >标签</label>
-                <div>
-                    <input id="policy_tag" type="text" name="policy_tag" value="普通,东航,3扣"/>
-                </div>
-            </li>
-            <li>
-                <label class="item_title" >政策组</label>
-                <div>
-                    <ol>
-                        <li><label><input type="checkbox" name="policy_group" />政策组1</label></li>
-                        <li><label><input type="checkbox" name="policy_group" />政策组2</label></li>
-                        <li><label><input type="checkbox" name="policy_group" />政策组3</label></li>
-                    </ol>
-                </div>
-            </li>
-        </ul>
-    </form>
+    <div id="extHeader">
+        <div></div>
+    </div>
+
+    <div id="container">
+        <div class="header">
+            <h1></h1>
+            <div>
+                <span>你好,${name}</span>
+                <a href="javascript:void(0);">退出</a>
+            </div>
+            <ul id="top_menu">
+                <li><a href="javascript:void(0);">国内机票</a></li>
+                <li><a href="javascript:void(0);">国际机票</a></li>
+                <li><a href="javascript:void(0);">酒店</a></li>
+                <li><a href="javascript:void(0);">票证中心</a></li>
+                <li><a href="javascript:void(0);">财务管理</a></li>
+                <li><a href="javascript:void(0);">客户管理</a></li>
+                <li class="current"><a href="javascript:void(0);">系统设置</a></li>
+            </ul>
+            <ol class="sub_menu">
+                <li class="current"><a href="javascript:void(0);">公告信息</a></li>
+                <li><a href="javascript:void(0);">公司信息</a></li>
+                <li><a href="javascript:void(0);">组织架构</a></li>
+                <li><a href="javascript:void(0);">角色维护</a></li>
+                <li><a href="javascript:void(0);">基础数据</a></li>
+            </ol>
+            <div id="message">
+            	<a href="javascript:void(0);">&nbsp;</a>
+                <span>&nbsp;</span>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="sub_menu_bar"></div>
+        <div id="mainContent"> <!--mainContent开始-->
+        
+          <div class="tjxg_top">
+               <h2>返回</h2>
+               <p>添加普通政策</p>
+               <div class="tyxj_a">
+                 <a href="#" class="tyxj_a_2">保&nbsp;存</a>
+                 <a href="#" class="tyxj_a_2">保存并继续</a>
+                 <a href="#" class="tyxj_a_1">清&nbsp;除</a>
+                 <a href="#" class="tyxj_a_1">关&nbsp;闭</a>
+               </div>
+          </div>
+       <div class="middlecontent"> <!--middlecontent开始-->
+         <div class="mudong">
+            <p class="mudong_p"><span>航空公司：</span>  <select><option>MU东航</option></select></p>
+            <p class="mudong_p_1"><span>协议名称：</span> <input type="text"/></p>
+         </div>
+         <div class="zclx_dx">
+             <p class="dx_1">政策类型：</p>
+             <p class="dx_2"><input type="radio" value="普通政策" checked="checked"> <span>普通政策</span></p>
+             <p class="dx_2"><input type="radio" value="全国政策"> <span>全国政策</span></p>
+         </div>
+         <div class="pzlx_cp">
+             <p class="pzlx_cp_p1"> <span class="leixing_1">票证类型：</span> <input type="checkbox"/> <label>BSP</label>
+                               <input type="checkbox"/> <label>B2B</label>
+                               <input type="checkbox"/> <label>CRS</label>
+                               <input type="checkbox"/>  <span class="yunxu">允许自动出票</span>
+             </p>
+             <p class="pzlx_cp_p2"><input type="checkbox"/>  <label>必须换编码才能出票</label></p>         
+         </div>
+         <div class="danwang">
+             <p class="danwang_p"> <span class="hclx_1">航程类型：</span> <input type="checkbox"/> <span class="hclx_1_span">单程</span>
+                                                       <input type="checkbox"/> <span class="hclx_1_span">往返</span>
+             </p>
+             <p class="danwang_p"> <span class="hclx_1">乘客类型：</span> <input type="checkbox"/> <span class="hclx_1_span">成人</span>
+                                                       <input type="checkbox"/> <span class="hclx_1_span">儿童</span>
+             </p>       
+         </div>
+         <div class="office">
+            <p class="office_p"> <span>OFFICE号：</span> <select><option>SHA255</option></select> <a href="#">添加</a></p>
+             <div class="office_bottom">
+                <p><span>SHA255</span> <label>x</label> </p>
+                <p><span>SHA836</span> <label>x</label> </p>
+             </div>
+         </div>
+         <div class="shifou">
+            <span class="shifou_span">是否需授权：</span>  <input type="checkbox"/> <span class="shifou_span_1">编码需要授权</span>
+         </div>
+         <p class="sf_p">&nbsp;</p>
+         <div class="cfjc">
+             <p class="pzlx_cp_p1"> <span class="leixing_1">出发机场：</span> 
+                               <input type="radio" checked="checked"/> <label>所有</label>
+                               <input type="radio"/> <label>包含</label>
+                               <input type="radio"/> <label>排除</label>
+             </p>
+             <p class="cfjc_textarea"> <textarea>请输入文字...</textarea></p>
+         </div>
+         <div class="cfjc">
+             <p class="pzlx_cp_p1"> <span class="leixing_1">到达机场：</span> 
+                               <input type="radio" checked="checked"/> <label>所有</label>
+                               <input type="radio"/> <label>包含</label>
+                               <input type="radio"/> <label>排除</label>
+             </p>
+             <p class="cfjc_textarea"> <textarea>全国所有机场...</textarea></p>
+         </div>
+          <div class="cfjc_1">
+             <p class="pchd"> <span>排除航段：</span> 
+                                    <select class="sha_pek"><option>SHA-PEK</option></select>
+             </p>
+             <p class="cfjc_textarea_1"> <textarea>SHA-PEK/SHA-PEK</textarea></p>
+         </div>
+          <div class="cfjc">
+             <p class="pzlx_cp_p1"> <span class="leixing_1">航班限制：</span> 
+                               <input type="radio" checked="checked"/> <label>所有</label>
+                               <input type="radio"/> <label>包含</label>
+                               <input type="radio"/> <label>排除</label>
+             </p>
+             <p class="cfjc_textarea"> <textarea>2134/2701-2999</textarea></p>
+         </div>
+         <div class="sekuai">
+            <p class="cangwei"><span class="cangwei_span">适用舱位：</span> <span class="juse">&nbsp;</span> 
+                               <span class="xuan_1">全选</span> <span class="huise_1">&nbsp;</span> <span class="xuan_1">反选</span>
+            </p>
+            <ul class="sekuai_ul">
+               <li> <span>C</span> <label>[150]</label> </li>
+               <li> <span>F</span> <label>[150]</span> </li>
+               <li class="sekuai_ul_li"> <span>P</span> <label>[150]</label> </li>
+               <li> <span>A</span> <label>[120]</label> </li>
+               <li> <span>J</span> <label>[120]</label> </li>
+               <li> <span>I</span> <label>[30]</label> </li>
+               <li class="sekuai_ul_li"> <span>Y</span> <label>[100]</label> </li>
+               <li> <span>T</span> <label>[90]</label> </li>
+               <li class="sekuai_ul_li"> <span>H</span> <label>[80]</label> </li>
+               <li class="sekuai_ul_li"> <span>M</span> <label>[75]</label> </li>
+               <li> <span>G</span> <label>[70]</label> </li>
+               <li> <span>S</span> <label>[65]</label> </li>
+               <li> <span>L</span> <label>[60]</label> </li>
+               <li> <span>Q</span> <label>[55]</label> </li>
+               <li> <span>E</span> <label>[50]</label> </li>
+               <li> <span>V</span> <label>[45]</label> </li>
+               <li class="sekuai_ul_li"> <span>R</span> <label>[40]</label> </li>
+               <li> <span>K</span> <label>[35]</label> </li>
+            </ul>
+         </div>
+         <div class="cjrq_tj">
+              <p> <span class="cjrq_span">乘机日期：</span> <input class="cjrq_input_1" type="text" value="2013-06-01" /> <span class="cjrq_zhi">至</span> <input class="cjrq_input_2" type="text" value="2013-06-01" />  <a href="#" class="cjrq_a">添加</a>
+              </p>
+              <div class="cjrq_div">
+                  <p class="cjrq_div_p"> <span class="cjrq_div_p_span">2013-06-01至2013-08-31</span> <span class="cjrq_div_p_span_1">x</span> </p>
+                  <p class="cjrq_div_p_1"> <span class="cjrq_div_p_span">2013-06-01至2013-08-31</span> <span class="cjrq_div_p_span_1">x</span> </p>
+              </div>
+         </div>
+         <div class="xingqi">  <span class="xingqi_span">适用班期：</span>
+             <input type="checkbox" /> <label>周一</label>
+             <input type="checkbox" /> <label>周二</label>
+             <input type="checkbox" /> <label>周三</label>
+             <input type="checkbox" /> <label>周四</label>
+             <input type="checkbox" /> <label>周五</label>
+             <input type="checkbox" /> <label>周六</label>
+             <input type="checkbox" /> <label>周日</label>
+         </div>
+         <div class="cjrq_tj">
+              <p> <span class="cjrq_span">出票日期：</span> <input class="cjrq_input_1" type="text" value="2013-06-01" /> <span class="cjrq_zhi">至</span> <input class="cprq_jz" type="text" value="2013-06-01" />  <label>08:00</label> <span class="lzf">-</span> <label>17:30</label>
+              </p>
+         </div>
+         <p class="xian"> &nbsp; </p>
+         <div class="dijia">
+           <p> <b>现结底价：</b>  <span>2</span> <label>+</label> <span>3</span> <label>%</label> </p>
+           <p class="dijia_p"> <b>预期后返：</b>  <span>3</span> <label>%</label> </p>
+         </div>
+         <div class="dijia">
+           <p> <b>奖励扣率：</b>  <span>2</span> <label>%</label> </p>
+           <p class="dijia_p"> <b>奖励金额：</b>  <span>3</span> <label>元</label> </p>
+         </div>
+         <div class="xdmax">
+           <p> <b>限定最高值：</b>  <span>2</span> <label>%</label> <label>+</label> <span>3</span> <label>元</label> </p>
+         </div>
+         <div class="rmk">
+           <b>RMK项：</b> <input type="text" value="RMK备注指令内容"/>
+         </div>
+         <div class="tgqfjgd">
+            <b>退改签附加规定：</b>
+            <textarea> &nbsp; </textarea>
+         </div>
+         <div class="fabu_b">
+            <b>是否发布：</b> 
+            <input type="radio" checked="cehcked" /> <span>发布</span>
+            <input type="radio" /> <span>不发布</span>
+         </div>
+         <div class="beizhu">
+            <p> <b>公开备注：</b> 
+                <input type="checkbox" /> <span>签转回收促销费</span>
+                <input type="checkbox" /> <span>其他快捷备注</span>
+            </p>
+            <div> <textarea> &nbsp; </textarea></div>
+         </div>
+         <div class="beizhu">
+            <p> <b>内部备注：</b> 
+                <input type="checkbox" /> <span>签转回收促销费</span>
+                <input type="checkbox" /> <span>其他快捷备注</span>
+            </p>
+            <div> <textarea>签转回收促销费，其他快捷备注。再写点其他什么的。</textarea></div>
+         </div>
+         <div class="tishi_bottom">
+            <span>&nbsp;</span>
+            <p>提示：点击“保存”完成发布（或提交审核），点击“保存并继续”完成发布（或提交审核），保留在当前页面，页面内容不清除，点击清除恢复空白页面。</p>
+         </div>
+         
+      </div> <!--middlecontent结束-->
+      </div><!--mainContent结束-->
+
     </div>
 		
-    <script type="text/javascript">
-    
-            $(".Datepicker").kendoDatePicker({
-		        format: 'yyyy-MM-dd',
-		        culture: 'zh-CN'
-	        }).data("kendoDatePicker");
-    
-            $(".Timepicker").kendoTimePicker({
-		        format: 'hh:mm',
-		        culture: 'zh-CN'
-	        }).data("kendoTimePicker");
-            
-    </script>
+    <div id="extFooter">
+        <div>
+            <p>
+                <a href="javascript:void(0);">关于我们</a>&nbsp;|
+                <a href="javascript:void(0);">微博</a>&nbsp;|
+                <a href="javascript:void(0);">服务条款</a>&nbsp;|
+                <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
 </body>
 </html>
-
