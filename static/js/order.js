@@ -26,10 +26,13 @@ $(document).ready(function() {
 					}
 				}
 			},
-			pageSize: 20,
+			pageSize: 10,
 			serverPaging: true,
 			serverFiltering: true,
 			serverSorting: true
+		},
+		dataBinding: function() {
+			//@todo add some code here
 		},
 		messages: {
 			display: "{0} - {1} of {2} 个 订单",
