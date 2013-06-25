@@ -66,11 +66,20 @@ $(function(){
         <div id="window"></div>
 
         <div class="actions block">
-            <div class="col col-l sep-r">
-                <button class="btns btn-return">返回</button>
+            <div class="col col-l">
+                <a class="item" href="#">资金汇总</a> 
+                <a class="item highlight" href="#">充值管理</a> 
+                <a class="item" href="#">提现管理</a> 
+                <a class="item" href="#">授信管理</a> 
+                <a class="item" href="#">押金管理</a> 
+                <a class="item" href="#">冻结管理</a> 
+                <a class="item" href="#">收支明细</a> 
+                <a class="item" href="#">交易明细</a> 
             </div>
-            <div class="col col-l" style="margin-left:10px;">
-                <a class="item highlight" href="#">充值单管理</a> 
+            <div class="col col-r sep-l">
+                <button class="btns btn-blue">新增充值</button>
+                <button class="btns btn-blue">新增扣款</button>
+                <button class="btns btn-blue">充值单管理</button>
             </div>
         </div>
 
@@ -91,26 +100,21 @@ $(function(){
                     <input style="width:100px" data-role="dropdownlist" data-source="['全部','支付宝']">
                     </li>
                     <li>
-                    <label class="vertical-head">审核人</label>
+                    <label class="vertical-head">操作人</label>
                     <input style="width:100px">
                     <button class="btns btn-search">查询</button>
                     </li>
                     <li>
-                    <label class="vertical-head">申请日期</label>
+                    <label class="vertical-head">充值日期</label>
                     <input data-role="datepicker" style="width:100px">
                     </li>
                     <li>
-                    <label class="vertical-head">审核日期</label>
+                    <label class="vertical-head">到帐日期</label>
                     <input data-role="datepicker" style="width:100px">
                     </li>
                     <li>
                     <label class="vertical-head">审核状态</label>
-                    <input data-role="dropdownlist" data-source="['等待审核','已审核']" style="width:100px">
-                    </li>
-                    <li>
-                    <label class="vertical-head">申请人</label>
-                    <input style="width:100px">
-                    <button class="btns btn-search">查询</button>
+                    <input data-role="dropdownlist" data-source="['等待审核']" style="width:100px">
                     </li>
                 </ul>
             </div>
@@ -123,156 +127,76 @@ $(function(){
             <div class="block-header">
                 <ul class="flat-list">
                     <li>
-                    <button class="btns btn-ac-blue">审核通过</button> 
-                    </li> 
-                    <li>
-                    <button class="btns">审核退回</button> 
-                    </li>
-                    <li>
-                    <span style="color:#aaa">&nbsp;|&nbsp;</span>
-                    </li>
-                    <li>
-                    <button class="btns">导出Excel</button> 
+                    <button class="btns btn-ac-blue">导出Excel</button> 
                     </li>
                 </ul>
             </div> 
             <table class="grid-table">
                 <tr class="thead">
-                    <td>
-                        <input type="checkbox" /> 
-                    </td>    
-                    <td>凭单号</td>
                     <td>客户</td>
-                    <td>银行</td>
-                    <td>银行卡号</td>
-                    <td>账户余额</td>
+                    <td>扣款金额</td>
                     <td>充值金额</td>
-                    <td>付款人</td>
-                    <td>审核状态</td>
+                    <td>账户余额</td>
+                    <td>充值方式</td>
+                    <td>充值时间</td>
+                    <td>到帐时间</td>
                     <td>摘要</td>
-                    <td>申请时间</td>
-                    <td>审核时间</td>
-                    <td>操作</td>
+                    <td>操作人</td>
                 </tr>
                 <tr>
-                <td>
-                <input type="checkbox" /> 
-                </td>
-                  <td>123</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>123</td>
-                  <td>180,000,000.00</td>
+                    <td>xxx</td>
+                  <td class="text1">180,000,000.00</td>
+                  <td class="text1">180,000,000.00</td>
                   <td class="text1">180,000,000.00</td>
                   <td>xxx</td>
-                  <td>xxx</td>
+                  <td>2013-04-01 15:30</td>
+                  <td>2013-04-01 15:30</td>
                   <td>xxx</td>
                   <td>2012-04-23<br>张小黑</td>
-                  <td>2012-04-23<br>张小黑</td>
-                  <td class="grid-row-ac">
-                        <button class="btns ac-pass">通过</button> 
-                        <button class="btns ac-return">退回</button> 
-                  </td>
                 </tr>
                 <tr class="highlight">
-                <td>
-                <input type="checkbox" /> 
-                </td>
-                  <td>123</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>123</td>
-                  <td>180,000,000.00</td>
+                    <td>xxx</td>
+                  <td class="text1">180,000,000.00</td>
+                  <td class="text1">180,000,000.00</td>
                   <td class="text1">180,000,000.00</td>
                   <td>xxx</td>
-                  <td>xxx</td>
+                  <td>2013-04-01 15:30</td>
+                  <td>2013-04-01 15:30</td>
                   <td>xxx</td>
                   <td>2012-04-23<br>张小黑</td>
-                  <td>2012-04-23<br>张小黑</td>
-                  <td class="grid-row-ac">
-                        <button class="btns ac-pass">通过</button> 
-                        <button class="btns ac-return">退回</button> 
-                  </td>
                 </tr>
                 <tr>
-                <td>
-                <input type="checkbox" /> 
-                </td>
-                  <td>123</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>123</td>
-                  <td>180,000,000.00</td>
+                    <td>xxx</td>
+                  <td class="text1">180,000,000.00</td>
+                  <td class="text1">180,000,000.00</td>
                   <td class="text1">180,000,000.00</td>
                   <td>xxx</td>
-                  <td>xxx</td>
+                  <td>2013-04-01 15:30</td>
+                  <td>2013-04-01 15:30</td>
                   <td>xxx</td>
                   <td>2012-04-23<br>张小黑</td>
-                  <td>2012-04-23<br>张小黑</td>
-                  <td class="grid-row-ac">
-                        <button class="btns ac-pass">通过</button> 
-                        <button class="btns ac-return">退回</button> 
-                  </td>
                 </tr>
                 <tr>
-                <td>
-                <input type="checkbox" /> 
-                </td>
-                  <td>123</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>123</td>
-                  <td>180,000,000.00</td>
+                    <td>xxx</td>
+                  <td class="text1">180,000,000.00</td>
+                  <td class="text1">180,000,000.00</td>
                   <td class="text1">180,000,000.00</td>
                   <td>xxx</td>
-                  <td>xxx</td>
+                  <td>2013-04-01 15:30</td>
+                  <td>2013-04-01 15:30</td>
                   <td>xxx</td>
                   <td>2012-04-23<br>张小黑</td>
-                  <td>2012-04-23<br>张小黑</td>
-                  <td class="grid-row-ac">
-                        <button class="btns ac-pass">通过</button> 
-                        <button class="btns ac-return">退回</button> 
-                  </td>
                 </tr>
                 <tr>
-                <td>
-                <input type="checkbox" /> 
-                </td>
-                  <td>123</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>123</td>
-                  <td>180,000,000.00</td>
+                    <td>xxx</td>
+                  <td class="text1">180,000,000.00</td>
+                  <td class="text1">180,000,000.00</td>
                   <td class="text1">180,000,000.00</td>
                   <td>xxx</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>2012-04-23<br>张小黑</td>
-                  <td>2012-04-23<br>张小黑</td>
-                  <td class="grid-row-ac">
-                        <button class="btns ac-pass">通过</button> 
-                        <button class="btns ac-return">退回</button> 
-                  </td>
-                </tr>
-                <tr>
-                <td>
-                <input type="checkbox" /> 
-                </td>
-                  <td>123</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>123</td>
-                  <td>180,000,000.00</td>
-                  <td class="text1">180,000,000.00</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
+                  <td>2013-04-01 15:30</td>
+                  <td>2013-04-01 15:30</td>
                   <td>xxx</td>
                   <td>2012-04-23<br>张小黑</td>
-                  <td>2012-04-23<br>张小黑</td>
-                  <td class="grid-row-ac">
-                        <button class="btns ac-pass">通过</button> 
-                        <button class="btns ac-return">退回</button> 
-                  </td>
                 </tr>
             </table>
             <div class="grid-table-pagination">
@@ -294,6 +218,16 @@ $(function(){
                 <span>
                     <a class="next" href="#">&nbsp;</a> 
                 </span>
+            </div>
+            <div style="height:0px;position:relative;" class="extra">
+                <div style="position:absolute;top:-30px;left:20px;">
+                    扣款金额：
+               <span class="text1">42141</span> &nbsp;
+                充值金额：
+               <span class="text1">57.22亿</span> &nbsp; 
+               账户余额：
+               <span class="text1">999</span>  
+                </div>
             </div>
         </div>
 

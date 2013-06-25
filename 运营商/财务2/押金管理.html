@@ -66,11 +66,18 @@ $(function(){
         <div id="window"></div>
 
         <div class="actions block">
-            <div class="col col-l sep-r">
-                <button class="btns btn-return">返回</button>
+            <div class="col col-l">
+                <a class="item" href="#">资金汇总</a> 
+                <a class="item" href="#">充值管理</a> 
+                <a class="item" href="#">提现管理</a> 
+                <a class="item" href="#">授信管理</a> 
+                <a class="item highlight" href="#">押金管理</a> 
+                <a class="item" href="#">冻结管理</a> 
+                <a class="item" href="#">收支明细</a> 
+                <a class="item" href="#">交易明细</a> 
             </div>
-            <div class="col col-l" style="margin-left:10px;">
-                <a class="item highlight" href="#">充值单管理</a> 
+            <div class="col col-r sep-l">
+                <button class="btns btn-blue">新增押金</button>
             </div>
         </div>
 
@@ -87,28 +94,28 @@ $(function(){
                     <input style="width:100px">
                     </li>
                     <li>
-                    <label class="vertical-head">充值方式</label>
-                    <input style="width:100px" data-role="dropdownlist" data-source="['全部','支付宝']">
+                    <label class="vertical-head">账户类型</label>
+                    <input style="width:100px" data-role="dropdownlist" data-source="['全部']">
                     </li>
                     <li>
-                    <label class="vertical-head">审核人</label>
+                    <label style="width:65px;" class="vertical-head">收取操作人</label>
                     <input style="width:100px">
                     <button class="btns btn-search">查询</button>
                     </li>
                     <li>
-                    <label class="vertical-head">申请日期</label>
-                    <input data-role="datepicker" style="width:100px">
+                    <label style="width:65px;" class="vertical-head">押金状态</label>
+                    <input data-role="dropdownlist" data-source="['全部']" style="width:100px">
                     </li>
                     <li>
-                    <label class="vertical-head">审核日期</label>
-                    <input data-role="datepicker" style="width:100px">
+                    <label class="vertical-head">押金类型</label>
+                    <input data-role="dropdownlist" data-source="['全部']" style="width:100px">
                     </li>
                     <li>
-                    <label class="vertical-head">审核状态</label>
-                    <input data-role="dropdownlist" data-source="['等待审核','已审核']" style="width:100px">
+                        <input type="checkbox" /> 
+                        显示已删除记录
                     </li>
                     <li>
-                    <label class="vertical-head">申请人</label>
+                    <label style="width:65px;" class="vertical-head">退还操作人</label>
                     <input style="width:100px">
                     <button class="btns btn-search">查询</button>
                     </li>
@@ -123,10 +130,10 @@ $(function(){
             <div class="block-header">
                 <ul class="flat-list">
                     <li>
-                    <button class="btns btn-ac-blue">审核通过</button> 
+                    <button class="btns btn-ac-blue">退押金</button> 
                     </li> 
                     <li>
-                    <button class="btns">审核退回</button> 
+                    <button class="btns">删除</button> 
                     </li>
                     <li>
                     <span style="color:#aaa">&nbsp;|&nbsp;</span>
@@ -139,30 +146,22 @@ $(function(){
             <table class="grid-table">
                 <tr class="thead">
                     <td>
-                        <input type="checkbox" /> 
-                    </td>    
-                    <td>凭单号</td>
-                    <td>客户</td>
-                    <td>银行</td>
-                    <td>银行卡号</td>
-                    <td>账户余额</td>
-                    <td>充值金额</td>
-                    <td>付款人</td>
-                    <td>审核状态</td>
+                        <input type="checkbox"> 
+                    </td>
+                    <td>客户简称</td>
+                    <td>提现金额</td>
+                    <td>押金类型</td>
+                    <td>押金状态</td>
                     <td>摘要</td>
-                    <td>申请时间</td>
-                    <td>审核时间</td>
+                    <td>收取时间</td>
+                    <td>退还时间</td>
                     <td>操作</td>
                 </tr>
                 <tr>
-                <td>
-                <input type="checkbox" /> 
-                </td>
-                  <td>123</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>123</td>
-                  <td>180,000,000.00</td>
+                    <td>
+                        <input type="checkbox"> 
+                    </td>
+                    <td>xxx</td>
                   <td class="text1">180,000,000.00</td>
                   <td>xxx</td>
                   <td>xxx</td>
@@ -170,19 +169,15 @@ $(function(){
                   <td>2012-04-23<br>张小黑</td>
                   <td>2012-04-23<br>张小黑</td>
                   <td class="grid-row-ac">
-                        <button class="btns ac-pass">通过</button> 
-                        <button class="btns ac-return">退回</button> 
+                        <button class="btns ac-undeposit">退押金</button> 
+                        <button class="btns ac-delete">删除</button> 
                   </td>
                 </tr>
                 <tr class="highlight">
-                <td>
-                <input type="checkbox" /> 
-                </td>
-                  <td>123</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>123</td>
-                  <td>180,000,000.00</td>
+                    <td>
+                        <input type="checkbox"> 
+                    </td>
+                    <td>xxx</td>
                   <td class="text1">180,000,000.00</td>
                   <td>xxx</td>
                   <td>xxx</td>
@@ -190,19 +185,15 @@ $(function(){
                   <td>2012-04-23<br>张小黑</td>
                   <td>2012-04-23<br>张小黑</td>
                   <td class="grid-row-ac">
-                        <button class="btns ac-pass">通过</button> 
-                        <button class="btns ac-return">退回</button> 
+                        <button class="btns ac-undeposit">退押金</button> 
+                        <button class="btns ac-delete">删除</button> 
                   </td>
                 </tr>
                 <tr>
-                <td>
-                <input type="checkbox" /> 
-                </td>
-                  <td>123</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>123</td>
-                  <td>180,000,000.00</td>
+                    <td>
+                        <input type="checkbox"> 
+                    </td>
+                    <td>xxx</td>
                   <td class="text1">180,000,000.00</td>
                   <td>xxx</td>
                   <td>xxx</td>
@@ -210,68 +201,8 @@ $(function(){
                   <td>2012-04-23<br>张小黑</td>
                   <td>2012-04-23<br>张小黑</td>
                   <td class="grid-row-ac">
-                        <button class="btns ac-pass">通过</button> 
-                        <button class="btns ac-return">退回</button> 
-                  </td>
-                </tr>
-                <tr>
-                <td>
-                <input type="checkbox" /> 
-                </td>
-                  <td>123</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>123</td>
-                  <td>180,000,000.00</td>
-                  <td class="text1">180,000,000.00</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>2012-04-23<br>张小黑</td>
-                  <td>2012-04-23<br>张小黑</td>
-                  <td class="grid-row-ac">
-                        <button class="btns ac-pass">通过</button> 
-                        <button class="btns ac-return">退回</button> 
-                  </td>
-                </tr>
-                <tr>
-                <td>
-                <input type="checkbox" /> 
-                </td>
-                  <td>123</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>123</td>
-                  <td>180,000,000.00</td>
-                  <td class="text1">180,000,000.00</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>2012-04-23<br>张小黑</td>
-                  <td>2012-04-23<br>张小黑</td>
-                  <td class="grid-row-ac">
-                        <button class="btns ac-pass">通过</button> 
-                        <button class="btns ac-return">退回</button> 
-                  </td>
-                </tr>
-                <tr>
-                <td>
-                <input type="checkbox" /> 
-                </td>
-                  <td>123</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>123</td>
-                  <td>180,000,000.00</td>
-                  <td class="text1">180,000,000.00</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>2012-04-23<br>张小黑</td>
-                  <td>2012-04-23<br>张小黑</td>
-                  <td class="grid-row-ac">
-                        <button class="btns ac-pass">通过</button> 
-                        <button class="btns ac-return">退回</button> 
+                        <button class="btns ac-undeposit">退押金</button> 
+                        <button class="btns ac-delete">删除</button> 
                   </td>
                 </tr>
             </table>
@@ -294,6 +225,12 @@ $(function(){
                 <span>
                     <a class="next" href="#">&nbsp;</a> 
                 </span>
+            </div>
+            <div style="height:0px;position:relative;" class="extra">
+                <div style="position:absolute;top:-30px;left:20px;">
+                    押金金额：
+               <span class="text1">42141</span>
+                </div>
             </div>
         </div>
 
