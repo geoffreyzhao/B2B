@@ -31975,6 +31975,9 @@ if (typeof kendo_module === "undefined") {
             title.text(text);
             return that;
         },
+        modal:function(){
+            return this.options["modal"];
+        },
         content: function(html) {
             var content = this.wrapper.children(KWINDOWCONTENT), scrollContainer = content.children(".km-scroll-container");
             content = scrollContainer[0] ? scrollContainer : content;
