@@ -1,14 +1,16 @@
 <!DOCTYPE html><html><head><title>平台建单</title><script src="http://localhost:35729/livereload.js"></script><meta charset="utf-8" />
-<link rel="stylesheet" href="/css/kendo/kendo.common.min.css" />
-<link rel="stylesheet" href="/css/kendo.gray.css" />
-<link href="/css/common.css" rel="stylesheet" />
-<link href="/css/b2b.css" rel="stylesheet" />
+<link rel="stylesheet" href="http://static.b2b.com/css/kendo/kendo.common.min.css" />
+<link rel="stylesheet" href="http://static.b2b.com/css/kendo.gray.css" />
+<link href="http://static.b2b.com/css/common.css" rel="stylesheet" />
+<link href="http://static.b2b.com/css/b2b.css" rel="stylesheet" />
 
-<link rel="stylesheet" href="/css/global.css" />
-<link rel="stylesheet" href="/css/finance.css" />
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script type="text/javascript" src="/js/kendo/kendo.web.js"></script>
-<script type="text/javascript" src="/js/plugins/jquery.fixedBar.js"></script>
+<link rel="stylesheet" href="http://static.b2b.com/css/global.css" />
+<link rel="stylesheet" href="http://static.b2b.com/css/finance.css" />
+<link rel="stylesheet" href="//static.b2b.com/css/hotel.css" />
+<script type="text/javascript" src="http://static.b2b.com/js/vendor/jquery.min.js"></script>
+<script type="text/javascript" src="http://static.b2b.com/js/kendo/kendo.web.js"></script>
+<script type="text/javascript" src="http://static.b2b.com/js/plugins/jquery.fixedBar.js"></script>
+<script type="text/javascript" src="http://static.b2b.com/js/finance.js"></script>
 <script type="text/javascript">
 $(function(){
     $('.actions').fixedBar();
@@ -27,7 +29,7 @@ $(function(){
 });
 </script>
 
-<script src="/livereload.js"></script></head><body>  <div id="extHeader">
+</head><body>  <div id="extHeader">
     <div></div>
 </div>
 
@@ -77,7 +79,7 @@ $(function(){
                 <a class="item" href="#">交易明细</a> 
             </div>
             <div class="col col-r sep-l">
-                <button class="btns btn-blue">新增押金</button>
+                <button class="btns btn-blue ac-new">新增押金</button>
             </div>
         </div>
 
@@ -103,7 +105,7 @@ $(function(){
                     <button class="btns btn-search">查询</button>
                     </li>
                     <li>
-                    <label style="width:65px;" class="vertical-head">押金状态</label>
+                    <label class="vertical-head">押金状态</label>
                     <input data-role="dropdownlist" data-source="['全部']" style="width:100px">
                     </li>
                     <li>
@@ -143,19 +145,17 @@ $(function(){
                     </li>
                 </ul>
             </div> 
-            <table class="grid-table">
+            <table data-role="grid" class="grid-table">
                 <tr class="thead">
-                    <td>
-                        <input type="checkbox"> 
-                    </td>
-                    <td>客户简称</td>
-                    <td>提现金额</td>
-                    <td>押金类型</td>
-                    <td>押金状态</td>
-                    <td>摘要</td>
-                    <td>收取时间</td>
-                    <td>退还时间</td>
-                    <td>操作</td>
+                    <th data-field="c1"> <input type="checkbox"> </th>
+                    <th data-field="c2">客户简称</th>
+                    <th data-field="c3">提现金额</th>
+                    <th data-field="c4">押金类型</th>
+                    <th data-field="c5">押金状态</th>
+                    <th data-field="c6">摘要</th>
+                    <th data-field="c7">收取时间</th>
+                    <th data-field="c8">退还时间</th>
+                    <th data-field="c9">操作</th>
                 </tr>
                 <tr>
                     <td>
@@ -250,27 +250,46 @@ $(function(){
         <p>客户服务热线:400-720-6666</p>
     </div>
 </div>
-<script type="text/x-kendo-template" id="ac-pass-template">
-        pass
+<script type="text/x-kendo-template" id="ac-new-template">
+<div style="width:460px;">
+<div class="ac-new-window-container">
+<ul class="flat-list">
+                    <li>
+                    <label class="vertical-head">选择客户：</label>
+                    <input style="width:80px">
+                    <button class="btns btn-search">查询</button>
+                    </li>
+                    <li>
+                    <label class="vertical-head">押金金额：</label>
+                    <input style="width:100px">
+                    </li>
+                    <li>
+                    <label class="vertical-head">确认押金金额：</label>
+                    <input style="width:100px">
+                    </li>
+                    <li>
+                    <label class="vertical-head">押金类型：</label>
+                    <input style="width:100px" data-role="dropdownlist" data-source="['选择']">
+                    </li>
+                    <li style="width:400px;">
+                    <label style="vertical-align:top;" class="vertical-head">摘要：</label>
+                    <textarea></textarea>
+                    </li>
+                </ul>
+</div>
+        <div style="text-align:right;">
+            <button class="btns button_1_2">提 交</button> 
+            <button class="btns button_2_2">取 消</button> 
+        </div>
+</div>
 </script>
 <script type="text/x-kendo-template" id="ac-return-template">
     returnfdsa
 </script>
 <script type="text/javascript">
-    kendo.init($('body'));
-
-    var winPass = $('#window').kendoWindow({
-        visible:false,
-        animation:false,
-        modal:true,
-        content:{
-            template: kendo.template($("#ac-pass-template").html())
-        } 
-    }).data('kendoWindow'); 
-
-    $('.ac-pass').bind('click',function(){
-        winPass.open();
-        winPass.center();
-    });
+var ac_new = new PopWindow('.ac-new',{
+    title:'新增押金',
+    template:'#ac-new-template'
+}).init();
 </script>
 </body></html>
