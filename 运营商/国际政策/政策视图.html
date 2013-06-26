@@ -1,0 +1,403 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>${title!"天地行"}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+    <link href="../../static/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="../../static/css/b2b.css" rel="stylesheet" type="text/css" />
+    <link href="../../static/css/kendo.common.css" rel="stylesheet" type="text/css" />
+    <link href="../../static/css/kendo.default.css" rel="stylesheet" type="text/css" />
+    <link href="../../static/css/jiudianweihuzs.css" rel="stylesheet" type="text/css"/>
+    <link href="../../static/css/xieyizhengche.css" rel="stylesheet" type="text/css"/>
+    <script src="../../static/js/jquery.min.js" type="text/javascript"></script>
+    <script src="../../static/js/kendo.web.js" type="text/javascript"></script>
+
+	<!--<link href="http://static.b2b.com/css/common.css" rel="stylesheet" />
+	<link href="http://static.b2b.com/css/b2b.css" rel="stylesheet" />
+    <link href="http://static.b2b.com/css/zhuzhijiagou.css" rel="stylesheet" type="text/css" />   
+	<link href="http://static.b2b.com/css/kendo.common.css" rel="stylesheet" />
+	<link href="http://static.b2b.com/css/kendo.default.css" rel="stylesheet" />
+    <script type="text/javascript" src="http://static.b2b.com/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://static.b2b.com/js/kendo.web.js"></script>-->
+
+</head>
+<body>
+    <div id="extHeader">
+        <div></div>
+    </div>
+
+    <div id="container">
+        <div class="header">
+            <h1></h1>
+            <div>
+                <span>你好,${name}</span>
+                <a href="javascript:void(0);">退出</a>
+            </div>
+            <ul id="top_menu">
+                <li><a href="javascript:void(0);">国内机票</a></li>
+                <li><a href="javascript:void(0);">国际机票</a></li>
+                <li><a href="javascript:void(0);">酒店</a></li>
+                <li><a href="javascript:void(0);">票证中心</a></li>
+                <li><a href="javascript:void(0);">财务管理</a></li>
+                <li><a href="javascript:void(0);">客户管理</a></li>
+                <li class="current"><a href="javascript:void(0);">系统设置</a></li>
+            </ul>
+            <ol class="sub_menu">
+                <li class="current"><a href="javascript:void(0);">公告信息</a></li>
+                <li><a href="javascript:void(0);">公司信息</a></li>
+                <li><a href="javascript:void(0);">组织架构</a></li>
+                <li><a href="javascript:void(0);">角色维护</a></li>
+                <li><a href="javascript:void(0);">基础数据</a></li>
+            </ol>
+            <div id="message">
+            	<a href="javascript:void(0);">&nbsp;</a>
+                <span>&nbsp;</span>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="sub_menu_bar"></div>
+        <div id="mainContent" style="overflow:hidden;">
+        
+			<!-- start zhuzhijiagou -->
+        
+            <div class="zhuzhijiagou">
+               <div class="xieyi">
+                 <h2>返回</h2>
+                 <p class="xieyi_chakan"> <a href="#">协议查看</a> <a href="#" class="xieyi_chakan_a">政策查看</a></p>
+                  <div class="jdwh-btn">
+                    <a class="jdwh-btn-a" href="新增酒店 .html" onClick="add_department();">添加协议</a>
+                  </div>
+               </div>
+               
+              
+               <div class="xyzc_div">
+               <table cellpadding="0" cellspacing="0" class="xyzc_tab1">
+                  <tr>
+                     <td class="zchk">航空公司</td>
+                     <td class="mu"><select><option>MU东航</option></select></td>
+                     <td class="zchk">适用舱位</td>
+                     <td class="sycw"> <input type="text"/> </td>
+                     <td class="zchk">政策类型</td>
+                     <td class="quanbu"> <select><option>全部</option></select> </td>
+                     <td class="xyzc_cx" rowspan="6"><a href="#" class="xyzc_cx_a">查询</a></td>
+                  </tr> 
+                  <tr>
+                     <td class="zchk">出发城市</td>
+                     <td> <input type="text" value="上海&nbsp;SHA" class="shanghai_input"/></td>
+                     <td class="zchk">到达城市</td>
+                     <td class="sycw"> <input type="text" value="北京&nbsp;PEK" class="beijing_input"/></td>
+                     <td class="zchk">乘机日期</td>
+                     <td> <input type="text" class="cjrq_input_1"/> <span class="cjrq_span">至</span>  <input type="text" class="cjrq_input_2"/></td>
+                  </tr> 
+                  <tr>
+                     <td class="zchk">航程类型</td>
+                     <td class="mu"> <select><option>全部</option></select> </td>
+                     <td class="zchk">乘客类型</td>
+                     <td class="cklx"> <select><option>全部</option></select> </td>
+                     <td class="zchk">出票日期</td>
+                     <td> <input type="text" class="cjrq_input_1"/> <span class="cjrq_span">至</span>  <input type="text" class="cjrq_input_2"/></td>
+                  </tr> 
+                  <tr>
+                     <td class="zchk">本地/异地</td>
+                     <td class="mu"> <select><option>全部</option></select> </td>
+                     <td class="zchk">供应商</td>
+                     <td class="cklx"> <select><option>不夜城BSP</option></select> </td>
+                     <td class="zchk">发布日期</td>
+                     <td><div class="cjrq"> <input type="text" class="cjrq_input_1"/> <span class="cjrq_span">至</span>  <input type="text" class="cjrq_input_2"/></div></td>
+                  </tr> 
+                  <tr>
+                     <td class="zchk">出票类型</td>
+                     <td class="mu"> <select><option>全部</option></select> </td>
+                     <td class="zchk">OFFICE号</td>
+                     <td class="cklx"> <select><option>全部</option></select> </td>
+                     <td class="zchk">政策返点</td>
+                     <td> <div class="zcfd_1"><input type="text"/> <span>%</span></div> 
+                          <div class="zcfd_2"> <span>供应商</span> <select> <option>不夜城BSP</option> </select> </div>
+                     </td>
+                  </tr> 
+                  <tr>
+                     <td class="zchk">协议名称</td>
+                     <td> <input type="text"/ class="xymc_input"></td>
+                     <td class="zchk">发布人</td>
+                     <td class="faburen"><input type="text"/> <a href="#"></a></td>
+                     <td class="zchk">票证类型</td>
+                     <td> <P class="pzlx_p"><input type="checkbox"/><span>BSP</span></P> 
+                          <P class="pzlx_p"><input type="checkbox"/><span>B2B</span></P> 
+                          <P class="pzlx_p"><input type="checkbox"/><span>CRS</span></P>
+                          <P class="pzlx_p_1"><input type="checkbox"/><span>境外电子</span></P>
+                     </td>                     
+                  </tr> 
+               </table>
+               <div class="xyst_tab1_bottom"> <a href="#"></a> </div>
+               </div>
+              
+              <div class="qx">
+                  <div class="xuanze">
+                    <p class="fxk"><input type="checkbox"/> <span>全选</span></p>
+                     <p class="qx_p"> <a href="#" class="qx_p_a_1">发布</a>
+                       <a href="#">挂起</a> <span>|</span>
+                       <a href="#">作废</a> <span>|</span>
+                       <a href="#" class="qx_p_a">修改返点</a>
+                     </p>
+                  </div>
+                  <div class="qx_right">
+                     <a href="#" class="qx_right_a">导出Excel</a>  <span>|</span>
+                     <a href="#" class="qx_right_a">模板导入</a>   <span>|</span>
+                     <a href="#" class="qx_right_a_1">导入说明【模板下载】</a>
+                  </div>
+              </div>
+              
+              <div class="xyzc_tab2_div">
+              <table cellpadding="0" cellspacing="0" class="xyzc_tab2">
+                 <tr>
+                    <th class="xyzc_th_1"><input type="checkbox"/></th>
+                    <th class="xyzc_th_2">航司</th>
+                    <th class="xyzc_th_3">票证</th>
+                    <th class="xyzc_th_4">航程</th>
+                    <th class="xyzc_th_5">出票</th>
+                    <th class="xyzc_th_6">出发机场</th>
+                    <th class="xyzc_th_7">到达机场</th>
+                    <th class="xyzc_th_8">航班限制</th>
+                    <th class="xyzc_th_9">排除航段</th>
+                    <th class="xyzc_th_10">适用舱位</th>
+                    <th class="xyzc_th_11">返点</th>
+                    <th class="xyzc_th_12">后返</th>
+                    <th class="xyzc_th_13">乘客<br>类型</th>
+                    <th class="xyzc_th_14">出票日期</th>
+                    <th class="xyzc_th_15">乘机日期</th>
+                    <th class="xyzc_th_16">发布时间</th>
+                    <th class="xyzc_th_17">发布人</th>
+                    <th class="xyzc_th_18">状态</th>
+                    <th class="xyzc_th_19">操作</th>
+                 </tr>
+                 <tr>
+                     <td><input type="checkbox"/></td>
+                     <td>MU</td>
+                     <td>BSP</td>
+                     <td>单程</td>
+                     <td>自动</td>
+                     <td>SHA/PVG/<br>SZX/WUH</td>
+                     <td>PEK</td>
+                     <td>所有</td>
+                     <td>&nbsp; </td>
+                     <td>FCYBMHKLQGV</td>
+                     <td>6.0</td>
+                     <td>2.0</td>
+                     <td>成人</td>
+                     <td>2010/09/01<br>至2012/10/01</td>
+                     <td>2010/09/01<br>至2012/10/01</td>
+                     <td>2010/09/01<br>至2012/10/01</td>
+                     <td>zhangjian</td>
+                     <td>已发布</td>
+                     <td><a href="#">修改</a> <a href="#">复制</a></td>
+                 </tr>
+                 <tr>
+                     <td class="third"><input type="checkbox"/></td>
+                     <td class="third">CA</td>
+                     <td class="third">B2B</td>
+                     <td class="third">往返</td>
+                     <td class="third">手动</td>
+                     <td class="third">SHA/PVG</td>
+                     <td class="third">全国</td>
+                     <td class="third">排除2301<br>/2333</td>
+                     <td class="third">SHA-WUH</td>
+                     <td class="third">FCYBMHKLQGV</td>
+                     <td class="third">6.0</td>
+                     <td class="third">2.0</td>
+                     <td class="third">儿童</td>
+                     <td class="third">2010/09/01<br>至2012/10/01</td>
+                     <td class="third">2010/09/01<br>至2012/10/01</td>
+                     <td class="third">2010/09/01<br>至2012/10/01</td>
+                     <td class="third">zhangjian</td>
+                     <td class="third red_color">已挂起</td>
+                     <td class="third"><a href="#">修改</a> <a href="#">复制</a></td>
+                 </tr>
+                 <tr>
+                     <td class="huise"><input type="checkbox"/></td>
+                     <td class="huise">FM</td>
+                     <td class="huise">BSP</td>
+                     <td class="huise">单程</td>
+                     <td class="huise">手动</td>
+                     <td class="huise">排除<br>SHA/PVG</td>
+                     <td class="huise">排除PEK</td>
+                     <td class="huise">所有</td>
+                     <td class="huise">&nbsp; </td>
+                     <td class="huise">MH</td>
+                     <td class="huise">5.0</td>
+                     <td class="huise">2.0</td>
+                     <td class="huise">不限</td>
+                     <td class="huise">2010/09/01<br>至2012/10/01</td>
+                     <td class="huise">2010/09/01<br>至2012/10/01</td>
+                     <td class="huise">2010/09/01<br>至2012/10/01</td>
+                     <td class="huise">zhangjian</td>
+                     <td class="huise">已作废</td>
+                     <td><a href="#">修改</a> <a href="#">复制</a></td>
+                 </tr>
+                 <tr>
+                     <td><input type="checkbox"/></td>
+                     <td>MU</td>
+                     <td>B2B</td>
+                     <td>往返</td>
+                     <td>手动</td>
+                     <td>SHA/PVG</td>
+                     <td>全国</td>
+                     <td>所有</td>
+                     <td>&nbsp; </td>
+                     <td>G</td>
+                     <td>6.0</td>
+                     <td>2.0</td>
+                     <td>成人</td>
+                     <td>2010/09/01<br>至2012/10/01</td>
+                     <td>2010/09/01<br>至2012/10/01</td>
+                     <td>2010/09/01<br>至2012/10/01</td>
+                     <td>zhangjian</td>
+                     <td>已发布</td>
+                     <td><a href="#">修改</a> <a href="#">复制</a></td>
+                 </tr>
+                 <tr>
+                     <td class="huise"><input type="checkbox"/></td>
+                     <td class="huise">CA</td>
+                     <td class="huise">BSP</td>
+                     <td class="huise">单程</td>
+                     <td class="huise">手动</td>
+                     <td class="huise">SHA/PVG</td>
+                     <td class="huise">全国</td>
+                     <td class="huise">所有</td>
+                     <td class="huise">&nbsp;</td>
+                     <td class="huise">GV</td>
+                     <td class="huise">6.0</td>
+                     <td class="huise">2.0</td>
+                     <td class="huise">成人</td>
+                     <td class="huise">2010/09/01<br>至2012/10/01</td>
+                     <td class="huise">2010/09/01<br>至2012/10/01</td>
+                     <td class="huise">2010/09/01<br>至2012/10/01</td>
+                     <td class="huise">zhangjian</td>
+                     <td class="huise">已作废</td>
+                     <td><a href="#">修改</a> <a href="#">复制</a></td>
+                 </tr>
+                 <tr>
+                     <td><input type="checkbox"/></td>
+                     <td>CA</td>
+                     <td>BSP</td>
+                     <td>单程</td>
+                     <td>手动</td>
+                     <td>&nbsp;</td>
+                     <td>全国</td>
+                     <td>所有</td>
+                     <td>&nbsp; </td>
+                     <td>CYBMHKLQGV</td>
+                     <td>5.0</td>
+                     <td>2.0</td>
+                     <td>儿童</td>
+                     <td>2010/09/01<br>至2012/10/01</td>
+                     <td>2010/09/01<br>至2012/10/01</td>
+                     <td>2010/09/01<br>至2012/10/01</td>
+                     <td>zhangjian</td>
+                     <td class="red_color">已挂起</td>
+                     <td><a href="#">修改</a> <a href="#">复制</a></td>
+                 </tr>
+                 <tr>
+                     <td><input type="checkbox"/></td>
+                     <td>CA</td>
+                     <td>BSP</td>
+                     <td>单程</td>
+                     <td>手动</td>
+                     <td>&nbsp;</td>
+                     <td>全国</td>
+                     <td>所有</td>
+                     <td>&nbsp; </td>
+                     <td>MH</td>
+                     <td>6.0</td>
+                     <td>2.0</td>
+                     <td>不限</td>
+                     <td>2010/09/01<br>至2012/10/01</td>
+                     <td>2010/09/01<br>至2012/10/01</td>
+                     <td>2010/09/01<br>至2012/10/01</td>
+                     <td>zhangjian</td>
+                     <td>已发布</td>
+                     <td><a href="#">修改</a> <a href="#">复制</a></td>
+                 </tr>
+                 <tr>
+                     <td><input type="checkbox"/></td>
+                     <td>CA</td>
+                     <td>BSP</td>
+                     <td>单程</td>
+                     <td>手动</td>
+                     <td>&nbsp;</td>
+                     <td>全国</td>
+                     <td>所有</td>
+                     <td>&nbsp; </td>
+                     <td>G</td>
+                     <td>6.0</td>
+                     <td>2.0</td>
+                     <td>成人</td>
+                     <td>2010/09/01<br>至2012/10/01</td>
+                     <td>2010/09/01<br>至2012/10/01</td>
+                     <td>2010/09/01<br>至2012/10/01</td>
+                     <td>zhangjian</td>
+                     <td>已发布</td>
+                     <td><a href="#">修改</a> <a href="#">复制</a></td>
+                 </tr>
+                 <tr> 
+                   <td colspan="19" class="td">
+                  <div class="yema">
+                  <p class="yema_p">共 <span>132 </span> 条记录</p>
+                  <img class="yema-left-img" src="../../static/images/fanye-left-bg.jpg">
+                   <ul class="yemaul">
+                     <li>1</li>
+                     <li>2</li>
+                     <li class="yema-ul-li">3</li>
+                     <li>4</li>
+                     <li>5</li>
+                     <li>…</li>
+                     <li>50</li>           
+                   </ul>
+                   <img class="yema-left-img" src="../../static/images/fanye-right-bg.jpg">
+                </div>
+                </td>
+                </tr>
+               </table>
+               </div>
+           </div>
+        </div>
+        
+        <!-- end of zhuzhijiagou -->
+    </div>
+	
+    <div id="add_department"></div>
+    <div id="add_employe"></div>
+    
+    <div id="extFooter">
+        <div>
+            <p>
+                <a href="javascript:void(0);">关于我们</a>&nbsp;|
+                <a href="javascript:void(0);">微博</a>&nbsp;|
+                <a href="javascript:void(0);">服务条款</a>&nbsp;|
+                <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+    
+    <script type="application/javascript">
+		var add_department = function(id){
+			id = 0;
+			if (!$("#add_department").data("kendoWindow")) {
+				$("#add_department").kendoWindow({
+					width: "100%",
+					minHeight: "100%",
+					title: "操作提示",
+					actions: ["Refresh", "Close"],
+					content: encodeURI("添加部门.html")  + "?orderID=" + id + "&timestamp=" + (new Date()).toString(),
+					visible: false,
+					modal:true
+				}).data("kendoWindow").open().center();
+			}else{
+				$("#add_department").data("kendoWindow").open().center();
+			}
+		};
+	
+	</script>
+</body>
+</html>
