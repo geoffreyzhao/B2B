@@ -19,7 +19,7 @@ function PopWindow(trigger, customSettings){
     var kendoWinDefaults = {
         visible:false,
         animation:false,
-        width:520,
+        width:570,
         modal:true
     }
     this.kendoWinSettings = kendoWinDefaults; 
