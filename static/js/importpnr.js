@@ -1,3 +1,0 @@
-$(function(){
-    kendo.init('body');
-});
