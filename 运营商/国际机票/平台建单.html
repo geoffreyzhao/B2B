@@ -5,13 +5,12 @@
         <meta charset="utf-8" />
         <link href="http://static.b2b.com/css/common.css" rel="stylesheet" />
         <link href="http://static.b2b.com/css/b2b.css" rel="stylesheet" />
-        <link rel="stylesheet" href="http://static.b2b.com/css/kendo/kendo.common.min.css" />
-        <link rel="stylesheet" href="http://static.b2b.com/css/kendo.gray.css" />
-
         <link rel="stylesheet" href="http://static.b2b.com/css/global.css" />
+        <link rel="stylesheet" href="http://static.b2b.com/js/uploadify/uploadify.css">
         <script type="text/javascript" src="http://static.b2b.com/js/jquery.min.js"></script>
         <script type="text/javascript" src="http://static.b2b.com/js/kendo/kendo.web.js"></script>
         <script type="text/javascript" src="http://static.b2b.com/js/plugins/jquery.fixedBar.js"></script>
+        <script type="text/javascript" src="http://static.b2b.com/js/uploadify/jquery.uploadify.min.js"></script>
         <script type="text/javascript">
             $(function(){
                     $('.actions').fixedBar();
@@ -117,7 +116,7 @@
                             <option value="">海员</option>
                         </select>
                         <input id="" type="text" name="" value="特殊乘客请先上传证明文件" />
-                        <input class="button_gray" type="button" value="上传" />
+                        <input class="button_gray" type="button" id="btn_upload" value="上传" />
                     </div>
                 </div>
                 <div>
@@ -187,7 +186,7 @@
             </div>
         </script>
 
-        <script type="text/javascript" src="/js/importpnr.js"></script>
+        <script type="text/javascript" src="http://static.b2b.com/js/importpnr.js"></script>
 
 </div>        </div>
 
@@ -204,4 +203,20 @@
                         <p>客户服务热线:400-720-6666</p>
                     </div>
                 </div>
+<script type="text/javascript">
+    $(function(){
+        $("#btn_upload").uploadify({
+            buttonImage   : 'http://static.b2b.com/images/upload_btn.png',
+            width         : 72,
+            height        : 25,
+            buttonClass   : 'btnUpload',
+            uploader      : 'http://www.tz-local.com/test.php',
+            swf           : 'http://static.b2b.com/js/uploadify/uploadify.swf',
+            queueID       : 'queue',
+            removeTimeout :0,
+            onUploadSuccess:function(file,data,response){},
+            onUploadError:function(file,errorCode,errorMsg,errorString){alert(errorString);}
+        });
+    })
+</script>
         </body></html>
