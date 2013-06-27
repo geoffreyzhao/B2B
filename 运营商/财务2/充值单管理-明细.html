@@ -196,10 +196,9 @@ rowTemplate: kendo.template($("#block2-grid-row-template").html())
 <input style="width:80px" data-role="dropdownlist" data-source="['中国银行','支付宝']">
 </li>
 <li>
-<label class="vertical-head">操作人：</label>
-<span>xxx</span>
+<label class="vertical-head"> 到账日期：</label>
+<input style="width:100px;" data-role="datepicker">
 </li>
-<li>&nbsp;</li>
 <li style="width:400px;">
 <label style="vertical-align:top;" class="vertical-head">摘要：</label>
 <textarea></textarea>
@@ -207,25 +206,25 @@ rowTemplate: kendo.template($("#block2-grid-row-template").html())
 </ul>
 </div>
 <div style="text-align:right;">
-<button class="btns button_1_2">提 交</button>
+<button class="btns button_1_2 ac-submit">提 交</button>
 <button class="btns button_2_2">取 消</button>
 </div>
 </div>
 </script>
-<script type="text/x-kendo-template" id="ac-unfreeze-template">
+<script type="text/x-kendo-template" id="ac-confirm-template">
 <div class="ac-new-window-container">
 <ul class="flat-list">
 <li>
-<label class="vertical-head">操作人：</label>
+<label class="vertical-head">用户：</label>
 <span>fdsa</span>
 </li>
 <li>
-<label class="vertical-head">操作人：</label>
-<strong class="text1">12,313,213</strong>
+<label class="vertical-head">充值方式：</label>
+<span>fdafds</span>
 </li>
 <li>
-<label class="vertical-head">操作人：</label>
-<span>fdafds</span>
+<label class="vertical-head">金额：</label>
+<strong class="text1">12,313,213</strong>
 </li>
 </div>
 <div style="text-align:right;">
@@ -236,9 +235,9 @@ rowTemplate: kendo.template($("#block2-grid-row-template").html())
 <script type="text/javascript">
 $(function(){
 var ac_new = new PopWindow('.ac-new').init();
-var ac_unfreeze = new PopWindow('.ac-unfreeze', {
-template:'#ac-unfreeze-template',
-title:'确认解冻',
+new PopWindow('.ac-submit', {
+template:'#ac-confirm-template',
+title:'确认充值',
 width:'500'
 }).init();
 });
