@@ -66,7 +66,9 @@
 <button class="btns btn-blue ac-new" data-template="#ac-new-template" data-options="{
 title:'新增充值'
 }">新增充值</button>
-<button class="btns btn-blue">新增扣款</button>
+<button class="btns btn-blue ac-new2" data-template="#ac-new2-template" data-options="{
+title:'新增扣款'
+}">新增扣款</button>
 <button class="btns btn-blue">充值单管理</button>
 </div>
 </div>
@@ -121,11 +123,10 @@ title:'新增充值'
 <table class="grid-table">
 <tr class="thead">
 <th>客户</th>
-<th>扣款金额</th>
 <th>充值金额</th>
+<th>扣款金额</th>
 <th>账户余额</th>
-<th>充值方式</th>
-<th>充值时间</th>
+<th>充值/扣款方式</th>
 <th>到帐时间</th>
 <th>摘要</th>
 <th>操作人</th>
@@ -164,11 +165,11 @@ rowTemplate: kendo.template($("#block2-grid-row-template").html())
 <td class="text1">#= data.c3 #</td>
 <td>xxx</td>
 <td>2013-04-01 15:30</td>
-<td>2013-04-01 15:30</td>
 <td>xxx</td>
 <td>2012-04-23<br>#= data.c9 #</td>
 </tr>
 </script>
+<!-- 新增充值模板 -->
 <script type="text/x-kendo-template" id="ac-new-template">
 <div style="width:460px;">
 <div class="ac-new-window-container">
@@ -211,7 +212,42 @@ rowTemplate: kendo.template($("#block2-grid-row-template").html())
 </div>
 </div>
 </script>
-<script type="text/x-kendo-template" id="ac-confirm-template">
+<!-- 新增扣款模板 -->
+<script type="text/x-kendo-template" id="ac-new2-template">
+<div style="width:460px;">
+<div class="ac-new-window-container">
+<ul class="flat-list">
+<li>
+<label class="vertical-head">选择客户：</label>
+<input style="width:100px">
+<button class="btns btn-search ac-search-customer">查询</button>
+</li>
+<li>
+<label class="vertical-head">可用余额：</label>
+<input style="width:100px">
+</li>
+<li>
+<label class="vertical-head">扣款金额：</label>
+<input style="width:100px">
+</li>
+<li>
+<label class="vertical-head">确认金额：</label>
+<input style="width:100px">
+</li>
+<li style="width:400px;">
+<label style="vertical-align:top;" class="vertical-head">摘要：</label>
+<textarea></textarea>
+</li>
+</ul>
+</div>
+<div style="text-align:right;">
+<button class="btns button_1_2 ac-submit2">提 交</button>
+<button class="btns button_2_2">取 消</button>
+</div>
+</div>
+</script>
+<!-- 新增充值确认模板 -->
+<script type="text/x-kendo-template" id="ac-submit-template">
 <div class="ac-new-window-container">
 <ul class="flat-list">
 <li>
@@ -232,12 +268,36 @@ rowTemplate: kendo.template($("#block2-grid-row-template").html())
 <button class="btns button_2_2">取 消</button>
 </div>
 </script>
+<!-- 新增扣款 -->
+<script type="text/x-kendo-template" id="ac-submit2-template">
+<div class="ac-new-window-container">
+<ul class="flat-list">
+<li>
+<label class="vertical-head">用户：</label>
+<span>fdsa</span>
+</li>
+<li>
+<label class="vertical-head">扣款金额：</label>
+<strong class="text1">12,313,213</strong>
+</li>
+</div>
+<div style="text-align:right;">
+<button class="btns button_1_2">确 认</button>
+<button class="btns button_2_2">取 消</button>
+</div>
+</script>
 <script type="text/javascript">
 $(function(){
 var ac_new = new PopWindow('.ac-new').init();
+var ac_new2 = new PopWindow('.ac-new2').init();
 new PopWindow('.ac-submit', {
-template:'#ac-confirm-template',
+template:'#ac-submit-template',
 title:'确认充值',
+width:'500'
+}).init();
+new PopWindow('.ac-submit2', {
+template:'#ac-submit2-template',
+title:'确认扣款',
 width:'500'
 }).init();
 });
