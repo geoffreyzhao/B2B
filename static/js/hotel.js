@@ -56,4 +56,6 @@ $(function(){
         }
         $(".k-overlay,#iframeShadow").show();
     }
+
+    $(".topFixedToolsBar").scrollFix("top","top");
 });
