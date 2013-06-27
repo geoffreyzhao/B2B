@@ -17095,7 +17095,8 @@ if (typeof kendo_module === "undefined") {
                     header = $('<div class="k-grid-header" />').insertBefore(that.table);
                 }
                 // workaround for IE issue where scroll is not raised if container is same width as the scrollbar
-                header.css(isRtl ? "padding-left" : "padding-right", scrollable.virtual ? scrollbar + 1 : scrollbar);
+                // @todo clb
+                //header.css(isRtl ? "padding-left" : "padding-right", scrollable.virtual ? scrollbar + 1 : scrollbar);
                 table = $('<table role="grid" cellspacing="0" />');
                 table.append(that.thead);
                 header.empty().append($('<div class="k-grid-header-wrap" />').append(table));
@@ -32301,7 +32302,7 @@ if (typeof kendo_module === "undefined") {
     WindowResizing.prototype = {
         dragstart: function(e) {
             var that = this, wnd = that.owner, wrapper = wnd.wrapper;
-            that.elementPadding = parseInt(wnd.wrapper.css("padding-top"), 10);
+            that.elementPadding = parseInt(wnd.wrapper.css("adding-top"), 10);
             that.initialCursorPosition = kendo.getOffset(wrapper, "position");
             that.resizeDirection = e.currentTarget.prop("className").replace("k-resize-handle k-resize-", "");
             that.initialSize = {
