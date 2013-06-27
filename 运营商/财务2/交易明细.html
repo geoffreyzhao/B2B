@@ -1,254 +1,310 @@
-<!DOCTYPE html><html><head><title>平台建单</title><script src="http://localhost:35729/livereload.js"></script><meta charset="utf-8" />
-<link rel="stylesheet" href="http://static.b2b.com/css/kendo/kendo.common.min.css" />
+<!DOCTYPE html>
+<html>
+<head>
+<title>平台建单</title>
+<meta charset="utf-8" />
+<script src="http://localhost:35729/livereload.js"></script>
+<link rel="stylesheet" href="http://static.b2b.com/css/kendo.common.min.css" />
 <link rel="stylesheet" href="http://static.b2b.com/css/kendo.gray.css" />
+<link rel="stylesheet" href="http://static.b2b.com/css/global.css" />
 <link href="http://static.b2b.com/css/common.css" rel="stylesheet" />
 <link href="http://static.b2b.com/css/b2b.css" rel="stylesheet" />
-
-<link rel="stylesheet" href="http://static.b2b.com/css/global.css" />
 <link rel="stylesheet" href="http://static.b2b.com/css/finance.css" />
+<link rel="stylesheet" href="http://static.b2b.com/css/hotel.css" />
 <script type="text/javascript" src="http://static.b2b.com/js/vendor/jquery.min.js"></script>
 <script type="text/javascript" src="http://static.b2b.com/js/kendo/kendo.web.js"></script>
 <script type="text/javascript" src="http://static.b2b.com/js/plugins/jquery.fixedBar.js"></script>
 <script type="text/javascript" src="http://static.b2b.com/js/finance.js"></script>
+</head><body> <div id="extHeader">
+<div></div>
+</div>
+<div id="container">
+<div class="header">
+<h1></h1>
+<div>
+<span>你好,${name}</span>
+<a href="javascript:void(0);">退出</a>
+</div>
+<ul id="top_menu">
+<li><a href="javascript:void(0);">国内机票</a></li>
+<li><a href="javascript:void(0);">国际机票</a></li>
+<li><a href="javascript:void(0);">酒店</a></li>
+<li><a href="javascript:void(0);">票证中心</a></li>
+<li><a href="javascript:void(0);">财务管理</a></li>
+<li><a href="javascript:void(0);">客户管理</a></li>
+<li class="current"><a href="javascript:void(0);">系统设置</a></li>
+</ul>
+<ol class="sub_menu">
+<li class="current"><a href="javascript:void(0);">公告信息</a></li>
+<li><a href="javascript:void(0);">公司信息</a></li>
+<li><a href="javascript:void(0);">组织架构</a></li>
+<li><a href="javascript:void(0);">角色维护</a></li>
+<li><a href="javascript:void(0);">基础数据</a></li>
+</ol>
+<div id="message">
+<a href="javascript:void(0);">消息</a>
+<span>New</span>
+</div>
+</div>
+<div class="clear"></div>
+<div id="sub_menu_bar"></div>
+<div id="mainContent">
+
+<div id="window"></div>
+<div class="actions block">
+<div class="col col-l">
+<a class="item" href="#">资金汇总</a>
+<a class="item" href="#">充值管理</a>
+<a class="item" href="#">提现管理</a>
+<a class="item" href="#">授信管理</a>
+<a class="item" href="#">押金管理</a>
+<a class="item" href="#">冻结管理</a>
+<a class="item" href="#">收支明细</a>
+<a class="item highlight" href="#">交易明细</a>
+</div>
+</div>
+<div class="block block1 clearfix">
+<div class="col col-l" style="width:870px;">
+<ul class="flat-list">
+<li>
+<label class="vertical-head">客户简称</label>
+<input style="width:80px">
+<button class="btns btn-search ac-search-customer">查询</button>
+</li>
+<li>
+<label class="vertical-head">账户</label>
+<input style="width:100px">
+</li>
+<li>
+<label class="vertical-head">订单号</label>
+<input style="width:100px">
+</li>
+<li style="width:250px;">
+<label class="vertical-head">交易分类</label>
+<input style="width:70px" data-role="dropdownlist" data-source="['国内机票','国籍机票']">&nbsp;
+<input style="width:70px" data-role="dropdownlist" data-source="['收款','退款']">
+</li>
+<li>
+<label class="vertical-head">交易状态</label>
+<input style="width:100px;" data-role="dropdownlist" data-source="['全部']">
+</li>
+<li>
+<label class="vertical-head">资金流量</label>
+<input style="width:100px;" data-role="dropdownlist" data-source="['全部']">
+</li>
+<li>
+<label class="vertical-head">操作认</label>
+<input style="width:80px">
+<button class="btns btn-search ac-search-customer">查询</button>
+</li>
+<li style="width:250px;">
+<label class="vertical-head">起止日期</label>
+<input data-role="datepicker" style="width:70px">&nbsp;
+<input data-role="datepicker" style="width:70px">
+</li>
+</ul>
+</div>
+<div class="col col-r" style="padding-top:10px;">
+<button class="btns btn-orange-s">查询</button>
+</div>
+</div>
+<div class="block block2">
+<div class="block-header">
+<ul class="flat-list">
+<li>
+<button class="btns btn-ac-blue">导出Excel</button>
+</li>
+</ul>
+</div>
+<table class="grid-table">
+<tr class="thead">
+<th>订单号</th>
+<th>客户简称</th>
+<th>交易日期</th>
+<th>交易类型</th>
+<th>交易金额</th>
+<th>交易状态</th>
+<th>摘要</th>
+<th>操作人</th>
+</tr>
+</table>
+</div>
 <script type="text/javascript">
 $(function(){
-    $('.actions').fixedBar();
-    var lensf = function (){
-        $.each($('.instr'),function(){
-            var that = $(this);
-            if(that.find('.highlight-fl').size()>0){
-                var ele = that.find('.highlight');
-                var len = ele.size();
-                var wid = ele.width()*len + 15;
-                that.find('.line').prepend('<div style="background-color:#FF6608;height:2px;width:'+wid+'px" />')
-            }
-        });
-    }
-    lensf();
+new GridTable('.block2 .grid-table',{
+dataSource: [{
+c1:222,
+c2:333,
+c3:"11,321,321.00",
+c4:"xxx",
+c5:"xxx",
+c6:"2013-12-12",
+c7:"张三",
+c8:"2013-12-12",
+c9:"张三"
+}],
+rowTemplate: kendo.template($("#block2-grid-row-template").html())
+}).init();
 });
 </script>
-
-</head><body>  <div id="extHeader">
-    <div></div>
-</div>
-
-<div id="container">
-    <div class="header">
-        <h1></h1>
-        <div>
-            <span>你好,${name}</span>
-            <a href="javascript:void(0);">退出</a>
-        </div>
-        <ul id="top_menu">
-            <li><a href="javascript:void(0);">国内机票</a></li>
-            <li><a href="javascript:void(0);">国际机票</a></li>
-            <li><a href="javascript:void(0);">酒店</a></li>
-            <li><a href="javascript:void(0);">票证中心</a></li>
-            <li><a href="javascript:void(0);">财务管理</a></li>
-            <li><a href="javascript:void(0);">客户管理</a></li>
-            <li class="current"><a href="javascript:void(0);">系统设置</a></li>
-        </ul>
-        <ol class="sub_menu">
-            <li class="current"><a href="javascript:void(0);">公告信息</a></li>
-            <li><a href="javascript:void(0);">公司信息</a></li>
-            <li><a href="javascript:void(0);">组织架构</a></li>
-            <li><a href="javascript:void(0);">角色维护</a></li>
-            <li><a href="javascript:void(0);">基础数据</a></li>
-        </ol>
-        <div id="message">
-            <a href="javascript:void(0);">消息</a>
-            <span>New</span>
-        </div>
-    </div>
-    <div class="clear"></div>
-    <div id="sub_menu_bar"></div>
-    <div id="mainContent">
-
-        <div id="window"></div>
-
-        <div class="actions block">
-            <div class="col col-l">
-                <a class="item" href="#">资金汇总</a> 
-                <a class="item" href="#">充值管理</a> 
-                <a class="item" href="#">提现管理</a> 
-                <a class="item" href="#">授信管理</a> 
-                <a class="item" href="#">押金管理</a> 
-                <a class="item" href="#">冻结管理</a> 
-                <a class="item" href="#">收支明细</a> 
-                <a class="item highlight" href="#">交易明细</a> 
-            </div>
-        </div>
-
-        <div class="block block1 clearfix">
-            <div class="col col-l">
-                <ul class="flat-list">
-                    <li style="width:300px;">
-                    <label class="vertical-head">客户简称</label>
-                    <input style="width:80px">
-                    <button class="btns btn-search">查询</button>
-                    </li>
-                    <li>
-                    <label class="vertical-head">账户</label>
-                    <input style="width:100px">
-                    </li>
-                    <li>
-                    <label class="vertical-head">订单号</label>
-                    <input style="width:100px">
-                    </li>
-                    <li style="width:300px;">
-                    <label class="vertical-head">交易分类</label>
-                    <input style="width:100px" data-role="dropdownlist" data-source="['国内机票','国籍机票']">&nbsp;
-                    <input style="width:100px" data-role="dropdownlist" data-source="['收款','退款']">
-                    </li>
-                    <li>
-                    <label class="vertical-head">交易状态</label>
-                    <input style="width:100px;" data-role="dropdownlist" data-source="['全部']">
-                    </li>
-                    <li>
-                    <label class="vertical-head">资金流量</label>
-                    <input style="width:100px;" data-role="dropdownlist" data-source="['全部']">
-                    </li>
-                    <li style="width:300px;">
-                    <label class="vertical-head">起止日期</label>
-                    <input data-role="datepicker" style="width:100px">&nbsp;
-                    <input data-role="datepicker" style="width:100px">
-                    </li>
-                </ul>
-            </div>
-            <div class="col col-r" style="padding-top:30px;">
-                <button class="btns btn-orange-s">查询</button> 
-            </div>
-        </div>
-
-        <div class="block block2">
-            <div class="block-header">
-                <ul class="flat-list">
-                    <li>
-                    <button class="btns btn-ac-blue">导出Excel</button> 
-                    </li>
-                </ul>
-            </div> 
-            <table data-role="grid" class="grid-table">
-                <tr class="thead">
-                <th data-field="c1">订单号</th> 
-                <th data-field="c2">客户简称</th> 
-                <th data-field="c3">交易日期</th> 
-                <th data-field="c4">交易类型</th>
-                <th data-field="c5">交易金额</th>
-                <th data-field="c6">交易状态</th>
-                <th data-field="c7">摘要</th>
-                <th data-field="c8">操作人</th>
-                </tr>
-                <tr>
-                  <td>123</td>
-                  <td>xxx</td>
-                  <td>2013-04-01 15:30</td>
-                  <td>xxx</td>
-                  <td class="text1">180,000,000.00</td>
-                  <td>成功</td>
-                  <td>xxx</td>
-                  <td>2012-04-23<br>张小黑</td>
-                </tr>
-                <tr class="highlight">
-                  <td>123</td>
-                  <td>xxx</td>
-                  <td>2013-04-01 15:30</td>
-                  <td>xxx</td>
-                  <td class="text1">180,000,000.00</td>
-                  <td>成功</td>
-                  <td>xxx</td>
-                  <td>2012-04-23<br>张小黑</td>
-                </tr>
-                <tr>
-                  <td>123</td>
-                  <td>xxx</td>
-                  <td>2013-04-01 15:30</td>
-                  <td>xxx</td>
-                  <td class="text1">180,000,000.00</td>
-                  <td>成功</td>
-                  <td>xxx</td>
-                  <td>2012-04-23<br>张小黑</td>
-                </tr>
-                <tr>
-                  <td>123</td>
-                  <td>xxx</td>
-                  <td>2013-04-01 15:30</td>
-                  <td>xxx</td>
-                  <td class="text1">180,000,000.00</td>
-                  <td>成功</td>
-                  <td>xxx</td>
-                  <td>2012-04-23<br>张小黑</td>
-                </tr>
-                <tr>
-                  <td>123</td>
-                  <td>xxx</td>
-                  <td>2013-04-01 15:30</td>
-                  <td>xxx</td>
-                  <td class="text1">180,000,000.00</td>
-                  <td>成功</td>
-                  <td>xxx</td>
-                  <td>2012-04-23<br>张小黑</td>
-                </tr>
-            </table>
-            <div class="grid-table-pagination">
-                <span class="grid-table-count">
-                    共 <em>132</em> 条记录 
-                </span> 
-                <span>
-                    <a class="prev" href="#">&nbsp;</a> 
-                </span>
-                <span class="links">
-                    <a href="#">1</a> 
-                    <a href="#">2</a> 
-                    <a class="current" href="#">3</a> 
-                    <a href="#">4</a> 
-                    <a href="#">5</a> 
-                    <a href="javascript:;">...</a>
-                    <a href="#">50</a> 
-                </span>
-                <span>
-                    <a class="next" href="#">&nbsp;</a> 
-                </span>
-            </div>
-        </div>
-
-
-    </div>
-
-</div>
-
-<div id="extFooter">
-    <div>
-        <p>
-        <a href="javascript:void(0);">关于我们</a>&nbsp;|
-        <a href="javascript:void(0);">微博</a>&nbsp;|
-        <a href="javascript:void(0);">服务条款</a>&nbsp;|
-        <a href="javascript:void(0);">隐私政策</a>&nbsp;|
-        </p>
-        <p>客户服务热线:400-720-6666</p>
-    </div>
-</div>
-<script type="text/x-kendo-template" id="ac-pass-template">
-        pass
+<script type="text/x-kendo-template" id="block2-grid-row-template">
+<tr>
+# kendo.logToConsole(data) #
+<td>#= data.c1 #</td>
+<td>#= data.c2 #</td>
+<td>#= data.c2 #</td>
+<td>#= data.c2 #</td>
+<td><span class="text1">#= data.c3 #</span></td>
+<td>#= data.c4 #</td>
+<td>#= data.c5 #</td>
+<td>#= data.c8 #<br>#= data.c9 #</td>
+</tr>
 </script>
-<script type="text/x-kendo-template" id="ac-return-template">
-    returnfdsa
+<script type="text/x-kendo-template" id="ac-search-customer-template">
+<ul class="flat-list">
+<li>
+<label class="vertical-head">客户简称：</label>
+<input style="width:100px">
+</li>
+<li>
+<label class="vertical-head">拼音索引：</label>
+<input style="width:100px">
+</li>
+<li>
+<label class="vertical-head">联系人：</label>
+<input style="width:100px">
+</li>
+<li style="width:186px;">
+<label class="vertical-head">银行账户：</label>
+<input style="width:100px">
+</li>
+<li style="width:50px">
+<button style="margin-top:-5px;" class="btns btn-orange-s">查询</button>
+</li>
+<li>
+<label class="vertical-head">归属营业点：</label>
+<input style="width:80px">
+<button data-options="{
+title:'选择营业点',
+template:'ac-select-outlet-template'
+}" class="btns btn-search ac-select-outlet">查询</button>
+</li>
+<li>&nbsp;</li>
+</ul>
+<div style="margin-top:10px">
+<table class="grid-table" id="customer-grid-table">
+<tr class="thead">
+<th>客户简称</th>
+<th>创建时间</th>
+<th>可用余额</th>
+<th>联系人</th>
+</tr>
+</table>
+</div>
+<div style="text-align:right;">
+<button class="btns button_1_2">提 交</button>
+<button class="btns button_2_2">取 消</button>
+</div>
+</script>
+<script type="text/x-kendo-template" id="search-customer-row-template">
+<tr>
+# kendo.logToConsole(data) #
+<td>#= data.c1 #</td>
+<td>#= data.c2 #</td>
+<td>#= data.c3 #</td>
+<td>#= data.c4 #</td>
+</tr>
+</script>
+<script type="text/x-kendo-template" id="ac-select-outlet-template">
+<ul class="flat-list">
+<li>
+<label class="vertical-head">营业点名称：</label>
+<input style="width:100px">
+</li>
+<li>
+<label class="vertical-head">地址：</label>
+<input style="width:100px">
+</li>
+<li>
+<label class="vertical-head">电话：</label>
+<input style="width:100px">
+</li>
+<li>&nbsp;</li>
+<li style="width:50px">
+<button style="margin-top:-5px;" class="btns btn-orange-s">查询</button>
+</li>
+</ul>
+<div style="margin-top:10px">
+<table class="grid-table" id="outlet-grid-table">
+<tr class="thead">
+<th>营业点名称</th>
+<th>电话</th>
+<th>地址</th>
+<th>所属客户</th>
+</tr>
+</table>
+</div>
+<div style="text-align:right;">
+<button class="btns button_1_2">提 交</button>
+<button class="btns button_2_2">取 消</button>
+</div>
+</script>
+<script type="text/x-kendo-template" id="select-outlet-row-template">
+<tr>
+# kendo.logToConsole(data) #
+<td>#= data.c1 #</td>
+<td>#= data.c2 #</td>
+<td>#= data.c3 #</td>
+<td>#= data.c4 #</td>
+</tr>
 </script>
 <script type="text/javascript">
-    kendo.init($('body'));
-
-    var winPass = $('#window').kendoWindow({
-        visible:false,
-        animation:false,
-        modal:true,
-        content:{
-            template: kendo.template($("#ac-pass-template").html())
-        } 
-    }).data('kendoWindow'); 
-
-    $('.ac-pass').bind('click',function(){
-        winPass.open();
-        winPass.center();
-    });
+$(function(){
+var ac_search_customer_window = new PopWindow('.ac-search-customer',{
+title:'选择客户',
+template:'#ac-search-customer-template'
+}).init();
+ac_search_customer_window.bind('open',function(){
+new GridTable('#customer-grid-table',{
+dataSource: [{
+c1:222,
+c2:333,
+c3:"xxx",
+c4:"xxx"
+}],
+rowTemplate: kendo.template($("#search-customer-row-template").html())
+}).init();
+});
+var ac_select_outlet_window = new PopWindow('.ac-select-outlet',{
+title:'选择营业点',
+template:'#ac-select-outlet-template'
+}).init();
+ac_select_outlet_window.bind('open',function(){
+new GridTable('#outlet-grid-table',{
+dataSource: [{
+c1:222,
+c2:333,
+c3:"xxx",
+c4:"xxx"
+}],
+rowTemplate: kendo.template($("#select-outlet-row-template").html())
+}).init();
+});
+});
 </script>
-</body></html>
+</div>
+</div>
+<div id="extFooter">
+<div>
+<p>
+<a href="javascript:void(0);">关于我们</a>&nbsp;|
+<a href="javascript:void(0);">微博</a>&nbsp;|
+<a href="javascript:void(0);">服务条款</a>&nbsp;|
+<a href="javascript:void(0);">隐私政策</a>&nbsp;|
+</p>
+<p>客户服务热线:400-720-6666</p>
+</div>
+</div>
+</body>
+</html>
+
