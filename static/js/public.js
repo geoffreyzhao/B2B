@@ -9,6 +9,6 @@ $(function(){
         });
     });
 
-    $(".datePicker").kendoDatePicker().click(function(){$(this).data("kendoDatePicker").open();});
+    $(".datePicker").kendoDatePicker({ format: "yyyy-MM-dd", culture: "zh-CN"}).click(function(){$(this).data("kendoDatePicker").open();});
 
 });
