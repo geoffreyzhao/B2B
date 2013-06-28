@@ -37,7 +37,7 @@ $(document).ready(function() {
 		sortable: true,
 		pageable: {
 			messages: {
-				display: " 共 {2} 个订单,{0} - {1} 条",
+				display: " 共 {2} 个订单，{0} - {1} 条",
 				empty: "找个0个记录",
 				page: "页",
 				of: "共 {0}",

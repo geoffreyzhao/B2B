@@ -88,7 +88,21 @@ PopWindow.prototype = {
 function GridTable(trigger, customSettings){
     var kendoWinDefaults = {
         scrollable:false,
-        pageable:true
+        pageable:{
+            pageSize: 10,
+			messages: {
+				display: " 共 {2} 个订单，{0} - {1} 条",
+				empty: "找个0个记录",
+				page: "页",
+				of: "共 {0}",
+				itemsPerPage: "每页",
+				first: "第一页",
+				previous: "前一页",
+				next: "后一页",
+				last: "最后页",
+				refresh: "刷新"
+			}
+		}
     }
     this.kendoWinSettings = kendoWinDefaults; 
     this.triggerText = trigger;
