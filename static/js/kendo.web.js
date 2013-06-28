@@ -9725,20 +9725,22 @@ if (typeof kendo_module === "undefined") {
             totalPages = that.totalPages();
             that._refreshHandler = proxy(that.refresh, that);
             that.dataSource.bind(CHANGE, that._refreshHandler);
+            that.element.append("<div class=\"k-pager-wrap-zzz\"></div>");
+            that.elementzzz=$(".k-pager-wrap-zzz",that.element);
             if (options.previousNext) {
-                if (!that.element.find(FIRST).length) {
-                    that.element.append(icon(FIRST, options.messages.first));
-                    first(that.element, page, totalPages);
+                if (!that.elementzzz.find(FIRST).length) {
+                    that.elementzzz.append(icon(FIRST, options.messages.first));
+                    first(that.elementzzz, page, totalPages);
                 }
-                if (!that.element.find(PREV).length) {
-                    that.element.append(icon(PREV, options.messages.previous));
-                    prev(that.element, page, totalPages);
+                if (!that.elementzzz.find(PREV).length) {
+                    that.elementzzz.append(icon(PREV, options.messages.previous));
+                    prev(that.elementzzz, page, totalPages);
                 }
             }
             if (options.numeric) {
-                that.list = that.element.find(".k-pager-numbers");
+                that.list = that.elementzzz.find(".k-pager-numbers");
                 if (!that.list.length) {
-                    that.list = $('<ul class="k-pager-numbers k-reset" />').appendTo(that.element);
+                    that.list = $('<ul class="k-pager-numbers k-reset" />').appendTo(that.elementzzz);
                 }
             }
             if (options.input) {
@@ -9748,13 +9750,13 @@ if (typeof kendo_module === "undefined") {
                 that.element.on(KEYDOWN + NS, ".k-pager-input input", proxy(that._keydown, that));
             }
             if (options.previousNext) {
-                if (!that.element.find(NEXT).length) {
-                    that.element.append(icon(NEXT, options.messages.next));
-                    next(that.element, page, totalPages);
+                if (!that.elementzzz.find(NEXT).length) {
+                    that.elementzzz.append(icon(NEXT, options.messages.next));
+                    next(that.elementzzz, page, totalPages);
                 }
-                if (!that.element.find(LAST).length) {
-                    that.element.append(icon(LAST, options.messages.last));
-                    last(that.element, page, totalPages);
+                if (!that.elementzzz.find(LAST).length) {
+                    that.elementzzz.append(icon(LAST, options.messages.last));
+                    last(that.elementzzz, page, totalPages);
                 }
             }
             if (options.pageSizes) {
