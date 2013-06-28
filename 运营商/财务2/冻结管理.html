@@ -63,9 +63,7 @@
 <a class="item" href="#">交易明细</a>
 </div>
 <div class="col col-r sep-l">
-<button class="btns btn-blue ac-new" data-template="#ac-new-template" data-options="{
-title:'新增冻结'
-}">新增冻结</button>
+<button class="btns btn-blue ac-new">新增冻结</button>
 </div>
 </div>
 <div class="block block1 clearfix">
@@ -190,7 +188,6 @@ rowTemplate: kendo.template($("#block2-grid-row-template").html())
 </tr>
 </script>
 <script type="text/x-kendo-template" id="ac-new-template">
-<div style="width:460px;">
 <div class="ac-new-window-container">
 <ul class="flat-list">
 <li>
@@ -229,32 +226,38 @@ rowTemplate: kendo.template($("#block2-grid-row-template").html())
 <button class="btns button_1_2 ac-submit">提 交</button>
 <button class="btns button_2_2">取 消</button>
 </div>
-</div>
 </script>
 <script type="text/x-kendo-template" id="ac-submit-template">
-<div class="ac-new-window-container">
-<ul class="flat-list">
-<li>
-<label class="vertical-head">用户：</label>
+<div class="row">
+<ul style="font-size:14px;line-height:30px;">
+<li style="display:inline-block;width:190px">
+<strong>用户：</strong>
 <span>fdsa</span>
 </li>
-<li>&nbsp;</li>
-<li>
-<label class="vertical-head">授临时额度：</label>
+<li style="display:inline-block;width:190px">
+<strong>冻结金额：</strong>
 <strong class="text1">12,313,213</strong>
 </li>
+<li style="display:inline-block;width:190px">
+<strong>用于：</strong>
+<span>123132</span>
+</li>
+</ul>
 </div>
-<div style="text-align:right;">
+<div class="row" style="text-align:right;">
 <button class="btns button_1_2">确 认</button>
 <button class="btns button_2_2">取 消</button>
 </div>
 </script>
 <script type="text/javascript">
 $(function(){
-var ac_new = new PopWindow('.ac-new').init();
+new PopWindow('.ac-new',{
+template:"#ac-new-template",
+title:'新增冻结'
+}).init();
 new PopWindow('.ac-submit', {
 template:'#ac-submit-template',
-title:'确认解冻',
+title:'确认冻结',
 width:'470'
 }).init();
 });

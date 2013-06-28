@@ -261,16 +261,45 @@ rowTemplate: kendo.template($("#block2-grid-row-template").html())
 </ul>
 </div>
 <div style="text-align:right;">
-<button class="btns button_1_2">提 交</button>
+<button class="btns button_1_2 ac-submit">提 交</button>
 <button class="btns button_2_2">取 消</button>
 </div>
 </div>
 </script>
+<script type="text/x-kendo-template" id="ac-submit-template">
+<div class="row">
+<ul style="font-size:14px;line-height:30px;">
+<li style="display:inline-block;width:190px">
+<strong>用户：</strong>
+<span>fdsa</span>
+</li>
+<li style="display:inline-block;width:190px">
+<strong>押金金额：</strong>
+<strong class="text1">12,313,213</strong>
+</li>
+<li style="display:inline-block;width:190px">
+<strong>用于：</strong>
+<span>123132</span>
+</li>
+</ul>
+</div>
+<div class="row" style="text-align:right;">
+<button class="btns button_1_2">确 认</button>
+<button class="btns button_2_2">取 消</button>
+</div>
+</script>
 <script type="text/javascript">
+$(function(){
 var ac_new = new PopWindow('.ac-new',{
 title:'新增押金',
 template:'#ac-new-template'
 }).init();
+new PopWindow('.ac-submit', {
+template:'#ac-submit-template',
+title:'确认押金',
+width:'470'
+}).init();
+});
 </script>
 <script type="text/x-kendo-template" id="ac-search-user-template">
 <div class="row">
