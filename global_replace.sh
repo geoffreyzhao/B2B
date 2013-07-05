@@ -1,12 +1,17 @@
 #!/bin/bash
 
-find . -type f -name "*.html" | xargs grep "static.b2b.com" | awk -F: '{print $1}' | sort -u > $$.txt
+
+find . -type f -name "*.html" | xargs grep "\"\/css/" | awk -F: '{print $1}' > tmp.txt
+find . -type f -name "*.html" | xargs grep "\"\/js/" | awk -F: '{print $1}' >> tmp.txt
+find . -type f -name "*.html" | xargs grep "\"\/images/" | awk -F: '{print $1}' >> tmp.txt
+
+cat tmp.txt | sort -u > $$.txt
 
 for filename in `cat  $$.txt`
 do
 	echo "replaceing $filename"
 	mv  $filename ${filename}.bak
-	cat ${filename}.bak | sed -e 's/http:\/\/static.b2b.com\//\//g' -e 's/http:\/\/192.168.160.172\/static\//\//g' -e 's/http:\/\/ajax.googleapis.com\/ajax\/libs\/jquery\/1\//\/js\//g' > $filename 
+	cat ${filename}.bak | sed -e 's/"\/js/"\/static\/js/g' -e 's/"\/css/"\/static\/css/g' -e 's/http:\/\/192.168.160.172\/static\//\/static\//g' -e 's/http:\/\/ajax.googleapis.com\/ajax\/libs\/jquery\/1\//\/static\/js\//g' > $filename 
 	
 	if [ $? = 0 ]; then
 
