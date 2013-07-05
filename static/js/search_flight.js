@@ -188,8 +188,7 @@ var CityAutocomplete = function(){
             }).bind('close',function(e){
                 if(e.sender.value()===''){
                     posited_tabwindow(e.sender.element);
-                }
-            });
+                } });
         });
     }
 
@@ -325,9 +324,15 @@ jQuery(function($){
 
     $('body').delegate('.more-up','click',function(e){
         e.preventDefault()
-       var current_info_row =  $(this).closest('.info-row');
-       var info_row = current_info_row.prevUntil('.data-row').andSelf();
-       var data_row = current_info_row.prevAll('.data-row').eq(0);
+        if($(this).closest('.expanded').length){
+            var data_row = $(this).closest('.data-row');
+            var info_row = data_row.nextUntil('.data-row');
+        }else{
+            var current_info_row =  $(this).closest('.info-row');
+            var info_row = current_info_row.prevUntil('.data-row').andSelf();
+            var data_row = current_info_row.prevAll('.data-row').eq(0);
+        }
+
         data_row.removeClass('expanded'); 
         info_row.hide();
     })
