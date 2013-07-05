@@ -22,11 +22,26 @@
         .tabsBar a{width:130px;height:38px;line-height:37px;text-align:center;display:inline-block;border:1px solid #BEE0E6;border-width:1px 1px 0;background:#E9FCFE;position:relative;top:-2px;margin-right:2px;font-size:12px}
         .tabsBar a.current,.tabsBar a:hover{height:35px;line-height:35px;border-top:4px solid #10A9DD;border-left:1px solid #10A9DD;border-right:1px solid #10A9DD;border-bottom:1px solid #ffffff;top:0}
 
-        .deleteButton{padding:3px 20px;background:#D8F4FB;color:#0066cc;border-radius:3px}
+        .deleteButton{padding:3px 20px;background:none;color:#0066cc;border-radius:3px}
+        .deleteButton:hover{background:#D8F4FB;}
 
         .subtitle{padding:5px 40px;font-weight:bold}
 
-        .period_prices_head,.period_prices_head_listItem{float:left}
+        .period_prices_list{position:absolute;width:3000px;left:100px}
+        .period_prices_head,.period_prices_listItem {float:left}
+        .period_prices_head{width:70px;text-align:center;border-right:1px solid #cccccc;position:relative;background:#ffffff}
+        .period_prices_head li{vertical-align:top}
+        .period_prices_listItem {width:180px;border-right:1px solid #cccccc;padding:0 10px;}
+        .pph1,.pph2,.pph3{height:30px;padding:5px 0 0}
+        .pph4{height:165px;padding:5px 0 0}
+        .pph4 li{margin:0 0 6px}
+        .pph5{height:250px;padding:5px 0 0}
+        .pph6{height:110px;padding:5px 0 0}
+        .pph7{height:90px;padding:5px 0 0;line-height:2}
+        .pph8{height:60px;padding:5px 0 10px;line-height:2.8}
+        .pph9{height:115px;padding:10px 0 0;}
+        .tbc{border:1px dashed #cccccc}
+        .currentNO{color:#0FA9DD}
     </style>
 </head>
 <body>
@@ -97,91 +112,33 @@
             </table>
         </div>
 
-        <div class="subtitle">时段/价格</div>
+        <div class="subtitle" style="position: relative">
+            时段/价格
+            <div style="position:absolute;margin-right:10px;top:5px;right:0;font-weight:normal">
+                <span style="color:#0FA9DD" data-bind="text:Effective_period.length">5</span> / 12
+                <a href="#" class="deleteButton" data-bind="click:addep">添加时段/价格</a>
+            </div>
+        </div>
 
         <div>
-            <div style="margin:0 30px;background:#ffffff">
+            <div style="margin:0 30px;background:#ffffff;border:1px solid #cccccc">
                 <div class="period_prices_head">
                     <ul>
-                        <li><span class="head">操作</span></li>
-                        <li><span class="head">时段名称</span></li>
-                        <li><span class="head">时段价格</span></li>
-                        <li><span class="head">有效时段</span></li>
-                        <li><span class="head">包含服务</span></li>
-                        <li><span class="head">已有规定</span></li>
-                        <li><span class="head">增加规定</span></li>
-                        <li><span class="head">增加条款</span></li>
-                        <li><span class="head">备注</span></li>
+                        <li class="pph1"><span class="head">操作</span></li>
+                        <li class="pph2"><span class="head">时段名称</span></li>
+                        <li class="pph3"><span class="head">时段价格</span></li>
+                        <li class="pph4" data-bind="style:{height:Effective_period_height}"><span class="head">有效时段</span></li>
+                        <li class="pph5"><span class="head">包含服务</span></li>
+                        <li class="pph6"><span class="head">已有规定</span></li>
+                        <li class="pph7"><span class="head">增加规定</span></li>
+                        <li class="pph8"><span class="head">增加条款</span></li>
+                        <li class="pph9"><span class="head">备注</span></li>
                     </ul>
                 </div>
-                <div class="period_prices_head_listItem">
-                    <ul>
-                        <li><a class="deleteButton" href="#">删 除</a></li>
-                        <li><input type="text" placeholder="平日周中"></li>
-                        <li><input type="text"> CNY</li>
-                        <li>
-                            <ul>
-                                <li>
-                                    3 / 20
-                                </li>
-                                <li>
-                                    开始 <input class="datePicker startDate" type="text">
-                                </li>
-                                <li>
-                                    结束 <input class="datePicker endDate" type="text">
-                                </li>
-                                <li>
-                                    <label style="float:left"><input type="checkbox"><br/>一</label>
-                                    <label style="float:left"><input type="checkbox"><br/>二</label>
-                                    <label style="float:left"><input type="checkbox"><br/>三</label>
-                                    <label style="float:left"><input type="checkbox"><br/>四</label>
-                                    <label style="float:left"><input type="checkbox"><br/>五</label>
-                                    <label style="float:left"><input type="checkbox"><br/>六</label>
-                                    <label style="float:left"><input type="checkbox"><br/>日</label>
-                                </li>
-                                <li style="clear:both"><a href="#" class="button_4_5">添加有效时段</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <ul style="border-top:1px dashed #cccccc">
-                                <li><label><input type="radio">自助早餐</label></li>
-                                <li><label><input type="radio">自助早餐</label></li>
-                                <li>
-                                    <label><input type="radio">自助早餐</label><br/>
-                                    <input disabled="disabled" type="text" value="0">
-                                </li>
-                            </ul>
-                            <ul style="border:1px dashed #cccccc;border-width:1px 0">
-                                <li><label><input type="checkbox">儿童早餐<input disabled="disabled" type="text" value="0"></label></li>
-                                <li><label><input type="checkbox">晚餐<input disabled="disabled" type="text" value="0"></label></li>
-                                <li><label><input type="checkbox">宽带</label></li>
-                                <li><label><input type="checkbox">司陪房</label></li>
-                                <li><label><input type="checkbox">机场接送</label></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <label><input type="checkbox">入住时间 14:00以后<br/>退房时间 12:00以前<br/>保留时间 无</label>
-                            <label><input type="checkbox">入住前1天的12点之前变更或取消，不收取任何费用；</label>
-                        </li>
-                        <li>
-                            入住时间 <select name="" id=""><option value="">请选择</option></select><br/>
-                            退房时间 <select name="" id=""><option value="">请选择</option></select><br/>
-                            离店时间 <select name="" id=""><option value="">请选择</option></select><br/>
-                        </li>
-                        <li>
-                            入住前<input type="text"> 天 <input type="text"> 点<br/>
-                            <select name="" id="">
-                                <option value="">请选择</option>
-                            </select>
-                            <a class="deleteButton" href="#">添 加</a>
-                        </li>
-                        <li>
-                            <textarea name="" id="" ></textarea>
-                        </li>
-                    </ul>
-                </div>
+                <div class="period_prices_list" data-template="period_prices_listItem_template" data-bind="source:Effective_period"></div>
+                <div class="clear"></div>
             </div>
-            <div class="clear"></div>
+
         </div>
 
     </div>
@@ -195,27 +152,91 @@
 <script type="text/javascript" src="/js/scrollFix.js"></script>
 <script type="text/javascript" src="/js/hotel.js"></script>
 
-<script id="row-template" type="text/x-kendo-template">
-
+<script id="period_prices_listItem_template" type="text/x-kendo-template">
+    <div class="period_prices_listItem">
+        <ul>
+            <li class="pph1"><a class="deleteButton" href="javascript:;">删 除</a></li>
+            <li class="pph2"><input type="text" placeholder="平日周中"></li>
+            <li class="pph3"><input type="text" style="font-weight:bold;width:71px"> <span style="font-weight:bold"> CNY</span></li>
+            <li class="pph4 tbc" style="border-width:0 0 1px 0" data-bind="style:{height:Effective_period_height}">
+                <ul>
+                    <li>
+                        <span class="currentNO">3</span> / 20
+                    </li>
+                    <li>
+                        开始 <input class="datePicker startDate" data-bind="value:selectDate.startDate" type="text">
+                    </li>
+                    <li>
+                        结束 <input class="datePicker endDate" data-bind="value:selectDate.endDate" type="text">
+                    </li>
+                    <li>
+                        <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:selectDay.Mon"><br/>一</label>
+                        <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:selectDay.Tue"><br/>二</label>
+                        <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:selectDay.Wed"><br/>三</label>
+                        <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:selectDay.Thur"><br/>四</label>
+                        <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:selectDay.Fri"><br/>五</label>
+                        <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:selectDay.Sat"><br/><span class="important">六</span></label>
+                        <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:selectDay.Sun"><br/><span class="important">日</span></label>
+                    </li>
+                    <li style="clear:both" data-bind="{click:add}"><a href="javascript:;" class="button_4_5" style="margin:5px 0">添加有效时段</a></li>
+                </ul>
+            </li>
+            <li class="pph5">
+                <ul style="padding-bottom:10px;">
+                    <li><label><input type="radio">自助早餐</label></li>
+                    <li><label><input type="radio">自助早餐</label></li>
+                    <li>
+                        <label><input type="radio">自助早餐</label><br/>
+                        <input disabled="disabled" type="text" value="0">
+                    </li>
+                </ul>
+                <ul class="tbc" style="border-width:1px 0;padding:10px 0">
+                    <li style="margin-bottom:6px"><label><input type="checkbox">儿童早餐</label><input disabled="disabled" type="text" value="0" style="width:70px"></li>
+                    <li><label><input type="checkbox">晚餐</label><input disabled="disabled" type="text" value="0" style="width:70px;margin-left:24px"></li>
+                    <li><label><input type="checkbox">宽带</label></li>
+                    <li><label><input type="checkbox">司陪房</label></li>
+                    <li><label><input type="checkbox">机场接送</label></li>
+                </ul>
+            </li>
+            <li class="pph6">
+                <label><input type="checkbox" style="float:left;"><div style="float:left;">入住时间 14:00以后<br/>退房时间 12:00以前<br/>保留时间 无</div></label>
+                <div class="clear" style="height:7px !important;"></div>
+                <label><input type="checkbox" style="float:left;"><div style="float:left;width:130px;">入住前1天的12点之前变更或取消，不收取任何费用；</div></label>
+            </li>
+            <li class="pph7">
+                入住时间 <select name="" id=""><option value="">请选择</option></select><br/>
+                退房时间 <select name="" id=""><option value="">请选择</option></select><br/>
+                离店时间 <select name="" id=""><option value="">请选择</option></select><br/>
+            </li>
+            <li class="pph8">
+                入住前<input type="text" style="width:40px"> 天 <input type="text" style="width:40px"> 点<br/>
+                <select name="" id="">
+                    <option value="">请选择</option>
+                </select>
+                <a class="button_4_4" href="javascript">添 加</a>
+            </li>
+            <li class="pph9 tbc" style="borde:1px 0 0 0">
+                <textarea name="" id="" style="width:168px;height:93px"></textarea>
+            </li>
+        </ul>
+    </div>
 </script>
 
 <script type="text/javascript">
     $(function(){
-        $(".btn_add").click(function(){addep(0)})
-        function addep(num)
-        {
-            viewModel.Effective_period.push(new ep(num));
-        }
         function ep(num)
         {
             if(!num) num=1;
             this.epn=new kendo.data.ObservableArray([]);
+            this.selectDate=new kendo.data.ObservableObject({"startDate":"","endDate":""});
+            this.selectDay=new kendo.data.ObservableObject({"Mon":false,"Tue":false,"Wed":false,"Thur":false,"Fri":false,"Sat":false,"Sun":false})
             for(var i=0;i<num;i++)
             {
                 this.epn.push(i);
             }
             this.add=function(){
                 this.epn.push(1);
+                console.log(this.selectDate.get("startDate"));
                 if(this.epn.length>viewModel.Effective_period_max)
                 {
                     viewModel.set("Effective_period_max",this.epn.length);
@@ -240,12 +261,15 @@
         }
 
         viewModel= kendo.observable({
-            Effective_period_width:0,
+            Effective_period_height:"165px",
             Effective_period_max:0,
             Effective_period_max_item:null,
-            Effective_period:[]
+            Effective_period:[],
+            addep:function(){
+                viewModel.Effective_period.push(new ep(0));
+            }
         });
-        viewModel.bind("change",function(e){if(e.field=="Effective_period_max"){viewModel.set("Effective_period_width",viewModel.Effective_period_max*50);}console.log(e.field);})
+        viewModel.bind("change",function(e){if(e.field=="Effective_period_max"){viewModel.set("Effective_period_height",viewModel.Effective_period_max*47+165+"px");}console.log(e.field);})
         kendo.bind($("body"), viewModel);
     });
 </script>
