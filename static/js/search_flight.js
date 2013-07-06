@@ -110,9 +110,6 @@ var CityAutocomplete = function(){
         hot_tabs.kendoTabStrip({
             animation:false
         });
-
-
-
     }
 
     var init_suggest_city = function(data){
@@ -239,6 +236,25 @@ var CityAutocomplete = function(){
 
     return that;
 }();
+
+
+var Collpase = function(opts){
+    this.opts = opts;
+    this.limitHeight = 100;
+}
+Collpase.prototype = {
+    init:function(){},
+    render:function(){},
+    getContainerHeight:function(){
+        var container = this.container;
+        return container.height();
+    },
+    bindClick:function(){
+        this.trigger.bind('click',function(){
+             
+        });
+    }
+}
 
 
 jQuery(function($){
