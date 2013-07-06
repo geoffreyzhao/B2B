@@ -27,9 +27,9 @@
 
         .subtitle{padding:5px 40px;font-weight:bold}
 
-        .period_prices_list{position:absolute;width:3000px;left:100px}
+        .period_prices_list{position:absolute;width:3000px;left:70px}
         .period_prices_head,.period_prices_listItem {float:left}
-        .period_prices_head{width:70px;text-align:center;border-right:1px solid #cccccc;position:relative;background:#ffffff}
+        .period_prices_head{width:70px;text-align:center;border-right:1px solid #cccccc;position:relative;background:#ffffff;z-index:1}
         .period_prices_head li{vertical-align:top}
         .period_prices_listItem {width:180px;border-right:1px solid #cccccc;padding:0 10px;}
         .pph1,.pph2,.pph3{height:30px;padding:5px 0 0}
@@ -42,7 +42,13 @@
         .pph9{height:115px;padding:10px 0 0;}
         .tbc{border:1px dashed #cccccc}
         .currentNO{color:#0FA9DD}
+
+        .effective_period_listItem{width:168px;height:40px;background:#ECF7FB;border:1px solid #A2CFDE;position:relative;margin:3px auto;padding:6px}
+
+        .effective_period_leftButton{display:inline-block;position:absolute;background:url("../../static/images/effective_period_leftButton.gif") no-repeat;width:18px;height:32px;top:0;left:0}
+        .effective_period_rightButton{display:inline-block;position:absolute;background:url("../../static/images/effective_period_rightButton_active.gif") no-repeat;width:18px;height:32px;top:0;right:0}
     </style>
+
 </head>
 <body>
 <div class="topFixedToolsBar">
@@ -53,7 +59,7 @@
         价格计划-商务标准房
     </div>
     <div class="fixedButton">
-        <a class="button_4_3" href="#" style="color:#ffffff;margin-top:4px">关闭</a>
+        <a class="button_4_3 closePricePlan" href="#" style="color:#ffffff;margin-top:4px">关闭</a>
     </div>
 </div>
 
@@ -79,7 +85,7 @@
                     <td style="width:60px;padding:5px 0"><span class="head">价格名称</span></td>
                     <td style="width:810px">
                         <input type="text" value="含早特惠" disabled="disabled">
-                        <a class="deleteButton" href="#" style="float:right;">删 除</a>
+                        <a class="deleteButton btn_delePricePlan" href="#" style="float:right;">删 除</a>
                     </td>
                 </tr>
                 <tr>
@@ -120,8 +126,8 @@
             </div>
         </div>
 
-        <div>
-            <div style="margin:0 30px;background:#ffffff;border:1px solid #cccccc">
+        <div style="position:relative;">
+            <div style="margin:0 30px;background:#ffffff;border:1px solid #cccccc;overflow:hidden;position:relative">
                 <div class="period_prices_head">
                     <ul>
                         <li class="pph1"><span class="head">操作</span></li>
@@ -138,14 +144,64 @@
                 <div class="period_prices_list" data-template="period_prices_listItem_template" data-bind="source:Effective_period"></div>
                 <div class="clear"></div>
             </div>
-
+            <a href="javascript:;" class="effective_period_leftButton"></a>
+            <a href="javascript:;" class="effective_period_rightButton active"></a>
         </div>
+        <div style="height:60px">
+            <a href="javascript:;" class="button_1_2" style="float:right;margin-right:30px">保&nbsp;存</a>
+        </div>
+    </div>
+</div>
 
+<div class="panel">
+    <div class="panelTitle" style="border: 0">
+        操作日志
+    </div>
+    <div class="panelContent clearfix">
+        <table class="operation_records">
+            <thead>
+            <tr>
+                <td style="width:130px">日期</td>
+                <td style="width:100px">操作人员</td>
+                <td style="width:300px">操作项目</td>
+                <td style="width:300px">操作内容</td>
+                <td style="width:100px">操作类型</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>20130606 14:55</td>
+                <td>liuwei</td>
+                <td>增加行政商务套房</td>
+                <td>增加行政商务套房</td>
+                <td>新增</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
 
 <div id="window"></div>
+
+<div id="window1" style="padding:15px 30px">
+    您是否要删除价格计划？
+    <div style="border-top:1px dashed #cccccc;padding-top: 2px">
+        *如果删除房型中的最后一条价格，此房型将不会出现在酒店搜索结果中。
+    </div>
+    <div style="text-align:right;padding-top:10px">
+        <a href="javascript:;" class="button_1_2">保&nbsp;存</a>
+        <a href="javascript:;" class="button_2_2 close">取&nbsp;消</a>
+    </div>
+</div>
+
+<div id="window2" style="padding:15px">
+    已修改的价格计划还没有保存，您是否要关闭编辑价格计划？
+    <div style="text-align:right;padding-top:10px">
+        <a href="javascript:;" class="button_1_2">放弃保存</a>
+        <a href="javascript:;" class="button_2_2 close">取&nbsp;消</a>
+    </div>
+</div>
 
 <script type="text/javascript" src="/js/jquery.min.js"></script>
 <script type="text/javascript" src="/js/kendo.web.js"></script>
@@ -155,13 +211,13 @@
 <script id="period_prices_listItem_template" type="text/x-kendo-template">
     <div class="period_prices_listItem">
         <ul>
-            <li class="pph1"><a class="deleteButton" href="javascript:;">删 除</a></li>
+            <li class="pph1"><a class="deleteButton" href="javascript:;" data-bind="click:delete">删 除</a></li>
             <li class="pph2"><input type="text" placeholder="平日周中"></li>
             <li class="pph3"><input type="text" style="font-weight:bold;width:71px"> <span style="font-weight:bold"> CNY</span></li>
             <li class="pph4 tbc" style="border-width:0 0 1px 0" data-bind="style:{height:Effective_period_height}">
                 <ul>
                     <li>
-                        <span class="currentNO">3</span> / 20
+                        <span class="currentNO" data-bind="text:epn.length">3</span> / 20
                     </li>
                     <li>
                         开始 <input class="datePicker startDate" data-bind="value:selectDate.startDate" type="text">
@@ -178,7 +234,10 @@
                         <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:selectDay.Sat"><br/><span class="important">六</span></label>
                         <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:selectDay.Sun"><br/><span class="important">日</span></label>
                     </li>
-                    <li style="clear:both" data-bind="{click:add}"><a href="javascript:;" class="button_4_5" style="margin:5px 0">添加有效时段</a></li>
+                    <li style="clear:both">
+                        <a href="javascript:;" class="button_4_5" style="margin:5px 0" data-bind="{click:add,visible:epn.length<20}">添加有效时段</a>
+                        <div data-template="effective_period_list_template" data-bind="source:epn"></div>
+                    </li>
                 </ul>
             </li>
             <li class="pph5">
@@ -222,21 +281,76 @@
     </div>
 </script>
 
+<script id="effective_period_list_template" type="text/x-kendo-template">
+    <div class="effective_period_listItem">
+        <span data-bind="text:startDate"></span> - <span data-bind="text:endDate"></span><br/>
+        <span data-bind="visible:Mon">一</span>
+        <span data-bind="visible:Tue">二</span>
+        <span data-bind="visible:Wed">三</span>
+        <span data-bind="visible:Thur">四</span>
+        <span data-bind="visible:Fri">五</span>
+        <span data-bind="visible:Sat">六</span>
+        <span data-bind="visible:Sun">日</span>
+        <div style="position:absolute;right:5px;top:5px">
+            <a href="javascript:;" data-bind="click:delete"><img src="../../static/images/deleteButton1.gif" alt=""></a>
+        </div>
+    </div>
+</script>
+
 <script type="text/javascript">
     $(function(){
         function ep(num)
         {
-            if(!num) num=1;
+            if(!num) num=0;
             this.epn=new kendo.data.ObservableArray([]);
             this.selectDate=new kendo.data.ObservableObject({"startDate":"","endDate":""});
             this.selectDay=new kendo.data.ObservableObject({"Mon":false,"Tue":false,"Wed":false,"Thur":false,"Fri":false,"Sat":false,"Sun":false})
-            for(var i=0;i<num;i++)
-            {
-                this.epn.push(i);
-            }
+//            for(var i=0;i<num;i++)
+//            {
+//                this.epn.push(i);
+//            }
             this.add=function(){
-                this.epn.push(1);
-                console.log(this.selectDate.get("startDate"));
+                var that=this;
+                if(this.selectDate.startDate=="" || this.selectDate.endDate=="")
+                {
+                    alert("请填写完整的开始与结束日期")
+                    return false;
+                }
+                if(this.selectDay.Mon=="" && this.selectDay.Tue=="" && this.selectDay.Wed=="" && this.selectDay.Thur=="" && this.selectDay.Fri=="" && this.selectDay.Sat=="" && this.selectDay.Sun=="")
+                {
+                    alert("请至少选择一天");
+                    return false;
+                }
+                this.epn.push({
+                    startDate:this.selectDate.startDate,
+                    endDate:this.selectDate.endDate,
+                    Mon:this.selectDay.Mon,
+                    Tue:this.selectDay.Tue,
+                    Wed:this.selectDay.Wed,
+                    Thur:this.selectDay.Thur,
+                    Fri:this.selectDay.Fri,
+                    Sat:this.selectDay.Sat,
+                    Sun:this.selectDay.Sun,
+                    delete:function(e){
+//                        console.log(e.data);
+//                        console.log(this.parent());
+                        var epns=this.parent();
+                        epns.splice(epns.indexOf(this),1);
+                        if(that==viewModel.Effective_period_max_item);
+                        {
+                            //viewModel.Effective_period_max=epns.length;
+                            for(var i=0;i<viewModel.Effective_period.length;i++)
+                            {
+                                if(viewModel.Effective_period[i].epn.length>epns.length)
+                                {
+                                    viewModel.Effective_period_max_item=viewModel.Effective_period[i];
+                                }
+                            }
+                            viewModel.set("Effective_period_max",viewModel.Effective_period_max_item.epn.length);
+                        }
+                    }
+                });
+                //console.log(this.selectDate.get("startDate"));
                 if(this.epn.length>viewModel.Effective_period_max)
                 {
                     viewModel.set("Effective_period_max",this.epn.length);
@@ -244,20 +358,20 @@
                 }
             }.bind(this);
             this.delete=function(){
-                if(this==viewModel.Effective_period_max_item);
+                var p=this.parent();
+                p.splice(p.indexOf(this),1);
+                viewModel.Effective_period_max_item=viewModel.Effective_period[0];
+                var epm=viewModel.Effective_period[0].epn.length;
+                for(var i=1;i<viewModel.Effective_period.length;i++)
                 {
-                    this.epn.pop();
-                    viewModel.Effective_period_max=this.epn;
-                    for(var i=0;i<viewModel.Effective_period.length;i++)
+                    if(viewModel.Effective_period[i].epn.length>epm)
                     {
-                        if(viewModel.Effective_period[i].epn.length>this.epn.length)
-                        {
-                            viewModel.Effective_period_max_item=viewModel.Effective_period[i];
-                        }
+                        epm=viewModel.Effective_period[i].epn.length;
+                        viewModel.Effective_period_max_item=viewModel.Effective_period[i];
                     }
-                    viewModel.set("Effective_period_max",viewModel.Effective_period_max_item.epn.length);
                 }
-            }.bind(this);
+                viewModel.set("Effective_period_max",viewModel.Effective_period_max_item.epn.length);
+            }
         }
 
         viewModel= kendo.observable({
@@ -269,8 +383,66 @@
                 viewModel.Effective_period.push(new ep(0));
             }
         });
-        viewModel.bind("change",function(e){if(e.field=="Effective_period_max"){viewModel.set("Effective_period_height",viewModel.Effective_period_max*47+165+"px");}console.log(e.field);})
+        viewModel.bind("change",function(e){if(e.field=="Effective_period_max"){viewModel.set("Effective_period_height",viewModel.Effective_period_max*58+165+"px");}console.log(e.field);})
         kendo.bind($("body"), viewModel);
+
+
+
+        $(".effective_period_leftButton").css("top",(document.documentElement.clientHeight-$(".period_prices_head").offset().top)/2+$("body").scrollTop());
+        $(".effective_period_rightButton").css("top",(document.documentElement.clientHeight-$(".period_prices_head").offset().top)/2+$("body").scrollTop());
+
+        $(window).scroll(function(){
+            if($("body").scrollTop()>$(".period_prices_head").offset().top)
+            {
+                var h=$("body").scrollTop()-$(".period_prices_head").offset().top+document.documentElement.clientHeight/2>$(".period_prices_head").height()?$(".period_prices_head").height():$("body").scrollTop()-$(".period_prices_head").offset().top+document.documentElement.clientHeight/2;
+                $(".effective_period_leftButton").css("top",h);
+                $(".effective_period_rightButton").css("top",h);
+            }
+            else
+            {
+                $(".effective_period_leftButton").css("top",(document.documentElement.clientHeight-$(".period_prices_head").offset().top)/2+$("body").scrollTop());
+                $(".effective_period_rightButton").css("top",(document.documentElement.clientHeight-$(".period_prices_head").offset().top)/2+$("body").scrollTop());
+            }
+
+        })
+        $(".effective_period_leftButton").click(function(){
+            var ppli=$(".period_prices_listItem")
+            var ppl=$(".period_prices_list");
+            if(849-ppl.position().left<(ppli.length-1)*201)
+            {
+                $(".period_prices_list").animate({"left":"-=201"});
+            }
+        });
+        $(".effective_period_rightButton").click(function(){
+            var ppl=$(".period_prices_list");
+            if(ppl.position().left<0)
+            {
+                $(".period_prices_list").animate({"left":"+=201"});
+            }
+        });
+
+        $(".btn_delePricePlan").click(function(){
+            $("#window1").kendoWindow({
+                animation:false,
+                iframe:true,
+                modal:true,
+                width:460,
+                height:125,
+                title:"删除价格计划？"
+            });
+            $("#window1").data("kendoWindow").center();
+        })
+        $(".closePricePlan").click(function(){
+            $("#window2").kendoWindow({
+                animation:false,
+                iframe:true,
+                modal:true,
+                width:460,
+                height:125,
+                title:"关闭编辑价格计划？"
+            });
+            $("#window2").data("kendoWindow").center();
+        })
     });
 </script>
 </body>
