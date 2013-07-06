@@ -62,7 +62,6 @@
 </div>
 </div>
 <div class="block block1 clearfix">
-<div class="btns content-collapse">&nbsp;</div>
 <div class="col col-l">
 <ul class="flat-list">
 <li style="width:110px;">
@@ -734,6 +733,11 @@ Y
 </script>
 <script type="text/javascript">
 $(function(){
+var coll_ele = new Collpase({
+limitHeight: 118,
+container: '.block1',
+trigger:'.content-collapse',
+}).init();
 new PopWindow('.ac-check',{
 width: '470',
 title:'提示信息',
@@ -753,14 +757,14 @@ group: ["ABCDEFG","HJ", "KLMN", "PQRSTW", "XYZ"]
 });
 added_city.init();
 if(query_row.length>3){
-$('.content-collapse').show();
+coll_ele.resetHeight();
 }
 });
 $('body').delegate('.ac-remove-query','click',function(){
-var query_row = $('.ac-add-query-row');
 $(this).closest('.ac-add-query-row').remove();
-if(query_row.length>3){
-$('.content-collapse').hide();
+var query_row = $('.ac-add-query-row');
+if(query_row.length <= 3){
+coll_ele.setHeight();
 }
 });
 })
