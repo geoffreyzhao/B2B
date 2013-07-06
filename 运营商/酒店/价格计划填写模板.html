@@ -45,8 +45,10 @@
 
         .effective_period_listItem{width:168px;height:40px;background:#ECF7FB;border:1px solid #A2CFDE;position:relative;margin:3px auto;padding:6px}
 
-        .effective_period_leftButton{display:inline-block;position:absolute;background:url("../../static/images/effective_period_leftButton.gif") no-repeat;width:18px;height:32px;top:0;left:0}
-        .effective_period_rightButton{display:inline-block;position:absolute;background:url("../../static/images/effective_period_rightButton_active.gif") no-repeat;width:18px;height:32px;top:0;right:0}
+        .effective_period_leftButton{display:inline-block;position:absolute;background:url("../../static/images/pricePlanArrow.png") -1px -1px;width:18px;height:32px;top:0;left:0}
+        .effective_period_rightButton{display:inline-block;position:absolute;background:url("../../static/images/pricePlanArrow.png") -28px -39px;width:18px;height:32px;top:0;right:0}
+        .effective_period_leftButton.active{background-position:-1px -39px}
+        .effective_period_rightButton.active{background-position:-28px -1px}
     </style>
 
 </head>
@@ -126,7 +128,7 @@
             </div>
         </div>
 
-        <div style="position:relative;">
+        <div id="period_prices_container" style="position:relative;">
             <div style="margin:0 30px;background:#ffffff;border:1px solid #cccccc;overflow:hidden;position:relative">
                 <div class="period_prices_head">
                     <ul>
@@ -145,7 +147,7 @@
                 <div class="clear"></div>
             </div>
             <a href="javascript:;" class="effective_period_leftButton"></a>
-            <a href="javascript:;" class="effective_period_rightButton active"></a>
+            <a href="javascript:;" class="effective_period_rightButton"></a>
         </div>
         <div style="height:60px">
             <a href="javascript:;" class="button_1_2" style="float:right;margin-right:30px">保&nbsp;存</a>
@@ -383,7 +385,22 @@
                 viewModel.Effective_period.push(new ep(0));
             }
         });
-        viewModel.bind("change",function(e){if(e.field=="Effective_period_max"){viewModel.set("Effective_period_height",viewModel.Effective_period_max*58+165+"px");}console.log(e.field);})
+        viewModel.bind("change",function(e){
+            if(e.field=="Effective_period_max"){
+                viewModel.set("Effective_period_height",viewModel.Effective_period_max*58+165+"px");
+            }
+            //console.log(e.field);
+            if(e.field=="Effective_period"){
+                if(viewModel.Effective_period.length<5)
+                {
+                    $(".effective_period_leftButton").removeClass("active");
+                }
+                else
+                {
+                    $(".effective_period_leftButton").addClass("active");
+                }
+            }
+        });
         kendo.bind($("body"), viewModel);
 
 
@@ -406,18 +423,43 @@
 
         })
         $(".effective_period_leftButton").click(function(){
-            var ppli=$(".period_prices_listItem")
-            var ppl=$(".period_prices_list");
-            if(849-ppl.position().left<(ppli.length-1)*201)
+            if($(this).hasClass("active"))
             {
-                $(".period_prices_list").animate({"left":"-=201"});
+                var ppli=$(".period_prices_listItem")
+                var ppl=$(".period_prices_list");
+                if(849-ppl.position().left<(ppli.length-1)*201)
+                {
+                    $(".period_prices_list").animate({"left":"-=201"},function(){
+                        if(ppl.position().left<0)
+                        {
+                            $(".effective_period_rightButton").addClass("active");
+                        }
+                        else
+                        {
+                            $(".effective_period_rightButton").removeClass("active");
+                        }
+                    });
+                }
+
             }
         });
         $(".effective_period_rightButton").click(function(){
-            var ppl=$(".period_prices_list");
-            if(ppl.position().left<0)
+            if($(this).hasClass("active"))
             {
-                $(".period_prices_list").animate({"left":"+=201"});
+                var ppl=$(".period_prices_list");
+                if(ppl.position().left<0)
+                {
+                    $(".period_prices_list").animate({"left":"+=201"},function(){
+                        if(ppl.position().left<0)
+                        {
+                            $(".effective_period_rightButton").addClass("active");
+                        }
+                        else
+                        {
+                            $(".effective_period_rightButton").removeClass("active");
+                        }
+                    });
+                }
             }
         });
 
