@@ -9,9 +9,11 @@
 <link href="/static/css/kendo.reset.css" rel="stylesheet" />
 
 <link rel="stylesheet" href="/static/css/global.css" />
+<link rel="stylesheet" href="/static/js/uploadify/uploadify.css">
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/kendo/kendo.web.js"></script>
 <script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
+<script type="text/javascript" src="/static/js/uploadify/jquery.uploadify.min.js"></script>
 <script type="text/javascript">
 $(function(){
     $('.actions').fixedBar();
@@ -77,12 +79,10 @@ $(function(){
 <div class="block block0 clearfix">
     <div class="col col-l">
         <div class="row">
-            <span class="text1">订单号：<strong>12311321983921</strong></span>&nbsp;
-            <span class="text2"> - 订单类型：国内机票 </span>
+            <span class="text1">订单号：<strong>未生成</strong></span>&nbsp;
+            <!--<span class="text2"> - 订单类型：国内机票 </span>-->
         </div>
-        <div class="row">
-            <span>最后更新：<em>航班号更改为CZ3609</em></span>&nbsp;&nbsp;<span>更新时间：<em>2013-06-15 11:23 </em></span>&nbsp;&nbsp;<span><a href="#">【更多操作日志】</a></span>
-        </div>
+        <div class="row"></div>
     </div>
     <div class="col col-r">
         <ul class="flat-list">
@@ -103,7 +103,7 @@ $(function(){
                 <em class="line">&nbsp;</em>
             </div>
             </li>
-            <li class="count"><span>关联订单</span><strong>3</strong>
+            <li class="count" id="child_order_trigger"><span>关联订单</span><strong>3</strong>
             </li>
         </ul>
     </div>
@@ -227,13 +227,14 @@ $(function(){
 </div>
 
 <div class="block block3 block-module">
-    <div class="block-title"><span class="block-title-blue">退改签规定</span>
+    <div class="block-title"><span>退改签规定</span>
+        <!--
         <span class="block-module-action">
         </span>
+        -->
     </div>
     <div>
-        <div class="row row2">
-            <h3>退改签规定</h3>
+        <div class="row row3">
             【<span>更改条件</span>】同等舱位免费更改。<br>
             【<span>退票条件</span>】起飞前2小时（含）以外办理退票按订座舱位公布运价收取40％的退票费，2小时以内及起飞后退票按订座舱位公布运价收取50％的退票费。退票费低于50元时按50元收取。<br>
             【<span>签转条件</span>】不得签转。<br><br>
@@ -319,20 +320,21 @@ $(function(){
         <table>
             <tr>
                 <td><em>*</em>退票PNR</td>
-                <td><input type="text" readonly value="HGWFF"/></td>
+                <td><input type="text" style="width:130px;" readonly value="HGWFF"/></td>
                 <td colspan="2">
-                    <span style="border:1px solid #EFEFEF;display:block;width:295px;background-color:#FEFFEB;padding:5px;">提示：填写已取消座位的退票PNR，部分退票时，需先分离出新PNR并取消座位，退票费以PNR取消时间为准</span>
+                    <span style="color:#999999;border:1px solid #EFEFEF;display:block;width:295px;background-color:#FEFFEB;padding:5px;">提示：填写已取消座位的退票PNR，部分退票时，需先分离出新PNR并取消座位，退票费以PNR取消时间为准</span>
                 </td>
             </tr>
             <tr>
                 <td>请选择退票类型</td>
                 <td>
                     <label><input id="" type="radio" name="ticket_type" />退票</label>
+                    &nbsp;&nbsp;&nbsp;
                     <labeL><input id="" type="radio" name="ticket_type" />废票</label>
                 </td>
                 <td>退票原因</td>
                 <td>
-                    <select name="reason">
+                    <select name="reason" style="width:166px;">
                         <option value="当日作废" selected="">当日作废</option>
                         <option value="按客规自愿退票">按客规自愿退票</option>
                         <option value="民航原因（取消延误）">民航原因（取消延误）</option>
@@ -345,14 +347,14 @@ $(function(){
             <tr>
                 <td>附件</td>
                 <td colspan="3">
-                    <input id="" type="text" name="" value="选择文件" style="width:200px;" />
-                    <input id="files" type="file" name="files" value="浏览" />
+                    <input id="" style="width:327px;" type="text" name="" value="选择文件" />
+                    <input class="button_gray" type="button" id="btn_upload" value="上传" />
                 </td>
             </tr>
             <tr>
                 <td>退票备注</td>
                 <td colspan="3">
-                    <textarea id="" name="" cols="60" rows="5"></textarea>
+                    <textarea style="width:450px;" id="" name="" cols="60" rows="5"></textarea>
                 </td>
             </tr>
         </table>
@@ -364,8 +366,8 @@ $(function(){
         3. PNR导入生成的订单，请先取消座位再提交申请<br/>
         4. 非自愿退票必须上传证明。<br/>
         5. 请仔细阅读退改签规定，若有误差以航空公司实际规定为准<br/>
-        6. 提交退废票申请前，请注意核对您的“票号信息”，实际退票以“票号”为准<br/>
-        退票紧急电话：021-62999004<br/>
+        6. 提交退废票申请前，请注意<em>核对您的“票号信息”</em>，实际退票以<em>“票号”</em>为准<br/>
+        <em>退票紧急电话：021-62999004</em><br/>
 </p>
 
     </div>
@@ -384,34 +386,125 @@ $(function(){
             <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
+<div id="child_orders" class="child_order" style="display:none;position:absolute;z-index:2;">
+    <ul class="clearfix title">
+        <li class="first">
+        <span>原订单号: 123456789 <strong style="margin-left:50px;">2580</strong></span>
+        </li>
+        <li class="last"><em>关联订单</em><strong>3</strong></li>
+    </ul>
+
+    <div class="history_list">
+        <ul>
+            <li>
+                <h3>2013/07/03 13:00</h3>
+                <span><b></b></span>
+                <div class="item">
+                    <table>
+                        <thead>    
+                            <tr>
+                                <th style="width:60px;">退票单</th>
+                                <th style="width: 160px;">121246545645546465</th>
+                                <th style="width:60px;">操作人</th>
+                                <th style="width:100px">王小二</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>于春东</td>
+                                <td>PEK-PVG/PVG-PEK 退票</td>
+                                <td colspan="2" rowspan="2"><strong>-1290.00</strong></td>
+                            </tr>
+                            <tr>
+                                <td>方永军</td>
+                                <td>PEK-PVG/PVG-PEK 退票</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </li>
+            <li>
+                <h3>2013/07/03 13:00</h3>
+                <span><b></b></span>
+                <div class="item">
+                    <table>
+                        <thead>    
+                            <tr>
+                                <th style="width:60px;">退票单</th>
+                                <th style="width: 160px;">121246545645546465</th>
+                                <th style="width:60px;">操作人</th>
+                                <th style="width:100px">王小二</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>于春东</td>
+                                <td>PEK-PVG/PVG-PEK 退票</td>
+                                <td colspan="2" rowspan="2"><strong>-1290.00</strong></td>
+                            </tr>
+                            <tr>
+                                <td>方永军</td>
+                                <td>PEK-PVG/PVG-PEK 退票</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </li>
+            <li>
+                <h3>2013/07/03 13:00</h3>
+                <div class="latest">最新修改</div>
+                <span></span>
+                <div class="item" style="border:1px solid #ff4e00;background-color:#fff5f5;">
+                    <table>
+                        <thead>    
+                            <tr>
+                                <th style="width:60px;">退票单</th>
+                                <th style="width: 160px;">121246545645546465</th>
+                                <th style="width:60px;">操作人</th>
+                                <th style="width:100px">王小二</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>于春东</td>
+                                <td>PEK-PVG/PVG-PEK 退票</td>
+                                <td colspan="2" rowspan="2"><strong>-1290.00</strong></td>
+                            </tr>
+                            <tr>
+                                <td>方永军</td>
+                                <td>PEK-PVG/PVG-PEK 退票</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
 <script type="text/javascript">
-
-function getFileInfo(e) {
-                    return $.map(e.files, function(file) {
-                        var info = file.name;
-
-                        // File size is not available in all browsers
-                        if (file.size > 0) {
-                            info  += " (" + Math.ceil(file.size / 1024) + " KB)";
-                        }
-                        return info;
-                    }).join(", ");
-                }
-
     $(function(){
-        $("#files").kendoUpload({
-                        async: {
-                            saveUrl: "save",
-                            removeUrl: "remove",
-                            autoUpload: true
-                        },
-cancel: function(e){},
-complete: function(e){},
-success: function(e){},
-upload:function(e){} 
-                    });
 
+        $("#child_order_trigger").mouseover(function(){
+             var pos = $(this).offset();
+             $("#child_orders").css({top:pos.top + "px",left: (pos.left - 300) + "px"}).show();
+             $("#child_orders").unbind("mouseover");
+             $("#child_orders").bind("mouseover",function(){
+                 //$("#child_orders").hide();
+             });
+        });
 
+        $("#btn_upload").uploadify({
+            buttonClass   : "button_gray",
+            buttonText    : "浏 览",
+            width         : 71,
+            height        : 25,
+            uploader      : 'http://www.tz-local.com/test.php',
+            swf           : '/static/js/uploadify/uploadify.swf',
+            queueID       : 'queue',
+            removeTimeout :0,
+            onUploadSuccess:function(file,data,response){},
+            onUploadError:function(file,errorCode,errorMsg,errorString){alert(errorString);}
+        });
     })
 </script>
 </body>
