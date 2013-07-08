@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head><title>未提交</title>
+    <head><title>退票处理</title>
         <meta charset="utf-8" />
 <link href="/static/css/kendo.common.css" rel="stylesheet" />
 <link href="/static/css/kendo.default.css" rel="stylesheet" />
@@ -70,9 +70,10 @@ $(function(){
         <button class="btns btn-return">返回</button>
     </div>
     <div class="col col-r sep-l">
-        <button class="btns btn-blue">取消订单</button>
+        <button class="btns btn-blue">取消受理</button>
         <button class="btns btn-blue">修改</button>
-        <button class="btns btn-blue">提交申请</button>
+        <button class="btns btn-blue-long">取消审核通过</button>
+        <button class="btns btn-blue">完成退票</button>
     </div>
 </div>
 
@@ -88,9 +89,9 @@ $(function(){
         <ul class="flat-list">
             <li>
             <div class="instr clearfix">
-                <span class="first highlight-fl">创建</span>
-                <span>审核</span>
-                <span>退票</span>
+                <span class="first highlight">创建</span>
+                <span class="highlight">审核</span>
+                <span class="highlight highlight-fl">退票</span>
                 <span>完成</span>
                 <span class="last">取消</span>
                 <em class="line">&nbsp;</em>
@@ -179,10 +180,9 @@ $(function(){
     </ul>
 </div>
 
-
-<div class="block block2 block-module">
+<div class="block block2 block-module" style="display:none">
     <div class="block-title">
-        <span class="block-title-orange">航班信息</span>
+        <span class="block-title-orange">原航班信息</span>
         <!--
         <span class="block-module-action">
             <button class="btns btn-ac-blue">删除所选</button> 
@@ -198,6 +198,56 @@ $(function(){
                 <tr>
                     <td>东方航空</td>
                     <td>HO</td>
+                    <td><strong>CZ3609</strong></td>
+                    <td>空客A380</td>
+                    <td><strong>W</strong></td>
+                    <td>经济仓(7.5折)</td>
+                    <td>上海浦东 PVG T3</td>
+                    <td>上海浦东 PEK T2</td>
+                    <td><strong>2013-06-22 20:35</strong></td>
+                    <td><strong>2013-06-22 23:25</strong></td>
+                    <td> HK </td>
+                    <td> 50 </td>
+                    <td> 10 </td>
+                </tr>
+                <tr>
+                    <td>东方航空</td>
+                    <td>HO</td>
+                    <td><strong>CZ3609</strong></td>
+                    <td>空客A380</td>
+                    <td><strong>W</strong></td>
+                    <td>经济仓(7.5折)</td>
+                    <td>上海浦东 PVG T3</td>
+                    <td>上海浦东 PEK T2</td>
+                    <td><strong>2013-06-22 20:35</strong></td>
+                    <td><strong>2013-06-22 23:25</strong></td>
+                    <td> HK </td>
+                    <td> 50 </td>
+                    <td> 10 </td>
+                </tr>
+            </table> 
+        </div>
+    </div>
+</div>
+
+<div class="block block3 block-module">
+    <div class="block-title">
+        <span class="block-title-orange">航班信息</span>
+        <span class="block-module-action">
+            <button class="btns btn-ac-blue">删除所选</button> 
+            <button class="btns btn-ac-blue" id="origin_flight_btn"><i>展开</i>原航班信息 <b>︽</b></button> 
+        </span>
+    </div> 
+    <div class="row">
+        <div id="flight_info_grid">
+            <table class="grid-table">
+                <tr class="thead">
+                    <td><input type="checkbox" name="flight_checkall"/></td><td>航空公司</td><td>共享</td><td>航班号</td><td>机型</td><td>舱位</td><td>舱位级别</td><td>离港机场</td><td>到港机场</td><td>离港时间</td><td>到港时间</td><td>订座</td><td>基建</td><td>燃油</td>
+                </tr>
+                <tr>
+                    <td><input id="" type="checkbox" name="" /></td>
+                    <td>东方航空</td>
+                    <td>HO</td>
                     <td>CZ3609</td>
                     <td>空客A380</td>
                     <td>W</td>
@@ -211,6 +261,7 @@ $(function(){
                     <td> 10 </td>
                 </tr>
                 <tr>
+                    <td><input id="" type="checkbox" name="" /></td>
                     <td>东方航空</td>
                     <td>HO</td>
                     <td>CZ3609</td>
@@ -230,7 +281,7 @@ $(function(){
     </div>
 </div>
 
-<div class="block block3 block-module">
+<div class="block block4 block-module">
     <div class="block-title"><span>退改签规定</span>
         <!--
         <span class="block-module-action">
@@ -248,8 +299,8 @@ $(function(){
     </div>
 </div>
 
-<div class="block block7 block-module">
-    <div class="block-title"><span class="block-title-orange">客票信息</span>
+<div class="block block7 block-module" style="display:none;" id="origin_ticket_info">
+    <div class="block-title"><span class="block-title-orange">原客票信息</span>
         <!--
         <span class="block-module-action">
             <button class="btns btn-ac-blue">删除所选</button> 
@@ -306,6 +357,82 @@ $(function(){
                     <td>658</td>
                     <td>未打印</td>
                     <td>13800138000</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="block block7 block-module">
+    <div class="block-title"><span class="block-title-orange">客票信息</span>
+        <span class="block-module-action">
+            <button class="btns btn-ac-blue">删除所选</button> 
+            <button class="btns btn-ac-blue" id="ticket_info_btn"><i>展开</i>原客票信息 <b>︽</b></button> 
+            <button class="btns btn-ac-blue" id="jj_btn"><b>显示</b>基建燃油</button> 
+            <button class="btns btn-ac-blue" id="crate_btn"><b>显示</b>客户返点</button> 
+            <button class="btns btn-ac-blue" id="frate_btn"><b>显示</b>航司返点</button> 
+        </span>
+    </div> 
+    <div class="row">
+        <div id="passenger_info_grid2" style="overflow-x:auto;">
+            <table class="grid-table" style="table-layout:fixed ;">
+                <tr class="thead">
+                    <td style="width:60px;"><input id="" type="checkbox" name="" /></td>
+                    <td style="width:60px;">PNR</td>
+                    <td style="width:100px;">票号</td>
+                    <td style="width:60px;">客票状态</td>
+                    <td style="width:60px;">行程单号</td>
+                    <td style="width:60px;">姓名</td>
+                    <td style="width:60px;">供应商</td>
+                    <td style="width:70px;">退票费率</td>
+                    <td style="width:70px;">退票费</td>
+                    <td style="width:70px;">票款</td>
+                    <td style="width:70px;">税款</td>
+                    <td style="width:70px;">附加费</td>
+                    <td style="width:70px;">佣金</td>
+                    <td style="width:70px;">服务费</td>
+                    <td style="width:70px;">收款金额</td>
+                    <td style="width:60px;">航司实退</td>
+                    <td style="width:60px;" id="left_jj" class="jj">基建</td>
+                    <td style="width:60px;" class="jj">燃油</td>
+                    <td style="width:60px;" id="left_crate" class="crate">客户返点</td>
+                    <td style="width:60px;" class="crate">客户返款</td>
+                    <td style="width:60px;" class="crate">二次返款</td>
+                    <td style="width:60px;" class="crate">客户后返</td>
+                    <td style="width:60px;" id="left_frate" class="frate">航司返点</td>
+                    <td style="width:60px;" class="frate">航司奖励</td>
+                    <td style="width:60px;" class="frate">航司后返</td>
+                    <td style="width:100px;" class="frate">预期当期结算价</td>
+                    <td style="width:80px;" class="frate">预期结算价</td>
+                </tr> 
+                <tr>
+                    <td><input id="" type="checkbox" name="" /></td>
+                    <td>HFJDD2</td>
+                    <td>781-2108936418</td>
+                    <td>未知</td>
+                    <td>未打印</td>
+                    <td>周林</td>
+                    <td>成人</td>
+                    <td><input type="text" value="10%"/></td>
+                    <td><input type="text" value="59"/></td>
+                    <td><input type="text" value="-590"/></td>
+                    <td>-100</td>
+                    <td><input type="text" value="-2.0"/></td>
+                    <td><input type="text" value="32"/></td>
+                    <td><input type="text" value="0"/></td>
+                    <td>-599.00</td>
+                    <td>0</td>
+                    <td class="jj"><input type="text" value="-50"/></td>
+                    <td class="jj"><input type="text" value="-50"/></td>
+                    <td class="crate">5.5</td>
+                    <td class="crate">0</td>
+                    <td class="crate">0</td>
+                    <td class="crate">0</td>
+                    <td class="frate">6</td>
+                    <td class="frate">0</td>
+                    <td class="frate">2</td>
+                    <td class="frate">645.2</td>
+                    <td class="frate">645.2</td>
+                </tr> 
                 </tr>
             </table>
         </div>
@@ -494,6 +621,64 @@ $(function(){
 </div>
 <script type="text/javascript">
     $(function(){
+            /* 航司 返点信息 */
+            $("#frate_btn").click(function(){
+                if($("b",this).html() == '显示'){
+                    $("td.frate").show();
+                    $("b",this).html("隐藏");
+
+                    var pos =$("#left_frate").position();
+                    $("#passenger_info_grid2").scrollLeft(pos.left);
+                }else{
+                    $("td.frate").hide();
+                    $("b",this).html("显示");
+                }
+            });
+            $("#crate_btn").click(function(){
+                if($("b",this).html() == '显示'){
+                    $("td.crate").show();
+                    $("b",this).html("隐藏");
+                    var pos =$("#left_crate").position();
+                    $("#passenger_info_grid2").scrollLeft(pos.left);
+                }else{
+                    $("td.crate").hide();
+                    $("b",this).html("显示");
+                }
+            });
+            $("#jj_btn").click(function(){
+                if($("b",this).html() == '显示'){
+                    $("td.jj").show();
+                    $("b",this).html("隐藏");
+                    var pos =$("#left_jj").position();
+                    $("#passenger_info_grid2").scrollLeft(pos.left);
+                }else{
+                    $("td.jj").hide();
+                    $("b",this).html("显示");
+                }
+            });
+
+            $("#ticket_info_btn").click(function(){
+                if($("b",this).html() == '︾'){
+                    $("#origin_ticket_info").fadeOut();
+                    $("b",this).html("︽");
+                    $("i",this).html("展开");
+                }else{
+                    $("#origin_ticket_info").fadeIn();
+                    $("b",this).html("︾");
+                    $("i",this).html("收回");
+                }
+            });
+            $("#origin_flight_btn").click(function(){
+                if($("b",this).html() == '︾'){
+                    $("div.block2").fadeOut();
+                    $("b",this).html("︽");
+                    $("i",this).html("展开");
+                }else{
+                    $("div.block2").fadeIn();
+                    $("b",this).html("︾");
+                    $("i",this).html("收回");
+                }
+        });
 
         /* 鼠标移动效果 */
         $("#child_orders div.item").each(function(){
@@ -506,14 +691,6 @@ $(function(){
                         $(this).css({"background-color":"#ffffff","border-color":"#B8F1FF"});
                     }
                 });
-        });
-        $("#child_order_trigger").mouseover(function(){
-             var pos = $(this).offset();
-             $("#child_orders").css({top:pos.top + "px",left: (pos.left - 300) + "px"}).show();
-             $("#child_orders").unbind("mouseover");
-             $("#child_orders").bind("mouseover",function(){
-                 //$("#child_orders").hide();
-             });
         });
         $("#child_order_trigger").mouseover(function(){
              var pos = $(this).offset();

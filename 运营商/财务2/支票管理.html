@@ -56,15 +56,15 @@
 <div id="sub_menu_bar"></div>
 <div id="mainContent">
 
-<div id="window"></div>
 <div class="actions block">
 <div class="col col-l">
 <a class="item" href="#">资金汇总</a>
 <a class="item" href="#">充值管理</a>
 <a class="item" href="#">提现管理</a>
-<a class="item highlight" href="#">授信管理</a>
+<a class="item" href="#">授信管理</a>
 <a class="item" href="#">押金管理</a>
 <a class="item" href="#">冻结管理</a>
+<a class="item highlight" href="#">支票管理</a>
 <a class="item" href="#">收支明细</a>
 <a class="item" href="#">交易明细</a>
 </div>
@@ -73,7 +73,7 @@
 <div class="col col-l">
 <ul class="flat-list">
 <li>
-<label style="width:65px;" class="vertical-head">客户名称</label>
+<label class="vertical-head">客户名称</label>
 <input style="width:80px">
 <button class="btns btn-search ac-search-customer">查询</button>
 </li>
@@ -82,35 +82,30 @@
 <input style="width:100px">
 </li>
 <li>
-<label class="vertical-head">状态</label>
+<label class="vertical-head">充值状态</label>
 <input style="width:100px" data-role="dropdownlist" data-source="['全部']">
 </li>
 <li>
-<label class="vertical-head">授信类型</label>
-<input style="width:100px" data-role="dropdownlist" data-source="['全部']">
+<label class="vertical-head">支票状态</label>
+<input data-role="dropdownlist" data-source="['全部']" style="width:100px">
 </li>
 <li>
-<label style="width:65px;" class="vertical-head">申请日期</label>
+<label class="vertical-head">充值人</label>
+<input style="width:80px">
+<button class="btns btn-search ac-search-user">查询</button>
+</li>
+<li>
+<label class="vertical-head">审核人</label>
+<input style="width:80px">
+<button class="btns btn-search ac-search-user">查询</button>
+</li>
+<li>
+<label class="vertical-head">充值日期</label>
 <input data-role="datepicker" style="width:100px">
 </li>
 <li>
 <label class="vertical-head">审核日期</label>
 <input data-role="datepicker" style="width:100px">
-</li>
-<li>
-<label class="vertical-head">申请人</label>
-<input style="width:80px">
-<button class="btns btn-search ac-search-user">查询</button>
-</li>
-<li>
-<label class="vertical-head">审核领导</label>
-<input style="width:80px">
-<button class="btns btn-search ac-search-user">查询</button>
-</li>
-<li>
-<label style="width:65px;" class="vertical-head">财务审核人</label>
-<input style="width:80px">
-<button class="btns btn-search ac-search-user">查询</button>
 </li>
 </ul>
 </div>
@@ -124,24 +119,23 @@
 <span style="color:#aaa">&nbsp;|&nbsp;</span>
 <button class="btns btn-ac-blue">审核拒绝</button>
 <span style="color:#aaa">&nbsp;|&nbsp;</span>
+<button class="btns btn-ac-blue">异常处理</button>
+<span style="color:#aaa">&nbsp;|&nbsp;</span>
 <button class="btns btn-ac-blue">导出Excel</button>
+</ul>
 </div>
 <table class="grid-table">
 <tr class="thead">
 <th> <input type="checkbox"> </th>
 <th>客户名称</th>
-<th>账户类型</th>
-<th>特殊客户</th>
-<th width="65">合同类型/支票号/欠款</th>
-<th>授信金额</th>
-<th>当前信用额度</th>
-<th>授信类型</th>
-<th>账期</th>
-<th>领导审核</th>
-<th>财务审核</th>
-<th>摘要</th>
-<th>申请日期</th>
-<th>财务审核日期</th>
+<th>银行</th>
+<th>支票金额</th>
+<th>充值状态</th>
+<th>支票状态</th>
+<th>备注</th>
+<th>充值日期</th>
+<th>审核日期</th>
+<th>操作</th>
 </tr>
 </table>
 </div>
@@ -168,21 +162,97 @@ rowTemplate: kendo.template($("#block2-grid-row-template").html())
 <td>
 <input type="checkbox">
 </td>
-# kendo.logToConsole(data) #
 <td>#= data.c1 #</td>
-<td>#= data.c2 #</td>
-<td>#= data.c2 #</td>
 <td>#= data.c2 #</td>
 <td><span class="text1">#= data.c3 #</span></td>
 <td>#= data.c4 #</td>
 <td>#= data.c5 #</td>
 <td>#= data.c5 #</td>
-<td>#= data.c5 #</td>
-<td>#= data.c5 #</td>
-<td>#= data.c5 #</td>
 <td>#= data.c6 #<br>#= data.c7 #</td>
 <td>#= data.c8 #<br>#= data.c9 #</td>
+<td>
+<span class="grid-row-ac">
+<button class="btns">通过</button>
+<button class="btns">拒绝</button>
+<button class="btns">异常处理</button>
+</span>
+</td>
 </tr>
+</script>
+<script type="text/x-kendo-template" id="ac-new-template">
+<div class="ac-new-window-container">
+<ul class="flat-list">
+<li>
+<label class="vertical-head">选择客户：</label>
+<input style="width:100px">
+<button class="btns btn-search ac-search-customer">查询</button>
+</li>
+<li>
+<label class="vertical-head">可用余额：</label>
+<input style="width:100px">
+</li>
+<li>
+<label class="vertical-head">冻结余额：</label>
+<input style="width:100px">
+</li>
+<li>
+<label class="vertical-head">确认金额：</label>
+<input style="width:100px">
+</li>
+<li>
+<label class="vertical-head">冻结类型：</label>
+<input style="width:100px" data-role="dropdownlist" data-source="['选择']">
+</li>
+<li>&nbsp;</li>
+<li>
+<label class="vertical-head">操作人：</label>
+<span>xxx</span>
+</li>
+<li style="width:400px;">
+<label style="vertical-align:top;" class="vertical-head">摘要：</label>
+<textarea></textarea>
+</li>
+</ul>
+</div>
+<div style="text-align:right;">
+<button class="btns button_1_2 ac-submit">提 交</button>
+<button class="btns button_2_2">取 消</button>
+</div>
+</script>
+<script type="text/x-kendo-template" id="ac-submit-template">
+<div class="row">
+<ul style="font-size:14px;line-height:30px;">
+<li style="display:inline-block;width:190px">
+<strong>用户：</strong>
+<span>fdsa</span>
+</li>
+<li style="display:inline-block;width:190px">
+<strong>冻结金额：</strong>
+<strong class="text1">12,313,213</strong>
+</li>
+<li style="display:inline-block;width:190px">
+<strong>用于：</strong>
+<span>123132</span>
+</li>
+</ul>
+</div>
+<div class="row" style="text-align:right;">
+<button class="btns button_1_2">确 认</button>
+<button class="btns button_2_2">取 消</button>
+</div>
+</script>
+<script type="text/javascript">
+$(function(){
+new PopWindow('.ac-new',{
+template:"#ac-new-template",
+title:'新增冻结'
+}).init();
+new PopWindow('.ac-submit', {
+template:'#ac-submit-template',
+title:'确认冻结',
+width:'470'
+}).init();
+});
 </script>
 <script type="text/x-kendo-template" id="ac-search-user-template">
 <div class="row">

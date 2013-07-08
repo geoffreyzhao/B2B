@@ -15,7 +15,7 @@ $(function(){
             $("#window").kendoWindow({
                 animation:false,
                 iframe:true,
-                content:function(tar){return tar.content?{url:'',template:tar.contentFunction?eval(tar.content):tar.content}:tar.url}(tar),
+                content:function(tar){return tar.content?{url:'',template:tar.contentFunction?eval(tar.content):tar.content}:tar.url+"?dt="+dt}(tar),
                 modal:tar.modal || true,
                 width:tar.width,
                 height:tar.height,
