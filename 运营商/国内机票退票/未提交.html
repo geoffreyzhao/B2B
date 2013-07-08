@@ -335,42 +335,48 @@ $(function(){
 
     </div>
 </div>
-<div class="block block5 block-calc">
+<div class="block block5 block-calc tuipiao">
     <div id="order_calc">
         <ul class="flat-list">
             <li class="first">
             <label>
                 <span>应收合计</span> 
-                <input value="0.00" class="input-b"> 
+                <input value="-1202.00" style="color:#ff3300;" class="input-b"> 
             </label>
             </li> 
             <li>
             <label>
-                <span>票款合计</span>
+                <span>= 票款合计</span>
+                <input value="-1180.00">
+            </label>
+            </li>
+            <li>
+            <label>
+                <span>+ 税款合计</span>
+                <input value="200.00">
+            </label>
+            </li>
+            <li>
+            <label>
+                <span>+ 退票费 </span>
+                <input value="4.00">
+            </label>
+            </li>
+            <li>
+            <label>
+                <span>+ 附加费</span>
                 <input value="0.00">
             </label>
             </li>
             <li>
             <label>
-                <span>税款合计(机建/燃油)</span>
+                <span>- 佣金 </span>
                 <input value="0.00">
             </label>
             </li>
             <li>
             <label>
-                <span>附加费</span>
-                <input value="0.00">
-            </label>
-            </li>
-            <li>
-            <label>
-                <span>客户返佣</span>
-                <input value="0.00">
-            </label>
-            </li>
-            <li>
-            <label>
-                <span>服务费</span>
+                <span>+ 服务费</span>
                 <input value="0.00">
             </label>
             </li>
@@ -459,7 +465,7 @@ $(function(){
                 <h3>2013/07/03 13:00</h3>
                 <div class="latest">最新修改</div>
                 <span></span>
-                <div class="item" style="border:1px solid #ff4e00;background-color:#fff5f5;">
+                <div class="item last" style="border:1px solid #ff4e00;background-color:#fff5f5;">
                     <table>
                         <thead>    
                             <tr>
@@ -489,6 +495,26 @@ $(function(){
 <script type="text/javascript">
     $(function(){
 
+        /* 鼠标移动效果 */
+        $("#child_orders div.item").each(function(){
+                $(this).hover(function(){
+                    $(this).css({"background-color":"#ffffdb","border-color":"#cccccc"});
+                },function(){
+                    if($(this).hasClass("last")){
+                        $(this).css({"background-color":"#fff5f5","border-color":"#FF4E00"});
+                    }else{
+                        $(this).css({"background-color":"#ffffff","border-color":"#B8F1FF"});
+                    }
+                });
+        });
+        $("#child_order_trigger").mouseover(function(){
+             var pos = $(this).offset();
+             $("#child_orders").css({top:pos.top + "px",left: (pos.left - 300) + "px"}).show();
+             $("#child_orders").unbind("mouseover");
+             $("#child_orders").bind("mouseover",function(){
+                 //$("#child_orders").hide();
+             });
+        });
         $("#child_order_trigger").mouseover(function(){
              var pos = $(this).offset();
              $("#child_orders").css({top:pos.top + "px",left: (pos.left - 300) + "px"}).show();

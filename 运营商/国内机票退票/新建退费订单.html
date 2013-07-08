@@ -454,7 +454,7 @@ $(function(){
                 <h3>2013/07/03 13:00</h3>
                 <div class="latest">最新修改</div>
                 <span></span>
-                <div class="item" style="border:1px solid #ff4e00;background-color:#fff5f5;">
+                <div class="item last" style="border:1px solid #ff4e00;background-color:#fff5f5;">
                     <table>
                         <thead>    
                             <tr>
@@ -484,6 +484,27 @@ $(function(){
 <script type="text/javascript">
     $(function(){
 
+        /* 鼠标移动效果 */
+        $("#child_orders div.item").each(function(){
+                $(this).hover(function(){
+                    $(this).css({"background-color":"#ffffdb","border-color":"#cccccc"});
+                },function(){
+                    if($(this).hasClass("last")){
+                        $(this).css({"background-color":"#fff5f5","border-color":"#FF4E00"});
+                    }else{
+                        $(this).css({"background-color":"#ffffff","border-color":"#B8F1FF"});
+                    }
+                });
+        });
+
+        $("#child_order_trigger").mouseover(function(){
+             var pos = $(this).offset();
+             $("#child_orders").css({top:pos.top + "px",left: (pos.left - 300) + "px"}).show();
+             $("#child_orders").unbind("mouseover");
+             $("#child_orders").bind("mouseover",function(){
+                 //$("#child_orders").hide();
+             });
+        });
         $("#child_order_trigger").mouseover(function(){
              var pos = $(this).offset();
              $("#child_orders").css({top:pos.top + "px",left: (pos.left - 300) + "px"}).show();
