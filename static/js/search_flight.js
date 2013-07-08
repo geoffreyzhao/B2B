@@ -238,66 +238,6 @@ var CityAutocomplete = function(){
 }();
 
 
-var Collpase = function(opts){
-    /*
-    * container: Element
-    * limitHeight : NUM
-    * trigger : Element
-    * triggerexp : the className while it is expanded
-    * */
-    this.limitHeight = 100;
-    this.triggerexp = 'col-expp';
-    this.trigger = '.content-collapse';
-    $.extend(this,opts);
-    this.container = $(this.container);
-}
-Collpase.prototype = {
-    init:function(){
-        if(this.getContainerHeight()<this.limitHeight) return this;
-        this.render(); 
-        this.bindClick();
-        return this;
-    },
-    render:function(){
-        var container = this.container; 
-        this.originHeight = container[0].style.height;
-        var trigger= this.triggerEle = $('<div class="'+(this.trigger+'_').slice(1,-1)+'"><div /></div>');
-        trigger.appendTo(container).show();
-       container.css({
-            position:'relative',
-            height:this.limitHeight + 'px',
-            overflow:'hidden'
-       });  
-    },
-    getContainerHeight:function(){
-        return this.container.height();
-    },
-    setHeight:function(){
-        if (this.triggerEle.hasClass(this.triggerexp)){
-            this.triggerEle.removeClass(this.triggerexp);
-            this.container.height(this.limitHeight);
-        }
-    },
-    resetHeight:function(){
-        if (!this.triggerEle.hasClass(this.triggerexp)){
-            this.triggerEle.addClass(this.triggerexp);
-            this.container.height(this.originHeight == ''?'':'100');
-        }
-    },
-    bindClick:function(){
-        var that = this;
-        // collopse;
-        $('body').delegate(that.trigger, 'click',function(){
-            if ($(this).hasClass(that.triggerexp)){
-                that.setHeight();
-            }else{
-                that.resetHeight();
-            }
-        });
-
-    }
-}
-
 
 jQuery(function($){
     kendo.culture("zh-CHS");
