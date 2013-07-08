@@ -393,13 +393,13 @@ $(function(){
                     <td style="width:70px;">服务费</td>
                     <td style="width:70px;">收款金额</td>
                     <td style="width:60px;">航司实退</td>
-                    <td style="width:60px;" class="jj">基建</td>
+                    <td style="width:60px;" id="left_jj" class="jj">基建</td>
                     <td style="width:60px;" class="jj">燃油</td>
-                    <td style="width:60px;" class="crate">客户返点</td>
+                    <td style="width:60px;" id="left_crate" class="crate">客户返点</td>
                     <td style="width:60px;" class="crate">客户返款</td>
                     <td style="width:60px;" class="crate">二次返款</td>
                     <td style="width:60px;" class="crate">客户后返</td>
-                    <td style="width:60px;" class="frate">航司返点</td>
+                    <td style="width:60px;" id="left_frate" class="frate">航司返点</td>
                     <td style="width:60px;" class="frate">航司奖励</td>
                     <td style="width:60px;" class="frate">航司后返</td>
                     <td style="width:100px;" class="frate">预期当期结算价</td>
@@ -616,10 +616,14 @@ $(function(){
 </div>
 <script type="text/javascript">
     $(function(){
+            /* 航司 返点信息 */
             $("#frate_btn").click(function(){
                 if($("b",this).html() == '显示'){
                     $("td.frate").show();
                     $("b",this).html("隐藏");
+
+                    var pos =$("#left_frate").position();
+                    $("#passenger_info_grid2").scrollLeft(pos.left);
                 }else{
                     $("td.frate").hide();
                     $("b",this).html("显示");
@@ -629,6 +633,8 @@ $(function(){
                 if($("b",this).html() == '显示'){
                     $("td.crate").show();
                     $("b",this).html("隐藏");
+                    var pos =$("#left_crate").position();
+                    $("#passenger_info_grid2").scrollLeft(pos.left);
                 }else{
                     $("td.crate").hide();
                     $("b",this).html("显示");
@@ -638,6 +644,8 @@ $(function(){
                 if($("b",this).html() == '显示'){
                     $("td.jj").show();
                     $("b",this).html("隐藏");
+                    var pos =$("#left_jj").position();
+                    $("#passenger_info_grid2").scrollLeft(pos.left);
                 }else{
                     $("td.jj").hide();
                     $("b",this).html("显示");
