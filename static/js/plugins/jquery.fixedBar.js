@@ -29,7 +29,7 @@ $.fn.fixedBar = function(args){
             if (typeof opts.createShadow === 'string'){
                 shadow = $(opts.createShadow).length ? $(opts.createShadow) : $('<div class="'+opts.createShadow+'"></dvi>').css({
                display:'none',
-               height:ele.outerHeight()
+               height:ele.outerHeight()+1+'px'
                 });
             }
             ele.before(shadow);
@@ -45,8 +45,10 @@ $.fn.fixedBar = function(args){
             var that = $(this);
             var scrollTop = that.scrollTop();
             if(scrollTop > eleOffsetTop){
-                if (opts.createShadow){ shadow.show() }
-                if (!ele.hasClass("fixedBar")) ele.addClass("fixedBar").attr("style",opts.css);
+                if (!ele.hasClass("fixedBar")){
+                    if (opts.createShadow){ shadow.show() }
+                    ele.addClass("fixedBar").attr("style",opts.css);
+                }
                 if(window.isIE6) ele.css({"top":scrollTop - eleOffsetTop + elePositionTop + "px","position":"absolute"});
             }else{
                 if (opts.createShadow){ shadow.hide() }
