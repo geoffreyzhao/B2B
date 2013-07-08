@@ -243,19 +243,23 @@ var Collpase = function(opts){
     * container: Element
     * limitHeight : NUM
     * trigger : Element
+    * triggerexp : the className while it is expanded
     * */
     this.limitHeight = 100;
     this.triggerexp = 'col-expp';
+    this.trigger = '.content-collapse';
     $.extend(this,opts);
+    this.container = $(this.container);
 }
 Collpase.prototype = {
     init:function(){
+        if(this.getContainerHeight()<this.limitHeight) return this;
         this.render(); 
         this.bindClick();
         return this;
     },
     render:function(){
-        var container = this.container = $(this.container);
+        var container = this.container; 
         this.originHeight = container[0].style.height;
         var trigger= this.triggerEle = $('<div class="'+(this.trigger+'_').slice(1,-1)+'"><div /></div>');
         trigger.appendTo(container).show();
@@ -289,10 +293,8 @@ Collpase.prototype = {
             }else{
                 that.resetHeight();
             }
-            // $(this).toggleClass(triggerexp2);
         });
 
-        // extend;
     }
 }
 
