@@ -110,9 +110,6 @@ var CityAutocomplete = function(){
         hot_tabs.kendoTabStrip({
             animation:false
         });
-
-
-
     }
 
     var init_suggest_city = function(data){
@@ -188,8 +185,7 @@ var CityAutocomplete = function(){
             }).bind('close',function(e){
                 if(e.sender.value()===''){
                     posited_tabwindow(e.sender.element);
-                }
-            });
+                } });
         });
     }
 
@@ -240,6 +236,65 @@ var CityAutocomplete = function(){
 
     return that;
 }();
+
+
+var Collpase = function(opts){
+    /*
+    * container: Element
+    * limitHeight : NUM
+    * trigger : Element
+    * */
+    this.limitHeight = 100;
+    this.triggerexp = 'col-expp';
+    $.extend(this,opts);
+}
+Collpase.prototype = {
+    init:function(){
+        this.render(); 
+        this.bindClick();
+        return this;
+    },
+    render:function(){
+        var container = this.container = $(this.container);
+        this.originHeight = container[0].style.height;
+        var trigger= this.triggerEle = $('<div class="'+(this.trigger+'_').slice(1,-1)+'"><div /></div>');
+        trigger.appendTo(container).show();
+       container.css({
+            position:'relative',
+            height:this.limitHeight + 'px',
+            overflow:'hidden'
+       });  
+    },
+    getContainerHeight:function(){
+        return this.container.height();
+    },
+    setHeight:function(){
+        if (this.triggerEle.hasClass(this.triggerexp)){
+            this.triggerEle.removeClass(this.triggerexp);
+            this.container.height(this.limitHeight);
+        }
+    },
+    resetHeight:function(){
+        if (!this.triggerEle.hasClass(this.triggerexp)){
+            this.triggerEle.addClass(this.triggerexp);
+            this.container.height(this.originHeight == ''?'':'100');
+        }
+    },
+    bindClick:function(){
+        var that = this;
+        // collopse;
+        $('body').delegate(that.trigger, 'click',function(){
+            if ($(this).hasClass(that.triggerexp)){
+                that.setHeight();
+            }else{
+                that.resetHeight();
+            }
+            // $(this).toggleClass(triggerexp2);
+        });
+
+        // extend;
+    }
+}
 
 
 jQuery(function($){
@@ -325,9 +380,15 @@ jQuery(function($){
 
     $('body').delegate('.more-up','click',function(e){
         e.preventDefault()
-       var current_info_row =  $(this).closest('.info-row');
-       var info_row = current_info_row.prevUntil('.data-row').andSelf();
-       var data_row = current_info_row.prevAll('.data-row').eq(0);
+        if($(this).closest('.expanded').length){
+            var data_row = $(this).closest('.data-row');
+            var info_row = data_row.nextUntil('.data-row');
+        }else{
+            var current_info_row =  $(this).closest('.info-row');
+            var info_row = current_info_row.prevUntil('.data-row').andSelf();
+            var data_row = current_info_row.prevAll('.data-row').eq(0);
+        }
+
         data_row.removeClass('expanded'); 
         info_row.hide();
     })

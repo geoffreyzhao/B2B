@@ -76,7 +76,8 @@ PopWindow.prototype = {
     bindClick:function(){
         var win = this.win;
         this.trigger.attr('role','window_trigger');
-        $('body').delegate(this.triggerText,'click',function(){
+        $('body').delegate(this.triggerText,'click',function(e){
+            e.preventDefault();
             win.center();
             win.open();
             kendo.init($('.popup-window'));
