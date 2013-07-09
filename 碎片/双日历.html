@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>天地行</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/static/css/common.css" rel="stylesheet">
+    <link href="/static/css/b2b.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css" />
+	<script src="/static/js/jquery.min.js"></script>
+	<script src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+	<script src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+
+</head>
+<body>
+    <h1>单日历示例</h1>
+    <label>选择日期<input type="text" id="singleMonth" class="datepicker singleMonth" /></label>
+
+    <h1>双日历示例</h1>
+    <label>选择日期<input type="text" id="doubleMonth" class="datepicker doubleMonth"/></label>
+
+    <h1>机票示例</h1>
+    <form action="" methon="get" id="flightForm">
+        <label for="">类型
+            <select id="tripType" name="tripType">
+                <option value="oneWay">单程</option>
+                <option value="roundTrip">往返</option>
+            </select>
+        </label>
+        <label>去程日期<input type="text" id="sdate" name="sdate" class="datepicker doubleMonth"/></label>
+        <label style="display:none;">返程日期<input type="text" id="edate" name="edate" class="datepicker doubleMonth"/></label>
+    </form>
+    <script type="text/javascript">
+        $.datepicker.regional[ "zh-CN" ];
+        $(function(){
+            $( ".singleMonth" ).datepicker({
+			    holiday:[{'2013/06/19':'测试'},{'2013/10/01':'国庆'}],
+			    numberOfMonths:1
+		    });
+            $( ".doubleMonth" ).datepicker({
+			    holiday:[{'2013/06/19':'测试'},{'2013/10/01':'国庆'}],
+			    numberOfMonths:2
+		    });
+
+            $("#tripType").change(function(){
+                if($(this).val() == "roundTrip"){
+                    
+                }
+        });
+    </script>
+
+
+</body>
