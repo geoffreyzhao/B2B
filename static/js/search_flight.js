@@ -240,7 +240,7 @@ var CityAutocomplete = function(){
 
 
 jQuery(function($){
-    kendo.culture("zh-CHS");
+    kendo.culture('zh-CN');
 
     //起飞时间
     $(".timepicker").kendoTimePicker();

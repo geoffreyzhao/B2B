@@ -75,10 +75,10 @@ function GridTable(trigger, customSettings){
         pageable:{
             pageSize: 10,
             messages: {
-                display: " 共 {2} 条记录，{0} - {1} 条",
-                empty: "共 0 条记录",
+                display: " 共 <b>{2}</b> 条记录，<b>{0}</b> - <b>{1}</b> 条",
+                empty: "共 <b>0</b> 条记录",
                 page: "页",
-                of: "共 {0}",
+                of: "共 <b>{0}</b>",
                 itemsPerPage: "每页",
                 first: "第一页",
                 previous: "前一页",
