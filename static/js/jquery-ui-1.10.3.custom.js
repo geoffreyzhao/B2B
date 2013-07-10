@@ -1074,12 +1074,15 @@ $.extend(Datepicker.prototype, {
 		var origyearshtml,
 			numMonths = this._getNumberOfMonths(inst),
 			cols = numMonths[1],
-			width = 17;
+            //@todo modified by clb
+			width = 20;
 
 		inst.dpDiv.removeClass("ui-datepicker-multi-2 ui-datepicker-multi-3 ui-datepicker-multi-4").width("");
 		if (cols > 1) {
 			inst.dpDiv.addClass("ui-datepicker-multi-" + cols).css("width", (width * cols) + "em");
-		}
+		}else{
+			inst.dpDiv.css("width",(width + 2) + "em");
+        }
 		inst.dpDiv[(numMonths[0] !== 1 || numMonths[1] !== 1 ? "add" : "remove") +
 			"Class"]("ui-datepicker-multi");
 		inst.dpDiv[(this._get(inst, "isRTL") ? "add" : "remove") +
@@ -1998,7 +2001,7 @@ $.extend(Datepicker.prototype, {
 					(/all|right/.test(cornerClass) && row === 0 ? (isRTL ? prev : next) : "") +
 					this._generateMonthYearHeader(inst, drawMonth, drawYear, minDate, maxDate,
 					row > 0 || col > 0, monthNames, monthNamesShort) + // draw month headers
-					"</div><table class='ui-datepicker-calendar'><thead>" +
+					"</div><div class='ui-datepicker-calendar-wrap'><table class='ui-datepicker-calendar'><thead>" +
 					"<tr>";
 				thead = (showWeek ? "<th class='ui-datepicker-week-col'>" + this._get(inst, "weekHeader") + "</th>" : "");
 				for (dow = 0; dow < 7; dow++) { // days of the week
@@ -2045,7 +2048,7 @@ $.extend(Datepicker.prototype, {
 							(printDate.getTime() === currentDate.getTime() ? " ui-state-active" : "") + // highlight selected day
 							(otherMonth ? " ui-priority-secondary" : "") + // distinguish dates from other months
 							"' href='#' day='"+printDate.getDate()+"'>" + 
-							this._holidayCheck(printDate,holiday) + "</a>")) + //添加节日显示
+                            (printDate.getTime() === today.getTime() ?  currentText : this._holidayCheck(printDate,holiday)) + "</a>")) + //添加节日显示
 							"</td>"; // display selectable date
 						printDate.setDate(printDate.getDate() + 1);
 						printDate = this._daylightSavingAdjust(printDate);
@@ -2057,7 +2060,7 @@ $.extend(Datepicker.prototype, {
 					drawMonth = 0;
 					drawYear++;
 				}
-				calender += "</tbody></table>" + (isMultiMonth ? "</div>" +
+				calender += "</tbody></table></div>" + (isMultiMonth ? "</div>" +
 							((numMonths[0] > 0 && col === numMonths[1]-1) ? "<div class='ui-datepicker-row-break'></div>" : "") : "");
 				group += calender;
 			}
