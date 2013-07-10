@@ -15,6 +15,7 @@
 <script type="text/javascript" src="/js/vendor/jquery.min.js"></script>
 <script type="text/javascript" src="/js/plugins/jquery.fixedBar.js"></script>
 <script type="text/javascript" src="/js/kendo.web.js"></script>
+<script type="text/javascript" src="/js/cultures/kendo.culture.zh-CN.min.js"></script>
 <script type="text/javascript" src="/js/global.js"></script>
 <script type="text/javascript" src="/js/finance.js"></script>
 <!--[if lt IE 8]>
@@ -86,16 +87,7 @@
 <input style="width:100px" data-role="dropdownlist" data-source="['全部']">
 </li>
 <li>
-<label class="vertical-head">支票状态</label>
-<input data-role="dropdownlist" data-source="['全部']" style="width:100px">
-</li>
-<li>
 <label class="vertical-head">充值人</label>
-<input style="width:80px">
-<button class="btns btn-search ac-search-user">查询</button>
-</li>
-<li>
-<label class="vertical-head">审核人</label>
 <input style="width:80px">
 <button class="btns btn-search ac-search-user">查询</button>
 </li>
@@ -106,6 +98,11 @@
 <li>
 <label class="vertical-head">审核日期</label>
 <input data-role="datepicker" style="width:100px">
+</li>
+<li>
+<label class="vertical-head">审核人</label>
+<input style="width:80px">
+<button class="btns btn-search ac-search-user">查询</button>
 </li>
 </ul>
 </div>
@@ -128,10 +125,9 @@
 <tr class="thead">
 <th> <input type="checkbox"> </th>
 <th>客户名称</th>
-<th>银行</th>
+<th>实际余额</th>
 <th>支票金额</th>
 <th>充值状态</th>
-<th>支票状态</th>
 <th>备注</th>
 <th>充值日期</th>
 <th>审核日期</th>
@@ -152,6 +148,16 @@ c6:"2013-12-12",
 c7:"张三",
 c8:"2013-12-12",
 c9:"张三"
+},{
+c1:222,
+c2:333,
+c3:"11,321,321.00",
+c4:"xxx",
+c5:"xxx",
+c6:"2013-12-12",
+c7:"张三",
+c8:"2013-12-12",
+c9:"张三"
 }],
 rowTemplate: kendo.template($("#block2-grid-row-template").html())
 }).init();
@@ -163,9 +169,8 @@ rowTemplate: kendo.template($("#block2-grid-row-template").html())
 <input type="checkbox">
 </td>
 <td>#= data.c1 #</td>
-<td>#= data.c2 #</td>
 <td><span class="text1">#= data.c3 #</span></td>
-<td>#= data.c4 #</td>
+<td><span class="text1">#= data.c3 #</span></td>
 <td>#= data.c5 #</td>
 <td>#= data.c5 #</td>
 <td>#= data.c6 #<br>#= data.c7 #</td>
