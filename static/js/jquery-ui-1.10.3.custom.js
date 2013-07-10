@@ -407,8 +407,7 @@ function Datepicker() {
 		constrainInput: true, // The input is constrained by the current date format
 		showButtonPanel: false, // True to show button panel, false to not show it
 		autoSize: false, // True to size the input for the date format, false to leave as is
-		disabled: false, // The initial disabled state
-		holiday:[] //节日
+		disabled: false  // The initial disabled state
 	};
 	$.extend(this._defaults, this.regional[""]);
 	this.dpDiv = bindHover($("<div id='" + this._mainDivId + "' class='ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all'></div>"));
@@ -1892,7 +1891,6 @@ $.extend(Datepicker.prototype, {
 			selectOtherMonths, defaultDate, html, dow, row, group, col, selectedDate,
 			cornerClass, calender, thead, day, daysInMonth, leadDays, curRows, numRows,
 			printDate, dRow, tbody, daySettings, otherMonth, unselectable,
-			holiday=this._get(inst,"holiday"),
 			tempDate = new Date(),
 			today = this._daylightSavingAdjust(
 				new Date(tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate())), // clear time
@@ -2048,7 +2046,7 @@ $.extend(Datepicker.prototype, {
 							(printDate.getTime() === currentDate.getTime() ? " ui-state-active" : "") + // highlight selected day
 							(otherMonth ? " ui-priority-secondary" : "") + // distinguish dates from other months
 							"' href='#' day='"+printDate.getDate()+"'>" + 
-                            (printDate.getTime() === today.getTime() ?  currentText : this._holidayCheck(printDate,holiday)) + "</a>")) + //添加节日显示
+                            this.getHolidayName(inst,printDate,today) + "</a>")) + //添加节日显示
 							"</td>"; // display selectable date
 						printDate.setDate(printDate.getDate() + 1);
 						printDate = this._daylightSavingAdjust(printDate);
@@ -2143,23 +2141,41 @@ $.extend(Datepicker.prototype, {
 		return html;
 	},
 
-	_holidayCheck:function(_d,holiday)
+	getHolidayName:function(inst,printDate,today)
 	{
-		var tempDate='';
-		$.map(holiday,
-			function(n,i){
-				$.map(n,function(n,i){
-					if(_d.toString()==new Date(i).toString())
-					{
-						tempDate=n;
-					}
-			})
-		});
-		if(tempDate=='')
-		{
-			return _d.getDate();
-		}
-		return tempDate;
+		var holidays = this._get(inst, "holiday");
+        console.log(holidays);
+        var year = printDate.getFullYear();
+        var month = printDate.getMonth() + 1;
+        var day = printDate.getDate();
+
+        if(month < 10){
+            month = '0' + month;
+        }
+        var tmpDay = day;
+        if(tmpDay < 10){
+            tmpDay = '0' + tmpDay;
+        }
+        var str = year + '' + month + '' + tmpDay;
+
+        if(0 != holidays.length){
+            var festivalName = '';
+            var holiday_index = this._get(inst,'holiday_index');
+
+            if(printDate.getTime() === today.getTime()){
+                return '<button class="fastival today"></button>';
+            }else{
+                for(var i = 0; i < holidays.length; i++){
+                    if(str == holidays[i].substring(0,8)){
+                        festivalName = $.trim(holidays[i].substring(9));
+                        return '<button class="fastival ' + holiday_index[festivalName] + '"></button>';
+                    }
+                }
+            }
+        }
+	    
+	    return printDate.getDate();
+
 	},
 
 	/* Adjust one of the date sub-fields. */
