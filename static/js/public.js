@@ -9,8 +9,6 @@ $(function(){
         });
     });
 
-    $(".datePicker").kendoDatePicker({ format: "yyyy-MM-dd", culture: "zh-CN"}).click(function(){$(this).data("kendoDatePicker").open();});
-
     $("#message h3 a,#message h3 span").mouseover(function(){
         $("#message_pop").show();
         $("#message_pop .ck a").click(function(){
