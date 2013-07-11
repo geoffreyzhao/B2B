@@ -225,7 +225,7 @@
                         开始 <input class="datePicker startDate" data-bind="value:selectDate.startDate" type="text">
                     </li>
                     <li>
-                        结束 <input class="datePicker endDate" data-bind="value:selectDate.endDate" type="text">
+                        结束 <input class="datePicker endDate second" data-bind="value:selectDate.endDate" type="text">
                     </li>
                     <li>
                         <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:selectDay.Mon"><br/>一</label>
@@ -301,9 +301,11 @@
 
 <script type="text/javascript">
     $(function(){
-        function ep(num)
+        function ep(periodPrices)
         {
-            if(!num) num=0;
+//            this.periodName=periodPrices.periodName;
+//            this.periodPrice=periodPrices.periodPrice;
+
             this.epn=new kendo.data.ObservableArray([]);
             this.selectDate=new kendo.data.ObservableObject({"startDate":"","endDate":""});
             this.selectDay=new kendo.data.ObservableObject({"Mon":false,"Tue":false,"Wed":false,"Thur":false,"Fri":false,"Sat":false,"Sun":false})
@@ -382,7 +384,7 @@
             Effective_period_max_item:null,
             Effective_period:[],
             addep:function(){
-                viewModel.Effective_period.push(new ep(0));
+                viewModel.Effective_period.push(new ep());
             }
         });
         viewModel.bind("change",function(e){
