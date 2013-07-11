@@ -48,7 +48,7 @@ $(function(){
         var html = kendo.template($('#ac-add-agreement-template').html())({});
         container.append(html);
         kendo.init(container);
-        container.find('[type=file]').kendoUpload(uploadsettings)
+        container.find('[type=file]').eq(-1).kendoUpload(uploadsettings)
     });
     $('body').delegate('.ac-remove-agreement','click',function(){
         $(this).closest('.flat-list').remove();
@@ -64,14 +64,6 @@ $(function(){
 <div id="container">
     <div class="header">
         <h1></h1>
-        <div>
-            <span>你好,${name}</span>
-            <a href="javascript:void(0);">退出</a>
-<input style="width:100px;" name="files" id="upload" />
-<script>
-    $("#upload").kendoUpload(); 
-</script>
-        </div>
         <ul id="top_menu">
             <li><a href="javascript:void(0);">国内机票</a></li>
             <li><a href="javascript:void(0);">国际机票</a></li>

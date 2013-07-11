@@ -322,7 +322,7 @@ $(function(){
                 <td><em>*</em>退票PNR</td>
                 <td><input type="text" style="width:130px;" readonly value="HGWFF"/></td>
                 <td colspan="2">
-                    <span style="color:#999999;border:1px solid #EFEFEF;display:block;width:295px;background-color:#FEFFEB;padding:5px;">提示：填写已取消座位的退票PNR，部分退票时，需先分离出新PNR并取消座位，退票费以PNR取消时间为准</span>
+                    <span class="prompt" style="color:#999999;border:1px solid #EFEFEF;display:block;width:295px;background-color:#FEFFEB;padding:5px;"><i></i>提示：填写已取消座位的退票PNR，部分退票时，需先分离出新PNR并取消座位，退票费以PNR取消时间为准</span>
                 </td>
             </tr>
             <tr>
@@ -500,17 +500,9 @@ $(function(){
         $("#child_order_trigger").mouseover(function(){
              var pos = $(this).offset();
              $("#child_orders").css({top:pos.top + "px",left: (pos.left - 300) + "px"}).show();
-             $("#child_orders").unbind("mouseover");
-             $("#child_orders").bind("mouseover",function(){
-                 //$("#child_orders").hide();
-             });
-        });
-        $("#child_order_trigger").mouseover(function(){
-             var pos = $(this).offset();
-             $("#child_orders").css({top:pos.top + "px",left: (pos.left - 300) + "px"}).show();
-             $("#child_orders").unbind("mouseover");
-             $("#child_orders").bind("mouseover",function(){
-                 //$("#child_orders").hide();
+             $("#child_orders").unbind("moueseleave");
+             $("#child_orders").bind("mouseleave",function(){
+                 $("#child_orders").hide();
              });
         });
 

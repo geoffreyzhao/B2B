@@ -47,7 +47,7 @@ $(function(){
         var html = kendo.template($('#ac-add-agreement-template').html())({});
         container.append(html);
         kendo.init(container);
-        container.find('[type=file]').kendoUpload(uploadsettings)
+        container.find('[type=file]').eq(-1).kendoUpload(uploadsettings)
     });
     $('body').delegate('.ac-remove-agreement','click',function(){
         $(this).closest('.flat-list').remove();
@@ -327,8 +327,8 @@ $(function(){
                 </li> 
                 <li>
                 <label class="vertical-head">附件</label> 
+                <input style="width:100;">
                 <input type="file">
-                }"  type="button" id="btn_upload" value="上传" />
                 </li>
             </ul>
         </div>
