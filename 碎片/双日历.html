@@ -12,6 +12,13 @@
 
 </head>
 <body>
+    <p>
+
+    日历样式 右侧如果需要一个日历图标(蓝色)的，只需加上 添加一个 class="datepicker" <br/>
+    日历样式 右侧如果需要一个日历图标(橙色)的，只需加上 添加一个 class="datepicker orange" <br/>
+    如果原来的页面中以及有那个图标了就用在加上面的class 保持原来的就可以 <br/>
+
+    </p>
     <h1>单日历示例</h1>
     <label>选择日期<input type="text" id="singleMonth" class="datepicker singleMonth" /></label>
 
@@ -27,7 +34,7 @@
             </select>
         </label>
         <label>去程日期<input type="text" id="departure_date" name="departure_date" class="datepicker doubleMonth"/></label>
-        <label>返程日期<input type="text" id="return_date" name="return_date" class="datepicker yellow doubleMonth"/></label>
+        <label>返程日期<input type="text" id="return_date" name="return_date" class="datepicker orange doubleMonth"/></label>
     </form>
 
     <h1>酒店示例</h1>
@@ -50,7 +57,18 @@
             $( "#departure_date" ).datepicker({
                 numberOfMonths:[1,2],
                 minDate :new Date(),
-                showButtonPanel :true
+                showButtonPanel :true,
+                onSelect:function(dateText,inst){
+                    //console.log(dateText);
+                    //console.log(inst);
+                    var date = new Date();
+                    date.setFullYear(inst.selectedYear);
+                    date.setMonth(inst.selectedMonth);
+                    date.setDate(inst.selectedDay);
+
+                    $( "#return_date" ).datepicker( "option", "minDate", date);
+                    $( "#return_date" ).datepicker( "setDate", dateText);
+                }
 		    });
             $( "#return_date" ).datepicker({
                 numberOfMonths:[1,2],

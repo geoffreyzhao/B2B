@@ -2144,7 +2144,6 @@ $.extend(Datepicker.prototype, {
 	getHolidayName:function(inst,printDate,today)
 	{
 		var holidays = this._get(inst, "holiday");
-        console.log(holidays);
         var year = printDate.getFullYear();
         var month = printDate.getMonth() + 1;
         var day = printDate.getDate();
@@ -2163,12 +2162,12 @@ $.extend(Datepicker.prototype, {
             var holiday_index = this._get(inst,'holiday_index');
 
             if(printDate.getTime() === today.getTime()){
-                return '<button class="fastival today"></button>';
+                return '<em class="fastival today"></em>';
             }else{
                 for(var i = 0; i < holidays.length; i++){
                     if(str == holidays[i].substring(0,8)){
                         festivalName = $.trim(holidays[i].substring(9));
-                        return '<button class="fastival ' + holiday_index[festivalName] + '"></button>';
+                        return '<em class="fastival ' + holiday_index[festivalName] + '"></em>';
                     }
                 }
             }
@@ -2300,7 +2299,7 @@ $.extend(Datepicker.prototype, {
  * Global instActive, set by _updateDatepicker allows the handlers to find their way back to the active picker.
  */
 function bindHover(dpDiv) {
-	var selector = "button, .ui-datepicker-prev, .ui-datepicker-next, .ui-datepicker-calendar td a";
+	var selector = "em,button, .ui-datepicker-prev, .ui-datepicker-next, .ui-datepicker-calendar td a";
 	return dpDiv.delegate(selector, "mouseout", function() {
 			$(this).removeClass("ui-state-hover");
 			if (this.className.indexOf("ui-datepicker-prev") !== -1) {
