@@ -20,13 +20,27 @@
 <link rel="stylesheet" href="/css/ie.css" />
 <script type="text/javascript" src="/js/vendor/IE7.min.js"></script>
 <![endif]-->
+
 <script type="text/javascript">
 $(function(){
     var uploadsettings = {
-            localization:{
-                select: '上传' 
-            } 
-        };
+        multiple:false,
+        showFileList:false,
+        select:function(e){
+            e.sender.wrapper.prev().val(e.files[0].name);
+        },
+        complete:function(e){
+            var url = e; 
+            console.log(e);
+        },
+        async: {
+            saveUrl: "/path/to/save.jsp",
+            autoUpload: true
+        },
+        localization:{
+            select: '上传' 
+        } 
+    };
     kendo.culture('zh-CN');
     $('.actions').fixedBar();
     $('.ac-add-agreement').bind('click',function(){
@@ -34,7 +48,7 @@ $(function(){
         var html = kendo.template($('#ac-add-agreement-template').html())({});
         container.append(html);
         kendo.init(container);
-        container.find('[type=file]').kendoUpload(uploadsettings)
+        container.find('[type=file]').eq(-1).kendoUpload(uploadsettings)
     });
     $('body').delegate('.ac-remove-agreement','click',function(){
         $(this).closest('.flat-list').remove();
@@ -50,10 +64,6 @@ $(function(){
 <div id="container">
     <div class="header">
         <h1></h1>
-        <div>
-            <span>你好,${name}</span>
-            <a href="javascript:void(0);">退出</a>
-        </div>
         <ul id="top_menu">
             <li><a href="javascript:void(0);">国内机票</a></li>
             <li><a href="javascript:void(0);">国际机票</a></li>
