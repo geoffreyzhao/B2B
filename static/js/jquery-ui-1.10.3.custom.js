@@ -994,6 +994,8 @@ $.extend(Datepicker.prototype, {
 
 		var inst, beforeShow, beforeShowSettings, isFixed,
 			offset, showAnim, duration;
+        var css; 
+        var parameter_zIndex = 0;
 
 		inst = $.datepicker._getInst(input);
 		if ($.datepicker._curInst && $.datepicker._curInst !== inst) {
@@ -1002,6 +1004,14 @@ $.extend(Datepicker.prototype, {
 				$.datepicker._hideDatepicker( $.datepicker._curInst.input[0] );
 			}
 		}
+
+        //@todo clb, fix popup window z-index problem
+        if(typeof($.datepicker._get(inst,'css')) == 'object'){
+            css = css || $.datepicker._get(inst,'css');
+            if(css["z-index"]){
+                parameter_zIndex = css["z-index"]; 
+            }
+        }
 
 		beforeShow = $.datepicker._get(inst, "beforeShow");
 		beforeShowSettings = beforeShow ? beforeShow.apply(input, [input, inst]) : {};
@@ -1045,7 +1055,7 @@ $.extend(Datepicker.prototype, {
 		if (!inst.inline) {
 			showAnim = $.datepicker._get(inst, "showAnim");
 			duration = $.datepicker._get(inst, "duration");
-			inst.dpDiv.zIndex($(input).zIndex()+1);
+			inst.dpDiv.zIndex($(input).zIndex()+1 + parameter_zIndex);
 			$.datepicker._datepickerShowing = true;
 
 			if ( $.effects && $.effects.effect[ showAnim ] ) {
