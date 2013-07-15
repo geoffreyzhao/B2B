@@ -24,12 +24,17 @@
     margin:0;
 }
 .tcy_list .tcy_list_sep{
-    cursor:default;
     width:100%;
     color:#f00;
+    float:left;
 }
-.tcy_list li {
-    font-size:12px;
+.tcy_title{
+    padding:10px;
+    display:block;
+    background:#f3f3f3;
+    border-bottom:1px solid #c5c5c5;
+}
+.tcy_list .item {
     cursor: pointer;
     color: #333;
     float: left;
@@ -40,20 +45,50 @@
     margin: 5px;
     vertical-align: top;
     overflow: hidden;
+    padding:3px 0;
+    text-align:center;
 }
-.k-item{
-    font-size:12px;
+.tcy_list .item:hover{
+    color:#fff;
+    background-color:#ef6616;
 }
 #tabstrip{
-    width:370px;
+    background:#fff;
+    width:360px;
     font-size:12px;
     display:none;
-    border:1px solid #ccc;
+    border:1px solid #c5c5c5;
+}
+#tabstrip .k-content{
+    border-bottom:0;
+    border-left:0;
+    border-right:0;
+    border-color: #f0713a;
+    margin:0 5px;
+    padding:0;
+}
+#tabstrip .k-tabstrip-items{
+    padding:0;
+    margin:10px 10px 0 10px; 
+}
+#tabstrip .k-state-default{
+    border-color:#FFF;
+    font-weight:bold;
+    color:#555;
+}
+#tabstrip .k-state-hover{
+    background:none;
+}
+#tabstrip .k-state-active{
+    border-color: #f0713a;
 }
 </style>
 
 <script type="text/x-kendo-template" id="city_popup">
 <div id="tabstrip" class="tabstrip">
+<span class="tcy_title">
+    热门城市/国家（支持中文名/拼音/英文名/三字码）
+</span>
 <ul>
 <li id="hot_city" class="k-state-active">热门</li>
 # for (var i=0; i<data.group.length; i++ ) { #
@@ -65,7 +100,7 @@
 
 # for(var j=0;j<hotcitylist.length;j++){ #
 # var citylist_item = hotcitylist[j] #
-<li title="#= citylist_item.code #" data-code="#= citylist_item.code #">#= citylist_item.name #</li>
+<li class="item" title="#= citylist_item.code #" data-code="#= citylist_item.code #">#= citylist_item.name #</li>
 # } #
 
 </ul>
@@ -83,7 +118,7 @@
         # var citylist_value_item = citylist_item.value[j]; #
 
         # if(citylist_value_item.py.slice(0,1) == data.group[i][k]) {#
-            <li title="#= citylist_value_item.code #" data-code="#= citylist_value_item.code #">#= citylist_value_item.name #</li>
+            <li class="item" title="#= citylist_value_item.code #" data-code="#= citylist_value_item.code #">#= citylist_value_item.name #</li>
         # } #
 
     # } #
@@ -110,7 +145,7 @@ CityAutocomplete.setOptions({
     codeEle: '#id_dep',
     // 以@分割热门非热门，以;分割条目，以|分割三字码拼音和中文
     url:'/static/js/data.txt',
-    group: ["热门","ABCDEF","GHIJ", "KLMNO", "PQRSTUVW", "XYZ"],
+    group: ["热门","ABCDEF","GHJ", "KLMN", "PQSTW", "XYZ"],
 });
 
 CityAutocomplete.init();
