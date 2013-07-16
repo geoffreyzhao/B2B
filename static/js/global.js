@@ -20,13 +20,13 @@ PopWindow.prototype = {
         }
 
         if(!isCreated){
-            this.createWin();
+            this.render();
             this.bindClick();
             return this.win;
         }
 
     }, 
-    createWin:function(){
+    render:function(){
         var windowEle = $('<div class="popup-window">');
         windowEle.appendTo($('body'));
 
@@ -57,12 +57,11 @@ PopWindow.prototype = {
         }
     },
     bindClick:function(){
-        var win = this.win;
         this.trigger.attr('role','window_trigger');
         $('body').delegate(this.triggerText,'click',function(e){
             e.preventDefault();
-            win.center();
-            win.open();
+            this.win.center();
+            this.win.open();
             kendo.init($('.popup-window'));
         });
     }
@@ -103,11 +102,11 @@ GridTable.prototype = {
         }
 
         if(!isCreated){
-            this.createGrid();
+            this.render();
             return this.grid;
         }
     }, 
-    createGrid:function(){
+    render:function(){
         var customSettings = this.customSettings || eval('('+this.trigger.data('options')+')');
         var opts;
         opts = $.extend( this.kendoWinSettings, customSettings);
@@ -219,21 +218,28 @@ Collpase.prototype = {
 
 var CityAutocomplete = function(){
     var that = {};
-    var input,opts,pcitydata,hcitydata,ppy,hpy,citygroup,url,process_citydata;
-    var hot_tabs;
+    var input,opts,hot_tabs;
     /* /FlightReserve/DataAssistant/GetCitys.aspx */
 
-    var posited_tabwindow = function(ele){
+    function process_citydata(d){
+        return jQuery.map(d.split(';'),function(n){
+            if(n.indexOf('|')==-1) return;
+            var item = n.split('|');
+            return {'code':item[0],'search':item[0]+'|'+item[2]+'|'+item[1],'py':item[1],'name':item[2]};
+        });
+    }
+
+    function posited_tabwindow(ele){
         var pos = ele.offset();
         hot_tabs.css({
             display:'block',
             position:'absolute',
             left:pos.left - 2,
             top:pos.top + 23
-        }).data('sugid',ele.attr('id'));
-    };
+        });
+    }
 
-    var process_pinyin = function(arr, group, col) {
+    function process_pinyin(arr, group, col){
         var result = [],
         len = group.length,
         r = 0,
@@ -259,9 +265,9 @@ var CityAutocomplete = function(){
         }
 
         return result;
-    };
+    }
 
-    var init_hotcity_tabs = function(data){
+    function render_hotcity_tabs(data){
         var templateID = opts.template || "#city_popup_tpl"; 
         var city_popup_tpl = kendo.template($(templateID).html());
         $('body').append(city_popup_tpl(data));
@@ -278,9 +284,9 @@ var CityAutocomplete = function(){
         hot_tabs.kendoTabStrip({
             animation:false
         });
-    };
+    }
 
-    var init_suggest_city = function(data){
+    function render_suggest_city(data){
         input.kendoAutoComplete({
             dataTextField:'search',
             animation:false,
@@ -317,6 +323,15 @@ var CityAutocomplete = function(){
             }
         });
 
+        var blur_event = function(e){
+            if (  e.relatedTarget && e.relatedTarget.id != "tabstrip" || e.relatedTarget === null){
+                hot_tabs.hide();
+            }
+        };
+
+        input.on('blur',blur_event);
+        hot_tabs.on('blur',blur_event);
+
         input.on('focus',function(e){
             var $t = $(this);
             if($t.val() == '') {
@@ -328,15 +343,6 @@ var CityAutocomplete = function(){
                 }
             }
         });
-
-        var blur_event = function(e){
-            if (  e.relatedTarget && e.relatedTarget.id != "tabstrip" || e.relatedTarget === null){
-                hot_tabs.hide();
-            }
-        };
-
-        input.on('blur',blur_event);
-        hot_tabs.on('blur',blur_event);
 
         input.on('keyup',function(){
             var $t = $(this);
@@ -356,7 +362,7 @@ var CityAutocomplete = function(){
                 }
             });
         });
-    };
+    }
 
     that.setOptions = function(settings){
         var defaults = {
@@ -364,14 +370,6 @@ var CityAutocomplete = function(){
             url: './searchflight_files/data.txt',
             group: ["ABCD","EFGHJ", "KLMN", "PQRSTW", "XYZ"]
         };
-
-        defaults.process_citydata = function(d){
-            return jQuery.map(d.split(';'),function(n){
-                if(n.indexOf('|')==-1) return;
-                var item = n.split('|');
-                return {'code':item[0],'search':item[0]+'|'+item[2]+'|'+item[1],'py':item[1],'name':item[2]};
-            });
-        }
 
         that.options = $.extend(defaults,settings);
         return that;
@@ -383,28 +381,23 @@ var CityAutocomplete = function(){
         }
 
         opts = that.options;
-
         input = opts.input;
-        citygroup = opts.group;
-        url = opts.url;
-        process_citydata = opts.process_citydata;
 
-        $.get(url,function(d){
+        $.get(opts.url,function(d){
             var citydata = d.split('@');
-            pcitydata = process_citydata(citydata[1]);
-            hcitydata = process_citydata(citydata[0]);
+            var pcitydata = process_citydata(citydata[1]);
+            var citygroup = opts.group;
 
+            // 去掉热门
             citygroup.shift();
-            ppy = process_pinyin(pcitydata, citygroup, "py");
 
-            var data = {
+            render_hotcity_tabs({
                 "group": citygroup,
-                "citylist": ppy,
-                "hotcitylist": hcitydata
-            }
+                "citylist": process_pinyin(pcitydata, citygroup, "py"),
+                "hotcitylist": process_citydata(citydata[0])
+            });
 
-            init_hotcity_tabs(data);
-            init_suggest_city(pcitydata);
+            render_suggest_city(pcitydata);
         });
 
         return that;
