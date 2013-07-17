@@ -57,11 +57,12 @@ PopWindow.prototype = {
         }
     },
     bindClick:function(){
-        this.trigger.attr('role','window_trigger');
-        $('body').delegate(this.triggerText,'click',function(e){
+        var that = this;
+        that.trigger.attr('role','window_trigger');
+        $('body').delegate(that.triggerText,'click',function(e){
             e.preventDefault();
-            this.win.center();
-            this.win.open();
+            that.win.center();
+            that.win.open();
             kendo.init($('.popup-window'));
         });
     }
