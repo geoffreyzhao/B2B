@@ -202,10 +202,9 @@ $(function(){
         <div id="flight_info_grid">
             <table class="grid-table">
                 <tr class="thead">
-                    <td><input type="checkbox" name="checkAll"/></td><td>航空公司</td><td>实际承运</td><td>航班号</td><td>机型</td><td>离港机场</td><td>到港机场</td><td>离港时间</td><td>到港时间</td><td>订座</td><td>燃油</td>
+                    <td>航空公司</td><td>实际承运</td><td>航班号</td><td>机型</td><td>离港机场</td><td>到港机场</td><td>离港时间</td><td>到港时间</td><td>订座</td><td>燃油</td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox" name="flight_checkbox"/></td>
                     <td>东方航空</td>
                     <td>HO</td>
                     <td>CZ3609</td>
@@ -218,7 +217,6 @@ $(function(){
                     <td> 10 </td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox" name="flight_checkbox"/></td>
                     <td>东方航空</td>
                     <td>HO</td>
                     <td>CZ3609</td>
@@ -254,20 +252,21 @@ $(function(){
                     <td style="width:60px;">姓名</td>
                     <td style="width:60px;">乘客类型</td>
                     <td style="width:120px;">证件号码</td>
-                    <td style="width:60px;">应收票款</td>
-                    <td style="width:60px;">票款</td>
-                    <td style="width:60px;">税款</td>
-                    <td style="width:60px;">代理费</td>
-                    <td style="width:60px;">奖励</td>
-                    <td style="width:60px;">开票费</td>
                     <td style="width:60px;">供应商</td>
                     <td style="width:60px;">政策编号</td>
+                    <td style="width:60px;">退票费</td>
+                    <td style="width:60px;">票款</td>
+                    <td style="width:60px;">税款</td>
+                    <td style="width:60px;">附加费</td>
+                    <td style="width:60px;">佣金</td>
+                    <td style="width:60px;">服务费</td>
+                    <td style="width:60px;">退款合计</td>
                     <td style="width:60px;" class="origin_price">应收票款</td>
                     <td style="width:60px;" class="origin_price">票款</td>
                     <td style="width:60px;" class="origin_price">税款</td>
                     <td style="width:60px;" class="origin_price">代理费</td>
                     <td style="width:60px;" class="origin_price">奖励</td>
-                    <td style="width:60px;" class="origin_price">开票费</td>
+                    <td style="width:60px;" id="left_origin_price" class="origin_price">开票费</td>
                 </tr> 
                 <tr>
                     <td>HFJDD2</td>
@@ -278,40 +277,17 @@ $(function(){
                     <td>ZHANG/YU</td>
                     <td>ADT</td>
                     <td>A123456</td>
-                    <td>5500</td>
-                    <td>5000</td>
-                    <td>1100</td>
-                    <td>5%</td>
-                    <td>3%+100</td>
-                    <td>20</td>
                     <td>不夜城</td>
                     <td>2013071</td>
+                    <td><input type="text" style="width:60px;" value="5500"/></td>
+                    <td><input type="text" style="width:60px;" value="5000"/></td>
+                    <td><input type="text" style="width:60px;" value="1100"/></td>
+                    <td><input type="text" style="width:60px;" value="5%"/></td>
+                    <td><input type="text" style="width:60px;" value="3%+100"/></td>
+                    <td><input type="text" style="width:60px;" value="20"/></td>
+                    <td><input type="text" style="width:60px;" value="8000"/></td>
                     <td class="origin_price">5500</td>
-                    <td class="origin_price">5000</td>
-                    <td class="origin_price">1000</td>
-                    <td class="origin_price">5%</td>
-                    <td class="origin_price">3%+100</td>
-                    <td class="origin_price">20</td>
-                </tr>
-                <tr>
-                    <td>HFJDD2</td>
-                    <td>781-2108936418</td>
-                    <td>C1</td>
-                    <td>已出票</td>
-                    <td>XXXX</td>
-                    <td>ZHANG/YU</td>
-                    <td>ADT</td>
-                    <td>A123456</td>
-                    <td>5500</td>
-                    <td>5000</td>
-                    <td>1100</td>
-                    <td>5%</td>
-                    <td>3%+100</td>
-                    <td>20</td>
-                    <td>不夜城</td>
-                    <td>2013071</td>
-                    <td class="origin_price" id="left_origin_price">5500</td>
-                    <td class="origin_price">5000</td>
+                    <td class="origin_price">5500</td>
                     <td class="origin_price">1000</td>
                     <td class="origin_price">5%</td>
                     <td class="origin_price">3%+100</td>
@@ -338,71 +314,32 @@ $(function(){
     </div>
 </div>
 
-<div class="block block8 block-module clearfix">
-    <div class="block-title"><span>退票原因</span>
+<div class="block block8 block-module clearfix" style="min-height:60px">
+    <div class="block-title"><span>退票信息</span>
         <!--
         <span class="block-module-action">
         </span>
         -->
     </div> 
-    <div class="row">
-        <table>
+    <div class="row row1"> 
+        <table style="float:none;width:100%;">
             <tr>
-                <td><em>*</em>退票PNR</td>
-                <td><input type="text" style="width:130px;" readonly value="HGWFF"/></td>
-                <td colspan="2">
-                    <span class="prompt" style="color:#999999;border:1px solid #EFEFEF;display:block;width:295px;background-color:#FEFFEB;padding:5px;"><i></i>提示：填写已取消座位的退票PNR，部分退票时，需先分离出新PNR并取消座位，退票费以PNR取消时间为准</span> </td>
-            </tr>
-            <tr>
-                <td>请选择退票类型</td>
-                <td>
-                    <label><input id="" type="radio" name="ticket_type" />退票</label>
-                    &nbsp;&nbsp;&nbsp;
-                    <labeL><input id="" type="radio" name="ticket_type" />废票</label>
-                </td>
-                <td>退票原因</td>
-                <td>
-                    <select name="reason" style="width:166px;">
-                        <option value="当日作废" selected="">当日作废</option>
-                        <option value="按客规自愿退票">按客规自愿退票</option>
-                        <option value="民航原因（取消延误）">民航原因（取消延误）</option>
-                        <option value="客票换开">客票换开</option>
-                        <option value="因病全退">因病全退</option>
-                        <option value="其他原因">其他原因</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>附件</td>
-                <td colspan="3">
-                    <input id="" style="width:327px;" type="text" name="" value="选择文件" />
-                    <input class="button_gray" type="button" id="btn_upload" value="上传" />
-                </td>
-            </tr>
-            <tr>
-                <td>退票备注</td>
-                <td colspan="3">
-                    <textarea style="width:450px;" id="" name="" cols="60" rows="5"></textarea>
-                </td>
+                <td style="width:60px">退票类型</td>
+                <td style="width:120px"><em>废票</em></td>
+                <td style="width:60px">退票原因</td>
+                <td style="width:120px"><em>当日作废</em></td>
+                <td style="width:60px;">退票备注</td>
+                <td style="width:120px"><span>原PNR是 JY3RD</span></td>
+                <td style="width:60px">附件</td>
+                <td><span><a href="javascript:void(0);">123.jpg</a></span></td>
             </tr>
         </table>
-
-        <p>
-        注意事项：<br/>
-        1. 所有航司必须起飞2.5小时前提交废票。<br/>
-        2. 异地高扣17:30后如需废票需与退票部确认。<br/>
-        3. PNR导入生成的订单，请先取消座位再提交申请<br/>
-        4. 非自愿退票必须上传证明。<br/>
-        5. 请仔细阅读退改签规定，若有误差以航空公司实际规定为准<br/>
-        6. 提交退废票申请前，请注意<em>核对您的“票号信息”</em>，实际退票以<em>“票号”</em>为准<br/>
-        <em>退票紧急电话：021-62999004</em><br/>
-</p>
 
     </div>
 </div>
 
 <div class="block block4 block-module">
-    <div class="block-title"><span>请粘贴取消后完整的PNR信息</span>
+    <div class="block-title"><span>取消后完整的PNR信息</span>
         <!--
         <span class="block-module-action">
         </span>
@@ -643,18 +580,6 @@ $(function(){
              });
         });
 
-        $("#btn_upload").uploadify({
-            buttonClass   : "button_gray",
-            buttonText    : "浏 览",
-            width         : 71,
-            height        : 25,
-            uploader      : 'http://www.tz-local.com/test.php',
-            swf           : '/static/js/uploadify/uploadify.swf',
-            queueID       : 'queue',
-            removeTimeout :0,
-            onUploadSuccess:function(file,data,response){},
-            onUploadError:function(file,errorCode,errorMsg,errorString){alert(errorString);}
-        });
     })
 </script>
 </body>
