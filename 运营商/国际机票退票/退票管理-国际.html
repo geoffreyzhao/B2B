@@ -11,12 +11,23 @@
     <link href="../../static/css/ticket.css" rel="stylesheet" type="text/css"/>
     <script src="../../static/js/jquery.min.js" type="text/javascript"></script>
     <script src="../../static/js/kendo.web.js" type="text/javascript"></script>
+    
+    <script type="text/javascript" src="../../static/js/global.js"></script>
+    <script type="text/javascript">
+$(function(){
+    new Collpase({
+        limitHeight:110,
+        container:'.query' 
+    }).init();
+}) 
+    </script>
 
 <!--[if lt IE 8]> 
 <link rel="stylesheet" href="/static/css/ie.css" /> 
 <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
 <![endif]-->
-<!-- @CLB@ --></head>
+<!-- @CLB@ -->
+</head>
 <body>
     <div id="extHeader">
         <div></div>
@@ -65,7 +76,7 @@
         </div>
         
         <div class="query">
-          <table cellpadding="0" cellspacing="0" class="query_tab">
+          <table cellpadding="0" cellspacing="0" class="query_tab" style="margin-bottom:13px;">
             <tr>
               <td class="list_1">PNR</td>
               <td class="list_2"> <input type="text" value="JPPC1L" /> </td>
@@ -75,7 +86,7 @@
               <td class="list_6"> <input type="text" value="030312103112260001"/> </td>
               <td class="list_7">申请日期</td>
               <td class="list_8"> <input type="text" value="2013-06-25"/> <em>-</em> <input type="text" value="2013-06-25"/> </td>
-              <td class="list_9" rowspan="3"><a href="#" class="query_a">查 询</a></td>
+              <td class="list_9" rowspan="4"><a href="#" class="query_a">查 询</a></td>
             </tr>
             <tr>
               <td>航空公司</td>
@@ -91,13 +102,24 @@
               <td>客户名称</td>
               <td class="list_2_1"> <input type="text" value="全部" /> <a href="#">&nbsp;</a></td>
               <td>乘机人</td>
-              <td class="list_2_1"> <input type="text" value="全部" /> <a href="#">&nbsp;</a></td>
+              <td class="list_2_3"> <input type="text" value="全部" /> <a href="#">&nbsp;</a></td>
               <td>出票地</td>
               <td class="list_2_2"> <input type="text" value="上海不夜城营业点" /> <a href="#">&nbsp;</a></td>
               <td>退票原因</td>
               <td class="list_8_1"><select><option>全部</option></select></td>
-            </tr>  
-          </table>          
+            </tr> 
+            <tr>
+              <td><select class="shr"><option>审核人</option></select></td>
+              <td class="list_2_1"> <input type="text" /> <a href="#">&nbsp;</a></td>
+              <td colspan="2"><select class="select_1"><option>建单营业点</option></select> <select class="select_2"><option>全部</option></select></td>
+              <td>流程类型：</td>
+              <td class="list_10"><label><input type="checkbox" /> 审核</label> <label><input type="checkbox" /> 处理</label></td>
+              <td>业务类型：</td>
+              <td class="list_11"><label><input type="checkbox" /> 废票</label> <label><input type="checkbox" /> 退票</label> 
+                                 <label><input type="checkbox" /> 显示删除订单</label>
+              </td>
+            </tr> 
+          </table> 
         </div>
                
         <table cellpadding="0" cellspacing="0" class="discount_tab">
@@ -110,9 +132,11 @@
              <th>航程</th>
              <th>起飞时间</th>
              <th>乘机人</th>
+             <th>收银状态</th>
+             <th>退款合计</th>
              <th>退票费</th>
-             <th>出票时间</th>
              <th>申请时间</th>
+             <th>审核员</th>
              <th>状态</th>
              <th style=" width:40px;">操作</th>
           </tr>
@@ -125,9 +149,11 @@
              <td>太原-广州</td>
              <td>06-25 16:30</td>
              <td>梁绣花</td>
+             <td>已收银</td>
+             <td>1290.00</td>
              <td class="black">免费</td>
-             <td>06-19 16:30</td>
              <td>06-29 16:30</td>
+             <td>李晓明</td>
              <td>未审核</td>
              <td class="last_td">受理</td>
           </tr>
@@ -140,9 +166,11 @@
              <td>太原-广州</td>
              <td>06-25 16:30</td>
              <td>梁绣花</td>
+             <td>未收银</td>
+             <td>1290.00</td>
              <td class="black">免费</td>
-             <td>06-19 16:30</td>
              <td>06-29 16:30</td>
+             <td>李晓明</td>
              <td>审核中</td>
              <td class="last_td">受理</td>
           </tr>
@@ -155,9 +183,11 @@
              <td>太原-广州</td>
              <td>06-25 16:30</td>
              <td>梁绣花</td>
+             <td>已收银</td>
+             <td>1290.00</td>
              <td class="black">免费</td>
-             <td>06-19 16:30</td>
              <td>06-29 16:30</td>
+             <td>李晓明</td>
              <td>审核未通过</td>
              <td class="last_td">受理</td>
           </tr>
@@ -170,9 +200,11 @@
              <td>太原-广州</td>
              <td>06-25 16:30</td>
              <td>梁绣花</td>
+             <td>已收银</td>
+             <td>1290.00</td>
              <td class="red">906</td>
-             <td>06-19 16:30</td>
              <td>06-29 16:30</td>
+             <td>李晓明</td>
              <td>审核通过</td>
              <td class="last_td">受理</td>
           </tr>
@@ -185,9 +217,11 @@
              <td>太原-广州</td>
              <td>06-25 16:30</td>
              <td>梁绣花</td>
+             <td>已收银</td>
+             <td>1290.00</td>
              <td class="black">免费</td>
-             <td>06-19 16:30</td>
              <td>06-29 16:30</td>
+             <td>李晓明</td>
              <td>未废票</td>
              <td class="last_td">受理</td>
           </tr>
@@ -200,9 +234,11 @@
              <td>太原-广州</td>
              <td>06-25 16:30</td>
              <td>梁绣花</td>
+             <td>已收银</td>
+             <td>1290.00</td>
              <td class="red">906</td>
-             <td>06-19 16:30</td>
              <td>06-29 16:30</td>
+             <td>李晓明</td>
              <td>处理中</td>
              <td class="last_td">受理</td>
           </tr>
@@ -215,9 +251,11 @@
              <td>太原-广州</td>
              <td>06-25 16:30</td>
              <td>梁绣花</td>
+             <td>已收银</td>
+             <td>1290.00</td>
              <td class="black">免费</td>
-             <td>06-19 16:30</td>
              <td>06-29 16:30</td>
+             <td>李晓明</td>
              <td>完成</td>
              <td class="last_td">受理</td>
           </tr>
@@ -230,11 +268,13 @@
              <td>太原-广州</td>
              <td>06-25 16:30</td>
              <td>梁绣花</td>
+             <td>已收银</td>
+             <td>1290.00</td>
              <td class="black">免费</td>
-             <td>06-19 16:30</td>
              <td>06-29 16:30</td>
+             <td>李晓明</td>
              <td>完成</td>
-             <td class="last_td">&nbsp;</td>
+             <td class="last_td">受理</td>
           </tr>
           <tr>
              <td>030312103112260001</td>
@@ -245,11 +285,13 @@
              <td>太原-广州</td>
              <td>06-25 16:30</td>
              <td>梁绣花</td>
+             <td>已收银</td>
+             <td>1290.00</td>
              <td class="black">免费</td>
-             <td>06-19 16:30</td>
              <td>06-29 16:30</td>
+             <td>李晓明</td>
              <td>已取消</td>
-             <td class="last_td">&nbsp;</td>
+             <td class="last_td">受理</td>
           </tr>
           <tr>
              <td colspan="13" class="page_td">
@@ -270,7 +312,7 @@
              </td>
           </tr>
         </table>
-           
+                  
         <!-- 废票管理结束 -->
     </div>
 	</div>
@@ -288,3 +330,4 @@
     </div>
 </body>
 </html>
+
