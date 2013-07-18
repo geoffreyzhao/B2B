@@ -35,7 +35,8 @@ $(function(){
 <link rel="stylesheet" href="/static/css/ie.css" /> 
 <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
 <![endif]-->
-<!-- @CLB@ --></head>
+<!-- @CLB@ -->
+</head>
 <body>
     <div id="extHeader">
         <div></div>
@@ -94,7 +95,9 @@ $(function(){
                      <td class="zchk">适用舱位</td>
                      <td class="sycw"> <input type="text"/> </td>
                      <td class="zchk">政策类型</td>
-                     <td class="quanbu"> <select><option>全部</option></select> </td>
+                     <td class="quanbu"> <select><option>全部</option> <option>普通政策</option> <option>特价政策</option> 
+                                         <option>团队政策</option> <option>散客K位政策</option>
+                     </td>
                      <td class="xyzc_cx" rowspan="6"><a href="#" class="xyzc_cx_a">查询</a></td>
                   </tr> 
                   <tr>
@@ -114,21 +117,20 @@ $(function(){
                      <td> <input type="text" class="cjrq_input_1"/> <span class="cjrq_span">至</span>  <input type="text" class="cjrq_input_2"/></td>
                   </tr> 
                   <tr>
-                     <td class="zchk">本地/异地</td>
-                     <td class="mu"> <select><option>全部</option></select> </td>
-                     <td class="zchk">供应商</td>
-                     <td class="cklx"> <select><option>不夜城BSP</option></select> </td>
+                     <td class="zchk">出票类型</td>
+                     <td class="mu"> <select><option>手动</option></select> </td>
+                     <td class="zchk">政策状态</td>
+                     <td class="cklx"> <select><option>所有</option></select> </td>
                      <td class="zchk">发布日期</td>
                      <td><div class="cjrq"> <input type="text" class="cjrq_input_1"/> <span class="cjrq_span">至</span>  <input type="text" class="cjrq_input_2"/></div></td>
                   </tr> 
                   <tr>
-                     <td class="zchk">出票类型</td>
-                     <td class="mu"> <select><option>全部</option></select> </td>
                      <td class="zchk">OFFICE号</td>
-                     <td class="cklx"> <select><option>全部</option></select> </td>
-                     <td class="zchk">政策返点</td>
-                     <td> <div class="zcfd_1"><input type="text"/> <span>%</span></div> 
-                          <div class="zcfd_2"> <span>供应商</span> <select> <option>不夜城BSP</option> </select> </div>
+                     <td class="mu"> <select><option>所有</option></select> </td>
+                     <td class="zchk">代理费</td>
+                     <td class="cklx"> <input type="text"/> <span>%</span> </td>
+                     <td class="zchk">供应商</td>
+                     <td class="quanbu"> <select> <option>不夜城BSP</option> </select> </div>
                      </td>
                   </tr> 
                   <tr>
@@ -153,7 +155,7 @@ $(function(){
                      <p class="qx_p"> <a href="#" class="qx_p_a_1">发布</a>
                        <a href="#">挂起</a> <span>|</span>
                        <a href="#">作废</a> <span>|</span>
-                       <a href="#" class="qx_p_a">修改返点</a>
+                       <a href="#" class="qx_p_a">修改代理费</a>
                      </p>
                   </div>
                   <div class="qx_right">
@@ -166,7 +168,7 @@ $(function(){
               <div class="xyzc_tab2_div">
               <table cellpadding="0" cellspacing="0" class="xyzc_tab2_1">
                  <tr>
-                    <th class="xyzc_th_1"><input type="checkbox"/></th>
+                    <th class="xyzc_th_1">&nbsp;</th>
                     <th class="xyzc_th_2">航司</th>
                     <th class="xyzc_th_3">票证</th>
                     <th class="xyzc_th_4">航程</th>
@@ -174,13 +176,13 @@ $(function(){
                     <th class="xyzc_th_6">出发机场</th>
                     <th class="xyzc_th_7">到达机场</th>
                     <th class="xyzc_th_8">航班限制</th>
-                    <th class="xyzc_th_9">排除航段</th>
                     <th class="xyzc_th_10">适用舱位</th>
-                    <th class="xyzc_th_11">返点</th>
-                    <th class="xyzc_th_12">后返</th>
-                    <th class="xyzc_th_13">乘客<br>类型</th>
-                    <th class="xyzc_th_14">出票日期</th>
-                    <th class="xyzc_th_15">乘机日期</th>
+                    <th class="xyzc_th_13_1">代理费</th>
+                    <th class="xyzc_th_12">奖励</th>
+                    <th class="xyzc_th_13_1">开票费</th>
+                    <th class="xyzc_th_13_1">乘客<br>类型</th>
+                    <th class="xyzc_th_14">政策有效期</th>
+                    <th class="xyzc_th_15">出票有效期</th>
                     <th class="xyzc_th_16">发布时间</th>
                     <th class="xyzc_th_17">发布人</th>
                     <th class="xyzc_th_18">状态</th>
@@ -195,10 +197,10 @@ $(function(){
                      <td>SHA/PVG/<br>SZX/WUH</td>
                      <td>PEK</td>
                      <td>所有</td>
-                     <td>&nbsp; </td>
                      <td>FCYBMHKLQGV</td>
                      <td>6.0</td>
-                     <td>2.0</td>
+                     <td>6.0</td>
+                     <td>6.0</td>
                      <td>成人</td>
                      <td>2010/09/01<br>至2012/10/01</td>
                      <td>2010/09/01<br>至2012/10/01</td>
@@ -216,10 +218,10 @@ $(function(){
                      <td class="third">SHA/PVG</td>
                      <td class="third">全国</td>
                      <td class="third">排除2301<br>/2333</td>
-                     <td class="third">SHA-WUH</td>
                      <td class="third">FCYBMHKLQGV</td>
                      <td class="third">6.0</td>
-                     <td class="third">2.0</td>
+                     <td class="third">6.0</td>
+                     <td class="third">6.0</td>
                      <td class="third">儿童</td>
                      <td class="third">2010/09/01<br>至2012/10/01</td>
                      <td class="third">2010/09/01<br>至2012/10/01</td>
@@ -237,10 +239,10 @@ $(function(){
                      <td class="huise">排除<br>SHA/PVG</td>
                      <td class="huise">排除PEK</td>
                      <td class="huise">所有</td>
-                     <td class="huise">&nbsp; </td>
                      <td class="huise">MH</td>
                      <td class="huise">5.0</td>
-                     <td class="huise">2.0</td>
+                     <td class="huise">5.0</td>
+                     <td class="huise">5.0</td>
                      <td class="huise">不限</td>
                      <td class="huise">2010/09/01<br>至2012/10/01</td>
                      <td class="huise">2010/09/01<br>至2012/10/01</td>
@@ -258,10 +260,10 @@ $(function(){
                      <td>SHA/PVG</td>
                      <td>全国</td>
                      <td>所有</td>
-                     <td>&nbsp; </td>
                      <td>G</td>
                      <td>6.0</td>
-                     <td>2.0</td>
+                     <td>6.0</td>
+                     <td>6.0</td>
                      <td>成人</td>
                      <td>2010/09/01<br>至2012/10/01</td>
                      <td>2010/09/01<br>至2012/10/01</td>
@@ -279,10 +281,10 @@ $(function(){
                      <td class="huise">SHA/PVG</td>
                      <td class="huise">全国</td>
                      <td class="huise">所有</td>
-                     <td class="huise">&nbsp;</td>
                      <td class="huise">GV</td>
                      <td class="huise">6.0</td>
-                     <td class="huise">2.0</td>
+                     <td class="huise">6.0</td>
+                     <td class="huise">6.0</td>
                      <td class="huise">成人</td>
                      <td class="huise">2010/09/01<br>至2012/10/01</td>
                      <td class="huise">2010/09/01<br>至2012/10/01</td>
@@ -300,10 +302,10 @@ $(function(){
                      <td>&nbsp;</td>
                      <td>全国</td>
                      <td>所有</td>
-                     <td>&nbsp; </td>
                      <td>CYBMHKLQGV</td>
                      <td>5.0</td>
-                     <td>2.0</td>
+                     <td>5.0</td>
+                     <td>5.0</td>
                      <td>儿童</td>
                      <td>2010/09/01<br>至2012/10/01</td>
                      <td>2010/09/01<br>至2012/10/01</td>
@@ -321,10 +323,10 @@ $(function(){
                      <td>&nbsp;</td>
                      <td>全国</td>
                      <td>所有</td>
-                     <td>&nbsp; </td>
                      <td>MH</td>
                      <td>6.0</td>
-                     <td>2.0</td>
+                     <td>6.0</td>
+                     <td>6.0</td>
                      <td>不限</td>
                      <td>2010/09/01<br>至2012/10/01</td>
                      <td>2010/09/01<br>至2012/10/01</td>
@@ -342,10 +344,10 @@ $(function(){
                      <td>&nbsp;</td>
                      <td>全国</td>
                      <td>所有</td>
-                     <td>&nbsp; </td>
                      <td>G</td>
                      <td>6.0</td>
-                     <td>2.0</td>
+                     <td>6.0</td>
+                     <td>6.0</td>
                      <td>成人</td>
                      <td>2010/09/01<br>至2012/10/01</td>
                      <td>2010/09/01<br>至2012/10/01</td>
@@ -356,7 +358,7 @@ $(function(){
                  </tr>
                  <tr> 
                    <td colspan="19" class="td yema_td">
-                   <div class="yema_1">
+                  <div class="yema_1">
                                     <p class="yema_p_1">共 <span>132 </span> 条记录</p>
                                     <a href="#" class="ye_left_a">&nbsp;</a>
                                      <ul class="yemaul">
