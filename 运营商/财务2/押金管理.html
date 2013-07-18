@@ -4,23 +4,21 @@
 <title>平台建单</title>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<script type="text/javascript" src="//dev:35729/livereload.js"></script>
-<link rel="stylesheet" href="/css/kendo.common.min.css" />
-<link rel="stylesheet" href="/css/kendo.gray.css" />
-<link rel="stylesheet" href="/css/kendo.reset.css" />
-<link rel="stylesheet" href="/css/global.css" />
-<link rel="stylesheet" href="/css/common.css" />
-<link rel="stylesheet" href="/css/b2b.css" />
-<link rel="stylesheet" href="/css/finance.css" />
-<script type="text/javascript" src="/js/vendor/jquery.min.js"></script>
-<script type="text/javascript" src="/js/plugins/jquery.fixedBar.js"></script>
-<script type="text/javascript" src="/js/kendo.web.js"></script>
-<script type="text/javascript" src="/js/cultures/kendo.culture.zh-CN.min.js"></script>
-<script type="text/javascript" src="/js/global.js"></script>
-<script type="text/javascript" src="/js/finance.js"></script>
+<link rel="stylesheet" href="/static/css/kendo.common.min.css" />
+<link rel="stylesheet" href="/static/css/kendo.gray.css" />
+<link rel="stylesheet" href="/static/css/kendo.reset.css" />
+<link rel="stylesheet" href="/static/css/common.css" />
+<link rel="stylesheet" href="/static/css/b2b.css" />
+<link rel="stylesheet" href="/static/css/finance.css" />
+<script type="text/javascript" src="/static/js/vendor/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
+<script type="text/javascript" src="/static/js/kendo.web.js"></script>
+<script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+<script type="text/javascript" src="/static/js/global.js"></script>
+<script type="text/javascript" src="/static/js/finance.js"></script>
 <!--[if lt IE 8]>
-<link rel="stylesheet" href="/css/ie.css" />
-<script type="text/javascript" src="/js/vendor/IE7.min.js"></script>
+<link rel="stylesheet" href="/static/css/ie.css" />
+<script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script>
 <![endif]-->
 </head><body> <div id="extHeader">
 <div></div>
@@ -183,29 +181,56 @@ rowTemplate: kendo.template($("#block2-grid-row-template").html())
 </tr>
 </script>
 <script type="text/x-kendo-template" id="ac-new-template">
-<div style="width:460px;">
+<div style="width:510px;">
 <div class="ac-new-window-container">
 <ul class="flat-list">
-<li>
-<label style="width:84px;" class="vertical-head">选择客户：</label>
+<li style="width:400px">
+<label class="vertical-head">客户方式：</label>
+<span>
+<label> <input class="ctype" data-type="choice1" name="xxx" type="radio" checked> 押金充值</label>
+<label> <input class="ctype" data-type="choice2" name="xxx" type="radio"> 账户抵扣</label>
+</span>
+</li>
+<li style="width:400px">
+<label class="vertical-head">选择客户：</label>
 <input style="width:80px">
 <button class="btns btn-search ac-search-customer">查询</button>
 </li>
-<li>
+<li style="width:400px;display:none;" class="choice2">
+<label class="vertical-head">可用余额：</label>
+<span>3211421</span>
+</li>
+<li style="width:400px;display:none;" class="choice2">
 <label class="vertical-head">押金金额：</label>
-<input style="width:100px">
+<input style="width:120px">
 </li>
-<li>
-<label class="vertical-head" style="width:84px">确认押金金额：</label>
-<input style="width:100px">
-</li>
-<li>
-<label class="vertical-head">押金类型：</label>
-<input style="width:100px" data-role="dropdownlist" data-source="['选择']">
+<li style="width:510px" class="choice1">
+<label class="vertical-head">押金金额：</label>
+<input data-role="dropdownlist" data-index="0" data-value-field="value" data-text-field="text" data-source="[{value:1,text:'现金'}, {value:2,text:'刷卡'}, {value:3,text:'支票'}, {value:4,text:'汇款'}, {value:5,text:'网上支付'}, {value:6,text:'电话支付'}, {value:6,text:'其它'}]" style="width:80px;">
+<input style="width:120px">
+添加：
+<button class="btns btn-ac-blue ac-add-row" data-index="0">现金</button>
+<button class="btns btn-ac-blue ac-add-row" data-index="1">刷卡</button>
+<button class="btns btn-ac-blue ac-add-row" data-index="2">支票</button>
+<button class="btns btn-ac-blue ac-add-row" data-index="3">汇款</button>
 </li>
 <li style="width:400px;">
-<label style="vertical-align:top; width:84px;" class="vertical-head">摘要：</label>
+<label class="vertical-head">押金类型：</label>
+<select style="width:120px" data-role="dropdownlist">
+<option selected value="选择">选择</option>
+<option value="行程单">行程单</option>
+<option value="pos机">pos机</option>
+<option value="国内机票押金">国内机票押金</option>
+<option value="国际机票押金">国际机票押金</option>
+</select>
+</li>
+<li style="width:400px;">
+<label style="vertical-align:top;" class="vertical-head">备注：</label>
 <textarea></textarea>
+</li>
+<li style="width:400px;">
+<label style="vertical-align:top;">总计：</label>
+佰陆拾捌万柒仟玖佰贰
 </li>
 </ul>
 </div>
@@ -237,6 +262,14 @@ rowTemplate: kendo.template($("#block2-grid-row-template").html())
 <button class="btns button_2_2">取 消</button>
 </div>
 </script>
+<script type="text/x-kendo-template" id="ac-add-row-template">
+<li style="width:400px;" class="choice1">
+<label class="vertical-head">&nbsp;</label>
+<input data-role="dropdownlist" data-index="#= data.index #" data-value-field="value" data-text-field="text" data-source="[{value:1,text:'现金'}, {value:2,text:'刷卡'}, {value:3,text:'支票'}, {value:4,text:'汇款'}, {value:5,text:'网上支付'}, {value:6,text:'电话支付'}, {value:6,text:'其它'}]" style="width:80px;">
+<input style="width:120px">
+<button class="btns btn-ac-blue ac-del-row">删除</button>
+</li>
+</script>
 <script type="text/javascript">
 $(function(){
 var ac_new = new PopWindow('.ac-new',{
@@ -249,6 +282,27 @@ title:'确认押金',
 width:'470'
 }).init();
 });
+$('body').delegate('.ac-add-row', 'click', function(){
+var that = $(this);
+var html = kendo.template($('#ac-add-row-template').html())({index:that.data('index')});
+that.closest('li').after(html);
+kendo.init(that.closest('ul'));
+});
+$('body').delegate('.ac-del-row', 'click', function(){
+var that = $(this);
+that.closest('li').remove();
+});
+$('body').delegate('.ctype', 'change', function(){
+var type = $(this).data('type');
+if (this.checked && type == 'choice1') {
+$('.choice1').show();
+$('.choice2').hide();
+}
+if (this.checked && type == 'choice2') {
+$('.choice2').show();
+$('.choice1').hide();
+}
+})
 </script>
 <script type="text/x-kendo-template" id="ac-search-user-template">
 <div class="row">
