@@ -15,7 +15,7 @@
     <script src="../../static/js/kendo.web.js" type="text/javascript"></script>
     <script type="text/javascript" src="../../static/js/public.js"></script>
 
-    <script type="text/javascript" src="../../static/js/global.js"></script>
+<!--    <script type="text/javascript" src="../../static/js/global.js"></script>
     <script type="text/javascript">
 $(function(){
     new Collpase({
@@ -23,7 +23,8 @@ $(function(){
         container:'.xyzc_div' 
     }).init();
 }) 
-    </script>
+    </script>-->
+    
 	<!--<link href="/static/css/common.css" rel="stylesheet" />
 	<link href="/static/css/b2b.css" rel="stylesheet" />
     <link href="/static/css/zhuzhijiagou.css" rel="stylesheet" type="text/css" />   
@@ -77,14 +78,19 @@ $(function(){
 			<!-- start zhuzhijiagou -->
         
             <div class="zhuzhijiagou">
-               <div class="xieyi">
-                 <h2>返回</h2>
-                 <p class="xieyi_chakan"> <a href="#">协议查看</a> <a href="#" class="xieyi_chakan_a">政策查看</a></p>
-                  <div class="jdwh-btn">
-                    <a class="jdwh-btn-a" href="新增酒店 .html" onClick="add_department();">添加政策</a>
-                  </div>
-               </div>
-               
+               <div class="code_2">
+                  <a href="#" class="code_a">政策管理</a>
+                  <a href="#" class="code_a_1">后返管理</a>
+                  <a href="#">标签管理</a>
+                  <a href="#">协议管理</a>
+                  <div class="add_btn">
+                      <a href="javascript:;" class="button_secondary adaptiveButton small">
+                      <span class="left"></span>
+                      <span class="center">添加后返</span>
+                      <span class="right"></span>
+                      </a>
+                   </div>
+                </div>
               
                <div class="xyzc_div">
                <table cellpadding="0" cellspacing="0" class="xyzc_tab1">
@@ -93,8 +99,8 @@ $(function(){
                      <td class="mu"><select><option>MU东航</option></select></td>
                      <td class="zchk">适用舱位</td>
                      <td class="sycw"> <input type="text"/> </td>
-                     <td class="zchk">政策类型</td>
-                     <td class="quanbu"> <select><option>全部</option></select> </td>
+                     <td class="zchk">返点</td>
+                     <td> <input type="text" style="width:145px;"/> <span>%</span> </td>
                      <td class="xyzc_cx" rowspan="6"><a href="#" class="xyzc_cx_a">查询</a></td>
                   </tr> 
                   <tr>
@@ -110,44 +116,22 @@ $(function(){
                      <td class="mu"> <select><option>全部</option></select> </td>
                      <td class="zchk">乘客类型</td>
                      <td class="cklx"> <select><option>全部</option></select> </td>
-                     <td class="zchk">出票日期</td>
+                     <td class="zchk">发布日期</td>
                      <td> <input type="text" class="cjrq_input_1 datePicker"/> <span class="cjrq_span">至</span>  <input type="text" class="cjrq_input_2 datePicker"/></td>
                   </tr> 
                   <tr>
-                     <td class="zchk">本地/异地</td>
-                     <td class="mu"> <select><option>全部</option></select> </td>
-                     <td class="zchk">供应商</td>
-                     <td class="cklx"> <select><option>不夜城BSP</option></select> </td>
-                     <td class="zchk">发布日期</td>
-                     <td><div class="cjrq"> <input type="text" class="cjrq_input_1 datePicker"/> <span class="cjrq_span">至</span>  <input type="text" class="cjrq_input_2 datePicker"/></div></td>
-                  </tr> 
-                  <tr>
-                     <td class="zchk">出票类型</td>
-                     <td class="mu"> <select><option>全部</option></select> </td>
-                     <td class="zchk">OFFICE号</td>
-                     <td class="cklx"> <select><option>全部</option></select> </td>
-                     <td class="zchk">政策返点</td>
-                     <td> <div class="zcfd_1"><input type="text"/> <span>%</span></div> 
-                          <div class="zcfd_2"> <span>供应商</span> <select> <option>不夜城BSP</option> </select> </div>
-                     </td>
-                  </tr> 
-                  <tr>
-                     <td class="zchk">协议名称</td>
-                     <td> <input type="text"/ class="xymc_input"></td>
                      <td class="zchk">发布人</td>
                      <td class="faburen"><input type="text"/> <a href="#"></a></td>
-                     <td class="zchk">票证类型</td>
-                     <td> <P class="pzlx_p"><input type="checkbox"/><span>BSP</span></P> 
-                          <P class="pzlx_p"><input type="checkbox"/><span>B2B</span></P> 
-                          <P class="pzlx_p_1"><input type="checkbox"/><span>CRS</span></P>
-                     </td>                     
+                     <td class="zchk">政策状态</td>
+                     <td class="cklx"> <select><option>所有</option></select> </td>
+                     <td class="zchk">政策类型</td>
+                     <td> <select style="width:155px;"><option>全部</option></select> </td>
                   </tr> 
                </table>
                </div>
               
               <div class="qx">
                   <div class="xuanze">
-                    <p class="fxk"><input type="checkbox"/> <span>全选</span></p>
                      <p class="qx_p"> <a href="#" class="qx_p_a_1">发布</a>
                        <a href="#">挂起</a> <span>|</span>
                        <a href="#">作废</a> <span>|</span>
@@ -165,39 +149,35 @@ $(function(){
               <table cellpadding="0" cellspacing="0" class="xyzc_tab2">
                 <tr>
                   <th class="xyzc_th_1"><input type="checkbox"/></th>
+                  <th class="xyzc_th_2">编码</th>
                   <th class="xyzc_th_2">航司</th>
+                  <th class="xyzc_th_7">政策类型</th>                  
+                  <th class="xyzc_th_4">航程</th>
                   <th class="xyzc_th_6">出发机场</th>
                   <th class="xyzc_th_7">到达机场</th>
-                  <th class="xyzc_th_4">航程</th>
                   <th class="xyzc_th_8">航班限制</th>
                   <th class="xyzc_th_10">适用舱位</th>
                   <th class="xyzc_th_11">返点</th>
-                  <th class="xyzc_th_12">后返</th>
                   <th class="xyzc_th_13">乘客类型</th>
-                  <th class="xyzc_th_3">票证</th>
-                  <th class="xyzc_th_5">出票</th>
-                  <!--<th class="xyzc_th_9">排除航段</th>-->
-                  <!--<th class="xyzc_th_14">出票日期</th>-->
                   <th class="xyzc_th_15">乘机日期</th>
                   <th class="xyzc_th_16">发布时间</th>
                   <th class="xyzc_th_17">发布人</th>
-                  <th class="xyzc_th_18">状态</th>
+                  <th class="xyzc_th_13">政策状态</th>
                   <th class="xyzc_th_19">操作</th>
                 </tr>
                 <tr>
                   <td><input type="checkbox"/></td>
+                  <td>000001</td>
                   <td>MU</td>
+                  <td>普通</td>
+                  <td>单程</td>
                   <td>SHA/PVG/<br>
                     SZX/WUH</td>
                   <td>PEK</td>
-                  <td>单程</td>
                   <td>所有</td>
                   <td>FCYBMHKLQGV</td>
                   <td>6.0</td>
-                  <td>2.0</td>
                   <td>成人</td>
-                  <td>BSP</td>
-                  <td>自动</td>
                   <td>2010/09/01<br>
                     至2012/10/01</td>
                   <td>2010/09/01<br>
@@ -208,17 +188,16 @@ $(function(){
                 </tr>
                 <tr>
                   <td class="third"><input type="checkbox"/></td>
+                  <td class="third">000001</td>
                   <td class="third">CA</td>
+                  <td class="third">普通</td>
+                  <td class="third">单程</td>
                   <td class="third">SHA/PVG</td>
                   <td class="third">全国</td>
-                  <td class="third">往返</td>
                   <td class="third">排除2301<br>/2333</td>
                   <td class="third">FCYBMHKLQGV</td>
                   <td class="third">6.0</td>
-                  <td class="third">2.0</td>
-                  <td class="third">儿童</td>
-                  <td class="third">B2B</td>
-                  <td class="third">手动</td> 
+                  <td class="third">儿童</td> 
                   <td class="third">2010/09/01<br>
                     至2012/10/01</td>
                   <td class="third">2010/09/01<br>
@@ -229,18 +208,17 @@ $(function(){
                 </tr>
                 <tr>
                   <td class="huise"><input type="checkbox"/></td>
+                  <td class="huise">000001</td>
                   <td class="huise">FM</td>
+                  <td class="huise">特舱</td>
+                  <td class="huise">单程</td>
                   <td class="huise">排除<br>
                     SHA/PVG</td>
                   <td class="huise">排除PEK</td>
-                  <td class="huise">单程</td>
                    <td class="huise">所有</td>
                    <td class="huise">MH</td>
                    <td class="huise">5.0</td>
-                  <td class="huise">2.0</td>
-                  <td class="huise">不限</td>
-                  <td class="huise">BSP</td>                  
-                  <td class="huise">手动</td> 
+                  <td class="huise">不限</td> 
                   <td class="huise">2010/09/01<br>
                     至2012/10/01</td>
                   <td class="huise">2010/09/01<br>
@@ -249,19 +227,18 @@ $(function(){
                   <td class="huise">已作废</td>
                   <td><a href="#">修改</a> <a href="#">复制</a></td>
                 </tr>
-                <tr>
+                <tr class="hui_bg">
                   <td><input type="checkbox"/></td>
+                  <td>000001</td>
                   <td>MU</td>
+                  <td>特价申请</td>
+                  <td>往返</td>
                   <td>SHA/PVG</td>
                   <td>全国</td>
-                  <td>往返</td>
                   <td>所有</td>
                   <td>G</td>
                   <td>6.0</td>
-                  <td>2.0</td>
                   <td>成人</td>
-                  <td>B2B</td>                  
-                  <td>手动</td>
                   <td>2010/09/01<br>
                     至2012/10/01</td>
                   <td>2010/09/01<br>
@@ -272,17 +249,16 @@ $(function(){
                 </tr>
                 <tr>
                   <td class="huise"><input type="checkbox"/></td>
+                  <td class="huise">000001</td>
                   <td class="huise">CA</td>
+                  <td class="huise">特价申请</td>
+                  <td class="huise">往返</td>
                   <td class="huise">SHA/PVG</td>
                   <td class="huise">全国</td>
-                  <td class="huise">单程</td>
                   <td class="huise">所有</td>
                   <td class="huise">GV</td>
                   <td class="huise">6.0</td>
-                  <td class="huise">2.0</td>
                   <td class="huise">成人</td>
-                  <td class="huise">BSP</td>
-                  <td class="huise">手动</td>
                   <td class="huise">2010/09/01<br>
                     至2012/10/01</td>
                   <td class="huise">2010/09/01<br>
@@ -291,19 +267,18 @@ $(function(){
                   <td class="huise">已作废</td>
                   <td><a href="#">修改</a> <a href="#">复制</a></td>
                 </tr>
-                <tr>
+                <tr class="hui_bg">
                   <td><input type="checkbox"/></td>
+                  <td>000001</td>
                   <td>CA</td>
-                  <td>&nbsp;</td>
+                  <td>特殊高返</td>
+                  <td>往返</td>
+                  <td>SHA/PVG</td>
                   <td>全国</td>
-                  <td>单程</td>
                   <td>所有</td>
                   <td>CYBMHKLQGV</td>
                   <td>5.0</td>
-                  <td>2.0</td>
                   <td>儿童</td>
-                  <td>BSP</td>
-                  <td>手动</td>
                   <td>2010/09/01<br>
                     至2012/10/01</td>
                   <td>2010/09/01<br>
@@ -314,17 +289,16 @@ $(function(){
                 </tr>
                 <tr>
                   <td><input type="checkbox"/></td>
+                  <td>000001</td>
                   <td>CA</td>
-                  <td>&nbsp;</td>
+                  <td>特殊高返</td>
+                  <td>往返</td>
+                  <td>SHA/PVG</td>
                   <td>全国</td>
-                  <td>单程</td>
                   <td>所有</td>
                   <td>MH</td>
                   <td>6.0</td>
-                  <td>2.0</td>
                   <td>不限</td>
-                  <td>BSP</td>
-                  <td>手动</td>
                   <td>2010/09/01<br>
                     至2012/10/01</td>
                   <td>2010/09/01<br>
@@ -333,19 +307,18 @@ $(function(){
                   <td>已发布</td>
                   <td><a href="#">修改</a> <a href="#">复制</a></td>
                 </tr>
-                <tr>
+                <tr class="hui_bg">
                   <td><input type="checkbox"/></td>
+                  <td>000001</td>
                   <td>CA</td>
-                  <td>&nbsp;</td>
+                  <td>特殊高返</td>
+                  <td>不限</td>
+                  <td>SHA/PVG</td>
                   <td>全国</td>
-                  <td>单程</td>
                   <td>所有</td>
                   <td>G</td>
                   <td>6.0</td>
-                  <td>2.0</td>
                   <td>成人</td>
-                  <td>BSP</td>
-                  <td>手动</td>
                   <td>2010/09/01<br>
                     至2012/10/01</td>
                   <td>2010/09/01<br>
@@ -355,7 +328,7 @@ $(function(){
                   <td><a href="#">修改</a> <a href="#">复制</a></td>
                 </tr>
                 <tr>
-                  <td colspan="19" class="td yema_td">
+                  <td colspan="16" class="td yema_td">
                    <div class="yema_1">
                                     <p class="yema_p_1">共 <span>132 </span> 条记录</p>
                                     <a href="#" class="ye_left_a">&nbsp;</a>
