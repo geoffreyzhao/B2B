@@ -2,7 +2,7 @@ jQuery(function($){
     kendo.culture('zh-CN');
     kendo.init($('body'));
     //起飞时间
-    // $(".timepicker").kendoTimePicker();
+    $(".timepicker").kendoTimePicker();
 
     CityAutocomplete.setOptions({
         url:'/static/js/data.txt',
