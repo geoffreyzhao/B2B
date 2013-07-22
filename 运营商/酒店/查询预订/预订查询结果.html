@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta content="text/html" charset="utf-8">
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/b2b.css">
+    <link rel="stylesheet" href="/static/css/kendo.common.css">
+    <link rel="stylesheet" href="/static/css/kendo.gray.css">
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/hotel.css">
+    <style type="text/css">
+        div.panel{padding:0;width:980px}
+        input[type=text]{height:20px}
+        input[type=button]{border:none}
+        .button_6{padding:3px 10px;color:#000000;background:#ffffff;display:inline-block}
+        .button_6:hover,.button_6.select{background:#10A9DD;color:#ffffff}
+        .ico_search{ width:19px; background:url(/static/images/xyzc_shuoshuo.jpg) no-repeat; display:inline-block; margin:7px 0 0 3px;}
+        .tbl_customersList thead td{background:#E4E4E4;border-right:1px solid #ffffff}
+        .tbl_customersList tbody td{border-right:1px solid #E4E4E4}
+        .searchPanel{background:#FFFCE8;padding:10px}
+        .searchPanel input[type=text]{height:20px;margin:0 10px 0 5px;border:1px solid #F5B581;background-color:#ffffff;width:100px}
+        .filterPanel{padding:10px;border-top:3px solid #FFA86E}
+        .filterListItem{height:160px}
+        .filterTitle{font-weight:bold;margin:-5px 0 5px 0}
+        .filterAny{margin-bottom:5px}
+        .ul_filterList li{margin-bottom:5px;float:left}
+        .filterHotelStyle li{width:78px}
+        .filterParamsList{margin:0 70px}
+        .filterParamsList li{float:left;margin:0 5px 5px 0;border:1px solid #9FCDDD;background:#ECF7FB;padding:2px 6px}
+        .filterParamsPanel{position:relative;padding:10px;}
+        .hotelListToolsBar{height:40px;line-height:40px;padding:0 10px;background:#F6F6F6}
+        .pagesLeft{background:url('/static/images/pagesLeftRight.png') no-repeat 0 0;display:inline-block;width:16px;height:20px;vertical-align:middle}
+        .pagesRight{background:url('/static/images/pagesLeftRight.png') no-repeat -16px 0;display:inline-block;width:16px;height:20px;vertical-align:middle}
+        .pagesLeft.enable{background-position:0 -24px }
+        .pagesRight.enable{background-position:-16px -24px }
+
+
+        .btn_sort{background:url(/static/images/btn_sort.png) no-repeat 0 0;display:inline-block;width:9px;height:13px;vertical-align:middle}
+        .btn_sort.desc{background-position:0 -30px}
+        .btn_sort.asc{background-position:0 -15px}
+    </style>
+</head>
+<body>
+<div class="topFixedToolsBar">
+    <div style="float:left;border-right:1px solid #ffffff">
+        <a href="#" style="display:inline-block;line-height:33px;font-size: 14px;font-weight: bold;border-right: 1px solid #CDCECE;padding: 0 8px;">◀ 返回</a>
+    </div>
+    <div class="fixedMenu" style="border-right:0">
+        <a href="#" class="current">预付酒店</a>
+        <a href="#">现付酒店</a>
+        <a href="#">酒店询价</a>
+    </div>
+</div>
+<div class="main" style="background:none">
+    <div class="panel" style="padding:20px 0 0;width:980px;overflow:hidden">
+        <div style="padding:0 20px 10px 20px">
+            客户名称 <input type="text" name="" id="" style="height:18px"><a href="#" class="ico_search">&nbsp;</a>
+        </div>
+        <table class="tbl_customersList" style="width:981px">
+            <thead>
+                <tr>
+                    <td>客户名称</td>
+                    <td>用户组</td>
+                    <td>客户类型</td>
+                    <td>结算周期</td>
+                    <td>联系人</td>
+                    <td>电话</td>
+                    <td>账户类型</td>
+                    <td>余额（人民币）</td>
+                    <td>建单营业点</td>
+                    <td>建单员</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>青空旅行社</td>
+                    <td>用户组A</td>
+                    <td>个人旅行社</td>
+                    <td>现结</td>
+                    <td>张三</td>
+                    <td>13812345678</td>
+                    <td>普通账户</td>
+                    <td>2000.00</td>
+                    <td>宝华国际广场</td>
+                    <td>liuwei
+                        <a href="javascript:;" style="float:right"><img src="/static/images/deleteButton1.gif" alt="" style="vertical-align:middle"></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="panel" style="border:1px solid #FCE485">
+        <div class="searchPanel">
+            城市 <input class="city" type="text">
+            入住 <input class="datePicker" type="text">
+            离店 <input class="datePicker second" type="text">
+            位置 <input class="city" type="text" style="width:160px">
+            名称 <input class="city" type="text">
+            <a href="javascript:;" class="button_important adaptiveButton medium" style="vertical-align: middle">
+                <span class="left"></span>
+                <span class="center">查 询</span>
+                <span class="right"></span>
+            </a>
+        </div>
+        <div class="filterPanel">
+            <div style="border-bottom:1px dashed #cccccc;padding:15px 5px">
+                <div class="filterListItem" style="border-right:1px dashed #cccccc;width:155px;float:left">
+                    <div class="filterTitle">酒店星级：</div>
+                    <div class="filterAny"><a class="button_6" href="javascript:;">不限</a></div>
+                    <ul class="ul_filterList">
+                        <li><label><input type="checkbox" name="" id="">二星级及以下/经济</label></li>
+                        <li><label><input type="checkbox" name="" id="">三星级/舒适</label></li>
+                        <li><label><input type="checkbox" name="" id="">四星级/高档</label></li>
+                        <li><label><input type="checkbox" name="" id="">五星级/豪华</label></li>
+                    </ul>
+                </div>
+                <div class="filterListItem" style="border-right:1px dashed #cccccc;width:156px;float:left;padding:0 22px">
+                    <div class="filterTitle">酒店类型：</div>
+                    <div class="filterAny"><a class="button_6" href="javascript:;">不限</a></div>
+                    <ul class="ul_filterList filterHotelStyle">
+                        <li><label><input type="checkbox" name="" id="">精品酒店</label></li>
+                        <li><label><input type="checkbox" name="" id="">招待所</label></li>
+                        <li><label><input type="checkbox" name="" id="">商务酒店</label></li>
+                        <li><label><input type="checkbox" name="" id="">旅社</label></li>
+                        <li><label><input type="checkbox" name="" id="">汽车旅馆</label></li>
+                        <li><label><input type="checkbox" name="" id="">别墅</label></li>
+                        <li><label><input type="checkbox" name="" id="">度假村</label></li>
+                    </ul>
+                </div>
+                <div class="filterListItem" style="border-right:1px dashed #cccccc;width:156px;float:left;padding:0 22px">
+                    <div class="filterTitle">位置：</div>
+                    <div class="filterAny"><a class="button_6" href="javascript:;">不限</a></div>
+                    <ul class="ul_filterList filterHotelStyle">
+                        <li><label><input type="radio" name="radio_hotelLocation" id="">精品酒店</label></li>
+                        <li><label><input type="radio" name="radio_hotelLocation" id="">招待所</label></li>
+                        <li><label><input type="radio" name="radio_hotelLocation" id="">商务酒店</label></li>
+                        <li><label><input type="radio" name="radio_hotelLocation" id="">旅社</label></li>
+                        <li><label><input type="radio" name="radio_hotelLocation" id="">汽车旅馆</label></li>
+                        <li><label><input type="radio" name="radio_hotelLocation" id="">别墅</label></li>
+                        <li><label><input type="radio" name="radio_hotelLocation" id="">度假村</label></li>
+                    </ul>
+                    <div style="float:right;clear:left"><a href="javascript:;" style="color:#0065CB;background:url('/static/images/arrow_blue.gif') no-repeat center right;padding-right:14px">更多</a></div>
+                </div>
+                <div class="filterListItem" style="border-right:1px dashed #cccccc;width:156px;float:left;padding:0 22px">
+                    <div class="filterTitle">连锁品牌：</div>
+                    <div class="filterAny"><a class="button_6" href="javascript:;">不限</a></div>
+                    <ul class="ul_filterList filterHotelStyle">
+                        <li><label><input type="checkbox" name="" id="">希尔顿</label></li>
+                        <li><label><input type="checkbox" name="" id="">格林豪泰</label></li>
+                        <li><label><input type="checkbox" name="" id="">喜来登</label></li>
+                        <li><label><input type="checkbox" name="" id="">锦江之星</label></li>
+                        <li><label><input type="checkbox" name="" id="">万豪</label></li>
+                        <li><label><input type="checkbox" name="" id="">7天</label></li>
+                        <li><label><input type="checkbox" name="" id="">汉庭</label></li>
+                        <li><label><input type="checkbox" name="" id="">如家</label></li>
+                    </ul>
+                    <div style="float:right;clear:left"><a href="javascript:;" style="color:#0065CB;background:url('/static/images/arrow_blue.gif') no-repeat center right;padding-right:14px">更多</a></div>
+                </div>
+                <div class="filterListItem" style="width:169px;float:left;padding-left:22px">
+                    <div class="filterTitle">卖价区间：</div>
+                    <div class="filterAny"><a class="button_6" href="javascript:;">不限</a></div>
+                    <ul class="ul_filterList">
+                        <li style="width:150px"><label><input type="radio" name="radio_hotelLocation" id="">200以下</label></li>
+                        <li style="width:150px"><label><input type="radio" name="radio_hotelLocation" id="">200-600</label></li>
+                        <li style="width:150px"><label><input type="radio" name="radio_hotelLocation" id="">600以上</label></li>
+                    </ul>
+                    <div>
+                        <input type="text" name="" id="" style="width:30px">-<input type="text" name="" id="" style="width:30px">
+                        <a href="javascript:;" class="button_unimportant adaptiveButton small" style="vertical-align: middle">
+                            <span class="left"></span>
+                            <span class="center">确定</span>
+                            <span class="right"></span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+            <div class="filterParamsPanel">
+                <div style="float:left;width:70px">筛选酒店：</div>
+                <div class="filterParamsList">
+                    <ul>
+
+                    </ul>
+                </div>
+                <div style="position:absolute;top:10px;right:10px"><a href="javascript:;">[清空]</a></div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="hotelListToolsBar">
+        共<span style="color:#FF6C00">265</span>家酒店
+        <span style="padding-left:20px">星级 <a href="javascript:;" class="btn_sort">&nbsp;</a></span>
+        <span style="padding-left:20px">底价 <a href="javascript:;" class="btn_sort asc">&nbsp;</a></span>
+        <span style="padding-left:20px">卖价 <a href="javascript:;" class="btn_sort desc">&nbsp;</a></span>
+        <div style="float:right">
+            <span style="color:#FF6C00">1</span> / 14
+            <a href="javascript:;" class="pagesLeft">&nbsp;</a>
+            <a href="javascript:;" class="pagesRight enable">&nbsp;</a>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/x-kendo-template" id="filterParamTemplate">
+    <li>
+        <span>#= filterName #</span>
+        <a href="javascript:;" style="margin-left:5px"><img src="/static/images/deleteButton1.gif" alt="" style="vertical-align:middle"></a></td>
+    </li>
+</script>
+
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery-migrate-1.2.1.js"></script>
+<script type="text/javascript" src="/static/js/kendo.web.js"></script>
+<script type="text/javascript" src="/static/js/scrollFix.js"></script>
+<script type="text/javascript" src="/static/js/hotel.js"></script>
+
+<script type="text/javascript">
+    $(function(){
+        var filterData=[{filterName:"二星级及以下/经济"},{filterName:"三星级/舒适"},{filterName:"精品酒店"},{filterName:"汽车旅馆"},{filterName:"798"},{filterName:"希尔顿"},{filterName:"二星级及以下/经济"},{filterName:"三星级/舒适"},{filterName:"精品酒店"},{filterName:"汽车旅馆"},{filterName:"798"},{filterName:"希尔顿"}];
+        var filterParamT=kendo.template($("#filterParamTemplate").html());
+        $(".filterParamsList>ul").html(kendo.render(filterParamT,filterData));
+
+    });
+</script>
+</body>
+</html>
