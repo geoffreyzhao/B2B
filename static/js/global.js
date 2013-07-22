@@ -104,8 +104,9 @@ GridTable.prototype = {
 
         if(!isCreated){
             this.render();
-            return this.grid;
         }
+
+        return this.grid;
     }, 
     render:function(){
         var customSettings = this.customSettings || eval('('+this.trigger.data('options')+')');
