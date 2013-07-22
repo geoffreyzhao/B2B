@@ -5,12 +5,16 @@ body,input,select,textarea {
 .flat-list .vertical-head{
     display:inline-block;
 }
+.vertical-head {
+    position:relative;
+}
 .vertical-head s{
+    position:absolute;
+    left:-10px;
     text-decoration:none;
     color:#f00;
     font-size:18px;
     vertical-align:middle;
-    padding:0 3px;
 }
 .flat-list {
     margin:0;
@@ -19,6 +23,9 @@ body,input,select,textarea {
 .flat-list li{
     vertical-align:top;
     display:inline-block;
+}
+.fixBarShadow{
+    margin-bottom:10px;
 }
 .btns{
     font-size:12px;
@@ -74,7 +81,7 @@ body,input,select,textarea {
 .btn-blue, .btn-blue-long {
     width:70px;
     height:25px;
-	line-height:25px;
+    line-height:25px;
     font-size:12px;
     color:#fff;
     background-image:url(../images/pnr_r2_c14.png)
@@ -84,12 +91,82 @@ body,input,select,textarea {
     background-image:url(../images/button/80X25.png);
     width:80px;
 }
+.popup-window .flat-list li{
+    width:225px;
+    margin-bottom:10px;
+}
+.popup-window .row{
+    margin-bottom:10px;
+}
+.popup-window .vertical-head{
+    width:73px;
+    display:inline-block;
+    font-weight:bold;
+}
+.popup-window{
+    padding:30px !important;
+    padding-bottom:10px;
+}
+.popup-window .text1{
+    color:#f60;
+}
+.popup-window textarea{
+    border:1px solid #ccc;
+    width:300px;
+    height:100px;
+}
+.popup-window .moreorder{
+    display:inline-block;
+    *display:inline;
+    width:420px;
+    border:1px solid #ccc;
+    height:100px;
+    overflow-y:scroll;
+    line-height:20px;
+}
+.popup-window .moreorder span{
+    margin:10px;
+}
+.block-field{
+    background-color:#fff;
+    padding: 20px 0;
+    margin:0 25px;
+    border-bottom:1px dotted #aaa;
+}
+.block-field .row{
+    margin-bottom:5px;
+}
 .block{
     margin-bottom:10px;
     border:1px solid #e2e5e7;
     border-bottom:none;
     background:#fff url(../images/block.png) 0 100% no-repeat;
     padding-bottom:3px;
+}
+.block-module {
+    padding: 10px 20px 20px 20px;
+    color: #444;
+}
+.block-warning{
+    background-color:#faffd6;
+    border-top:1px solid #eebba0;
+    border-bottom:1px solid #eebba0;
+    margin:10px 0;
+    padding:5px 25px;
+}
+.block-field .flat-list li{
+    margin-top:10px;
+}
+.block-module-action {
+    margin-left: 20px;
+    border-left: 2px solid #CFCFCF;
+    padding-left: 20px
+}
+.block-title {
+    margin-bottom:10px;
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
 }
 .page-title{
     padding-left:10px;
@@ -116,6 +193,9 @@ body,input,select,textarea {
     line-height:28px;
     background-color:#fff;
     border-bottom:3px solid #FF7702;
+}
+.actions .adaptiveButton {
+    margin-top:4px;
 }
 .actions .sep-r{
     padding-left:10px;
@@ -230,12 +310,13 @@ body,input,select,textarea {
 
 #mainContent{
     padding-top:10px;
+    padding-bottom:40px;
 }
 body {background-color: #EAEEF0;}
 a {text-decoration:none; color:#606060;}
 input {border:1px solid #cfcfcf;height:20px;}
-input[type=radio] {border:none;height:20px;}
-input[type=checkbox] {border:none;height:20px;}
+input[type=radio] {border:none;height:20px; vertical-align:middle;}
+input[type=checkbox] {border:none;height:20px;vertical-align:middle;}
 #extHeader {height:122px;background: url(../images/top_bg.jpg) repeat-x; position:relative;}
 #extHeader div {margin:0 auto;width:1200px;height:82px; background: url(../images/top_bg_2.jpg) no-repeat center center;}
 
@@ -412,7 +493,7 @@ input[type=checkbox] {border:none;height:20px;}
 }
 
 .ui-datepicker-calendar-wrap {
-     margin:0 auto 1em;
+    margin:0 auto 1em;
 }
 .ui-datepicker-calendar-wrap td {
     color:#5c5c5c;
@@ -453,8 +534,8 @@ input[type=checkbox] {border:none;height:20px;}
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
-	background: none; 
-	font-weight: normal;
+    background: none; 
+    font-weight: normal;
     background-color:#f66e19;
     color:#ffffff;
 }
@@ -462,7 +543,7 @@ input[type=checkbox] {border:none;height:20px;}
 .ui-state-disabled,
 .ui-widget-content .ui-state-disabled,
 .ui-widget-header .ui-state-disabled {
-	background-image: none;
+    background-image: none;
 }
 .ui-datepicker-buttonpane {
     border:none;
@@ -519,7 +600,7 @@ input[type=checkbox] {border:none;height:20px;}
 .guoqing.ui-state-hover { background: url(../images/sprite/holiday.png) no-repeat -30px -290px;}
 
 /*通用按钮样式2013-07-12*/
-.adaptiveButton{display:inline-block;margin:0 5px}
+.adaptiveButton{display:inline-block;margin:0 2px}
 .adaptiveButton span.center{padding:0 15px}
 .adaptiveButton.medium span{float:left;height:31px;line-height:31px}
 .button_important span.center {color:#ffffff;}
@@ -551,7 +632,7 @@ input[type=checkbox] {border:none;height:20px;}
 .button_secondary.small .left{background:url('../images/button/button_secondary_small.png') 0 0 no-repeat;width:5px}
 .button_secondary.small .center{background:url("../images/button/button_secondary_small.png") 0 -27px repeat-x;}
 .button_secondary.small .right{background:url('../images/button/button_secondary_small.png') 0 -54px no-repeat;width:5px}
-.button_unimportant{color:#ffffff}
+.button_unimportant{color:#000000}
 .button_unimportant.small .left{background:url('../images/button/button_unimportant_small.png') 0 0 no-repeat;width:5px}
 .button_unimportant.small .center{background:url("../images/button/button_unimportant_small.png") 0 -27px repeat-x;}
 .button_unimportant.small .right{background:url('../images/button/button_unimportant_small.png') 0 -54px no-repeat;width:5px}
@@ -561,6 +642,7 @@ input[type=checkbox] {border:none;height:20px;}
 .adaptiveButton.small:active .left{background-position:0 -162px;}
 .adaptiveButton.small:active .center{background-position:0 -189px;}
 .adaptiveButton.small:active .right{background-position:0 -216px;}
+.center_1{ padding:0 5px !important;}
 
 .fixedButton .adaptiveButton {display:inline-block;margin-top:4px;margin-left:5px;}
 /*通用按钮样式2013-07-12*/
