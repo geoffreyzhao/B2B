@@ -6,6 +6,7 @@ function PopWindow(trigger, customSettings){
         width:570,
         modal:true
     }
+    this.cache = false;
     this.kendoWinSettings = kendoWinDefaults; 
     this.triggerText = trigger;
     this.trigger = $(trigger);
@@ -61,8 +62,12 @@ PopWindow.prototype = {
         that.trigger.attr('role','window_trigger');
         $('body').delegate(that.triggerText,'click',function(e){
             e.preventDefault();
+            if(!that.cache){
+               that.win.refresh(); 
+            }
             that.win.center();
             that.win.open();
+
             kendo.init($('.popup-window'));
         });
     }
@@ -104,9 +109,8 @@ GridTable.prototype = {
 
         if(!isCreated){
             this.render();
+            return this.grid;
         }
-
-        return this.grid;
     }, 
     render:function(){
         var customSettings = this.customSettings || eval('('+this.trigger.data('options')+')');
