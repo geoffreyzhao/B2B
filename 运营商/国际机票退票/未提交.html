@@ -190,7 +190,8 @@ $(function(){
     <div class="block-title">
         <span class="block-title-orange">航班信息</span>
         <span class="block-module-action">
-            <button class="btns btn-ac-blue">删除所选</button> 
+            <button class="btns btn-ac-blue" id="del_select">删除所选</button> 
+            <button class="btns btn-ac-blue" id="del_unselect">删除未选</button> 
         </span>
     </div> 
     <div class="row">
@@ -235,6 +236,7 @@ $(function(){
     <div class="block-title"><span class="block-title-orange">客票信息</span>
         <span class="block-module-action">
             <button class="btns btn-ac-blue">删除所选</button> 
+            <button class="btns btn-ac-blue">删除未选</button> 
         </span>
     </div> 
     <div class="row">
@@ -389,7 +391,7 @@ $(function(){
     </div>
     <div>
         <div class="row row3">
-            <textarea class="pnr-console" name="" style="width:98%;height:150px;">
+            <textarea class="pnr-console" name="" style="width:98%;height:150px;overflow-y:scroll;padding:0px;">
 请用您的Eterm系统提取PNR内容。
 执行指令QTE:/航空公司，将其全部内容复制，保证准确，并粘贴到左边黑色输入框内。
 请确保导入的PNR中所含的航段是通过正常途径获得，任何通过非法手段获取低舱位的PNR，
@@ -512,7 +514,21 @@ $(function(){
 </div>
 <script type="text/javascript">
     $(function(){
+        $("#del_unselect").click(function(){
+            $("input[name='flight_checkbox']").each(function(index){
+                if(!$(this).prop("checked")){
+                    $(this).parents("tr").remove();
+                }
+             });
+        });
 
+        $("#del_select").click(function(){
+            $("input[name='flight_checkbox']").each(function(index){
+                if($(this).prop("checked")){
+                    $(this).parents("tr").remove();
+                }
+             });
+        });
         /* 鼠标移动效果 */
         $("#child_orders div.item").each(function(){
                 $(this).hover(function(){
