@@ -4,6 +4,7 @@
 	<title>酒店 - 预订酒店详情</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <link rel="stylesheet" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css" />
     <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
     <link href="/static/css/kendo.common.css" rel="stylesheet" type="text/css" />
     <link href="/static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
@@ -13,6 +14,9 @@
     <script src="/static/js/kendo.web.js" type="text/javascript"></script>
     <script type="text/javascript" src="/static/js/scrollFix.js"></script>
     <script type="text/javascript" src="/static/js/public.js"></script>
+
+    <script src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+	<script src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
 
     <script type="text/javascript" src="/static/js/global.js"></script>
     <style>
@@ -214,10 +218,10 @@
                     </div>
                 </div>
                 <div class="checkIn">
-                    <label><b>入住:&nbsp;</b><input type="text" style="display:none;" value="2013-07-01"/><span>2013-07-01</span></label>
-                    <label><b>退房:&nbsp;</b><input type="text" style="display:none;" value="2013-07-01"/><span>2013-07-01</span></label>
-                    <span>共<strong>1</strong>晚</span>
-                    <a class="button_text_blue" >修改日期</a>
+                    <label><b>入住:&nbsp;</b><input type="text" style="display:none;" class="datepicker" value="2013-07-01" id="checkin_date"/><span>2013-07-01</span></label>
+                    <label><b>退房:&nbsp;</b><input type="text" style="display:none;" class="datepicker orange" value="2013-07-01" id="checkout_date"/><span>2013-07-01</span></label>
+                    <em>共<strong>1</strong>晚</em>
+                    <a class="button_text_blue" id="change_date" >修改日期</a>
                 </div>
 
 
@@ -367,6 +371,38 @@
     
     <script type="application/javascript">
         $(function(){
+                $("#change_date").click(function(){
+                    if($(this).html() == "取消修改"){
+                        $(this).html("修改日期");
+                        $(".checkIn input").hide();
+                        $(".checkIn span").show();
+                    }else{
+                        $(this).html("取消修改");
+                        $(".checkIn input").show();
+                        $(".checkIn span").hide();
+                    }
+                });
+
+                $( "#checkin_date" ).datepicker({
+                numberOfMonths:[1,2],
+                minDate :new Date(),
+                showButtonPanel :true,
+                onSelect:function(dateText,inst){
+                    var date = new Date();
+                    date.setFullYear(inst.selectedYear);
+                    date.setMonth(inst.selectedMonth);
+                    date.setDate(inst.selectedDay);
+
+                    $( "#checkout_date" ).datepicker( "option", "minDate", date);
+                    $( "#checkout_date" ).datepicker( "setDate", dateText);
+                }
+		    });
+            $( "#checkout_date" ).datepicker({
+                numberOfMonths:[1,2],
+                minDate :new Date(),
+                showButtonPanel :true
+		    });
+                
                 //浮动条
                 $(".topFixedToolsBar").scrollFix("top","top");
                 });
