@@ -7522,7 +7522,8 @@ if (typeof kendo_module === "undefined") {
                     return true;
                 }
             },
-            validateOnBlur: true
+            validateOnBlur: true,
+            errorMsgShow:true
         },
         destroy: function() {
             Widget.fn.destroy.call(this);
@@ -7587,10 +7588,12 @@ if (typeof kendo_module === "undefined") {
                     message: decode(messageText)
                 }));
                 that._decorateMessageContainer(messageLabel, fieldName);
-                if (!lbl.replaceWith(messageLabel).length) {
-                    messageLabel.insertAfter(input);
+                if(this.options.errorMsgShow){
+                    if (!lbl.replaceWith(messageLabel).length) {
+                        messageLabel.insertAfter(input);
+                    }
+                    messageLabel.show();
                 }
-                messageLabel.show();
                 input.attr("aria-invalid", true);
             }
             input.toggleClass(INVALIDINPUT, !valid);
