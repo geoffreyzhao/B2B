@@ -6,7 +6,7 @@ function PopWindow(trigger, customSettings){
         width:570,
         modal:true
     }
-    this.cache = false;
+    this.cache = true;
     this.kendoWinSettings = kendoWinDefaults; 
     this.triggerText = trigger;
     this.trigger = $(trigger);
