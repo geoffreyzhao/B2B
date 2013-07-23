@@ -280,11 +280,11 @@ var CityAutocomplete = function(){
         hot_tabs = $('#tabstrip');
 
         hot_tabs.delegate('.tcy_list li[data-code]','click',function(){
-            hot_tabs.hide();
             var $t = $(this);
             var text = $t.text();
-            input.val(text);
+            input.focus().val(text);
             $(opts.codeEle).val($t.data('code'));
+            hot_tabs.hide();
         });
 
         hot_tabs.kendoTabStrip({
@@ -333,10 +333,14 @@ var CityAutocomplete = function(){
             if (  e.relatedTarget && e.relatedTarget.id != "tabstrip" || e.relatedTarget === null){
                 hot_tabs.hide();
             }
+
+            if (  window.event && event.toElement && event.toElement.id != 'tabstrip') {
+                hot_tabs.hide();
+            }
         };
 
         input.on('blur',blur_event);
-        hot_tabs.on('blur',blur_event);
+        // hot_tabs.on('blur',blur_event);
 
         input.on('focus',function(e){
             var $t = $(this);
