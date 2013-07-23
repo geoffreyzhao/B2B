@@ -6,6 +6,7 @@ function PopWindow(trigger, customSettings){
         width:570,
         modal:true
     }
+    this.cache = true;
     this.kendoWinSettings = kendoWinDefaults; 
     this.triggerText = trigger;
     this.trigger = $(trigger);
@@ -61,8 +62,12 @@ PopWindow.prototype = {
         that.trigger.attr('role','window_trigger');
         $('body').delegate(that.triggerText,'click',function(e){
             e.preventDefault();
+            if(!that.cache){
+               that.win.refresh(); 
+            }
             that.win.center();
             that.win.open();
+
             kendo.init($('.popup-window'));
         });
     }
@@ -104,9 +109,8 @@ GridTable.prototype = {
 
         if(!isCreated){
             this.render();
+            return this.grid;
         }
-
-        return this.grid;
     }, 
     render:function(){
         var customSettings = this.customSettings || eval('('+this.trigger.data('options')+')');
@@ -272,15 +276,16 @@ var CityAutocomplete = function(){
     function render_hotcity_tabs(data){
         var templateID = opts.template || "#city_popup_tpl"; 
         var city_popup_tpl = kendo.template($(templateID).html());
-        $('body').append(city_popup_tpl(data));
+        var html = city_popup_tpl(data);
+        $('body').append(html);
         hot_tabs = $('#tabstrip');
 
         hot_tabs.delegate('.tcy_list li[data-code]','click',function(){
-            hot_tabs.hide();
             var $t = $(this);
             var text = $t.text();
-            input.val(text);
+            input.focus().val(text);
             $(opts.codeEle).val($t.data('code'));
+            hot_tabs.hide();
         });
 
         hot_tabs.kendoTabStrip({
@@ -329,10 +334,17 @@ var CityAutocomplete = function(){
             if (  e.relatedTarget && e.relatedTarget.id != "tabstrip" || e.relatedTarget === null){
                 hot_tabs.hide();
             }
+
+            // ie 7 polyfill
+            if (  window.event && event.toElement && event.toElement.id != 'tabstrip') {
+                if ($(event.toElement).closest('#tabstrip').length === 0){
+                    hot_tabs.hide();
+                }
+            }
         };
 
-        input.on('blur',blur_event);
-        hot_tabs.on('blur',blur_event);
+        input.on('focusout',blur_event);
+        hot_tabs.on('focusout',blur_event);
 
         input.on('focus',function(e){
             var $t = $(this);
