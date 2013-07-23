@@ -276,7 +276,8 @@ var CityAutocomplete = function(){
     function render_hotcity_tabs(data){
         var templateID = opts.template || "#city_popup_tpl"; 
         var city_popup_tpl = kendo.template($(templateID).html());
-        $('body').append(city_popup_tpl(data));
+        var html = city_popup_tpl(data);
+        $('body').append(html);
         hot_tabs = $('#tabstrip');
 
         hot_tabs.delegate('.tcy_list li[data-code]','click',function(){
@@ -334,13 +335,16 @@ var CityAutocomplete = function(){
                 hot_tabs.hide();
             }
 
+            // ie 7 polyfill
             if (  window.event && event.toElement && event.toElement.id != 'tabstrip') {
-                hot_tabs.hide();
+                if ($(event.toElement).closest('#tabstrip').length === 0){
+                    hot_tabs.hide();
+                }
             }
         };
 
-        input.on('blur',blur_event);
-        // hot_tabs.on('blur',blur_event);
+        input.on('focusout',blur_event);
+        hot_tabs.on('focusout',blur_event);
 
         input.on('focus',function(e){
             var $t = $(this);
