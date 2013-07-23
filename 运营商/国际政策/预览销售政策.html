@@ -8,7 +8,7 @@
     <link href="../../static/css/kendo.common.css" rel="stylesheet" type="text/css" />
     <link href="../../static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
     <link href="../../static/css/b2b.css" rel="stylesheet" type="text/css" />
-    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link href="../../static/css/kendo.reset.css" rel="stylesheet" />
     <link href="../../static/css/jiudianweihuzs.css" rel="stylesheet" type="text/css"/>
     <link href="../../static/css/xieyizhengche.css" rel="stylesheet" type="text/css"/>
     <script src="../../static/js/jquery.min.js" type="text/javascript"></script>
@@ -84,11 +84,28 @@ $(function(){
                     <table cellpadding="0" cellspacing="0" class="xyzc_tab1">
                   <tr>
                      <td class="zchk">航空公司</td>
-                     <td class="mu"><select><option>MU东航</option></select></td>
+                     <td class="mu">
+                         <select>
+                            <option>全部</option>
+                            <option>3U 川航</option>
+                            <option selected="">MU 东航</option>
+                            <option>CZ 南航</option>
+                            <option>MF 夏航</option>
+                            <option>……</option>
+                         </select> 
+                     </td>
                      <td class="zchk">适用舱位</td>
                      <td class="sycw"> <input type="text"/> </td>
                      <td class="zchk">政策类型</td>
-                     <td class="quanbu"> <select><option>全部</option></select> </td>
+                     <td class="quanbu"> 
+                          <select>
+                               <option>全部</option>
+                               <option>普通政策</option>
+                               <option>特价政策</option>
+                               <option>团队政策</option>
+                               <option>散客K位政策</option>
+                          </select> 
+                     </td>
                      <td class="xyzc_cx" rowspan="6"><a href="#" class="xyzc_cx_a">查询</a></td>
                   </tr> 
                   <tr>
@@ -101,9 +118,22 @@ $(function(){
                   </tr> 
                   <tr>
                      <td class="zchk">航程类型</td>
-                     <td class="mu"> <select><option>全部</option></select> </td>
+                     <td class="mu"> 
+                          <select>
+                              <option>全部</option>
+                              <option>单程</option>
+                              <option>往返</option>
+                          </select> 
+                     </td>
                      <td class="zchk">乘客类型</td>
-                     <td class="cklx"> <select><option>全部</option></select> </td>
+                     <td class="cklx">
+                          <select>
+                              <option>全部</option>
+                              <option>成人</option>
+                              <option>儿童</option>
+                              <option>团队</option>
+                          </select> 
+                     </td>
                      <td class="zchk">出票日期</td>
                      <td> <input type="text" class="cjrq_input_1 datePicker"/> <span class="cjrq_span">至</span>  <input type="text" class="cjrq_input_2 datePicker"/></td>
                   </tr> 
@@ -111,19 +141,30 @@ $(function(){
                      <td class="zchk">出票类型</td>
                      <td class="mu"> <select><option>手动</option></select> </td>
                      <td class="zchk">政策状态</td>
-                     <td class="cklx"> <select><option>所有</option></select> </td>
+                     <td class="cklx">  
+                            <select>                            
+                                <option>所有</option>
+                                <option>未发布</option>
+                                <option>己发布</option>
+                                <option>挂起</option>
+                                <option>作废</option>
+                            </select> 
+                     </td>
                      <td class="zchk">发布日期</td>
                      <td><div class="cjrq"> <input type="text" class="cjrq_input_1 datePicker"/> <span class="cjrq_span">至</span>  <input type="text" class="cjrq_input_2 datePicker"/></div></td>
                   </tr> 
                   <tr>
                      <td class="zchk">OFFICE号</td>
-                     <td class="mu"> <select><option>全部</option></select> </td>
+                     <td class="mu"> <select><option>所有</option></select> </td>
                      <td class="zchk">代理费</td>
                      <td class="cklx"> <input type="text"> &nbsp;% </td>
                      <td class="zchk">供应商</td>
                      <td>
                          <select style="width:91%">
-                             <option value="所有" selected="">不夜城BSP</option>
+                             <option>全部</option>
+                             <option selected="">不夜城BSP</option>
+                             <option>517</option>
+                             <option>百拓</option>
                          </select>
                      </td>
                   </tr> 
@@ -131,12 +172,12 @@ $(function(){
                      <td class="zchk">协议名称</td>
                      <td><input type="text" style="width:145px;"/></td>
                      <td class="zchk">发布人</td>
-                     <td class="faburen"><input type="text"/> <a href="#"></a></td>
+                     <td class="faburen"><input type="text"/> <button class="btns btn-search ac-search-user" role="window_trigger">查询</button></td>
                      <td class="zchk">票证类型</td>
-                     <td> <P class="pzlx_p"><input type="checkbox"/><span>BSP</span></P> 
-                          <P class="pzlx_p"><input type="checkbox"/><span>B2B</span></P> 
-                          <P class="pzlx_p"><input type="checkbox"/><span>CRS</span></P>
-                          <P class="pzlx_p_1"><input type="checkbox"/><span>境外电子</span></P>
+                     <td class="bsp"> <label><input type="checkbox"/><span>BSP</span></label> 
+                          <label><input type="checkbox"/><span>B2B</span></label> 
+                          <label><input type="checkbox"/><span>CRS</span></label>
+                          <label><input type="checkbox"/><span>境外电子</span></label>
                      </td>
                   </tr> 
                </table>
@@ -145,8 +186,8 @@ $(function(){
 
             <div class="xyzc_tab2_div_1">
              
-              <div style=" height:auto;overflow-x:auto; overflow-y:hidden;">
-              <table class="tgrid first_1" style="width:130%; word-wrap:break-word;">
+              <div style=" height:auto;overflow-x:auto; overflow-y:hidden; padding-bottom:10px;">
+              <table class="tgrid first_1" style="width:120%; word-wrap:break-word;">
                   <thead>
                       <tr style="height:33px;">
                           <th width="25">航司</th>
@@ -155,8 +196,6 @@ $(function(){
                           <th>航程</th>
                           <th>航班限制</th>
                           <th>适用航班</th>
-                          <th>出票</th>
-                          <th>票证</th>
                           <th>代理费</th>
                           <th>奖励</th>
                           <th>开票费</th>
@@ -166,6 +205,8 @@ $(function(){
                           <th>客户返点</th>
                           <th>客户返款</th>
                           <th>状态</th>
+                          <th>出票</th>
+                          <th>票证</th>
                           <th>政策有效期</th>
                           <th>出票有效期</th>
                           <th>发布时间</th>
@@ -180,9 +221,7 @@ $(function(){
                           <td>PEK</td>
                           <td>单程</td>
                           <td>所有</td>
-                          <td>FCYBMHKLQGV</td>
-                          <td>自动</td>
-                          <td>BSP</td>
+                          <td>FCYBMH<br>KLQGV</td>
                           <td>6.0</td>
                           <td>6.0</td>
                           <td>2.0</td>
@@ -192,6 +231,8 @@ $(function(){
                           <td></td>
                           <td></td>
                           <td>已发布</td>
+                          <td>BSP</td>
+                          <td>自动</td>
                           <td>2010/09/01<br>
                                 至2012/10/01</td>
                           <td>2010/09/01<br>
@@ -206,9 +247,7 @@ $(function(){
                           <td>全国</td>
                           <td>往返</td>
                           <td>排除2301<br>/2333</td>
-                          <td>FCYBMHKLQGV</td>
-                          <td>手动</td> 
-                          <td>B2B</td>
+                          <td>FCYBMH<br>KLQGV</td>
                           <td>5.0</td>
                           <td>5.0</td>
                           <td>2.0</td>
@@ -218,6 +257,8 @@ $(function(){
                           <td></td>
                           <td></td>
                           <td style="color:#e4702a;">已挂起</td>
+                          <td>手动</td> 
+                          <td>B2B</td>
                           <td>2010/09/01<br>
                                 至2012/10/01</td>
                           <td>2010/09/01<br>
@@ -234,8 +275,6 @@ $(function(){
                           <td>单程</td>
                           <td>所有</td>
                           <td>MH</td>
-                          <td>手动</td> 
-                          <td>BSP</td> 
                           <td>5.0</td>
                           <td>5.0</td>
                           <td>2.0</td>
@@ -245,6 +284,8 @@ $(function(){
                           <td></td>
                           <td></td>
                           <td>已作废</td>
+                          <td>手动</td> 
+                          <td>BSP</td> 
                           <td>2010/09/01<br>
                                 至2012/10/01</td>
                           <td>2010/09/01<br>
@@ -260,9 +301,7 @@ $(function(){
                           <td>PEK</td>
                           <td>单程</td>
                           <td>所有</td>
-                          <td>FCYBMHKLQGV</td>
-                          <td>自动</td>
-                          <td>BSP</td>
+                          <td>FCYBMH<br>KLQGV</td>
                           <td>5.0</td>
                           <td>5.0</td>
                           <td>2.0</td>
@@ -272,6 +311,8 @@ $(function(){
                           <td></td>
                           <td></td>
                           <td>已发布</td>
+                          <td>BSP</td>
+                          <td>自动</td>
                           <td>2010/09/01<br>
                                 至2012/10/01</td>
                           <td>2010/09/01<br>
@@ -287,9 +328,7 @@ $(function(){
                           <td>PEK</td>
                           <td>单程</td>
                           <td>所有</td>
-                          <td>FCYBMHKLQGV</td>
-                          <td>自动</td>
-                          <td>BSP</td>
+                          <td>FCYBMH<br>KLQGV</td>
                           <td>5.0</td>
                           <td>5.0</td>
                           <td>2.0</td>
@@ -299,6 +338,8 @@ $(function(){
                           <td></td>
                           <td></td>
                           <td>已作废</td>
+                          <td>BSP</td>
+                          <td>自动</td>
                           <td>2010/09/01<br>
                                 至2012/10/01</td>
                           <td>2010/09/01<br>
@@ -314,9 +355,7 @@ $(function(){
                           <td>PEK</td>
                           <td>单程</td>
                           <td>所有</td>
-                          <td>FCYBMHKLQGV</td>
-                          <td>自动</td>
-                          <td>BSP</td>
+                          <td>FCYBMH<br>KLQGV</td>
                           <td>5.0</td>
                           <td>5.0</td>
                           <td>2.0</td>
@@ -326,6 +365,8 @@ $(function(){
                           <td></td>
                           <td></td>
                           <td style="color:#e4702a;">已挂起</td>
+                          <td>BSP</td>
+                          <td>自动</td>
                           <td>2010/09/01<br>
                                 至2012/10/01</td>
                           <td>2010/09/01<br>
@@ -341,9 +382,7 @@ $(function(){
                           <td>PEK</td>
                           <td>单程</td>
                           <td>所有</td>
-                          <td>FCYBMHKLQGV</td>
-                          <td>自动</td>
-                          <td>BSP</td>
+                          <td>FCYBMH<br>KLQGV</td>
                           <td>5.0</td>
                           <td>5.0</td>
                           <td>2.0</td>
@@ -353,6 +392,8 @@ $(function(){
                           <td></td>
                           <td></td>
                           <td>已发布</td>
+                          <td>BSP</td>
+                          <td>自动</td>
                           <td>2010/09/01<br>
                                 至2012/10/01</td>
                           <td>2010/09/01<br>
@@ -368,9 +409,7 @@ $(function(){
                            <td>PEK</td>
                           <td>单程</td>
                           <td>所有</td>
-                          <td>FCYBMHKLQGV</td>
-                          <td>自动</td>
-                          <td>BSP</td>
+                          <td>FCYBMH<br>KLQGV</td>
                           <td>5.0</td>
                           <td>5.0</td>
                           <td>2.0</td>
@@ -380,6 +419,8 @@ $(function(){
                           <td></td>
                           <td></td>
                           <td>已发布</td>
+                          <td>BSP</td>
+                          <td>自动</td>
                           <td>2010/09/01<br>
                                 至2012/10/01</td>
                           <td>2010/09/01<br>
