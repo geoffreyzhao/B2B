@@ -16,6 +16,8 @@
         .button_6{padding:3px 10px;color:#000000;background:#ffffff;display:inline-block}
         .button_6:hover,.button_6.select{background:#10A9DD;color:#ffffff}
         .button_7{border:1px solid #A5E9FF;background:#D1F3FE;color:#008BB9;display:inline-block;padding:2px 5px}
+        .button_8{border:1px solid #FFD4B8;background:#FEECE0;color:#FF6500;display:inline-block;padding:2px 5px}
+        .button_9{border:1px solid #898888;background:#ACACAC;color:#F3F3F3;display:inline-block;padding:2px 5px}
         .ico_search{ width:19px; background:url(/static/images/xyzc_shuoshuo.jpg) no-repeat; display:inline-block; margin:7px 0 0 3px;}
         .tbl_customersList thead td{background:#E4E4E4;border-right:1px solid #ffffff}
         .tbl_customersList tbody td{border-right:1px solid #E4E4E4}
@@ -23,19 +25,20 @@
         .searchPanel input[type=text]{height:20px;margin:0 10px 0 5px;border:1px solid #F5B581;background-color:#ffffff;width:100px}
         .filterPanel{padding:10px;border-top:3px solid #FFA86E}
         .filterListItem{height:160px}
-        .filterTitle{font-weight:bold;margin:-5px 0 5px 0}
+        .filterTitle{font-weight:bold;margin:0 0 5px 0}
         .filterAny{margin-bottom:5px}
-        .ul_filterList li{margin-bottom:5px;float:left}
+        .ul_filterList li{margin-bottom:5px;float:left;word-break:keep-all}
         .filterHotelStyle li{width:78px}
-        .filterParamsList{margin:0 70px}
-        .filterParamsList li{float:left;margin:0 5px 5px 0;border:1px solid #9FCDDD;background:#ECF7FB;padding:2px 6px}
+        .filterParamsList{width:840px;float:left}
+        .filterParamsList li{float:left;margin:0 5px 5px 0;border:1px solid #9FCDDD;background:#ECF7FB;padding:2px 6px;word-break:keep-all}
         .filterParamsPanel{position:relative;padding:10px;}
         .hotelListToolsBar{height:40px;line-height:40px;padding:0 10px;background:#F6F6F6}
         .pagesLeft{background:url('/static/images/pagesLeftRight.png') no-repeat 0 0;display:inline-block;width:16px;height:20px;vertical-align:middle}
         .pagesRight{background:url('/static/images/pagesLeftRight.png') no-repeat -17px 0;display:inline-block;width:16px;height:20px;vertical-align:middle}
         .pagesLeft.enable{background-position:0 -21px }
         .pagesRight.enable{background-position:-17px -21px }
-        .hotelListContainer{padding:18px;background:#ffffff;border:1px solid #E2E5E7}
+        .hotelBasicInfo{height:115px}
+        .hotelListItem{padding:18px;background:#ffffff;border:1px solid #E2E5E7}
         .hotelImg{float:left}
         .hotelTextInfo{width:610px;margin:0 15px;float:left}
         .hotelName{font-weight:bold;width:245px;float:left;margin-right:25px;overflow:hidden}
@@ -47,11 +50,29 @@
 
         .hotelLowestPrice{width:140px;height:105px;border:1px solid #E2E5E7;float:right;background:#F8F8F8;text-align:center}
 
-        .hotelRoomStyleListContainer{clear:both;padding-top:18px}
+        .hotelRoomStyleListContainer{padding-top:18px}
         .hotelRoomStyleListContainer thead td{background:#E4E4E4;border-right:1px solid #ffffff}
+        .hotelRoomStyleListContainer tbody td{border-top:1px solid #E0E0E0}
+        .hotelRoomStyleListContainer table{border:1px solid #E0E0E0}
+        tr.hotelRoomOverView td{background:#ECF7FB}
+        .roomStyle{font-weight:bold}
+        .hotelGift{display:inline-block;width:15px;height:16px;text-indent:-3000px;float:left}
+        .hotelGift.enable{background:url('/static/images/hotelGift.gif') no-repeat;cursor:pointer}
+        .hotelRoomActionButtonContainer{text-align:right}
+        .roomStyle_special{font-weight:bold;padding-left:15px}
+        .hotelRoomdetail:hover td{background:#FFFFDB}
+        .bedStyle{text-indent:0}
+        .allPriceToggle{color:#0065CB}
+
         .btn_sort{background:url(/static/images/btn_sort.png) no-repeat 0 0;display:inline-block;width:9px;height:13px;vertical-align:middle}
         .btn_sort.desc{background-position:0 -30px}
         .btn_sort.asc{background-position:0 -15px}
+
+        #errorMsgContainer{position:absolute;top:100px;left:50px;height:26px;display:none}
+        #errorMsgArrow{position:absolute;top:50%;left:0;margin-top:-6px;width:6px;height:13px;background:url('/static/images/errorMsgArrow.gif') no-repeat left center;z-index:1001}
+        #errorMsgContent{padding:3px 5px;background:#FFFCE8;border:1px solid #FF3333;position:absolute;top:0;left:5px;z-index:1000;color:#FF0000}
+
+
     </style>
 </head>
 <body>
@@ -104,28 +125,31 @@
     </div>
 
     <div class="panel" style="border:1px solid #FCE485">
+        <form action="www.baidu.com" method="post" id="myform">
         <div class="searchPanel">
-            城市 <input class="city" type="text">
-            入住 <input class="datePicker" type="text">
-            离店 <input class="datePicker second" type="text">
-            位置 <input class="city" type="text" style="width:160px">
-            名称 <input class="city" type="text">
-            <a href="javascript:;" class="button_important adaptiveButton medium" style="vertical-align: middle">
+            城市 <input id="city" name="city" class="city" type="text" required data-required-msg="请选择酒店所在城市">
+            入住 <input id="checkinDate" name="checkinDate" class="datePicker" type="text" required data-required-msg="请选择入住日期">
+            离店 <input id="checkoutDate" name="checkoutDate" class="datePicker second" type="text" required data-required-msg="请选择离店日期">
+            位置 <input id="location" name="location" class="city" type="text" style="width:160px" required data-required-msg="请选择酒店所在位置">
+            名称 <input id="hotelname" name="hotelname" class="city" type="text" required data-required-msg="请选择酒店名称">
+            <a href="javascript:;" id="btn_search" class="button_important adaptiveButton medium" style="vertical-align: middle">
                 <span class="left"></span>
                 <span class="center">查 询</span>
                 <span class="right"></span>
             </a>
         </div>
+
+        </form>
         <div class="filterPanel">
             <div style="border-bottom:1px dashed #cccccc;padding:15px 5px">
                 <div class="filterListItem" style="border-right:1px dashed #cccccc;width:155px;float:left">
                     <div class="filterTitle">酒店星级：</div>
                     <div class="filterAny"><a class="button_6" href="javascript:;">不限</a></div>
                     <ul class="ul_filterList">
-                        <li><label><input type="checkbox" name="" id="">二星级及以下/经济</label></li>
-                        <li><label><input type="checkbox" name="" id="">三星级/舒适</label></li>
-                        <li><label><input type="checkbox" name="" id="">四星级/高档</label></li>
-                        <li><label><input type="checkbox" name="" id="">五星级/豪华</label></li>
+                        <li><label><input type="checkbox" name="" id="">二星级及以下 / 经济</label></li>
+                        <li style="width: 150px"><label><input type="checkbox" name="" id="">三星级 / 舒适</label></li>
+                        <li style="width: 150px"><label><input type="checkbox" name="" id="">四星级 / 高档</label></li>
+                        <li><label><input type="checkbox" name="" id="">五星级 / 豪华</label></li>
                     </ul>
                 </div>
                 <div class="filterListItem" style="border-right:1px dashed #cccccc;width:156px;float:left;padding:0 22px">
@@ -203,43 +227,211 @@
         <div class="clear"></div>
     </div>
 
-    <div class="hotelListToolsBar">
-        共<span style="color:#FF6C00">265</span>家酒店
-        <span style="padding-left:20px">星级 <a href="javascript:;" class="btn_sort">&nbsp;</a></span>
-        <span style="padding-left:20px">底价 <a href="javascript:;" class="btn_sort asc">&nbsp;</a></span>
-        <span style="padding-left:20px">卖价 <a href="javascript:;" class="btn_sort desc">&nbsp;</a></span>
-        <div style="float:right">
-            <span style="color:#FF6C00">1</span> / 14
-            <a href="javascript:;" class="pagesLeft">&nbsp;</a>
-            <a href="javascript:;" class="pagesRight enable">&nbsp;</a>
+    <div class="panel" style="padding:0">
+        <div class="hotelListToolsBar">
+            <div style="float:left">
+                共<span style="color:#FF6C00">265</span>家酒店
+                <span style="padding-left:20px">星级 <a href="javascript:;" class="btn_sort">&nbsp;</a></span>
+                <span style="padding-left:20px">底价 <a href="javascript:;" class="btn_sort asc">&nbsp;</a></span>
+                <span style="padding-left:20px">卖价 <a href="javascript:;" class="btn_sort desc">&nbsp;</a></span>
+            </div>
+            <div style="float:right">
+                <span style="color:#FF6C00">1</span> / 14
+                <a href="javascript:;" class="pagesLeft">&nbsp;</a>
+                <a href="javascript:;" class="pagesRight enable">&nbsp;</a>
+            </div>
         </div>
-    </div>
-    <div class="hotelListContainer">
-        <div class="hotelListItem">
-            <div class="hotelBasicInfo">
-                <div class="hotelImg"><img src="/static/images/hotelImg.gif" width="160" height="110" alt=""></div>
-                <div class="hotelTextInfo">
-                    <div class="hotelName">酒店名称酒店这里可以放15个字符。。。</div>
-                    <div class="hotelStarLevel"></div>
-                    <div class="customerStyleLimit">中宾（除新疆，西藏旅客）</div>
-                    <div class="hotelAddress">北京市 北京 东城区 王府井大街218-1</div>
-                    <div class="agencyManagers">签约经理：王某某</div>
-                    <div class="checkInOut"><span style="font-weight:bold">入住时间：</span>14点以后<span style="font-weight:bold;padding-left:20px">退房时间：</span>14点以前</div>
-                    <div class="changeOrCancel"><span style="font-weight:bold">变更/取消：</span>入住前1天12点之前取消或变更，不收取任何费用；入住前1天12点之后取消或变更，将收取首晚房费。</div>
+        <div class="hotelListContainer">
+            <div class="hotelListItem">
+                <div class="hotelBasicInfo">
+                    <div class="hotelImg"><img src="/static/images/hotelImg.gif" width="160" height="110" alt=""></div>
+                    <div class="hotelTextInfo">
+                        <div class="hotelName">酒店名称酒店这里可以放15个字符。。。</div>
+                        <div class="hotelStarLevel"></div>
+                        <div class="customerStyleLimit">中宾（除新疆，西藏旅客）</div>
+                        <div class="hotelAddress">北京市 北京 东城区 王府井大街218-1</div>
+                        <div class="agencyManagers">签约经理：王某某</div>
+                        <div class="checkInOut"><span style="font-weight:bold">入住时间：</span>14点以后<span style="font-weight:bold;padding-left:20px">退房时间：</span>14点以前</div>
+                        <div class="changeOrCancel"><span style="font-weight:bold">变更/取消：</span>入住前1天12点之前取消或变更，不收取任何费用；入住前1天12点之后取消或变更，将收取首晚房费。</div>
+                    </div>
+                    <div class="hotelLowestPrice">
+                            <span style="color:#656565;vertical-align:top;height:100%;line-height:90px;font-family:arial;font-size:14px;display:inline-block">￥</span>
+                            <span style="color:#FF3000;font-size:40px;margin:0 2px;font-weight:bold;line-height:105px;display:inline-block">1410</span>
+                            <span style="color:#FF3000;height:100%;line-height:105px;display:inline-block">起</span>
+
+                    </div>
                 </div>
-                <div class="hotelLowestPrice">
+                <div class="hotelRoomStyleListContainer">
+                    <table style="width:100%">
+                        <thead>
+                            <tr>
+                                <td style="width:105px">房型</td>
+                                <td style="width:215px">床型</td>
+                                <td style="width:50px">早餐</td>
+                                <td style="width:50px">宽带</td>
+                                <td style="width:54px">其他</td>
+                                <td style="width:50px">底价</td>
+                                <td style="width:50px">加价</td>
+                                <td style="border:none;width:110px">卖价（不含服务费）</td>
+                                <td style="border:none">&nbsp;</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="hotelRoomOverView">
+                                <td class="roomStyle">商务标准房</td>
+                                <td class="bedStyle"><div class="hotelGift">sdfoijweoriwjproiweuprowirpoiweu</div><span style="font-weight:bold">不可加床</span> 单人床（135cm*200cm）</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td class="price">&nbsp;</td>
+                                <td class="price">&nbsp;</td>
+                                <td class="price" style="color:#FF2F00;font-weight:bold">&nbsp;</td>
+                                <td class="hotelRoomActionButtonContainer">
+                                    <a class="button_8" href="">待确认</a>
+                                </td>
+                            </tr>
+                            <tr class="hotelRoomdetail">
+                                <td class="roomStyle_special">含早特惠</td>
+                                <td class="bedStyle"><div class="hotelGift enable">sdfoijweoriwjproiweuprowirpoiweu</div></td>
+                                <td>自助x1</td>
+                                <td>宽带</td>
+                                <td>其他</td>
+                                <td class="price">￥380</td>
+                                <td class="price">￥30</td>
+                                <td class="price" style="color:#FF2F00;font-weight:bold">￥410 <a href="javascript:;" style="color:#0065CB;text-decoration:underline;font-weight:normal;padding-left:10px">规定</a></td>
+                                <td class="hotelRoomActionButtonContainer">
+                                    <a href="javascript:;" class="button_important adaptiveButton small" style="vertical-align: middle">
+                                        <span class="left"></span>
+                                        <span class="center" style="padding:0 2px">预 定</span>
+                                        <span class="right"></span>
+                                    </a>
+                                    <a href="javascript:;" class="button_unimportant adaptiveButton small" style="vertical-align: middle">
+                                        <span class="left"></span>
+                                        <span class="center" style="padding:0 2px">询 价</span>
+                                        <span class="right"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="hotelRoomdetail">
+                                <td class="roomStyle_special">提前三天预定</td>
+                                <td class="bedStyle"><div class="hotelGift">sdfoijweoriwjproiweuprowirpoiweu</div></td>
+                                <td>自助x1</td>
+                                <td>宽带</td>
+                                <td>其他</td>
+                                <td class="price">￥380</td>
+                                <td class="price">￥30</td>
+                                <td class="price" style="color:#FF2F00;font-weight:bold">￥410 <a href="javascript:;" style="color:#0065CB;text-decoration:underline;font-weight:normal;padding-left:10px">规定</a></td>
+                                <td class="hotelRoomActionButtonContainer">
+                                    <a href="javascript:;" class="button_important adaptiveButton small" style="vertical-align: middle">
+                                        <span class="left"></span>
+                                        <span class="center" style="padding:0 2px">预 定</span>
+                                        <span class="right"></span>
+                                    </a>
+                                    <a href="javascript:;" class="button_unimportant adaptiveButton small" style="vertical-align: middle">
+                                        <span class="left"></span>
+                                        <span class="center" style="padding:0 2px">询 价</span>
+                                        <span class="right"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="hotelRoomdetail">
+                                <td class="roomStyle_special">连住2天</td>
+                                <td class="bedStyle"><div class="hotelGift">sdfoijweoriwjproiweuprowirpoiweu</div></td>
+                                <td>自助x1</td>
+                                <td>宽带</td>
+                                <td>其他</td>
+                                <td class="price">￥380</td>
+                                <td class="price">￥30</td>
+                                <td class="price" style="color:#FF2F00;font-weight:bold">￥410 <a href="javascript:;" style="color:#0065CB;text-decoration:underline;font-weight:normal;padding-left:10px">规定</a></td>
+                                <td class="hotelRoomActionButtonContainer">
+                                    <a href="javascript:;" class="button_important adaptiveButton small" style="vertical-align: middle">
+                                        <span class="left"></span>
+                                        <span class="center" style="padding:0 2px">预 定</span>
+                                        <span class="right"></span>
+                                    </a>
+                                    <a href="javascript:;" class="button_unimportant adaptiveButton small" style="vertical-align: middle">
+                                        <span class="left"></span>
+                                        <span class="center" style="padding:0 2px">询 价</span>
+                                        <span class="right"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="hotelRoomOverView">
+                                <td class="roomStyle">商务标准房</td>
+                                <td class="bedStyle"><div class="hotelGift">sdfoijweoriwjproiweuprowirpoiweu</div><span style="font-weight:bold">不可加床</span> 单人床（135cm*200cm）</td>
+                                <td>自助x1</td>
+                                <td>宽带</td>
+                                <td>其他</td>
+                                <td class="price">￥380</td>
+                                <td class="price">￥30</td>
+                                <td class="price" style="color:#FF2F00;font-weight:bold">￥410 <a href="javascript:;" style="color:#0065CB;text-decoration:underline;font-weight:normal;padding-left:10px">规定</a></td>
+                                <td class="hotelRoomActionButtonContainer">
+                                    <a class="button_9" href="">无 房</a>
+                                    <a href="javascript:;" class="button_important adaptiveButton small" style="vertical-align: middle">
+                                        <span class="left"></span>
+                                        <span class="center" style="padding:0 2px">预 定</span>
+                                        <span class="right"></span>
+                                    </a>
+                                    <a href="javascript:;" class="button_unimportant adaptiveButton small" style="vertical-align: middle">
+                                        <span class="left"></span>
+                                        <span class="center" style="padding:0 2px">询 价</span>
+                                        <span class="right"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr class="hotelRoomOverView">
+                                <td class="roomStyle">商务标准房</td>
+                                <td class="bedStyle"><div class="hotelGift">sdfoijweoriwjproiweuprowirpoiweu</div><span style="font-weight:bold">不可加床</span> 单人床（135cm*200cm）</td>
+                                <td>自助x1</td>
+                                <td>宽带</td>
+                                <td>其他</td>
+                                <td class="price">￥380</td>
+                                <td class="price">￥30</td>
+                                <td class="price" style="color:#FF2F00;font-weight:bold">￥410 <a href="javascript:;" style="color:#0065CB;text-decoration:underline;font-weight:normal;padding-left:10px">规定</a></td>
+                                <td class="hotelRoomActionButtonContainer">
+                                    <a class="button_7" href="">有 房</a>
+                                    <a href="javascript:;" class="button_important adaptiveButton small" style="vertical-align: middle">
+                                        <span class="left"></span>
+                                        <span class="center" style="padding:0 2px">预 定</span>
+                                        <span class="right"></span>
+                                    </a>
+                                    <a href="javascript:;" class="button_unimportant adaptiveButton small" style="vertical-align: middle">
+                                        <span class="left"></span>
+                                        <span class="center" style="padding:0 2px">询 价</span>
+                                        <span class="right"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="text-align:right"><a href="javascript:;" class="allPriceToggle">收起全部价格（10）︽</a></div>
+            </div>
+            <div class="hotelListItem">
+                <div class="hotelBasicInfo">
+                    <div class="hotelImg"><img src="/static/images/hotelImg.gif" width="160" height="110" alt=""></div>
+                    <div class="hotelTextInfo">
+                        <div class="hotelName">酒店名称酒店这里可以放15个字符。。。</div>
+                        <div class="hotelStarLevel"></div>
+                        <div class="customerStyleLimit">中宾（除新疆，西藏旅客）</div>
+                        <div class="hotelAddress">北京市 北京 东城区 王府井大街218-1</div>
+                        <div class="agencyManagers">签约经理：王某某</div>
+                        <div class="checkInOut"><span style="font-weight:bold">入住时间：</span>14点以后<span style="font-weight:bold;padding-left:20px">退房时间：</span>14点以前</div>
+                        <div class="changeOrCancel"><span style="font-weight:bold">变更/取消：</span>入住前1天12点之前取消或变更，不收取任何费用；入住前1天12点之后取消或变更，将收取首晚房费。</div>
+                    </div>
+                    <div class="hotelLowestPrice">
                         <span style="color:#656565;vertical-align:top;height:100%;line-height:90px;font-family:arial;font-size:14px;display:inline-block">￥</span>
                         <span style="color:#FF3000;font-size:40px;margin:0 2px;font-weight:bold;line-height:105px;display:inline-block">1410</span>
-                        <span style="color:#FF3000;height:100%;line-height:65px;display:inline-block">起</span>
-                    
+                        <span style="color:#FF3000;height:100%;line-height:105px;display:inline-block">起</span>
+
+                    </div>
                 </div>
-            </div>
-            <div class="hotelRoomStyleListContainer">
-                <table>
-                    <thead>
+                <div class="hotelRoomStyleListContainer">
+                    <table style="width:100%">
+                        <thead>
                         <tr>
-                            <td style="width:112px">房型</td>
-                            <td style="width:220px">床型</td>
+                            <td style="width:105px">房型</td>
+                            <td style="width:215px">床型</td>
                             <td style="width:50px">早餐</td>
                             <td style="width:50px">宽带</td>
                             <td style="width:54px">其他</td>
@@ -248,18 +440,18 @@
                             <td style="border:none;width:110px">卖价（不含服务费）</td>
                             <td style="border:none">&nbsp;</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>商务标准房</td>
-                            <td>不可加床 单人床（135cm*200cm）</td>
+                        </thead>
+                        <tbody>
+                        <tr class="hotelRoomOverView">
+                            <td class="roomStyle">商务标准房</td>
+                            <td class="bedStyle"><span class="hotelGift enable">sdfoijweoriwjproiweuprowirpoiweu</span><span style="font-weight:bold">不可加床</span> 单人床（135cm*200cm）</td>
                             <td>自助x1</td>
                             <td>宽带</td>
                             <td>其他</td>
-                            <td>￥380</td>
-                            <td>￥30</td>
-                            <td>￥410 <a href="javascript:;">规定</a></td>
-                            <td>
+                            <td class="price">￥380</td>
+                            <td class="price">￥30</td>
+                            <td class="price" style="color:#FF2F00;font-weight:bold">￥410 <a href="javascript:;" style="color:#0065CB;text-decoration:underline;font-weight:normal;padding-left:10px">规定</a></td>
+                            <td class="hotelRoomActionButtonContainer">
                                 <a class="button_7" href="">有 房</a>
                                 <a href="javascript:;" class="button_important adaptiveButton small" style="vertical-align: middle">
                                     <span class="left"></span>
@@ -273,13 +465,87 @@
                                 </a>
                             </td>
                         </tr>
-                    </tbody>
-                </table>
+                        <tr class="hotelRoomOverView">
+                            <td class="roomStyle">商务标准房</td>
+                            <td class="bedStyle"><div class="hotelGift">sdfoijweoriwjproiweuprowirpoiweu</div><span style="font-weight:bold">不可加床</span> 单人床（135cm*200cm）</td>
+                            <td>自助x1</td>
+                            <td>宽带</td>
+                            <td>其他</td>
+                            <td class="price">￥380</td>
+                            <td class="price">￥30</td>
+                            <td class="price" style="color:#FF2F00;font-weight:bold">￥410 <a href="javascript:;" style="color:#0065CB;text-decoration:underline;font-weight:normal;padding-left:10px">规定</a></td>
+                            <td class="hotelRoomActionButtonContainer">
+                                <a class="button_7" href="">有 房</a>
+                                <a href="javascript:;" class="button_important adaptiveButton small" style="vertical-align: middle">
+                                    <span class="left"></span>
+                                    <span class="center" style="padding:0 2px">预 定</span>
+                                    <span class="right"></span>
+                                </a>
+                                <a href="javascript:;" class="button_unimportant adaptiveButton small" style="vertical-align: middle">
+                                    <span class="left"></span>
+                                    <span class="center" style="padding:0 2px">询 价</span>
+                                    <span class="right"></span>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="hotelRoomOverView">
+                            <td class="roomStyle">商务标准房</td>
+                            <td class="bedStyle"><div class="hotelGift">sdfoijweoriwjproiweuprowirpoiweu</div><span style="font-weight:bold">不可加床</span> 单人床（135cm*200cm）</td>
+                            <td>自助x1</td>
+                            <td>宽带</td>
+                            <td>其他</td>
+                            <td class="price">￥380</td>
+                            <td class="price">￥30</td>
+                            <td class="price" style="color:#FF2F00;font-weight:bold">￥410 <a href="javascript:;" style="color:#0065CB;text-decoration:underline;font-weight:normal;padding-left:10px">规定</a></td>
+                            <td class="hotelRoomActionButtonContainer">
+                                <a class="button_7" href="">有 房</a>
+                                <a href="javascript:;" class="button_important adaptiveButton small" style="vertical-align: middle">
+                                    <span class="left"></span>
+                                    <span class="center" style="padding:0 2px">预 定</span>
+                                    <span class="right"></span>
+                                </a>
+                                <a href="javascript:;" class="button_unimportant adaptiveButton small" style="vertical-align: middle">
+                                    <span class="left"></span>
+                                    <span class="center" style="padding:0 2px">询 价</span>
+                                    <span class="right"></span>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="text-align:right"><a href="javascript:;" class="allPriceToggle">展开全部价格（10）︾</a></div>
             </div>
         </div>
+        <div class="grid-table-pagination" style="background:#ffffff">
+            <span class="grid-table-count">
+                共 <em>132</em> 条记录
+            </span>
+            <span>
+                <a class="prev" href="#">&nbsp;</a>
+            </span>
+            <span class="links">
+                <a href="#">1</a>
+                <a href="#">2</a>
+                <a class="current" href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="javascript:;">...</a>
+                <a href="#">50</a>
+            </span>
+            <span>
+                <a class="next" href="#">&nbsp;</a>
+            </span>
+        </div>
     </div>
-
 </div>
+<div id="errorMsgContainer">
+    <div id="errorMsgArrow"></div>
+    <div id="errorMsgContent">
+
+    </div>
+</div>
+
 
 <script type="text/x-kendo-template" id="filterParamTemplate">
     <li>
@@ -299,6 +565,23 @@
         var filterData=[{filterName:"二星级及以下/经济"},{filterName:"三星级/舒适"},{filterName:"精品酒店"},{filterName:"汽车旅馆"},{filterName:"798"},{filterName:"希尔顿"},{filterName:"二星级及以下/经济"},{filterName:"三星级/舒适"},{filterName:"精品酒店"},{filterName:"汽车旅馆"},{filterName:"798"},{filterName:"希尔顿"}];
         var filterParamT=kendo.template($("#filterParamTemplate").html());
         $(".filterParamsList>ul").html(kendo.render(filterParamT,filterData));
+
+        var myformV=$("#myform").kendoValidator({validateOnBlur:false,errorMsgShow:false}).data("kendoValidator");
+        $("#btn_search").click(function(){
+            if(!myformV.validate())
+            {
+                var invalidInput=$(".k-invalid:first");
+                var left=invalidInput.offset().left+invalidInput.outerWidth();
+                var top=invalidInput.offset().top;
+                var errorMsg=myformV.errors()[0];
+                $("#errorMsgContent").html(errorMsg);
+                $("#errorMsgContainer").css({left:left,top:top,width:errorMsg.length*14+12,display:"block"});
+                invalidInput.focus();
+
+            }
+
+        });
+        $("#myform").delegate($(".k-invalid"),"focusout",function(){$("#errorMsgContainer").hide();})
 
     });
 </script>
