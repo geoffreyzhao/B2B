@@ -63,7 +63,7 @@ PopWindow.prototype = {
         $('body').delegate(that.triggerText,'click',function(e){
             e.preventDefault();
             if(!that.cache){
-               that.win.refresh(); 
+                that.win.refresh(); 
             }
             that.win.center();
             that.win.open();
@@ -187,37 +187,49 @@ Collpase.prototype = {
 }
 
 /* 城市补全js 模板
-
-<script type="text/x-kendo-template" id="city_popup_tpl">
-<div id="tabstrip" class="tabstrip" style="width:370px">
+<script type="text/x-kendo-template" id="city_popup">
+<div id="tabstrip" class="tcy_tabstrip" style="display:none;">
+<span class="tcy_title">
+热门城市/国家（支持中文名/拼音/英文名/三字码）
+</span>
 <ul>
 <li id="hot_city" class="k-state-active">热门</li>
 # for (var i=0; i<data.group.length; i++ ) { #
 <li>#= data.group[i] #</li>
 # } #
 </ul>
-<div title="热门" id="hot_city_tab">
+<div id="hot_city_tab">
 <ul class="tcy_list clearfix">
 
 # for(var j=0;j<hotcitylist.length;j++){ #
 # var citylist_item = hotcitylist[j] #
-<li data-code="#= citylist_item.code #">#= citylist_item.name #</li>
+<li class="item" title="#= citylist_item.code #" data-code="#= citylist_item.code #">#= citylist_item.name #</li>
 # } #
-
 </ul>
 </div>
 
 # for(var i=0;i<data.citylist.length;i++){ #
 # var citylist_item = data.citylist[i] #
-<div title="#= citylist_item.name #" class="city_tab">
+<div class="city_tab">
 <ul class="tcy_list clearfix">
+# for(var k=0;k<data.group[i].length;k++){ #
+<li class="tcy_list_sep">#= data.group[i].split('')[k] #</li>
 # for(var j=0;j<citylist_item.value.length;j++){ #
-# var citylist_value_item = citylist_item.value[j] #
-<li data-code="#= citylist_value_item.code #">#= citylist_value_item.name #</li>
+# var citylist_value_item = citylist_item.value[j]; #
+# if(citylist_value_item.py.slice(0,1) == data.group[i].split('')[k]) {#
+<li class="item" title="#= citylist_value_item.code #" data-code="#= citylist_value_item.code #">#= citylist_value_item.name #</li>
 # } #
-</ul></div>
+# } #
+# } #
+</ul>
+</div>
+
 # } #
 </div>
+</script>
+
+<script type="x-kendo-template" id="itemTemplate">
+<span class="sg_py">${data.py}</span><span class="sg_name">${data.name}</span><span class="sg_code">（${data.code}）</span>
 </script>
 
 模板结束 */
@@ -419,4 +431,51 @@ var CityAutocomplete = function(){
 
     return that;
 }();
+
+
+// 浮层模块
+var FloatLayer = function(opts){
+    var opts  = $.extend({
+        data:{},
+        template:"",
+        type:'click',
+        offsetX:0,
+        offsetY:20
+    },opts);
+
+    var tpl = kendo.template( $(opts.template).html() );
+    var hot_tabs = $('<div class="ac-floatlayer" style="display:none;position:absolute;"/>');
+
+    hot_tabs.html(tpl(opts.data));
+    $('body').append(hot_tabs);
+    kendo.init(hot_tabs);
+
+    $(document).on('click',function(e){
+        var t = $(e.target);
+        if ( !t.is(opts.trigger) ){
+            if ( t.closest('.ac-floatlayer').length !==1 ){
+                hot_tabs.hide();    
+            }
+        }
+    });
+
+    // todo: support more type;
+    $(opts.trigger).bind(opts.type,function(e){
+        var pos = $(this).offset();
+        hot_tabs.css({
+            left:pos.left + opts.offsetX,
+            top:pos.top + opts.offsetY
+        });
+        hot_tabs.toggle();
+    });
+
+    return {
+        close:function(){
+            hot_tabs.hide(); 
+        },
+        open:function(){
+            hot_tabs.show(); 
+        }
+    }
+};
 
