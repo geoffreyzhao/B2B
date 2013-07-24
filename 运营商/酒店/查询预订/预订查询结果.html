@@ -9,71 +9,7 @@
     <link rel="stylesheet" href="/static/css/kendo.gray.css">
     <link href="/static/css/kendo.reset.css" rel="stylesheet" />
     <link rel="stylesheet" href="/static/css/hotel.css">
-    <style type="text/css">
-        div.panel{padding:0;width:980px}
-        input[type=text]{height:20px}
-        input[type=button]{border:none}
-        .button_6{padding:3px 10px;color:#000000;background:#ffffff;display:inline-block}
-        .button_6:hover,.button_6.select{background:#10A9DD;color:#ffffff}
-        .button_7{border:1px solid #A5E9FF;background:#D1F3FE;color:#008BB9;display:inline-block;padding:2px 5px}
-        .button_8{border:1px solid #FFD4B8;background:#FEECE0;color:#FF6500;display:inline-block;padding:2px 5px}
-        .button_9{border:1px solid #898888;background:#ACACAC;color:#F3F3F3;display:inline-block;padding:2px 5px}
-        .ico_search{ width:19px; background:url(/static/images/xyzc_shuoshuo.jpg) no-repeat; display:inline-block; margin:7px 0 0 3px;}
-        .tbl_customersList thead td{background:#E4E4E4;border-right:1px solid #ffffff}
-        .tbl_customersList tbody td{border-right:1px solid #E4E4E4}
-        .searchPanel{background:#FFFCE8;padding:10px}
-        .searchPanel input[type=text]{height:20px;margin:0 10px 0 5px;border:1px solid #F5B581;background-color:#ffffff;width:100px}
-        .filterPanel{padding:10px;border-top:3px solid #FFA86E}
-        .filterListItem{height:160px}
-        .filterTitle{font-weight:bold;margin:0 0 5px 0}
-        .filterAny{margin-bottom:5px}
-        .ul_filterList li{margin-bottom:5px;float:left;word-break:keep-all}
-        .filterHotelStyle li{width:78px}
-        .filterParamsList{width:840px;float:left}
-        .filterParamsList li{float:left;margin:0 5px 5px 0;border:1px solid #9FCDDD;background:#ECF7FB;padding:2px 6px;word-break:keep-all}
-        .filterParamsPanel{position:relative;padding:10px;}
-        .hotelListToolsBar{height:40px;line-height:40px;padding:0 10px;background:#F6F6F6}
-        .pagesLeft{background:url('/static/images/pagesLeftRight.png') no-repeat 0 0;display:inline-block;width:16px;height:20px;vertical-align:middle}
-        .pagesRight{background:url('/static/images/pagesLeftRight.png') no-repeat -17px 0;display:inline-block;width:16px;height:20px;vertical-align:middle}
-        .pagesLeft.enable{background-position:0 -21px }
-        .pagesRight.enable{background-position:-17px -21px }
-        .hotelBasicInfo{height:115px}
-        .hotelListItem{padding:18px;background:#ffffff;border:1px solid #E2E5E7}
-        .hotelImg{float:left}
-        .hotelTextInfo{width:610px;margin:0 15px;float:left}
-        .hotelName{font-weight:bold;width:245px;float:left;margin-right:25px;overflow:hidden}
-        .hotelStarLevel{background:url("/static/images/star_level.gif") no-repeat;width:89px;height:17px;vertical-align:middle;float:left;margin-right:85px;}
-        .customerStyleLimit{font-weight:bold}
-        .hotelAddress{color:#999999;float:left;margin:5px 0 10px}
-        .agencyManagers{color:#000000;background:#DDF4FC;float:right;padding:2px 6px;margin:5px 40px 10px 0}
-        .checkInOut{clear:both;margin-bottom:5px}
-
-        .hotelLowestPrice{width:140px;height:105px;border:1px solid #E2E5E7;float:right;background:#F8F8F8;text-align:center}
-
-        .hotelRoomStyleListContainer{padding-top:18px}
-        .hotelRoomStyleListContainer thead td{background:#E4E4E4;border-right:1px solid #ffffff}
-        .hotelRoomStyleListContainer tbody td{border-top:1px solid #E0E0E0}
-        .hotelRoomStyleListContainer table{border:1px solid #E0E0E0}
-        tr.hotelRoomOverView td{background:#ECF7FB}
-        .roomStyle{font-weight:bold}
-        .hotelGift{display:inline-block;width:15px;height:16px;text-indent:-3000px;float:left}
-        .hotelGift.enable{background:url('/static/images/hotelGift.gif') no-repeat;cursor:pointer}
-        .hotelRoomActionButtonContainer{text-align:right}
-        .roomStyle_special{font-weight:bold;padding-left:15px}
-        .hotelRoomdetail:hover td{background:#FFFFDB}
-        .bedStyle{text-indent:0}
-        .allPriceToggle{color:#0065CB}
-
-        .btn_sort{background:url(/static/images/btn_sort.png) no-repeat 0 0;display:inline-block;width:9px;height:13px;vertical-align:middle}
-        .btn_sort.desc{background-position:0 -30px}
-        .btn_sort.asc{background-position:0 -15px}
-
-        #errorMsgContainer{position:absolute;top:100px;left:50px;height:26px;display:none}
-        #errorMsgArrow{position:absolute;top:50%;left:0;margin-top:-6px;width:6px;height:13px;background:url('/static/images/errorMsgArrow.gif') no-repeat left center;z-index:1001}
-        #errorMsgContent{padding:3px 5px;background:#FFFCE8;border:1px solid #FF3333;position:absolute;top:0;left:5px;z-index:1000;color:#FF0000}
-
-
-    </style>
+    <link rel="stylesheet" href="/static/css/hotel_booking_searching.css">
 </head>
 <body>
 <div class="topFixedToolsBar">
@@ -127,7 +63,7 @@
     <div class="panel" style="border:1px solid #FCE485">
         <form action="www.baidu.com" method="post" id="myform">
         <div class="searchPanel">
-            城市 <input id="city" name="city" class="city" type="text" required data-required-msg="请选择酒店所在城市">
+            城市 <input id="city" name="city" class="city" type="text" required data-required-msg="请选择酒店所在城市" placeholder="请参考碎片内的城市选择-国内.html">
             入住 <input id="checkinDate" name="checkinDate" class="datePicker" type="text" required data-required-msg="请选择入住日期">
             离店 <input id="checkoutDate" name="checkoutDate" class="datePicker second" type="text" required data-required-msg="请选择离店日期">
             位置 <input id="location" name="location" class="city" type="text" style="width:160px" required data-required-msg="请选择酒店所在位置">
@@ -144,67 +80,67 @@
             <div style="border-bottom:1px dashed #cccccc;padding:15px 5px">
                 <div class="filterListItem" style="border-right:1px dashed #cccccc;width:155px;float:left">
                     <div class="filterTitle">酒店星级：</div>
-                    <div class="filterAny"><a class="button_6" href="javascript:;">不限</a></div>
+                    <div class="filterAny"><a class="button_6_select" href="javascript:;" onclick="delModelAllItems('hotelLevel')" data-bind="attr:{class:hotelLevel.length?'button_6':'button_6_select'}">不限</a></div>
                     <ul class="ul_filterList">
-                        <li><label><input type="checkbox" name="" id="">二星级及以下 / 经济</label></li>
-                        <li style="width: 150px"><label><input type="checkbox" name="" id="">三星级 / 舒适</label></li>
-                        <li style="width: 150px"><label><input type="checkbox" name="" id="">四星级 / 高档</label></li>
-                        <li><label><input type="checkbox" name="" id="">五星级 / 豪华</label></li>
+                        <li><label><input type="checkbox" name="" id="" value="二星级及以下 / 经济" data-bind="checked:hotelLevel">二星级及以下 / 经济</label></li>
+                        <li style="width: 150px"><label><input type="checkbox" name="" id="" value="三星级 / 舒适" data-bind="checked:hotelLevel">三星级 / 舒适</label></li>
+                        <li style="width: 150px"><label><input type="checkbox" name="" id="" value="四星级 / 高档" data-bind="checked:hotelLevel">四星级 / 高档</label></li>
+                        <li><label><input type="checkbox" name="" id="" value="五星级 / 豪华" data-bind="checked:hotelLevel">五星级 / 豪华</label></li>
                     </ul>
                 </div>
                 <div class="filterListItem" style="border-right:1px dashed #cccccc;width:156px;float:left;padding:0 22px">
                     <div class="filterTitle">酒店类型：</div>
-                    <div class="filterAny"><a class="button_6" href="javascript:;">不限</a></div>
+                    <div class="filterAny"><a class="button_6_select" href="javascript:;" onclick="delModelAllItems('hotelStyle')" data-bind="attr:{class:hotelStyle.length?'button_6':'button_6_select'}">不限</a></div>
                     <ul class="ul_filterList filterHotelStyle">
-                        <li><label><input type="checkbox" name="" id="">精品酒店</label></li>
-                        <li><label><input type="checkbox" name="" id="">招待所</label></li>
-                        <li><label><input type="checkbox" name="" id="">商务酒店</label></li>
-                        <li><label><input type="checkbox" name="" id="">旅社</label></li>
-                        <li><label><input type="checkbox" name="" id="">汽车旅馆</label></li>
-                        <li><label><input type="checkbox" name="" id="">别墅</label></li>
-                        <li><label><input type="checkbox" name="" id="">度假村</label></li>
+                        <li><label><input type="checkbox" name="" id="" value="精品酒店" data-bind="checked:hotelStyle">精品酒店</label></li>
+                        <li><label><input type="checkbox" name="" id="" value="招待所" data-bind="checked:hotelStyle">招待所</label></li>
+                        <li><label><input type="checkbox" name="" id="" value="商务酒店" data-bind="checked:hotelStyle">商务酒店</label></li>
+                        <li><label><input type="checkbox" name="" id="" value="旅社" data-bind="checked:hotelStyle">旅社</label></li>
+                        <li><label><input type="checkbox" name="" id="" value="汽车旅馆" data-bind="checked:hotelStyle">汽车旅馆</label></li>
+                        <li><label><input type="checkbox" name="" id="" value="别墅" data-bind="checked:hotelStyle">别墅</label></li>
+                        <li><label><input type="checkbox" name="" id="" value="度假村" data-bind="checked:hotelStyle">度假村</label></li>
                     </ul>
                 </div>
                 <div class="filterListItem" style="border-right:1px dashed #cccccc;width:156px;float:left;padding:0 22px">
                     <div class="filterTitle">位置：</div>
-                    <div class="filterAny"><a class="button_6" href="javascript:;">不限</a></div>
+                    <div class="filterAny"><a class="button_6_select" href="javascript:;" onclick="delModelAllItems('hotelLocation')" data-bind="attr:{class:hotelLocation.length?'button_6':'button_6_select'}">不限</a></div>
                     <ul class="ul_filterList filterHotelStyle">
-                        <li><label><input type="radio" name="radio_hotelLocation" id="">精品酒店</label></li>
-                        <li><label><input type="radio" name="radio_hotelLocation" id="">招待所</label></li>
-                        <li><label><input type="radio" name="radio_hotelLocation" id="">商务酒店</label></li>
-                        <li><label><input type="radio" name="radio_hotelLocation" id="">旅社</label></li>
-                        <li><label><input type="radio" name="radio_hotelLocation" id="">汽车旅馆</label></li>
-                        <li><label><input type="radio" name="radio_hotelLocation" id="">别墅</label></li>
-                        <li><label><input type="radio" name="radio_hotelLocation" id="">度假村</label></li>
+                        <li><label><input type="radio" name="radio_hotelLocation" id="" value="精品酒店" data-bind="checked:hotelLocation">精品酒店</label></li>
+                        <li><label><input type="radio" name="radio_hotelLocation" id="" value="招待所" data-bind="checked:hotelLocation">招待所</label></li>
+                        <li><label><input type="radio" name="radio_hotelLocation" id="" value="商务酒店" data-bind="checked:hotelLocation">商务酒店</label></li>
+                        <li><label><input type="radio" name="radio_hotelLocation" id="" value="旅社" data-bind="checked:hotelLocation">旅社</label></li>
+                        <li><label><input type="radio" name="radio_hotelLocation" id="" value="汽车旅馆" data-bind="checked:hotelLocation">汽车旅馆</label></li>
+                        <li><label><input type="radio" name="radio_hotelLocation" id="" value="别墅" data-bind="checked:hotelLocation">别墅</label></li>
+                        <li><label><input type="radio" name="radio_hotelLocation" id="" value="度假村" data-bind="checked:hotelLocation">度假村</label></li>
                     </ul>
                     <div style="float:right;clear:left"><a href="javascript:;" style="color:#0065CB;background:url('/static/images/arrow_blue.gif') no-repeat center right;padding-right:14px">更多</a></div>
                 </div>
                 <div class="filterListItem" style="border-right:1px dashed #cccccc;width:156px;float:left;padding:0 22px">
                     <div class="filterTitle">连锁品牌：</div>
-                    <div class="filterAny"><a class="button_6" href="javascript:;">不限</a></div>
+                    <div class="filterAny"><a class="button_6_select" href="javascript:;" onclick="delModelAllItems('hotelBrand')" data-bind="attr:{class:hotelBrand.length?'button_6':'button_6_select'}">不限</a></div>
                     <ul class="ul_filterList filterHotelStyle">
-                        <li><label><input type="checkbox" name="" id="">希尔顿</label></li>
-                        <li><label><input type="checkbox" name="" id="">格林豪泰</label></li>
-                        <li><label><input type="checkbox" name="" id="">喜来登</label></li>
-                        <li><label><input type="checkbox" name="" id="">锦江之星</label></li>
-                        <li><label><input type="checkbox" name="" id="">万豪</label></li>
-                        <li><label><input type="checkbox" name="" id="">7天</label></li>
-                        <li><label><input type="checkbox" name="" id="">汉庭</label></li>
-                        <li><label><input type="checkbox" name="" id="">如家</label></li>
+                        <li><label><input type="checkbox" name="" id="" value="希尔顿" data-bind="checked:hotelBrand">希尔顿</label></li>
+                        <li><label><input type="checkbox" name="" id="" value="格林豪泰" data-bind="checked:hotelBrand">格林豪泰</label></li>
+                        <li><label><input type="checkbox" name="" id="" value="喜来登" data-bind="checked:hotelBrand">喜来登</label></li>
+                        <li><label><input type="checkbox" name="" id="" value="锦江之星" data-bind="checked:hotelBrand">锦江之星</label></li>
+                        <li><label><input type="checkbox" name="" id="" value="万豪" data-bind="checked:hotelBrand">万豪</label></li>
+                        <li><label><input type="checkbox" name="" id="" value="7天" data-bind="checked:hotelBrand">7天</label></li>
+                        <li><label><input type="checkbox" name="" id="" value="汉庭" data-bind="checked:hotelBrand">汉庭</label></li>
+                        <li><label><input type="checkbox" name="" id="" value="如家" data-bind="checked:hotelBrand">如家</label></li>
                     </ul>
                     <div style="float:right;clear:left"><a href="javascript:;" style="color:#0065CB;background:url('/static/images/arrow_blue.gif') no-repeat center right;padding-right:14px">更多</a></div>
                 </div>
                 <div class="filterListItem" style="width:169px;float:left;padding-left:22px">
                     <div class="filterTitle">卖价区间：</div>
-                    <div class="filterAny"><a class="button_6" href="javascript:;">不限</a></div>
+                    <div class="filterAny"><a class="button_6_select" href="javascript:;" onclick="delModelAllItems('hotelPriceRange')" data-bind="attr:{class:hotelPriceRange.length?'button_6':'button_6_select'}">不限</a></div>
                     <ul class="ul_filterList">
-                        <li style="width:150px"><label><input type="radio" name="radio_hotelLocation" id="">200以下</label></li>
-                        <li style="width:150px"><label><input type="radio" name="radio_hotelLocation" id="">200-600</label></li>
-                        <li style="width:150px"><label><input type="radio" name="radio_hotelLocation" id="">600以上</label></li>
+                        <li style="width:150px"><label><input type="radio" name="radio_hotelPriceRange" id="" value="200以下" data-bind="checked:hotelPriceRange">200以下</label></li>
+                        <li style="width:150px"><label><input type="radio" name="radio_hotelPriceRange" id="" value="200-600" data-bind="checked:hotelPriceRange">200-600</label></li>
+                        <li style="width:150px"><label><input type="radio" name="radio_hotelPriceRange" id="" value="600以上" data-bind="checked:hotelPriceRange">600以上</label></li>
                     </ul>
                     <div>
-                        <input type="text" name="" id="" style="width:30px">-<input type="text" name="" id="" style="width:30px">
-                        <a href="javascript:;" class="button_unimportant adaptiveButton small" style="vertical-align: middle">
+                        <input type="text" name="" id="lowerPrice" style="width:30px">-<input type="text" name="" id="higherPrice" style="width:30px">
+                        <a href="javascript:;" data-bind="click:setHotelPriceRange" class="button_unimportant adaptiveButton small" style="vertical-align: middle">
                             <span class="left"></span>
                             <span class="center">确定</span>
                             <span class="right"></span>
@@ -217,9 +153,11 @@
             <div class="filterParamsPanel">
                 <div style="float:left;width:70px">筛选酒店：</div>
                 <div class="filterParamsList">
-                    <ul>
-
-                    </ul>
+                    <ul data-bind="source:hotelLevel" data-template="filterParamTemplate"></ul>
+                    <ul data-bind="source:hotelStyle" data-template="filterParamTemplate"></ul>
+                    <ul data-bind="source:hotelLocation" data-template="filterParamTemplate"></ul>
+                    <ul data-bind="source:hotelBrand" data-template="filterParamTemplate"></ul>
+                    <ul data-bind="source:hotelPriceRange" data-template="filterParamTemplate"></ul>
                 </div>
                 <div style="position:absolute;top:10px;right:10px"><a href="javascript:;">[清空]</a></div>
             </div>
@@ -250,7 +188,7 @@
                         <div class="hotelStarLevel"></div>
                         <div class="customerStyleLimit">中宾（除新疆，西藏旅客）</div>
                         <div class="hotelAddress">北京市 北京 东城区 王府井大街218-1</div>
-                        <div class="agencyManagers">签约经理：王某某</div>
+                        <div class="agencyManagers" data-mobile="1234567890" data-email="maomaowang@travelzen.com">签约经理：<span>王某某</span></div>
                         <div class="checkInOut"><span style="font-weight:bold">入住时间：</span>14点以后<span style="font-weight:bold;padding-left:20px">退房时间：</span>14点以前</div>
                         <div class="changeOrCancel"><span style="font-weight:bold">变更/取消：</span>入住前1天12点之前取消或变更，不收取任何费用；入住前1天12点之后取消或变更，将收取首晚房费。</div>
                     </div>
@@ -292,13 +230,13 @@
                             </tr>
                             <tr class="hotelRoomdetail">
                                 <td class="roomStyle_special">含早特惠</td>
-                                <td class="bedStyle"><div class="hotelGift enable">sdfoijweoriwjproiweuprowirpoiweu</div></td>
+                                <td class="bedStyle"><div class="hotelGift enable" title="欧舒丹覅我饿哦日文的v女娃儿">sdfoijweoriwjproiweuprowirpoiweu</div></td>
                                 <td>自助x1</td>
                                 <td>宽带</td>
-                                <td>其他</td>
-                                <td class="price">￥380</td>
+                                <td class="other" title="包含1间司陪房；包含机场接送">其他</td>
+                                <td class="basePrice">￥380</td>
                                 <td class="price">￥30</td>
-                                <td class="price" style="color:#FF2F00;font-weight:bold">￥410 <a href="javascript:;" style="color:#0065CB;text-decoration:underline;font-weight:normal;padding-left:10px">规定</a></td>
+                                <td><span class="sellPrice">￥410</span> <a href="javascript:;" class="rule" data-checkin="14:00以后" data-checkout="12:00以前" data-other="酒店预订确认后，不能变更或取消">规定</a></td>
                                 <td class="hotelRoomActionButtonContainer">
                                     <a href="javascript:;" class="button_important adaptiveButton small" style="vertical-align: middle">
                                         <span class="left"></span>
@@ -317,10 +255,10 @@
                                 <td class="bedStyle"><div class="hotelGift">sdfoijweoriwjproiweuprowirpoiweu</div></td>
                                 <td>自助x1</td>
                                 <td>宽带</td>
-                                <td>其他</td>
-                                <td class="price">￥380</td>
+                                <td class="other" title="包含1间司陪房；包含机场接送">其他</td>
+                                <td class="basePrice">￥380</td>
                                 <td class="price">￥30</td>
-                                <td class="price" style="color:#FF2F00;font-weight:bold">￥410 <a href="javascript:;" style="color:#0065CB;text-decoration:underline;font-weight:normal;padding-left:10px">规定</a></td>
+                                <td><span class="sellPrice">￥410</span> <a href="javascript:;" class="rule" data-checkin="14:00以后" data-checkout="12:00以前" data-other="酒店预订确认后，不能变更或取消">规定</a></td>
                                 <td class="hotelRoomActionButtonContainer">
                                     <a href="javascript:;" class="button_important adaptiveButton small" style="vertical-align: middle">
                                         <span class="left"></span>
@@ -339,10 +277,10 @@
                                 <td class="bedStyle"><div class="hotelGift">sdfoijweoriwjproiweuprowirpoiweu</div></td>
                                 <td>自助x1</td>
                                 <td>宽带</td>
-                                <td>其他</td>
-                                <td class="price">￥380</td>
+                                <td class="other" title="包含1间司陪房；包含机场接送">其他</td>
+                                <td class="basePrice">￥380</td>
                                 <td class="price">￥30</td>
-                                <td class="price" style="color:#FF2F00;font-weight:bold">￥410 <a href="javascript:;" style="color:#0065CB;text-decoration:underline;font-weight:normal;padding-left:10px">规定</a></td>
+                                <td><span class="sellPrice">￥410</span> <a href="javascript:;" class="rule" data-checkin="14:00以后" data-checkout="12:00以前" data-other="酒店预订确认后，不能变更或取消">规定</a></td>
                                 <td class="hotelRoomActionButtonContainer">
                                     <a href="javascript:;" class="button_important adaptiveButton small" style="vertical-align: middle">
                                         <span class="left"></span>
@@ -361,10 +299,10 @@
                                 <td class="bedStyle"><div class="hotelGift">sdfoijweoriwjproiweuprowirpoiweu</div><span style="font-weight:bold">不可加床</span> 单人床（135cm*200cm）</td>
                                 <td>自助x1</td>
                                 <td>宽带</td>
-                                <td>其他</td>
-                                <td class="price">￥380</td>
+                                <td class="other" title="包含1间司陪房；包含机场接送">其他</td>
+                                <td class="basePrice">￥380</td>
                                 <td class="price">￥30</td>
-                                <td class="price" style="color:#FF2F00;font-weight:bold">￥410 <a href="javascript:;" style="color:#0065CB;text-decoration:underline;font-weight:normal;padding-left:10px">规定</a></td>
+                                <td><span class="sellPrice">￥410</span> <a href="javascript:;" class="rule" data-checkin="14:00以后" data-checkout="12:00以前" data-other="酒店预订确认后，不能变更或取消">规定</a></td>
                                 <td class="hotelRoomActionButtonContainer">
                                     <a class="button_9" href="">无 房</a>
                                     <a href="javascript:;" class="button_important adaptiveButton small" style="vertical-align: middle">
@@ -384,10 +322,10 @@
                                 <td class="bedStyle"><div class="hotelGift">sdfoijweoriwjproiweuprowirpoiweu</div><span style="font-weight:bold">不可加床</span> 单人床（135cm*200cm）</td>
                                 <td>自助x1</td>
                                 <td>宽带</td>
-                                <td>其他</td>
-                                <td class="price">￥380</td>
+                                <td class="other" title="包含1间司陪房；包含机场接送">其他</td>
+                                <td class="basePrice">￥380</td>
                                 <td class="price">￥30</td>
-                                <td class="price" style="color:#FF2F00;font-weight:bold">￥410 <a href="javascript:;" style="color:#0065CB;text-decoration:underline;font-weight:normal;padding-left:10px">规定</a></td>
+                                <td><span class="sellPrice">￥410</span> <a href="javascript:;" class="rule" data-checkin="14:00以后" data-checkout="12:00以前" data-other="酒店预订确认后，不能变更或取消">规定</a></td>
                                 <td class="hotelRoomActionButtonContainer">
                                     <a class="button_7" href="">有 房</a>
                                     <a href="javascript:;" class="button_important adaptiveButton small" style="vertical-align: middle">
@@ -415,7 +353,7 @@
                         <div class="hotelStarLevel"></div>
                         <div class="customerStyleLimit">中宾（除新疆，西藏旅客）</div>
                         <div class="hotelAddress">北京市 北京 东城区 王府井大街218-1</div>
-                        <div class="agencyManagers">签约经理：王某某</div>
+                        <div class="agencyManagers" data-mobile="1234567890" data-email="maomaowang@travelzen.com">签约经理：<span>王某某</span></div>
                         <div class="checkInOut"><span style="font-weight:bold">入住时间：</span>14点以后<span style="font-weight:bold;padding-left:20px">退房时间：</span>14点以前</div>
                         <div class="changeOrCancel"><span style="font-weight:bold">变更/取消：</span>入住前1天12点之前取消或变更，不收取任何费用；入住前1天12点之后取消或变更，将收取首晚房费。</div>
                     </div>
@@ -444,13 +382,13 @@
                         <tbody>
                         <tr class="hotelRoomOverView">
                             <td class="roomStyle">商务标准房</td>
-                            <td class="bedStyle"><span class="hotelGift enable">sdfoijweoriwjproiweuprowirpoiweu</span><span style="font-weight:bold">不可加床</span> 单人床（135cm*200cm）</td>
+                            <td class="bedStyle"><div class="hotelGift enable" title="破i类抗拒破i外v精品微软姜婉儿">sdfoijweoriwjproiweuprowirpoiweu</div><span style="font-weight:bold">不可加床</span> 单人床（135cm*200cm）</td>
                             <td>自助x1</td>
                             <td>宽带</td>
-                            <td>其他</td>
-                            <td class="price">￥380</td>
+                            <td class="other" title="包含1间司陪房；包含机场接送">其他</td>
+                            <td class="basePrice">￥380</td>
                             <td class="price">￥30</td>
-                            <td class="price" style="color:#FF2F00;font-weight:bold">￥410 <a href="javascript:;" style="color:#0065CB;text-decoration:underline;font-weight:normal;padding-left:10px">规定</a></td>
+                            <td><span class="sellPrice">￥410</span> <a href="javascript:;" class="rule" data-checkin="14:00以后" data-checkout="12:00以前" data-other="酒店预订确认后，不能变更或取消">规定</a></td>
                             <td class="hotelRoomActionButtonContainer">
                                 <a class="button_7" href="">有 房</a>
                                 <a href="javascript:;" class="button_important adaptiveButton small" style="vertical-align: middle">
@@ -470,10 +408,10 @@
                             <td class="bedStyle"><div class="hotelGift">sdfoijweoriwjproiweuprowirpoiweu</div><span style="font-weight:bold">不可加床</span> 单人床（135cm*200cm）</td>
                             <td>自助x1</td>
                             <td>宽带</td>
-                            <td>其他</td>
-                            <td class="price">￥380</td>
+                            <td class="other" title="包含1间司陪房；包含机场接送">其他</td>
+                            <td class="basePrice">￥380</td>
                             <td class="price">￥30</td>
-                            <td class="price" style="color:#FF2F00;font-weight:bold">￥410 <a href="javascript:;" style="color:#0065CB;text-decoration:underline;font-weight:normal;padding-left:10px">规定</a></td>
+                            <td><span class="sellPrice">￥410</span> <a href="javascript:;" class="rule" data-checkin="14:00以后" data-checkout="12:00以前" data-other="酒店预订确认后，不能变更或取消">规定</a></td>
                             <td class="hotelRoomActionButtonContainer">
                                 <a class="button_7" href="">有 房</a>
                                 <a href="javascript:;" class="button_important adaptiveButton small" style="vertical-align: middle">
@@ -493,10 +431,10 @@
                             <td class="bedStyle"><div class="hotelGift">sdfoijweoriwjproiweuprowirpoiweu</div><span style="font-weight:bold">不可加床</span> 单人床（135cm*200cm）</td>
                             <td>自助x1</td>
                             <td>宽带</td>
-                            <td>其他</td>
-                            <td class="price">￥380</td>
+                            <td class="other" title="包含1间司陪房；包含机场接送">其他</td>
+                            <td class="basePrice">￥380</td>
                             <td class="price">￥30</td>
-                            <td class="price" style="color:#FF2F00;font-weight:bold">￥410 <a href="javascript:;" style="color:#0065CB;text-decoration:underline;font-weight:normal;padding-left:10px">规定</a></td>
+                            <td><span class="sellPrice">￥410</span> <a href="javascript:;" class="rule" data-checkin="14:00以后" data-checkout="12:00以前" data-other="酒店预订确认后，不能变更或取消">规定</a></td>
                             <td class="hotelRoomActionButtonContainer">
                                 <a class="button_7" href="">有 房</a>
                                 <a href="javascript:;" class="button_important adaptiveButton small" style="vertical-align: middle">
@@ -549,10 +487,121 @@
 
 <script type="text/x-kendo-template" id="filterParamTemplate">
     <li>
-        <span>#= filterName #</span>
-        <a href="javascript:;" style="margin-left:5px"><img src="/static/images/deleteButton1.gif" alt="" style="vertical-align:middle"></a></td>
+        <span>#= data #</span>
+        # console.log(data) #
+        <a href="javascript:;" style="margin-left:5px" onclick="delFilterItem(this,'#= data #')"><img src="/static/images/deleteButton1.gif" alt="" style="vertical-align:middle"></a></td>
     </li>
 </script>
+
+<script type="text/x-kendo-template" id="hotelGiftTemplate">
+    <div>
+        <div class="toolTipField">价格说明：</div>
+        <div>#= target.data('title') #</div>
+    </div>
+</script>
+<script type="text/x-kendo-template" id="agencyManagersTemplate">
+    <div style="text-align:left">
+        <div><span class="toolTipField">手机：</span>#= target.data('mobile') #</div>
+        <div><span class="toolTipField">邮箱：</span>#= target.data('email') #</div>
+    </div>
+</script>
+<script type="text/x-kendo-template" id="ruleTemplate">
+    <div style="text-align:left">
+        <div><span class="toolTipField">入住时间：</span>#= target.data('checkin') #  <span class="toolTipField">退房时间：</span>#= target.data('checkout') #</div>
+        <div>#= target.data('other') #</div>
+    </div>
+</script>
+<script type="text/x-kendo-template" id="otherTemplate">
+    <div>
+        <div class="toolTipField">其他包含服务：</div>
+        <div>#= target.data('title') #</div>
+    </div>
+</script>
+<script type="text/x-kendo-template" id="priceTemplate">
+    <table class="priceTable">
+        <tr class="priceTableHead">
+            <td>第一周</td>
+            <td>7/1 一</td>
+            <td>7/2 二</td>
+            <td>7/3 三</td>
+            <td>7/4 四</td>
+            <td>7/5 五</td>
+            <td class="weekend">7/6 六</td>
+            <td class="weekend">7/7 日</td>
+        </tr>
+        <tr>
+            <td>单价</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="priceTablePrice">410</td>
+            <td class="priceTablePrice">410</td>
+            <td class="priceTablePrice">430</td>
+            <td class="priceTablePrice">430</td>
+        </tr>
+        <tr>
+            <td>早餐</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>自助x1</td>
+            <td>自助x1</td>
+            <td>自助x1</td>
+            <td>自助x1</td>
+        </tr>
+        <tr>
+            <td>宽带</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>宽带</td>
+            <td>宽带</td>
+            <td>宽带</td>
+            <td>宽带</td>
+        </tr>
+        <tr class="priceTableHead">
+            <td>第一周</td>
+            <td>7/1 一</td>
+            <td>7/2 二</td>
+            <td>7/3 三</td>
+            <td>7/4 四</td>
+            <td>7/5 五</td>
+            <td class="weekend">7/6 六</td>
+            <td class="weekend">7/7 日</td>
+        </tr>
+        <tr>
+            <td>单价</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="priceTablePrice">410</td>
+            <td class="priceTablePrice">410</td>
+            <td class="priceTablePrice">430</td>
+            <td class="priceTablePrice">430</td>
+        </tr>
+        <tr>
+            <td>早餐</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>自助x1</td>
+            <td>自助x1</td>
+            <td>自助x1</td>
+            <td>自助x1</td>
+        </tr>
+        <tr>
+            <td>宽带</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>宽带</td>
+            <td>宽带</td>
+            <td>宽带</td>
+            <td>宽带</td>
+        </tr>
+    </table>
+</script>
+
 
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/jquery-migrate-1.2.1.js"></script>
@@ -562,11 +611,12 @@
 
 <script type="text/javascript">
     $(function(){
-        var filterData=[{filterName:"二星级及以下/经济"},{filterName:"三星级/舒适"},{filterName:"精品酒店"},{filterName:"汽车旅馆"},{filterName:"798"},{filterName:"希尔顿"},{filterName:"二星级及以下/经济"},{filterName:"三星级/舒适"},{filterName:"精品酒店"},{filterName:"汽车旅馆"},{filterName:"798"},{filterName:"希尔顿"}];
-        var filterParamT=kendo.template($("#filterParamTemplate").html());
-        $(".filterParamsList>ul").html(kendo.render(filterParamT,filterData));
+//        var filterData=[{filterName:"二星级及以下/经济"},{filterName:"三星级/舒适"},{filterName:"精品酒店"},{filterName:"汽车旅馆"},{filterName:"798"},{filterName:"希尔顿"},{filterName:"二星级及以下/经济"},{filterName:"三星级/舒适"},{filterName:"精品酒店"},{filterName:"汽车旅馆"},{filterName:"798"},{filterName:"希尔顿"}];
+//        var filterParamT=kendo.template($("#filterParamTemplate").html());
+//        $(".filterParamsList>ul").html(kendo.render(filterParamT,filterData));
 
         var myformV=$("#myform").kendoValidator({validateOnBlur:false,errorMsgShow:false}).data("kendoValidator");
+        var inputVFlag=false;
         $("#btn_search").click(function(){
             if(!myformV.validate())
             {
@@ -577,13 +627,75 @@
                 $("#errorMsgContent").html(errorMsg);
                 $("#errorMsgContainer").css({left:left,top:top,width:errorMsg.length*14+12,display:"block"});
                 invalidInput.focus();
-
+                inputVFlag=true;
             }
 
         });
-        $("#myform").delegate($(".k-invalid"),"focusout",function(){$("#errorMsgContainer").hide();})
+        $("#myform").delegate($(".k-invalid"),"focusout",function(){if(inputVFlag){$("#errorMsgContainer").hide();inputVFlag=false;}console.log("hide");})
+        $(".hotelGift.enable").kendoTooltip({
+            content:kendo.template($("#hotelGiftTemplate").html())
+        })
+        $(".agencyManagers").kendoTooltip({
+            content:kendo.template($("#agencyManagersTemplate").html())
+        })
+        $(".rule").kendoTooltip({
+            content:kendo.template($("#ruleTemplate").html())
+        })
+        $(".other").kendoTooltip({
+            content:kendo.template($("#otherTemplate").html())
+        })
+        $(".basePrice,.sellPrice").kendoTooltip({
+            content:kendo.template($("#priceTemplate").html())
+        })
+
+
+        filterModel=kendo.observable({
+            hotelLevel:[],
+            hotelStyle:[],
+            hotelLocation:[],
+            hotelBrand:[],
+            hotelPriceRange:[],
+            setHotelPriceRange:function(){
+                this.set("hotelPriceRange",$("#lowerPrice").val()+"-"+$("#higherPrice").val());
+            }
+        })
+        kendo.bind($("body"),filterModel);
 
     });
+
+
+    function delFilterItem(tar,itemName)
+    {
+        console.log(itemName);
+        var modelName=$(tar).parent().parent().attr("data-bind").split(":")[1];
+        var model=filterModel.get(modelName);
+        if(typeof(model)!="string")
+        {
+            model.splice(model.indexOf(itemName),1);
+        }
+        else
+        {
+            filterModel.set(modelName,[]);
+            $(":radio[name=radio_"+modelName+"]").prop("checked",false)
+        }
+    }
+
+    function delModelAllItems(modelName)
+    {
+        var model=filterModel.get(modelName);
+        if(typeof(model)!="string")
+        {
+            while(model.length)
+            {
+                model.pop();
+            }
+        }
+        else
+        {
+            filterModel.set(modelName,[]);
+            $(":radio[name=radio_"+modelName+"]").prop("checked",false)
+        }
+    }
 </script>
 </body>
 </html>
