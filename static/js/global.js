@@ -12,7 +12,7 @@ function PopWindow(trigger, customSettings){
     this.trigger = $(trigger);
     this.customSettings = customSettings; 
     this.win = null;
-}
+};
 PopWindow.prototype = {
     init:function(){
         var isCreated = false;
@@ -71,7 +71,7 @@ PopWindow.prototype = {
             kendo.init($('.popup-window'));
         });
     }
-}
+};
 
 // 表格封装
 function GridTable(trigger, customSettings){
@@ -98,8 +98,7 @@ function GridTable(trigger, customSettings){
     this.trigger = $(trigger);
     this.customSettings = customSettings; 
     this.grid = null;
-}
-
+};
 GridTable.prototype = {
     init:function(){
         var isCreated = false;
@@ -123,7 +122,7 @@ GridTable.prototype = {
             this.grid = this.trigger.kendoGrid( opts ).data('kendoGrid'); 
         }
     }
-}
+};
 
 // 定高函数：超过3行时隐藏
 var Collpase = function(opts){
@@ -138,7 +137,7 @@ var Collpase = function(opts){
     this.trigger = '.content-collapse';
     $.extend(this,opts);
     this.container = $(this.container);
-}
+};
 Collpase.prototype = {
     init:function(){
         if(this.getContainerHeight()<this.limitHeight) return this;
@@ -184,7 +183,67 @@ Collpase.prototype = {
         });
 
     }
-}
+};
+
+// 浮层模块
+var FloatLayer = function(opts){
+    var opts = $.extend({
+        trigger:"",
+        data:{},
+        template:"",
+        type:'click',
+        offsetX:0,
+        offsetY:20,
+        toggle:true
+    },opts);
+
+    opts.trigger = opts.trigger.jquery ? opts.trigger : $(opts.trigger);
+
+    var tpl = kendo.template( $(opts.template).html() );
+    var layer = $('<div class="ac-floatlayer" style="display:none;position:absolute;"/>');
+
+    layer.html(tpl(opts.data));
+    $('body').append(layer);
+    kendo.init(layer);
+
+    $(document).on('click',function(e){
+        var t = $(e.target);
+        if ( !t.is(opts.trigger) ){
+            if ( t.closest('.ac-floatlayer').length !==1 ){
+                layer.hide();    
+            }
+        }
+    });
+
+    function set_pos(ele){
+        var pos = ele.offset();
+        layer.css({
+            left:pos.left + opts.offsetX,
+            top:pos.top + opts.offsetY
+        });
+    }
+
+    // todo: support more type;
+    opts.trigger.bind(opts.type,function(e){
+        set_pos($(this));
+        if(opts.toggle){
+            layer.toggle();
+        }else{
+            layer.open();
+        }
+    });
+
+    layer.open = function(){
+        set_pos(opts.trigger);
+        layer.show();
+    };
+
+    layer.close = function(){
+        layer.hide();
+    };
+
+    return layer;
+};
 
 /* 城市补全js 模板
 <script type="text/x-kendo-template" id="city_popup">
@@ -247,16 +306,6 @@ var CityAutocomplete = function(){
         });
     }
 
-    function posited_tabwindow(ele){
-        var pos = ele.offset();
-        hot_tabs.css({
-            display:'block',
-            position:'absolute',
-            left:pos.left - 2,
-            top:pos.top + 23
-        });
-    }
-
     function process_pinyin(arr, group, col){
         var result = [],
         len = group.length,
@@ -287,20 +336,24 @@ var CityAutocomplete = function(){
 
     function render_hotcity_tabs(data){
         var templateID = opts.template || "#city_popup_tpl"; 
-        var city_popup_tpl = kendo.template($(templateID).html());
-        var html = city_popup_tpl(data);
-        $('body').append(html);
-        hot_tabs = $('#tabstrip');
+
+        hot_tabs = FloatLayer({
+            toggle:false,
+            trigger:input,
+            offsetY:25,
+            data:data,
+            template:templateID
+        });
 
         hot_tabs.delegate('.tcy_list li[data-code]','click',function(){
             var $t = $(this);
             var text = $t.text();
             input.focus().val(text);
             $(opts.codeEle).val($t.data('code'));
-            hot_tabs.hide();
+            hot_tabs.close();
         });
 
-        hot_tabs.kendoTabStrip({
+        hot_tabs.find('.tcy_tabstrip').kendoTabStrip({
             animation:false
         });
     }
@@ -342,57 +395,24 @@ var CityAutocomplete = function(){
             }
         });
 
-        var blur_event = function(e){
-            if (  e.relatedTarget && e.relatedTarget.id != "tabstrip" || e.relatedTarget === null){
-                hot_tabs.hide();
-            }
-
-            // ie 7 polyfill
-            if (  window.event && event.toElement && event.toElement.id != 'tabstrip') {
-                if ($(event.toElement).closest('#tabstrip').length === 0){
-                    hot_tabs.hide();
-                }
-            }
-        };
-
-        input.on('focusout',blur_event);
-        hot_tabs.on('focusout',blur_event);
-
-        input.on('focus',function(e){
-            var $t = $(this);
-            if($t.val() == '') {
-                var tabcity = hot_tabs.data('kendoTabStrip');
-                tabcity.activateTab($("#hot_city"));
-
-                if ( $t.data('kendoAutoComplete').popup.element[0].style.display !== 'block' ){
-                    posited_tabwindow($t);
-                }
-            }
-        });
-
         input.on('keyup',function(){
             var $t = $(this);
             if( $t.val() === '' ){
-                posited_tabwindow($t);
+                hot_tabs.open();
             }else{
-                hot_tabs.hide();
+                hot_tabs.close();
             }
         });
 
-        $.each(input,function(){
-            $(this).data('kendoAutoComplete').bind('open',function(){
-                hot_tabs.hide();
-            }).bind('close',function(e){
-                if(e.sender.value()===''){
-                    posited_tabwindow(e.sender.element);
-                }
-            });
+        input.on('focus',function(){
+           hot_tabs.find('.tcy_tabstrip').data('kendoTabStrip').activateTab("#hot_city"); 
         });
-    }
+
+    };
 
     that.setOptions = function(settings){
         var defaults = {
-            input : $(".suggest-city"),
+            input : ".suggest-city",
             url: './searchflight_files/data.txt',
             group: ["ABCD","EFGHJ", "KLMN", "PQRSTW", "XYZ"]
         };
@@ -407,7 +427,7 @@ var CityAutocomplete = function(){
         }
 
         opts = that.options;
-        input = opts.input;
+        input = opts.input.jquery ? opts.input : $(opts.input);
 
         $.get(opts.url,function(d){
             var citydata = d.split('@');
@@ -433,49 +453,4 @@ var CityAutocomplete = function(){
 }();
 
 
-// 浮层模块
-var FloatLayer = function(opts){
-    var opts  = $.extend({
-        data:{},
-        template:"",
-        type:'click',
-        offsetX:0,
-        offsetY:20
-    },opts);
-
-    var tpl = kendo.template( $(opts.template).html() );
-    var hot_tabs = $('<div class="ac-floatlayer" style="display:none;position:absolute;"/>');
-
-    hot_tabs.html(tpl(opts.data));
-    $('body').append(hot_tabs);
-    kendo.init(hot_tabs);
-
-    $(document).on('click',function(e){
-        var t = $(e.target);
-        if ( !t.is(opts.trigger) ){
-            if ( t.closest('.ac-floatlayer').length !==1 ){
-                hot_tabs.hide();    
-            }
-        }
-    });
-
-    // todo: support more type;
-    $(opts.trigger).bind(opts.type,function(e){
-        var pos = $(this).offset();
-        hot_tabs.css({
-            left:pos.left + opts.offsetX,
-            top:pos.top + opts.offsetY
-        });
-        hot_tabs.toggle();
-    });
-
-    return {
-        close:function(){
-            hot_tabs.hide(); 
-        },
-        open:function(){
-            hot_tabs.show(); 
-        }
-    }
-};
 
