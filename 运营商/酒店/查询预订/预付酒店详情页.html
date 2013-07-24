@@ -461,44 +461,170 @@
             <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
-    
-    <script type="application/javascript">
-        $(function(){
-                $("#change_date").click(function(){
-                    if($(this).html() == "取消修改"){
-                        $(this).html("修改日期");
-                        $(".checkIn input").hide();
-                        $(".checkIn span").show();
-                    }else{
-                        $(this).html("取消修改");
-                        $(".checkIn input").show();
-                        $(".checkIn span").hide();
-                    }
-                });
 
-                $( "#checkin_date" ).datepicker({
-                numberOfMonths:[1,2],
-                minDate :new Date(),
-                showButtonPanel :true,
-                onSelect:function(dateText,inst){
+    <script type="text/x-kendo-template" id="hotelGiftTemplate">
+        <div>
+            <div class="toolTipField">价格说明：</div>
+            <div>#= target.data('title') #</div>
+        </div>
+    </script>
+    <script type="text/x-kendo-template" id="agencyManagersTemplate">
+        <div style="text-align:left">
+            <div><span class="toolTipField">手机：</span>#= target.data('mobile') #</div>
+            <div><span class="toolTipField">邮箱：</span>#= target.data('email') #</div>
+        </div>
+    </script>
+    <script type="text/x-kendo-template" id="ruleTemplate">
+        <div style="text-align:left">
+            <div><span class="toolTipField">入住时间：</span>#= target.data('checkin') #  <span class="toolTipField">退房时间：</span>#= target.data('checkout') #</div>
+            <div>#= target.data('other') #</div>
+        </div>
+    </script>
+    <script type="text/x-kendo-template" id="otherTemplate">
+        <div>
+            <div class="toolTipField">其他包含服务：</div>
+            <div>#= target.data('title') #</div>
+        </div>
+    </script>
+    <script type="text/x-kendo-template" id="priceTemplate">
+        <table class="priceTable">
+            <tr class="priceTableHead">
+                <td>第一周</td>
+                <td>7/1 一</td>
+                <td>7/2 二</td>
+                <td>7/3 三</td>
+                <td>7/4 四</td>
+                <td>7/5 五</td>
+                <td class="weekend">7/6 六</td>
+                <td class="weekend">7/7 日</td>
+            </tr>
+            <tr>
+                <td>单价</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="priceTablePrice">410</td>
+                <td class="priceTablePrice">410</td>
+                <td class="priceTablePrice">430</td>
+                <td class="priceTablePrice">430</td>
+            </tr>
+            <tr>
+                <td>早餐</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>自助x1</td>
+                <td>自助x1</td>
+                <td>自助x1</td>
+                <td>自助x1</td>
+            </tr>
+            <tr>
+                <td>宽带</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>宽带</td>
+                <td>宽带</td>
+                <td>宽带</td>
+                <td>宽带</td>
+            </tr>
+            <tr class="priceTableHead">
+                <td>第一周</td>
+                <td>7/1 一</td>
+                <td>7/2 二</td>
+                <td>7/3 三</td>
+                <td>7/4 四</td>
+                <td>7/5 五</td>
+                <td class="weekend">7/6 六</td>
+                <td class="weekend">7/7 日</td>
+            </tr>
+            <tr>
+                <td>单价</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="priceTablePrice">410</td>
+                <td class="priceTablePrice">410</td>
+                <td class="priceTablePrice">430</td>
+                <td class="priceTablePrice">430</td>
+            </tr>
+            <tr>
+                <td>早餐</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>自助x1</td>
+                <td>自助x1</td>
+                <td>自助x1</td>
+                <td>自助x1</td>
+            </tr>
+            <tr>
+                <td>宽带</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>宽带</td>
+                <td>宽带</td>
+                <td>宽带</td>
+                <td>宽带</td>
+            </tr>
+        </table>
+    </script>
+
+
+    <script type="application/javascript">
+        $(function () {
+            $("#change_date").click(function () {
+                if ($(this).html() == "取消修改") {
+                    $(this).html("修改日期");
+                    $(".checkIn input").hide();
+                    $(".checkIn span").show();
+                } else {
+                    $(this).html("取消修改");
+                    $(".checkIn input").show();
+                    $(".checkIn span").hide();
+                }
+            });
+
+            $("#checkin_date").datepicker({
+                numberOfMonths:[1, 2],
+                minDate:new Date(),
+                showButtonPanel:true,
+                onSelect:function (dateText, inst) {
                     var date = new Date();
                     date.setFullYear(inst.selectedYear);
                     date.setMonth(inst.selectedMonth);
                     date.setDate(inst.selectedDay);
 
-                    $( "#checkout_date" ).datepicker( "option", "minDate", date);
-                    $( "#checkout_date" ).datepicker( "setDate", dateText);
+                    $("#checkout_date").datepicker("option", "minDate", date);
+                    $("#checkout_date").datepicker("setDate", dateText);
                 }
-		    });
-            $( "#checkout_date" ).datepicker({
-                numberOfMonths:[1,2],
-                minDate :new Date(),
-                showButtonPanel :true
-		    });
-                
-                //浮动条
-                $(".topFixedToolsBar").scrollFix("top","top");
-                });
+            });
+            $("#checkout_date").datepicker({
+                numberOfMonths:[1, 2],
+                minDate:new Date(),
+                showButtonPanel:true
+            });
+
+            //浮动条
+            $(".topFixedToolsBar").scrollFix("top", "top");
+
+            $(".hotelGift.enable").kendoTooltip({
+                content:kendo.template($("#hotelGiftTemplate").html())
+            })
+            $(".agencyManagers").kendoTooltip({
+                content:kendo.template($("#agencyManagersTemplate").html())
+            })
+            $(".rule").kendoTooltip({
+                content:kendo.template($("#ruleTemplate").html())
+            })
+            $(".other").kendoTooltip({
+                content:kendo.template($("#otherTemplate").html())
+            })
+            $(".basePrice,.sellPrice").kendoTooltip({
+                content:kendo.template($("#priceTemplate").html())
+            })
+        });
 	
 	</script>
 </body>
