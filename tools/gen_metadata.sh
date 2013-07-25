@@ -12,7 +12,7 @@ fi
 
 cd $1
 
-find . -type f -name "$2" | xargs grep "$3" |  sed -e 's/<title>//' -e 's/<\/title>//' -e 's/\${title!"天地行"}//' > $$.txt 
+find . -type f -name "$2" | xargs grep "$3" |  sed -e 's/%0D%0A//g' -e 's/<title>//' -e 's/<\/title>//' -e 's/\${title!"天地行"}//' > $$.txt 
 lineCount=`cat $$.txt | wc -l`
 
 echo "var pageList = [ " > $4
