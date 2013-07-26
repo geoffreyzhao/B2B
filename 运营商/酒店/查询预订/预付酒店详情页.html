@@ -585,16 +585,23 @@
     <script type="application/javascript">
         $(function () {
             $("#change_date").click(function () {
-                var win=$("#window").kendoWindow(
-                        {
-                            animation:false,
-                            modal:true,
-                            width:458,
-                            height:50,
-                            title:"修改日期",
-                            visible:true
-                        }).data("kendoWindow");
-                win.center();
+                if(!$("#window").data("kendoWindow"))
+                {
+                    var win=$("#window").kendoWindow(
+                            {
+                                animation:false,
+                                modal:true,
+                                width:458,
+                                height:50,
+                                title:"修改日期",
+                                visible:true
+                            }).data("kendoWindow");
+                    win.center();
+                }
+                else
+                {
+                    $("#window").data("kendoWindow").open();
+                }
             });
 
             $("#checkin_date").datepicker({

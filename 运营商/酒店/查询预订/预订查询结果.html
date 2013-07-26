@@ -751,16 +751,23 @@
         })
 
         $(".btn_xunjia").click(function(){
-            var win=$("#window").kendoWindow(
-                    {
-                        animation:false,
-                        modal:true,
-                        width:728,
-                        height:355,
-                        title:"新建酒店询价单",
-                        visible:true
-                    }).data("kendoWindow");
-            win.center();
+            if(!$("#window").data("kendoWindow"))
+            {
+                var win=$("#window").kendoWindow(
+                        {
+                            animation:false,
+                            modal:true,
+                            width:728,
+                            height:355,
+                            title:"新建酒店询价单",
+                            visible:true
+                        }).data("kendoWindow");
+                win.center();
+            }
+            else
+            {
+               !$("#window").data("kendoWindow").open();
+            }
 
         });
 
