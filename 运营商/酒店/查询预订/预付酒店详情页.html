@@ -142,7 +142,7 @@
                     <address>北京市 北京 东城区 王府井大街281-1</address> 
 
                     <div class="extra">
-                        <span class="hotelStar" style="width:51px;"></span>
+                        <div class="hotelStarLevel hotelStar1"></div>
                         <a href="javascript:void(0);">签约经理: 王某某</a>
                         <div class="price">
                             <strong><sup>￥</sup><b>410</b><sub>起</sub></strong>
@@ -167,8 +167,8 @@
                     </div>
                 </div>
                 <div class="checkIn">
-                    <label><b>入住:&nbsp;</b><input type="text" style="display:none;" class="datepicker" value="2013-07-01" id="checkin_date"/><span>2013-07-01</span></label>
-                    <label><b>退房:&nbsp;</b><input type="text" style="display:none;" class="datepicker orange" value="2013-07-01" id="checkout_date"/><span>2013-07-01</span></label>
+                    <label><b>入住:&nbsp;</b><span>2013-07-01</span></label>
+                    <label><b>退房:&nbsp;</b><span>2013-07-01</span></label>
                     <em>共<strong>1</strong>晚</em>
                     <a class="button_text_blue" id="change_date" >修改日期</a>
                 </div>
@@ -462,6 +462,16 @@
         </div>
     </div>
 
+    <div id="window" style="display:none">
+        <span>入住</span> <input type="text" class="datepicker" value="2013-07-01" id="checkin_date"/>
+        <span style="padding-left:20px;">离店</span><input type="text" class="datepicker orange" value="2013-07-01" id="checkout_date"/>
+        <a href="javascript:;" class="button_important adaptiveButton medium" style="vertical-align: middle">
+            <span class="left"></span>
+            <span class="center">确 定</span>
+            <span class="right"></span>
+        </a>
+    </div>
+
     <script type="text/x-kendo-template" id="hotelGiftTemplate">
         <div>
             <div class="toolTipField">价格说明：</div>
@@ -575,18 +585,20 @@
     <script type="application/javascript">
         $(function () {
             $("#change_date").click(function () {
-                if ($(this).html() == "取消修改") {
-                    $(this).html("修改日期");
-                    $(".checkIn input").hide();
-                    $(".checkIn span").show();
-                } else {
-                    $(this).html("取消修改");
-                    $(".checkIn input").show();
-                    $(".checkIn span").hide();
-                }
+                var win=$("#window").kendoWindow(
+                        {
+                            animation:false,
+                            modal:true,
+                            width:458,
+                            height:50,
+                            title:"修改日期",
+                            visible:true
+                        }).data("kendoWindow");
+                win.center();
             });
 
             $("#checkin_date").datepicker({
+                css:{"z-index":20000},
                 numberOfMonths:[1, 2],
                 minDate:new Date(),
                 showButtonPanel:true,
@@ -624,6 +636,8 @@
             $(".basePrice,.sellPrice").kendoTooltip({
                 content:kendo.template($("#priceTemplate").html())
             })
+
+            $("#ui-datepicker-div").css("z-index",20000);
         });
 	
 	</script>
