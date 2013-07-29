@@ -24,16 +24,16 @@ $(function(){
                 refresh:function(){
                     $("#window").data("kendoWindow").center();
                     $("#window").data("kendoWindow").open();
-                    $("#window").data("kendoWindow").modal()?showOverLay():'';
+                    $("#window").data("kendoWindow").options.modal?showOverLay():'';
                 },
                 close:function(){
-                    $("#window").data("kendoWindow").modal()?$("#iframeShadow").hide():'';
+                    $("#window").data("kendoWindow").options.modal?$("#iframeShadow").hide():'';
                 }
             });
         }
         else
         {
-            kendoWindowData.modal()?showOverLay():'';
+            kendoWindowData.options.modal?showOverLay():'';
             tar.content?kendoWindowData.refresh({url:'',template:tar.contentFunction?eval(tar.content):tar.content}):kendoWindowData.refresh(tar.url+"?dt="+dt);
             kendoWindowData.setOptions({
                 width:tar.width,
