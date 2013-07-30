@@ -1,12 +1,17 @@
 jQuery(function($){
 
-    $('.block2 .row1 li').click(function(){
+    $('.block2 .row1 a').click(function(e){
+        e.preventDefault();
         $.get('/static/js/data2.txt',function(d){
             console.log(d);
         }); 
     })
 
-    $.loadingbar();
+    // 指定元素遮住,指定url触发 
+    $.loadingbar({ container:'.block2', urls:['/static/js/data2.txt'] });
+    // 全屏
+    //$.loadingbar();
+    
     kendo.culture('zh-CN');
     kendo.init($('body'));
     //起飞时间
