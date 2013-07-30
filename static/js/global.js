@@ -469,12 +469,24 @@ var CityAutocomplete = function(){
 // 一些jquery插件
 $.loadingbar = function(params) {
     var defaults = {
+        container: 'body',
         showClose: true
     };
     var xhr;
     var cfg = $.extend(defaults,params);
+    var postext;
+    
+
+    if(cfg.container==='body'){
+         postext = 'fixed';
+    }else{
+         postext = 'absolute';
+         $(cfg.container).css({position:'relative'});
+    }
+
+
     /* 统一ajax遮罩*/
-    var loading_tpl = '<div class="lightbox loading" style="display:none"><table cellspacing="0">\
+    var loading_tpl = '<div class="lightbox loading" style="display:none;position:'+postext+' "><table cellspacing="0">\
     <tbody><tr><td>\
         <div class="lightbox-content">\
         '+"<span class=loading_close>×</span>"+'\
@@ -485,10 +497,17 @@ $.loadingbar = function(params) {
 
     var spin_wrap = $(loading_tpl);
 
-    $('body').prepend(spin_wrap);
+    $(cfg.container).append(spin_wrap);
 
     $(document).ajaxSend(function(event, jqxhr, settings) {
-        spin_wrap.show();
+        if( $.inArray(settings.url,cfg.urls) >-1 ){
+            spin_wrap.show();
+        }
+
+        if(typeof cfg.urls === 'undefined'){
+            spin_wrap.show();
+        }
+
         if(cfg.showClose){
             $('.loading_close').on('click',function(){
                 jqxhr.abort();
@@ -501,8 +520,7 @@ $.loadingbar = function(params) {
         spin_wrap.hide();
     });
 
-
-}
+};
 
 //plugin serialize_form
 $.fn.serialize_form = function(){
