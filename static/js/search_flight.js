@@ -1,4 +1,12 @@
 jQuery(function($){
+
+    $('.block2 .row1 li').click(function(){
+        $.get('/static/js/data2.txt',function(d){
+            console.log(d);
+        }); 
+    })
+
+    $.loadingbar();
     kendo.culture('zh-CN');
     kendo.init($('body'));
     //起飞时间
@@ -110,6 +118,8 @@ jQuery(function($){
         title:'提示信息',
         template:'#ac-check-template'
     }).init();
+
+
 });
 
 

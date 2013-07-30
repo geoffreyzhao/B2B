@@ -1,3 +1,8 @@
+/*
+* Author: shaotian.hu
+* Email:  shaotian.hu@travelzen.com
+*/
+
 //弹窗封装
 function PopWindow(trigger, customSettings){
     var kendoWinDefaults = {
@@ -460,4 +465,194 @@ var CityAutocomplete = function(){
 }();
 
 
+
+// 一些jquery插件
+$.loadingbar = function(params) {
+    var defaults = {
+        showClose: true
+    };
+    var xhr;
+    var cfg = $.extend(defaults,params);
+    /* 统一ajax遮罩*/
+    var loading_tpl = '<div class="lightbox loading" style="display:none"><table cellspacing="0">\
+    <tbody><tr><td>\
+        <div class="lightbox-content">\
+        '+"<span class=loading_close>×</span>"+'\
+        <i class=loading_icon>&nbsp;</i><span class=loading_text>数据加载中，请稍候…</span>\
+        </div>\
+        </td></tr>\
+        </tbody></table></div>';
+
+    var spin_wrap = $(loading_tpl);
+
+    $('body').prepend(spin_wrap);
+
+    $(document).ajaxSend(function(event, jqxhr, settings) {
+        spin_wrap.show();
+        if(cfg.showClose){
+            $('.loading_close').on('click',function(){
+                jqxhr.abort();
+                spin_wrap.hide();
+            });
+        }
+    });
+
+    $(document).ajaxSuccess(function() {
+        spin_wrap.hide();
+    });
+
+
+}
+
+//plugin serialize_form
+$.fn.serialize_form = function(){
+    var result = [];
+    var that = $(this);
+    that.find('input,textarea,select').each(function(index) {
+        var i = $(this);
+        var name = i.attr('name');
+        var eleType = i.attr('type');
+        var isDisabled = i.attr('disabled');
+        var value = i.attr('value');
+
+        var isChecked = i.attr('checked');
+
+        if (isDisabled || name == '' || typeof name == 'undefined' || name == '__MYVIEWSTATE') {
+            return;
+        }
+
+        if ((eleType == 'checkbox' || eleType == 'radio') &&  isChecked != 'checked') {
+            return;
+        }
+
+        // result[name]=value;
+        result.push(name + '=' + value);
+
+    });
+
+    return result.join('&');
+};
+
+$.plainObjectSize = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
+
+
+$.fieldsetFormat = function(type,settings){
+    // 纯对象数据长度
+    // example : plainObjectSize({a:1,b:2}) == 2;
+    var plainObjectSize = function(obj) {
+        var size = 0, key;
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) size++;
+        }
+        return size;
+    };
+
+    var output = {};
+    var type = type || 'get';
+    var params={
+        selector:'fieldset',
+        item:'.group-item',
+        items:'.group-items',
+        data:''
+    };
+
+    params = $.extend(params,arguments[1]);
+
+    var data = params.data;
+    var selector = (typeof params.selector=='string')?$(params.selector):params.selector;
+    var item = params.item;
+    var items = params.items;
+    var loop = function(nodeList,parent,pindex){
+        var gobj = {};
+        nodeList.each(function() {
+            var that = $(this);
+            var name = that.prop('name');
+            var eleType = that.prop('type');
+            var isDisabled= that.prop('disabled');
+
+            if (name == '' ||  name=='__MYVIEWSTATE' || isDisabled){
+                return false;
+            }
+
+            var value = that.prop('value');
+
+            if (isDisabled || name == '' ||  name=='__MYVIEWSTATE'){
+                return false;
+            }
+
+            if ( (eleType == 'checkbox' || eleType == 'radio') && that.prop('checked')==false ){
+                return false;
+            }
+
+            if(type=="get"){
+                gobj[name] = value;
+            }
+
+            if(type=="set"){
+                if(pindex!=undefined){
+                    that.prop('value',data[parent][pindex][name]);
+                }else{
+                    that.prop('value',data[parent][name]);
+                }
+            }
+        });
+
+        return gobj;
+    };
+
+    $.each(selector,function(index) {
+        var i = $(this);
+        if(index==0 &&i.prop('tagName')!='FIELDSET'){
+            return false;
+        }
+        if (i.prop('name') == '') {
+            return false;
+        }
+        if (i.find(item).size()>0) {
+            if(i.find(items).size()>0){
+                var obj = loop(i.find('input,select,textarea').filter(':not('+items+' input)').filter(':not('+items+' select)').filter(':not('+items+' textarea)'));
+
+                i.find(items).each(function(vp){
+                    var vp = $(this);
+                    var arr = [];
+                    vp.find(item).each(function(pindex) {
+                        var v = $(this);
+                        if(v.hasClass('disabled')||v.prop('disabled')) return false;
+                        var vpobj = loop(v.find('input,select,textarea'),vp.prop('rel'),pindex);
+                        if(plainObjectSize(vpobj)){
+                            arr.push(vpobj);
+                        }
+
+                    });
+
+                    obj[vp.prop('rel')] = arr;
+
+                });
+
+                output[i.prop('name')] = obj;
+            }else{
+                var arr = [];
+                i.find(item).each(function(pindex) {
+                    var v = $(this);
+                    var obj = loop(v.find('input,select,textarea'),i.prop('name'),pindex);
+                    arr.push(obj);
+                });
+
+                output[i.prop('name')] = arr;
+            }
+
+        } else {
+            var obj = loop(i.find('input,select,textarea'),i.prop('name'));
+            output[i.prop('name')] = obj;
+        }
+
+    });
+    return output;
+};
 
