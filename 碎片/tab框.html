@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>政策 国内政策 销售规则管理</title>
+    <title>自定义 Tab</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <link href="../static/css/common.css" rel="stylesheet" type="text/css" />
     <link href="../static/css/kendo.common.css" rel="stylesheet" type="text/css" />
     <link href="../static/css/b2b.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../static/js/vendor/jquery.min.js"></script>
     
     <style>
     body{ background:#fff;}
     
-	ul li {float:left;margin-right:10px;}
+	#rolemenu li {float:left;margin-right:5px;}
+    #rolemenu .mtab {width:90px;height:30px;}
     </style>
     
     
@@ -19,27 +21,104 @@
 
 <body>
 
-<ul>
-  <li class="tabgreen">
-    <div style="width:100px;"> 
-         <span class="span_border"> <i class="span_green"></i> </span>
-         <em>&nbsp;</em>
-         <label> 财务管理<input type="checkbox" value="" name="fid" style="display:none"/></label>
-    </div>
-    <div class="border_right"></div>
-  </li>
-  
-  <li class="tabgray">
-    <div> 
-         <span class="span_border"> <i></i> </span>
-         <em>&nbsp;</em>
-         <label> 系统设置<input type="checkbox" value="" name="fid" style="display:none"/></label>
-    </div>
-    <div class="border_right_1"></div>
-  </li>
-  
-</ul>
+    <label class="usercheck">
+        <em></em>
+        <input class="hidden_input" type="checkbox" name="fid"/>
+    </label>
 
+    <br/>
+    <br/>
+
+    <!-- 半选择态 -->
+    <label class="usercheck userchecked">
+        <em></em>
+        <input class="hidden_input" type="checkbox" name="fid"/>
+    </label>
+
+    <br/>
+    <br/>
+
+    <div class="mtab" style="width:90px;height:30px;">
+        <span class="usercheck">
+            <em></em>
+            <input class="hidden_input" type="checkbox" name="fid" id="fid1"/>
+        </span>
+        <i></i>
+        <label for="fid1">国内酒店</label>
+        <span class="rightCover"></span>
+    </div>
+
+    <br/>
+    <br/>
+
+    <div class="mtab gray" style="width:90px;height:30px;">
+        <span class="usercheck">
+            <em></em>
+            <input class="hidden_input" type="checkbox" name="fid" id="fid1"/>
+        </span>
+        <i></i>
+        <label for="fid1">国内酒店</label>
+        <span class="rightCover"></span>
+    </div>
+
+    <br/>
+    <br/>
+
+    <ul id="rolemenu">
+        <li class="current">
+        <div class="mtab" >
+            <span class="usercheck">
+                <em></em>
+                <input class="hidden_input" type="checkbox" name="fid" id="fid1"/>
+            </span>
+            <i></i>
+            <label for="fid1">国内酒店</label>
+            <span class="rightCover"></span>
+        </div>
+
+        </li>
+        <li>
+        <div class="mtab gray" >
+            <span class="usercheck">
+                <em></em>
+                <input class="hidden_input" type="checkbox" name="fid" id="fid2"/>
+            </span>
+            <i></i>
+            <label for="fid2">财务管理</label>
+            <span class="rightCover"></span>
+        </div>
+        
+        </li>
+        <li>
+        <div class="mtab gray" >
+            <span class="usercheck">
+                <em></em>
+                <input class="hidden_input" type="checkbox" name="fid" id="fid3"/>
+            </span>
+            <i></i>
+            <label for="fid3">国内机票</label>
+            <span class="rightCover"></span>
+        </div>
+        
+        </li>
+    </ul>
+
+
+    <script type="text/javascript">
+    
+        $("#rolemenu li").hover(function(){
+                if(!$(this).hasClass("current")){
+                    $(".mtab",this).removeClass("gray");
+                }
+
+        },function(){
+                if(!$(this).hasClass("current")){
+                    $(".mtab",this).addClass("gray");
+                }
+        });
+    
+    
+    </script>
 
 
 </body>
