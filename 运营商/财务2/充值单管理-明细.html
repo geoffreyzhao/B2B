@@ -315,7 +315,7 @@ $(function(){
 <li style="width:400px;">
 <label class="vertical-head">&nbsp;</label>
 <input data-role="dropdownlist" data-index="#= data.index #" data-value-field="value" data-text-field="text" data-source="[{value:1,text:'现金'}, {value:2,text:'刷卡'}, {value:3,text:'支票'}, {value:4,text:'汇款'}, {value:5,text:'网上支付'}, {value:6,text:'电话支付'}, {value:6,text:'其它'}]" style="width:80px;">
-<input style="width:120px">
+<input style="width:120px" name="item-#= kendo.toString(new Date()-0) #" #= data.validation#>
 <button class="btns btn-ac-blue ac-del-row">删除</button>
 </li>
 </script>
@@ -324,6 +324,12 @@ $(function(){
 
 $(function(){
     var ac_new = new PopWindow('.ac-new').init();
+
+    ac_new.bind('open',function(e){
+        var container = e.sender.element;
+        container.kendoValidator();
+    })
+
     var ac_new2 = new PopWindow('.ac-new2').init();
 
     new PopWindow('.ac-submit', {
@@ -339,8 +345,24 @@ $(function(){
     }).init();
 
     $('body').delegate('.ac-add-row', 'click', function(){
+        var validationHTML;
         var that = $(this);
-        var html = kendo.template($('#ac-add-row-template').html())({index:that.data('index')}); 
+        switch(that.data('index')){
+            case 0: 
+                validationHTML = 'required data-required-msg="金额必填"';
+                break;
+            case 2: 
+                validationHTML = 'disabled';
+                break;
+            default:
+                validationHTML = 'disabled';
+                break;
+        }
+
+        var html = kendo.template($('#ac-add-row-template').html())({
+            index:that.data('index'),
+            validation: validationHTML
+        }); 
         that.closest('li').after(html);
            kendo.init(that.closest('ul')); 
     });
