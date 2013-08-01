@@ -69,15 +69,11 @@
 </div>
 </script>
 
-<script type="x-kendo-template" id="itemTemplate">
-<span class="sg_py">${data.py}</span><span class="sg_name">${data.name}</span><span class="sg_code">（${data.code}）</span>
-</script>
 
 <script type="text/javascript" charset="utf-8">
 
 CityAutocomplete({
     template: "#city_popup",
-    itemTemplate: "#itemTemplate",
     input: "#depCity",
     codeEle: '#id_dep',
     // 以@分割热门非热门，以;分割条目，以|分割三字码拼音和中文
@@ -88,11 +84,20 @@ CityAutocomplete({
 
 CityAutocomplete({
     template: "#city_popup",
-    itemTemplate: "#itemTemplate",
     input: "#arrCity",
     codeEle: '#id_arr',
     // 以@分割热门非热门，以;分割条目，以|分割三字码拼音和中文
     url:'/static/js/data.txt',
+    autocomplete:{
+        dataSource:{
+            transport:{
+                read:{
+                
+                } 
+            } 
+        },
+        placeholder:'三字吗/城市'
+    },
     group: ["热门","ABCDEF","GHJ", "KLMN", "PQSTW", "XYZ"]
 }).init();
 

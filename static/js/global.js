@@ -299,10 +299,6 @@ var FloatLayer = function(opts){
 </div>
 </script>
 
-<script type="x-kendo-template" id="itemTemplate">
-<span class="sg_py">${data.py}</span><span class="sg_name">${data.name}</span><span class="sg_code">（${data.code}）</span>
-</script>
-
 模板结束 */
 
 var CityAutocomplete = function(settings){
@@ -381,7 +377,7 @@ var CityAutocomplete = function(settings){
     }
 
     function render_suggest_city(data){
-        input.kendoAutoComplete({
+        var autocomplate_defaults = {
             dataTextField:'search',
             animation:false,
             filter:function(d,f){
@@ -405,7 +401,7 @@ var CityAutocomplete = function(settings){
                     logic:'or'
                 }
             },
-            template: $(opts.itemTemplate).html() ||'<span class="sg_py">${data.py}</span><span class="sg_name">${data.name}</span><span class="sg_code">（${data.code}）</span>',
+            template: '<span class="sg_py">${data.py}</span><span class="sg_name">${data.name}</span><span class="sg_code">（${data.code}）</span>',
             dataSource: data,
             highlightFirst: true,
             placeholder:"拼音/城市码/中文",
@@ -415,7 +411,9 @@ var CityAutocomplete = function(settings){
                 t.sender.value(dataItem.name);
                 $(opts.codeEle).val(dataItem.code);
             }
-        });
+        };
+
+        input.kendoAutoComplete($.extend(autocomplate_defaults,opts.autocomplete));
 
         input.on('keyup',function(){
             var $t = $(this);
@@ -433,10 +431,6 @@ var CityAutocomplete = function(settings){
     };
 
     that.init = function(){
-        if(typeof that.options === 'undefined'){
-            that.setOptions(); 
-        }
-
         opts = that.options;
         input = opts.input.jquery ? opts.input : $(opts.input);
 
