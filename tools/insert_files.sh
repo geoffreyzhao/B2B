@@ -4,6 +4,8 @@ cd ~/travelzen/proto-b2b/
 
 git status | grep "modified" | awk -F: '{print $2}' > $$.txt
 
+find 运营商/ -name "*.html" > $$.txt
+
 for filename in `cat  $$.txt`
 do
 
