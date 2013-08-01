@@ -381,7 +381,7 @@ var CityAutocomplete = function(settings){
     }
 
     function render_suggest_city(data){
-        input.kendoAutoComplete({
+        var autocomplate_defaults = {
             dataTextField:'search',
             animation:false,
             filter:function(d,f){
@@ -415,7 +415,9 @@ var CityAutocomplete = function(settings){
                 t.sender.value(dataItem.name);
                 $(opts.codeEle).val(dataItem.code);
             }
-        });
+        };
+
+        input.kendoAutoComplete($.extend(autocomplate_defaults,opts.autocomplete));
 
         input.on('keyup',function(){
             var $t = $(this);
@@ -433,10 +435,6 @@ var CityAutocomplete = function(settings){
     };
 
     that.init = function(){
-        if(typeof that.options === 'undefined'){
-            that.setOptions(); 
-        }
-
         opts = that.options;
         input = opts.input.jquery ? opts.input : $(opts.input);
 
