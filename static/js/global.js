@@ -305,9 +305,19 @@ var FloatLayer = function(opts){
 
 模板结束 */
 
-var CityAutocomplete = function(){
+var CityAutocomplete = function(settings){
     var that = {};
     var input,opts,hot_tabs;
+
+    var defaults = {
+        input : ".suggest-city",
+        url: './searchflight_files/data.txt',
+        group: ["ABCD","EFGHJ", "KLMN", "PQRSTW", "XYZ"]
+    };
+
+    that.options = $.extend(defaults,settings);
+
+
     /* /FlightReserve/DataAssistant/GetCitys.aspx */
 
     function process_citydata(d){
@@ -422,17 +432,6 @@ var CityAutocomplete = function(){
 
     };
 
-    that.setOptions = function(settings){
-        var defaults = {
-            input : ".suggest-city",
-            url: './searchflight_files/data.txt',
-            group: ["ABCD","EFGHJ", "KLMN", "PQRSTW", "XYZ"]
-        };
-
-        that.options = $.extend(defaults,settings);
-        return that;
-    };
-
     that.init = function(){
         if(typeof that.options === 'undefined'){
             that.setOptions(); 
@@ -462,7 +461,7 @@ var CityAutocomplete = function(){
     };
 
     return that;
-}();
+};
 
 
 
