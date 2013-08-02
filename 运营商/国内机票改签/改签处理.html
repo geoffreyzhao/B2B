@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>机票 国内机票 改签 改签申请</title>
+        <title>机票 国内机票 改签 改签处理</title>
         <meta charset="utf-8" />
 <link href="/static/css/kendo.common.css" rel="stylesheet" />
 <link href="/static/css/kendo.gray.css" rel="stylesheet" />
@@ -76,10 +76,11 @@ $(function(){
         <button class="btns btn-return">返回</button>
     </div>
     <div class="col col-r sep-l">
+        <button class="btns btn-blue">取消受理</button>
         <button class="btns btn-blue">取消订单</button>
         <button class="btns btn-blue" id="save">保存</button>
         <button class="btns btn-blue" id="edit" style="display:none;">修改</button>
-        <button class="btns btn-blue">提交申请</button>
+        <button class="btns btn-blue">完成改签</button>
     </div>
 </div>
 
@@ -243,24 +244,27 @@ $(function(){
         <span class="block-title-orange">改签航班信息</span>
         <span class="block-module-action">
             <button class="btns btn-ac-blue" id="origin_flight_btn"><i>展开</i>原航班信息 <b>︽</b></button> 
-            <label><b style="color:red;">*</b>&nbsp;选择改签类型:</label>
-            <label>
-                <input type="radio" name="gqtype" />
-                <em>仅改期</em>
-            </label>
-            <label>
-                <input type="radio" name="gqtype" />
-                <em>仅升舱</em>
-            </label>
-            <label>
-                <input type="radio" name="gqtype" />
-                <em>升舱并改期</em>
-            </label>
+            <button class="btns btn-ac-blue" id="edit_flight">编辑</button> 
+            <span>
+                <label><b style="color:red;">*</b>&nbsp;选择改签类型:</label>
+                <label>
+                    <input type="radio" name="gqtype" />
+                    <em>仅改期</em>
+                </label>
+                <label>
+                    <input type="radio" name="gqtype" />
+                    <em>仅升舱</em>
+                </label>
+                <label>
+                    <input type="radio" name="gqtype" />
+                    <em>升舱并改期</em>
+                </label>
+            </span>
         </span>
     </div> 
     <div class="row">
-        <div id="flight_info_grid">
-            <table id="flight_table" class="grid-table" style="width:auto;">
+        <div id="flight_info_grid" >
+            <table id="flight_table" class="grid-table gaiqian_flight" style="width:auto;">
                 <tbody>
                     <tr class="thead">
                         <td style="width:30px;"><input type="checkbox" name="flight_all"></td>
@@ -275,28 +279,28 @@ $(function(){
                         <td style="width:80px;">预定OFFICE</td>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" name="flight"></td>
-                        <td><input value="PEK T3"></td>
-                        <td><input value="PVG T2"></td>
-                        <td><input value="HO"></td>
-                        <td><input value="CZ3609"></td>
-                        <td><input value="777"></td>
-                        <td><input value="W"></td>
-                        <td><input value="2013-06-22 20:35"></td>
-                        <td><input value="2013-06-22 23:25"></td>
-                        <td><input value="SHA255"></td>
+                        <td><input type="checkbox" name="flight"/></td>
+                        <td><input value="PEK T3" /><b >PEK T3</b></td>
+                        <td><input value="PVG T2" /><b >PVG T2</b></td>
+                        <td><input value="HO" /><b >HO</b></td>
+                        <td><input value="CZ3609" /><b class="qt" >CZ3609</b></td>
+                        <td><input value="777" /><b >777</b></td>
+                        <td><input value="W" /><b class="qt">W</b></td>
+                        <td><input value="2013-06-22 20:35"/><b class="qt" >2013-06-22 20:35</b></td>
+                        <td><input value="2013-06-22 23:25"/><b class="qt" >2013-06-22 23:25</b></td>
+                        <td><input value="SHA255"/><b >SHA255</b></td>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" name="flight"></td>
-                        <td><input value="PEK T3"></td>
-                        <td><input value="PVG T2"></td>
-                        <td><input value="HO"></td>
-                        <td><input value="CZ3609"></td>
-                        <td><input value="777"></td>
-                        <td><input value="W"></td>
-                        <td><input value="2013-06-22 20:35"></td>
-                        <td><input value="2013-06-22 23:25"></td>
-                        <td><input value="SHA255"></td>
+                        <td><input type="checkbox" name="flight"/></td>
+                        <td><input value="PEK T3"/><b >PEK </b></td>
+                        <td><input value="PVG T2"/><b >PVG </b></td>
+                        <td><input value="HO"/><b >HO</b></td>
+                        <td><input value="CZ3609"/><b class="qt" >CZ3609</b></td>
+                        <td><input value="777"/><b >777</b></td>
+                        <td><input value="W"/><b class="qt" >W</b></td>
+                        <td><input value="2013-06-22 20:35"/><b class="qt" >2013</b></td>
+                        <td><input value="2013-06-22 23:25"/><b class="qt">2013</b></td>
+                        <td><input value="SHA255"/><b>SHA255</b></td>
                     </tr>
                 </tbody>
             </table>
@@ -369,7 +373,7 @@ $(function(){
     </div>
 </div>
 <div class="block block7 block-module">
-    <div class="block-title"><span class="block-title-blue">改签客票信息</span>
+    <div class="block-title"><span class="block-title-blue">客票信息</span>
         <span class="block-module-action">
             <button class="btns btn-ac-blue" id="ticket_info_btn"><i>展开</i>原客票信息 <b>︽</b></button> 
         </span>
