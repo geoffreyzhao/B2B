@@ -36,6 +36,7 @@ $(function(){
 <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
 <![endif]-->
 <!-- @CLB@ -->
+<script type="text/javascript" src="/static/js/sync.js"></script>
 </head>
 <body>
     <div id="extHeader">
@@ -145,8 +146,16 @@ $(function(){
                </div>
               
               <div class="passport">
-                   <a href="#" class="passport_a">团队政策</a>
-                   <a href="#" class="passport_aa">查看全部政策类型</a>
+                    <ul id="rolemenu" class="white_bg" style="margin-bottom:0; float:left;">
+                        <li class="current">
+                          <div class="mtab"> 
+                             <span style="font-weight:bold; color:#0066cc">团队政策</span>
+                             <span class="rightCover"></span>
+                          </div>
+                        </li>
+                    </ul>
+                   <!--<a href="#" class="passport_a">团队政策</a>-->
+                   <div style="float:left;"><a href="#" class="passport_aa">查看全部政策类型</a></div>
               </div>
               <div class="qx_1">
                   <div class="xuanze">
@@ -394,24 +403,21 @@ $(function(){
         </div>
     </div>
     
-    <script type="application/javascript">
-		var add_department = function(id){
-			id = 0;
-			if (!$("#add_department").data("kendoWindow")) {
-				$("#add_department").kendoWindow({
-					width: "100%",
-					minHeight: "100%",
-					title: "操作提示",
-					actions: ["Refresh", "Close"],
-					content: encodeURI("添加部门.html")  + "?orderID=" + id + "&timestamp=" + (new Date()).toString(),
-					visible: false,
-					modal:true
-				}).data("kendoWindow").open().center();
-			}else{
-				$("#add_department").data("kendoWindow").open().center();
-			}
-		};
-	
-	</script>
+    <script type="text/javascript">
+    
+        $("#rolemenu li").hover(function(){
+                if(!$(this).hasClass("current")){
+                    $(".mtab",this).removeClass("gray");
+                }
+
+        },function(){
+                if(!$(this).hasClass("current")){
+                    $(".mtab",this).addClass("gray");
+                }
+        });
+    
+    
+    </script>
+    
 </body>
 </html>

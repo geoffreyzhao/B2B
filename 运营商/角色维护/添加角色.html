@@ -22,21 +22,14 @@
     
      
     <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
-    
-    <style>
-	        #rolemenu{ height:30px; border-bottom:1px solid #10a9dd; padding-left:15px; margin-bottom:10px;}
-		    #rolemenu li {float:left;margin-right:5px; width: 95px; height: 35px; position:relative;}
-			#rolemenu .mtab {width:90px;height:30px;}
-			.mtab { position: absolute; bottom: -1px;}
-			.current{ z-index: 1000; width: 90px; height: 30px; position: relative;}
-
-    </style>
-
+   
+   
 <!--[if lt IE 8]> 
 <link rel="stylesheet" href="/static/css/ie.css" /> 
 <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
 <![endif]-->
 <!-- @CLB@ -->
+<script type="text/javascript" src="/static/js/sync.js"></script>
 </head>
 <body>
     <div id="extHeader">
@@ -111,35 +104,9 @@
                     </li>
                     <li>
                         <label style="display:block; float:left;">适用部门:</label>
-                        <div class="dept" style="float:left;">                         
-                               <ul id="treeView">
-                                <li>不夜城集团
-                                    <ul>
-                                        <li>不夜城国旅
-                                            <ul>
-                                                <li>国内机票部
-                                                    <ul>
-                                                        <li>退票部
-                                                            <ul>
-                                                                <li>退票部一组</li>
-                                                                <li>退票部二组</li>
-                                                            </ul>
-                                                        </li>
-                                                        <li>出票部</li>
-                                                    </ul>
-                                                </li>
-                                                <li>国际机票部</li>
-                                                <li>酒店部</li>
-                                                <li>财务部</li>
-                                            </ul>
-                                        </li>
-                                        <li>北京爱特博</li>
-                                        <li>广州长荣</li>
-                                    </ul>
-                                </li>
-                             </ul>                        
-                        </div>
-                        <span></span>
+                       
+                       <div id="roletree" class="dept" style="float:left;overflow-y:scroll;"></div>                         
+                      
                     </li>
                 </ul>
               
@@ -150,8 +117,11 @@
                     
                     <ul id="rolemenu">
                         <li class="current" style="font-weight:bold; color:#0066cc;">
-                        <div class="mtab" >
-                                <input checked="" type="checkbox" name="fid" id="fid1"/>                           
+                        <div class="mtab">
+                            <span class="usercheck userchecked_1">
+                                <em></em>
+                                <input class="hidden_input" type="checkbox" name="fid" id="fid1"/>
+                            </span>                        
                             <i></i>
                             <label for="fid1">国内酒店</label>
                             <span class="rightCover"></span>
@@ -235,128 +205,217 @@
                         <table>
                             <tr>
                                 <td rowspan="5" class="graybg" style="width:13%">
-                                    <label>
-                                        <input type="checkbox" class="sys_ckbox"/><b>账户管理：</b>
+                                    <label class="usercheck">
+                                        <em></em>
+                                        <input type="checkbox" class="sys_ckbox hidden_input"/><b>账户管理：</b>
                                     </label>
                                 </td>
                                 <td style="width:14%">
-                                    <label>
-                                        <input type="checkbox" class="sys_ckbox" checked=""/><b>资金汇总：</b>
+                                    <label class="usercheck userchecked_1">
+                                        <em></em>
+                                        <input type="checkbox" class="sys_ckbox hidden_input" /><b>资金汇总：</b>
                                     </label>
                                 </td>
                                 <td>
                                     <ul>
                                         <li>
-                                            <a href="#" class="ftabItem_a_1">查询</a>
-                                            <a href="#" class="ftabItem_a_3">导出excel</a>
+                                            <a href="javascript:;" class="short_btn">
+                                                <span class="left"></span>
+                                                <span class="center">查询</span>
+                                                <span class="right"></span>
+                                            </a>
+                                            <a href="javascript:;" class="short_btn">
+                                                <span class="left"></span>
+                                                <span class="center">导出excel</span>
+                                                <span class="right"></span>
+                                            </a>
                                         </li>
                                     </ul>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>
-                                        <input type="checkbox" class="sys_ckbox"/><b>充值管理：</b>
+                                    <label class="usercheck">
+                                        <em></em>
+                                        <input type="checkbox" class="sys_ckbox hidden_input"/><b>充值管理：</b>
                                     </label>
                                 </td>
                                 <td>
                                     <ul>
                                         <li>
-                                            <a href="#" class="ftabItem_a_2">查询</a>
-                                            <a href="#">导出excel</a>
-                                            <a href="#">新增充值</a>
-                                            <a href="#">新增扣款</a>
+                                            <a href="javascript:;" class="darkgray_btn">
+                                                <span class="left"></span>
+                                                <span class="center">查询</span>
+                                                <span class="right"></span>
+                                            </a>
+                                            <a href="javascript:;" class="darkgray_btn">
+                                                <span class="left"></span>
+                                                <span class="center">导出excel</span>
+                                                <span class="right"></span>
+                                            </a>
+                                            <a href="javascript:;" class="darkgray_btn">
+                                                <span class="left"></span>
+                                                <span class="center">新增充值</span>
+                                                <span class="right"></span>
+                                            </a>
+                                            <a href="javascript:;" class="darkgray_btn">
+                                                <span class="left"></span>
+                                                <span class="center">新增扣款</span>
+                                                <span class="right"></span>
+                                            </a>
                                         </li>
                                     </ul>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>
-                                        <input type="checkbox" class="sys_ckbox"/><b>充值单管理：</b>
+                                    <label class="usercheck">
+                                        <em></em>
+                                        <input type="checkbox" class="sys_ckbox hidden_input"/><b>充值单管理：</b>
                                     </label>
                                 </td>
                                 <td>
                                     <ul>
                                         <li>
-                                            <a href="#" class="ftabItem_a_2">查询</a>
-                                            <a href="#">导出excel</a>
-                                            <a href="#">新增充值</a>
-                                            <a href="#">新增扣款</a>
+                                            <a href="javascript:;" class="darkgray_btn">
+                                                <span class="left"></span>
+                                                <span class="center">查询</span>
+                                                <span class="right"></span>
+                                            </a>
+                                            <a href="javascript:;" class="darkgray_btn">
+                                                <span class="left"></span>
+                                                <span class="center">导出excel</span>
+                                                <span class="right"></span>
+                                            </a>
+                                            <a href="javascript:;" class="darkgray_btn">
+                                                <span class="left"></span>
+                                                <span class="center">新增充值</span>
+                                                <span class="right"></span>
+                                            </a>
+                                            <a href="javascript:;" class="darkgray_btn">
+                                                <span class="left"></span>
+                                                <span class="center">新增扣款</span>
+                                                <span class="right"></span>
+                                            </a>
                                         </li>
                                     </ul>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>
-                                        <input type="checkbox" class="sys_ckbox"/><b>提现管理：</b>
+                                    <label class="usercheck">
+                                        <em></em>
+                                        <input type="checkbox" class="sys_ckbox hidden_input"/><b>提现管理：</b>
                                     </label>
                                 </td>
                                 <td>
                                     <ul>
                                         <li>
-                                            <a href="#" class="ftabItem_a_2">查询</a>
-                                            <a href="#">导出excel</a>
+                                            <a href="javascript:;" class="darkgray_btn">
+                                                <span class="left"></span>
+                                                <span class="center">查询</span>
+                                                <span class="right"></span>
+                                            </a>
+                                            <a href="javascript:;" class="darkgray_btn">
+                                                <span class="left"></span>
+                                                <span class="center">导出excel</span>
+                                                <span class="right"></span>
+                                            </a>
                                         </li>
                                     </ul>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="vertical-align:top; padding-top:8px;">
-                                    <label>
-                                        <input type="checkbox" class="sys_ckbox"/><b>授权管理：</b>
+                                    <label class="usercheck">
+                                        <em></em>
+                                        <input type="checkbox" class="sys_ckbox hidden_input"/><b>授权管理：</b>
                                     </label>                               
                                 </td>
                                 <td>
                                      <ul>
                                         <li>
-                                            <a href="#" class="ftabItem_a_2">查询</a>
-                                            <a href="#">导出excel</a>
+                                            <a href="javascript:;" class="darkgray_btn">
+                                                <span class="left"></span>
+                                                <span class="center">查询</span>
+                                                <span class="right"></span>
+                                            </a>
+                                            <a href="javascript:;" class="darkgray_btn">
+                                                <span class="left"></span>
+                                                <span class="center">导出excel</span>
+                                                <span class="right"></span>
+                                            </a>
                                         </li>
                                     </ul> 
                                     <table class="limit">
                                         <tr>
                                             <td width="17%">
-                                                <label>
-                                                      <input type="checkbox" class="sys_ckbox"/><b>额度不足：</b>
+                                                <label class="usercheck">
+                                                      <em></em>
+                                                      <input type="checkbox" class="sys_ckbox hidden_input"/><b>额度不足：</b>
                                                 </label>                                             
                                             </td>
                                             <td style="border:0;">
                                                  <ul>
                                                     <li>
-                                                        <a href="#" class="ftabItem_a_2">查询</a>
-                                                        <a href="#">导出excel</a>
+                                                        <a href="javascript:;" class="darkgray_btn">
+                                                            <span class="left"></span>
+                                                            <span class="center">查询</span>
+                                                            <span class="right"></span>
+                                                        </a>
+                                                        <a href="javascript:;" class="darkgray_btn">
+                                                            <span class="left"></span>
+                                                            <span class="center">导出excel</span>
+                                                            <span class="right"></span>
+                                                        </a>
                                                     </li>
                                                 </ul>                                             
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label>
-                                                      <input type="checkbox" class="sys_ckbox"/><b>账期预警：</b>
+                                                <label class="usercheck">
+                                                      <em></em>
+                                                      <input type="checkbox" class="sys_ckbox hidden_input"/><b>账期预警：</b>
                                                 </label>                                             
                                             </td>
                                             <td style="border:0;">
                                                  <ul>
                                                     <li>
-                                                        <a href="#" class="ftabItem_a_2">查询</a>
-                                                        <a href="#">导出excel</a>
+                                                        <a href="javascript:;" class="darkgray_btn">
+                                                            <span class="left"></span>
+                                                            <span class="center">查询</span>
+                                                            <span class="right"></span>
+                                                        </a>
+                                                        <a href="javascript:;" class="darkgray_btn">
+                                                            <span class="left"></span>
+                                                            <span class="center">导出excel</span>
+                                                            <span class="right"></span>
+                                                        </a>
                                                     </li>
                                                 </ul>                                             
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label>
-                                                      <input type="checkbox" class="sys_ckbox"/><b>账期管理：</b>
+                                                <label class="usercheck">
+                                                      <em></em>
+                                                      <input type="checkbox" class="sys_ckbox hidden_input"/><b>账期管理：</b>
                                                 </label>                                             
                                             </td>
                                             <td style="border:0;">
                                                  <ul>
                                                     <li>
-                                                        <a href="#" class="ftabItem_a_2">查询</a>
-                                                        <a href="#">导出excel</a>
+                                                        <a href="javascript:;" class="darkgray_btn">
+                                                            <span class="left"></span>
+                                                            <span class="center">查询</span>
+                                                            <span class="right"></span>
+                                                        </a>
+                                                        <a href="javascript:;" class="darkgray_btn">
+                                                            <span class="left"></span>
+                                                            <span class="center">导出excel</span>
+                                                            <span class="right"></span>
+                                                        </a>
                                                     </li>
                                                 </ul>                                             
                                             </td>
@@ -366,8 +425,9 @@
                             </tr>
                             <tr>
                                <td rowspan="2" class="graybg" style="width:12%">
-                                    <label>
-                                        <input type="checkbox" class="sys_ckbox"/><b>收银管理：</b>
+                                    <label class="usercheck">
+                                        <em></em>
+                                        <input type="checkbox" class="sys_ckbox hidden_input"/><b>收银管理：</b>
                                     </label>
                                 </td>
                                 <td style="width:12%">
@@ -379,25 +439,50 @@
                                 <td>
                                     <ul>
                                         <li>
-                                            <a href="#" class="ftabItem_a_1">查询</a>
-                                            <a href="#" class="ftabItem_a_3">导出excel</a>
+                                            <a href="javascript:;" class="short_btn">
+                                                <span class="left"></span>
+                                                <span class="center">查询</span>
+                                                <span class="right"></span>
+                                            </a>
+                                            <a href="javascript:;" class="light_gray_btn">
+                                                <span class="left"></span>
+                                                <span class="center">导出excel</span>
+                                                <span class="right"></span>
+                                            </a>
                                         </li>
                                     </ul>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>
-                                        <input type="checkbox" class="sys_ckbox"/><b>充值管理：</b>
+                                    <label class="usercheck">
+                                        <em></em>
+                                        <input type="checkbox" class="sys_ckbox hidden_input"/><b>充值管理：</b>
                                     </label>
                                 </td>
                                 <td>
                                     <ul>
                                         <li>
-                                            <a href="#" class="ftabItem_a_2">查询</a>
-                                            <a href="#">导出excel</a>
-                                            <a href="#">新增充值</a>
-                                            <a href="#">新增扣款</a>
+                                            <a href="javascript:;" class="darkgray_btn">
+                                                <span class="left"></span>
+                                                <span class="center">查询</span>
+                                                <span class="right"></span>
+                                            </a>
+                                            <a href="javascript:;" class="darkgray_btn">
+                                                <span class="left"></span>
+                                                <span class="center">导出excel</span>
+                                                <span class="right"></span>
+                                            </a>
+                                            <a href="javascript:;" class="darkgray_btn">
+                                                <span class="left"></span>
+                                                <span class="center">新增充值</span>
+                                                <span class="right"></span>
+                                            </a>
+                                            <a href="javascript:;" class="darkgray_btn">
+                                                <span class="left"></span>
+                                                <span class="center">新增扣款</span>
+                                                <span class="right"></span>
+                                            </a>
                                         </li>
                                     </ul>
                                 </td>
@@ -451,7 +536,97 @@
     
     <script>
     $(function() {
-        $("#treeView").kendoTreeView();
+			   
+			  $("#roletree").kendoTreeView({
+				checkboxes: {
+				checkChildren: true
+				},
+
+		    dataSource: [{
+			id: 1, text: "不夜城集团", expanded: true, items: [
+			    {
+				id: 2, text: "不夜城国旅", expanded: true, items: [
+				    { id: 3, text: "国内机票部", expanded: true, items: [
+				    { id: 4, text: "退票部", expanded: true, items: [
+						{ id: 23, text: "退票部一组"},
+					    { id: 24, text: "退票部二组" }										  
+				      ]
+					  },
+					{ id: 14, text: "出票部", expanded: true, items: [
+				    { id: 15, text: "出票一组" },
+					{ id: 16, text: "出票二组" }
+				         ] 
+					     }
+				    ]
+					},
+				    { id: 17, text: "国际机票部", expanded: true, items: [				   
+					{ id: 18, text: "退票部" }
+				    ]
+					},
+				    { id: 19, text: "洒店部", expanded: true, items: [				   
+					{ id: 20, text: "酒店一部" }
+				    ]
+					},
+					{ id: 21, text: "财务部", expanded: true, items: [				   
+					{ id: 22, text: "财务一部"}
+				    ]
+					}
+				]
+			    },
+			    {
+				id: 6, text: "北京爱特博", expanded: true, items: [
+				    { id: 7, text: "mockup.jpg" },
+				    { id: 8, text: "Research.pdf" },
+				]
+			    },
+			    {
+				id: 9, text: "广州长荣", expanded: true,  items: [
+				    { id: 10, text: "February.pdf"},
+				    { id: 11, text: "March.pdf"  },
+				    { id: 12, text: "April.pdf" }
+				]
+			    }
+			]
+		    }]
+		});
+
+		// function that gathers IDs of checked nodes
+		function checkedNodeIds(nodes, checkedNodes) {
+		    for (var i = 0; i < nodes.length; i++) {
+			if (nodes[i].checked) {
+			    checkedNodes.push(nodes[i].id);
+			}
+
+			if (nodes[i].hasChildren) {
+			    checkedNodeIds(nodes[i].children.view(), checkedNodes);
+			}
+		    }
+		}
+
+		// show checked node IDs on datasource change
+		$("#roletree").data("kendoTreeView").dataSource.bind("change", function() {
+		    var checkedNodes = [],
+			treeView = $("#roletree").data("kendoTreeView"),
+			message;
+
+		    checkedNodeIds(treeView.dataSource.view(), checkedNodes);
+
+		    if (checkedNodes.length > 0) {
+			message = "IDs of checked nodes: " + checkedNodes.join(",");
+		    } else {
+			message = "No nodes checked.";
+		    }
+
+		    $("#result").html(message);
+		});
+
+
+	/*
+        $("#treeView").kendoTreeView({
+		    checkboxes: {
+				checkChildren: true
+		    }
+		});*/
     })
    </script>
 
