@@ -17,6 +17,37 @@
 <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
 <script type="text/javascript" src="/static/js/global.js"></script>
 <script type="text/javascript" src="/static/js/flight.js"></script>
+<script type="text/javascript">
+$(function(){
+    $('.actions .ac-save').bind('click',function(){
+        var that = $(this);
+        if(that.find('b').text() == '保存'){
+            that.find('b').text('修改'); 
+            hideInput();
+        }else{
+            that.find('b').text('保存'); 
+            showInput();
+        }
+    });
+
+    function showInput(){
+        $('.block33 table input[type="checkbox"]').parent().show(); 
+        $('.block21 table input[type="checkbox"]').parent().show(); 
+        $('.block21 table .text').removeClass('disabled').removeAttr('disabled'); 
+        $('.block33 table .text').removeClass('disabled').removeAttr('disabled'); 
+    }
+
+    function hideInput(){
+        $('.block33 table input[type="checkbox"]').parent().hide(); 
+        $('.block21 table input[type="checkbox"]').parent().hide(); 
+        $('.block21 table .text').addClass('disabled').attr('disabled',true); 
+        $('.block33 table .text').addClass('disabled').attr('disabled',true); 
+    }
+}) 
+
+
+</script>
+
 <!--[if lt IE 8]>
     <link rel="stylesheet" href="/static/css/ie.css" />
     <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script>
@@ -65,7 +96,7 @@
         <a href="javascript:;" class="button_secondary adaptiveButton small"> <span class="left"></span> <span class="center">取消受理</span> <span class="right"></span></a>
         <a href="javascript:;" class="button_secondary adaptiveButton small"> <span class="left"></span> <span class="center">取消订单</span> <span class="right"></span></a>
         <a href="javascript:;" id="ac-return" class="button_secondary adaptiveButton small"> <span class="left"></span> <span class="center">退回</span> <span class="right"></span></a>
-        <a href="javascript:;" class="button_secondary adaptiveButton small"> <span class="left"></span> <span class="center">保存</span> <span class="right"></span></a>
+        <a href="javascript:;" class="button_secondary adaptiveButton small ac-save"> <span class="left"></span> <span class="center"><b>保存</b></span> <span class="right"></span></a>
         <a href="javascript:;" class="button_secondary adaptiveButton small"> <span class="left"></span> <span class="center">完成改签</span> <span class="right"></span></a>
     </div>
 </div>
@@ -224,6 +255,8 @@
         <span class="block-title-orange">改签航班信息</span>
         <span class="block-module-action">
             <button class="btns btn-ac-blue ac-toggle" data-target=".block32"><b>展开</b>原航班信息<i class="r2c2"></i></button> 
+            <s class="bar"></s>
+            <button class="btns btn-ac-blue ac-toggle" data-target=".block33 .unselected"><b>展开</b>未选中航班<i class="r2c2"></i></button>
             <span>
                 <s class="bar"></s>
                 <button class="btns btn-ac-blue"><b>添加航班</b></button> 
@@ -257,7 +290,59 @@
                     <td><input type="checkbox"></td><td>航空公司</td><td>实际承运</td><td>航班号</td><td>机型</td><td>离港机场</td><td>到港机场</td><td>离港时间</td><td>到港时间</td><td>订座</td><td>预定OFFICE</td>
                 </tr>
                 <tr>
-                    <td><input class="text" type="checkbox"></td>
+                    <td><input checked type="checkbox"></td>
+                    <td><input class="text" value="东方航空"></td>
+                    <td><input class="text" value="HO"></td>
+                    <td><input class="text" value="CZ3609"></td>
+                    <td><input class="text" value="空客A380"></td>
+                    <td><input class="text" value="上海浦东 PVG T3"></td>
+                    <td><input class="text" value="上海浦东 PEK T2"></td>
+                    <td><input class="text" value=" 2013-06-22 20:35 "></td>
+                    <td><input class="text" value=" 2013-06-22 23:25 "></td>
+                    <td><input class="text" value=" HK "></td>
+                    <td><input class="text" value=" SHA "></td>
+                </tr>
+                <tr class="unselected">
+                    <td><input type="checkbox"></td>
+                    <td><input class="text" value="东方航空"></td>
+                    <td><input class="text" value="HO"></td>
+                    <td><input class="text" value="CZ3609"></td>
+                    <td><input class="text" value="空客A380"></td>
+                    <td><input class="text" value="上海浦东 PVG T3"></td>
+                    <td><input class="text" value="上海浦东 PEK T2"></td>
+                    <td><input class="text" value=" 2013-06-22 20:35 "></td>
+                    <td><input class="text" value=" 2013-06-22 23:25 "></td>
+                    <td><input class="text" value=" HK "></td>
+                    <td><input class="text" value=" SHA "></td>
+                </tr>
+                <tr>
+                    <td><input checked type="checkbox"></td>
+                    <td><input class="text" value="东方航空"></td>
+                    <td><input class="text" value="HO"></td>
+                    <td><input class="text" value="CZ3609"></td>
+                    <td><input class="text" value="空客A380"></td>
+                    <td><input class="text" value="上海浦东 PVG T3"></td>
+                    <td><input class="text" value="上海浦东 PEK T2"></td>
+                    <td><input class="text" value=" 2013-06-22 20:35 "></td>
+                    <td><input class="text" value=" 2013-06-22 23:25 "></td>
+                    <td><input class="text" value=" HK "></td>
+                    <td><input class="text" value=" SHA "></td>
+                </tr>
+                <tr class="unselected">
+                    <td><input type="checkbox"></td>
+                    <td><input class="text" value="东方航空"></td>
+                    <td><input class="text" value="HO"></td>
+                    <td><input class="text" value="CZ3609"></td>
+                    <td><input class="text" value="空客A380"></td>
+                    <td><input class="text" value="上海浦东 PVG T3"></td>
+                    <td><input class="text" value="上海浦东 PEK T2"></td>
+                    <td><input class="text" value=" 2013-06-22 20:35 "></td>
+                    <td><input class="text" value=" 2013-06-22 23:25 "></td>
+                    <td><input class="text" value=" HK "></td>
+                    <td><input class="text" value=" SHA "></td>
+                </tr>
+                <tr>
+                    <td><input checked type="checkbox"></td>
                     <td><input class="text" value="东方航空"></td>
                     <td><input class="text" value="HO"></td>
                     <td><input class="text" value="CZ3609"></td>
@@ -335,6 +420,8 @@
             <button class="btns btn-ac-blue ac-toggle" data-target=".block20"><b>展开</b>展开原客票信息<i class="r2c2"></i></button> 
 
             <s class="bar"></s>
+            <button class="btns btn-ac-blue ac-toggle" data-target=".block21 .unselected"><b>展开</b>未选中客票<i class="r2c2"></i></button>
+            <s class="bar"></s>
             <button class="btns btn-ac-blue"><b>提取票号</b></button> 
         </span>
     </div> 
@@ -363,7 +450,45 @@
 
                 </tr>
                 <tr>
+                    <td><input checked type="checkbox"></td>
+                    <td><input class="text" value="HX21RP"></td>
+                    <td><input class="text" value="7819128790938"></td>
+                    <td><input class="text" value="C1"></td>
+                    <td><input class="text" value="已出票"></td>
+                    <td><input class="text" value="XXXXX"></td>
+                    <td><input class="text" value="ZHANG/YU"></td>
+                    <td><input class="text" value="ADT"></td>
+                    <td><input class="text" value="A123456"></td>
+                    <td><input class="text" value="5500"></td>
+                    <td><input class="text" value="5000"></td>
+                    <td><input class="text" value="1000"></td>
+                    <td><input class="text" value="5%"></td>
+                    <td><input class="text" value="3%+100"></td>
+                    <td><input class="text" value="20"></td>
+                    <td><input class="text" value="不夜城"></td>
+                    <td><input class="text" value="2013071"></td>
+                </tr>
+                <tr class="unselected">
                     <td><input type="checkbox"></td>
+                    <td><input class="text" value="HX21RP"></td>
+                    <td><input class="text" value="7819128790938"></td>
+                    <td><input class="text" value="C1"></td>
+                    <td><input class="text" value="已出票"></td>
+                    <td><input class="text" value="XXXXX"></td>
+                    <td><input class="text" value="ZHANG/YU"></td>
+                    <td><input class="text" value="ADT"></td>
+                    <td><input class="text" value="A123456"></td>
+                    <td><input class="text" value="5500"></td>
+                    <td><input class="text" value="5000"></td>
+                    <td><input class="text" value="1000"></td>
+                    <td><input class="text" value="5%"></td>
+                    <td><input class="text" value="3%+100"></td>
+                    <td><input class="text" value="20"></td>
+                    <td><input class="text" value="不夜城"></td>
+                    <td><input class="text" value="2013071"></td>
+                </tr>
+                <tr>
+                    <td><input checked type="checkbox"></td>
                     <td><input class="text" value="HX21RP"></td>
                     <td><input class="text" value="7819128790938"></td>
                     <td><input class="text" value="C1"></td>

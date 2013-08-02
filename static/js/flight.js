@@ -19,7 +19,7 @@ $(function(){
     $('.ac-toggle').bind('click',function(){
         var that = $(this);
         var target = that.data('target');
-        $(target).slideToggle(); 
+        $(target).toggle(); 
         that.toggleClass('expanded');
         if(that.find('b').text() == '展开'){
             that.find('b').text('收起'); 
