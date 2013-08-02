@@ -13,23 +13,7 @@
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/kendo.web.js"></script>
 <script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
-<script type="text/javascript">
-$(function(){
-    $('.actions').fixedBar();
-    var lensf = function (){
-        $.each($('.instr'),function(){
-            var that = $(this);
-            if(that.find('.highlight-fl').size()>0){
-                var ele = that.find('.highlight');
-                var len = ele.size();
-                var wid = ele.width()*len + 15;
-                that.find('.line').prepend('<div style="background-color:#FF6608;height:2px;width:'+wid+'px" />')
-            }
-        });
-    }
-    lensf();
-});
-</script>
+<script type="text/javascript" src="/static/js/flight.js"></script>
 
 <!--[if lt IE 8]> 
 <link rel="stylesheet" href="/static/css/ie.css" /> 
@@ -78,6 +62,7 @@ $(function(){
     <div class="col col-r sep-l">
         <button class="btns btn-blue">取消受理</button>
         <button class="btns btn-blue">取消订单</button>
+        <button class="btns btn-blue">退回</button>
         <button class="btns btn-blue" id="save">保存</button>
         <button class="btns btn-blue" id="edit" style="display:none;">修改</button>
         <button class="btns btn-blue">完成改签</button>
@@ -244,8 +229,8 @@ $(function(){
         <span class="block-title-orange">改签航班信息</span>
         <span class="block-module-action">
             <button class="btns btn-ac-blue" id="origin_flight_btn"><i>展开</i>原航班信息 <b>︽</b></button> 
-            <button class="btns btn-ac-blue" id="edit_flight">编辑</button> 
-            <span>
+            <button class="btns btn-ac-blue" id="list_full_flight"><i>展开</i>未选中航班<b>︽</b></button> 
+            <span id="gaiqian_type">
                 <label><b style="color:red;">*</b>&nbsp;选择改签类型:</label>
                 <label>
                     <input type="radio" name="gqtype" />
@@ -263,11 +248,11 @@ $(function(){
         </span>
     </div> 
     <div class="row">
-        <div id="flight_info_grid" >
-            <table id="flight_table" class="grid-table gaiqian_flight" style="width:auto;">
+        <div id="flight_info_grid">
+            <table id="flight_table" class="grid-table gaiqian" style="width:auto;">
                 <tbody>
                     <tr class="thead">
-                        <td style="width:30px;"><input type="checkbox" name="flight_all"></td>
+                        <td style="width:30px;"><input type="checkbox" name="flight_all" id="flight_all"></td>
                         <td style="width:100px;">离港机场</td>
                         <td style="width:100px;">到港机场</td>
                         <td style="width:80px;" >共享</td>
@@ -279,28 +264,76 @@ $(function(){
                         <td style="width:80px;">预定OFFICE</td>
                     </tr>
                     <tr>
-                        <td><input type="checkbox" name="flight"/></td>
-                        <td><input value="PEK T3" /><b >PEK T3</b></td>
-                        <td><input value="PVG T2" /><b >PVG T2</b></td>
-                        <td><input value="HO" /><b >HO</b></td>
-                        <td><input value="CZ3609" /><b class="qt" >CZ3609</b></td>
-                        <td><input value="777" /><b >777</b></td>
-                        <td><input value="W" /><b class="qt">W</b></td>
-                        <td><input value="2013-06-22 20:35"/><b class="qt" >2013-06-22 20:35</b></td>
-                        <td><input value="2013-06-22 23:25"/><b class="qt" >2013-06-22 23:25</b></td>
-                        <td><input value="SHA255"/><b >SHA255</b></td>
+                        <td><input type="checkbox" name="flight" checked/></td>
+                        <td><input type="text" value="PEK T3" /><b >PEK T3</b></td>
+                        <td><input type="text" value="PVG T2" /><b >PVG T2</b></td>
+                        <td><input type="text" value="HO" /><b >HO</b></td>
+                        <td><input type="text" value="CZ3609" /><b class="qt" >CZ3609</b></td>
+                        <td><input type="text" value="777" /><b >777</b></td>
+                        <td><input type="text" value="W" /><b class="qt">W</b></td>
+                        <td><input type="text" value="2013-06-22 20:35"/><b class="qt" >2013-06-22 20:35</b></td>
+                        <td><input type="text" value="2013-06-22 23:25"/><b class="qt" >2013-06-22 23:25</b></td>
+                        <td><input type="text" value="SHA255"/><b >SHA255</b></td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" name="flight"/></td>
-                        <td><input value="PEK T3"/><b >PEK </b></td>
-                        <td><input value="PVG T2"/><b >PVG </b></td>
-                        <td><input value="HO"/><b >HO</b></td>
-                        <td><input value="CZ3609"/><b class="qt" >CZ3609</b></td>
-                        <td><input value="777"/><b >777</b></td>
-                        <td><input value="W"/><b class="qt" >W</b></td>
-                        <td><input value="2013-06-22 20:35"/><b class="qt" >2013</b></td>
-                        <td><input value="2013-06-22 23:25"/><b class="qt">2013</b></td>
-                        <td><input value="SHA255"/><b>SHA255</b></td>
+                        <td><input type="text" value="PEK T3" /><b >PEK T3</b></td>
+                        <td><input type="text" value="PVG T2" /><b >PVG T2</b></td>
+                        <td><input type="text" value="HO" /><b >HO</b></td>
+                        <td><input type="text" value="CZ3609" /><b class="qt" >CZ3609</b></td>
+                        <td><input type="text" value="777" /><b >777</b></td>
+                        <td><input type="text" value="W" /><b class="qt">W</b></td>
+                        <td><input type="text" value="2013-06-22 20:35"/><b class="qt" >2013-06-22 20:35</b></td>
+                        <td><input type="text" value="2013-06-22 23:25"/><b class="qt" >2013-06-22 23:25</b></td>
+                        <td><input type="text" value="SHA255"/><b >SHA255</b></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="flight" checked/></td>
+                        <td><input type="text" value="PEK T3" /><b >PEK T3</b></td>
+                        <td><input type="text" value="PVG T2" /><b >PVG T2</b></td>
+                        <td><input type="text" value="HO" /><b >HO</b></td>
+                        <td><input type="text" value="CZ3609" /><b class="qt" >CZ3609</b></td>
+                        <td><input type="text" value="777" /><b >777</b></td>
+                        <td><input type="text" value="W" /><b class="qt">W</b></td>
+                        <td><input type="text" value="2013-06-22 20:35"/><b class="qt" >2013-06-22 20:35</b></td>
+                        <td><input type="text" value="2013-06-22 23:25"/><b class="qt" >2013-06-22 23:25</b></td>
+                        <td><input type="text" value="SHA255"/><b >SHA255</b></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="flight" checked/></td>
+                        <td><input type="text" value="PEK T3" /><b >PEK T3</b></td>
+                        <td><input type="text" value="PVG T2" /><b >PVG T2</b></td>
+                        <td><input type="text" value="HO" /><b >HO</b></td>
+                        <td><input type="text" value="CZ3609" /><b class="qt" >CZ3609</b></td>
+                        <td><input type="text" value="777" /><b >777</b></td>
+                        <td><input type="text" value="W" /><b class="qt">W</b></td>
+                        <td><input type="text" value="2013-06-22 20:35"/><b class="qt" >2013-06-22 20:35</b></td>
+                        <td><input type="text" value="2013-06-22 23:25"/><b class="qt" >2013-06-22 23:25</b></td>
+                        <td><input type="text" value="SHA255"/><b >SHA255</b></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="flight"/></td>
+                        <td><input type="text" value="PEK T3" /><b >PEK T3</b></td>
+                        <td><input type="text" value="PVG T2" /><b >PVG T2</b></td>
+                        <td><input type="text" value="HO" /><b >HO</b></td>
+                        <td><input type="text" value="CZ3609" /><b class="qt" >CZ3609</b></td>
+                        <td><input type="text" value="777" /><b >777</b></td>
+                        <td><input type="text" value="W" /><b class="qt">W</b></td>
+                        <td><input type="text" value="2013-06-22 20:35"/><b class="qt" >2013-06-22 20:35</b></td>
+                        <td><input type="text" value="2013-06-22 23:25"/><b class="qt" >2013-06-22 23:25</b></td>
+                        <td><input type="text" value="SHA255"/><b >SHA255</b></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="flight"/></td>
+                        <td><input type="text" value="PEK T3" /><b >PEK T3</b></td>
+                        <td><input type="text" value="PVG T2" /><b >PVG T2</b></td>
+                        <td><input type="text" value="HO" /><b >HO</b></td>
+                        <td><input type="text" value="CZ3609" /><b class="qt" >CZ3609</b></td>
+                        <td><input type="text" value="777" /><b >777</b></td>
+                        <td><input type="text" value="W" /><b class="qt">W</b></td>
+                        <td><input type="text" value="2013-06-22 20:35"/><b class="qt" >2013-06-22 20:35</b></td>
+                        <td><input type="text" value="2013-06-22 23:25"/><b class="qt" >2013-06-22 23:25</b></td>
+                        <td><input type="text" value="SHA255"/><b >SHA255</b></td>
                     </tr>
                 </tbody>
             </table>
@@ -373,64 +406,48 @@ $(function(){
     </div>
 </div>
 <div class="block block7 block-module">
-    <div class="block-title"><span class="block-title-blue">客票信息</span>
+    <div class="block-title"><span class="block-title-blue">改签客票信息</span>
         <span class="block-module-action">
             <button class="btns btn-ac-blue" id="ticket_info_btn"><i>展开</i>原客票信息 <b>︽</b></button> 
+            <button class="btns btn-ac-blue">提取票号</button> 
         </span>
     </div> 
     <div class="row">
-        <div id="passenger_info_grid2" style="overflow-x:auto;">
-            <table class="grid-table">
+        <div id="passenger_info_grid2" style="overflow-x:scroll;">
+            <table class="grid-table gaiqian" style="table-layout:fixed;">
                 <tr class="thead">
-                    <td><input type="checkbox" name="passenger_checkall"/></td>
-                    <td>PNR</td>
-                    <td>票号</td>
-                    <td>旅客类型</td>
-                    <td>姓名</td>
-                    <td>性别</td>
-                    <td>证件类型</td>
-                    <td>证件号码</td>
-                    <td>票面价</td>
-                    <td>佣金</td>
-                    <td>税款</td>
-                    <td>附加费</td>
-                    <td>合计</td>
-                    <td>行程单号</td>
-                    <td>联系电话</td>
-                </tr> 
-                <tr>
-                    <td><input type="checkbox" name="passenger_check"/></td>
-                    <td>HFJDD2</td>
-                    <td>781-2108936418</td>
-                    <td>成人</td>
-                    <td>周林</td>
-                    <td>男</td>
-                    <td>身份证</td>
-                    <td>21321321321</td>
-                    <td class="qt">590</td>
-                    <td>32</td>
-                    <td>100</td>
-                    <td>0</td>
-                    <td class="qt">658</td>
-                    <td>未打印</td>
-                    <td>13800138000</td>
+                    <td style="width:30px;"><input type="checkbox" name="passenger_all" id="passenger_all"></td>
+                    <td style="width:80px;">PNR</td>
+                    <td style="width:130px;">票号</td>
+                    <td style="width:80px;">旅客类型</td>
+                    <td style="width:80px;">姓名</td>
+                    <td style="width:50px;">性别</td>
+                    <td style="width:100px;">证件类型</td>
+                    <td style="width:160px;">证件号码</td>
+                    <td style="width:80px;">票面价</td>
+                    <td style="width:80px;">佣金</td>
+                    <td style="width:80px;">税款</td>
+                    <td style="width:80px;">附加费</td>
+                    <td style="width:80px;">合计</td>
+                    <td style="width:80px;">行程单号</td>
+                    <td style="width:100px;">联系电话</td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox" name="passenger_check"/></td>
-                    <td>HFJDD2</td>
-                    <td>781-2108936418</td>
-                    <td>成人</td>
-                    <td>周林</td>
-                    <td>男</td>
-                    <td>身份证</td>
-                    <td>21321321321</td>
-                    <td class="qt">590</td>
-                    <td>32</td>
-                    <td>100</td>
-                    <td>0</td>
-                    <td class="qt">658</td>
-                    <td>未打印</td>
-                    <td>13800138000</td>
+                    <td><input type="checkbox" name="passenger"/></td>
+                    <td class="editable"><input type="text" value="HFJDD2"/><b>HFJDD2</b></td>
+                    <td class="editable"><input type="text" value="781-2108936418"/><b>781-2108936418</b></td>
+                    <td class="editable"><input style="width:75px;" data-role="dropdownlist" data-value-field="value" data-text-field="text" data-source="[{'value':'成人','text':'成人'}]"><b>成人</b></td>
+                    <td class="editable"><input type="text" value="周林"/><b>周林</b></td>
+                    <td class="edit_hide"><input style="width:45px;" data-role="dropdownlist" data-value-field="value" data-text-field="text" data-source="[{'value':'男','text':'男'},{'value':'女','text':'女'}]"><b>男</b></td>
+                    <td><input style="width:95px;" data-role="dropdownlist" data-value-field="value" data-text-field="text" data-source="[{'value':'身份证','text':'身份证'},{'value':'护照','text':'护照'}]"><b>身份证</b></td>
+                    <td><input type="text" value="21321321321"/><b>21321321321</b></td>
+                    <td><input type="text" value="590"/><b class="qt">590</b></td>
+                    <td><input type="text" value="32"/><b>32</b></td>
+                    <td><input type="text" value="100"/><b>100</b></td>
+                    <td><input type="text" value="0"/><b>0</b></td>
+                    <td><input type="text" value="658"/><b class="qt">658</b></td>
+                    <td><input type="text" value="未打印"/><b>未打印</b></td>
+                    <td><input type="text" value="13800138000"/><b>13800138000</b></td>
                 </tr>
             </table>
         </div>
@@ -450,7 +467,8 @@ $(function(){
             【<span>退票条件</span>】起飞前2小时（含）以外办理退票按订座舱位公布运价收取40％的退票费，2小时以内及起飞后退票按订座舱位公布运价收取50％的退票费。退票费低于50元时按50元收取。<br>
             【<span>签转条件</span>】不得签转。<br><br>
             <h3>政策说明</h3>
-            【<span>退改签补充规则</span>】（不管任何原因）签转到其他航空公司、跨月签转以及有政策航班改到无政策航班，需收回代理费。
+            【<span>退改签补充规则</span>】（不管任何原因）签转到其他航空公司、跨月签转以及有政策航班改到无政策航班，需收回代理费。<br/>
+            【<span>政策备注</span>】这里是政策备注
         </div>
     </div>
 </div>
@@ -464,30 +482,6 @@ $(function(){
     <div class="row row1"> 
         <textarea style="width:100%;height:100px;overflow-y:scroll;"></textarea>
 
-    </div>
-</div>
-<div class="block block9 block-module clearfix" style="min-height:60px">
-    <div class="block-title"><span>记录</span>
-        <!--
-        <span class="block-module-action">
-        </span>
-        -->
-    </div> 
-    <div class="row row1"> 
-        <table style="width:40%;">
-            <thead>
-            </thead>
-            <tbody>
-                <tr>
-                    <td style="width:40%">修改客票价格</td>
-                    <td>2013-08-08 15:00</td>
-                </tr>
-                <tr>
-                    <td>修改改签价格</td>
-                    <td>2013-08-06 15:00</td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 </div>
         </div>
@@ -601,13 +595,48 @@ $(function(){
 </div>
 <script type="text/javascript">
     $(function(){
-            kendo.init($("body"));
+            //全选处理
+            $("#flight_all").click(function(){
+                $("input[name='flight']").prop("checked", $(this).prop("checked"));
+             });
+
+            $("#passenger_all").click(function(){
+                $("input[name='passenger']").prop("checked", $(this).prop("checked"));
+             });
+
+            // 输入框事件
+            $("#flight_table input,#passenger_info_grid2 input[type!='checkbox']").change(function(){
+                $(this).parent("td").find("b").html($(this).val());
+            });
+
+
+
+            //保存按钮处理
             $("#save").click(function(){
                 $(this).hide();
+
+                $("#flight_table tr,#passenger_info_grid2 table tr").each(function(){
+                    $("td:eq(0)",this).hide();
+                });
+                $("#gaiqian_type").hide();
+                $("#flight_table input").hide();
+                $("#passenger_info_grid2 input").hide();
+                $("#passenger_info_grid2 .k-dropdown").hide();
+                $("#passenger_info_grid2 b").show();
+                $("#flight_table b").show();
                 $("#edit").show();
             });
+            //修改按钮处理
             $("#edit").click(function(){
                 $(this).hide();
+                $("#flight_table tr,#passenger_info_grid2 table tr").each(function(){
+                    $("td:eq(0)",this).show();
+                });
+                $("#flight_table b,#passenger_info_grid2 b").hide();
+                $("#gaiqian_type").show();
+                $("#flight_table input").show();
+                $("#passenger_info_grid2 input[data-role!='dropdownlist']").show();
+                $("#passenger_info_grid2 .k-dropdown").show();
                 $("#save").show();
             });
             $("#ticket_info_btn").click(function(){
