@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta content="text/html" charset="utf-8">
+    <link rel="stylesheet" href="../../static/css/common.css">
+    <link rel="stylesheet" href="../../static/css/b2b.css">
+    <link rel="stylesheet" href="../../static/css/kendo.common.css">
+    <link rel="stylesheet" href="../../static/css/kendo.gray.css">
+    <link href="../../static/css/kendo.reset.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../static/css/hotel.css">
+    <style type="text/css">
+        .panelTitle{border:0}
+        input[type=text]{width:138px;height:18px}
+        select{width:150px}
+        .priceDetailHead{background:#E4E4E4;border-bottom:3px solid #FFA96D;height:25px}
+        .priceDetailSubHeadB{height:48px;background:#E1F5FF;text-align:center;vertical-align:middle;}
+        .priceDetailSubHeadY{background:#FFFDE9;width:95px;padding:8px}
+        .priceDetailSubHeadY,.priceDetailSubHeadB{border:1px solid #E0E0E0;border-width:0 1px 1px 0}
+        .priceDetailContent{height:39px;vertical-align:middle;border:1px solid #E0E0E0;border-width:0 1px 1px 0}
+        .tbl_orderPrice td{border:1px solid #8BCAE6}
+        .tbl_common td{border:1px solid #D5D5D5}
+        .tbl_common thead td{background:#F5F5F5}
+        .popwin{color:#0066cc}
+
+        .hotelOrderStatusContainer{float:left;padding:20px}
+        .statusContainer{float:left;position:relative;padding:15px 10px 5px}
+        .statusContainer.first .statusLineLeft{display:none}
+        .statusContainer.last .statusLineRight{display:none}
+        .statusDot{width:10px;height:10px;position:absolute;left:50%;margin-left:-5px;z-index:2;top:0}
+        .statusLine{;z-index:1}
+        .status_ing{color:#ff6600}
+        .status_ing .statusDot{background:url('../../static/images/hotel_order_status_dot_ing.gif') no-repeat}
+        .status_ing .statusLineLeft{width:50%;position:absolute;top:4px;left:0;border-top:2px solid #00a000}
+        .status_ing .statusLineRight{width:50%;position:absolute;top:4px;right:0;border-top:2px solid #e9e9e9}
+        .status_complete{color:#00a000}
+        .status_complete .statusDot{background:url('../../static/images/hotel_order_status_dot_complete.gif') no-repeat}
+        .status_complete .statusLineLeft{width:50%;position:absolute;top:4px;left:0;border-top:2px solid #00a000}
+        .status_complete .statusLineRight{width:50%;position:absolute;top:4px;right:0;border-top:2px solid #00a000}
+        .status_uncomplete{color:#666666}
+        .status_uncomplete .statusDot{background:url('../../static/images/hotel_order_status_dot_uncomplete.gif') no-repeat}
+        .status_uncomplete .statusLineLeft{width:50%;position:absolute;top:4px;left:0;border-top:2px solid #e9e9e9}
+        .status_uncomplete .statusLineRight{width:50%;position:absolute;top:4px;right:0;border-top:2px solid #e9e9e9}
+
+
+        .k-tooltip-closable .k-tooltip-content{padding-right:0}
+        .k-tooltip-button{display:none}
+        .k-tooltip{padding:0;border-color:#ccc;background:#ccc;color:#444}
+    </style>
+</head>
+<body>
+<div id="container" style="margin-top:0">
+    <div id="mainContent">
+        <div class="actions block">
+            <div class="col col-l sep-r">
+                <button class="btns btn-return">返回</button>
+            </div>
+            <div class="col col-l">
+        <span class="page-title">
+            添加销售规则
+        </span>
+            </div>
+            <div class="col col-r sep-l">
+                <a href="javascript:;" class="button_secondary adaptiveButton small" style="margin:0">
+                    <span class="left"></span>
+                    <span class="center">创建订单</span>
+                    <span class="right"></span>
+                </a>
+            </div>
+        </div>
+        <div class="panel" style="padding:0;width:100%">
+            <div style="width:7px;background:#FE7218;float:left;height:63px"></div>
+            <div style="width:7px;background:#439CD3;float:right;height:63px"></div>
+            <div style="margin:0 7px;height:63px">
+                <div style="width:492px;float:left;border-right:1px dashed #FADBD3;height:53px;background:#FFFBF5;padding:10px 0 0 20px">
+                    <div style="margin-bottom:5px">
+                        <span class="head" style="font-size:14px">订单号:</span><span style="color:#FF4200;font-weight: bold;font-size:16px">未生成</span>
+                        <span style="color:#888986;padding-left:20px">-订单类型：酒店</span>
+                    </div>
+                    <div style="color:#444444">
+                        <span>最后更新：</span><span>/</span>
+                        <span style="padding-left:10px">更新时间：</span><span>/</span>
+                        <span style="padding-left:10px">【更多操作日志】</span>
+                    </div>
+                </div>
+                <div style="width:470px;margin-left:493px;height:63px">
+                    <div class="hotelOrderStatusContainer">
+                        <div class="status_complete statusContainer first">
+                            <div class="statusDot"></div>
+                            <div class="statusLineLeft statusLine"></div>
+                            <div class="statusLineRight statusLine"></div>
+                            创建
+                        </div>
+                        <div class="status_complete statusContainer">
+                            <div class="statusDot"></div>
+                            <div class="statusLineLeft statusLine"></div>
+                            <div class="statusLineRight statusLine"></div>
+                            支付
+                        </div>
+                        <div class="status_ing statusContainer">
+                            <div class="statusDot"></div>
+                            <div class="statusLineLeft statusLine"></div>
+                            <div class="statusLineRight statusLine"></div>
+                            确认
+                        </div>
+                        <div class="status_uncomplete statusContainer">
+                            <div class="statusDot"></div>
+                            <div class="statusLineLeft statusLine"></div>
+                            <div class="statusLineRight statusLine"></div>
+                            审核
+                        </div>
+                        <div class="status_uncomplete statusContainer">
+                            <div class="statusDot"></div>
+                            <div class="statusLineLeft statusLine"></div>
+                            <div class="statusLineRight statusLine"></div>
+                            变更
+                        </div>
+                        <div class="status_uncomplete statusContainer last">
+                            <div class="statusDot"></div>
+                            <div class="statusLineLeft statusLine"></div>
+                            <div class="statusLineRight statusLine"></div>
+                            取消
+                        </div>
+                    </div>
+                    <div class="hotelOrderStatusContainer">
+                        <div class="status_uncomplete statusContainer first">
+                            <div class="statusDot"></div>
+                            <div class="statusLineLeft statusLine"></div>
+                            <div class="statusLineRight statusLine"></div>
+                            收银
+                        </div>
+                        <div class="status_uncomplete statusContainer last">
+                            <div class="statusDot"></div>
+                            <div class="statusLineLeft statusLine"></div>
+                            <div class="statusLineRight statusLine"></div>
+                            结算
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panelTitle">
+                订单信息
+            </div>
+            <div style="float:right">
+                <span class="unimportantText">订单创建时间：</span>
+                <span>2013/7/12 10：40</span>
+                <span class="unimportantText">建单员：</span>
+                <span>刘伟</span>
+                <span class="unimportantText">跟单员：</span>
+                <span>刘伟</span>
+            </div>
+            <div class="clearfix">
+                <table>
+                    <tr>
+                        <td style="width:60px">客户名称</td>
+                        <td style="width:150px"></td>
+                        <td style="width:60px">结算方式</td>
+                        <td style="width:150px">账户余额</td>
+                        <td style="width:60px">余额</td>
+                        <td style="width:150px"><span style="color:#FF6700;font-size:14px">120000.00</span>元</td>
+                        <td style="width:60px">联系人</td>
+                        <td><input type="text" name="" id="" value="张三"/></td>
+                    </tr>
+                    <tr>
+                        <td>电话</td>
+                        <td><input type="text" name="" id=""/></td>
+                        <td>手机</td>
+                        <td><input type="text" name="" id=""/></td>
+                        <td>传真</td>
+                        <td><input type="text" name="" id=""/></td>
+                        <td>E-Mail</td>
+                        <td><input type="text" name="" id=""/></td>
+                    </tr>
+                    <tr>
+                        <td>三方协议号</td>
+                        <td><input type="text" name="" id=""/></td>
+                        <td>接口订单号</td>
+                        <td><input type="text" name="" id="" style="width:48px;"/><input type="text" name="" id="" style="width:73px;margin-left:4px"/></td>
+                        <td>外部订单号</td>
+                        <td><input type="text" name="" id="" style="width:26px;"/><input type="text" name="" id="" style="width:96px;margin-left:4px"/></td>
+                        <td>关联订单号</td>
+                        <td><input type="text" name="" id=""/></td>
+                    </tr>
+                    <tr>
+                        <td>采购备注</td>
+                        <td colspan="3"><textarea name="" id="" style="width:367px;height:40px"></textarea></td>
+                        <td>内部备注</td>
+                        <td colspan="3"><textarea name="" id="" style="width:367px;height:40px"></textarea></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panelTitle">预定产品</div>
+            <div class="clearfix">
+                <table>
+                    <tr>
+                        <td style="width:60px">支付类型</td>
+                        <td style="width:150px"><select name="" id=""><option>预付</option></select></td>
+                        <td style="width:60px">城市</td>
+                        <td style="width:150px"><input type="text" name="" id=""/></td>
+                        <td style="width:60px">酒店名称</td>
+                        <td style="width:150px"><input type="text" name="" id=""/></td>
+                        <td style="width:60px">地址</td>
+                        <td><input type="text" name="" id=""/></td>
+                    </tr>
+                    <tr>
+                        <td style="width:60px">房型</td>
+                        <td style="width:150px"><input type="text" name="" id=""/></td>
+                        <td style="width:60px">加床</td>
+                        <td style="width:150px"><select name="" id=""><option>不可加床</option></select></td>
+                        <td style="width:60px">房型</td>
+                        <td style="width:150px"><input type="text" name="" id=""/></td>
+                        <td style="width:60px">入住人数</td>
+                        <td><select name="" id=""><option>1</option></select></td>
+                    </tr>
+                    <tr>
+                        <td style="width:60px">价格计划</td>
+                        <td style="width:150px"><input type="text" name="" id=""/></td>
+                        <td style="width:60px">价格说明</td>
+                        <td colspan="5"><input type="text" name="" id="" style="width:598px"/></td>
+                    </tr>
+                    <tr>
+                        <td style="width:60px">入住日期</td>
+                        <td style="width:150px"><input class="datePicker" type="text" name="" id=""/></td>
+                        <td style="width:60px">离店日期</td>
+                        <td style="width:150px"><input class="datePicker second" type="text" name="" id=""/></td>
+                        <td style="width:60px">间数</td>
+                        <td style="width:150px"><select name="" id=""><option>1</option></select></td>
+                        <td style="width:60px">夜数</td>
+                        <td><input type="text" name="" id=""/></td>
+                    </tr>
+                </table>
+            </div>
+            <div style="margin:30px 0 10px">
+                <span class="head">费用明细</span>
+                <span style="float:right">
+                    结算点位：人名币
+                    <span class="important">*预付费用不包含客人在酒店的自行消费的各项杂费。</span>
+                </span>
+            </div>
+            <div>
+                <table>
+                    <tr>
+                        <td colspan="2" style="width:146px" class="priceDetailHead">&nbsp;</td>
+                        <td rowspan="10" style="padding:0">
+                            <div style="overflow:auto;width:684px;position:relative" id="scroller">
+                                <table style="width:1200px">
+                                <tr>
+                                    <td colspan="7" class="priceDetailHead" style="text-align:center">房费（不含服务费）</td>
+                                    <td colspan="20" class="priceDetailHead" style="text-align:center">增值服务费</td>
+                                </tr>
+                                <tr>
+                                    <td class="priceDetailSubHeadB" style="width:38px">数量</td>
+                                    <td class="priceDetailSubHeadB" style="width:42px">底价</td>
+                                    <td class="priceDetailSubHeadB" style="width:39px">加价</td>
+                                    <td class="priceDetailSubHeadB" style="width:43px">卖价</td>
+                                    <td class="priceDetailSubHeadB" style="width:55px">早餐</td>
+                                    <td class="priceDetailSubHeadB" style="width:43px">宽带</td>
+                                    <td class="priceDetailSubHeadB" style="width:32px">其他</td>
+                                    <td class="priceDetailSubHeadY">
+                                        <label><input type="checkbox" name="" id=""/>早餐</label><br/>
+                                        <input type="text" name="" id="" style="width:29px"/><select style="width:39px;margin-left:2px"><option>1</option></select>
+                                    </td>
+                                    <td class="priceDetailSubHeadY">&nbsp;</td>
+                                    <td class="priceDetailSubHeadY">&nbsp;</td>
+                                    <td class="priceDetailSubHeadY">&nbsp;</td>
+                                    <td class="priceDetailSubHeadY">&nbsp;</td>
+                                    <td class="priceDetailSubHeadY">&nbsp;</td>
+                                    <td class="priceDetailSubHeadY">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"><input type="text" name="" id="" style="width:23px"/></td>
+                                    <td  class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"><input type="text" name="" id="" style="width:23px"/></td>
+                                    <td  class="priceDetailContent"><select style="width:54px"><option>无早</option></select></td>
+                                    <td  class="priceDetailContent"><select style="width:38px"><option>无</option></select></td>
+                                    <td  class="priceDetailContent"><a href="javascript:;" data-zzz="b" class="priceDetail_otherToolTip">/</a></td>
+                                    <td  class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"></td>
+                                </tr>
+                                <tr>
+                                    <td class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"><input type="text" name="" id="" style="width:23px"/></td>
+                                    <td  class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"><input type="text" name="" id="" style="width:23px"/></td>
+                                    <td  class="priceDetailContent"><select style="width:54px"><option>无早</option></select></td>
+                                    <td  class="priceDetailContent"><select style="width:38px"><option>无</option></select></td>
+                                    <td  class="priceDetailContent"><a href="javascript:;" data-zzz="a" class="priceDetail_otherToolTip">/</a></td>
+                                    <td  class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"></td>
+                                </tr>
+                            </table>
+                            </div>
+                        </td>
+                        <td style="width:72px" class="priceDetailHead">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="priceDetailSubHeadB" style="width:88px">房型</td>
+                        <td class="priceDetailSubHeadB" style="width:55px">日期</td>
+                        <td class="priceDetailSubHeadB" style="width:71px">每日合计</td>
+                    </tr>
+                    <tr>
+                        <td  class="priceDetailContent"></td>
+                        <td  class="priceDetailContent"></td>
+                        <td  class="priceDetailContent"></td>
+                    </tr>
+                </table>
+            </div>
+            <div style="margin:10px 0 5px"><span class="head">备注说明</span></div>
+            <div><textarea name="" id="" style="width:99%;height:38px;padding:0"></textarea></div>
+            <div style="margin-top:12px">
+                <table class="tbl_orderPrice">
+                    <tr>
+                        <td rowspan="2" style="background:#D0F1FF;width:143px;height:60px;text-align:center;vertical-align:middle"><span class="head">订单金额</span></td>
+                        <td style="background:#E1F5FF;padding-left:30px;width:115px;height:16px">应收</td>
+                        <td style="background:#E1F5FF;padding-left:30px;width:115px">房费</td>
+                        <td style="background:#E1F5FF;padding-left:30px;width:115px">增值服务</td>
+                        <td style="background:#E1F5FF;padding-left:30px;width:115px">利润</td>
+                        <td style="background:#E1F5FF">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left:30px;color:#FF6603;font-size:20px;font-weight:bold"><span style="font-size:18px;font-family:arial">￥</span>37800.00</td>
+                        <td style="padding-left:30px;font-size:16px;vertical-align:middle">3140.00</td>
+                        <td style="padding-left:30px;font-size:16px;vertical-align:middle">240.00</td>
+                        <td style="padding-left:30px;font-size:16px;vertical-align:middle">400.00</td>
+                        <td style="padding-left:30px;font-size:16px;vertical-align:middle"></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div style="margin-top:16px">
+                <table class="tbl_common">
+                    <thead>
+                        <tr>
+                            <td style="font-weight:bold;text-align:center;width:146px">酒店规定</td>
+                            <td style="font-weight:bold;">内容</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center">宾客类型</td>
+                            <td><input type="text" name="" id=""/></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">入住证件</td>
+                            <td><textarea name="" id="" style="width:98%;height:55px;"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">入住时间</td>
+                            <td><select name="" id=""><option>14:00以后</option></select></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">退房时间</td>
+                            <td><select name="" id=""><option>12:00之前</option></select></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">变更/取消</td>
+                            <td><textarea name="" id="" style="width:98%;height:55px"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">其他规定</td>
+                            <td><textarea name="" id="" style="width:98%;height:55px"></textarea></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panelTitle">发票信息</div>
+            <div style="float:left"><label><input type="radio" name="invoice" id="" checked="checked">不开发票</input></label><label style="margin-left:25px"><input type="radio" name="invoice" id="">开发票</input></label></div>
+            <div style="float:right;margin-right:1%">发票金额：<span class="important">--</span>元</div>
+            <div>
+                <table class="tbl_common">
+                    <thead>
+                        <tr>
+                            <td style="width:157px;">发票内容</td>
+                            <td style="width:334px;">发票抬头</td>
+                            <td style="">邮寄地址</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><select name="" id=""><option>房费</option></select></td>
+                            <td><input type="text" name="" id="" style="width:324px"/></td>
+                            <td><input type="text" name="" id="" style="width:390px"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panelTitle">客人信息</div>
+            <div style="float:right:margin-right:1%"><span class="important">*每间房至少填写1人。</span></div>
+            <div>
+                <table class="tbl_common">
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <td>联系人</td>
+                            <td>手机号码</td>
+                            <td>固定电话</td>
+                            <td>传真</td>
+                            <td>Email</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="2" style="text-align:center;vertical-align: middle">房间 1</td>
+                            <td><input type="text" name="" id=""/></td>
+                            <td><input type="text" name="" id=""/></td>
+                            <td><input type="text" name="" id=""/></td>
+                            <td><input type="text" name="" id=""/></td>
+                            <td><input type="text" name="" id=""/></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="" id=""/></td>
+                            <td><input type="text" name="" id=""/></td>
+                            <td><input type="text" name="" id=""/></td>
+                            <td><input type="text" name="" id=""/></td>
+                            <td><input type="text" name="" id=""/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
+        <div class="panel">
+            <div class="panelTitle">确认方式</div>
+            <div>
+                <label><input type="checkbox" name="" id=""/>短信</label>
+                <label style="margin-left:15px"><input type="checkbox" name="" id=""/>传真</label>
+                <label style="margin-left:15px"><input type="checkbox" name="" id=""/>Email</label>
+            </div>
+            <div>
+                <table class="tbl_common">
+                    <thead>
+                    <tr>
+                        <td>联系人</td>
+                        <td>手机号码</td>
+                        <td>固定电话</td>
+                        <td>传真</td>
+                        <td>Email</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><input type="text" name="" id=""/></td>
+                        <td><input type="text" name="" id=""/></td>
+                        <td><input type="text" name="" id=""/></td>
+                        <td><input type="text" name="" id=""/></td>
+                        <td><input type="text" name="" id=""/></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panelTitle">供应商</div>
+            <div><select><option>选择外平台酒店</option></select><select style="margin-left:15px"><option>选择供应商</option></select></div>
+            <div style="margin-top:10px;border:1px solid #D5D5D5;margin-right:1%">
+                <div style="padding:5px 10px">
+                    <span>签约经理：liuwei</span>
+                    <span style="padding-left:30px">结算提醒：----</span>
+                    <span style="float:right;margin-right:10px"><a class="popwin" href="javascript:;" data='{"content":"$(\"#modifySettlementRemindersTemplate\").html()","width":430,"height":200,"title":"修改结算提醒","contentFunction":true}'>修改</a></span>
+                </div>
+            </div>
+            <div>
+                <table class="tbl_common">
+                    <thead>
+                        <tr>
+                            <td>酒店名称</td>
+                            <td>预定联系人</td>
+                            <td>部门</td>
+                            <td>手机</td>
+                            <td>工作时段</td>
+                            <td>电话</td>
+                            <td>传真</td>
+                            <td>Email</td>
+                            <td>QQ</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><input type="text" name="" id="" style="width:78px"/></td>
+                        <td><input type="text" name="" id="" style="width:78px"/></td>
+                        <td><input type="text" name="" id="" style="width:78px"/></td>
+                        <td><input type="text" name="" id="" style="width:78px"/></td>
+                        <td><input type="text" name="" id="" style="width:78px"/></td>
+                        <td><input type="text" name="" id="" style="width:78px"/></td>
+                        <td><input type="text" name="" id="" style="width:78px"/></td>
+                        <td><input type="text" name="" id="" style="width:78px"/></td>
+                        <td><input type="text" name="" id="" style="width:78px"/></td>
+                    </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <td>供应商名称</td>
+                            <td colspan="2">开户名</td>
+                            <td colspan="2">开户银行</td>
+                            <td colspan="2">账号</td>
+                            <td colspan="2">结算周期</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><input type="text" name="" id="" style="width:78px"/></td>
+                        <td colspan="2"><input type="text" name="" id="" style="width:180px"/></td>
+                        <td colspan="2"><input type="text" name="" id="" style="width:180px"/></td>
+                        <td colspan="2"><input type="text" name="" id="" style="width:180px"/></td>
+                        <td colspan="2">现结 | 16：00之前 <span style="float:right">修改</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <label><input type="checkbox" name="" id="">保存外平台酒店和供应商信息</input></label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="window"></div>
+
+<script type="text/html" id="modifySettlementRemindersTemplate">
+    <div style="width:280px;margin:0 auto">
+        修改结算提醒：<br/><br/>
+        <input class="datePicker" type="text" name="" id="" style="width:245px"><br/><br/>
+        <select style="width:257px"><option>选择时间</option></select>
+    </div>
+    <div style="text-align:right;margin:35px 20px 0 0">
+        <a href="javascript:;" class="button_1_2">保&nbsp;存</a>
+        <a href="javascript:;" class="button_2_2 close">取&nbsp;消</a>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="otherToolTipTemplate">
+    <div style="text-align:left">
+        <label><input type="checkbox" id="ottt_spf" value="司陪房">司陪房</label><br/><br/>
+        <label><input type="checkbox" id="ottt_jcjs" value="机场接送">机场接送</label>
+    </div>
+    <div style="text-align:center;height:22px;width:100%;line-height:22px;cursor:pointer" id="btn_otherToolTipOK" onclick="# return function(){console.log(target)} #" >确定</div>
+
+</script>
+
+<script type="text/javascript" src="../../static/js/iscroll.js"></script>
+<script type="text/javascript" src="../../static/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../static/js/kendo.web.js"></script>
+<script type="text/javascript" src="../../static/js/scrollFix.js"></script>
+<script type="text/javascript" src="../../static/js/hotel.js"></script>
+
+<script type="text/javascript">
+    $(function(){
+//        myScroll = new iScroll('scroller',{momentum:false});
+//        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+        var ott=$(".priceDetail_otherToolTip").kendoTooltip({
+                    content:kendo.template($("#otherToolTipTemplate").html()),
+                    autoHide:false,
+                    showOn:"click"
+                }).data("kendoTooltip");
+
+        $("body").delegate("#btn_otherToolTipOK","click",function(){
+            var tmp=$("#ottt_spf:checked").parent().text();
+            tmp+=$("#ottt_jcjs:checked").parent().text()
+            ott.target().text(tmp);
+        })
+    })
+</script>
+</body>
+</html>

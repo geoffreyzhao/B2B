@@ -229,12 +229,6 @@ var FloatLayer = function(opts){
         });
     }
 
-    if(opts.itemClick){
-        layer.find('.item').bind('click',function(e){
-            layer.close();
-            opts.itemClick.apply(this,arguments);
-        }); 
-    }
 
     if(opts.trigger.length>0){
         opts.toggle=false; 
