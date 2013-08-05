@@ -228,12 +228,6 @@ var FloatLayer = function(opts){
         });
     }
 
-    if(opts.itemClick){
-        layer.find('.item').bind('click',function(e){
-            layer.close();
-            opts.itemClick.apply(this,arguments);
-        }); 
-    }
 
     // todo: support more type;
     opts.trigger.bind(opts.type,function(e){
