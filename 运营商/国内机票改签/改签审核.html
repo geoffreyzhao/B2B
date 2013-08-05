@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>机票 国内机票 改签 改签处理</title>
+        <title>机票 国内机票 改签 改签审核</title>
         <meta charset="utf-8" />
 <link href="/static/css/kendo.common.css" rel="stylesheet" />
 <link href="/static/css/kendo.gray.css" rel="stylesheet" />
@@ -62,10 +62,12 @@
     <div class="col col-r sep-l">
         <button class="btns btn-blue">取消受理</button>
         <button class="btns btn-blue">取消订单</button>
+        <button class="btns btn-blue" id="pass_btn">审核通过</button>
+        <button class="btns btn-blue" id="unpass_btn" style="display:none;">取消审核</button>
         <button class="btns btn-blue" id="tuihui_btn">退回</button>
         <button class="btns btn-blue" id="save">保存</button>
         <button class="btns btn-blue" id="edit" style="display:none;">修改</button>
-        <button class="btns btn-blue">完成改签</button>
+        <button class="btns btn-blue-long">提交改签处理</button>
     </div>
 </div>
 
@@ -748,6 +750,15 @@
         };
 
         $("#tuihui_btn").click(tuihui);
+
+        $("#pass_btn").click(function(){
+            $(this).hide();
+            $("#unpass_btn").show();
+        });
+        $("#unpass_btn").click(function(){
+            $(this).hide();
+            $("#pass_btn").show();
+        });
             //全选处理
             $("#flight_all").click(function(){
                 $("input[name='flight']").prop("checked", $(this).prop("checked"));
