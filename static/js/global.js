@@ -212,6 +212,7 @@ var FloatLayer = function(opts){
     kendo.init(layer);
 
     $(document).on('click',function(e){
+        // $('.FLAYA').removeClass('FLAYA');
         var t = $(e.target);
         if ( !t.is(opts.trigger) ){
             if ( t.closest('.ac-floatlayer').length !==1 ){
@@ -235,9 +236,14 @@ var FloatLayer = function(opts){
         }); 
     }
 
+    if(opts.trigger.length>0){
+        opts.toggle=false; 
+    };
+
     // todo: support more type;
     opts.trigger.bind(opts.type,function(e){
         set_pos($(this));
+        layer.input = $(this);
         if(opts.toggle){
             layer.toggle();
         }else{
@@ -246,7 +252,6 @@ var FloatLayer = function(opts){
     });
 
     layer.open = function(){
-        set_pos(opts.trigger);
         layer.show();
     };
 
@@ -303,7 +308,7 @@ var FloatLayer = function(opts){
 
 var CityAutocomplete = function(settings){
     var that = {};
-    var input,opts,hot_tabs;
+    var inputs,opts,hot_tabs;
 
     var defaults = {
         input : ".suggest-city",
@@ -352,21 +357,24 @@ var CityAutocomplete = function(settings){
         return result;
     }
 
-    function render_hotcity_tabs(data){
+    function render_hotcity_tabs(data,input){
         var templateID = opts.template || "#city_popup_tpl"; 
 
         hot_tabs = FloatLayer({
             toggle:false,
             trigger:input,
+            type:'focus',
             offsetY:25,
             data:data,
             template:templateID
         });
 
+
         hot_tabs.delegate('.tcy_list li[data-code]','click',function(){
             var $t = $(this);
             var text = $t.text();
-            input.focus().val(text);
+
+            hot_tabs.input.val(text);
             $(opts.codeEle).val($t.data('code'));
             hot_tabs.close();
         });
@@ -376,7 +384,7 @@ var CityAutocomplete = function(settings){
         });
     }
 
-    function render_suggest_city(data){
+    function render_suggest_city(data,input){
         var autocomplate_defaults = {
             dataTextField:'search',
             animation:false,
@@ -425,16 +433,17 @@ var CityAutocomplete = function(settings){
         });
 
         input.on('focus',function(){
-           hot_tabs.find('.tcy_tabstrip').data('kendoTabStrip').activateTab("#hot_city"); 
+            hot_tabs.find('.tcy_tabstrip').data('kendoTabStrip').activateTab("#hot_city"); 
         });
 
     };
 
-    that.init = function(){
-        opts = that.options;
-        input = opts.input.jquery ? opts.input : $(opts.input);
 
-        $.get(opts.url,function(d){
+    opts = that.options;
+    inputs = opts.input.jquery ? opts.input : $(opts.input);
+
+    $.get(opts.url,function(d){
+        that.init = function(inputEle){
             var citydata = d.split('@');
             var pcitydata = process_citydata(citydata[1]);
             var citygroup = opts.group;
@@ -446,15 +455,17 @@ var CityAutocomplete = function(settings){
                 "group": citygroup,
                 "citylist": process_pinyin(pcitydata, citygroup, "py"),
                 "hotcitylist": process_citydata(citydata[0])
-            });
+            },inputEle);
 
-            render_suggest_city(pcitydata);
-        });
+            render_suggest_city(pcitydata,inputEle);
+            return that;
+        };
 
-        return that;
-    };
 
-    return that;
+        that.init(inputs);
+
+    });
+
 };
 
 
@@ -468,13 +479,13 @@ $.loadingbar = function(params) {
     var xhr;
     var cfg = $.extend(defaults,params);
     var postext;
-    
+
 
     if(cfg.container==='body'){
-         postext = 'fixed';
+        postext = 'fixed';
     }else{
-         postext = 'absolute';
-         $(cfg.container).css({position:'relative'});
+        postext = 'absolute';
+        $(cfg.container).css({position:'relative'});
     }
 
 
