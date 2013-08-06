@@ -8,7 +8,7 @@ jQuery(function($){
     })
 
     // 指定元素遮住,指定url触发 
-    $.loadingbar({ container:'.block2', urls:['/static/js/data2.txt'] });
+    $.loadingbar({ container:'.block2', urls:[/2.txt$/] });
     // 全屏
     //$.loadingbar();
     
@@ -17,12 +17,11 @@ jQuery(function($){
     //起飞时间
     $(".timepicker").kendoTimePicker();
 
-    CityAutocomplete.setOptions({
+    CityAutocomplete({
+        input:'.suggest-city',
         url:'/static/js/data.txt',
         group: ["ABCDEFG","HJ", "KLMN", "PQRSTW", "XYZ"]
     });
-
-    CityAutocomplete.init();
 
     //日历
     // $("#depd").kendoDatePicker({

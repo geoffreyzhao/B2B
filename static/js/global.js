@@ -3,6 +3,12 @@
 * Email:  shaotian.hu@travelzen.com
 */
 
+$.extend($,{
+    _type:function(x){
+        return Object.prototype.toString.call(x).slice(8,-1).toLowerCase();
+    }
+});
+
 //弹窗封装
 function PopWindow(trigger, customSettings){
     var kendoWinDefaults = {
@@ -468,7 +474,8 @@ var CityAutocomplete = function(settings){
 $.loadingbar = function(params) {
     var defaults = {
         container: 'body',
-        showClose: true
+        showClose: true,
+        loadingText: '数据加载中，请稍候…'
     };
     var xhr;
     var cfg = $.extend(defaults,params);
@@ -488,7 +495,7 @@ $.loadingbar = function(params) {
     <tbody><tr><td>\
         <div class="lightbox-content">\
         '+"<span class=loading_close>×</span>"+'\
-        <i class=loading_icon>&nbsp;</i><span class=loading_text>数据加载中，请稍候…</span>\
+        <i class=loading_icon>&nbsp;</i><span class=loading_text>'+ cfg.loadingText+ '</span>\
         </div>\
         </td></tr>\
         </tbody></table></div>';
@@ -498,7 +505,25 @@ $.loadingbar = function(params) {
     $(cfg.container).append(spin_wrap);
 
     $(document).ajaxSend(function(event, jqxhr, settings) {
-        if( $.inArray(settings.url,cfg.urls) >-1 ){
+        var state = false;
+        var surl = settings.url;
+        $.each(cfg.urls,function(i,item){
+            if($._type(item) === 'regexp'){
+               if(item.exec(surl)) {
+                    state = true;
+                    return false;
+               } 
+            }else if($._type(item) === 'string'){
+               if(item === surl) {
+                    state = true;
+                    return false;
+               } 
+            }else{
+                throw new Error('[urls] type error,string or regexp required');
+            }
+        });
+
+        if(state){
             spin_wrap.show();
         }
 
