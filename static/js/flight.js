@@ -9,7 +9,7 @@ $(function(){
                 var ele = that.find('.highlight');
                 var len = ele.size();
                 var wid = ele.outerWidth(true)*(len-1);
-                that.find('.line').prepend('<div style="background-color:#FF6608;height:2px;width:'+wid+'px" />')
+                that.find('.line').prepend('<div style="width:'+wid+'px" />')
             }
         });
     }
