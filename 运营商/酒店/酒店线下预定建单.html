@@ -555,7 +555,7 @@
         <label><input type="checkbox" id="ottt_spf" value="司陪房">司陪房</label><br/><br/>
         <label><input type="checkbox" id="ottt_jcjs" value="机场接送">机场接送</label>
     </div>
-    <div style="text-align:center;height:22px;width:100%;line-height:22px;cursor:pointer" id="btn_otherToolTipOK" onclick="# return function(){console.log(target)} #" >确定</div>
+    <div style="text-align:center;height:22px;width:100%;line-height:22px;cursor:pointer" id="btn_otherToolTipOK" >确定</div>
 
 </script>
 
@@ -569,17 +569,20 @@
     $(function(){
 //        myScroll = new iScroll('scroller',{momentum:false});
 //        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-
+        var ottElement=null;
         var ott=$(".priceDetail_otherToolTip").kendoTooltip({
                     content:kendo.template($("#otherToolTipTemplate").html()),
                     autoHide:false,
-                    showOn:"click"
+                    showOn:"click",
+                    show:function(e){ottElement= e.sender.element[0];}
                 }).data("kendoTooltip");
 
         $("body").delegate("#btn_otherToolTipOK","click",function(){
-            var tmp=$("#ottt_spf:checked").parent().text();
-            tmp+=$("#ottt_jcjs:checked").parent().text()
-            ott.target().text(tmp);
+            var ott_spf=$(this).siblings().find("input#ottt_spf:checked");
+            var ott_jcjs=$(this).siblings().find("input#ottt_jcjs:checked");
+            var tmp=ott_spf.value;
+            tmp+=ott_jcjs.value;
+            ottElement.innerText=tmp;
         })
     })
 </script>
