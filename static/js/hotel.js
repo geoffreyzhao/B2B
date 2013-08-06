@@ -58,4 +58,36 @@ $(function(){
     }
 
     $(".topFixedToolsBar").scrollFix("top","top");
+
+
 });
+
+function moveElement(lb,rb,targetE,targetInnerE)
+{
+    var moveFlag=true;
+    var startPos=targetE.position().left;
+    targetInnerEWidth=targetInnerE.outerWidth(true);
+    lb.click(function(){
+        if(lb.hasClass("active") && moveFlag)
+            targetE.animate({"left":"-="+targetInnerEWidth},100);
+        setTimeout(changeBtnStatus,110);
+    });
+    rb.click(function(){
+        if(rb.hasClass("active") && moveFlag)
+        {
+            moveFlag=false;
+            targetE.animate({"left":"+="+targetInnerEWidth},100);
+            setTimeout(changeBtnStatus,110);
+        }
+    });
+
+    function changeBtnStatus()
+    {
+        if(targetE.position().left<startPos) rb.addClass("active"); else rb.removeClass("active");
+
+        if(Math.abs(targetE.position().left)<targetInnerE.length*targetInnerEWidth-targetE.parent().width()) lb.addClass("active"); else lb.removeClass("active");
+
+        moveFlag=true;
+    }
+    changeBtnStatus();
+}
