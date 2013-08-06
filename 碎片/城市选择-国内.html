@@ -13,6 +13,12 @@
 </head>
 <body style="padding:100px;"> 
 
+<input type="text" class="allcity" style="width:180px" />
+<input type="text" class="allcity" style="width:180px" />
+<input type="text" class="allcity" style="width:180px" />
+<input type="text" class="allcity" style="width:180px" />
+<hr />
+
 
 <label>出发城市</label>
 <input type="text" id="depCity" style="width:180px" />
@@ -74,12 +80,21 @@
 
 CityAutocomplete({
     template: "#city_popup",
+    input: ".allcity",
+    codeEle: '#id_dep',
+    // 以@分割热门非热门，以;分割条目，以|分割三字码拼音和中文
+    url:'/static/js/data.txt',
+    group: ["热门","GHJ", "ABCDEF", "KLMN", "PQSTW", "XYZ"]
+});
+
+CityAutocomplete({
+    template: "#city_popup",
     input: "#depCity",
     codeEle: '#id_dep',
     // 以@分割热门非热门，以;分割条目，以|分割三字码拼音和中文
     url:'/static/js/data.txt',
     group: ["热门","GHJ", "ABCDEF", "KLMN", "PQSTW", "XYZ"]
-}).init();
+});
 
 
 CityAutocomplete({
@@ -99,7 +114,7 @@ CityAutocomplete({
         placeholder:'三字吗/城市'
     },
     group: ["热门","ABCDEF","GHJ", "KLMN", "PQSTW", "XYZ"]
-}).init();
+});
 
 
 

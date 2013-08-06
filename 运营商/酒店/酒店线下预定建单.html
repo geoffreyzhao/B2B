@@ -41,6 +41,11 @@
         .status_uncomplete .statusDot{background:url('../../static/images/hotel_order_status_dot_uncomplete.gif') no-repeat}
         .status_uncomplete .statusLineLeft{width:50%;position:absolute;top:4px;left:0;border-top:2px solid #e9e9e9}
         .status_uncomplete .statusLineRight{width:50%;position:absolute;top:4px;right:0;border-top:2px solid #e9e9e9}
+
+
+        .k-tooltip-closable .k-tooltip-content{padding-right:0}
+        .k-tooltip-button{display:none}
+        .k-tooltip{padding:0;border-color:#ccc;background:#ccc;color:#444}
     </style>
 </head>
 <body>
@@ -274,7 +279,23 @@
                                     <td  class="priceDetailContent"><input type="text" name="" id="" style="width:23px"/></td>
                                     <td  class="priceDetailContent"><select style="width:54px"><option>无早</option></select></td>
                                     <td  class="priceDetailContent"><select style="width:38px"><option>无</option></select></td>
-                                    <td  class="priceDetailContent"><a href="javascript:;" class="priceDetail_otherToolTip">/</a></td>
+                                    <td  class="priceDetailContent"><a href="javascript:;" data-zzz="b" class="priceDetail_otherToolTip">/</a></td>
+                                    <td  class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"></td>
+                                </tr>
+                                <tr>
+                                    <td class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"><input type="text" name="" id="" style="width:23px"/></td>
+                                    <td  class="priceDetailContent"></td>
+                                    <td  class="priceDetailContent"><input type="text" name="" id="" style="width:23px"/></td>
+                                    <td  class="priceDetailContent"><select style="width:54px"><option>无早</option></select></td>
+                                    <td  class="priceDetailContent"><select style="width:38px"><option>无</option></select></td>
+                                    <td  class="priceDetailContent"><a href="javascript:;" data-zzz="a" class="priceDetail_otherToolTip">/</a></td>
                                     <td  class="priceDetailContent"></td>
                                     <td  class="priceDetailContent"></td>
                                     <td  class="priceDetailContent"></td>
@@ -529,6 +550,15 @@
     </div>
 </script>
 
+<script type="text/x-kendo-template" id="otherToolTipTemplate">
+    <div style="text-align:left">
+        <label><input type="checkbox" id="ottt_spf" value="司陪房">司陪房</label><br/><br/>
+        <label><input type="checkbox" id="ottt_jcjs" value="机场接送">机场接送</label>
+    </div>
+    <div style="text-align:center;height:22px;width:100%;line-height:22px;cursor:pointer" id="btn_otherToolTipOK" onclick="# return function(){console.log(target)} #" >确定</div>
+
+</script>
+
 <script type="text/javascript" src="../../static/js/iscroll.js"></script>
 <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
 <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
@@ -539,6 +569,18 @@
     $(function(){
 //        myScroll = new iScroll('scroller',{momentum:false});
 //        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+        var ott=$(".priceDetail_otherToolTip").kendoTooltip({
+                    content:kendo.template($("#otherToolTipTemplate").html()),
+                    autoHide:false,
+                    showOn:"click"
+                }).data("kendoTooltip");
+
+        $("body").delegate("#btn_otherToolTipOK","click",function(){
+            var tmp=$("#ottt_spf:checked").parent().text();
+            tmp+=$("#ottt_jcjs:checked").parent().text()
+            ott.target().text(tmp);
+        })
     })
 </script>
 </body>
