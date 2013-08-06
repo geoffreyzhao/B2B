@@ -29,6 +29,8 @@
 #location-layer .item{
     width:110px;
 }
+
+.tcy_list .item:hover{background-color:#fff;color:#000}
 </style>
 
 <div style="margin:100px;">
@@ -63,8 +65,46 @@
         # } #
 </div>
 </script>
+<script type="text/x-kendo-template" id="ac-show-location-Multiple-select-template">
+<div class="tcy_tabstrip clearfix" id="location-layer" data-animation="false" data-role="tabstrip">
+<span class="tcy_title">
+可直接选择地理位置
+</span>
+    <span style="float:right;margin:10px 10px 0 0"><label><input type="checkbox" name="" id="">全选</label></span>
+        <ul class="tab-head-list">
+            # for(var i=0; i<data.cityData.length; i++){ #
+            <li# if(i==0){ # class="k-state-active" # } #>
+                #= cityData[i].type #
+            </li>
+            # } #
+        </ul>
+        # for(var i=0; i<data.cityData.length; i++){ #
+        <div class="tcy-tabitem">
+            # for(var j=0; j<data.cityData[i].typeValue.length; j++){ #
+            <div class="row clearfix">
+            <span class="row-title">#= cityData[i].typeValue[j].group #</span>
+            <ul class="tcy_list clearfix">
+                # for(var k=0; k<data.cityData[i].typeValue[j].groupValue.length; k++){ #
+            <li class="item" title="PEK" data-code="PEK"><label><input type="checkbox">#= cityData[i].typeValue[j].groupValue[k] #</label></li>
+                # } #
+            </ul>
+            </div>
+            # } #
+        </div>
+        # } #
+    <span style="float:right;padding:10px">
+        <a href="javascript:;" class="button_secondary adaptiveButton medium closeLocationLayer" style="vertical-align: middle">
+            <span class="left"></span>
+            <span class="center">确 定</span>
+            <span class="right"></span>
+        </a>
+    </span>
+</div>
+</script>
 <script type="text/javascript">
 $(function(){
+
+    var selectLocation=[];
 
     var locationLayer = FloatLayer({
         // data:{
@@ -100,14 +140,24 @@ $(function(){
             }]
         },
         trigger: '.ac-show-location',
-        template:  '#ac-show-location-template',
-        itemClick: function(e){
-            console.log($(this));
-            alert($(this).text()); 
-        }
+        template:  '#ac-show-location-Multiple-select-template'
     });
     
+    $(".closeLocationLayer").click(function(){
+        locationLayer.close();
+        alert(selectLocation);
+    })
 
+    $(".item input").change(function(){
+        if($(this).prop("checked"))
+        {
+            selectLocation.push($(this).parent().text());
+        }
+        else
+        {
+            selectLocation.splice(selectLocation.indexOf($(this).parent().text()),1);
+        }
+    })
 
 })
 </script>
