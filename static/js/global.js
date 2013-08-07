@@ -132,22 +132,22 @@ GridTable.prototype = {
         }else{
             this.grid = this.trigger.kendoGrid( opts ).data('kendoGrid'); 
         }
-    }
-};
+        }
+        };
 
-// 定高函数：超过3行时隐藏
-var Collpase = function(opts){
-    /*
-    * container: Element
-    * limitHeight : NUM
-    * trigger : Element
-    * triggerexp : the className while it is expanded
-    * */
-    this.limitHeight = 100;
-    this.triggerexp = 'col-expp';
-    this.trigger = '.content-collapse';
-    $.extend(this,opts);
-    this.container = $(this.container);
+        // 定高函数：超过3行时隐藏
+        var Collpase = function(opts){
+        /*
+        * container: Element
+        * limitHeight : NUM
+        * trigger : Element
+        * triggerexp : the className while it is expanded
+            * */
+        this.limitHeight = 100;
+        this.triggerexp = 'col-expp';
+        this.trigger = '.content-collapse';
+        $.extend(this,opts);
+        this.container = $(this.container);
 };
 Collpase.prototype = {
     init:function(){
@@ -471,14 +471,14 @@ var CityAutocomplete = function(settings){
 
 
 // 一些jquery插件
-$.loadingbar = function(params) {
+$.loadingbar = function(settings) {
     var defaults = {
         container: 'body',
         showClose: true,
         loadingText: '数据加载中，请稍候…'
     };
     var xhr;
-    var cfg = $.extend(defaults,params);
+    var cfg = $.extend(defaults,settings);
     var postext;
 
 
@@ -509,15 +509,15 @@ $.loadingbar = function(params) {
         var surl = settings.url;
         $.each(cfg.urls,function(i,item){
             if($._type(item) === 'regexp'){
-               if(item.exec(surl)) {
+                if(item.exec(surl)) {
                     state = true;
                     return false;
-               } 
+                } 
             }else if($._type(item) === 'string'){
-               if(item === surl) {
+                if(item === surl) {
                     state = true;
                     return false;
-               } 
+                } 
             }else{
                 throw new Error('[urls] type error,string or regexp required');
             }
@@ -697,3 +697,26 @@ $.fieldsetFormat = function(type,settings){
     return output;
 };
 
+
+var lensf = function (settings){
+    var defaults = {
+        container:'.instr',
+        highlight:'.highlight-fl'
+    };
+    var opts = $.extend(defaults,settings);
+
+    $.each($(opts.container),function(){
+        var that = $(this);
+        var current = that.find('[class]').eq(-1);
+        var ele = that.find('span');
+        ele.eq(0).addClass('first');
+        ele.eq(-1).addClass('last');
+        if(current.length>0){
+            var hi = current.prevAll().addClass('highlight');
+            var wid = ele.eq(0).outerWidth(true)*(hi.length);
+            that.append('<em class="line"><div style="width:'+wid+'px" /></em>')
+        }else{
+            that.append('<em class="line"></em>')
+        }
+    });
+};
