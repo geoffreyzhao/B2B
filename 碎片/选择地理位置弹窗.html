@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="/static/css/kendo.gray.css" />
 <link rel="stylesheet" href="/static/css/common.css" />
 <link rel="stylesheet" href="/static/css/b2b.css" />
-<script type="text/javascript" src="/static/js/vendor/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/kendo.web.js"></script>
 <script type="text/javascript" src="/static/js/global.js"></script>
 </head>
@@ -70,7 +70,6 @@
 <span class="tcy_title">
 可直接选择地理位置
 </span>
-    <span style="float:right;margin:10px 10px 0 0"><label><input type="checkbox" name="" id="">全选</label></span>
         <ul class="tab-head-list">
             # for(var i=0; i<data.cityData.length; i++){ #
             <li# if(i==0){ # class="k-state-active" # } #>
@@ -80,6 +79,7 @@
         </ul>
         # for(var i=0; i<data.cityData.length; i++){ #
         <div class="tcy-tabitem">
+            <span class="checkall"><label><input type="checkbox" name="" id="">全选</label></span>
             # for(var j=0; j<data.cityData[i].typeValue.length; j++){ #
             <div class="row clearfix">
             <span class="row-title">#= cityData[i].typeValue[j].group #</span>
@@ -147,6 +147,20 @@ $(function(){
         locationLayer.close();
         alert(selectLocation);
     })
+
+    /* 全选 */
+    $(".checkall input").click(function(){
+        var checked = $(this).prop("checked"); 
+        $(this).parents(".tcy-tabitem").find(".row input[type='checkbox']").prop("checked",checked);
+    });
+
+    /* 取消一个的时候 ，自动取消全选 */
+    $(".tcy-tabitem .row input[type='checkbox']").click(function(){
+        var checked = $(this).prop("checked"); 
+        if(!checked){
+            $(this).parents(".tcy-tabitem").find(".checkall input").prop("checked",false); 
+        }
+    });
 
     $(".item input").change(function(){
         if($(this).prop("checked"))

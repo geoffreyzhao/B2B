@@ -27,12 +27,18 @@
             <div id="mainContent">
 
                 <!-- 自定义表格 -->
-                <div class="hfee clearfix">
+                <div class="hfee">
                     <div class="room_info">
                         <div class="top_head"></div>
                         <div class="fee_room col1">
                             <h3>房型</h3>
-                            <div>标准商务房</div>
+                            <ul class="daylist">
+                                <li class="day">标准商务房</li>
+                                <li class="day"></li>
+                                <li class="day"></li>
+                                <li class="day summary_prev"></li>
+                                <li class="day summary last">小计</li>
+                            </ul>
                         </div>
                         <div class="fee_room col2">
                             <span class="line line_right"></span>
@@ -42,26 +48,26 @@
                                 <li class="day">7/4 四</li>
                                 <li class="day">7/5 五</li>
                                 <li class="day weekend">7/6 六</li>
-                                <li class="day weekend last">7/7 日</li>
+                                <li class="day weekend">7/7 日</li>
+                                <li class="day summary last">4间夜</li>
                             </ul>
                         </div>
                     </div>
                     <div class="fee_list">
                         <div class="wrapdata">
-                            <ul class="fee_head clearfix">
-                                <li>房费(不含服务费)</li>
-                                <li>增值服务费</li>
-                            </ul>
-
+                            <div class="fee_head clearfix">
+                                <span class="first">房费(不含服务费)</span>
+                                <span>增值服务费</span>
+                            </div>
                             <ul class="fee_detail_head clearfix">
                                 <li><em>数量</em></li>
                                 <li><em>底价</em></li>
                                 <li><em>加价</em></li>
-                                <li><em>卖价</em></li>
+                                <li class="notice"><em>卖价</em><div><i>*</i><span>不得低于底价</span></div></li>
                                 <li><em>早餐</em></li>
                                 <li><em>宽带</em></li>
                                 <li><em>其他</em></li>
-                                <li>
+                                <li class="yellow">
                                 <label><input type="checkbox"><b>早餐</b></label>
                                 <div>
                                     <span>￥30</span>
@@ -71,7 +77,7 @@
                                     </select>
                                 </div>
                                 </li>
-                                <li>
+                                <li class="yellow">
                                 <label><input type="checkbox"><b>儿童早餐</b></label>
                                 <div>
                                     <span>￥30</span>
@@ -81,7 +87,7 @@
                                     </select>
                                 </div>
                                 </li>
-                                <li>
+                                <li class="yellow">
                                 <label><input type="checkbox"><b>晚餐</b></label>
                                 <div>
                                     <span>￥30</span>
@@ -91,7 +97,7 @@
                                     </select>
                                 </div>
                                 </li>
-                                <li>
+                                <li class="yellow">
                                 <label><input type="checkbox"><b>宽带</b></label>
                                 <div>
                                     <span>￥30</span>
@@ -101,7 +107,7 @@
                                     </select>
                                 </div>
                                 </li>
-                                <li>
+                                <li class="yellow">
                                 <label><input type="checkbox"><b>司陪房</b></label>
                                 <div>
                                     <span>￥200</span>
@@ -111,7 +117,7 @@
                                     </select>
                                 </div>
                                 </li>
-                                <li>
+                                <li class="yellow">
                                 <label><input type="checkbox"><b>机场接送</b></label>
                                 <div>
                                     <span>￥150</span>
@@ -121,7 +127,7 @@
                                     </select>
                                 </div>
                                 </li>
-                                <li class="last">
+                                <li class="last yellow">
                                 <label><input type="checkbox"><b>加床</b></label>
                                 <div>
                                     <select name="">
@@ -227,7 +233,7 @@
                                 <li></li>
                                 <li class="last"></li>
                             </ul>
-                            <ul class="fee_row last clearfix">
+                            <ul class="fee_row clearfix">
                                 <li>1</li>
                                 <li>
                                 <input style="width:60px;" type="text" value="780" class="qt"/>
@@ -247,7 +253,38 @@
                                     <option value="无">无</option>
                                 </select> 
                                 </li>
+                                <li class="other">
+                                <div><a href="#">司陪房</a></div>
+                                <div><a href="#">机场接送</a></div>
+                                </li>
+                                <li>60</li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li class="last"></li>
+                            </ul>
+                            <!-- 小计 -->
+                            <ul class="fee_row summary last clearfix">
+                                <li></li>
+                                <li>3400.00 </li>
+                                <li></li>
                                 <li>
+                                    400
+                                </li>
+                                <li>
+                                <select name="">
+                                    <option value="单早">单早</option>
+                                </select>
+                                </li>
+                                <li>
+                                <select name="">
+                                    <option value="有">有</option>
+                                    <option value="无">无</option>
+                                </select> 
+                                </li>
+                                <li class="other">
                                 <div><a href="#">司陪房</a></div>
                                 <div><a href="#">机场接送</a></div>
                                 </li>
@@ -261,17 +298,21 @@
                             </ul>
                         </div>
                     </div>
-
                     <div class="subtotal">
                         <div class="top_head"></div>
-                        <span class="line line_left"></span>
                         <h3>每日合计</h3>
                         <ul class="daylist">
-                            <li class="day">7/4 四</li>
-                            <li class="day">7/5 五</li>
-                            <li class="day weekend">7/6 六</li>
-                            <li class="day weekend last">7/7 日</li>
+                            <li class="day">940</li>
+                            <li class="day">940</li>
+                            <li class="day">940</li>
+                            <li class="day">940</li>
+                            <li class="summary last">3780.00</li>
                         </ul>
+                    </div>
+
+                    <div class="fee_total summary" style="clear:both;">
+                        <span>合计</span>
+                        <strong class="qt">￥3780.00</strong>
                     </div>
                 </div>
                 <div class="grid-table-pagination">
@@ -300,7 +341,9 @@
         <script type="text/javascript">
         
             $(function(){
-                    var hzScroll = $(".fee_list").niceScroll(".fee_list div.wrapdata",{touchbehavior:false,cursorcolor:"#0000FF",cursoropacitymax:0.6,cursorwidth:8});
+                    //var hzScroll = $(".fee_list").niceScroll({touchbehavior:false,cursorcolor:"#00F",cursoropacitymax:0.7,cursorwidth:11,cursorborder:"1px solid #2848BE",cursoropacitymax:0.6,cursorborderradius:"8px",background:"#ccc",autohidemode:"scroll"}).cursor.css({"background-image":"url(/static/images/bar/hscroll_bar.png)"}); // MAC like scrollbar
+                    var hzScroll = $(".fee_list").niceScroll( {touchbehavior:false,cursorcolor:"#b8bdc1",cursoropacitymax:0.6,cursorwidth:8});
+
             });
         
         </script>
