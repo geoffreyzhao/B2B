@@ -3,10 +3,9 @@
 (function(window) {
 	var syslog = {
 		version: "1.0",
-		debug_flag: true,
+		debug_enable: true,
 		debug_level: 4,
         
-        NONE: 0, //不打印
         ERROR: 1,
         WARNING: 2,
         INFO : 3,
@@ -17,7 +16,7 @@
 		},
 
 		print_log: function() {
-			if (this.debug_flag && console) {
+			if (this.debug_enable && console) {
                 for(var i = 0; i < arguments[0].length;i++){
                     console.log(arguments[0][i]);
                 }
@@ -50,7 +49,7 @@
 			var idx = 0;
             var args = Array.prototype.slice.call(arguments);
             var log_level_string = args[0];
-            var log_level = 0;
+            var log_level = 9999;
 
             args = args.slice(1); 
            
@@ -58,7 +57,7 @@
                 log_level = this[log_level_string];
             }
 
-			if (this.debug_flag && this.debug_level >= log_level) {
+			if (this.debug_enable && this.debug_level >= log_level) {
                 this.print_log(args);
 			}
 		}
