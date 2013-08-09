@@ -396,14 +396,16 @@ $(function(){
                 });
             $("#maskPanel").css({"display":"block","position":"absolute","opacity":0.1,"background":"#fff"})
             $("#searchfieldPanel1").click(function(){
-                $("input,select",this).prop("disabled",false).eq(0).focus();
+                if($("#maskPanel").attr("data-tar")=="#searchfieldPanel1")
+                    $("input,select",this).prop("disabled",false).eq(0).focus();
                 var tar=$("#searchfieldPanel2");
                 $("#maskPanel").css({width:tar.outerWidth(),height:tar.outerHeight(),left:tar.offset().left,top:tar.offset().top}).attr("data-tar","#searchfieldPanel2");
                 $("input,select",$("#searchfieldPanel2")).prop("disabled",true).val('');
             })
 
             $("#searchfieldPanel2").click(function(){
-                $("input,select",this).prop("disabled",false).eq(0).focus();
+                if($("#maskPanel").attr("data-tar")=="#searchfieldPanel2")
+                    $("input,select",this).prop("disabled",false).eq(0).focus();
                 var tar=$("#searchfieldPanel1");
                 $("#maskPanel").css({width:tar.outerWidth(),height:tar.outerHeight(),left:tar.offset().left,top:tar.offset().top}).attr("data-tar","#searchfieldPanel1");
                 $("input,select",$("#searchfieldPanel1")).prop("disabled",true).val('');
