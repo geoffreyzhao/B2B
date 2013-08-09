@@ -93,69 +93,72 @@ $(function(){
             <div class="zhuzhijiagou">
                <div class="xyzc_div" style="padding-left:10px;">
                <table cellpadding="0" cellspacing="0" class="xyzc_tab1">
-                   <tr>
-                       <td class="zchk">规则名称</td>
-                       <td class="price"><input type="text"/></td>
-                       <td class="zchk">规则ID</td>
-                       <td style="width:205px;"><input type="text" style="width:91%;"/></td>
-                       <td class="zchk">客户组</td>
-                       <td style="width:205px;">
-                             <select style=" width:95%;">
-                                  <option> </option>
-                             </select>
-                       </td>
-                       <td class="zchk">客户名称</td>
-                       <td>
-                         <input type="text" style="width:94px;"/> <button class="btns btn-search ac-search-user" role="window_trigger">查询</button>
-                       </td>
-                       <td rowspan="3"><a href="#" class="xyzc_cx_a" style="margin-left:80px; top:30px;">查询</a></td>
+                   <tbody id="searchfieldPanel1">
+                       <tr>
+                           <td class="zchk">规则名称</td>
+                           <td class="price"><input type="text"/></td>
+                           <td class="zchk">规则ID</td>
+                           <td style="width:110px"><input type="text" style="width:90px;"/></td>
+                           <td>状态</td>
+                           <td style="width:140px">
+                               <select style=" width:128px">
+                                   <option value="不限" selected="">不限</option>
+                                   <option value="未发布">未发布</option>
+                                   <option value="已发布">已发布</option>
+                                   <option value="挂起">挂起</option>
+                                   <option value="作废">作废</option>
+                               </select>
+                           </td>
+                           <td style="width:80px">
+                               <select><option>创建人</option><option>操作人</option></select>
+                           </td>
+                           <td>
+                               <input type="text" style="width:118px;" />
+                           </td>
+                       </tr>
+                       <tr>
+                        <td>创建日期</td>
+                        <td>
+                            <input type="text" class="change_input datePicker" value="2013-07-01"/>
+                        </td>
+                        <td><span class="cjrq_span">到</span></td>
+                        <td>
+                            <input type="text" class="change_input datePicker" value="2013-07-01"/>
+                        </td>
+                        <td>客户组</td>
+                        <td>
+                          <select style=" width:128px">
+                              <option value="不限" selected="">不限</option>
+                              <option value="未发布">未发布</option>
+                              <option value="已发布">已发布</option>
+                              <option value="挂起">挂起</option>
+                              <option value="作废">作废</option>
+                          </select>
+                        </td>
+                        <td></td>
+                        <td></td>
                    </tr>
+                   </tbody>
+                   <tr>
+                       <td colspan="8" style="border-bottom:1px solid #ccc;height:3px;"></td>
+                   </tr>
+                   <tbody id="searchfieldPanel2">
                   <tr>
-                     <td>城市</td>
-                     <td class="price">
-                         <input type="text"/>
-                     </td>
-                     <td>酒店名称</td>
-                     <td>
-                         <input type="text" style="width:91%;"/></td>
-                     </td>
-                     <td>价格</td>
-                     <td> 
-                         <input type="text" style=" width:41%" /> <span class="cjrq_span">-</span>  <input type="text"style=" width:42%" />
-                     </td>
-                     <td>创建人</td>
-                     <td> 
-                         <input type="text" style="width:118px;" />
-                     </td>                   
-                  </tr> 
-                  <tr>
-                     <td>状态</td>
-                     <td> 
-                         <select style=" width:91%">
-                             <option value="不限" selected="">不限</option>
-                             <option value="未发布">未发布</option>
-                             <option value="已发布">已发布</option>
-                             <option value="挂起">挂起</option>
-                             <option value="作废">作废</option>
-                         </select> 
-                     </td>
-                     <td>有效日期</td>
-                     <td> 
-                         <input type="text" class="change_input datePicker" value="2013-07-01"/> 
-                         <span class="cjrq_span">-</span>  
-                         <input type="text" class="change_input datePicker" value="2013-07-01"/>
-                     </td>
-                     <td>修改日期</td>
-                     <td>  
-                         <input type="text" class="change_input datePicker" value="2013-07-01"/> 
-                         <span class="cjrq_span">-</span>  
-                         <input type="text" class="change_input datePicker" value="2013-07-01"/>
-                     </td>
-                     <td>操作员</td>
-                     <td>
-                         <input type="text" style="width:118px;" />
-                     </td>
+                      <td>城市</td>
+                      <td>
+                          <input type="text" style="width:90px"/>
+                      </td>
+                      <td>酒店名称</td>
+                      <td>
+                          <input type="text" style="width:90px"/></td>
+                      </td>
+                      <td class="zchk">客户名称</td>
+                      <td>
+                          <input type="text" style="width:94px;"/> <button class="btns btn-search ac-search-user" role="window_trigger">查询</button>
+                      </td>
+                      <td rowspan="3"><a href="#" class="xyzc_cx_a" style="margin-left:80px; top:30px;">查询</a></td>
                   </tr>
+                   </tbody>
                </table>
               
             </div>
@@ -378,19 +381,41 @@ $(function(){
             <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
+
+    <div id="maskPanel"></div>
     
     <script type="application/javascript">
         $(function(){
-                //浮动条
-                $(".topFixedToolsBar").scrollFix("top","top");
-                $("input[name='checkall']").click(function(){
-                    var check_status = $(this).prop("checked");
-                    console.log(check_status);
-                    $("input[name='rule']").prop("checked",check_status);
-
-                    });
+            //浮动条
+            $(".topFixedToolsBar").scrollFix("top","top");
+            $("input[name='checkall']").click(function(){
+                var check_status = $(this).prop("checked");
+                console.log(check_status);
+                $("input[name='rule']").prop("checked",check_status);
 
                 });
+            $("#maskPanel").css({"display":"block","position":"absolute","opacity":0.1,"background":"#fff"})
+            $("#searchfieldPanel1").click(function(){
+                if($("#maskPanel").attr("data-tar")=="#searchfieldPanel1")
+                    $("input,select",this).prop("disabled",false).eq(0).focus();
+                var tar=$("#searchfieldPanel2");
+                $("#maskPanel").css({width:tar.outerWidth(),height:tar.outerHeight(),left:tar.offset().left,top:tar.offset().top}).attr("data-tar","#searchfieldPanel2");
+                $("input,select",$("#searchfieldPanel2")).prop("disabled",true).val('');
+            })
+
+            $("#searchfieldPanel2").click(function(){
+                if($("#maskPanel").attr("data-tar")=="#searchfieldPanel2")
+                    $("input,select",this).prop("disabled",false).eq(0).focus();
+                var tar=$("#searchfieldPanel1");
+                $("#maskPanel").css({width:tar.outerWidth(),height:tar.outerHeight(),left:tar.offset().left,top:tar.offset().top}).attr("data-tar","#searchfieldPanel1");
+                $("input,select",$("#searchfieldPanel1")).prop("disabled",true).val('');
+            })
+
+            $("#maskPanel").click(function(){
+                $($(this).attr("data-tar")).trigger("click");
+            })
+
+        });
 	
 	</script>
 </body>
