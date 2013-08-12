@@ -17,6 +17,7 @@
 <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
 <script type="text/javascript" src="/static/js/global.js"></script>
 <script type="text/javascript" src="/static/js/flight.js"></script>
+<script type="text/javascript" src="/static/js/uploadify/jquery.uploadify.min.js"></script>
 <script type="text/javascript">
 $(function(){
             
@@ -43,9 +44,17 @@ $(function(){
         if(that.find('b').text() == '保存'){
             that.find('b').text('修改'); 
             hideInput();
+            $("#flight_table tr").each(function(){
+                $("td:first",this).hide();
+                $("td:last",this).hide();
+            });
         }else{
             that.find('b').text('保存'); 
             showInput();
+            $("#flight_table tr").each(function(){
+                $("td:first",this).show();
+                $("td:last",this).show();
+            });
         }
     });
 
@@ -228,7 +237,11 @@ $(function(){
 </div>
 
 <div class="block block-module">
-    <p><strong>改签PNR导入</strong> <input style="width:150px"> <a href="javascript:;" class="button_secondary adaptiveButton small"> <span class="left"></span> <span class="center">导入</span> <span class="right"></span></a> </p>
+    <div class="row">
+        <label for="btn_upload"><strong>改签PNR</strong></label>
+        <input style="width:200px;" type="text" name=""  value="PNR12345" placeholder="选择文件" />
+        <input class="button_gray" type="button" id="btn_upload" value="上传" />
+    </div>
 </div>
 
 <div class="block block32 block-module" style="display:none;">
@@ -280,7 +293,7 @@ $(function(){
             <button class="btns btn-ac-blue ac-toggle" data-target=".block33 .unselected"><b>展开</b>未选中航班<i class="r2c2"></i></button>
             <span>
                 <s class="bar"></s>
-                <button class="btns btn-ac-blue"><b>添加航班</b></button> 
+                <button class="btns btn-ac-blue" id="add_flight"><b>添加航班</b></button> 
                 <label><i class="star">*</i>
                     选择改签类型:</label>
                 <label><input type="radio" checked name="xxx">仅改期</label>
@@ -294,10 +307,24 @@ $(function(){
 
     <div class="row">
         <div id="flight_info_grid">
-            <table class="grid-table">
+            <script type="text/x-kendo-template" id="flight_template">
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input class="text" value=""></td>
+                    <td><input class="text" value=""></td>
+                    <td><input class="text" value=""></td>
+                    <td><input class="text" value=""></td>
+                    <td><input class="text" value=""></td>
+                    <td><input class="text" value=""></td>
+                    <td><input class="text" value=""></td>
+                    <td><input class="text" value=""></td>
+                    <td><input class="text" value=""></td>
+                    <td><a href="javascript:void(0);">删除</a></td>
+                </tr>
+            </script>
+            <table class="grid-table" id="flight_table">
                 <colgroup>
-                  <col width="" />
-                  <col width="70" />
+                  <col width="30" />
                   <col width="60" />
                   <col width="60" />
                   <col width="100" />
@@ -306,13 +333,14 @@ $(function(){
                   <col width="120" />
                   <col width="120" />
                   <col width="40" />
+                  <col width="90" />
+                  <col width="40" />
                 </colgroup>
                 <tbody><tr class="thead">
-                    <td><input type="checkbox"></td><td>航空公司</td><td>实际承运</td><td>航班号</td><td>机型</td><td>离港机场</td><td>到港机场</td><td>离港时间</td><td>到港时间</td><td>订座</td><td>预定OFFICE</td>
+                        <td><input type="checkbox"></td><td>实际承运</td><td>航班号</td><td>机型</td><td>离港机场</td><td>到港机场</td><td>离港时间</td><td>到港时间</td><td>订座</td><td>预定OFFICE</td><td></td>
                 </tr>
                 <tr>
                     <td><input checked type="checkbox"></td>
-                    <td><input class="text" value="东方航空"></td>
                     <td><input class="text" value="HO"></td>
                     <td><input class="text" value="CZ3609"></td>
                     <td><input class="text" value="空客A380"></td>
@@ -322,10 +350,10 @@ $(function(){
                     <td><input class="text" value=" 2013-06-22 23:25 "></td>
                     <td><input class="text" value=" HK "></td>
                     <td><input class="text" value=" SHA "></td>
+                    <td></td>
                 </tr>
                 <tr class="unselected">
                     <td><input type="checkbox"></td>
-                    <td><input class="text" value="东方航空"></td>
                     <td><input class="text" value="HO"></td>
                     <td><input class="text" value="CZ3609"></td>
                     <td><input class="text" value="空客A380"></td>
@@ -335,10 +363,10 @@ $(function(){
                     <td><input class="text" value=" 2013-06-22 23:25 "></td>
                     <td><input class="text" value=" HK "></td>
                     <td><input class="text" value=" SHA "></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td><input checked type="checkbox"></td>
-                    <td><input class="text" value="东方航空"></td>
                     <td><input class="text" value="HO"></td>
                     <td><input class="text" value="CZ3609"></td>
                     <td><input class="text" value="空客A380"></td>
@@ -348,10 +376,10 @@ $(function(){
                     <td><input class="text" value=" 2013-06-22 23:25 "></td>
                     <td><input class="text" value=" HK "></td>
                     <td><input class="text" value=" SHA "></td>
+                    <td></td>
                 </tr>
                 <tr class="unselected">
                     <td><input type="checkbox"></td>
-                    <td><input class="text" value="东方航空"></td>
                     <td><input class="text" value="HO"></td>
                     <td><input class="text" value="CZ3609"></td>
                     <td><input class="text" value="空客A380"></td>
@@ -361,10 +389,10 @@ $(function(){
                     <td><input class="text" value=" 2013-06-22 23:25 "></td>
                     <td><input class="text" value=" HK "></td>
                     <td><input class="text" value=" SHA "></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td><input checked type="checkbox"></td>
-                    <td><input class="text" value="东方航空"></td>
                     <td><input class="text" value="HO"></td>
                     <td><input class="text" value="CZ3609"></td>
                     <td><input class="text" value="空客A380"></td>
@@ -374,6 +402,7 @@ $(function(){
                     <td><input class="text" value=" 2013-06-22 23:25 "></td>
                     <td><input class="text" value=" HK "></td>
                     <td><input class="text" value=" SHA "></td>
+                    <td></td>
                 </tr>
             </tbody></table> 
         </div>
@@ -460,15 +489,11 @@ $(function(){
                     <td>姓名</td>
                     <td>乘客类型</td>
                     <td>证件号码</td>
-                    <td>应收票款</td>
                     <td>票款</td>
                     <td>税款</td>
-                    <td>代理费</td>
-                    <td>奖励</td>
-                    <td>开票费</td>
+                    <td>应收票款</td>
+                    <td>手续费</td>
                     <td>供应商</td>
-                    <td>政策编号</td>
-
                 </tr>
                 <tr>
                     <td><input checked type="checkbox"></td>
@@ -480,14 +505,11 @@ $(function(){
                     <td><input class="text" value="ZHANG/YU"></td>
                     <td><input class="text" value="ADT"></td>
                     <td><input class="text" value="A123456"></td>
-                    <td><input class="text" value="5500"></td>
                     <td><input class="text" value="5000"></td>
                     <td><input class="text" value="1000"></td>
-                    <td><input class="text" value="5%"></td>
-                    <td><input class="text" value="3%+100"></td>
+                    <td><input class="text" value="5500"></td>
                     <td><input class="text" value="20"></td>
                     <td><input class="text" value="不夜城"></td>
-                    <td><input class="text" value="2013071"></td>
                 </tr>
                 <tr class="unselected">
                     <td><input type="checkbox"></td>
@@ -499,14 +521,11 @@ $(function(){
                     <td><input class="text" value="ZHANG/YU"></td>
                     <td><input class="text" value="ADT"></td>
                     <td><input class="text" value="A123456"></td>
-                    <td><input class="text" value="5500"></td>
                     <td><input class="text" value="5000"></td>
                     <td><input class="text" value="1000"></td>
-                    <td><input class="text" value="5%"></td>
-                    <td><input class="text" value="3%+100"></td>
+                    <td><input class="text" value="5500"></td>
                     <td><input class="text" value="20"></td>
                     <td><input class="text" value="不夜城"></td>
-                    <td><input class="text" value="2013071"></td>
                 </tr>
                 <tr>
                     <td><input checked type="checkbox"></td>
@@ -518,14 +537,11 @@ $(function(){
                     <td><input class="text" value="ZHANG/YU"></td>
                     <td><input class="text" value="ADT"></td>
                     <td><input class="text" value="A123456"></td>
-                    <td><input class="text" value="5500"></td>
                     <td><input class="text" value="5000"></td>
                     <td><input class="text" value="1000"></td>
-                    <td><input class="text" value="5%"></td>
-                    <td><input class="text" value="3%+100"></td>
+                    <td><input class="text" value="5000"></td>
                     <td><input class="text" value="20"></td>
                     <td><input class="text" value="不夜城"></td>
-                    <td><input class="text" value="2013071"></td>
                 </tr>
         </tbody></table></div> 
 
@@ -646,5 +662,26 @@ $(function(){
         <p>客户服务热线:400-720-6666</p>
     </div>
 </div>
+<script type="text/javascript">
+
+        //添加航班
+        $("#add_flight").click(function(){
+            var template = kendo.template($("#flight_template").html());
+            $("#flight_table").append(template);
+        });
+        $("#btn_upload").uploadify({
+            buttonClass   : "button_gray",
+            buttonText    : "重 置",
+            width         : 71,
+            height        : 25,
+            uploader      : 'http://www.tz-local.com/test.php',
+            swf           : '/static/js/uploadify/uploadify.swf',
+            queueID       : 'queue',
+            removeTimeout :0,
+            onUploadSuccess:function(file,data,response){},
+            onUploadError:function(file,errorCode,errorMsg,errorString){alert(errorString);}
+        });
+
+</script>
 </body>
 </html>

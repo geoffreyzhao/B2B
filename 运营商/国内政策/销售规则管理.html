@@ -155,7 +155,7 @@ $(function(){
               
             </div>
 
-            <div class="xyzc_tab2_div_1">
+           
               <div class="qx">
                   <div class="xuanze">
                       <button class="btns btn-ac-blue">挂起</button>
@@ -196,8 +196,8 @@ $(function(){
                           <td>未发布</td>
                           <td>否</td>
                           <td>否</td>
-                          <td>是</td>
-                          <td>100</td>
+                          <td><a class="popwin customer" href="javascript:void(0);">20</a></td>
+                          <td><a class="popwin policy" href="javascript:void(0);">100</a></td>
                           <td>备注写这里</td>
                           <td>2013-01-01 09:00</td>
                           <td>2013-12-01 09:00</td>
@@ -219,8 +219,8 @@ $(function(){
                           <td>未发布</td>
                           <td>否</td>
                           <td>否</td>
-                          <td>是</td>
-                          <td>100</td>
+                          <td><a class="popwin customer" href="javascript:void(0);">20</a></td>
+                          <td><a class="popwin policy" href="javascript:void(0);">100</a></td>
                           <td>备注写这里</td>
                           <td>2013-01-01 09:00</td>
                           <td>2013-12-01 09:00</td>
@@ -242,8 +242,8 @@ $(function(){
                           <td>未发布</td>
                           <td>否</td>
                           <td>否</td>
-                          <td>是</td>
-                          <td>100</td>
+                          <td><a class="popwin customer" href="javascript:void(0);">20</a></td>
+                          <td><a class="popwin policy" href="javascript:void(0);">100</a></td>
                           <td>备注写这里</td>
                           <td>2013-01-01 09:00</td>
                           <td>2013-12-01 09:00</td>
@@ -265,8 +265,8 @@ $(function(){
                           <td>未发布</td>
                           <td>否</td>
                           <td>否</td>
-                          <td>是</td>
-                          <td>100</td>
+                          <td><a class="popwin customer" href="javascript:void(0);">20</a></td>
+                          <td><a class="popwin policy" href="javascript:void(0);">100</a></td>
                           <td>备注写这里</td>
                           <td>2013-01-01 09:00</td>
                           <td>2013-12-01 09:00</td>
@@ -288,8 +288,8 @@ $(function(){
                           <td>未发布</td>
                           <td>否</td>
                           <td>否</td>
-                          <td>是</td>
-                          <td>100</td>
+                          <td><a class="popwin customer" href="javascript:void(0);">20</a></td>
+                          <td><a class="popwin policy" href="javascript:void(0);">100</a></td>
                           <td>备注写这里</td>
                           <td>2013-01-01 09:00</td>
                           <td>2013-12-01 09:00</td>
@@ -304,13 +304,12 @@ $(function(){
                              <a href="javascript:void(0);">日志</a>
                           </td>
                       </tr>
-                  </tr>
               </tbody>
           </table>
           </div>
 
 
-              <div class="grid-table-pagination">
+              <div class="grid-table-pagination page">
                   <span class="grid-table-count">
                       共 <em>132</em> 条记录
                   </span>
@@ -330,14 +329,13 @@ $(function(){
                       <a href="#" class="next">&nbsp;</a>
                   </span>
               </div>
+            
             </div>
-          </div>
+     
         </div>
         <!-- end of zhuzhijiagou -->
     </div>
 	
-    <div id="add_department"></div>
-    <div id="add_employe"></div>
     
     <div id="extFooter">
         <div>
@@ -350,20 +348,56 @@ $(function(){
             <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
+
+<script type="text/x-kendo-template"  id="policy-template">
+    <div class="row">
+        <table class="grid-table" id="policy-grid-table">
+        </table> 
+    </div>
+
+    <div class="row" style="text-align:right;">
+        <a class="button_unimportant adaptiveButton medium" href="javascript:;">
+            <span class="left"></span>
+            <span class="center">关闭</span>
+            <span class="right"></span>
+        </a>
+    </div>
+</script>
+
+
+<script type="text/x-kendo-template"  id="customer-template">
+    <div class="row">
+        <table class="grid-table" id="customer-grid-table">
+            <tr class="thead">
+                <th>客户名称</th>
+                <th>客户类型</th>
+                <th>账户类型</th>
+                <th>账期</th>
+                <th>创建日期</th>
+            </tr>
+        </table> 
+    </div>
+
+    <div class="row" style="text-align:right;">
+        <a class="button_unimportant adaptiveButton medium" href="javascript:;">
+            <span class="left"></span>
+            <span class="center">关闭</span>
+            <span class="right"></span>
+        </a>
+    </div>
+</script>
+
+<script type="text/x-kendo-template"  id="customer-row-template">
+    <tr>
+        <td>#= data.c1 #</td>
+        <td>#= data.c2 #</td>
+        <td>#= data.c3 #</td>
+        <td>#= data.c4 #</td>
+        <td>#= data.c5 #</td>
+    </tr>
+</script>
+
+    <script type="text/javascript" src="销售规则管理.js"></script>
     
-    <script type="application/javascript">
-        $(function(){
-                //浮动条
-                $(".topFixedToolsBar").scrollFix("top","top");
-                $("input[name='checkall']").click(function(){
-                    var check_status = $(this).prop("checked");
-                    console.log(check_status);
-                    $("input[name='rule']").prop("checked",check_status);
-
-                    });
-
-                });
-	
-	</script>
 </body>
 </html>
