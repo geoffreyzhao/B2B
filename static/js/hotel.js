@@ -59,7 +59,30 @@ $(function(){
 
     $(".topFixedToolsBar").scrollFix("top","top");
 
+    $.fn.setPosition=function(options){
+        var defaults={tar:this,pos:"",offsetL:0,offsetT:0};
+        var opt= $.extend(defaults,options);
+        var offset=opt.tar.offset();
+        var tarw=opt.tar.outerWidth();
+        var tarh=opt.tar.outerHeight();
+        var w=$(this).outerWidth();
+        var h=$(this).outerHeight();
+        switch(opt.pos)
+        {
+            case "l":$(this).css({left:offset.left+opt.offsetL-w,top:offset.top+opt.offsetT});break;
+            case "r":$(this).css({left:offset.left+opt.offsetL+tarw,top:offset.top+opt.offsetT});break;
+            case "b":$(this).css({left:offset.left+opt.offsetL,top:offset.top+opt.offsetT+tarh});break;
+            case "rb":$(this).css({left:offset.left+opt.offsetL+tarw,top:offset.top+opt.offsetT+tarh});break;
+            case "lb":$(this).css({left:offset.left+opt.offsetL-w,top:offset.top+opt.offsetT+tarh});break;
+            case "lt":$(this).css({left:offset.left+opt.offsetL-w,top:offset.top+opt.offsetT-h});break;
+            case "t":$(this).css({left:offset.left+opt.offsetL,top:offset.top+opt.offsetT-tarh});break;
+            case "rt":$(this).css({left:offset.left+opt.offsetL+tarw,top:offset.top+opt.offsetT-h});break;
+            case "tc":$(this).css({left:offset.left+opt.offsetL-w/2+tarw/2,top:offset.top+opt.offsetT-h});break;
+            default :$(this).css({left:offset.left+opt.offsetL,top:offset.top+opt.offsetT});break;
+        }
 
+
+    }
 });
 
 function moveElement(lb,rb,targetE,targetInnerE)
