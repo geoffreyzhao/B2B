@@ -16,6 +16,7 @@
         <script type="text/javascript" src="/static/js/kendo.web.js"></script>
         <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
         <script type="text/javascript" src="/static/js/global.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.nicescroll.min.js"></script>
         <script>
             $(function(){
                 $('.filter').bind('change',function(){
@@ -107,29 +108,29 @@
                         <ul>
                             <li><span class="title"><b class="required">*</b><strong>规则名称</strong></span><input style="width:200px;" type="text" name="sale_name"/></li>
                             <li>
-                                <span class="title"><strong>&nbsp;有效期:</strong></span>
-                                <div style="float:left;">
-                                    <input type="text" name="" class="datepicker"/><em>至</em>
-                                    <input type="text" name="" class="datepicker orange"/>
-                                </div>
-                                <label style="padding-left:10px;"><input type="checkbox" name="never_expired"/>永久</label>
+                            <span class="title"><strong>&nbsp;有效期:</strong></span>
+                            <div style="float:left;">
+                                <input type="text" name="" class="datepicker"/><em>至</em>
+                                <input type="text" name="" class="datepicker orange"/>
+                            </div>
+                            <label style="padding-left:10px;"><input type="checkbox" name="never_expired"/>永久</label>
                             </li>
                             <li>
-                                <span class="title"><strong>&nbsp;是否使用异地政策:</strong></span>
-                                <div style="float:left;" class="col">
-                                    <label><input type="radio" name="name1"/>是</label>
-                                    <label><input type="radio" name="name1"/>否</label>
-                                    <label style="padding-left:180px;"><strong>&nbsp;是否使用自动出票:</strong></label>
-                                    <label><input type="radio" name="name2"/>是</label>
-                                    <label><input type="radio" name="name2"/>否</label>
-                                </div>
-                                <div class="clear"></div>
+                            <span class="title"><strong>&nbsp;是否使用异地政策:</strong></span>
+                            <div style="float:left;" class="col">
+                                <label><input type="radio" name="name1"/>是</label>
+                                <label><input type="radio" name="name1"/>否</label>
+                                <label style="padding-left:180px;"><strong>&nbsp;是否使用自动出票:</strong></label>
+                                <label><input type="radio" name="name2"/>是</label>
+                                <label><input type="radio" name="name2"/>否</label>
+                            </div>
+                            <div class="clear"></div>
                             </li>
                             <li>
-                                <span class="title"><strong>备注:</strong></span>
-                                <div style="float:left;">
-                                    <textarea style="width:600px;height:100px;"></textarea>
-                                </div>
+                            <span class="title"><strong>备注:</strong></span>
+                            <div style="float:left;">
+                                <textarea style="width:600px;height:100px;"></textarea>
+                            </div>
                             </li>
                             <div class="clear"></div>
                         </ul>
@@ -243,533 +244,222 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="row xyzc_div_view">
-                        <div class="search_title">
-                            <strong>关联政策</strong><em>122</em>
-                            <span class="action">
-                                <button id="policy_btn" class="btns btn-ac-blue"><i>收回</i><b>︾</b></button>
-                            </span>
-                        </div>
-                        <div id="policy_view" class="scroll">
-                            <table cellspacing="0" cellpadding="0" class="xyzc_tab2">
-                                <thead>
-                                    <tr>
-                                        <th>航司</th>
-                                        <th>出发机场</th>
-                                        <th>到达机场</th>
-                                        <th>航程</th>
-                                        <th>航班限制</th>
-                                        <th>适用舱位</th>
-                                        <th>返点</th>
-                                        <th>后返</th>
-                                        <th>乘客类型</th>
-                                        <th>票证</th>
-                                        <th>出票</th>
-                                        <th>出票日期</th>
-                                        <th>乘机日期</th>
-                                        <th>发布时间</th>
-                                        <th>发布人</th>
-                                        <th>状态</th>
-                                        <th>标签名称</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <tr>
-                                        <td>MU1</td>
-                                        <td>SHA/PVG/<br>
-                                            SZX/WUH</td>
-                                        <td>PEK</td>
-                                        <td>单程</td>
-                                        <td>所有</td>
-                                        <td>FCYBMH<br>KLQGV</td>
-                                        <td>6.0</td>
-                                        <td>2.0</td>
-                                        <td>成人</td>
-                                        <td>BSP</td>
-                                        <td>自动</td> 
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td>
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td>
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td>
-                                        <td>zhangjian</td>
-                                        <td>已发布</td>
-                                        <td>东方航空\南方航空</td>
-                                    </tr>
-                                    <tr class="hui_bg">
-                                        <td>CA</td>
-                                        <td>SHA/PVG</td>
-                                        <td>全国</td>
-                                        <td>往返</td>
-                                        <td>排除2301<br>/2333</td>
-                                        <td>FCYBMH<br>KLQGV</td>
-                                        <td>6.0</td>
-                                        <td>2.0</td>
-                                        <td>儿童</td>
-                                        <td>B2B</td>
-                                        <td>手动</td>  
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td>
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td>
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td>
-                                        <td>zhangjian</td>
-                                        <td class="red_color">已挂起</td>
-                                        <td>东方航空\南方航空</td>
-                                    </tr>
-                                    <tr class="font_color">
-                                        <td>FM</td>
-                                        <td>排除<br>
-                                            SHA/PVG</td>
-                                        <td>排除PEK</td>
-                                        <td>单程</td>
-                                        <td>所有</td>
-                                        <td>MH</td>
-                                        <td>5.0</td>
-                                        <td>2.0</td>
-                                        <td>不限</td>
-                                        <td>BSP</td>                  
-                                        <td>手动</td> 
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td> 
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td>
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td>
-                                        <td>zhangjian</td>
-                                        <td>已作废</td>
-                                        <td>东方航空\南方航空</td>
-                                    </tr>
-                                    <tr class="hui_bg">
-                                        <td>MU</td>
-                                        <td>SHA/PVG</td>
-                                        <td>全国</td>
-                                        <td>往返</td>
-                                        <td>所有</td>
-                                        <td>G</td>
-                                        <td>6.0</td>
-                                        <td>2.0</td>
-                                        <td>成人</td>
-                                        <td>B2B</td>                  
-                                        <td>手动</td> 
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td>
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td>
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td>
-                                        <td>zhangjian</td>
-                                        <td>已发布</td>
-                                        <td>东方航空\南方航空</td>
-                                    </tr>
-                                    <tr class="font_color">
-                                        <td>CA</td>
-                                        <td>SHA/PVG</td>
-                                        <td>全国</td>
-                                        <td>单程</td>
-                                        <td>所有</td>
-                                        <td>GV</td>
-                                        <td>6.0</td>
-                                        <td>2.0</td>
-                                        <td>成人</td>
-                                        <td>BSP</td>
-                                        <td>手动</td> 
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td>
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td>
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td>
-                                        <td>zhangjian</td>
-                                        <td>已作废</td>
-                                        <td>东方航空\南方航空</td>
-                                    </tr>
-                                    <tr class="hui_bg">
-                                        <td>CA</td>
-                                        <td>&nbsp;</td>
-                                        <td>全国</td>
-                                        <td>单程</td>
-                                        <td>所有</td>
-                                        <td>CYBMH<br>KLQGV</td>
-                                        <td>5.0</td>
-                                        <td>2.0</td>
-                                        <td>儿童</td>
-                                        <td>BSP</td>
-                                        <td>手动</td> 
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td>
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td>
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td>
-                                        <td>zhangjian</td>
-                                        <td class="red_color">已挂起</td>
-                                        <td>东方航空\南方航空</td>
-                                    </tr>
-                                    <tr>
-                                        <td>CA</td>
-                                        <td>&nbsp;</td>
-                                        <td>全国</td>
-                                        <td>单程</td>
-                                        <td>所有</td>
-                                        <td>MH</td>
-                                        <td>6.0</td>
-                                        <td>2.0</td>
-                                        <td>不限</td>
-                                        <td>BSP</td>
-                                        <td>手动</td> 
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td>
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td>
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td>
-                                        <td>zhangjian</td>
-                                        <td>已发布</td>
-                                        <td>东方航空\南方航空</td>
-                                    </tr>
-                                    <tr class="hui_bg">
-                                        <td>CA</td>
-                                        <td>&nbsp;</td>
-                                        <td>全国</td>
-                                        <td>单程</td>
-                                        <td>所有</td>
-                                        <td>G</td>
-                                        <td>6.0</td>
-                                        <td>2.0</td>
-                                        <td>成人</td>
-                                        <td>BSP</td>
-                                        <td>手动</td> 
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td>
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td>
-                                        <td>2010/09/01<br>
-                                            至2012/10/01</td>
-                                        <td>zhangjian</td>
-                                        <td>已发布</td>
-                                        <td>东方航空\南方航空</td>
-                                    </tr>
-                                </tbody>            
-                            </table>
-                        </div>
-                        <div class="grid-table-pagination">
-                            <span class="grid-table-count">
-                                共 <em>132</em> 条记录
-                            </span>
-                            <span>
-                                <a class="prev" href="#">&nbsp;</a>
-                            </span>
-                            <span class="links">
-                                <a href="#">1</a>
-                                <a href="#">2</a>
-                                <a class="current" href="#">3</a>
-                                <a href="#">4</a>
-                                <a href="#">5</a>
-                                <a href="javascript:;">...</a>
-                                <a href="#">50</a>
-                            </span>
-                            <span>
-                                <a class="next" href="#">&nbsp;</a>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="row set_rule">
-                        <h3>设置规则</h3>
-                        <ul>
-                            <li><label><input type="radio" name="rule_type" value="customize" />自定义</label></li>
-                            <li id="customize" style="display:none;">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th colspan="4" style="text-align:left;">请选择规则</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><label><input type="checkbox" name="rate_local"/>&nbsp;本地扣率</label></td>
-                                        <td>
-                                            <input type="text" value="2.0"/>
-                                            <input style="width:60px;" data-role="dropdownlist" data-value-field="value" data-text-field="text" data-source="[{'value':'留点','text':'留点'},{'value':'固定','text':'固定'},{'value':'促销','text':'促销'}]"/>
-                                        </td>
-                                        <td><label><input type="checkbox" name="rate_yidi"/>&nbsp;异地扣率</label></td>
-                                        <td>
-                                            <input type="text" value="2.0"/>
-                                            <input style="width:60px;" data-role="dropdownlist" data-value-field="value" data-text-field="text" data-source="[{'value':'留点','text':'留点'},{'value':'固定','text':'固定'},{'value':'促销','text':'促销'}]"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><label><input type="checkbox" name="rate_local"/>&nbsp;本地金额</label></td>
-                                        <td>
-                                            <input type="text" value="10.0"/>
-                                            <input style="width:60px;" data-role="dropdownlist" data-value-field="value" data-text-field="text" data-source="[{'value':'留钱','text':'留点'},{'value':'固定','text':'固定'},{'value':'促销','text':'促销'}]"/>
-                                        </td>
-                                        <td><label><input type="checkbox" name="rate_yidi"/>&nbsp;异地金额</label></td>
-                                        <td>
-                                            <input type="text" value="2.0"/>
-                                            <input style="width:60px;" data-role="dropdownlist" data-value-field="value" data-text-field="text" data-source="[{'value':'留钱','text':'留点'},{'value':'固定','text':'固定'},{'value':'促销','text':'促销'}]"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><label><input type="checkbox" name="rate_local"/>&nbsp;最低返点</label></td>
-                                        <td>
-                                            <input type="text" value="2.0"/>
-                                        </td>
-                                        <td><label><input type="checkbox" name="rate_yidi"/>&nbsp;最低返钱</label></td>
-                                        <td>
-                                            <input type="text" value="10.0"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><label><input type="checkbox" name="rate_local"/>&nbsp;儿童最低返点</label></td>
-                                        <td>
-                                            <input type="text" value="2.0"/>
-                                        </td>
-                                        <td><label><input type="checkbox" name="rate_yidi"/>&nbsp;儿童最低返钱</label></td>
-                                        <td>
-                                            <input type="text" value="10.0"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><label><input type="checkbox" name="rate_local"/>&nbsp;最高返点</label></td>
-                                        <td>
-                                            <input type="text" value="2.0"/>
-                                        </td>
-                                        <td><label><input type="checkbox" name="rate_yidi"/>&nbsp;最高返钱</label></td>
-                                        <td>
-                                            <input type="text" value="10.0"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><label><input type="checkbox" name="rate_local"/>&nbsp;儿童最高返点</label></td>
-                                        <td>
-                                            <input type="text" value="2.0"/>
-                                        </td>
-                                        <td><label><input type="checkbox" name="rate_yidi"/>&nbsp;儿童最高返钱</label></td>
-                                        <td>
-                                            <input type="text" value="10.0"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><label><input type="checkbox" name="rate_local"/>&nbsp;儿童统一返点</label></td>
-                                        <td>
-                                            <input type="text" value="2.0"/>
-                                        </td>
-                                        <td><label><input type="checkbox" name="rate_yidi"/>&nbsp;儿童统一返钱</label></td>
-                                        <td>
-                                            <input type="text" value="10.0"/>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
-                            </li>
-                            <li><label><input type="radio" name="rule_type" value=""/>统一按底价前返返佣</label></li>
-                            <li><label><input type="radio" name="rule_type" value=""/>统一按底价前返+奖励返佣</label></li>
-                            <li><label><input type="radio" name="rule_type" value="" />统一按底价全反</label></li>
-                            <li style="margin-top:20px;"><label><input type="checkbox" name="loss_permit" />不允许亏损</label></li>
-                        </ul>
-                    </div>
-
-                    <div class="row set_customer">
-                        <h3>设置客户</h3>
-                        <table>
-                            <tr>
-                                <th style="width:80px;">客户组:</th>
-                                <td>
-                                    <ul class="item">
-                                        <li>
-                                        <label><input type="checkbox" /><span>普通客户组</span></label>
-                                        </li>
-                                        <li>
-                                        <label><input type="checkbox" /><span>B2B客户组</span></label>
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>客户类型</th>
-                                <td>
-                                    <ul class="item">
-                                        <li>
-                                        <label><input type="checkbox" /><span>同行</span></label>
-                                        </li>
-                                        <li>
-                                        <label><input type="checkbox" /><span>采购</span></label>
-                                        </li>
-                                        <li>
-                                        <label><input type="checkbox" /><span>分销</span></label>
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>账户类型</th>
-                                <td>
-                                    <ul class="item">
-                                        <li>
-                                        <label><input type="checkbox" /><span>支付宝</span></label>
-                                        </li>
-                                        <li>
-                                        <label><input type="checkbox" /><span>网银</span></label>
-                                        </li>
-                                    </ul>
-                                
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>结算周期</th>
-                                <td>
-                                    <ul class="item">
-                                        <li>
-                                        <label><input type="checkbox" /><span>一周</span></label>
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="row  set_customer_view">
-                        <div class="search_title">
-                            <strong>关联客户</strong><em>122</em>
-                            <span class="action">
-                                <button id="customer_btn" class="btns btn-ac-blue"><i>收回</i><b>︾</b></button>
-                            </span>
                         </div>
-
-                        <div id="customer_view">
-                            <ul class="white_bg" id="tabmenu">
-                                <li class="current">
-                                <div class="mtab"> 
-                                    <span>普通客户组</span>
-                                    <span class="rightCover"></span>
-                                </div>
-                                </li>
-
-                                <li>
-                                <div class="mtab gray">
-                                    <span>B2C客户</span>
-                                    <span class="rightCover"></span>
-                                </div>
-                                </li>
-                            </ul>
-
-                            <div style="padding:5px 20px 5px 50px" class="clearfix">
-                                输入客户名称 <input type="text" id="" name="">
-                                <a style="" class="button_important adaptiveButton small" href="javascript:;">
-                                    <span class="left"></span>
-                                    <span class="center">检 索</span>
-                                    <span class="right"></span>
-                                </a>
-                                <a style="margin-right:30px" class="button_unimportant adaptiveButton small" href="javascript:;">
-                                    <span class="left"></span>
-                                    <span class="center">清除查询条件</span>
-                                    <span class="right"></span>
-                                </a>
-                                <span style="margin-right:10px;float:right" class="required">*勾选排除客户</span>
+                        <div class="row xyzc_div_view">
+                            <div class="search_title">
+                                <strong>关联政策</strong><em>122</em>
+                                <span class="action">
+                                    <button id="policy_btn" class="btns btn-ac-blue"><i>收回</i><b>︾</b></button>
+                                </span>
                             </div>
+                            <div id="policy_view" class="scroll">
+                                <table cellspacing="0" cellpadding="0" class="xyzc_tab2">
+                                    <thead>
+                                        <tr>
+                                            <th>航司</th>
+                                            <th>出发机场</th>
+                                            <th>到达机场</th>
+                                            <th>航程</th>
+                                            <th>航班限制</th>
+                                            <th>适用舱位</th>
+                                            <th>返点</th>
+                                            <th>后返</th>
+                                            <th>乘客类型</th>
+                                            <th>票证</th>
+                                            <th>出票</th>
+                                            <th>出票日期</th>
+                                            <th>乘机日期</th>
+                                            <th>发布时间</th>
+                                            <th>发布人</th>
+                                            <th>状态</th>
+                                            <th>标签名称</th>
+                                        </tr>
+                                    </thead>
 
-                            <table cellspacing="0" cellpadding="0" class="tgrid">
-                                <thead>
-                                    <tr>
-                                        <th style="width:56px"><input type="checkbox">排除</th>
-                                        <th style="width:85px">客户名称</th>
-                                        <th style="width:95px">创建时间</th>
-                                        <th style="width:280px">账户类型</th>
-                                        <th style="width:62px">余额</th>
-                                        <th style="width:149px">签约经理</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <tr class="four_bg">
-                                        <td><input type="checkbox" id="" name=""></td>
-                                        <td>大有票务</td>
-                                        <td>2013/1/12</td>
-                                        <td>现结</td>
-                                        <td>20000.00</td>
-                                        <td>张三</td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" id="" name=""></td>
-                                        <td>大有票务</td>
-                                        <td>2013/1/12</td>
-                                        <td>现结</td>
-                                        <td>20000.00</td>
-                                        <td>张三</td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" id="" name=""></td>
-                                        <td>大有票务</td>
-                                        <td>2013/1/12</td>
-                                        <td>现结</td>
-                                        <td>20000.00</td>
-                                        <td>张三</td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" id="" name=""></td>
-                                        <td>大有票务</td>
-                                        <td>2013/1/12</td>
-                                        <td>现结</td>
-                                        <td>20000.00</td>
-                                        <td>张三</td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" id="" name=""></td>
-                                        <td>大有票务</td>
-                                        <td>2013/1/12</td>
-                                        <td>现结</td>
-                                        <td>20000.00</td>
-                                        <td>张三</td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" id="" name=""></td>
-                                        <td>大有票务</td>
-                                        <td>2013/1/12</td>
-                                        <td>现结</td>
-                                        <td>20000.00</td>
-                                        <td>张三</td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" id="" name=""></td>
-                                        <td>大有票务</td>
-                                        <td>2013/1/12</td>
-                                        <td>现结</td>
-                                        <td>20000.00</td>
-                                        <td>张三</td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" id="" name=""></td>
-                                        <td>大有票务</td>
-                                        <td>2013/1/12</td>
-                                        <td>现结</td>
-                                        <td>20000.00</td>
-                                        <td>张三</td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" id="" name=""></td>
-                                        <td>大有票务</td>
-                                        <td>2013/1/12</td>
-                                        <td>现结</td>
-                                        <td>20000.00</td>
-                                        <td>张三</td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" id="" name=""></td>
-                                        <td>大有票务</td>
-                                        <td>2013/1/12</td>
-                                        <td>现结</td>
-                                        <td>20000.00</td>
-                                        <td>张三</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                    <tbody>
+                                        <tr>
+                                            <td>MU1</td>
+                                            <td>SHA/PVG/<br>
+                                                SZX/WUH</td>
+                                            <td>PEK</td>
+                                            <td>单程</td>
+                                            <td>所有</td>
+                                            <td>FCYBMH<br>KLQGV</td>
+                                            <td>6.0</td>
+                                            <td>2.0</td>
+                                            <td>成人</td>
+                                            <td>BSP</td>
+                                            <td>自动</td> 
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td>
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td>
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td>
+                                            <td>zhangjian</td>
+                                            <td>已发布</td>
+                                            <td>东方航空\南方航空</td>
+                                        </tr>
+                                        <tr class="hui_bg">
+                                            <td>CA</td>
+                                            <td>SHA/PVG</td>
+                                            <td>全国</td>
+                                            <td>往返</td>
+                                            <td>排除2301<br>/2333</td>
+                                            <td>FCYBMH<br>KLQGV</td>
+                                            <td>6.0</td>
+                                            <td>2.0</td>
+                                            <td>儿童</td>
+                                            <td>B2B</td>
+                                            <td>手动</td>  
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td>
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td>
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td>
+                                            <td>zhangjian</td>
+                                            <td class="red_color">已挂起</td>
+                                            <td>东方航空\南方航空</td>
+                                        </tr>
+                                        <tr class="font_color">
+                                            <td>FM</td>
+                                            <td>排除<br>
+                                                SHA/PVG</td>
+                                            <td>排除PEK</td>
+                                            <td>单程</td>
+                                            <td>所有</td>
+                                            <td>MH</td>
+                                            <td>5.0</td>
+                                            <td>2.0</td>
+                                            <td>不限</td>
+                                            <td>BSP</td>                  
+                                            <td>手动</td> 
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td> 
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td>
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td>
+                                            <td>zhangjian</td>
+                                            <td>已作废</td>
+                                            <td>东方航空\南方航空</td>
+                                        </tr>
+                                        <tr class="hui_bg">
+                                            <td>MU</td>
+                                            <td>SHA/PVG</td>
+                                            <td>全国</td>
+                                            <td>往返</td>
+                                            <td>所有</td>
+                                            <td>G</td>
+                                            <td>6.0</td>
+                                            <td>2.0</td>
+                                            <td>成人</td>
+                                            <td>B2B</td>                  
+                                            <td>手动</td> 
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td>
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td>
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td>
+                                            <td>zhangjian</td>
+                                            <td>已发布</td>
+                                            <td>东方航空\南方航空</td>
+                                        </tr>
+                                        <tr class="font_color">
+                                            <td>CA</td>
+                                            <td>SHA/PVG</td>
+                                            <td>全国</td>
+                                            <td>单程</td>
+                                            <td>所有</td>
+                                            <td>GV</td>
+                                            <td>6.0</td>
+                                            <td>2.0</td>
+                                            <td>成人</td>
+                                            <td>BSP</td>
+                                            <td>手动</td> 
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td>
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td>
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td>
+                                            <td>zhangjian</td>
+                                            <td>已作废</td>
+                                            <td>东方航空\南方航空</td>
+                                        </tr>
+                                        <tr class="hui_bg">
+                                            <td>CA</td>
+                                            <td>&nbsp;</td>
+                                            <td>全国</td>
+                                            <td>单程</td>
+                                            <td>所有</td>
+                                            <td>CYBMH<br>KLQGV</td>
+                                            <td>5.0</td>
+                                            <td>2.0</td>
+                                            <td>儿童</td>
+                                            <td>BSP</td>
+                                            <td>手动</td> 
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td>
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td>
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td>
+                                            <td>zhangjian</td>
+                                            <td class="red_color">已挂起</td>
+                                            <td>东方航空\南方航空</td>
+                                        </tr>
+                                        <tr>
+                                            <td>CA</td>
+                                            <td>&nbsp;</td>
+                                            <td>全国</td>
+                                            <td>单程</td>
+                                            <td>所有</td>
+                                            <td>MH</td>
+                                            <td>6.0</td>
+                                            <td>2.0</td>
+                                            <td>不限</td>
+                                            <td>BSP</td>
+                                            <td>手动</td> 
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td>
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td>
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td>
+                                            <td>zhangjian</td>
+                                            <td>已发布</td>
+                                            <td>东方航空\南方航空</td>
+                                        </tr>
+                                        <tr class="hui_bg">
+                                            <td>CA</td>
+                                            <td>&nbsp;</td>
+                                            <td>全国</td>
+                                            <td>单程</td>
+                                            <td>所有</td>
+                                            <td>G</td>
+                                            <td>6.0</td>
+                                            <td>2.0</td>
+                                            <td>成人</td>
+                                            <td>BSP</td>
+                                            <td>手动</td> 
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td>
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td>
+                                            <td>2010/09/01<br>
+                                                至2012/10/01</td>
+                                            <td>zhangjian</td>
+                                            <td>已发布</td>
+                                            <td>东方航空\南方航空</td>
+                                        </tr>
+                                    </tbody>            
+                                </table>
+                            </div>
                             <div class="grid-table-pagination">
                                 <span class="grid-table-count">
                                     共 <em>132</em> 条记录
@@ -790,14 +480,324 @@
                                     <a class="next" href="#">&nbsp;</a>
                                 </span>
                             </div>
+                        </div>
+
+                        <div class="row set_rule">
+                            <h3>设置规则</h3>
+                            <ul>
+                                <li><label><input type="radio" name="rule_type" value="customize" />自定义</label></li>
+                                <li id="customize" style="display:none;">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4" style="text-align:left;">请选择规则</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><label><input type="checkbox" name="rate_local"/>&nbsp;本地扣率</label></td>
+                                            <td>
+                                                <input type="text" value="2.0"/>
+                                                <input style="width:60px;" data-role="dropdownlist" data-value-field="value" data-text-field="text" data-source="[{'value':'留点','text':'留点'},{'value':'固定','text':'固定'},{'value':'促销','text':'促销'}]"/>
+                                            </td>
+                                            <td><label><input type="checkbox" name="rate_yidi"/>&nbsp;异地扣率</label></td>
+                                            <td>
+                                                <input type="text" value="2.0"/>
+                                                <input style="width:60px;" data-role="dropdownlist" data-value-field="value" data-text-field="text" data-source="[{'value':'留点','text':'留点'},{'value':'固定','text':'固定'},{'value':'促销','text':'促销'}]"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label><input type="checkbox" name="rate_local"/>&nbsp;本地金额</label></td>
+                                            <td>
+                                                <input type="text" value="10.0"/>
+                                                <input style="width:60px;" data-role="dropdownlist" data-value-field="value" data-text-field="text" data-source="[{'value':'留钱','text':'留点'},{'value':'固定','text':'固定'},{'value':'促销','text':'促销'}]"/>
+                                            </td>
+                                            <td><label><input type="checkbox" name="rate_yidi"/>&nbsp;异地金额</label></td>
+                                            <td>
+                                                <input type="text" value="2.0"/>
+                                                <input style="width:60px;" data-role="dropdownlist" data-value-field="value" data-text-field="text" data-source="[{'value':'留钱','text':'留点'},{'value':'固定','text':'固定'},{'value':'促销','text':'促销'}]"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label><input type="checkbox" name="rate_local"/>&nbsp;最低返点</label></td>
+                                            <td>
+                                                <input type="text" value="2.0"/>
+                                            </td>
+                                            <td><label><input type="checkbox" name="rate_yidi"/>&nbsp;最低返钱</label></td>
+                                            <td>
+                                                <input type="text" value="10.0"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label><input type="checkbox" name="rate_local"/>&nbsp;儿童最低返点</label></td>
+                                            <td>
+                                                <input type="text" value="2.0"/>
+                                            </td>
+                                            <td><label><input type="checkbox" name="rate_yidi"/>&nbsp;儿童最低返钱</label></td>
+                                            <td>
+                                                <input type="text" value="10.0"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label><input type="checkbox" name="rate_local"/>&nbsp;最高返点</label></td>
+                                            <td>
+                                                <input type="text" value="2.0"/>
+                                            </td>
+                                            <td><label><input type="checkbox" name="rate_yidi"/>&nbsp;最高返钱</label></td>
+                                            <td>
+                                                <input type="text" value="10.0"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label><input type="checkbox" name="rate_local"/>&nbsp;儿童最高返点</label></td>
+                                            <td>
+                                                <input type="text" value="2.0"/>
+                                            </td>
+                                            <td><label><input type="checkbox" name="rate_yidi"/>&nbsp;儿童最高返钱</label></td>
+                                            <td>
+                                                <input type="text" value="10.0"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label><input type="checkbox" name="rate_local"/>&nbsp;儿童统一返点</label></td>
+                                            <td>
+                                                <input type="text" value="2.0"/>
+                                            </td>
+                                            <td><label><input type="checkbox" name="rate_yidi"/>&nbsp;儿童统一返钱</label></td>
+                                            <td>
+                                                <input type="text" value="10.0"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </li>
+                                <li><label><input type="radio" name="rule_type" value=""/>统一按底价前返返佣</label></li>
+                                <li><label><input type="radio" name="rule_type" value=""/>统一按底价前返+奖励返佣</label></li>
+                                <li><label><input type="radio" name="rule_type" value="" />统一按底价全反</label></li>
+                                <li style="margin-top:20px;"><label><input type="checkbox" name="loss_permit" />不允许亏损</label></li>
+                            </ul>
+                        </div>
+
+                        <div class="row set_customer">
+                            <h3>设置客户</h3>
+                            <table>
+                                <tr>
+                                    <th style="width:80px;">客户组:</th>
+                                    <td>
+                                        <ul class="item">
+                                            <li>
+                                            <label><input type="checkbox" /><span>普通客户组</span></label>
+                                            </li>
+                                            <li>
+                                            <label><input type="checkbox" /><span>B2B客户组</span></label>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>客户类型</th>
+                                    <td>
+                                        <ul class="item">
+                                            <li>
+                                            <label><input type="checkbox" /><span>同行</span></label>
+                                            </li>
+                                            <li>
+                                            <label><input type="checkbox" /><span>采购</span></label>
+                                            </li>
+                                            <li>
+                                            <label><input type="checkbox" /><span>分销</span></label>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>账户类型</th>
+                                    <td>
+                                        <ul class="item">
+                                            <li>
+                                            <label><input type="checkbox" /><span>支付宝</span></label>
+                                            </li>
+                                            <li>
+                                            <label><input type="checkbox" /><span>网银</span></label>
+                                            </li>
+                                        </ul>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>结算周期</th>
+                                    <td>
+                                        <ul class="item">
+                                            <li>
+                                            <label><input type="checkbox" /><span>一周</span></label>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="row  set_customer_view">
+                            <div class="search_title">
+                                <strong>关联客户</strong><em>122</em>
+                                <span class="action">
+                                    <button id="customer_btn" class="btns btn-ac-blue"><i>收回</i><b>︾</b></button>
+                                </span>
+                            </div>
+
+                            <ul id="customer_tab" class="tablist" style="background-color:#F6F6F6;">
+                                <li class="current">
+                                <div class="mtab"> 
+                                    <span>普通客户组</span>
+                                    <span class="rightCover"></span>
+                                </div>
+                                </li>
+
+                                <li>
+                                <div class="mtab gray">
+                                    <span>B2C客户</span>
+                                    <span class="rightCover"></span>
+                                </div>
+                                </li>
+                            </ul>
+                            <div id="customer_view">
+
+                                <div style="padding:5px 20px 5px 50px" class="clearfix">
+                                    输入客户名称 <input type="text" id="" name="">
+                                    <a style="" class="button_important adaptiveButton small" href="javascript:;">
+                                        <span class="left"></span>
+                                        <span class="center">检 索</span>
+                                        <span class="right"></span>
+                                    </a>
+                                    <a style="margin-right:30px" class="button_unimportant adaptiveButton small" href="javascript:;">
+                                        <span class="left"></span>
+                                        <span class="center">清除查询条件</span>
+                                        <span class="right"></span>
+                                    </a>
+                                    <span style="margin-right:10px;float:right" class="required">*勾选排除客户</span>
+                                </div>
+
+                                <table cellspacing="0" cellpadding="0" class="tgrid">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:56px"><input type="checkbox">排除</th>
+                                            <th style="width:85px">客户名称</th>
+                                            <th style="width:95px">创建时间</th>
+                                            <th style="width:280px">账户类型</th>
+                                            <th style="width:62px">余额</th>
+                                            <th style="width:149px">签约经理</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr class="four_bg">
+                                            <td><input type="checkbox" id="" name=""></td>
+                                            <td>大有票务</td>
+                                            <td>2013/1/12</td>
+                                            <td>现结</td>
+                                            <td>20000.00</td>
+                                            <td>张三</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" id="" name=""></td>
+                                            <td>大有票务</td>
+                                            <td>2013/1/12</td>
+                                            <td>现结</td>
+                                            <td>20000.00</td>
+                                            <td>张三</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" id="" name=""></td>
+                                            <td>大有票务</td>
+                                            <td>2013/1/12</td>
+                                            <td>现结</td>
+                                            <td>20000.00</td>
+                                            <td>张三</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" id="" name=""></td>
+                                            <td>大有票务</td>
+                                            <td>2013/1/12</td>
+                                            <td>现结</td>
+                                            <td>20000.00</td>
+                                            <td>张三</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" id="" name=""></td>
+                                            <td>大有票务</td>
+                                            <td>2013/1/12</td>
+                                            <td>现结</td>
+                                            <td>20000.00</td>
+                                            <td>张三</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" id="" name=""></td>
+                                            <td>大有票务</td>
+                                            <td>2013/1/12</td>
+                                            <td>现结</td>
+                                            <td>20000.00</td>
+                                            <td>张三</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" id="" name=""></td>
+                                            <td>大有票务</td>
+                                            <td>2013/1/12</td>
+                                            <td>现结</td>
+                                            <td>20000.00</td>
+                                            <td>张三</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" id="" name=""></td>
+                                            <td>大有票务</td>
+                                            <td>2013/1/12</td>
+                                            <td>现结</td>
+                                            <td>20000.00</td>
+                                            <td>张三</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" id="" name=""></td>
+                                            <td>大有票务</td>
+                                            <td>2013/1/12</td>
+                                            <td>现结</td>
+                                            <td>20000.00</td>
+                                            <td>张三</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" id="" name=""></td>
+                                            <td>大有票务</td>
+                                            <td>2013/1/12</td>
+                                            <td>现结</td>
+                                            <td>20000.00</td>
+                                            <td>张三</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="grid-table-pagination">
+                                    <span class="grid-table-count">
+                                        共 <em>132</em> 条记录
+                                    </span>
+                                    <span>
+                                        <a class="prev" href="#">&nbsp;</a>
+                                    </span>
+                                    <span class="links">
+                                        <a href="#">1</a>
+                                        <a href="#">2</a>
+                                        <a class="current" href="#">3</a>
+                                        <a href="#">4</a>
+                                        <a href="#">5</a>
+                                        <a href="javascript:;">...</a>
+                                        <a href="#">50</a>
+                                    </span>
+                                    <span>
+                                        <a class="next" href="#">&nbsp;</a>
+                                    </span>
+                                </div>
 
 
-                        </div><!-- end of id=customer_view -->
+                            </div><!-- end of id=customer_view -->
 
-                    </div>
-                </div><!-- end of sale_policy -->
-            </div><!-- end of mainContent -->
-        </div>
+                        </div>
+                    </div><!-- end of sale_policy -->
+                </div><!-- end of mainContent -->
     </div>
 
     <div id="extFooter">
@@ -815,7 +815,10 @@
 
         $(function(){
             kendo.init($("body"));
-            $("#tabmenu li").each(function(index){
+
+            var hzScroll = $("#policy_view").niceScroll({touchbehavior:false, cursorcolor:"#b8bdc1", cursoropacitymax:0.6, cursorwidth:8});
+
+            $("#customer_tab li").each(function(index){
                 $(this).hover(function(){
                         if(!$(this).hasClass("current")){
                             $(".mtab",this).removeClass("gray");
@@ -843,10 +846,12 @@
             $("#customer_btn").click(function(){
                 if($("b",this).html() == '︾'){
                     $("#customer_view").hide();
+                    $("#customer_tab").hide();
                     $("b",this).html("︽");
                     $("i",this).html("展开");
                 }else{
                     $("#customer_view").show();
+                    $("#customer_tab").show();
                     $("b",this).html("︾");
                     $("i",this).html("收回");
                 }
