@@ -151,6 +151,8 @@ GridTable.prototype = {
 };
 Collpase.prototype = {
     init:function(){
+        this.container.attr("originHeight",this.container.height());
+
         if(this.getContainerHeight()<this.limitHeight) return this;
         this.render(); 
         this.bindClick();
@@ -158,7 +160,7 @@ Collpase.prototype = {
     },
     render:function(){
         var container = this.container; 
-        this.originHeight = container[0].style.height;
+
         var trigger= this.triggerEle = $('<div class="'+(this.trigger+'_').slice(1,-1)+'"><div /></div>');
         trigger.appendTo(container).show();
         container.css({
@@ -179,7 +181,7 @@ Collpase.prototype = {
     resetHeight:function(){
         if (!this.triggerEle.hasClass(this.triggerexp)){
             this.triggerEle.addClass(this.triggerexp);
-            this.container.height(this.originHeight == ''?'':'100');
+            this.container.height(this.container.height(this.container.attr("originHeight")));
         }
     },
     bindClick:function(){
