@@ -187,7 +187,6 @@ Collpase.prototype = {
         if (!this.triggerEle.hasClass(this.triggerexp)){
             this.triggerEle.addClass(this.triggerexp);
             this.container.css({
-                position: this.container.attr("originPosition"), 
                 //height: this.container.attr("originHeight") + 'px',
                 height: "auto",
                 overflow:''
