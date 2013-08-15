@@ -165,6 +165,9 @@ var Collpase = function(opts){
 };
 Collpase.prototype = {
     init:function(){
+        //this.container.attr("originHeight",this.container.height());
+        this.container.attr("originPosition",this.container.css("position"));
+
         if(this.getContainerHeight()<this.limitHeight) return this;
         this.render(); 
         this.bindClick();
@@ -172,7 +175,7 @@ Collpase.prototype = {
     },
     render:function(){
         var container = this.container; 
-        this.originHeight = container[0].style.height;
+
         var trigger= this.triggerEle = $('<div class="'+(this.trigger+'_').slice(1,-1)+'"><div /></div>');
         trigger.appendTo(container).show();
         container.css({
@@ -187,13 +190,21 @@ Collpase.prototype = {
     setHeight:function(){
         if (this.triggerEle.hasClass(this.triggerexp)){
             this.triggerEle.removeClass(this.triggerexp);
-            this.container.height(this.limitHeight);
+            this.container.css({
+                position: 'relative',
+                height: this.limitHeight + 'px',
+                overflow:'hidden'
+            });
         }
     },
     resetHeight:function(){
         if (!this.triggerEle.hasClass(this.triggerexp)){
             this.triggerEle.addClass(this.triggerexp);
-            this.container.height(this.originHeight == ''?'':'100');
+            this.container.css({
+                //height: this.container.attr("originHeight") + 'px',
+                height: "auto",
+                overflow:''
+            });
         }
     },
     bindClick:function(){

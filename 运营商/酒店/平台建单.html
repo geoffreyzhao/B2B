@@ -13,6 +13,7 @@
     <style type="text/css">
         .fieldName{background:#f5f5f5;color:#333}
         #bookingProduct td{border:1px solid #e0e0e0;border-top-color:#eaeef0;border-bottom-color:#eaeef0;color:#666}
+        .editable.disable{border:none;cursor:default;}
     </style>
 </head>
 <body>
@@ -211,10 +212,16 @@
 </div>
 <div style="margin:30px 0 10px">
     <span class="head">费用明细</span>
-                <span style="float:right">
-                    结算点位：人名币
-                    <span class="important">*预付费用不包含客人在酒店的自行消费的各项杂费。</span>
-                </span>
+        <span style="float:right;padding-left:10px;border-left:1px solid #ccc;margin-left:10px">
+            <a class="button_5 btn_modifyCurrent" href="javascript:;" data='{"target":".wrapdata","cancel":true,"cancelButton":"#btn_cost_cancel","saveButton":"#btn_cost_save"}'>确认成本</a>
+            <a class="button_5" href="javascript:;" id="btn_cost_save" style="display:none">确认</a>
+            <a class="button_5" href="javascript:;" id="btn_cost_cancel" style="display:none">取消</a>
+        </span>
+
+        <span style="float:right">
+            结算点位：人名币
+            <span class="important">*预付费用不包含客人在酒店的自行消费的各项杂费。</span>
+        </span>
 </div>
 <div class="clearfix">
 <div class="hfee">
@@ -337,11 +344,11 @@
 <ul class="fee_row clearfix">
     <li>1</li>
     <li>
-        <input style="width:50px;" type="text" value="780" class="qt"/>
+        <input style="width:50px;" type="text" value="780" class="qt editable disable"/>
     </li>
     <li>100</li>
     <li>
-        <input style="width:50px;" type="text" value="880" class="qt"/>
+        <input style="width:50px;" type="text" value="880" class="qt editable disable"/>
     </li>
     <li>
         <select name="" style="width:60px">
@@ -368,11 +375,11 @@
 <ul class="fee_row clearfix">
     <li>1</li>
     <li>
-        <input style="width:50px;" type="text" value="780" class="qt"/>
+        <input style="width:50px;" type="text" value="780" class="qt editable disable"/>
     </li>
     <li>100</li>
     <li>
-        <input style="width:50px;" type="text" value="880" class="qt"/>
+        <input style="width:50px;" type="text" value="880" class="qt editable disable"/>
     </li>
     <li>
         <select name="" style="width:60px">
@@ -399,11 +406,11 @@
 <ul class="fee_row clearfix">
     <li>1</li>
     <li>
-        <input style="width:50px;" type="text" value="780" class="qt"/>
+        <input style="width:50px;" type="text" value="780" class="qt editable disable"/>
     </li>
     <li>100</li>
     <li>
-        <input style="width:50px;" type="text" value="880" class="qt"/>
+        <input style="width:50px;" type="text" value="880" class="qt editable disable"/>
     </li>
     <li>
         <select name="" style="width:60px">
@@ -430,11 +437,11 @@
 <ul class="fee_row clearfix">
     <li>1</li>
     <li>
-        <input style="width:50px;" type="text" value="780" class="qt"/>
+        <input style="width:50px;" type="text" value="780" class="qt editable disable"/>
     </li>
     <li>100</li>
     <li>
-        <input style="width:50px;" type="text" value="880" class="qt"/>
+        <input style="width:50px;" type="text" value="880" class="qt editable disable"/>
     </li>
     <li>
         <select name="" style="width:60px">
@@ -773,6 +780,43 @@
 
         $("#otherToolTipPanel").click(function(e){e.stopPropagation();});
         $("body").click(function(){$("#otherToolTipPanel").hide();})
+
+        $(".btn_modifyCurrent").click(function(){
+            var opt= $.parseJSON($(this).attr("data"));
+            var tar=$(opt.target);
+            var modifyButton=$(this);
+            if(opt.cancel)
+            {
+                $(opt.cancelButton+','+opt.saveButton).show();
+                modifyButton.hide();
+
+                var arr_tmp=[];
+                tar.each(function(){
+                    arr_tmp.push($(this).clone(true,true));
+                });
+                $(opt.cancelButton).data("oldValue",arr_tmp);
+
+                $(opt.cancelButton).click(function(){
+                    var i=0;
+                    var that=$(this);
+                    tar.each(function(){
+                        $(this).replaceWith(that.data("oldValue")[i]);
+                        i++
+                    })
+                    $(this).unbind("click");
+                    $(opt.cancelButton+','+opt.saveButton).hide();
+                    modifyButton.show();
+                });
+
+                $(opt.saveButton).click(function(){
+                    $("input",tar).addClass("disable").prop("readonly",true);
+                    $(this).unbind("click");
+                    $(opt.cancelButton+','+opt.saveButton).hide();
+                    modifyButton.show();
+                })
+            }
+            $("input",tar).removeClass("disable").removeProp("readonly");
+        });
     })
 </script>
 </body>

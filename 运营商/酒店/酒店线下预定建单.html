@@ -749,11 +749,11 @@
 
 </div>
 
-<div style="border:2px solid #333;padding:10px;display:none" id="jzfsPanel">
+<div style="border:2px solid #ccc;padding:10px;display:none;position:absolute;background:#fff" id="jzfsPanel">
     <table>
         <tr>
-            <td><label><input type="radio" name="jzfs" id="">现结</label></td>
-            <td>
+            <td style="width:80px"><label><input type="radio" name="jzfs" id="">现结</label></td>
+            <td style="width:180px">
                 入住前<select style="width:35px"><option>1</option></select>天<select style="width:50px"><option>12:00</option></select>
             </td>
         </tr>
@@ -776,8 +776,8 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2">
-                <a href="javascript:;" class="button_important adaptiveButton medium">
+            <td colspan="2" style="text-align:right;">
+                <a href="javascript:;" class="button_important adaptiveButton medium" style="margin-right:30px">
                     <span class="left"></span>
                     <span class="center">确 定</span>
                     <span class="right"></span>
@@ -830,7 +830,9 @@
         $("body").click(function(){$("#otherToolTipPanel").hide();})
 
         $("#btn_modifyjztx").click(function(){
-            //$("#jzfsPanel").
+            $("#jzfsPanel").setPosition({tar:$(this),pos:"tc"});
+            $("#jzfsPanel").show();
+            return false;
         })
     })
 </script>
