@@ -7,7 +7,7 @@
  */
 $(function(){
     var dt=new Date().getMilliseconds();
-    $(".popwin").click(function(){
+    $("body").delegate(".popwin","click",function(){
         var tar= $.parseJSON($(this).attr("data"));
         var kendoWindowData=$("#window").data("kendoWindow");
         if(!kendoWindowData)
