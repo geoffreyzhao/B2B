@@ -88,7 +88,6 @@ PopWindow.prototype = {
 function GridTable(trigger, customSettings){
     var kendoWinDefaults = {
         scrollable:false,
-        fixedColumn:[-1],
         pageable:{
             pageSize: 10,
             messages: {
@@ -123,24 +122,10 @@ GridTable.prototype = {
             return this.grid;
         }
     }, 
-    cloneColumn:function(d){
-        console.log(d);
-    }, 
     render:function(){
-        var that = this;
         var customSettings = this.customSettings || eval('('+this.trigger.data('options')+')');
         var opts;
         opts = $.extend( this.kendoWinSettings, customSettings);
-        if(typeof opts.resizable!=='undefined'){
-            opts.dataBound = function(d){
-                that.cloneColumn(d);
-            };
-        }
-        if(typeof opts.resizable!=='undefined'){
-            opts.resizable = function(d){
-                that.cloneColumn(d);
-            };
-        }
         if( typeof opts.dataSource === 'undefined' ){
             throw new Error(this.triggerText + '缺少dataSource属性');
         }else{
