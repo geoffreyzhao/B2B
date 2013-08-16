@@ -126,28 +126,27 @@ GridTable.prototype = {
         var customSettings = this.customSettings || eval('('+this.trigger.data('options')+')');
         var opts;
         opts = $.extend( this.kendoWinSettings, customSettings);
-
         if( typeof opts.dataSource === 'undefined' ){
             throw new Error(this.triggerText + '缺少dataSource属性');
         }else{
             this.grid = this.trigger.kendoGrid( opts ).data('kendoGrid'); 
         }
-        }
-        };
+    }
+};
 
-        // 定高函数：超过3行时隐藏
-        var Collpase = function(opts){
-        /*
-        * container: Element
-        * limitHeight : NUM
-        * trigger : Element
-        * triggerexp : the className while it is expanded
-            * */
-        this.limitHeight = 100;
-        this.triggerexp = 'col-expp';
-        this.trigger = '.content-collapse';
-        $.extend(this,opts);
-        this.container = $(this.container);
+// 定高函数：超过3行时隐藏
+var Collpase = function(opts){
+    /*
+    * container: Element
+    * limitHeight : NUM
+    * trigger : Element
+    * triggerexp : the className while it is expanded
+    * */
+    this.limitHeight = 100;
+    this.triggerexp = 'col-expp';
+    this.trigger = '.content-collapse';
+    $.extend(this,opts);
+    this.container = $(this.container);
 };
 Collpase.prototype = {
     init:function(){
@@ -696,12 +695,12 @@ $.fieldsetFormat = function(type,settings){
                     arr.push(obj);
                 });
 
-                output[i.prop('name')] = arr;
+                output[i.attr('name')] = arr;
             }
 
         } else {
             var obj = loop(i.find('input,select,textarea'),i.prop('name'));
-            output[i.prop('name')] = obj;
+            output[i.attr('name')] = obj;
         }
 
     });
