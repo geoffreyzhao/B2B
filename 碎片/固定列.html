@@ -12,10 +12,6 @@
 
         <style type="text/css">
             /*.fixable {position:absolute;width:80px;height:1px;border-left:1px solid red;border-bottom:1px solid red;}*/
-            .fixable {position:relative;1background-color:#fff;z-index:100;}
-            .fixable a {color:#0066CC;padding:3px;}
-            .fixable a:hover {text-decoration:underline;}
-            .hightlight {background-color:#FFFFDB;}
         </style>
         <script type="text/javascript">
             $(function(){
@@ -45,12 +41,19 @@
                     });
                 });
                 */
-                var f = new FixCol({wrapClass:".scroll",hightlightClick:true,width:200});
+                f = new FixCol({wrapClass:".scroll",hightlightClick:true,width:100});
+                f2 = new FixCol({wrapClass:".scroll2",hightlightClick:true,width:100,autoWrap:true});
 
                 window.test_resize = function(){
                     f.resize();
                 };
+
+                $(".scroll2 a").click(function(){
+                    console.log("click a ");
+                });
             });
+
+            
         </script> 
     </head>
     <body style="background-color:#fff;">
@@ -361,7 +364,14 @@
                                 </td>
                             </tr>
                         </tbody>
-                        <!--
+                    </table>
+                </div>
+
+
+
+                <h2>示例 2 自动包裹</h2>
+                <div class="scroll2" style="overflow-x:scroll;overflow-y:hidden;">
+                    <table class="tgrid" style="width:1200px;">
                         <tbody>
                             <tr class="pink_bg">
                                 <td><input type="checkbox" name="rule"></td>
@@ -388,7 +398,7 @@
                                 <td>普通</td>
                                 <td>张三</td>
                                 <td>提交</td>
-                                <td class="fixable">
+                                <td>
                                         <a href="javascript:void(0);">受理</a>
                                 </td>
                             </tr>
@@ -412,7 +422,7 @@
                                 <td>普通</td>
                                 <td>张三</td>
                                 <td>提交</td>
-                                <td class="fixable">
+                                <td>
                                         <a href="javascript:void(0);">取消受理</a>
                                 </td>
                             </tr>
@@ -436,7 +446,7 @@
                                 <td>普通</td>
                                 <td>张三</td>
                                 <td>提交</td>
-                                <td class="fixable">
+                                <td>
                                         <a href="javascript:void(0);">受理</a>
                                 </td>
                             </tr>
@@ -460,7 +470,7 @@
                                 <td>普通</td>
                                 <td>张三</td>
                                 <td>提交</td>
-                                <td class="fixable">
+                                <td>
                                         <a href="javascript:void(0);">受理</a>
                                 </td>
                             </tr>
@@ -484,7 +494,7 @@
                                 <td>普通</td>
                                 <td>张三</td>
                                 <td>提交</td>
-                                <td class="fixable">
+                                <td>
                                         <a href="javascript:void(0);">受理</a>
                                 </td>
                             </tr>
@@ -508,7 +518,7 @@
                                 <td>普通</td>
                                 <td>张三</td>
                                 <td>提交</td>
-                                <td class="fixable">
+                                <td>
                                         <a href="javascript:void(0);">受理</a>
                                 </td>
                             </tr>
@@ -532,7 +542,7 @@
                                 <td>普通</td>
                                 <td>张三</td>
                                 <td>提交</td>
-                                <td class="fixable">
+                                <td>
                                         <a href="javascript:void(0);">受理</a>
                                 </td>
                             </tr>
@@ -556,7 +566,7 @@
                                 <td>普通</td>
                                 <td>张三</td>
                                 <td>提交</td>
-                                <td class="fixable">
+                                <td>
                                         <a href="javascript:void(0);">受理</a>
                                 </td>
                             </tr>
@@ -580,7 +590,7 @@
                                 <td>普通</td>
                                 <td>张三</td>
                                 <td>提交</td>
-                                <td class="fixable">
+                                <td>
                                         <a href="javascript:void(0);">受理</a>
                                 </td>
                             </tr>
@@ -604,15 +614,13 @@
                                 <td>普通</td>
                                 <td>张三</td>
                                 <td>提交</td>
-                                <td class="fixable">
+                                <td>
                                         <a href="javascript:void(0);">受理</a>
                                 </td>
                             </tr>
                         </tbody>
-                        -->
                     </table>
                 </div>
-
             </div>
         </div>
 
