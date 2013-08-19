@@ -3,52 +3,23 @@
     <head>
         <meta charset="utf-8"/>
         <title>表格浮动</title>
-        <meta http-equiv="X-UA-Compatible" content="edge" />
         <link rel="stylesheet" href="/static/css/kendo.common.css" />
         <link rel="stylesheet" href="/static/css/kendo.gray.css" />
         <link rel="stylesheet" href="/static/css/kendo.reset.css" />
 
-        <link href="../../static/css/common.css" rel="stylesheet" type="text/css" />
-        <link href="../../static/css/b2b.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
 
         <script type="text/javascript" src="/static/js/jquery.min.js"></script>
-        <script type="text/javascript" src="/static/js/jquery.mousewheel.js"></script>
         <script type="text/javascript" src="/static/js/kendo.web.js"></script>
         <script type="text/javascript" src="/static/js/global.js"></script>
-        <script type="text/javascript" src="fixcol.js"></script>
+        <script type="text/javascript" src="/static/js/fixcol.js"></script>
 
         <style type="text/css">
-            /*.fixable {position:absolute;width:80px;height:1px;border-left:1px solid red;border-bottom:1px solid red;}*/
             .priror {position:relative;}
         </style>
         <script type="text/javascript">
             $(function(){
-            /*
-                $(".fixable").each(function(index){
-                    var w = $(this).width();
-                    console.log(w);
-                    var pos = $(this).position();
-                    console.log(pos);
-                    var cw = $(".scroll").width();
-                    console.log(cw);
-                    $(this).css({
-                        left: "-" + (pos.left - cw + w) + 'px'
-                    })
-                });
-
-                var origin_pos = $(".fixable:eq(0)").position();
-                var origin_left = origin_pos.left;
-
-                $(".scroll").scroll(function(){
-                    var scrollLeft = parseInt($(this).scrollLeft());
-                    var pos = $(".fixable:eq(0)").position();
-                    var left = parseInt($(".fixable:eq(0)").css("left"));
-
-                    $(".fixable").css({
-                        left : left + (origin_left - pos.left) + 'px'   
-                    });
-                });
-                */
                 f = new FixCol({wrapClass:".scroll",hightlightClick:true,width:100});
                 f2 = new FixCol({wrapClass:".scroll2",hightlightClick:true,width:100,autoWrap:true});
 
@@ -57,11 +28,12 @@
                 };
 
                 $(".scroll2 a").click(function(){
-                    console.log("click a ");
+                    console.log("click scroll2 a ");
                 });
 
 
-new GridTable('.block2 .grid-table',{
+
+new GridTable('#g2 .grid-table',{
 dataSource: [
 {
             c1:222,
@@ -295,10 +267,25 @@ dataSource: [
             c9:"张三"
             }
 ], 
+
+columns: [
+            { width:300 },
+            { width:180 },
+            { width:180 },
+            { width:120 },
+            { width:120 },
+            { width:180 },
+            { width:180 }
+        ],
+
     scrollable:true,
+    //height:300,
     dataBound:function(){
         console.log('bind');
-        var m = new FixCol({wrapClass:".block",scrollClass:".k-grid-content",hightlightClick:true,width:100,autoWrap:true});
+        $("a",this.tbody).click(function(){
+            console.log("click GridTable a ");
+        });
+        var m = new FixCol({wrapClass:"#g2",scrollClass:".k-grid-content",hightlightClick:true,width:100,autoWrap:true});
     },
         rowTemplate: kendo.template($("#block2-grid-row-template").html())
     }).init(); 
@@ -403,9 +390,44 @@ dataSource: [
 
         <div id="container" style="margin-top:0px;">
             <div id="mainContent">
-                <h2>例子1 HTML 页面表格</h2>
+                <pre>
+                    <code>
+    defaults : {
+		wrapClass: ".scroll",  // 包裹元素
+        scrollClass: "",       // 滚动元素 ，如果包裹元素和滚动元素为同一个，可以设置为空
+        autoWrap : true,//自动包裹,默认true ,则自动产生包裹元素最后列的元素 div 中
+		hightlightClick: false,    //是否启用 行鼠标点击 高亮并选中，默认将选择改行中的 checkbox , 如果希望覆盖默认选择中行为，则传如自定义函数即可
+        hightlightCallback:function(event){
+            $("input[type='checkbox']",event.currentTarget).each(function(){
+                $(this).prop("checked",!$(this).prop("checked"));
+            });
+        },
+        width:80, // 固定列宽度
+
+        //奇偶数 换色，一般不需要配置
+        rowBgColor:{
+            thead:{
+               even:"#e4e4e4",
+               odd:"#e4e4e4"
+            },
+            tbody:{
+                even: "#ffffff",
+                odd:"#f0f0f0"
+            }
+        },
+        //固定列做边框色值
+        borderLeft:"1px solid #E0E0E0"
+	}
+
+    调用范例:
+            var f = new FixCol({wrapClass:".scroll",hightlightClick:true,width:100});
+            var f2 = new FixCol({wrapClass:".scroll2",hightlightClick:true,width:100,autoWrap:true});
+            var m = new FixCol({wrapClass:"#g2",scrollClass:".k-grid-content",hightlightClick:true,width:100,autoWrap:true});
+                    </code>
+                </pre>
+                <h2>示例1 HTML 页面表格</h2>
                 <button type="submit" name="a" onclick="test_resize();">重新适应</button>
-                <div class="scroll" >
+                <div class="scroll" style="position:relative;">
                     <table style="width:120%;" class="tgrid">
                         <thead>
                             <tr>
@@ -706,7 +728,7 @@ dataSource: [
 
 
                 <h2>示例 2 自动包裹</h2>
-                <div class="scroll2" style="overflow-x:scroll;overflow-y:hidden;">
+                <div class="scroll2" style="position:relative;overflow-x:scroll;overflow-y:hidden;">
                     <table class="tgrid" style="width:1200px;">
                         <tbody>
                             <tr class="pink_bg">
@@ -962,22 +984,18 @@ dataSource: [
                 <h2>示例3 动态表格 GridTable 封装</h2>
                 <script type="text/x-kendo-template" id="block2-grid-row-template">
                     <tr>
-                        # kendo.logToConsole(data) #
                         <td>#= data.c1 #</td>
                         <td>#= data.c2 #</td>
                         <td>#= data.c2 #</td>
                         <td>#= data.c2 #</td>
                         <td><span class="text1">#= data.c3 #</span></td>
                         <td>#= data.c4 #</td>
-                        <td>#= data.c5 #</td>
+                        <td><a href="javascript:void(0)">#= data.c1 #</a></td>
                     </tr>
                 </script>
 
-                <div class="block block2" style="overflow-x:auto;">
-                    <div class="block-header">
-                        <button class="btns btn-ac-blue">导出Excel</button> 
-                    </div> 
-                    <table class="grid-table" style="width:1500px;">
+                <div id="g2">
+                    <table class="grid-table" >
                         <tr class="thead">
                             <th >订单号</th> 
                             <th >客户名称</th> 
