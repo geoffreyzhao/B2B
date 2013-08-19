@@ -12,11 +12,13 @@
 <link rel="stylesheet" href="/static/css/finance.css" />
 
 <script type="text/javascript" src="/static/js/vendor/jquery.min.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.mousewheel.js"></script>
 <script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
 <script type="text/javascript" src="/static/js/kendo.web.js"></script>
 <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
 <script type="text/javascript" src="/static/js/global.js"></script>
 <script type="text/javascript" src="/static/js/finance.js"></script>
+        <script type="text/javascript" src="/碎片/fixcol.js"></script>
 <!--[if lt IE 8]>
     <link rel="stylesheet" href="/static/css/ie.css" />
     <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script>
@@ -174,7 +176,7 @@
         <span style="color:#aaa">&nbsp;|&nbsp;</span>
         <button class="btns btn-ac-blue">导出Excel</button> 
     </div> 
-    <table class="grid-table">
+    <table class="grid-table2">
         <tr class="thead">
             <th>
                 <input type="checkbox" class="checkall" /> 
@@ -233,7 +235,7 @@ $(function(){
         template:'#ac-byrecharge-batch-template'
     }).init();
 
-    new GridTable('.block2 .grid-table',{
+    new GridTable('.block2 .grid-table2',{
         columns: [
             { width:30 },
             { width:80 },
@@ -252,6 +254,9 @@ $(function(){
         ],
         resizable: true,
         scrollable:true,
+        dataBound:function(){
+            //var m = new FixCol({wrapClass:".block2",scrollClass:".k-grid-content",hightlightClick:true,width:100,autoWrap:true});
+        },
         dataSource: [{
             c1:222,
             c2:333,
