@@ -48,7 +48,7 @@
             <span class="center">取 消</span>
             <span class="right"></span>
         </a>
-        <a href="javascript:;" class="button_secondary adaptiveButton  popwin" data='{"content":"$(\"#confirmBookingPopWin\").html()","width":468,"height":128,"title":"提示","contentFunction":true}' style="margin:0">
+        <a href="javascript:;" class="button_secondary adaptiveButton small popwin" data='{"content":"$(\"#confirmBookingPopWin\").html()","width":480,"height":280,"title":"提示","contentFunction":true}' style="margin:0">
             <span class="left"></span>
             <span class="center">退订单</span>
             <span class="right"></span>
@@ -1385,24 +1385,71 @@
 <script type="text/html" id="confirmBookingPopWin">
     <table>
         <tr>
-            <td><label><input type="radio" name="refundType" id="">扣除全部</label></td>
+            <td><label><input type="radio" name="refundType" id="" onclick="showPriceDetailTbl(false)">扣除全部</label></td>
             <td><span class="important">*</span>扣除全部房费，不包含增值服务费用。</td>
         </tr>
         <tr>
-            <td><label><input type="radio" name="refundType" id="">扣除首晚</label></td>
+            <td><label><input type="radio" name="refundType" id="" onclick="showPriceDetailTbl(false)">扣除首晚</label></td>
             <td><span class="important">*</span>扣除全部房费，不包含增值服务费用。</td>
         </tr>
         <tr>
-            <td><label><input type="radio" name="refundType" id="">全退</label></td>
+            <td><label><input type="radio" name="refundType" id="" onclick="showPriceDetailTbl(false)">全退</label></td>
             <td><span class="important">*</span>退还全部已支付金额。</td>
         </tr>
         <tr>
-            <td><label><input type="radio" name="refundType" id="">提前离店</label></td>
+            <td><label><input type="radio" name="refundType" id="" onclick="showPriceDetailTbl(true)">提前离店</label></td>
             <td><span class="important">*</span>退还间夜费，和未使用增值服务费。</td>
         </tr>
     </table>
-    <div>
-        /*还没有完成table*/
+    <div id="tqld" style="display:none">
+        <table class="priceDetail">
+            <thead>
+                <tr>
+                    <td class="priceDetailSubHeadB">房型</td>
+                    <td class="priceDetailSubHeadB">选择</td>
+                    <td class="priceDetailSubHeadB">日期</td>
+                    <td class="priceDetailSubHeadB">数量</td>
+                    <td class="priceDetailSubHeadB">底价</td>
+                    <td class="priceDetailSubHeadB">加价</td>
+                    <td class="priceDetailSubHeadB">卖价</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="4" style="vertical-align:middle;text-align:center">商务标准房</td>
+                    <td><input type="checkbox" name="" id=""></td>
+                    <td>7/4 四</td>
+                    <td>1</td>
+                    <td>780</td>
+                    <td>100</td>
+                    <td class="salePrice">880</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="" id=""></td>
+                    <td>7/5 五</td>
+                    <td>1</td>
+                    <td>780</td>
+                    <td>100</td>
+                    <td class="salePrice">880</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="" id=""></td>
+                    <td class="weekend">7/6 六</td>
+                    <td>1</td>
+                    <td>780</td>
+                    <td>100</td>
+                    <td class="salePrice">880</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="" id=""></td>
+                    <td class="weekend">7/7 日</td>
+                    <td>1</td>
+                    <td>780</td>
+                    <td>100</td>
+                    <td class="salePrice">880</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <div style="text-align:right;margin:20px 20px 0 0">
         <a href="javascript:;" class="button_important adaptiveButton medium" style="margin:0">
@@ -1573,6 +1620,28 @@
 
         kendo.init($("body"));
     })
+
+    function showPriceDetailTbl(bool_flag)
+    {
+        var tqldTbl=$("#tqld");
+        var popwin=$("#window").data("kendoWindow");
+        if(bool_flag)
+        {
+            if(tqldTbl.css("display")=="none")
+            {
+                tqldTbl.show();
+                popwin.setOptions({height:popwin.options.height+tqldTbl.height()});
+            }
+        }
+        else
+        {
+            if(tqldTbl.css("display")!="none")
+            {
+                tqldTbl.hide();
+                popwin.setOptions({height:popwin.options.height-tqldTbl.height()});
+            }
+        }
+    }
 </script>
 
 <script type="text/x-kendo-template" id="ddlTemplate">
