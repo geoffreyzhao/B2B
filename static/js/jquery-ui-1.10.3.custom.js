@@ -360,6 +360,7 @@ function Datepicker() {
 		yearSuffix: "" // Additional text to append to the year in the month headers
 	};
 	this._defaults = { // Global defaults for all the date picker instances
+        showDay:false,// by shaotian.hu
 		showOn: "focus", // "focus" for popup on focus,
 			// "button" for trigger button, or "both" for either
 		showAnim: "fadeIn", // Name of jQuery animation for popup
@@ -453,6 +454,12 @@ $.extend(Datepicker.prototype, {
 		} else if (inline) {
 			this._inlineDatepicker(target, inst);
 		}
+
+        //by shaotian.hu
+        if(settings.showDay){
+            var dayWrapper= inst.dayWrapper = $('<b class="ui-datepicker-daywrapper" />');
+            $(target).after(dayWrapper);
+        }
 	},
 
 	/* Create a new instance object. */
@@ -1856,6 +1863,11 @@ $.extend(Datepicker.prototype, {
 			return startDate;
 	},
 
+    // by shaotian.hu
+    _getDay: function(inst){
+        return new Date(this._getDate(inst)).getDay();
+    },
+
 	/* Attach the onxxx handlers.  These are declared statically so
 	 * they work with static code transformers like Caja.
 	 */
@@ -1878,6 +1890,12 @@ $.extend(Datepicker.prototype, {
 				},
 				selectDay: function () {
 					$.datepicker._selectDay(id, +this.getAttribute("data-month"), +this.getAttribute("data-year"), this);
+                    // by shaotian.hu
+                    if(inst.settings.showDay){
+                        var week = ['周日','周一','周二','周三','周四','周五','周六'];
+                        var index = $.datepicker._getDay(inst);
+                        inst.dayWrapper.text(week[index]);
+                    }
 					return false;
 				},
 				selectMonth: function () {
@@ -2009,7 +2027,10 @@ $.extend(Datepicker.prototype, {
 					(/all|right/.test(cornerClass) && row === 0 ? (isRTL ? prev : next) : "") +
 					this._generateMonthYearHeader(inst, drawMonth, drawYear, minDate, maxDate,
 					row > 0 || col > 0, monthNames, monthNamesShort) + // draw month headers
-					"</div><div class='ui-datepicker-calendar-wrap'><table class='ui-datepicker-calendar'><thead>" +
+					"</div><div class='ui-datepicker-calendar-wrap" +
+                    // by shaotian.hu
+                       ' ui-datepicker-calendar-wrap-m' + drawMonth +
+                    "'><table class='ui-datepicker-calendar'><thead>" +
 					"<tr>";
 				thead = (showWeek ? "<th class='ui-datepicker-week-col'>" + this._get(inst, "weekHeader") + "</th>" : "");
 				for (dow = 0; dow < 7; dow++) { // days of the week
@@ -2083,6 +2104,8 @@ $.extend(Datepicker.prototype, {
 	_generateMonthYearHeader: function(inst, drawMonth, drawYear, minDate, maxDate,
 			secondary, monthNames, monthNamesShort) {
 
+                //shaotian.hu
+                //console.log(secondary);
 		var inMinYear, inMaxYear, month, years, thisYear, determineYear, year, endYear,
 			changeMonth = this._get(inst, "changeMonth"),
 			changeYear = this._get(inst, "changeYear"),
@@ -2375,6 +2398,9 @@ $.fn.datepicker = function(options){
 		return $.datepicker["_" + options + "Datepicker"].
 			apply($.datepicker, [this[0]].concat(otherArgs));
 	}
+
+    // console.log(options);
+
 	return this.each(function() {
 		typeof options === "string" ?
 			$.datepicker["_" + options + "Datepicker"].
