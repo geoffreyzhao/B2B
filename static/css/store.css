@@ -76,7 +76,12 @@
 body{
     background:url(../images/store/r2.png) repeat-x;
 }
+hr{
+    margin:20px 0;
+    border-bottom:1px solid #ddd;
+}
 .main-wrapper{
+    font-family:sans-serif;
     font-size:12px;
     background:url(../images/store/l2.jpg) no-repeat 50% 0;
 }
@@ -115,6 +120,9 @@ body{
 .main-links a{
     color:#6d6d6d;
 }
+.main-links a:hover{
+    text-decoration:none;
+}
 .main-nav{
     height:40px;
     line-height:40px;
@@ -144,11 +152,13 @@ body{
 .main-nav a:hover{
     text-decoration:none;
     background-color:#bf2f17;
+    color:#fff;
 }
 .main-nav .active a{
     background-color:#bf2f17;
     position:relative;
     z-index:1;
+    color:#fff;
 }
 .main-body{
     width:980px;
@@ -212,6 +222,32 @@ body{
     padding:0 20px;
 }
 
+.backToTop {
+    display: none;
+    width: 80px;
+    height: 80px;
+    background:url(../images/store/back-top.png) no-repeat;
+    background-color: #000;
+    color: transparent;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+    _position: absolute;
+    right: 10px;
+    bottom: 100px;
+    _bottom: "auto";
+    cursor: pointer;
+    /*
+    opacity: .6;
+    filter: Alpha(opacity=60);
+    */
+}
+.backToTop:hover {
+    color: transparent;
+    background-position:-80px 0px;
+}
+
+
 /* 日历样式 */
 .datepicker {background:url(../images/store/i8.png) no-repeat 97% center;} 
 .ui-datepicker {background:#ef633d none;font-size:12px;padding:5px;}
@@ -239,6 +275,9 @@ body{
     color:#999;
     background-color:#f1f1f1;
 }
+#ui-datepicker-div{
+    box-shadow:0px 2px 10px #777;
+}
 #ui-datepicker-div .ui-datepicker-calendar{
     width:100%;
     margin:0 !important;
@@ -249,9 +288,9 @@ body{
 .ui-datepicker-calendar td span{
     text-align:center;
     display:block;
-    line-height:24px;
-    height:24px;
-    width:24px;
+    line-height:28px;
+    height:28px;
+    width:28px;
     margin:0 auto;
     padding:0;
 }
@@ -259,9 +298,9 @@ body{
     margin:0 auto;
     display:block;
     text-align:center;
-    line-height:24px;
-    height:24px;
-    width:24px;
+    line-height:28px;
+    height:28px;
+    width:28px;
     padding:0;
 }
 .ui-datepicker-calendar-wrap{
@@ -271,25 +310,40 @@ body{
 }
 
 .ui-datepicker-calendar-wrap-m0{
-    background-position:50% 40px;
+    background-position:50% 0px;
 }
 .ui-datepicker-calendar-wrap-m1{
-    background-position:50% -250px;
+    background-position:50% -200px;
 }
 .ui-datepicker-calendar-wrap-m2{
-    background-position:50% -540px;
+    background-position:50% -400px;
 }
 .ui-datepicker-calendar-wrap-m3{
-    background-position:50% -830px;
+    background-position:50% -600px;
 }
 .ui-datepicker-calendar-wrap-m4{
-    background-position:50% -1120px;
+    background-position:50% -800px;
 }
 .ui-datepicker-calendar-wrap-m5{
-    background-position:50% -1410px;
+    background-position:50% -1000px;
 }
 .ui-datepicker-calendar-wrap-m6{
-    background-position:50% -1700px;
+    background-position:50% -1200px;
+}
+.ui-datepicker-calendar-wrap-m7{
+    background-position:50% -1400px;
+}
+.ui-datepicker-calendar-wrap-m8{
+    background-position:50% -1600px;
+}
+.ui-datepicker-calendar-wrap-m9{
+    background-position:50% -1800px;
+}
+.ui-datepicker-calendar-wrap-m10{
+    background-position:50% -2000px;
+}
+.ui-datepicker-calendar-wrap-m11{
+    background-position:50% -2200px;
 }
 
 /* 日历头 */
@@ -323,6 +377,12 @@ body{
     height:11px;
     width:6px;
     background: url(../images/store/s1.png) no-repeat;
+}
+.ui-state-disabled.ui-datepicker-prev .ui-icon{
+    background-position:0 0 !important;
+}
+.ui-state-disabled.ui-datepicker-next .ui-icon{
+    background-position:-6px 0px !important;
 }
 .ui-datepicker-prev-hover .ui-icon{
     background-position:0 -11px;
@@ -379,9 +439,9 @@ body{
     font-weight: normal;
 }
 .ui-datepicker-calendar .ui-state-hover{
-    height:22px;
-    line-height:22px;
-    width:22px;
+    height:26px;
+    line-height:26px;
+    width:26px;
     border:1px solid #ccc;
 }
 .ui-datepicker-calendar .ui-state-highlight{
@@ -392,43 +452,35 @@ body{
 }
 
 .fastival {
+    height:26px;
+    width:28px;
     text-indent:-1000em;
     display:block;
-    width:24px;
-    margin-top:2px;
-    height:22px;
     border:none;
     cursor:pointer;
-    background: url(../images/sprite/holiday.png) no-repeat 0px 0;
+    background-image:url(../images/store/s2.png) !important;
+    background-repeat:no-repeat;
 }
-.fastival.ui-state-hover {
+.ui-state-hover .fastival{
+    margin-top:-1px;
+    margin-left:-1px;
     border:none;
 }
-.today { background-position : 0px 0px; }
-.yuandan { background-position : 0px -32px;}
-.chuxi { background-position : 0px -64px;}
-.chunjie { background-position : 0px -98px;}
-.yuanxiao { background-position : 0px -130px;}
-.qingming { background-position : 0px -162px;}
-.wuyi { background-position : 0px -194px;}
-.duanwu { background-position : 0px -226px;}
-.zhongqiu { background-position : 0px -258px;}
-.guoqing { background-position : 0px -290px;}
+.today { background-position : 50% 0px !important; }
+.yuandan { background-position : 50% -30px !important;}
+.chuxi { background-position : 50% -60px !important;}
+.chunjie { background-position : 50% -90px !important;}
+.yuanxiao { background-position : 50% -120px !important;}
+.qingming { background-position : 50% -150px !important;}
+.wuyi { background-position : 50% -180px !important;}
+.duanwu { background-position : 50% -210px !important;}
+.zhongqiu { background-position : 50% -240px !important;}
+.guoqing { background-position : 50% -270px !important;}
 
 .ui-state-highlight .today{
-    background-position:-30px 0 !important;
+    background-color:#ff6500;
 }
 
-.today.ui-state-hover { background: url(../images/sprite/holiday.png) no-repeat 0px 0;}
-.yuandan.ui-state-hover { background: url(../images/sprite/holiday.png) no-repeat 0px -32px;}
-.chuxi.ui-state-hover { background: url(../images/sprite/holiday.png) no-repeat 0px -64px;}
-.chunjie.ui-state-hover { background: url(../images/sprite/holiday.png) no-repeat 0px -98px;}
-.yuanxiao.ui-state-hover { background: url(../images/sprite/holiday.png) no-repeat 0px -130px;}
-.qingming.ui-state-hover { background: url(../images/sprite/holiday.png) no-repeat 0px -162px;}
-.wuyi.ui-state-hover {  background: url(../images/sprite/holiday.png) no-repeat 0px -194px;}
-.duanwu.ui-state-hover { background: url(../images/sprite/holiday.png) no-repeat 0px -226px;}
-.zhongqiu.ui-state-hover { background: url(../images/sprite/holiday.png) no-repeat 0px -258px;}
-.guoqing.ui-state-hover { background: url(../images/sprite/holiday.png) no-repeat 0px -290px;}
 
 
 .row { *zoom: 1; }
@@ -441,7 +493,7 @@ a:hover{ color:#f1634c;}
 .pull-left {float:left;}
 
 
-
+/* 通用button*/
 .adaptiveButton{display:inline-block;margin:0 2px;vertical-align:middle; cursor:pointer;}
 .adaptiveButton:hover{ text-decoration:none;}
 .adaptiveButton .center{padding:0 30px; color:#ffffff;}
@@ -460,6 +512,19 @@ a:hover{ color:#f1634c;}
 .mediumOrange_btn:hover .center{background:url("../images/store/big_btn.png") 0 -380px repeat-x;}
 .mediumOrange_btn:hover .right{background:url('../images/store/big_btn.png') 0 -416px no-repeat;width:5px}
 
+/* 通用翻页*/
+.pagination,.paging{ width:100%; float:right; margin:10px 0;}
+.pagination div,.paging div{ float:right; height:30px; line-height:30px;}
+.pagination div em,.paging div em{ color:#e94749; font-weight:bold;}
+.pagination ul,.paging ul{ margin:0 10px 0 20px; float:right;}
+.pagination ul li,.paging ul li{ float:left; margin-left:10px;}
+.pagination ul li a,.paging ul li a{ display:inline-block; padding:5px 8px; border:1px solid #ccd5de; color:#e94749;}
+.pagination ul li a:hover,.pagination .present,.paging .present{ color:#fff; text-decoration:none; cursor:pointer; background:#e94749; border:1px solid #e94749;}
+.pagination ul li span{ color:#e94749; font-size:16px; font-weight:bold;}
+.pagination .disabled{ color:#ccd5de;}
+.pagination .disabled:hover{ color:#ccd5de; background:none; border:1px solid #ccd5de; cursor:default;}
+.paging ul li a:hover{ background:#f6f6f6; text-decoration:none; color:#e94749;}
+.paging .present:hover{ background:#e94749; color:#fff;}
 
 
 
@@ -488,10 +553,10 @@ a:hover{ color:#f1634c;}
 .range_tab{ width:90%; height:auto; margin-top:15px;}
 .range_tab td{ height:43px;}
 .range_tab td input{ width:195px;border:1px solid #ccc; height:30px; line-height:30px; padding-left:3px;}
-.range_tab i{ width:25px; height:10px; border-top:1px solid #cccccc; border-right:1px solid #cccccc; display:inline-block;}
-.range_tab em{ padding:3px; height:13px; line-height:13px; display:inline-block; border:1px solid #cccccc; float:right; margin-left:15px; cursor:pointer;}
-.range_tab em:hover{ background:#ff6500; color:#fff; border:1px solid #ff6500;}
-.range_tab span{ width:25px; height:10px; border-bottom:1px solid #cccccc; border-right:1px solid #cccccc; display:inline-block;}
+.range_tab i,.range_type i{ width:25px; height:10px; border-top:1px solid #cccccc; border-right:1px solid #cccccc; display:inline-block;}
+.range_tab em,.range_type em{ padding:3px; height:13px; line-height:13px; display:inline-block; border:1px solid #cccccc; float:right; margin-left:15px; cursor:pointer;}
+.range_tab em:hover,.range_type em:hover{ background:#ff6500; color:#fff; border:1px solid #ff6500;}
+.range_tab span,.range_type span{ width:25px; height:10px; border-bottom:1px solid #cccccc; border-right:1px solid #cccccc; display:inline-block;}
 .specialAndInquiries{margin-top:20px;}
 .preference{ width:660px; height:auto; margin-right:15px; float:left;}
 .showImg{ width:100%; margin-top:15px;}
@@ -553,8 +618,8 @@ a:hover{ color:#f1634c;}
 .hotel_tab td input{ width:210px; height:22px; padding-left:3px;}
 .hotel_tab td:first-child{ text-align:right;}
 .odds_show{ width:100%; margin-top:20px;}
-.odds_show dl{ width:150px; margin-right:55px; float:left; position:relative;}
-.odds_show dl dt{ float:left; width:150px; height:150px; margin-bottom:5px;}
+.odds_show dl{ width:160px; margin-right:44px; float:left; position:relative;}
+.odds_show dl dt{ float:left; width:160px; height:120px; margin-bottom:5px;}
 .odds_show dl em{ width:25px; height:35px; display:inline-block; background:url(../images/sprite/gift.png) no-repeat; position:absolute; top:-2px; left:120px;}
 .team{ width:auto;}
 .team a{ text-decoration:underline; color:#ff6500;}
@@ -589,6 +654,10 @@ a:hover{ color:#f1634c;}
     text-shadow: none;
 }
 
+.hitext{
+    color:#ef482d;
+}
+
 .muted {
   color: #999999;
 }
@@ -596,11 +665,24 @@ a:hover{ color:#f1634c;}
 .large_txt {height:30px;line-height:30px;font-size:18px;font-weight:bold;}
 .gray-border {border:1px solid #e1e1e1;}
 .gray-border-left {border-left:1px solid #e1e1e1;}
+.gray-border-right {border-right:1px solid #e1e1e1;}
 
-.btn_area {position:absolute;right:20px;top:60px;}
+.btn_area {position:absolute;right:20px;top:160px;}
 
 .top_title {height:40px;border-bottom:1px solid #e1e1e1;}
-.top_title li {float:left;display:block;cursor:pointer;font-size:15px;height:100%;width:80px;padding:0 20px;line-height:40px;}
+.top_title label{
+    text-align:center;
+    display:block;
+    cursor:pointer;
+    padding:0 20px;
+    width:80px;
+}
+.top_title input{
+    position:absolute;
+    z-index:-1;
+    top:-99999em;
+}
+.top_title li {float:left;display:block;cursor:pointer;font-size:15px;height:100%;line-height:40px;}
 .top_title li.selected {height:101%;color:#f1634c;border-left:1px solid #E1E1E1;background-color:#FFFFFF;border-right:1px solid #E1E1E1;border-top:2px solid #F1634C;height:101%;}
 .top_title li.first {border-left:none !important;}
 .top_title li strong {font-weight:bold;}
@@ -618,13 +700,12 @@ a:hover{ color:#f1634c;}
 .title {background-color:#f8f8f8;border-bottom:1px solid #e1e1e1;padding:0 15px;color:#f1634c;font-size:16px;font-weight:bold;}
 .title strong {padding:0 25px 0 10px;line-height:40px;font-weight:bold;display:inline-block;border-bottom:2px solid #f1634c;position:relative;top:1px;}
 
-
 .domestic .one_way, .domestic .round_trip {padding:0px;}
 .one_way,.round_trip {padding:40px 20px;position:relative;}
 .col {float:left;}
 .col strong {display:block;margin:50%;font-weight:bold;font-size:14px;}
 .one_way .col label,.round_trip .col label {display:block;padding:5px;}
-.one_way .col input ,.round_trip .col input {width:150px; margin-left:10px;}
+.one_way .col .normal_txt ,.round_trip .col .normal_txt {width:150px; margin-left:10px;}
 .trip_type {padding:20px 0px 0px 25px;}
 .domestic .trip_type {padding:30px 0 20px 70px;}
 .domestic .trip_type strong {font-weight:bold;}
@@ -634,12 +715,48 @@ a:hover{ color:#f1634c;}
 .muti_trip input {width:120px;}
 .muti_trip td {padding:5px;}
 
-
-
 .xchange {position:absolute;top:30px;left:240px;width:25px;}
-.xchange b,.xchange span,.xchange i {display:block;}
+.xchange b,.xchange a,.xchange i {display:block;}
 .xchange b,.xchange i {margin:3px 0;height:8px;border-right:1px solid #cccccc;right:0px;}
 .xchange b {border-top: 1px solid #CCCCCC;}
 .xchange i {border-bottom: 1px solid #CCCCCC;}
-.xchange span {cursor:pointer;height:16px;padding:2px 0px;border:1px solid #cccccc;position:relative;left:10px;text-align:center;}
+.xchange a {text-decoration: none;color:#a3a3a3;cursor:pointer;height:16px;padding:2px 0px;border:1px solid #cccccc;position:relative;left:10px;text-align:center;}
+.xchange a:hover {background-color:#ff6500;color:#ffffff;}
+
+/* 
+.house{ padding-left:20px; background:url(../images/store/house.png) no-repeat left center; color:#7a7a7a;}
+.boat{ padding:10px; background:#f8f8f8; border:1px solid #e1e1e1; margin:15px 0;}
+.boat td{ height:35px;}
+.boat input{ height:22px;}
+.range_type{ width:90%;}
+.range_type input{ width:175px;}
+.range_type strong{ color:#ef482d; padding:3px; vertical-align:middle; font-size:15px;}
+.range_type big{ color:#636363; padding:3px; vertical-align:middle; font-size:15px;}
+.range_type select{ width:90px;}
+*/
+
+.flight_number{ width:100%; border:1px solid #e1e1e1;}
+.caption{ padding:0 10px; height:45px; line-height:45px;}
+.caption h3,.caption p span{ font-size:14px; font-weight:bold; float:left;}
+.caption p{ float:right;}
+.caption p em{ color:#ff6500; font-weight:bold; font-size:14px;}
+.caption p i{ margin:0 10px 0 20px; color:#e94749;}
+.caption p strong{ padding:5px 10px; border:1px solid #ccd5de; color:#e94749;}
+.number{ border:1px solid #e1e1e1; border-left:0; border-right:0; background:#f8f8f8; padding:8px 10px;}
+.number table span,.information span{ position:relative;}
+.number table i{ position:absolute; top:5px; width:9px; display:inline-block; padding-left:5px; background:url(../images/store/up_down.png) no-repeat right center;}
+.number strong{ position:absolute; top:5px; width:9px; height:5px; display:inline-block; padding-left:5px; background:url(../images/store/up_down.png) no-repeat right top;}
+.information{ padding:20px 0 20px 10px;}
+.information td{ height:20px;}
+.information table i{ color:#e94749;}
+.information table big{ color:#ff6500; font-size:12px;}
+.information table strong{ color:#ff6500; font-size:13px; font-weight:bold;}
+.information table code{ width:16px; height:16px; display:inline-block; background:url(../images/store/aviation.jpg) no-repeat left center;}
+.more-cabin,.more-cabin:hover{ position:relative; color:#636363; text-decoration:none; padding:0 10px; height:9px; display:inline-block; vertical-align:middle;}
+.more-cabin i,.number em{ position:absolute; top:5px; width:9px; display:inline-block; padding-left:5px; background:url(../images/store/up_down.png) no-repeat right -5px;}
+.information span strong{ width:14px; height:14px; display:inline-block; margin-left:2px; position:absolute; background:url(../images/store/smallPicture.png) no-repeat 0 -58px;}
+.dashed{ border:1px dashed #e4e4e4; border-left:0; border-right:0; background:#fff6f0;}
+.dashed_top{ border-top:1px dashed #e4e4e4;}
+.bor_bom{ border-bottom:1px solid #e4e4e4;}
+
 
