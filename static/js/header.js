@@ -15,19 +15,21 @@ function init_header(){
             if(!$(this).hasClass("current")){
                 $(this).addClass("mnav");
             }
-            $(".sub_menu").hide();
-            $(".sub_menu",this).show();
+            //$(".sub_menu").hide();
+            //$(".sub_menu",this).show();
         },function(){
 
         });
     });
 
+    /*
     $("#top_menu").mouseleave(function(){
         $("#top_menu > li").removeClass("mnav");
         $(".sub_menu").hide();
         $("#top_menu > li:eq(" + currentMenuIndex + ")").addClass("current");
         $("#top_menu > li:eq(" + currentMenuIndex + ") .sub_menu").show();
     });
+    */
 
     $("#message h3 a,#message h3 span").mouseover(function(){
         $("#message_pop").show();
