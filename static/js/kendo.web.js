@@ -13425,7 +13425,7 @@ kendo_module({
                 that.list = that.elementzzz.find(".k-pager-numbers");
 
                 if (!that.list.length) {
-                   that.list = $('<ul class="k-pager-numbers k-reset" />').appendTo(that.element);
+                   that.list = $('<ul class="k-pager-numbers k-reset" />').appendTo(that.elementzzz);
                 }
             }
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>财务 授信管理-业务</title>
+<title>财务 账户类型</title>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
 <link rel="stylesheet" href="/static/css/kendo.common.min.css" />
@@ -60,20 +60,16 @@
         
         <div class="actions block">
             <div class="col col-l">
+                <a class="item" href="#">资金汇总</a> 
                 <a class="item" href="#">充值管理</a> 
                 <a class="item" href="#">提现管理</a> 
-                <a class="item highlight" href="#">授信管理</a> 
+                <a class="item" href="#">授信管理</a> 
                 <a class="item" href="#">押金管理</a> 
                 <a class="item" href="#">冻结管理</a> 
                 <a class="item" href="#">收支明细</a> 
                 <a class="item" href="#">支票管理</a> 
                 <a class="item" href="#">交易明细</a> 
-            </div>
-            <div class="col col-r sep-l">
-                <button class="btns btn-blue ac-new">新增授信</button>
-                <a href="授信管理-业务-额度不足.html"><button class="btns btn-blue">额度不足</button></a>
-                <a href="授信管理-业务-账期预警.html"><button class="btns btn-blue">账期预警</button></a>
-                <a href="授信管理-业务-账期管理.html"><button class="btns btn-blue">账期管理</button></a>
+                <a class="item highlight" href="#">账户类型</a> 
             </div>
         </div>
 
@@ -81,40 +77,26 @@
             <div class="col col-l">
                 <ul class="flat-list">
                     <li>
-                    <label class="vertical-head">客户名称</label>
+                    <label style="width:65px;" class="vertical-head">客户名称</label>
                     <input style="width:80px">
                     <button class="btns btn-search ac-search-customer">查询</button>
                     </li>
                     <li>
-                    <label class="vertical-head">帐号</label>
-                    <input style="width:100px">
-                    </li>
-                    <li>
-                    <label class="vertical-head">状态</label>
-                    <input style="width:100px" data-role="dropdownlist" data-source="['全部']">
-                    </li>
-                    <li>
-                    <label class="vertical-head">授信类型</label>
-                    <input style="width:100px" data-role="dropdownlist" data-source="['全部']">
-                    </li>
-                    <li style="width:402px;">
-                    <select id="" name="" data-role="dropdownlist" style="width:100px;">
-                        <option value="">申请日期</option>
-                        <option value="">审核日期</option>
-                    </select>
-                    <input data-role="datepicker" style="width:100px">
-                    至
-                    <input data-role="datepicker" style="width:100px">
-                    </li>
-                    <li>
-                    <label class="vertical-head">申请人</label>
+                    <label style="width:65px;" class="vertical-head">操作人</label>
                     <input style="width:80px">
                     <button class="btns btn-search ac-search-user">查询</button>
                     </li>
+                    <li style="width:400px">
+                    <label style="width:65px;" class="vertical-head">操作日期</label>
+                    <input type="text" value="2013-06-25" class="datepicker"/> <em>-</em> <input type="text" value="2013-06-25" class="datepicker orange"/>
+                    </li>
                     <li>
-                    <label class="vertical-head">操作人</label>
-                    <input style="width:80px">
-                    <button class="btns btn-search ac-search-user">查询</button>
+                    <label style="width:65px;" class="vertical-head">账户类型</label>
+                    <input style="width:100px" data-role="dropdownlist" data-source="['全部','预存客户','授信客户','单笔客户']">
+                    </li>
+                    <li>
+                    <label style="width:65px;" class="vertical-head" for="allow_debt">允许欠款:</label>
+                    <input type="checkbox" name="allow_debt" id="allow_debt"/>
                     </li>
                 </ul>
             </div>
@@ -124,179 +106,56 @@
         </div>
 
         <div class="block block2">
-            <div class="block-header">
-                    <button class="btns btn-ac-blue ac-delete">删除</button> 
+            <div class="block-header clearfix">
+                <button class="btns btn-ac-blue">导出Excel</button> 
             </div> 
             <table class="grid-table">
                 <tr class="thead">
-                    <th> <input type="checkbox"> </th>
                     <th>客户名称</th>
                     <th>账户类型</th>
-                    <th>特殊客户</th>
-                    <th>类型</th>
-                    <th>授信金额</th>
-                    <th>信用额度</th>
-                    <th>授信类型</th>
-                    <th>账期</th>
-                    <th>领导审核</th>
-                    <th>财务审核</th>
-                    <th>摘要</th>
-                    <th>申请日期</th>
-                    <th>财务审核日期</th>
+                    <th>是否允许欠款</th>
+                    <th>备注</th>
+                    <th>操作日期</th>
                     <th>操作</th>
                 </tr>
             </table>
-        </div>
 
+        </div>
 <script type="text/javascript">
 $(function(){
     new GridTable('.block2 .grid-table',{
          dataSource: [{
-            c1:222,
-            c2:333,
-            c3:"11,321,321.00",
-            c4:"xxx",
-            c5:"xxx",
-            c6:"2013-12-12",
-            c7:"张三",
-            c8:"2013-12-12",
-            c9:"张三"
+            c1:'苏宁',
+            c2:'预存客户',
+            c3:"否",
+            c4:"这里是备注",
+            c5:"2013-12-12"
         }], 
-columns : [
-    {width:30},
-    {width:90},
-    {width:90},
-    {width:90},
-    {width:90},
-    {width:90},
-    {width:90},
-    {width:90},
-    {width:90},
-    {width:90},
-    {width:90},
-    {width:100},
-    {width:100},
-    {width:120},
-    {width:150}
-],
-
-        scrollable:true,
         rowTemplate: kendo.template($("#block2-grid-row-template").html())
     }).init(); 
 });
 </script>
 <script type="text/x-kendo-template" id="block2-grid-row-template">
-                <tr>
-                    <td>
-                        <input type="checkbox"> 
-                    </td>
-                    <td>xxx</td>
-                    <td>xxx</td>
-                    <td>xxx</td>
-                    <td>xxx</td>
-                  <td class="text1">#= data.c3 #</td>
-                  <td>#= data.c3 #</td>
-                  <td>#= data.c4 #</td>
-                  <td>T+10</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>xxx</td>
-                  <td>2012-04-23<br>#= data.c7 #</td>
-                  <td>2012-04-23<br>张小黑</td>
-                  <td class="grid-row-ac">
-                        <button class="btns ac-adjust-limit">额度调整</button> 
-                        <button class="btns ac-delete">删除</button> 
-                  </td>
-                </tr>
+    <tr>
+        # kendo.logToConsole(data) #
+        <td>#= data.c1 #</td>
+        <td>#= data.c2 #</td>
+        <td>#= data.c3 #</span></td>
+        <td>#= data.c4 #</td>
+        <td>#= data.c5 #</td>
+        <td>
+            <span class="grid-row-ac">
+                <button class="btns ac-edit">修改</button> 
+            </span>
+        </td>
+    </tr>
 </script>
 
-<script type="text/x-kendo-template" id="ac-new-template">
 
-<div class="ac-new-window-container">
-<ul class="flat-list">
-<li>
-<label class="vertical-head">选择客户：</label>
-<input style="width:80px">
-<button class="btns btn-search ac-search-customer">查询</button>
-</li>
-<li style="width:400px;">
-<label class="vertical-head">账户类型：</label>
-<span>风险客户</span>
-<span class="warn911">授信仅对信用客户开发</span>
-</li>
-<li>
-<label class="vertical-head">账户余额：</label>
-<input style="width:100px">
-</li>
-<li>
-<label class="vertical-head">授信余额：</label>
-<input style="width:100px">
-</li>
-<li>
-<label class="vertical-head">确认金额：</label>
-<input style="width:100px">
-</li>
-<li>
-<label class="vertical-head">授信类型：</label>
-<input style="width:100px" data-role="dropdownlist" data-source="['选择']">
-</li>
-<li>
-<label class="vertical-head">账期：</label>
-<input style="width:100px" data-role="dropdownlist" data-source="['选择']">
-</li>
-<li>&nbsp;</li>
-<li style="width:400px;">
-<label style="vertical-align:top;" class="vertical-head">摘要：</label>
-<textarea></textarea>
-</li>
-</ul>
-</div>
-<div style="text-align:right;">
-<button class="btns button_1_2 ac-submit">提 交</button>
-<button class="btns button_2_2">取 消</button>
-</div>
-</script>
 
-<script type="text/x-kendo-template" id="ac-submit-template">
+<!-- 修改账户类型 -->
+<script type="text/x-kendo-template" id="ac-type-edit-template">
 <div class="row">
-<ul class="flat-list">
-    <li>
-    <label class="vertical-head">用户：</label>
-    <span>fdsa</span>
-    </li>
-    <li>
-    <label class="vertical-head">授临时额度：</label>
-    <strong class="text1">12,313,213</strong>
-    </li>
-    </ul>
-</div>
-
-<div class="row" style="text-align:right;">
-    <button class="btns button_1_2">确 认</button> 
-    <button class="btns button_2_2">取 消</button> 
-</div>
-</script>
-
-<script type="text/x-kendo-template" id="ac-delete-template">
-<div class="row">
-    <div style="font-size:14px;margin-bottom:10px;">确认删除以下客户授信：</div>
-    <ul class="text1">
-      <li>-苏宁1231</li>
-      <li>-苏宁1231</li>
-      <li>-苏宁1231</li>
-    </ul>
-</div>
-
-<div class="row" style="text-align:right;">
-    <button class="btns button_1_2">确 认</button> 
-    <button class="btns button_2_2">取 消</button> 
-</div>
-</script>
-
-<!-- 调整额度 -->
-<script type="text/x-kendo-template" id="ac-adjust-template">
-<div class="row">
-
     <ul class="flat-list one-col">
         <li>
         <label class="vertical-head">客户名称：</label>
@@ -304,31 +163,11 @@ columns : [
         </li>
         <li style="width:400px;">
         <label class="vertical-head">账户类型：</label>
-        <span>信用客户</span>
+            <input style="width:100px" data-role="dropdownlist" data-source="['全部','预存客户','授信客户','单笔客户']">
+            <label style="width:65px;" class="vertical-head" for="allow_debt">允许欠款:</label>
+            <input type="checkbox" name="allow_debt" id="allow_debt"/>
         </li>
         <li>
-        <label class="vertical-head" style="width:110px;">调整前信用额度：</label>
-        <em class="text1">15,000,000</em>
-        <span class="muted">(包括临时额度<b>10000</b>)</span>
-        </li>
-        <li>
-        <label class="vertical-head">调整类型：</label>
-        <input style="width:100px" data-role="dropdownlist" data-source="['升额','降额']">
-        </li>
-        <li>
-        <label class="vertical-head">调整金额：</label>
-        <input style="width:100px">
-        </li>
-        <li>
-        <label class="vertical-head">确认金额：</label>
-        <input style="width:100px">
-        </li>
-        <li>
-        <label class="vertical-head warning-text" style="width:110px;">调整后信用额度：</label>
-        <em class="warning-text">15,000,000</em>
-        <span class="muted">(包括临时额度<b>10000</b>)</span>
-        </li>
-        <li>&nbsp;</li>
         <li style="width:400px;">
         <label style="vertical-align:top;" class="vertical-head">摘要：</label>
         <textarea></textarea>
@@ -337,34 +176,28 @@ columns : [
 </div>
 
 <div class="row" style="text-align:right;">
-    <button class="btns button_1_2 ac-adjust-confirm">提 交</button> 
+    <button class="btns button_1_2 ac-type-edit-confirm">确 认</button> 
     <button class="btns button_2_2">取 消</button> 
 </div>
 </script>
 <!-- end of 调整额度 -->
 
 <!-- start 确认额度调整 -->
-<script type="text/x-kendo-template" id="ac-adjust-confirm-template">
+<script type="text/x-kendo-template" id="ac-type-edit-confirm-template">
 <div class="row">
 <ul class="flat-list">
     <ul class="flat-list one-col">
         <li>
-        <label class="vertical-head" style="width:60px">用户：</label>
+        <label class="vertical-head">客户：</label>
         <span>suning12345</span>
         </li>
         <li>
-        <label class="vertical-head" style="width:110px;">调整前信用额度：</label>
-        <em class="text1">15,000,000</em>
-        <span class="muted">(包括临时额度<b>10000</b>)</span>
+        <label class="vertical-head">账户类型：</label>
+        <span>预存账户</span>
         </li>
         <li>
-        <label class="vertical-head" style="width:70px">调整类型：</label>
-        <span>降额</span>
-        </li>
-        <li>
-        <label class="vertical-head warning-text" style="width:110px;">调整后信用额度：</label>
-        <em class="warning-text">15,000,000</em>
-        <span class="muted">(包括临时额度<b>10000</b>)</span>
+        <label class="vertical-head">支付类型：</label>
+        <span>预存 / 欠款 </span>
         </li>
     </ul>
 </div>
@@ -377,35 +210,19 @@ columns : [
 
 <!-- end of 确认额度调整 -->
 
+
 <script type="text/javascript">
+
 $(function(){
-    new PopWindow('.ac-new',{
-        template:'#ac-new-template',
-        title:'新增授信' 
-    }).init();
-
-    new PopWindow('.ac-delete',{
-        template:'#ac-delete-template',
-        title:'确认删除',
+    new PopWindow('.ac-edit',{
+        template:"#ac-type-edit-template",
+        title:'修改账户类型' ,
         width:'470'
     }).init();
 
-    new PopWindow('.ac-adjust-limit',{
-        template:'#ac-adjust-template',
-        title:'调整额度',
-        width:'470'
-    }).init();
-
-    /* 额度调整 */
-    new PopWindow('.ac-adjust-confirm', {
-        template:'#ac-adjust-confirm-template',
-        title:'确认授信',
-        width:'470'
-    }).init();
-
-    new PopWindow('.ac-submit', {
-        template:'#ac-submit-template',
-        title:'确认授信',
+    new PopWindow('.ac-type-edit-confirm', {
+        template:'#ac-type-edit-confirm-template',
+        title:'确认修改账户类型',
         width:'470'
     }).init();
 });

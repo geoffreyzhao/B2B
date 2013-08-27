@@ -76,7 +76,12 @@
 body{
     background:url(../images/store/r2.png) repeat-x;
 }
+hr{
+    margin:20px 0;
+    border-bottom:1px solid #ddd;
+}
 .main-wrapper{
+    font-family:sans-serif;
     font-size:12px;
     background:url(../images/store/l2.jpg) no-repeat 50% 0;
 }
@@ -115,6 +120,9 @@ body{
 .main-links a{
     color:#6d6d6d;
 }
+.main-links a:hover{
+    text-decoration:none;
+}
 .main-nav{
     height:40px;
     line-height:40px;
@@ -144,11 +152,13 @@ body{
 .main-nav a:hover{
     text-decoration:none;
     background-color:#bf2f17;
+    color:#fff;
 }
 .main-nav .active a{
     background-color:#bf2f17;
     position:relative;
     z-index:1;
+    color:#fff;
 }
 .main-body{
     width:980px;
@@ -212,6 +222,32 @@ body{
     padding:0 20px;
 }
 
+.backToTop {
+    display: none;
+    width: 80px;
+    height: 80px;
+    background:url(../images/store/back-top.png) no-repeat;
+    background-color: #000;
+    color: transparent;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+    _position: absolute;
+    right: 10px;
+    bottom: 100px;
+    _bottom: "auto";
+    cursor: pointer;
+    /*
+    opacity: .6;
+    filter: Alpha(opacity=60);
+    */
+}
+.backToTop:hover {
+    color: transparent;
+    background-position:-80px 0px;
+}
+
+
 /* 日历样式 */
 .datepicker {background:url(../images/store/i8.png) no-repeat 97% center;} 
 .ui-datepicker {background:#ef633d none;font-size:12px;padding:5px;}
@@ -238,6 +274,9 @@ body{
 .ui-datepicker-calendar thead{
     color:#999;
     background-color:#f1f1f1;
+}
+#ui-datepicker-div{
+    box-shadow:0px 2px 10px #777;
 }
 #ui-datepicker-div .ui-datepicker-calendar{
     width:100%;
@@ -615,6 +654,10 @@ a:hover{ color:#f1634c;}
     text-shadow: none;
 }
 
+.hitext{
+    color:#ef482d;
+}
+
 .muted {
   color: #999999;
 }
@@ -622,11 +665,24 @@ a:hover{ color:#f1634c;}
 .large_txt {height:30px;line-height:30px;font-size:18px;font-weight:bold;}
 .gray-border {border:1px solid #e1e1e1;}
 .gray-border-left {border-left:1px solid #e1e1e1;}
+.gray-border-right {border-right:1px solid #e1e1e1;}
 
-.btn_area {position:absolute;right:20px;top:60px;}
+.btn_area {position:absolute;right:20px;top:160px;}
 
 .top_title {height:40px;border-bottom:1px solid #e1e1e1;}
-.top_title li {float:left;display:block;cursor:pointer;font-size:15px;height:100%;width:80px;padding:0 20px;line-height:40px;}
+.top_title label{
+    text-align:center;
+    display:block;
+    cursor:pointer;
+    padding:0 20px;
+    width:80px;
+}
+.top_title input{
+    position:absolute;
+    z-index:-1;
+    top:-99999em;
+}
+.top_title li {float:left;display:block;cursor:pointer;font-size:15px;height:100%;line-height:40px;}
 .top_title li.selected {height:101%;color:#f1634c;border-left:1px solid #E1E1E1;background-color:#FFFFFF;border-right:1px solid #E1E1E1;border-top:2px solid #F1634C;height:101%;}
 .top_title li.first {border-left:none !important;}
 .top_title li strong {font-weight:bold;}
@@ -649,7 +705,7 @@ a:hover{ color:#f1634c;}
 .col {float:left;}
 .col strong {display:block;margin:50%;font-weight:bold;font-size:14px;}
 .one_way .col label,.round_trip .col label {display:block;padding:5px;}
-.one_way .col input ,.round_trip .col input {width:150px; margin-left:10px;}
+.one_way .col .normal_txt ,.round_trip .col .normal_txt {width:150px; margin-left:10px;}
 .trip_type {padding:20px 0px 0px 25px;}
 .domestic .trip_type {padding:30px 0 20px 70px;}
 .domestic .trip_type strong {font-weight:bold;}
@@ -660,11 +716,12 @@ a:hover{ color:#f1634c;}
 .muti_trip td {padding:5px;}
 
 .xchange {position:absolute;top:30px;left:240px;width:25px;}
-.xchange b,.xchange span,.xchange i {display:block;}
+.xchange b,.xchange a,.xchange i {display:block;}
 .xchange b,.xchange i {margin:3px 0;height:8px;border-right:1px solid #cccccc;right:0px;}
 .xchange b {border-top: 1px solid #CCCCCC;}
 .xchange i {border-bottom: 1px solid #CCCCCC;}
-.xchange span {cursor:pointer;height:16px;padding:2px 0px;border:1px solid #cccccc;position:relative;left:10px;text-align:center;}
+.xchange a {text-decoration: none;color:#a3a3a3;cursor:pointer;height:16px;padding:2px 0px;border:1px solid #cccccc;position:relative;left:10px;text-align:center;}
+.xchange a:hover {background-color:#ff6500;color:#ffffff;}
 
 /* 
 .house{ padding-left:20px; background:url(../images/store/house.png) no-repeat left center; color:#7a7a7a;}
