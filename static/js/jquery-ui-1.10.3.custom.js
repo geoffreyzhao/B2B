@@ -2332,7 +2332,7 @@ $.extend(Datepicker.prototype, {
  * Global instActive, set by _updateDatepicker allows the handlers to find their way back to the active picker.
  */
 function bindHover(dpDiv) {
-	var selector = "em,button, .ui-datepicker-prev, .ui-datepicker-next, .ui-datepicker-calendar td a";
+	var selector = "button, .ui-datepicker-prev, .ui-datepicker-next, .ui-datepicker-calendar td a";
 	return dpDiv.delegate(selector, "mouseout", function() {
 			$(this).removeClass("ui-state-hover");
 			if (this.className.indexOf("ui-datepicker-prev") !== -1) {
