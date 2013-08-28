@@ -1,89 +1,5 @@
-/* 国际机票首页 */
 $(function() {
-    $("#btn_upload").uploadify({
-        buttonClass: "button_gray",
-        buttonText: "浏 览",
-        width: 71,
-        height: 25,
-        uploader: 'http://www.tz-local.com/test.php',
-        swf: '/static/js/uploadify/uploadify.swf',
-        queueID: 'queue',
-        removeTimeout: 0,
-        onUploadSuccess: function(file, data, response) {},
-        onUploadError: function(file, errorCode, errorMsg, errorString) {
-            alert(errorString);
-        }
-    });
 
-    // $("input[name='passenger_type']").click(function() {
-    //     if ($(this).val() == "child") {
-    //         $("#child_extra").show();
-    //     } else {
-    //         $("#child_extra").hide();
-    //     }
-
-    //     if ($(this).val() == "others") {
-    //         $("#doc_need").show();
-    //     }else{
-    //         $("#doc_need").hide();
-    //     }
-    // });
-    // $("input[name='with_type']").click(function() {
-
-    //     switch($(this).val()){
-    //         case 'without_adult':
-    //             $("#adult_pnr").hide();
-    //         $("#adult_order_id").hide();
-    //         break;
-    //         case 'adult_pnr':
-    //             $("#adult_pnr").show();
-    //         $("#adult_order").hide();
-    //         break;
-    //         case 'adult_order':
-    //             $("#adult_pnr").hide();
-    //         $("#adult_order").show();
-    //         break;
-    //         default:
-    //             break;
-    //     }
-    // });
-
-    // $("input[name='flight_type']").click(function() {
-    //     switch($(this).val()){
-    //         case 'one_way':
-    //             $(".muti_trip").hide();
-    //         $(".round_trip").hide();
-    //         $(".one_way").show();
-    //         $("#return_date").hide();
-    //         break;
-    //         case 'round_trip':
-    //             $(".muti_trip").hide();
-    //         $(".one_way").hide();
-    //         $(".round_trip").show();
-    //         $("#return_date").show();
-    //         $(".mutl_trip").hide();
-    //         break;
-    //         case 'muti_trip':
-    //             $(".one_way").hide();
-    //         $(".round_trip").hide();
-    //         $(".muti_trip").show();
-    //         break;
-    //         default:
-    //             break;
-    //     }
-    // });
-
-    // $('.ac-toggle').bind('click',function(){
-    //     var that = $(this);
-    //     var target = that.data('target');
-    //     $(target).toggle(); 
-    //     that.toggleClass('expanded');
-    //     // if(that.find('b').text() == '展开'){
-    //     //     that.find('b').text('收起'); 
-    //     // }else{
-    //     //     that.find('b').text('展开'); 
-    //     // }
-    // });
 
     $('body').delegate('[data-role="ctype"]', 'change', function(){
         var index = $(this).data('index');
@@ -101,6 +17,79 @@ $(function() {
         li.addClass('selected');
         li.siblings().removeClass('selected');
     });
+
+    var uploadsettings = {
+        multiple:false,
+        showFileList:false,
+        select:function(e){
+            e.sender.wrapper.prev().val(e.files[0].name);
+        },
+        complete:function(e){
+            var url = e; 
+        },
+        async: {
+            saveUrl: "/path/to/save.jsp",
+            //saveUrl: 'http://www.tz-local.com/test.php',
+            autoUpload: true
+        },
+        localization:{ 
+            select: '浏览' 
+        } 
+    };
+
+    kendo.culture('zh-CN');
+
+    $('.ac-add-line').bind('click',function(){
+        var container = $('.muti_trip tbody');
+        var html = kendo.template($('#ac-add-line-template').html())({});
+        container.append(html);
+        // kendo.init(container);
+        // container.find('[type=file]').eq(-1).kendoUpload(uploadsettings)
+        reorder();
+        createCityAc(container.find('tr').last().find('.city_ac'));
+    });
+
+    $('body').delegate('.ac-remove-line','click',function(){
+        var t = $(this);
+        if (t.closest('table').find('tr').length<=1){
+            return alert('只剩一条了'); 
+        }
+        t.closest('tr').remove();
+        reorder();
+    });
+
+    function reorder(){
+        $('.index_num').each(function(i){
+            var t = $(this);
+            t.text(i+1);
+        }); 
+    }
+
+    function createCityAc(ele){
+        CityAutocomplete({
+            template: "#city_popup",
+            input: ele,
+            width: 200,
+            // autocomplete:{
+            //     dataSource:{
+            //         transport:{
+            //             read:{
+
+            //             } 
+            //         } 
+            //     },
+            //     placeholder:'三字吗/城市'
+            // },
+            // 以@分割热门非热门，以;分割条目，以|分割三字码拼音和中文
+            url:'/static/js/data.txt',
+            group: ["热门","GHJ", "ABCDEF", "KLMN", "PQSTW", "XYZ"]
+        });
+    }
+
+    createCityAc(".city_ac");
+
+    kendo.init('body');
+    $('[type=file]').kendoUpload(uploadsettings)
 
 });
 
