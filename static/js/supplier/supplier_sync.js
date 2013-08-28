@@ -5,7 +5,7 @@ function load_header(){
 }
 $(function(){
    if(typeof(init_header) == "undefined"){
-       $.getScript(encodeURI("/供应商/supplier_header.js"),function(){
+       $.getScript(encodeURI("/static/js/supplier/supplier_header.js"),function(){
            load_header();
        });
    }else{
