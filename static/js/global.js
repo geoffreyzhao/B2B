@@ -385,7 +385,11 @@ var CityAutocomplete = function(settings){
             var text = $t.text();
 
             hot_tabs.input.val(text);
-            $(opts.codeEle).val($t.data('code'));
+            if (opts.codeEle){
+                $(opts.codeEle).val($t.data('code'));
+            }else{
+                hot_tabs.input.data('code').val($t.data('code'));
+            }
             hot_tabs.close();
         });
 
@@ -427,12 +431,23 @@ var CityAutocomplete = function(settings){
                 var dataItem = this.dataItem(t.item.index());
                 t.preventDefault();
                 t.sender.value(dataItem.name);
-                $(opts.codeEle).val(dataItem.code);
+                if (opts.codeEle){
+                    $(opts.codeEle).val(dataItem.code);
+                }else{
+                    $(t.sender.element).data('code').val(dataItem.code);
+                }
             }
         };
 
         input.kendoAutoComplete($.extend(autocomplate_defaults,opts.autocomplete));
 
+        if (opts.width){
+            input.each(function(){
+                var t = $(this); 
+                t.data('kendoAutoComplete').list.width(opts.width||200);
+            });
+        }
+        
         input.on('keyup',function(){
             var $t = $(this);
             if( $t.val() === '' ){
@@ -452,8 +467,16 @@ var CityAutocomplete = function(settings){
     opts = that.options;
     inputs = opts.input.jquery ? opts.input : $(opts.input);
 
-    $.get(opts.url,function(d){
+    function main(d){
         that.init = function(inputEle){
+            if(typeof opts.codeEle == 'undefined'){
+                inputEle.each(function(){
+                    var t = $(this);
+                    var ele = $('<input type="hidden" name="'+(t.name||'')+'_code">');
+                    t.data('code',ele);
+                    t.after(ele);
+                });
+            }
             var citydata = d.split('@');
             var pcitydata = process_citydata(citydata[1]);
             var citygroup = opts.group;
@@ -473,8 +496,17 @@ var CityAutocomplete = function(settings){
 
 
         that.init(inputs);
+    }
 
-    });
+    if(!CityAutocomplete.data){
+        $.get(opts.url,function(d){
+            CityAutocomplete.data = d;
+            main(d);
+        });
+    }else{
+        main(CityAutocomplete.data);
+    }
+
 
 };
 
