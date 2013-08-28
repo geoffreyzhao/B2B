@@ -225,6 +225,32 @@ input{
     padding:0 20px;
 }
 
+.backToTop {
+    display: none;
+    width: 80px;
+    height: 80px;
+    background:url(../images/store/back-top.png) no-repeat;
+    background-color: #000;
+    color: transparent;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+    _position: absolute;
+    right: 10px;
+    bottom: 100px;
+    _bottom: "auto";
+    cursor: pointer;
+    /*
+    opacity: .6;
+    filter: Alpha(opacity=60);
+    */
+}
+.backToTop:hover {
+    color: transparent;
+    background-position:-80px 0px;
+}
+
+
 /* 日历样式 */
 .datepicker {background:url(../images/store/i8.png) no-repeat 97% center;} 
 .ui-datepicker {background:#ef633d none;font-size:12px;padding:5px;}
@@ -490,8 +516,10 @@ a:hover{ color:#f1634c;}
 .mediumOrange_btn:hover .right{background:url('../images/store/big_btn.png') 0 -416px no-repeat;width:5px}
 
 /* 通用翻页*/
-.pagination,.paging{ float:right;}
-.pagination ul,.paging ul{ margin-right:10px;}
+.pagination,.paging{ width:100%; float:right; margin:10px 0;}
+.pagination div,.paging div{ float:right; height:30px; line-height:30px;}
+.pagination div em,.paging div em{ color:#e94749; font-weight:bold;}
+.pagination ul,.paging ul{ margin:0 10px 0 20px; float:right;}
 .pagination ul li,.paging ul li{ float:left; margin-left:10px;}
 .pagination ul li a,.paging ul li a{ display:inline-block; padding:5px 8px; border:1px solid #ccd5de; color:#e94749;}
 .pagination ul li a:hover,.pagination .present,.paging .present{ color:#fff; text-decoration:none; cursor:pointer; background:#e94749; border:1px solid #e94749;}
@@ -528,10 +556,10 @@ a:hover{ color:#f1634c;}
 .range_tab{ width:90%; height:auto; margin-top:15px;}
 .range_tab td{ height:43px;}
 .range_tab td input{ width:195px;border:1px solid #ccc; height:30px; line-height:30px; padding-left:3px;}
-.range_tab i{ width:25px; height:10px; border-top:1px solid #cccccc; border-right:1px solid #cccccc; display:inline-block;}
-.range_tab em{ padding:3px; height:13px; line-height:13px; display:inline-block; border:1px solid #cccccc; float:right; margin-left:15px; cursor:pointer;}
-.range_tab em:hover{ background:#ff6500; color:#fff; border:1px solid #ff6500;}
-.range_tab span{ width:25px; height:10px; border-bottom:1px solid #cccccc; border-right:1px solid #cccccc; display:inline-block;}
+.range_tab i,.range_type i{ width:25px; height:10px; border-top:1px solid #cccccc; border-right:1px solid #cccccc; display:inline-block;}
+.range_tab em,.range_type em{ padding:3px; height:13px; line-height:13px; display:inline-block; border:1px solid #cccccc; float:right; margin-left:15px; cursor:pointer;}
+.range_tab em:hover,.range_type em:hover{ background:#ff6500; color:#fff; border:1px solid #ff6500;}
+.range_tab span,.range_type span{ width:25px; height:10px; border-bottom:1px solid #cccccc; border-right:1px solid #cccccc; display:inline-block;}
 .specialAndInquiries{margin-top:20px;}
 .preference{ width:660px; height:auto; margin-right:15px; float:left;}
 .showImg{ width:100%; margin-top:15px;}
@@ -593,8 +621,8 @@ a:hover{ color:#f1634c;}
 .hotel_tab td input{ width:210px; height:22px; padding-left:3px;}
 .hotel_tab td:first-child{ text-align:right;}
 .odds_show{ width:100%; margin-top:20px;}
-.odds_show dl{ width:150px; margin-right:55px; float:left; position:relative;}
-.odds_show dl dt{ float:left; width:150px; height:150px; margin-bottom:5px;}
+.odds_show dl{ width:160px; margin-right:44px; float:left; position:relative;}
+.odds_show dl dt{ float:left; width:160px; height:120px; margin-bottom:5px;}
 .odds_show dl em{ width:25px; height:35px; display:inline-block; background:url(../images/sprite/gift.png) no-repeat; position:absolute; top:-2px; left:120px;}
 .team{ width:auto;}
 .team a{ text-decoration:underline; color:#ff6500;}
@@ -640,6 +668,7 @@ a:hover{ color:#f1634c;}
 .large_txt {height:30px;line-height:30px;font-size:18px;font-weight:bold;}
 .gray-border {border:1px solid #e1e1e1;}
 .gray-border-left {border-left:1px solid #e1e1e1;}
+.gray-border-right {border-right:1px solid #e1e1e1;}
 
 .btn_area {position:absolute;right:20px;bottom:60px;}
 
@@ -680,7 +709,6 @@ a:hover{ color:#f1634c;}
 .title {background-color:#f8f8f8;border-bottom:1px solid #e1e1e1;padding:0 15px;color:#f1634c;font-size:16px;font-weight:bold;}
 .title strong {padding:0 25px 0 10px;line-height:40px;font-weight:bold;display:inline-block;border-bottom:2px solid #f1634c;position:relative;top:1px;}
 
-
 .domestic .one_way, .domestic .round_trip {padding:0px;}
 .one_way,.round_trip {padding:40px 20px;position:relative;}
 .col {float:left;}
@@ -706,12 +734,29 @@ a:hover{ color:#f1634c;}
     font-weight:bold;
 }
 
-
-
 .xchange {position:absolute;top:30px;left:240px;width:25px;}
-.xchange b,.xchange span,.xchange i {display:block;}
+.xchange b,.xchange a,.xchange i {display:block;}
 .xchange b,.xchange i {margin:3px 0;height:8px;border-right:1px solid #cccccc;right:0px;}
 .xchange b {border-top: 1px solid #CCCCCC;}
 .xchange i {border-bottom: 1px solid #CCCCCC;}
-.xchange span {cursor:pointer;height:16px;padding:2px 0px;border:1px solid #cccccc;position:relative;left:10px;text-align:center;}
+.xchange a {text-decoration: none;color:#a3a3a3;cursor:pointer;height:16px;padding:2px 0px;border:1px solid #cccccc;position:relative;left:10px;text-align:center;}
+.xchange a:hover {background-color:#ff6500;color:#ffffff;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
