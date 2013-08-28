@@ -6,9 +6,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
 
 <link rel="stylesheet" href="../static/css/store_reset.css" media="all" />
-<link rel="stylesheet" href="../static/js/uploadify/uploadify.css">
 <link rel="stylesheet" href="../static/css/store.css" media="screen" />
 <script type="text/javascript" src="../static/js/jquery.min.js"></script>
+
+<link rel="stylesheet" href="../static/css/kendo.common.min.css" />
+<link rel="stylesheet" href="../static/css/kendo.store.css" />
+<script type="text/javascript" src="../static/js/kendo.web.js"></script>
+<script type="text/javascript" src="../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+<script type="text/javascript" src="../static/js/global.js"></script>
+
+<script type="text/javascript" src="intel_flight_index.js"></script>
+
 <!--[if IE]>
     <script src="../static/js/html5.js"></script>
     <![endif]-->
@@ -59,7 +67,7 @@
                     <label>
                         <input type="radio" data-role="ctype" data-group="passenger_type" data-index="c2" name="passenger_type" name="passenger_type" value="others"/><span>其他类型</span>
                     </label>
-                    <select name="other">
+                    <select data-role="dropdownlist" style="width:80px;" name="other">
                         <option value="青年">青年</option>
                         <option value="老人">老人</option>
                         <option value="移民" selected="selected">移民</option>
@@ -68,7 +76,7 @@
                     </select>
                     <span id="doc_need" data-role="ctype-item" data-group="passenger_type" data-index="c2" style="display:none;">
                         <input type="text" value="特殊乘客类型请上传证明文件" placeholder="特殊乘客类型请上传证明文件" class="normal_txt" style="width:180px" />
-                        <input class="button_gray" type="button" id="btn_upload" value="上传" />
+                        <input type="file" value="上传" />
                     </span>
 
                     </li>
@@ -131,7 +139,7 @@
                     <label>
                         <input type="radio" name="passenger_type2" name="passenger_type" value="others"/><span>其他类型</span>
                     </label>
-                    <select name="other">
+                    <select data-role="dropdownlist" style="width:100px;" name="other">
                         <option value="青年">青年</option>
                         <option value="老人">老人</option>
                         <option value="移民" selected="selected">移民</option>
@@ -188,110 +196,123 @@
                             <label><input type="radio" data-role="ctype" data-group="trip_type" data-index="c3" name="flight_type" value="muti_trip" />多程(含缺口)</label>
                             <span style="display:none;" data-role="ctype-item" data-group="trip_type" data-index="c3"> 超过6段航程,请联系机票专家组。 <b class="tel">400-720-6666</b></span>
                             </li>
-                            <li class="one_way round_trip clearfix" data-role="ctype-item" data-index="c1 c2" data-group="trip_type">
-                            <div class="clearfix">
+                            <li class="one_way round_trip clearfix">
+                            <div class="clearfix" data-role="ctype-item" data-index="c1 c2" data-group="trip_type">
                                 <div class="col col1" style="width:45%">
-                                    <label><i class="hitext"> * </i>出发城市<input class="normal_txt" type="text" name="" placeholder="上海" /></label>
-                                    <label><i class="hitext"> * </i>到达城市<input class="normal_txt" type="text" name="" placeholder="北京"/></label>
+                                    <label><i class="hitext"> * </i><span class="text">出发城市</span><input class="city_ac" type="text" name="" placeholder="上海" /></label>
+                                    <label><i class="hitext"> * </i><span class="text">到达城市</span><input class="city_ac" type="text" name="" placeholder="北京"/></label>
 
-                                    <div class="xchange" style="top:48px;left:250px;">
+                                    <div class="xchange" style="top:48px;left:243px;">
                                         <b></b>
                                         <span>换</span>
                                         <i></i>
                                     </div>
                                 </div>
                                 <div class="col col2" style="width:45%">
-                                    <label><i class="hitext"> * </i>出发日期<input type="text" name="" class="normal_txt datepicker" /></label>
-                                    <label style="display:none;" data-role="ctype-item" data-index="c2" data-group="trip_type" id="return_date"><i class="hitext"> * </i>返程日期<input type="text" name="" class="normal_txt datepicker" /></label>
-                                </div>
-                                <div class="btn_area" id="white_search">
-                                    <a class="adaptiveButton brightRed_btn">
-                                        <span class="left"></span>
-                                        <span class="center center_1">搜&nbsp;索</span>
-                                        <span class="right"></span>
-                                    </a>
+                                    <label><i class="hitext"> * </i><span class="text">出发日期</span><input type="text" name="" class="normal_txt datepicker" /></label>
+                                    <label style="display:none;" data-role="ctype-item" data-index="c2" data-group="trip_type" id="return_date"><i class="hitext"> * </i><span class="text">返程日期</span><input type="text" name="" class="normal_txt datepicker" /></label>
                                 </div>
                             </div>
+                            <div class="btn_area" id="white_search">
+                                <a class="adaptiveButton brightRed_btn">
+                                    <span class="left"></span>
+                                    <span class="center center_1">搜&nbsp;索</span>
+                                    <span class="right"></span>
+                                </a>
+                            </div>
+                            <div class="muti_trip" data-role="ctype-item" data-index="c3" style="display:none;" data-group="trip_type">
+                                <script type="text/x-kendo-template" id="ac-add-line-template">
+<tr>
+                                        <td><i class="hitext"> * </i>第<span class="hitext index_num">1</span>程</td>
+                                        <td><i class="hitext"> * </i>出发城市</td>
+                                        <td><input type="text" style="width:105px;" value="" class="city_ac"/></td>
+                                        <td><i class="hitext"> * </i>到达城市</td>
+                                        <td><input type="text" style="width:105px;" value="" class="city_ac"/></td>
+                                        <td><i class="hitext"> * </i>出发日期</td>
+                                        <td><input type="text" value="" class="normal_txt datepicker"/></td>
+                                        <td>
+                                            <div class="op">
+                                                <a href="javascript:void(0)" class="ac-remove-line">删除</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </script>
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td><i class="hitext"> * </i>第<span class="hitext index_num">1</span>程</td>
+                                        <td><i class="hitext"> * </i>出发城市</td>
+                                        <td><input type="text" value="" style="width:105px" class="city_ac"/></td>
+                                        <td><i class="hitext"> * </i>到达城市</td>
+                                        <td><input type="text" value="" style="width:105px" class="city_ac"/></td>
+                                        <td><i class="hitext"> * </i>出发日期</td>
+                                        <td><input type="text" value="" class="normal_txt datepicker"/></td>
+                                        <td>
+                                            <div class="op">
+                                                <a href="javascript:void(0)" class="ac-remove-line">删除</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div style="text-align:right;margin-top:10px;padding-right:43px;">
+                                    <a href="javascript:;" class="muti_add ac-add-line">添加航程</a>
+                                    </div>
+                            </div>
+
                             <hr>
                             <div class="clearfix">
                                 <div class="col col1" style="width:45%">
-                                    <label>舱位等级<select class="normal_txt">
+                                    <label><span class="text">舱位等级</span><select data-role="dropdownlist" style="width:152px;" class="normal_txt">
                                             <option selected="" value="经济舱">经济舱</option>
                                             <option value="超级经济舱">超级经济舱</option>
                                             <option value="商务舱">商务舱</option>
                                             <option value="头等舱">头等舱</option>
                                         </select>
                                     </label>
-                                    <label>航空公司<input class="normal_txt" type="text" name="" placeholder="可中英文/代码搜索或选择"/></label>
+                                    <label><span class="text">航空公司</span><select style="width:152px;" data-role="combobox" data-filter="contains" data-suggest="true" id="sel_airlines" class="sel_airlines">
+                        <option selected="selected" value="">全部</option>
+                        <option value="3u">3U （川航）</option>
+                        <option value="8L">8L （祥鹏）</option>
+                        <option value="BK">BK （奥凯）</option>
+                        <option value="CA">CA （国航）</option>
+                        <option value="CN">CN （大新华）</option>
+                        <option value="CZ">CZ （南航）</option>
+                        <option value="EU">EU （成都）</option>
+                        <option value="FM">FM （上航）</option>
+                        <option value="G5">G5 （华夏）</option>
+                        <option value="GS">GS （天津）</option>
+                        <option value="HO">HO （吉祥）</option>
+                        <option value="HU">HU （海航）</option>
+                        <option value="JD">JD （首都）</option>
+                        <option value="JR">JR （幸福）</option>
+                        <option value="KN">KN （中联）</option>
+                        <option value="KY">KY （昆明）</option>
+                        <option value="MF">MF （厦航）</option>
+                        <option value="MU">MU （东航）</option>
+                        <option value="NS">NS （河北）</option>
+                        <option value="OZ">OZ （韩亚华空）</option>
+                        <option value="PN">PN （西部）</option>
+                        <option value="SC">SC （山航）</option>
+                        <option value="TV">TV （西藏）</option>
+                        <option value="VD">VD （河南）</option>
+                        <option value="ZH">ZH （深航）</option>
+                    </select>
+                                        
+                                        </label>
 
-                                    <div class="xchange" style="top:48px;left:250px;">
-                                        <b></b>
-                                        <span>换</span>
-                                        <i></i>
-                                    </div>
                                 </div>
                                 <div class="col col2" style="width:45%">
-                                    <label>乘客类型<select class="normal_txt">
+                                    <label><span class="text">乘客类型</span><select data-role="dropdownlist" style="width:100px;" class="normal_txt">
                                             <option selected="" value="成人">成人</option>
                                             <option value="儿童">儿童</option>
                                             <option value="婴儿">婴儿</option>
                                             <option value="不限">不限</option>
                                         </select>
-                                        </label>
+                                    </label>
                                     <label><input type="checkbox" name=""> 仅查看直飞</label>
                                 </div>
                             </div>
-                            </li>
-                            <li class="muti_trip" data-role="ctype-item" data-index="c3" style="display:none;" data-group="trip_type">
-                            <table>
-                                <tbody>
-                                <tr>
-                                    <td>出发城市</td>
-                                    <td><input type="text" value="" class="normal_txt"/></td>
-                                    <td>到达城市</td>
-                                    <td><input type="text" value="" class="normal_txt"/></td>
-                                    <td>出发日期</td>
-                                    <td><input type="text" value="" class="normal_txt"/></td>
-                                    <td>
-                                        <div class="op">
-                                            <a href="javascript:void(0)">添加</a>
-                                            <a href="javascript:void(0)">删除</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>出发城市</td>
-                                    <td><input type="text" value="" class="normal_txt"/></td>
-                                    <td>到达城市</td>
-                                    <td><input type="text" value="" class="normal_txt"/></td>
-                                    <td>出发日期</td>
-                                    <td><input type="text" value="" class="normal_txt"/></td>
-                                    <td>
-                                        <div class="op">
-                                            <a href="javascript:void(0)">添加</a>
-                                            <a href="javascript:void(0)">删除</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <a class="adaptiveButton brightRed_btn">
-                                                <span class="left"></span>
-                                                <span class="center center_1">搜&nbsp;索</span>
-                                                <span class="right"></span>
-                                            </a>
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                </tfoot>
-                            </table>
                             </li>
                         </ul>
                     </form>
@@ -322,6 +343,48 @@
                 </div>
             </aside>
         </div>
+<script type="text/x-kendo-template" id="city_popup">
+<div id="gn-tabstrip" class="tcy_tabstrip">
+<span class="tcy_title">
+    热门城市/国家（支持中文名/拼音/英文名/三字码）
+</span>
+<ul>
+<li id="hot_city" class="k-state-active">热门</li>
+# for (var i=0; i<data.group.length; i++ ) { #
+<li>#= data.group[i] #</li>
+# } #
+</ul>
+<div id="hot_city_tab">
+<ul class="tcy_list clearfix">
+
+# for(var j=0;j<hotcitylist.length;j++){ #
+# var citylist_item = hotcitylist[j] #
+<li class="item" title="#= citylist_item.code #" data-code="#= citylist_item.code #">#= citylist_item.name #</li>
+# } #
+</ul>
+</div>
+
+# for(var i=0;i<data.citylist.length;i++){ #
+# var citylist_item = data.citylist[i] #
+<div class="city_tab">
+<ul class="tcy_list clearfix">
+  # for(var k=0;k<data.group[i].length;k++){ #
+    <li class="tcy_list_sep">#= data.group[i].split('')[k] #</li>
+    # for(var j=0;j<citylist_item.value.length;j++){ #
+        # var citylist_value_item = citylist_item.value[j]; #
+        # if(citylist_value_item.py.slice(0,1) == data.group[i].split('')[k]) {#
+            <li class="item" title="#= citylist_value_item.code #" data-code="#= citylist_value_item.code #">#= citylist_value_item.name #</li>
+        # } #
+    # } #
+  # } #
+</ul>
+</div>
+
+# } #
+</div>
+</script>
+
+
         <!-- 国际机票白屏 end -->
 
     </section>
@@ -342,7 +405,5 @@
         </center>
     </footer>
 </div>
-<script type="text/javascript" src="/static/js/uploadify/jquery.uploadify.min.js"></script>
-<script type="text/javascript" src="intel_flight_index.js"></script>
 </body>
 </html>
