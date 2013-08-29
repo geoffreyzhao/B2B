@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>天地行 采购商 国内机票搜索结果页-单程</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-     
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../static/css/smoothness/jquery-ui-1.10.3.custom.css" />
-     
-    <link href="../../static/css/coin-slider-styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="../../static/css/store_reset.css" media="all" />
     <link rel="stylesheet" href="../../static/css/store.css" media="screen" />
     <link rel="stylesheet" href="../../static/css/store_flight.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="../../static/css/kendo.store.css" />
+
     <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
     <script type="text/javascript" src="../../static/js/global.js"></script>
     <!--[if IE]>
     <script src="../../static/js/html5.js"></script>
@@ -53,21 +55,42 @@
     <li class="last"><a href="javascript:void(0)">国内机票 航班查询</a></li>
 </ul>
 
-    <div class="flight_search">
+    <div class="flight_search ">
        <ul class="condition clearfix">
            <li style="width:30%">
            <label>
                <em>*</em><strong>航程类型</strong>
-               <select data-role="dropdownlist" style="width:80px;" name="other">
+               <select data-role="dropdownlist" style="width:80px;" name="trip_type">
                    <option value="单程">单程</option>
                    <option value="往返">往返</option>
                </select>
-
            </label>
            </li>
-           <li style="width:30%">
+           <li style="width:50%">
+                <table>
+                    <tr>
+                        <td><label><em>*</em><span>出发城市</span><input type="text" class="gray-border" value="" name="departure_city"/></label></td>
+                        <td><label><em>*</em><span>出发日期</span><input type="text" class="gray-border datepicker" value="" name="departure_date"/></label></td>
+                    </tr>
+                    <tr>
+                        <td><label><em>*</em><span>到达城市</span><input type="text" class="gray-border" value="" name="departure_city"/></label></td>
+                        <td><label class="muted"><em>*</em><span>返程日期</span><input type="text" class="gray-border datepicker" value="" name="departure_city"/></label></td>
+                    </tr>
+                </table>
            </li>
-           <li style="width:40%">
+           <li style="width:20%;position:relative;">
+                
+           <div class="btn_area" style="left:0px;top:0px">
+               <a class="adaptiveButton brightRed_btn">
+                   <span class="left"></span>
+                   <span class="center center_1">搜&nbsp;索</span>
+                   <span class="right"></span>
+               </a>
+           </div>
+                <div class="search_history">
+                    <a href="javascript:void(0)"></a>
+                </div>
+
            </li>
        </ul>
     </div>
@@ -626,6 +649,7 @@
         $.datepicker.regional[ "zh-CN" ];
         $(function(){
 
+            kendo.init($('body'));
             $( ".datepicker" ).datepicker({
                 showDay:true,
                 numberOfMonths:[1,2],
