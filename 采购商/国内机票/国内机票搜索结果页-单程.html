@@ -32,8 +32,8 @@
     <a class="logo" href="/"><h1>天地行</h1></a>
     <nav class="main-nav">
         <ul class="clearfix">
-            <li class="first active"><a herf="#">首页</a></li>
-            <li><a herf="#">国内机票</a></li>
+            <li class="first"><a herf="#">首页</a></li>
+            <li class="active"><a herf="#">国内机票</a></li>
             <li><a herf="#">国际机票</a></li>
             <li><a herf="#">酒店</a></li>
         </ul> 
@@ -59,7 +59,7 @@
     <li class="last"><a href="javascript:void(0)">国内机票 航班查询</a></li>
 </ul>
 
-    <div class="flight_search">
+    <div class="flight_search separate10">
        <ul class="clearfix condition">
            <li style="width:23%" class="trip_type">
            <label>
@@ -70,23 +70,35 @@
                </select>
            </label>
            </li>
-           <li style="width:60%">
+           <li style="width:65%;">
+               <div style="top:24px;left:268px;" class="xchange">
+                   <b></b>
+                   <a href="javascript:void(0);">换</a>
+                   <i></i>
+               </div>
+                
                 <table class="time_city">
+                    <colgroup>
+                        <col width="13%">
+                        <col width="44%">
+                        <col width="13%">
+                        <col/>
+                    </colgroup>
                     <tr>
                         <td><label for="departure_city"><em>*</em><span>出发城市</span></label></td>
-                        <td><input type="text" class="gray-border" value="" id="departure_city" name="departure_city"/></td>
+                        <td><input type="text" style="width:180px" class="gray-border" value="" id="departure_city" name="departure_city"/></td>
                         <td><label for="departure_date"><em>*</em><span>出发日期</span></label></td>
                         <td><input type="text" class="gray-border datepicker" value="" name="departure_date" id="departure_date"/></td>
                     </tr>
                     <tr>
                         <td><label for="arrive_city"><em>*</em><span>到达城市</span></label></td>
-                        <td><input type="text" class="gray-border" value="" name="arrive_city" id="arrive_city"/></td>
+                        <td><input type="text" style="width:180px" class="gray-border" value="" name="arrive_city" id="arrive_city"/></td>
                         <td id="return_label"><label class="muted" for="return_date"><em>*</em><span>返程日期</span></label></td>
                         <td><input type="text" class="gray-border datepicker" value="" disabled="disabled" name="return_date" id="return_date"/></td>
                     </tr>
                 </table>
             </li>
-            <li style="width:15%;position:relative;">
+            <li style="width:10%;">
                 <a class="adaptiveButton brightRed_btn">
                     <span class="left"></span>
                     <span class="center center_1">搜&nbsp;索</span>
@@ -94,10 +106,14 @@
                 </a>
                 <div class="search_history">
                     <a href="javascript:void(0)" class="trigger_a">
-                        <span>搜索历史</span>
-                        <i></i>
+                        <span class="arrow_down">搜索历史</span>
                         <div class="list" style="left:-160px;">
                             <table>
+                                <colgroup>
+                                    <col width="20%"/>
+                                    <col width="45%"/>
+                                    <col width="40%"/>
+                                </colgroup>
                                 <tr>
                                     <td>单程</td>
                                     <td>北京 - 上海</td>
@@ -703,12 +719,9 @@
 </footer>
 </div>
 
-    <script type="text/javascript">
+    <script>
 
-        $.datepicker.regional[ "zh-CN" ];
         $(function(){
-
-            kendo.init($('body'));
 
             $("#trip_type").change(function(){
                 if($(this).val() == "one_way"){
@@ -719,17 +732,7 @@
                     $("#return_date").prop("disabled",false);
 
                 }
-
             });
-
-            $( ".datepicker" ).datepicker({
-                showDay:true,
-                numberOfMonths:[1,2],
-                minDate :new Date(),
-                firstDay:0,
-                showButtonPanel :true
-		    });
-
         });
     </script>
     
