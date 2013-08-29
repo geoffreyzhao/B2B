@@ -6,18 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
      
     <link rel="stylesheet" href="../../static/css/smoothness/jquery-ui-1.10.3.custom.css" />
-     
-    <link href="../../static/css/coin-slider-styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="../../static/css/store_reset.css" media="all" />
     <link rel="stylesheet" href="../../static/css/store.css" media="screen" />
     <link rel="stylesheet" href="../../static/css/store_flight.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="../../static/css/kendo.store.css" />
+
     <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
-    
+
+    <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../static/js/global.js"></script>
+    <script type="text/javascript" src="../../static/js/store/store.js"></script>
+
     <!--[if IE]>
     <script src="../../static/js/html5.js"></script>
     <![endif]-->
     <script src="../../static/js/jquery-ui-1.10.3.custom.js"></script>
 	<script src="../../static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+     
 </head>
 <body>
 
@@ -26,8 +33,8 @@
     <a class="logo" href="/"><h1>天地行</h1></a>
     <nav class="main-nav">
         <ul class="clearfix">
-            <li class="first active"><a herf="#">首页</a></li>
-            <li><a herf="#">国内机票</a></li>
+            <li class="first"><a herf="#">首页</a></li>
+            <li class="active"><a herf="#">国内机票</a></li>
             <li><a herf="#">国际机票</a></li>
             <li><a herf="#">酒店</a></li>
         </ul> 
@@ -46,7 +53,78 @@
         <span class="phone">客服电话：400-720-6666</span>
 </header>
 <section class="main-body clearfix">
- 	
+    <div class="flight_search separate10">
+       <ul class="clearfix condition">
+           <li style="width:23%" class="trip_type">
+           <label>
+               <em>*</em><strong>航程类型</strong>
+               <select data-role="dropdownlist" style="width:80px;" id="trip_type" name="trip_type">
+                   <option value="one_way">单程</option>
+                   <option value="round_trip" selected="selected">往返</option>
+               </select>
+           </label>
+           </li>
+           <li style="width:65%;">
+               <div style="top:24px;left:268px;" class="xchange">
+                   <b></b>
+                   <a href="javascript:void(0);">换</a>
+                   <i></i>
+               </div>
+                
+                <table class="time_city">
+                    <colgroup>
+                        <col width="13%">
+                        <col width="44%">
+                        <col width="13%">
+                        <col/>
+                    </colgroup>
+                    <tr>
+                        <td><label for="departure_city"><em>*</em><span>出发城市</span></label></td>
+                        <td><input type="text" style="width:180px" class="gray-border" value="" id="departure_city" name="departure_city"/></td>
+                        <td><label for="departure_date"><em>*</em><span>出发日期</span></label></td>
+                        <td><input type="text" class="gray-border datepicker" value="" name="departure_date" id="departure_date"/></td>
+                    </tr>
+                    <tr>
+                        <td><label for="arrive_city"><em>*</em><span>到达城市</span></label></td>
+                        <td><input type="text" style="width:180px" class="gray-border" value="" name="arrive_city" id="arrive_city"/></td>
+                        <td id="return_label"><label class="" for="return_date"><em>*</em><span>返程日期</span></label></td>
+                        <td><input type="text" class="gray-border datepicker" value="" name="return_date" id="return_date"/></td>
+                    </tr>
+                </table>
+            </li>
+            <li style="width:10%;">
+                <a class="adaptiveButton brightRed_btn">
+                    <span class="left"></span>
+                    <span class="center center_1">搜&nbsp;索</span>
+                    <span class="right"></span>
+                </a>
+                <div class="search_history">
+                    <a href="javascript:void(0)" class="trigger_a">
+                        <span class="arrow_down">搜索历史</span>
+                        <div class="list" style="left:-160px;">
+                            <table>
+                                <colgroup>
+                                    <col width="20%"/>
+                                    <col width="45%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tr>
+                                    <td>单程</td>
+                                    <td>北京 - 上海</td>
+                                    <td>08-01</td>
+                                </tr>
+                                <tr>
+                                    <td>往返</td>
+                                    <td>乌鲁木齐 - 上海</td>
+                                    <td>08-01 ~ 08-04</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </a>
+                </div>
+           </li>
+       </ul>
+    </div>
    <div class="selected">
        <h3>已选择的去程航班</h3>
        <table class="selected_tab">
@@ -620,20 +698,20 @@
     </center>
 </footer>
 </div>
+    <script>
 
-    <script type="text/javascript">
-
-        $.datepicker.regional[ "zh-CN" ];
         $(function(){
 
-            $( ".datepicker" ).datepicker({
-                showDay:true,
-                numberOfMonths:[1,2],
-                minDate :new Date(),
-                firstDay:0,
-                showButtonPanel :true
-		    });
+            $("#trip_type").change(function(){
+                if($(this).val() == "one_way"){
+                    $("#return_label label").addClass("muted");
+                    $("#return_date").prop("disabled",true);
+                }else{
+                    $("#return_label label").removeClass("muted");
+                    $("#return_date").prop("disabled",false);
 
+                }
+            });
         });
     </script>
     
