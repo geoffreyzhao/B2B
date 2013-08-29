@@ -268,8 +268,6 @@ var FloatLayer = function(opts){
     layer.close = function(){
         layer.hide();
     };
-    set_pos(opts.trigger);
-    layer.open();
     return layer;
 };
 
