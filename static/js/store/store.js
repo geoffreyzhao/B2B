@@ -22,6 +22,7 @@ $(function() {
 	$(function(){
 
 		$( ".datepicker" ).datepicker({
+            css : {"z-index": 20000},
 			showDay:true,
 			numberOfMonths:[1,2],
 			minDate :new Date(),
