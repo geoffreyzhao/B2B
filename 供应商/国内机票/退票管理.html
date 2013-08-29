@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>国内机票 订单管理 退票管理 国内</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="../../static/css/common.css" rel="stylesheet" type="text/css" />
+        <link href="../../static/css/kendo.common.css" rel="stylesheet" type="text/css" />
+        <link href="../../static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
+        <link href="../../static/css/supplier.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+        <script src="../../static/js/jquery.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+        <script type="text/javascript" src="/static/js/global.js"></script>
+        <script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
+
+<!--[if lt IE 8]> 
+<link rel="stylesheet" href="/static/css/ie.css" /> 
+<script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
+<![endif]-->
+<!-- @CLB@ -->
+        <script type="text/javascript" src="/static/js/supplier/supplier_sync.js"></script>
+</head>
+<body>
+    <div id="extHeader">
+        <div></div>
+    </div>
+
+    <div id="container">
+        <div class="header">
+            <h1></h1>
+            <div>
+                <span>你好,${name}</span>
+                <a href="javascript:void(0);">退出</a>
+            </div>
+            <ul id="top_menu">
+                <li><a href="javascript:void(0);">国内机票</a></li>
+                <li><a href="javascript:void(0);">国际机票</a></li>
+                <li><a href="javascript:void(0);">酒店</a></li>
+                <li><a href="javascript:void(0);">票证中心</a></li>
+                <li><a href="javascript:void(0);">财务管理</a></li>
+                <li><a href="javascript:void(0);">客户管理</a></li>
+                <li class="current"><a href="javascript:void(0);">系统设置</a></li>
+            </ul>
+            <ol class="sub_menu">
+                <li class="current"><a href="javascript:void(0);">公告信息</a></li>
+                <li><a href="javascript:void(0);">公司信息</a></li>
+                <li><a href="javascript:void(0);">组织架构</a></li>
+                <li><a href="javascript:void(0);">角色维护</a></li>
+                <li><a href="javascript:void(0);">基础数据</a></li>
+            </ol>
+            <div id="message">
+                <a href="javascript:void(0);">&nbsp;</a>
+                <span>&nbsp;</span>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="sub_menu_bar"></div>
+        <div id="mainContent">
+            <!-- start zhuzhijiagou -->
+
+            <div class="topFixedToolsBar">
+                <div class="fixedMenu" style="font-size:12px;">
+                    <a href="#">订单查询</a>
+                    <a href="#">审核</a>
+                    <a href="#">出票</a>
+                    <a href="#">暂不出票</a>
+                    <a href="#">改签</a>
+                    <a href="#">升舱</a>
+                    <a href="#" class="current">退票</a>
+                    <a href="#">废票</a>
+                </div>
+            </div>
+
+            <div class="row separete10 searchbox">
+                <table>
+                    <!--
+                    <colgroup>
+                        <col width="60px" />
+                        <col width="80px" />
+                        <col width="60px" />
+                        <col width="80px" />
+                        <col width="60px" />
+                        <col width="80px" />
+                        <col width="60px" />
+                        <col width="250px" />
+                    </colgroup>
+                    -->
+                    <tbody>
+                        <tr>
+                            <td>PNR</td>
+                            <td>
+                                <input class="gray-border" type="text" name=""/>
+                            </td>
+                            <td>流程状态</td>
+                            <td>
+                                <input type="text" data-role="dropdownlist" style="width:130px" name="" data-source="['全部','提交','审核中']"/>
+                            </td>
+                            <td>订单号</td>
+                            <td>
+                                <input class="gray-border" name="" type="text"/>
+                            </td>
+                            <td>提交日期</td>
+                            <td>
+                                <input class="gray-border datepicker" name="" style="width:100px" type="text"/>
+                                <span>至</span>
+                                <input class="gray-border datepicker orange" name="" style="width:100px;" type="text"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>航空公司</td>
+                            <td>
+                                <input class="gray-border" type="text" name=""/>
+                            </td>
+                            <td>航班号</td>
+                            <td>
+                                <input class="gray-border" type="text" name=""/>
+                            </td>
+                            <td>处理人</td>
+                            <td>
+                                <input class="gray-border" name="" type="text"/>
+                            </td>
+                            <td>起飞日期</td>
+                            <td>
+                                <input class="gray-border datepicker" name="" style="width:100px" type="text"/>
+                                <span>至</span>
+                                <input class="gray-border datepicker orange" name="" style="width:100px;" type="text"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>票号</td>
+                            <td>
+                                <input class="gray-border" type="text" name=""/>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="btn_area">
+                    <a class="button_important adaptiveButton medium" href="javascript:;">
+                        <span class="left"></span>
+                        <span class="center">查询</span>
+                        <span class="right"></span>
+                    </a>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="qx">
+                    <!--<div class="xuanze">
+                        <button class="btns btn-ac-blue">优先处理</button>
+                    </div>-->
+                    <div>
+                        <button class="btns btn-ac-blue">导出Excel</button>
+                    </div>
+                </div>
+
+
+                <table class="grid-table" id="grid-table">
+                    <tr class="thead">
+                        <th>订单号</th> 
+                        <th>PNR</th> 
+                        <th>提交时间</th> 
+                        <th>出票时间</th>
+                        <th>航班号</th>
+                        <th>航程</th>
+                        <th>起飞时间</th>
+                        <th>乘机人</th>
+                        <th>舱位</th>
+                        <th>折扣</th>
+                        <th>处理人</th>
+                        <th>流程状态</th>
+                        <th>操作</th>
+                    </tr>
+                </table>
+
+                <!-- end of zhuzhijiagou -->
+            </div>
+        </div>
+    </div>
+
+    <div id="extFooter">
+        <div>
+            <p>
+            <a href="javascript:void(0);">关于我们</a>&nbsp;|
+            <a href="javascript:void(0);">微博</a>&nbsp;|
+            <a href="javascript:void(0);">服务条款</a>&nbsp;|
+            <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+
+<script type="text/x-kendo-template" id="grid-table-template">
+    <tr>
+        # kendo.logToConsole(data) #
+        <td><a href="javascript:void(0);" class="oper">#= data.c1 #</a></td>
+        <td>#= data.c2 #</td>
+        <td>#= data.c3 #</td>
+        <td>#= data.c4 #</td>
+        <td>#= data.c5 #</td>
+        <td>#= data.c6 #</td>
+        <td>#= data.c7 #</td>
+        <td>#= data.c8 #</td>
+        <td>#= data.c10 #</td>
+        <td>#= data.c14 #</td>
+        <td>#= data.c15 #</td>
+        <td>#= data.c16 #</td>
+        <td>
+            <a href="javascript:void(0)" class="oper">受理</a>
+        </td>
+    </tr>
+</script>
+
+<script>
+$(function() {
+	kendo.init($("body"));
+	//浮动条
+	$('.topFixedToolsBar').fixedBar();
+
+	new GridTable('#grid-table', {
+		dataSource: [{
+			c1: '1234567890123456',
+			c2: 'JWFR1',
+			c3: "2013-01-01 09:00",
+			c4: "2013-01-01 09:00",
+			c5: "CZ5891",
+			c6: "北京至绵阳",
+			c7: "2013-01-01 09:00",
+			c8: "李晓明",
+			c9: "特价申请",
+			c10: "W",
+			c11: "6.0折",
+			c12: "5500.00",
+			c13: "450.00",
+			c14: "7折",
+			c15: "张三",
+			c16: "提交"
+		}],
+		columns: [{
+			width: 150
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		}],
+        height:200,
+		scrollable: true,
+		resizable: true,
+		rowTemplate: kendo.template($("#grid-table-template").html())
+	}).init();
+
+});
+
+</script>
+
+</body>
+</html>
