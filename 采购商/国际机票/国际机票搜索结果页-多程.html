@@ -11,13 +11,20 @@
     <link rel="stylesheet" href="../../static/css/store_reset.css" media="all" />
     <link rel="stylesheet" href="../../static/css/store.css" media="screen" />
     <link rel="stylesheet" href="../../static/css/store_flight.css" media="screen" />
-    <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
     
+    <link rel="stylesheet" href="../../static/css/kendo.common.min.css" />
+	<link rel="stylesheet" href="../../static/css/kendo.store.css" />
+    <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
+	<script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+
     <!--[if IE]>
     <script src="../../static/js/html5.js"></script>
     <![endif]-->
     <script src="../../static/js/jquery-ui-1.10.3.custom.js"></script>
 	<script src="../../static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+    
+    <script type="text/javascript" src="../../static/js/store/store.js"></script>
 </head>
 <body>
 
@@ -57,11 +64,11 @@
                <p>
                   <span>当前共有<em>40</em>条航班记录，最低价<em> ￥809</em></span>
                   <i>9/25</i>
-                  <strong>下一页</strong>
+                  <strong><a href="#">下一页</a></strong>
                </p>
             </div>
        </div>
-       <div class="number">
+       <div class="number"> 
            <table>
              <colgroup>
                <col width="85px"/>
@@ -77,23 +84,51 @@
                <col width="68px"/>
                <col width="95px"/>
                <col width="145px"/>
-             </colgroup> 
+             </colgroup>  
                <tr>
                    <td>航班号</td>
                    <td>机型</td>
-                   <td><span>起降<br>时间<i>&nbsp;</i></span></td>
+                   <td>
+                       <div class="sorttab sorttab_line2 ascend">
+                            <div style="width:50%; padding-top:10px;">起降时间</div>
+                            <i>&nbsp;</i>
+                       </div>
+                   </td>
                    <td>起降机场</td>
                    <td>航程<br>类型</td>
-                   <td><span>飞行<br>时间<i>&nbsp;</i></span></td>
+                   <td>                      
+                       <div class="sorttab sorttab_line2 descend">
+                            <div style="width:50%; padding-top:10px;">飞行时间</div>
+                            <i>&nbsp;</i>
+                       </div>
+                   </td>
                    <td>舱位</td>
                    <td>剩余座位</td>
                    <td>退改签</td>
-                   <td><span>票面价<br>/税款&nbsp;<i>&nbsp;</i></span></td>
-                   <td><span>代理费 <em> &nbsp;</em></span></td>
-                   <td><span>奖励 <em> &nbsp;</em></span></td>
-                   <td><span>结算价 <strong>&nbsp;</strong></span></td>
-               </tr>
-           
+                   <td>                      
+                       <div class="sorttab sorttab_line2 descend">
+                            <div style="width:70%; padding-top:10px;">票面价/税款</div>
+                            <i style="left:43px;">&nbsp;</i>
+                       </div>
+                   </td>
+                   <td>
+                       <div class="sorttab">
+                             代理费
+                             <i class="descend">&nbsp;</i>
+                       </div>
+                   </td><td>
+                       <div class="sorttab">
+                             奖励
+                             <i class="descend">&nbsp;</i>
+                       </div>
+                   </td>
+                   <td>
+                       <div class="sorttab">
+                             结算价
+                             <i class="descend">&nbsp;</i>
+                       </div>
+                   </td>
+               </tr>           
            </table>       
        </div>
        <div class="information">
@@ -115,21 +150,39 @@
                <col width="65px"/>
              </colgroup>             
                 <tr>
-                   <td rowspan="2" style="vertical-align:top;"><code>&nbsp;</code></td>
-                   <td>东方航空</td>
-                   <td>大型机</td>
-                   <td>08:00</td>
-                   <td>首都机场T3</td>
-                   <td rowspan="2">直飞</td>
-                   <td>5小时</td>
-                   <td rowspan="2">G</td>
-                   <td><i>3张</i></td>
-                   <td rowspan="5"><span>退改签 <strong>&nbsp;</strong></span></td>
-                   <td rowspan="5"><big>￥500/<br>￥350</big></td>
-                   <td rowspan="5">7.2%</td>
-                   <td rowspan="5"><strong>7.2%+ ￥51<br>=￥76</strong></td>
-                   <td rowspan="5"><big>￥464.00</big></td>
-                   <td rowspan="5">
+                   <td class="half_dashed" style="vertical-align:top;"><code>&nbsp;</code></td>
+                   <td class="half_dashed">
+                       <div>东方航空</div>
+                       <div>MU5183</div>
+                   </td>
+                   <td class="half_dashed">
+                       <div>大型机</div>
+                       <div>333</div>
+                   </td>
+                   <td class="half_dashed">
+                       <div>08:00</div>
+                       <div>10:20</div>
+                   </td>
+                   <td class="half_dashed">
+                       <div>首都机场T3</div>
+                       <div>虹桥机场T2</div>
+                   </td>
+                   <td class="half_dashed">直飞</td>
+                   <td class="half_dashed">
+                       <div>5小时</div>
+                       <div>30分</div>
+                   </td>
+                   <td class="half_dashed">G</td>
+                   <td class="half_dashed">
+                       <div><i>3张</i></div>
+                       <div><span>购票限制 <strong></strong></span></div>
+                   </td>
+                   <td rowspan="2"><span>退改签 <strong>&nbsp;</strong></span></td>
+                   <td rowspan="2"><big>￥500/<br>￥350</big></td>
+                   <td rowspan="2">7.2%</td>
+                   <td rowspan="2"><strong>7.2%+ ￥51<br>=￥76</strong></td>
+                   <td rowspan="2"><big>￥464.00</big></td>
+                   <td rowspan="2">
                       <a class="adaptiveButton mediumOrange_btn">
                           <span class="left"></span>
                           <span class="center" style="padding:0 5px;">核价并预订</span>
@@ -137,38 +190,35 @@
                       </a>
                       <a class="more-cabin" href="#">更多舱位<i>&nbsp;</i></a>
                    </td>                   
-                </tr>
+                </tr>                   
                 <tr>
-                   <td>MU5183</td>
-                   <td>333</td>
-                   <td>10:20</td>
-                   <td>虹桥机场T2</td>
-                   <td>30分</td>
-                   <td><span>购票限制 <strong></strong></span></td>
-                </tr>
-                <tr>
-                    <td colspan="9" style="height:30px;">
-                       <div class="half_dashed"></div>
-                    </td>
-                </tr>                        
-                <tr>
-                   <td rowspan="2" style="vertical-align:top;"><code>&nbsp;</code></td>
-                   <td>东方航空</td>
-                   <td>大型机</td>
-                   <td>08:00</td>
-                   <td>首都机场T3</td>
-                   <td rowspan="2">直飞</td>
-                   <td>5小时</td>
-                   <td rowspan="2">G</td>
-                   <td><i>3张</i></td>
-                </tr>
-                <tr>
-                   <td>MU5183</td>
-                   <td>333</td>
-                   <td>10:20</td>
-                   <td>虹桥机场T2</td>
-                   <td>30分</td>
-                   <td><span>购票限制 <strong></strong></span></td>
+                   <td class="td_padding" style="vertical-align:top;"><code>&nbsp;</code></td>
+                   <td class="td_padding">
+                       <div>东方航空</div>
+                       <div>MU5183</div>
+                   </td>
+                   <td class="td_padding">
+                       <div>大型机</div>
+                       <div>333</div>
+                   </td>
+                   <td class="td_padding">
+                       <div>08:00</div>
+                       <div>10:20</div>
+                   </td>
+                   <td class="td_padding">
+                       <div>首都机场T3</div>
+                       <div>虹桥机场T2</div>
+                   </td>
+                   <td class="td_padding">直飞</td>
+                   <td class="td_padding">
+                       <div>5小时</div>
+                       <div>30分</div>
+                   </td>
+                   <td class="td_padding">G</td>
+                   <td class="td_padding">
+                       <div><i>3张</i></div>
+                       <div><span>购票限制 <strong></strong></span></div>
+                   </td>
                 </tr>
             </table>
        </div>
@@ -191,21 +241,39 @@
                <col width="65px"/>
              </colgroup>             
                 <tr>
-                   <td rowspan="2" style="vertical-align:top;"><code>&nbsp;</code></td>
-                   <td>东方航空</td>
-                   <td>大型机</td>
-                   <td>08:00</td>
-                   <td>首都机场T3</td>
-                   <td rowspan="2"><span>一次中转 <strong>&nbsp;</strong></span></td>
-                   <td>5小时</td>
-                   <td rowspan="2">G</td>
-                   <td><i>3张</i></td>
-                   <td rowspan="5"><span>退改签 <strong>&nbsp;</strong></span></td>
-                   <td rowspan="5"><big>￥500/<br>￥350</big></td>
-                   <td rowspan="5">7.2%</td>
-                   <td rowspan="5"><strong>7.2%+ ￥51<br>=￥76</strong></td>
-                   <td rowspan="5"><big>￥464.00</big></td>
-                   <td rowspan="5">
+                   <td class="half_dashed" style="vertical-align:top;"><code>&nbsp;</code></td>
+                   <td class="half_dashed">
+                       <div>东方航空</div>
+                       <div>MU5183</div>
+                   </td>
+                   <td class="half_dashed">
+                       <div>大型机</div>
+                       <div>333</div>
+                   </td>
+                   <td class="half_dashed">
+                       <div>08:00</div>
+                       <div>10:20</div>
+                   </td>
+                   <td class="half_dashed">
+                       <div>首都机场T3</div>
+                       <div>虹桥机场T2</div>
+                   </td>
+                   <td class="half_dashed">直飞</td>
+                   <td class="half_dashed">
+                       <div>5小时</div>
+                       <div>30分</div>
+                   </td>
+                   <td class="half_dashed">G</td>
+                   <td class="half_dashed">
+                       <div><i>3张</i></div>
+                       <div><span>购票限制 <strong></strong></span></div>
+                   </td>
+                   <td rowspan="2"><span>退改签 <strong>&nbsp;</strong></span></td>
+                   <td rowspan="2"><big>￥500/<br>￥350</big></td>
+                   <td rowspan="2">7.2%</td>
+                   <td rowspan="2"><strong>7.2%+ ￥51<br>=￥76</strong></td>
+                   <td rowspan="2"><big>￥464.00</big></td>
+                   <td rowspan="2">
                       <a class="adaptiveButton mediumOrange_btn">
                           <span class="left"></span>
                           <span class="center" style="padding:0 5px;">核价并预订</span>
@@ -213,38 +281,35 @@
                       </a>
                       <a class="more-cabin" href="#">更多舱位<i>&nbsp;</i></a>
                    </td>                   
-                </tr>
+                </tr>                   
                 <tr>
-                   <td>MU5183</td>
-                   <td>333</td>
-                   <td>10:20</td>
-                   <td>虹桥机场T2</td>
-                   <td>30分</td>
-                   <td><span>购票限制 <strong></strong></span></td>
-                </tr>
-                <tr>
-                    <td colspan="9" style="height:30px;">
-                       <div class="half_dashed"></div>
-                    </td>
-                </tr>                        
-                <tr>
-                   <td rowspan="2" style="vertical-align:top;"><code>&nbsp;</code></td>
-                   <td>东方航空</td>
-                   <td>大型机</td>
-                   <td>08:00</td>
-                   <td>首都机场T3</td>
-                   <td rowspan="2">直飞</td>
-                   <td>5小时</td>
-                   <td rowspan="2">G</td>
-                   <td><i>3张</i></td>
-                </tr>
-                <tr>
-                   <td>MU5183</td>
-                   <td>333</td>
-                   <td>10:20</td>
-                   <td>虹桥机场T2</td>
-                   <td>30分</td>
-                   <td><span>购票限制 <strong></strong></span></td>
+                   <td class="td_padding" style="vertical-align:top;"><code>&nbsp;</code></td>
+                   <td class="td_padding">
+                       <div>东方航空</div>
+                       <div>MU5183</div>
+                   </td>
+                   <td class="td_padding">
+                       <div>大型机</div>
+                       <div>333</div>
+                   </td>
+                   <td class="td_padding">
+                       <div>08:00</div>
+                       <div>10:20</div>
+                   </td>
+                   <td class="td_padding">
+                       <div>首都机场T3</div>
+                       <div>虹桥机场T2</div>
+                   </td>
+                   <td class="td_padding">直飞</td>
+                   <td class="td_padding">
+                       <div>5小时</div>
+                       <div>30分</div>
+                   </td>
+                   <td class="td_padding">G</td>
+                   <td class="td_padding">
+                       <div><i>3张</i></div>
+                       <div><span>购票限制 <strong></strong></span></div>
+                   </td>
                 </tr>
             </table>
        </div>
