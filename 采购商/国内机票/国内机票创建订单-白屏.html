@@ -11,7 +11,11 @@
     <link rel="stylesheet" href="../../static/css/store_reset.css" media="all" />
     <link rel="stylesheet" href="../../static/css/store.css" media="screen" />
     <link rel="stylesheet" href="../../static/css/store_flight.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/kendo.common.min.css" />
+	<link rel="stylesheet" href="../../static/css/kendo.store.css" />
     <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
+	<script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
 
     <!--[if IE]>
     <script src="../../static/js/html5.js"></script>
@@ -256,10 +260,10 @@
                     <td>1970-08-21</td>
                     <td>13811234567</td>
                     <td>
-                        <a href="#">
+                        <a href="#" class="distance">
                            <i class="delete"></i>                           
                         </a>
-                        <a href="#">
+                        <a href="#" class="distance">
                            <em class="add"></em>                        
                         </a>
                     </td>
@@ -275,10 +279,10 @@
                     <td>1970-08-21</td>
                     <td> </td>
                     <td>
-                        <a href="#">
+                        <a href="#" class="distance">
                            <i class="delete"></i>                           
                         </a>
-                        <a href="#">
+                        <a href="#" class="distance">
                            <em class="add"></em>                        
                         </a>
                     </td>
@@ -286,7 +290,7 @@
                 <tr class="dashed_top case">
                     <td><input type="checkbox" style="border:0;" /> </td>
                     <td>
-                        <select>
+                        <select data-role="dropdownlist"  style="width:60px">
                             <option>成人</option>
                             <option>儿童</option>
                             <option>婴儿</option>
@@ -296,7 +300,7 @@
                         <input style="width:57px;" type="text" />
                     </td>
                     <td>
-                        <select style=" width:45px;">
+                        <select style=" width:45px;" data-role="dropdownlist">
                             <option>男</option>
                             <option>女</option>
                         </select>
@@ -305,7 +309,7 @@
                         <input style="width:57px;" type="text" value="中国" />
                     </td>
                     <td>
-                        <select style="width:80px;">
+                        <select style="width:80px;" data-role="dropdownlist">
                             <option>身份证</option>
                             <option>护照</option>
                             <option>港澳通行证</option>
@@ -322,10 +326,10 @@
                         <input style="width:80px;" type="text" />
                     </td>
                     <td>
-                        <a href="#">
+                        <a href="#" class="distance">
                            <i class="delete"></i>                           
                         </a>
-                        <a href="#">
+                        <a href="#" class="distance">
                            <em class="add"></em>                        
                         </a>
                     </td>
@@ -386,6 +390,8 @@
     <script type="text/javascript">
 
         $.datepicker.regional[ "zh-CN" ];
+		
+		kendo.init($("body"));
         $(function(){
 
             $( ".datepicker" ).datepicker({
