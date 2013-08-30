@@ -266,6 +266,7 @@ var FloatLayer = function(opts){
     });
 
     layer.open = function(){
+        set_pos(opts.trigger);
         layer.show();
     };
 
