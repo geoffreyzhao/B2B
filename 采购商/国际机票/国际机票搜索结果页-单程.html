@@ -18,7 +18,6 @@
     <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
     <script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
     <script type="text/javascript" src="../../static/js/global.js"></script>
-    <script type="text/javascript" src="../../static/js/store/store.js"></script>
 
     <!--[if IE]>
     <script src="../../static/js/html5.js"></script>
@@ -69,17 +68,18 @@
                <select data-role="dropdownlist" style="width:80px;" id="trip_type" name="trip_type">
                    <option value="one_way">单程</option>
                    <option value="round_trip">往返</option>
+                   <option value="muti_trip">多程</option>
                </select>
            </label>
            </li>
-           <li style="width:65%;">
+           <li style="width:77%;">
                <div style="top:24px;left:268px;" class="xchange">
                    <b></b>
                    <a href="javascript:void(0);">换</a>
                    <i></i>
                </div>
                 
-                <table class="time_city">
+                <table class="time_city" id="one_and_round">
                     <colgroup>
                         <col width="13%">
                         <col width="44%">
@@ -95,14 +95,71 @@
                     <tr>
                         <td><label for="arrive_city"><em>*</em><span>到达城市</span></label></td>
                         <td><input type="text" style="width:180px" class="gray-border" value="" name="arrive_city" id="arrive_city"/></td>
-                        <td id="return_label"><label class="muted" for="return_date"><em>*</em><span>返程日期</span></label></td>
+                        <td><label id="return_label" class="muted" for="return_date"><em>*</em><span>返程日期</span></label></td>
                         <td><input type="text" class="gray-border datepicker" value="" disabled="disabled" name="return_date" id="return_date"/></td>
                     </tr>
                 </table>
-            </li>
-            <li style="width:10%;">
+
+
+                <script type="text/x-kendo-template" id="ac-add-line-template">
+                    <tr>
+                        <td>
+                            <label>第<span class="hitext index_num">1</span>程<em>*</em><span>出发城市</span>
+                                <input type="text" style="width:130px" class="gray-border city_ac" value="" name="departure_city"/></label>
+                        </td>
+                        <td>
+                            <label><em>*</em><span>到达城市</span>
+                                <input type="text" style="width:130px" class="gray-border city_ac" value="" name="arrive_city" /></label>
+                        </td>
+                        <td>
+                            <label><em>*</em><span>出发日期</span>
+                                <input type="text" style="width:130px;" class="gray-border datepicker" value="" name="departure_date"/></label>
+                        </td>
+                        <td>
+                            <a href="javascript:void(0);" class="muti_add ac-remove-line">删除</a>
+                        </td>
+                    </tr>
+                </script>
+                <!-- 多程 -->
+                <table class="time_city muti_trip" id="muti_trip" style="display:none;">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label>第<span class="hitext index_num">1</span>程<em>*</em><span>出发城市</span>
+                                    <input type="text" style="width:130px" class="gray-border city_ac" value="" name="departure_city"/></label>
+                            </td>
+                            <td>
+                                <label><em>*</em><span>到达城市</span>
+                                    <input type="text" style="width:130px" class="gray-border city_ac" value="" name="arrive_city" />
+                                </label>
+                            </td>
+                            <td>
+                                <label><em>*</em><span>出发日期</span>
+                                    <input type="text" style="width:130px;" class="gray-border datepicker" value="" name="departure_date"/></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>第<span class="hitext index_num">2</span>程<em>*</em><span>出发城市</span>
+                                    <input type="text" style="width:130px" class="gray-border city_ac" value="" name="departure_city"/></label>
+                            </td>
+                            <td>
+                                <label><em>*</em><span>到达城市</span>
+                                    <input type="text" style="width:130px" class="gray-border city_ac" value="" name="arrive_city" /></label>
+                            </td>
+                            <td>
+                                <label><em>*</em><span>出发日期</span>
+                                    <input type="text" style="width:130px;" class="gray-border datepicker" value="" name="departure_date"/></label>
+                            </td>
+                            <td>
+                                <a href="javascript:;" class="muti_add ac-add-line">添加航程</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </li>
        </ul>
+       <br/>
        <ul class="clearfix internation">
            <li>
                <table style="width:100%">
@@ -582,7 +639,7 @@
       </div>  <!--当前选中结束--> 
     </div>  <!--flight_number end-->
 
-       <div class="location"> <!--浮层开始-->
+       <div class="location" style="left:280px;top:730px;"> <!--浮层开始-->
           <div class="floating">
               <i>&nbsp;</i>
               <table class="floating_title">
@@ -677,34 +734,50 @@
     </center>
 </footer>
 </div>
-    <script>
 
-        $(function(){
 
-            //航空公司
-            var selc = $(".sel_airlines").kendoComboBox({
-                filter: "contains",
-                suggest: true,
-                index: 3
-            });
+<script type="text/x-kendo-template" id="city_popup">
+<div id="gn-tabstrip" class="tcy_tabstrip">
+<span class="tcy_title">
+    热门城市/国家（支持中文名/拼音/英文名/三字码）
+</span>
+<ul>
+<li id="hot_city" class="k-state-active">热门</li>
+# for (var i=0; i<data.group.length; i++ ) { #
+<li>#= data.group[i] #</li>
+# } #
+</ul>
+<div id="hot_city_tab">
+<ul class="tcy_list clearfix">
 
-            $(".sel_airlines").on('focus',function(){
-                var combobox=$("#sel_airlines").data("kendoComboBox");
-                combobox.open();
-            });
+# for(var j=0;j<hotcitylist.length;j++){ #
+# var citylist_item = hotcitylist[j] #
+<li class="item" title="#= citylist_item.code #" data-code="#= citylist_item.code #">#= citylist_item.name #</li>
+# } #
+</ul>
+</div>
 
-            $("#trip_type").change(function(){
-                if($(this).val() == "one_way"){
-                    $("#return_label label").addClass("muted");
-                    $("#return_date").prop("disabled",true);
-                }else{
-                    $("#return_label label").removeClass("muted");
-                    $("#return_date").prop("disabled",false);
+# for(var i=0;i<data.citylist.length;i++){ #
+# var citylist_item = data.citylist[i] #
+<div class="city_tab">
+<ul class="tcy_list clearfix">
+  # for(var k=0;k<data.group[i].length;k++){ #
+    <li class="tcy_list_sep">#= data.group[i].split('')[k] #</li>
+    # for(var j=0;j<citylist_item.value.length;j++){ #
+        # var citylist_value_item = citylist_item.value[j]; #
+        # if(citylist_value_item.py.slice(0,1) == data.group[i].split('')[k]) {#
+            <li class="item" title="#= citylist_value_item.code #" data-code="#= citylist_value_item.code #">#= citylist_value_item.name #</li>
+        # } #
+    # } #
+  # } #
+</ul>
+</div>
 
-                }
-            });
-        });
-    </script>
+# } #
+</div>
+</script>
+
+<script type="text/javascript" src="../../static/js/store/international_flight.js"></script>
     
 </body>
 </html>
