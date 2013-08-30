@@ -56,7 +56,7 @@ PopWindow.prototype = {
                 }
                 if( opts.template ){
                     opts.content = {
-                        template : kendo.template($(opts.template).html()) 
+                        template : kendo.template($(opts.template).html())(opts.data||{}) 
                     }
                 }
             }

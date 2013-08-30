@@ -2,19 +2,8 @@ $(function(){
     kendo.culture('zh-CN');
     kendo.init($('body'));
     $('.actions').fixedBar();
-    var lensf = function (){
-        $.each($('.instr'),function(){
-            var that = $(this);
-            if(that.find('.highlight-fl').size()>0){
-                var ele = that.find('.highlight');
-                var len = ele.size();
-                var wid = ele.outerWidth(true)*(len-1);
-                that.find('.line').prepend('<div style="width:'+wid+'px" />')
-            }
-        });
-    }
-    lensf();
 
+    lensf();
 
     $('.ac-toggle').bind('click',function(){
         var that = $(this);
