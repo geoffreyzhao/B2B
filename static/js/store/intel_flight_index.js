@@ -51,8 +51,9 @@ $(function() {
 
     $('body').delegate('.ac-remove-line','click',function(){
         var t = $(this);
-        if (t.closest('table').find('tr').length<=1){
-            return alert('只剩一条了'); 
+        if (t.closest('table').find('tr').length <= 2){
+            //return alert('只剩一条了'); 
+            return;
         }
         t.closest('tr').remove();
         reorder();

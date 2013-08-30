@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天地行 采购商 国内机票搜索结果页-往返-返程</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     
+    <link rel="stylesheet" href="../../static/css/smoothness/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../../static/css/store_reset.css" media="all" />
+    <link rel="stylesheet" href="../../static/css/store.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/store_flight.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="../../static/css/kendo.store.css" />
+
+    <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
+
+    <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../static/js/global.js"></script>
+    <script type="text/javascript" src="../../static/js/store/store.js"></script>
+
+    <!--[if IE]>
+    <script src="../../static/js/html5.js"></script>
+    <![endif]-->
+    <script src="../../static/js/jquery-ui-1.10.3.custom.js"></script>
+	<script src="../../static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+     
+</head>
+<body>
+
+<div class="main-wrapper">
+<header class="main-header">
+    <a class="logo" href="/"><h1>天地行</h1></a>
+    <nav class="main-nav">
+        <ul class="clearfix">
+            <li class="first"><a herf="#">首页</a></li>
+            <li class="active"><a herf="#">国内机票</a></li>
+            <li><a herf="#">国际机票</a></li>
+            <li><a herf="#">酒店</a></li>
+        </ul> 
+    </nav>
+    <nav class="main-links">
+        <ul class="clearfix">
+            <li class="first"><a href="#">订单管理</a></li>
+            <li><a href="#">分销管理</a></li>
+            <li><a href="#">电子钱包</a></li>
+            <li><a href="#">统计报表</a></li>
+            <li><a href="#">客服服务</a></li>
+            <li><a class="link-user" href="#">laobao<i class="arrow-down"></i></a></li>
+            <li><a class="link-message" href="#"><i class="icon-message"></i>消息<i class="message-count">5</i></a></li>
+            </ul>
+        </nav>
+        <span class="phone">客服电话：400-720-6666</span>
+</header>
+<section class="main-body clearfix">
+<ul class="bread_crumbs">
+    <li><a class="home" href="javascript:void(0)">主页</a></li>
+    <li><a href="javascript:void(0)">国内机票</a></li>
+    <li class="last"><a href="javascript:void(0)">国内机票 航班查询</a></li>
+</ul>
+    <div class="flight_search separate10">
+       <ul class="clearfix condition">
+           <li style="width:23%" class="trip_type">
+           <label>
+               <em>*</em><strong>航程类型</strong>
+               <select data-role="dropdownlist" style="width:80px;" id="trip_type" name="trip_type">
+                   <option value="one_way">单程</option>
+                   <option value="round_trip" selected="selected">往返</option>
+               </select>
+           </label>
+           </li>
+           <li style="width:60%;">
+               <div style="top:24px;left:268px;" class="xchange">
+                   <b></b>
+                   <a href="javascript:void(0);">换</a>
+                   <i></i>
+               </div>
+                
+                <table class="time_city">
+                    <colgroup>
+                        <col width="13%">
+                        <col width="44%">
+                        <col width="13%">
+                        <col/>
+                    </colgroup>
+                    <tr>
+                        <td><label for="departure_city"><em>*</em><span>出发城市</span></label></td>
+                        <td><input type="text" style="width:180px" class="gray-border" value="" id="departure_city" name="departure_city"/></td>
+                        <td><label for="departure_date"><em>*</em><span>出发日期</span></label></td>
+                        <td><input type="text" class="gray-border datepicker" value="" name="departure_date" id="departure_date"/></td>
+                    </tr>
+                    <tr>
+                        <td><label for="arrive_city"><em>*</em><span>到达城市</span></label></td>
+                        <td><input type="text" style="width:180px" class="gray-border" value="" name="arrive_city" id="arrive_city"/></td>
+                        <td id="return_label"><label class="" for="return_date"><em>*</em><span>返程日期</span></label></td>
+                        <td><input type="text" class="gray-border datepicker" value="" name="return_date" id="return_date"/></td>
+                    </tr>
+                </table>
+            </li>
+            <li style="width:14%;padding-left:20px;">
+                <a class="adaptiveButton brightRed_btn">
+                    <span class="left"></span>
+                    <span class="center center_1">搜&nbsp;索</span>
+                    <span class="right"></span>
+                </a>
+                <div class="search_history">
+                    <a href="javascript:void(0)" class="trigger_a">
+                        <span class="arrow_down">搜索历史</span>
+                        <div class="list" style="left:-160px;">
+                            <table>
+                                <colgroup>
+                                    <col width="20%"/>
+                                    <col width="45%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tr>
+                                    <td>单程</td>
+                                    <td>北京 - 上海</td>
+                                    <td>08-01</td>
+                                </tr>
+                                <tr>
+                                    <td>往返</td>
+                                    <td>乌鲁木齐 - 上海</td>
+                                    <td>08-01 ~ 08-04</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </a>
+                </div>
+           </li>
+       </ul>
+    </div>
+   <div class="selected">
+       <h3>已选择的去程航班</h3>
+       <table class="selected_tab">
+          <colgroup>
+               <col width="85px"/>
+               <col width="70px"/>
+               <col width="55px"/>
+               <col width="80px"/>
+               <col width="90px"/>
+               <col width="67px"/>
+               <col width="90px"/>
+               <col width="83px"/>
+               <col width="140px"/>
+               <col width="120px"/>
+             </colgroup>       
+          <tr>
+             <td><b>上海→北京</b></td>
+             <td>东方航空</td>
+             <td>大型机</td>
+             <td>起飞: 07:00</td>
+             <td>虹桥机场 T2</td>
+             <td rowspan="2">经济舱 Y</td>
+             <td>票面价</td>
+             <td>机建/</td>
+             <td>返点</td>
+             <td rowspan="2">结算价<em>￥464.00</em></td>
+             <td rowspan="2">
+                 <a class="adaptiveButton mediumOrange_btn">
+                      <span class="left"></span>
+                      <span class="center" style="padding:0 7px;">重选去程</span>
+                      <span class="right"></span>
+                 </a>
+             </td>
+          </tr>
+          <tr>
+             <td>2013-09-12</td>
+             <td>MU5137</td>
+             <td>333</td>
+             <td>到达: 09:20</td>
+             <td>首都机场 T2</td>
+             <td>￥500(6.0折)</td>
+             <td>燃油50/130</td>
+             <td>7.2%(￥25)+￥51=￥76</td>
+          </tr>
+       </table>
+   </div>
+   
+   <div class="time"> <!--time开始-->
+        <ul class="date clearfix">
+            <li>
+               <a href="#" style="width:33px; padding:12px 0;"> <i></i> </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div>07-20 周一</div>
+                    <div><em>￥450</em></div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div>07-20 周二 </div>
+                    <div><em>￥450</em></div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div>07-20 周三 </div>
+                    <div><em>￥450</em></div>
+                </a>
+            </li>
+            <li class="current">
+                <a href="#">
+                    <div>07-20 周四 </div>
+                    <div><em>￥450</em></div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div>07-20 周五 </div>
+                    <div><em>￥450</em></div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div>07-20 周六 </div>
+                    <div><em>￥450</em></div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <div>07-20 周日 </div>
+                    <div><em>￥450</em></div>
+                </a>
+            </li>
+            <li style="border:0;">
+                <a href="#" style=" width:34px; padding:20px 0;">
+                     <span>&nbsp;</span>
+                </a>
+            </li>
+        </ul>
+        <div class="caption clearfix">
+           <h3>北京→上海（返程） &nbsp; &nbsp;出发日期：2013-07-29</h3>
+           <p>
+              <span>当前共有<em>40</em>条航班记录，最低价<em> ￥809</em></span>
+              <i>9/25</i>
+              <strong><a href="#">下一页</a></strong>
+           </p>
+       </div>
+       <div class="company dashed_top">
+          <b>航空公司：</b>
+          <label> <input type="checkbox" checked=""/> 全部</label>
+          <label> <input type="checkbox" /> 东方航空</label>
+          <label> <input type="checkbox" /> 海南航空</label>
+          <label> <input type="checkbox" /> 吉祥航空</label>
+          <label> <input type="checkbox" /> 南方航空</label>
+          <label> <input type="checkbox" /> 上海航空</label>
+          <label> <input type="checkbox" > 中国国航</label>
+       </div>
+       <div class="company dashed_top">
+          <b>起飞时间：</b>
+          <label> <input type="checkbox" checked=""/> 上午(0:01-12:00）</label>
+          <label> <input type="checkbox" /> 中午(12:01-13:00）</label>
+          <label> <input type="checkbox" /> 下午(13:01-18:00）</label>
+          <label> <input type="checkbox" /> 晚上（18:01-24:00）</label>
+       </div>
+       <div class="company dashed_top">
+          <b>机型：</b>
+          <label> <input type="checkbox" checked=""/> 全部</label>
+          <label> <input type="checkbox" /> 大型机</label>
+          <label> <input type="checkbox" /> 中型机</label>
+          <span>舱位：</span>
+          <label> <input type="checkbox" checked="" /> 经济舱</label>
+          <label> <input type="checkbox" /> 商务舱</label>
+          <label> <input type="checkbox" /> 头等舱</label>
+       </div>
+       <div class="company dashed_top">
+          <b>起飞机场：</b>
+          <label> <input type="checkbox" checked=""/> 全部</label>
+          <label> <input type="checkbox" /> 虹桥机场</label>
+          <label> <input type="checkbox" /> 浦东机场</label>
+          <span>降落机场：</span>
+          <label> <input type="checkbox" checked="" /> 全部</label>
+          <label> <input type="checkbox" /> 虹桥机场</label>
+          <label> <input type="checkbox" /> 头等舱</label>
+       </div>
+    </div> <!--time结束-->
+     
+    <div class="flight_number" style="margin-top:0;">  <!--flight_number start-->       
+       <div class="number" style=" border-top:0;">           
+           <table>
+             <colgroup>
+               <col width="90px"/>
+               <col width="55px"/>
+               <col width="55px"/>
+               <col width="78px"/>
+               <col width="45px"/>
+               <col width="60px"/>
+               <col width="43px"/>
+               <col width="80px"/>
+               <col width="67px"/>
+               <col width="67px"/>
+               <col width="70px"/>
+               <col width="93px"/>
+               <col width="160px"/>
+             </colgroup> 
+               <tr>
+                   <td>航班号</td>
+                   <td>机型</td>
+                   <td>
+                       <div class="sorttab sorttab_line2 ascend">
+                            <div style="width:50%; padding-top:10px;">起降时间</div>
+                            <i>&nbsp;</i>
+                       </div>
+                   </td>
+                   <td>起降机场</td>
+                   <td>经停</td>
+                   <td>舱位<br>等级</td>
+                   <td>舱位</td>
+                   <td>剩余座位</td>
+                   <td>退改签</td>
+                   <td>
+                       <div class="sorttab">
+                             票面价
+                             <i class="descend">&nbsp;</i>
+                       </div>
+                   </td>
+                   <td>机建/燃油</td>
+                   <td>
+                       <div class="sorttab">
+                             返点
+                             <i class="descend">&nbsp;</i>
+                       </div>
+                   </td>
+                   <td>
+                       <div class="sorttab">
+                             结算价
+                             <i class="descend">&nbsp;</i>
+                       </div>
+                   </td>
+               </tr>
+           
+           </table>       
+       </div>
+      <div class="information">
+            <table>
+              <colgroup>
+               <col width="20px"/>
+               <col width="70px"/>
+               <col width="55px"/>
+               <col width="55px"/>
+               <col width="78px"/>
+               <col width="45px"/>
+               <col width="60px"/>
+               <col width="43px"/>
+               <col width="80px"/>
+               <col width="67px"/>
+               <col width="67px"/>
+               <col width="70px"/>
+               <col width="93px"/>
+               <col width="80px"/>
+             </colgroup>             
+                <tr>
+                   <td style="vertical-align:top;"><code>&nbsp;</code></td>
+                   <td>
+                      <div>东方航空</div>
+                      <div>MU5183</div>
+                   </td>
+                   <td>
+                       <div>大型机</div>
+                       <div>333</div>
+                   </td>
+                   <td>
+                       <div>08:00</div>
+                       <div>10:20</div>
+                   </td>
+                   <td>
+                       <div>首都机场T3</div>
+                       <div>虹桥机场T2</div>
+                   </td>
+                   <td>否</td>
+                   <td>
+                       <div>特价</div>
+                       <div>经济舱</div>
+                   </td>
+                   <td>G</td>
+                   <td>
+                       <div><i>3张</i></div>
+                       <div><span>购票限制 <strong></strong></span></div>
+                   </td>
+                   <td><span>退改签 <strong>&nbsp;</strong></span></td>
+                   <td>
+                       <div><big>￥500</big></div>
+                       <div>6.0折</div>
+                   </td>
+                   <td>50/130</td>
+                   <td>
+                       <div><strong>7.2%+ ￥51</strong></div>
+                       <div><strong>=￥76</strong></div>
+                   </td>
+                   <td><big>￥464.00</big></td>
+                   <td>
+                      <a class="adaptiveButton mediumOrange_btn">
+                          <span class="left"></span>
+                          <span class="center" style="padding:0 20px;">预订</span>
+                          <span class="right"></span>
+                      </a>
+                      <a class="more-cabin" href="#">更多舱位<i>&nbsp;</i></a>
+                   </td>                   
+                </tr>
+            </table>
+       </div>
+       <div class="information dashed_top">
+            <table>
+              <colgroup>
+               <col width="20px"/>
+               <col width="70px"/>
+               <col width="55px"/>
+               <col width="55px"/>
+               <col width="78px"/>
+               <col width="45px"/>
+               <col width="60px"/>
+               <col width="43px"/>
+               <col width="80px"/>
+               <col width="67px"/>
+               <col width="67px"/>
+               <col width="70px"/>
+               <col width="93px"/>
+               <col width="80px"/>
+             </colgroup>             
+                <tr>
+                   <td style="vertical-align:top;"><code>&nbsp;</code></td>
+                   <td>
+                       <div>东方航空</div>
+                       <div>MU5183</div>
+                   </td>
+                   <td>
+                       <div>大型机</div>
+                       <div>333</div>
+                   </td>
+                   <td>
+                       <div>08:00</div>
+                       <div>10:20</div>
+                   </td>
+                   <td>
+                       <div>首都机场T3</div>
+                       <div>虹桥机场T2</div>
+                   </td>
+                   <td>否</td>
+                   <td>经济舱</td>
+                   <td>G</td>
+                   <td><cite>充足</cite></td>
+                   <td><span>退改签 <strong>&nbsp;</strong></span></td>
+                   <td> </td>
+                   <td>50/130</td>
+                   <td> </td>
+                   <td> </td>
+                   <td>
+                      <a class="adaptiveButton mediumOrange_btn">
+                          <span class="left"></span>
+                          <span class="center" style="padding:0 8px;">获取价格</span>
+                          <span class="right"></span>
+                      </a>
+                      <a class="more-cabin" href="#">更多舱位<i>&nbsp;</i></a>
+                   </td>                   
+                </tr>
+            </table>
+       </div>
+       <div class="information dashed_top">
+            <table>
+              <colgroup>
+               <col width="20px"/>
+               <col width="70px"/>
+               <col width="55px"/>
+               <col width="55px"/>
+               <col width="78px"/>
+               <col width="45px"/>
+               <col width="60px"/>
+               <col width="43px"/>
+               <col width="80px"/>
+               <col width="67px"/>
+               <col width="67px"/>
+               <col width="70px"/>
+               <col width="93px"/>
+               <col width="80px"/>
+             </colgroup>             
+                <tr>
+                   <td style="vertical-align:top;"><code>&nbsp;</code></td>
+                   <td>
+                       <div>东方航空</div>
+                       <div>MU5183</div>
+                   </td>
+                   <td>
+                       <div>大型机</div>
+                       <div>333</div>
+                   </td>
+                   <td>
+                       <div>08:00</div>
+                       <div>10:20</div>
+                   </td>
+                   <td>
+                       <div>首都机场T3</div>
+                       <div>虹桥机场T2</div>
+                   </td>
+                   <td>否</td>
+                   <td>经济舱</td>
+                   <td>G</td>
+                   <td><cite>充足</cite></td>
+                   <td><span>退改签 <strong>&nbsp;</strong></span></td>
+                   <td> </td>
+                   <td>50/130</td>
+                   <td> </td>
+                   <td><a href="#" class="obtain">获取失败</a></td>
+                   <td>
+                      <a class="adaptiveButton mediumOrange_btn">
+                          <span class="left"></span>
+                          <span class="center" style="padding:0 8px;">重新获取</span>
+                          <span class="right"></span>
+                      </a>
+                      <a class="more-cabin" href="#">更多舱位<i>&nbsp;</i></a>
+                   </td>                   
+                </tr>
+            </table>
+       </div>
+       <div class="information dashed_top">
+            <table>
+              <colgroup>
+               <col width="20px"/>
+               <col width="70px"/>
+               <col width="55px"/>
+               <col width="55px"/>
+               <col width="78px"/>
+               <col width="45px"/>
+               <col width="60px"/>
+               <col width="43px"/>
+               <col width="80px"/>
+               <col width="67px"/>
+               <col width="67px"/>
+               <col width="70px"/>
+               <col width="93px"/>
+               <col width="80px"/>
+             </colgroup>             
+                <tr>
+                   <td style="vertical-align:top;"><code>&nbsp;</code></td>
+                   <td>
+                       <div>东方航空</div>
+                       <div>MU5183</div>
+                   </td>
+                   <td>
+                       <div>大型机</div>
+                       <div>333</div>
+                   </td>
+                   <td>
+                       <div>08:00</div>
+                       <div>10:20</div>
+                   </td>
+                   <td>
+                       <div>首都机场T3</div>
+                       <div>虹桥机场T2</div>
+                   </td>
+                   <td>否</td>
+                   <td>经济舱</td>
+                   <td>G</td>
+                   <td><cite>充足</cite></td>
+                   <td> </td>
+                   <td>
+                       <div><big>￥500</big></div>
+                       <div>6.0折</div>
+                   </td>
+                   <td>50/130</td>
+                   <td>
+                       <div><strong>7.2%+ ￥51</strong></div>
+                       <div><strong>=￥76</strong></div>
+                   </td>
+                   <td><big>￥464.00</big></td>
+                   <td>
+                      <a class="adaptiveButton mediumOrange_btn">
+                          <span class="left"></span>
+                          <span class="center" style="padding:0 20px;">预订</span>
+                          <span class="right"></span>
+                      </a>
+                      <a class="more-cabin" href="#">更多舱位<i>&nbsp;</i></a>
+                   </td>                   
+                </tr>
+            </table>
+       </div>
+       <div class="information light_pink bor_top">
+            <table>
+              <colgroup>
+               <col width="20px"/>
+               <col width="70px"/>
+               <col width="55px"/>
+               <col width="55px"/>
+               <col width="78px"/>
+               <col width="45px"/>
+               <col width="60px"/>
+               <col width="43px"/>
+               <col width="80px"/>
+               <col width="67px"/>
+               <col width="67px"/>
+               <col width="70px"/>
+               <col width="93px"/>
+               <col width="80px"/>
+             </colgroup>             
+                <tr>
+                   <td style="vertical-align:top;"> </td>
+                   <td> </td>
+                   <td> </td>
+                   <td> </td>
+                   <td> </td>
+                   <td> </td>
+                   <td>经济舱</td>
+                   <td>G</td>
+                   <td><i>5张</i></td>
+                   <td> </td>
+                   <td>
+                       <div><big>￥500</big></div>
+                       <div>6.0折</div>
+                   </td>
+                   <td>50/130</td>
+                   <td>
+                       <div><strong>7.2%+ ￥51</strong></div>
+                       <div><strong>=￥76</strong></div>
+                   </td>
+                   <td><big>￥464.00</big></td>
+                   <td>
+                      <a class="adaptiveButton mediumOrange_btn">
+                          <span class="left"></span>
+                          <span class="center" style="padding:0 20px;">预订</span>
+                          <span class="right"></span>
+                      </a>
+                      <a class="more-cabin" href="#">更多舱位<i>&nbsp;</i></a>
+                   </td>                   
+                </tr>
+            </table>
+       </div>
+       <div class="information light_pink dashed_top">
+            <table>
+              <colgroup>
+               <col width="20px"/>
+               <col width="70px"/>
+               <col width="55px"/>
+               <col width="55px"/>
+               <col width="78px"/>
+               <col width="45px"/>
+               <col width="60px"/>
+               <col width="43px"/>
+               <col width="80px"/>
+               <col width="67px"/>
+               <col width="67px"/>
+               <col width="70px"/>
+               <col width="93px"/>
+               <col width="80px"/>
+             </colgroup>             
+                <tr>
+                   <td style="vertical-align:top;"> </td>
+                   <td> </td>
+                   <td> </td>
+                   <td> </td>
+                   <td> </td>
+                   <td> </td>
+                   <td>经济舱</td>
+                   <td>G</td>
+                   <td><i>5张</i></td>
+                   <td> </td>
+                   <td>
+                       <div><big>￥500</big></div>
+                       <div>6.0折</div>
+                   </td>
+                   <td>50/130</td>
+                   <td>
+                       <div><strong>7.2%+ ￥51</strong></div>
+                       <div><strong>=￥76</strong></div>
+                   </td>
+                   <td><big>￥464.00</big></td>
+                   <td>
+                      <a class="adaptiveButton mediumOrange_btn">
+                          <span class="left"></span>
+                          <span class="center" style="padding:0 20px;">预订</span>
+                          <span class="right"></span>
+                      </a>
+                      <a class="more-cabin" href="#">更多舱位<i>&nbsp;</i></a>
+                   </td>                   
+                </tr>
+            </table>
+       </div>
+       <div class="information light_pink dashed_top">
+            <table>
+              <colgroup>
+               <col width="20px"/>
+               <col width="70px"/>
+               <col width="55px"/>
+               <col width="55px"/>
+               <col width="78px"/>
+               <col width="45px"/>
+               <col width="60px"/>
+               <col width="43px"/>
+               <col width="80px"/>
+               <col width="67px"/>
+               <col width="67px"/>
+               <col width="70px"/>
+               <col width="93px"/>
+               <col width="80px"/>
+             </colgroup>             
+                <tr>
+                   <td style="vertical-align:top;"> </td>
+                   <td> </td>
+                   <td> </td>
+                   <td> </td>
+                   <td> </td>
+                   <td> </td>
+                   <td>经济舱</td>
+                   <td>G</td>
+                   <td><i>5张</i></td>
+                   <td> </td>
+                   <td>
+                       <div><big>￥500</big></div>
+                       <div>6.0折</div>
+                   </td>
+                   <td>50/130</td>
+                   <td>
+                       <div><strong>7.2%+ ￥51</strong></div>
+                       <div><strong>=￥76</strong></div>
+                   </td>
+                   <td><big>￥464.00</big></td>
+                   <td>
+                      <a class="adaptiveButton mediumOrange_btn">
+                          <span class="left"></span>
+                          <span class="center" style="padding:0 20px;">预订</span>
+                          <span class="right"></span>
+                      </a>
+                      <a class="more-cabin" href="#">更多舱位<i>&nbsp;</i></a>
+                   </td>                   
+                </tr>
+            </table>
+       </div>
+       <div class="paging clearfix">  <!--当前选中 start-->        
+        <ul>
+             <li><a href="#">上一页</a></li>
+             <li><a href="#">1</a></li>
+             <li><a href="#">2</a></li>
+             <li><a href="#">3</a></li>
+             <li><a href="#">4</a></li>
+             <li><a href="#">5</a></li>
+             <li> <span>…</span> </li>
+             <li><a href="#" class="present">58</a></li>
+             <li><a href="#">59</a></li>
+             <li><a href="#">60</a></li>
+             <li><a href="#">下一页</a></li>
+        </ul>
+        <div>
+           <span>共<em>132</em>条记录 &nbsp;&nbsp;&nbsp;共14页</span> 
+        </div>
+     </div> <!--当前选中 end-->
+    </div>  <!--flight_number end-->
+
+    
+</section>
+<footer class="main-footer">
+    <center>
+        <a href="#">隐私问题</a>
+        <i class="bar">|</i>
+        <a href="#">常见问题</a>
+        <i class="bar">|</i>
+        <a href="#">关于我们</a>
+        <i class="bar">|</i>
+        <a href="#">媒体中心</a>
+        <i class="bar">|</i>
+        <a href="#">联系我们</a>
+    </center>
+    <center class="copyright">
+        Copyright &copy; 2012 天地行 All Rights Reserved.     沪ICP备08101503号 
+    </center>
+</footer>
+</div>
+    <script>
+
+        $(function(){
+
+            $("#trip_type").change(function(){
+                if($(this).val() == "one_way"){
+                    $("#return_label label").addClass("muted");
+                    $("#return_date").prop("disabled",true);
+                }else{
+                    $("#return_label label").removeClass("muted");
+                    $("#return_date").prop("disabled",false);
+
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html>

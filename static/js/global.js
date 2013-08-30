@@ -223,6 +223,10 @@ var FloatLayer = function(opts){
     var tpl = kendo.template( $(opts.template).html() );
     var layer = $('<div class="ac-floatlayer" style="display:none;position:absolute;"/>');
 
+    if(opts.css) {
+        layer.css(opts.css);
+    }
+
     layer.html(tpl(opts.data));
     $('body').append(layer);
     kendo.init(layer);
@@ -262,13 +266,13 @@ var FloatLayer = function(opts){
     });
 
     layer.open = function(){
+        set_pos(opts.trigger);
         layer.show();
     };
 
     layer.close = function(){
         layer.hide();
     };
-
     return layer;
 };
 
@@ -376,7 +380,8 @@ var CityAutocomplete = function(settings){
             type:'focus',
             offsetY:25,
             data:data,
-            template:templateID
+            template:templateID,
+            css : that.options.css ? that.options.css : {}
         });
 
 

@@ -13,5 +13,23 @@ $(function() {
     };
     $(window).bind("scroll", $backToTopFun);
     $(function() { $backToTopFun(); });
+	
+	
+	
+	$.datepicker.regional[ "zh-CN" ];
+		
+	kendo.init($("body"));
+	$(function(){
+
+		$( ".datepicker" ).datepicker({
+            css : {"z-index": 20000},
+			showDay:true,
+			numberOfMonths:[1,2],
+			minDate :new Date(),
+			firstDay:0,
+			showButtonPanel :true
+		});
+
+	});
 });
 
