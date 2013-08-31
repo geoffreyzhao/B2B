@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>采购商 酒店创建订单</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+    <link rel="stylesheet" href="../../static/css/smoothness/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../../static/css/store_reset.css" media="all" />
+    <link rel="stylesheet" href="../../static/css/store.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/store_hotel.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="../../static/css/kendo.store.css" />
+
+    <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../static/js/global.js"></script>
+    <script type="text/javascript" src="../../static/js/store/store.js"></script>
+
+    <!--[if IE]>
+    <script src="../../static/js/html5.js"></script>
+    <![endif]-->
+    <script src="../../static/js/jquery-ui-1.10.3.custom.js"></script>
+	<script src="../../static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+
+</head>
+<body>
+<div class="main-wrapper">
+<header class="main-header">
+    <a class="logo" href="/"><h1>天地行</h1></a>
+    <nav class="main-nav">
+        <ul class="clearfix">
+            <li class="first"><a herf="#">首页</a></li>
+            <li><a herf="#">国内机票</a></li>
+            <li><a herf="#">国际机票</a></li>
+            <li class="active"><a herf="#">酒店</a></li>
+        </ul> 
+    </nav>
+    <nav class="main-links">
+        <ul class="clearfix">
+            <li class="first"><a href="#">订单管理</a></li>
+            <li><a href="#">分销管理</a></li>
+            <li><a href="#">电子钱包</a></li>
+            <li><a href="#">统计报表</a></li>
+            <li><a href="#">客服服务</a></li>
+            <li><a class="link-user" href="#">laobao<i class="arrow-down"></i></a></li>
+            <li><a class="link-message" href="#"><i class="icon-message"></i>消息<i class="message-count">5</i></a></li>
+            </ul>
+        </nav>
+        <span class="phone">客服电话：400-720-6666</span>
+</header>
+<section class="main-body clearfix">
+
+<!--
+<ul class="bread_crumbs">
+    <li><a class="home" href="javascript:void(0)">主页</a></li>
+    <li class="last"><a href="javascript:void(0)">酒店</a></li>
+</ul>
+-->
+
+
+<div class="flow clearfix">
+    <ul>
+        <li class="current_li">创建订单</li>
+        <li>支付</li>
+        <li>确认</li>
+        <li>完成</li>
+        <div class="line" style="width:60px; "></div>     
+    </ul>       
+</div>
+
+<div class="create_order">
+    <aside class="pull-left gray-border side_info orange-border-top" style="width:180px;">
+        <figure>
+            <img src="../../static/images/store/odds_show1.jpg" width="160" height="120" alt="上海宝华国际酒店" title="上海宝华国际酒店" />
+            <figcaption>上海宝华国际酒店</figcaption>
+        </figure>
+
+        <table>
+            <colgroup>
+                <col width="30%"/>
+                <col width="70%"/>
+            </colgroup>
+            <tbody>
+                <tr>
+                    <td>地址</td>
+                    <td>东方路180</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>房型</td>
+                    <td>经济房</td>
+                </tr>
+                <tr>
+                    <td>床型</td>
+                    <td>大床</td>
+                </tr>
+                <tr>
+                    <td>宽带</td>
+                    <td>免费有线宽带</td>
+                </tr>
+                <tr>
+                    <td>面积</td>
+                    <td>18平方米</td>
+                </tr>
+            </tbody>
+        </table>
+    </aside>
+
+    <div class="pull-right" id="h_order_info" style="width:80%">
+        <div class="row gray-border">
+            <h3 class="title"><strong>预订信息</strong></h3>
+            <section class="row checkin_info">
+                <table>
+                    <colgroup>
+                        <col width="115px"/>
+                    </colgroup>
+                    
+                    <tbody>
+                        <tr>
+                            <th>房型</th>
+                            <td>经济房</td>
+                        </tr>
+                        <tr>
+                            <th>入住日期</th>
+                            <td><input type="text" value="" class="datepicker gray-border" /> 至 <input type="text" value="" class="datepicker gray-border" /> <a href="javascript:void(0)">修改</a></td>
+                        </tr>
+                        <tr>
+                            <th><em>*</em>预订房间</th>
+                            <td> 
+                                <select data-role="dropdownlist" style="width:80px;" name="checkin_room_count">
+                                    <option value="1">1</option>
+                                    <option value="2" selected="">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <span>间</span>
+                                <label>预订房间&gt;5间可以申请<a href="javascript:void(0);">团队预订</a>,价格优惠哦</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="vertical-align:top;"><em>*</em>入住人信息</th>
+                            <td>
+                                <div class="passenger">
+                                    <ol>
+                                        <li><input type="text" value="" placeholder="姓名1"/></li>
+                                        <li><input type="text" value="" placeholder="姓名2"/></li>
+                                    </ol>
+
+                                    <div><label><input type="checkbox" name="save_passenger" checked="checked"/>保存到常旅客</label></div>
+                                    <!-- 常旅客 -->
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th style="vertical-align:top;">房费信息:</th>
+                            <td>
+
+                                <table class="room_fee">
+                                    <thead>
+                                        <tr>
+                                            <th class="first">第一周</th>
+                                            <th>08-12 一</th>
+                                            <th>08-13 二</th>
+                                            <th>08-14 三</th>
+                                            <th>08-15 四</th>
+                                            <th>08-16 五</th>
+                                            <th class="week_end">08-17 六</th>
+                                            <th class="week_end last">08-18 日</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="first">
+                                                <div>单价</div>
+                                                <div>早餐</div>
+                                                <div>宽带</div>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <div class="price">￥450</div>
+                                                <div>自助*1</div>
+                                                <div>宽带</div>
+                                            </td>
+                                            <td>
+                                                <div class="price">￥450</div>
+                                                <div>自助*1</div>
+                                                <div>宽带</div>
+                                            </td>
+                                            <td>
+                                                <div class="price">￥450</div>
+                                                <div>自助*1</div>
+                                                <div>宽带</div>
+                                            </td>
+                                            <td class="last">
+                                                <div class="price">￥450</div>
+                                                <div>自助*1</div>
+                                                <div>宽带</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="room_fee">
+                                    <thead>
+                                        <tr>
+                                            <th class="first">第二周</th>
+                                            <th>08-19 一</th>
+                                            <th>08-20 二</th>
+                                            <th>08-21 三</th>
+                                            <th>08-22 四</th>
+                                            <th>08-23 五</th>
+                                            <th class="week_end">08-24 六</th>
+                                            <th class="week_end last">08-25 日</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="first">
+                                                <div>单价</div>
+                                                <div>早餐</div>
+                                                <div>宽带</div>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <div class="price">￥450</div>
+                                                <div>自助*1</div>
+                                                <div>宽带</div>
+                                            </td>
+                                            <td>
+                                                <div class="price">￥450</div>
+                                                <div>自助*1</div>
+                                                <div>宽带</div>
+                                            </td>
+                                            <td>
+                                                <div class="price">￥450</div>
+                                                <div>自助*1</div>
+                                                <div>宽带</div>
+                                            </td>
+                                            <td class="last">
+                                                <div class="price">￥450</div>
+                                                <div>自助*1</div>
+                                                <div>宽带</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th class="first">合计</th>
+                                            <th colspan="7" class="price total last">￥3720</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+
+        <div class="row gray-border">
+            <h3 class="title"><strong>增值服务</strong></h3>
+            <section>
+                <table class="addon" style="width:100%">
+                    <colgroup>
+                        <col width="12%"/>
+                        <col width="25%"/>
+                        <col width="25%"/>
+                        <col width="25%"/>
+                        <col width="12%"/>
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th class="first">日期</th>
+                            <th>
+                                <div class="tt">早餐<strong>￥30</strong>人</div>
+                                <div class="op">
+                                    <label><input type="checkbox" value="eat_checkall"/>全选</label>
+                                    <label>
+                                        <a class="add_up" href="javascript:void(0)">+</a>
+                                        <input type="text" class="gray-border" style="width:30px" value="1" name="num" />
+                                        <a class="minus" href="javascript:void(0)">-</a>
+                                    </label>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="tt">加床<strong>￥30</strong>人</div>
+                                <div class="op">
+                                    <label><input type="checkbox" value="bed_checkall"/>全选</label>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="tt">加床<strong>￥30</strong>人</div>
+                                <div class="op">
+                                    <label><input type="checkbox" value="bed_checkall"/>全选</label>
+                                </div>
+                            </th>
+                            <th class="last">小计</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="first">8-15 周四</td>
+                            <td>￥30 x 2人 x 2间</td>
+                            <td>￥70 x 2间</td>
+                            <td>￥70 x 2间</td>
+                            <td class="last">￥460</td>
+                        </tr>
+                        <tr>
+                            <td class="first">8-16 周五</td>
+                            <td>￥30 x 2人 x 2间</td>
+                            <td>￥70 x 2间</td>
+                            <td>￥70 x 2间</td>
+                            <td class="last">￥460</td>
+                        </tr>
+
+                        <tr>
+                            <td class="first">8-17 周六</td>
+                            <td>￥30 x 2人 x 2间</td>
+                            <td>￥70 x 2间</td>
+                            <td>￥70 x 2间</td>
+                            <td class="last">￥460</td>
+                        </tr>
+                        <tr>
+                            <td class="first">8-18 周日</td>
+                            <td>￥30 x 2人 x 2间</td>
+                            <td>￥70 x 2间</td>
+                            <td>￥70 x 2间</td>
+                            <td class="last">￥460</td>
+                        </tr>
+                        <tr>
+                            <td class="first">8-19 周一</td>
+                            <td>￥30 x 2人 x 2间</td>
+                            <td>￥70 x 2间</td>
+                            <td>￥70 x 2间</td>
+                            <td class="last">￥460</td>
+                        </tr>
+                        <tr>
+                            <td class="first">8-20 周二</td>
+                            <td>￥30 x 2人 x 2间</td>
+                            <td>￥70 x 2间</td>
+                            <td>￥70 x 2间</td>
+                            <td class="last">￥460</td>
+                        </tr>
+                        <tr>
+                            <td class="first">8-21 周三</td>
+                            <td>￥30 x 2人 x 2间</td>
+                            <td>￥70 x 2间</td>
+                            <td>￥70 x 2间</td>
+                            <td class="last">￥460</td>
+                        </tr>
+                        <tr>
+                            <td class="first">8-22 周四</td>
+                            <td>￥30 x 2人 x 2间</td>
+                            <td>￥70 x 2间</td>
+                            <td>￥70 x 2间</td>
+                            <td class="last">￥460</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>合计</td>
+                            <td colspan="4" class="price total">￥3720</td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+
+            </section>
+        </div>
+    </div>
+</div>
+
+    </section>
+<footer class="main-footer">
+    <center>
+        <a href="#">隐私问题</a>
+        <i class="bar">|</i>
+        <a href="#">常见问题</a>
+        <i class="bar">|</i>
+        <a href="#">关于我们</a>
+        <i class="bar">|</i>
+        <a href="#">媒体中心</a>
+        <i class="bar">|</i>
+        <a href="#">联系我们</a>
+    </center>
+    <center class="copyright">
+        Copyright &copy; 2012 天地行 All Rights Reserved.     沪ICP备08101503号 
+    </center>
+</footer>
+</div>
+</body>
+</html>

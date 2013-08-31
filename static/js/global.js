@@ -215,7 +215,9 @@ var FloatLayer = function(opts){
         type:'click',
         offsetX:0,
         offsetY:20,
-        toggle:true
+        toggle:true,
+        open:$.noop,
+        close:$.noop
     },opts);
 
     opts.trigger = opts.trigger.jquery ? opts.trigger : $(opts.trigger);
@@ -236,7 +238,7 @@ var FloatLayer = function(opts){
         var t = $(e.target);
         if ( !t.is(opts.trigger) ){
             if ( t.closest('.ac-floatlayer').length !==1 ){
-                layer.hide();    
+                layer.close();
             }
         }
     });
@@ -267,21 +269,38 @@ var FloatLayer = function(opts){
 
     layer.open = function(){
         layer.show();
+        opts.open.apply(this);
     };
 
     layer.data = function(d){
-        layer.html(tpl(d)); 
+        layer.html(tpl(d));
+        kendo.init(layer);
     };
 
     layer.content = function(d){
-        layer.html(d); 
+        layer.html(d);
+        kendo.init(layer);
     };
 
     layer.close = function(){
         layer.hide();
+        opts.close.apply(this);
     };
     return layer;
 };
+
+//常旅客模块
+var frequentFlyer=function(opts){
+    var opts=$.extend({trigger:"zAutocomplete",offsetX:-1,offsetY:19},opts);
+    var layer=new FloatLayer(opts);
+    kendo.init(layer);
+
+    $("#ffc_input").focusin(function(){
+        $(this).trigger("zAutocomplete");
+    })
+
+    return layer;
+}
 
 /* 城市补全js 模板
 <script type="text/x-kendo-template" id="city_popup">
