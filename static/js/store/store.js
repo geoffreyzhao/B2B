@@ -14,12 +14,8 @@ $(function() {
     $(window).bind("scroll", $backToTopFun);
     $(function() { $backToTopFun(); });
 	
-	
-	
-	$.datepicker.regional[ "zh-CN" ];
-		
-	kendo.init($("body"));
-	$(function(){
+    if(typeof($.datepicker) != "undefined"){
+        $.datepicker.regional[ "zh-CN" ];
 
 		$( ".datepicker" ).datepicker({
             css : {"z-index": 20000},
@@ -29,7 +25,10 @@ $(function() {
 			firstDay:0,
 			showButtonPanel :true
 		});
-
-	});
+    }
+		
+    if(typeof(kendo) != "undefined"){
+        kendo.init($("body"));
+    }
 });
 
