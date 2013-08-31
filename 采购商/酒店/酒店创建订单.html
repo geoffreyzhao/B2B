@@ -115,6 +115,10 @@
         <div class="row gray-border">
             <h3 class="title"><strong>预订信息</strong></h3>
             <section class="row checkin_info">
+                <div id="frequentFlyerContainer">
+                    <div id="ffc_title">选择常旅客</div>
+                    <div><input type="text" placeholder="请输入姓名搜索" id="ffc_input" name=""></div>
+                </div>
                 <table>
                     <colgroup>
                         <col width="115px"/>
@@ -127,7 +131,7 @@
                         </tr>
                         <tr>
                             <th>入住日期</th>
-                            <td><input type="text" value="" class="datepicker gray-border" /> 至 <input type="text" value="" class="datepicker gray-border" /> <a href="javascript:void(0)">修改</a></td>
+                            <td><span>2013-08-15</span> 至 <span>2013-08-22</span> <a href="javascript:void(0)" id="change_date">修改</a></td>
                         </tr>
                         <tr>
                             <th><em>*</em>预订房间</th>
@@ -140,7 +144,7 @@
                                     <option value="5">5</option>
                                 </select>
                                 <span>间</span>
-                                <label>预订房间&gt;5间可以申请<a href="javascript:void(0);">团队预订</a>,价格优惠哦</label>
+                                <label>预订房间&gt;5间可以申请<a class="t_orange" href="javascript:void(0);">团队预订</a>,价格优惠哦</label>
                             </td>
                         </tr>
                         <tr>
@@ -148,16 +152,15 @@
                             <td>
                                 <div class="passenger">
                                     <ol>
-                                        <li><input type="text" value="" placeholder="姓名1"/></li>
-                                        <li><input type="text" value="" placeholder="姓名2"/></li>
+                                        <li><input type="text" value="" placeholder="姓名1" style="height:23px;"/></li>
+                                        <li><input type="text" value="" placeholder="姓名2" style="height:23px;"/></li>
                                     </ol>
-
-                                    <div><label><input type="checkbox" name="save_passenger" checked="checked"/>保存到常旅客</label></div>
-                                    <!-- 常旅客 -->
                                 </div>
+                                <!-- 常旅客 -->
+                                <div style="margin-top:5px;"><label><input type="checkbox" style="vertical-align:middle;" name="save_passenger" checked="checked"/>保存到常旅客</label></div>
+
                             </td>
                         </tr>
-
                         <tr>
                             <th style="vertical-align:top;">房费信息:</th>
                             <td>
@@ -228,9 +231,6 @@
                                                 <div>早餐</div>
                                                 <div>宽带</div>
                                             </td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
                                             <td>
                                                 <div class="price">￥450</div>
                                                 <div>自助*1</div>
@@ -246,10 +246,14 @@
                                                 <div>自助*1</div>
                                                 <div>宽带</div>
                                             </td>
+                                            <td>
+                                                <div class="price">￥450</div>
+                                                <div>自助*1</div>
+                                                <div>宽带</div>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
                                             <td class="last">
-                                                <div class="price">￥450</div>
-                                                <div>自助*1</div>
-                                                <div>宽带</div>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -269,7 +273,7 @@
 
         <div class="row gray-border">
             <h3 class="title"><strong>增值服务</strong></h3>
-            <section>
+            <section style="padding:10px;">
                 <table class="addon" style="width:100%">
                     <colgroup>
                         <col width="12%"/>
@@ -280,16 +284,16 @@
                     </colgroup>
                     <thead>
                         <tr>
-                            <th class="first">日期</th>
+                            <th class="first"><span class="tt">日期</span></th>
                             <th>
                                 <div class="tt">早餐<strong>￥30</strong>人</div>
                                 <div class="op">
                                     <label><input type="checkbox" value="eat_checkall"/>全选</label>
-                                    <label>
-                                        <a class="add_up" href="javascript:void(0)">+</a>
-                                        <input type="text" class="gray-border" style="width:30px" value="1" name="num" />
+                                    <span>
                                         <a class="minus" href="javascript:void(0)">-</a>
-                                    </label>
+                                        <input type="text" class="gray-border" style="width:30px;height:20px;text-align:center;" value="1" name="num" />
+                                        <a class="add_up" href="javascript:void(0)">+</a>
+                                    </span>
                                 </div>
                             </th>
                             <th>
@@ -304,7 +308,7 @@
                                     <label><input type="checkbox" value="bed_checkall"/>全选</label>
                                 </div>
                             </th>
-                            <th class="last">小计</th>
+                            <th class="last"><span class="tt">小计</span></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -371,11 +375,121 @@
                             <td>合计</td>
                             <td colspan="4" class="price total">￥3720</td>
                         </tr>
+                        <tr>
+                            <td colspan="5" style="text-align:left;"><span class="gift">2013-04-11~2013-12-31，此期间预订入住，每房每晚可获赠<em class="t_orange">10</em>元房费抵扣。</span></td>
+                        </tr>
                     </tfoot>
                 </table>
 
-
             </section>
+        </div>
+
+        <div class="row gray-border contacts">
+            <h3 class="title"><strong>联系人信息</strong></h3>
+            <section>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th><em>*</em>联系人姓名</th>
+                            <td>
+                                <select data-role="dropdownlist" style="width:160px" name="">
+                                    <option value="短信确认" selected="">短信确认</option>
+                                    <option value="传真确认">传真确认</option>
+                                    <option value="Email确认">Email确认</option>
+                                </select>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><em>*</em>联系方式</th>
+                            <td><input type="text" name="" class="gray-border" style="width:160px;"/></td>
+                        </tr>
+                        <tr>
+                            <th>手机</th>
+                            <td><input type="text" name="" class="gray-border" style="width:160px;"/></td>
+                        </tr>
+                        <tr>
+                            <th>固定电话</th>
+                            <td>
+                                <input type="text" name="" class="gray-border" style="width:50px;" placeholder="区号"/>
+                                <span>-</span>
+                                <input type="text" name="" class="gray-border" style="width:140px;" placeholder="电话号码"/>
+                                <span>-</span>
+                                <input type="text" name="" class="gray-border" style="width:50px;" placeholder="分机号"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><em>*</em>Email:</th>
+                            <td><input type="text" name="" class="gray-border" style="width:160px;"/></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            
+            </section>
+        </div>
+
+        <div class="row gray-border">
+            <h3 class="title"><strong>备注</strong></h3>
+            <section>
+                <textarea name="" cols="60" rows="8" placeholder="请填写您的其他预订需求。"></textarea> 
+            </section>
+        </div>
+
+        <div class="row gray-border">
+            <h3 class="title"><strong>酒店规定</strong></h3>
+            <section>
+                <table class="hotel_rule gray-text">
+                    <colgroup>
+                        <col width="100px;"/>
+                        <col />
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th>入住证件：</th>
+                            <td>中宾在酒店入住时需要携带大陆有效身份证件。</td>
+                        </tr>
+                        <tr>
+                            <th>入住时间：</th>
+                            <td>14:00以后</td>
+                        </tr>
+                        <tr>
+                            <th>退房时间：</th>
+                            <td>2:00之前</td>
+                        </tr>
+                        <tr>
+                            <th style="vertical-align:top;">变更/取消：</th>
+                            <td>入住前1天12点之前变更或取消，不收取任何费用；<br/>
+                                前1天的12点之后变更或取消，酒店将扣除首晚房费；<br/>
+                                未入住且切事前未申请取消，将不会获得退款；<br/>
+                                已入住提前退房，请电话或邮件与客服联系，客服将尽快与酒店确认并为您办理。<br/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>提前退房, 酒店是不会收取剩下晚数的房费的; 为照顾住客的利益, 天地行网将如实执行酒店的这项规定。如您需要提前退房, 请发电邮给我们至 <a href="mailto:service@travelzen.com">service@travelzen.com</a> 说明退房日期, 我们便会尽快为您办理, 并在与酒店核实退房情况后为您安排退款事宜。
+                            </td>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+
+        <div class="row gray-border booking">
+            <section>
+                <div class="gray-text"><span class="t_orange">温馨提示:</span>此酒店预订我们将于支付后2个工作小时内尽快给予确认。如订房无法确认，我们将全额返还相关款项到您的支付账户，非工作日，工作时间预订的订单，我们将于工作日尽快确认。</div>
+
+                <a class="pull-right adaptiveButton brightRed_btn">
+                    <span class="left"></span>
+                    <span style="padding:0 10px;" class="center">提交订单</span>
+                    <span class="right"></span>
+                </a>
+
+                <div class="summary pull-right clearfix">
+                    <span>房费合计</span><span class="t_orange">￥220.00</span><em> + </em><span>增值服务费用合计</span><span class="t_orange">￥2260.00 </span><em> = </em> <strong>费用总计<span class="t_orange">￥2580.00 </strong>
+
+                </div>
+            </section>
+
         </div>
     </div>
 </div>
@@ -398,5 +512,70 @@
     </center>
 </footer>
 </div>
+<!--模板文件-->
+<script id="ffcTemplate" type="text/x-kendo-template">
+    <ul class="ul_ffc" data-role="panelbar">
+        # for(var i=0;i<data.length;i++){ #
+        <li>
+            #= data[i].categories #
+            # for(var j=0;j<data[i].customers.length;j++){ #
+            <div class="item"><label><input type="checkbox" value="#=data[i].customers[j].id #"> #= data[i].customers[j].name #</label></div>
+            # } #
+        </li>
+        # } #
+    </ul>
+</script>
+
+<script id="ffcsTemplate" type="text/x-kendo-template">
+    <ul class="ul_ffc">
+        # for(var i=0;i<data.length;i++){ #
+        <li style="padding:5px">
+            <label><input type="checkbox" value="#=data[i].id #"> #= data[i].name #</label>
+        </li>
+        # } #
+    </ul>
+</script>
+
+<script id="edit-booking-date-template" type="text/x-kendo-template">
+    <ul class="change_date" style="width:230px;">
+        <li><label>入住日期:<input type="text" value="" class="datepicker gray-border" /></label></li>
+        <li><label>离店日期:<input type="text" value="" class="datepicker gray-border" /></label></li>
+        <li style="padding-left:50px;">
+            <a class="adaptiveButton mediumOrange_btn">
+                <span class="left"></span>
+                <span class="center center_1">预订</span>
+                <span class="right"></span>
+            </a>
+            <a style="margin-left:20px;" href="javascript:void(0);">取消</a>
+        </li>
+    </ul>
+</script>
+
+<!--模板文件-->
+
+<script type="text/javascript" src="../../static/js/store/freq_traveler.js"></script>
+
+<script>
+$(function(){
+    var change_date = new PopWindow("#change_date",{
+        title:"修改入住日期",
+        width:425,
+        template:"#edit-booking-date-template",
+        open:function(){
+            $(".change_date .datepicker").datepicker({
+                css : {"z-index": 20000},
+                showDay:true,
+                numberOfMonths:[1,2],
+                minDate :new Date(),
+                firstDay:0,
+                showButtonPanel :true
+            });
+
+        }
+    }).init();
+
+
+});
+</script>
 </body>
 </html>
