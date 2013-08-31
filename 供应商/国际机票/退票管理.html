@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>机票 国际机票 改签管理</title>
+<title>机票 国际机票 退票管理</title>
 <meta charset="utf-8" />
 <link href="/static/css/kendo.common.css" rel="stylesheet" />
 <link href="/static/css/kendo.gray.css" rel="stylesheet" />
@@ -64,9 +64,9 @@
                 <a class="item" href="#">订单查询</a> 
                 <a class="item" href="#">审核</a> 
                 <a class="item" href="#">出票</a> 
-                <a class="item highlight" href="#">改签</a> 
+                <a class="item" href="#">改签</a> 
                 <a class="item" href="#">废票</a> 
-                <a class="item" href="#">退票</a> 
+                <a class="item highlight" href="#">退票</a> 
             </div>
         </div>
 
@@ -116,16 +116,30 @@
                             <td><input type="text" style="width:100px" data-role="datepicker"> - <input style="width:100px;" type="text" data-role="datepicker"></td>
                         </tr>
                         <tr>
-                            <th>业务类型</th>
-                            <td colspan="3">
-                                <label for=""><input type="checkbox"> 改期</label>                            
-                                <label for=""><input checked type="checkbox"> 升舱</label>                            
-                                <label for=""><input checked type="checkbox"> 升舱并改期</label>                            
-                                <label for=""><input checked type="checkbox"> 改路线</label>                            
+                            <th>
+                                <select style="width:70px;" data-role="dropdownlist">
+                                    <option selected="" value="审核人">审核人</option>
+                                    <option value="创建人">创建人</option>
+                                </select>
+                            </th>
+                            <td>
+                                <input style="width:70px;" type="text" name="">
+                                <button class="btns btn-search">查询</button>
                             </td>
                                 <th>乘机人</th>
                                 <td><input type="text" name=""></td>
-                            <th>改签日期</th>
+                            <th>退票原因</th>
+                                <td>
+                                <select style="width:100px;" data-role="dropdownlist">
+<option value="当日作废">当日作废</option>
+<option value="按客票规定自愿退票">按客票规定自愿退票</option>
+<option value="民航原因（取消延误等）">民航原因（取消延误等）</option>
+<option value="客票换开">客票换开</option>
+<option value="因病全退">因病全退</option>
+<option value="只退税款">只退税款</option>
+</select>
+                                </td>
+                            <th>退票日期</th>
                             <td><input type="text" style="width:100px" data-role="datepicker" name="date1"> - <input style="width:100px;" type="text" data-role="datepicker"></td>
                         </tr>
                         <tr>
@@ -166,19 +180,21 @@
                     <col width="70">
                 </colgroup>
                 <tr>
-                    <th> 订单号 </th>
-                    <th> PNR </th>
-                    <th> 票号 </th>
-                    <th> 航班号 </th>
-                    <th> 舱位 </th>
-                    <th> 航程 </th>
-                    <th> 起飞时间 </th>
-                    <th> 乘机人 </th>
-                    <th> 结算价 </th>
-                    <th> 改期费 </th>
-                    <th> 申请时间 </th>
-                    <th> 状态 </th>
-                    <th> 操作 </th>
+                <th> 订单号 </th>
+                <th> PNR </th>
+                <th> 票号 </th>
+                <th> 航班号 </th>
+                <th> 舱位 </th>
+                <th> 航程 </th>
+                <th> 起飞时间 </th>
+                <th> 乘机人 </th>
+                <th> 收银状态 </th>
+                <th> 退款合计 </th>
+                <th> 退票费 </th>
+                <th> 申请时间 </th>
+                <th> 审核员 </th>
+                <th> 状态 </th>
+                <th> 操作 </th>
             </tr>
             </table>
 
@@ -220,10 +236,12 @@ $(function(){
         <td>Y</td>
         <td>太原-广州</td>
         <td>#= data.c8#</td>
-        <td>#= data.c6 #</td>
+        <td>#= data.c7#</td>
+        <td>未收银</td>
         <td>#= data.c3#</td>
         <td>免费</td>
         <td>#= data.c8#</td>
+        <td>#= data.c6#</td>
         <td>审核中</td>
         <td><a href="xx">受理</a></td>
     </tr>
