@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>机票 国际机票 政策查询</title>
+<meta charset="utf-8" />
+<link href="/static/css/kendo.common.css" rel="stylesheet" />
+<link href="/static/css/kendo.gray.css" rel="stylesheet" />
+<link href="/static/css/common.css" rel="stylesheet" />
+<link href="/static/css/supplier.css" rel="stylesheet" />
+<link href="/static/css/kendo.reset.css" rel="stylesheet" />
+
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/kendo.web.js"></script>
+<script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+<script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
+<script type="text/javascript" src="/static/js/global.js"></script>
+<script type="text/javascript" src="/static/js/flight.js"></script>
+
+<!--[if lt IE 8]> 
+        <link rel="stylesheet" href="/static/css/ie.css" /> 
+        <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
+        <![endif]-->
+<script type="text/javascript" src="/static/js/supplier/supplier_sync.js"></script>
+<!-- @CLB@ -->
+</head>
+<body> 
+<div id="extHeader">
+    <div></div>
+</div>
+
+<div id="container">
+    <div class="header">
+        <h1></h1>
+        <div>
+            <span>你好,${name}</span>
+            <a href="javascript:void(0);">退出</a>
+        </div>
+        <ul id="top_menu">
+            <li><a href="javascript:void(0);">国内机票</a></li>
+            <li><a href="javascript:void(0);">国际机票</a></li>
+            <li><a href="javascript:void(0);">酒店</a></li>
+            <li><a href="javascript:void(0);">票证中心</a></li>
+            <li><a href="javascript:void(0);">财务管理</a></li>
+            <li><a href="javascript:void(0);">客户管理</a></li>
+            <li class="current"><a href="javascript:void(0);">系统设置</a></li>
+        </ul>
+        <ol class="sub_menu">
+            <li class="current"><a href="javascript:void(0);">公告信息</a></li>
+            <li><a href="javascript:void(0);">公司信息</a></li>
+            <li><a href="javascript:void(0);">组织架构</a></li>
+            <li><a href="javascript:void(0);">角色维护</a></li>
+            <li><a href="javascript:void(0);">基础数据</a></li>
+        </ol>
+        <div id="message">
+            <a href="javascript:void(0);">消息</a>
+            <span>New</span>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="sub_menu_bar"></div>
+    <div id="mainContent">
+        <div class="actions block">
+            <div class="col col-l">
+                <span class="page-title">政策查询</span>
+            </div>
+            <div class="col col-r sep-l">
+                <a href="#22"><button class="btns btn-blue ac-new">添加政策</button></a>
+            </div>
+        </div>
+
+        <div class="block1 block block-query clearfix"><form method="post">
+                <div class="col col-l">
+                    <table>
+                        <colgroup>
+                            <col width="80">
+                            <col width="140">
+                            <col width="80">
+                            <col width="140">
+                            <col width="80">
+                            <col width="260">
+                        </colgroup>
+
+                        <tr>
+                            <th>航空公司</th>
+                            <td> <input type="text" name=""> </td>
+                            <th>适用舱位</th>
+                            <td> <input type="text" name=""> </td>
+                          <th>发布人</th>
+                          <td>
+                                <input type="text" style="width:100px" name="">
+                                <button class="btns btn-search ac-search-customer" role="window_trigger">查询</button>
+                          </td>
+                        </tr>
+                        <tr>
+                            <th>出发城市</th>
+                            <td> <input type="text" name=""> </td>
+                            <th>到达城市</th>
+                            <td> <input type="text" name=""> </td>
+                            <th>乘机日期</th>
+                            <td><input type="text" style="width:100px" data-role="datepicker" name="date1"> 至 <input style="width:100px;" type="text" data-role="datepicker"></td>
+                        </tr>
+                        <tr>
+                            <th>航程类型</th>
+                            <td>
+                                <select style="width:100px;" data-role="dropdownlist">
+                                    <option selected="" value="全部">全部</option>
+                                    <option value="单程">单程</option>
+                                    <option value="往返">往返</option>
+                                </select>
+                            </td>
+                            <th>乘客类型</th>
+                            <td>
+                                <select style="width:100px;" data-role="dropdownlist">
+                                    <option selected="" value="全部">全部</option>
+                                    <option value="成人">成人</option>
+                                    <option value="儿童">儿童</option>
+                                    <option value="团队">团队</option>
+                                </select>
+                            </td>
+                            <th>出票日期</th>
+                            <td><input type="text" style="width:100px" data-role="datepicker" name="date1"> 至 <input style="width:100px;" type="text" data-role="datepicker"></td>
+                        </tr>
+                        <tr>
+                            <th>出票类型</th>
+                            <td>
+                                <select style="width:100px;" data-role="dropdownlist">
+                                    <option selected="" value="手动">手动</option>
+                                </select>
+                            </td>
+                            <th>政策状态</th>
+                            <td>
+                                <select style="width:100px;" data-role="dropdownlist">
+                                    <option selected="" value="所有">所有</option>
+                                    <option value="未发布">未发布</option>
+                                    <option value="已发布">已发布</option>
+                                    <option value="挂起">挂起</option>
+                                    <option value="作废">作废</option>
+                                </select>
+                            </td>
+                            <th>发布日期</th>
+                            <td><input type="text" style="width:100px" data-role="datepicker" name="date1"> 至 <input style="width:100px;" type="text" data-role="datepicker"></td>
+                        </tr>
+                        <tr>
+                        <th>OFFICE号</th>
+                          <td>
+                                <select style="width:100px;" data-role="dropdownlist">
+                                    <option selected="" value="所有">所有</option>
+                                </select>
+                          </td>
+                          <th>代理费</th>
+                          <td>
+                                <input type="text" style="width:120px"  name=""> %
+                          </td>
+                            <th>票证类型</th>
+                            <td>
+                                <label> <input type="checkbox" checked name=""> BSP</label> 
+                                <label> <input type="checkbox" checked name=""> B2B</label> 
+                                <label> <input type="checkbox" name=""> CRS</label> 
+                                <label> <input type="checkbox" name=""> 境外电子</label> 
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col col-r" style="padding-top:30px;">
+                    <button class="btns button_2_1">查 询</button>
+                </div>
+        </form></div>
+
+        <div class="block2 block block-query-result">
+                <ul id="rolemenu" class="white_bg" style="margin-bottom:0;">
+                <li class="current">
+                  <div class="mtab"> 
+                     <span style="font-weight:bold; color:#0066cc">普通政策</span>
+                     <span class="rightCover"></span>
+                  </div>
+                </li>
+                
+                <li>
+                  <div class="mtab gray">
+                      <span>团队政策</span>
+                      <span class="rightCover"></span>
+                  </div>
+                </li>
+                
+                <li>
+                  <div class="mtab gray"> 
+                      <span>散客K位政策</span>
+                      <span class="rightCover"></span>
+                  </div>              
+                </li>
+                
+           </ul>
+            <div class="block-header" style="background-color:#fff;">
+                <button class="btns btn-ac-blue">发布</button> 
+                <span style="color:#aaa">&nbsp;|&nbsp;</span>
+                <button class="btns btn-ac-blue">挂起</button> 
+                <span style="color:#aaa">&nbsp;|&nbsp;</span>
+                <button class="btns btn-ac-blue">修改代理费</button> 
+                <span style="color:#aaa">&nbsp;|&nbsp;</span>
+                <button class="btns btn-ac-blue">导出Excel</button> 
+                <span style="color:#aaa">&nbsp;|&nbsp;</span>
+                <button class="btns btn-ac-blue">模板导入</button> 
+                <a href="#" style="color:#999">导入说明 【模板下载】</a>
+            </div> 
+            <table>
+                <colgroup>
+                    <col width="25">
+                    <col width="40">
+                    <col width="160">
+                    <col width="160">
+                    <col width="40">
+                    <col width="70">
+                    <col width="120">
+                    <col width="60">
+                    <col width="40">
+                    <col width="60">
+                    <col width="70">
+                    <col width="40">
+                    <col width="40">
+                    <col width="100">
+                    <col width="100">
+                    <col width="100">
+                    <col width="70">
+                    <col width="70">
+                    <col width="70">
+                </colgroup>
+                <tr>
+                    <th><input type="checkbox" class="checkall"></th>
+                    <th> 航司 </th>
+                    <th> 出发机场 </th>
+                    <th> 到达机场 </th>
+                    <th> 航程 </th>
+                    <th> 航班限制 </th>
+                    <th> 适用舱位 </th>
+                    <th> 代理费 </th>
+                    <th> 奖励 </th>
+                    <th> 开票费 </th>
+                    <th> 乘客类型 </th>
+                    <th> 票证 </th>
+                    <th> 出票 </th>
+                    <th> 政策有效期 </th>
+                    <th> 出票有效期 </th>
+                    <th> 发布时间 </th>
+                    <th> 发布人 </th>
+                    <th> 状态 </th>
+                    <th> 操作 </th>
+                </tr>
+            </table>
+
+            <script type="text/javascript">
+$(function(){
+    new GridTable('.block2 table',{
+        scrollable:true,
+        dataSource: [{
+            c1:'030312103112260001',
+            c2:'JY4FF',
+            c3:"11,321.00",
+            c4:"CZ3211",
+            c5:"5%+100",
+            c6:"张三",
+            c7:"成人",
+            c8:"2013-12-12 20:00",
+            c9:'zhangzz'
+        },{
+            c1:'030312103112260001',
+            c2:'JY4FF',
+            c3:"11,321.00",
+            c4:"CZ3211",
+            c5:"5%+100",
+            c6:"张三",
+            c7:"成人",
+            c8:"2013-12-12 20:00",
+            c9:'zhangzz'
+        },], 
+        rowTemplate: kendo.template($("#block2-grid-row-template").html())
+    }).init(); 
+});
+            </script>
+            <script type="text/x-kendo-template" id="block2-grid-row-template">
+<tr>
+
+<td><input type="checkbox" class="checkitem"></td>
+<td> MU </td>
+<td> SHA/PVG/SZX/WUH </td>
+<td> CTU/PEK </td>
+<td> 单程 </td>
+<td> 所有 </td>
+<td> FCYBMHKLQGV </td>
+<td> 6.0 </td>
+<td> 6.0 </td>
+<td> 6.0 </td>
+<td> 成人 </td>
+<td> BSP </td>
+<td> 手动 </td>
+<td> 2010-09-01至2012-10-01 </td>
+<td> 2010-09-01至2012-10-01 </td>
+<td> 2010-09-01至2012-10-01 </td>
+<td> zhangjian </td>
+<td> 已发布 </td>
+<td> 
+<button class="btns ac-update">修改</button>
+<button class="btns ac-copy">复制</button>
+</td>
+    </tr>
+            </script>
+
+
+        </div>
+
+
+
+    </div>
+
+</div>
+
+<div id="extFooter">
+    <div>
+        <p>
+        <a href="javascript:void(0);">关于我们</a>&nbsp;|
+        <a href="javascript:void(0);">微博</a>&nbsp;|
+        <a href="javascript:void(0);">服务条款</a>&nbsp;|
+        <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+        </p>
+        <p>客户服务热线:400-720-6666</p>
+    </div>
+</div>
+</body>
+</html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>机票 国内机票 废票管理</title>
+        <title>机票 国内机票 改期管理</title>
 <meta charset="utf-8" />
 <link href="/static/css/kendo.common.css" rel="stylesheet" />
 <link href="/static/css/kendo.gray.css" rel="stylesheet" />
@@ -65,10 +65,10 @@
                     <a class="item" href="#">审核</a>
                     <a class="item" href="#">出票</a>
                     <a class="item" href="#">暂不出票</a>
-                    <a class="item" href="#">改签</a>
+                    <a class="item highlight" href="#">改签</a>
                     <a class="item" href="#">升舱</a>
                     <a class="item" href="#">退票</a>
-                    <a class="item highlight" href="#">废票</a>
+                    <a class="item" href="#">废票</a>
                 </div>
         </div>
 
@@ -153,13 +153,13 @@
                     <col width="50">
                     <col width="100">
                     <col width="80">
-                    <col width="80">
                     <col width="70">
                     <col width="120">
                     <col width="80">
                     <col width="60">
                     <col width="40">
                     <col width="50">
+                    <col width="80">
                     <col width="80">
                     <col width="70">
                     <col width="70">
@@ -169,13 +169,13 @@
                     <th> PNR </th>
                     <th> 票号 </th>
                     <th> 提交时间 </th>
-                    <th> 出票时间 </th>
                     <th> 航班号 </th>
                     <th> 航程 </th>
                     <th> 起飞时间 </th>
                     <th> 乘机人 </th>
                     <th> 舱位 </th>
                     <th> 折扣 </th>
+                    <th> 手续费 </th>
                     <th> 处理人 </th>
                     <th> 流程状态 </th>
                     <th> 操作 </th>
@@ -217,13 +217,13 @@ $(function(){
         <td>#= data.c2#</td>
         <td>3123132</td>
         <td>#= data.c8#</td>
-        <td>#= data.c8#</td>
         <td>#= data.c4#</td>
         <td>太原-广州</td>
         <td>#= data.c8#</td>
         <td>#= data.c6#</td>
         <td>Y</td>
         <td>5.0折</td>
+        <td>#= data.c3#</td>
         <td>#= data.c9#</td>
         <td>受理中</td>
         <td><a href="xx">受理</a></td>
@@ -248,6 +248,115 @@ $(function(){
             <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
+
+<script type="text/x-kendo-template" id="grid-table-template">
+    <tr>
+        # kendo.logToConsole(data) #
+        <td><a href="javascript:void(0);" class="oper">#= data.c1 #</a></td>
+        <td>#= data.c2 #</td>
+        <td>#= data.c3 #</td>
+        <td>#= data.c4 #</td>
+        <td>#= data.c5 #</td>
+        <td>#= data.c6 #</td>
+        <td>#= data.c7 #</td>
+        <td>#= data.c8 #</td>
+        <td>#= data.c9 #</td>
+        <td>#= data.c10 #</td>
+        <td>#= data.c11 #</td>
+        <td>#= data.c12 #</td>
+        <td>#= data.c13 # <br/> #= data.c14 #</td>
+        <td>#= data.c15 #</td>
+        <td>#= data.c16 #</td>
+        <td>
+            <a href="javascript:void(0)" class="oper">受理</a>
+        </td>
+    </tr>
+</script>
+
+<script>
+$(function() {
+	kendo.init($("body"));
+	//浮动条
+	$('.topFixedToolsBar').fixedBar();
+
+	new GridTable('#grid-table', {
+		dataSource: [{
+			c1: '1234567890123456',
+			c2: 'JWFR1',
+			c3: "2013-01-01 09:00",
+			c4: "",
+			c5: "CZ5891",
+			c6: "北京至绵阳",
+			c7: "2013-01-01 09:00",
+			c8: "李晓明",
+			c9: "特价申请",
+			c10: "W",
+			c11: "6.0折",
+			c12: "5500.00",
+			c13: "450.00",
+			c14: "7.%",
+			c15: "张三",
+			c16: "提交"
+		}],
+		columns: [{
+			width: 150
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		},
+		{
+			width: 90
+		}],
+        height:200,
+		scrollable: true,
+		resizable: true,
+		rowTemplate: kendo.template($("#grid-table-template").html())
+	}).init();
+
+});
+
+
+</script>
+
 
 </body>
 </html>

@@ -69,12 +69,12 @@
                     <span class="center">取消受理</span>
                     <span class="right"></span>
                 </a>
-                <a href="javascript:;" class="button_secondary adaptiveButton small">
+                <a href="javascript:;" class="ac-refuse button_secondary adaptiveButton small">
                     <span class="left"></span>
                     <span class="center">拒绝出票</span>
                     <span class="right"></span>
                 </a>
-                <a href="javascript:;" class="button_secondary adaptiveButton small">
+                <a href="javascript:;" class="ac-decline button_secondary adaptiveButton small">
                     <span class="left"></span>
                     <span class="center">暂不出票</span>
                     <span class="right"></span>
@@ -298,6 +298,49 @@
                 </ul> 
             </div>
         </div>
+
+        <script type="text/x-kendo-template" id="ac-decline-template">
+            <div class="row"><strong>拒绝原因：</strong></div>
+            <div class="row">
+            <label><input type="checkbox"> NO位子</label>
+            <label><input type="checkbox"> 扣率不对</label>
+            <label><input type="checkbox"> 价格不对</label>
+            <label><input type="checkbox"> NO位子</label>
+            </div>
+            <div class="row">
+            <label><input type="checkbox"> 其他原因： </label>
+            </div>
+            <div class="row">
+            <textarea id="" name="" style="width:400px;"></textarea></div>
+            <div class="row" style="text-align:right;">
+                <button class="btns button_1_2">提 交</button> 
+                <button class="btns button_2_2">取 消</button> 
+            </div>
+        </script>
+        <script type="text/x-kendo-template" id="ac-refuse-template">
+            <div class="row"><strong>审核退回原因：</strong></div>
+            <div class="row"><textarea id="" name="" style="width:400px;"></textarea></div>
+            <div class="row" style="text-align:right;">
+                <button class="btns button_1_2">提 交</button> 
+                <button class="btns button_2_2">取 消</button> 
+            </div>
+        </script>
+        <script>
+$(function(){
+    new PopWindow('.ac-decline',{
+         title:'拒绝出票',
+         template:'#ac-decline-template',
+         width:470
+    }).init();
+    new PopWindow('.ac-refuse',{
+         title:'审核退回',
+         template:'#ac-refuse-template',
+         width:470
+    }).init();
+})
+        </script>
+
+
 
     </div>
 

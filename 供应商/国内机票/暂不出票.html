@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>机票 国内机票 废票管理</title>
+        <title>机票 国内机票 暂不出票</title>
 <meta charset="utf-8" />
 <link href="/static/css/kendo.common.css" rel="stylesheet" />
 <link href="/static/css/kendo.gray.css" rel="stylesheet" />
@@ -64,11 +64,11 @@
                     <a class="item" href="#">订单查询</a>
                     <a class="item" href="#">审核</a>
                     <a class="item" href="#">出票</a>
-                    <a class="item" href="#">暂不出票</a>
+                    <a class="item highlight" href="#">暂不出票</a>
                     <a class="item" href="#">改签</a>
                     <a class="item" href="#">升舱</a>
                     <a class="item" href="#">退票</a>
-                    <a class="item highlight" href="#">废票</a>
+                    <a class="item" href="#">废票</a>
                 </div>
         </div>
 
@@ -94,18 +94,17 @@
                             <th>流程状态</th>
                             <td>
                             <select data-role="dropdownlist" style="width:100px" >
-                                <option value="所有订单">所有订单</option>
-                                <option selected="" value="未处理">未处理</option>
-                                <option value="处理中">处理中</option>
-                                <option value="已支付">已支付</option>
-                                <option value="出票中">出票中</option>
-                            </select>
+<option value="全部">全部</option>
+<option selected="" value="已支付">已支付</option>
+<option value="出票中">出票中</option>
+<option value="申请取消订单">申请取消订单</option>
+</select>
                             </td>
                             <th>订单号</th>
                             <td>
                                 <input class="" name="" type="text"/>
                             </td>
-                            <th>提交日期</th>
+                            <th>预定日期</th>
                             <td><input type="text" style="width:100px" data-role="datepicker" name="date1"> - <input style="width:100px;" type="text" data-role="datepicker"></td>
                         </tr>
                         <tr>
@@ -125,14 +124,25 @@
                             <td><input type="text" style="width:100px" data-role="datepicker" name="date1"> - <input style="width:100px;" type="text" data-role="datepicker"></td>
                         </tr>
                         <tr>
-                            <th>票号</th>
-                            <td>
-                                <input class="" type="text" name=""/>
-                            </td>
                             <th>乘机人</th>
                             <td>
                                 <input class="" type="text" name=""/>
                             </td>
+                            <th>出发城市</th>
+                            <td>
+                                <input class="" type="text" name=""/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>政策类型</th>
+                          <td colspan="6">
+                              <label><input type="checkbox"> 全国政策</label> 
+                              <label><input type="checkbox"> 特价政策</label> 
+                              <label><input type="checkbox"> 特舱政策</label> 
+                              <label><input type="checkbox"> 特价申请政策</label> 
+                              <label><input type="checkbox"> 往返打包产品 </label> 
+                              <label><input type="checkbox"> 特殊高返政策</label> 
+                          </td>
                         </tr>
                     </tbody>
                 </table>
@@ -152,30 +162,32 @@
                     <col width="150">
                     <col width="50">
                     <col width="100">
-                    <col width="80">
-                    <col width="80">
+                    <col width="40">
                     <col width="70">
                     <col width="120">
                     <col width="80">
                     <col width="60">
                     <col width="40">
-                    <col width="50">
+                    <col width="40">
                     <col width="80">
+                    <col width="80">
+                    <col width="70">
                     <col width="70">
                     <col width="70">
                 </colgroup>
                 <tr>
                     <th> 订单号 </th>
                     <th> PNR </th>
-                    <th> 票号 </th>
-                    <th> 提交时间 </th>
-                    <th> 出票时间 </th>
+                    <th> 预定时间 </th>
+                    <th> 效率 </th>
                     <th> 航班号 </th>
                     <th> 航程 </th>
                     <th> 起飞时间 </th>
                     <th> 乘机人 </th>
                     <th> 舱位 </th>
                     <th> 折扣 </th>
+                    <th> 票面价 </th>
+                    <th> 结算价<br>返点/返钱 </th>
                     <th> 处理人 </th>
                     <th> 流程状态 </th>
                     <th> 操作 </th>
@@ -215,15 +227,16 @@ $(function(){
 <tr>
         <td><a href="#= data.c1 #">#= data.c1 #</a></td>
         <td>#= data.c2#</td>
-        <td>3123132</td>
         <td>#= data.c8#</td>
-        <td>#= data.c8#</td>
+        <td></td>
         <td>#= data.c4#</td>
         <td>太原-广州</td>
         <td>#= data.c8#</td>
         <td>#= data.c6#</td>
         <td>Y</td>
         <td>5.0折</td>
+        <td>#= data.c3#</td>
+        <td>#= data.c5#</td>
         <td>#= data.c9#</td>
         <td>受理中</td>
         <td><a href="xx">受理</a></td>
