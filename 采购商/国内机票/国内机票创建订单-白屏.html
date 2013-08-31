@@ -23,6 +23,7 @@
     <![endif]-->
     <script src="../../static/js/jquery-ui-1.10.3.custom.js"></script>
 	<script src="../../static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+    <script type="text/javascript" src="../../static/js/global.js"></script>
     
     <script type="text/javascript" src="../../static/js/store/store.js"></script>
 </head>
@@ -222,7 +223,10 @@
                        </label>
                   </div>
              </div>
-             <div></div><!--此div为右侧的搜索框-->
+            <div id="frequentFlyerContainer" style="float:right">
+                <div id="ffc_title">选择常旅客</div>
+                <div><input type="text" name="" id="ffc_input" placeholder="请输入姓名搜索"></div>
+            </div>
         </div>
         <table cellpadding="0" cellspacing="0" class="route traveller">
              <colgroup>                 
@@ -391,5 +395,106 @@
 </footer>
 </div>
 
+
+<!--模板文件-->
+<script id="ffcTemplate" type="text/x-kendo-template">
+    <ul class="ul_ffc" data-role="panelbar">
+        # for(var i=0;i<data.length;i++){ #
+        <li>
+            #= data[i].categories #
+            # for(var j=0;j<data[i].customers.length;j++){ #
+            <div class="item"><label><input type="checkbox" value="#=data[i].customers[j].id #"> #= data[i].customers[j].name #</label></div>
+            # } #
+        </li>
+        # } #
+    </ul>
+</script>
+
+<script id="ffcsTemplate" type="text/x-kendo-template">
+    <ul class="ul_ffc">
+        # for(var i=0;i<data.length;i++){ #
+        <li style="padding:5px">
+            <label><input type="checkbox" value="#=data[i].id #"> #= data[i].name #</label>
+        </li>
+        # } #
+    </ul>
+</script>
+
+
+<!--模板文件-->
+
+<script type="text/javascript">
+    $(function(){
+        var data=[
+            {categories:"北京-上海",customers:[{name:"白展堂（*1234）",id:"1"},{name:"白展堂（*1234）",id:"2"},{name:"白展堂（*1234）",id:"3"}]},
+            {categories:"上海-成都",customers:[{name:"黑展堂（*1234）",id:"4"},{name:"绿展堂（*1234）",id:"5"},{name:"白展堂（*1234）",id:"6"}]},
+            {categories:"上海电信销售部",customers:[{name:"白展堂（*1234）",id:"7"},{name:"蓝展堂（*1234）",id:"8"},{name:"白展堂（*1234）",id:"9"}]}
+        ];
+        var keyup_timeout=null;
+        layer=new frequentFlyer({
+            template:"#ffcTemplate",
+            trigger:"#ffc_input",
+            type:"zAutocomplete",
+            data:data,
+            offsetX:-1,
+            offsetY:31,
+            open:function(){$("#ffc_title").addClass("expand")},
+            close:function(){$("#ffc_title").removeClass("expand")}
+        });
+
+        $("body").delegate(".ul_ffc :checkbox","change",function(){
+            if($(this).prop("checked"))
+            {
+                console.log($(this).val());
+            }
+            else
+            {
+
+            }
+            return false;
+        })
+
+        $("#ffc_input").keyup(function(){
+            var that=$(this);
+            if(keyup_timeout)
+            {
+                clearTimeout(keyup_timeout);
+            }
+            keyup_timeout=setTimeout(function(){ffcSearchData(that)},200);
+        })
+
+        function ffcSearchData(el)
+        {
+            var that=el;
+            if(that.val().length>0)
+            {
+                if(that.data(that.val()))
+                {
+                    layer.content(kendo.template($("#ffcsTemplate").html())(that.data(that.val())));
+                }
+                else
+                {
+                    var tmpArr=[];
+                    for(var i=0;i<data.length;i++)
+                    {
+                        for(var j=0;j<data[i].customers.length;j++)
+                        {
+                            if(data[i].customers[j].name.indexOf(that.val())>=0)
+                            {
+                                tmpArr.push(data[i].customers[j]);
+                            }
+                        }
+                    }
+                    that.data(that.val(),tmpArr);
+                    layer.content(kendo.template($("#ffcsTemplate").html())(that.data(that.val())));
+                }
+            }
+            else
+            {
+                layer.data(data);
+            }
+        }
+    })
+</script>
 </body>
 </html>
