@@ -266,8 +266,15 @@ var FloatLayer = function(opts){
     });
 
     layer.open = function(){
-        set_pos(opts.trigger);
         layer.show();
+    };
+
+    layer.data = function(d){
+        layer.html(tpl(d)); 
+    };
+
+    layer.content = function(d){
+        layer.html(d); 
     };
 
     layer.close = function(){
