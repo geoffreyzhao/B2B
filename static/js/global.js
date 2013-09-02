@@ -231,7 +231,7 @@ var FloatLayer = function(opts){
         layer.css(opts.css);
     }
 
-    if(typeof opts.async =='undefined'){
+    if(!opts.async){
         tpl = kendo.template( $(opts.template).html() );
         layer.html(tpl(opts.data));
     }
@@ -257,7 +257,6 @@ var FloatLayer = function(opts){
         });
     }
 
-
     if(opts.trigger.length>0){
         opts.toggle=false; 
     };
@@ -276,7 +275,6 @@ var FloatLayer = function(opts){
 
     layer.open = function(){
         layer.show();
-        opts.open.apply(this);
     };
 
     layer.data = function(d){
@@ -292,7 +290,6 @@ var FloatLayer = function(opts){
 
     layer.close = function(){
         layer.hide();
-        opts.close.apply(this);
     };
     return layer;
 };
