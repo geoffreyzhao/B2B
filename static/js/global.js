@@ -212,6 +212,7 @@ var FloatLayer = function(opts){
         trigger:"",
         data:{},
         template:"",
+        async:false,
         type:'click',
         offsetX:0,
         offsetY:20,
@@ -236,6 +237,7 @@ var FloatLayer = function(opts){
     }
 
     $('body').append(layer);
+    kendo.init(layer);
 
     $(document).on('click',function(e){
         // $('.FLAYA').removeClass('FLAYA');
@@ -280,11 +282,7 @@ var FloatLayer = function(opts){
     layer.data = function(d){
         tpl = kendo.template( $(opts.template).html() );
         layer.html(tpl(d)); 
-    };
-
-    layer.template = function(template,d){
-        tpl = kendo.template( $(template).html() );
-        layer.html(tpl(d)); 
+        kendo.init(layer);
     };
 
     layer.content = function(d){
