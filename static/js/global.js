@@ -273,10 +273,6 @@ var FloatLayer = function(opts){
         }
     });
 
-    layer.open = function(){
-        layer.show();
-    };
-
     layer.data = function(d){
         tpl = kendo.template( $(opts.template).html() );
         layer.html(tpl(d)); 
@@ -288,8 +284,14 @@ var FloatLayer = function(opts){
         kendo.init(layer);
     };
 
+    layer.open = function(){
+        layer.show();
+        opts.open.apply(this);
+    };
+
     layer.close = function(){
         layer.hide();
+        opts.close.apply(this);
     };
     return layer;
 };
