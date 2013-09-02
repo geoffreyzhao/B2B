@@ -220,16 +220,21 @@ var FloatLayer = function(opts){
         close:$.noop
     },opts);
 
+    var tpl;
+
     opts.trigger = opts.trigger.jquery ? opts.trigger : $(opts.trigger);
 
-    var tpl = kendo.template( $(opts.template).html() );
     var layer = $('<div class="ac-floatlayer" style="display:none;position:absolute;"/>');
 
     if(opts.css) {
         layer.css(opts.css);
     }
 
-    layer.html(tpl(opts.data));
+    if(typeof opts.data == 'string' && opts.data.length > 0){
+        tpl = kendo.template( $(opts.template).html() );
+        layer.html(tpl(opts.data));
+    }
+
     $('body').append(layer);
     kendo.init(layer);
 
@@ -273,8 +278,13 @@ var FloatLayer = function(opts){
     };
 
     layer.data = function(d){
-        layer.html(tpl(d));
-        kendo.init(layer);
+        tpl = kendo.template( $(opts.template).html() );
+        layer.html(tpl(d)); 
+    };
+
+    layer.template = function(template,d){
+        tpl = kendo.template( $(template).html() );
+        layer.html(tpl(d)); 
     };
 
     layer.content = function(d){
