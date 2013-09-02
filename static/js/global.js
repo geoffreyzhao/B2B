@@ -263,7 +263,7 @@ var FloatLayer = function(opts){
 
     // todo: support more type;
     $('body').delegate(opts.trigger,opts.type,function(e){
-        var that = $(e.target);
+        var that = e.data;
         set_pos(that);
         layer.input = that;
         if(opts.toggle){
