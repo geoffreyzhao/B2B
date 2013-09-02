@@ -220,18 +220,22 @@ var FloatLayer = function(opts){
         close:$.noop
     },opts);
 
+    var tpl;
+
     opts.trigger = opts.trigger.jquery ? opts.trigger : $(opts.trigger);
 
-    var tpl = kendo.template( $(opts.template).html() );
     var layer = $('<div class="ac-floatlayer" style="display:none;position:absolute;"/>');
 
     if(opts.css) {
         layer.css(opts.css);
     }
 
-    layer.html(tpl(opts.data));
+    if(typeof opts.async =='undefined'){
+        tpl = kendo.template( $(opts.template).html() );
+        layer.html(tpl(opts.data));
+    }
+
     $('body').append(layer);
-    kendo.init(layer);
 
     $(document).on('click',function(e){
         // $('.FLAYA').removeClass('FLAYA');
@@ -257,9 +261,10 @@ var FloatLayer = function(opts){
     };
 
     // todo: support more type;
-    opts.trigger.bind(opts.type,function(e){
-        set_pos($(this));
-        layer.input = $(this);
+    $('body').delegate(opts.trigger,opts.type,function(e){
+        var that = $(e.target);
+        set_pos(that);
+        layer.input = that;
         if(opts.toggle){
             layer.toggle();
         }else{
@@ -273,8 +278,13 @@ var FloatLayer = function(opts){
     };
 
     layer.data = function(d){
-        layer.html(tpl(d));
-        kendo.init(layer);
+        tpl = kendo.template( $(opts.template).html() );
+        layer.html(tpl(d)); 
+    };
+
+    layer.template = function(template,d){
+        tpl = kendo.template( $(template).html() );
+        layer.html(tpl(d)); 
     };
 
     layer.content = function(d){
