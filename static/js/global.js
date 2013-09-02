@@ -230,7 +230,7 @@ var FloatLayer = function(opts){
         layer.css(opts.css);
     }
 
-    if(typeof opts.data == 'string' && opts.data.length > 0){
+    if(typeof opts.async =='undefined'){
         tpl = kendo.template( $(opts.template).html() );
         layer.html(tpl(opts.data));
     }
@@ -262,8 +262,9 @@ var FloatLayer = function(opts){
 
     // todo: support more type;
     $('body').delegate(opts.trigger,opts.type,function(e){
-        set_pos($(this));
-        layer.input = $(this);
+        var that = $(e.target);
+        set_pos(that);
+        layer.input = that;
         if(opts.toggle){
             layer.toggle();
         }else{
