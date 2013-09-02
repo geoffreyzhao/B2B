@@ -263,15 +263,27 @@ var FloatLayer = function(opts){
 
     // todo: support more type;
     $('body').delegate(opts.trigger,opts.type,function(e){
-        var that = e.data;
-        set_pos(that);
-        layer.input = that;
-        if(opts.toggle){
-            layer.toggle();
-        }else{
-            layer.open();
+        if($(e.target).is($(opts.trigger))){
+            var that = $(e.target);
+            set_pos(that);
+            layer.input = that;
+            if(opts.toggle){
+                layer.toggle();
+            }else{
+                layer.open();
+            }
         }
     });
+    // opts.trigger.bind(opts.type,function(e){
+    //     var that = $(this);
+    //     set_pos(that);
+    //     layer.input = that;
+    //     if(opts.toggle){
+    //         layer.toggle();
+    //     }else{
+    //         layer.open();
+    //     }
+    // });
 
     layer.data = function(d){
         tpl = kendo.template( $(opts.template).html() );
