@@ -236,7 +236,6 @@ var FloatLayer = function(opts){
     }
 
     $('body').append(layer);
-    kendo.init(layer);
 
     $(document).on('click',function(e){
         // $('.FLAYA').removeClass('FLAYA');
@@ -262,7 +261,7 @@ var FloatLayer = function(opts){
     };
 
     // todo: support more type;
-    opts.trigger.bind(opts.type,function(e){
+    $('body').delegate(opts.trigger,opts.type,function(e){
         set_pos($(this));
         layer.input = $(this);
         if(opts.toggle){
