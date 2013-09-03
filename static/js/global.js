@@ -210,7 +210,7 @@ Collpase.prototype = {
 var FloatLayer = function(opts){
     var opts = $.extend({
         trigger:"",
-        class:"",
+        className:"",
         data:{},
         template:"",
         async:false,
@@ -226,7 +226,7 @@ var FloatLayer = function(opts){
 
     opts.trigger = opts.trigger.jquery ? opts.trigger : $(opts.trigger);
 
-    var layer = $('<div class="ac-floatlayer "'+ opts.class +' style="display:none;position:absolute;"/>');
+    var layer = $('<div class="ac-floatlayer "'+ opts.className +' style="display:none;position:absolute;"/>');
 
     if(opts.css) {
         layer.css(opts.css);
@@ -265,7 +265,7 @@ var FloatLayer = function(opts){
 
     // todo: support more type;
     $('body').delegate(opts.trigger.selector,opts.type,function(e){
-        if($(e.target).is(opts.trigger)){
+        if($(e.target).is(opts.trigger.selector)){
             var that = $(e.target);
             set_pos(that);
             layer.input = that;
