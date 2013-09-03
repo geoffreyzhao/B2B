@@ -265,7 +265,7 @@ var FloatLayer = function(opts){
 
     // todo: support more type;
     $('body').delegate(opts.trigger.selector,opts.type,function(e){
-        if($(e.target).is(opts.trigger)){
+        if($(e.target).is(opts.trigger.selector)){
             var that = $(e.target);
             set_pos(that);
             layer.input = that;
