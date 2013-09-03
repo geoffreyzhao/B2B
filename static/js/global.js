@@ -210,6 +210,7 @@ Collpase.prototype = {
 var FloatLayer = function(opts){
     var opts = $.extend({
         trigger:"",
+        class:"",
         data:{},
         template:"",
         async:false,
@@ -225,7 +226,7 @@ var FloatLayer = function(opts){
 
     opts.trigger = opts.trigger.jquery ? opts.trigger : $(opts.trigger);
 
-    var layer = $('<div class="ac-floatlayer" style="display:none;position:absolute;"/>');
+    var layer = $('<div class="ac-floatlayer "'+ opts.class +' style="display:none;position:absolute;"/>');
 
     if(opts.css) {
         layer.css(opts.css);
@@ -237,6 +238,7 @@ var FloatLayer = function(opts){
     }
 
     $('body').append(layer);
+
     kendo.init(layer);
 
     $(document).on('click',function(e){
@@ -262,22 +264,9 @@ var FloatLayer = function(opts){
     };
 
     // todo: support more type;
-    if(opts.async){
-        $('body').delegate(opts.trigger,opts.type,function(e){
-            if($(e.target).is($(opts.trigger))){
-                var that = $(e.target);
-                set_pos(that);
-                layer.input = that;
-                if(opts.toggle){
-                    layer.toggle();
-                }else{
-                    layer.open();
-                }
-            }
-        });
-    }else{
-        opts.trigger.bind(opts.type,function(e){
-            var that = $(this);
+    $('body').delegate(opts.trigger.selector,opts.type,function(e){
+        if($(e.target).is(opts.trigger)){
+            var that = $(e.target);
             set_pos(that);
             layer.input = that;
             if(opts.toggle){
@@ -285,8 +274,8 @@ var FloatLayer = function(opts){
             }else{
                 layer.open();
             }
-        });
-    }
+        }
+    });
 
     layer.data = function(d){
         tpl = kendo.template( $(opts.template).html() );
