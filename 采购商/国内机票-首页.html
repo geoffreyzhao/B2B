@@ -61,15 +61,15 @@
             <ul class="black_booking">
                 <li class="passenger">
                     <span class="subline">乘客类型:</span>
-                    <label><input type="radio" name="passenger_type" value="adult" checked/>成人</label>
-                    <label><input type="radio" name="passenger_type" value="child"/>儿童</label>
-                    <label><input type="radio" name="passenger_type" value="team"/>团队</label>
+                    <label><input type="radio" name="passenger_type" value="adult" checked/><span>成人</span></label>
+                    <label><input type="radio" name="passenger_type" value="child"/><span>儿童</span></label>
+                    <label><input type="radio" name="passenger_type" value="team"/><span>团队</span></label>
                 </li>
                 <li class="passenger" id="child_extra" style="display:none;">
                     <span class="subline">儿童情况:</span>
-                    <label><input type="radio" name="with_type" checked value="without_adult"/>无成人陪伴</label>
-                    <label><input type="radio" name="with_type" value="adult_pnr"/>成人PNR</label>
-                    <label><input type="radio" name="with_type" value="adult_order"/>成人订单号</label>
+                    <label><input type="radio" name="with_type" checked value="without_adult"/><span>无成人陪伴</span></label>
+                    <label><input type="radio" name="with_type" value="adult_pnr"/><span>成人PNR</span></label>
+                    <label><input type="radio" name="with_type" value="adult_order"/><span>成人订单号</span></label>
                     <label id="adult_pnr" style="display:none;"><span style="padding-right:10px;">请输入成人PNR:</span><input type="text" class="normal_txt" style="width:80px"/></label>
                     <label id="adult_order" style="display:none;"><span style="padding-right:10px">请输入成人订单号:</span><input type="text" class="normal_txt" style="width:200px"/></label>
                 </li>
@@ -83,7 +83,7 @@
                 </li>
                 <li class="ways" style="position:relative;">
                 <label class="subline"><span style="vertical-align:top;">方式二 黑屏粘贴:</span></label>
-                    <textarea style="width:440px;height:180px;line-height:20px;margin-left:15px;" class="black-paste">
+                    <textarea style="width:440px;height:180px;line-height:20px;margin-left:15px;padding:10px;" class="black-paste">
 使用方法:
 1. 请使用您的Eterm系统提取PNR内容。
 2. 再执行PAT:A指令,将全部内容复制,并粘贴到黑色输入框内。
@@ -113,44 +113,54 @@
         </section>
 
     </div>
-    <div class="row domestic gray-border">
+    <div class="row domestic gray-border flight_search">
         <div class="pull-left" style="width:70%;">
             <h3 class="title"><strong>白屏预订</strong></h3>
-            <section style="position:relative;" class="gray-border-right">
+            <section style="position:relative;">
                 <form>
                     <ul>
                         <li class="trip_type">
                             <strong>航程类型</strong>
-                            <label><input type="radio" name="flight_type" value="one_way" checked/>单程</label>
-                            <label><input type="radio" name="flight_type" value="round_trip"/>往返</label>
+                            <label><input type="radio" name="flight_type" value="one_way" checked style="vertical-align:middle;"/><span>单程</span></label>
+                            <label><input type="radio" name="flight_type" value="round_trip" style="vertical-align:middle;"/><span>往返</span></label>
                         </li>
-                        <li class="one_way round_trip clearfix">
-                            <div class="col col1" style="width:8%">
-                                <strong>城市</strong>
-                            </div>
-                            <div class="col col2" style="width:35%">
-                                <label>从<input class="normal_txt" type="text" name="" placeholder="上海" /></label>
-                                <label>到<input class="normal_txt" type="text" name="" placeholder="北京"/></label>
+                        <li class="one_way round_trip clearfix" style="position:relative;padding-left:20px;">
+                            <table class="time_city">
+                                <colgroup>
+                                    <col width="13%">
+                                    <col width="46%">
+                                    <col width="13%">
+                                    <col width="30%">
+                                </colgroup>
 
-                                <div class="xchange" style="top:8px;left:240px;">
-                                    <b></b>
-                                    <a href="javascript:void(0);">换</a>
-                                    <i></i>
-                                </div>
-                            </div>
-                            <div class="col col3" style="width:8%">
-                                <strong>日期</strong>
-                            </div>
-                            <div class="col col4" style="width:45%">
-                                <label>去<input type="text" name="" class="normal_txt datepicker" /></label>
-                                <label style="display:none;" id="return_date">回<input type="text" name="" class="normal_txt datepicker" /></label>
-                            </div>
+                                <tbody>
+                                    <tr>
+                                        <td><label for="departure_city"><em>*</em><span>出发城市</span></label></td>
+                                        <td><input type="text" name="departure_city" id="departure_city" value="" class="normal_txt gray-border" style="width:145px"></td>
+                                        <td><label for="departure_date"><em>*</em><span>出发日期</span></label></td>
+                                        <td><input type="text" id="departure_date" name="departure_date" value="" style="width:145px;"  class="normal_txt gray-border datepicker"><b class="ui-datepicker-daywrapper"></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="arrive_city"><em>*</em><span>到达城市</span></label></td>
+                                        <td><input type="text" id="arrive_city" name="arrive_city" value="" class="normal_txt gray-border" style="width:145px"></td>
+                                        <td id="return_label"><label for="return_date" class="muted"><em>*</em><span>返程日期</span></label></td>
+                                        <td><input type="text" id="return_date" name="return_date" style="width:145px;" disabled="disabled" value="" class="normal-txt gray-border datepicker"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
                             <div class="btn_area" id="white_search" style="top:10px;">
                                 <a class="adaptiveButton brightRed_btn">
                                     <span class="left"></span>
                                     <span class="center center_1">搜&nbsp;索</span>
                                     <span class="right"></span>
                                 </a>
+                            </div>
+
+                            <div class="xchange" style="top:8px;left:240px;">
+                                <b></b>
+                                <a href="javascript:void(0);">换</a>
+                                <i></i>
                             </div>
                         </li>
                     </ul>
@@ -161,14 +171,14 @@
         <aside class="pull-right" style="width:30%;"> 
         <div>
             <h3 class="title"><strong>国内机票询价</strong></h3>
-            <ul class="two_col clearfix "> 
+            <ul class="two_col gray-border-left clearfix "> 
                 <li>
-                <a href="#"><img src="../static/images/store/inlandgroup.png" alt="团队申请" title="团队申请"/></a>
-                <div class="applyfor">团队申请</div>
+                    <a href="#"><img src="../static/images/store/inlandgroup.png" alt="团队申请" title="团队申请"/>
+                    <div class="applyfor">团队申请</div></a>
                 </li>
                 <li>
-                <a href="#"><img src="../static/images/store/officialbusiness.png" alt="公务机申请" title="公务机申请"/></a>
-                <div class="applyfor">公务机申请</div>
+                <a href="#"><img src="../static/images/store/officialbusiness.png" alt="公务机申请" title="公务机申请"/>
+                    <div class="applyfor">公务机申请</div></a>
                 </li>
             </ul>
         </div>
