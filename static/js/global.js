@@ -262,9 +262,22 @@ var FloatLayer = function(opts){
     };
 
     // todo: support more type;
-    $('body').delegate(opts.trigger,opts.type,function(e){
-        if($(e.target).is($(opts.trigger))){
-            var that = $(e.target);
+    if(opts.async){
+        $('body').delegate(opts.trigger,opts.type,function(e){
+            if($(e.target).is($(opts.trigger))){
+                var that = $(e.target);
+                set_pos(that);
+                layer.input = that;
+                if(opts.toggle){
+                    layer.toggle();
+                }else{
+                    layer.open();
+                }
+            }
+        });
+    }else{
+        opts.trigger.bind(opts.type,function(e){
+            var that = $(this);
             set_pos(that);
             layer.input = that;
             if(opts.toggle){
@@ -272,18 +285,8 @@ var FloatLayer = function(opts){
             }else{
                 layer.open();
             }
-        }
-    });
-    // opts.trigger.bind(opts.type,function(e){
-    //     var that = $(this);
-    //     set_pos(that);
-    //     layer.input = that;
-    //     if(opts.toggle){
-    //         layer.toggle();
-    //     }else{
-    //         layer.open();
-    //     }
-    // });
+        });
+    }
 
     layer.data = function(d){
         tpl = kendo.template( $(opts.template).html() );
