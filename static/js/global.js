@@ -66,7 +66,7 @@ PopWindow.prototype = {
             throw new Error(this.triggerText + '缺少content(弹窗内容)属性');
         }else{
             this.win = windowEle.kendoWindow( opts ).data('kendoWindow'); 
-            this.win.trigger = this.trigger;
+            this.win.triggerEle = this.trigger;
         }
     },
     bindClick:function(){
