@@ -14,14 +14,6 @@
     <link rel="stylesheet" href="../../static/css/kendo.common.min.css" />
     <link rel="stylesheet" href="../../static/css/kendo.store.css" />
     
-    <link href="../../static/css/kendo.common.css" rel="stylesheet" type="text/css" /> <!--弹窗CSS-->
-    <link href="../../static/css/kendo.gray.css" rel="stylesheet" type="text/css" /> <!--弹窗CSS-->
-    <link href="../../static/css/kendo.reset.css" rel="stylesheet" type="text/css" /> <!--弹窗CSS-->
-    <script src="../../static/js/jquery.min.js" type="text/javascript"></script> <!--弹窗js-->
-    <script src="../../static/js/jquery-migrate-1.2.1.js" type="text/javascript"></script> <!--弹窗JS-->
-    <script src="../../static/js/kendo.web.js" type="text/javascript"></script> <!--弹窗js-->
-    <script src="../../static/js/hotel.js" type="text/javascript"></script> <!--弹窗JS-->
-    
     <script type="text/javascript" src="../../static/js/jquery.min.js"></script>    
     <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
     <script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
@@ -167,7 +159,7 @@
                 </table>
             </li>
        </ul>
-       <br/>
+       <div style="height:1px;"></div>
        <ul class="clearfix internation">
            <li>
                <table style="width:100%">
@@ -413,7 +405,7 @@
                    </td>
                    <td><big>￥464.00</big></td>
                    <td>
-                      <a class="adaptiveButton mediumOrange_btn popwin" data='{"url":"国际机票搜索结果页-单程-核价成功弹窗.html","width":430,"height":350,"title":"核价"}' id="add_city_code">
+                      <a class="adaptiveButton mediumOrange_btn price_confirm">
                           <span class="left"></span>
                           <span class="center" style="padding:0 5px;">核价并预订</span>
                           <span class="right"></span>
@@ -481,7 +473,7 @@
                    </td>
                    <td><big>￥464.00</big></td>
                    <td>
-                      <a class="adaptiveButton mediumOrange_btn">
+                      <a class="adaptiveButton mediumOrange_btn price_confirm_failed">
                           <span class="left"></span>
                           <span class="center" style="padding:0 5px;">核价并预订</span>
                           <span class="right"></span>
@@ -788,7 +780,63 @@
 </div>
 </script>
 
+<script type="text/x-kendo-template" id="price_confirm_template">
+<div class="win">  <!--win start-->
+    <h3><i>&nbsp;</i>验舱成功！</h3>
+    <p>改期： 不允许改期</p>
+    <p>退票： 不允许退票</p>
+    <p>出发日期： 2013-08-08；2013-08-08；</p>
+    <p>最短/最长停留期： 0-12个月</p>
+    <p>销售时限： 2013-07-01 —— 2013-09-01</p>
+    <p>提前出票天数： 20天</p>
+    <p>票面价/税费： <em>￥800</em><span> / ￥200</span></p>
+    <div class="win_btn">
+       <a class="adaptiveButton mediumOrange_btn">
+          <span class="left"></span>
+          <span class="center center_1">预订</span>
+          <span class="right"></span>
+       </a>
+       <a href="javascript:void(0);" class="cancel">取消</a>
+    </div>
+</div>  <!--win end-->
+</script>
+
+
+<script type="text/x-kendo-template" id="price_comfire_failed_template">
+<div class="fail">  <!--fail start-->
+    <h3><i>&nbsp;</i>验舱未成功！</h3>
+    <div class="fail_btn">
+       <a href="javascript:void(0);" class="cancel">查看其他航班记录</a>
+    </div>
+</div>  <!--fail end-->
+</script>
+
+
 <script type="text/javascript" src="../../static/js/store/international_flight.js"></script>
-    
+<script>
+$(function(){
+	var price_confirm_win = new PopWindow(".price_confirm",{
+		   title:"核价成功",
+		   width:420,
+		   template:"#price_confirm_template"
+	}).init();
+	
+	
+	var price_confirm_win = new PopWindow(".price_confirm_failed",{
+		   title:"核价失败",
+		   width:420,
+		   template:"#price_comfire_failed_template",
+		   open:function(){
+			   this.triggerEle.removeClass("mediumOrange_btn").addClass("mediumDisabled_btn");
+			   console.log(this.triggerEle);
+		   }
+	}).init();
+	
+});
+
+
+</script>
+
+
 </body>
 </html>
