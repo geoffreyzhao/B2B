@@ -66,6 +66,7 @@ PopWindow.prototype = {
             throw new Error(this.triggerText + '缺少content(弹窗内容)属性');
         }else{
             this.win = windowEle.kendoWindow( opts ).data('kendoWindow'); 
+            this.win.triggerEle = this.trigger;
         }
     },
     bindClick:function(){
@@ -144,15 +145,13 @@ var Collpase = function(opts){
     * */
     this.limitHeight = 100;
     this.triggerexp = 'col-expp';
+    this.duration = 0;
     this.trigger = '.content-collapse';
     $.extend(this,opts);
     this.container = $(this.container);
 };
 Collpase.prototype = {
     init:function(){
-        //this.container.attr("originHeight",this.container.height());
-        this.container.attr("originPosition",this.container.css("position"));
-
         if(this.getContainerHeight()<this.limitHeight) return this;
         this.render(); 
         this.bindClick();
@@ -160,7 +159,8 @@ Collpase.prototype = {
     },
     render:function(){
         var container = this.container; 
-
+        this.originHeight = container[0].style.height;
+        this.padHeight = container[0].scrollHeight-container.height(); 
         var trigger= this.triggerEle = $('<div class="'+(this.trigger+'_').slice(1,-1)+'"><div /></div>');
         trigger.appendTo(container).show();
         container.css({
@@ -175,20 +175,16 @@ Collpase.prototype = {
     setHeight:function(){
         if (this.triggerEle.hasClass(this.triggerexp)){
             this.triggerEle.removeClass(this.triggerexp);
-            this.container.css({
-                position: 'relative',
-                height: this.limitHeight + 'px',
-                overflow:'hidden'
-            });
+            this.container.animate({height:this.limitHeight},this.duration);
         }
     },
     resetHeight:function(){
+        var that = this;
         if (!this.triggerEle.hasClass(this.triggerexp)){
+            var scrollHeight = this.container[0].scrollHeight - this.padHeight;
             this.triggerEle.addClass(this.triggerexp);
-            this.container.css({
-                //height: this.container.attr("originHeight") + 'px',
-                height: "auto",
-                overflow:''
+            this.container.animate({height:scrollHeight},this.duration,function(){
+                $(this).height(that.originHeight); 
             });
         }
     },
@@ -205,6 +201,7 @@ Collpase.prototype = {
 
     }
 };
+
 
 // 浮层模块
 var FloatLayer = function(opts){
