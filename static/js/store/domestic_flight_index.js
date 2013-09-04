@@ -32,10 +32,13 @@ $(function() {
 	$("input[name='flight_type']").click(function() {
         switch($(this).val()){
             case 'one_way':
-                $("#return_date").hide();
+                $("#return_label label").addClass("muted");
+                $("#return_date").prop("disabled",true);
                 break;
             case 'round_trip':
-                $("#return_date").show();
+                $("#return_label label").removeClass("muted");
+                $("#return_date").prop("disabled",false);
+
                 break;
             default:
                 break;

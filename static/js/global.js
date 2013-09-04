@@ -210,8 +210,10 @@ Collpase.prototype = {
 var FloatLayer = function(opts){
     var opts = $.extend({
         trigger:"",
+        className:"",
         data:{},
         template:"",
+        async:false,
         type:'click',
         offsetX:0,
         offsetY:20,
@@ -220,17 +222,23 @@ var FloatLayer = function(opts){
         close:$.noop
     },opts);
 
+    var tpl;
+
     opts.trigger = opts.trigger.jquery ? opts.trigger : $(opts.trigger);
 
-    var tpl = kendo.template( $(opts.template).html() );
-    var layer = $('<div class="ac-floatlayer" style="display:none;position:absolute;"/>');
+    var layer = $('<div class="ac-floatlayer "'+ opts.className +' style="display:none;position:absolute;"/>');
 
     if(opts.css) {
         layer.css(opts.css);
     }
 
-    layer.html(tpl(opts.data));
+    if(!opts.async){
+        tpl = kendo.template( $(opts.template).html() );
+        layer.html(tpl(opts.data));
+    }
+
     $('body').append(layer);
+
     kendo.init(layer);
 
     $(document).on('click',function(e){
@@ -251,35 +259,38 @@ var FloatLayer = function(opts){
         });
     }
 
-
     if(opts.trigger.length>0){
         opts.toggle=false; 
     };
 
     // todo: support more type;
-    opts.trigger.bind(opts.type,function(e){
-        set_pos($(this));
-        layer.input = $(this);
-        if(opts.toggle){
-            layer.toggle();
-        }else{
-            layer.open();
+    $('body').delegate(opts.trigger.selector,opts.type,function(e){
+        if($(e.target).is(opts.trigger.selector)){
+            var that = $(e.target);
+            set_pos(that);
+            layer.input = that;
+            if(opts.toggle){
+                layer.toggle();
+            }else{
+                layer.open();
+            }
         }
     });
 
-    layer.open = function(){
-        layer.show();
-        opts.open.apply(this);
-    };
-
     layer.data = function(d){
-        layer.html(tpl(d));
+        tpl = kendo.template( $(opts.template).html() );
+        layer.html(tpl(d)); 
         kendo.init(layer);
     };
 
     layer.content = function(d){
         layer.html(d);
         kendo.init(layer);
+    };
+
+    layer.open = function(){
+        layer.show();
+        opts.open.apply(this);
     };
 
     layer.close = function(){
