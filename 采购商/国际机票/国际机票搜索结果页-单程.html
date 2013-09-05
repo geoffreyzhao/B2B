@@ -453,7 +453,7 @@
                        <div>首都机场T3</div>
                        <div>虹桥机场T2</div>
                    </td>
-                   <td><span><a href="#">1次中转</a><strong>&nbsp;</strong></span></td>
+                   <td><span class="tool_tip"><a href="#">1次中转</a><strong>&nbsp;</strong></span></td>
                    <td>
                        <div>5小时</div>
                        <div>30分</div>
@@ -643,7 +643,7 @@
 
        <div class="location" style="left:400px;top:648px;"> <!--浮层开始-->
           <div class="floating">
-              <i>&nbsp;</i>
+              <!--<i>&nbsp;</i>-->
               <table class="floating_title">
                  <colgroup>
                    <col width="58px"/>
@@ -834,6 +834,15 @@ $(function(){
 		   }
 	}).init();
 	
+    $(".tool_tip").kendoTooltip({
+        filter: "strong",
+        position: "top",
+        content: function(e) {
+            return $(".location").html();
+            //return '内容';
+        }
+      });
+
 	
 });
 
