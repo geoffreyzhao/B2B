@@ -801,3 +801,53 @@ var lensf = function (settings){
         }
     });
 };
+
+
+var checkGroup = function(settings){
+    var opts = $.extend({
+        group : '[data-role=checkgroup]',
+        name : '[data-role=checkgroup-item]'
+    },settings);
+
+    opts.group = opts.group.jquery?opts.group:$(opts.group);
+    opts.name = opts.name.jquery?opts.name:$(opts.name);
+    
+    var renderAsGroup = function(){
+        $.each(opts.group,function(index){
+            var items = $(this).find('[type=checkbox]');
+            bindChange(items);
+        })
+    }
+
+
+    var renderAsSameName = function(){
+        var names = {};
+        $.each(opts.name,function(index){
+            var that = $(this);
+            var name = that[0].name;
+            if(names){
+                 
+            }
+            // var items = $(this).find('[type=checkbox]');
+            // bindChange(items);
+        });
+    }
+    
+    var bindChange = function(items){
+        items.on('change',function(){
+            items.filter(':checked').not(this).prop('checked',false);
+        });
+    };
+
+    var init = function(){
+        renderAsGroup();
+        // renderAsSameName();
+    };
+
+    init();
+
+    return {
+    
+    
+    };
+};
