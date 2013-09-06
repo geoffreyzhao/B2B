@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>天地行 采购商 国际机票-K位申请创建订单</title>
+    <title>天地行 采购商 国际机票—复杂航段询价单</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
      
     <link rel="stylesheet" href="../../static/css/smoothness/jquery-ui-1.10.3.custom.css" />
@@ -55,107 +55,14 @@
 <section class="main-body clearfix">
   
   <div class="k_place">  <!-- k_place start -->
-      <h2>国际机票K位申请创建订单</h2>      
+      <h2>国际机票复杂航段询价单</h2>      
       <div class="message"> <!--message start-->
-           <div class="mes_h3"> <h3>航程信息</h3> </div>
-           <div class="air_line">
-               <table cellpadding="0" cellspacing="0" class="air_line_tab">
-                   <colgroup>
-                       <col width="400px" /> 
-                       <col width="115px" /> 
-                       <col width="115px" /> 
-                       <col width="110px" /> 
-                       <col width="100px" />
-                   </colgroup>
-                   <thead>
-                   <tr>
-                       <th>航空公司/适用航线</th>
-                       <th>政策有效期</th>
-                       <th>开票有效期</th>
-                       <th>通知日期</th>
-                       <th>申请说明</th>
-                       <th>附加费</th>
-                   </tr>
-                   </thead>
-                   <tbody>
-                   <tr>
-                       <td>
-                           <h3>中国国际航空(CA)</h3>
-                           <ul> 
-                               <li>欧洲航线,美洲航线,西北亚线,澳洲航线,日本航线,韩国航线</li>
-                               <li>东南亚航线,港澳航线</li>
-                           </ul>
-                       </td>  
-                       <td> 
-                           <div>2013-08-20</div>
-                           <div>2013-10-20</div>
-                       </td>
-                       <td> 
-                           <div>2013-08-20</div>
-                           <div>2013-10-20</div>
-                       </td>
-                       <td>
-                           10-30分钟
-                       </td>
-                       <td>说明<em>&nbsp;</em></td>
-                       <td><i>100</i></td>
-                   </tr>
-                   </tbody>
-                </table>
-            </div> 
-            
-            <div class="original">
-                <span><em>原始</em>PNR：</span>
-                <input type="text" />
-                <i>自行定位的PNR，该PNR舱位高于申请K位舱位，并且QTE得出价格。</i>
-            </div>
-            <div class="or">
-                 <span class="dotted_line" style="width:80px;"></span>
-                 <em class="muted"> 或者 </em>
-                 <span class="dotted_line" style="width:835px;"></span>
-            </div>
-            
-            <div class="type">
-                <span><em>* </em>航程类型：</span>
-                <label> <input type="radio" name="type" checked="" /> 单程</label>
-                <label> <input type="radio" name="type" /> 往返</label>
-                <label> <input type="radio" name="type" /> 多程(含缺口) </label>
-            </div>
-            <table cellpadding="0" cellspacing="0" class="voyage oneway">
-                 <colgroup>
-                   <col width="70px"/>
-                   <col width="190px"/>
-                   <col width="25px"/>
-                   <col width="100px"/>
-                   <col width="230px"/>
-                   <col width="70px"/>
-                 </colgroup>
-                  <tr>
-                     <td><strong>* </strong>出发城市</td>
-                     <td><input type="text" /></td>
-                     <td rowspan="2"> 
-                         <i> </i> <em>换</em> <span> </span>
-                     </td>
-                     <td style="text-align:right; padding-right:10px;"><strong>* </strong>出发日期</td>
-                     <td><input type="text" class="datepicker" value=" " /></td>
-                     <td>出发航班号</td>
-                     <td><input type="text" value=" " /></td>
-                  </tr>
-                  <tr id="return_date">
-                     <td><strong>* </strong>到达城市</td>
-                     <td><input type="text" /></td>                      
-                     <td style="text-align:right; padding-right:10px;"><strong class="muted">* </strong>返程日期 </td>
-                     <td ><input type="text" class="datepicker"  disabled value=" " /></td>
-                     <td>返程航班号</td>
-                     <td><input type="text" value=" " /></td>            
-                  </tr>
-             </table>
-             
-             <div class="multipass" style="display:none;">
+           <div class="mes_h3"> <h3>航程信息</h3> </div>            
+             <div class="inquire">
                 <script type="text/x-kendo-template" id="ac-add-line-template">
                     <tr>
                         <td>
-                            <label>第<span class="hitext index_num">1</span>程 &nbsp;&nbsp;<em>* </em><span>出发城市</span>
+                            <label>第<span class="hitext index_num">1</span>程<em style="margin-left:23px;">* </em><span>出发城市</span>
                                 <input type="text" class="city_ac" value="" name="departure_city"/></label>
                         </td>
                         <td>
@@ -164,12 +71,7 @@
                         </td>
                         <td>
                             <label><em>* </em><span>出发日期</span>
-                                <input type="text" style="width:130px;" class="datepicker" value="2013-08-08  周三" name="departure_date"/></label>
-                        </td>
-						<td>
-                            <label><span>航班号</span>
-                                <input type="text" class="city_ac" value="" name="arrive_city" />
-						   </label>
+                                <input type="text" style="width:160px;" class="datepicker" value="2013-08-08     周三" name="departure_date"/></label>
                         </td>
                         <td>
                             <a href="javascript:void(0);" class="muti_add ac-remove-line">删除</a>
@@ -179,49 +81,38 @@
                 <!-- 多程 -->
                 <table class="time_city muti_trip" id="muti_trip">
                     <colgroup>
+                        <col width="330px" />
                         <col width="270px" />
-                        <col width="215px" />
-                        <col width="215px" />
-                        <col width="190px" />
+                        <col width="245px" />
                     </colgroup>
                     <tbody>
                         <tr>
                             <td>
-                                <label>第<span class="hitext index_num">1</span>程 &nbsp;&nbsp;<em>* </em><span>出发城市</span>
-                                    <input type="text" class="city_ac" value="" name="departure_city"/></label>
+                                <label>第<span class="hitext index_num">1</span>程<em style="margin-left:23px;">* </em><span>出发城市</span>
+                                    <input type="text" class="city_ac" value="上海" name="departure_city"/></label>
                             </td>
                             <td>
                                 <label><em>* </em><span>到达城市</span>
-                                    <input type="text" class="city_ac" value="" name="arrive_city" />
+                                    <input type="text" class="city_ac" value="香港" name="arrive_city" />
                                 </label>
                             </td>                            
                             <td>
                                 <label><em>* </em><span>出发日期</span>
-                                    <input type="text" style="width:130px;" class="datepicker" value="2013-08-08  周三" name="departure_date"/></label>
-                            </td>
-                            <td>
-                                <label><span>航班号</span>
-                                    <input type="text" class="city_ac" value="" name="arrive_city" />
-                                </label>
+                                    <input type="text" style="width:160px;" class="datepicker" value="2013-08-08     周三" name="departure_date"/></label>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <label>第<span class="hitext index_num">2</span>程 &nbsp;&nbsp;<em>* </em><span>出发城市</span>
-                                    <input type="text" class="city_ac" value="" name="departure_city"/></label>
+                                <label>第<span class="hitext index_num">2</span>程<em style="margin-left:23px;">* </em><span>出发城市</span>
+                                    <input type="text" class="city_ac" value="香港" name="departure_city"/></label>
                             </td>
                             <td>
                                 <label><em>* </em><span>到达城市</span>
-                                    <input type="text" class="city_ac" value="" name="arrive_city" /></label>
+                                    <input type="text" class="city_ac" value="新加坡" name="arrive_city" /></label>
                             </td>
                             <td>
                                 <label><em>* </em><span>出发日期</span>
-                                    <input type="text" style="width:130px;" class="datepicker" value="2013-08-08  周三" name="departure_date"/></label>
-                            </td>
-                            <td>
-                                <label><span>航班号</span>
-                                    <input type="text" class="city_ac" value="" name="arrive_city" />
-                                </label>
+                                    <input type="text" style="width:160px;" class="datepicker" value="2013-08-08     周三" name="departure_date"/></label>
                             </td>
                             <td>
                                 <a href="javascript:;" class="muti_add ac-add-line">添加航程</a>
@@ -229,15 +120,35 @@
                         </tr>
                     </tbody>
                 </table>              
+             </div>             
+             <div class="airway">
+                  <span>航空公司：</span>
+                  <select>
+                       <option>&nbsp;</option>
+                  </select>
+                  <span>舱位等级：</span>
+                  <label><input type="checkbox" checked=""/>经济舱</label>
+                  <label><input type="checkbox" checked=""/>超级经济舱</label>
+                  <label><input type="checkbox" checked=""/>商务舱</label>
+                  <label><input type="checkbox" checked=""/>头等舱</label>
              </div>
-             
              <div class="constant clearfix">
-                  <div class="save">
-                       <i><em>* </em>旅客信息：</i>
-                       <span>共<em>1</em>名乘客</span>
-                       <label>
-                           <input type="checkbox" checked="" />保存到常旅客
-                       </label>
+                  <div class="ke">
+                      <div class="fare">
+                           <span><em>* </em>乘客类型：</span>
+                           <label><input type="radio" name="fare" checked=""/>散客</label>
+                           <label><input type="radio" name="fare"/>团队</label>
+                           <select>
+                                <option> </option>
+                           </select>
+                      </div>
+                      <div class="guest">
+                           <i><em>* </em>旅客信息：</i>
+                           <span>共<em>1</em>名乘客</span>
+                           <label>
+                               <input type="checkbox" checked="" />保存到常旅客
+                           </label>
+                      </div>
                   </div>
                   <div id="frequentFlyerContainer" class="pull-right">
                     <div id="ffc_title"><label for="ffc_input">选择常旅客</label></div>
@@ -291,11 +202,11 @@
                             </select>
                         </td>
                         <td>
-                            <input style="width:57px;" type="text" value="国际" />
+                            <input style="width:57px;" type="text" value="中国" />
                         </td>
                         <td>
                             <select data-role="dropdownlist" style="width:80px;">
-                                <option>护照</option>
+                                <option>身份证</option>
                                 <option>其他</option>
                             </select>
                         </td>
@@ -350,7 +261,7 @@
                        <td>
                            <a class="adaptiveButton brightRed_btn">
                               <span class="left"></span>
-                              <span class="center center_1">提交申请</span>
+                              <span class="center center_1">提交询价单</span>
                               <span class="right"></span>
                            </a>
                        </td>
@@ -360,13 +271,6 @@
    </div> <!--message end-->
   </div>  <!-- k_place end -->
 
-  
-  <div class="location clearfix" style="left:937px; top:325px;"> <!--浮层开始-->
-          <div class="floating">
-              <i>&nbsp;</i>
-              <p>此政策适用于国外始发SOTO回大陆，旺季除外！</p>         
-          </div>
-  </div> <!--浮层结束--> 
 
 </section>
 
@@ -387,42 +291,6 @@
     </center>
 </footer>
 </div>
-
-<script type="text/javascript">
-	$(function(){
-		$("input[name='type']").each(function(index){
-			
-			$(this).click(function(){
-				console.log(index);
-				
-				switch(index){
-					case 0:
-					case 1:
-						$(".oneway").show();
-						$(".multipass").hide();
-						
-						if(index == 0){
-							$("#return_date .datepicker").attr("disabled",true);
-							$("#return_date strong").addClass("muted");
-						}else{
-							$("#return_date .datepicker").attr("disabled",false);
-							$("#return_date strong").removeClass("muted");
-						}
-						
-						break;
-					case 2:
-						$(".oneway").hide();
-						$(".multipass").show();
-						break;
-					default:
-						break;
-				}
-				
-			});
-		});
-	});
-</script>
-
 <script type="text/javascript" src="../../static/js/store/international_flight.js"></script>
 
 
