@@ -288,20 +288,40 @@ $(function(){
 </div>
 
 <div class="block block4 block-module">
+    <ul id="policy_tab" class="tablist clearfix">
+        <li class="current">
+            <div class="mtab"> 
+                <span>规定1</span>
+                <span class="rightCover"></span>
+            </div>
+        </li>
+
+        <li>
+            <div class="mtab gray">
+                <span>规定二</span>
+                <span class="rightCover"></span>
+            </div>
+        </li>
+    </ul>
     <div class="block-title"><span>退改签规定</span>
         <!--
         <span class="block-module-action">
         </span>
         -->
     </div>
-    <div>
-        <div class="row row3">
-            【<span>更改条件</span>】同等舱位免费更改。<br>
-            【<span>退票条件</span>】起飞前2小时（含）以外办理退票按订座舱位公布运价收取40％的退票费，2小时以内及起飞后退票按订座舱位公布运价收取50％的退票费。退票费低于50元时按50元收取。<br>
-            【<span>签转条件</span>】不得签转。<br><br>
-            <h3>政策说明</h3>
-            【<span>退改签补充规则</span>】（不管任何原因）签转到其他航空公司、跨月签转以及有政策航班改到无政策航班，需收回代理费。
-        </div>
+    <div class="row row3">
+        【<span>更改条件</span>】同等舱位免费更改。<br>
+        【<span>退票条件</span>】起飞前2小时（含）以外办理退票按订座舱位公布运价收取40％的退票费，2小时以内及起飞后退票按订座舱位公布运价收取50％的退票费。退票费低于50元时按50元收取。<br>
+        【<span>签转条件</span>】不得签转。<br><br>
+        <h3>政策说明</h3>
+        【<span>退改签补充规则</span>】（不管任何原因）签转到其他航空公司、跨月签转以及有政策航班改到无政策航班，需收回代理费。
+    </div>
+    <div class="row row3">
+        【<span>更改条件</span>】1同等舱位免费更改。<br>
+        【<span>退票条件</span>】1起飞前2小时（含）以外办理退票按订座舱位公布运价收取40％的退票费，2小时以内及起飞后退票按订座舱位公布运价收取50％的退票费。退票费低于50元时按50元收取。<br>
+        【<span>签转条件</span>】1不得签转。<br><br>
+        <h3>政策说明</h3>
+        【<span>退改签补充规则</span>】（不管任何原因）签转到其他航空公司、跨月签转以及有政策航班改到无政策航班，需收回代理费。
     </div>
 </div>
 
@@ -627,6 +647,34 @@ $(function(){
 </div>
 <script type="text/javascript">
     $(function(){
+ 
+            /* 政策tab */
+            $("#policy_tab li").each(function(index){
+                $(this).click(function(){
+                    var block = $(this).closest(".block");
+                    $(block).find(".row").hide();
+                    $(block).find(".row:eq(" + index + ")").show();
+
+                    var ul = $(this).closest("ul");
+                    $("li",ul).removeClass("current");
+                    $(".mtab",ul).addClass("gray");
+
+                    $(this).addClass("current");
+                    $(".mtab",this).removeClass("gray");
+                });
+                $(this).hover(function(){
+                        if(!$(this).hasClass("current")){
+                            $(".mtab",this).removeClass("gray");
+                        }
+
+                },function(){
+                        if(!$(this).hasClass("current")){
+                            $(".mtab",this).addClass("gray");
+                        }
+                });
+            });
+
+
             /* 航司 返点信息 */
             $("#frate_btn").click(function(){
                 if($("b",this).html() == '显示'){
