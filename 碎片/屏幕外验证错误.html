@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+<link rel="stylesheet" href="/static/css/kendo.common.min.css" />
+<link rel="stylesheet" href="/static/css/kendo.default.min.css" />
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/kendo.web.js"></script>
+</head>
+<body>
+       <button style="font-size:40px;">验证</button>
+        <hr>
+        <p style="font-size:480px;margin:0 auto;width:480px;">般若波罗蜜</p>
+        <hr>
+
+        <input type="search" id="search" name="search" class="k-textbox" required validationMessage="Please select movie"/>
+        <div id="wrap">
+        <input type="text" id="fullname" name="fullname" class="k-textbox" placeholder="Full name" required validationMessage="Please enter {0}" />
+        <br>
+        <input type="email" id="email" name="Email222" class="k-textbox" placeholder="e.g. myname@example.net"  required data-email-msg="Email format is not valid" />
+        </div>
+  
+        <script>
+            var validData = $('#wrap').kendoValidator().data('kendoValidator');
+
+            function getErrorEle( kendoValidEleData ){
+                var container = kendoValidEleData.element;
+                var errors = kendoValidEleData._errors;
+                var inputs = $('');
+                for (key in errors){
+                    var that = container.find("[name="+key+"]");
+                        that.data('message',that.next());
+                        inputs = inputs.add(that); 
+                } 
+                return inputs;
+            }
+
+            $('button').click(function(){
+                var isValid = validData.validate(); 
+                // 获取所有报错的input
+                var inputs = getErrorEle(validData);
+                // 获取第一个报错元素的出错标签 k-invalid-msg
+                var tip = inputs.eq(0).data('message');
+                console.log(inputs);
+                console.log(tip);
+
+                if(isValid){
+                    alert('验证通过');
+                    // $.ajax(); 
+                }else{
+                    // 浏览器自带scrollto方法
+                    tip[0].scrollIntoView();
+                    tip.css('border','1px solid red');
+                }
+            });
+        </script>
+</body>
+</html>
