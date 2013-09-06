@@ -537,14 +537,13 @@
                 //展开
                 $(".roomTypeDetailContainer",container).each(function(){
                     var self = this;
-                    $(".expand_hide",self).hide(); 
-                    $(this).animate({height:this.scrollHeight});
+
+                    $(this).animate({height:this.scrollHeight},function(){$(".expand_hide",self).hide();});
                 });
             }else{
                 $(".roomTypeDetailContainer",container).each(function(){
                     var self = this;
-                    $(".expand_hide",self).show(); 
-                    $(this).css({"overflow":"hidden"}).animate({height:"46px"});
+                    $(this).css({"overflow":"hidden"}).animate({height:"45px"},function(){$(".expand_hide",self).show();});
                 });
             }
 
