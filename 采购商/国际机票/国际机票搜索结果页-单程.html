@@ -303,7 +303,7 @@
              </colgroup> 
              <thead> 
                <tr>
-                   <th>航班号</td>
+                   <td>航班号</td>
                    <td>机型</td>
                    <td>
                        <div class="sorttab sorttab_line2 ascend">
@@ -412,7 +412,7 @@
                           <span class="center" style="padding:0 5px;">核价并预订</span>
                           <span class="right"></span>
                       </a>
-                      <a class="more-cabin" href="#">更多舱位<i>&nbsp;</i></a>
+                      <!--<a class="more-cabin" href="#">更多舱位<i>&nbsp;</i></a>-->
                    </td>                   
                 </tr>
             </table>
@@ -453,7 +453,7 @@
                        <div>首都机场T3</div>
                        <div>虹桥机场T2</div>
                    </td>
-                   <td><span><a href="#">1次中转</a><strong>&nbsp;</strong></span></td>
+                   <td><span class="tool_tip"><a href="#">1次中转</a><strong>&nbsp;</strong></span></td>
                    <td>
                        <div>5小时</div>
                        <div>30分</div>
@@ -480,7 +480,7 @@
                           <span class="center" style="padding:0 5px;">核价并预订</span>
                           <span class="right"></span>
                       </a>
-                      <a class="more-cabin" href="#">更多舱位<i>&nbsp;</i></a>
+                      <!--<a class="more-cabin" href="#">更多舱位<i>&nbsp;</i></a>-->
                    </td>                   
                 </tr>
             </table>
@@ -548,12 +548,12 @@
                           <span class="center" style="padding:0 5px;">核价并预订</span>
                           <span class="right"></span>
                       </a>
-                      <a class="more-cabin" href="#">更多舱位<i>&nbsp;</i></a>
+                      <!--<a class="more-cabin" href="#">更多舱位<i>&nbsp;</i></a>-->
                    </td>                   
                 </tr>
             </table>
        </div>
-       <div class="information bor_bom">
+       <div class="information last bor_bom">
             <table>
               <colgroup>
                <col width="20px"/>
@@ -616,7 +616,7 @@
                           <span class="center" style="padding:0 5px;">核价并预订</span>
                           <span class="right"></span>
                       </a>
-                      <a class="more-cabin" href="#">更多舱位<i>&nbsp;</i></a>
+                      <!--<a class="more-cabin" href="#">更多舱位<i>&nbsp;</i></a>-->
                    </td>                   
                 </tr>
             </table>
@@ -629,7 +629,7 @@
                  <li><a href="#">3</a></li>
                  <li><a href="#">4</a></li>
                  <li><a href="#">5</a></li>
-                 <li> <span>…</span> </li>
+                 <li> <span>...</span> </li>
                  <li><a href="#" class="present">58</a></li>
                  <li><a href="#">59</a></li>
                  <li><a href="#">60</a></li>
@@ -643,7 +643,7 @@
 
        <div class="location" style="left:400px;top:648px;"> <!--浮层开始-->
           <div class="floating">
-              <i>&nbsp;</i>
+              <!--<i>&nbsp;</i>-->
               <table class="floating_title">
                  <colgroup>
                    <col width="58px"/>
@@ -834,6 +834,15 @@ $(function(){
 		   }
 	}).init();
 	
+    $(".tool_tip").kendoTooltip({
+        filter: "strong",
+        position: "top",
+        content: function(e) {
+            return $(".location").html();
+            //return '内容';
+        }
+      });
+
 	
 });
 
