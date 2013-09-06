@@ -83,17 +83,7 @@
         </div>
             <div class="hotel_resultDetail gray-border">
                 <div class="hotelPanel">
-                    <div class="hotelBasicInfo">
-                        <div class="hotelImage"><img src="../../static/images/store/odds_show1.jpg" alt=""><i class="ico_floatGift"></i></div>
-                        <div class="hotelDesc">
-                            <ul>
-                                <li class="hotelName">上海宝华国际酒店 <span class="starLevel l3"></span></li>
-                                <li class="hotelAddress">徐汇区衡山路534号（徐汇区 徐家汇地区）</li>
-                                <li class="hotelCustomerType"><b>宾客类型：</b>中宾（除新疆，西藏旅客）</li>
-                            </ul>
-                        </div>
-                        <div class="hotelPrice">￥450<span style="color:#666;font:normal 12px '宋体'">起</span></div>
-                    </div>
+
                     <div class="roomTypeListContainer clearfix">
                         <table>
                             <thead>
@@ -492,14 +482,13 @@
                 //展开
                 $(".roomTypeDetailContainer",container).each(function(){
                     var self = this;
-                    $(".expand_hide",self).hide(); 
-                    $(this).animate({height:this.scrollHeight});
+
+                    $(this).animate({height:this.scrollHeight},function(){$(".expand_hide",self).hide();});
                 });
             }else{
                 $(".roomTypeDetailContainer",container).each(function(){
                     var self = this;
-                    $(".expand_hide",self).show(); 
-                    $(this).css({"overflow":"hidden"}).animate({height:"46px"});
+                    $(this).css({"overflow":"hidden"}).animate({height:"45px"},function(){$(".expand_hide",self).show();});
                 });
             }
 
