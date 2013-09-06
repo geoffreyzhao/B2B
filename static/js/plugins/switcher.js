@@ -1,7 +1,11 @@
 $(function(){
 
+    var screen = [
+    
+    ];
 
-    var switcher = $("<div><select name=''></select></div>");
+
+    var switcher = $("<div><select name='screen_choose'><option </select></div>");
 
     var $backToTopTxt = "返回顶部", $backToTopEle = $('<a class="backToTop"></a>').appendTo($("body"))
         .text($backToTopTxt).attr("title", $backToTopTxt).click(function() {

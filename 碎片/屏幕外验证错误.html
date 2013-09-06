@@ -36,6 +36,29 @@
                 return inputs;
             }
 
+            function flicker(times){
+                var times = times ? times : 3 ;
+                this.orgclass = this.className;
+                var self = this;
+                self.times = times;
+                while(times--){
+                    setTimeout(function(){
+
+                        console.log(self.times);
+                        if(self.times % 2){
+                            $(self).addClass("flicker");
+                        }else{
+                            $(self).removeClass("flicker");
+                        };
+
+                        if(self.times == 0){
+                            this.className = this.orgclass ;
+                        }
+                        self.times -= 1;
+
+                    },1000);
+                }
+            }
             $('button').click(function(){
                 var isValid = validData.validate(); 
                 // 获取所有报错的input
@@ -50,8 +73,13 @@
                     // $.ajax(); 
                 }else{
                     // 浏览器自带scrollto方法
-                    tip[0].scrollIntoView();
+                    //$("body").scrollTo($(tip[0]).offset().top);
+                    
+                    tip[0].scrollIntoView(true);
                     tip.css('border','1px solid red');
+
+                    flicker.call(tip[0],3);
+
                 }
             });
         </script>
