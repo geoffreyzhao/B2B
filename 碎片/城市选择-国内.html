@@ -13,6 +13,7 @@
 </head>
 <body style="padding:100px;"> 
 
+<h1>未指定三字码，在输入框后增加一个_code suffix的隐藏域，类选择器</h1>
 <input type="text" class="allcity" style="width:180px" />
 <input type="text" class="allcity" style="width:180px" />
 <input type="text" class="allcity" style="width:180px" />
@@ -20,6 +21,7 @@
 <hr />
 
 
+<h1>指定三字码元素，类选择器</h1>
 <label>出发城市</label>
 <input type="text" id="depCity" style="width:180px" />
 <input name="" id="id_dep" type="hidden" />
@@ -28,6 +30,7 @@
 <br>
 <br>
 
+<h1>未指定三字码元素，远程autocomplete数据</h1>
 <label>到达城市</label>
 <input type="text" id="arrCity" style="width:180px" />
 <input name="" id="arr_dep" type="hidden" />
@@ -81,7 +84,6 @@
 CityAutocomplete({
     template: "#city_popup",
     input: ".allcity",
-    codeEle: '#id_dep',
     // 以@分割热门非热门，以;分割条目，以|分割三字码拼音和中文
     url:'/static/js/data.txt',
     group: ["热门","GHJ", "ABCDEF", "KLMN", "PQSTW", "XYZ"]
@@ -90,7 +92,6 @@ CityAutocomplete({
 CityAutocomplete({
     template: "#city_popup",
     input: "#depCity",
-    codeEle: '#id_dep',
     // 以@分割热门非热门，以;分割条目，以|分割三字码拼音和中文
     url:'/static/js/data.txt',
     group: ["热门","GHJ", "ABCDEF", "KLMN", "PQSTW", "XYZ"]
