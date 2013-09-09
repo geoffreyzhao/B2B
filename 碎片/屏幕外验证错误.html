@@ -3,10 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title></title>
-<link rel="stylesheet" href="/static/css/kendo.common.min.css" />
-<link rel="stylesheet" href="/static/css/kendo.default.min.css" />
+<link rel="stylesheet" href="../../static/css/kendo.common.min.css" />
+<link rel="stylesheet" href="../../static/css/kendo.gray.css" />
+<link rel="stylesheet" href="../../static/css/kendo.reset.css" />
+<link rel="stylesheet" href="/static/css/b2b.css" />
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+<style type="text/css">
+
+.flicker {border:1px solid red;}
+</style>
 </head>
 <body>
        <button style="font-size:40px;">验证</button>
@@ -37,24 +43,20 @@
             }
 
             function flicker(times){
-                var times = times ? times : 3 ;
+                console.log(times);
+                var times = times ? times : 4 ;
                 this.orgclass = this.className;
                 var self = this;
                 self.times = times;
                 while(times--){
                     setTimeout(function(){
-
-                        console.log(self.times);
-                        if(self.times % 2){
-                            $(self).addClass("flicker");
-                        }else{
-                            $(self).removeClass("flicker");
-                        };
+                        console.log(self);
+                        self.className = (self.times % 2 == 0) ? "flicker": self.orgclass;
+                        self.times -= 1;
 
                         if(self.times == 0){
                             this.className = this.orgclass ;
                         }
-                        self.times -= 1;
 
                     },1000);
                 }
@@ -75,10 +77,10 @@
                     // 浏览器自带scrollto方法
                     //$("body").scrollTo($(tip[0]).offset().top);
                     
-                    tip[0].scrollIntoView(true);
-                    tip.css('border','1px solid red');
+                    //tip[0].scrollIntoView(true);
+                    //tip.css('border','1px solid red');
 
-                    flicker.call(tip[0],3);
+                    //flicker.call(inputs[0],4);
 
                 }
             });
