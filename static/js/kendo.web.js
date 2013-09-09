@@ -10266,6 +10266,22 @@ kendo_module({
                         invalid = true;
                     }
                 }
+                
+                /*
+                 * @todo add by clb
+                 * for auto jump the error elemt
+                 */
+                /*
+                if(invalid && inputs.length){
+                    inputs[0].focus();
+                    inputs[0] = inputs[0].jquery ? inputs[0] : $(inputs[0]);
+                    inputs[0].addClass("error");
+                    inputs[0].bind("blur",function(){
+                        $(this).removeClass("error");
+                    });
+                }
+                */
+
                 return !invalid;
             }
             return that.validateInput(that.element);
