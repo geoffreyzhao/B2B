@@ -378,57 +378,6 @@
         </div>
     </div> 
     
-    <div class="audit">
-         <table cellpadding="0" cellspacing="0" class="audit_tab">
-              <colgroup>
-                   <col width="88" />
-                   <col width="280" />
-              </colgroup>
-              <tr>
-                 <td>申请审核原因：</td>
-                 <td>
-                     <label><input type="radio" checked="checked" name="audit"/>价格不准</label>
-                     <label><input type="radio" name="audit" />返点不准</label>
-                     <label><input type="radio" name="audit" />申请高返点</label>
-                 </td>
-               </tr>
-               <tr class="price">
-                  <td>结算价：</td>
-                  <td>
-                     <input class="audit_input" type="text" value="请输入您计算的结算价，便于核对出票"/>
-                  </td>
-               </tr>
-               <tr class="rebate" style="display:none">
-                  <td>返点：</td>
-                  <td>
-                     <input class="audit_input" type="text" value="请输入您计算的结算价，便于核对出票"/>
-                  </td>
-               </tr>
-               <tr class="high_rebates" style="display:none">
-                  <td>返点：</td>
-                  <td>
-                     <input class="audit_input" type="text" value="请输入您申请的返点"/>
-                  </td>
-               </tr>
-               <tr class="audit_last">
-                   <td>备注：</td>
-                   <td>
-                      <textarea> </textarea>
-                   </td>
-               </tr>
-               <tr>
-                   <td></td>
-                   <td>
-                       <a class="adaptiveButton mediumOrange_btn price_confirm">
-                          <span class="left"></span>
-                          <span class="center center_1">提交审核</span>
-                          <span class="right"></span>
-                       </a>
-                       <a href="javascript:void(0);" class="abolish">取消</a>
-                   </td>
-               </tr>
-         </table>
-    </div>
     
 </section>
 <footer class="main-footer">
@@ -450,7 +399,7 @@
 </div>
 
 <script type="text/x-kendo-template" id="price_confirm_template">
- <div class="audit">
+ <div class="audit audit_tab2">
          <table cellpadding="0" cellspacing="0" class="audit_tab">
               <colgroup>
                    <col width="88" />
@@ -459,7 +408,7 @@
               <tr>
                  <td>申请审核原因：</td>
                  <td>
-                     <label><input type="radio" name="audit"/>价格不准</label>
+                     <label><input type="radio" checked="" name="audit"/>价格不准</label>
                      <label><input type="radio" name="audit" />返点不准</label>
                      <label><input type="radio" name="audit" />申请高返点</label>
                  </td>
@@ -507,7 +456,9 @@
 <script type="text/javascript" src="../../static/js/store/international_flight.js"></script>
 <script type="text/javascript">
 $(function(){
-	 $(".audit_tab").find("input[type='radio']").each(function (index) {
+		   
+		   function changeAuditTab(ele){
+			  $(ele).find("input[type='radio']").each(function (index) {
         $(this).click(function () {
             //console.log(index);
             switch (index) {
@@ -530,13 +481,18 @@ $(function(){
                     break;
             }
         });
-    });
+    });  
+}
+	
 
 
 	var price_confirm_win = new PopWindow(".price_confirm",{
 		   title:"核价成功",
 		   width:420,
-		   template:"#price_confirm_template"
+		   template:"#price_confirm_template",
+		   open:function(){
+			   changeAuditTab(".audit_tab2");
+		   }
 	}).init();
 	
 	
