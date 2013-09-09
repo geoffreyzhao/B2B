@@ -1,5 +1,6 @@
 function load_header(){
-    $(".header").load(encodeURI("/运营商/同步头.html"),{},function(){
+    $.get(encodeURI("/运营商/同步头.html"),{},function(data){
+        $(".header").html(data);
         init_header();
     });
 }
