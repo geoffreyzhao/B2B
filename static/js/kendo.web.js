@@ -10271,6 +10271,7 @@ kendo_module({
                  * @todo add by clb
                  * for auto jump the error elemt
                  */
+                /*
                 if(invalid && inputs.length){
                     inputs[0].focus();
                     inputs[0] = inputs[0].jquery ? inputs[0] : $(inputs[0]);
@@ -10279,6 +10280,7 @@ kendo_module({
                         $(this).removeClass("error");
                     });
                 }
+                */
 
                 return !invalid;
             }
