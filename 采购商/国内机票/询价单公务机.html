@@ -26,6 +26,7 @@
     <![endif]-->
     <script src="../../static/js/jquery-ui-1.10.3.custom.js"></script>
     <script src="../../static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+    <script src="../../static/js/store/intel_flight_index.js"></script>
 </head>
 <body>
 
@@ -67,31 +68,94 @@
           </div>
       </div>
       <div class="message">
-           <div class="mes_h3"> <h3>航程信息</h3> </div>
-          <div class="message_content">
+<script type="text/x-kendo-template" id="city_popup">
+<div id="gn-tabstrip" class="tcy_tabstrip">
+<span class="tcy_title">
+    热门城市/国家（支持中文名/拼音/英文名/三字码）
+</span>
+<ul>
+<li id="hot_city" class="k-state-active">热门</li>
+# for (var i=0; i<data.group.length; i++ ) { #
+<li>#= data.group[i] #</li>
+# } #
+</ul>
+<div id="hot_city_tab">
+<ul class="tcy_list clearfix">
 
-            <table cellpadding="0" cellspacing="0" class="mes_tab">
-                <colgroup>
-                    <col width="155px" />
-                    <col width="220px">
-                    <col width="85px" />
-                    <col width="220px">
-                    <col width="85px">
-                </colgroup>
-                <tr>
-                    <td class="td_head">第<i></i>程 <em class="important">*</em>出发城市：</td>
-                    <td><input type="text" name="" id=""></td>
-                    <td><em class="important">*</em>达到城市：</td>
-                    <td><input type="text" name="" id=""></td>
-                    <td class="td_head" id="return_label"><label class="" for="return_date"><em class="important">*</em><span>出发日期：</span></label></td>
-                    <td><input type="text" class="gray-border datepicker" value="" name="return_date" id="return_date"/></td>
-                </tr>
-                <tr><td colspan="6" class="td_head"><a href="javascript:;">添加航程</a></td></tr>
-                <tr>
-                    <td class="td_head" style="vertical-align:top">备注：</td>
-                    <td colspan="5"><textarea name="" id="" style="width:600px;height:100px"></textarea></td>
-                </tr>
-            </table>
+# for(var j=0;j<hotcitylist.length;j++){ #
+# var citylist_item = hotcitylist[j] #
+<li class="item" title="#= citylist_item.code #" data-code="#= citylist_item.code #">#= citylist_item.name #</li>
+# } #
+</ul>
+</div>
+
+# for(var i=0;i<data.citylist.length;i++){ #
+# var citylist_item = data.citylist[i] #
+<div class="city_tab">
+<ul class="tcy_list clearfix">
+  # for(var k=0;k<data.group[i].length;k++){ #
+    <li class="tcy_list_sep">#= data.group[i].split('')[k] #</li>
+    # for(var j=0;j<citylist_item.value.length;j++){ #
+        # var citylist_value_item = citylist_item.value[j]; #
+        # if(citylist_value_item.py.slice(0,1) == data.group[i].split('')[k]) {#
+            <li class="item" title="#= citylist_value_item.code #" data-code="#= citylist_value_item.code #">#= citylist_value_item.name #</li>
+        # } #
+    # } #
+  # } #
+</ul>
+</div>
+
+# } #
+</div>
+</script>
+<script type="text/x-kendo-template" id="ac-add-line-template">
+<tr>
+                                        <td><i class="hitext"> * </i>第<span class="hitext index_num">1</span>程</td>
+                                        <td><i class="hitext"> * </i>出发城市</td>
+                                        <td><input type="text" style="width:105px;" value="" class="city_ac"/></td>
+                                        <td><i class="hitext"> * </i>到达城市</td>
+                                        <td><input type="text" style="width:105px;" value="" class="city_ac"/></td>
+                                        <td><i class="hitext"> * </i>出发日期</td>
+                                        <td><input type="text" value="" class="normal_txt datepicker"/></td>
+                                        <td>
+                                            <div class="op">
+                                                <a href="javascript:void(0)" class="ac-remove-line">删除</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </script>
+           <div class="mes_h3"> <h3>航程信息</h3> </div>
+          <div class="message_content ">
+                <table class="muti_trip" width="700">
+                                    <tbody>
+                                    <tr>
+                                        <td><i class="hitext"> * </i>第<span class="hitext index_num">1</span>程</td>
+                                        <td><i class="hitext"> * </i>出发城市</td>
+                                        <td><input type="text" value="" style="width:105px" class="city_ac"/></td>
+                                        <td><i class="hitext"> * </i>到达城市</td>
+                                        <td><input type="text" value="" style="width:105px" class="city_ac"/></td>
+                                        <td><i class="hitext"> * </i>出发日期</td>
+                                        <td><input type="text" value="" class="normal_txt datepicker"/></td>
+                                        <td>
+                                            <div class="op">
+                                                <a href="javascript:void(0)" class="ac-remove-line">删除</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan=8 style="text-align:right">
+                                    <a href="javascript:;" class="muti_add ac-add-line">添加航程</a>
+                                    
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <p>
+                                <span style="vertical-align:top;padding-left:50px;">备注：</span>
+                                <textarea name="" id="" style="width:600px;height:100px"></textarea>
+                                </p>
           </div>
       </div>
       
