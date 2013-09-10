@@ -639,17 +639,21 @@ $(function(){
             });
 
             $("#room_matrix b").hide();
+            $("#roomType").prop("disabled",true);
     });
     //保存按钮
     $("#room_save").click(function(){
         //处理保存
         $("#room_matrix input,#room_matrix label").hide();
         $("#room_matrix strong").css({display:"none"});
-        $("#room_matrix b").attr({old_value:""}).show();
+        $("#room_matrix b").each(function(){
+            $(this).html($(this).siblings(":text").val()).show();
+        })
 
         $("#room_save").hide();
         $("#room_cancel").hide();
         $("#edit_room_storage").show();
+        $("#roomType").prop("disabled",false);
     });
 
 
@@ -661,6 +665,7 @@ $(function(){
         $("#room_save").hide();
         $("#room_cancel").hide();
         $("#edit_room_storage").show();
+        $("#roomType").prop("disabled",false);
     });
 
     $("input[name='close_room']").each(function(){
