@@ -3,8 +3,7 @@ $(function(){
     kendo.init($('body'));
     $('.actions').fixedBar();
 
-    var t = /proto/i;
-
+    var t = /proto|dev\.b2b\.com/i;
     if(t.test(location.href)){
         lensf();
     }
