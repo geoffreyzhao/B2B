@@ -3,7 +3,10 @@ $(function(){
     kendo.init($('body'));
     $('.actions').fixedBar();
 
-    lensf();
+    var t = /proto|dev\.b2b\.com/i;
+    if(t.test(location.href)){
+        lensf();
+    }
 
     $('.ac-toggle').bind('click',function(){
         var that = $(this);
