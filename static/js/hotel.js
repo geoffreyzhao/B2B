@@ -7,6 +7,23 @@
  */
 $(function(){
     var dt=new Date().getMilliseconds();
+
+    /*检查jquery的是否支持浏览器识别*/
+    try
+    {
+        $.browser.msie;
+    }
+    catch(e)
+    {
+        var oHead = document.getElementsByTagName('HEAD').item(0);
+        var oScript= document.createElement("script");
+        oScript.type = "text/javascript";
+        oScript.src="/static/js/jquery-migrate-1.2.1.js";
+        oHead.appendChild( oScript);
+        //document.write("<script type=\"text/javascript\" src=\"/static/js/jquery-migrate-1.2.1.js\"></script>")
+    }
+    /*检查jquery的是否支持浏览器识别*/
+
     $("body").delegate(".popwin","click",function(){
         var tar= $.parseJSON($(this).attr("data"));
         var kendoWindowData=$("#window").data("kendoWindow");
@@ -46,6 +63,7 @@ $(function(){
 
     function showOverLay()
     {
+
         if($.browser.msie && parseInt($.browser.version)<7)
         {
             if(!$("#iframeShadow").length)
@@ -57,7 +75,7 @@ $(function(){
         $(".k-overlay,#iframeShadow").show();
     }
 
-    $(".topFixedToolsBar").scrollFix("top","top");
+    //$(".topFixedToolsBar").scrollFix("top","top");
 
     $.fn.setPosition=function(options){
         var defaults={tar:this,pos:"",offsetL:0,offsetT:0};
@@ -113,4 +131,43 @@ function moveElement(lb,rb,targetE,targetInnerE)
         moveFlag=true;
     }
     changeBtnStatus();
+}
+
+function checkboxSingleAndAll()
+{
+    $("body").delegate(":checkbox","click",function(){
+        var dg=$(this).attr("data-group");
+        if(dg!="")
+        {
+            if($(this).hasClass("single"))
+            {
+                if($(this).prop("checked")==true)
+                {
+
+                    $(":checkbox[data-group="+dg+"]").not(this).prop("checked",false);
+                }
+                else
+                {
+                    $(this).prop("checked",false);
+                }
+            }
+            var features=$(this).attr("data-features");
+            if(features!="")
+            {
+                switch(features)
+                {
+                    case "all":
+                        if($(this).prop("checked")==true)
+                        {
+                            $(":checkbox[data-group="+dg+"]").prop("checked",true);
+                        }
+                        else
+                        {
+                            $(":checkbox[data-group="+dg+"]").prop("checked",false);
+                        }
+                        break;
+                }
+            }
+        }
+    });
 }
