@@ -13,44 +13,40 @@
 <link rel="stylesheet" href="/static/css/ie.css" /> 
 <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
 <![endif]-->
-<script type="text/javascript" src="/static/js/sync.js"></script>
-<!-- @CLB@ --></head>
+</head>
 <body style="background:#ffffff">
 <div>
     <form method="get" action="">
         <table class="tbform">
             <tr>
-                <td colspan="6"><label><input type="checkbox" name="" id="">设为默认联系人</label></td>
-            </tr>
-            <tr>
-                <td style="width:65px"><span class="important">*</span><span class="head">姓名：</span></td>
-                <td><input type="text" name="name" value="" style="width: 163px"/></td>
-                <td style="width:45px"><span class="important">*</span><span class="head">手机：</span></td>
+                <td style="width:55px"><span class="head">姓名：</span></td>
+                <td><input type="text" name="name" value="" style="width: 172px"/></td>
+                <td style="width:55px"><span class="head">手机：</span></td>
                 <td><input type="text" name="mobile" value="" style="width: 163px"/></td>
-                <td style="width:45px"><span class="important">*</span><span class="head">传真：</span></td>
+                <td style="width:40px"><span class="head">传真：</span></td>
                 <td><input class="stext" type="text" name="area_code" value="021" style="width: 50px"/> - <input type="text" name="tel" value="" style="width: 100px"/></td>
             </tr>
             <tr>
-                <td><span class="head">职务：</span></td>
-                <td><input type="text" name="zhiwu" value="" style="width: 163px"/></td>
-                <td><span class="head">邮箱：</span></td>
-                <td><input type="text" name="email" value="" style="width: 163px"/></td>
                 <td><span class="head">座机：</span></td>
                 <td><input class="stext" type="text" name="area_code" value="021" style="width: 50px"/> - <input type="text" name="tel" value="" style="width: 100px"/></td>
+                <td><span class="head">电子邮箱</span></td>
+                <td colspan="3"><input type="text" name="" id="" style="width:412px"></td>
             </tr>
             <tr>
-                <td><span class="head">工作时间：</span></td>
-                <td colspan="3">
-                    <label><input id="" type="checkbox" name="workday" />一</label>
-                    <label><input id="" type="checkbox" name="workday" />二</label>
-                    <label><input id="" type="checkbox" name="workday" />三</label>
-                    <label><input id="" type="checkbox" name="workday" />四</label>
-                    <label><input id="" type="checkbox" name="workday" />五</label>
-                    <label><input id="" type="checkbox" name="workday" />六</label>
-                    <label><input id="" type="checkbox" name="workday" />日</label>
+                <td colspan="6"><label><input type="checkbox" name="" id="" data-group="receiveFAXTime" data-features="all"><span class="head">接收传真时间：</span></label>
+                    <label><input id="" type="checkbox" name="workday" data-group="receiveFAXTime" />一</label>
+                    <label><input id="" type="checkbox" name="workday" data-group="receiveFAXTime" />二</label>
+                    <label><input id="" type="checkbox" name="workday" data-group="receiveFAXTime" />三</label>
+                    <label><input id="" type="checkbox" name="workday" data-group="receiveFAXTime" />四</label>
+                    <label><input id="" type="checkbox" name="workday" data-group="receiveFAXTime" />五</label>
+                    <label><input id="" type="checkbox" name="workday" data-group="receiveFAXTime" />六</label>
+                    <label><input id="" type="checkbox" name="workday" data-group="receiveFAXTime" />日</label>
+                    <span style="margin-left:20px"><input type="text" name="" id="" style="width:40px"> 到 <input type="text" name="" id="" style="width:40px"></span>
                 </td>
-                <td><span class="head">QQ：</span></td>
-                <td><input type="text" name="QQ" value=""/></td>
+            </tr>
+            <tr>
+                <td><span class="head">备注</span></td>
+                <td colspan="5"><input type="text" name="" id="" style="width:90%"></td>
             </tr>
         </table>
     </form>
@@ -60,11 +56,15 @@
     <a href="javascript:;" class="button_2_2 close">取&nbsp;消</a>
 </div>
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/hotel.js"></script>
+
 <script type="text/javascript">
     $(function(){
         $("a.close").click(function(){
             window.parent.$("span.k-i-close").trigger("click")
         })
+
+        checkboxSingleAndAll();
     });
 </script>
 </body>
