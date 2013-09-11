@@ -459,6 +459,9 @@ $.extend(Datepicker.prototype, {
         if(settings.showDay){
             var dayWrapper= inst.dayWrapper = $('<b class="ui-datepicker-daywrapper" />');
             $(target).after(dayWrapper);
+            if(new Date(target.value)-0){
+                $.datepicker._setDay(inst);
+            }
         }
 	},
 
@@ -1864,8 +1867,10 @@ $.extend(Datepicker.prototype, {
 	},
 
     // by shaotian.hu
-    _getDay: function(inst){
-        return new Date(this._getDate(inst)).getDay();
+    _setDay: function(inst){
+        var week = ['周日','周一','周二','周三','周四','周五','周六'];
+        var index = new Date(this._getDate(inst)||inst.input.val()).getDay();
+        inst.dayWrapper.text(week[index]);
     },
 
 	/* Attach the onxxx handlers.  These are declared statically so
@@ -1892,9 +1897,7 @@ $.extend(Datepicker.prototype, {
 					$.datepicker._selectDay(id, +this.getAttribute("data-month"), +this.getAttribute("data-year"), this);
                     // by shaotian.hu
                     if(inst.settings.showDay){
-                        var week = ['周日','周一','周二','周三','周四','周五','周六'];
-                        var index = $.datepicker._getDay(inst);
-                        inst.dayWrapper.text(week[index]);
+                        $.datepicker._setDay(inst)
                     }
 					return false;
 				},
