@@ -876,9 +876,9 @@ $.prompt=function(options){
             $("body").append("<div id='promptWindow'><div id='promptWindow_bg'></div><div id='promptWindow_content'></div></div>");
             pt=$("#promptWindow");
             pt.css({width:opts.width+"px",height:opts.height+"px",display:"none",position:"absolute"});
-            $("#promptWindow_bg").css({background:opts.bgColor,opacity:opts.bgOpacity,width:"100%",height:"100%",zIndex:1000});
+            $("#promptWindow_bg").css({background:opts.bgColor,opacity:opts.bgOpacity,width:"100%",height:"100%",zIndex:1000,filter:"alpha(opacity="+opacity*10+")"});
         }
-        $("#promptWindow_content").html(opts.content).css({width:"100%",height:"100%",position:"absolute",top:0,left:0});
+        $("#promptWindow_content").html(opts.content).css({width:"100%",height:"100%",position:"absolute",top:0,left:0,zIndex:1001});
     }
 
 
