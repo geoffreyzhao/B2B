@@ -459,7 +459,7 @@ $.extend(Datepicker.prototype, {
         if(settings.showDay){
             var dayWrapper= inst.dayWrapper = $('<b class="ui-datepicker-daywrapper" />');
             $(target).after(dayWrapper);
-            if(target.value!=''){
+            if(new Date(target.value)-0){
                 $.datepicker._setDay(inst);
             }
         }
