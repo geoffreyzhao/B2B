@@ -31,10 +31,39 @@ function init_header(){
     });
     */
 
-    $("#message h3 a,#message h3 span").mouseover(function(){
-        $("#message_pop").show();
-        $("#message_pop .ck a").click(function(){
-            $("#message_pop").hide();
+    /* 消息tab 切换 */
+    $(".mesAndnotice li").each(function(index){
+        $(this).click(function(e){
+            $(".mes_switchover .mes").hide();
+            $(".mes_switchover .mes:eq(" + index + ")").show();
+            $(".mesAndnotice li").removeClass("current_stateli");
+            $(this).addClass("current_stateli");
+            e.stopPropagation();
+            e.preventDefault();
         });
+    });
+
+    /* 消息关闭按钮 */
+    $("#message .ck").click(function(){
+        $("#message_pop").hide();
+        e.stopPropagation();
+        e.preventDefault();
+    });
+
+    $("#message_pop").click(function(e){
+        e.stopPropagation();
+        e.preventDefault();
+    });
+
+    $("html").click(function(e){
+        $("#message_pop").css("display") == 'block' ? $("#message_pop").hide() : '';
+        e.stopPropagation();
+        e.preventDefault();
+    });
+
+    $("#message h3").click(function(e){
+        $("#message_pop").toggle();
+        e.stopPropagation();
+        e.preventDefault();
     });
 }
