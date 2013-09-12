@@ -56,7 +56,6 @@
 <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
 <![endif]-->
 <!-- @CLB@ -->
-<script type="text/javascript" src="/static/js/sync.js"></script>
 </head>
 <body>
 <div class="topFixedToolsBar">
@@ -211,10 +210,10 @@
     </div>
 </div>
 
-<script type="text/javascript" src="/js/jquery.min.js"></script>
-<script type="text/javascript" src="/js/kendo.web.js"></script>
-<script type="text/javascript" src="/js/scrollFix.js"></script>
-<script type="text/javascript" src="/js/hotel.js"></script>
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/kendo.web.js"></script>
+<script type="text/javascript" src="/static/js/scrollFix.js"></script>
+<script type="text/javascript" src="/static/js/hotel.js"></script>
 
 <script id="period_prices_listItem_template" type="text/x-kendo-template">
     <div class="period_prices_listItem">
@@ -260,8 +259,8 @@
                 <ul class="tbc" style="border-width:1px 0;padding:10px 0">
                     <li style="margin-bottom:6px"><label><input type="checkbox">儿童早餐</label><input disabled="disabled" type="text" value="0" style="width:70px"></li>
                     <li><label><input type="checkbox">晚餐</label><input disabled="disabled" type="text" value="0" style="width:70px;margin-left:24px"></li>
-                    <li><label><input type="radio" name="" id="">加床</label></li>
-                    <li><label><input type="radio" name="" id="">加床含早</label></li>
+                    <li><label><input type="checkbox" data-group="jiachuang#= data.parent().length #" class="single" name="" id="">加床</label></li>
+                    <li><label><input type="checkbox" data-group="jiachuang#= data.parent().length #" class="single" name="" id="">加床含早</label></li>
                     <li><label><input type="checkbox">宽带</label></li>
                     <li><label><input type="checkbox">司陪房</label></li>
                     <li><label><input type="checkbox">机场接送</label></li>
@@ -309,6 +308,7 @@
 
 <script type="text/javascript">
     $(function(){
+        checkboxSingleAndAll();
         function ep(periodPrices)
         {
 //            this.periodName=periodPrices.periodName;
