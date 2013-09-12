@@ -76,7 +76,7 @@
                 <a href="授信管理-业务-账期管理.html"><button class="btns btn-blue">账期管理</button></a>-->
                 <a href="javascript:;" class="button_secondary adaptiveButton small ac-temporary">
                     <span class="left"></span>
-                    <span class="center" style="padding:0 5px;">新增临时额度</span>
+                    <span class="center" style="padding:0 5px;">新增临时授信</span>
                     <span class="right"></span>
                 </a>
                 <!--<a href="#"><button class="btns btn-blue ac-temporary">新增临时额度</button></a>-->
@@ -396,7 +396,7 @@ columns : [
 <!-- end of 调整额度 -->
 
 <!-- start 确认额度调整 -->
-<script type="text/x-kendo-template" id="ac-adjust-confirm-template">
+<!--<script type="text/x-kendo-template" id="ac-adjust-confirm-template">
 <div class="row">
 <ul class="flat-list">
     <ul class="flat-list one-col">
@@ -425,11 +425,38 @@ columns : [
     <button class="btns button_1_2 ">确 认</button> 
     <button class="btns button_2_2">取 消</button> 
 </div>
-</script>
+</script>-->
 
 <!-- end of 确认额度调整 -->
 
-<!-- start 新增临时额度 -->
+<!-- start 确认调整额度 -->
+<script type="text/x-kendo-template" id="ac-adjust-confirm-template">
+<div class="row">
+<ul class="flat-list">
+    <ul class="flat-list one-col">
+        <li>
+        <label class="vertical-head" style="width:60px">用户：</label>
+        <span>suning12345</span>
+        </li>
+        <li>
+        <label class="vertical-head" style="width:110px;">调整前协议额度：</label>
+        <em class="text1"><b>16,000,000</b><small>.00</small></em>        
+        </li>
+        <li>
+        <label class="vertical-head warning-text" style="width:110px;">调整后协议额度：</label>
+        <em class="warning-text"><b>16,000,000</b><small>.00</small></em>
+        </li>
+    </ul>
+</div>
+
+<div class="row" style="text-align:right;">
+    <button class="btns button_1_2 ">确 认</button> 
+    <button class="btns button_2_2">取 消</button> 
+</div>
+</script>
+<!-- end of 确认调整额度 -->
+
+<!-- start 新增临时授信 -->
 <script type="text/x-kendo-template" id="ac-temporary-template">
 <div class="row">
 
@@ -472,11 +499,38 @@ columns : [
 </div>
 
 <div class="row" style="text-align:right;">
-    <button class="btns button_1_2 ac-adjust-confirm">提 交</button> 
+    <button class="btns button_1_2 ac-temporary-confirm">提 交</button> 
     <button class="btns button_2_2">取 消</button> 
 </div>
 </script>
-<!-- end of 新增临时额度 -->
+<!-- end of 新增临时授信 -->
+
+<!-- start 确认临时授信 -->
+<script type="text/x-kendo-template" id="ac-temporary-confirm-template">
+<div class="row">
+<ul class="flat-list">
+    <ul class="flat-list one-col">
+        <li>
+        <label class="vertical-head" style="width:45px">用户：</label>
+        <span>suning12345</span>
+        </li>
+        <li>
+        <label class="vertical-head" style="width:93px;">临时授信额度：</label>
+        <em class="text1"><b>6,000,000</b><small>.00</small></em>        
+        </li>
+        <li>
+        <label class="vertical-head" style="width:70px">有效期至：</label>
+        <span>2013-09-30</span>
+        </li>
+    </ul>
+</div>
+
+<div class="row" style="text-align:right;">
+    <button class="btns button_1_2 ">确 认</button> 
+    <button class="btns button_2_2">取 消</button> 
+</div>
+</script>
+<!-- end of 确认临时授信 -->
 
 <!-- start 新增提现 -->
 <script type="text/x-kendo-template" id="ac-deposit-template">
@@ -535,7 +589,7 @@ $(function(){
     /* 额度调整 */
     new PopWindow('.ac-adjust-confirm', {
         template:'#ac-adjust-confirm-template',
-        title:'确认授信',
+        title:'确认调整额度',
         width:'470'
     }).init();
 
@@ -547,9 +601,16 @@ $(function(){
 	
 	new PopWindow('.ac-temporary', {
         template:'#ac-temporary-template',
-        title:'新增临时额度',
+        title:'新增临时授信',
         width:'470'
     }).init();
+	
+	new PopWindow('.ac-temporary-confirm', {
+        template:'#ac-temporary-confirm-template',
+        title:'确认临时授信',
+        width:'470'
+    }).init();
+
 	
 	new PopWindow('.ac-deposit', {
         template:'#ac-deposit-template',
