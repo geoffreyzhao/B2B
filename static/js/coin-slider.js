@@ -284,7 +284,7 @@
 			});						
 
 			$("#cs-buttons-"+el.id).css({
-				'left'			: params[el.id]["button_left"],
+				'left'			: typeof(params[el.id]["button_left"]) != "undefined" ? params[el.id]["button_left"] : "50%" ,
 				'margin-left' 	: -images[el.id].length*15/2-5,
 				'position'		: 'relative'
 				

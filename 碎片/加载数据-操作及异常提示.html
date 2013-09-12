@@ -3,8 +3,14 @@
 <head>
 	<title>天地行</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link href="../static/css/kendo.common.css" rel="stylesheet" />
+	<link href="../static/css/kendo.gray.css" rel="stylesheet" />
     <link href="../static/css/common.css" rel="stylesheet">
     <link href="../static/css/b2b.css" rel="stylesheet">
+    <link href="../static/css/kendo.reset.css" rel="stylesheet" />
+    <script type="text/javascript" src="../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="../static/js/global.js"></script>
     
     <style type="text/css">
       body{ background:#fff;}  
@@ -16,27 +22,53 @@
 
 
 <body>
-  <div class="loading">
-     <p>数据加载中，请稍候…</p> 
-  </div>
 
-  <div class="true">
-      <p>操作完成，已成功提交！</p>      
-  </div>
+   <br/>
+   <br/>
+   <div class="loading"><p>数据加载中，请稍候…</p></div>
 
-  <div class="exclamation">
+   <br/>
+   <br/>
+  <div class="pass">操作完成,已提交成功</div> 
+
+   <br/>
+   <br/>
+  <div class="warn">
        <p>没有查询到符合条件的酒店，请检查查询条件，重新查询！</p>
   </div>
+   <br/>
+   <br/>
 
 
-  <div class="cross">
+  <div class="error">
        <p>出错啦，亲，请重新提交！或者操作失败一类的提示！</p>
   </div>
+   <br/>
+   <br/>
   
-  <div class="question">
+  <div class="unrecognize">
        <p>系统无法识别！</p>
   </div>
   
+   <br/>
+   <br/>
+
+  <div class="example">
+      <code>$.prompt()</code>
+      <button id="button1" type="button">点击显示提示</button>
+  </div>
    
+  <script type="text/x-kendo-template" id="create_ok_template">
+      <div class="pass">操作完成,已提交成功</div>
+  </script>
+  <script>
+      $("#button1").click(function(){
+          $.prompt({content:"<div style='font-size:32px;'>添加成功！</div>"}).center().open();
+      });
+
+      $(function(){
+          $.prompt({content:$("#create_ok_template").html()}).center().open(); 
+      });
+  </script>
 </body>
 </html>

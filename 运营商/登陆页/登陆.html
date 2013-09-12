@@ -7,13 +7,13 @@
 	<link href="/static/css/common.css" rel="stylesheet" />
 	<link href="/static/css/kendo.common.css" rel="stylesheet" />
 	<link href="/static/css/kendo.gray.css" rel="stylesheet" />
-    <link href="/static/css/coin-slider-styles.css" rel="stylesheet" />
 	<link href="/static/css/b2b_login.css" rel="stylesheet" />
     <link href="/static/css/kendo.reset.css" rel="stylesheet" />
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/kendo.web.js"></script>
-    <script type="text/javascript" src="/static/js/coin-slider.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.cycle.all.js"></script>
 
+<!--[if IE 6]><script src="DD_belatedPNG.js"></script><script>  DD_belatedPNG.fix('.png_bg');</script><![endif]-->
 <!--[if lt IE 8]> 
 <link rel="stylesheet" href="/static/css/ie.css" /> 
 <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
@@ -21,13 +21,6 @@
 <!-- @CLB@ -->
 </head>
 <body>
-    <div style="position:absolute;top:75px;">
-        <div id="scrollImg" >
-            <a href="javascript:void(0);"><img src="/static/images/login/KV1.jpg" alt="KV1"/><!--<span>机票</span>--></a>
-            <a href="javascript:void(0);"><img src="/static/images/login/KV2.jpg" alt="KV2"/><!--<span>旅游</span>--></a>
-            <a href="javascript:void(0);"><img src="/static/images/login/KV3.jpg" alt="KV3"/><!--<span>度假</span>--></a>
-        </div>
-    </div>
     <div class="blue_line"></div>
     <div class="header">
         <div class="container">
@@ -35,7 +28,7 @@
             <div class="clearfix">
                 <a class="logo pull-left" href="javascript:void(0)">天地行</a>
                 <ul class="nav clearfix pull-right">
-                    <li>
+                    <li class="current">
                     <a href="javascript:void(0)">
                         <span>首页</span>
                         <div></div>
@@ -63,12 +56,20 @@
             </div>
         </div>
     </div>
-    <div class="loginContent">
+
+    <div style="background-color:#fff;height:2px"></div>
+    <div style="background-color:#fff;margin:0 auto;position:relative;width:100%;height:400px;">
+        <div id="scrollImg">
+            <div style="margin:0 auto;width:100%;height:400px;background:url(/static/images/login/KV1.jpg) 50% 50%"></div>
+            <div style="margin:0 auto;width:100%;height:400px;background:url(/static/images/login/KV2.jpg) 50% 50%"></div>
+            <div style="margin:0 auto;width:100%;height:400px;background:url(/static/images/login/KV3.jpg) 50% 50%"></div>
+        </div>
+
         <div class="container">
-            <div class="login clearfix">
+            <div class="login clearfix" style="position:absolute;top:-400px;right:0;">
                 <div class="login_panel pull-right">
                     <h2 class="title clearfix">
-                        <strong>登&nbsp;陆</strong>
+                        <strong>登&nbsp;录</strong>
                     </h2>
                     <form name="loginForm" method="get" onsubmit="return formValiation(this);">
                         <div class="row tips">
@@ -98,12 +99,15 @@
                             <a class="authcode" href="javascript:void(0);" title="点击刷新" alt="点击刷新"><img src="/static/images/login/code.png"/></a>
                         </div>
                         <div>
-                            <input type="submit" name="login" value="登&nbsp;陆" class="btn" />
+                            <input type="submit" name="login" value="登&nbsp;&nbsp;录" class="btn" />
                         </div>
                     </form>
                 </div>
             </div>
-
+        </div>
+    </div>
+    <div class="loginContent">
+        <div class="container">
             <div class="index_info clearfix">
                 <ul>
                     <li style="width:25%">
@@ -123,7 +127,7 @@
                                 <a href="javascript:void(0)">纯港9月往返特价促销900含税，纯港9月往返特价促销含税</a>
                                 <p>201-03-21</p>
                             </div>
-                            <div class="item">
+                            <div class="item last">
                                 <a href="javascript:void(0)">纯港9月往返特价促销900含税，纯港9月往返特价促销含税</a>
                                 <p>201-03-21</p>
                             </div>
@@ -202,7 +206,7 @@
     }
 
 $(function(){
-    $('#scrollImg').coinslider({ width: 1680, height: 400,navigation: true,delay: 2000,"button_left":"40%"});
+    $('#scrollImg').before('<div id="nav" class="slider_nav" style="left:40%;top:90%;">').cycle({fx:"fade",timeout: 2000,width:"100%",height:"400px",pause:true,pager:"#nav",pagerEvent: "click.cycle"});
 
     $(".row input").focus(function(){
         $(this).parent("div").find("label").hide();
