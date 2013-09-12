@@ -867,18 +867,20 @@ var checkGroup = function(settings){
 
 /*弹出提示框*/
 $.prompt=function(options){
-    var opts={autoClose:true,delay:3000,width:200,height:120,bgColor:"#000",bgOpacity:0.1,content:"",offsetX:0,offsetY:0,closeSpeed:500,openSpeed:500,effect:"fade",openEvent:$.noop,closeEvent:$.noop};
-    $.extend(opts,options);
+    var defaults= {autoClose:true,delay:3000,width:400,height:30,bgColor:"#000",bgOpacity:0.1,content:"",offsetX:0,offsetY:0,closeSpeed:500,openSpeed:500,effect:"fade",openEvent:$.noop,closeEvent:$.noop,opacity:1};
+    var opts = $.extend({},defaults,options);
     var pt=$("#promptWindow");
     function init(){
         if(!pt.length)
         {
             $("body").append("<div id='promptWindow'><div id='promptWindow_bg'></div><div id='promptWindow_content'></div></div>");
             pt=$("#promptWindow");
-            pt.css({width:opts.width+"px",height:opts.height+"px",display:"none",position:"absolute"});
-            $("#promptWindow_bg").css({background:opts.bgColor,opacity:opts.bgOpacity,width:"100%",height:"100%",zIndex:1000,filter:"alpha(opacity="+opacity*10+")"});
+            pt.css({width:opts.width+"px",/*height:opts.height+"px",*/display:"none",position:"absolute"});
+            $("#promptWindow_bg").css({background:opts.bgColor,opacity:opts.bgOpacity,width:"100%",height:"100%",zIndex:1000,filter:"alpha(opacity="+opts.opacity*10+")"});
         }
-        $("#promptWindow_content").html(opts.content).css({width:"100%",height:"100%",position:"absolute",top:0,left:0,zIndex:1001});
+
+        //$("#promptWindow_content").html(opts.content).css({/*width:"100%",height:"100%",*/position:"absolute",top:0,left:0,zIndex:1001});
+        $("#promptWindow_content").html(opts.content);
     }
 
 
@@ -914,10 +916,11 @@ $.prompt=function(options){
             return this;
         },
         setContent:function(content){
-            $("#promptWindow").html(content);
+            $("#promptWindow_content").html(content);
             return this;
         },
         center:function(){
+
             $("#promptWindow").css("top",((document.documentElement.clientHeight/2)-($("#promptWindow").height()/2)+(document.body.scrollTop || document.documentElement.scrollTop)+opts.offsetY));
             $("#promptWindow").css("left",((document.body.scrollWidth/2)-($("#promptWindow").width()/2)+opts.offsetX));
             return this;
