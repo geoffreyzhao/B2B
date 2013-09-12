@@ -17,8 +17,10 @@
 <link rel="stylesheet" href="/static/css/ie.css" /> 
 <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
 <![endif]-->
-<script type="text/javascript" src="/static/js/sync.js"></script>
-<!-- @CLB@ --></head>
+    <style type="text/css">
+        .ul_operation li{height:35px}
+    </style>
+</head>
 <body>
 
 <div style="background:#ffffff">
@@ -38,15 +40,57 @@
     <tr>
         <td style="text-align:right"><span class="head">操作：</span></td>
         <td>
-            <ul>
+            <ul class="ul_operation">
                 <li style="border-bottom:1px solid #cccccc;padding-bottom:10px;margin-bottom:10px">
-                    <label><input type="radio" name="actionStyle"><span class="head">关房</span></label>
+                    <label><input type="radio" name="actionStyle"><span class="head">人工关房</span></label>
                     <input type="text" placeholder="输入关房原因...">
                 </li>
-                <li><label><input type="radio" name="actionStyle"><span class="head">开房</span></label></li>
-                <li><label><input type="radio" name="actionStyle"><span class="head">添加库存</span></label><input type="text"></li>
                 <li>
-                    <label><input type="checkbox"><span class="head">售完房态</span></label>
+                    <label><input type="radio" name="actionStyle"><span class="head">人工开房</span></label>
+                    <label style="padding:0 10px"><input type="checkbox" name="" id="">Cutoff Day</label>
+                    <select name="" id="">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                    <span style="padding:0 10px" class="txt_l6">*只对人工关房有效</span>
+                </li>
+                <li>
+                    <label><input type="radio" name="" id=""><span class="head">Cutoff Day</span></label>
+                    <select name="" id="">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </li>
+                <li>
+                    <label><input type="radio" name="actionStyle"><span class="head">修改库存</span></label><input type="text">
+                    <label style="padding:0 10px"><input type="checkbox" name="" id="">售完房态</label>
+                    <select name="" id="">
+                        <option value="1">请选择</option>
+                        <option value="2">自由售卖</option>
+                        <option value="3">待确认</option>
+                        <option value="3">关房</option>
+                    </select>
+                    <label style="padding:0 10px"><input type="checkbox" name="" id="">Cutoff Day</label>
+                    <select name="" id="">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </li>
+                <li>
+                    <label><input type="radio" name="actionStyle"><span class="head">添加库存</span></label><input type="text">
+                    <label style="padding:0 10px"><input type="checkbox" name="" id="">售完房态</label>
+                    <select name="" id="">
+                        <option value="1">请选择</option>
+                        <option value="2">自由售卖</option>
+                        <option value="3">待确认</option>
+                        <option value="3">关房</option>
+                    </select>
+                </li>
+                <li>
+                    <label><input type="radio"><span class="head">售完房态</span></label>
                     <select name="" id="">
                         <option value="">请选择</option>
                     </select>
@@ -56,22 +100,25 @@
         </td>
     </tr>
     <tr>
-        <td style="text-align:right"><span class="head">时段：</span></td>
-        <td>
-            开始 <input type="text" data-bind="value:startDate" class="datePicker"> 结束 <input type="text" data-bind="value:endDate" class="datePicker second">
+        <td style="text-align:right">
+            <span class="head">时段：</span><br/>
+            <span style="padding-right:15px;font-weight:bold"><span data-bind="text:periods.length"></span>/10</span>
         </td>
-    </tr>
-    <tr>
-        <td style="color:#999999;font-weight:bold;text-align:right;vertical-align:top">(<span data-bind="text:periods.length"></span>/10)</td>
         <td>
-            <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:Mon"><br/>一</label>
-            <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:Tue"><br/>二</label>
-            <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:Wed"><br/>三</label>
-            <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:Thur"><br/>四</label>
-            <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:Fri"><br/>五</label>
-            <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:Sat"><br/><span class="important">六</span></label>
-            <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:Sun"><br/><span class="important">日</span></label>
-            <a class="button_2_2" href="javascript:;" style="margin:0 0 0 70px " data-bind="click:addPeriod">添加</a>
+            <span>
+                开始 <input type="text" data-bind="value:startDate" class="datePicker">
+                结束 <input type="text" data-bind="value:endDate" class="datePicker second">
+            </span>
+            <span>
+                <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:Mon"><br/>一</label>
+                <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:Tue"><br/>二</label>
+                <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:Wed"><br/>三</label>
+                <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:Thur"><br/>四</label>
+                <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:Fri"><br/>五</label>
+                <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:Sat"><br/><span class="important">六</span></label>
+                <label style="float:left;padding:0 3px"><input type="checkbox" data-bind="checked:Sun"><br/><span class="important">日</span></label>
+                <a class="button_2_2" href="javascript:;" style="margin:0 0 0 30px " data-bind="click:addPeriod">添加</a>
+            </span>
         </td>
     </tr>
     <tr>

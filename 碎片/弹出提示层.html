@@ -4,8 +4,15 @@
     <title></title>
     <meta content="text/html" charset="utf-8">
     <script type="text/javascript" src="../static/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../static/css/b2b.css">
 </head>
 <body>
+
+<script type="text/html" id="promptTemplate">
+    <div class="true" style="width:250px">
+        <p>操作完成，已成功提交！</p>
+    </div>
+</script>
 
 <script type="text/javascript">
     $.prompt=function(options){
@@ -18,9 +25,9 @@
                 $("body").append("<div id='promptWindow'><div id='promptWindow_bg'></div><div id='promptWindow_content'></div></div>");
                 pt=$("#promptWindow");
                 pt.css({width:opts.width+"px",height:opts.height+"px",display:"none",position:"absolute"});
-                $("#promptWindow_bg").css({background:opts.bgColor,opacity:opts.bgOpacity,width:"100%",height:"100%",zIndex:1000});
+                $("#promptWindow_bg").css({background:opts.bgColor,opacity:opts.bgOpacity,width:"100%",height:"100%",zIndex:1000,filter:"alpha(opacity="+opts.bgOpacity*10+")"});
             }
-            $("#promptWindow_content").html(opts.content).css({width:"100%",height:"100%",position:"absolute",top:0,left:0});
+            $("#promptWindow_content").html(opts.content).css({width:"100%",height:"100%",position:"absolute",top:0,left:0,zIndex:1001});
         }
 
 
@@ -74,10 +81,10 @@
             }
         }
     }
-    var promptW=$.prompt({content:"<div style='position:absolute;color:#000;height:100%;width:100%;line-height:120px;text-align:center'>添加成功！</div>"});
+    var promptW=$.prompt({content:$("#promptTemplate").html(),bgOpacity:0,autoClose:false});
     promptW.center();
     promptW.open();
-    setTimeout(function(){promptW.setOptions({height:80}).setOpacity(0.8)},2000)
+    //setTimeout(function(){promptW.setOptions({height:80}).setOpacity(0.8)},2000)
 </script>
 </body>
 </html>
