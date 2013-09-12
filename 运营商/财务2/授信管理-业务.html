@@ -4,24 +4,24 @@
 <title>财务 授信管理-业务</title>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
-<link rel="stylesheet" href="/static/css/kendo.common.min.css" />
-<link rel="stylesheet" href="/static/css/kendo.gray.css" />
-<link rel="stylesheet" href="/static/css/kendo.reset.css" />
-<link rel="stylesheet" href="/static/css/common.css" />
-<link rel="stylesheet" href="/static/css/b2b.css" />
-<link rel="stylesheet" href="/static/css/finance.css" />
+<link rel="stylesheet" href="../../static/css/kendo.common.min.css" />
+<link rel="stylesheet" href="../../static/css/kendo.gray.css" />
+<link rel="stylesheet" href="../../static/css/kendo.reset.css" />
+<link rel="stylesheet" href="../../static/css/common.css" />
+<link rel="stylesheet" href="../../static/css/b2b.css" />
+<link rel="stylesheet" href="../../static/css/finance.css" />
 
-<script type="text/javascript" src="/static/js/vendor/jquery.min.js"></script>
-<script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
-<script type="text/javascript" src="/static/js/kendo.web.js"></script>
-<script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
-<script type="text/javascript" src="/static/js/global.js"></script>
-<script type="text/javascript" src="/static/js/finance.js"></script>
+<script type="text/javascript" src="../../static/js/vendor/jquery.min.js"></script>
+<script type="text/javascript" src="../../static/js/plugins/jquery.fixedBar.js"></script>
+<script type="text/javascript" src="../../static/js/kendo.web.js"></script>
+<script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+<script type="text/javascript" src="../../static/js/global.js"></script>
+<script type="text/javascript" src="../../static/js/finance.js"></script>
 <!--[if lt IE 8]>
-    <link rel="stylesheet" href="/static/css/ie.css" />
-    <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script>
+    <link rel="stylesheet" href="../../static/css/ie.css" />
+    <script type="text/javascript" src="../../static/js/vendor/IE7.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="/static/js/sync.js"></script>
+<script type="text/javascript" src="../../static/js/sync.js"></script>
 </head><body>  <div id="extHeader">
     <div></div>
 </div>
@@ -69,11 +69,18 @@
                 <a class="item" href="#">支票管理</a> 
                 <a class="item" href="#">交易明细</a> 
             </div>
-            <div class="col col-r sep-l">
+            <div class="col col-r sep-l" style="padding:0 5px;">
                 <button class="btns btn-blue ac-new">新增授信</button>
                 <a href="授信管理-业务-额度不足.html"><button class="btns btn-blue">额度不足</button></a>
-                <a href="授信管理-业务-账期预警.html"><button class="btns btn-blue">账期预警</button></a>
-                <a href="授信管理-业务-账期管理.html"><button class="btns btn-blue">账期管理</button></a>
+                <!--<a href="授信管理-业务-账期预警.html"><button class="btns btn-blue">账期预警</button></a>
+                <a href="授信管理-业务-账期管理.html"><button class="btns btn-blue">账期管理</button></a>-->
+                <a href="javascript:;" class="button_secondary adaptiveButton small ac-temporary">
+                    <span class="left"></span>
+                    <span class="center" style="padding:0 5px;">新增临时额度</span>
+                    <span class="right"></span>
+                </a>
+                <!--<a href="#"><button class="btns btn-blue ac-temporary">新增临时额度</button></a>-->
+                <a href="#"><button class="btns btn-blue ac-deposit">新增提现</button></a>
             </div>
         </div>
 
@@ -294,7 +301,7 @@ columns : [
 </script>
 
 <!-- 调整额度 -->
-<script type="text/x-kendo-template" id="ac-adjust-template">
+<!--<script type="text/x-kendo-template" id="ac-adjust-template">
 <div class="row">
 
     <ul class="flat-list one-col">
@@ -340,7 +347,52 @@ columns : [
     <button class="btns button_1_2 ac-adjust-confirm">提 交</button> 
     <button class="btns button_2_2">取 消</button> 
 </div>
+</script>-->
+
+
+<script type="text/x-kendo-template" id="ac-adjust-template">
+<div class="row">
+
+    <ul class="flat-list one-col">
+        <li>
+        <label class="vertical-head" style="width:105px;">选择客户：</label>
+        <input type="text" value="苏宁" style="width:145px; padding-left:3px;" />
+		<button class="btns btn-search ac-search-user" role="window_trigger">查询</button>
+        </li>
+        <li style="width:400px;">
+        <label class="vertical-head" style="width:105px;">账户类型：</label>
+        <span>信用客户</span>
+        </li>
+        <li>
+        <label class="vertical-head" style="width:105px;">原协议额度：</label>
+        <em class="text1">15,000,000</em>
+        <!--<span class="muted">(包括临时额度<b>10000</b>)</span>-->
+        </li>
+        <li>
+        <label class="vertical-head" style="width:105px;">新协议额度：</label>
+        <input style="width:170px">
+        </li>
+        <li>
+        <label class="vertical-head" style="width:105px;">确认新协议额度：</label>
+        <input style="width:170px">
+        </li>
+        <li>
+		<label class="vertical-head" style="width:105px;">新协议额度大写：</label>
+        <span>大写文字文字</span>
+		</li>
+        <li style="width:410px;">
+        <label style="vertical-align:top; width:105px;" class="vertical-head">摘要：</label>
+        <textarea style=" width:295px; height:50px;"></textarea>
+        </li>
+    </ul>
+</div>
+
+<div class="row" style="text-align:right;">
+    <button class="btns button_1_2 ac-adjust-confirm">提 交</button> 
+    <button class="btns button_2_2">取 消</button> 
+</div>
 </script>
+
 <!-- end of 调整额度 -->
 
 <!-- start 确认额度调整 -->
@@ -377,6 +429,90 @@ columns : [
 
 <!-- end of 确认额度调整 -->
 
+<!-- start 新增临时额度 -->
+<script type="text/x-kendo-template" id="ac-temporary-template">
+<div class="row">
+
+    <ul class="flat-list one-col">
+        <li>
+        <label class="vertical-head" style="width:105px;">选择客户：</label>
+        <input type="text" value="苏宁" style="width:145px; padding-left:3px;" />
+		<button class="btns btn-search ac-search-user" role="window_trigger">查询</button>
+        </li>
+        <li style="width:400px;">
+        <label class="vertical-head" style="width:105px;">账户类型：</label>
+        <span>信用客户</span>
+        </li>
+        <li>
+        <label class="vertical-head" style="width:105px;">协议额度：</label>
+        <em class="text1">15,000,000</em>
+        <!--<span class="muted">(包括临时额度<b>10000</b>)</span>-->
+        </li>
+        <li>
+        <label class="vertical-head" style="width:105px;">临时额度：</label>
+        <input style="width:170px">
+        </li>
+        <li>
+        <label class="vertical-head" style="width:105px;">确认临议额度：</label>
+        <input style="width:170px">
+        </li>
+        <li>
+		<label class="vertical-head" style="width:105px;">临时额度大写：</label>
+        <span>大写文字文字</span>
+		</li>
+		<li>
+        <label class="vertical-head" style="width:105px;">有效期：</label>
+        <input type="text" style="width:170px" value="2013-09-30" class="datepicker" >
+        </li>
+        <li style="width:410px;">
+        <label style="vertical-align:top; width:105px;" class="vertical-head">摘要：</label>
+        <textarea style=" width:295px; height:50px;"></textarea>
+        </li>
+    </ul>
+</div>
+
+<div class="row" style="text-align:right;">
+    <button class="btns button_1_2 ac-adjust-confirm">提 交</button> 
+    <button class="btns button_2_2">取 消</button> 
+</div>
+</script>
+<!-- end of 新增临时额度 -->
+
+<!-- start 新增提现 -->
+<script type="text/x-kendo-template" id="ac-deposit-template">
+<div class="row">
+
+    <ul class="flat-list one-col">
+        <li style="width:400px;">
+        <label class="vertical-head" style="width:85px;">可提现金额：</label>
+        <span>15，000</span>
+        </li>
+        <li>
+        <label class="vertical-head" style="width:85px;">提现金额：</label>
+        <input style="width:300px" value="1000">
+        </li>
+        <li>
+        <label class="vertical-head" style="width:85px;">确认金额：</label>
+        <input style="width:300px" value="1000">
+        </li>
+        <li>
+		<label class="vertical-head" style="width:85px;">金额大写：</label>
+        <span>大写文字文字</span>
+		</li>
+        <li style="width:410px;">
+        <label style="vertical-align:top; width:85px;" class="vertical-head">摘要：</label>
+        <textarea style=" width:300px; height:50px;"></textarea>
+        </li>
+    </ul>
+</div>
+
+<div class="row" style="text-align:right; margin-right:20px;">
+    <button class="btns button_1_2 ac-adjust-confirm">提 交</button> 
+    <button class="btns button_2_2">取 消</button> 
+</div>
+</script>
+<!-- end of 新增提现 -->
+
 <script type="text/javascript">
 $(function(){
     new PopWindow('.ac-new',{
@@ -408,6 +544,19 @@ $(function(){
         title:'确认授信',
         width:'470'
     }).init();
+	
+	new PopWindow('.ac-temporary', {
+        template:'#ac-temporary-template',
+        title:'新增临时额度',
+        width:'470'
+    }).init();
+	
+	new PopWindow('.ac-deposit', {
+        template:'#ac-deposit-template',
+        title:'新增提现',
+        width:'470'
+    }).init();
+	
 });
 
 </script>
