@@ -35,9 +35,9 @@
         .pph1,.pph2,.pph3{height:30px;padding:5px 0 0}
         .pph4{height:165px;padding:5px 0 0}
         .pph4 li{margin:0 0 6px}
-        .pph5{height:250px;padding:5px 0 0}
+        .pph5{height:280px;padding:5px 0 0}
         .pph6{height:110px;padding:5px 0 0}
-        .pph7{height:90px;padding:5px 0 0;line-height:2}
+        .pph7{height:50px;padding:5px 0 0;line-height:2}
         .pph8{height:60px;padding:5px 0 10px;line-height:2.8}
         .pph9{height:115px;padding:10px 0 0;}
         .tbc{border:1px dashed #cccccc}
@@ -108,9 +108,9 @@
             <table>
                 <tr>
                     <td style="width:60px;padding:5px 0"><span class="head">预定条件</span></td>
-                    <td style="width:260px"><label><input type="radio" name="ydtj">提前</label></td>
+                    <td style="width:260px"><label><input type="checkbox" class="single" data-group="ydtj" name="ydtj">提前</label></td>
                     <td rowspan="3" style="border-left:1px solid #cccccc;padding-left:10px;width:2px">&nbsp;</td>
-                    <td style="padding-left:10px;"><label><input type="radio" name="ydtj">连住</label></td>
+                    <td style="padding-left:10px;"><label><input type="checkbox" class="single" data-group="ydtj" name="ydtj">连住</label></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -145,7 +145,6 @@
                         <li class="pph6"><span class="head">已有规定</span></li>
                         <li class="pph7"><span class="head">增加规定</span></li>
                         <li class="pph8"><span class="head">增加条款</span></li>
-                        <li class="pph9"><span class="head">备注</span></li>
                     </ul>
                 </div>
                 <div class="period_prices_list" data-template="period_prices_listItem_template" data-bind="source:Effective_period"></div>
@@ -249,6 +248,20 @@
             </li>
             <li class="pph5">
                 <ul style="padding-bottom:10px;">
+                    <li>
+                        <select name="" id="">
+                            <option value="">无早</option>
+                            <option value="">含早</option>
+                            <option value="">含单早</option>
+                            <option value="">含双早</option>
+                        </select>
+                        <select name="" id="" style="margin-left:10px">
+                            <option value="">-</option>
+                            <option value="">3</option>
+                            <option value="">4</option>
+                            <option value="">5</option>
+                        </select>
+                    </li>
                     <li><label><input type="radio">自助早餐</label></li>
                     <li><label><input type="radio">自助早餐</label></li>
                     <li>
@@ -257,8 +270,26 @@
                     </li>
                 </ul>
                 <ul class="tbc" style="border-width:1px 0;padding:10px 0">
-                    <li style="margin-bottom:6px"><label><input type="checkbox">儿童早餐</label><input disabled="disabled" type="text" value="0" style="width:70px"></li>
-                    <li><label><input type="checkbox">晚餐</label><input disabled="disabled" type="text" value="0" style="width:70px;margin-left:24px"></li>
+                    <li style="margin-bottom:6px">
+                        <label><input type="checkbox">儿童早餐</label>
+                        <select name="" id="" disabled="disabled" style="margin-left:10px">
+                            <option value="">1</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
+                            <option value="">4</option>
+                            <option value="">5</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label><input type="checkbox">晚餐</label>
+                        <select name="" id="" disabled="disabled" style="margin-left:34px">
+                            <option value="">1</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
+                            <option value="">4</option>
+                            <option value="">5</option>
+                        </select>
+                    </li>
                     <li><label><input type="checkbox" data-group="jiachuang#= data.parent().length #" class="single" name="" id="">加床</label></li>
                     <li><label><input type="checkbox" data-group="jiachuang#= data.parent().length #" class="single" name="" id="">加床含早</label></li>
                     <li><label><input type="checkbox">宽带</label></li>
@@ -274,7 +305,6 @@
             <li class="pph7">
                 入住时间 <select name="" id=""><option value="">请选择</option></select><br/>
                 退房时间 <select name="" id=""><option value="">请选择</option></select><br/>
-                离店时间 <select name="" id=""><option value="">请选择</option></select><br/>
             </li>
             <li class="pph8">
                 入住前<input type="text" style="width:40px"> 天 <input type="text" style="width:40px"> 点<br/>
@@ -282,9 +312,6 @@
                     <option value="">请选择</option>
                 </select>
                 <a class="button_4_4" href="javascript">添 加</a>
-            </li>
-            <li class="pph9 tbc" style="borde:1px 0 0 0">
-                <textarea name="" id="" style="width:168px;height:93px"></textarea>
             </li>
         </ul>
     </div>

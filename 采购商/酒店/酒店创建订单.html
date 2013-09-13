@@ -131,19 +131,19 @@
                         </tr>
                         <tr>
                             <th>入住日期</th>
-                            <td><span>2013-08-15</span> 至 <span>2013-08-22</span> <a href="javascript:void(0)" class="t_orange" id="change_date">修改</a></td>
+                            <td><span>2013-08-15</span> 至 <span>2013-08-22</span> <a href="javascript:void(0)" class="t_orange" id="change_date" style="display:none">修改</a></td>
                         </tr>
                         <tr>
                             <th><em>*</em>预订房间</th>
-                            <td> 
-                                <select data-role="dropdownlist" style="width:80px;" name="checkin_room_count" id="booking_room_count">
+                            <td><span class="txt_l9">2间</span>
+                                <select  style="width:80px;display:none" name="checkin_room_count" id="booking_room_count">
                                     <option value="1">1</option>
                                     <option value="2" selected="">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
                                     <option value="5">5</option>
                                 </select>
-                                <span style="position:relative;left:-35px;">间</span>
+                                <span style="position:relative;left:-35px;display:none">间</span>
                                 <label>预订房间&gt;5间可以申请<a class="t_orange" href="javascript:void(0);">团队预订</a>,价格优惠哦</label>
                             </td>
                         </tr>
@@ -314,8 +314,8 @@
                             <th>
                                 <div class="tt">早餐<strong>￥30</strong>人</div>
                                 <div class="op">
-                                    <label><input type="checkbox" value="col1_checkall"/>全选</label>
-                                    <span>
+                                    <label><input type="checkbox" value="col1_checkall"/></label>
+                                    <span style="display:none">
                                         <a class="minus" href="javascript:void(0)">-</a>
                                         <input type="text" class="gray-border" readonly style="width:30px;height:20px;text-align:center;" value="1" name="num" />
                                         <a class="add_up" href="javascript:void(0)">+</a>
@@ -325,13 +325,13 @@
                             <th>
                                 <div class="tt">加床<strong>￥70</strong>人</div>
                                 <div class="op">
-                                    <label><input type="checkbox" value="col2_checkall"/>全选</label>
+                                    <label><input type="checkbox" value="col2_checkall"/></label>
                                 </div>
                             </th>
                             <th>
                                 <div class="tt">宽带<strong>￥30</strong>人</div>
                                 <div class="op">
-                                    <label><input type="checkbox" value="col3_checkall"/>全选</label>
+                                    <label><input type="checkbox" value="col3_checkall"/></label>
                                 </div>
                             </th>
                             <th class="last"><span class="tt">小计</span></th>
@@ -700,6 +700,7 @@ $(function(){
 
     
     $(".op input[type='checkbox']",$(".addon")).click(function(){
+        var that=$(this);
         var col_index = parseInt($(this).closest("th").index());
         var check_status = $(this).prop("checked");
         var table = $(this).closest("table");
@@ -709,8 +710,10 @@ $(function(){
         $("tbody tr",table).each(function(){
             if(check_status){
                 $("td:eq(" + col_index + ") .acell",this).show();
+                that.parent().siblings().show();
             }else{
                 $("td:eq(" + col_index + ") .acell",this).hide();
+                that.parent().siblings().hide();
             }
         });
 
