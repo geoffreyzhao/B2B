@@ -10288,18 +10288,7 @@ kendo_module({
                         $("html,body").scrollLef(offset.left);
                     }
 
-                    inputs[0].animate({opacity:0},1000,function(){
-                        this.focus ? this.focus() : '';
-
-                        $(this).animate({opacity:1},1000,function(){
-
-                        });
-                    });
-
-                    inputs[0].addClass("error_notice");
-                    inputs[0].bind("blur",function(){
-                        $(this).removeClass("error_notice");
-                    });
+                    inputs[0].focus ? inputs[0].focus() : '';
                 }
 
                 return !invalid;
@@ -10339,10 +10328,6 @@ kendo_module({
             }
 
             input.toggleClass(INVALIDINPUT, !valid);
-
-            valid ? input.removeClass("error_notice") : input.addClass("error_notice");
-            //@todo clb
-            //valid ? $(messageLabel).hide() : $(messageLabel).show(); 
 
             return valid;
         },

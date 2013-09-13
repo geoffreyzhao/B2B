@@ -39,7 +39,6 @@ function init_header(){
             $(".mesAndnotice li").removeClass("current_stateli");
             $(this).addClass("current_stateli");
             e.stopPropagation();
-            e.preventDefault();
         });
     });
 
@@ -47,23 +46,19 @@ function init_header(){
     $("#message .ck").click(function(){
         $("#message_pop").hide();
         e.stopPropagation();
-        e.preventDefault();
     });
 
     $("#message_pop").click(function(e){
         e.stopPropagation();
-        e.preventDefault();
     });
 
     $("html").click(function(e){
         $("#message_pop").css("display") == 'block' ? $("#message_pop").hide() : '';
-        e.stopPropagation();
-        e.preventDefault();
+        //e.stopPropagation();
     });
 
     $("#message h3").click(function(e){
         $("#message_pop").toggle();
         e.stopPropagation();
-        e.preventDefault();
     });
 }
