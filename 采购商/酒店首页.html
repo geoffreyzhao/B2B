@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../static/css/store_reset.css" media="all" />
     <link rel="stylesheet" href="../static/css/store.css" media="screen" />
     <link rel="stylesheet" href="../static/css/store_flight.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/store_hotel.css">
     <link rel="stylesheet" href="../static/css/kendo.common.min.css" />
     <link rel="stylesheet" href="../static/css/kendo.store.css" />
 
@@ -26,6 +27,9 @@
     <![endif]-->
     <script src="../static/js/jquery-ui-1.10.3.custom.js"></script>
 	<script src="../static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+    <style type="text/css">
+
+    </style>
 </head>
 <body>
 
@@ -68,19 +72,25 @@
                    <col style="width:30%;"/>
                 </colgroup>
                  <tr>
-                    <td>城市</td>
+                    <td><i class="important">*</i>城市</td>
                     <td><input class="gray-border" type="text" /></td>
                  </tr>
                  <tr>
-                    <td>入住日期</td>
+                    <td><i class="important">*</i>入住日期</td>
                     <td>
                         <input type="text" class="datepicker gray-border" value=""/>
                     </td>
                  </tr>
                  <tr>
-                    <td>离店日期</td>
+                    <td><i class="important">*</i>离店日期</td>
                     <td>
                         <input type="text" class="datepicker gray-border" value=""/>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td><i class="important">*</i>预订间数</td>
+                    <td>
+                        <input type="text" class="gray-border" value="1"/>
                     </td>
                  </tr>
                  <tr>
@@ -103,13 +113,15 @@
                     </td>
                  </tr>
              </table>
-        </div> 
-        <div class="slides pull-right" style="width:500px" id="coin-slider">
-            <a  href="javascript:void(0);"><img src="../static/images/banner/banner1.jpg"><span></span></a>
-            <a  href="javascript:void(0);"><img src="../static/images/banner/banner2.jpg"><span></span></a>
-            <a  href="javascript:void(0);"><img src="../static/images/banner/banner3.jpg"><span></span></a>
-            <a  href="javascript:void(0);"><img src="../static/images/banner/banner4.jpg"><span></span></a>
-            <a  href="javascript:void(0);"><img src="../static/images/banner/banner5.jpg"><span></span></a>
+        </div>
+        <div class="slides pull-right" style="width:553px;height:330px;position:relative">
+            <div id="coin-slider">
+                <a  href="javascript:void(0);"><img src="../static/images/banner/banner1.jpg" height="330px"><span></span></a>
+                <a  href="javascript:void(0);"><img src="../static/images/banner/banner2.jpg"><span></span></a>
+                <a  href="javascript:void(0);"><img src="../static/images/banner/banner3.jpg"><span></span></a>
+                <a  href="javascript:void(0);"><img src="../static/images/banner/banner4.jpg"><span></span></a>
+                <a  href="javascript:void(0);"><img src="../static/images/banner/banner5.jpg"><span></span></a>
+            </div>
         </div>
     </div> <!--tavern end-->
     
@@ -178,7 +190,13 @@
         Copyright &copy; 2012 天地行 All Rights Reserved.     沪ICP备08101503号 
     </center>
 </footer>
-<script type="text/javascript" src="../static/js/store/hotel_index.js"></script>
 </div>
+<script type="text/javascript" src="../static/js/store/hotel_index.js"></script>
+<script type="text/javascript" src="../static/js/jquery.cycle.all.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('#coin-slider').after('<div id="nav" class="slider_nav" style="left:40%;bottom:10px;">').cycle({fx:"fade",timeout: 2000,height:"300px",pause:true,pager:"#nav",pagerEvent: "click.cycle"});
+    })
+</script>
 </body>
 </html>
