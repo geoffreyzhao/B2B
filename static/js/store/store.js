@@ -17,14 +17,34 @@ $(function() {
     if(typeof($.datepicker) != "undefined"){
         $.datepicker.regional[ "zh-CN" ];
 
-		$( ".datepicker" ).datepicker({
+        var dpSetting = {
             css : {"z-index": 20000},
 			showDay:true,
 			numberOfMonths:[1,2],
 			minDate :new Date(),
 			firstDay:0,
 			showButtonPanel :true
-		});
+		};
+
+        var dpSettingUlt = {
+            css : {"z-index": 20000},
+			showDay:true,
+			numberOfMonths:[1,2],
+			firstDay:0,
+			showButtonPanel :true
+		};
+
+
+        var dpEle = $(".datepicker");
+
+        $.each(dpEle,function(){
+            var item = $(this);
+            if( item.hasClass("dpUlt") ){
+                item.datepicker(dpSettingUlt);
+            }else{
+                item.datepicker(dpSetting);
+            }
+        });
     }
 		
     if(typeof(kendo) != "undefined"){
