@@ -10340,7 +10340,8 @@ kendo_module({
                 that._decorateMessageContainer(messageLabel, fieldName);
 
                 if(this.options.errorMsgShow){
-                    inputOffset = input.offset();
+                    //inputOffset = input.offset();
+                    inputOffset = input.position();
                     p == "bottom" ? messageLabel.css({position:"absolute",left:inputOffset.left,"top":inputOffset.top + input.outerHeight()}) : '';
                     if(p == "bottom" && this.options.errorMsgWidthEqualInput){
                         messageLabel.css({width:input.width() - this.options.errorLabelPadding});
