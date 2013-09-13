@@ -10199,7 +10199,12 @@ kendo_module({
                 }
             },
             validateOnBlur: true,
-            errorMsgShow:true
+            errorMsgShow:true,
+            errorMsgWidthEqualInput:true,
+            stopOnFirstInvalid:false,
+            defaultErrorMsgPosition:"right",
+            errorMsgPosition:["right","bottom"],
+            errorLabelPadding:6
 
         },
 
@@ -10264,6 +10269,9 @@ kendo_module({
                 for (idx = 0, length = inputs.length; idx < length; idx++) {
                     if (!that.validateInput(inputs.eq(idx))) {
                         invalid = true;
+                        if(this.options.stopOnFirstInvalid){
+                            break;
+                        }
                     }
                 }
                 
@@ -10288,18 +10296,7 @@ kendo_module({
                         $("html,body").scrollLef(offset.left);
                     }
 
-                    inputs[0].animate({opacity:0},1000,function(){
-                        this.focus ? this.focus() : '';
-
-                        $(this).animate({opacity:1},1000,function(){
-
-                        });
-                    });
-
-                    inputs[0].addClass("error_notice");
-                    inputs[0].bind("blur",function(){
-                        $(this).removeClass("error_notice");
-                    });
+                    inputs[0].focus ? inputs[0].focus() : '';
                 }
 
                 return !invalid;
@@ -10317,7 +10314,8 @@ kendo_module({
                 className = "." + INVALIDMSG,
                 fieldName = (input.attr(NAME) || ""),
                 lbl = that._findMessageContainer(fieldName).add(input.next(className)).hide(),
-                messageText;
+                messageText,
+                inputOffset;
 
             input.removeAttr("aria-invalid");
 
@@ -10326,9 +10324,28 @@ kendo_module({
                 that._errors[fieldName] = messageText;
                 var messageLabel = $(template({ message: decode(messageText) }));
 
+                var p =  input.attr("k-msg-position");
+                if(p){
+                    var validVal = false; 
+                    for(var a in this.options.errorMsgPosition){
+                        if(p == this.options.errorMsgPosition[a]){
+                            validVal = true;
+                            break;
+                        }
+                    }
+                    //合法的值判断
+                    p = validVal ? p : this.options.defaultErrorMsgPosition;
+                }
+
                 that._decorateMessageContainer(messageLabel, fieldName);
 
                 if(this.options.errorMsgShow){
+                    inputOffset = input.offset();
+                    p == "bottom" ? messageLabel.css({position:"absolute",left:inputOffset.left,"top":inputOffset.top + input.outerHeight()}) : '';
+                    if(p == "bottom" && this.options.errorMsgWidthEqualInput){
+                        messageLabel.css({width:input.width() - this.options.errorLabelPadding});
+                    }
+
                     if (!lbl.replaceWith(messageLabel).length) {
                         messageLabel.insertAfter(input);
                     }
@@ -10339,10 +10356,6 @@ kendo_module({
             }
 
             input.toggleClass(INVALIDINPUT, !valid);
-
-            valid ? input.removeClass("error_notice") : input.addClass("error_notice");
-            //@todo clb
-            //valid ? $(messageLabel).hide() : $(messageLabel).show(); 
 
             return valid;
         },
