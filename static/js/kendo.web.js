@@ -10296,7 +10296,7 @@ kendo_module({
                         $("html,body").scrollLef(offset.left);
                     }
 
-                    inputs[0].focus ? inputs[0].focus() : '';
+                    inputs[0].focus();
                 }
 
                 return !invalid;
