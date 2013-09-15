@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天地行 采购商 登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     
+    <link rel="stylesheet" href="../../static/css/store_reset.css" media="all" />
+    <link rel="stylesheet" href="../../static/css/store.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/store_register.css" media="screen" />
+    
+    <link rel="stylesheet" href="../../static/css/kendo.common.min.css" />
+	<link rel="stylesheet" href="../../static/css/kendo.store.css" />
+    <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
+
+    <script type="text/javascript" src="../../static/js/jquery.cycle.all.js"></script>
+
+    <!--[if IE]>
+    <script src="../../static/js/html5.js"></script>
+    <![endif]-->
+    
+    <style type="text/css">
+    </style>
+</head>
+<body>
+
+<div class="main-wrapper">
+<header class="main-header">
+    <a href="/" class="landing_logo"> </a>
+    <nav class="main-nav">
+        <ul class="clearfix">
+            <li class="first font_weight"><a herf="#">关于天地行</a></li>
+            <li><a herf="#">服务中心</a></li>
+            <li><a herf="#">联系我们</a></li>
+        </ul> 
+    </nav>
+    <span class="phone">客服电话：400-720-6666</span>
+</header>
+
+<div style="background-color:#fff;margin:0 auto;position:relative;width:100%;height:400px;top:-2px;">
+    <div id="scrollImg">
+        <div style="margin:0 auto;width:1680px;height:400px;background:url(http://static.travelzensh.com/images/login/KV1.jpg) 50% 50%"></div>
+        <div style="margin:0 auto;width:1680px;height:400px;background:url(http://static.travelzensh.com/images/login/KV2.jpg) 50% 50%"></div>
+        <div style="margin:0 auto;width:1680px;height:400px;background:url(http://static.travelzensh.com/images/login/KV3.jpg) 50% 50%"></div>
+</div>
+
+<section class="main-body clearfix login_page">
+<div class="login clearfix" style="position:absolute;top:-400px;right:0px;">
+    <form name="loginForm" method="get" onsubmit="return formValiation(this);">
+        <div class="login_panel pull-right">
+            <div class="input_area">
+                <h2 class="tt clearfix">
+                    <strong>登录</strong>
+                </h2>
+                <div class="row tips" style="display:none;">
+                    <span></span>
+                </div>
+                <div class="row large first">
+                    <i class="username"></i>
+                    <input type="text" name="username" value="" style="width:200px;border:0;" />
+                    <label class="cover">用户名</label>
+                    <!--<em>*</em>-->
+                </div>
+                <div class="row large">
+                    <i class="psw"></i>
+                    <input type="password" autocomplete="off"  name="password" style="width:200px;border:0;" value="" />
+                    <label class="cover">密码</label>
+                    <!--<em>*</em>-->
+                    <div class="forget clearfix">
+                        <a href="javascript:void(0)" class="pull-right" >忘记密码?</a>
+                    </div>
+                </div>
+                <div class="row small">
+                    <i></i>
+                    <input type="text" autocomplete="off" name="auth_code" style="width:120px;border:0px;" value=""/>
+                    <!--<em>*</em>-->
+                    <label class="cover" style="left:8px">验证码</label>
+                    <a class="authcode" href="javascript:void(0);" title="点击刷新" style="width:110px;height:32px;" alt="点击刷新"><img style="width:110px;height:32px;" src="http://o.op.com:8180/tops-front-operator-biz/captcha/gen"/></a>
+                </div>
+
+                <div class="row">
+                    <label><input type="checkbox" checked style="vertical-align:middle;"/>&nbsp;下次自动登录</label>
+                </div>
+            </div>
+
+            <div class="login_btns">
+                <input type="submit" name="login"  value="登&nbsp;&nbsp;录" class="login_btn" />
+                <input type="button" name="register"  value="注&nbsp;&nbsp;册" class="register_btn" />
+            </div>
+        </div>
+    </form>
+</div>
+
+    
+</section>
+<footer class="main-footer">
+    <center>
+        <a href="#">隐私问题</a>
+        <i class="bar">|</i>
+        <a href="#">常见问题</a>
+        <i class="bar">|</i>
+        <a href="#">关于我们</a>
+        <i class="bar">|</i>
+        <a href="#">媒体中心</a>
+        <i class="bar">|</i>
+        <a href="#">联系我们</a>
+    </center>
+    <center class="copyright">
+        Copyright &copy; 2012 天地行 All Rights Reserved.     沪ICP备08101503号 
+    </center>
+</footer>
+</div>
+
+<script>
+function Error(obj,message,isShow){
+        $(".tips span").html(message);
+
+        if(isShow){
+            $(".tips").show();
+        }else{
+            Success(obj);
+        }
+    }
+
+    function Success(obj){
+        $(".tips").hide();
+    }
+
+    function formValiation(form){
+        if(form['username'].value == '' ){
+            Error(form['username'],'用户名不能为空',true);
+            form['username'].focus();
+            return false;
+        }else{
+            Success(form['username'],'');
+        }
+        if(form['password'].value == ''){
+            Error(form['password'],'密码不能为空',true);
+            form['password'].focus();
+            return false;
+        }else{
+            Success(form['password'],'');
+        }
+        if(form['auth_code'].value == ''){
+            Error(form['password'],'验证码不能为空',true);
+            form['auth_code'].focus();
+            return false;
+        }else{
+            Success(form['password'],'');
+        }
+
+        return false;
+    }
+
+    $(function(){
+        $('#scrollImg').before('<div id="nav" class="slider_nav" style="left:40%;top:90%;">').cycle({fx:"fade",timeout: 2000,width:"100%",height:"400px",pause:true,pager:"#nav",pagerEvent: "click.cycle"});
+    });
+
+$(".row input").focus(function(){
+        $(this).parent("div").find("label").hide();
+    });
+    $(".row input").focusout(function(){
+        var message = '';
+        var valid = true;
+        if($.trim($(this).val()) == ''){
+            valid = false;
+            switch($(this).attr("name")){
+                case 'username':
+                    message = '用户名不能为空';
+                    break;
+                case 'password':
+                    message = '密码不能为空';
+                    break;
+                case 'auth_code':
+                    message = '验证码不能为空';
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if(valid){
+            Success(this);
+        }else{
+            Error(this,message,true);
+        }
+    });
+
+    $(".row .cover").click(function(){
+        $(this).hide();
+        $(this).parent("div").find("input:eq(0)").focus();
+    });
+
+
+</script>
+</body>
+</html>

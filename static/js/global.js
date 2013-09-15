@@ -564,7 +564,7 @@ var CityAutocomplete = function(settings){
 
 
 
-// 一些jquery插件
+// 加载谈层
 $.loadingbar = function(settings) {
     var defaults = {
         container: 'body',
@@ -639,7 +639,7 @@ $.loadingbar = function(settings) {
 
 };
 
-//plugin serialize_form
+// serialize_form
 $.fn.serialize_form = function(){
     var result = [];
     var that = $(this);
@@ -668,6 +668,7 @@ $.fn.serialize_form = function(){
     return result.join('&');
 };
 
+//
 $.plainObjectSize = function(obj) {
     var size = 0, key;
     for (key in obj) {
@@ -676,7 +677,7 @@ $.plainObjectSize = function(obj) {
     return size;
 };
 
-
+//
 $.fieldsetFormat = function(type,settings){
     // 纯对象数据长度
     // example : plainObjectSize({a:1,b:2}) == 2;
@@ -791,7 +792,7 @@ $.fieldsetFormat = function(type,settings){
     return output;
 };
 
-
+// [demo](http://dev.b2b.com/%E7%A2%8E%E7%89%87/%E8%AE%A2%E5%8D%95%E7%8A%B6%E6%80%81%E6%8C%87%E7%A4%BA%E6%A0%87%E8%AF%86.html)
 var lensf = function (settings){
     var defaults = {
         container:'.instr',
@@ -815,24 +816,20 @@ var lensf = function (settings){
     });
 };
 
-
+// [demo](http://dev.b2b.com/%E7%A2%8E%E7%89%87/checkgroup.html)
 var checkGroup = function(settings){
     var opts = $.extend({
         group : '[data-role=checkgroup]',
         name : '[data-role=checkgroup-item]'
     },settings);
-
     opts.group = opts.group.jquery?opts.group:$(opts.group);
     opts.name = opts.name.jquery?opts.name:$(opts.name);
-    
     var renderAsGroup = function(){
         $.each(opts.group,function(index){
             var items = $(this).find('[type=checkbox]');
             bindChange(items);
         })
     }
-
-
     var renderAsSameName = function(){
         var names = {};
         $.each(opts.name,function(index){
@@ -935,3 +932,39 @@ $.prompt=function(options){
         }
     }
 }
+
+// checkFamily 
+;(function ($) {
+    $.fn.cbFamily = function (children) {
+        return this.each(function () {
+            var $this = $(this);
+            var els;
+            if ($.isFunction(children)) {
+                els = children.call($this);
+            } else {
+                els = $(children);
+            }
+            $this.bind("click.cbFamily", function () {
+                els.prop('checked', this.checked).change();
+            });
+
+            function checkParent() {
+                $this.prop('checked',
+                    els.length == els.filter("input:checked").length);
+            }
+
+            els.bind("click.cbFamily", function () {
+                if ($this.prop('checked') && !this.checked) {
+                    $this.prop('checked', false).change();
+                }
+                if (this.checked) {
+                    checkParent();
+                    $this.change();
+                }
+            });
+
+            // Check parents if required on initialization
+            checkParent();
+        });
+    };
+})(jQuery);
