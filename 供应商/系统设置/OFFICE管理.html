@@ -62,7 +62,7 @@
                 <span class="page-title">OFFICE管理</span>
             </div>
             <div class="col col-r sep-l">
-                <a href="javascript:;" class="button_secondary adaptiveButton small">
+                <a href="javascript:;" class="ac-new button_secondary adaptiveButton small">
                     <span class="left"></span>
                     <span class="center">添加OFFICE</span>
                     <span class="right"></span>
@@ -115,6 +115,11 @@
 <script type="text/javascript">
 
 $(function(){
+    new PopWindow('.ac-new',{
+        width:470,
+        title:'添加OFFICE', 
+        template:'#ac-new-template'
+    }).init();
 
     new GridTable('.block2 table',{
          dataSource: [{
@@ -145,6 +150,32 @@ $(function(){
 </script>
 
 
+<script type="text/x-kendo-template" id="ac-new-template">
+    <table class="cv-table">
+      <tr>
+        <th>航空公司：</th>
+        <td>
+            <select data-role="dropdownlist" style="width:150px;" id="" name="">
+                <option value="">全部</option>
+            </select>
+        </td>
+      </tr>
+      <tr>
+        <th>OFFICE：</th>
+        <td><input id="" style="width:150px;" type="text" name=""></td>
+      </tr>
+      <tr>
+      <th>备注：</th>
+        <td>
+            <textarea id="" name=""></textarea>
+        </td>
+      </tr>
+    </table>
+    <div class="row" style="text-align:right;padding-right:25px;">
+        <button class="btns button_1_2">提 交</button> 
+        <button class="btns button_2_2">取 消</button> 
+    </div>
+</script>
 <script type="text/x-kendo-template" id="block2-grid-row-template">
     <tr>
     <td><input id="" class="checkitem" type="checkbox" name=""></td>
