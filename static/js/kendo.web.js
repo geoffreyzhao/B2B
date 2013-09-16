@@ -10128,6 +10128,7 @@ kendo_module({
             name: "Validator",
             errorTemplate: '<span class="k-widget k-tooltip k-tooltip-validation">' +
                 '<span class="k-icon k-warning"> </span> #=message#</span>',
+            defaultRules : ["required", "pattern", "min", "max", "step","email","url","date"],
             messages: {
                 required: "{0} is required",
                 pattern: "{0} is not valid",
@@ -10204,6 +10205,7 @@ kendo_module({
             stopOnFirstInvalid:false,
             defaultErrorMsgPosition:"right",
             errorMsgPosition:["right","bottom"],
+            useAnchor:true,
             errorLabelPadding:6
 
         },
@@ -10259,6 +10261,7 @@ kendo_module({
                 inputs,
                 idx,
                 invalid = false,
+                fieldName,
                 length;
 
             that._errors = {};
@@ -10269,7 +10272,7 @@ kendo_module({
                 for (idx = 0, length = inputs.length; idx < length; idx++) {
                     if (!that.validateInput(inputs.eq(idx))) {
                         invalid = true;
-                        if(this.options.stopOnFirstInvalid){
+                        if(that.options.stopOnFirstInvalid){
                             break;
                         }
                     }
@@ -10283,17 +10286,22 @@ kendo_module({
                     //inputs[0].focus();
                     inputs[0] = inputs[0].jquery ? inputs[0] : $(inputs[0]);
 
-                    var offset = inputs[0].offset();
-                    var st = $(document).scrollTop(), winh = $(window).height();
-                    var sl = $(document).scrollLeft(), winw = $(window).width();
-                    
-                    if(offset.top > (st + winh)){
-                        $("html,body").scrollTop(offset.top);
-                        //$("html,body").animate({ scrollTop: offset.top}, 200);
-                    }
+                    if(that.options.useAnchor){
+                        var anchor = inputs[0].prev(".k-anchor").attr("name");
+                        location.hash = anchor ;
+                    }else{
+                        var offset = inputs[0].offset();
+                        var st = $(document).scrollTop(), winh = $(window).height();
+                        var sl = $(document).scrollLeft(), winw = $(window).width();
+                        
+                        if(offset.top > (st + winh)){
+                            $("html,body").scrollTop(offset.top);
+                            //$("html,body").animate({ scrollTop: offset.top}, 200);
+                        }
 
-                    if(offset.left > (sl + winw)){
-                        $("html,body").scrollLef(offset.left);
+                        if(offset.left > (sl + winw)){
+                            $("html,body").scrollLef(offset.left);
+                        }
                     }
 
                     inputs[0].focus();
@@ -10322,36 +10330,64 @@ kendo_module({
             if (!valid) {
                 messageText = that._extractMessage(input, result.key);
                 that._errors[fieldName] = messageText;
+
                 var messageLabel = $(template({ message: decode(messageText) }));
 
                 var p =  input.attr("k-msg-position");
+                var pcss = input.attr("k-msg-css");
+
+                try {
+                    var pcssObj = pcss != undefined ? eval("(" + pcss + ")") : {top: 0, left:0};
+                } catch(err){
+                    pcssObj = {top:0,left:0};
+                }
+
                 if(p){
                     var validVal = false; 
-                    for(var a in this.options.errorMsgPosition){
-                        if(p == this.options.errorMsgPosition[a]){
+                    for(var a in that.options.errorMsgPosition){
+                        if(p == that.options.errorMsgPosition[a]){
                             validVal = true;
                             break;
                         }
                     }
                     //合法的值判断
-                    p = validVal ? p : this.options.defaultErrorMsgPosition;
+                    p = validVal ? p : that.options.defaultErrorMsgPosition;
                 }
 
                 that._decorateMessageContainer(messageLabel, fieldName);
 
-                if(this.options.errorMsgShow){
-                    //inputOffset = input.offset();
+                if(that.options.useAnchor && input.prev(".k-anchor").length == 0){
+                    $('<a class="k-anchor" style="display:inline;border:0;width:0px;height:0px;" name="k' + ((new Date()).getTime()) + '"></a>').insertBefore(input);
+                }
+
+                if(that.options.errorMsgShow){
                     inputOffset = input.position();
-                    p == "bottom" ? messageLabel.css({position:"absolute",left:inputOffset.left,"top":inputOffset.top + input.outerHeight()}) : '';
-                    if(p == "bottom" && this.options.errorMsgWidthEqualInput){
-                        messageLabel.css({width:input.width() - this.options.errorLabelPadding});
+
+                    var labelSetting = {};
+
+                    if(p == "bottom"){
+                        if(that.options.errorMsgWidthEqualInput){
+                            labelSetting.width = input.width() - that.options.errorLabelPadding;
+                        }
+
+                        labelSetting.position = "absolute";
+                        labelSetting.top = inputOffset.top + pcssObj.top + input.outerHeight();
+                        labelSetting.left = inputOffset.left + pcssObj.left;
                     }
+
+                    if(pcssObj.width){
+                        /* 自定义宽度 */
+                        labelSetting.width = pcssObj.width;
+                    }
+
+                    messageLabel.css(labelSetting);
 
                     if (!lbl.replaceWith(messageLabel).length) {
                         messageLabel.insertAfter(input);
                     }
                     messageLabel.show();
                 }
+
 
                 input.attr("aria-invalid", true);
             }
@@ -10413,9 +10449,17 @@ kendo_module({
             var rules = this.options.rules,
                 rule;
 
+
             for (rule in rules) {
-                if (!rules[rule](input)) {
-                    return { valid: false, key: rule };
+                /* @todo fix bug 定义多个规则时始终就一个生效的问题 */ 
+                if($.inArray(rule, this.options.defaultRules) >= 0){
+                    if (!rules[rule](input)) {
+                        return { valid: false, key: rule };
+                    }
+                }else if($(input).attr(rule) != undefined ){
+                    if (!rules[rule](input)) {
+                        return { valid: false, key: rule };
+                    }
                 }
             }
 
