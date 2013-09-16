@@ -585,7 +585,7 @@ $.loadingbar = function(settings) {
 
 
     /* 统一ajax遮罩*/
-    var loading_tpl = '<div class="lightbox loading" style="display:none;position:'+postext+' "><table cellspacing="0">\
+    var loading_tpl = '<div class="lightbox loading_box" style="display:none;position:'+postext+' "><table cellspacing="0">\
     <tbody><tr><td>\
         <div class="lightbox-content">\
         '+"<span class=loading_close>×</span>"+'\
