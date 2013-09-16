@@ -37,15 +37,14 @@
     <span class="phone">客服电话：400-720-6666</span>
 </header>
 
-<div style="background-color:#fff;margin:0 auto;position:relative;width:100%;height:400px;top:-2px;">
+<div style="background-color:#fff;margin:0 auto;position:relative;width:100%;height:350px;top:-2px;">
     <div id="scrollImg">
-        <div style="margin:0 auto;width:1680px;height:400px;background:url(http://static.travelzensh.com/images/login/KV1.jpg) 50% 50%"></div>
-        <div style="margin:0 auto;width:1680px;height:400px;background:url(http://static.travelzensh.com/images/login/KV2.jpg) 50% 50%"></div>
-        <div style="margin:0 auto;width:1680px;height:400px;background:url(http://static.travelzensh.com/images/login/KV3.jpg) 50% 50%"></div>
+        <div style="margin:0 auto;width:1681px;height:350px;background:url(/static/images/login/banner1.jpg) 50% 50%"></div>
+        <div style="margin:0 auto;width:1681px;height:350px;background:url(/static/images/login/banner2.jpg) 50% 50%"></div>
 </div>
 
 <section class="main-body clearfix login_page">
-<div class="login clearfix" style="position:absolute;top:-400px;right:0px;">
+<div class="login clearfix" style="position:absolute;top:-370px;right:0px;">
     <form name="loginForm" method="get" onsubmit="return formValiation(this);">
         <div class="login_panel pull-right">
             <div class="input_area">
@@ -85,7 +84,7 @@
 
             <div class="login_btns">
                 <input type="submit" name="login"  value="登&nbsp;&nbsp;录" class="login_btn" />
-                <input type="button" name="register"  value="注&nbsp;&nbsp;册" class="register_btn" />
+                <input type="button" name="register"  value="注&nbsp;&nbsp;册" class="register_btn pull-right" />
             </div>
         </div>
     </form>
@@ -117,6 +116,12 @@ function Error(obj,message,isShow){
 
         if(isShow){
             $(".tips").show();
+            var row = $(obj).closest(".row");
+            if(row.hasClass("large")){
+                row.addClass("large_error");
+            }else{
+                row.addClass("small_error");
+            }
         }else{
             Success(obj);
         }
@@ -124,6 +129,8 @@ function Error(obj,message,isShow){
 
     function Success(obj){
         $(".tips").hide();
+        var row = $(obj).closest(".row").removeClass("large_error").removeClass("small_error");
+
     }
 
     function formValiation(form){
@@ -142,18 +149,18 @@ function Error(obj,message,isShow){
             Success(form['password'],'');
         }
         if(form['auth_code'].value == ''){
-            Error(form['password'],'验证码不能为空',true);
+            Error(form['auth_code'],'验证码不能为空',true);
             form['auth_code'].focus();
             return false;
         }else{
-            Success(form['password'],'');
+            Success(form['auth_code'],'');
         }
 
         return false;
     }
 
     $(function(){
-        $('#scrollImg').before('<div id="nav" class="slider_nav" style="left:40%;top:90%;">').cycle({fx:"fade",timeout: 2000,width:"100%",height:"400px",pause:true,pager:"#nav",pagerEvent: "click.cycle"});
+        $('#scrollImg').before('<div id="nav" class="slider_nav" style="left:40%;top:90%;">').cycle({fx:"fade",timeout: 2000,width:"100%",height:"350px",pause:true,pager:"#nav",pagerEvent: "click.cycle"});
     });
 
 $(".row input").focus(function(){
