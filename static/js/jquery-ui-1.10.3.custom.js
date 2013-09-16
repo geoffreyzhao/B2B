@@ -456,7 +456,7 @@ $.extend(Datepicker.prototype, {
 		}
 
         //by shaotian.hu
-        if(settings.showDay){
+        if( settings && settings.showDay){
             var dayWrapper= inst.dayWrapper = $('<b class="ui-datepicker-daywrapper" />');
             $(target).after(dayWrapper);
             if(new Date(target.value)-0){

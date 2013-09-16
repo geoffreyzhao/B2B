@@ -23,39 +23,6 @@ jQuery(function($){
         group: ["ABCDEFG","HJ", "KLMN", "PQRSTW", "XYZ"]
     });
 
-    //日历
-    // $("#depd").kendoDatePicker({
-    //     min:new Date(),
-    //     month:{
-    //         empty:'<span class="date_empty">${data.value}</span>'
-    //     },
-    //     change:function(e){
-    //         var arrddatepicker = $("#arrd").data("kendoDatePicker");
-    //         var min = e.sender._value||new Date();
-    //         arrddatepicker.min(min);
-    //         if(arrddatepicker.value()&&arrddatepicker.value().getTime()<min){
-    //             arrddatepicker.value(null);
-    //         }
-    //     }
-    // });
-
-    // $("#arrd").kendoDatePicker({
-    //     min:new Date(),
-    //     month:{
-    //         empty:'<span class="date_empty">${data.value}</span>'
-    //     }
-    // });
-
-    // $("#arrd").on('focus',function(){
-    //     var arrddatepicker = $("#arrd").data("kendoDatePicker");
-    //     arrddatepicker.open();
-    // });
-
-    // $("#depd").on('focus',function(){
-    //     var depddatepicker = $("#depd").data("kendoDatePicker");
-    //     depddatepicker.open();
-    // });
-
     $('.radio_is_single').on('change',function(){
         var $t= $(this);
         var $ele = $('.arrdate');
@@ -106,23 +73,30 @@ jQuery(function($){
         info_row.hide();
     });
 
-    new PopWindow('.gj-grid-table .tgq',{
-        cache:false,
-        width: '470',
-        title:'退改签',
-        template:'#ac-check-template',
-        open:function(e){
-            e.sender.element.find('.btns').hide();
-        }
+
+    if($('#ac-check-template').length){
+        new PopWindow('.ac-check',{
+            cache:false,
+            width: '470',
+            title:'提示信息',
+            template:'#ac-check-template'
+        }).init();
+    }
+
+    new Collpase({
+        container:'.block2 .row2',
+        limitHeight:'20'
     }).init();
 
-    new PopWindow('.ac-check',{
-        cache:false,
-        width: '470',
-        title:'提示信息',
-        template:'#ac-check-template'
-    }).init();
 
+    $('.checkall').cbFamily(function(){
+        return $(this).closest('.flat-list').find('[type=checkbox]'); 
+    });
+
+    $('.gn-result-row .more').bind('click',function(){
+        $(this).closest('.gn-result-row').find('.gn-detail-table').toggle();
+        $(this).toggleClass('more-up');
+    });
 
 });
 
