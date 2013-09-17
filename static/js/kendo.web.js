@@ -10216,7 +10216,9 @@ kendo_module({
             stopOnFirstInvalid:false,
             defaultErrorMsgPosition:"right",
             errorMsgPosition:["right","bottom"],
-            useAnchor:true,
+            useAnchor:false,
+            /* 必须明确给定规则名称,没有给出规则名称的规则将略过 */
+            needRuleAttrbute:true, 
             errorLabelPadding:6
 
         },
@@ -10271,6 +10273,7 @@ kendo_module({
             var that = this,
                 inputs,
                 idx,
+                errIndex = -1,
                 invalid = false,
                 fieldName,
                 length;
@@ -10282,6 +10285,10 @@ kendo_module({
 
                 for (idx = 0, length = inputs.length; idx < length; idx++) {
                     if (!that.validateInput(inputs.eq(idx))) {
+                        if(errIndex == -1){
+                            errIndex = idx;
+                        }
+
                         invalid = true;
                         if(that.options.stopOnFirstInvalid){
                             break;
@@ -10295,13 +10302,13 @@ kendo_module({
                  */
                 if(invalid && inputs.length){
                     //inputs[0].focus();
-                    inputs[0] = inputs[0].jquery ? inputs[0] : $(inputs[0]);
+                    inputs[errIndex] = inputs[errIndex].jquery ? inputs[errIndex] : $(inputs[errIndex]);
 
                     if(that.options.useAnchor){
-                        var anchor = inputs[0].prev(".k-anchor").attr("name");
+                        var anchor = inputs[errIndex].prev(".k-anchor").attr("name");
                         location.hash = anchor ;
                     }else{
-                        var offset = inputs[0].offset();
+                        var offset = inputs[errIndex].offset();
                         var st = $(document).scrollTop(), winh = $(window).height();
                         var sl = $(document).scrollLeft(), winw = $(window).width();
                         
@@ -10315,7 +10322,7 @@ kendo_module({
                         }
                     }
 
-                    inputs[0].focus();
+                    inputs[errIndex].focus();
                 }
 
                 return !invalid;
@@ -10471,12 +10478,17 @@ kendo_module({
 
         _checkValidity: function(input) {
             var rules = this.options.rules,
+                that = this,
                 rule;
 
 
             for (rule in rules) {
                 /* @todo fix bug 定义过的规则才进行验证 */ 
-                if(hasAttribute(input, rule)){
+                if(that.options.needRuleAttrbute){
+                    if (hasAttribute(input, rule) && !rules[rule](input)) {
+                        return { valid: false, key: rule };
+                    }
+                }else{
                     if (!rules[rule](input)) {
                         return { valid: false, key: rule };
                     }
