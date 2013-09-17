@@ -72,6 +72,10 @@
         -->
 
         <div class="example">
+            <h3>自定义 range</h3>
+            <input type="text"  name="range" range="{min:3,max:10}"  />
+        </div>
+        <div class="example">
             <h3>验证Email</h3>
             <input type="email" name="Email" required email class="k-textbox" />
         </div>
@@ -112,7 +116,7 @@
                         return "至少选择一个";
                     },
                     range : function(input){
-                        var j = eval("(" + $(this).attr("range") + ")");
+                        var j = eval("(" + $(input).attr("range") + ")");
                         return "最小"  + j.min + "  最大 " + j.max;
                     }
                 },

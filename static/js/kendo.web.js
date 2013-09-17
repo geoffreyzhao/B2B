@@ -10216,7 +10216,9 @@ kendo_module({
             stopOnFirstInvalid:false,
             defaultErrorMsgPosition:"right",
             errorMsgPosition:["right","bottom"],
-            useAnchor:true,
+            useAnchor:false,
+            /* 必须明确给定规则名称,没有给出规则名称的规则将略过 */
+            needRuleAttrbute:true, 
             errorLabelPadding:6
 
         },
@@ -10295,10 +10297,10 @@ kendo_module({
                  */
                 if(invalid && inputs.length){
                     //inputs[0].focus();
-                    inputs[0] = inputs[0].jquery ? inputs[0] : $(inputs[0]);
+                    inputs[idx] = inputs[idx].jquery ? inputs[idx] : $(inputs[idx]);
 
                     if(that.options.useAnchor){
-                        var anchor = inputs[0].prev(".k-anchor").attr("name");
+                        var anchor = inputs[idx].prev(".k-anchor").attr("name");
                         location.hash = anchor ;
                     }else{
                         var offset = inputs[0].offset();
@@ -10315,7 +10317,7 @@ kendo_module({
                         }
                     }
 
-                    inputs[0].focus();
+                    inputs[idx].focus();
                 }
 
                 return !invalid;
@@ -10471,12 +10473,17 @@ kendo_module({
 
         _checkValidity: function(input) {
             var rules = this.options.rules,
+                that = this,
                 rule;
 
 
             for (rule in rules) {
                 /* @todo fix bug 定义过的规则才进行验证 */ 
-                if(hasAttribute(input, rule)){
+                if(that.options.needRuleAttrbute){
+                    if (hasAttribute(input, rule) && !rules[rule](input)) {
+                        return { valid: false, key: rule };
+                    }
+                }else{
                     if (!rules[rule](input)) {
                         return { valid: false, key: rule };
                     }
