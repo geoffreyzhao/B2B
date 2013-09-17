@@ -632,101 +632,6 @@
             <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
-<div id="child_orders" class="child_order" style="display:none;position:absolute;z-index:2;">
-    <ul class="clearfix title">
-        <li class="first">
-        <span>原订单号: 123456789 <strong style="margin-left:20px;">2580</strong></span>
-        </li>
-        <li class="last"><em>关联订单</em><strong>3</strong></li>
-    </ul>
-
-    <div class="history_list">
-        <ul>
-            <li>
-                <h3>2013/07/03 13:00</h3>
-                <span><b></b></span>
-                <div class="item">
-                    <table>
-                        <thead>    
-                            <tr>
-                                <th style="width:60px;">退票单</th>
-                                <th style="width: 160px;">121246545645546465</th>
-                                <th style="width:60px;">操作人</th>
-                                <th style="width:100px">王小二</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>于春东</td>
-                                <td>PEK-PVG/PVG-PEK 退票</td>
-                                <td colspan="2" rowspan="2"><strong>-1290.00</strong></td>
-                            </tr>
-                            <tr>
-                                <td>方永军</td>
-                                <td>PEK-PVG/PVG-PEK 退票</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </li>
-            <li>
-                <h3>2013/07/03 13:00</h3>
-                <span><b></b></span>
-                <div class="item">
-                    <table>
-                        <thead>    
-                            <tr>
-                                <th style="width:60px;">退票单</th>
-                                <th style="width: 160px;">121246545645546465</th>
-                                <th style="width:60px;">操作人</th>
-                                <th style="width:100px">王小二</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>于春东</td>
-                                <td>PEK-PVG/PVG-PEK 退票</td>
-                                <td colspan="2" rowspan="2"><strong>-1290.00</strong></td>
-                            </tr>
-                            <tr>
-                                <td>方永军</td>
-                                <td>PEK-PVG/PVG-PEK 退票</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </li>
-            <li>
-                <h3>2013/07/03 13:00</h3>
-                <div class="latest">最新修改</div>
-                <span></span>
-                <div class="item last" style="border:1px solid #ff4e00;background-color:#fff5f5;">
-                    <table>
-                        <thead>    
-                            <tr>
-                                <th style="width:60px;">退票单</th>
-                                <th style="width: 160px;">121246545645546465</th>
-                                <th style="width:60px;">操作人</th>
-                                <th style="width:100px">王小二</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>于春东</td>
-                                <td>PEK-PVG/PVG-PEK 退票</td>
-                                <td colspan="2" rowspan="2"><strong>-1290.00</strong></td>
-                            </tr>
-                            <tr>
-                                <td>方永军</td>
-                                <td>PEK-PVG/PVG-PEK 退票</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </li>
-        </ul>
-    </div>
-</div>
 <!-- 审核退回原因 浮层 -->
 <div id="tuihui_win" style="display:none;">
     <h2 style="font-size:14px;padding-left:20px;">请填写退回原因:</h2>
@@ -847,28 +752,8 @@
                 }
         });
 
-        /* 鼠标移动效果 */
-        $("#child_orders div.item").each(function(){
-                $(this).hover(function(){
-                    $(this).css({"background-color":"#ffffdb","border-color":"#cccccc"});
-                },function(){
-                    if($(this).hasClass("last")){
-                        $(this).css({"background-color":"#fff5f5","border-color":"#FF4E00"});
-                    }else{
-                        $(this).css({"background-color":"#ffffff","border-color":"#B8F1FF"});
-                    }
-                });
-        });
-        $("#child_order_trigger").mouseover(function(){
-             var pos = $(this).offset();
-             $("#child_orders").css({top:pos.top + "px",left: (pos.left - 300) + "px"}).show();
-             $("#child_orders").unbind("mouseleave");
-             $("#child_orders").bind("mouseleave",function(){
-                 $("#child_orders").hide();
-             });
-        });
-
     })
 </script>
+<script type="text/javascript" src="/运营商/child_orders.js"></script>
 </body>
 </html>

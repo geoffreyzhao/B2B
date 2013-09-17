@@ -10375,6 +10375,7 @@ kendo_module({
                     inputOffset = input.position();
 
                     var labelSetting = {};
+                    
 
                     if(p == "bottom"){
                         if(that.options.errorMsgWidthEqualInput){
@@ -10382,8 +10383,20 @@ kendo_module({
                         }
 
                         labelSetting.position = "absolute";
-                        labelSetting.top = inputOffset.top + pcssObj.top + input.outerHeight();
-                        labelSetting.left = inputOffset.left + pcssObj.left;
+
+                        var checkPer = /%/;
+
+                        if(checkPer.test(pcssObj.top)){
+                            labelSetting.top = pcssObj.top;
+                        }else{
+                            labelSetting.top = inputOffset.top + parseInt(pcssObj.top) + input.outerHeight();
+                        }
+
+                        if(checkPer.test(pcssObj.left)){
+                            labelSetting.left = pcssObj.left;
+                        }else{
+                            labelSetting.left = inputOffset.left + parseInt(pcssObj.left);
+                        }
                     }
 
                     if(pcssObj.width){
