@@ -10273,6 +10273,7 @@ kendo_module({
             var that = this,
                 inputs,
                 idx,
+                errIndex = -1,
                 invalid = false,
                 fieldName,
                 length;
@@ -10284,6 +10285,10 @@ kendo_module({
 
                 for (idx = 0, length = inputs.length; idx < length; idx++) {
                     if (!that.validateInput(inputs.eq(idx))) {
+                        if(errIndex == -1){
+                            errIndex = idx;
+                        }
+
                         invalid = true;
                         if(that.options.stopOnFirstInvalid){
                             break;
@@ -10297,13 +10302,13 @@ kendo_module({
                  */
                 if(invalid && inputs.length){
                     //inputs[0].focus();
-                    inputs[idx] = inputs[idx].jquery ? inputs[idx] : $(inputs[idx]);
+                    inputs[errIndex] = inputs[errIndex].jquery ? inputs[errIndex] : $(inputs[errIndex]);
 
                     if(that.options.useAnchor){
-                        var anchor = inputs[idx].prev(".k-anchor").attr("name");
+                        var anchor = inputs[errIndex].prev(".k-anchor").attr("name");
                         location.hash = anchor ;
                     }else{
-                        var offset = inputs[0].offset();
+                        var offset = inputs[errIndex].offset();
                         var st = $(document).scrollTop(), winh = $(window).height();
                         var sl = $(document).scrollLeft(), winw = $(window).width();
                         
@@ -10317,7 +10322,7 @@ kendo_module({
                         }
                     }
 
-                    inputs[idx].focus();
+                    inputs[errIndex].focus();
                 }
 
                 return !invalid;
