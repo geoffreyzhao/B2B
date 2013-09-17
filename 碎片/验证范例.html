@@ -14,6 +14,7 @@
 
     .example {border:1px solid #04ac00;margin:10px;padding:10px;}
     a {display:block;width:20px;height:20px;border:1px solid blue;}
+    h3 {font-size:20px;}
     h3,h4 {margin:10px 0;}
 </style>
 </head>
@@ -25,34 +26,41 @@
     <div id="form1">
         <div style="height:50px"></div>
         <div class="example">
-            <h3>单行</h3>
+            <h3>required</h3>
             <input type="text" name="a1" required/>
         </div>
         <div class="example">
-            <h3>单行 多个输入框</h3>
-
-            <h4>多个验证规则</h4>
-            <span>b1</span><input type="text" custom1 required name="b1" k-msg-position="bottom"/>
-            <h4>自定义验证规则 custom2</h4>
-            <span>b2</span><input type="text" custom2 name="b2"/>
+            <h4>自定义验证规则 custom1</h4>
+            <span>b1</span><input type="text" custom1 name="b1"/>
         </div>
         <div class="example">
-            <h3>多行 多个输入框</h3>
+            <h3>多个 规则叠加 custom1 required  </h3>
+            <h4>多个验证规则</h4>
+            <span>b2</span><input type="text" custom1 required name="b2" />
+        </div>
+
+        <div class="example">
+            <h3>定义显示错误的位置</h3>
             <div>
                 <span>c1</span><input type="text" k-msg-position="bottom" required name="c1"/>
-                <span>c2</span><input type="text" required name="c2"/>
             </div>
-            <div style="margin-top:20px">
-                <span>c3</span><input type="text" required name="c3"/>
-                <span>c4</span><input type="text" required name="c4"/>
-                <span>c5</span><input type="text" required name="c5"/>
+
+            <h3>定义显示错误的位置 以及偏移量</h3>
+            <div>
+                <span>c2</span><input type="text" required k-msg-position="bottom" k-msg-css="{top:10,width:100}" name="c2"/>
             </div>
         </div>
         <div class="example">
-            <h3>自定义验证函数 ，自定义提示显示方式和显示位置</h3>
-            <input type="checkbox" name="e1" at_least_one k-msg-position="bottom" k-msg-css="{top:10,width:100}" />成人
-            <input type="checkbox" name="e1" at_least_one k-msg-position="bottom" k-msg-css="{top:10,width:100}"/>学生
+            <h3>自定义验证函数 at_least_one (至少选择一个)</h3>
+            <input type="checkbox" name="e1" at_least_one k-msg-position="bottom" k-msg-css="{top:20,left:20,width:100}" />成人
+            <input type="checkbox" name="e1" at_least_one k-msg-position="bottom" k-msg-css="{top:20,left:20,width:100}"/>学生
         </div>
+        <div class="example" style="position:relative;">
+            <h3>自定义偏移量 百分比</h3>
+            <input type="checkbox" name="e2" at_least_one k-msg-position="bottom" k-msg-css="{top:'10%',left:'10%',width:100}" />审核
+            <input type="checkbox" name="e2" at_least_one k-msg-position="bottom" k-msg-css="{top:'10%',left:'10%',width:100}"/>已付款
+        </div>
+        <!--
         <div class="example">
             <div style="position:relative;">
                 <div style="position:absolute;width:300px;height:100px;border:1px solid black;left:300px;top:50px;">
@@ -61,14 +69,15 @@
                 </div>
             </div>
         </div>
+        -->
 
         <div class="example">
-            <h3>验证 Email</h3>
-            <input type="email" name="Email" required class="k-textbox" />
+            <h3>验证Email</h3>
+            <input type="email" name="Email" required email class="k-textbox" />
         </div>
         <div class="example">
             <h3>验证 电话号码</h3>
-            <input type="text"  name="tel" required pattern="\d{10}" />
+            <input type="text"  name="tel" required pattern="\d{13}" />
         </div>
         <div class="example">
             <h3>验证 数字范围</h3>
@@ -98,9 +107,14 @@
                     url: "{0} is not valid URL",
                     date: "{0} is not valid date",
                     custom1 : "自定义1,必须为 1.3 - 1.5",
-                    custom2 : "自定义2,必须为 2.4 - 6.8",
-                    at_least_one:"最少有一个选择",
-                    range : "最小{0} 最大 {1}"
+                    at_least_one: function(input,validator){
+                        console.log(validator);
+                        return "至少选择一个";
+                    },
+                    range : function(input){
+                        var j = eval("(" + $(this).attr("range") + ")");
+                        return "最小"  + j.min + "  最大 " + j.max;
+                    }
                 },
                 rules : {
                     range:function(input){
@@ -113,24 +127,21 @@
 
                     },
                     at_least_one:function(input){
-                        $("input[name='" + input.name + "']").each(function(){
+                        console.log(input);
+                        var flag = false;
+                        $("input[name=" + $(input).attr("name") + "]").each(function(){
+                            console.log($(this).prop("checked"));
                             if($(this).prop("checked")){
-                                return true;
+                                flag = true;
                             }
                         });
-                        return false;
+                        console.log("at_least_one=" + flag);
+                        return flag ;
 
                     },
                     custom1:function(input){
                         var v = parseFloat(input.val());
                         if(v >= 1.3 && v <= 1.5 ){
-                            return true;
-                        }
-                        return false;
-                    },
-                    custom2:function(input){
-                        var v = parseFloat(input.val());
-                        if(v >= 2.4 && v <= 6.8 ){
                             return true;
                         }
                         return false;

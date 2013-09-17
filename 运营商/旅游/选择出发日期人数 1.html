@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta content="text/html" charset="utf-8">
+    <link rel="stylesheet" href="../../static/css/common.css">
+    <link rel="stylesheet" href="../../static/css/b2b.css">
+    <link rel="stylesheet" href="../../static/css/kendo.common.css">
+    <link rel="stylesheet" href="../../static/css/kendo.gray.css">
+    <link href="../../static/css/kendo.reset.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../static/css/hotel.css">
+    <link rel="stylesheet" href="../../static/css/hotel_order_create.css">
+    <style type="text/css">
+        b.important{line-height:22px;padding-right:10px;}
+        #calendarContainer{background:#D8F0FF;padding:30px 20px;box-shadow:3px 3px 3px #1F6491}
+        #calendar{width:640px;border:1px solid #9AC8E7;margin-left:118px}
+        #calendar .k-header{display:none}
+        #calendar thead{display:none}
+        #calendar td{height:70px;height:70px;border:1px solid #ccc}
+        .calendar_date{position:absolute;top:3px;left:3px}
+        .canlendar_jqjr{position:absolute;top:3px;left:25px}
+        #calendarOperationPanel{width:83px;height:350px;border:1px solid #AFD2E9;background:#EBF7FF;float:left}
+        #calendarMonthUp{background:url('../../static/images/calendarButton.gif') no-repeat 0 -50px;width:50px;height:41px;}
+        #calendarMonthDown{background:url('../../static/images/calendarButton.gif') no-repeat 0 -150px;width:50px;height:41px;}
+        #calendar th{text-align:center}
+        .holiday{width:17px;height:17px;display:inline-block;background:url('../../static/images/holiday.gif') no-repeat}
+        b.holiday{position:absolute;top:3px;right:3px}
+    </style>
+</head>
+<body>
+<div id="container" style="margin-top:0">
+    <div id="mainContent">
+        <div class="actions block">
+            <div class="col col-l sep-r">
+                <button class="btns btn-return">返回</button>
+            </div>
+            <div class="col col-l">
+                <div class="fixedMenu">
+                    <a href="#" class="current">预订报名</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="calendarContainer">
+            <div id="calendarOperationPanel">
+                <div id="calendarMonthUp"></div>
+                <div id="calendarDateInfo"></div>
+                <div id="calendarMonthDown"></div>
+            </div>
+            <div id="calendar"></div>
+        </div>
+    </div>
+</div>
+
+<script id="calendarTemplate" type="text/x-kendo-template">
+    <div style="position:relative">
+        <span class="canlendar_jqjr">#= getjqjr(data.date.getFullYear(),data.date.getMonth()+1,data.date.getDate()) #</span>
+        <span class="calendar_date">#= data.value #</span>
+        # if($.inArray(+data.date, data.dates) != -1){ #
+            <b class="holiday"></b>
+        #}#
+    </div>
+</script>
+
+<script type="text/javascript" src="../../static/js/ccc0.1/ccc.js"></script>
+<script type="text/javascript" src="../../static/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../static/js/kendo.web.js"></script>
+<script type="text/javascript" src="../../static/js/kendo.culture.zh-CHS.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var today = new Date(),
+                spDate=[
+                    +new Date(2013,9,1),
+                    +new Date(2013,9,2),
+                    +new Date(2013,9,3),
+                    +new Date(2013,9,4),
+                    +new Date(2013,9,5),
+                    +new Date(2013,9,6),
+                    +new Date(2013,9,7)
+                ]
+        calendar=$("#calendar").kendoCalendar({
+            culture:"zh-CHS",
+            dates:spDate,
+            value:today,
+            footer:false,
+            month:{content:$("#calendarTemplate").html()}
+        }).data("kendoCalendar");
+    })
+    function getjqjr(year,month,day)
+    {
+        myCal=new CCC(year,month,day);
+        myLunarCal=myCal.lunar();
+        sTerm=myCal.solarTerm();
+        var tmp="";
+        tmp+=myCal.sFtvl()!=""?myCal.sFtvl()+"<br />":"";
+        tmp+=myCal.jqFtvl()!=""?myCal.jqFtvl()+"<br />":"";
+        tmp+=myLunarCal.lunFtvl()!=""?myLunarCal.lunFtvl()+"<br />":"";
+        return (tmp);
+    }
+</script>
+
+
+
+
+</body>
+</html>

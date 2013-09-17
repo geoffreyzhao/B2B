@@ -10128,7 +10128,6 @@ kendo_module({
             name: "Validator",
             errorTemplate: '<span class="k-widget k-tooltip k-tooltip-validation">' +
                 '<span class="k-icon k-warning"> </span> #=message#</span>',
-            defaultRules : ["required", "pattern", "min", "max", "step","email","url","date"],
             messages: {
                 required: "{0} is required",
                 pattern: "{0} is not valid",
@@ -10141,10 +10140,22 @@ kendo_module({
             },
             rules: {
                 required: function(input) {
-                    var checkbox = input.filter("[type=checkbox]").length && input.attr("checked") !== "checked",
-                        value = input.val();
+                    //var checkbox = input.filter("[type=checkbox]").length && input.attr("checked") !== "checked",
+                    //@todo 修复bug 关于checkbox 验证的问题
+                    var ischeckbox = input.filter("[type=checkbox]").length;
+                    //var checkbox = input.filter("[type=checkbox]").length && input.prop("checked"),
+                    //    value = input.val();
+                    if(hasAttribute(input, "required")){
+                        if(ischeckbox){
+                            return true && input.prop("checked"); 
+                        }else{
+                            return true && input.val();
+                        }
+                    }else{
+                        return true;
+                    }
 
-                    return !(hasAttribute(input, "required") && (value === "" || !value  || checkbox));
+                    //return !(hasAttribute(input, "required") && (value === "" || !value  || checkbox));
                 },
                 pattern: function(input) {
                     if (input.filter("[type=text],[type=email],[type=url],[type=tel],[type=search],[type=password]").filter("[pattern]").length && input.val() !== "") {
@@ -10364,6 +10375,7 @@ kendo_module({
                     inputOffset = input.position();
 
                     var labelSetting = {};
+                    
 
                     if(p == "bottom"){
                         if(that.options.errorMsgWidthEqualInput){
@@ -10371,8 +10383,20 @@ kendo_module({
                         }
 
                         labelSetting.position = "absolute";
-                        labelSetting.top = inputOffset.top + pcssObj.top + input.outerHeight();
-                        labelSetting.left = inputOffset.left + pcssObj.left;
+
+                        var checkPer = /%/;
+
+                        if(checkPer.test(pcssObj.top)){
+                            labelSetting.top = pcssObj.top;
+                        }else{
+                            labelSetting.top = inputOffset.top + parseInt(pcssObj.top) + input.outerHeight();
+                        }
+
+                        if(checkPer.test(pcssObj.left)){
+                            labelSetting.left = pcssObj.left;
+                        }else{
+                            labelSetting.left = inputOffset.left + parseInt(pcssObj.left);
+                        }
                     }
 
                     if(pcssObj.width){
@@ -10440,7 +10464,7 @@ kendo_module({
                 customMessage = that.options.messages[ruleKey],
                 fieldName = input.attr(NAME);
 
-            customMessage = $.isFunction(customMessage) ? customMessage(input) : customMessage;
+            customMessage = $.isFunction(customMessage) ? customMessage(input,that) : customMessage;
 
             return kendo.format(input.attr(kendo.attr(ruleKey + "-msg")) || input.attr("validationMessage") || input.attr("title") || customMessage || "", fieldName, input.attr(ruleKey));
         },
@@ -10451,12 +10475,8 @@ kendo_module({
 
 
             for (rule in rules) {
-                /* @todo fix bug 定义多个规则时始终就一个生效的问题 */ 
-                if($.inArray(rule, this.options.defaultRules) >= 0){
-                    if (!rules[rule](input)) {
-                        return { valid: false, key: rule };
-                    }
-                }else if($(input).attr(rule) != undefined ){
+                /* @todo fix bug 定义过的规则才进行验证 */ 
+                if(hasAttribute(input, rule)){
                     if (!rules[rule](input)) {
                         return { valid: false, key: rule };
                     }
