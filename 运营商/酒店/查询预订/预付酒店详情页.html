@@ -171,6 +171,18 @@
                     <label><b>入住:&nbsp;</b><span>2013-07-01</span></label>
                     <label><b>退房:&nbsp;</b><span>2013-07-01</span></label>
                     <em>共<strong>1</strong>晚</em>
+                    <label style="margin-left:20px;"> 间数 <select style="width:60px;" size="10" name="room_no" data-role="dropdownlist">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                        </select>
+                    </label>
                     <a class="button_text_blue" id="change_date" >修改日期</a>
                 </div>
 
@@ -585,6 +597,8 @@
 
     <script type="application/javascript">
         $(function () {
+
+            kendo.init('body');
             $("#change_date").click(function () {
                 if(!$("#window").data("kendoWindow"))
                 {
@@ -621,6 +635,7 @@
                 }
             });
             $("#checkout_date").datepicker({
+                css:{"z-index":20000},
                 numberOfMonths:[1, 2],
                 minDate:new Date(),
                 showButtonPanel:true
