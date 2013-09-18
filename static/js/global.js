@@ -884,16 +884,16 @@ var checkGroup = function(settings){
 
 /*弹出提示框*/
 $.prompt=function(options){
-    var defaults= {autoClose:true,delay:3000,width:400,height:30,bgColor:"#000",bgOpacity:0.1,content:"",offsetX:0,offsetY:0,closeSpeed:500,openSpeed:500,effect:"fade",openEvent:$.noop,closeEvent:$.noop,opacity:1};
+    var defaults= {autoClose:true,delay:3000,width:400,height:30,zIndex:1000,bgColor:"#000",bgOpacity:0.1,content:"",offsetX:0,offsetY:0,closeSpeed:500,openSpeed:500,effect:"fade",openEvent:$.noop,closeEvent:$.noop,opacity:1};
     var opts = $.extend({},defaults,options);
     var pt=$("#promptWindow");
     function init(){
         if(!pt.length)
         {
             $("body").append("<div id='promptWindow'><div id='promptWindow_bg'></div><div id='promptWindow_content'></div></div>");
-            pt=$("#promptWindow");
-            pt.css({width:opts.width+"px",/*height:opts.height+"px",*/display:"none",position:"absolute"});
-            $("#promptWindow_bg").css({background:opts.bgColor,opacity:opts.bgOpacity,width:"100%",height:"100%",zIndex:1000,filter:"alpha(opacity="+opts.opacity*10+")"});
+            pt=$("#promptWindow").css({zIndex:opts.zIndex});
+            pt.css({/*width:opts.width+"px",height:opts.height+"px",*/display:"none",position:"absolute"});
+            $("#promptWindow_bg").css({background:opts.bgColor,opacity:opts.bgOpacity,width:"100%",height:"100%",filter:"alpha(opacity="+opts.opacity*10+")"});
         }
 
         //$("#promptWindow_content").html(opts.content).css({/*width:"100%",height:"100%",*/position:"absolute",top:0,left:0,zIndex:1001});
