@@ -8,8 +8,7 @@
     <link href="../../static/css/kendo.common.css" rel="stylesheet" type="text/css" />
     <link href="../../static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
     <link href="../../static/css/b2b.css" rel="stylesheet" type="text/css" />
-<link href="/static/css/kendo.reset.css" rel="stylesheet" />
-    <link href="../../static/css/jiudianweihuzs.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
     <link href="../../static/css/xieyizhengche.css" rel="stylesheet" type="text/css"/>
     <script src="../../static/js/jquery.min.js" type="text/javascript"></script>
     <script src="../../static/js/kendo.web.js" type="text/javascript"></script>
@@ -20,10 +19,12 @@
     <script type="text/javascript" src="../../static/js/global.js"></script>
     <script type="text/javascript">
 $(function(){
-    new Collpase({
-        limitHeight:85,
-        container:'.xyzc_div' 
+    var c = new Collpase({
+        limitHeight:160,
+        container:'.unfold_all' 
     }).init();
+	
+	c.resetHeight();
 }) 
     </script>
 
@@ -71,7 +72,7 @@ $(function(){
         <div class="clear"></div>
         <div id="sub_menu_bar"></div>
         <div id="mainContent">
-            <!-- start zhuzhijiagou -->
+          
         
             <div class="topFixedToolsBar">
                 <div style="float:left;border-right:1px solid #ffffff">
@@ -94,109 +95,206 @@ $(function(){
                     </a>
                 </div>
             </div>
-
-            <div class="zhuzhijiagou">
-                <div class="xyzc_div" style="padding-left:10px;">
-                    <table cellspacing="0" cellpadding="0" class="xyzc_tab1 change">
-                        <tbody style="margin-right:10px;">
-                           <tr>
-                                <td width="55px">支付类型</td>
-                                <td width="140px"> 
-                                    <select>
-                                         <option>不限</option>
-                                         <option>预付</option>
-                                         <option>现付</option>
-                                    </select>
-                                </td>
-                                <td width="30px">城市</td>
-                                <td width="125px"> <input type="text" style="width:85%;"/> </td>
-                                <td width="55px">酒店名称</td>
-                                <td width="205px"> <input type="text" style="width:91%;"/> </td>
-                                <td width="55px">订单号</td>
-                                <td> <input type="text" style="width:186px;"/> </td>
-                                <td rowspan="4"><a href="#" class="xyzc_cx_a" style="margin-left:80px;">查询</a></td>
-                            </tr> 
-                            <tr>
-                                <td>预定日期</td>
-                                <td colspan="3"> 
-                                    <input type="text" class="change_input_1 datePicker" value="2013-07-05" /> 
-                                    <span class="cjrq_span">-</span>  
-                                    <input type="text" class="change_input_2 datePicker" value="2013-07-05" />
-                                </td>
-                                <td>入住日期</td>
-                                <td>
-                                    <input type="text" class="change_input datePicker" value="2013-07-05"/> 
-                                    <span class="cjrq_span">-</span>  
-                                    <input type="text" class="change_input datePicker" value="2013-07-05"/>
-                                </td>
-                                <td>离店日期</td>
-                                <td>
-                                    <input type="text" class="change_input datePicker" value="2013-07-05"/> 
-                                    <span class="cjrq_span">-</span>  
-                                    <input type="text" class="change_input datePicker" value="2013-07-05"/>
-                                </td>
-                            </tr> 
-                            <tr>
-                                <td>订单来源</td>
-                                <td colspan="3">
-                                     <select style="width:100px; margin-right:7px;">
-                                          <option>全部</option>
-                                          <option>天地行</option>
-                                          <option>真旅网</option>
-                                          <option>接口-去哪儿</option>
-                                          <option>接口-携程</option>
-                                          <option>接口-艺龙</option>
-                                          <option>线下订单</option>
-                                     </select>
-                                     <em>客户名称</em>
-                                     <input type="text" style="width:90px;" /> 
-                                     <button class="btns btn-search ac-search-user" role="window_trigger">查询</button>
-                                     
-                                </td>
-                                <td>结算方式</td>
-                                <td>
-                                     <select style="width:95%;">
-                                          <option>不限</option>
-                                          <option>现结</option>
-                                          <option>账户余额</option>
-                                          <option>信用账户</option>
-                                     </select>
-                                </td>
-                                <td>建单员</td>
-                                <td>
-                                     <select style="width:71px; margin-right:10px;">
-                                          <option>不限</option>
-                                          <option>LIUWEI</option>
-                                          <option>MAOMAO</option>
-                                          <option>WANGMAOMAO</option>
-                                     </select>
-                                     <em>跟单员</em>
-                                     <select style="width:71px;">
-                                          <option>不限</option>
-                                          <option>LIUWEI</option>
-                                          <option>MAOMAO</option>
-                                          <option>WANGMAOMAO</option>
-                                     </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>订单状态</td>
-                                <td class="bsp" colspan="7"> 
-                                    <em class="buxian">不限</em>
-                                    <label><input type="checkbox" checked="" /><span>待支付</span></label> 
-                                    <label><input type="checkbox" checked="" /><span>已支付</span></label> 
-                                    <label><input type="checkbox" checked="" /><span>待确认</span></label>
-                                    <label><input type="checkbox" checked="" /><span>已确认</span></label>
-                                    <label><input type="checkbox" checked="" /><span>未完成</span></label>
-                                    <label><input type="checkbox" checked="" /><span>处理中</span></label>
-                                    <label><input type="checkbox" checked="" /><span>已完成</span></label>
-                                    <label><input type="checkbox" checked="" /><span>已取消</span></label>
-                                </td>                     
-                            </tr> 
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <div class="unfold_all clearfix"> <!--unfold start-->
+                    <div class="pay_div">
+                        <table cellspacing="0" cellpadding="0" class="xyzc_tab1 change">
+                            <tbody style="margin-right:10px;">
+                               <tr>
+                                    <td width="55px">支付类型</td>
+                                    <td width="140px"> 
+                                        <select>
+                                             <option>不限</option>
+                                             <option>预付</option>
+                                             <option>现付</option>
+                                        </select>
+                                    </td>
+                                    <td width="30px">城市</td>
+                                    <td width="125px"> <input type="text" style="width:85%;"/> </td>
+                                    <td width="55px">酒店名称</td>
+                                    <td width="205px"> <input type="text" style="width:91%;"/> </td>
+                                    <td width="55px">订单号</td>
+                                    <td> <input type="text" style="width:186px;"/> </td>
+                                    <td rowspan="4"><a href="#" class="xyzc_cx_a" style="margin-left:80px;">查询</a></td>
+                                </tr> 
+                                <tr>
+                                    <td>预定日期</td>
+                                    <td colspan="3"> 
+                                        <input type="text" class="change_input_1 datePicker" value="2013-07-05" /> 
+                                        <span class="cjrq_span">-</span>  
+                                        <input type="text" class="change_input_2 datePicker" value="2013-07-05" />
+                                    </td>
+                                    <td>入住日期</td>
+                                    <td>
+                                        <input type="text" class="change_input datePicker" value="2013-07-05"/> 
+                                        <span class="cjrq_span">-</span>  
+                                        <input type="text" class="change_input datePicker" value="2013-07-05"/>
+                                    </td>
+                                    <td>离店日期</td>
+                                    <td>
+                                        <input type="text" class="change_input datePicker" value="2013-07-05"/> 
+                                        <span class="cjrq_span">-</span>  
+                                        <input type="text" class="change_input datePicker" value="2013-07-05"/>
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td>客户名称</td>
+                                    <td>
+                                         <input type="text" style="width:90px;" /> 
+                                         <button class="btns btn-search ac-search-user" role="window_trigger">查询</button> 
+                                                                             
+                                    </td>
+                                    <td colspan="2">
+                                         <em>建单员</em>
+                                         <select style="width:105px; margin-right:10px;">
+                                              <option>不限</option>
+                                              <option>LIUWEI</option>
+                                              <option>MAOMAO</option>
+                                              <option>WANGMAOMAO</option>
+                                         </select>
+                                    </td>
+                                    <td>受理员</td>
+                                    <td>
+                                         <select style="width:92px;">
+                                              <option>不限</option>
+                                              <option>LIUWEI</option>
+                                              <option>MAOMAO</option>
+                                              <option>WANGMAOMAO</option>
+                                         </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <ul class="check_all clearfix">
+                        <li>
+                            <div class="title_bg">
+                                  <div class="checkbox_title">
+                                     <b>支付类型</b>
+                                      <label> <input type="checkbox"/> 全选</label>
+                                   </div>
+                            </div>
+                            <div class="checkbox_div">
+                                  <div>
+                                       <label><input type="checkbox"/>预付</label>
+                                  </div>
+                                  <div>
+                                       <label><input type="checkbox"/>现付</label>
+                                  </div> 
+                            </div> 
+                        </li>
+                        <li>
+                            <div class="title_bg">
+                                  <div class="checkbox_title">
+                                     <b>酒店地区</b>
+                                     <label> <input type="checkbox"/> 全选</label>
+                                  </div>
+                            </div>
+                            <div class="checkbox_div">
+                                  <div>
+                                       <label><input type="checkbox"/>中国酒店</label>
+                                  </div>
+                                  <div>
+                                       <label><input type="checkbox"/>港澳酒店</label>
+                                  </div>
+                           </div>
+                        </li>
+                        <li>
+                            <div class="title_bg">
+                                    <div class="checkbox_title">
+                                        <b>订单类型</b>
+                                        <label> <input type="checkbox"/> 全选</label> 
+                                    </div>
+                            </div>
+                            <div class="checkbox_div">
+                                  <div>
+                                       <label><input type="checkbox"/>预订单</label>
+                                  </div>
+                                  <div>
+                                       <label><input type="checkbox"/>变更单</label>
+                                  </div>
+                                  <div>
+                                       <label><input type="checkbox"/>退订单</label>
+                                  </div>
+                            </div>
+                        </li>
+                        <li style="width:160px;">
+                            <div class="title_bg">
+                                    <div class="checkbox_title">
+                                        <b>订单来源</b>
+                                        <label> <input type="checkbox"/> 全选</label>
+                                    </div>
+                            </div>
+                            <div class="checkbox_div">
+                                  <div>
+                                       <label><input type="checkbox"/>天地行</label>
+                                       <label><input type="checkbox"/>携程</label>
+                                  </div>
+                                  <div>
+                                       <label><input type="checkbox"/>真旅网</label>
+                                       <label><input type="checkbox"/>同程</label>
+                                  </div>
+                                  <div>
+                                       <label><input type="checkbox"/>去哪儿</label>
+                                       <label><input type="checkbox"/>艺龙</label>
+                                  </div>
+                           </div>
+                        </li>
+                        <li style="width:250px;">
+                            <div class="title_bg">
+                                    <div class="checkbox_title">
+                                        <b>订单状态</b>
+                                        <label> <input type="checkbox"/> 全选</label>
+                                    </div>
+                            </div>
+                            <div class="checkbox_div">
+                                  <div>
+                                       <label><input type="checkbox"/>未支付</label>
+                                       <label><input type="checkbox"/>未审核</label>
+                                       <label><input type="checkbox"/>退订中</label>
+                                  </div>
+                                  <div>
+                                       <label><input type="checkbox"/>待支付</label>
+                                       <label><input type="checkbox"/>审核中</label>
+                                       <label><input type="checkbox"/>已退订</label>
+                                  </div>
+                                  <div>
+                                       <label><input type="checkbox"/>已支付</label>
+                                       <label><input type="checkbox"/>已完成</label>
+                                       <label><input type="checkbox"/>变更中</label>
+                                  </div>
+                                  <div>
+                                       <label><input type="checkbox"/>待确认</label>
+                                       <label><input type="checkbox"/>已取消</label>
+                                       <label><input type="checkbox"/>已变更</label>
+                                  </div>
+                                  <div>
+                                       <label><input type="checkbox"/>已确认</label>
+                                  </div>
+                           </div>
+                        </li>
+                        <li style="width:177px;">
+                            <div class="title_bg">
+                                    <div class="checkbox_title last_bor">
+                                        <b>结算方式</b>
+                                        <label> <input type="checkbox"/> 全选</label>
+                                    </div>
+                             </div>
+                            <div class="checkbox_div last_bor">
+                                  <div>
+                                       <label><input type="checkbox"/>现结</label>
+                                  </div>
+                                  <div>
+                                       <label><input type="checkbox"/>账户余额</label>
+                                  </div>
+                                  <div>
+                                       <label><input type="checkbox"/>信用账户</label>
+                                  </div>
+                           </div>
+                        </li>
+                    </ul>
+                    
+            </div>  <!--unfold end-->
 
             <div class="scroll">
               <table class="tgrid tab_height" style="width:120%;">
@@ -204,6 +302,7 @@ $(function(){
                       <tr>
                           <th>支付类型</th>
                           <th>订单号</th>
+                          <th>订单类型</th>
                           <th>订单来源</th>
                           <th>客户名称</th>
                           <th>结算方式</th>
@@ -212,16 +311,18 @@ $(function(){
                           <th>订单金额</th>
                           <th>预定日期</th>
                           <th>支付状态</th>
-                          <th>确认状态</th>
-                          <th>完成状态</th>
+                          <th>订单状态</th>
+                          <th>审核状态</th>
                           <th>建单员</th>
-                          <th>跟单员</th>
+                          <th>受理员</th>
+                          <th>操作</th>
                       </tr>
                   </thead>
                   <tbody>
                       <tr>
                           <td>预付</td>
                           <td>12345678</td>
+                          <td>预订单</td>
                           <td>天地行</td>
                           <td>青空旅行社</td>
                           <td>现结</td>
@@ -231,13 +332,21 @@ $(function(){
                           <td>2013/7/11</td>
                           <td>已支付</td>
                           <td>待确认</td>
-                          <td>未审核</td>
+                          <td>待审核</td>
                           <td>刘伟</td>
-                          <td>liuWei</td>
+                          <td>-</td>
+                          <td>
+                              <a href="javascript:;" class="button_secondary adaptiveButton small">
+                                    <span class="left"></span>
+                                    <span class="center">受理</span>
+                                    <span class="right"></span>
+                              </a>
+                          </td>
                       </tr>
                       <tr class="hui_bg">
                           <td>预付</td>
                           <td>12345678</td>
+                          <td>预订单</td>
                           <td>天地行</td>
                           <td>青空旅行社</td>
                           <td>现结</td>
@@ -247,13 +356,26 @@ $(function(){
                           <td>2013/7/11</td>
                           <td>已支付</td>
                           <td>待确认</td>
-                          <td>未审核</td>
+                          <td>审核中</td>
                           <td>刘伟</td>
-                          <td>liuWei</td>
+                          <td>OP</td>
+                          <td>
+                              <a href="javascript:;" class="disabled_btn">
+                                    <span class="left"></span>
+                                    <span class="center">受 理</span>
+                                    <span class="right"></span>
+                              </a>
+                              <a href="javascript:;" class="button_secondary adaptiveButton small">
+                                    <span class="left"></span>
+                                    <span class="center" style="padding:0 5px;">取消受理</span>
+                                    <span class="right"></span>
+                              </a>
+                          </td>
                       </tr>
                       <tr>
                           <td>预付</td>
                           <td>12345678</td>
+                          <td>预订单</td>
                           <td>天地行</td>
                           <td>青空旅行社</td>
                           <td>现结</td>
@@ -265,11 +387,19 @@ $(function(){
                           <td>待确认</td>
                           <td>未审核</td>
                           <td>刘伟</td>
-                          <td>liuWei</td>
+                          <td>OP</td>
+                          <td>
+                              <a href="javascript:;" class="button_secondary adaptiveButton small">
+                                    <span class="left"></span>
+                                    <span class="center">受理</span>
+                                    <span class="right"></span>
+                              </a>
+                          </td>
                       </tr>
                       <tr class="hui_bg">
                           <td>预付</td>
                           <td>12345678</td>
+                          <td>预订单</td>
                           <td>天地行</td>
                           <td>青空旅行社</td>
                           <td>现结</td>
@@ -278,14 +408,27 @@ $(function(){
                           <td>1234.00</td>
                           <td>2013/7/11</td>
                           <td>已支付</td>
-                          <td>待确认</td>
-                          <td>未审核</td>
-                          <td>刘伟</td>
-                          <td>liuWei</td>
+                          <td>-</td>
+                          <td>已取消</td>
+                          <td>OP</td>
+                          <td>OP</td>
+                          <td>
+                              <a href="javascript:;" class="disabled_btn">
+                                    <span class="left"></span>
+                                    <span class="center">受 理</span>
+                                    <span class="right"></span>
+                              </a>
+                              <a href="javascript:;" class="button_secondary adaptiveButton small">
+                                    <span class="left"></span>
+                                    <span class="center" style="padding:0 5px;">取消受理</span>
+                                    <span class="right"></span>
+                              </a>
+                          </td>
                       </tr>
                       <tr>
                           <td>预付</td>
                           <td>12345678</td>
+                          <td>预订单</td>
                           <td>天地行</td>
                           <td>青空旅行社</td>
                           <td>现结</td>
@@ -297,11 +440,19 @@ $(function(){
                           <td>待确认</td>
                           <td>未审核</td>
                           <td>刘伟</td>
-                          <td>liuWei</td>
+                          <td>OP</td>
+                          <td>
+                              <a href="javascript:;" class="disabled_btn">
+                                    <span class="left"></span>
+                                    <span class="center">受 理</span>
+                                    <span class="right"></span>
+                              </a>
+                          </td>
                       </tr>
                       <tr class="hui_bg">
                           <td>预付</td>
                           <td>12345678</td>
+                          <td>预订单</td>
                           <td>天地行</td>
                           <td>青空旅行社</td>
                           <td>现结</td>
@@ -310,14 +461,22 @@ $(function(){
                           <td>1234.00</td>
                           <td>2013/7/11</td>
                           <td>已支付</td>
-                          <td>待确认</td>
-                          <td>未审核</td>
+                          <td>-</td>
+                          <td>-</td>
                           <td>刘伟</td>
-                          <td>liuWei</td>
+                          <td>-</td>
+                          <td>
+                              <a href="javascript:;" class="disabled_btn">
+                                    <span class="left"></span>
+                                    <span class="center">受 理</span>
+                                    <span class="right"></span>
+                              </a>
+                          </td>
                       </tr>
                       <tr>
                           <td>预付</td>
                           <td>12345678</td>
+                          <td>退订单</td>
                           <td>天地行</td>
                           <td>青空旅行社</td>
                           <td>现结</td>
@@ -326,10 +485,17 @@ $(function(){
                           <td>1234.00</td>
                           <td>2013/7/11</td>
                           <td>已支付</td>
-                          <td>待确认</td>
-                          <td>未审核</td>
+                          <td> </td>
+                          <td>已完成</td>
                           <td>刘伟</td>
-                          <td>liuWei</td>
+                          <td>OP</td>
+                          <td>
+                              <a href="javascript:;" class="button_secondary adaptiveButton small">
+                                    <span class="left"></span>
+                                    <span class="center">受理</span>
+                                    <span class="right"></span>
+                              </a>
+                          </td>
                       </tr>
                   </tbody>
               </table>
