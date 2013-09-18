@@ -567,12 +567,14 @@ var CityAutocomplete = function(settings){
 // 加载谈层
 $.loadingbar = function(settings) {
     var defaults = {
+        debug:false,
         container: 'body',
         showClose: true,
-        loadingText: '数据加载中，请稍候…'
+        template:'',
+        templateData:{}
     };
     var xhr;
-    var cfg = $.extend(defaults,settings);
+    var cfg = $.extend({},defaults,settings);
     var postext;
 
 
@@ -584,38 +586,53 @@ $.loadingbar = function(settings) {
     }
 
 
-    /* 统一ajax遮罩*/
-    var loading_tpl = '<div class="lightbox loading_box" style="display:none;position:'+postext+' "><table cellspacing="0">\
-    <tbody><tr><td>\
-        <div class="lightbox-content">\
-        '+"<span class=loading_close>×</span>"+'\
-        <i class=loading_icon>&nbsp;</i><span class=loading_text>'+ cfg.loadingText+ '</span>\
-        </div>\
-        </td></tr>\
-        </tbody></table></div>';
+    var spin_wrap,content_tpl;
 
-    var spin_wrap = $(loading_tpl);
+    if(cfg.template && $(cfg.template).length){
+        if(typeof kendo != 'undefined'){
+            content_tpl = kendo.template($(cfg.template).html())(cfg.templateData);
+        }else{
+            content_tpl = $(cfg.template).html();
+        }
+    }else{
+        content_tpl = '<div class="loading_box"><div class="lightbox-content">\
+                          <span class="loading_close">×</span>\
+                          <i class="loading_icon">&nbsp;</i><span class="loading_text">数据加载中，请稍候…</span>\
+                          </div></div>';
+    }
 
-    $(cfg.container).append(spin_wrap);
+    spin_wrap  = $('<div class="lightbox" style="display:none;position:'+postext+'">\
+        <table cellspacing="0" class="ct"><tbody><tr><td class="ct_content"></td></tr></tbody></table>\
+        </div>');
+
+    spin_wrap.find(".ct_content").html(content_tpl);
+
+    if($(cfg.container).find(".lightbox").length){
+        $(".lightbox",$(cfg.container)).replaceWith(spin_wrap);
+    }else{
+        $(cfg.container).append(spin_wrap);
+    }
 
     $(document).ajaxSend(function(event, jqxhr, settings) {
         var state = false;
         var surl = settings.url;
-        $.each(cfg.urls,function(i,item){
-            if($._type(item) === 'regexp'){
-                if(item.exec(surl)) {
-                    state = true;
-                    return false;
-                } 
-            }else if($._type(item) === 'string'){
-                if(item === surl) {
-                    state = true;
-                    return false;
-                } 
-            }else{
-                throw new Error('[urls] type error,string or regexp required');
-            }
-        });
+        if(typeof cfg.urls != 'undefined'){
+            $.each(cfg.urls,function(i,item){
+                if($._type(item) === 'regexp'){
+                    if(item.exec(surl)) {
+                        state = true;
+                        return false;
+                    } 
+                }else if($._type(item) === 'string'){
+                    if(item === surl) {
+                        state = true;
+                        return false;
+                    } 
+                }else{
+                    throw new Error('[urls] type error,string or regexp required');
+                }
+            });
+        }
 
         if(state){
             spin_wrap.show();
@@ -633,9 +650,12 @@ $.loadingbar = function(settings) {
         }
     });
 
-    $(document).ajaxSuccess(function() {
-        spin_wrap.hide();
+    $(document).ajaxStop(function() {
+        if(!cfg.debug){
+            spin_wrap.hide();
+        }
     });
+
 
 };
 

@@ -14,7 +14,11 @@
     
     <style type="text/css">
       body{ background:#fff;}  
-	  
+      button,input[type=button] {width:100px;height:30px;}
+
+      .common_loading {text-align:center;}
+      .store_loading {margin:0 auto;position:relative;background:url(/static/css/Uniform/loading.gif) no-repeat 5px 50% #fff;width:300px;height:80px;padding:10px;border:2px solid #e1e1e1;}
+      .store_loading .loading_text {line-height:80px;}
     </style>
     
     
@@ -54,20 +58,91 @@
    <br/>
 
   <div class="example">
-      <code>$.prompt()</code>
-      <button id="button1" type="button">点击显示提示</button>
+      <div class="status_button">
+          <button id="pass" type="button">成功提示</button>
+          <button id="warn" type="button">无结果提示</button>
+          <button id="error" type="button">出错提示</button>
+          <button id="unrecognize" type="button">无法识别提示</button>
+      </div>
+  </div>
+  </div>
+
+  <hr/>
+  <div class="example">
+      <h1>Ajax 请求 自动产生遮罩</h1>
+
+      <div class="ajax">
+          <h2>运营商</h2>
+          <div>
+              <input type="button" name="button1" value="发送ajax请求"/>
+          </div>
+          <h2>采购商</h2>
+          <div>
+              <input type="button" name="button2" value="发送ajax请求2"/>
+          </div>
+      </div>
   </div>
    
-  <script type="text/x-kendo-template" id="create_ok_template">
-      <div class="pass">操作完成,已提交成功</div>
-  </script>
-  <script>
-      $("#button1").click(function(){
-          $.prompt({content:"<div style='font-size:32px;'>添加成功！</div>"}).center().open();
-      });
 
+  <script type="text/x-kendo-template" id="message_template">
+      <div class="#=statusClass#">
+          <p>#=message#</p>
+      </div>
+  </script>
+
+  <script type="text/x-kendo-template" id="store_loading_template">
+      <div class="common_loading">
+          <div class="store_loading">
+              <span class="loading_text">数据加载中，请稍候…</span>
+              <span class="loading_close">×</span>
+          </div>
+      </div>
+  </script>
+
+  <script>
       $(function(){
-          $.prompt({content:$("#create_ok_template").html()}).center().open(); 
+
+          $(".status_button button").each(function(){
+              $(this).click(function(){
+                  var id = $(this).prop("id");
+                  var messageTpl = kendo.template($("#message_template").html());
+                  var message = '';
+                  
+                  switch(id){
+                      case 'pass':
+                        message = '操作完成,已提交成功';
+                        break;
+                      case 'warn':
+                        message = '没有查询到符合条件的酒店，请检查查询条件，重新查询！';
+                        break;
+                      case 'error':
+                        message = '出错啦，亲，请重新提交！或者操作失败一类的提示！';
+                        break;
+                      case 'unrecognize':
+                        message = '系统无法识别！';
+                        break;
+                      default:
+                        break;
+                  }
+
+                  var data = {statusClass:id,message:message};
+                  messageTpl(data);
+
+                  $.prompt({content:messageTpl(data)}).center().open(); 
+              });
+          });
+
+          $(".ajax input[name=button1]").click(function(){
+              $.loadingbar({debug:true});
+              $.ajax({ url: encodeURI("城市选择-国内.html")});
+          });
+          $(".ajax input[name=button2]").click(function(){
+              $.loadingbar({debug:true,template:"#store_loading_template",templateData:{message:"努力加载中..."}});
+              $.ajax({ url: encodeURI("城市选择-国内.html")});
+          });
+
+
+          //$.prompt({content:$("#create_failed_template").html()}).center().open(); 
       });
   </script>
 </body>
