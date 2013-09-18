@@ -1099,10 +1099,17 @@
 </script>
 
 <script type="text/html" class="modifyjsPopWin">
-    <div style="padding:0 25px;text-align:center;">
-        <div style="text-align:left;margin-bottom:5px">修改结算提醒：
-            <input class="datePicker" type="text" name="" id="" style="width:120px;vertical-align:middle">
-            <select style="width:130px;height:22px;vertical-align:middle;margin-left:10px"><opiton>选择时间</opiton></select></div>
+    <div id="checkoutContainer" style="padding:0 25px;text-align:center;">
+        <div style="text-align:left;margin-bottom:5px">
+            <label><input type="radio" name="checkoutType" id="" onclick="changeCheckoutTypeContainerInputstate(true);" checked="checked">现结</label>
+            <input class="datePicker" type="text" name="" id="ipt_checkoutDate" style="width:120px;vertical-align:middle">
+            <select style="width:130px;height:22px;vertical-align:middle;margin-left:10px" id="sel_checkoutTimeInterval"><option>选择时间</option></select>
+        </div>
+        <div style="text-align:left;margin-bottom:5px">
+            <label><input type="radio" name="checkoutType" id="" onclick="changeCheckoutTypeContainerInputstate(false);">周结</label>
+            <label style="margin-left:30px"><input type="radio" name="checkoutType" id="" onclick="changeCheckoutTypeContainerInputstate(false);">半月结</label>
+            <label style="margin-left:30px"><input type="radio" name="checkoutType" id="" onclick="changeCheckoutTypeContainerInputstate(false);">月结</label>
+        </div>
     </div>
     <div style="text-align:right;margin:20px 20px 0 0">
         <a href="javascript:;" class="button_important adaptiveButton medium" style="margin:0">
@@ -1239,6 +1246,11 @@
             lzxqPopWin.close();
         })
     })
+
+    function changeCheckoutTypeContainerInputstate(flag)
+    {
+        $("#ipt_checkoutDate,#sel_checkoutTimeInterval").prop("disabled",!flag).css({background:!flag?"#EAEAEA":"#fff",color:"#999"});
+    }
 </script>
 
 <script type="text/x-kendo-template" id="ddlTemplate">

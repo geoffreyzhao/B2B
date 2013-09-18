@@ -11,20 +11,46 @@
     <link rel="stylesheet" href="../../static/css/hotel.css">
     <link rel="stylesheet" href="../../static/css/hotel_order_create.css">
     <style type="text/css">
+        .k-calendar .k-content .k-link{padding:0}
+        .k-other-month{background:#FAFAFA;color:#CBCBCB}
+        .k-state-selected{background:#fff}
+
         b.important{line-height:22px;padding-right:10px;}
-        #calendarContainer{background:#D8F0FF;padding:30px 20px;box-shadow:3px 3px 3px #1F6491}
-        #calendar{width:640px;border:1px solid #9AC8E7;margin-left:118px}
+        .subPanel{padding:10px 20px;margin-bottom:20px}
+        .subPanel li{padding:5px 0}
+        .subPanelTitle{font-weight:bold;font-size:14px}
+
+        #calendarContainer{background:#D8F0FF;padding:30px 20px;box-shadow:3px 3px 3px #1F6491;width:780px;margin:0 auto}
+        #calendar{width:650px;border:1px solid #9AC8E7;margin-left:12px}
         #calendar .k-header{display:none}
         #calendar thead{display:none}
-        #calendar td{height:70px;height:70px;border:1px solid #ccc}
+        #calendar td{height:70px;width:90px;border:1px solid #ccc}
+        #calendar td.hover{background:url('../../static/images/calendarAddButton.gif') center center no-repeat;}
         .calendar_date{position:absolute;top:3px;left:3px}
-        .canlendar_jqjr{position:absolute;top:3px;left:25px}
-        #calendarOperationPanel{width:83px;height:350px;border:1px solid #AFD2E9;background:#EBF7FF;float:left}
-        #calendarMonthUp{background:url('../../static/images/calendarButton.gif') no-repeat 0 -50px;width:50px;height:41px;}
-        #calendarMonthDown{background:url('../../static/images/calendarButton.gif') no-repeat 0 -150px;width:50px;height:41px;}
+        .canlendar_jqjr{position:absolute;top:6px;left:20px;line-height:1.25;width:40px;word-break:break-all;text-align:left;color:#878787}
+        #calendarOperationPanel{width:83px;height:440px;border:1px solid #AFD2E9;background:#EBF7FF;float:left;position:relative}
+        #calendarMonthUp,#calendarMonthUp.disabled{background:url('../../static/images/calendarButton.gif') no-repeat 0 -50px;width:50px;height:41px;position:absolute;top:10px;left:16px;cursor:pointer}
+        #calendarMonthDown,#calendarMonthDown.disabled{background:url('../../static/images/calendarButton.gif') no-repeat 0 -150px;width:50px;height:41px;position:absolute;bottom:10px;left:16px;cursor:pointer}
+        #calendarMonthUp.disabled{background-position:0 0;cursor:default}
+        #calendarMonthDown.disabled{background-position:0 -100px;cursor:default}
+        #calendarDateInfo{position:absolute;top:50%;margin-top:-50px;left:15px;text-align:center}
+        #calendarDateInfo .monthValue{font-size:26px;color:#3399CB;vertical-align:middle}
         #calendar th{text-align:center}
+        #calendar div.sale{background:#FFFF9D}
+        #calendar b.edge{background:url('../../static/images/calendarEdge.gif') no-repeat;width:10px;height:11px;position:absolute;top:0;right:0}
+        .remainNum{position:absolute;right:5px;bottom:30px;color:#339900}
+        .salePrice{position:absolute;right:5px;bottom:10px;color:#FF3300;font-size:16px;font-weight:bold;font-family:arial}
         .holiday{width:17px;height:17px;display:inline-block;background:url('../../static/images/holiday.gif') no-repeat}
-        b.holiday{position:absolute;top:3px;right:3px}
+        b.holiday{position:absolute;top:3px;right:1px}
+
+        .tripDetailContainer{width:570px;height:280px !important;background:#fff}
+        .tripDetailContainerLeft{float:left;width:270px;position:relative;height:100%;border-right:1px solid #DAD9D9}
+        .tripDetailContainerRight{float:left;width:210px;padding:10px 30px}
+        .tripDetailContainerRight li{margin-bottom:8px}
+        .tripDetailItem{height:50px;border-bottom:1px solid #DAD9D9;padding:15px 25px;cursor:pointer}
+        .tripDetailItem.active{background:#FFFFDB;}
+        .tripDetailAddButton{color:#0065CB;background:url('../../static/images/plusButton.gif') left center no-repeat;padding-left:20px;margin:10px 0 0 20px;cursor:pointer}
+        .spliteArrowLeft{background:url('../../static/images/spliteArrowLeft.gif') no-repeat;position:absolute;width:9px;height:17px;right:-1px}
     </style>
 </head>
 <body>
@@ -41,50 +67,273 @@
             </div>
         </div>
 
-        <div id="calendarContainer">
-            <div id="calendarOperationPanel">
-                <div id="calendarMonthUp"></div>
-                <div id="calendarDateInfo"></div>
-                <div id="calendarMonthDown"></div>
+        <div class="panel">
+            <div class="subPanel" style="border-bottom:1px solid #ccc">
+                <span class="subPanelTitle">美国东西海岸14日团队游（3钻）·7成四星酒店</span>
+                <span style="margin-left:30px">行程天数： 8天</span>
+                <span style="float:right;margin:-5px 10px 0 0">
+                    <a href="javascript:;" class="button_important adaptiveButton small">
+                        <span class="left"></span>
+                        <span class="center">保 存</span>
+                        <span class="right"></span>
+                    </a>
+                </span>
             </div>
-            <div id="calendar"></div>
+            <div id="calendarContainer">
+                <div id="calendarOperationPanel">
+                    <div id="calendarMonthUp" class=""></div>
+                    <div id="calendarDateInfo">
+                        <div style="padding:0 5px;border-bottom:1px dashed #ccc;margin-bottom:5px"><b id="calendarMonthValue" class="monthValue">10</b><span style="font-size:16px;line-height:45px;display:inline-block;height:26px">月</span></div>
+                        <div style="font-weight:bold"><span id="calendarYearValue">2013</span>年</div>
+                    </div>
+                    <div id="calendarMonthDown"></div>
+                </div>
+                <div id="calendar"></div>
+            </div>
         </div>
     </div>
 </div>
 
-<script id="calendarTemplate" type="text/x-kendo-template">
-    <div style="position:relative">
-        <span class="canlendar_jqjr">#= getjqjr(data.date.getFullYear(),data.date.getMonth()+1,data.date.getDate()) #</span>
-        <span class="calendar_date">#= data.value #</span>
-        # if($.inArray(+data.date, data.dates) != -1){ #
-            <b class="holiday"></b>
-        #}#
+<div class="tripDetailAddContainer" style="height:400px">
+    <div class="tripDetailContainerLeft" style="width:220px;">
+        <div class="tripDetailItem">
+            <div style="margin-bottom:8px"><b>团号：</b>BM-130908-001</div>
+            <span style="color:#339900;margin:0 20px 0 30px;font-weight:bold">余15位</span><span style="color:#FF3300;font-size:16px;font-weight:bold;font-family:arial">￥15000起</span>
+        </div>
+        <div class="tripDetailAddButton">添加团</div>
+        <div class="spliteArrowLeft"></div>
     </div>
+    <div class="tripDetailContainerRight" style="width:270px;padding:10px 20px">
+        <ul>
+            <li><b>出发日期：</b>2013-10-27</li>
+            <li><b class="important">*</b><b>团号：</b><input value="BM-130908-001" type="text" name="" id="" style="width:100px"></li>
+            <li style="border-bottom:1px solid #ccc;padding-bottom:8px"><b class="important">*</b><b>计划人数：</b><input value="45" type="text" name="" id="" style="width:33px"> 人</li>
+            <li style="border-bottom:1px solid #ccc;padding-bottom:8px">
+                <table>
+                    <tr>
+                        <th>价格</th>
+                        <th>人数</th>
+                    </tr>
+                    <tr>
+                        <td><b class="important">*</b>成人：<span class="important"><input value="15000" type="text" name="" id="" style="width:43px;"></span> 元</td>
+                        <td><input value="30" type="text" name="" id="" style="width:34px"></td>
+                    </tr>
+                    <tr>
+                        <td><b class="important">*</b>儿童：<span class="important"><input value="15000" type="text" name="" id="" style="width:43px;"></span> 元</td>
+                        <td><input value="20" type="text" name="" id="" style="width:34px;"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b class="important">*</b>单房差：
+                            <select name="" id="" style="width: 75px">
+                                <option value="">三星</option>
+                            </select>
+                        </td>
+                        <td>价格： <input value="20" type="text" name="" id=""  style="width:50px;"></td>
+                    </tr>
+                </table>
+            </li>
+            <li>
+                <b>当前是否接受报名：</b><label><input type="radio" name="" id="">是</label><label style="margin-left:20px"><input type="radio" name="" id="">否</label>
+            </li>
+            <li>
+                <b>报名截止日期：</b><input type="text" name="" id="" class="datePicker" style="width:100px">
+            </li>
+            <li>
+                <a href="javascript:;" class="button_important adaptiveButton medium">
+                    <span class="left"></span>
+                    <span class="center" style="padding:0 35px">保存</span>
+                    <span class="right"></span>
+                </a>
+
+                <a href="javascript:;" class="button_unimportant adaptiveButton medium">
+                    <span class="left"></span>
+                    <span class="center" style="padding:0 35px">取消</span>
+                    <span class="right"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="tripDetailContainer">
+    <div class="tripDetailContainerLeft">
+        <div class="tripDetailItem">
+            <div style="margin-bottom:8px"><b>团号：</b>BM-130908-001</div>
+            <span style="color:#339900;margin:0 20px 0 30px;font-weight:bold">余15位</span><span style="color:#FF3300;font-size:16px;font-weight:bold;font-family:arial">￥15000起</span>
+        </div>
+        <div class="tripDetailItem">
+            <div style="margin-bottom:8px"><b>团号：</b>BM-130908-001</div>
+            <span style="color:#339900;margin:0 20px 0 30px;font-weight:bold">余15位</span><span style="color:#FF3300;font-size:16px;font-weight:bold;font-family:arial">￥15000起</span>
+        </div>
+        <div class="spliteArrowLeft"></div>
+    </div>
+    <div class="tripDetailContainerRight">
+        <ul>
+            <li><b>出发日期：</b>2013-10-27</li>
+            <li><b>团号：</b>BM-130908-001</li>
+            <li style="border-bottom:1px solid #ccc;padding-bottom:8px"><b>计划人数：</b>45人</li>
+            <li>
+                <table>
+                    <tr>
+                        <th>价格</th>
+                        <th>人数</th>
+                    </tr>
+                    <tr>
+                        <td>成人：<span class="important">15000</span> 元</td>
+                        <td>
+                            <select name="" id="" style="width:50px">
+                                <option value value="">1</option>
+                                <option value value="">2</option>
+                                <option value value="">3</option>
+                                <option value value="">4</option>
+                                <option value value="">5</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>儿童：<span class="important">15000</span> 元</td>
+                        <td>
+                            <select name="" id="" style="width:50px">
+                                <option value value="">1</option>
+                                <option value value="">2</option>
+                                <option value value="">3</option>
+                                <option value value="">4</option>
+                                <option value value="">5</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </li>
+            <li>
+                <a href="javascript:;" class="button_important adaptiveButton small">
+                    <span class="left"></span>
+                    <span class="center">立即报名</span>
+                    <span class="right"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script id="calendarTemplate" type="text/x-kendo-template">
+    # if($.inArray(+data.date, data.dates) != -1){ #
+        # if(!eve[$.dateToString(data.date)]){ #
+            <div style="position:relative;height:70px">
+                <span class="canlendar_jqjr">#= getjqjr(data.date.getFullYear(),data.date.getMonth()+1,data.date.getDate()) #</span>
+                <span class="calendar_date">#= data.value #</span>
+                <b class="holiday"></b>
+        # }else{ #
+            <div style="position:relative;height:70px" class="sale">
+                <span class="calendar_date">#= data.value #</span>
+                <span class="remainNum">余#= eve[$.dateToString(date)][0] #位</span>
+                <span class="salePrice">￥#= eve[$.dateToString(date)][1] #<span>起</span></span>
+                <b class="edge"></b>
+        # } #
+    #}else{#
+            <div style="position:relative;height:70px">
+                <span class="canlendar_jqjr">#= getjqjr(data.date.getFullYear(),data.date.getMonth()+1,data.date.getDate()) #</span>
+                <span class="calendar_date">#= data.value #</span>
+    #}#
+            </div>
 </script>
 
 <script type="text/javascript" src="../../static/js/ccc0.1/ccc.js"></script>
 <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
 <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
 <script type="text/javascript" src="../../static/js/kendo.culture.zh-CHS.min.js"></script>
+<script type="text/javascript" src="../../static/js/DateControl.js"></script>
 <script type="text/javascript">
+    eve={"2013/09/12":[15,1500],"2013/10/1":"","2013/10/22":[22,45678]};
+
+    $.dateToString = function (s, sep) {
+        var sep = sep || '/'
+        return [s.getFullYear(), (s.getMonth() < 9 ? "0" : "") + (s.getMonth() + 1), (s.getDate() < 10 ? "0" : "") + s.getDate()].join(sep);
+    };
+
     $(function(){
         var today = new Date(),
-                spDate=[
-                    +new Date(2013,9,1),
-                    +new Date(2013,9,2),
-                    +new Date(2013,9,3),
-                    +new Date(2013,9,4),
-                    +new Date(2013,9,5),
-                    +new Date(2013,9,6),
-                    +new Date(2013,9,7)
-                ]
-        calendar=$("#calendar").kendoCalendar({
+            toDate=today;
+        var spDate=(function(){
+            var arr=[];
+            for(name in eve){
+                arr.push(+new Date(name));
+            }
+            return arr;
+        })();
+        var calendar=$("#calendar").kendoCalendar({
             culture:"zh-CHS",
             dates:spDate,
             value:today,
             footer:false,
-            month:{content:$("#calendarTemplate").html()}
+            month:{content:$("#calendarTemplate").html()},
+            change:function(e){
+                toDate=new Date(e.sender.current());
+                changeCalendarDateInfo(toDate);
+            }
         }).data("kendoCalendar");
+
+        $("#calendarMonthDown").click(function(){
+            if(!$(this).hasClass("disabled"))
+            {
+                toDate=new Date(toDate.DateAdd("m",+1))
+                calendar.navigate(toDate,"month");
+                changeCalendarDateInfo(toDate);
+            }
+        })
+        $("#calendarMonthUp").click(function(){
+            if(!$(this).hasClass("disabled"))
+            {
+                toDate=new Date(toDate.DateAdd("m",-1))
+                calendar.navigate(toDate,"month");
+                changeCalendarDateInfo(toDate);
+            }
+        })
+
+        $("#calendar").delegate("td","mouseenter mouseleave",function(e){
+            if(e.type==="mouseenter")
+            {
+                if(!$("div.sale",this).length)
+                    $(this).addClass("hover");
+            }
+            else
+            {
+                $(this).removeClass("hover");
+            }
+        });
+
+        $("#calendar").delegate("td.hover","click",function(){w1.center().open()})
+
+        function changeCalendarDateInfo(toDate)
+        {
+            $("#calendarYearValue").text(toDate.getFullYear());
+            $("#calendarMonthValue").text(toDate.getMonth()+1);
+        }
+
+        changeCalendarDateInfo(today);
+
+        $("body").delegate(".tripDetailItem","click",function(){
+            $(this).addClass("active").siblings().removeClass("active");
+            $(".spliteArrowLeft").css("top",$(this).position().top+$(this).outerHeight()/2);
+        })
+
+        $("#calendar").delegate("td:not('.hover')","click",function(){w.center().open();})
+
+        $(".tripDetailItem:first").trigger("click");
+
+        var w=$(".tripDetailContainer").kendoWindow({
+            visible:false,
+            modal:true,
+            animation:false,
+            title:"2013/09/12"
+        }).data("kendoWindow");
+        var w1=$(".tripDetailAddContainer").kendoWindow({
+            visible:false,
+            modal:true,
+            animation:false,
+            title:"2013/09/12"
+        }).data("kendoWindow");
+
     })
     function getjqjr(year,month,day)
     {
