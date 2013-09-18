@@ -76,7 +76,48 @@
 .block-field .cv-table th{
     font-weight:normal;
 }
+.ac-add{
+    margin-right:10px;
+}
+.mm10{
+    margin:0 10px;
+}
+.time30{
+    width:30px;
+    text-align:center;
+}
 </style>
+<script>
+$(function(){
+    $('body').delegate('.ac-add','click',function(){
+        var html = kendo.template($('#ac-add-template').html())({});
+        $(this).closest('td').append(html);
+    });
+    $('body').delegate('.ac-del','click',function(){
+        $(this).closest('div').remove();
+    });
+})
+</script>
+<script type="text/x-kendo-template" id="ac-add-template">
+  <div style="margin-top:5px;">
+    <input maxlength="2" id="" value="8"  class="time30" type="text" name="">
+    <b>:</b>
+    <input maxlength="2" id="" value="00" class="time30" type="text" name="">
+    <span class="mm10">至</span>
+    <input maxlength="2" id="" value="23" class="time30" type="text" name="">
+    <b>:</b>
+    <input maxlength="2" id="" value="00" class="time30" type="text" name="">
+    <span class="mm10">
+        <label><input id="" type="checkbox" name=""> 出票</label>
+        <label><input id="" type="checkbox" name=""> 废票</label>
+        <label><input id="" type="checkbox" name=""> 退票</label>
+    </span>
+    <span class="mm10">
+        <a href="javascript:;" class="ac-del">删除</a>
+    </span>
+</div>
+
+</script>
             <div class="block-field">
                 <table class="cv-table">
                     <colgroup>
@@ -87,40 +128,66 @@
                   <tr>
                       <th>正常上班时间：</th>
                     <td>
-                        <input maxlength="2" id="" value="8" style="width:30px;text-align:center" type="text" name="">
+                        <input maxlength="2" id="" value="8" class="time30" type="text" name="">
                         <b>:</b>
-                        <input maxlength="2" id="" value="00" style="width:30px;text-align:center" type="text" name="">
-                        <span style="margin:0 10px;">至</span>
-                        <input maxlength="2" id="" value="23" style="width:30px;text-align:center" type="text" name="">
+                        <input maxlength="2" id="" value="00" class="time30" type="text" name="">
+                        <span class="mm10">至</span>
+                        <input maxlength="2" id="" value="23" class="time30" type="text" name="">
                         <b>:</b>
-                        <input maxlength="2" id="" value="00" style="width:30px;text-align:center" type="text" name="">
-                        <span>&#12288;周一、二、三、四、五上班时间</span>
+                        <input maxlength="2" id="" value="00" class="time30" type="text" name="">
+
+                        <span class="mm10">
+                            <label><input id="" type="checkbox" name=""> 出票</label>
+                            <label><input id="" type="checkbox" name=""> 废票</label>
+                            <label><input id="" type="checkbox" name=""> 退票</label>
+                        </span>
+                        <span class="mm10">
+                            <a href="javascript:;" class="ac-add">添加</a>
+                        </span>
+                        <span class="mm10">周一、二、三、四、五上班时间</span>
                     </td>
                   </tr>
                     <tr>
                       <th>双休上班时间：</th>
                       <td>
-                        <input maxlength="2" id="" value="8" style="width:30px;text-align:center" type="text" name="">
+                        <input maxlength="2" id="" value="8" class="time30" type="text" name="">
                         <b>:</b>
-                        <input maxlength="2" id="" value="00" style="width:30px;text-align:center" type="text" name="">
-                        <span style="margin:0 10px;">至</span>
-                        <input maxlength="2" id="" value="23" style="width:30px;text-align:center" type="text" name="">
+                        <input maxlength="2" id="" value="00" class="time30" type="text" name="">
+                        <span class="mm10">至</span>
+                        <input maxlength="2" id="" value="23" class="time30" type="text" name="">
                         <b>:</b>
-                        <input maxlength="2" id="" value="00" style="width:30px;text-align:center" type="text" name="">
-                        <span>&#12288;周六、日双休上班时间</span>
+                        <input maxlength="2" id="" value="00" class="time30" type="text" name="">
+
+                        <span class="mm10">
+                            <label><input id="" type="checkbox" name=""> 出票</label>
+                            <label><input id="" type="checkbox" name=""> 废票</label>
+                            <label><input id="" type="checkbox" name=""> 退票</label>
+                        </span>
+                        <span class="mm10">
+                            <a href="javascript:;" class="ac-add">添加</a>
+                        </span>
+                        <span class="mm10">周六、日双休上班时间</span>
                     </td>
                     </tr>
                     <tr>
                     <th>法定假日时间：</th>
                       <td>
-                        <input maxlength="2" id="" value="8" style="width:30px;text-align:center" type="text" name="">
+                        <input maxlength="2" id="" value="8" class="time30" type="text" name="">
                         <b>:</b>
-                        <input maxlength="2" id="" value="00" style="width:30px;text-align:center" type="text" name="">
-                        <span style="margin:0 10px;">至</span>
-                        <input maxlength="2" id="" value="23" style="width:30px;text-align:center" type="text" name="">
+                        <input maxlength="2" id="" value="00" class="time30" type="text" name="">
+                        <span class="mm10">至</span>
+                        <input maxlength="2" id="" value="23" class="time30" type="text" name="">
                         <b>:</b>
-                        <input maxlength="2" id="" value="00" style="width:30px;text-align:center" type="text" name="">
-                        <span>&#12288;国家法定节假日上班时间</span>
+                        <input maxlength="2" id="" value="00" class="time30" type="text" name="">
+                        <span class="mm10">
+                            <label><input id="" type="checkbox" name=""> 出票</label>
+                            <label><input id="" type="checkbox" name=""> 废票</label>
+                            <label><input id="" type="checkbox" name=""> 退票</label>
+                        </span>
+                        <span class="mm10">
+                            <a href="javascript:;" class="ac-add">添加</a>
+                        </span>
+                        <span class="mm10">国家法定节假日上班时间</span>
                     </td>
                     </tr>
                 </table>
