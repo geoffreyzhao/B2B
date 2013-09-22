@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Created with JetBrains WebStorm.
  * User: TRAVELZEN-IT-ZHANGZZ
  * Date: 13-6-25
@@ -20,7 +20,7 @@ $(function(){
         oScript.type = "text/javascript";
         oScript.src="/static/js/jquery-migrate-1.2.1.js";
         oHead.appendChild( oScript);
-        //document.write("<script type=\"text/javascript\" src=\"/static/js/jquery-migrate-1.2.1.js\"></script>")
+        //document.write("<script type=\"text/javascript\" src=\"http://static.travelzensh.com/js/jquery-migrate-1.2.1.js\"></script>")
     }
     /*检查jquery的是否支持浏览器识别*/
 
