@@ -680,7 +680,7 @@
         <div style="padding:5px 10px">
             <span>签约经理：liuwei</span>
             <span style="padding-left:30px">结算提醒：----</span>
-            <span style="margin-left:10px"><a class="button_5 popwin" href="javascript:;" data='{"content":"$(\"#modifySettlementRemindersTemplate\").html()","width":430,"height":200,"title":"修改结算提醒","contentFunction":true}'>修改</a></span>
+            <span style="margin-left:10px"><a class="button_5 popwin" href="javascript:;" data='{"content":"$(\".modifyjsPopWin:first\").html()","width":468,"height":128,"title":"修改结算提醒","contentFunction":true}'>修改</a></span>
         </div>
     </div>
     <div>
@@ -716,8 +716,7 @@
                 <td>供应商名称</td>
                 <td colspan="2">开户名</td>
                 <td colspan="2">开户银行</td>
-                <td colspan="2">账号</td>
-                <td colspan="2">结算周期</td>
+                <td colspan="4">账号</td>
             </tr>
             </thead>
             <tbody>
@@ -725,8 +724,7 @@
                 <td><input type="text" name="" id="" style="width:78px"/></td>
                 <td colspan="2"><input type="text" name="" id="" style="width:180px"/></td>
                 <td colspan="2"><input type="text" name="" id="" style="width:180px"/></td>
-                <td colspan="2"><input type="text" name="" id="" style="width:180px"/></td>
-                <td colspan="2">现结 | 16：00之前 <span style="float:right"><a class="button_5" id="btn_modifyjztx" href="">修改</a></span></td>
+                <td colspan="4"><input type="text" name="" id="" style="width:180px"/></td>
             </tr>
             </tbody>
         </table>
@@ -864,17 +862,30 @@
     </div>
 </div>
 
-<script type="text/html" id="modifySettlementRemindersTemplate">
-    <div style="width:280px;margin:0 auto">
-        修改结算提醒：<br/><br/>
-        <input class="datePicker" type="text" name="" id="" style="width:245px"><br/><br/>
-        <select style="width:257px">
-            <option>选择时间</option>
-        </select>
+<script type="text/html" class="modifyjsPopWin">
+    <div id="checkoutContainer" style="padding:0 25px;text-align:center;">
+        <div style="text-align:left;margin-bottom:5px">
+            <label><input type="radio" name="checkoutType" id="" onclick="changeCheckoutTypeContainerInputstate(true);" checked="checked">现结</label>
+            <input class="datePicker" type="text" name="" id="ipt_checkoutDate" style="width:120px;vertical-align:middle">
+            <select style="width:130px;height:22px;vertical-align:middle;margin-left:10px" id="sel_checkoutTimeInterval"><option>选择时间</option></select>
+        </div>
+        <div style="text-align:left;margin-bottom:5px">
+            <label><input type="radio" name="checkoutType" id="" onclick="changeCheckoutTypeContainerInputstate(false);">周结</label>
+            <label style="margin-left:30px"><input type="radio" name="checkoutType" id="" onclick="changeCheckoutTypeContainerInputstate(false);">半月结</label>
+            <label style="margin-left:30px"><input type="radio" name="checkoutType" id="" onclick="changeCheckoutTypeContainerInputstate(false);">月结</label>
+        </div>
     </div>
-    <div style="text-align:right;margin:35px 20px 0 0">
-        <a href="javascript:;" class="button_1_2">保&nbsp;存</a>
-        <a href="javascript:;" class="button_2_2 close">取&nbsp;消</a>
+    <div style="text-align:right;margin:20px 20px 0 0">
+        <a href="javascript:;" class="button_important adaptiveButton medium" style="margin:0">
+            <span class="left"></span>
+            <span class="center">保 存</span>
+            <span class="right"></span>
+        </a>
+        <a href="javascript:;" class="button_unimportant adaptiveButton medium" style="margin:0">
+            <span class="left"></span>
+            <span class="center">取 消</span>
+            <span class="right"></span>
+        </a>
     </div>
 </script>
 
