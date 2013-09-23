@@ -5,18 +5,24 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <link href="../../static/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="../../static/css/kendo.common.min.css" rel="stylesheet" />
     <link href="../../static/css/kendo.common.css" rel="stylesheet" type="text/css" />
     <link href="../../static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
-    <link href="../../static/css/kendo.reset.css" rel="stylesheet" type="text/css" /> <!--弹窗CSS-->
     <link href="../../static/css/b2b.css" rel="stylesheet" type="text/css" />
-    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
-    <link href="../../static/css/travel.css" rel="stylesheet" type="text/css"/>
-    <script src="../../static/js/jquery.min.js" type="text/javascript"></script>
-    <script src="../../static/js/jquery-migrate-1.2.1.js" type="text/javascript"></script> <!--弹窗JS-->
+    <link href="../../static/css/kendo.reset.css" rel="stylesheet" />
+    <link href="../../static/css/travel.css" rel="stylesheet" type="text/css"/> 
     
-    <script src="../../static/js/kendo.web.js" type="text/javascript"></script>
-    <script type="text/javascript" src="/static/js/scrollFix.js"></script>
-    <script type="text/javascript" src="../../static/js/public.js"></script>
+    <script type="text/javascript" src="../../static/js/vendor/jquery.min.js"></script>
+	<script type="text/javascript" src="../../static/js/plugins/jquery.fixedBar.js"></script>
+    <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../static/js/global.js"></script>
+    <script type="text/javascript" src="../../static/js/finance.js"></script>
+    <!--[if lt IE 8]>
+        <link rel="stylesheet" href="../../static/css/ie.css" />
+        <script type="text/javascript" src="../../static/js/vendor/IE7.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="../../static/js/sync.js"></script>
 
    <!-- <script type="text/javascript" src="../../static/js/global.js"></script>
     <script type="text/javascript">
@@ -27,8 +33,7 @@ $(function(){
     }).init();
 }) 
     </script>-->
-<script src="../../static/js/hotel.js" type="text/javascript"></script> <!--弹窗JS--> 
-<script type="text/javascript" src="/static/js/sync.js"></script>
+
 </head>
 <body>
     <div id="extHeader">
@@ -175,18 +180,18 @@ $(function(){
                   <tbody>
                       <tr>
                           <td>
-                              <a href="javascript:void(0);" class="grey_words popwin" data='{"url":"游客列表-部分-游客信息弹层.html","width":570,"height":490,"title":"游客信息"}'>张大国</a>
+                              <a href="javascript:void(0);" class="grey_words ac-file_content">张大国</a>
                           </td>
                           <td>13800138000</td>
                           <td>护照</td>
                           <td><a href="javascript:void(0);" class="grey_words">无签证</a></td>
-                          <td><a href="javascript:void(0);" class="grey_words popwin" data='{"url":"游客列表-部分-支付信息弹层.html","width":470,"height":465,"title":"支付信息"}'>未付款</a></td>
+                          <td><a href="javascript:void(0);" class="grey_words ac-pay_file">未付款</a></td>
                           <td>正常</td>
-                          <td><a href="javascript:void(0);" class="grey_words popwin" data='{"url":"游客列表-部分-客户信息弹层.html","width":470,"height":170,"title":"客户信息"}'>不夜城旅行社</a></td>
+                          <td><a href="javascript:void(0);" class="grey_words ac-customer-info">不夜城旅行社</a></td>
                           <td>10-27</td>
                           <td>
                              <a href="javascript:void(0);">修改信息</a>
-                             <a href="javascript:void(0);" class="popwin" data='{"url":"游客列表-部分-申请取消报名弹层.html","width":470,"height":480,"title":"申请取消报名"}'>申请取消报名</a>
+                             <a href="javascript:void(0);" class="ac-cancel">申请取消报名</a>
                           </td>
                       </tr>
                       <tr>
@@ -313,7 +318,312 @@ $(function(){
     <!-- end of content -->
     </div>
     
-    <div id="window"></div>
+    <script type="text/x-kendo-template" id="ac-file_content-template">
+	<div class="file_content">    
+			<table class="tourist_info">
+				 <colgroup>
+					  <col width="95px"/>
+					  <col width="180px"/>
+					  <col width="70px"/>
+				 </colgroup>
+				 <tr>
+					 <td><em>中文姓名：</em></td>
+					 <td>中文名</td>
+					 <td><em>拼音：</em></td>
+					 <td>Xiaoming Li</td>
+				 </tr>
+				 <tr>
+					 <td><em>证件类型：</em></td>
+					 <td>护照</td>
+					 <td><em>护照号码：</em></td>
+					 <td>G23364650</td>
+				 </tr>
+				 <tr>
+					 <td><em>护照有效期：</em></td>
+					 <td>06/01/11</td>
+					 <td><em>签发日期：</em></td>
+					 <td>06/01/11</td>
+				 </tr>
+				 <tr>
+					 <td><em>签发地：</em></td>
+					 <td>上海</td>
+					 <td><em>签证国别：</em></td>
+					 <td>美签</td>
+				 </tr>
+				 <tr>
+					 <td><em>有无签证：</em></td>
+					 <td>无签证</td>
+					 <td><em>国籍：</em></td>
+					 <td>中国</td>
+				 </tr>
+				 <tr>
+					 <td><em>出生地：</em></td>
+					 <td>上海</td>
+					 <td><em>出生日期：</em></td>
+					 <td>06/01/11</td>
+				 </tr>
+				 <tr>
+					 <td><em>手机号码：</em></td>
+					 <td>13801876678</td>
+					 <td><em>性别：</em></td>
+					 <td>F</td>
+				 </tr>
+				 <tr>
+					 <td><em>是否购买保险：</em></td>
+					 <td>是</td>
+					 <td><em>保险类型：</em></td>
+					 <td>太平洋保险</td>
+				 </tr>
+				 <tr>
+					 <td style="vertical-align:top;"><em>备注：</em></td>
+					 <td colspan="3">
+						 <textarea> </textarea>
+					 </td>
+				 </tr>
+			</table>
+		   
+			<div class="select_btn">
+			  <a href="javascript:;" class="button_important adaptiveButton medium">
+					<span class="left"></span>
+					<span class="center" style="padding:0 30px;">保 存</span>
+					<span class="right"></span>
+			  </a>
+			  <a href="javascript:;" class="button_unimportant adaptiveButton medium">
+					<span class="left"></span>
+					<span class="center gray_clour" style="padding:0 30px;">取 消</span>
+					<span class="right"></span>
+			  </a> 
+			</div>
+		</div>
+	</script>
+    
+    <script type="text/x-kendo-template" id="ac-pay_file-template">
+	<div class="pay_file">
+			<div class="pay_div">
+				<table class="tgrid pay_info">
+					 <colgroup>
+						  <col width="115px"/>
+						  <col width="115px"/>
+					 </colgroup>
+					 <thead>
+					 <tr>
+						 <th class="line_left">应付金额</th>
+						 <th>已收金额</th>
+						 <th class="line_right">待付金额</th>
+					 </tr>
+					 </thead>
+					 <tbody>
+					 <tr>
+						 <td>¥ 30000</td>
+						 <td><b>¥ 2000</b></td>
+						 <td><b>¥ 28000</b></td>
+					 </tr>
+					 </tbody>
+				</table>
+			</div>
+			<div class="detail">
+				 <h3>费用明细：</h3>
+				 <table>
+					  <colgroup>
+						   <col width="92px"/>
+						   <col width="92px"/>
+						   <col width="92px"/>
+						   <col width="92px"/>
+					  </colgroup>
+					  <thead>
+						   <tr>
+							   <th>产品价格</th>
+							   <th>实际售价</th>
+							   <th>签证费</th>
+							   <th>保险费</th>
+						   </tr>
+					  </thead>
+					  <tbody>
+						   <tr>
+							   <td><input type="text" value="¥ 30000"/></td>
+							   <td><input type="text" value="¥ 28000"/></td>
+							   <td><input type="text" value="¥ 20000"/></td>
+							   <td><input type="text" value="¥ 20000"/></td>
+						   </tr>
+						   
+					  </tbody>
+				 </table>
+			</div>
+			<div class="detail">
+				 <h3>支付明细：</h3>
+				 <table>
+					  <colgroup>
+						   <col width="92px"/>
+						   <col width="92px"/>
+						   <col width="92px"/>
+						   <col width="92px"/>
+					  </colgroup>
+					  <thead>
+						   <tr>
+							   <th>已付款金额</th>
+						   </tr>
+					  </thead>
+					  <tbody>
+						   <tr>
+							   <td><input type="text" value="¥ 250000"/></td>
+						   </tr>
+						   
+					  </tbody>
+				 </table>
+			</div>
+			<div class="state">
+				 <h3>支付状态：</h3>
+				 <select>
+					  <option>未付款</option>
+					  <option selected="">部分付款</option>
+					  <option>已付款</option>
+				 </select>         
+			</div>
+			
+			<div class="select_btn">
+			  <a href="javascript:;" class="button_important adaptiveButton medium">
+					<span class="left"></span>
+					<span class="center" style="padding:0 30px;">保 存</span>
+					<span class="right"></span>
+			  </a>
+			  <a href="javascript:;" class="button_unimportant adaptiveButton medium">
+					<span class="left"></span>
+					<span class="center gray_clour" style="padding:0 30px;">取 消</span>
+					<span class="right"></span>
+			  </a> 
+			</div>
+		</div>
+	</script>
+        
+    <script type="text/x-kendo-template" id="ac-cancel-template">
+	<div class="apply_file">
+		<div class="cancel">
+			 <h3>取消报名游客：</h3>
+			 <table>
+				  <colgroup>
+					   <col width="93px"/>
+					   <col width="93px"/>
+					   <col width="93px"/>
+					   <col width="93px"/>
+				  </colgroup>
+				  <thead>
+					   <tr>
+						   <th>姓名</th>
+						   <th>证件类型</th>
+						   <th>签证状态</th>
+						   <th>支付状态</th>
+					   </tr>
+				  </thead>
+				  <tbody>
+					   <tr>
+						   <td>张大国</td>
+						   <td>护照</td>
+						   <td>无签证</td>
+						   <td>未付款</td>
+					   </tr>
+					   
+				  </tbody>
+			 </table>
+		</div>
+		<div class="cancel">
+			 <h3>取消报名产品：</h3>
+			 <table>
+				  <colgroup>
+					   <col width="97px"/>
+					   <col width="190px"/>
+					   <col width="65px"/>
+					   <col width="63px"/>
+				  </colgroup>
+				  <thead>
+					   <tr>
+						   <th>团号</th>
+						   <th>产品名称</th>
+						   <th>出发日期</th>
+						   <th>行程天数</th>
+					   </tr>
+				  </thead>
+				  <tbody>
+					   <tr>
+						   <td>BM-130908-001</td>
+						   <td>美国东西海岸14日团队游(3钻)...</td>
+						   <td>10-27</td>
+						   <td>5天</td>
+					   </tr>
+					   
+				  </tbody>
+			 </table>
+		</div>
+		<div class="cause">
+			 <h3><em> * </em>取消报名原因：</h3>
+			 <textarea> </textarea>      
+		</div>
+		
+		<div class="select_btn">
+		  <a href="javascript:;" class="button_important adaptiveButton medium">
+				<span class="left"></span>
+				<span class="center">提交申请</span>
+				<span class="right"></span>
+		  </a>
+		  <a href="javascript:;" class="button_unimportant adaptiveButton medium">
+				<span class="left"></span>
+				<span class="center gray_clour" style="padding:0 30px;">取 消</span>
+				<span class="right"></span>
+		  </a> 
+		</div>
+	</div>
+	</script>
+    
+    <script type="text/x-kendo-template" id="ac-customer-info-template">
+	<div class="pay_file">
+			<div class="detail" style="width:425px;">
+				 <table>
+					  <colgroup>
+						   <col width="175px"/>
+						   <col width="75px"/>
+						   <col width="97px"/>
+						   <col width="70px"/>
+					  </colgroup>
+					  <thead>
+						   <tr>
+							   <th>公司名称</th>
+							   <th>联系人</th>
+							   <th>手机号码</th>
+							   <th>结算方式</th>
+						   </tr>
+					  </thead>
+					  <tbody>
+						   <tr>
+							   <td><input type="text" value="不夜城旅行社" style="width:160px;" /></td>
+							   <td><input type="text" value="王飞" style="width:60px;" /></td>
+							   <td><input type="text" value="13601543321" style="width:82px;" /></td>
+							   <td>
+								   <select style="width:60px;">
+									   <option>月结</option>
+								   </select>
+							   </td>
+						   </tr>
+						   
+					  </tbody>
+				 </table>
+			</div>
+				
+			<div class="select_btn">
+			  <a href="javascript:;" class="button_important adaptiveButton medium">
+					<span class="left"></span>
+					<span class="center" style="padding:0 30px;">保 存</span>
+					<span class="right"></span>
+			  </a>
+			  <a href="javascript:;" class="button_unimportant adaptiveButton medium">
+					<span class="left"></span>
+					<span class="center gray_clour" style="padding:0 30px;">取 消</span>
+					<span class="right"></span>
+			  </a> 
+			</div>
+	</div>
+	</script>
+    
+    
+    
     
     <div id="extFooter">
         <div>
@@ -326,6 +636,38 @@ $(function(){
             <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
+    
+    <script type="text/javascript">
+	$(function(){
+		new PopWindow('.ac-customer-info',{
+			template:'#ac-customer-info-template',
+			title:'客户信息',
+			width:'470'
+		}).init();
+		
+		new PopWindow('.ac-cancel',{
+			template:'#ac-cancel-template',
+			title:'申请取消报名',
+			width:'470'
+		}).init();
+	
+		new PopWindow('.ac-file_content', {
+			template:'#ac-file_content-template',
+			title:'游客信息',
+			width:'570'
+		}).init();
+		
+		new PopWindow('.ac-pay_file', {
+			template:'#ac-pay_file-template',
+			title:'支付信息',
+			width:'470'
+		}).init();
+		
+	});
+	
+	</script>
+    
+    
     
 </body>
 </html>
