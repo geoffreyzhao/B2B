@@ -266,7 +266,7 @@
             footer:false,
             month:{content:$("#calendarTemplate").html()},
             change:function(e){
-                toDate=new Date(e.sender.current());
+                toDate=e.sender.current();
                 changeCalendarDateInfo(toDate);
             }
         }).data("kendoCalendar");
@@ -274,7 +274,7 @@
         $("#calendarMonthDown").click(function(){
             if(!$(this).hasClass("disabled"))
             {
-                toDate=new Date(toDate.DateAdd("m",+1))
+                toDate=toDate.DateAdd("m",+1);
                 calendar.navigate(toDate,"month");
                 changeCalendarDateInfo(toDate);
             }
@@ -282,7 +282,7 @@
         $("#calendarMonthUp").click(function(){
             if(!$(this).hasClass("disabled"))
             {
-                toDate=new Date(toDate.DateAdd("m",-1))
+                toDate=toDate.DateAdd("m",-1);
                 calendar.navigate(toDate,"month");
                 changeCalendarDateInfo(toDate);
             }
