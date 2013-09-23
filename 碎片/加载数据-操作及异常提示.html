@@ -159,6 +159,12 @@
   </script>
 
   <script>
+
+      function FixedLayer(){
+          var top = ($(window).scrollTop() + $(window).height() - 40) + "px";
+          $(".message_wrap").css("top",top);
+
+      }
       function popMessage(data){
           var id = "message_" + (new Date()).getTime();
           var message = kendo.template($("#new_message_template").html());
@@ -175,16 +181,12 @@
               });
           });
           messageObj.appendTo("body").fadeIn();
-          /*
-          messageObj.animate({
-              top: end_top,
-          },2000);
-          */
 
       }
 
       $(function(){
-
+          $(window).scroll(FixedLayer);
+          
           $("#new_message").click(function(){
                 popMessage({order_id:"1123432211111",message1:"出票退回",message2:"身份证不正确"});
           });
