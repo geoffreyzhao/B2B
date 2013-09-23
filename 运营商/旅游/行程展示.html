@@ -32,12 +32,12 @@ $(function(){
 
     $('.tl-page').on('click','.ac-edit',function(e){
         e.preventDefault();
-        $(this).closest('.tl-pic').addClass('on-edit');
+        $(this).closest('.tl-pic').addClass('on-edit').find('input').removeAttr('readonly');
     });
 
     $('.tl-page').on('click','.ac-save',function(e){
         e.preventDefault();
-        $(this).closest('.tl-pic').removeClass('on-edit');
+        $(this).closest('.tl-pic').removeClass('on-edit').find('input').attr('readonly','true');
     });
 
     $('.tl-page').on('click','.ac-del',function(e){
