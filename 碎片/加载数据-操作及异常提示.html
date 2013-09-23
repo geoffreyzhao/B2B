@@ -13,12 +13,15 @@
     <script type="text/javascript" src="../static/js/global.js"></script>
     
     <style type="text/css">
-      body{ background:#fff;}  
+      body{position:relative; background:#fff;}  
+      
       button,input[type=button] {width:100px;height:30px;}
 
       .common_loading {text-align:center;}
       .store_loading {margin:0 auto;position:relative;background:url(/static/css/Uniform/loading.gif) no-repeat 5px 50% #fff;width:300px;height:80px;padding:10px;border:2px solid #e1e1e1;}
       .store_loading .loading_text {line-height:80px;}
+
+      .example {margin:20px 0;}
     </style>
     
     
@@ -82,7 +85,51 @@
           </div>
       </div>
   </div>
+
+  <div class="example">
+      <div>
+          <input type="button" name="new_message" value="有新消息" id="new_message"/>
+      </div>
+  </div>
    
+  <div id="container">
+      <div id="mainContent"> <!--mainContent start-->
+
+
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+          <p>页面内容</p>
+
+      </div>
+  </div>
 
   <script type="text/x-kendo-template" id="message_template">
       <div class="#=statusClass#">
@@ -99,8 +146,48 @@
       </div>
   </script>
 
+
+  <script type="text/x-kendo-template" id="new_message_template">
+      <div class="new_message">
+          <a href="javascript:void(0);">
+              <em></em>
+              <b>新消息：</b>
+              <span>您好，订单 [ <i>#=order_id#</i> ] #=message1# [ #=message2# ]，请尽快处理，如有需要请拨打10106266</span>
+          </a>
+          <a href="javascript:void(0);" class="know" >知道了</a>
+      </div>
+  </script>
+
   <script>
+      function popMessage(data){
+          var id = "message_" + (new Date()).getTime();
+          var message = kendo.template($("#new_message_template").html());
+          var html = message(data);
+
+          var top = ($(window).scrollTop() + $(window).height() - 40) + "px";
+          var end_top = top - 50;
+          var margin_left = ($(window).width() - 980)/2;
+
+          var messageObj = $('<div class="message_wrap" id="' + id + '" style="display:none;"></div>').html(html).css({top:top,"margin-left":margin_left});   
+          messageObj.find(".know").click(function(e){
+              $(this).closest(".message_wrap").fadeOut("slow",function(){
+                  $(this).remove();
+              });
+          });
+          messageObj.appendTo("body").fadeIn();
+          /*
+          messageObj.animate({
+              top: end_top,
+          },2000);
+          */
+
+      }
+
       $(function(){
+
+          $("#new_message").click(function(){
+                popMessage({order_id:"1123432211111",message1:"出票退回",message2:"身份证不正确"});
+          });
 
           $(".status_button button").each(function(){
               $(this).click(function(){
