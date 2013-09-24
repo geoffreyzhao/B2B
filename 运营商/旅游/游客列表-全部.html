@@ -6,17 +6,23 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <link href="../../static/css/common.css" rel="stylesheet" type="text/css" />
     <link href="../../static/css/kendo.common.css" rel="stylesheet" type="text/css" />
+    <link href="../../static/css/kendo.common.min.css" rel="stylesheet" />
     <link href="../../static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
-    <link href="../../static/css/kendo.reset.css" rel="stylesheet" type="text/css" /> <!--弹窗CSS-->
+    <link href="../../static/css/kendo.reset.css" rel="stylesheet" type="text/css" /> 
     <link href="../../static/css/b2b.css" rel="stylesheet" type="text/css" />
-    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link href="../../static/css/kendo.reset.css" rel="stylesheet" />
     <link href="../../static/css/travel.css" rel="stylesheet" type="text/css"/>
-    <script src="../../static/js/jquery.min.js" type="text/javascript"></script>
-    <script src="../../static/js/jquery-migrate-1.2.1.js" type="text/javascript"></script> <!--弹窗JS-->
-    
-    <script src="../../static/js/kendo.web.js" type="text/javascript"></script>
-    <script type="text/javascript" src="/static/js/scrollFix.js"></script>
-    <script type="text/javascript" src="../../static/js/public.js"></script>
+    <script type="text/javascript" src="../../static/js/vendor/jquery.min.js"></script>
+	<script type="text/javascript" src="../../static/js/plugins/jquery.fixedBar.js"></script>
+    <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../static/js/global.js"></script>
+    <script type="text/javascript" src="../../static/js/finance.js"></script>
+    <!--[if lt IE 8]>
+        <link rel="stylesheet" href="../../static/css/ie.css" />
+        <script type="text/javascript" src="../../static/js/vendor/IE7.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="../../static/js/sync.js"></script>
 
    <!-- <script type="text/javascript" src="../../static/js/global.js"></script>
     <script type="text/javascript">
@@ -27,8 +33,7 @@ $(function(){
     }).init();
 }) 
     </script>-->
-<script src="../../static/js/hotel.js" type="text/javascript"></script> <!--弹窗JS--> 
-<script type="text/javascript" src="/static/js/sync.js"></script>
+
 </head>
 <body>
     <div id="extHeader">
@@ -229,7 +234,7 @@ $(function(){
                           <td>李军</td>
                           <td>10-27</td>
                           <td>
-                             <a href="javascript:void(0);" class="popwin" data='{"url":"游客列表-全部-取消报名审核.html","width":470,"height":490,"title":"取消报名审核"}'>审核</a>
+                             <a href="javascript:void(0);" class="ac-cancel_registration">审核</a>
                           </td>
                       </tr>
                       <tr class="disabled">
@@ -306,7 +311,91 @@ $(function(){
     <!-- end of content -->
     </div>
     
-    <div id="window"></div>
+    <script type="text/x-kendo-template" id="ac-cancel_registration-template">
+	<div class="apply_file">
+		<div class="proposer">
+			<b>申请人：</b>
+			<em>王飞</em>
+		</div>    
+		<div class="cancel">
+			 <h3>申请取消报名游客：</h3>
+			 <table>
+				  <colgroup>
+					   <col width="93px"/>
+					   <col width="93px"/>
+					   <col width="93px"/>
+					   <col width="93px"/>
+				  </colgroup>
+				  <thead>
+					   <tr>
+						   <th>姓名</th>
+						   <th>证件类型</th>
+						   <th>签证状态</th>
+						   <th>支付状态</th>
+					   </tr>
+				  </thead>
+				  <tbody>
+					   <tr>
+						   <td>张大国</td>
+						   <td>护照</td>
+						   <td>无签证</td>
+						   <td>未付款</td>
+					   </tr>
+					   
+				  </tbody>
+			 </table>
+		</div>
+		<div class="cancel">
+			 <h3>申请取消报名产品：</h3>
+			 <table>
+				  <colgroup>
+					   <col width="97px"/>
+					   <col width="190px"/>
+					   <col width="65px"/>
+					   <col width="63px"/>
+				  </colgroup>
+				  <thead>
+					   <tr>
+						   <th>团号</th>
+						   <th>产品名称</th>
+						   <th>出发日期</th>
+						   <th>行程天数</th>
+					   </tr>
+				  </thead>
+				  <tbody>
+					   <tr>
+						   <td>BM-130908-001</td>
+						   <td>美国东西海岸14日团队游(3钻)...</td>
+						   <td>10-27</td>
+						   <td>5天</td>
+					   </tr>
+					   
+				  </tbody>
+			 </table>
+		</div>
+		<div class="cancel_reason">
+			 <h3><em> * </em>申请取消报名原因：</h3>
+			 <textarea  readonly="readonly">这里是取消报名原因，不可编辑状态！！！
+	取消报名原因取消报名原因取消报名原因取消报名原因取消报名原因取消报名原因取消报名原因取消报名原因取消报名原因取消报名原因
+			 </textarea>      
+		</div>
+		
+		<div class="select_btn">
+		  <a href="javascript:;" class="button_important adaptiveButton medium">
+				<span class="left"></span>
+				<span class="center">审核通过</span>
+				<span class="right"></span>
+		  </a>
+		  <a href="javascript:;" class="button_unimportant adaptiveButton medium">
+				<span class="left"></span>
+				<span class="center gray_clour">审核通过</span>
+				<span class="right"></span>
+		  </a> 
+		</div>
+	</div>
+	</script>
+    
+    
     
     <div id="extFooter">
         <div>
@@ -319,6 +408,19 @@ $(function(){
             <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
+    
+    <script type="text/javascript">
+	$(function(){
+		new PopWindow('.ac-cancel_registration',{
+			template:'#ac-cancel_registration-template',
+			title:'取消报名审核',
+			width:'470'
+		}).init();
+		
+	});
+	
+	</script>
+    
     
 </body>
 </html>
