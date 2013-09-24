@@ -691,7 +691,17 @@
      </div> <!--当前选中 end-->
     </div>  <!--flight_number end-->
 
-    
+    <div id="messageContainer"></div>
+
+<script type="text/html" id="messageTemplate">
+    <div class="messagePanel">
+        <div class="messageTitle"><span>#= Date #</span><em class="messageClose" onclick="delMessage(this)"></em></div>
+        <div class="messageContent">
+            您好，订单030312103112261审核通过，
+            请尽快支付，如有需要请拨打xxxxxx。
+        </div>
+    </div>
+</script>
 </section>
 <footer class="main-footer">
     <center>
@@ -724,7 +734,27 @@
 
                 }
             });
+
         });
+
+
+        function addMessage()
+        {
+            var template=kendo.template($("#messageTemplate").html());
+            $("#messageContainer").prepend(template({Date:new Date().getTime()}));
+            var addEl=$("#messageContainer .messagePanel:first").fadeIn();
+        }
+
+        function delMessage(el)
+        {
+            var deletedEl=$(el).closest(".messagePanel");
+            var cHeight="-="+(deletedEl.outerHeight()+5);
+            deletedEl.fadeOut("normal",function(){$(this).remove()});
+        }
+
+        setTimeout(addMessage,1000);
+        setTimeout(addMessage,2000);
+        setTimeout(addMessage,2500);
     </script>
     
 </body>
