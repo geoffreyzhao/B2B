@@ -9,9 +9,16 @@
 <link rel="stylesheet" href="/static/css/kendo.reset.css" />
 <link rel="stylesheet" href="/static/css/common.css" />
 <link rel="stylesheet" href="/static/css/b2b.css" />
+
+        <link rel="stylesheet" type="text/css" href="/static/css/swfupload.css" media="all" />
+        <script type="text/javascript" src="/static/js/swfup/swfupload.js"></script>
+        <script type="text/javascript" src="/static/js/swfup/swfupload.queue.js"></script>
+        <script type="text/javascript" src="/static/js/swfup/fileprogress_yystl.js"></script>
+        <script type="text/javascript" src="/static/js/swfup/handlers_yystl.js"></script>
+
 <link href="../../static/css/travel.css" rel="stylesheet" type="text/css"/>
 
-<script type="text/javascript" src="/static/js/vendor/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
 <script type="text/javascript" src="/static/js/kendo.web.js"></script>
 <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
@@ -101,8 +108,10 @@ $(function(){
             <div class="tl-header clearfix">
                 <h3>美国东西海岸7日团队游（3钻）- 7成四星酒店</h3>
                 <span class="tl-count">行程天数：<b>7</b>天</span>
+
                 <span class="tl-save">
                     <a href="javascript:;" class="button_important adaptiveButton small">
+
                         <span class="left"></span>
                         <span class="center">保 存</span>
                         <span class="right"></span>
@@ -156,12 +165,85 @@ $(function(){
                         <tr>
                             <th>行程图片：</th>
                             <td>
-                                <a href="javascript:;" class="button_secondary adaptiveButton small">
-                                    <span class="left"></span>
-                                    <span class="center">上传照片</span>
-                                    <span class="right"></span>
-                                </a>
+
+    <div class="tl-uploader">
+    <span id="UploaderPlaceholder_1"></span>
+                <span class="Uploader" allowSize="5120MB" allowFile="*.jpg;*.jpeg;*.png;*.iso" ></span>
+                <!-- <button class="btns btn&#45;blue" onclick="swfu.cancelQueue();"> 取消 </button> -->
+    </div>
+                    
+            <script>
+function createSwfUpload(index,allowSize, allowFile){
+    var upload = window.swfu = new SWFUpload({
+	// Backend Settings
+	upload_url: "http://devel/up.php",
+	post_params: {"name" : "testname"},
+	// File Upload Settings
+	file_size_limit : "50000MB",
+	//file_types : "*.*;",
+	//file_size_limit : allowSize ,
+	file_types : allowFile ,
+	file_types_description : "Choose Files",
+	file_upload_limit : "0",
+	file_queue_limit : "0",
+	// Event Handler Settings (all my handlers are in the Handler.js file)
+	file_dialog_start_handler : fileDialogStart,
+	file_queued_handler : fileQueued,
+	file_queue_error_handler : fileQueueError,
+	file_dialog_complete_handler : fileDialogComplete,
+	upload_start_handler : uploadStart,
+	upload_progress_handler : uploadProgress,
+	upload_error_handler : uploadError,
+	upload_success_handler : uploadSuccess,
+	upload_complete_handler : uploadComplete,
+	// Button Settingsimg/fee
+	button_image_url : "/static/images/tluploader.png",
+	button_placeholder_id : "UploaderPlaceholder_" + index,
+	button_width: 88,
+	button_height: 25,
+	button_window_mode:"TRANSPARENT",
+	button_cursor: SWFUpload.CURSOR.HAND,
+	// Flash Settings
+	flash_url : "/static/flash/swfupload.swf",
+	custom_settings : {
+		progressTarget : "UploaderProgress_" + index,
+		cancelButtonId : "UploaderCancelBtn_" + index,
+		callback : function(file,serverData){
+            var tmp = $.parseJSON(serverData);
+		}
+	},
+
+	// Debug Settings
+	debug: false
+    });
+
+    return upload;
+}
+
+var uploads = [];
+$(function(){
+        $(".Uploader").each(function(index){	
+            uploads.push(createSwfUpload(index + 1,$(this).attr("allowSize"),$(this).attr("allowFile")));
+        });
+
+});
+            </script>
+            <script type="text/kendo-x-template" id="tl-pic-template">
+            
+                                    <span class="tl-pic">
+                                        <img src="#= data.path #" alt="">
+                                        <span class="tl-pic-name">
+                                            <input id="" readonly type="text" value="#= data.name #" name="">
+                                        </span>
+                                        <span class="tl-pic-ac">
+                                            <a class="ac-save" href="">保存</a>
+                                            <a class="ac-edit" href="">编辑</a>
+                                            <a class="ac-del" href="">删除</a>
+                                        </span>
+                                    </span>
+            </script>
                                 <div class="tl-pics clearfix">
+                                    <span style="float:left;" class="tl-upholder" id="UploaderProgress_1"></span>
                                     <span class="tl-pic">
                                         <img src="//placehold.it/160x100" alt="">
                                         <span class="tl-pic-name">
