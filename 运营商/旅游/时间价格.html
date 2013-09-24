@@ -81,7 +81,7 @@
                     </a>
                 </span>
             </div>
-            <div id="calendarTitle">请点击日历选择出发日期、人数进行报名</div>
+            <div id="calendarTitle">请点击日期添加团信息</div>
             <div id="calendarContainer">
                 <div id="calendarOperationPanel">
                     <div id="calendarMonthUp" class=""></div>
@@ -260,7 +260,7 @@
 <script type="text/javascript" src="../../static/js/kendo.culture.zh-CHS.min.js"></script>
 <script type="text/javascript" src="../../static/js/DateControl.js"></script>
 <script type="text/javascript">
-    eve={"2013/09/12":[15,1500],"2013/10/1":"","2013/10/22":[22,45678]};
+    eve={"2013/09/12":[15,1500],"2013/10/1":"","2013/10/2":"","2013/10/3":"","2013/10/4":"","2013/10/5":"","2013/10/6":"","2013/10/7":"","2013/10/22":[22,45678]};
 
     $.dateToString = function (s, sep) {
         var sep = sep || '/'
@@ -306,19 +306,19 @@
             }
         })
 
-//        $("#calendar").delegate("td","mouseenter mouseleave",function(e){
-//            if(e.type==="mouseenter")
-//            {
-//                if(!$("div.sale",this).length)
-//                    $(this).addClass("hover");
-//            }
-//            else
-//            {
-//                $(this).removeClass("hover");
-//            }
-//        });
-//
-//        $("#calendar").delegate("td.hover","click",function(){w1.center().open()})
+        $("#calendar").delegate("td","mouseenter mouseleave",function(e){
+            if(e.type==="mouseenter")
+            {
+                if(!$("div.sale",this).length)
+                    $(this).addClass("hover");
+            }
+            else
+            {
+                $(this).removeClass("hover");
+            }
+        });
+
+        $("#calendar").delegate("td","click",function(){w1.center().open()})
 
         function changeCalendarDateInfo(toDate)
         {
@@ -333,7 +333,7 @@
             $(".spliteArrowLeft").css("top",$(this).position().top+$(this).outerHeight()/2);
         })
 
-        $("#calendar").delegate("td:not('.hover')","click",function(){w.center().open();})
+        //$("#calendar").delegate("td:not('.hover')","click",function(){w.center().open();})
 
         $(".tripDetailItem:first").trigger("click");
 
