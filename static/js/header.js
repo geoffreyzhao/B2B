@@ -61,4 +61,5 @@ function init_header(){
         $("#message_pop").toggle();
         e.stopPropagation();
     });
+	
 }
