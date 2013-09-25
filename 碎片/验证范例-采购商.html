@@ -20,7 +20,6 @@
     h3 {font-size:20px;}
     h3,h4 {margin:10px 0;}
 
-    .message_ct {margin:20px;}
 </style>
 </head>
 <body>
@@ -50,9 +49,14 @@
                 <span>c1</span><input type="text" k-msg-position="bottom" required name="c1"/>
             </div>
 
+            <h3>定义显示错误的位置 显示在右边</h3>
+            <div>
+                <span>c2</span><input type="text" k-msg-position="right" k-msg-css="{top:-10}" required name="c2"/>
+            </div>
+
             <h3>定义显示错误的位置 以及偏移量</h3>
             <div>
-                <span>c2</span><input type="text" required k-msg-position="bottom" k-msg-css="{top:10,width:100}" name="c2"/>
+                <span>c3</span><input type="text" required k-msg-position="bottom" k-msg-css="{top:10,width:100}" name="c3"/>
             </div>
         </div>
         <div class="example">
@@ -101,33 +105,52 @@
         <!--<a name="test"></a>-->
     </div>
 
+    <!--
     <div style="margin-left:20px;">
         <div class="message_ct">
             <div class="arrow arrow_west"></div>
             <div class="message_text">#=message#</div>
         </div>
+        <br/>
+        <br/>
+        <br/>
 
         <div class="message_ct">
             <div class="arrow arrow_north"></div>
             <div class="message_text">#=message#</div>
         </div>
 
+        <br/>
+        <br/>
+        <br/>
         <div class="message_ct">
             <div class="arrow arrow_south"></div>
             <div class="message_text">#=message#</div>
         </div>
 
+        <br/>
+        <br/>
+        <br/>
         <div class="message_ct">
             <div class="arrow arrow_east"></div>
             <div class="message_text">#=message#</div>
         </div>
+        <br/>
+        <br/>
+        <br/>
     </div>
+    -->
     <script>
 
         $(function(){
             kendo.init('body');
             var validator = $("#form1").kendoValidator({
-                errorTemplate: '<span class="k-widget k-tooltip k-tooltip-validation">#=message#</span>',
+                errorTemplate: '<span class="k-widget k-tooltip k-tooltip-validation">\
+                    <div class="message_ct">\
+                        <div class="arrow"></div>\
+                        <div class="message_text">#=message#</div>\
+                    </div>',
+
                 messages : {
                     required: "{0} is required",
                     pattern: "{0} is not valid",

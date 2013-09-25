@@ -10382,16 +10382,34 @@ kendo_module({
                     inputOffset = input.position();
 
                     var labelSetting = {};
-                    
+                    var checkPer = /%/;
+
+                    $(".message_ct > .arrow", messageLabel).addClass("arrow_west");
+
+                    if(p == "right"){
+                        labelSetting.position = "absolute";
+
+                        if(checkPer.test(pcssObj.top)){
+                            labelSetting.top = pcssObj.top;
+                        }else{
+                            labelSetting.top = inputOffset.top + parseInt(pcssObj.top);
+                        }
+
+                        if(checkPer.test(pcssObj.left)){
+                            labelSetting.left = pcssObj.left;
+                        }else{
+                            labelSetting.left = inputOffset.left + parseInt(pcssObj.left) + input.outerWidth();
+                        }
+                    }
 
                     if(p == "bottom"){
+                        $(".message_ct > .arrow", messageLabel).removeClass("arrow_west arrow_east arrow_south").addClass("arrow_north");
+
                         if(that.options.errorMsgWidthEqualInput){
                             labelSetting.width = input.width() - that.options.errorLabelPadding;
                         }
 
                         labelSetting.position = "absolute";
-
-                        var checkPer = /%/;
 
                         if(checkPer.test(pcssObj.top)){
                             labelSetting.top = pcssObj.top;
