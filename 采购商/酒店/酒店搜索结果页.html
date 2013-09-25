@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="../../static/css/store_reset.css" media="all" />
     <link rel="stylesheet" href="../../static/css/store.css" media="screen" />
     <link rel="stylesheet" href="../../static/css/store_hotel.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/kendo.common.min.css" />
+	<link rel="stylesheet" href="../../static/css/kendo.store.css" />
     <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../static/js/global.js"></script>
     <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
@@ -56,13 +58,13 @@
 
         <div class="hotel_search">
             <div class="condition gray-border">
-                <label><span><em>*</em>城市</span><input type="text" name="" placeholder="上海" style="width:110px" class="gray-border"/></label>
-                <label><span><em>*</em>入住日期</span><input type="text" name="" placeholder="" style="width:110px" class="gray-border datepicker"/></label>
-                <label><span><em>*</em>离店日期</span><input type="text" name="" placeholder="" style="width:110px" class="datepicker gray-border"/></label>
+                <label><strong><em>*</em>城市</strong><input type="text" name="" placeholder="上海" style="width:110px" class="gray-border"/></label>
+                <label><strong><em>*</em>入住日期</strong><input type="text" name="" placeholder="" style="width:110px" class="gray-border datepicker"/></label>
+                <label><strong><em>*</em>离店日期</strong><input type="text" name="" placeholder="" style="width:110px" class="datepicker gray-border"/></label>
                 <label>
-                       <span><em>*</em>预订间数</span> 
-                       <select data-role="dropdownlist" style="width:45px; height:22px; vertical-align:middle;">
-                              <option>1</option>
+                       <strong><em>*</em>预订间数</strong> 
+                       <select data-role="dropdownlist" name="room_num" style="width:45px;vertical-align:middle;">
+                              <option value="1">1</option>
                        </select>
                 </label>
                 <label><span>关键字</span><input type="text" name="" placeholder="(选择)酒店、商圈、地标" style="width:135px" class="gray-border"/></label>
@@ -542,6 +544,8 @@
 
 <script type="text/javascript">
     $(function(){
+
+        kendo.init('body');
         $(".expand").click(function(){
             var container = $(this).closest(".hotelPanel");
             $(this).hide();
