@@ -215,7 +215,7 @@ function showImg(name,path){
     });
     
     // $('.tl-upholder').hide();
-    $('.tl-pic').eq(0).before(tpl);
+    $('.tl-upholder').after(tpl);
 }
 
 function trip_ext(oldname){
