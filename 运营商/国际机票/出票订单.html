@@ -13,23 +13,8 @@
         <script type="text/javascript" src="/static/js/jquery.min.js"></script>
         <script type="text/javascript" src="/static/js/kendo.web.js"></script>
         <script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
-        <script type="text/javascript">
-            $(function(){
-                    $('.actions').fixedBar();
-                    var lensf = function (){
-                    $.each($('.instr'),function(){
-                        var that = $(this);
-                        if(that.find('.highlight-fl').size()>0){
-                        var ele = that.find('.highlight');
-                        var len = ele.size();
-                        var wid = ele.width()*len + 15;
-                        that.find('.line').prepend('<div style="background-color:#FF6608;height:2px;width:'+wid+'px" />')
-                        }
-                        });
-                    }
-                    lensf();
-                    });
-</script>
+        <script type="text/javascript" src="/static/js/global.js"></script>
+        <script type="text/javascript" src="/static/js/flight.js"></script>
 
 <!--[if lt IE 8]> 
 <link rel="stylesheet" href="/static/css/ie.css" /> 
@@ -78,7 +63,7 @@
                 <button class="btns btn-return">返回</button>
             </div>
             <div class="col col-r sep-l">
-                <button class="btns btn-blue">退回</button>
+                <button class="btns btn-blue ac-refuse">退回</button>
                 <button class="btns btn-blue">完成出票</button>
             </div>
         </div>
@@ -97,21 +82,19 @@
                 <ul class="flat-list">
                     <li>
                     <div class="instr clearfix">
-                        <span class="highlight first">创建</span>
-                        <span class="highlight">审核</span>
-                        <span class="highlight">支付</span>
-                        <span class="highlight highlight-fl">出票</span>
+                        <span>创建</span>
+                        <span>审核</span>
+                        <span>支付</span>
+                        <span class="highlight-fl">出票</span>
                         <span>派送</span>
                         <span>完成</span>
-                        <span class="last">取消</span>
-                        <em class="line">&nbsp;</em>
+                        <span>取消</span>
                     </div> 
                     </li>
                     <li>
                     <div class="instr clearfix">
-                        <span class="first">收款</span>
-                        <span class="last">结算</span>
-                        <em class="line">&nbsp;</em>
+                        <span>收款</span>
+                        <span>结算</span>
                     </div>
                     </li>
                     <li class="count"><span>附属订单</span><strong>3</strong>
@@ -376,6 +359,45 @@
         <div class="block block6 block-module">
             <div class="block-title">配送信息</div>
         </div>
+            
+        <script type="text/x-kendo-template" id="ac-refuse-template">
+            <table class="cv-table cv-fixed">
+            <colgroup>
+              <col width="80">
+              <col width="330">
+            </colgroup>
+            
+                <tr>
+                    <th>退回原因：</th>
+                    <td>
+                        <label><input id="" type="radio" checked name="xx"> 暂不能出票</label>
+                        <label><input id="" type="radio" name="xx"> 拒绝出票</label>
+                    </td>
+                </tr>
+                <tr>
+                  <th>备注：</th>
+                  <td>
+                        <textarea id="" name=""></textarea>
+                  </td>
+                </tr>
+            </table>
+            <div class="row" style="text-align:right;">
+                <button class="btns button_1_2">提 交</button> 
+                <button class="btns button_2_2">取 消</button> 
+            </div>
+        </script>
+
+        <script>
+$(function(){
+    new PopWindow('.ac-refuse',{
+        title:'退回',
+        width:470,
+        template: '#ac-refuse-template'
+    }).init();
+}); 
+        </script>
+
+
     </div>
 
 </div>
