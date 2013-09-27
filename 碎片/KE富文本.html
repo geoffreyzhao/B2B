@@ -1,13 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8" />
 		<title></title>
-        <link rel="stylesheet" href="/static/css/kendo.common.min.css" />
-        <link rel="stylesheet" href="/static/css/kendo.gray.css" />
-        <link rel="stylesheet" href="/static/css/b2b.css" />
-        <link rel="stylesheet" href="/static/css/kendo.reset.css" />
-        <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 		<style>
 			form {
 				margin: 0;
@@ -21,24 +16,21 @@
 		<script charset="utf-8" src="/static/js/lang/zh_CN.js"></script>
 		<script>
 			var editor;
-			KindEditor.ready(function(K) {
-				editor = K.create('textarea[name="content"]', {
-					resizeType : 1,
-					allowPreviewEmoticons : false,
-                    allowFlashUpload : true,
-                    uploadJson : 'http://www.mediasite.com/upload_json.php',
-					items : [
-						'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
-						'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
-						'insertunorderedlist', '|', 'emoticons', 'image', 'link']
-				});
-			});
+            KindEditor.ready(function(K) {
+                K.create('textarea[name="content"]', {
+                    autoHeightMode : true,
+                    uploadJson : "/upload_json.php",
+                    afterCreate : function() {
+                        this.loadPlugin('autoheight');
+                    }
+                });
+            });
+
 		</script>
 	</head>
 	<body>
-		<h3>默认模式</h3>
 		<form>
-			<textarea name="content" style="width:700px;height:200px;visibility:hidden;">KindEditor</textarea>
+            <textarea name="content" style="width:800px;height:200px;"></textarea>
 		</form>
 	</body>
 </html>
