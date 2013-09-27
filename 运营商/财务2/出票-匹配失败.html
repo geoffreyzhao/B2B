@@ -1,18 +1,21 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<title>运营商 财务 对账管理 出票采购商审核</title>
+	<title>运营商 财务 对账管理 出票-匹配失败</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <link href="../../static/css/common.css" rel="stylesheet" type="text/css" />
     <link href="../../static/css/kendo.common.css" rel="stylesheet" type="text/css" />
+    <link href="../../static/css/kendo.common.min.css" rel="stylesheet"  />
     <link href="../../static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
     <link href="../../static/css/b2b.css" rel="stylesheet" type="text/css" />
-    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link href="../../static/css/kendo.reset.css" rel="stylesheet" />
     <link href="../../static/css/finance.css" rel="stylesheet" type="text/css"/>
     <script src="../../static/js/jquery.min.js" type="text/javascript"></script>
     <script src="../../static/js/kendo.web.js" type="text/javascript"></script>
+    <script src="../../static/js/global.js" type="text/javascript"></script>
     <script type="text/javascript" src="../../static/js/public.js"></script>
+
 
 <!--    <script type="text/javascript" src="../../static/js/global.js"></script>
     <script type="text/javascript">
@@ -69,17 +72,27 @@ $(function(){
         <div id="mainContent">
                
                <div class="topFixedToolsBar">
-                    <div class="fixedMenu" style="width:auto; margin-left:0px; font-size:12px;">
-                        <a href="导入配置设置.html">导入配置设置</a>
-                        <a href="出票供应商审核.html">出票供应商审核</a>
-                        <a href="出票采购商审核.html" class="currentPitchOn">出票采购商审核</a>
-                        <a href="退票供应商审核.html">退票供应商审核</a>
-                        <a href="退票采购商审核.html">退票采购商审核</a>
+                    <div style="float:left;border-right:1px solid #ffffff">
+                         <a href="#" style="display:inline-block;line-height:33px;font-size: 14px;font-weight: bold;border-right: 1px solid #CDCECE;padding: 0 8px;">返回</a>
                     </div>
-                    <!--<div class="fixedButton">
+                    <div class="fixedMenu">
+                         <h3>供应商出票</h3>
+                         <h3>匹配失败</h3>
+                        <!--<a href="#">导入配置设置</a>
+                        <a href="#" class="currentPitchOn">出票供应商审核</a>
+                        <a href="#">出票采购商审核</a>
+                        <a href="#">退票供应商审核</a>
+                        <a href="#">退票采购商审核</a>-->
+                    </div>
+                   <!--<div class="fixedButton">
                         <a class="button_secondary adaptiveButton small" href="javascript:;">
                             <span class="left"></span>
-                            <span class="center center_1">添加退改签规定</span>
+                            <span class="center center_1">匹配失败列表</span>
+                            <span class="right"></span>
+                        </a>
+                        <a class="button_secondary adaptiveButton small" href="javascript:;">
+                            <span class="left"></span>
+                            <span class="center center_1">导入匹配</span>
                             <span class="right"></span>
                         </a>
                     </div>-->
@@ -102,10 +115,12 @@ $(function(){
                             <td><input type="text" /></td>
                             <td>机票号</td>
                             <td><input type="text" /></td>
-                            <td>审核状态</td>
+                            <td>处理状态</td>
                             <td>
                                  <select>
-                                      <option> </option>
+                                      <option>全部</option>
+                                      <option selected="">未处理</option>
+                                      <option>已处理</option>
                                 </select>
                             </td>
                             <td>合作方名称</td>
@@ -154,7 +169,7 @@ $(function(){
                             </td>
                         </tr>
                         <tr>
-                            <td>出票日期</td>
+                            <td>导入日期</td>
                             <td colspan="3">
                                 <input type="text" class="datepicker" value="2013-09-25" style="width:95px;" />
                                 <em>&nbsp; 至 &nbsp;</em>
@@ -170,8 +185,7 @@ $(function(){
  
               <div class="qx tabHead">
                   <div class="xuanze">
-                      <button class="btns btn-ac-blue">审核</button>
-                      <button class="btns btn-ac-blue">自动匹配</button>
+                      <button class="btns btn-ac-blue ac-disposeWindow">处 理</button>
                       <button class="btns btn-ac-blue">导出Excel</button>
                   </div>
                   <!--<div class="qx_right">
@@ -182,135 +196,127 @@ $(function(){
               </div>
               
             <div class="scroll">
-                 <table cellpadding="0" cellspacing="0" class="tgrid" style="width:120%;">
+                 <table cellpadding="0" cellspacing="0" class="tgrid" style="width:130%;">
                       <thead>
                          <tr>
                              <th class="line_left" style="width:20px;"><input type="checkbox" /></th>
                              <th>操作</th>
-                             <th>审核状态</th>
+                             <th>处理状态</th>
+                             <th>OFFICE号</th>
                              <th>订单号</th>
                              <th>票号</th>
-                             <th>出票时间</th>
-                             <th>乘客名</th>
-                             <th>舱位</th>
-                             <th>航班</th>
-                             <th>航程</th>
-                             <th>成本价</th>
-                             <th>实付款</th>
-                             <th>利润</th>
-                             <th>票面价</th>
-                             <th>代理费率</th>
-                             <th>底价</th>
-                             <th>代理费</th>
-                             <th>机建税</th>
-                             <th>燃油税</th>
-                             <th class="line_right">机票状态</th>
+                             <th>导入日期</th>
+                             <th>导入票面价</th>
+                             <th>导入代理费</th>
+                             <th>导入机建税</th>
+                             <th>导入燃油税</th>
+                             <th>系统票面价</th>
+                             <th>系统代理费</th>
+                             <th>系统机建税</th>
+                             <th>系统燃油税</th>
+                             <th class="line_right">失败原因</th>
                          </tr>
                       </thead>
                       <tbody>
                           <tr>
                               <td class="checkboxWidth"><input type="checkbox" /></td>
                               <td>
-                                  <a href="#">审核</a>
+                                  <a href="#" class="ac-disposeWindow">处理</a>
                               </td>
-                              <td>未审核</td>
+                              <td>未处理</td>
+                              <td>SHA225</td>
                               <td>
                                   <a href="#">030312103112260001</a>
                               </td>
                               <td>7812140775658</td>
-                              <td>2012/9/17</td>
-                              <td>李晓明</td>
-                              <td>Y</td>
-                              <td>CA9235</td>
-                              <td>PVGTAO</td>
+                              <td>
+                                  <div>2012/9/17</div>
+                                  <div>15:01:29</div>
+                              </td>
+                              <td class="orange-beige"><b>1000</b></td>
+                              <td class="orange-beige">30</td>
+                              <td class="orange-beige">50</td>
+                              <td class="orange-beige">50</td>
                               <td>1000</td>
-                              <td>11500</td>
-                              <td><b>150</b></td>
-                              <td>1000</td>
-                              <td>3 %</td>
-                              <td>970</td>
                               <td>30</td>
                               <td>50</td>
                               <td>100</td>
-                              <td>出票</td>
+                              <td> </td>
                           </tr>
                           <tr>
                               <td class="checkboxWidth"><input type="checkbox" /></td>
                               <td>
-                                  <a href="#">取消审核</a>
+                                  <a href="#">处理</a>
                               </td>
-                              <td>未审核</td>
+                              <td>未处理</td>
+                              <td>SHA225</td>
                               <td>
                                   <a href="#">030312103112260001</a>
                               </td>
                               <td>7812140775658</td>
-                              <td>2012/9/17</td>
-                              <td>李晓明</td>
-                              <td>Y</td>
-                              <td>CA9235</td>
-                              <td>PVGTAO</td>
+                              <td>
+                                  <div>2012/9/17</div>
+                                  <div>15:01:29</div>
+                              </td>
+                              <td class="orange-beige"><b>1000</b></td>
+                              <td class="orange-beige">30</td>
+                              <td class="orange-beige">50</td>
+                              <td class="orange-beige">50</td>
                               <td>1000</td>
-                              <td>11500</td>
-                              <td><em>-50</em></td>
-                              <td>1000</td>
-                              <td>3 %</td>
-                              <td>970</td>
                               <td>30</td>
                               <td>50</td>
                               <td>100</td>
-                              <td>出票</td>
+                              <td>金额不符</td>
                           </tr>
                           <tr>
                               <td class="checkboxWidth"><input type="checkbox" /></td>
                               <td>
-                                  <a href="#">审核</a>
+                                  <a href="#">处理</a>
                               </td>
-                              <td>未审核</td>
+                              <td>未处理</td>
+                              <td>SHA225</td>
                               <td>
                                   <a href="#">030312103112260001</a>
                               </td>
                               <td>7812140775658</td>
-                              <td>2012/9/17</td>
-                              <td>李晓明</td>
-                              <td>Y</td>
-                              <td>CA9235</td>
-                              <td>PVGTAO</td>
+                              <td>
+                                  <div>2012/9/17</div>
+                                  <div>15:01:29</div>
+                              </td>
+                              <td class="orange-beige"><b>1000</b></td>
+                              <td class="orange-beige">30</td>
+                              <td class="orange-beige">50</td>
+                              <td class="orange-beige">50</td>
                               <td>1000</td>
-                              <td>11500</td>
-                              <td><b>150</b></td>
-                              <td>1000</td>
-                              <td>3 %</td>
-                              <td>970</td>
                               <td>30</td>
                               <td>50</td>
                               <td>100</td>
-                              <td>出票</td>
+                              <td> </td>
                           </tr>
                           <tr>
                               <td class="checkboxWidth"><input type="checkbox" /></td>
                               <td>
-                                  <a href="#">审核</a>
+                                  <a href="#">处理</a>
                               </td>
-                              <td>未审核</td>
+                              <td>未处理</td>
+                              <td>SHA225</td>
                               <td>
                                   <a href="#">030312103112260001</a>
                               </td>
                               <td>7812140775658</td>
-                              <td>2012/9/17</td>
-                              <td>李晓明</td>
-                              <td>Y</td>
-                              <td>CA9235</td>
-                              <td>PVGTAO</td>
+                              <td>
+                                  <div>2012/9/17</div>
+                                  <div>15:01:29</div>
+                              </td>
+                              <td class="orange-beige"><b>1000</b></td>
+                              <td class="orange-beige">30</td>
+                              <td class="orange-beige">50</td>
+                              <td class="orange-beige">50</td>
                               <td>1000</td>
-                              <td>11500</td>
-                              <td><b>150</b></td>
-                              <td>1000</td>
-                              <td>3 %</td>
-                              <td>970</td>
                               <td>30</td>
                               <td>50</td>
                               <td>100</td>
-                              <td>出票</td>
+                              <td> </td>
                           </tr>
                       </tbody>                      
                  </table>
@@ -339,18 +345,7 @@ $(function(){
                           
         </div>
     </div>
-    
-    <!-- <div class="succeedPromp">
-         <h3><em></em>审核成功！</h3>
-    </div>
-    
-    <br>
-
-    <div class="autoPromp"> 
-         <h3><em></em>自动匹配<i>111</i>个！</h3>
-    </div> -->
-    
-    
+ 
     <div id="extFooter">
         <div>
             <p>
@@ -363,6 +358,65 @@ $(function(){
         </div>
     </div>
 
-    
+<script type="text/x-kendo-template" id="ac-disposeWindow-template"> 
+   <table cellpadding="0" cellspacing="0" class="disposeWindow">
+        <colgroup>
+             <col width="70px"/>
+             <col width="330px"/>
+        </colgroup>
+        <tr>
+            <td>错误原因：</td>
+            <td>
+                <select>
+                      <option>金额不符</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>责任部门：</td>
+            <td>
+                <select>
+                      <option>国际机票部</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align:top;">备注：</td>
+            <td>
+                <textarea></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="dispose_btn">
+                <a href="javascript:;" class="button_important adaptiveButton medium">
+                    <span class="left"></span>
+                    <span class="center" style="padding:0 25px;">提 交</span>
+                    <span class="right"></span>
+                </a>
+                <a href="javascript:;" class="button_unimportant adaptiveButton medium">
+                    <span class="left"></span>
+                    <span class="center callOff" style="padding:0 25px;">取 消</span>
+                    <span class="right"></span>
+                </a>
+            </td>
+        </tr>
+   </table>
+</script>
+
   </body>
 </html>
+
+<script type="text/javascript">
+$(function(){
+   
+	new PopWindow('.ac-disposeWindow', {
+        template:'#ac-disposeWindow-template',
+        title:'处理',
+        width:'470'
+    }).init();
+	
+});
+
+</script>
+

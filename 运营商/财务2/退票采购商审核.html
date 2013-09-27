@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<title>运营商 财务 对账管理 出票采购商审核</title>
+	<title>运营商 财务 对账管理 退票采购商审核</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <link href="../../static/css/common.css" rel="stylesheet" type="text/css" />
@@ -72,9 +72,9 @@ $(function(){
                     <div class="fixedMenu" style="width:auto; margin-left:0px; font-size:12px;">
                         <a href="导入配置设置.html">导入配置设置</a>
                         <a href="出票供应商审核.html">出票供应商审核</a>
-                        <a href="出票采购商审核.html" class="currentPitchOn">出票采购商审核</a>
+                        <a href="出票采购商审核.html">出票采购商审核</a>
                         <a href="退票供应商审核.html">退票供应商审核</a>
-                        <a href="退票采购商审核.html">退票采购商审核</a>
+                        <a href="退票采购商审核.html" class="currentPitchOn">退票采购商审核</a>
                     </div>
                     <!--<div class="fixedButton">
                         <a class="button_secondary adaptiveButton small" href="javascript:;">
@@ -154,8 +154,8 @@ $(function(){
                             </td>
                         </tr>
                         <tr>
-                            <td>出票日期</td>
-                            <td colspan="3">
+                            <td colspan="4">
+                                <i>退票录入日期</i>
                                 <input type="text" class="datepicker" value="2013-09-25" style="width:95px;" />
                                 <em>&nbsp; 至 &nbsp;</em>
                                 <input type="text" class="datepicker orange" value="2013-09-25" style="width:95px;" />
@@ -181,8 +181,8 @@ $(function(){
                   </div>-->
               </div>
               
-            <div class="scroll">
-                 <table cellpadding="0" cellspacing="0" class="tgrid" style="width:120%;">
+            
+              <table cellpadding="0" cellspacing="0" class="tgrid">
                       <thead>
                          <tr>
                              <th class="line_left" style="width:20px;"><input type="checkbox" /></th>
@@ -190,21 +190,12 @@ $(function(){
                              <th>审核状态</th>
                              <th>订单号</th>
                              <th>票号</th>
-                             <th>出票时间</th>
+                             <th>退票录入日期</th>
                              <th>乘客名</th>
-                             <th>舱位</th>
-                             <th>航班</th>
-                             <th>航程</th>
-                             <th>成本价</th>
-                             <th>实付款</th>
-                             <th>利润</th>
-                             <th>票面价</th>
-                             <th>代理费率</th>
-                             <th>底价</th>
-                             <th>代理费</th>
-                             <th>机建税</th>
-                             <th>燃油税</th>
-                             <th class="line_right">机票状态</th>
+                             <th>供应商退票款</th>
+                             <th>采购商退票款</th>
+                             <th>退票手续费</th>
+                             <th class="line_right">利润</th>
                          </tr>
                       </thead>
                       <tbody>
@@ -220,45 +211,27 @@ $(function(){
                               <td>7812140775658</td>
                               <td>2012/9/17</td>
                               <td>李晓明</td>
-                              <td>Y</td>
-                              <td>CA9235</td>
-                              <td>PVGTAO</td>
-                              <td>1000</td>
-                              <td>11500</td>
-                              <td><b>150</b></td>
-                              <td>1000</td>
-                              <td>3 %</td>
-                              <td>970</td>
-                              <td>30</td>
-                              <td>50</td>
-                              <td>100</td>
-                              <td>出票</td>
+                              <td>900</td>
+                              <td>950</td>
+                              <td>10</td>
+                              <td><strong class="fontOrange">-50</strong></td>
                           </tr>
                           <tr>
                               <td class="checkboxWidth"><input type="checkbox" /></td>
                               <td>
                                   <a href="#">取消审核</a>
                               </td>
-                              <td>未审核</td>
+                              <td>已审核</td>
                               <td>
                                   <a href="#">030312103112260001</a>
                               </td>
                               <td>7812140775658</td>
                               <td>2012/9/17</td>
                               <td>李晓明</td>
-                              <td>Y</td>
-                              <td>CA9235</td>
-                              <td>PVGTAO</td>
-                              <td>1000</td>
-                              <td>11500</td>
-                              <td><em>-50</em></td>
-                              <td>1000</td>
-                              <td>3 %</td>
-                              <td>970</td>
-                              <td>30</td>
-                              <td>50</td>
-                              <td>100</td>
-                              <td>出票</td>
+                              <td>900</td>
+                              <td>950</td>
+                              <td>10</td>
+                              <td><strong class="fontOrange">-50</strong></td>
                           </tr>
                           <tr>
                               <td class="checkboxWidth"><input type="checkbox" /></td>
@@ -272,19 +245,10 @@ $(function(){
                               <td>7812140775658</td>
                               <td>2012/9/17</td>
                               <td>李晓明</td>
-                              <td>Y</td>
-                              <td>CA9235</td>
-                              <td>PVGTAO</td>
-                              <td>1000</td>
-                              <td>11500</td>
-                              <td><b>150</b></td>
-                              <td>1000</td>
-                              <td>3 %</td>
-                              <td>970</td>
-                              <td>30</td>
-                              <td>50</td>
-                              <td>100</td>
-                              <td>出票</td>
+                              <td>900</td>
+                              <td>950</td>
+                              <td>10</td>
+                              <td><b>50</b></td>
                           </tr>
                           <tr>
                               <td class="checkboxWidth"><input type="checkbox" /></td>
@@ -298,23 +262,13 @@ $(function(){
                               <td>7812140775658</td>
                               <td>2012/9/17</td>
                               <td>李晓明</td>
-                              <td>Y</td>
-                              <td>CA9235</td>
-                              <td>PVGTAO</td>
-                              <td>1000</td>
-                              <td>11500</td>
-                              <td><b>150</b></td>
-                              <td>1000</td>
-                              <td>3 %</td>
-                              <td>970</td>
-                              <td>30</td>
-                              <td>50</td>
-                              <td>100</td>
-                              <td>出票</td>
+                              <td>900</td>
+                              <td>950</td>
+                              <td>10</td>
+                              <td><b>0</b></td>
                           </tr>
                       </tbody>                      
-                 </table>
-            </div>
+              </table>
               
               <div class="grid-table-pagination page">
                   <span class="grid-table-count">
@@ -339,16 +293,6 @@ $(function(){
                           
         </div>
     </div>
-    
-    <!-- <div class="succeedPromp">
-         <h3><em></em>审核成功！</h3>
-    </div>
-    
-    <br>
-
-    <div class="autoPromp"> 
-         <h3><em></em>自动匹配<i>111</i>个！</h3>
-    </div> -->
     
     
     <div id="extFooter">

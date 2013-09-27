@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<title>运营商 财务 对账管理 出票采购商审核</title>
+	<title>运营商 财务 对账管理 出票供应商审核</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <link href="../../static/css/common.css" rel="stylesheet" type="text/css" />
@@ -71,18 +71,23 @@ $(function(){
                <div class="topFixedToolsBar">
                     <div class="fixedMenu" style="width:auto; margin-left:0px; font-size:12px;">
                         <a href="导入配置设置.html">导入配置设置</a>
-                        <a href="出票供应商审核.html">出票供应商审核</a>
-                        <a href="出票采购商审核.html" class="currentPitchOn">出票采购商审核</a>
+                        <a href="出票供应商审核.html" class="currentPitchOn">出票供应商审核</a>
+                        <a href="出票采购商审核.html">出票采购商审核</a>
                         <a href="退票供应商审核.html">退票供应商审核</a>
                         <a href="退票采购商审核.html">退票采购商审核</a>
                     </div>
-                    <!--<div class="fixedButton">
+                   <div class="fixedButton">
                         <a class="button_secondary adaptiveButton small" href="javascript:;">
                             <span class="left"></span>
-                            <span class="center center_1">添加退改签规定</span>
+                            <span class="center center_1">匹配失败列表</span>
                             <span class="right"></span>
                         </a>
-                    </div>-->
+                        <a class="button_secondary adaptiveButton small" href="javascript:;">
+                            <span class="left"></span>
+                            <span class="center center_1">导入匹配</span>
+                            <span class="right"></span>
+                        </a>
+                    </div>
               </div>
               <div class="refer">
                    <table cellpadding="0" cellspacing="0" class="refer_list">
@@ -171,7 +176,6 @@ $(function(){
               <div class="qx tabHead">
                   <div class="xuanze">
                       <button class="btns btn-ac-blue">审核</button>
-                      <button class="btns btn-ac-blue">自动匹配</button>
                       <button class="btns btn-ac-blue">导出Excel</button>
                   </div>
                   <!--<div class="qx_right">
@@ -182,7 +186,7 @@ $(function(){
               </div>
               
             <div class="scroll">
-                 <table cellpadding="0" cellspacing="0" class="tgrid" style="width:120%;">
+                 <table cellpadding="0" cellspacing="0" class="tgrid" style="width:130%;">
                       <thead>
                          <tr>
                              <th class="line_left" style="width:20px;"><input type="checkbox" /></th>
@@ -195,15 +199,13 @@ $(function(){
                              <th>舱位</th>
                              <th>航班</th>
                              <th>航程</th>
-                             <th>成本价</th>
-                             <th>实付款</th>
-                             <th>利润</th>
                              <th>票面价</th>
                              <th>代理费率</th>
                              <th>底价</th>
                              <th>代理费</th>
                              <th>机建税</th>
                              <th>燃油税</th>
+                             <th>实付款</th>
                              <th class="line_right">机票状态</th>
                          </tr>
                       </thead>
@@ -223,41 +225,13 @@ $(function(){
                               <td>Y</td>
                               <td>CA9235</td>
                               <td>PVGTAO</td>
-                              <td>1000</td>
-                              <td>11500</td>
-                              <td><b>150</b></td>
-                              <td>1000</td>
-                              <td>3 %</td>
+                              <td><input type="text" value="1000"/></td>
+                              <td><input type="text" value="3"/> %</td>
                               <td>970</td>
                               <td>30</td>
-                              <td>50</td>
-                              <td>100</td>
-                              <td>出票</td>
-                          </tr>
-                          <tr>
-                              <td class="checkboxWidth"><input type="checkbox" /></td>
-                              <td>
-                                  <a href="#">取消审核</a>
-                              </td>
-                              <td>未审核</td>
-                              <td>
-                                  <a href="#">030312103112260001</a>
-                              </td>
-                              <td>7812140775658</td>
-                              <td>2012/9/17</td>
-                              <td>李晓明</td>
-                              <td>Y</td>
-                              <td>CA9235</td>
-                              <td>PVGTAO</td>
-                              <td>1000</td>
-                              <td>11500</td>
-                              <td><em>-50</em></td>
-                              <td>1000</td>
-                              <td>3 %</td>
-                              <td>970</td>
-                              <td>30</td>
-                              <td>50</td>
-                              <td>100</td>
+                              <td><input type="text" value="50"/></td>
+                              <td><input type="text" value="100"/></td>
+                              <td>1150</td>
                               <td>出票</td>
                           </tr>
                           <tr>
@@ -276,14 +250,12 @@ $(function(){
                               <td>CA9235</td>
                               <td>PVGTAO</td>
                               <td>1000</td>
-                              <td>11500</td>
-                              <td><b>150</b></td>
-                              <td>1000</td>
                               <td>3 %</td>
                               <td>970</td>
                               <td>30</td>
                               <td>50</td>
                               <td>100</td>
+                              <td>1150</td>
                               <td>出票</td>
                           </tr>
                           <tr>
@@ -301,16 +273,38 @@ $(function(){
                               <td>Y</td>
                               <td>CA9235</td>
                               <td>PVGTAO</td>
-                              <td>1000</td>
-                              <td>11500</td>
-                              <td><b>150</b></td>
-                              <td>1000</td>
-                              <td>3 %</td>
+                              <td><input type="text" value="1000"/></td>
+                              <td><input type="text" value="3"/> %</td>
                               <td>970</td>
                               <td>30</td>
-                              <td>50</td>
-                              <td>100</td>
-                              <td>出票</td>
+                              <td><input type="text" value="50"/></td>
+                              <td><input type="text" value="100"/></td>
+                              <td>1150</td>
+                              <td>废票</td>
+                          </tr>
+                          <tr>
+                              <td class="checkboxWidth"><input type="checkbox" /></td>
+                              <td>
+                                  <a href="#">审核</a>
+                              </td>
+                              <td>未审核</td>
+                              <td>
+                                  <a href="#">030312103112260001</a>
+                              </td>
+                              <td>7812140775658</td>
+                              <td>2012/9/17</td>
+                              <td>李晓明</td>
+                              <td>Y</td>
+                              <td>CA9235</td>
+                              <td>PVGTAO</td>
+                              <td><input type="text" value="1000"/></td>
+                              <td><input type="text" value="3"/> %</td>
+                              <td>970</td>
+                              <td>30</td>
+                              <td><input type="text" value="50"/></td>
+                              <td><input type="text" value="100"/></td>
+                              <td>1150</td>
+                              <td>废票</td>
                           </tr>
                       </tbody>                      
                  </table>
@@ -340,17 +334,7 @@ $(function(){
         </div>
     </div>
     
-    <!-- <div class="succeedPromp">
-         <h3><em></em>审核成功！</h3>
-    </div>
-    
-    <br>
-
-    <div class="autoPromp"> 
-         <h3><em></em>自动匹配<i>111</i>个！</h3>
-    </div> -->
-    
-    
+ 
     <div id="extFooter">
         <div>
             <p>
