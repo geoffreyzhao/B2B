@@ -70,6 +70,13 @@
         <a class="item" href="#">支票管理</a> 
         <a class="item" href="#">交易明细</a> 
     </div>
+    <div class="col col-r sep-l">
+         <a href="javascript:;" class="ac-new button_secondary adaptiveButton small">
+    <span class="left"></span>
+    <span class="center">新增提现</span>
+    <span class="right"></span>
+</a>
+    </div>
 </div>
 
 <div class="block block1 clearfix">
@@ -77,7 +84,7 @@
         <ul class="flat-list">
             <li>
             <label class="vertical-head">客户名称</label>
-            <input style="width:80px">
+            <input style="width:80px" type="text">
             <button class="btns btn-search ac-search-customer">查询</button>
             </li>
             <li>
@@ -103,7 +110,7 @@
             </li>
             <li>
             <label class="vertical-head" style="width:40px;">审核人</label>
-            <input style="width:80px">
+            <input style="width:80px" type="text">
             <button class="btns btn-search ac-search-user">查询</button>
             </li>
         </ul>
@@ -115,11 +122,11 @@
 
 <div class="block block2">
     <div class="block-header">
-        <button class="btns btn-ac-blue">确认提取</button> 
+        <button class="btns btn-ac-blue">审核通过</button> 
         <span style="color:#aaa">&nbsp;|&nbsp;</span>
-        <button class="btns btns-ac-blue">拒绝提取</button> 
+        <button class="btns btn-ac-blue">审核退回</button> 
         <span style="color:#aaa">&nbsp;|&nbsp;</span>
-        <button class="btns btns-ac-blue">导出Excel</button> 
+        <button class="btns btn-ac-blue">导出Excel</button> 
     </div> 
     <table class="grid-table">
         <tr class="thead">
@@ -129,7 +136,7 @@
             <th>渠道</th>
             <th>类型</th>
             <th>状态</th>
-            <th>备注</th>
+            <th>摘要</th>
             <th>申请时间</th>
             <th>审核时间</th>
             <th>操作</th>
@@ -171,9 +178,88 @@ $(function(){
         <td>#= data.c8 #<br>#= data.c9 #</td>
         <td class="grid-row-ac">
         <button class="btns ac-confirm">确认</button>
-        <button class="btns ac-delete">删除</button>
+        <button class="btns ac-refuse">退回</button>
         </td>
     </tr>
+</script>
+
+<script type="text/x-kendo-template" id="ac-refuse-template">
+    <table class="cv-table">
+        <tr>
+            <th>客户</th>
+            <td>苏宁</td>
+        </tr>
+        <tr>
+            <th>可提现金额</th>
+          <td><strong class="text1">15,000</strong></td>
+        </tr>
+        <tr>
+          <th>提现金额</th>
+          <td><strong class="text1">15,000</strong></td>
+        </tr>
+        <tr>
+        <th>退回原因</th>
+          <td><textarea id="" name=""></textarea></td>
+        </tr>
+    </table>        
+    <div class="row" style="text-align:right;">
+        <button class="btns button_1_2">提 交</button> 
+        <button class="btns button_2_2">取 消</button> 
+    </div>
+</script>
+<script type="text/x-kendo-template" id="ac-new-template">
+    <table class="cv-table">
+        <tr>
+            <th>选择客户</th>
+            <td><input id="" style="width:100px" type="text" name="">
+            <button class="btns btn-search ac-search-customer">查询</button></td>
+        </tr>
+        <tr>
+          <th>可提现金额</th>
+          <td><strong class="text1">15,000</strong></td>
+        </tr>
+        <tr>
+          <th>提现金额</th>
+          <td><input id="" style="width:125px;" type="text" name=""></td>
+        </tr>
+        <tr>
+          <th>确认金额</th>
+          <td><input id="" style="width:125px;" type="text" name=""></td>
+        </tr>
+        <tr>
+          <th>大写金额</th>
+          <td></td>
+        </tr>
+        <tr>
+          <th>摘要</th>
+          <td><textarea id="" name=""></textarea></td>
+        </tr>
+    </table>        
+    <div class="row" style="text-align:right;">
+        <button class="btns button_1_2 ac-submit">提 交</button> 
+        <button class="btns button_2_2">取 消</button> 
+    </div>
+
+</script>
+<script type="text/x-kendo-template" id="ac-submit-template">
+    <table class="cv-table">
+        <tr>
+            <th>客户</th>
+            <td>苏宁</td>
+        </tr>
+        <tr>
+          <th>提现金额</th>
+          <td><strong class="text1">1,000</strong></td>
+        </tr>
+        <tr>
+          <th>摘要</th>
+          <td>国内退票</td>
+        </tr>
+    </table>
+    <div class="row" style="text-align:right;">
+        <button class="btns button_1_2">确 认</button> 
+        <button class="btns button_2_2">取 消</button> 
+    </div>
 </script>
 
 <script type="text/x-kendo-template" id="ac-search-user-template">
@@ -408,6 +494,24 @@ $(function(){
 <script type="text/javascript">
 
 $(function(){
+    new PopWindow('.ac-refuse',{
+        title:'提现退回', 
+        template:'#ac-refuse-template',
+        width:470
+    }).init();
+
+    new PopWindow('.ac-new',{
+        title:'新增提现', 
+        template:'#ac-new-template',
+        width:470
+    }).init();
+
+    new PopWindow('.ac-submit',{
+        title:'确认提现', 
+        template:'#ac-submit-template',
+        width:470
+    }).init();
+
     var ac_search_customer_window = new PopWindow('.ac-search-customer',{
         title:'选择客户',
         template:'#ac-search-customer-template'
