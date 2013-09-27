@@ -84,7 +84,7 @@
         <ul class="flat-list">
             <li>
             <label class="vertical-head">客户名称</label>
-            <input style="width:80px" type="text">
+            <input style="width:80px" id="customer" type="text">
             <button class="btns btn-search ac-search-customer">查询</button>
             </li>
             <li>
@@ -315,44 +315,55 @@ $(function(){
         <td>#= data.c3 #</td>
         <td>#= data.c4 #</td>
     </tr>
-</script><script type="text/x-kendo-template" id="ac-search-customer-template">
+</script>
+
+
+<style>
+#customer-grid-table td{
+    cursor:pointer;
+}
+#customer-grid-table th{
+    padding-top:10px;
+    padding-bottom:10px;
+}
+#row2775 .k-grid{
+    border-top:1px solid #ddd;
+    border-left:1px solid #eee;
+    border-right:1px solid #eee;
+    border-bottom:3px solid #ddd;
+}
+#row2775 b{
+    font-weight:normal;
+}
+</style>
+<script type="text/x-kendo-template" id="ac-search-customer-template">
 <div class="row">
-<ul class="flat-list">
-    <li>
-    <label class="vertical-head">客户简称：</label>
-    <input style="width:100px">
-    </li>
-    <li>
-    <label style="width:80px;" class="vertical-head">拼音索引：</label>
-    <input style="width:100px">
-    </li>
-    <li>
-    <label class="vertical-head">客户全称：</label>
-    <input style="width:100px">
-    </li>
-    <li>
-    <label style="width:80px;" class="vertical-head">银行账号：</label>
-    <input style="width:100px">
-    </li>
-    <li>
-    <label class="vertical-head">联系人：</label>
-    <input style="width:100px">
-    </li>
-    <li>
-    <label style="width:80px;" class="vertical-head">归属营业点：</label>
-    <input style="width:80px">
-    <button data-options="{
-        title:'选择营业点',
-        template:'ac-select-outlet-template'
-    }" class="btns btn-search ac-select-outlet">查询</button>
-    </li>
-    <li style="width:100%;text-align:right;">
-    <button style="margin-top:-5px;" class="btns btn-orange-s">查询</button>
-    </li>
-</ul>
+<table>
+    <colgroup>
+      <col width="55">
+      <col width="160">
+      <col width="55">
+      <col width="160">
+    </colgroup>
+    <tr height="25">
+      <td>客户名称</td>
+      <td><input id="" style="width:130px;" type="text" name=""></td>
+      <td>拼音索引</td>
+      <td><input id="" style="width:130px;" type="text" name=""></td>
+      <td rowspan=2>
+            <button class="btns button_2_1" style="font-weight:normal">查 询</button> 
+      </td>
+    </tr>
+    <tr height="25">
+      <td>客户全称</td>
+      <td><input id="" style="width:130px;" type="text" name=""></td>
+      <td>联系人</td>
+      <td><input id="" style="width:130px;" type="text" name=""></td>
+    </tr>
+</table>
 </div>
 
-    <div class="row">
+    <div class="row" id="row2775">
     <table class="grid-table" id="customer-grid-table">
     <tr class="thead">
     <th>客户名称</th>
@@ -364,14 +375,13 @@ $(function(){
     </div>
 
     <div class="row" style="text-align:right;">
-    <button class="btns button_1_2">提 交</button> 
-    <button class="btns button_2_2">取 消</button> 
+    <button style="margin:0;" class="btns button_2_2">关闭</button> 
     </div>
 </div>
 </script>
 
 <script type="text/x-kendo-template"  id="search-customer-row-template">
-<tr>
+<tr data-value="#= data.c1 #">
         # kendo.logToConsole(data) #
         <td>#= data.c1 #</td>
         <td>#= data.c2 #</td>
@@ -494,6 +504,12 @@ $(function(){
 <script type="text/javascript">
 
 $(function(){
+    $('body').on('click','#customer-grid-table tr',function(){
+         var value = $(this).data('value');
+         $('#customer').val(value);
+         ac_search_customer_window.close();
+    });
+
     new PopWindow('.ac-refuse',{
         title:'提现退回', 
         template:'#ac-refuse-template',
@@ -520,10 +536,15 @@ $(function(){
     ac_search_customer_window.bind('open',function(){
     new GridTable('#customer-grid-table',{
          dataSource: [{
-            c1:222,
-            c2:333,
-            c3:"xxx",
-            c4:"xxx"
+            c1:'苏宁xxxxx',
+            c2:'2013/06/09',
+            c3:"10,000.00",
+            c4:"李小明"
+        },{
+            c1:'苏宁',
+            c2:'2013/06/09',
+            c3:"10,000.00",
+            c4:"李小明"
         }], 
         rowTemplate: kendo.template($("#search-customer-row-template").html())
     }).init(); 
