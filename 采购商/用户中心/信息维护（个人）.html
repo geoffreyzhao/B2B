@@ -28,7 +28,12 @@
     <script type="text/javascript" src="../../static/js/store/store.js"></script>
 
     <style type="text/css">
-        .successful{color:#636363;background:url('../../static/images/store/succeed.png') no-repeat 20px 50% #FAFADB;line-height:64px;padding-left:65px;font:bold 16px/20px}
+        .successful{color:#636363;background:url('../../static/images/store/succeed.png') no-repeat 20px 50% #FAFADB;line-height:64px;height:64px;padding-left:65px;font-size:16px;font-weight:bold}
+        .tabPanel{padding:12px}
+        td{height:30px;color:#636363}
+        .td_head{text-align:right}
+        input.editable.disabled{border:none}
+        .btn_modifyPassword{color:#CF6B00;padding-left: 10px;text-decoration:none}
     </style>
 
 </head>
@@ -132,6 +137,74 @@
                 </ul>
             </aside>
             <div class="successful">登录密码修改成功！</div>
+            <div class="tabPanel">
+                <h1 class="us-title">账号信息</h1>
+                <table>
+                    <colgroup>
+                        <col width="75">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td class="td_head">用户名：</td>
+                            <td>laobao</td>
+                        </tr>
+                        <tr>
+                            <td class="td_head">电子邮箱：</td>
+                            <td>234567@163.com</td>
+                        </tr>
+                        <tr>
+                            <td class="td_head">登录密码：</td>
+                            <td>********<a href="javascript:;" class="btn_modifyPassword">修改密码</a></td>
+                        </tr>
+                        <tr>
+                            <td class="td_head">客户类型：</td>
+                            <td>公司</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h1 class="us-title">
+                    主要业务联系人信息
+                    <span style="float:right;margin-top:-8px">
+                        <a class="adaptiveButton medium brightRed_btn btn_edit">
+                            <span class="left"></span>
+                            <span class="center center_1">编辑</span>
+                            <span class="right"></span>
+                        </a>
+                        <a class="adaptiveButton medium brightRed_btn btn_save" style="display:none">
+                            <span class="left"></span>
+                            <span class="center center_1">保存</span>
+                            <span class="right"></span>
+                        </a>
+                    </span>
+                </h1>
+                <table id="tbl_mainBusinessContactInfo">
+                    <colgroup>
+                        <col width="75">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <td class="td_head">姓名：</td>
+                        <td><input value="燕小六" type="text" name="" id="" class="editable disabled" readonly="readonly"/></td>
+                    </tr>
+                    <tr>
+                        <td class="td_head">电子邮箱：</td>
+                        <td><input value="234567@163.com" type="text" name="" id="" class="editable disabled" readonly="readonly"/></td>
+                    </tr>
+                    <tr>
+                        <td class="td_head">手机号码：</td>
+                        <td><input value="13912345678" type="text" name="" id="" class="editable disabled" readonly="readonly"/></td>
+                    </tr>
+                    <tr>
+                        <td class="td_head">办公电话：</td>
+                        <td><input value="021-543217890" type="text" name="" id="" class="editable disabled" readonly="readonly"/></td>
+                    </tr>
+                    <tr>
+                        <td class="td_head">QQ：</td>
+                        <td><input value="13912345678" type="text" name="" id="" class="editable disabled" readonly="readonly"/></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
 </section>
@@ -152,8 +225,20 @@
     </center>
 </footer>
 </div>
-
-
+<script type="text/javascript">
+    $(function(){
+        $(".btn_edit").click(function(){
+            $("#tbl_mainBusinessContactInfo :text").removeClass("disabled").prop("readonly",false);
+            $(this).hide();
+            $(".btn_save").show();
+        });
+        $(".btn_save").click(function(){
+            $("#tbl_mainBusinessContactInfo :text").addClass("disabled").prop("readonly",true);
+            $(this).hide();
+            $(".btn_edit").show();
+        });
+    })
+</script>
 </body>
 </html>
 
