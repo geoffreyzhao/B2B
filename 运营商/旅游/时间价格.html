@@ -65,33 +65,37 @@
     </div>
 </div>
 
+<script type="text/x-kendo-template" id="tripDetailAddContainer">
 <div class="tripDetailAddContainer" style="height:400px">
     <div class="tripDetailContainerLeft" style="width:220px;">
-        <div class="tripDetailItem">
-            <div style="margin-bottom:8px"><b>团号：</b>BM-130908-001</div>
-            <span style="color:#339900;margin:0 20px 0 30px;font-weight:bold">余15位</span><span style="color:#FF3300;font-size:16px;font-weight:bold;font-family:arial">￥15000起</span>
+        # console.dir(data) #
+        # for(var i=0;i<data.length;i++){ #
+        <div class="tripDetailItem" data-itemIndex="#=i#">
+            <div style="margin-bottom:8px"><b>团号：</b>#= data[i].tuanhao #</div>
+            <span style="margin:0 20px 0 30px;font-weight:bold">余15位</span><span style="font-size:16px;font-weight:bold;font-family:arial">￥15000起</span>
         </div>
-        <div class="tripDetailAddButton">添加团</div>
+        # } #
+        <div class="tripDetailAddButton" id="btn_addnewTimePriceItem">添加团</div>
         <div class="spliteArrowLeft"></div>
     </div>
     <div class="tripDetailContainerRight" style="width:270px;padding:10px 20px">
         <ul>
             <li><b>出发日期：</b>2013-10-27</li>
-            <li><b class="important">*</b><b>团号：</b><input value="BM-130908-001" type="text" name="" id="" style="width:100px"></li>
-            <li style="border-bottom:1px solid #ccc;padding-bottom:8px"><b class="important">*</b><b>计划人数：</b><input value="45" type="text" name="" id="" style="width:33px"> 人</li>
-            <li style="border-bottom:1px solid #ccc;padding-bottom:8px">
+            <li><b class="important">*</b><b>团号：</b><input value="" type="text" name="" id="tuanhao" style="width:100px"></li>
+            <li style="padding-bottom:8px"><b class="important">*</b><b>计划人数：</b><input value="" type="text" name="" id="" style="width:33px"> 人</li>
+            <li style="padding-bottom:8px">
                 <table>
                     <tr>
                         <th>价格</th>
                         <th>人数</th>
                     </tr>
                     <tr>
-                        <td><b class="important">*</b>成人：<span class="important"><input value="15000" type="text" name="" id="" style="width:43px;"></span> 元</td>
-                        <td><input value="30" type="text" name="" id="" style="width:34px"> 人</td>
+                        <td><b class="important">*</b>成人：<span class="important"><input value="" type="text" name="" id="" style="width:43px;"></span> 元</td>
+                        <td><input value="" type="text" name="" id="" style="width:34px"> 人</td>
                     </tr>
                     <tr>
-                        <td><b class="important">*</b>儿童：<span class="important"><input value="15000" type="text" name="" id="" style="width:43px;"></span> 元</td>
-                        <td><input value="20" type="text" name="" id="" style="width:34px;"> 人</td>
+                        <td><b class="important">*</b>儿童：<span class="important"><input value="" type="text" name="" id="" style="width:43px;"></span> 元</td>
+                        <td><input value="" type="text" name="" id="" style="width:34px;"> 人</td>
                     </tr>
                     <tr>
                         <td>
@@ -105,27 +109,30 @@
                 </table>
             </li>
             <li>
-                <b>当前是否接受报名：</b><label><input type="radio" name="" id="">是</label><label style="margin-left:20px"><input type="radio" name="" id="">否</label>
+                <b>当前是否接受报名：</b><label><input type="radio" name="" id="" checked="checked">是</label><label style="margin-left:20px"><input type="radio" name="" id="">否</label>
             </li>
             <li>
                 <b>报名截止日期：</b><input type="text" name="" id="" class="datePicker" style="width:100px">
             </li>
             <li>
-                <a href="javascript:;" class="button_important adaptiveButton medium">
+                <a href="javascript:;" id="btn_timePriceItemSave" class="button_important adaptiveButton medium">
                     <span class="left"></span>
                     <span class="center" style="padding:0 35px">保存</span>
                     <span class="right"></span>
                 </a>
 
-                <a href="javascript:;" class="button_unimportant adaptiveButton medium">
+                <a href="javascript:;" id="btn_timePriceItemDelete" class="button_unimportant adaptiveButton medium">
                     <span class="left"></span>
                     <span class="center" style="padding:0 35px">删除</span>
                     <span class="right"></span>
                 </a>
             </li>
         </ul>
+        <div id="tripDetailContainerRightConver"></div>
     </div>
 </div>
+
+</script>
 
 <div class="tripDetailContainer">
     <div class="tripDetailContainerLeft">
@@ -187,6 +194,8 @@
     </div>
 </div>
 
+<div id="window"></div>
+
 <script id="calendarTemplate" type="text/x-kendo-template">
     # if($.inArray(+data.date, data.dates) != -1){ #
         # if(!eve[$.dateToString(data.date)]){ #
@@ -222,7 +231,9 @@
         return [s.getFullYear(), (s.getMonth() < 9 ? "0" : "") + (s.getMonth() + 1), (s.getDate() < 10 ? "0" : "") + s.getDate()].join(sep);
     };
 
+
     $(function(){
+        var t=kendo.template($("#tripDetailAddContainer").html());
         var today = new Date(),
             toDate=today;
         var spDate=(function(){
@@ -232,7 +243,7 @@
             }
             return arr;
         })();
-        var calendar=$("#calendar").kendoCalendar({
+        calendar=$("#calendar").kendoCalendar({
             culture:"zh-CHS",
             dates:spDate,
             value:today,
@@ -241,6 +252,18 @@
             change:function(e){
                 toDate=e.sender.current();
                 changeCalendarDateInfo(toDate);
+                ts=hashDate((+new Date(toDate.Format("yyyy/MM/dd"))).toString());
+                if(!model.timePrice[ts])
+                {
+                    model.timePrice[ts]=[];
+                }
+
+                var c=t(model.timePrice[ts]);
+                w1.setOptions({"title":toDate.Format("yyyy/MM/dd")})
+                w1.refresh({"template":c})
+                w1.center().open();
+                setWP("timePriceItemName",ts);
+                setWP("editStatus","addible")
             }
         }).data("kendoCalendar");
 
@@ -273,7 +296,7 @@
             }
         });
 
-        $("#calendar").delegate("td","click",function(){w1.center().open()})
+        //$("#calendar").delegate("td","click",function(){w1.center().open()})
 
         function changeCalendarDateInfo(toDate)
         {
@@ -286,11 +309,15 @@
         $("body").delegate(".tripDetailItem","click",function(){
             $(this).addClass("active").siblings().removeClass("active");
             $(".spliteArrowLeft").css("top",$(this).position().top+$(this).outerHeight()/2);
+            modifyTimePriceItem($(this).attr("data-itemIndex"));
+            setWP("editStatus","editable");
+            setWP("editItemIndex",$(this).attr("data-itemIndex"));
+            $("#tripDetailContainerRightConver").hide();
         })
 
         //$("#calendar").delegate("td:not('.hover')","click",function(){w.center().open();})
 
-        $(".tripDetailItem:first").trigger("click");
+        //$(".tripDetailItem:first").trigger("click");
 
         var w=$(".tripDetailContainer").kendoWindow({
             visible:false,
@@ -298,14 +325,91 @@
             animation:false,
             title:"2013/09/12"
         }).data("kendoWindow");
-        var w1=$(".tripDetailAddContainer").kendoWindow({
+        var w1=$("#window").kendoWindow({
             visible:false,
             modal:true,
             animation:false,
             title:"2013/09/12"
         }).data("kendoWindow");
 
-    })
+        $("body").delegate("#btn_timePriceItemSave","click",function(){
+            if(getWP("timePriceItemName"))
+            {
+                switch($("#window").data("editStatus"))
+                {
+                    case "addible":model.timePrice[getWP("timePriceItemName")].push(new TimePriceItem());break;
+                    case "editable":model.timePrice[getWP("timePriceItemName")][getWP("editItemIndex")]=new TimePriceItem();break;
+                    default :return;
+                }
+                w1.refresh({"template":t(model.timePrice[getWP("timePriceItemName")])});
+                setWP("editStatus","uneditable");
+                refreshCalendar_add(getWP("timePriceItemName"));
+                $("#tripDetailContainerRightConver").show();
+            }
+        })
+
+        $("body").delegate("#btn_timePriceItemDelete","click",function(){
+            if(getWP("timePriceItemName") && getWP("editItemIndex") && getWP("editStatus")!="uneditable")
+            {
+                model.timePrice[getWP("timePriceItemName")].splice(getWP("editItemIndex"),1);
+                w1.refresh({"template":t(model.timePrice[getWP("timePriceItemName")])});
+                setWP("editStatus","uneditable");
+                refreshCalendar_delete(getWP("timePriceItemName"));
+            }
+        });
+
+
+        $("body").delegate("#btn_addnewTimePriceItem","click",function(){
+            $("#window").data("editStatus","addible");
+            $("#tripDetailContainerRightConver").hide();
+        })
+
+    });
+
+
+    function modifyTimePriceItem(index)
+    {
+        var item=model.timePrice[getWP("timePriceItemName")][index];
+        $("#tuanhao").val(item.tuanhao);
+    }
+
+    function refreshCalendar_add(t)
+    {
+        t=parseFloat(dehashDate(t));
+        var df=new Date(t).Format("yyyy/MM/dd");
+        if(!eve[df])
+        {
+            eve[df]=[22,890];
+            calendar.options.dates.push(t);
+            var anim=calendar.options.animation;
+            calendar.options.animation=false;
+            calendar.navigate(new Date(t),"month");
+            calendar.options.animation=anim;
+        }
+
+
+    }
+
+    function refreshCalendar_delete(t)
+    {
+        t=parseFloat(dehashDate(t));
+        if(model.timePrice[getWP("timePriceItemName")].length==0)
+        {
+            var df=new Date(t).Format("yyyy/MM/dd");
+            delete eve[df];
+            calendar.options.dates.splice(calendar.options.dates.indexOf(t),1);
+            var anim=calendar.options.animation;
+            calendar.options.animation=false;
+            calendar.navigate(new Date(t),"month");
+            calendar.options.animation=anim;
+            setWP("editStatus","addible");
+        }
+        else
+        {
+            $("#tripDetailContainerRightConver").show();
+        }
+    }
+
     function getjqjr(year,month,day)
     {
         myCal=new CCC(year,month,day);
@@ -316,6 +420,69 @@
         tmp+=myCal.jqFtvl()!=""?myCal.jqFtvl()+"<br />":"";
         tmp+=myLunarCal.lunFtvl()!=""?myLunarCal.lunFtvl()+"<br />":"";
         return (tmp);
+    }
+
+    var model=kendo.observable({
+        timePrice:{}
+    })
+    kendo.bind($("body"),model);
+
+    function TimePriceItem()
+    {
+        this.tuanhao=$("#tuanhao").val();
+    }
+
+    function setWP(name,value)
+    {
+        $("#window").data(name,value);
+    }
+
+    function getWP(name)
+    {
+        return $("#window").data(name);
+    }
+
+    function hashDate(t)
+    {
+        t= t.replace(/0/g,'a');
+        t= t.replace(/1/g,'b');
+        t= t.replace(/2/g,'c');
+        t= t.replace(/3/g,'d');
+        t= t.replace(/4/g,'e');
+        t= t.replace(/5/g,'f');
+        t= t.replace(/6/g,'g');
+        t= t.replace(/7/g,'h');
+        t= t.replace(/8/g,'i');
+        t= t.replace(/9/g,'j');
+        return t;
+    }
+
+    function dehashDate(t)
+    {
+        t= t.replace(/a/g,'0');
+        t= t.replace(/b/g,'1');
+        t= t.replace(/c/g,'2');
+        t= t.replace(/d/g,'3');
+        t= t.replace(/e/g,'4');
+        t= t.replace(/f/g,'5');
+        t= t.replace(/g/g,'6');
+        t= t.replace(/h/g,'7');
+        t= t.replace(/i/g,'8');
+        t= t.replace(/j/g,'9');
+        return t;
+    }
+
+    function getData()
+    {
+        var jsonD=model.timePrice.toJSON();
+        var stringD=JSON.stringify(jsonD);
+        for(var p in jsonD)
+        {
+            var t=dehashDate(p);
+            var sfd=new Date(parseFloat(t)).Format("yyyy/MM/dd");
+            stringD=stringD.replace(p,sfd);
+        }
+        console.log(stringD);
     }
 </script>
 
