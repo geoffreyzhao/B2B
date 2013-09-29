@@ -24,7 +24,7 @@
 
     <script type="text/javascript">
     
-$("#editor").kendoEditor({
+var edit = $("#editor").kendoEditor({
     tools: [
         "bold",
         "italic",
@@ -99,7 +99,15 @@ $("#upload").kendoUpload({
 
         var editor = $("#editor").data("kendoEditor");
         var newNode = $("<img src='http://proto.b2b.com/static/images/logo.png'/>");
-        $(editor.body).append(newNode);
+
+        var sel = editor.getSelection();
+        console.log(sel.focusOffset);
+        console.log(sel.focusNode);
+        if($("p:eq(" + sel.focusOffset + ")" ,editor.body).length){
+            $("p:eq(" + sel.focusOffset + ")" ,editor.body).append(newNode);
+        }else{
+            $(editor.body).append(newNode);
+        }
         editor.update();
         if (e.operation == "upload") {
             alert("Failed to upload " + files.length + " files");
