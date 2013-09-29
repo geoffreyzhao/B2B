@@ -52,6 +52,12 @@
                     </td>
                 </tr>
                 <tr>
+                    <th><em>*</em>城市三字码 ：</th>
+                    <td>
+                        <input style="width:240px;" type="text" />
+                    </td>
+                </tr>
+                <tr>
                     <th>城市拼音 ：</th>
                     <td>
                         <input style="width:240px;" type="text" value="Shanghai" />
@@ -168,7 +174,7 @@
                     <td><input style="width:165px;" type="text" name=""/></td>
                 </tr>
                 <tr>
-                    <th>开始出票日期：</th>
+                    <th>出票开始日期：</th>
                     <td><input style="width:165px;" type="text" class="datepicker" name=""/></td>
                     <th>往返价格：</th>
                     <td><input style="width:165px;" type="text" name=""/></td>
@@ -284,7 +290,7 @@
                     <td><input style="width:165px;" type="text" name=""/></td>
                 </tr>
                 <tr>
-                    <th><em>*</em>航站楼编号：</th>
+                    <th><em>*</em>航站楼编码：</th>
                     <td><input style="width:165px;" type="text" name=""/></td>
                 </tr>
                 <tr>
@@ -579,15 +585,10 @@
                <tr>
                    <th><em>*</em>类型名称：</th>
                    <td><input style="width:165px;" type="text" value="头等舱"></td>
-                   <th><label class="cabin_level">级别代码：</label><label class="cabin_level" style="display:none;">选择上级：</label></th>
+                   <th><label class="cabin_level">级别代码：</label><label class="cabin_level" style="display:none;"><em>*</em>选择上级：</label></th>
                    <td>
-                       <input style="width:100%;" type="text" class="cabin_level" value="F"/>
-                       <select name="select_parent" class="cabin_level" style="width:100%;" data-role="dropdownlist">
-                           <option value="头等舱" selected="">头等舱</option>
-                           <option value="公务舱">公务舱</option>
-                           <option value="经济舱">经济舱</option>
-                           <option value="其他">其他</option>
-                       </select>
+                       <input style="width:165px;" type="text" class="cabin_level" value="F"/>
+                       <label id="cabin_list"></label>
                    </td>
                </tr>
                <tr>
@@ -803,15 +804,28 @@
        </div>
    </div>
 
+   <script type="text/x-kendo-template" id="cabin_level">
+       <select name="" class="cabin_level" style="width:167px;" data-role="dropdownlist">
+           <option value="头等舱" selected="">头等舱</option>
+           <option value="公务舱">公务舱</option>
+           <option value="经济舱">经济舱</option>
+           <option value="其他">其他</option>
+       </select>
+   </script>
    <script>
        $(function(){
            $("select[name=cabin_level]").change(function(){
                var index = $(this).val().split("_");
                $("th .cabin_level").hide();
-               $("th .cabin_level:eq(" + (index[1] - 1) + ")").show();
+               $("th .cabin_level:eq(" + (index[2] - 1) + ")").show();
 
+
+               if(index[2] == 2){
+                   $("#cabin_list").html($("#cabin_level").html());
+                   kendo.init("#cabin_list");
+               }
                $("td .cabin_level").hide();
-               $("td .cabin_level:eq(" + (index[1] - 1) + ")").show();
+               $("td .cabin_level:eq(" + (index[2] - 1) + ")").show();
 
            });
        kendo.init('body');
