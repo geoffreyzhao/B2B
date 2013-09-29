@@ -22,6 +22,7 @@
     <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script>
 <![endif]-->
 <script type="text/javascript" src="/static/js/sync.js"></script>
+
 </head><body>  <div id="extHeader">
     <div></div>
 </div>
@@ -110,7 +111,7 @@
             </li>
             <li>
             <label class="vertical-head" style="width:40px;">审核人</label>
-            <input style="width:80px" type="text">
+            <input style="width:80px" type="text" id="user">
             <button class="btns btn-search ac-search-user">查询</button>
             </li>
         </ul>
@@ -263,34 +264,34 @@ $(function(){
 </script>
 
 <script type="text/x-kendo-template" id="ac-search-user-template">
-<div class="row">
-<ul class="flat-list">
-    <li>
-    <label class="vertical-head">登录名：</label>
-    <input style="width:100px">
-    </li>
-    <li>
-    <label class="vertical-head">姓名：</label>
-    <input style="width:100px">
-    </li>
-    <li>
-    <label class="vertical-head">部门名称：</label>
-    <input style="width:80px">
-    <button data-options="{
-        title:'选择部门',
-        template:'ac-select-department-template'
-    }" class="btns btn-search ac-select-department">查询</button>
-    </li>
-    <li>&nbsp;</li>
-    <li style="width:100%;text-align:right;">
-    <button class="btns btn-orange-s">查询</button>
-    </li>
-</ul>
+
+<div class="row row2774">
+    <table class="cv-table">
+        <colgroup>
+      <col width="60">
+      <col width="170">
+      <col width="40">
+      <col width="155">
+    </colgroup>
+        <tr>
+          <th>登录名</th>
+          <td><input style="width:130px" id="" type="text" name=""></td>
+          <th>姓名</th>
+          <td><input style="width:130px" id="" type="text" name=""></td>
+          <td rowspan=2>
+            <button class="btns button_2_1" style="font-weight:normal">查 询</button>
+          </td>
+        </tr>
+        <tr>
+            <th>部门名称</th>
+            <td><input id="department" type="text" style="width:107px;" name=""><button class="btns btn-search ac-select-department">查询</button></td>
+        </tr>
+    </table>
 </div>
 
-<div class="row">
-    <table class="grid-table" id="user-grid-table">
-    <tr class="thead">
+<div class="row row2775">
+    <table id="user-grid-table">
+    <tr>
     <th>登录名</th>
     <th>姓名</th>
     <th>部门</th>
@@ -301,14 +302,12 @@ $(function(){
 </div>
 
 <div class="row" style="text-align:right;">
-<button class="btns button_1_2">提 交</button> 
-<button class="btns button_2_2">取 消</button> 
+<button class="btns button_2_2">关 闭</button> 
 </div>
 </script>
 
 <script type="text/x-kendo-template"  id="search-user-row-template">
-    <tr>
-        # kendo.logToConsole(data) #
+    <tr data-value="#= data.c1 #">
         <td>#= data.c1 #</td>
         <td>#= data.c1 #</td>
         <td>#= data.c2 #</td>
@@ -318,54 +317,36 @@ $(function(){
 </script>
 
 
-<style>
-#customer-grid-table td{
-    cursor:pointer;
-}
-#customer-grid-table th{
-    padding-top:10px;
-    padding-bottom:10px;
-}
-#row2775 .k-grid{
-    border-top:1px solid #ddd;
-    border-left:1px solid #eee;
-    border-right:1px solid #eee;
-    border-bottom:3px solid #ddd;
-}
-#row2775 b{
-    font-weight:normal;
-}
-</style>
 <script type="text/x-kendo-template" id="ac-search-customer-template">
-<div class="row">
-<table>
+<div class="row row2774">
+<table class="cv-table">
     <colgroup>
-      <col width="55">
-      <col width="160">
-      <col width="55">
-      <col width="160">
+      <col width="60">
+      <col width="155">
+      <col width="60">
+      <col width="155">
     </colgroup>
-    <tr height="25">
-      <td>客户名称</td>
+    <tr>
+      <th>客户名称</th>
       <td><input id="" style="width:130px;" type="text" name=""></td>
-      <td>拼音索引</td>
+      <th>拼音索引</th>
       <td><input id="" style="width:130px;" type="text" name=""></td>
       <td rowspan=2>
             <button class="btns button_2_1" style="font-weight:normal">查 询</button> 
       </td>
     </tr>
-    <tr height="25">
-      <td>客户全称</td>
+    <tr>
+      <th>客户全称</th>
       <td><input id="" style="width:130px;" type="text" name=""></td>
-      <td>联系人</td>
+      <th>联系人</th>
       <td><input id="" style="width:130px;" type="text" name=""></td>
     </tr>
 </table>
 </div>
 
-    <div class="row" id="row2775">
-    <table class="grid-table" id="customer-grid-table">
-    <tr class="thead">
+    <div class="row row2775">
+    <table id="customer-grid-table">
+    <tr>
     <th>客户名称</th>
     <th>创建时间</th>
     <th>可用余额</th>
@@ -377,12 +358,10 @@ $(function(){
     <div class="row" style="text-align:right;">
     <button style="margin:0;" class="btns button_2_2">关闭</button> 
     </div>
-</div>
 </script>
 
 <script type="text/x-kendo-template"  id="search-customer-row-template">
 <tr data-value="#= data.c1 #">
-        # kendo.logToConsole(data) #
         <td>#= data.c1 #</td>
         <td>#= data.c2 #</td>
         <td>#= data.c3 #</td>
@@ -427,53 +406,51 @@ $(function(){
         </div>
 </script>
 
-<script type="text/x-kendo-template"  id="select-outlet-row-template">
-    <tr>
-        # kendo.logToConsole(data) #
-        <td>outlet</td>
-        <td>#= data.c2 #</td>
-        <td>#= data.c3 #</td>
-        <td>#= data.c4 #</td>
-    </tr>
-</script><script type="text/x-kendo-template" id="ac-select-department-template">
-<div class="row">
-<ul class="flat-list">
-                    <li>
-                    <label style="width:80px;" class="vertical-head">部门名称：</label>
-                    <input style="width:100px">
-                    </li>
-                    <li>
-                    <label style="width:80px;" class="vertical-head">负责人：</label>
-                    <input style="width:100px">
-                    </li>
-                    <li>
-                    <label style="width:80px;" class="vertical-head">所在城市：</label>
-                    <input style="width:100px">
-                    </li>
-                    <li>
-                    <label style="width:80px;" class="vertical-head">电话：</label>
-                    <input style="width:100px">
-                    </li>
-                    <li>
-                    <label style="width:80px;" class="vertical-head">邮编：</label>
-                    <input style="width:100px">
-                    </li>
-                    <li>
-                    <label style="width:80px;" class="vertical-head">地址：</label>
-                    <input style="width:100px">
-                    </li>
-                    <li>
-                    <label style="width:180px;" class="vertical-head"> <input type="checkbox"> 已删除部门</label>
-                    </li>
-                    <li style="text-align:right;width:100%;">
-                    <button style="margin-top:-5px;" class="btns btn-orange-s">查询</button>
-                    </li>
-                </ul>
+<script type="text/x-kendo-template" id="ac-select-department-template">
+<div class="row row2774">
+    <table class="cv-table">
+    <colgroup>
+      <col width="60">
+      <col width="160">
+      <col width="40">
+      <col width="160">
+    </colgroup>
+    
+        <tr>
+            <th>部门名称</th>
+            <td><input id="" style="width:130px;" type="text" name=""></td>
+            <th>负责人</th>
+            <td><input id="" style="width:130px;" type="text" name=""></td>
+            <td rowspan="3">
+            <button class="btns button_2_1" style="font-weight:normal">查 询</button>
+            </td>
+        </tr>
+        <tr>
+          <th>所在城市</th>
+          <td><input id="" style="width:130px;" type="text" name=""></td>
+          <th>电话</th>
+          <td><input id="" style="width:130px;" type="text" name=""></td>
+        </tr>
+        <tr>
+          <th>邮编</th>
+          <td><input id="" style="width:130px;" type="text" name=""></td>
+          <th>地址</th>
+          <td><input id="" style="width:130px;" type="text" name=""></td>
+        </tr>
+        <tr>
+          <td colspan="4">
+          <label>
+                <input id="" type="checkbox" name="">
+                 已删除部门
+          </label>
+          </td>
+        </tr>
+    </table>
 </div>
 
-<div class="row">
-                <table class="grid-table" id="department-grid-table">
-                <tr class="thead">
+<div class="row row2775">
+                <table id="department-grid-table">
+                <tr>
                 <th>部门名称</th>
                 <th>城市</th>
                 <th>地址</th>
@@ -485,15 +462,13 @@ $(function(){
                 </table> 
 </div>
         <div class="row" style="text-align:right;">
-            <button class="btns button_1_2">提 交</button> 
-            <button class="btns button_2_2">取 消</button> 
+            <button class="btns button_2_2">关 闭</button> 
         </div>
 </script>
 
 <script type="text/x-kendo-template" id="select-department-row-template">
-    <tr>
-        # kendo.logToConsole(data) #
-        <td>部门名称</td>
+    <tr data-value="#= data.c1 #">
+        <td>#= data.c1 #</td>
         <td>#= data.c2 #</td>
         <td>#= data.c3 #</td>
         <td>#= data.c4 #</td>
@@ -502,12 +477,27 @@ $(function(){
     </tr>
 </script>
 <script type="text/javascript">
-
 $(function(){
+    $('body').on('click','.popup-window .button_2_2',function(){
+        $(this).closest('.popup-window').data('kendoWindow').close();
+    });
+
     $('body').on('click','#customer-grid-table tr',function(){
          var value = $(this).data('value');
          $('#customer').val(value);
          ac_search_customer_window.close();
+    });
+
+    $('body').on('click','#user-grid-table tr',function(){
+         var value = $(this).data('value');
+         $('#user').val(value);
+         ac_search_user_window.close();
+    });
+
+    $('body').on('click','#department-grid-table tr',function(){
+         var value = $(this).data('value');
+         $('#department').val(value);
+         ac_select_department_window.close();
     });
 
     new PopWindow('.ac-refuse',{
@@ -536,6 +526,21 @@ $(function(){
     ac_search_customer_window.bind('open',function(){
     new GridTable('#customer-grid-table',{
          dataSource: [{
+            c1:'已寻',
+            c2:'2013/06/09',
+            c3:"10,000.00",
+            c4:"李小明"
+        },{
+            c1:'苏宁xxxxx',
+            c2:'2013/06/09',
+            c3:"10,000.00",
+            c4:"李小明"
+        },{
+            c1:'苏宁xxxxx',
+            c2:'2013/06/09',
+            c3:"10,000.00",
+            c4:"李小明"
+        },{
             c1:'苏宁xxxxx',
             c2:'2013/06/09',
             c3:"10,000.00",
@@ -550,23 +555,6 @@ $(function(){
     }).init(); 
     });
 
-    var ac_select_outlet_window = new PopWindow('.ac-select-outlet',{
-        title:'选择营业点',
-        template:'#ac-select-outlet-template'
-    }).init();
-
-    ac_select_outlet_window.bind('open',function(){
-    new GridTable('#outlet-grid-table',{
-         dataSource: [{
-            c1:222,
-            c2:333,
-            c3:"xxx",
-            c4:"xxx"
-        }], 
-        rowTemplate: kendo.template($("#select-outlet-row-template").html())
-    }).init(); 
-    });
-
     var ac_search_user_window = new PopWindow('.ac-search-user',{
         title:'选择用户',
         template:'#ac-search-user-template'
@@ -575,6 +563,26 @@ $(function(){
     ac_search_user_window.bind('open',function(){
     new GridTable('#user-grid-table',{
          dataSource: [{
+            c1:'vata',
+            c2:333,
+            c3:"xxx",
+            c4:"xxx"
+        },{
+            c1:222,
+            c2:333,
+            c3:"xxx",
+            c4:"xxx"
+        },{
+            c1:222,
+            c2:333,
+            c3:"xxx",
+            c4:"xxx"
+        },{
+            c1:222,
+            c2:333,
+            c3:"xxx",
+            c4:"xxx"
+        },{
             c1:222,
             c2:333,
             c3:"xxx",
@@ -592,8 +600,28 @@ $(function(){
     ac_select_department_window.bind('open',function(){
     new GridTable('#department-grid-table',{
          dataSource: [{
-            c1:222,
-            c2:333,
+            c1:'商务部',
+            c2:'上海',
+            c3:"xxx",
+            c4:"xxx"
+        },{
+            c1:'技术部',
+            c2:'上海',
+            c3:"xxx",
+            c4:"xxx"
+        },{
+            c1:'技术部',
+            c2:'上海',
+            c3:"xxx",
+            c4:"xxx"
+        },{
+            c1:'技术部',
+            c2:'上海',
+            c3:"xxx",
+            c4:"xxx"
+        },{
+            c1:'技术部',
+            c2:'上海',
             c3:"xxx",
             c4:"xxx"
         }], 
