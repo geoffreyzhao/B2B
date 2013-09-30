@@ -307,6 +307,11 @@ var FloatLayer = function(opts){
         layer.hide();
         opts.close.apply(this);
     };
+
+    layer.find('.close').bind('click',function(){
+        layer.close(); 
+    });
+    
     return layer;
 };
 
