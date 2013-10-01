@@ -37,7 +37,7 @@
     <span class="phone">客服电话：400-720-6666</span>
 </header>
 
-<div style="background-color:#fff;position:height:350px;relative;top:-2px;">
+<div style="background-color:#fff;position:relative;height:400px;top:-2px;">
     <div id="scrollImg" style="width:1681px;margin:0 auto;">
         <img src="/static/images/login/banner1.jpg"/>
         <img src="/static/images/login/banner2.jpg"/>
@@ -45,8 +45,9 @@
 </div>
 
 <section class="main-body clearfix login_page">
-<div class="login" style="position:absolute;width:300px;top:-370px;right:0px;">
+<div class="login" style="position:absolute;width:300px;top:-415px;right:0px;">
     <form name="loginForm" method="get" action="." onsubmit="return formValiation(this);">
+        <input type="hidden" name="user_mode" value="company_user"/>
         <div class="login_panel">
             <div class="input_area">
                 <h2 class="tt clearfix">
@@ -56,9 +57,21 @@
                     <span></span>
                 </div>
                 <div class="row large first">
+                    <i class="company_name"></i>
+                    <input type="text" name="company_name" value="" style="width:200px;border:0;" />
+                    <label class="cover">公司简称</label>
+                    <div class="pandg">
+                        <a href="javascript:void(0);">我是个人用户</a>
+                    </div>
+                    <!--<em>*</em>-->
+                </div>
+                <div class="row large">
                     <i class="username"></i>
                     <input type="text" name="username" value="" style="width:200px;border:0;" />
                     <label class="cover">用户名</label>
+                    <div class="pandg" style="display:none;">
+                        <a href="javascript:void(0);">我是公司用户</a>
+                    </div>
                     <!--<em>*</em>-->
                 </div>
                 <div class="row large">
@@ -79,7 +92,7 @@
                 </div>
 
                 <div class="row">
-                    <label><input type="checkbox" checked style="vertical-align:middle;"/>&nbsp;下次自动登录</label>
+                    <label class="autologin"><input type="checkbox" checked style="vertical-align:middle;"/>&nbsp;下次自动登录</label>
                 </div>
             </div>
 
@@ -135,6 +148,17 @@ function Error(obj,message,isShow){
     }
 
     function formValiation(form){
+        if(form['user_mode'].value == "company_user"){
+            if(form['company_name'].value == '' ){
+                Error(form['company_name'],'公司简称不能为空',true);
+                form['company_name'].focus();
+                return false;
+            }else{
+                Success(form['company_name'],'');
+            }
+        }
+
+
         if(form['username'].value == '' ){
             Error(form['username'],'用户名不能为空',true);
             form['username'].focus();
@@ -164,7 +188,7 @@ function Error(obj,message,isShow){
         $('#scrollImg').before('<div id="nav" class="slider_nav" style="left:40%;top:90%;">').cycle({fx:"fade",timeout: 2000,center:true,pause:true,pager:"#nav",pagerEvent: "click.cycle"});
     });
 
-$(".row input").focus(function(){
+    $(".row input").focus(function(){
         $(this).parent("div").find("label").hide();
     });
     $(".row input").focusout(function(){
@@ -173,6 +197,9 @@ $(".row input").focus(function(){
         if($.trim($(this).val()) == ''){
             valid = false;
             switch($(this).attr("name")){
+                case 'company_name':
+                    message = '公司简称不能为空';
+                    break;
                 case 'username':
                     message = '用户名不能为空';
                     break;
@@ -191,6 +218,25 @@ $(".row input").focus(function(){
             Success(this);
         }else{
             Error(this,message,true);
+        }
+    });
+
+    $(".login_panel .pandg").each(function(index){
+        if(index == 0){
+            $(this).click(function(){
+                $("input[name=user_mode]").val("personal_user");
+                $(".row:eq(2)").css("margin-top","15px");
+                $(".login_panel .first").hide();
+
+                $(".login_panel .pandg:eq(1)").show();
+            });
+        }else{
+            $(this).click(function(){
+                $(".row:eq(2)").css("margin-top","0px");
+                $("input[name=user_mode]").val("company_user");
+                $(".login_panel .first").show();
+                $(".login_panel .pandg:eq(1)").hide();
+            });
         }
     });
 

@@ -12,7 +12,7 @@
     <link href="../../static/css/ordinary.css" rel="stylesheet"  type="text/css"/>
     <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
-    <script type="text/javascript" src="../../static/js/public.js"></script>
+    <script type="text/javascript" src="../../static/js/global.js"></script>
     
 <!--[if lt IE 8]> 
 <link rel="stylesheet" href="/static/css/ie.css" /> 
@@ -20,6 +20,189 @@
 <![endif]-->
 <!-- @CLB@ -->
 <script type="text/javascript" src="/static/js/sync.js"></script>
+<script>
+var POLICY_TAGS = [
+    {
+        id:1,
+        tagname:'东航',
+        checked: true 
+    },{
+        id:1,
+        tagname:'东航',
+        checked: true 
+    },{
+        id:1,
+        tagname:'东航',
+        checked: true 
+    },{
+        id:1,
+        tagname:'东航',
+        checked: true 
+    },{
+        id:1,
+        tagname:'东航',
+        checked: true 
+    },{
+        id:1,
+        tagname:'东航',
+        checked: true 
+    },{
+        id:1,
+        tagname:'东航',
+        checked: true 
+    },{
+        id:1,
+        tagname:'东航',
+        checked: true 
+    },{
+        id:1,
+        tagname:'东航',
+        checked: true 
+    },{
+        id:1,
+        tagname:'东航',
+        checked: true 
+    },{
+        id:1,
+        tagname:'东航',
+        checked: true 
+    },{
+        id:1,
+        tagname:'东航',
+        checked: true 
+    },{
+        id:1,
+        tagname:'东航21l321',
+        checked: true 
+    },{
+        id:1,
+        tagname:'东航xxx',
+        checked: true 
+    },{
+        id:12,
+        tagname:'川航国内政策',
+        checked: true 
+    },{
+        id:12,
+        tagname:'川航国内政策',
+        checked: true 
+    },{
+        id:12,
+        tagname:'川航国内政策',
+        checked: true 
+    },{
+        id:12,
+        tagname:'川航国内政策',
+        checked: true 
+    },{
+        id:12,
+        tagname:'川航国内政策',
+        checked: true 
+    },{
+        id:12,
+        tagname:'川航国内政策',
+        checked: true 
+    },{
+        id:12,
+        tagname:'川航国内政策',
+        checked: false 
+    },{
+        id:12,
+        tagname:'川航国内政策',
+        checked: false 
+    },{
+        id:12,
+        tagname:'川航国内政策',
+        checked: false 
+    },{
+        id:12,
+        tagname:'川航国内政策',
+        checked: false 
+    },{
+        id:12,
+        tagname:'川航国内政策',
+        checked: true 
+    },{
+        id:12,
+        tagname:'川航国内政策',
+        checked: true 
+    },{
+        id:12,
+        tagname:'川航国内政策',
+        checked: true 
+    },{
+        id:123,
+        tagname:'上航国内政策',
+        checked: true 
+    }
+];
+
+
+$(function(){
+    $.fn.ptags = function(tagData){
+        this.each(function(){
+            var that = $(this);
+            var addTag = that.find('.add-tag');
+            var layer = FloatLayer({
+                trigger: that.find('.add-tag'),
+                open:function(){
+                    var left = this.input.parent().offset().left;
+                    this.css('left',left); 
+                    kendo.bind(this,tagModel);
+                },
+                offsetY:28,
+                template:'#ac-tags-template'
+            });
+
+            var tagModel = kendo.observable({
+                active:'',
+                title:'点击添加标签：',
+                tags:tagData,
+                tagClick:function(e){
+                    var className = e.data.checked ? 'highlight':'';
+                    $(e.target).parent().attr('class',className);
+                    //高度增加 每次都检测添加按钮位置，
+                    var oTop = that.find('.add-tag').offset().top+28;
+                    layer.css('top',oTop);
+                    
+                }
+            });
+
+
+            kendo.bind(that,tagModel);
+        });
+
+    };
+
+    $('.ptags').ptags(POLICY_TAGS);
+    // 获取已选中的政策标签的input元素
+    console.log( $('.policy-selected-wrapper :checked'));
+
+}); 
+</script>
+
+<script type="text/x-kendo-template" id="ac-tags-selected-template">
+    <i class="item" data-bind="visible:checked">
+    <s data-bind="text:tagname"></s>
+    <label class="item-del">
+        <input id="" type="checkbox" data-bind="checked:checked" name="tag-#= data.id #"> 
+    </label>
+    </i>
+</script>
+
+<script type="text/x-kendo-template" id="ac-tags-template">
+        <div class="pt-tags">
+            <div class="pt-title"><span data-bind="text:title"></span> <i class="layer-close close"></i></div>
+            <div class="pt-body" data-bind="source:tags" data-template="ac-tag-template"></div>
+        </div>
+</script>
+
+<script type="text/x-kendo-template" id="ac-tag-template">
+<label data-bind="attr:{class:checked?'highlight':''}"><input id="" data-bind="checked:checked,click:tagClick" type="checkbox" name=""> 
+            <span data-bind="text:tagname"></span></label>
+</script>
+
+
 </head>
 <body>
     <div id="extHeader">
@@ -86,12 +269,12 @@
              <div><label><input type="radio" value="团队政策" name="radio_1"> 团队政策</label></div>
              <div><label><input type="radio" value="特价申请" name="radio_1"> 特价申请</label></div>
          </div>
-         <div class="office">
-            <p class="office_p"> <span>政策标签：</span> <select><option>东航1</option> <option>东航2</option></select> <a href="#">添加</a></p>
-             <div class="office_bottom">
-                <p><span>东航2</span> <label>x</label> </p>
-                <p><span>东航3</span> <label>x</label> </p>
-             </div>
+         <div class="ptags">
+             <strong>政策标签：</strong> 
+             <div class="ptags-body">
+                 <div class="policy-selected-wrapper" data-bind="source:tags" data-template="ac-tags-selected-template"></div>  
+                 <a href="javascript:;" class="add-tag">添加</a></div>
+
          </div>
          <div style="clear:both;"></div>
          <div class="pzlx_cp">

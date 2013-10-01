@@ -17,49 +17,28 @@ function PopWindow(trigger, customSettings){
         width:570,
         modal:true
     }
-    this.cache = true;
-    this.kendoWinSettings = kendoWinDefaults; 
     this.triggerText = trigger;
     this.trigger = $(trigger);
-    this.customSettings = customSettings; 
+    this.settings = $.extend(kendoWinDefaults,customSettings);
     this.win = null;
 };
 PopWindow.prototype = {
     init:function(){
-        var isCreated = false;
-        if(this.trigger.attr('role') === 'window_trigger'){
-            isCreated = true;
-        }
-
-        if(!isCreated){
-            this.render();
-            this.bindClick();
-            return this.win;
-        }
-
+        this.render();
+        this.bindClick();
+        return this.win;
     }, 
     render:function(){
         var windowEle = $('<div class="popup-window">');
         windowEle.appendTo($('body'));
 
-        var customSettings = this.customSettings || eval('('+this.trigger.data('options')+')');
-        var opts,data_template;
+        var opts = this.settings;
 
-        data_template = this.trigger.data('template');
-
-        opts = $.extend( this.kendoWinSettings, customSettings);
-
-        if ( customSettings || data_template ){
-            if( typeof opts.content === 'undefined'){
-                if( data_template ){
-                    opts.template = data_template;  
+        if ( typeof opts.content === 'undefined'
+            && opts.template ) {
+                opts.content = {
+                    template : kendo.template($(opts.template).html())(opts.data||{}) 
                 }
-                if( opts.template ){
-                    opts.content = {
-                        template : kendo.template($(opts.template).html())(opts.data||{}) 
-                    }
-                }
-            }
         }
 
         if( typeof opts.content === 'undefined' ){
@@ -71,16 +50,15 @@ PopWindow.prototype = {
     },
     bindClick:function(){
         var that = this;
-        that.trigger.attr('role','window_trigger');
         $('body').delegate(that.triggerText,'click',function(e){
             e.preventDefault();
-            if(!that.cache){
+            if(!that.settings.cache){
                 that.win.refresh(); 
             }
             that.win.center();
             that.win.open();
 
-            kendo.init($('.popup-window'));
+            kendo.init(that.win.element);
         });
     }
 };
@@ -307,6 +285,11 @@ var FloatLayer = function(opts){
         layer.hide();
         opts.close.apply(this);
     };
+
+    layer.find('.close').bind('click',function(){
+        layer.close(); 
+    });
+    
     return layer;
 };
 
