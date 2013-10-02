@@ -71,13 +71,10 @@
                 <a class="item" href="#">交易明细</a> 
             </div>
             <div class="col col-r sep-l">
-                <button class="btns btn-blue ac-new" data-template="#ac-new-template" data-options="{
-                    title:'新增充值' 
-                    }">新增充值</button>
-                <button class="btns btn-blue ac-new2" data-template="#ac-new2-template" data-options="{
-                    title:'新增扣款' 
-                    }">新增扣款</button>
+                <button class="btns btn-blue ac-new">新增充值</button>
+                <button class="btns btn-blue ac-new2">新增扣款</button>
                 <a href="充值单管理.html"><button class="btns btn-blue">充值单管理</button></a>
+
             </div>
         </div>
 
@@ -320,14 +317,23 @@ $(function(){
 <script type="text/javascript">
 
 $(function(){
-    var ac_new = new PopWindow('.ac-new').init();
+
+    var ac_new = new PopWindow('.ac-new',{
+        template:"#ac-new-template", 
+        title:'新增充值' 
+    }).init();
+
+    var ac_new2 = new PopWindow('.ac-new2',{
+        template:"#ac-new2-template", 
+        title:'新增扣款' 
+    }).init();
+
 
     ac_new.bind('open',function(e){
         var container = e.sender.element;
         container.kendoValidator();
     })
 
-    var ac_new2 = new PopWindow('.ac-new2').init();
 
     new PopWindow('.ac-submit', {
         template:'#ac-submit-template',
@@ -389,10 +395,7 @@ $(function(){
     <li>
     <label class="vertical-head">部门名称：</label>
     <input style="width:80px">
-    <button data-options="{
-        title:'选择部门',
-        template:'ac-select-department-template'
-    }" class="btns btn-search ac-select-department">查询</button>
+    <button class="btns btn-search ac-select-department">查询</button>
     </li>
     <li>&nbsp;</li>
     <li style="width:100%;text-align:right;">
@@ -454,10 +457,7 @@ $(function(){
     <li>
     <label style="width:80px;" class="vertical-head">归属营业点：</label>
     <input style="width:80px">
-    <button data-options="{
-        title:'选择营业点',
-        template:'ac-select-outlet-template'
-    }" class="btns btn-search ac-select-outlet">查询</button>
+    <button class="btns btn-search ac-select-outlet">查询</button>
     </li>
     <li style="width:100%;text-align:right;">
     <button style="margin-top:-5px;" class="btns btn-orange-s">查询</button>
