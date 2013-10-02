@@ -651,24 +651,26 @@
         </ul>
         
         <div class="on_line pay_tab"> <!--on_line start-->
+            <span style="padding:0 15px 15px;display:inline-block;">充值金额：<input type="text"  style="margin-left:10px"/></span>
             <div class="terrace">
+                <!--<div>充值金额：<input type="text"/></div>-->
                     <div>
                         <b>支付平台：</b>
                         <label>
                             <input type="radio" name="terrace"/>
-                            <i></i>
+                            <i class="ico_alipay"></i>
                         </label>
                     </div>
                     <div>
                         <label>
                             <input type="radio" name="terrace"/>
-                            <em></em>
+                            <i class="ico_tenpay"></i>
                         </label>
                     </div>
                     <div>
                         <label>
                             <input type="radio" name="terrace"/>
-                            <span></span>
+                            <i class="ico_chinapnr"></i>
                         </label>
                     </div>   
             </div>
@@ -684,12 +686,9 @@
         </div> <!--on_line end--> 
 
         <div class="offline pay_tab" style="display:none;"> <!--offline start-->
-            <div class="transfer">
-                <h3>所有银行转账账号及到账信息时间</h3>
-                <p>银行转账（工作时间：周一至周五 <b>08:30 - 17：30</b>  联系电话：<span>021-62992610</span>  毛财务）</p>
-                <p class="hornTip">温馨提示：如果您尚未开通网上银行，可通过线下银行转账或信用卡打电话支付方式进行付款，付款后请与财务确认。</p>
-            </div>            
-            <table cellpadding="0" cellspacing="0" class="bank">
+            <div><span style="padding:0 0 15px;display:inline-block;">充值金额：<input type="text"  style="margin-left:10px"/></span></div>
+            <div style="float:left">转账银行账号：</div>
+            <table cellpadding="0" cellspacing="0" class="bank" style="margin:-14px 0 0 100px">
                 <colgroup>
                     <col width="120px" />
                     <col width="70px" />
@@ -697,32 +696,55 @@
                     <col width="270px" />
                 </colgroup>
                 <tr>
-                    <td> <a href="javascript:void(0);" class="traffic">交通银行</a> </td>
+                    <td> <label><input type="radio" name="bank" style="vertical-align:baseline"/><a href="javascript:void(0);" class="traffic">交通银行</a></label> </td>
                     <td>施总</td>
                     <td>6222600110002534993</td>
                     <td>（交通银行上海分行）</td>
                 </tr>
                 <tr>
-                    <td> <a href="javascript:void(0);" class="industry">工商银行</a> </td>
+                    <td> <label><input type="radio" name="bank" style="vertical-align:baseline"/><a href="javascript:void(0);" class="industry">工商银行</a></label> </td>
                     <td>施总</td>
                     <td>6222600110002534993</td>
                     <td>（交通银行上海分行）</td>
                 </tr>
                 <tr>
-                    <td> <a href="javascript:void(0);" class="build">建设银行</a> </td>
+                    <td> <label><input type="radio" name="bank" style="vertical-align:baseline"/><a href="javascript:void(0);" class="build">建设银行</a></label> </td>
                     <td>施总</td>
                     <td>6222600110002534993</td>
                     <td>（交通银行上海分行）</td>
                 </tr>
                 <tr>
-                    <td> <a href="javascript:void(0);" class="farming">农业银行</a> </td>
+                    <td> <label><input type="radio" name="bank" style="vertical-align:baseline"/><a href="javascript:void(0);" class="farming">农业银行</a></label> </td>
                     <td>施总</td>
                     <td>6222600110002534993</td>
                     <td>（交通银行上海分行）</td>
                 </tr>
             </table>
+            <div class="transfer">
+                <div class="hornTip">温馨提示：</div>
+                <p style="padding-left:20px">1.银行转账（工作时间：周一至周五 <b>08:30 - 17：30</b>  联系电话：<span>021-62992610</span>  毛财务）</p>
+                <p style="padding-left:20px">2.如果您尚未开通网上银行，可通过线下银行转账或信用卡打电话支付方式进行付款，付款后请与财务确认。</p>
+            </div>
+            <div style="text-align:center;margin-top:10px">
+                <a class="adaptiveButton mediumOrange_btn" id="btn_paying">
+                    <span class="left"></span>
+                    <span class="center center_1">确 认</span>
+                    <span class="right"></span>
+                </a>
+            </div>
         </div> <!--offline end-->        
     </div>  <!-- pay end-->
+</script>
+
+<script type="text/html" id="ac-paysuccess-template">
+    <div style="width:290px;margin:0 auto;line-height:1.625">
+        <div class="succeed">
+            <h3>提交成功！</h3>
+        </div>
+        <div>充值金额：<span class="money"><b>10000.00</b>元</span> </div>
+        <div><i class="industry1"></i>工商银行 施季军</div>
+        6222222222222222222222221321（工商银行上海分行）
+    </div>
 </script>
 
 
@@ -772,8 +794,14 @@
 			title:'账户充值',
 			width:'700'
 		}).init();
-		
-	});
+
+        new PopWindow('#btn_paying',{
+            template:'#ac-paysuccess-template',
+            title:'充值-线下转账',
+            width:'500'
+        }).init();
+
+    });
 	
 </script>
 
