@@ -1,6 +1,9 @@
 /** 采购商 公共 js 文件 */
 $(function() {
-    var $backToTopTxt = "返回顶部", $backToTopEle = $('<a class="backToTop"></a>').appendTo($("body"))
+    var offset = $(".main-body").eq(0).offset();
+    var w = $(".main-body").eq(0).width();
+
+    var $backToTopTxt = "返回顶部", $backToTopEle = $('<a class="backToTop"></a>').appendTo($("body")).css({left:offset.left + w + 20})
         .text($backToTopTxt).attr("title", $backToTopTxt).click(function() {
             $("html, body").animate({ scrollTop: 0 }, 120);
     }), $backToTopFun = function() {
@@ -11,7 +14,13 @@ $(function() {
             $backToTopEle.css("top", st + winh - 166);    
         }
     };
+    
     $(window).bind("scroll", $backToTopFun);
+    $(window).bind("resize", function(){
+        var offset = $(".main-body").eq(0).offset();
+        var w = $(".main-body").eq(0).width();
+        $backToTopEle.css({left:offset.left + w + 20}); 
+    });
     $(function() { $backToTopFun(); });
 	
     if(typeof($.datepicker) != "undefined"){
