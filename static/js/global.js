@@ -16,7 +16,7 @@ function PopWindow(trigger, customSettings){
         animation:false,
         width:570,
         modal:true,
-        refresh:false
+        reload:false
     }
     this.triggerText = trigger;
     this.trigger = $(trigger);
@@ -53,7 +53,7 @@ PopWindow.prototype = {
         var that = this;
         $('body').delegate(that.triggerText,'click',function(e){
             e.preventDefault();
-            if(that.settings.refresh){
+            if(that.settings.reload){
                 that.win.refresh(); 
             }
             that.win.center();
