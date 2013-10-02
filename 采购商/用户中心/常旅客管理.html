@@ -435,19 +435,44 @@
             </script>
 
             <script type="text/x-kendo-template" id="ac-save-template">
-                 
+<center class="imsuccess"><i>&nbsp;</i>常旅客保存成功！</center>
             </script>
             <script type="text/x-kendo-template" id="ac-import-template">
-                <table class="cv-table">
+                <table class="cv-table imimport">
+                <colgroup>
+                  <col width="60">
+                </colgroup>
+                
                   <tr>
                     <th>第<span class="imstep">1</span>步</th>
                     <td>
-                         
+                        <p class="row1">
+                            下载“常旅客信息”模板，在模板中添加旅客信息。
+                        </p>
+                        <p class="row2">
+                        <a class="adaptiveButton brightOrange_btn">
+                              <span class="left"></span>
+                              <span class="center" style="font-size:14px; padding:0 20px;">下 载</span>
+                              <span class="right"></span>
+                           </a>
+                        </p>
                     </td>
                   </tr>
                   <tr>
                     <th>第<span class="imstep">2</span>步</th>
-                    <td></td>
+                    <td>
+                        <p class="row1">上传填写完成的旅客信息文件。</p>
+                        <p class="row2 clearfix" style="height:30px;">
+                            <strong style="float:left">上传附件: </strong><input id="" data-localization="{select:'浏览'}" data-multiple="false" data-role="upload" type="file" name="">
+                        </p>
+                        <p class="row2">
+                        <a class="adaptiveButton brightOrange_btn">
+                              <span class="left"></span>
+                              <span class="center" style="font-size:14px; padding:0 20px;">上 传</span>
+                              <span class="right"></span>
+                           </a>
+                        </p>
+                    </td>
                   </tr>
                 </table>
             </script>
@@ -457,6 +482,7 @@ $(function(){
     new PopWindow('.ac-import',{
         title:'批量导入常旅客信息',
         width:410,
+        reload:true,
         template:'#ac-import-template'
     }).init();
     new PopWindow('.ac-save',{
