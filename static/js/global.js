@@ -16,6 +16,7 @@ function PopWindow(trigger, customSettings){
         animation:false,
         width:570,
         modal:true,
+        autoHide:false,
         reload:false
     }
     this.triggerText = trigger;
@@ -58,6 +59,12 @@ PopWindow.prototype = {
             }
             that.win.center();
             that.win.open();
+
+            if(that.settings.autoHide){
+                setTimeout(function(){
+                    that.win.close();  
+                },that.settings.autoHide);
+            }
 
             kendo.init(that.win.element);
         });
@@ -972,3 +979,29 @@ $.prompt=function(options){
         });
     };
 })(jQuery);
+
+// style input:file
+$.fn.fileInput = function(settings){
+    var settings = $.extend({
+        browseButton:'<b>浏览</b>'
+    },settings);
+
+    var wrapper = $('<div/>').css({height:0,width:0,'overflow':'hidden'});
+    settings.browseButton = settings.browseButton ? settings.browseButton : '';
+
+    this.each(function(){
+        var that= $(this);
+        var pathInput = $('<span class="filePath"><i></i>'+settings.browseButton+'</span>').insertBefore(that); 
+        var fileInput = that.wrap(wrapper);
+
+        fileInput.change(function(){
+            var val = $(this).val();
+            pathInput.children('i').text(val).attr('title',val);
+        })
+
+        pathInput.click(function(){
+            fileInput.click();
+        });
+    });
+
+}
