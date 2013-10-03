@@ -289,6 +289,20 @@
                 </table>
             </script>
 
+            <script type="x-kendo-template" id="ac-add-pasid-template">
+<div class="row pasid-row">
+<select data-role="dropdownlist" style="width:80px;">
+<option value="身份证">身份证</option>
+<option selected="" value="护照">护照</option>
+<option value="港澳通行证">港澳通行证</option>
+<option value="其他">其他</option>
+</select>
+<strong>证件号码：</strong><input id="" type="text" name="">
+<strong>证件有效期：</strong><input id="" style="width:80px;" placeholder="YYYY-MM-DD" type="text" name="">
+<a href="javascript:;" class="imact ac-add-pasid">添加证件</a>
+</div>
+            </script>
+
             <script type="x-kendo-template" id="ac-edit-template">
                 <table class="cv-table">
                 <colgroup>
@@ -339,6 +353,7 @@
                         </select>
                         <strong>证件号码：</strong><input id="" type="text" name="">
                         <strong>证件有效期：</strong><input id="" style="width:80px;" placeholder="YYYY-MM-DD" type="text" name="">
+                        <a href="javascript:;" class="imact ac-add-pasid">添加证件</a>
                         </div>
                       </td>
                     </tr>
@@ -411,6 +426,7 @@
                         </select>
                         <strong>证件号码：</strong><input id="" type="text" name="">
                         <strong>证件有效期：</strong><input id="" style="width:80px;" placeholder="YYYY-MM-DD" type="text" name="">
+                        <a href="javascript:;" class="imact ac-add-pasid">添加证件</a>
                         </div>
                       </td>
                     </tr>
@@ -441,6 +457,7 @@
                 <table class="cv-table imimport">
                 <colgroup>
                   <col width="60">
+                  <col width="290">
                 </colgroup>
                 
                   <tr>
@@ -462,8 +479,9 @@
                     <th>第<span class="imstep">2</span>步</th>
                     <td>
                         <p class="row1">上传填写完成的旅客信息文件。</p>
-                        <p class="row2 clearfix" style="height:30px;">
-                            <strong style="float:left">上传附件: </strong><input id="" data-localization="{select:'浏览'}" data-multiple="false" data-role="upload" type="file" name="">
+                        <p class="row2 clearfix" style="width:280px;height:30px;">
+                                <strong>上传附件：</strong>
+                                <input id="" type="file" name="">
                         </p>
                         <p class="row2">
                         <a class="adaptiveButton brightOrange_btn">
@@ -479,15 +497,43 @@
 
             <script>
 $(function(){
+    var passid_template = kendo.template($('#ac-add-pasid-template').html())({});
+
+    $('body').on('click','.ac-add-pasid',function(){
+         $(this).removeClass('ac-add-pasid').text('删除').addClass('ac-del-pasid');
+         var wrapper = $(this).closest('td');
+         wrapper.append(passid_template); 
+         kendo.init(wrapper);
+    });
+
+    $('body').on('click','.ac-del-pasid',function(){
+        $(this).closest('.pasid-row').remove(); 
+    });
+
     new PopWindow('.ac-import',{
         title:'批量导入常旅客信息',
         width:410,
         reload:true,
+        open:function(){
+            $(':file').fileInput();
+        },
         template:'#ac-import-template'
     }).init();
+
+
+    
     new PopWindow('.ac-save',{
-        title:'添加成功',
+        title:'添加常旅客',
         width:410,
+        autoHide: 1500,
+        animation: {
+            open:{
+                effects: "fade:in"
+            },
+            close: {
+                effects: "fade:out"
+            }
+        },
         template:'#ac-save-template'
     }).init();
     new PopWindow('.ac-view',{

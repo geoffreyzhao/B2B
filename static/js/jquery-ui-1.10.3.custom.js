@@ -1015,7 +1015,7 @@ $.extend(Datepicker.prototype, {
 			}
 		}
 
-        //@todo clb, fix popup window z-index problem
+        // @todo clb, fix popup window z-index problem
         if(typeof($.datepicker._get(inst,'css')) == 'object'){
             css = css || $.datepicker._get(inst,'css');
             if(css["z-index"]){
@@ -1093,7 +1093,7 @@ $.extend(Datepicker.prototype, {
 		var origyearshtml,
 			numMonths = this._getNumberOfMonths(inst),
 			cols = numMonths[1],
-            //@todo modified by clb
+            // @todo modified by clb
 			width = 20;
 
 		inst.dpDiv.removeClass("ui-datepicker-multi-2 ui-datepicker-multi-3 ui-datepicker-multi-4").width("");
