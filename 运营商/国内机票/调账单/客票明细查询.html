@@ -238,7 +238,7 @@
                   <col width="70">
                   <col width="70">
                   <col width="70">
-                  <col width="140">
+                  <col width="150">
                   <col width="70">
                   <col width="70">
                   <col width="70">
@@ -271,14 +271,20 @@
 <script type="text/javascript">
 $(function(){
 
-    var coll_ele = new Collpase({
+    new Collpase({
         limitHeight: 90,
         container: '.block1',
-        trigger:'.content-collapse',
+        trigger:'.content-collapse'
+    }).init();
+
+    new PopWindow('.ac-edit',{
+        title:'修改票面信息',
+        template:'#ac-edit-template'
     }).init();
 
     new GridTable('.block2 table',{
          scrollable:true,
+         resizable:true,
          dataSource: [{
             c1:'030312103112260001',
             c2:'JY4FF',
@@ -304,12 +310,81 @@ $(function(){
     }).init(); 
 });
 </script>
+
+<script type="text/x-kendo-template" id="ac-edit-template">
+    <div class="row">
+    <table class="cv-table">
+
+        <tr>
+            <th>票号：</th>
+            <td><input id="" style="width:120px;" type="text" name=""></td>
+            <th>行程单号：</th>
+            <td><input id="" style="width:120px;" type="text" name=""></td>
+        </tr>
+
+        <tr>
+            <th>票序号：</th>
+            <td>
+                <select id="" data-role="dropdownlist" style="width:122px;" name="">
+                    <option value="">C1</option>
+                    <option value="">C2</option>
+                    <option value="">C3</option>
+                    <option value="">C4</option>
+                </select>
+            </td>
+            <th>政策编号：</th>
+            <td><input id="" style="width:120px;" type="text" name=""></td>
+        </tr>
+
+        <tr>
+            <th>供应商：</th>
+            <td>
+                <input id="" style="width:95px;" type="text" name="">
+                <button class="btns btn-search">查询</button>
+            </td>
+            <th>旅客类型：</th>
+            <td>
+                <select id="" style="width:122px;" data-role="dropdownlist" name="">
+                    <option selected="" value="成人">成人</option>
+                    <option value="儿童">儿童</option>
+                    <option value="婴儿">婴儿</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <th>旅客姓名：</th>
+            <td><input id="" style="width:120px;" type="text" name=""></td>
+        </tr>
+
+        <tr>
+            <th>证件号码：</th>
+            <td><input id="" style="width:120px;" type="text" name=""></td>
+        </tr>
+
+
+        <tr>
+            <th>修改原因：</th>
+            <td colspan=3>
+                <textarea id="" name="" style="width:438px;height:60px;"></textarea>
+            </td>
+        </tr>
+
+    </table>
+    </div>
+    <div class="row" style="text-align:right;">
+        <button class="btns button_1_2 ac-submit">提 交</button> 
+        <button class="btns button_2_2">取 消</button> 
+    </div>
+
+</script>
+
 <script type="text/x-kendo-template" id="block2-grid-row-template">
     <tr>
-        <td><a href="xxxxx">修改</a> <a href="xxxxx">调账</a></td>
+        <td><a class="ac-edit" href="xxxxx">修改</a> <a href="xxxxx">调账</a></td>
         <td><a href="">781-41232133</a></td>
         <td>正常票</td>
-        <td></td>
+        <td>231</td>
         <td>正常</td>
         <td>#= data.c1#</td>
         <td>DKFJE2</td>

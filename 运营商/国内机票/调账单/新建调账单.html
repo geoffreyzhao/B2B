@@ -20,24 +20,15 @@
 <script type="text/javascript" src="/static/js/uploadify/jquery.uploadify.min.js"></script>
 <script type="text/javascript">
 $(function(){
-            
-            
-    new PopWindow('#ac-return',{
-        width:470,
-        title:'审核退回',
-        template:'#ac-return-template'
-    }).init();
 
+    $('.block21 thead :checkbox').cbFamily('.block21 tbody :checkbox');
 
-    $('.actions .ac-pass').bind('click',function(){
-        var that = $(this);
-        if(that.find('b').text() == '审核通过'){
-            that.find('b').text('取消审核'); 
-        }else{
-            that.find('b').text('审核通过'); 
-        }
+    $('.block21 :text').on('focus',function(){
+        var cbox = $(this).closest('tr').find(':checkbox').eq(0);
+        if(!cbox.is(':checked')) cbox.prop('check',true).trigger('click.cbFamily'); 
     });
-
+            
+            
     $('.actions .ac-save').bind('click',function(){
         var that = $(this);
         if(that.find('b').text() == '保存'){
@@ -121,13 +112,10 @@ $(function(){
         <button class="btns btn-return">返回</button>
     </div>
     <div class="col col-r sep-l">
-        <a href="javascript:;" class="button_secondary adaptiveButton small"> <span class="left"></span> <span class="center">取消受理</span> <span class="right"></span></a>
+        
         <a href="javascript:;" class="button_secondary adaptiveButton small"> <span class="left"></span> <span class="center">取消订单</span> <span class="right"></span></a>
-        <a href="javascript:;" class="button_secondary adaptiveButton small ac-pass"> <span class="left"></span> <span class="center"><b>审核通过</b></span> <span class="right"></span></a>
-        <a href="javascript:;" id="ac-return" class="button_secondary adaptiveButton small"> <span class="left"></span> <span class="center">退回</span> <span class="right"></span></a>
-        <a href="javascript:;" class="button_secondary adaptiveButton small ac-save"> <span class="left"></span> <span class="center"><b>保存</b></span> <span class="right"></span></a>
-        <a href="javascript:;" class="button_secondary adaptiveButton small"> <span class="left"></span> <span class="center">提交改签处理</span> <span class="right"></span></a>
-        <a href="javascript:;" class="button_secondary adaptiveButton small"> <span class="left"></span> <span class="center">完成改签</span> <span class="right"></span></a>
+        
+        <a href="javascript:;" class="button_secondary adaptiveButton small"> <span class="left"></span> <span class="center">提 交</span> <span class="right"></span></a>
     </div>
 </div>
 
@@ -141,20 +129,18 @@ $(function(){
         <ul class="flat-list">
             <li>
             <div class="instr clearfix">
-                <span class="highlight first highlight-fl">创建</span>
+                <span class="highlight-fl">创建</span>
                 <span>审核</span>
                 <span>退票</span>
                 <span>完成</span>
                 <span>取消</span>
-                <span class="last">派送</span>
-                <em class="line">&nbsp;</em>
+                <span>派送</span>
             </div> 
             </li>
             <li>
             <div class="instr clearfix">
-                <span class="first">收款</span>
-                <span class="last">结算</span>
-                <em class="line">&nbsp;</em>
+                <span>收款</span>
+                <span>结算</span>
             </div>
             </li>
             <li class="count"><span>附属订单</span><strong>3</strong>
@@ -172,7 +158,7 @@ $(function(){
         </li>
         <li>
         <label class="vertical-head">结算方式</label>
-        <select>
+        <select data-role="dropdownlist" style="width:100px;">
             <option selected="" value="账户余额">账户余额</option>
             <option value="信用额度">信用额度</option>
             <option value="现金">现金</option>
@@ -236,40 +222,71 @@ $(function(){
     </ul>
 </div>
 
-<div class="block block-module">
-    <div class="row">
-        <label for="btn_upload"><strong>改签PNR</strong></label>
-        <input style="width:200px;" type="text" name=""  value="PNR12345" placeholder="选择文件" />
-        <input class="button_gray" type="button" id="btn_upload" value="上传" />
-        
-        <label style="margin-left:40px;"><strong>改签处理类型</strong></label>
-        <select style="width:100px;" data-role="dropdownlist">
-<option selected="" value="提交航司改签">提交航司改签</option>
-<option value="提交我司改签">提交我司改签</option>
-</select>
-    </div>
-</div>
-
-<div class="block block32 block-module" style="display:none;">
+<div class="block block32 block-module">
     <div class="block-title">
-        <span class="block-title-orange">原航班信息</span>
+        <span class="block-title-orange">航班信息</span>
     </div> 
     <div class="row">
         <div id="flight_info_grid">
             <table class="grid-table">
                 <tbody><tr class="thead">
-                    <td>航班号</td><td>实际承运</td><td>机型</td><td>舱位</td><td>离港机场</td><td>到港机场</td><td>离港时间</td><td>到港时间</td><td>订座</td><td>预定OFFICE</td>
+                    <td>离港机场</td>
+                    <td>到港机场</td>
+                    <td>共享</td>
+                    <td>机型</td>
+                    <td>舱位</td>
+                    <td>舱位等级</td>
+                    <td>订座</td>
+                    <td>离港时间</td>
+                    <td>到港时间</td>
+                    <td>预定OFFICE</td>
                 </tr>
                 <tr>
+                    <td>上海浦东 PVG T3</td>
+                    <td>上海浦东 PEK T2</td>
                     <td>CZ3609</td>
                     <td>HO</td>
                     <td>空客A380</td>
                     <td>Y</td>
-                    <td>上海浦东 PVG T3</td>
-                    <td>上海浦东 PEK T2</td>
+                    <td> HK </td>
                     <td> 2013-06-22 20:35 </td>
                     <td> 2013-06-22 23:25 </td>
+                    <td> SHA </td>
+                </tr>
+                <tr>
+                    <td>上海浦东 PVG T3</td>
+                    <td>上海浦东 PEK T2</td>
+                    <td>CZ3609</td>
+                    <td>HO</td>
+                    <td>空客A380</td>
+                    <td>Y</td>
                     <td> HK </td>
+                    <td> 2013-06-22 20:35 </td>
+                    <td> 2013-06-22 23:25 </td>
+                    <td> SHA </td>
+                </tr>
+                <tr>
+                    <td>上海浦东 PVG T3</td>
+                    <td>上海浦东 PEK T2</td>
+                    <td>CZ3609</td>
+                    <td>HO</td>
+                    <td>空客A380</td>
+                    <td>Y</td>
+                    <td> HK </td>
+                    <td> 2013-06-22 20:35 </td>
+                    <td> 2013-06-22 23:25 </td>
+                    <td> SHA </td>
+                </tr>
+                <tr>
+                    <td>上海浦东 PVG T3</td>
+                    <td>上海浦东 PEK T2</td>
+                    <td>CZ3609</td>
+                    <td>HO</td>
+                    <td>空客A380</td>
+                    <td>Y</td>
+                    <td> HK </td>
+                    <td> 2013-06-22 20:35 </td>
+                    <td> 2013-06-22 23:25 </td>
                     <td> SHA </td>
                 </tr>
             </tbody></table> 
@@ -278,266 +295,239 @@ $(function(){
 </div>
 
 
-<div class="block block33 block-module">
-    <div class="block-title">
-        <span class="block-title-orange">改签航班信息</span>
-        <span class="block-module-action">
-            <button class="btns btn-ac-blue ac-toggle" data-target=".block32"><b>展开</b>原航班信息<i class="r2c2"></i></button> 
-            <s class="bar"></s>
-            <button class="btns btn-ac-blue ac-toggle" data-target=".block33 .unselected"><b>展开</b>未选中航班<i class="r2c2"></i></button>
-            <span>
-                <s class="bar"></s>
-                <button class="btns btn-ac-blue" id="add_flight"><b>添加航班</b></button> 
-                <label><i class="star">*</i>
-                    选择改签类型:</label>
-                <label><input type="radio" checked name="xxx">仅改期</label>
-                <label><input type="radio" name="xxx">仅升舱</label>
-                <label><input type="radio" name="xxx">升舱并改期</label>
-                <label><input type="radio" name="xxx">改路线</label>
-            </span>
-        </span>
-    </div> 
-
-
-    <div class="row">
-        <div id="flight_info_grid">
-            <script type="text/x-kendo-template" id="flight_template">
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td><input class="text" value=""></td>
-                    <td><input class="text" value=""></td>
-                    <td><input class="text" value=""></td>
-                    <td><input class="text" value=""></td>
-                    <td><input class="text" value=""></td>
-                    <td><input class="text" value=""></td>
-                    <td><input class="text" value=""></td>
-                    <td><input class="text" value=""></td>
-                    <td><input class="text" value=""></td>
-                    <td><a href="javascript:void(0);">删除</a></td>
-                </tr>
-            </script>
-            <table class="grid-table" id="flight_table">
-                <colgroup>
-                  <col width="30" />
-                  <col width="60" />
-                  <col width="60" />
-                  <col width="100" />
-                  <col width="120" />
-                  <col width="120" />
-                  <col width="120" />
-                  <col width="120" />
-                  <col width="40" />
-                  <col width="90" />
-                  <col width="40" />
-                </colgroup>
-                <tbody><tr class="thead">
-                        <td><input type="checkbox"></td><td>实际承运</td><td>航班号</td><td>机型</td><td>离港机场</td><td>到港机场</td><td>离港时间</td><td>到港时间</td><td>订座</td><td>预定OFFICE</td><td></td>
-                </tr>
-                <tr>
-                    <td><input checked type="checkbox"></td>
-                    <td><input class="text" value="HO"></td>
-                    <td><input class="text" value="CZ3609"></td>
-                    <td><input class="text" value="空客A380"></td>
-                    <td><input class="text" value="上海浦东 PVG T3"></td>
-                    <td><input class="text" value="上海浦东 PEK T2"></td>
-                    <td><input class="text" value=" 2013-06-22 20:35 "></td>
-                    <td><input class="text" value=" 2013-06-22 23:25 "></td>
-                    <td><input class="text" value=" HK "></td>
-                    <td><input class="text" value=" SHA "></td>
-                    <td></td>
-                </tr>
-                <tr class="unselected">
-                    <td><input type="checkbox"></td>
-                    <td><input class="text" value="HO"></td>
-                    <td><input class="text" value="CZ3609"></td>
-                    <td><input class="text" value="空客A380"></td>
-                    <td><input class="text" value="上海浦东 PVG T3"></td>
-                    <td><input class="text" value="上海浦东 PEK T2"></td>
-                    <td><input class="text" value=" 2013-06-22 20:35 "></td>
-                    <td><input class="text" value=" 2013-06-22 23:25 "></td>
-                    <td><input class="text" value=" HK "></td>
-                    <td><input class="text" value=" SHA "></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><input checked type="checkbox"></td>
-                    <td><input class="text" value="HO"></td>
-                    <td><input class="text" value="CZ3609"></td>
-                    <td><input class="text" value="空客A380"></td>
-                    <td><input class="text" value="上海浦东 PVG T3"></td>
-                    <td><input class="text" value="上海浦东 PEK T2"></td>
-                    <td><input class="text" value=" 2013-06-22 20:35 "></td>
-                    <td><input class="text" value=" 2013-06-22 23:25 "></td>
-                    <td><input class="text" value=" HK "></td>
-                    <td><input class="text" value=" SHA "></td>
-                    <td></td>
-                </tr>
-                <tr class="unselected">
-                    <td><input type="checkbox"></td>
-                    <td><input class="text" value="HO"></td>
-                    <td><input class="text" value="CZ3609"></td>
-                    <td><input class="text" value="空客A380"></td>
-                    <td><input class="text" value="上海浦东 PVG T3"></td>
-                    <td><input class="text" value="上海浦东 PEK T2"></td>
-                    <td><input class="text" value=" 2013-06-22 20:35 "></td>
-                    <td><input class="text" value=" 2013-06-22 23:25 "></td>
-                    <td><input class="text" value=" HK "></td>
-                    <td><input class="text" value=" SHA "></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><input checked type="checkbox"></td>
-                    <td><input class="text" value="HO"></td>
-                    <td><input class="text" value="CZ3609"></td>
-                    <td><input class="text" value="空客A380"></td>
-                    <td><input class="text" value="上海浦东 PVG T3"></td>
-                    <td><input class="text" value="上海浦东 PEK T2"></td>
-                    <td><input class="text" value=" 2013-06-22 20:35 "></td>
-                    <td><input class="text" value=" 2013-06-22 23:25 "></td>
-                    <td><input class="text" value=" HK "></td>
-                    <td><input class="text" value=" SHA "></td>
-                    <td></td>
-                </tr>
-            </tbody></table> 
-        </div>
-    </div>
-</div>
-
-
-
 
 <div class="block block20 block-module" style="display:none;">
     <div class="block-title">
         <span class="block-title-blue">原客票信息</span>
     </div> 
+   
     <div class="row">
-        <div id="flight_info_grid">
-            <table class="grid-table">
-                <tbody><tr class="thead">
-                    <td>PNR</td>
-                    <td>票号</td>
-                    <td>票序号</td>
-                    <td>客票状态</td>
-                    <td>行程单号</td>
-                    <td>姓名</td>
-                    <td>乘客类型</td>
-                    <td>证件号码</td>
-                    <td>应收票款</td>
-                    <td>票款</td>
-                    <td>税款</td>
-                    <td>代理费</td>
-                    <td>奖励</td>
-                    <td>开票费</td>
-                    <td>供应商</td>
-                    <td>政策编号</td>
+        <table class="grid-table">
+            <colgroup>
+                <col width="50">
+                <col width="100">
+                <col width="60">
+                <col width="60">
+                <col width="60">
+                <col width="50">
+                <col width="50">
+                <col width="50">
+                <col width="50">
+                <col width="50">
+                <col width="50">
+                <col width="50">
+                <col width="50">
+                <col width="50">
+                <col width="60">
+            </colgroup>
 
-                </tr>
-                <tr>
-                    <td>HX21RP</td>
-                    <td>7819128790938</td>
-                    <td>C1</td>
-                    <td>已出票</td>
-                    <td>XXXXX</td>
-                    <td>ZHANG/YU</td>
-                    <td>ADT</td>
-                    <td>A123456</td>
-                    <td>5500</td>
-                    <td>5000</td>
-                    <td>1000</td>
-                    <td>5%</td>
-                    <td>3%+100</td>
-                    <td>20</td>
-                    <td>不夜城</td>
-                    <td>2013071</td>
-                </tr>
-            </tbody></table> 
-        </div>
+            <thead>
+            <tr class="thead">
+                <td>PNR</td>
+                <td>票号</td>
+                <td>姓名</td>
+                <td>旅客类型</td>
+                <td>运价基础</td>
+                <td>票款</td>
+                <td>机建</td>
+                <td>燃油</td>
+                <td>手续费</td>
+                <td>附加费</td>
+                <td>返点</td>
+                <td>返款</td>
+                <td>应收款</td>
+                <td>供应商</td>
+                <td>政策编号</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>HX21RP</td>
+                <td>7819128790938</td>
+                <td>小茫茫</td>
+                <td>成人</td>
+                <td>RYT+TRY</td>
+                <td>500</td>
+                <td>500</td>
+                <td>500</td>
+                <td>0</td>
+                <td>0</td>
+                <td>2</td>
+                <td>2</td>
+                <td>500</td>
+                <td>不夜城</td>
+                <td>33333333</td>
+            </tr>
+            <tr>
+                <td>HX21RP</td>
+                <td>7819128790938</td>
+                <td>小茫茫</td>
+                <td>成人</td>
+                <td>RYT+TRY</td>
+                <td>500</td>
+                <td>500</td>
+                <td>500</td>
+                <td>0</td>
+                <td>0</td>
+                <td>2</td>
+                <td>2</td>
+                <td>500</td>
+                <td>不夜城</td>
+                <td>33333333</td>
+            </tr>
+            <tr>
+                <td>HX21RP</td>
+                <td>7819128790938</td>
+                <td>小茫茫</td>
+                <td>成人</td>
+                <td>RYT+TRY</td>
+                <td>500</td>
+                <td>500</td>
+                <td>500</td>
+                <td>0</td>
+                <td>0</td>
+                <td>2</td>
+                <td>2</td>
+                <td>500</td>
+                <td>不夜城</td>
+                <td>33333333</td>
+            </tr>
+            </tbody>
+        </table> 
+
     </div>
+ 
 </div>
 
 
 
 <div class="block block21 block-module">
     <div class="block-title">
-        <span class="block-title-blue">改签客票信息</span>
+        <span class="block-title-blue">客票信息</span>
         <span class="block-module-action">
-            <button class="btns btn-ac-blue ac-toggle" data-target=".block20"><b>展开</b>原客票信息<i class="r2c2"></i></button> 
+            <button class="btns btn-ac-blue ac-toggle" data-text="显示全部|显示已选" data-target=".block21 .hidden"><b>显示全部</b></button>
+            <button class="btns btn-ac-blue">统一价格</button>
+            <button class="btns btn-ac-blue ac-toggle" data-target=".block20"><b>显示</b>原客票信息</button> 
 
-            <s class="bar"></s>
-            <button class="btns btn-ac-blue ac-toggle" data-target=".block21 .unselected"><b>展开</b>未选中客票<i class="r2c2"></i></button>
-            <s class="bar"></s>
-            <button class="btns btn-ac-blue"><b>提取票号</b></button> 
         </span>
     </div> 
 
     <div class="row">
-        <div class="xscroll">
-            <table class="grid-table" style="width:1300px;">
-                <tbody><tr class="thead">
-                    <td><input type="checkbox"></td>
-                    <td>PNR</td>
-                    <td width="140">票号</td>
-                    <td>票序号</td>
-                    <td>客票状态</td>
-                    <td>行程单号</td>
-                    <td>姓名</td>
-                    <td>乘客类型</td>
-                    <td>证件号码</td>
-                    <td>票款</td>
-                    <td>税款</td>
-                    <td>应收票款</td>
-                    <td>手续费</td>
-                    <td>供应商</td>
-                </tr>
-                <tr>
-                    <td><input checked type="checkbox"></td>
-                    <td><input class="text" value="HX21RP"></td>
-                    <td><input class="text" value="7819128790938"></td>
-                    <td><input class="text" value="C1"></td>
-                    <td><input class="text" value="已出票"></td>
-                    <td><input class="text" value="XXXXX"></td>
-                    <td><input class="text" value="ZHANG/YU"></td>
-                    <td><input class="text" value="ADT"></td>
-                    <td><input class="text" value="A123456"></td>
-                    <td><input class="text" value="5000"></td>
-                    <td><input class="text" value="1000"></td>
-                    <td><input class="text" value="5500"></td>
-                    <td><input class="text" value="20"></td>
-                    <td><input class="text" value="不夜城"></td>
-                </tr>
-                <tr class="unselected">
-                    <td><input type="checkbox"></td>
-                    <td><input class="text" value="HX21RP"></td>
-                    <td><input class="text" value="7819128790938"></td>
-                    <td><input class="text" value="C1"></td>
-                    <td><input class="text" value="已出票"></td>
-                    <td><input class="text" value="XXXXX"></td>
-                    <td><input class="text" value="ZHANG/YU"></td>
-                    <td><input class="text" value="ADT"></td>
-                    <td><input class="text" value="A123456"></td>
-                    <td><input class="text" value="5000"></td>
-                    <td><input class="text" value="1000"></td>
-                    <td><input class="text" value="5500"></td>
-                    <td><input class="text" value="20"></td>
-                    <td><input class="text" value="不夜城"></td>
-                </tr>
-                <tr>
-                    <td><input checked type="checkbox"></td>
-                    <td><input class="text" value="HX21RP"></td>
-                    <td><input class="text" value="7819128790938"></td>
-                    <td><input class="text" value="C1"></td>
-                    <td><input class="text" value="已出票"></td>
-                    <td><input class="text" value="XXXXX"></td>
-                    <td><input class="text" value="ZHANG/YU"></td>
-                    <td><input class="text" value="ADT"></td>
-                    <td><input class="text" value="A123456"></td>
-                    <td><input class="text" value="5000"></td>
-                    <td><input class="text" value="1000"></td>
-                    <td><input class="text" value="5000"></td>
-                    <td><input class="text" value="20"></td>
-                    <td><input class="text" value="不夜城"></td>
-                </tr>
-        </tbody></table></div> 
+        <table class="grid-table">
+            <colgroup>
+                <col width="30">
+                <col width="50">
+                <col width="100">
+                <col width="60">
+                <col width="60">
+                <col width="60">
+                <col width="50">
+                <col width="50">
+                <col width="50">
+                <col width="50">
+                <col width="50">
+                <col width="50">
+                <col width="50">
+                <col width="50">
+                <col width="50">
+                <col width="60">
+            </colgroup>
+
+            <thead>
+            <tr class="thead">
+                <td><input checked type="checkbox"></td>
+                <td>PNR</td>
+                <td>票号</td>
+                <td>姓名</td>
+                <td>旅客类型</td>
+                <td>运价基础</td>
+                <td>票款</td>
+                <td>机建</td>
+                <td>燃油</td>
+                <td>手续费</td>
+                <td>附加费</td>
+                <td>返点</td>
+                <td>返款</td>
+                <td>应收款</td>
+                <td>供应商</td>
+                <td>政策编号</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="hidden">
+                <td><input type="checkbox"></td>
+                <td>HX21RP</td>
+                <td>7819128790938</td>
+                <td>小茫茫</td>
+                <td>成人</td>
+                <td>RYT+TRY</td>
+                <td><input id="" value="500" type="text" name=""></td>
+                <td><input id="" value="500" type="text" name=""></td>
+                <td><input id="" value="500" type="text" name=""></td>
+                <td><input id="" value="0" type="text" name=""></td>
+                <td><input id="" value="0" type="text" name=""></td>
+                <td><input id="" value="2" type="text" name=""></td>
+                <td><input id="" value="2" type="text" name=""></td>
+                <td>500</td>
+                <td>不夜城</td>
+                <td>33333333</td>
+            </tr>
+            <tr>
+                <td><input checked type="checkbox"></td>
+                <td>HX21RP</td>
+                <td>7819128790938</td>
+                <td>小茫茫</td>
+                <td>成人</td>
+                <td>RYT+TRY</td>
+                <td><input id="" value="500" type="text" name=""></td>
+                <td><input id="" value="500" type="text" name=""></td>
+                <td><input id="" value="500" type="text" name=""></td>
+                <td><input id="" value="0" type="text" name=""></td>
+                <td><input id="" value="0" type="text" name=""></td>
+                <td><input id="" value="2" type="text" name=""></td>
+                <td><input id="" value="2" type="text" name=""></td>
+                <td>500</td>
+                <td>不夜城</td>
+                <td>33333333</td>
+            </tr>
+            <tr>
+                <td><input checked type="checkbox"></td>
+                <td>HX21RP</td>
+                <td>7819128790938</td>
+                <td>小茫茫</td>
+                <td>成人</td>
+                <td>RYT+TRY</td>
+                <td><input id="" value="500" type="text" name=""></td>
+                <td><input id="" value="500" type="text" name=""></td>
+                <td><input id="" value="500" type="text" name=""></td>
+                <td><input id="" value="0" type="text" name=""></td>
+                <td><input id="" value="0" type="text" name=""></td>
+                <td><input id="" value="2" type="text" name=""></td>
+                <td><input id="" value="2" type="text" name=""></td>
+                <td>500</td>
+                <td>不夜城</td>
+                <td>33333333</td>
+            </tr>
+            <tr class="hidden">
+                <td><input type="checkbox"></td>
+                <td>HX21RP</td>
+                <td>7819128790938</td>
+                <td>小茫茫</td>
+                <td>成人</td>
+                <td>RYT+TRY</td>
+                <td><input id="" value="500" type="text" name=""></td>
+                <td><input id="" value="500" type="text" name=""></td>
+                <td><input id="" value="500" type="text" name=""></td>
+                <td><input id="" value="0" type="text" name=""></td>
+                <td><input id="" value="0" type="text" name=""></td>
+                <td><input id="" value="2" type="text" name=""></td>
+                <td><input id="" value="2" type="text" name=""></td>
+                <td>500</td>
+                <td>不夜城</td>
+                <td>33333333</td>
+            </tr>
+            </tbody>
+        </table> 
 
     </div>
 </div>
@@ -554,49 +544,40 @@ $(function(){
 
 </div>
 
-<div class="block block41 block-calc">
+<div class="block block41 block-calc block-calc-readonly">
     <div id="order_calc">
         <ul class="flat-list">
             <li class="first">
             <label>
                 <span>应收合计</span> 
-                <input value="2580.00" class="input-b"> 
+                <input value="2580.00" style="color:#666" class="input-b"> 
             </label>
             </li> 
-            <li>
-            <label>
-                <span>手续费</span>
-                <input value="320.00">
-            </label>
-            </li>
-            <li>
+
             <li>
             <label>
                 <span>票款合计</span>
                 <input value="320.00">
             </label>
             </li>
+
             <li>
             <label>
-                <span>税款合计</span>
+                <span>税款合计（机建/燃油）</span>
                 <input value="320.00">
             </label>
             </li>
+
             <li>
             <label>
                 <span>附加费</span>
                 <input value="320.00">
             </label>
             </li>
+
             <li>
             <label>
                 <span>客户返佣</span>
-                <input value="320.00">
-            </label>
-            </li>
-            <li>
-            <label>
-                <span>服务费</span>
                 <input value="320.00">
             </label>
             </li>
@@ -606,41 +587,10 @@ $(function(){
 
 
 <div class="block block-module">
-    <div class="block-title">备注</div>
+    <div class="block-title">调账原因</div>
     <textarea style="width:100%;height:60px;border:1px solid #ccc;"></textarea>
 </div>
 
-<div class="block block-module">
-    <div class="block-title">记录</div>
-    <table style="border:none;">
-        <colgroup>
-            <col width=100 />
-            <col />
-        </colgroup>
-
-        <tr>
-            <td>修改客票价格</td>
-            <td>2013-09-09 14:22</td>
-        </tr>
-        <tr>
-            <td>修改客票价格</td>
-            <td>2013-09-09 14:22</td>
-        </tr>
-    </table>
-</div>
-
-<script type="text/x-kendo-template" id="ac-return-template">
-<div class="row">
-        <strong>审核退回原因：</strong> 
-   </div> 
-   <div class="row">
-        <textarea style="width:400px;"></textarea> 
-   </div>
-    <div style="text-align:right;">
-        <button type="button" class="btns button_1_2">提 交</button>
-        <button type="button" class="btns button_2_2">取 消</button>
-    </div>
-</script>
 
             </div>
 </div>

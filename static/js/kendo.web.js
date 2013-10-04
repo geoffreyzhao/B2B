@@ -22725,6 +22725,10 @@ kendo_module({
                 that._footer();
             }
 
+            // Fix IE 7 scrollbar overflow-x bug, by shaotian.hu;
+            if (that.options.height > 0) {
+                that.wrapper.addClass('k-grid-scrollY');
+            }
             kendo.notify(that);
         },
 
