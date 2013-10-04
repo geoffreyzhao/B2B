@@ -21,11 +21,41 @@
 <script type="text/javascript">
 $(function(){
 
+    var flag = $('.block21 .btn1');
+
     $('.block21 thead :checkbox').cbFamily('.block21 tbody :checkbox');
 
     $('.block21 :text').on('focus',function(){
-        var cbox = $(this).closest('tr').find(':checkbox').eq(0);
-        if(!cbox.is(':checked')) cbox.prop('check',true).trigger('click.cbFamily'); 
+        var tr = $(this).closest('tr');
+        var cbox = tr.find(':checkbox').eq(0);
+        if(!cbox.is(':checked')){
+            cbox.prop('check',true).trigger('click.cbFamily'); 
+            tr.removeClass('hidden');
+        }
+    });
+
+    
+    $('.block21 thead :checkbox').on('click.hidden',function(){
+        var that = $(this);  
+        var tr = that.closest('table').find('tbody tr');
+        if(that.prop('checked') == true){
+            tr.removeClass('hidden').show();
+        }else{
+            //tr.addClass('hidden');
+        }
+    });
+
+    $('.block21 tbody :checkbox').on('change',function(){
+        var that = $(this);  
+        var tr = that.closest('tr');
+        if(that.prop('checked') == true){
+            tr.removeClass('hidden');
+        }else{
+            tr.addClass('hidden');
+            if(!flag.hasClass('expanded')){
+                tr.hide(); 
+            };
+        }
     });
             
             
@@ -405,7 +435,7 @@ $(function(){
     <div class="block-title">
         <span class="block-title-blue">客票信息</span>
         <span class="block-module-action">
-            <button class="btns btn-ac-blue ac-toggle" data-text="显示全部|显示已选" data-target=".block21 .hidden"><b>显示全部</b></button>
+            <button class="btns btn-ac-blue ac-toggle btn1" data-text="显示全部|显示已选" data-target=".block21 .hidden"><b>显示全部</b></button>
             <button class="btns btn-ac-blue">统一价格</button>
             <button class="btns btn-ac-blue ac-toggle" data-target=".block20"><b>显示</b>原客票信息</button> 
 
