@@ -4,6 +4,7 @@ function FixCol() {
 	}
 
 	var defaults = {
+        lineClassName: "fixline",
         fixClassName: "fixcol",
 		position: "fixed",
 		kendoGrid: false,
@@ -27,7 +28,7 @@ function FixCol() {
 			td_left: - 26,
 			th_left: - 30,
             td_top:1,
-            td_height_addup: -1,
+            td_height_addup: -2,
 			kendoGrid: true
 		};
 
@@ -69,10 +70,10 @@ function FixCol() {
 		$(obj).css({
 			position: p_position,
 			width: p_w,
-			//height: Math.floor(p_h + opts.td_height_addup),
-			height: p_h ,
+			height: Math.floor(p_h + opts.td_height_addup),
+			//height: p_h ,
 			left: p_left - d_left,
-			top: p_top - d_top 
+			top: p_top - d_top + Math.abs(opts.td_height_addup) 
 
 		});
 		if (p_position == opts.position) {
@@ -82,6 +83,7 @@ function FixCol() {
 		}
 	};
 
+    var addline = false;
 	var setFixed = function() {
 		var offset = wrapper.offset();
 		var th_w = $("tr:eq(0) th:last", thead).width();
@@ -111,8 +113,13 @@ function FixCol() {
 			}
 
             console.log(row_height);
+            if(!addline){
+                wrapper.append($('<div class="' + opts.lineClassName + '></div>').css({
+                    top:$(this).position().top
+                }));
+            }
 
-			setPosition(td, opts.position, offset.left + w - td_w + opts.td_left, offset.top + sh, td_w, th_h);
+			//setPosition(td, opts.position, offset.left + w - td_w + opts.td_left, offset.top + sh, td_w, th_h );
 		})
 	}
 
