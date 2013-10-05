@@ -1,16 +1,6 @@
 $(function() {
 
-
-    $('body').delegate('[data-role="ctype"]', 'change', function(){
-        var index = $(this).data('index');
-        var group = $(this).data('group');
-        if (this.checked) {
-            var all = $('[data-role="ctype-item"][data-group="'+group+'"]');
-            all.hide(); 
-            all.filter('[data-index~="'+index+'"]').show(); 
-        } 
-    });
-
+    $.role_ctype();
 
     $('.top_title input').on('change',function(){
         var li = $(this).closest('li'); 
