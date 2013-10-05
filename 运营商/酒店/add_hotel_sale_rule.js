@@ -208,7 +208,114 @@ function select_item(obj){
 
 $(function() {
 
-	filter_win["hotel"] = new PopWindow("#filter_hotel", {
+    /****************************************************************/
+
+    var model=kendo.observable({
+        city:[{name:"ABCDEF",data:[{name:"上海"},{name:"山东"},{name:"山西"},{name:"北京"},{name:"成都"},{name:"大连"},{name:"福建"}]},{name:"GHIJKL",data:[{name:"广州"}]}],
+        deletedCity:[{name:"成都"}],
+        deletingCity:[],
+        clearDeletingCity:function(){
+            $("#location-layer li.item").removeClass("selected");
+            this.deletingCity.splice(0,this.deletingCity.length);
+        }
+    })
+
+
+
+    function checkCityStatus(selectCity){
+        for(var i=0;i<model.deletingCity.length;i++)
+        {
+            if(model.deletingCity[i].name==selectCity.name)
+                return i;
+        }
+        return -1;
+    }
+
+
+    function renderCityTab(el,modifiable){
+        kendo.destroy($(el));
+        $(el).html("");
+        var el_ul=$("<ul></ul>");
+        $(el).append(el_ul);
+        for(var i=0;i<model.city.length;i++)
+        {
+            var cityHeadTpl=new kendo.View("cityHead",{model:model.city[i],tagName:"li"});
+            el_ul.append(cityHeadTpl.render());
+            var cityItems=new kendo.View("cityContainer",{model:model.city[i]});
+            $(el).append(cityItems.render());
+        }
+        kendo.init($(el));
+        $(el).data("kendoTabStrip").select(0);
+        if(modifiable)
+        {
+
+            $("#location-layer").delegate("li.item","click",function(){
+                $(this).toggleClass("selected")
+                var selectCity=model.city[$(this).closest("div.tcy-tabitem").parent().index()-1].data[$(this).closest("li").index()];
+                var result=checkCityStatus(selectCity);
+                if(result!=-1)
+                {
+                    model.deletingCity.splice(result,1);
+                }
+                else
+                {
+                    model.deletingCity.push(selectCity);
+                }
+            })
+            cloneData(model.deletedCity,model.deletingCity);
+            initCityStatus();
+        }
+    }
+
+    function initCityStatus(){
+        $("#location-layer li.item").each(function(){
+            for(var i=0;i<model.deletingCity.length;i++)
+            {
+                if(model.deletingCity[i].name==$(this).text())
+                    $(this).addClass("selected");
+            }
+        })
+    }
+
+    function cloneData(data1,data2)
+    {
+        for(var i=0;i<data1.length;i++)
+        {
+            data2.push(data1[i]);
+        }
+    }
+
+    filter_win["city"] =new PopWindow("#filter_city", {
+        title: "选择排除城市",
+        width: 560,
+        height:300,
+        template: "#citySelectTemplete",
+        activate:function(){
+            //
+        },
+        open: function() {
+            renderCityTab($("#location-layer"),true);
+            kendo.bind($("#deletingCityContainer,.bindModel"),model);
+        }
+    }).init();
+
+    new PopWindow("#btn_checkCity", {
+        title: "选择排除城市",
+        width: 560,
+        height:300,
+        template: "#cityCheckTemplete",
+        activate:function(){
+            //
+        },
+        open: function() {
+            renderCityTab($("#cityCheck-layer"),false);
+        }
+    }).init();
+
+    /****************************************************************/
+
+
+    filter_win["hotel"] = new PopWindow("#filter_hotel", {
 		title: "勾选排除酒店",
 		width: 730,
 		template: "#filter_hotel_tpl",
@@ -230,6 +337,25 @@ $(function() {
 					filter_win["hotel"].center();
 				},
 				rowTemplate: kendo.template($("#hotel_row_tpl").html())
+			}).init();
+		}
+	}).init();
+    filter_win["checkhotel"] = new PopWindow("#check_hotel", {
+		title: "勾选排除酒店",
+		width: 730,
+		template: "#check_hotel_tpl",
+        activate:function(){
+            //
+        },
+		open: function() {
+			hotel_table = new GridTable('#checkhotel_list', {
+				dataSource:dataSource['hotel'],
+                dataBounding:function(e){
+                },
+				dataBound: function(e) {
+                   filter_win["checkhotel"].center();
+				},
+				rowTemplate: kendo.template($("#checkhotel_row_tpl").html())
 			}).init();
 		}
 	}).init();
@@ -256,6 +382,25 @@ $(function() {
 					filter_win["customer"].center();
 				},
 				rowTemplate: kendo.template($("#customer_row_tpl").html())
+			}).init();
+		}
+	}).init();
+	filter_win["checkcustomer"] = new PopWindow("#check_customer", {
+		title: "勾选排除客户",
+		width: 730,
+		template: "#check_customer_tpl",
+        activate:function(){
+            //
+        },
+		open: function() {
+			hotel_table = new GridTable('#checkcustomer_list', {
+				dataSource:dataSource['customer'],
+                dataBounding:function(e){
+                },
+				dataBound: function(e) {
+                    filter_win["checkcustomer"].center();
+				},
+				rowTemplate: kendo.template($("#checkcustomer_row_tpl").html())
 			}).init();
 		}
 	}).init();
