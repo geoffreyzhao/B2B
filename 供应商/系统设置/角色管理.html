@@ -123,7 +123,7 @@ $(function(){
     $.role_ctype();
 
     new PopWindow('.ac-new',{
-        width:720,
+        width:730,
         title:'添加账户',
         template:"#ac-new-template" 
     }).init();
@@ -157,16 +157,40 @@ $(function(){
 </script>
 <script type="text-x-kendo-template" id="ac-new-template">
 <table class="cv-table">
+   <colgroup>
+       <col width="90">
+       <col width="160">
+       <col width="80">
+       <col width="330">
+   </colgroup>
+   
   <tr>
   <th>账户类型：</th>
-    <td>
+    <td colspan=3>
     <label><input data-role="ctype" data-group="a1" data-index="1" id="" type="radio" checked name="xxx"> 银行</label>
     <label><input data-role="ctype" data-group="a1" data-index="2" id="" type="radio" name="xxx"> 第三方支付</label>
     </td>
   </tr>
-  <tr class="hidden" data-role="ctype-item" data-group="a1" data-index="2">
+  <tr data-role="ctype-item" data-group="a1" data-index="1">
+      <th>户名：</th>
+      <td><input id="" style="width:150px;" type="text" name=""></td>
+      <th>卡号：</th>
+      <td><input style="width:320px;" id="" type="text" name=""></td>
+  </tr>
+  <tr data-role="ctype-item" data-group="a1" data-index="1">
+      <th>开户地：</th>
+      <td><input id="" style="width:150px;" type="text" name=""></td>
+      <th>开户行：</th>
+      <td>
+            <select id="" data-role="dropdownlist" style="width:120px;" name="">
+                <option value="">中国工商银行</option>
+            </select>
+            <strong>支行信息：</strong>
+      <input style="width:129px;" id="" type="text" name=""></td>
+  </tr>
+  <tr style="display:none;" data-role="ctype-item" data-group="a1" data-index="2">
     <th>支付公司：</th>
-    <td>
+    <td colspan=3>
         <select data-role="dropdownlist" style="width:150px;" id="u149" class="u149">
         <option selected="" value="支付宝">支付宝</option>
         <option value="财付通">财付通</option>
@@ -179,22 +203,22 @@ $(function(){
         </select>
     </td>
   </tr>
-  <tr class="hidden" data-role="ctype-item" data-group="a1" data-index="2">
+  <tr style="display:none;" data-role="ctype-item" data-group="a1" data-index="2">
     <th>开户名：</th>
     <td><input style="width:150px;" id="" type="text" name=""></td>
     <th>帐号：</th>
-    <td><input style="width:300px;" id="" type="text" name=""></td>
+    <td><input style="width:320px;" id="" type="text" name=""></td>
   </tr>
   <tr>
     <th>账户用途：</th>
-    <td>
+    <td colspan=3>
     <label><input id="" type="checkbox" name=""> 收款账户</label>
     <label><input id="" type="checkbox" name=""> 自动退款<a href="">（签署自动退款协议）</a></label>
     </td>
   </tr>
   <tr>
     <th>备注：</th>
-    <td><textarea id="" name="" style="height:80px;"></textarea></td>
+    <td colspan=3><textarea id="" name="" style="height:60px;width:520px;"></textarea></td>
   </tr>
 </table>
     <div class="row" style="text-align:right;">

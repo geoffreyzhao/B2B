@@ -1015,11 +1015,11 @@ $.role_ctype = function(settings){
     $('body').delegate('[data-role="ctype"]', 'click', function(){
         var index = $(this).data('index');
         var group = $(this).data('group');
-        // if (this.checked) {
-            var all = $('[data-role="ctype-item"][data-group="'+group+'"]');
-            all.hide(); 
-            all.filter('[data-index~="'+index+'"]').show(); 
-        // }
+        var all = $('[data-role="ctype-item"][data-group="'+group+'"]');
+
+        all.hide(); 
+        all.filter('[data-index~="'+index+'"]').show(); 
+
         if(this.type == 'radio' || this.type == 'checkbox'){
             $(this).change(); 
         }
