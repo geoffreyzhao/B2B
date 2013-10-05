@@ -1005,3 +1005,55 @@ $.fn.fileInput = function(settings){
     });
 
 }
+
+// data-role ctype
+$.role_ctype = function(settings){
+    var settings = $.extend({
+        callback:function(){} 
+    },settings);
+
+    $('body').delegate('[data-role="ctype"]', 'click', function(){
+        var index = $(this).data('index');
+        var group = $(this).data('group');
+        // if (this.checked) {
+            var all = $('[data-role="ctype-item"][data-group="'+group+'"]');
+            all.hide(); 
+            all.filter('[data-index~="'+index+'"]').show(); 
+        // }
+        if(this.type == 'radio' || this.type == 'checkbox'){
+            $(this).change(); 
+        }
+
+        settings.callback.call(this,{
+            index:index, 
+            group:group
+        });
+    });
+}
+
+// data-role ctoggle 
+$.role_ctoggle = function(settings){
+    $('body').on('click.ctoggle','[data-role="ctoggle"]', function(){
+        var that = $(this);
+        var text = that.data('text');
+        var textArray;
+        var textEle = that.find('b');
+        var target = that.data('target');
+        $(target).toggle();
+        that.toggleClass('expanded');
+
+        if(!text){
+            text='显示|隐藏';
+        }
+
+        textArray = text.split('|');
+        if(textArray.length===2){
+            if(textEle.text() == textArray[0] ){
+                textEle.text(textArray[1]);
+            }else{
+                textEle.text(textArray[0]);
+            }
+        }
+
+    });
+}

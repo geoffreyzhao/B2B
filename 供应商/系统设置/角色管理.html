@@ -119,8 +119,11 @@
 <script type="text/javascript">
 
 $(function(){
+    
+    $.role_ctype();
+
     new PopWindow('.ac-new',{
-        width:470,
+        width:720,
         title:'添加账户',
         template:"#ac-new-template" 
     }).init();
@@ -157,11 +160,11 @@ $(function(){
   <tr>
   <th>账户类型：</th>
     <td>
-    <label><input id="" type="radio" name=""> 银行</label>
-    <label><input id="" type="radio" name=""> 第三方支付</label>
+    <label><input data-role="ctype" data-group="a1" data-index="1" id="" type="radio" checked name="xxx"> 银行</label>
+    <label><input data-role="ctype" data-group="a1" data-index="2" id="" type="radio" name="xxx"> 第三方支付</label>
     </td>
   </tr>
-  <tr>
+  <tr class="hidden" data-role="ctype-item" data-group="a1" data-index="2">
     <th>支付公司：</th>
     <td>
         <select data-role="dropdownlist" style="width:150px;" id="u149" class="u149">
@@ -176,16 +179,14 @@ $(function(){
         </select>
     </td>
   </tr>
-  <tr>
+  <tr class="hidden" data-role="ctype-item" data-group="a1" data-index="2">
     <th>开户名：</th>
     <td><input style="width:150px;" id="" type="text" name=""></td>
-  </tr>
-  <tr>
     <th>帐号：</th>
     <td><input style="width:300px;" id="" type="text" name=""></td>
   </tr>
   <tr>
-    <th>账户类型：</th>
+    <th>账户用途：</th>
     <td>
     <label><input id="" type="checkbox" name=""> 收款账户</label>
     <label><input id="" type="checkbox" name=""> 自动退款<a href="">（签署自动退款协议）</a></label>
