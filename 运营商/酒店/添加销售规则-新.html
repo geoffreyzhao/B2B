@@ -215,7 +215,7 @@
                 <div class="subPanel_title">
                     <span class="head">排除酒店：</span>
                     <span class="head" style="margin-right:25px"><b>(<strong>2000</strong>)</b></span>
-                    <a href="javascript:;" class="button_secondary adaptiveButton small expand">
+                    <a href="javascript:void(0);" id="filter_hotel" class="button_secondary adaptiveButton small expand">
                         <span class="left"></span>
                         <span class="center" style="padding:0 5px">修改</span>
                         <span class="right"></span>
@@ -223,13 +223,7 @@
 
                     <a href="javascript:void(0)" class="oper pull-right">查看适用酒店</a>
                 </div>
-                <div class="subPanel_data">
-                    <label class="item_data">上海，宝华国际酒店;</label>
-                    <label class="item_data">上海，宝华国际酒店;</label>
-                    <label class="item_data">上海，宝华国际酒店;</label>
-                    <label class="item_data">上海，宝华国际酒店;</label>
-                    <label class="item_data">上海，宝华国际酒店;</label>
-                    <label class="item_data">上海，宝华国际酒店;</label>
+                <div class="subPanel_data hotel_wrapper" >
                 </div>
             </div>
         </div>
@@ -452,13 +446,68 @@
 <script type="text/javascript" src="../../static/js/global.js"></script>
 
 
+<script type="text/x-kendo-template" id="filter_hotel_tpl">
+    <div class="filter filter_hotel">
+        <div class="search">
+            <label><strong>酒店名称</strong><input type="text" style="width:200px;" name="hotel_checkall"/></label>
+            <button class="btns btn-orange-s">查询</button>
+        </div>
 
+        <div class="data_list">
+            <table class="grid_table" id="hotel_list">
+                <tr class="thead">
+                    <th><input type="checkbox" name="hotel_checkall"/></th> 
+                    <th>城市</th> 
+                    <th>位置</th> 
+                    <th>酒店名称</th> 
+                    <th>星级</th>
+                    <th>品牌</th>
+                    <th>签约经理</th>
+                </tr>
+            </table>
+        </div>
 
+        <div class="subPanel_title">
+            <span class="head">已排除城市：</span>
+            <span class="head" style="margin-right:25px"><b>(<strong class="filter_num">0</strong>)</b></span>
 
-<script type="text/javascript">
+            <a href="javascript:void(0)" class="oper clean_data" name="hotel">清空排除酒店</a>
+        </div>
+        <div class="filtered_data clearfix"></div>
 
+        <div class="btns" style="text-align:right;">
+            <a href="javascript:void(0);" class="button_important adaptiveButton medium" name="hotel_save">
+                <span class="left"></span>
+                <span class="center">保&nbsp;存</span>
+                <span class="right"></span>
+            </a>
+            <a href="javascript:void(0);" class="button_unimportant adaptiveButton medium" name="hotel_cancel">
+                <span class="left"></span>
+                <span class="center">取&nbsp;消</span>
+                <span class="right"></span>
+            </a>
+        </div>
+
+    </div>
+</script>
+<script type="text/x-kendo-template" id="exclude_item_tpl">
+    <label class="item_data" id="#=name##=id#"><input type="hidden" name="#=name#" value="#=id#" />#=hotel_name#,#=hotel_position#;</label>
+</script>
+<script type="text/x-kendo-template" id="hotel_row_tpl">
+    <tr>
+        <td><input type="checkbox" name="hotel" value="#=data.hotel_id#"/></td>
+        <td>#=data.city#</td>
+        <td>#=data.position#</td>
+        <td>#=data.hotel_name#</td>
+        <td>#=data.star#</td>
+        <td>#=data.brand#</td>
+        <td>#=data.sign_manager#</td>
+    </tr>
 
 </script>
+
+
+<script type="text/javascript" src="add_hotel_sale_rule.js"></script>
 </body>
 </html>
 
