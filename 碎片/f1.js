@@ -60,17 +60,16 @@ function FixCol() {
 		return {top:$(document).scrollTop(),left :$(document).scrollLeft()};
     };
 
-	var setPosition = function(obj,p_position, p_left, p_top, p_w, p_h) {
+	var setPosition = function(obj, p_left, p_top, p_w, p_h) {
         var d = getDocScroll();
 		$(obj).css({
-            position:p_position,
 			width: p_w,
 			//height: Math.floor(p_h + opts.td_height_addup),
 			height: p_h + Math.abs(opts.td_height_addup) ,
 			left: p_left - d.left,
 			//top: p_top - d.top + Math.abs(opts.td_height_addup) 
 			top: p_top - d.top
-		});
+		}).addClass(opts.fixClassName);
 	};
 
     /** 
@@ -84,10 +83,14 @@ function FixCol() {
 		var th_w = th.width();
 		var th_h = $("tr:eq(0)", thead).height();
 
-		setPosition($("tr:eq(0) th:last", thead), opts.position, offset.left + w - th_w + opts.th_left, offset.top + opts.th_top, th_w, th_h + opts.th_h);
+		setPosition($("tr:eq(0) th:last", thead), offset.left + w - th_w + opts.th_left, offset.top + opts.th_top, th_w, th_h + opts.th_h);
 
         if(!this.hasFixed){
             th.data("offset",{ left: offset.left + w - th_w + opts.th_left ,top: offset.top + opts.th_top}); 
+        }
+
+        if(opts.debug){
+            console.log(th.data("offset"));
         }
 
 		if (opts.kendoGrid) {
@@ -108,7 +111,7 @@ function FixCol() {
 				sh += row_height[i - 1];
 			}
 
-			setPosition(td, opts.position, offset.left + w - td_w + opts.td_left, offset.top + sh, td_w, th_h );
+			setPosition(td, offset.left + w - td_w + opts.td_left, offset.top + sh, td_w, th_h );
             if(!this.hasFixed){
                 td.data("offset",{ left: offset.left + w - td_w + opts.td_left,top : offset.top + sh}); 
                 if(0 == index){
@@ -119,7 +122,6 @@ function FixCol() {
                 console.log(td.data("offset"));
             }
 
-            var dline = {top:tr_offset.top - 2,left: td.data("offset").left};
             var fixline = $('<div class="' + opts.fixClassName + " " + opts.lineClassName + ' sep_line"></div>').css({
                 width:100,
                 top: tr_offset.top - 2,
@@ -148,12 +150,10 @@ function FixCol() {
         var d = getDocScroll();
         $("." + opts.fixClassName).each(function(){
             var a = $(this).data("offset");
-            if(a){
-                $(this).css({
-                    top: a.top - d.top,
-                    left: a.left - d.left
-                });
-            }
+            $(this).css({
+                top: a.top - d.top,
+                left: a.left - d.left
+            });
         });
     };
 
