@@ -60,9 +60,10 @@ function FixCol() {
 		return {top:$(document).scrollTop(),left :$(document).scrollLeft()};
     };
 
-	var setPosition = function(obj, p_left, p_top, p_w, p_h) {
+	var setPosition = function(obj,p_left, p_top, p_w, p_h) {
         var d = getDocScroll();
 		$(obj).css({
+            position:opts.position,
 			width: p_w,
 			//height: Math.floor(p_h + opts.td_height_addup),
 			height: p_h + Math.abs(opts.td_height_addup) ,
@@ -70,6 +71,7 @@ function FixCol() {
 			//top: p_top - d.top + Math.abs(opts.td_height_addup) 
 			top: p_top - d.top
 		}).addClass(opts.fixClassName);
+
 	};
 
     /** 
@@ -90,7 +92,8 @@ function FixCol() {
         }
 
         if(opts.debug){
-            console.log(th.data("offset"));
+            console.log(offset.top,"-",offset.left);
+            console.log(th.data("offset").top,"-",th.data("offset").left);
         }
 
 		if (opts.kendoGrid) {
@@ -119,27 +122,36 @@ function FixCol() {
                 }
             }
             if(opts.debug){
-                console.log(td.data("offset"));
+                console.log(td.data("offset").top,"-",td.data("offset").left);
             }
+
+            /*
+            var lineOffset = {
+                top: tr_offset.top - 2,
+                left: td.data("offset").left
+            };
 
             var fixline = $('<div class="' + opts.fixClassName + " " + opts.lineClassName + ' sep_line"></div>').css({
                 width:100,
-                top: tr_offset.top - 2,
-                left: td.data("offset").left
+                top: lineOffset.top,
+                left: lineOffset.left
             });
+            fixline.data(lineOffset);
             wrapper.append(fixline);
+            */
 		});
 
         remember.push(td.data("offset"));
 
-        console.log(remember);
         if(!this.hasFixed){
+            /*
             var fixline = $('<div class="' + opts.fixClassName + " " + opts.lineClassName + ' left_line"></div>').css({
                 height:remember[1].top - remember[0].top + row_height[row_height.length -1] ,
                 top:remember[0].top,
                 left: remember[0].left
             });
             wrapper.append(fixline);
+            */
         }
 
         this.hasFixed = true;
