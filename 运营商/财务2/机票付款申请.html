@@ -8,6 +8,7 @@
 <link href="/static/css/common.css" rel="stylesheet" />
 <link href="/static/css/b2b.css" rel="stylesheet" />
 <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+<link href="/static/css/finance.css" rel="stylesheet" />
 
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/kendo.web.js"></script>
@@ -61,13 +62,14 @@
     <div id="mainContent">
         <div class="actions block">
             <div class="col col-l">
-                <a class="item" href="#">订单查询</a> 
-                <a class="item highlight" href="#">客票明细</a> 
-                <a class="item" href="#">审核</a> 
-                <a class="item" href="#">出票</a> 
-                <a class="item" href="#">改签</a> 
-                <a class="item" href="#">废票</a> 
-                <a class="item" href="#">退票</a> 
+                <a class="item highlight" href="#">机票付款申请</a> 
+            </div>
+            <div class="sep-l col col-r">
+                <a href="javascript:;" class="ac-new button_secondary adaptiveButton small">
+                    <span class="left"></span>
+                    <span class="center">新增付款申请</span>
+                    <span class="right"></span>
+                </a>
             </div>
         </div>
 
@@ -75,140 +77,72 @@
             <div class="col col-l">
                 <table>
                     <colgroup>
-                        <col width="90">
-                        <col width="154">
                         <col width="80">
-                        <col width="154">
-                        <col width="120">
+                        <col width="160">
+                        <col width="80">
+                        <col width="160">
+                        <col width="80">
+                        <col width="240">
                     </colgroup>
-                    
                     <tr>
-                        <th>
-                            <select id="" name="" style="width:70px" data-role="dropdownlist">
-                                <option value="">PNR</option>
-                                <option value="">大编码</option>
-                            </select>
-                        </th>
+                        <th>申请单号</th>
+                        <td><input id="" style="width:120px" type="text" name=""></td>
+                        <th>票类</th>
                         <td>
-                            <input id="" style="width:125px" type="text" name="">
+                        <select style="width:122px" data-role="dropdownlist">
+<option selected="" value="BSP">BSP</option>
+<option value="供应商结算">供应商结算</option>
+</select>
                         </td>
-                        <th>票号</th>
-                        <td>
-                            <input id="" style="width:125px" type="text" name="">
-                        </td>
-                        <th>
-                            <select id="" name="" style="width:100px" data-role="dropdownlist">
-                                <option selected="" value="订单号">订单号</option>
-                                <option value="客户订单号">客户订单号</option>
-                                <option value="外部订单号">外部订单号</option>
-                            </select>
-                        </th>
-                        <td>
-                            <input id="" style="width:125px" type="text" name="">
-                        </td>
-                    </tr>
+                        <th>提交日期</th>
+                        <td><input id="" style="width:100px;" data-role="datepicker" type="text" name=""> 至 <input data-role="datepicker" style="width:100px;" id="" type="text" name=""></td>
+                    </tr>    
                     <tr>
-                        <th>航空公司</th>
+                        <th>OFFICE号</th>
                         <td>
-                            <input id="" style="width:125px" type="text" name="">
+                        <select style="width:122px" disabled data-role="dropdownlist">
+<option selected="" value="SHA225">SHA225</option>
+</select>
                         </td>
-                        <th>支付方式</th>
+                        <th>业务类型</th>
                         <td>
-                            <select id="" style="width:127px;" data-role="dropdownlist" name="">
-                                <option selected="" value="全部">全部</option>
-                                <option value="预存余额">预存余额</option>
-                                <option value="信用额度">信用额度</option>
-                                <option value="订单授信">订单授信</option>
-                                <option value="支付宝">支付宝</option>
-                                <option value="财付通">财付通</option>
-                                <option value="汇付天下">汇付天下</option>
-                            </select>
+                        <select style="width:122px" data-role="dropdownlist">
+<option value="全部">全部</option>
+<option selected="" value="国内机票">国内机票</option>
+<option value="国际机票">国际机票</option>
+</select>
                         </td>
-                        <th>
-                            <select id="" style="width:100px;" data-role="dropdownlist" name="">
-                                <option value="支付状态">支付状态</option>
-                                <option selected="" value="收款状态">收款状态</option>
-                                <option value="复核状态">复核状态</option>
-                            </select>
-                        </th>
-                        <td>
-                            <select id="" style="width:127px;" data-role="dropdownlist" name="">
-                                <option selected="" value="全部">全部</option>
-                                <option value="预订">预订</option>
-                                <option value="提交">提交</option>
-                                <option value="出票中">出票中</option>
-                                <option value="暂不能出票">暂不能出票</option>
-                                <option value="已退回">已退回</option>
-                                <option value="已出票">已出票</option>
-                            </select>
-                        </td>
-                    </tr>
+                        <th>审核日期</th>
+                        <td><input id="" style="width:100px;" data-role="datepicker" type="text" name=""> 至 <input data-role="datepicker" style="width:100px;" id="" type="text" name=""></td>
+                    </tr>    
                     <tr>
-                        <th>客户名称</th>
-                        <td><input id="" style="width:101px;" type="text" name="">
-                            <button class="btns btn-search">查询</button>
-                        </td>
-                        <th>供应商</th>
-                        <td><input id="" style="width:101px;" type="text" name="">
-                            <button class="btns btn-search">查询</button>
-                        </td>
-                        <th>
-                            <select id="" data-role="dropdownlist" style="width:100px;" name="">
-                                <option value="建单营业点">建单营业点</option>
-                                <option selected="" value="出票营业点">出票营业点</option>
-                                <option value="配送营业点">配送营业点</option>
-                            </select>
-                        </th>
+                        <th>审核状态</th>
                         <td>
-                            <input id="" style="width:125px;" type="text" name="">
-                            <button class="btns btn-search">查询</button>
+                        <select style="width:122px" data-role="dropdownlist">
+<option selected="" value="全部">全部</option>
+<option value="未审核">未审核</option>
+<option value="已审核">已审核</option>
+<option value="已拒绝">已拒绝</option>
+</select>
                         </td>
-                    </tr>
+                        <th>完成状态</th>
+                        <td>
+                        <select style="width:122px" data-role="dropdownlist">
+<option selected="" value="全部">全部</option>
+<option value="未完成">未完成</option>
+<option value="已完成">已完成</option>
+</select>
+                        </td>
+                        <th>完成日期</th>
+                        <td><input id="" style="width:100px;" data-role="datepicker" type="text" name=""> 至 <input data-role="datepicker" style="width:100px;" id="" type="text" name=""></td>
+                    </tr>    
                     <tr>
-                        <th>
-                            <select id="" style="width:70px;" data-role="dropdownlist" name="">
-                                <option selected="" value="创建人">创建人</option>
-                                <option value="付款人">付款人</option>
-                                <option value="审核员">审核员</option>
-                                <option value="出票员">出票员</option>
-                                <option value="收款员">收款员</option>
-                            </select>
-                        </th>
-                        <td><input id="" style="width:101px;" type="text" name="">
-                            <button class="btns btn-search">查询</button>
+                    <th>供应商</th>
+                        <td>
+                        <select style="width:122px" disabled data-role="dropdownlist">
+<option selected="" value="百拓">百拓</option>
+</select>
                         </td>
-                        <th colspan=3>
-                            <select id="" name="" data-role="dropdownlist" style="width:80px;">
-                                <option value="起飞日期">起飞日期</option>
-                                <option selected="" value="创建日期">创建日期</option>
-                                <option value="修改日期">修改日期</option>
-                                <option value="出票日期">出票日期</option>
-                                <option value="收款日期">收款日期</option>
-                            </select>
-                            <input style="width:100px;" type="text" data-role="datepicker">
-                            至
-                            <input style="width:100px;" type="text" data-role="datepicker">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th colspan="6">
-                            <span>
-                            <label style="margin-right:0"><input id="" checked type="checkbox" name="">正常票</label>
-                            <span>（
-                            <label><input id="" checked type="checkbox" name="">改期</label>
-                            <label><input id="" checked type="checkbox" name="">升舱</label>
-                            <label><input id="" checked type="checkbox" name="">废票</label>
-                            <label style="margin-right:0"><input id="" checked type="checkbox" name="">退票</label>）</span>
-                            </span>
-
-                            <span>
-                            <label><input id="" checked type="checkbox" name="">改期</label>
-                            <label><input id="" checked type="checkbox" name="">升舱</label>
-                            <label><input id="" checked type="checkbox" name="">废票</label>
-                            <label><input id="" checked type="checkbox" name="">退票</label>
-                            <label><input id="" checked type="checkbox" name="">调账单</label>
-                            </span>
-                        </th>
                     </tr>
                 </table>
             </div>
@@ -219,66 +153,66 @@
 
         <div class="block2 block block-query-result">
             <div class="block-header clearfix">
-                <span style="float:left">
-                <i>正常票：0</i>
-                <i>改期：0</i>
-                <i>升舱：0</i>
-                <i>废票：0</i>
-                <i>退票：0</i>
-                <i>调账：0</i>
-                </span>
+                <span style="float:left"></span>
                 <span style="float:right">
                 <button class="btns btn-ac-blue">导出Excel</button>
                 </span>
             </div>
             <table>
                 <colgroup>
+                  <col width="130">
+                  <col width="140">
+                  <col width="85">
+                  <col width="85">
+                  <col width="85">
+                  <col width="70">
+                  <col width="70">
                   <col width="70">
                   <col width="100">
-                  <col width="70">
-                  <col width="70">
-                  <col width="70">
-                  <col width="150">
-                  <col width="70">
-                  <col width="70">
-                  <col width="70">
-                  <col width="70">
-                  <col width="70">
-                  <col width="40">
-                  <col width="70">
-                  <col width="70">
-                  <col width="90">
+                  <col width="100">
                 </colgroup>
                 <tr>
                     <th>操作</th>
-                    <th>票号</th>
-                    <th>票证类型</th>
-                    <th>行程单号</th>
-                    <th>客票状态</th>
-                    <th>订单号</th>
-                    <th>PNR</th>
-                    <th>航班号</th>
-                    <th>乘机人</th>
-                    <th>旅客类型</th>
-                    <th>航程</th>
-                    <th>舱位</th>
-                    <th>应收款</th>
-                    <th>客户名称</th>
-                    <th>航班日期</th>
+                    <th>申请票号</th>
+                    <th>审核状态</th>
+                    <th>完成状态</th>
+                    <th>申请时间</th>
+                    <th>票类</th>
+                    <th>OFFICE号</th>
+                    <th>业务类型</th>
+                    <th>供应商</th>
+                    <th>收款金额</th>
                 </tr>
             </table>
 
 <script type="text/javascript">
 $(function(){
 
-    new PopWindow('.ac-edit',{
-        title:'修改票面信息',
-        template:'#ac-edit-template'
+    new PopWindow('.ac-new',{
+        title:'处理',
+        width:730,
+        template:'#ac-new-template'
+    }).init();
+
+    new PopWindow('.ac-new-submit',{
+        title:'付款申请信息',
+        width:470,
+        template:'#ac-new-submit-template'
+    }).init();
+
+    new PopWindow('.ac-check',{
+        title:'付款申请审核',
+        width:470,
+        template:'#ac-check-template'
+    }).init();
+
+    new PopWindow('.ac-accomplish',{
+        title:'付款申请完成',
+        width:470,
+        template:'#ac-accomplish-template'
     }).init();
 
     new GridTable('.block2 table',{
-         scrollable:true,
-         resizable:true,
          dataSource: [{
             c1:'030312103112260001',
             c2:'JY4FF',
@@ -305,69 +239,232 @@ $(function(){
 });
 </script>
 
-<script type="text/x-kendo-template" id="ac-edit-template">
+<script type="text/x-kendo-template" id="ac-new-template">
+    <div class="row row-query">
+       <table>
+       <colgroup>
+           <col width=55>
+           <col width=105>
+           <col width=60>
+           <col width=105>
+           <col width=55>
+           <col width=220>
+       </colgroup>
+       
+            <tr>
+            <th>票类</th>
+            <td><select style="width:90px" data-role="dropdownlist">
+<option selected="" value="BSP">BSP</option>
+<option value="供应商结算">供应商结算</option>
+</select></td>
+            <th>OFFICE号</th>
+            <td>
+                        <select style="width:90px" data-role="dropdownlist">
+<option selected="" value="SHA225">SHA225</option>
+</select>
+</td>
+            <th>出票日期</th>
+            <td><input id="" data-role="datepicker" style="width:90px" type="text" name=""> 至 <input id="" data-role="datepicker" style="width:90px" type="text" name=""></td>
+            <td rowspan=2>
+            <button class="btns button_2_1">查 询</button>
+            </td>
+            </tr>
+            <tr>
+            <th>业务类型</th>
+            <td><select style="width:90px" data-role="dropdownlist">
+<option value="全部">全部</option>
+<option selected="" value="国内机票">国内机票</option>
+<option value="国际机票">国际机票</option>
+</select></td>
+            <th>供应商</th>
+            <td><select style="width:90px" data-role="dropdownlist">
+<option selected="" value="百拓">百拓</option>
+</select></td>
+            <th>退票日期</th>
+            <td><input id="" data-role="datepicker" style="width:90px" type="text" name=""> 至 <input id="" data-role="datepicker" style="width:90px" type="text" name=""></td>
+            </tr>
+       </table>
+    </div>
+    <div class="row row-result">
+        <div class="row-header clearfix">
+        <span style="float:left">
+            <strong class="row-title">出票汇总</strong>
+        </span>
+        <span style="float:right">
+        <button class="btns btn-ac-blue">导出Excel</button>
+        </span>
+        </div>
+
+        <table>
+        <colgroup>
+            <col width=135>
+            <col width=135>
+            <col width=135>
+            <col width=135>
+            <col width=135>
+        </colgroup>
+        
+<tr>
+    <th>票面价</th>
+    <th>底价</th>
+    <th>机建税</th>
+    <th>燃油税</th>
+    <th>实付款</th>
+</tr>
+<tr>
+    <td>0.00</td>
+    <td>0.00</td>
+    <td>0.00</td>
+    <td>0.00</td>
+    <td><strong class="text1">0.00</strong></td>
+</tr>
+        </table>
+    </div>
+    <div class="row row-result">
+        <div class="row-header clearfix">
+        <span style="float:left">
+            <strong class="row-title">退票汇总</strong>
+        </span>
+        <span style="float:right">
+        <button class="btns btn-ac-blue">导出Excel</button>
+        </span>
+        </div>
+
+        <table>
+<colgroup>
+            <col width=135>
+            <col width=135>
+            <col width=135>
+            <col width=135>
+            <col width=135>
+        </colgroup>
+<tr>
+    <th>退票面价</th>
+    <th>退底价</th>
+    <th>退机建税</th>
+    <th>退燃油税</th>
+    <th>实退款</th>
+</tr>
+<tr>
+    <td>0.00</td>
+    <td>0.00</td>
+    <td>0.00</td>
+    <td>0.00</td>
+    <td><strong class="text1">0.00</strong></td>
+</tr>
+        </table>
+    </div>
+    <div class="row" style="text-align:right;">
+        <button class="btns button_1_2 ac-new-submit">提 交</button> 
+        <button class="btns button_2_2">取 消</button> 
+    </div>
+
+</script>
+
+<script type="text/x-kendo-template" id="ac-new-submit-template">
     <div class="row">
     <table class="cv-table">
-
         <tr>
-            <th>票号：</th>
-            <td><input id="" style="width:120px;" type="text" name=""></td>
-            <th>行程单号：</th>
-            <td><input id="" style="width:120px;" type="text" name=""></td>
+            <th>实付款：</th>
+            <td>42000.00<a style="margin-left:20px;" href="">下载详情</a></td>
         </tr>
-
         <tr>
-            <th>票序号：</th>
-            <td>
-                <select id="" data-role="dropdownlist" style="width:122px;" name="">
-                    <option value="">C1</option>
-                    <option value="">C2</option>
-                    <option value="">C3</option>
-                    <option value="">C4</option>
-                </select>
-            </td>
-            <th>政策编号：</th>
-            <td><input id="" style="width:120px;" type="text" name=""></td>
+            <th>实退款：</th>
+            <td>42000.00<a style="margin-left:20px;" href="">下载详情</a></td>
         </tr>
-
         <tr>
-            <th>供应商：</th>
-            <td>
-                <input id="" style="width:95px;" type="text" name="">
-                <button class="btns btn-search">查询</button>
-            </td>
-            <th>旅客类型：</th>
-            <td>
-                <select id="" style="width:122px;" data-role="dropdownlist" name="">
-                    <option selected="" value="成人">成人</option>
-                    <option value="儿童">儿童</option>
-                    <option value="婴儿">婴儿</option>
-                </select>
-            </td>
+            <th>调整金额：</th>
+            <td><input id="" style="width:125px;" type="text" name=""></td>
         </tr>
-
         <tr>
-            <th>旅客姓名：</th>
-            <td><input id="" style="width:120px;" type="text" name=""></td>
+            <th>调整原因：</th>
+            <td><input id="" style="width:125px;" type="text" name=""></td>
         </tr>
-
         <tr>
-            <th>证件号码：</th>
-            <td><input id="" style="width:120px;" type="text" name=""></td>
+            <th>实付供应商：</th>
+            <td><strong class="text1">450000.00</strong></td>
         </tr>
-
-
         <tr>
-            <th>修改原因：</th>
-            <td colspan=3>
-                <textarea id="" name="" style="width:438px;height:60px;"></textarea>
-            </td>
+            <th>备注：</th>
+            <td><textarea id="" name="" style="width:325px;height:60px;"></textarea></td>
         </tr>
-
     </table>
     </div>
     <div class="row" style="text-align:right;">
-        <button class="btns button_1_2 ac-submit">提 交</button> 
+        <button class="btns button_1_2">完 成</button> 
+        <button class="btns button_2_2">取 消</button> 
+    </div>
+
+</script>
+
+<script type="text/x-kendo-template" id="ac-check-template">
+    <div class="row">
+    <table class="cv-table">
+        <tr>
+            <th>实付款：</th>
+            <td>42000.00<a style="margin-left:20px;" href="">下载详情</a></td>
+        </tr>
+        <tr>
+            <th>实退款：</th>
+            <td>42000.00<a style="margin-left:20px;" href="">下载详情</a></td>
+        </tr>
+        <tr>
+            <th>调整金额：</th>
+            <td>500</td>
+        </tr>
+        <tr>
+            <th>调整原因：</th>
+            <td>员工出错</td>
+        </tr>
+        <tr>
+            <th>实付供应商：</th>
+            <td><strong class="text1">450000.00</strong></td>
+        </tr>
+        <tr>
+            <th>备注：</th>
+            <td>备注信息</td>
+        </tr>
+    </table>
+    </div>
+    <div class="row" style="text-align:right;">
+        <button class="btns button_1_2">审 核</button> 
+        <button class="btns button_2_2">拒 绝</button> 
+        <button style="padding:0 20px;font-size:14px;" class="btns">取消</button> 
+    </div>
+
+</script>
+
+<script type="text/x-kendo-template" id="ac-accomplish-template">
+    <div class="row">
+    <table class="cv-table">
+        <tr>
+            <th>实付款：</th>
+            <td>42000.00<a style="margin-left:20px;" href="">下载详情</a></td>
+        </tr>
+        <tr>
+            <th>实退款：</th>
+            <td>42000.00<a style="margin-left:20px;" href="">下载详情</a></td>
+        </tr>
+        <tr>
+            <th>调整金额：</th>
+            <td>500</td>
+        </tr>
+        <tr>
+            <th>调整原因：</th>
+            <td>员工出错</td>
+        </tr>
+        <tr>
+            <th>实付供应商：</th>
+            <td><strong class="text1">450000.00</strong></td>
+        </tr>
+        <tr>
+            <th>备注：</th>
+            <td>备注信息</td>
+        </tr>
+    </table>
+    </div>
+    <div class="row" style="text-align:right;">
+        <button class="btns button_1_2">完 成</button> 
         <button class="btns button_2_2">取 消</button> 
     </div>
 
@@ -375,21 +472,19 @@ $(function(){
 
 <script type="text/x-kendo-template" id="block2-grid-row-template">
     <tr>
-        <td><a class="ac-edit" href="xxxxx">修改</a> <a href="xxxxx">调账</a></td>
-        <td><a href="">781-41232133</a></td>
-        <td>正常票</td>
-        <td>231</td>
-        <td>正常</td>
-        <td>#= data.c1#</td>
-        <td>DKFJE2</td>
-        <td>DK1234</td>
-        <td>小茫茫</td>
-        <td>成人</td>
-        <td>PAVFDS</td>
-        <td>F</td>
-        <td>989.62</td>
-        <td>国内携程</td>
-        <td>2013/10/02 13:00</td>
+        <td class="grid-action">
+            <a class="ac-check" href="xxxxx">审核</a>
+            <a class="ac-accomplish" href="xxxxx">完成</a>
+        </td>
+        <td>030312103112260001</td>
+        <td>未审核</td>
+        <td>未完成</td>
+        <td>2012-09-12</td>
+        <td>BSP</td>
+        <td>SHA</td>
+        <td>国内</td>
+        <td>不夜城</td>
+        <td>4500.00</td>
     </tr>
 </script>
 
