@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>运营商 客户管理 供应商额度预警</title>
+<title>供应商 财务 收支明细</title>
 <meta charset="utf-8" />
 <link href="/static/css/kendo.common.css" rel="stylesheet" />
 <link href="/static/css/kendo.gray.css" rel="stylesheet" />
 <link href="/static/css/common.css" rel="stylesheet" />
-<link href="/static/css/b2b.css" rel="stylesheet" />
+<link href="/static/css/supplier.css" rel="stylesheet" />
 <link href="/static/css/kendo.reset.css" rel="stylesheet" />
 
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
@@ -60,57 +60,69 @@
     <div id="mainContent">
         <div class="actions block">
             <div class="col col-l">
-                <a class="item" href="#">供应商中心</a> 
-                <a class="item" href="#">资质审核</a> 
-                <a class="item highlight" href="#">额度预警</a> 
+                <a class="item highlight" href="#">收支明细</a> 
             </div>
         </div>
 
         <div class="block1 block block-query clearfix">
             <table>
                 <colgroup>
-                    <col width="60">
-                    <col width="150">
-                    <col width="95">
-                    <col width="240">
                     <col width="70">
-                    <col width="250">
+                    <col width="160">
+                    <col width="70">
+                    <col width="160">
+                    <col width="70">
+                    <col width="330">
                 </colgroup>
                 <tr>
-                    <th>供应商</th>
+                    <th>订单号</th>
+                    <td><input id="" style="width:120px" type="text" name=""></td>
+                    <th>收款类型</th>
                     <td>
                         <select style="width:122px" data-role="dropdownlist">
-                            <option value="">百拓</option>
+                            <option value="">全部</option>
                         </select>
                     </td>
-                    <th>最近消费日期</th>
-                    <td><input id="" style="width:100px;" data-role="datepicker" type="text" name=""> 至 <input data-role="datepicker" style="width:100px;" id="" type="text" name=""></td>
-                    <th>可用余额</th>
-                    <td><input id="" style="width:120px;" type="text" name=""></td>
+                    <th>收款状态</th>
                     <td>
-                <button class="btns button_2_1">查 询</button>
+                        <select style="width:122px" data-role="dropdownlist">
+                            <option value="">全部</option>
+                        </select>
                     </td>
+                    <td rowspan=2> <button class="btns button_2_1">查 询</button> </td>
                 </tr>    
+                <tr>
+                    <th>出票日期</th>
+                    <td colspan=4><input id="" style="width:100px;" data-role="datepicker" type="text" name=""> 至 <input data-role="datepicker" style="width:100px;" id="" type="text" name=""></td>
+                </tr>
             </table>
         </div>
 
         <div class="block2 block block-query-result">
+            <div class="block-header clearfix">
+                <span style="float:left"></span>
+                <span style="float:right">
+                <button class="btns btn-ac-blue">导出Excel</button>
+                </span>
+            </div>
             <table>
                 <colgroup>
-                    <col width="220">
-                    <col width="140">
-                    <col width="140">
+                    <col width="200">
+                    <col width="120">
                     <col width="100">
+                    <col width="100">
+                    <col width="140">
                     <col width="140">
                     <col width="140">
                 </colgroup>
                 <tr>
-                    <th>供应商</th>
-                    <th>可用余额</th>
-                    <th>授信额度</th>
-                    <th>联系人</th>
-                    <th>联系人电话</th>
-                    <th>最近消费</th>
+                    <th>订单号</th>
+                    <th>票号</th>
+                    <th>收款状态</th>
+                    <th>乘客名称</th>
+                    <th>出/退票时间</th>
+                    <th>收款类型</th>
+                    <th>收款金额</th>
                 </tr>
             </table>
 
@@ -147,12 +159,13 @@ $(function(){
 
 <script type="text/x-kendo-template" id="block2-grid-row-template">
     <tr>
-    <td>苏苏苏苏宁宁宁宁苏宁</td>
-    <td>99999.00</td>
-    <td>99999.00</td>
-    <td>小茫茫</td>
-    <td>13800138000</td>
-    <td>2012-04-12 14:01:28</td>
+        <td> <a href="">030312103112260001</a> </td>
+        <td>1111199999</td>
+        <td>已收款</td>
+        <td>小茫茫</td>
+        <td>2012-04-24 12:00:12</td>
+        <td>出票</td>
+        <td>4500.00</td>
     </tr>
 </script>
 
