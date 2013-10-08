@@ -7,12 +7,13 @@ function FixCol() {
         lineClassName: "fixline",
         fixClassName: "fixcol",
 		position: "fixed",
+        offsetName: "offset",
 		kendoGrid: false,
         debug: true,
 		/* 修正量 */
 		th_top: 1,
         th_left:0,
-		td_top: 0,
+		td_top: 3,
         td_left:0
 	},
 	opts,
@@ -27,7 +28,6 @@ function FixCol() {
             th_h: -2,
 			th_left: - 30,
 			td_left: - 26,
-            td_top:1,
             td_height_addup: -2,
 			kendoGrid: true
 		};
@@ -48,8 +48,8 @@ function FixCol() {
 	opts = $.extend(defaults, opts);
 
 	if (opts.kendoGrid && ! t.sender.options.scrollable) {
-		opts.td_left = 0;
-		opts.th_left = 0;
+		opts.td_left += 17;
+		opts.th_left += 17;
 	}
 
 	/* 容器宽度 */
@@ -80,79 +80,76 @@ function FixCol() {
     this.hasFixed = false;
 
 	var setFixed = function() {
+        var d = getDocScroll();
 		var offset = wrapper.offset();
         var th = $("tr:eq(0) th:last", thead);
 		var th_w = th.width();
-		var th_h = $("tr:eq(0)", thead).height();
+        var th_o_w = th.outerWidth();
+		var th_h = $("tr:eq(0) th:eq(0)", thead).innerHeight();
+        var th_o_h = th.outerHeight(); 
 
 		setPosition($("tr:eq(0) th:last", thead), offset.left + w - th_w + opts.th_left, offset.top + opts.th_top, th_w, th_h + opts.th_h);
 
         if(!this.hasFixed){
-            th.data("offset",{ left: offset.left + w - th_w + opts.th_left ,top: offset.top + opts.th_top}); 
+            th.data(opts.offsetName,{ left: offset.left + w - th_w + opts.th_left ,top: offset.top + opts.th_top}); 
         }
 
-        if(opts.debug){
-            console.log(offset.top,"-",offset.left);
-            console.log(th.data("offset").top,"-",th.data("offset").left);
-        }
-
-		if (opts.kendoGrid) {
-			th_h = $(".k-grid-header", wrapper).outerHeight() + opts.td_top;
-		}
-
-		var row_height = [], td, remember = []; 
+		var row_height = [], td, remember = [],sh = 0;
 		$("tr", tbody).each(function(index) {
 			td = $("td:last", this);
             var tr_offset = $(this).offset();
-			var td_w = td.width();
-			var td_h = $("td:eq(1)", this).height();
-			row_height[index] = $(this).outerHeight();
+			//var td_w = td.width();
+            var td_w = th_w;
+			var td_h = $("td:eq(0)", this).height();
 
-
-			var sh = th_h;
+            /*
+			row_height[index] = $(this).height();
+            sh = th_o_h + opts.td_top;
 			for (var i = 1; i < row_height.length; i++) {
 				sh += row_height[i - 1];
 			}
+            */
 
-			setPosition(td, offset.left + w - td_w + opts.td_left, offset.top + sh, td_w, th_h );
+			setPosition(td, offset.left + w - td_w + opts.td_left, tr_offset.top , td_w, td_h -1 );
             if(!this.hasFixed){
-                td.data("offset",{ left: offset.left + w - td_w + opts.td_left,top : offset.top + sh}); 
+                td.data(opts.offsetName,{ left: offset.left + w - td_w + opts.td_left,top : tr_offset.top }); 
                 if(0 == index){
-                    remember.push(td.data("offset"));
+                    remember.push(td.data(opts.offsetName));
                 }
             }
-            if(opts.debug){
-                console.log(td.data("offset").top,"-",td.data("offset").left);
-            }
 
-            /*
+
             var lineOffset = {
                 top: tr_offset.top - 2,
-                left: td.data("offset").left
+                left: td.data(opts.offsetName).left 
             };
+            if(opts.debug){
+                console.log(td.data(opts.offsetName).top,"-",td.data(opts.offsetName).left);
+            }
 
-            var fixline = $('<div class="' + opts.fixClassName + " " + opts.lineClassName + ' sep_line"></div>').css({
-                width:100,
-                top: lineOffset.top,
-                left: lineOffset.left
-            });
-            fixline.data(lineOffset);
-            wrapper.append(fixline);
-            */
+            if(0 != index){
+                var fixline = $('<div class="' + opts.fixClassName + " " + opts.lineClassName + ' sep_line"></div>').css({
+                    width:th_o_w,
+                    top: lineOffset.top,
+                    left: lineOffset.left  
+                }).data(opts.offsetName,lineOffset);
+
+                wrapper.append(fixline);
+            }
 		});
 
-        remember.push(td.data("offset"));
+        remember.push(td.data(opts.offsetName));
 
+        /*
         if(!this.hasFixed){
-            /*
-            var fixline = $('<div class="' + opts.fixClassName + " " + opts.lineClassName + ' left_line"></div>').css({
+            var left_line = $('<div class="' + opts.fixClassName + " " + opts.lineClassName + ' left_line"></div>').css({
                 height:remember[1].top - remember[0].top + row_height[row_height.length -1] ,
                 top:remember[0].top,
-                left: remember[0].left
-            });
-            wrapper.append(fixline);
-            */
+                left: remember[0].left - 3
+            }).data(opts.offsetName,{left: remember[0].left - 3, top:remember[0].top});
+            wrapper.append(left_line);
         }
+        */
 
         this.hasFixed = true;
 	}
@@ -161,7 +158,7 @@ function FixCol() {
     var lightReFixed = function(){
         var d = getDocScroll();
         $("." + opts.fixClassName).each(function(){
-            var a = $(this).data("offset");
+            var a = $(this).data(opts.offsetName);
             $(this).css({
                 top: a.top - d.top,
                 left: a.left - d.left
@@ -173,13 +170,6 @@ function FixCol() {
 
         $("." + opts.lineClassName,wrapper).remove();
         $("." + opts.fixClassName).removeClass(opts.fixClassName);
-        /*
-		setPosition($("tr:eq(0) th:last", thead), "static", 0, 0, "auto", "auto");
-		$("tr", tbody).each(function(index) {
-			var td = $("td:last", this);
-			setPosition(td, "static", 0, 0, "auto", "auto");
-		});
-        */
         this.hasFixed = false;
 	}
 
@@ -201,172 +191,7 @@ function FixCol() {
     this.resizeFixed = setFixed;
     this.stopFixed = unFixed;
 
-
-
 	$(window).bind("scroll", lightReFixed);
 	$(window).bind("resize", lightReFixed);
 }
-
-var grid;
-
-$(document).ready(function() {
-
-    /*
-	$("#ma").mouseenter(function() {
-		console.log("mouseenter");
-	}).mouseleave(function() {
-		console.log("mouseleave");
-	});
-    */
-
-	var items = [{
-		id: 1,
-		text: "Tea",
-		image: "tea.png"
-	},
-	{
-		id: 2,
-		text: "Coffee",
-		image: "coffee.png"
-	}];
-
-/*
-	$("#treeview").kendoTreeView({
-		checkboxes: {
-			checkChildren: true,
-			template: "<input type='checkbox' name='checkedFiles[#= item.id #]' checked value='true' />"
-		},
-
-		dataSource: items,
-		dataImageUrlField: "image"
-	});
-    */
-
-	grid = $("#grid").kendoGrid({
-		dataSource: {
-			data: products,
-			schema: {
-				model: {
-					fields: {
-						ProductName: {
-							type: "string"
-						},
-						UnitPrice: {
-							type: "number"
-						},
-						UnitsInStock: {
-							type: "number"
-						},
-						Discontinued: {
-							type: "boolean"
-						}
-					}
-				}
-			},
-			pageSize: 6 
-
-			/*
-			type: "odata",
-			transport: {
-				read: "http://demos.kendoui.com/service/Northwind.svc/Orders"
-			},
-			schema: {
-				model: {
-					fields: {
-						OrderID: {
-							type: "number"
-						},
-						ShipCountry: {
-							type: "string"
-						},
-						ShipCity: {
-							type: "string"
-						},
-						ShipName: {
-							type: "string"
-						},
-						OrderDate: {
-							type: "date"
-						},
-						ShippedDate: {
-							type: "date"
-						}
-					}
-				}
-			},
-			pageSize: 15
-            */
-		},
-		sortable: false,
-		scrollable: true,
-		resizable: false,
-		//height:400,
-		dataBound: function(e) {
-			console.log(e);
-			FixCol(e);
-		},
-		pageable: {
-			input: true,
-			numeric: false
-		},
-		columns: [
-		{
-			field: "ProductName ",
-			title: "aaaaa",
-			width: "300px",
-            template:kendo.template("#=ProductName#<br/>asasas")
-
-		},
-             {
-			field: "UnitPrice",
-			title: "Unit Price",
-			format: "{0:c}",
-			width: "200px"
-		},
-		{
-			field: "UnitsInStock",
-			title: "Units In Stock",
-			width: "300px"
-		},
-		{
-			field: "Discontinued",
-			width: "300px"
-		}]
-
-		/*
-		columns: [{
-			field: "OrderID",
-			title: "ID",
-			width: 180
-		},
-		{
-			field: "OrderDate",
-			title: "Order Date",
-			width: 200,
-			format: "{0:MM/dd/yyyy}"
-		},
-		{
-			field: "ShipCountry",
-			title: "Ship Country",
-			width: 200
-		},
-		{
-			field: "ShipCity",
-			title: "Ship City",
-			width: 200
-		},
-		{
-			field: "ShipName",
-			title: "Ship Name",
-			width: 300
-		},
-		{
-			field: "ShippedDate",
-			title: "Shipped Date",
-			format: "{0:MM/dd/yyyy}",
-			width: 200
-		}]
-        */
-	});
-});
 

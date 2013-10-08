@@ -27,7 +27,173 @@
         </div>
 
         <div style="height:1000px;"></div>
+        <script type="text/javascript">
+        
+var grid;
 
+$(document).ready(function() {
+
+    /*
+	$("#ma").mouseenter(function() {
+		console.log("mouseenter");
+	}).mouseleave(function() {
+		console.log("mouseleave");
+	});
+    */
+
+	var items = [{
+		id: 1,
+		text: "Tea",
+		image: "tea.png"
+	},
+	{
+		id: 2,
+		text: "Coffee",
+		image: "coffee.png"
+	}];
+
+/*
+	$("#treeview").kendoTreeView({
+		checkboxes: {
+			checkChildren: true,
+			template: "<input type='checkbox' name='checkedFiles[#= item.id #]' checked value='true' />"
+		},
+
+		dataSource: items,
+		dataImageUrlField: "image"
+	});
+    */
+
+	grid = $("#grid").kendoGrid({
+		dataSource: {
+			data: products,
+			schema: {
+				model: {
+					fields: {
+						ProductName: {
+							type: "string"
+						},
+						UnitPrice: {
+							type: "number"
+						},
+						UnitsInStock: {
+							type: "number"
+						},
+						Discontinued: {
+							type: "boolean"
+						}
+					}
+				}
+			},
+			pageSize: 6 
+
+			/*
+			type: "odata",
+			transport: {
+				read: "http://demos.kendoui.com/service/Northwind.svc/Orders"
+			},
+			schema: {
+				model: {
+					fields: {
+						OrderID: {
+							type: "number"
+						},
+						ShipCountry: {
+							type: "string"
+						},
+						ShipCity: {
+							type: "string"
+						},
+						ShipName: {
+							type: "string"
+						},
+						OrderDate: {
+							type: "date"
+						},
+						ShippedDate: {
+							type: "date"
+						}
+					}
+				}
+			},
+			pageSize: 15
+            */
+		},
+		sortable: false,
+		scrollable: true,
+		resizable: false,
+		//height:400,
+		dataBound: function(e) {
+			console.log(e);
+			FixCol(e);
+		},
+		pageable: {
+			input: true,
+			numeric: false
+		},
+		columns: [
+		{
+			field: "ProductName ",
+			title: "aaaaa",
+			width: "300px",
+            template:kendo.template("#=ProductName#<br/>asasas")
+
+		},
+             {
+			field: "UnitPrice",
+			title: "Unit Price",
+			format: "{0:c}",
+			width: "200px"
+		},
+		{
+			field: "UnitsInStock",
+			title: "Units In Stock",
+			width: "300px"
+		},
+		{
+			field: "Discontinued",
+			width: "300px"
+		}]
+
+		/*
+		columns: [{
+			field: "OrderID",
+			title: "ID",
+			width: 180
+		},
+		{
+			field: "OrderDate",
+			title: "Order Date",
+			width: 200,
+			format: "{0:MM/dd/yyyy}"
+		},
+		{
+			field: "ShipCountry",
+			title: "Ship Country",
+			width: 200
+		},
+		{
+			field: "ShipCity",
+			title: "Ship City",
+			width: 200
+		},
+		{
+			field: "ShipName",
+			title: "Ship Name",
+			width: 300
+		},
+		{
+			field: "ShippedDate",
+			title: "Shipped Date",
+			format: "{0:MM/dd/yyyy}",
+			width: 200
+		}]
+        */
+	});
+});
+
+        
+        </script>
 </body>
 </html>
 
