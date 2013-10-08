@@ -17,6 +17,13 @@
         .k-i-close{margin:5px}
         .k-callout.k-callout-n{border-bottom-color:#666666}
         .k-callout.k-callout-s{border-top-color:#666666}
+
+        .tcy_tabstrip{width:520px}
+        .tcy_list .item{width:70px;cursor:default}
+        .tcy_list .item:hover{color: #000;background-color: #fff;}
+        #location-layer .tcy_list .item {border:1px solid #ccc;cursor: pointer}
+        #location-layer .tcy_list .item:hover {color: #fff;background-color: #ef6616;}
+        .tcy_list .item.selected{color:#fff;background-color:#ef6616;border:1px solid #ef6616}
     </style>
 </head>
 <body>
@@ -186,7 +193,7 @@
                         <span class="right"></span>
                     </a>
 
-                    <a href="javascript:void(0)" class="oper pull-right">查看适用城市</a>
+                    <a href="javascript:void(0)" class="oper pull-right" id="btn_checkCity">查看适用城市</a>
                 </div>
                 <div class="subPanel_data">
                     <label class="item_data">苏州;</label>
@@ -221,7 +228,7 @@
                         <span class="right"></span>
                     </a>
 
-                    <a href="javascript:void(0)" class="oper pull-right">查看适用酒店</a>
+                    <a href="javascript:void(0)" class="oper pull-right" id="check_hotel">查看适用酒店</a>
                 </div>
                 <div class="subPanel_data hotel_wrapper" >
                 </div>
@@ -368,22 +375,15 @@
             <div class="subPanel_title">
                 <span class="head">排除客户：</span>
                 <span class="head" style="margin-right:25px"><b>(<strong>2000</strong>)</b></span>
-                <a href="javascript:;" class="button_secondary adaptiveButton small expand">
+                <a href="javascript:;" id="filter_customer" class="button_secondary adaptiveButton small expand">
                     <span class="left"></span>
                     <span class="center" style="padding:0 5px">修改</span>
                     <span class="right"></span>
                 </a>
 
-                <a href="javascript:void(0)" class="oper pull-right">查看适用客户</a>
+                <a href="javascript:void(0)" class="oper pull-right" id="check_customer">查看适用客户</a>
             </div>
-            <div class="subPanel_data">
-                <label class="item_data">上海，清空旅社;</label>
-                <label class="item_data">上海，清空旅社;</label>
-                <label class="item_data">上海，清空旅社;</label>
-                <label class="item_data">上海，清空旅社;</label>
-                <label class="item_data">上海，清空旅社;</label>
-                <label class="item_data">上海，清空旅社;</label>
-            </div>
+            <div class="subPanel_data customer_wrapper"> </div>
         </div>
         <div class="panel">
             <div class="panelTitle" style="border: 0">
@@ -446,6 +446,36 @@
 <script type="text/javascript" src="../../static/js/global.js"></script>
 
 
+<script type="text/x-kendo-template" id="check_hotel_tpl">
+    <div class="filter filter_hotel">
+        <div class="search">
+            <label><strong>酒店名称</strong><input type="text" style="width:200px;" name="hotel_checkall"/></label>
+            <button class="btns btn-orange-s">查询</button>
+        </div>
+
+        <div class="data_list">
+            <table class="grid_table" id="checkhotel_list">
+                <tr class="thead">
+                    <th>城市</th>
+                    <th>位置</th> 
+                    <th>酒店名称</th> 
+                    <th>星级</th>
+                    <th>品牌</th>
+                    <th>签约经理</th>
+                </tr>
+            </table>
+        </div>
+
+        <div class="btns" style="text-align:right;margin-top:10px">
+            <a href="javascript:void(0);" class="button_unimportant adaptiveButton medium" name="hotel_cancel">
+                <span class="left"></span>
+                <span class="center">取&nbsp;消</span>
+                <span class="right"></span>
+            </a>
+        </div>
+
+    </div>
+</script>
 <script type="text/x-kendo-template" id="filter_hotel_tpl">
     <div class="filter filter_hotel">
         <div class="search">
@@ -456,10 +486,10 @@
         <div class="data_list">
             <table class="grid_table" id="hotel_list">
                 <tr class="thead">
-                    <th><input type="checkbox" name="hotel_checkall"/></th> 
-                    <th>城市</th> 
-                    <th>位置</th> 
-                    <th>酒店名称</th> 
+                    <th><input type="checkbox" name="hotel_checkall"/></th>
+                    <th>城市</th>
+                    <th>位置</th>
+                    <th>酒店名称</th>
                     <th>星级</th>
                     <th>品牌</th>
                     <th>签约经理</th>
@@ -490,22 +520,206 @@
 
     </div>
 </script>
-<script type="text/x-kendo-template" id="exclude_item_tpl">
-    <label class="item_data" id="#=name##=id#"><input type="hidden" name="#=name#" value="#=id#" />#=hotel_name#,#=hotel_position#;</label>
-</script>
 <script type="text/x-kendo-template" id="hotel_row_tpl">
     <tr>
-        <td><input type="checkbox" name="hotel" value="#=data.hotel_id#"/></td>
+        <td><input type="checkbox" name="hotel" value="#=data.id#"/></td>
         <td>#=data.city#</td>
         <td>#=data.position#</td>
-        <td>#=data.hotel_name#</td>
+        <td>#=data.name#</td>
         <td>#=data.star#</td>
         <td>#=data.brand#</td>
         <td>#=data.sign_manager#</td>
     </tr>
-
+</script>
+<script type="text/x-kendo-template" id="checkhotel_row_tpl">
+    <tr>
+        <td>#=data.city#</td>
+        <td>#=data.position#</td>
+        <td>#=data.name#</td>
+        <td>#=data.star#</td>
+        <td>#=data.brand#</td>
+        <td>#=data.sign_manager#</td>
+    </tr>
 </script>
 
+
+<script type="text/x-kendo-template" id="filter_customer_tpl">
+    <div class="filter filter_hotel">
+        <div class="search">
+            <label><strong>客户名称</strong><input type="text" style="width:200px;" name="customer_name"/></label>
+            <button class="btns btn-orange-s">查询</button>
+        </div>
+
+        <div class="data_list">
+            <table class="grid_table" id="customer_list">
+                <tr class="thead">
+                    <th><input type="checkbox" name="customer_checkall"/></th> 
+                    <th>城市</th> 
+                    <th>客户名称</th> 
+                    <th>创建时间</th> 
+                    <th>账户类型</th>
+                    <th>余额</th>
+                    <th>联系人</th>
+                </tr>
+            </table>
+        </div>
+
+        <div class="subPanel_title">
+            <span class="head">已排除客户：</span>
+            <span class="head" style="margin-right:25px"><b>(<strong class="filter_num">0</strong>)</b></span>
+
+            <a href="javascript:void(0)" class="oper clean_data" name="customer">清空排除客户</a>
+        </div>
+        <div class="filtered_data clearfix"></div>
+
+        <div class="btns" style="text-align:right;">
+            <a href="javascript:void(0);" class="button_important adaptiveButton medium" name="customer_save">
+                <span class="left"></span>
+                <span class="center">保&nbsp;存</span>
+                <span class="right"></span>
+            </a>
+            <a href="javascript:void(0);" class="button_unimportant adaptiveButton medium" name="customer_cancel">
+                <span class="left"></span>
+                <span class="center">取&nbsp;消</span>
+                <span class="right"></span>
+            </a>
+        </div>
+
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="customer_row_tpl">
+    <tr>
+        <td><input type="checkbox" name="customer" value="#=data.id#"/></td>
+        <td>#=data.city#</td>
+        <td>#=data.name#</td>
+        <td>#=data.create_time#</td>
+        <td>#=data.account_type#</td>
+        <td>#=data.blance#</td>
+        <td>#=data.link_man#</td>
+    </tr>
+</script>
+
+<script type="text/x-kendo-template" id="check_customer_tpl">
+    <div class="filter filter_hotel">
+        <div class="search">
+            <label><strong>客户名称</strong><input type="text" style="width:200px;" name="customer_name"/></label>
+            <button class="btns btn-orange-s">查询</button>
+        </div>
+
+        <div class="data_list">
+            <table class="grid_table" id="checkcustomer_list">
+                <tr class="thead">
+                    <th>城市</th>
+                    <th>客户名称</th>
+                    <th>创建时间</th>
+                    <th>账户类型</th>
+                    <th>余额</th>
+                    <th>联系人</th>
+                </tr>
+            </table>
+        </div>
+        <div class="btns" style="text-align:right;margin-top:10px">
+            <a href="javascript:void(0);" class="button_unimportant adaptiveButton medium" name="customer_cancel">
+                <span class="left"></span>
+                <span class="center">取&nbsp;消</span>
+                <span class="right"></span>
+            </a>
+        </div>
+
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="checkcustomer_row_tpl">
+    <tr>
+        <td>#=data.city#</td>
+        <td>#=data.name#</td>
+        <td>#=data.create_time#</td>
+        <td>#=data.account_type#</td>
+        <td>#=data.blance#</td>
+        <td>#=data.link_man#</td>
+    </tr>
+</script>
+
+<script type="text/x-kendo-template" id="exclude_item_tpl">
+    <label class="item_data" id="#=group##=id#"><input type="hidden" name="#=group#" value="#=id#" />#=city#,#=name#;</label>
+</script>
+
+
+<!--城市模板-->
+<script type="text/html" id="cityHead">
+    <span data-bind="text:name"></span>
+</script>
+
+<script type="text/html" id="cityContainer">
+    <div class="tcy-tabitem">
+        <div class="row clearfix">
+            <ul class="tcy_list clearfix"  data-template="cityItems" data-bind="source:data">
+            </ul>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="cityItems">
+    <li class="item" title="PEK" data-code="PEK" data-bind="text:name"></li>
+</script>
+
+<script type="text/html" id="deletingCityTemplate">
+    <span style="padding-right:10px"><span data-bind="text:name"></span>;</span>
+</script>
+
+
+<script type="text/html" id="citySelectTemplete">
+    <div class="tcy_tabstrip" id="location-layer" data-animation="false" data-role="tabstrip">
+        <ul id="city-tab-head-list">
+        </ul>
+    </div>
+
+    <div class="bindModel subPanel_title" style="margin:10px 0">
+        <b>已排除城市：（<span id="deletingCityNo" data-bind="text:deletingCity.length"></span>）</b>
+        <a href="javascript:;" class="oper" data-bind="click:clearDeletingCity">清空排除城市</a>
+    </div>
+
+    <div data-bind="source:deletingCity" data-template="deletingCityTemplate" id="deletingCityContainer"></div>
+
+    <div style="text-align:right">
+        <a href="javascript:;" class="button_important adaptiveButton medium popwin">
+            <span class="left"></span>
+            <span class="center">保 存</span>
+            <span class="right"></span>
+        </a>
+        <a href="javascript:;" class="button_unimportant adaptiveButton medium">
+            <span class="left"></span>
+            <span class="center">取 消</span>
+            <span class="right"></span>
+        </a>
+    </div>
+</script>
+
+<script type="text/html" id="cityCheckTemplete">
+    <div class="tcy_tabstrip" id="cityCheck-layer" data-animation="false" data-role="tabstrip">
+
+    </div>
+
+    <div style="text-align:right">
+        <a href="javascript:;" class="button_unimportant adaptiveButton medium">
+            <span class="left"></span>
+            <span class="center">取 消</span>
+            <span class="right"></span>
+        </a>
+    </div>
+</script>
+
+<script type="text/javascript">
+    $(function(){
+
+
+
+
+
+    })
+</script>
+<!--城市模板-->
 
 <script type="text/javascript" src="add_hotel_sale_rule.js"></script>
 </body>
