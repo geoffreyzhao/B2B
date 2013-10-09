@@ -19,82 +19,82 @@
 <script type="text/javascript" src="/static/js/flight.js"></script>
 <script type="text/javascript" src="/static/js/uploadify/jquery.uploadify.min.js"></script>
 <script type="text/javascript">
-$(function(){
+    $(function(){
 
-    var flag = $('.block21 .btn1');
+        var flag = $('.block21 .btn1');
 
-    $('.block21 thead :checkbox').cbFamily('.block21 tbody :checkbox');
+        $('.block21 thead :checkbox').cbFamily('.block21 tbody :checkbox');
 
-    $('.block21 :text').on('focus',function(){
-        var tr = $(this).closest('tr');
-        var cbox = tr.find(':checkbox').eq(0);
-        if(!cbox.is(':checked')){
-            cbox.prop('check',true).trigger('click.cbFamily'); 
-            tr.removeClass('hidden');
-        }
-    });
+        $('.block21 :text').on('focus',function(){
+            var tr = $(this).closest('tr');
+            var cbox = tr.find(':checkbox').eq(0);
+            if(!cbox.is(':checked')){
+                cbox.prop('check',true).trigger('click.cbFamily');
+                tr.removeClass('hidden');
+            }
+        });
 
-    
-    $('.block21 thead :checkbox').on('click.hidden',function(){
-        var that = $(this);  
-        var tr = that.closest('table').find('tbody tr');
-        if(that.prop('checked') == true){
-            tr.removeClass('hidden').show();
-        }else{
-            //tr.addClass('hidden');
-        }
-    });
 
-    $('.block21 tbody :checkbox').on('change',function(){
-        var that = $(this);  
-        var tr = that.closest('tr');
-        if(that.prop('checked') == true){
-            tr.removeClass('hidden');
-        }else{
-            tr.addClass('hidden');
-            if(!flag.hasClass('expanded')){
-                tr.hide(); 
+        $('.block21 thead :checkbox').on('click.hidden',function(){
+            var that = $(this);
+            var tr = that.closest('table').find('tbody tr');
+            if(that.prop('checked') == true){
+                tr.removeClass('hidden').show();
             }else{
-                tr.show(); 
-            };
+                //tr.addClass('hidden');
+            }
+        });
+
+        $('.block21 tbody :checkbox').on('change',function(){
+            var that = $(this);
+            var tr = that.closest('tr');
+            if(that.prop('checked') == true){
+                tr.removeClass('hidden');
+            }else{
+                tr.addClass('hidden');
+                if(!flag.hasClass('expanded')){
+                    tr.hide();
+                }else{
+                    tr.show();
+                };
+            }
+        });
+
+
+        $('.actions .ac-save').bind('click',function(){
+            var that = $(this);
+            if(that.find('b').text() == '保存'){
+                that.find('b').text('修改');
+                hideInput();
+                $("#flight_table tr").each(function(){
+                    $("td:first",this).hide();
+                    $("td:last",this).hide();
+                });
+            }else{
+                that.find('b').text('保存');
+                showInput();
+                $("#flight_table tr").each(function(){
+                    $("td:first",this).show();
+                    $("td:last",this).show();
+                });
+            }
+        });
+
+        function showInput(){
+            $('.block33 table input[type="checkbox"]').show();
+            $('.block21 table input[type="checkbox"]').show();
+            $('.block21 table .text').removeClass('disabled').removeAttr('disabled');
+            $('.block33 table .text').removeClass('disabled').removeAttr('disabled');
         }
-    });
-            
-            
-    $('.actions .ac-save').bind('click',function(){
-        var that = $(this);
-        if(that.find('b').text() == '保存'){
-            that.find('b').text('修改'); 
-            hideInput();
-            $("#flight_table tr").each(function(){
-                $("td:first",this).hide();
-                $("td:last",this).hide();
-            });
-        }else{
-            that.find('b').text('保存'); 
-            showInput();
-            $("#flight_table tr").each(function(){
-                $("td:first",this).show();
-                $("td:last",this).show();
-            });
+
+        function hideInput(){
+            $('.block33 table input[type="checkbox"]').hide();
+            $('.block21 table input[type="checkbox"]').hide();
+            $('.block21 table .text').addClass('disabled').attr('disabled',true);
+            $('.block33 table .text').addClass('disabled').attr('disabled',true);
         }
-    });
 
-    function showInput(){
-        $('.block33 table input[type="checkbox"]').show(); 
-        $('.block21 table input[type="checkbox"]').show(); 
-        $('.block21 table .text').removeClass('disabled').removeAttr('disabled'); 
-        $('.block33 table .text').removeClass('disabled').removeAttr('disabled'); 
-    }
-
-    function hideInput(){
-        $('.block33 table input[type="checkbox"]').hide(); 
-        $('.block21 table input[type="checkbox"]').hide(); 
-        $('.block21 table .text').addClass('disabled').attr('disabled',true); 
-        $('.block33 table .text').addClass('disabled').attr('disabled',true); 
-    }
-
-}) 
+    })
 
 
 </script>
@@ -262,64 +262,76 @@ $(function(){
         <div id="flight_info_grid">
             <table class="grid-table">
                 <tbody><tr class="thead">
-                    <td>离港机场</td>
-                    <td>到港机场</td>
-                    <td>共享</td>
+                    <td>航班号</td>
+                    <td>实际承运</td>
                     <td>机型</td>
                     <td>舱位</td>
-                    <td>舱位等级</td>
-                    <td>订座</td>
+                    <td>离港机场</td>
+                    <td>到港机场</td>
                     <td>离港时间</td>
                     <td>到港时间</td>
+                    <td>订座</td>
                     <td>预定OFFICE</td>
                 </tr>
                 <tr>
-                    <td>上海浦东 PVG T3</td>
-                    <td>上海浦东 PEK T2</td>
-                    <td>CZ3609</td>
+                    <td>MU521</td>
                     <td>HO</td>
-                    <td>空客A380</td>
-                    <td>Y</td>
-                    <td> HK </td>
+                    <td>737</td>
+                    <td>X</td>
+                    <td>PVG</td>
+                    <td>HKG</td>
+                    <td>2013-06-22 20:35</td>
                     <td> 2013-06-22 20:35 </td>
-                    <td> 2013-06-22 23:25 </td>
-                    <td> SHA </td>
+                    <td></td>
+                    <td>HK</td>
                 </tr>
                 <tr>
-                    <td>上海浦东 PVG T3</td>
-                    <td>上海浦东 PEK T2</td>
-                    <td>CZ3609</td>
+                    <td>MU521</td>
                     <td>HO</td>
-                    <td>空客A380</td>
-                    <td>Y</td>
-                    <td> HK </td>
+                    <td>737</td>
+                    <td>X</td>
+                    <td>PVG</td>
+                    <td>HKG</td>
+                    <td>2013-06-22 20:35</td>
                     <td> 2013-06-22 20:35 </td>
-                    <td> 2013-06-22 23:25 </td>
-                    <td> SHA </td>
+                    <td></td>
+                    <td>HK</td>
                 </tr>
                 <tr>
-                    <td>上海浦东 PVG T3</td>
-                    <td>上海浦东 PEK T2</td>
-                    <td>CZ3609</td>
+                    <td>MU521</td>
                     <td>HO</td>
-                    <td>空客A380</td>
-                    <td>Y</td>
-                    <td> HK </td>
+                    <td>737</td>
+                    <td>X</td>
+                    <td>PVG</td>
+                    <td>HKG</td>
+                    <td>2013-06-22 20:35</td>
                     <td> 2013-06-22 20:35 </td>
-                    <td> 2013-06-22 23:25 </td>
-                    <td> SHA </td>
+                    <td></td>
+                    <td>HK</td>
                 </tr>
                 <tr>
-                    <td>上海浦东 PVG T3</td>
-                    <td>上海浦东 PEK T2</td>
-                    <td>CZ3609</td>
+                    <td>MU521</td>
                     <td>HO</td>
-                    <td>空客A380</td>
-                    <td>Y</td>
-                    <td> HK </td>
+                    <td>737</td>
+                    <td>X</td>
+                    <td>PVG</td>
+                    <td>HKG</td>
+                    <td>2013-06-22 20:35</td>
                     <td> 2013-06-22 20:35 </td>
-                    <td> 2013-06-22 23:25 </td>
-                    <td> SHA </td>
+                    <td></td>
+                    <td>HK</td>
+                </tr>
+                <tr>
+                    <td>MU521</td>
+                    <td>HO</td>
+                    <td>737</td>
+                    <td>X</td>
+                    <td>PVG</td>
+                    <td>HKG</td>
+                    <td>2013-06-22 20:35</td>
+                    <td> 2013-06-22 20:35 </td>
+                    <td></td>
+                    <td>HK</td>
                 </tr>
             </tbody></table> 
         </div>
@@ -342,9 +354,9 @@ $(function(){
                 <col width="60">
                 <col width="60">
                 <col width="50">
+                <col width="36">
                 <col width="50">
-                <col width="50">
-                <col width="50">
+                <col width="60">
                 <col width="50">
                 <col width="50">
                 <col width="50">
@@ -357,17 +369,18 @@ $(function(){
             <tr class="thead">
                 <td>PNR</td>
                 <td>票号</td>
+                <td>票序号</td>
+                <td>客票状态</td>
+                <td>行程单号</td>
                 <td>姓名</td>
-                <td>旅客类型</td>
-                <td>运价基础</td>
+                <td>乘客类型</td>
+                <td>证件号码</td>
+                <td>应收票款</td>
                 <td>票款</td>
-                <td>机建</td>
-                <td>燃油</td>
-                <td>手续费</td>
-                <td>附加费</td>
-                <td>返点</td>
-                <td>返款</td>
-                <td>应收款</td>
+                <td>税款</td>
+                <td>代理费</td>
+                <td>奖励</td>
+                <td>开票费</td>
                 <td>供应商</td>
                 <td>政策编号</td>
             </tr>
@@ -376,53 +389,56 @@ $(function(){
             <tr>
                 <td>HX21RP</td>
                 <td>7819128790938</td>
-                <td>小茫茫</td>
-                <td>成人</td>
-                <td>RYT+TRY</td>
-                <td>500</td>
-                <td>500</td>
-                <td>500</td>
-                <td>0</td>
-                <td>0</td>
-                <td>2</td>
-                <td>2</td>
-                <td>500</td>
+                <td>C1</td>
+                <td>已出票</td>
+                <td>XXXXX</td>
+                <td>zhang/yu</td>
+                <td>ADT</td>
+                <td>A123456</td>
+                <td>5500</td>
+                <td>5000</td>
+                <td>1000</td>
+                <td>5%</td>
+                <td>3%+100</td>
+                <td>20</td>
                 <td>不夜城</td>
-                <td>33333333</td>
+                <td>2013071</td>
             </tr>
             <tr>
                 <td>HX21RP</td>
                 <td>7819128790938</td>
-                <td>小茫茫</td>
-                <td>成人</td>
-                <td>RYT+TRY</td>
-                <td>500</td>
-                <td>500</td>
-                <td>500</td>
-                <td>0</td>
-                <td>0</td>
-                <td>2</td>
-                <td>2</td>
-                <td>500</td>
+                <td>C1</td>
+                <td>已出票</td>
+                <td>XXXXX</td>
+                <td>zhang/yu</td>
+                <td>ADT</td>
+                <td>A123456</td>
+                <td>5500</td>
+                <td>5000</td>
+                <td>1000</td>
+                <td>5%</td>
+                <td>3%+100</td>
+                <td>20</td>
                 <td>不夜城</td>
-                <td>33333333</td>
+                <td>2013071</td>
             </tr>
             <tr>
                 <td>HX21RP</td>
                 <td>7819128790938</td>
-                <td>小茫茫</td>
-                <td>成人</td>
-                <td>RYT+TRY</td>
-                <td>500</td>
-                <td>500</td>
-                <td>500</td>
-                <td>0</td>
-                <td>0</td>
-                <td>2</td>
-                <td>2</td>
-                <td>500</td>
+                <td>C1</td>
+                <td>已出票</td>
+                <td>XXXXX</td>
+                <td>zhang/yu</td>
+                <td>ADT</td>
+                <td>A123456</td>
+                <td>5500</td>
+                <td>5000</td>
+                <td>1000</td>
+                <td>5%</td>
+                <td>3%+100</td>
+                <td>20</td>
                 <td>不夜城</td>
-                <td>33333333</td>
+                <td>2013071</td>
             </tr>
             </tbody>
         </table> 
@@ -454,9 +470,9 @@ $(function(){
                 <col width="60">
                 <col width="60">
                 <col width="50">
+                <col width="36">
                 <col width="50">
-                <col width="50">
-                <col width="50">
+                <col width="60">
                 <col width="50">
                 <col width="50">
                 <col width="50">
@@ -470,93 +486,83 @@ $(function(){
                 <td><input checked type="checkbox"></td>
                 <td>PNR</td>
                 <td>票号</td>
+                <td>票序号</td>
+                <td>客票状态</td>
+                <td>行程单号</td>
                 <td>姓名</td>
-                <td>旅客类型</td>
-                <td>运价基础</td>
+                <td>乘客类型</td>
+                <td>证件号码</td>
                 <td>票款</td>
-                <td>机建</td>
-                <td>燃油</td>
+                <td>税款</td>
                 <td>手续费</td>
-                <td>附加费</td>
-                <td>返点</td>
-                <td>返款</td>
-                <td>应收款</td>
+                <td>应收合计</td>
                 <td>供应商</td>
-                <td>政策编号</td>
             </tr>
             </thead>
             <tbody>
             <tr class="hidden">
                 <td><input type="checkbox"></td>
                 <td>HX21RP</td>
-                <td>7819128790938</td>
-                <td>小茫茫</td>
-                <td>成人</td>
-                <td>RYT+TRY</td>
-                <td><input id="" value="500" type="text" name=""></td>
-                <td><input id="" value="500" type="text" name=""></td>
-                <td><input id="" value="500" type="text" name=""></td>
-                <td><input id="" value="0" type="text" name=""></td>
-                <td><input id="" value="0" type="text" name=""></td>
-                <td><input id="" value="2" type="text" name=""></td>
-                <td><input id="" value="2" type="text" name=""></td>
-                <td>500</td>
+                <td><input value="7819128790938" type="text" name="" id=""/></td>
+                <td>C1</td>
+                <td>已出票</td>
+                <td>XXXXX</td>
+                <td>zhang/yu</td>
+                <td>ADT</td>
+                <td>A123456</td>
+                <td><input value="5500" type="text" name="" id=""/></td>
+                <td><input value="500" type="text" name="" id=""/></td>
+                <td><input value="5500" type="text" name="" id=""/></td>
+                <td><input value="10" type="text" name="" id=""/></td>
                 <td>不夜城</td>
-                <td>33333333</td>
             </tr>
             <tr>
-                <td><input checked type="checkbox"></td>
+                <td><input type="checkbox" checked="checked"></td>
                 <td>HX21RP</td>
-                <td>7819128790938</td>
-                <td>小茫茫</td>
-                <td>成人</td>
-                <td>RYT+TRY</td>
-                <td><input id="" value="500" type="text" name=""></td>
-                <td><input id="" value="500" type="text" name=""></td>
-                <td><input id="" value="500" type="text" name=""></td>
-                <td><input id="" value="0" type="text" name=""></td>
-                <td><input id="" value="0" type="text" name=""></td>
-                <td><input id="" value="2" type="text" name=""></td>
-                <td><input id="" value="2" type="text" name=""></td>
-                <td>500</td>
+                <td><input value="7819128790938" type="text" name="" id=""/></td>
+                <td>C1</td>
+                <td>已出票</td>
+                <td>XXXXX</td>
+                <td>zhang/yu</td>
+                <td>ADT</td>
+                <td>A123456</td>
+                <td><input value="5500" type="text" name="" id=""/></td>
+                <td><input value="500" type="text" name="" id=""/></td>
+                <td><input value="5500" type="text" name="" id=""/></td>
+                <td><input value="10" type="text" name="" id=""/></td>
                 <td>不夜城</td>
-                <td>33333333</td>
             </tr>
             <tr>
-                <td><input checked type="checkbox"></td>
+                <td><input type="checkbox" checked="checked"></td>
                 <td>HX21RP</td>
-                <td>7819128790938</td>
-                <td>小茫茫</td>
-                <td>成人</td>
-                <td>RYT+TRY</td>
-                <td><input id="" value="500" type="text" name=""></td>
-                <td><input id="" value="500" type="text" name=""></td>
-                <td><input id="" value="500" type="text" name=""></td>
-                <td><input id="" value="0" type="text" name=""></td>
-                <td><input id="" value="0" type="text" name=""></td>
-                <td><input id="" value="2" type="text" name=""></td>
-                <td><input id="" value="2" type="text" name=""></td>
-                <td>500</td>
+                <td><input value="7819128790938" type="text" name="" id=""/></td>
+                <td>C1</td>
+                <td>已出票</td>
+                <td>XXXXX</td>
+                <td>zhang/yu</td>
+                <td>ADT</td>
+                <td>A123456</td>
+                <td><input value="5500" type="text" name="" id=""/></td>
+                <td><input value="500" type="text" name="" id=""/></td>
+                <td><input value="5500" type="text" name="" id=""/></td>
+                <td><input value="10" type="text" name="" id=""/></td>
                 <td>不夜城</td>
-                <td>33333333</td>
             </tr>
             <tr class="hidden">
                 <td><input type="checkbox"></td>
                 <td>HX21RP</td>
-                <td>7819128790938</td>
-                <td>小茫茫</td>
-                <td>成人</td>
-                <td>RYT+TRY</td>
-                <td><input id="" value="500" type="text" name=""></td>
-                <td><input id="" value="500" type="text" name=""></td>
-                <td><input id="" value="500" type="text" name=""></td>
-                <td><input id="" value="0" type="text" name=""></td>
-                <td><input id="" value="0" type="text" name=""></td>
-                <td><input id="" value="2" type="text" name=""></td>
-                <td><input id="" value="2" type="text" name=""></td>
-                <td>500</td>
+                <td><input value="7819128790938" type="text" name="" id=""/></td>
+                <td>C1</td>
+                <td>已出票</td>
+                <td>XXXXX</td>
+                <td>zhang/yu</td>
+                <td>ADT</td>
+                <td>A123456</td>
+                <td><input value="5500" type="text" name="" id=""/></td>
+                <td><input value="500" type="text" name="" id=""/></td>
+                <td><input value="5500" type="text" name="" id=""/></td>
+                <td><input value="10" type="text" name="" id=""/></td>
                 <td>不夜城</td>
-                <td>33333333</td>
             </tr>
             </tbody>
         </table> 
