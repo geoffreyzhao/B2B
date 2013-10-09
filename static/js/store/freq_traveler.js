@@ -67,7 +67,7 @@ $(function() {
 		else {
 
 		}
-		return false;
+		//return false;
 	})
 
 	$("#ffc_input").keyup(function() {
