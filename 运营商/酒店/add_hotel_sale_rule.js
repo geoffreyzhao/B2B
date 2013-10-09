@@ -262,6 +262,7 @@ $(function() {
                     model.deletingCity.push(selectCity);
                 }
             })
+            clearArrayData(model.deletingCity);
             cloneData(model.deletedCity,model.deletingCity);
             initCityStatus();
         }
@@ -283,6 +284,11 @@ $(function() {
         {
             data2.push(data1[i]);
         }
+    }
+
+    function clearArrayData(data)
+    {
+        data.splice(0,data.length);
     }
 
     filter_win["city"] =new PopWindow("#filter_city", {

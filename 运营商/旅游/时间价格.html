@@ -397,11 +397,14 @@
         {
             var df=new Date(t).Format("yyyy/MM/dd");
             delete eve[df];
-            calendar.options.dates.splice(calendar.options.dates.indexOf(t),1);
-            var anim=calendar.options.animation;
-            calendar.options.animation=false;
-            calendar.navigate(new Date(t),"month");
-            calendar.options.animation=anim;
+            if(calendar.options.dates.indexOf(t)!=-1)
+            {
+                calendar.options.dates.splice(calendar.options.dates.indexOf(t),1);
+                var anim=calendar.options.animation;
+                calendar.options.animation=false;
+                calendar.navigate(new Date(t),"month");
+                calendar.options.animation=anim;
+            }
             setWP("editStatus","addible");
         }
         else
