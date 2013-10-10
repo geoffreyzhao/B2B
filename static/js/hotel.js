@@ -5,24 +5,19 @@
  * Time: 上午10:09
  * To change this template use File | Settings | File Templates.
  */
+
+function isOldIE() {
+    var e = document.createElement("DIV"),
+        c = {
+            haspointerlock: "pointerLockElement" in document || "mozPointerLockElement" in document || "webkitPointerLockElement" in document
+        };
+    c.isie = "all" in document && "attachEvent" in e && !c.isopera;
+    c.isieold = c.isie && !("msInterpolationMode" in e.style);
+
+    return c.isieold;
+};
 $(function(){
     var dt=new Date().getMilliseconds();
-
-    /*检查jquery的是否支持浏览器识别*/
-    try
-    {
-        $.browser.msie;
-    }
-    catch(e)
-    {
-        var oHead = document.getElementsByTagName('HEAD').item(0);
-        var oScript= document.createElement("script");
-        oScript.type = "text/javascript";
-        oScript.src="/static/js/jquery-migrate-1.2.1.js";
-        oHead.appendChild( oScript);
-        //document.write("<script type=\"text/javascript\" src=\"http://static.travelzensh.com/js/jquery-migrate-1.2.1.js\"></script>")
-    }
-    /*检查jquery的是否支持浏览器识别*/
 
     $("body").delegate(".popwin","click",function(){
         var tar= $.parseJSON($(this).attr("data"));
@@ -63,8 +58,7 @@ $(function(){
 
     function showOverLay()
     {
-
-        if($.browser.msie && parseInt($.browser.version)<7)
+        if(isOldIE())
         {
             if(!$("#iframeShadow").length)
             {

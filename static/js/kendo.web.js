@@ -10141,7 +10141,7 @@ kendo_module({
             rules: {
                 required: function(input) {
                     //var checkbox = input.filter("[type=checkbox]").length && input.attr("checked") !== "checked",
-                    //@todo 修复bug 关于checkbox 验证的问题
+                    // @todo 修复bug 关于checkbox 验证的问题
                     var ischeckbox = input.filter("[type=checkbox]").length;
                     //var checkbox = input.filter("[type=checkbox]").length && input.prop("checked"),
                     //    value = input.val();
@@ -10296,7 +10296,7 @@ kendo_module({
                     }
                 }
                 
-                /*
+                /**
                  * @todo add by clb
                  * for auto jump the error elemt
                  */
@@ -10501,7 +10501,7 @@ kendo_module({
 
 
             for (rule in rules) {
-                /* @todo fix bug 定义过的规则才进行验证 */ 
+                /** @todo fix bug 定义过的规则才进行验证 */ 
                 if(that.options.needRuleAttrbute){
                     if (hasAttribute(input, rule) && !rules[rule](input)) {
                         return { valid: false, key: rule };
