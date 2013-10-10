@@ -204,13 +204,68 @@ FileProgress.prototype.disappear = function () {
 	}
 };
 
+function uploadError(file, errorCode, message) {
+	try {
+		var progress = new FileProgress(file, this.customSettings.progressTarget);
+        var errorText;
+        progress.disappear();
+        $('.fl-uploader-error:hidden').show();
+
+		switch (errorCode) {
+		case SWFUpload.UPLOAD_ERROR.HTTP_ERROR:
+            errorText = 'Upload Error: ' + message;
+			break;
+		case SWFUpload.UPLOAD_ERROR.MISSING_UPLOAD_URL:
+            errorText = "Config Error";
+			break;
+		case SWFUpload.UPLOAD_ERROR.UPLOAD_FAILED:
+            errorText = "Upload Failed.";
+			break;
+		case SWFUpload.UPLOAD_ERROR.IO_ERROR:
+            errorText ="Server (IO) Error";
+			break;
+		case SWFUpload.UPLOAD_ERROR.SECURITY_ERROR:
+            errorText ="Security Error";
+			break;
+		case SWFUpload.UPLOAD_ERROR.UPLOAD_LIMIT_EXCEEDED:
+            errorText ="Upload limit exceeded.";
+			break;
+		case SWFUpload.UPLOAD_ERROR.SPECIFIED_FILE_ID_NOT_FOUND:
+            errorText ="File not found.";
+			break;
+		case SWFUpload.UPLOAD_ERROR.FILE_VALIDATION_FAILED:
+            errorText ="Failed Validation.  Upload skipped.";
+			break;
+		case SWFUpload.UPLOAD_ERROR.FILE_CANCELLED:
+			if (this.getStats().files_queued === 0) {
+				document.getElementById(this.customSettings.cancelButtonId).disabled = true;
+			}
+            errorText = 'Cancelled';
+			progress.setCancelled();
+			break;
+		case SWFUpload.UPLOAD_ERROR.UPLOAD_STOPPED:
+            errorText = 'Stopped';
+			break;
+		default:
+            errorText = "Unhandled Error: " +errorCode;
+			break;
+		}
+
+
+        $('.fl-uploader-errfiles').append('<div>'+shorten_filename(file.name)+'&#12288;'+errorText+'</div>');
+
+	} catch (ex) {
+        this.debug(ex);
+    }
+}
 
 function uploadSuccess(file, serverData) {
 	try {
 		var progress = new FileProgress(file, this.customSettings.progressTarget);
+        // $('.fl-uploader-error:visible').hide();
 		progress.setComplete();
 		progress.setStatus("上传成功");
-		progress.toggleCancel(false);
+		// progress.toggleCancel(false);
 
 		if(typeof(this.customSettings.callback) != "undefined"){
 			this.customSettings.callback(file,serverData);
@@ -221,6 +276,22 @@ function uploadSuccess(file, serverData) {
 	}
 }
 
+function fileDialogComplete(numFilesSelected, numFilesQueued) {
+	try {
+		if (numFilesQueued > 0) {
+			/* I want auto start and I can do that here */
+			this.startUpload();
+            emptyErrorLog();
+            $('.fl-uploader-error:visible').hide();
+		}
+	} catch (ex)  {
+        this.debug(ex);
+	}
+}
+
+function emptyErrorLog(){
+    $('.fl-uploader-errfiles').empty();
+}
 
 function trip_ext(oldname){
     var regexp = /(.+)\.\w+/gi;
@@ -231,6 +302,7 @@ function trip_ext(oldname){
 }
 
 function shorten_filename(str){
+    if(str.length < 13) return str;
     var regexp = /^(.{6}).*(.{2})\.(\w+)/gi;
     var matched = regexp.exec(str);
     if(matched && matched.length==4){
@@ -239,4 +311,3 @@ function shorten_filename(str){
         throw Error('文件名处理出错 Function: shorten_filename()');
     }
 }
-
