@@ -20,7 +20,17 @@
 <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
 <![endif]-->
 <script type="text/javascript" src="/static/js/sync.js"></script>
-    <!-- @CLB@ --></head><body>  <div id="extHeader">
+    <!-- @CLB@ -->
+
+        <style type="text/css">
+            #downloadAttachmentPanel{position:relative}
+            #downloadAttachmentContainer{background:#fff;padding:10px;width:240px;height:120px;border:2px solid #999999;overflow:auto;}
+            #downloadAttachmentContainer li{margin-bottom:10px;}
+            #downloadAttachmentContainer li a:hover{color:#0065CB;text-decoration:underline}
+            .tltip_arrow_top_gray{background:url('../../static/images/tltip_top_gray.gif') no-repeat;width:9px;height:5px;display:inline-block;position:absolute}
+        </style>
+</head>
+<body>  <div id="extHeader">
     <div></div>
 </div>
 
@@ -418,6 +428,7 @@
                 <span class="block-module-action">
                     <button class="btns btn-ac-blue">添加旅客</button> 
                     <button class="btns btn-ac-blue">删除旅客</button> 
+                    <button class="btns btn-ac-blue" id="btn_downloadAttachments">下载全部附件（3）</button>
                 </span>
             </div> 
             <!-- <label id="save_as_frequent"> -->
@@ -528,19 +539,47 @@
         <p>客户服务热线:400-720-6666</p>
     </div>
 </div>
+
+<script type="text/html" id="downloadAttachmentTemplate">
+    <div id="downloadAttachmentPanel">
+        <div id="downloadAttachmentContainer">
+            <ul>
+                <li><a href="javascript:;">学生证明文件证明文件...76.jpg</a></li>
+                <li><a href="javascript:;">学生证明文件证明文件...76.jpg</a></li>
+                <li><a href="javascript:;">学生证明文件证明文件...76.jpg</a></li>
+                <li><a href="javascript:;">学生证明文件证明文件...76.jpg</a></li>
+                <li><a href="javascript:;">学生证明文件证明文件...76.jpg</a></li>
+                <li><a href="javascript:;">学生证明文件证明文件...76.jpg</a></li>
+                <li><a href="javascript:;">学生证明文件证明文件...76.jpg</a></li>
+                <li><a href="javascript:;">学生证明文件证明文件...76.jpg</a></li>
+                <li><a href="javascript:;">学生证明文件证明文件...76.jpg</a></li>
+                <li><a href="javascript:;">学生证明文件证明文件...76.jpg</a></li>
+                <li><a href="javascript:;">学生证明文件证明文件...76.jpg</a></li>
+            </ul>
+        </div>
+        <i class="tltip_arrow_top_gray" style="top:-5px;left:30px"></i>
+    </div>
+</script>
+
 <script type="text/javascript">
     $(function(){
-            $("#add_flight").click(function(){
-                var html = kendo.template($("#flight_template").html());
-                //$(html({})).insertAfter("#flight_table tr:last");
-                $("#flight_table").append(html({}));
-            });
-            $("#copy_flight").click(function(){
-                $("input[name='flight']").each(function(){
-
-                    });
+        $("#add_flight").click(function(){
+            var html = kendo.template($("#flight_template").html());
+            //$(html({})).insertAfter("#flight_table tr:last");
+            $("#flight_table").append(html({}));
+        });
+        $("#copy_flight").click(function(){
+            $("input[name='flight']").each(function(){
 
                 });
+
+        });
+        new FloatLayer({
+            trigger:"#btn_downloadAttachments",
+            type:"mouseenter",
+            template:"#downloadAttachmentTemplate",
+            offsetY:32
+        })
     });
 
 </script>
