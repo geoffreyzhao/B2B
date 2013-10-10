@@ -218,6 +218,31 @@
             </div>
 </script>
 
+<script type="text/html" id="testJsonStr">
+    {
+    "2013/10/02": [
+    {
+    "tourGroupId": "123",
+    "numberOfPlanSignUp": "123",
+    "adultPrice": "123",
+    "childPrice": "123",
+    "balancePrice": "123",
+    "signUpEndDate": "2013-10-29",
+    "hotelStarLevel": "3"
+    },
+    {
+    "tourGroupId": "22",
+    "numberOfPlanSignUp": "22",
+    "adultPrice": "22",
+    "childPrice": "22",
+    "balancePrice": "22",
+    "signUpEndDate": "2013-10-23",
+    "hotelStarLevel": "3"
+    }
+    ]
+    }
+</script>
+
 <script type="text/javascript" src="../../static/js/ccc0.1/ccc.js"></script>
 <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
 <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
@@ -486,6 +511,20 @@
             stringD=stringD.replace(p,sfd);
         }
         console.log(stringD);
+    }
+
+    jsonStr= $.parseJSON($("#testJsonStr").html());
+
+    setData(jsonStr);
+
+    function setData(jsonStr)
+    {
+        for(var p in jsonStr)
+        {
+            eve[p]=[22,890];
+            var ts=hashDate((+new Date(p)).toString());
+            model.timePrice[ts]=jsonStr[p];
+        }
     }
 </script>
 
