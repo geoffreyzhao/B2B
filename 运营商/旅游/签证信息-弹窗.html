@@ -89,7 +89,7 @@
             case 0:return;break;
             case 1:init(m.children[0],el,"tp1","td",tbel);break;
             default:
-                var td=$("<td></td>").insertAfter($(tbel).find("td:last"));
+                var td=$("<td></td>").insertAfter($("#"+tbel).find("td:last"));
                 var tbl=$("<table></table>").appendTo(td);
                 for(var i=0;i< m.children.length;i++)
                 {
@@ -189,25 +189,21 @@
         })
     }
 
+    function createVisLC(modelName,tblName,canvasName)
+    {
+        init(modelName,$("#"+tblName),"tp1","td",tblName);
+        resize(canvasName,tblName);
+    }
+
     $(function(){
-        init(model,$("#tbl_AmericanVisa"),"tp1","td","#tbl_AmericanVisa");
-        resize("canvas","tbl_AmericanVisa");
+        createVisLC(model,"tbl_AmericanVisa","canvas");
         $(":radio[name=needInterview]").change(function(){
-            if($(this).val()=="need")
-            {
-                model=kendo.observable(lc);
-            }
-            else
-            {
-                model=kendo.observable(noInterview_lc);
-            }
-            $("#tbl_lc").html("");
-            init(model,$("#tbl_AmericanVisa"),"tp1","td","#tbl_AmericanVisa");
-            resize("canvas","tbl_AmericanVisa");
+            model=$(this).val()=="need"?kendo.observable(lc):kendo.observable(noInterview_lc);
+            $("#tbl_AmericanVisa").html("");
+            createVisLC(model,"tbl_AmericanVisa","canvas");
         })
 
-        init(modelCanada,$("#tbl_CanadaVisa"),"tp1","td","#tbl_CanadaVisa");
-        resize("canvas1","tbl_CanadaVisa");
+        createVisLC(modelCanada,"tbl_CanadaVisa","canvas1");
     })
 
 </script>
