@@ -6,6 +6,7 @@ function load_header() {
 	});
 }
 $(function() {
+    /** 返回顶部 */
     var offset = $("#container").offset();
     var w = $("#container").width();
 	var $backToTopTxt = "返回顶部",
@@ -33,6 +34,8 @@ $(function() {
 	$(function() {
 		$backToTopFun();
 	});
+
+    /** 返回顶部结束 */
 
 	if (typeof(init_header) == "undefined") {
 		$.getScript("/static/js/header.js", function() {
