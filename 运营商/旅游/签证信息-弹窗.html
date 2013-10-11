@@ -10,11 +10,12 @@
     <script type="text/javascript" src="../../static/js/kendo.culture.zh-CHS.min.js"></script>
     <script type="text/javascript" src="../../static/js/excanvas.js"></script>
     <style type="text/css">
-        #tbl_lc{position:absolute;top:0;left:0}
-        #tbl_lc td{padding:5px 10px;vertical-align:middle}
-        #tbl_lc td div{cursor:pointer;border:1px solid #c1c1c1;padding:3px 5px 3px 25px;color:#999999}
-        #tbl_lc td div.complete{background:url('../../static/images/trip_lc_complete.gif') 5px 50% no-repeat;border:1px solid #FF6600;color:#333333}
-        #tbl_lc td div.current{background:#FF6600;color:#ffffff}
+        body{background:#fff}
+        .tbl_lc{position:absolute;top:0;left:0}
+        .tbl_lc td{padding:5px 10px;vertical-align:middle}
+        .tbl_lc td div{cursor:pointer;border:1px solid #c1c1c1;padding:3px 5px 3px 25px;color:#999999}
+        .tbl_lc td div.complete{background:url('../../static/images/trip_lc_complete.gif') 5px 50% no-repeat;border:1px solid #FF6600;color:#333333}
+        .tbl_lc td div.current{background:#FF6600;color:#ffffff}
     </style>
 </head>
 <body>
@@ -26,9 +27,15 @@
     <label style="margin-left:20px"><input value="noneed" type="radio" name="needInterview" id=""/>不需面谈</label>
 </div>
 
-<div style="position:relative;">
-    <canvas id="canvas" style="position:absolute;top:0;left:0;" width="500" height="200"></canvas>
-    <table id="tbl_lc"></table>
+<div style="position:relative">
+    <canvas id="canvas" style="position:absolute;top:0;left:0;"></canvas>
+    <table class="tbl_lc" id="tbl_AmericanVisa"></table>
+    <div class="clear"></div>
+</div>
+
+<div style="position:relative;border-top:1px dashed #ccc">
+    <canvas id="canvas1" style="position:absolute;top:0;left:0;"></canvas>
+    <table class="tbl_lc" id="tbl_CanadaVisa"></table>
 </div>
 
 
@@ -51,7 +58,7 @@
                         ],status:"uncomplete",click:function(){clickLc(this)}},
                         {name:"出签",children:[],status:"uncomplete",click:function(){clickLc(this)}}
                     ],status:"uncomplete",click:function(){clickLc(this)}}],status:"uncomplete",click:function(){clickLc(this)}}
-                ],status:"uncomplete",click:function(){clickLc(this)}
+                ],status:"uncomplete",canvasID:"canvas",tbel:"tbl_AmericanVisa"
             };
     var noInterview_lc={name:"材料到齐/已齐",children:[
                             {name:"预约",children:[
@@ -60,22 +67,33 @@
                                     {name:"不通过",children:[],status:"uncomplete",click:function(){clickLc(this)}}
                                 ],status:"uncomplete",click:function(){clickLc(this)}}
                             ],status:"uncomplete",click:function(){clickLc(this)}}
-                        ],status:"uncomplete",click:function(){clickLc(this)}};
+                        ],status:"uncomplete",click:function(){clickLc(this)},canvasID:"canvas",tbel:"tbl_AmericanVisa"
+            };
+
+    var canadaVisa={name:"材料到齐/已齐",click:function(){clickLc(this);},children:[
+                        {name:"已送签",children:[
+                                {name:"拒签",children:[],status:"uncomplete",click:function(){clickLc(this)}},
+                                {name:"出签",children:[],status:"uncomplete",click:function(){clickLc(this)}}
+                            ],status:"uncomplete",click:function(){clickLc(this)}}
+                        ],status:"uncomplete",click:function(){clickLc(this)},canvasID:"canvas1",tbel:"tbl_CanadaVisa"
+                    };
     model=kendo.observable(lc);
 
-    function init(m,el,tpID,warpEl){
+    modelCanada=kendo.observable(canadaVisa);
+
+    function init(m,el,tpID,warpEl,tbel){
         var index=new kendo.View(tpID,{model:m,tagName:warpEl});
         el.append(index.render());
         switch(m.children.length)
         {
             case 0:return;break;
-            case 1:init(m.children[0],el,"tp1","td");break;
+            case 1:init(m.children[0],el,"tp1","td",tbel);break;
             default:
-                var td=$("<td></td>").insertAfter($("#tbl_lc td:last"));
+                var td=$("<td></td>").insertAfter($(tbel).find("td:last"));
                 var tbl=$("<table></table>").appendTo(td);
                 for(var i=0;i< m.children.length;i++)
                 {
-                    init(m.children[i],tbl,"tp2","tr");
+                    init(m.children[i],tbl,"tp2","tr",tbel);
                 }
         }
     }
@@ -83,10 +101,28 @@
 
 
     function clickLc(el){
-        clearModelStatus(model);
+        var tmpel=el;
+        while(!tmpel.canvasID)
+        {
+            if(tmpel.parent().parent())
+            {
+                tmpel=tmpel.parent().parent();
+            }
+            else{
+                throw new Error("数据异常");
+            }
+
+        }
+        clearModelStatus(tmpel);
         changeModelStatus(el);
         el.set("status","complete current");
-        resize();
+        var canvasID,tbel;
+
+
+        canvasID=tmpel.canvasID;
+        tbel=tmpel.tbel;
+
+        resize(canvasID,tbel);
     }
 
     function clearModelStatus(m)
@@ -119,16 +155,21 @@
             changeModelStatus(m.parent().parent());
     }
 
-    function resize(){
-        var ctx=document.getElementById("canvas").getContext("2d");
-        ctx.clearRect(0,0,500,200);
+    function resize(canvasID,tbel){
+        var w=$("#"+tbel).outerWidth();
+        var h=$("#"+tbel).outerHeight();
+        $("#"+tbel).parent("div").css({height:h});
+        var ctx=document.getElementById(canvasID).getContext("2d");
+        document.getElementById(canvasID).width=w;
+        document.getElementById(canvasID).height=h;
+        ctx.clearRect(0,0,w,h);
         ctx.beginPath();
 
-        $("#tbl_lc td").each(function(){
+        $("#"+tbel).find("td").each(function(){
             ctx.beginPath();
             var td1=$(this);
             $(this).children("div").hasClass("complete")?ctx.strokeStyle="#FF6600":ctx.strokeStyle="#C1C1C1";
-            if($(this).closest("table").attr("id")!="tbl_lc" && !$(this).prev("td").length)
+            if($(this).closest("table").attr("id")!=tbel && !$(this).prev("td").length)
             {
                 var p=td1.closest("table").parent();
                 ctx.moveTo(p.position().left+10, p.position().top+ p.outerHeight()/2);
@@ -149,8 +190,8 @@
     }
 
     $(function(){
-        init(model,$("#tbl_lc"),"tp1","td");
-        resize();
+        init(model,$("#tbl_AmericanVisa"),"tp1","td","#tbl_AmericanVisa");
+        resize("canvas","tbl_AmericanVisa");
         $(":radio[name=needInterview]").change(function(){
             if($(this).val()=="need")
             {
@@ -161,9 +202,12 @@
                 model=kendo.observable(noInterview_lc);
             }
             $("#tbl_lc").html("");
-            init(model,$("#tbl_lc"),"tp1","td");
-            resize();
+            init(model,$("#tbl_AmericanVisa"),"tp1","td","#tbl_AmericanVisa");
+            resize("canvas","tbl_AmericanVisa");
         })
+
+        init(modelCanada,$("#tbl_CanadaVisa"),"tp1","td","#tbl_CanadaVisa");
+        resize("canvas1","tbl_CanadaVisa");
     })
 
 </script>
