@@ -299,9 +299,33 @@ input{
 /* 返回顶部 */
 .backToTop {
     display: none;
-    width: 80px;
-    height: 80px;
-    background:url(../images/store/back-top.png) no-repeat;
+    width: 60px;
+    height: 60px;
+    background:url(../images/store/back-top-advice.png) no-repeat;
+    color: transparent;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+    _position: absolute;
+    right: 10px;
+    _bottom: "auto";
+    cursor: pointer;
+    bottom:175px;
+    /*
+    opacity: .6;
+    filter: Alpha(opacity=60);
+    */
+}
+.backToTop:hover {
+    color: transparent;
+    background-position:-61px 0;
+}
+
+/*反馈建议*/
+.advice{
+    width: 60px;
+    height: 60px;
+    background:url(../images/store/back-top-advice.png) 0 -61px no-repeat;
     color: transparent;
     font-size: 12px;
     text-align: center;
@@ -311,14 +335,11 @@ input{
     bottom: 100px;
     _bottom: "auto";
     cursor: pointer;
-    /*
-    opacity: .6;
-    filter: Alpha(opacity=60);
-    */
 }
-.backToTop:hover {
-    color: transparent;
-    background-position:-80px 0px;
+
+.advice:hover{
+    color:transparent;
+    background-position: -61px -61px;
 }
 
 .fullscreen {
@@ -816,17 +837,13 @@ input[type=checkbox],input[type=radio] { margin-right:3px; vertical-align: text-
 .top_title li.selected {height:101%;color:#f1634c;border-left:1px solid #E1E1E1;background-color:#FFFFFF;border-right:1px solid #E1E1E1;border-top:2px solid #F1634C;height:101%;}
 .top_title li.first {border-left:none !important;}
 .top_title li strong {font-weight:bold;}
-.black_booking {padding:20px 0 0 50px;background:url(../images/store/map.jpg) no-repeat;}
-.black_booking li {padding:10px;}
+.black_booking {padding:20px 0 0 30px;background:url(../images/store/map.jpg) no-repeat;}
+.black_booking li {padding:10px 10px 10px 30px;}
+.black_booking li.passenger {padding:0 10px 10px 10px;}
 .subline {font-weight:bold;}
 .dotted_line {height:0px;vertical-align:middle;display:inline-block;border-top:1px dotted #aaaaaa;}
-.passenger .subline {margin-left:-10px;}
 .passenger label {color:#636363;padding-left:20px;text-indent:10px;cursor:pointer;}
 .passenger label input {vertical-align:middle;}
-.gap label span {}
-.passenger{
-    line-height:30px;
-}
 
 .black-paste {background-color:#000;color:#00ff00;}
 .ways .muted {position:absolute;right:40px;top:0px;width:280px;line-height:20px;}
@@ -966,6 +983,22 @@ ul{list-style:none;margin:0;padding:0}
 .ul_ffc .item label {cursor:pointer;}
 /*常旅客样式*/
 
+/* 成功失败 */
+
+.win_tab{ text-align:left;}
+.win_tab td{ line-height:25px;}
+.win_tab td:first-child{ text-align:right;}
+.win_tab td em{ font-size:16px; font-weight:bold; color:#ff6500;}
+
+.win,.fail{ width:380px; text-align:center; padding:0 10px 20px; color:#636363;}
+.win h3,.fail h3{ height:36px; line-height:36px; font-size:14px; font-weight:bold; margin-bottom:15px;}
+.win h3 i{ padding-left:50px; background:url(../images/store/succeed.png) no-repeat 38% 50%; display:inline-block;}
+.win p{ line-height:25px;}
+.win p em{ font-size:16px; font-weight:bold; color:#ff6500;}
+.win_btn{ margin-top:20px;}
+.win_btn a,.win p span,fail_btn a{ font-size:14px;}
+.cancel{ text-decoration:underline; margin-left:30px; vertical-align:middle;}
+.fail h3 i{ padding-left:50px; background:url(../images/store/wrong.png) no-repeat 38% 50%; display:inline-block;}
 
 /*图片轮转*/
 .slider_nav {z-index:10;position:absolute;}
@@ -1049,20 +1082,135 @@ table.cv-fixed input[type=text],table.cv-fixed textarea{
     margin-left:20px;
 }
 
-/* 成功失败 */
+/** override style of swfuploader*/
+.progressBarInProgressWrapper{
+	width: 55px;
+    margin-top:7px;
+    height:5px;
+    margin-left:10px;
+    float:left;
+    border:1px solid #ff6500;
+}
+.progressWrapper {
+	width: 235px;
+	overflow: hidden;
+    float:left;
+    line-height:23px;
+    padding-right:10px;
+    padding-bottom:5px;
+}
 
-.win_tab{ text-align:left;}
-.win_tab td{ line-height:25px;}
-.win_tab td:first-child{ text-align:right;}
-.win_tab td em{ font-size:16px; font-weight:bold; color:#ff6500;}
+.progressContainer {
+	border: solid 1px #aaa;
+	background-color: #fff;
+	overflow: hidden;
+}
+/* Message */
+.message {
+	margin: 1em 0;
+	padding: 10px 20px;
+	border: solid 1px #FFDD99;
+	background-color: #FFFFCC;
+	overflow: hidden;
+}
+/* Error */
+.red {
+	border: solid 1px #B50000;
+	background-color: #FFEBEB;
+}
 
-.win,.fail{ width:380px; text-align:center; padding:0 10px 20px; color:#636363;}
-.win h3,.fail h3{ height:36px; line-height:36px; font-size:14px; font-weight:bold; margin-bottom:15px;}
-.win h3 i{ padding-left:50px; background:url(../images/store/succeed.png) no-repeat 38% 50%; display:inline-block;}
-.win p{ line-height:25px;}
-.win p em{ font-size:16px; font-weight:bold; color:#ff6500;}
-.win_btn{ margin-top:20px;}
-.win_btn a,.win p span,fail_btn a{ font-size:14px;}
-.cancel{ text-decoration:underline; margin-left:30px; vertical-align:middle;}
-.fail h3 i{ padding-left:50px; background:url(../images/store/wrong.png) no-repeat 38% 50%; display:inline-block;}
+/* Current */
+.green {
+	border: solid 1px #DDF0DD;
+	background-color: #EBFFEB;
+}
+
+/* Complete */
+.blue {
+	border: solid 1px #aaa;
+	background-color: #fff;
+}
+
+.progressName {
+	width: 140px;
+    padding-left:5px;
+	text-align: left;
+	white-space: nowrap;
+	overflow: hidden;
+    float:left;
+}
+
+.progressBarInProgress,
+.progressBarComplete,
+.progressBarError {
+	font-size: 0;
+	width: 0%;
+	height: 5px;
+	background-color: #ff6500;
+}
+
+.progressBarComplete {
+	width: 100%;
+	background-color: green;
+	visibility: hidden;
+}
+
+.progressBarError {
+	width: 100%;
+	background-color: red;
+	visibility: hidden;
+}
+
+.progressBarStatus {
+    display:none;
+	width: 60px;
+    overflow:hidden;
+	text-align: left;
+	white-space: nowrap;
+    float:left;
+}
+
+a.progressCancel {
+	font-size: 0;
+	display: block;
+	height: 23px;
+	width: 20px;
+	background: url(../images/guanbi.png) 50% 50% no-repeat;
+	float: right;
+}
+
+
+/* -- SWFUpload Object Styles ------------------------------- */
+.swfupload {
+	vertical-align: middle;
+}
+
+.fl-upholder{
+    margin-top:10px;
+    padding-left:70px;
+}
+.fl-uploader{
+    position:relative;
+    color:#999;
+}
+.fl-uploader-error{
+    display:none;
+    font-weight:normal;
+    color:red;
+    margin-top:10px;
+}
+.fl-uploader-error b{
+    color:#e94749;
+    font-weight:normal;
+}
+.fl-uploader-errfiles{
+    color:#333;
+}
+.fl-uploader-errfiles div{
+    display:inline-block;
+    margin-right:30px;
+}
+.message_ct .arrow_north{
+    left:20px;
+}
 
