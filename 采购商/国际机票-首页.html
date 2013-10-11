@@ -22,6 +22,13 @@
 <script src="../../static/js/jquery-ui-1.10.3.custom.js"></script>
 <script src="../../static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
 
+
+<script type="text/javascript" src="/static/js/swfup/swfupload.js"></script>
+<script type="text/javascript" src="/static/js/swfup/swfupload.queue.js"></script>
+<script type="text/javascript" src="/static/js/swfup/handlers.js"></script>
+<script type="text/javascript" src="/static/js/swfup/fileprogress_yysfl.js"></script>
+
+
 <!--[if IE]>
 <script src="../static/js/html5.js"></script>
 <![endif]-->
@@ -72,7 +79,7 @@
                     <span class="subline">乘客类型:</span>
                     <label><input type="radio" data-role="ctype" data-group="passenger_type" name="passenger_type" value="adult" checked/><span>成人</span></label>
                     <label><input type="radio" data-role="ctype" data-group="passenger_type" data-index="c1" name="passenger_type" value="child"/><span>儿童</span></label>
-                    <label><input type="radio" data-role="ctype" data-group="passenger_type" name="passenger_type" value="student"/><span>学生</span></label>
+                    <label><input type="radio" data-role="ctype" data-group="passenger_type" name="passenger_type" data-index="c3" value="student"/><span>学生</span></label>
                     <label><input type="radio" data-role="ctype" data-group="passenger_type" name="passenger_type" value="team"/><span>团队</span></label>
                     <label>
                         <input type="radio" data-role="ctype" data-group="passenger_type" data-index="c2" name="passenger_type" name="passenger_type" value="others" /><span>其他类型</span>
@@ -84,12 +91,25 @@
                         <option value="海员">海员</option>
                         <option value="劳务">劳务</option>
                     </select>
-                    <span id="doc_need" data-role="ctype-item" data-group="passenger_type" data-index="c2" style="display:none;">
-                        <input type="text" value="特殊乘客类型请上传证明文件" placeholder="特殊乘客类型请上传证明文件" class="normal_txt" style="width:180px" />
-                        <input type="file" value="上传" />
-                    </span>
 
                     </li>
+
+                    <li class="passenger gap clearfix" data-role="ctype-item" data-group="passenger_type" data-index="c2 c3" style="display:none;">
+<span class="subline" style="margin-right:15px;">上传证件:</span>
+
+<span id="UploaderPlaceholder_1"></span>
+                                <span allowSize="100kb" allowFile="*.jpg;*.jpeg;*.png;*.iso" class="Uploader fl-uploader">该乘客类型需传证明文件，支持上传多个<b class="fl-uploader-error">上传文件失败，请重新上传（失败原因<i class='fl-error'>&#12288;
+        <div class="fl-uploader-wrap message_ct">
+            <div class="arrow arrow_north"></div>
+            <div class="message_text fl-uploader-errfiles"></div>
+        </div></i>）</b></span>
+
+                            <p class="fl-upholder" id="UploaderProgress_1"></p>
+
+
+
+                    </li>
+
                     <li class="passenger gap" id="child_extra" data-role="ctype-item" data-group="passenger_type" data-index="c1" style="display:none;">
                     <span class="subline">儿童情况:</span>
                     <label><input type="radio" data-role="ctype" data-group="child" name="with_type" checked value="without_adult"/><span>无成人陪伴</span></label>
@@ -391,6 +411,69 @@
 # } #
 </div>
 </script>
+
+
+<script type="text/javascript">
+function createSwfUpload(index,allowSize, allowFile){
+    var upload = window.swfu = new SWFUpload({
+	// Backend Settings
+	upload_url: "http://devel/test/upload.php",
+	post_params: {"name" : "testname"},
+	// File Upload Settings
+	//file_types : "*.*;",
+	file_size_limit : allowSize ,
+	file_types : allowFile ,
+	file_types_description : "Choose Files",
+	file_upload_limit : "0",
+	file_queue_limit : "0",
+	// Event Handler Settings (all my handlers are in the Handler.js file)
+	file_dialog_start_handler : fileDialogStart,
+	file_queued_handler : fileQueued,
+	file_queue_error_handler : fileQueueError,
+	file_dialog_complete_handler : fileDialogComplete,
+	upload_start_handler : uploadStart,
+	upload_progress_handler : uploadProgress,
+	upload_error_handler : uploadError,
+	upload_success_handler : uploadSuccess,
+	upload_complete_handler : uploadComplete,
+	// Button Settingsimg/fee
+    button_image_url : "/static/images/button_3_3_5.png",
+	button_placeholder_id : "UploaderPlaceholder_" + index,
+	button_width: 55,
+	button_height: 26,
+	button_window_mode:"TRANSPARENT",
+	button_cursor: SWFUpload.CURSOR.HAND,
+	// Flash Settings
+	flash_url : "/static/flash/swfupload.swf",
+	custom_settings : {
+		progressTarget : "UploaderProgress_" + index,
+		cancelButtonId : "UploaderCancelBtn_" + index,
+		callback : function(file,serverData){
+            var tmp = $.parseJSON(serverData);
+		}
+	},
+
+	// Debug Settings
+	debug: false
+    });
+
+    return upload;
+}
+
+var uploads = [];
+
+$(function(){
+    $.role_ctype();
+        $(".Uploader").each(function(index){	
+            uploads.push(createSwfUpload(index + 1,$(this).attr("allowSize"),$(this).attr("allowFile")));
+        });
+
+        $('body').on('click','.fl-complete .progressCancel',function(){
+            $(this).closest('.progressWrapper').remove();
+        });
+
+});
+            </script>
 
 
         <!-- 国际机票白屏 end -->

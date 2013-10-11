@@ -161,56 +161,56 @@ FileProgress.prototype.appear = function () {
 
 // Fades out and clips away the FileProgress box.
 FileProgress.prototype.disappear = function () {
-
-	var reduceOpacityBy = 15;
-	var reduceHeightBy = 10;
-	var rate = 1;	// 15 fps
-
-	if (this.opacity > 0) {
-		this.opacity -= reduceOpacityBy;
-		if (this.opacity < 0) {
-			this.opacity = 0;
-		}
-
-		if (this.fileProgressWrapper.filters) {
-			try {
-				this.fileProgressWrapper.filters.item("DXImageTransform.Microsoft.Alpha").opacity = this.opacity;
-			} catch (e) {
-				// If it is not set initially, the browser will throw an error.  This will set it if it is not set yet.
-				this.fileProgressWrapper.style.filter = "progid:DXImageTransform.Microsoft.Alpha(opacity=" + this.opacity + ")";
-			}
-		} else {
-			this.fileProgressWrapper.style.opacity = this.opacity / 100;
-		}
-	}
-
-	if (this.height > 0) {
-		this.height -= reduceHeightBy;
-		if (this.height < 0) {
-			this.height = 0;
-		}
-
-		this.fileProgressWrapper.style.height = this.height + "px";
-	}
-
-	if (this.height > 0 || this.opacity > 0) {
-		var oSelf = this;
-		this.setTimer(setTimeout(function () {
-			oSelf.disappear();
-		}, rate));
-	} else {
-		this.fileProgressWrapper.style.display = "none";
-		this.setTimer(null);
-	}
+    this.fileProgressWrapper.style.display = "none";
 };
+
+
+function fileQueueError(file, errorCode, message) {
+	try {
+        var errorText;
+		if (errorCode === SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED) {
+			alert("You have attempted to queue too many files.\n" + (message === 0 ? "You have reached the upload limit." : "You may select " + (message > 1 ? "up to " + message + " files." : "one file.")));
+			return;
+		}
+
+		var progress = new FileProgress(file, this.customSettings.progressTarget);
+        progress.disappear();
+		progress.setError();
+		progress.toggleCancel(false);
+
+		switch (errorCode) {
+		case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
+            errorText = "文件过大";
+			break;
+		case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
+            errorText = "文件大小为0";
+			break;
+		case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
+            errorText = "不支持的文件类型";
+			break;
+		case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
+			alert("超过数量限制  " +  (message > 1 ? "only " +  message + " files" : " can not add any more."));
+			break;
+		default:
+			if (file !== null) {
+                errorText = "未知错误";
+			}
+			break;
+		}
+	} catch (ex) {
+        this.debug(ex);
+    }
+
+    $('.fl-uploader-error:hidden').show();
+    $('.fl-uploader-errfiles').append('<div>'+shorten_filename(file.name)+'&#12288;'+errorText+'</div>');
+}
 
 function uploadError(file, errorCode, message) {
 	try {
 		var progress = new FileProgress(file, this.customSettings.progressTarget);
         var errorText;
         progress.disappear();
-        $('.fl-uploader-error:hidden').show();
-
+/*
 		switch (errorCode) {
 		case SWFUpload.UPLOAD_ERROR.HTTP_ERROR:
             errorText = 'Upload Error: ' + message;
@@ -250,8 +250,11 @@ function uploadError(file, errorCode, message) {
             errorText = "Unhandled Error: " +errorCode;
 			break;
 		}
+        */
+        errorText = "服务器错误";
 
 
+        $('.fl-uploader-error:hidden').show();
         $('.fl-uploader-errfiles').append('<div>'+shorten_filename(file.name)+'&#12288;'+errorText+'</div>');
 
 	} catch (ex) {
@@ -276,18 +279,25 @@ function uploadSuccess(file, serverData) {
 	}
 }
 
+function fileDialogStart(){
+    emptyErrorLog();
+    $('.fl-uploader-error:visible').hide();
+}
+/*
 function fileDialogComplete(numFilesSelected, numFilesQueued) {
 	try {
 		if (numFilesQueued > 0) {
-			/* I want auto start and I can do that here */
+            if(numFilesSelected == numFilesQueued){
+                emptyErrorLog();
+                $('.fl-uploader-error:visible').hide();
+            }
 			this.startUpload();
-            emptyErrorLog();
-            $('.fl-uploader-error:visible').hide();
 		}
 	} catch (ex)  {
         this.debug(ex);
 	}
 }
+*/
 
 function emptyErrorLog(){
     $('.fl-uploader-errfiles').empty();

@@ -6,6 +6,7 @@ function load_header() {
 	});
 }
 $(function() {
+    /** 返回顶部 */
     var offset = $("#container").offset();
     var w = $("#container").width();
 	var $backToTopTxt = "返回顶部",
@@ -34,6 +35,8 @@ $(function() {
 		$backToTopFun();
 	});
 
+    /** 返回顶部结束 */
+
 	if (typeof(init_header) == "undefined") {
 		$.getScript("/static/js/header.js", function() {
 			load_header();
@@ -41,5 +44,17 @@ $(function() {
 	} else {
 		load_header();
 	}
+
+
+    /* 注册一个切换全屏的快捷建 */
+    $("body").keydown(function(e){
+        if(e.altKey && e.keyCode == 13){
+            if(/980/.test($("#container").css("width"))){
+                $("#container").css("width","100%");
+            }else{
+                $("#container").css("width","980");
+            }
+        }
+    });
 });
 
