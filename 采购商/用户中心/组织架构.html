@@ -233,7 +233,7 @@
                                         <a href="#">编辑</a>
                                         <a href="#">挂起</a>
                                         <a href="#">注销</a>
-                                        <a href="#">重置密码</a>
+                                        <a href="javascript:void(0)" class="reset_password">重置密码</a>
                                     </div>
                                     </span>
                                 </td>
@@ -255,7 +255,7 @@
                                         <a href="#">编辑</a>
                                         <a href="#">挂起</a>
                                         <a href="#">注销</a>
-                                        <a href="#">重置密码</a>
+                                        <a href="javascript:void(0)" class="reset_password">重置密码</a>
                                     </div>
                                     </span>
                                 </td>
@@ -277,7 +277,7 @@
                                         <a href="#">编辑</a>
                                         <a href="#">挂起</a>
                                         <a href="#">注销</a>
-                                        <a href="#">重置密码</a>
+                                        <a href="javascript:void(0)" class="reset_password">重置密码</a>
                                     </div>
                                     </span>
                                 </td>
@@ -299,7 +299,7 @@
                                         <a href="#">编辑</a>
                                         <a href="#">挂起</a>
                                         <a href="#">注销</a>
-                                        <a href="#">重置密码</a>
+                                        <a href="javascript:void(0)" class="reset_password">重置密码</a>
                                     </div>
                                     </span>
                                 </td>
@@ -525,6 +525,58 @@
 </table>
 </script>
 
+<script type="text/x-kendo-template" id="reset-password-template">
+    <table class="paymentCode">
+         <colgroup>
+              <col width="90px"/>
+              <col width="170px"/>
+              <col width="75px"/>
+         </colgroup>
+         <tr>
+             <td>原密码：</td>
+             <td><input type="text" /></td>
+             <td></td>
+         </tr>
+         <tr>
+             <td>新密码：</td>
+             <td><input type="text" /></td>
+             <td></td>
+         </tr>
+         <tr>
+             <td>新密码确认：</td>
+             <td><input type="text" /></td>
+             <td> </td>
+         </tr>
+         <tr>
+             <td> </td>
+             <td>
+                 <a class="adaptiveButton mediumOrange_btn" id="reset_password_confirm">
+                      <span class="left"></span>
+                      <span class="center" style="padding:0 10px;">确 定</span>
+                      <span class="right"></span>
+                 </a>
+                 <a href="javascript:void(0);" class="callOff">取消</a>
+             </td>
+             <td> </td>
+         </tr>
+    </table>
+</script>
+
+
+
+<script type="text/x-kendo-template" id="reset-password-success-template">
+<div class="win">
+    <h3><i>&nbsp;</i>重置成功！</h3>    
+</div>
+</script>
+
+<script type="text/x-kendo-template" id="reset-password-failed-template">
+<div class="fail">
+    <h3><i>&nbsp;</i>重置密码失败！</h3>
+</div>
+</script>
+
+
 <script type="text/javascript">
     $(function(){
         $(".btn_edit").click(function(){
@@ -546,6 +598,26 @@
             });
 
         });
+
+        new PopWindow('.reset_password',{
+			template:'#reset-password-template',
+			title:'重置密码',
+			width:'420'
+		}).init();
+
+        new PopWindow('#reset_password_confirm',{
+			template:'#reset-password-success-template',
+			title:'重置成功',
+			width:'420'
+		}).init();
+
+        /*
+        new PopWindow('#reset_password_confirm',{
+			template:'#reset-password-failed-template',
+			title:'重置失败',
+			width:'420'
+		}).init();
+        */
 
         new PopWindow('#btn_addRole',{
             template:'#addRoleTemplate',
