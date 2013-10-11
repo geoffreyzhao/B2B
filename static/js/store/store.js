@@ -11,15 +11,17 @@ $(function() {
         (st > 0)? $backToTopEle.show(): $backToTopEle.hide();    
         //IE6下的定位
         if (!window.XMLHttpRequest) {
-            $backToTopEle.css("top", st + winh - 166);    
+            $backToTopEle.css("top", st + winh - 166);
+//            $advice.css("top", st + winh - 166);
         }
-    };
+    },$advice=$('<a class="advice"></a>').appendTo($("body")).css({left:offset.left + w + 20});
     
     $(window).bind("scroll", $backToTopFun);
     $(window).bind("resize", function(){
         var offset = $(".main-body").eq(0).offset();
         var w = $(".main-body").eq(0).width();
-        $backToTopEle.css({left:offset.left + w + 20}); 
+        $backToTopEle.css({left:offset.left + w + 20});
+        $advice.css({left:offset.left + w + 20});
     });
     $(function() { $backToTopFun(); });
 	
