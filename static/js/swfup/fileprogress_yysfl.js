@@ -180,20 +180,20 @@ function fileQueueError(file, errorCode, message) {
 
 		switch (errorCode) {
 		case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
-            errorText = "file is too big.";
+            errorText = "文件过大";
 			break;
 		case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
-            errorText = "Cannot upload Zero Byte files.";
+            errorText = "文件大小为0";
 			break;
 		case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
-            errorText = "Invalid File Type.";
+            errorText = "不支持的文件类型";
 			break;
 		case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
-			alert("You choose to many files.  " +  (message > 1 ? "only " +  message + " files" : " can not add any more."));
+			alert("超过数量限制  " +  (message > 1 ? "only " +  message + " files" : " can not add any more."));
 			break;
 		default:
 			if (file !== null) {
-                errorText = "Unhandled Error";
+                errorText = "未知错误";
 			}
 			break;
 		}
@@ -202,7 +202,7 @@ function fileQueueError(file, errorCode, message) {
     }
 
     $('.fl-uploader-error:hidden').show();
-    $('.fl-uploader-errfiles').append('<div>'+shorten_filename(file.name)+','+errorText+';</div>');
+    $('.fl-uploader-errfiles').append('<div>'+shorten_filename(file.name)+'&#12288;'+errorText+'</div>');
 }
 
 function uploadError(file, errorCode, message) {
@@ -210,7 +210,7 @@ function uploadError(file, errorCode, message) {
 		var progress = new FileProgress(file, this.customSettings.progressTarget);
         var errorText;
         progress.disappear();
-
+/*
 		switch (errorCode) {
 		case SWFUpload.UPLOAD_ERROR.HTTP_ERROR:
             errorText = 'Upload Error: ' + message;
@@ -250,10 +250,12 @@ function uploadError(file, errorCode, message) {
             errorText = "Unhandled Error: " +errorCode;
 			break;
 		}
+        */
+        errorText = "服务器错误";
 
 
         $('.fl-uploader-error:hidden').show();
-        $('.fl-uploader-errfiles').append('<div>'+shorten_filename(file.name)+','+errorText+';</div>');
+        $('.fl-uploader-errfiles').append('<div>'+shorten_filename(file.name)+'&#12288;'+errorText+'</div>');
 
 	} catch (ex) {
         this.debug(ex);
