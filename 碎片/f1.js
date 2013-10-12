@@ -5,8 +5,10 @@ function FixCol() {
 
 	var defaults = {
         fixClassName: "fixcol",
+        fixLineName : "fixline",
         offsetName: "offset",
-		kendoGrid: false
+		kendoGrid: false,
+        lineAddUp: -60
 	},
 	opts,
 	t = arguments[0],
@@ -27,7 +29,6 @@ function FixCol() {
         c.isie10 = c.isie && "performance" in window && 10 <= document.documentMode;
 
     if(c.isieold || c.isie7){
-
         this.startFixed = function(){};
         return this;
     }
@@ -76,8 +77,9 @@ function FixCol() {
             st = 0;
 
 		$("tr", tbody).each(function(index) {
-			var td = $("td:last", this);
-            var td_offset = td.offset();
+			var td = $("td:last", this),
+                td_offset = td.offset();
+
             td.addClass(opts.fixClassName);
 
             if(!last_w){
@@ -96,24 +98,38 @@ function FixCol() {
             left:l,
             zIndex:0
         }).data(opts.offsetName,{left: l,top:th_offset.top}).addClass(opts.fixClassName);
+
+        var vline = $('<div class="' + opts.fixClassName + ' ' + opts.fixLineName + ' "></div>').data(opts.offsetName,{left: l,top:th_offset.top,}).css({
+            left:l,
+            zIndex:100,
+            top: th_offset.top,
+            height: wrapper.height() + opts.lineAddUp + (c.isie8 ? -25 : 0) 
+        });
+
+        wrapper.append(vline);
 	}
 
     var lightReFixed = function(){
         var d = getDocScroll();
-        console.log(d.top);
         $("." + opts.fixClassName).each(function(){
             var a = $(this).data(opts.offsetName);
+            $(this).stop().animate({
+                left : a.left - d.left,
+                top : a.top - d.top
+            },20);
+
+            /*
             $(this).css({
                 left : a.left - d.left,
                 top : a.top - d.top
             });
+            */
         });
     };
 
 	var unFixed = function() {
         $("." + opts.fixClassName).removeClass(opts.fixClassName).css({left:0});
 	}
-
 
     /**
      * 外部函数
@@ -129,14 +145,18 @@ function FixCol() {
         setFixed();
     };
 
-    this.startFixed = setFixed;
+    this.startFixed = setFixed; 
     this.stopFixed = unFixed;
 
     $(window).bind("scroll", lightReFixed);
     
-    if(!(c.isie8 || c.isie7 || c.isieold)){
+    /**
+    if(c.isie8 || c.isie7 || c.isieold){
+        // empty
+    }else{
         $(window).bind("resize", lightReFixed);
     }
+    */
 
     return this;
 }
