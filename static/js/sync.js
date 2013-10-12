@@ -7,10 +7,12 @@ function load_header() {
 }
 $(function() {
     /** 返回顶部 */
+    /*
     var offset = $("#container").offset();
     var w = $("#container").width();
+    */
 	var $backToTopTxt = "返回顶部",
-	$backToTopEle = $('<a class="backToTop"></a>').appendTo($("body")).css({left:offset.left + w + 20}).text($backToTopTxt).attr("title", $backToTopTxt).click(function() {
+	$backToTopEle = $('<a class="backToTop"></a>').appendTo($("body")).text($backToTopTxt).attr("title", $backToTopTxt).click(function() {
 		$("html, body").animate({
 			scrollTop: 0
 		},
@@ -26,11 +28,13 @@ $(function() {
 		}
 	};
 	$(window).bind("scroll", $backToTopFun);
+    /*
     $(window).bind("resize", function(){
         var offset = $("#container").offset();
         var w = $("#container").width();
         $backToTopEle.css({left:offset.left + w + 20}); 
     });
+    */
 	$(function() {
 		$backToTopFun();
 	});
