@@ -1171,8 +1171,15 @@ $.extend(Datepicker.prototype, {
 	 * @param  input  element - the input field attached to the date picker
 	 */
 	_hideDatepicker: function(input) {
+
+
 		var showAnim, duration, postProcess, onClose,
 			inst = this._curInst;
+
+        // 清除星期 by shaotian.hu;
+        if(inst.settings.showDay && inst.input.val().length==0){
+            inst.dayWrapper.empty();
+        }
 
 		if (!inst || (input && inst !== $.data(input, PROP_NAME))) {
 			return;
