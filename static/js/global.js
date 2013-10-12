@@ -28,18 +28,21 @@ PopWindow.prototype = {
     init:function(){
         this.render();
         this.bindClick();
+
         return this.win;
     }, 
     render:function(){
         var windowEle = $('<div class="popup-window">');
         windowEle.appendTo($('body'));
+        var that = this;
 
         var opts = this.settings;
+        var tmpl = $(opts.template).html();
 
         if ( typeof opts.content === 'undefined'
             && opts.template ) {
                 opts.content = {
-                    template : kendo.template($(opts.template).html())(opts.data||{}) 
+                    template : kendo.template(tmpl)(opts.data||{}) 
                 }
         }
 
@@ -48,6 +51,10 @@ PopWindow.prototype = {
         }else{
             this.win = windowEle.kendoWindow( opts ).data('kendoWindow'); 
             this.win.triggerEle = this.trigger;
+            this.win.data = function(d){
+                var newcontent =  kendo.template(tmpl)(d);
+                that.win.content(newcontent); 
+            }
         }
     },
     bindClick:function(){
