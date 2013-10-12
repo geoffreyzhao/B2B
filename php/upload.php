@@ -5,7 +5,7 @@ if(isset($_FILES['Filedata'])){
 
     if(move_uploaded_file($_FILES['Filedata']['tmp_name'],$target))
     {
-        echo '//devel/tmp/'.$_FILES['Filedata']['name'];//$chmod o+rw galleries
+        echo '//'.$_SERVER['SERVER_NAME'].'/php/tmp/'.$_FILES['Filedata']['name'];//$chmod o+rw galleries
     }
     else{
         echo "wrong";
