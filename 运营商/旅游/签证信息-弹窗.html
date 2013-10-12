@@ -39,171 +39,165 @@
 
 
 <script type="text/html" id="tp1">
-    <div data-bind="attr:{class:status},text:name,click:click"></div>
+    <div data-bind="attr:{class:status},text:name"></div>
 </script>
 
 <script type="text/html" id="tp2">
-    <td><div data-bind="attr:{class:status},text:name,click:click"></div></td>
+    <td><div data-bind="attr:{class:status},text:name"></div></td>
 </script>
 
 <script type="text/javascript">
-    var lc={name:"材料到齐/已齐",click:function(){clickLc(this);},children:[
+    var lc={name:"材料到齐/已齐",children:[
                 {name:"预约",children:[
                     {name:"面试",children:[
-                        {name:"拒签",children:[],status:"uncomplete",click:function(){clickLc(this)}},
+                        {name:"拒签",children:[],status:"uncomplete"},
                         {name:"审查",children:[
-                            {name:"通过",children:[],status:"uncomplete",click:function(){clickLc(this)}},
-                            {name:"不通过",children:[],status:"uncomplete",click:function(){clickLc(this)}}
-                        ],status:"uncomplete",click:function(){clickLc(this)}},
-                        {name:"出签",children:[],status:"uncomplete",click:function(){clickLc(this)}}
-                    ],status:"uncomplete",click:function(){clickLc(this)}}],status:"uncomplete",click:function(){clickLc(this)}}
+                            {name:"通过",children:[],status:"uncomplete"},
+                            {name:"不通过",children:[],status:"uncomplete"}
+                        ],status:"uncomplete"},
+                        {name:"出签",children:[],status:"uncomplete"}
+                    ],status:"uncomplete"}],status:"uncomplete"}
                 ],status:"uncomplete",canvasID:"canvas",tbel:"tbl_AmericanVisa"
             };
     var noInterview_lc={name:"材料到齐/已齐",children:[
                             {name:"预约",children:[
                                 {name:"面试",children:[
-                                    {name:"通过",children:[],status:"uncomplete",click:function(){clickLc(this)}},
-                                    {name:"不通过",children:[],status:"uncomplete",click:function(){clickLc(this)}}
-                                ],status:"uncomplete",click:function(){clickLc(this)}}
-                            ],status:"uncomplete",click:function(){clickLc(this)}}
-                        ],status:"uncomplete",click:function(){clickLc(this)},canvasID:"canvas",tbel:"tbl_AmericanVisa"
+                                    {name:"通过",children:[],status:"uncomplete"},
+                                    {name:"不通过",children:[],status:"uncomplete"}
+                                ],status:"uncomplete"}
+                            ],status:"uncomplete"}
+                        ],status:"uncomplete"
             };
 
-    var canadaVisa={name:"材料到齐/已齐",click:function(){clickLc(this);},children:[
+    var canadaVisa={name:"材料到齐/已齐",children:[
                         {name:"已送签",children:[
-                                {name:"拒签",children:[],status:"uncomplete",click:function(){clickLc(this)}},
-                                {name:"出签",children:[],status:"uncomplete",click:function(){clickLc(this)}}
-                            ],status:"uncomplete",click:function(){clickLc(this)}}
-                        ],status:"uncomplete",click:function(){clickLc(this)},canvasID:"canvas1",tbel:"tbl_CanadaVisa"
+                                {name:"拒签",children:[],status:"uncomplete"},
+                                {name:"出签",children:[],status:"uncomplete"}
+                            ],status:"uncomplete"}
+                        ],status:"uncomplete",canvasID:"canvas1",tbel:"tbl_CanadaVisa"
                     };
-    model=kendo.observable(lc);
-
-    modelCanada=kendo.observable(canadaVisa);
-
-    function init(m,el,tpID,warpEl,tbel){
-        var index=new kendo.View(tpID,{model:m,tagName:warpEl});
-        el.append(index.render());
-        switch(m.children.length)
-        {
-            case 0:return;break;
-            case 1:init(m.children[0],el,"tp1","td",tbel);break;
-            default:
-                var td=$("<td></td>").insertAfter($("#"+tbel).find("td:last"));
-                var tbl=$("<table></table>").appendTo(td);
-                for(var i=0;i< m.children.length;i++)
-                {
-                    init(m.children[i],tbl,"tp2","tr",tbel);
-                }
-        }
-    }
-
-
-
-    function clickLc(el){
-        var tmpel=el;
-        while(!tmpel.canvasID)
-        {
-            if(tmpel.parent().parent())
-            {
-                tmpel=tmpel.parent().parent();
-            }
-            else{
-                throw new Error("数据异常");
-            }
-
-        }
-        clearModelStatus(tmpel);
-        changeModelStatus(el);
-        el.set("status","complete current");
-        var canvasID,tbel;
-
-
-        canvasID=tmpel.canvasID;
-        tbel=tmpel.tbel;
-
-        resize(canvasID,tbel);
-    }
-
-    function clearModelStatus(m)
-    {
-        if(m.status.indexOf("complete"))
-        {
-            return;
-        }
-        else
-        {
-            m.set("status","uncomplete");
-            if(m.children.length==0)
-            {
-                return;
-            }
-            else
-            {
-                for(var i=0;i< m.children.length;i++)
-                {
-                    clearModelStatus(m.children[i]);
-                }
-            }
-        }
-    }
-
-    function changeModelStatus(m)
-    {
-        m.set("status","complete");
-        if(m.parent())
-            changeModelStatus(m.parent().parent());
-    }
-
-    function resize(canvasID,tbel){
-        var w=$("#"+tbel).outerWidth();
-        var h=$("#"+tbel).outerHeight();
-        $("#"+tbel).parent("div").css({height:h});
-        var ctx=document.getElementById(canvasID).getContext("2d");
-        document.getElementById(canvasID).width=w;
-        document.getElementById(canvasID).height=h;
-        ctx.clearRect(0,0,w,h);
-        ctx.beginPath();
-
-        $("#"+tbel).find("td").each(function(){
-            ctx.beginPath();
-            var td1=$(this);
-            $(this).children("div").hasClass("complete")?ctx.strokeStyle="#FF6600":ctx.strokeStyle="#C1C1C1";
-            if($(this).closest("table").attr("id")!=tbel && !$(this).prev("td").length)
-            {
-                var p=td1.closest("table").parent();
-                ctx.moveTo(p.position().left+10, p.position().top+ p.outerHeight()/2);
-                ctx.lineTo(p.position().left+10,td1.position().top+td1.outerHeight()/2);
-                ctx.lineTo(td1.position().left+10,td1.position().top+td1.outerHeight()/2);
-                ctx.stroke();
-            }
-            ctx.beginPath();
-            $(this).closest("td").nextAll().find("*").hasClass("complete") || $(this).nextAll().hasClass("complete")?ctx.strokeStyle="#FF6600":ctx.strokeStyle="#C1C1C1";
-            ctx.moveTo(td1.position().left+td1.width()+10,td1.position().top+td1.outerHeight()/2);
-            var td2=$(this).next();
-            if(td2.length)
-            {
-                ctx.lineTo(td2.position().left+10,td2.position().top+td2.outerHeight()/2);
-                ctx.stroke();
-            }
-        })
-    }
-
-    function createVisLC(modelName,tblName,canvasName)
-    {
-        init(modelName,$("#"+tblName),"tp1","td",tblName);
-        resize(canvasName,tblName);
-    }
 
     $(function(){
-        createVisLC(model,"tbl_AmericanVisa","canvas");
+        cv=$.sequence({data:canadaVisa,tblName:"tbl_CanadaVisa",canvasName:"canvas1"});
+        $.sequence({data:lc,tblName:"tbl_AmericanVisa",canvasName:"canvas"});
         $(":radio[name=needInterview]").change(function(){
-            model=$(this).val()=="need"?kendo.observable(lc):kendo.observable(noInterview_lc);
             $("#tbl_AmericanVisa").html("");
-            createVisLC(model,"tbl_AmericanVisa","canvas");
+            $.sequence({data:$(this).val()=="need"?lc:noInterview_lc,tblName:"tbl_AmericanVisa",canvasName:"canvas"});
         })
-        createVisLC(modelCanada,"tbl_CanadaVisa","canvas1");
-    })
+    });
 
+    (function($){
+        $.sequence=function(options){
+
+
+            function init(m,el,tpID,warpEl,tbel){
+                var index=new kendo.View(tpID,{model:m,tagName:warpEl});
+                el.append($(index.render()).bind("click",function(){
+                    clickLc(m);
+                    return false;
+                }));
+                switch(m.children.length)
+                {
+                    case 0:return;break;
+                    case 1:init(m.children[0],el,"tp1","td",tbel);break;
+                    default:
+                        var td=$("<td></td>").insertAfter($("#"+tbel).find("td:last"));
+                        var tbl=$("<table></table>").appendTo(td);
+                        for(var i=0;i< m.children.length;i++)
+                        {
+                            init(m.children[i],tbl,"tp2","tr",tbel);
+                        }
+                }
+            }
+
+
+
+            function clickLc(el){
+                clearModelStatus(model);
+                changeModelStatus(el);
+                el.set("status","complete current");
+                resize(options.canvasName,options.tblName);
+                return false;
+            }
+
+            function clearModelStatus(m)
+            {
+                if(m.status.indexOf("complete"))
+                {
+                    return;
+                }
+                else
+                {
+                    m.set("status","uncomplete");
+                    if(m.children.length==0)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        for(var i=0;i< m.children.length;i++)
+                        {
+                            clearModelStatus(m.children[i]);
+                        }
+                    }
+                }
+            }
+
+            function changeModelStatus(m)
+            {
+                m.set("status","complete");
+                if(m.parent())
+                    changeModelStatus(m.parent().parent());
+            }
+
+            function resize(canvasID,tbel){
+                var w=$("#"+tbel).outerWidth();
+                var h=$("#"+tbel).outerHeight();
+                $("#"+tbel).parent("div").css({height:h});
+                var ctx=document.getElementById(canvasID).getContext("2d");
+                document.getElementById(canvasID).width=w;
+                document.getElementById(canvasID).height=h;
+                ctx.clearRect(0,0,w,h);
+                ctx.beginPath();
+
+                $("#"+tbel).find("td").each(function(){
+                    ctx.beginPath();
+                    var td1=$(this);
+                    $(this).children("div").hasClass("complete")?ctx.strokeStyle="#FF6600":ctx.strokeStyle="#C1C1C1";
+                    if($(this).closest("table").attr("id")!=tbel && !$(this).prev("td").length)
+                    {
+                        var p=td1.closest("table").parent();
+                        ctx.moveTo(p.position().left+10, p.position().top+ p.outerHeight()/2);
+                        ctx.lineTo(p.position().left+10,td1.position().top+td1.outerHeight()/2);
+                        ctx.lineTo(td1.position().left+10,td1.position().top+td1.outerHeight()/2);
+                        ctx.stroke();
+                    }
+                    ctx.beginPath();
+                    $(this).closest("td").nextAll().find("*").hasClass("complete") || $(this).nextAll().hasClass("complete")?ctx.strokeStyle="#FF6600":ctx.strokeStyle="#C1C1C1";
+                    ctx.moveTo(td1.position().left+td1.width()+10,td1.position().top+td1.outerHeight()/2);
+                    var td2=$(this).next();
+                    if(td2.length)
+                    {
+                        ctx.lineTo(td2.position().left+10,td2.position().top+td2.outerHeight()/2);
+                        ctx.stroke();
+                    }
+                })
+            }
+
+            function createVisLC(tblName,canvasName)
+            {
+                $("#"+tblName).html("");
+                init(model,$("#"+tblName),"tp1","td",tblName);
+                resize(canvasName,tblName);
+            }
+
+            var model= kendo.observable($.type(options.data)=="string"? $.parseJSON(options.data):options.data);
+
+            createVisLC(options.tblName,options.canvasName);
+
+            return model;
+        }
+    })(jQuery);
 </script>
 
 </body>
