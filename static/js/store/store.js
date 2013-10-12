@@ -45,6 +45,13 @@ $(function() {
 			showButtonPanel :true
 		};
 
+        var dpSettingShort = {
+            css : {"z-index": 20000},
+			numberOfMonths:[1,2],
+			firstDay:0,
+			showButtonPanel :true
+		};
+
 
         var dpEle = $(".datepicker");
 
@@ -52,6 +59,8 @@ $(function() {
             var item = $(this);
             if( item.hasClass("dpUlt") ){
                 item.datepicker(dpSettingUlt);
+            }else if(item.hasClass("dpShort")){
+                item.datepicker(dpSettingShort);
             }else{
                 item.datepicker(dpSetting);
             }
