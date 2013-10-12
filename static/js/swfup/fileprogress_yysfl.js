@@ -186,7 +186,7 @@ function fileQueueError(file, errorCode, message) {
             errorText = "文件大小为0";
 			break;
 		case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
-            errorText = "不支持的文件类型";
+            errorText = "不支持的类型";
 			break;
 		case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
 			alert("超过数量限制  " +  (message > 1 ? "only " +  message + " files" : " can not add any more."));
