@@ -574,6 +574,7 @@ $.loadingbar = function(settings) {
     var xhr;
     var cfg = $.extend({},defaults,settings);
     var postext;
+    var countXhrSending = 0;
 
 
     if(cfg.container==='body'){
@@ -612,44 +613,43 @@ $.loadingbar = function(settings) {
     }
 
     $(document).ajaxSend(function(event, jqxhr, settings) {
-        var state = false;
+        countXhrSending +=1;
         var surl = settings.url;
         if(typeof cfg.urls != 'undefined'){
             $.each(cfg.urls,function(i,item){
                 if($._type(item) === 'regexp'){
                     if(item.exec(surl)) {
-                        state = true;
+                        spin_wrap.show();
                         return false;
                     } 
                 }else if($._type(item) === 'string'){
                     if(item === surl) {
-                        state = true;
+                        spin_wrap.show();
                         return false;
                     } 
                 }else{
                     throw new Error('[urls] type error,string or regexp required');
                 }
             });
-        }
-
-        if(state){
-            spin_wrap.show();
-        }
-
-        if(typeof cfg.urls === 'undefined'){
+        } else {
             spin_wrap.show();
         }
 
         if(cfg.showClose){
-            $('.loading_close').on('click',function(){
+            $('.loading_close').on('click',function(e){
                 jqxhr.abort();
+                countXhrSending=0;
                 spin_wrap.hide();
+                $(this).off('click');
             });
         }
     });
 
-    $(document).ajaxStop(function() {
-        if(!cfg.debug){
+    $(document).ajaxComplete(function(e) {
+        if(countXhrSending > 0){
+            countXhrSending-=1;
+        }
+        if(!cfg.debug && countXhrSending==0){
             spin_wrap.hide();
         }
     });
