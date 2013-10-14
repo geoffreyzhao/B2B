@@ -574,7 +574,6 @@ $.loadingbar = function(settings) {
     var xhr;
     var cfg = $.extend({},defaults,settings);
     var postext;
-    var countXhrSending = 0;
 
 
     if(cfg.container==='body'){
@@ -613,7 +612,6 @@ $.loadingbar = function(settings) {
     }
 
     $(document).ajaxSend(function(event, jqxhr, settings) {
-        countXhrSending +=1;
         var surl = settings.url;
         if(typeof cfg.urls != 'undefined'){
             $.each(cfg.urls,function(i,item){
@@ -638,18 +636,15 @@ $.loadingbar = function(settings) {
         if(cfg.showClose){
             $('.loading_close').on('click',function(e){
                 jqxhr.abort();
-                countXhrSending=0;
-                spin_wrap.hide();
+                $.event.trigger('ajaxStop');
+                $.active = 0;
                 $(this).off('click');
             });
         }
     });
 
-    $(document).ajaxComplete(function(e) {
-        if(countXhrSending > 0){
-            countXhrSending-=1;
-        }
-        if(!cfg.debug && countXhrSending==0){
+    $(document).ajaxStop(function(e) {
+        if(!cfg.debug){
             spin_wrap.hide();
         }
     });
