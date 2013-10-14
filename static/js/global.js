@@ -612,16 +612,17 @@ $.loadingbar = function(settings) {
 
     $(document).ajaxSend(function(event, jqxhr, settings) {
         var surl = settings.url;
+        var state = false;
         if(typeof cfg.urls != 'undefined'){
             $.each(cfg.urls,function(i,item){
                 if($._type(item) === 'regexp'){
                     if(item.exec(surl)) {
-                        spin_wrap.show();
+                        state = true;
                         return false;
                     } 
                 }else if($._type(item) === 'string'){
                     if(item === surl) {
-                        spin_wrap.show();
+                        state = true;
                         return false;
                     } 
                 }else{
@@ -629,6 +630,10 @@ $.loadingbar = function(settings) {
                 }
             });
         } else {
+            spin_wrap.show();
+        }
+
+        if(state){
             spin_wrap.show();
         }
 
