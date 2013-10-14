@@ -565,7 +565,6 @@ var CityAutocomplete = function(settings){
 // 加载谈层
 $.loadingbar = function(settings) {
     var defaults = {
-        debug:false,
         container: 'body',
         showClose: true,
         template:'',
@@ -636,17 +635,15 @@ $.loadingbar = function(settings) {
         if(cfg.showClose){
             $('.loading_close').on('click',function(e){
                 jqxhr.abort();
-                $.event.trigger('ajaxStop');
                 $.active = 0;
+                spin_wrap.hide();
                 $(this).off('click');
             });
         }
     });
 
     $(document).ajaxStop(function(e) {
-        if(!cfg.debug){
-            spin_wrap.hide();
-        }
+        spin_wrap.hide();
     });
 
 
