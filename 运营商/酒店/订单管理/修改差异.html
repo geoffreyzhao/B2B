@@ -307,14 +307,34 @@
 </div>
 
 </div>
+<a href="javascript:;" class="button_secondary adaptiveButton small" style="" id="btn_cancelBooking">
+    <span class="left"></span>
+    <span class="center" style="padding:0 2px">取消预订</span>
+    <span class="right"></span>
+</a>
+
+<script type="text/html" id="cancelBookingTemplate">
+    <div><textarea name="" id="" style="width:545px" rows="10"></textarea></div>
+    <div style="text-align:right;margin:35px 20px 0 0">
+        <a href="javascript:;" class="button_1_2">保&nbsp;存</a>
+        <a href="javascript:;" class="button_2_2 close">取&nbsp;消</a>
+    </div>
+</script>
 </div>
 
 <script type="text/javascript" src="../../../static/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../../static/js/kendo.web.js"></script>
+<script type="text/javascript" src="../../../static/js/global.js"></script>
 <script type="text/javascript">
     $("#btn_addbgqx").click(function(){
         $("#bgqx_content").text("入住前"+$("#ipt_Date").val()+"天"+$("#ipt_Time").val()+"点变更或取消，"+$("#sel_rule").val());
         $(this).text("修改");
     })
+
+    new PopWindow("#btn_cancelBooking",{
+        template:"#cancelBookingTemplate",
+        title:"取消原因"
+    }).init();
 </script>
 
 </body>
