@@ -648,15 +648,11 @@ $.loadingbar = function(settings) {
         }
     });
 
-    var hide_spin_wrap = function(){
+    $(document).ajaxStop(function() {
         if(!cfg.debug){
             spin_wrap.hide();
         }
-    };
-
-    $(document).ajaxStop(hide_spin_wrap);
-    $(document).ajaxComplete(hide_spin_wrap);
-    $(document).ajaxError(hide_spin_wrap);
+    });
 
 
 };
