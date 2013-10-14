@@ -565,7 +565,6 @@ var CityAutocomplete = function(settings){
 // 加载谈层
 $.loadingbar = function(settings) {
     var defaults = {
-        debug:false,
         container: 'body',
         showClose: true,
         template:'',
@@ -612,8 +611,8 @@ $.loadingbar = function(settings) {
     }
 
     $(document).ajaxSend(function(event, jqxhr, settings) {
-        var state = false;
         var surl = settings.url;
+        var state = false;
         if(typeof cfg.urls != 'undefined'){
             $.each(cfg.urls,function(i,item){
                 if($._type(item) === 'regexp'){
@@ -630,28 +629,26 @@ $.loadingbar = function(settings) {
                     throw new Error('[urls] type error,string or regexp required');
                 }
             });
+        } else {
+            spin_wrap.show();
         }
 
         if(state){
             spin_wrap.show();
         }
 
-        if(typeof cfg.urls === 'undefined'){
-            spin_wrap.show();
-        }
-
         if(cfg.showClose){
-            $('.loading_close').on('click',function(){
+            $('.loading_close').on('click',function(e){
                 jqxhr.abort();
+                $.active = 0;
                 spin_wrap.hide();
+                $(this).off('click');
             });
         }
     });
 
-    $(document).ajaxStop(function() {
-        if(!cfg.debug){
-            spin_wrap.hide();
-        }
+    $(document).ajaxStop(function(e) {
+        spin_wrap.hide();
     });
 
 
