@@ -6,9 +6,14 @@
 <link rel="stylesheet" href="../static/css/kendo.common.min.css" />
 <link rel="stylesheet" href="../static/css/kendo.gray.css" />
 <link rel="stylesheet" href="../static/css/common.css" />
+    <link rel="stylesheet" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css" />
+
 <link rel="stylesheet" href="../static/css/b2b.css" />
 <link rel="stylesheet" href="../static/css/kendo.reset.css" />
 <script type="text/javascript" src="../static/js/jquery.min.js"></script>
+<script src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+	<script src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+
 <script type="text/javascript" src="../static/js/kendo.web.js"></script>
 <style type="text/css">
 
@@ -38,7 +43,7 @@
             <div class="example">
                 <h3>多个 规则叠加 custom1 required  </h3>
                 <h4>多个验证规则</h4>
-                <span>b2</span><input type="text" custom1 required name="b2" />
+                <span>b2</span><input type="text"  custom1 required name="b2" />
             </div>
 
             <div class="example">
@@ -48,7 +53,7 @@
                 </div>
                 <h3>定义显示错误的位置 right </h3>
                 <div>
-                    <span>c2</span><input type="text" k-msg-position="right" required name="c2"/>
+                    <span>c2</span><input type="text" k-msg-position="right" class="datepicker" required name="c2"/>
                 </div>
 
                 <h3>定义显示错误的位置 以及偏移量</h3>
@@ -108,6 +113,12 @@
     <script>
 var validator;
         $(function(){
+
+            $( ".datepicker" ).datepicker({
+                numberOfMonths:[1,2],
+                showButtonPanel :true
+            });
+
             kendo.init('body');
             validator = $("#form1").kendoValidator({
                 messages : {

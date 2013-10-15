@@ -3,14 +3,14 @@
 <head>
     <title></title>
     <meta charset="utf-8" />
-    <link href="/static/css/kendo.common.min.css" rel="stylesheet" />
+    <link href="/static/css/kendo.common.css" rel="stylesheet" />
     <link href="/static/css/kendo.gray.css" rel="stylesheet" />
     <link href="/static/css/common.css" rel="stylesheet" />
     <link href="/static/css/b2b.css" rel="stylesheet" />
     <link href="/static/css/kendo.reset.css" rel="stylesheet" />
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/kendo.web.js"></script>
-    <script src="f1.js"></script>
+    <script src="/static/js/global.js"></script>
     <script src="product.js"></script>
 
     <style>
@@ -140,7 +140,7 @@ $(document).ready(function() {
 		//height:400,
 		dataBound: function(e) {
 			console.log(e);
-			var f = FixCol(e);
+            var f = FixCol(e,{xchange:false});
             f.startFixed();
 		},
 		pageable: {
@@ -167,7 +167,7 @@ $(document).ready(function() {
 			width: "300px"
 		},
 		{
-			width: "auto",
+			width: "200px",
 			field: "Discontinued",
                    template:kendo.template($("#operator").html())
 		}]
