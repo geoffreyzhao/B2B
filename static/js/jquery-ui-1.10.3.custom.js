@@ -1090,7 +1090,6 @@ $.extend(Datepicker.prototype, {
 		this._attachHandlers(inst);
 		inst.dpDiv.find("." + this._dayOverClass + " a").mouseover();
 
-
         // by shaotian.hu
         if(inst.settings.showDay){
             $.datepicker._setDay(inst)
@@ -1302,7 +1301,6 @@ $.extend(Datepicker.prototype, {
 
 	/* Action for selecting a day. */
 	_selectDay: function(id, month, year, td) {
-
 		var inst,
 			target = $(id);
 
@@ -1326,8 +1324,6 @@ $.extend(Datepicker.prototype, {
 
 	/* Update the input field with the selected date. */
 	_selectDate: function(id, dateStr) {
-
-
 		var onSelect,
 			target = $(id),
 			inst = this._getInst(target[0]);
@@ -1912,6 +1908,10 @@ $.extend(Datepicker.prototype, {
 				},
 				selectDay: function () {
 					$.datepicker._selectDay(id, +this.getAttribute("data-month"), +this.getAttribute("data-year"), this);
+                    // by shaotian.hu
+                    if(inst.settings.showDay){
+                        $.datepicker._setDay(inst)
+                    }
 					return false;
 				},
 				selectMonth: function () {
