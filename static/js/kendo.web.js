@@ -10213,7 +10213,6 @@ kendo_module({
             validateOnBlur: true,
             validateOnChange: true,
             errorMsgShow:true,
-            errorMsgWidthEqualInput:true,
             stopOnFirstInvalid:false,
             defaultErrorMsgPosition:"right",
             errorMsgPosition:["right","bottom"],
@@ -10367,9 +10366,21 @@ kendo_module({
                 var pcss = input.attr("k-msg-css");
 
                 try {
-                    var pcssObj = pcss != undefined ? eval("(" + pcss + ")") : {top: 0, left:0};
+                    var pcssObj = pcss != undefined ? eval("(" + pcss + ")") : {top: 0, left:0, equalInput:false};
                 } catch(err){
-                    pcssObj = {top:0,left:0};
+                    pcssObj = {top:0,left:0,equalInput:false};
+                }
+
+                if(!pcssObj.equalInput){
+                    pcssObj.equalInput = false;
+                }
+
+                if(!pcssObj.left){
+                    pcssObj.left = 0;
+                }
+
+                if(!pcssObj.top){
+                    pcssObj.top = 0;
                 }
 
                 if(p){
@@ -10417,7 +10428,7 @@ kendo_module({
                     if(p == "bottom"){
                         $(".message_ct > .arrow", messageLabel).removeClass("arrow_west arrow_east arrow_south").addClass("arrow_north");
 
-                        if(that.options.errorMsgWidthEqualInput){
+                        if(pcssObj.equalInput){
                             labelSetting.width = input.width() - that.options.errorLabelPadding;
                         }
 
