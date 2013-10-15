@@ -240,6 +240,7 @@ function FixCol(target,userOpts) {
             l = p.left + w - last_w;
             td.css({
                 left: l,
+                top:td_offset.top - d.top,
                 zIndex: index + 1
             }).data(opts.offsetName,{left: l,top:td_offset.top});
 		});
@@ -249,6 +250,7 @@ function FixCol(target,userOpts) {
 
         th.css({
             left:l,
+            top:th_offset.top - d.top,
             zIndex:0
         }).data(opts.offsetName,{left: l,top:th_offset.top});
 
