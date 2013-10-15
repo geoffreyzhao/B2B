@@ -1885,7 +1885,7 @@ $.extend(Datepicker.prototype, {
 
     // by shaotian.hu
     _setDay: function(inst){
-        var week = ['周日','周一','周二','周三','周四','周五','周六'];
+        var week = this._get(inst,"dayNamesShort");
         var index = new Date(this._getDate(inst)||inst.input.val()).getDay();
         inst.dayWrapper.text(week[index]);
     },
