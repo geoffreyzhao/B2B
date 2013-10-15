@@ -10211,6 +10211,7 @@ kendo_module({
                 }
             },
             validateOnBlur: true,
+            validateOnChange: true,
             errorMsgShow:true,
             errorMsgWidthEqualInput:true,
             stopOnFirstInvalid:false,
@@ -10246,11 +10247,22 @@ kendo_module({
                 that.element.on("submit" + NS, proxy(that._submit, that));
             }
 
+            /**
+             * add by clb ,add change event to trigger validateInput
+             *
+             */
+            if(that.options.validateOnChange){
+                that.element.on('change' + NS, INPUTSELECTOR, function() {
+                    that.validateInput($(this));
+                });
+            }
+
             if (that.options.validateOnBlur) {
                 if (!that.element.is(INPUTSELECTOR)) {
                     that.element.on(BLUR + NS, INPUTSELECTOR, function() {
                         that.validateInput($(this));
                     });
+
 
                     that.element.on("click" + NS, CHECKBOXSELECTOR, function() {
                         that.validateInput($(this));
