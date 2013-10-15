@@ -1,3 +1,74 @@
+/** 
+ * window.onresize 事件 专用事件绑定器 v0.1 Alucelx 
+ * http://www.cnblogs.com/Alucelx/archive/2011/10/20/2219263.html 
+ * <description> 
+ * 用于解决 lte ie8 & chrome 及其他可能会出现的 原生 window.resize 事件多次执行的 BUG. 
+ * </description> 
+ * <methods> 
+ * add: 添加事件句柄 
+ * remove: 删除事件句柄 
+ * </methods> 
+ */ 
+var onWindowResize = function(){ 
+    //事件队列 
+    var queue = [], 
+        indexOf = Array.prototype.indexOf || function(){ 
+            var i = 0, length = this.length; 
+            for( ; i < length; i++ ){ 
+                if(this[i] === arguments[0]){ 
+                    return i; 
+                } 
+            } 
+            return -1; 
+        }; 
+    var isResizing = {}, //标记可视区域尺寸状态， 用于消除 lte ie8 / chrome 中 window.onresize 事件多次执行的 bug 
+        lazy = true, //懒执行标记 
+        listener = function(e){ //事件监听器 
+            var h = window.innerHeight || (document.documentElement && document.documentElement.clientHeight) || document.body.clientHeight, 
+            w = window.innerWidth || (document.documentElement && document.documentElement.clientWidth) || document.body.clientWidth; 
+            if( h === isResizing.h && w === isResizing.w){ 
+                return; 
+            }else{ 
+                e = e || window.event; 
+                var i = 0, len = queue.length; 
+                for( ; i < len; i++){ 
+                    queue[i].call(this, e); 
+                } 
+                isResizing.h = h, 
+                    isResizing.w = w; 
+            } 
+        } 
+    return { 
+        add: function(fn){ 
+                 if(typeof fn === 'function'){ 
+                     if(lazy){ //懒执行 
+                         if(window.addEventListener){ 
+                             window.addEventListener('resize', listener, false); 
+                         }else{ 
+                             window.attachEvent('onresize', listener); 
+                         } 
+                         lazy = false; 
+                     } 
+                     queue.push(fn); 
+                 }else{ } 
+                 return this; 
+             }, 
+        remove: function(fn){ 
+                    if(typeof fn === 'undefined'){ 
+                        queue = []; 
+                    }else if(typeof fn === 'function'){ 
+                        var i = indexOf.call(queue, fn); 
+                        if(i > -1){ 
+                            queue.splice(i, 1); 
+                        } 
+                    } 
+                    return this; 
+                } 
+    }; 
+}.call(this); 
+
+
+
 function FixCol(target,userOpts) {
 	if (typeof(target) == "undefined") {
 		return;
@@ -8,6 +79,7 @@ function FixCol(target,userOpts) {
         fixLineName : "fixline",
         offsetName: "offset",
 		kendoGrid: false,
+        xchange : true,
         autoWrap: false,
         lastChangeIndex: 0,
         lineAddUp: -60
@@ -29,7 +101,7 @@ function FixCol(target,userOpts) {
         c.isie8 = c.isie && "documentMode" in document && 8 == document.documentMode;
         c.isie9 = c.isie && "performance" in window && 9 <= document.documentMode;
         c.isie10 = c.isie && "performance" in window && 10 <= document.documentMode;
-
+        c.ischrome = "chrome" in window;
 
 	if (typeof(t.sender.wrapper) != "undefined") {
 		opts = {
@@ -65,34 +137,35 @@ function FixCol(target,userOpts) {
 
 
     if(c.isieold || c.isie7){
+        if(opts.xchange){
+            opts.lastChangeIndex = opts.lastChangeIndex < 0 ? 0 : opts.lastChangeIndex;
+            var fields =  $("tr:eq(0) th",thead).size();
+            opts.lastChangeIndex = opts.lastChangeIndex > fields ? fields : opts.lastChangeIndex; 
 
-        opts.lastChangeIndex = opts.lastChangeIndex < 0 ? 0 : opts.lastChangeIndex;
-        var fields =  $("tr:eq(0) th",thead).size();
-        opts.lastChangeIndex = opts.lastChangeIndex > fields ? fields : opts.lastChangeIndex; 
 
+            var colgroup = $("colgroup",table);
 
-        var colgroup = $("colgroup",table);
+            if(colgroup){
+                $("colgroup",thead).each(function(){
+                    var col = $("col:last",this);
+                    col.insertBefore($("col:eq(" + opts.lastChangeIndex  + ")", this));
+                });
+                $("colgroup",tbody).each(function(){
+                    var col = $("col:last",this);
+                    col.insertBefore($("col:eq(" + opts.lastChangeIndex  + ")", this));
+                });
+            }
 
-        if(colgroup){
-            $("colgroup",thead).each(function(){
-                var col = $("col:last",this);
-                col.insertBefore($("col:eq(" + opts.lastChangeIndex  + ")", this));
+            $("tr",thead).each(function(){
+                var o = $("th:last",this);
+                var ins = $("th:eq(" + opts.lastChangeIndex + ")", this).css({"border-left-width":1});
+                o.insertBefore(ins);
             });
-            $("colgroup",tbody).each(function(){
-                var col = $("col:last",this);
-                col.insertBefore($("col:eq(" + opts.lastChangeIndex  + ")", this));
+            $("tr",tbody).each(function(){
+                var o = $("td:last",this);
+                o.insertBefore($("td:eq(" + opts.lastChangeIndex + ")", this));
             });
         }
-
-        $("tr",thead).each(function(){
-            var o = $("th:last",this);
-            var ins = $("th:eq(" + opts.lastChangeIndex + ")", this).css({"border-left-width":1});
-            o.insertBefore(ins);
-        });
-        $("tr",tbody).each(function(){
-            var o = $("td:last",this);
-            o.insertBefore($("td:eq(" + opts.lastChangeIndex + ")", this));
-        });
 
         this.startFixed = function(){
             //empty;
@@ -101,7 +174,16 @@ function FixCol(target,userOpts) {
         this.stopFixed = function(){
             //empty;
         };
+
+        this.resizeFixed = function(){
+            //empty;
+        };
+
         return this;
+    }else{
+        $("colgroup",wrapper).each(function(){
+            $("col:last",this).css({width:"auto"});
+        });
     }
 
 	/* 容器宽度 */
@@ -158,6 +240,7 @@ function FixCol(target,userOpts) {
             l = p.left + w - last_w;
             td.css({
                 left: l,
+                top:td_offset.top - d.top,
                 zIndex: index + 1
             }).data(opts.offsetName,{left: l,top:td_offset.top});
 		});
@@ -167,25 +250,36 @@ function FixCol(target,userOpts) {
 
         th.css({
             left:l,
+            top:th_offset.top - d.top,
             zIndex:0
         }).data(opts.offsetName,{left: l,top:th_offset.top});
 
         th.addClass(opts.fixClassName);
 
-        var vline = $('<div class="' + opts.fixClassName + ' ' + opts.fixLineName + ' "></div>').data(opts.offsetName,{left: l,top:th_offset.top}).css({
+        if(!this.vline){
+            this.vline = $('<div class="' + opts.fixLineName + '"></div>');
+            wrapper.append(vline);
+        }
+
+        this.vline.css({
             left:l,
             zIndex:100,
-            top: th_offset.top,
-            height: wrapper.height() + opts.lineAddUp + (c.isie8 ? -25 : 0) 
+            top: th_offset.top - d.top,
+            height: wrapper.height() + opts.lineAddUp
         });
 
-        wrapper.append(vline);
 	}
 
     var lightReFixed = function(){
         var d = getDocScroll();
+        var firstTop ;
         $("." + opts.fixClassName).each(function(){
             var a = $(this).data(opts.offsetName);
+
+            if(!firstTop){
+                firstTop = a.top - d.top;
+            }
+
             $(this).stop().animate({
                 left : a.left - d.left,
                 top : a.top - d.top
@@ -198,6 +292,7 @@ function FixCol(target,userOpts) {
             });
             */
         });
+        this.vline.css({top: firstTop}); 
     };
 
 	var unFixed = function() {
@@ -220,16 +315,10 @@ function FixCol(target,userOpts) {
 
     this.startFixed = setFixed; 
     this.stopFixed = unFixed;
+    this.resizeFixed = resizeFixed;
 
     $(window).bind("scroll", lightReFixed);
-    
-    /**
-    if(c.isie8 || c.isie7 || c.isieold){
-        // empty
-    }else{
-        $(window).bind("resize", lightReFixed);
-    }
-    */
+    onWindowResize.add(resizeFixed);
 
     return this;
 }
