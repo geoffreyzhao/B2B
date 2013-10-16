@@ -54,6 +54,7 @@
                 <h3>定义显示错误的位置 right </h3>
                 <div>
                     <span>c2</span><input type="text" k-msg-position="right" class="datepicker" required name="c2"/>
+                    <span>c4</span><input type="text" k-msg-position="right" class="datepicker" required name="c4"/>
                 </div>
 
                 <h3>定义显示错误的位置 以及偏移量</h3>
@@ -116,7 +117,13 @@ var validator;
 
             $( ".datepicker" ).datepicker({
                 numberOfMonths:[1,2],
-                showButtonPanel :true
+                showButtonPanel :true,
+                onSelect:function(dateText,inst){
+                    console.log(inst.input);
+                    console.log(dateText);
+                    //inst.input.blur();
+                    return true;
+                }
             });
 
             kendo.init('body');

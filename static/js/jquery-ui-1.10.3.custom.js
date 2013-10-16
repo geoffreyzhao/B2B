@@ -1337,7 +1337,10 @@ $.extend(Datepicker.prototype, {
 		onSelect = this._get(inst, "onSelect");
 		if (onSelect) {
 			onSelect.apply((inst.input ? inst.input[0] : null), [dateStr, inst]);  // trigger custom callback
-		} else if (inst.input) {
+		}
+
+        // @todo fix bug , when customer onSelect no trigger input change event
+        if (inst.input) {
 			inst.input.trigger("change"); // fire the change event
 		}
 
