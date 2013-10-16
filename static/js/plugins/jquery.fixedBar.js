@@ -1,6 +1,6 @@
 $.fn.fixedBar = function(args){
     var defaults = {
-        paged:false,  //是否始终固定位置
+        fixed:false,  //是否始终固定位置
         css:"position:fixed;top:0;",
         createShadow:'fixBarShadow'
     };
@@ -12,7 +12,7 @@ $.fn.fixedBar = function(args){
     }
 
     var opts = $.extend(defaults, args); 
-    
+
     if (window.ActiveXObject) {
         window.isIE = window[window.XMLHttpRequest ? 'isIE7' : 'isIE6'] = true;
     }
@@ -27,15 +27,15 @@ $.fn.fixedBar = function(args){
 
         if(opts.createShadow){
             if (typeof opts.createShadow === 'string'){
-                shadow = $(opts.createShadow).length ? $(opts.createShadow) : $('<div class="'+opts.createShadow+'"></dvi>').css({
-               display:'none',
-               height:ele.outerHeight()+1+'px'
+                shadow = $(opts.createShadow).length ? $(opts.createShadow) : $('<div class="'+opts.createShadow+'" />').css({
+                    display:'none',
+                    height:ele.outerHeight()+1+'px'
                 });
             }
             ele.before(shadow);
         }
 
-        if(opts.paged){
+        if(opts.fixed){
             eleOffsetTop = -1; 
             if (!ele.hasClass("fixedBar")) ele.addClass("fixedBar").attr("style",opts.css);
             if(window.isIE6) ele.css({"position":"absolute"});
