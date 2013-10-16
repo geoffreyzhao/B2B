@@ -3,6 +3,7 @@
 jQuery(function($){
 	$.datepicker.regional['zh-CN'] = {
 		closeText: '关闭',
+        timeText:"时间",
 		prevText: '&#x3C;上月',
 		nextText: '下月&#x3E;',
 		currentText: '今天',
@@ -15,6 +16,7 @@ jQuery(function($){
 		dayNamesMin: ['日','一','二','三','四','五','六'],
 		weekHeader: '周',
 		dateFormat: 'yy-mm-dd',
+		timeFormat: 'hh:mm',
 		firstDay: 1,
 		isRTL: false,
 		showMonthAfterYear: true,
