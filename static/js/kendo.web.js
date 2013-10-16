@@ -27630,8 +27630,6 @@ kendo_module({
 */
 
 
-/**
- * @todo comment
 (function($, undefined) {
     var kendo = window.kendo,
         keys = kendo.keys,
@@ -28298,7 +28296,6 @@ kendo_module({
 
     ui.plugin(NumericTextBox);
 })(window.kendo.jQuery);
-*/
 
 
 /*
