@@ -10117,7 +10117,7 @@ kendo_module({
             that._errorTemplate = kendo.template(that.options.errorTemplate);
 
             if (that.element.is(FORM)) {
-                that.element.attr(NOVALIDATE, NOVALIDATE);
+                that.element.prop(NOVALIDATE, NOVALIDATE);
             }
 
             that._errors = {};
@@ -10408,6 +10408,15 @@ kendo_module({
                     var checkPer = /%/;
 
                     $(".message_ct > .arrow", messageLabel).addClass("arrow_west");
+
+                    if(p != "right" && p != "bottom"){
+                        labelSetting.position = "relative";
+                        labelSetting.top = pcssObj.top;
+                        labelSetting.left = pcssObj.left;
+                        if(pcssObj.equalInput){
+                            labelSetting.width = input.width() - that.options.errorLabelPadding;
+                        }
+                    }
 
                     if(p == "right"){
                         labelSetting.position = "absolute";
@@ -15089,7 +15098,7 @@ kendo_module({
                 element = that._focused;
 
             if (options.suggest !== undefined) {
-                element.attr("aria-autocomplete", options.suggest ? "both" : "list");
+                element.prop("aria-autocomplete", options.suggest ? "both" : "list");
             }
 
             id = id ? id + " " + that.ul[0].id : that.ul[0].id;
