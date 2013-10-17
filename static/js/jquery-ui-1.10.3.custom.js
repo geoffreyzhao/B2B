@@ -341,8 +341,69 @@ function Datepicker() {
 	this._currentClass = "ui-datepicker-current-day"; // The name of the current day marker class
 	this._dayOverClass = "ui-datepicker-days-cell-over"; // The name of the day hover marker class
 	this.regional = []; // Available regional settings, indexed by language code
+    this.regional['zh-CN'] = {
+		closeText: '关闭',
+        timeText:"时间",
+		prevText: '&#x3C;上月',
+		nextText: '下月&#x3E;',
+		currentText: '今天',
+		monthNames: ['一月','二月','三月','四月','五月','六月',
+		'七月','八月','九月','十月','十一月','十二月'],
+		monthNamesShort: ['一月','二月','三月','四月','五月','六月',
+		'七月','八月','九月','十月','十一月','十二月'],
+		dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],
+		dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],
+		dayNamesMin: ['日','一','二','三','四','五','六'],
+		weekHeader: '周',
+		dateFormat: 'yy-mm-dd',
+		timeFormat: 'hh:mm',
+		firstDay: 1,
+		isRTL: false,
+		showMonthAfterYear: true,
+		yearSuffix: '年',
+        holiday:[
+		    "20130101 元旦",
+		    "20130209 除夕",
+		    "20130210 春节",
+		    "20130404 清明",
+		    "20130501 五一",
+		    "20130612 端午",
+		    "20130919 中秋",
+		    "20131001 国庆",
+		    
+		    "20140101 元旦",
+		    "20140130 除夕",
+		    "20140131 春节",
+		    "20140405 清明",
+		    "20140501 五一",
+		    "20140602 端午",
+		    "20140908 中秋",
+		    "20141001 国庆",
+		    
+		    "20150101 元旦",
+		    "20150218 除夕",
+		    "20150219 春节",
+		    "20150405 清明",
+		    "20150501 五一",
+		    "20150620 端午",
+		    "20150927 中秋",
+		    "20151001 国庆"
+		],
+		holiday_index:{
+            '元旦':"yuandan",
+            '除夕':"chuxi",
+            '春节':"chunjie",
+            '元宵':"yuanxiao",
+            '清明':"qingming",
+            '五一':"wuyi",
+            '端午':"duanwu",
+            '中秋':"zhongqiu",
+            '国庆':"guoqing"
+        }
+    };
 	this.regional[""] = { // Default regional settings
 		closeText: "Done", // Display text for close link
+		timeText: "Time", // Display text for time 
 		prevText: "Prev", // Display text for previous month link
 		nextText: "Next", // Display text for next month link
 		currentText: "Today", // Display text for current month link
@@ -354,6 +415,7 @@ function Datepicker() {
 		dayNamesMin: ["Su","Mo","Tu","We","Th","Fr","Sa"], // Column headings for days starting at Sunday
 		weekHeader: "Wk", // Column header for week of the year
 		dateFormat: "yy-mm-dd", // See format options on parseDate
+		timeFormat: "hh:mm", // See format options on parseDate
 		firstDay: 0, // The first day of the week, Sun = 0, Mon = 1, ...
 		isRTL: false, // True if right-to-left language, false if left-to-right
 		showMonthAfterYear: false, // True if the year select precedes month, false for month then year
@@ -377,6 +439,7 @@ function Datepicker() {
 		gotoCurrent: false, // True if today link goes back to current selection instead
 		changeMonth: false, // True if month can be selected directly, false if only prev/next
 		changeYear: false, // True if year can be selected directly, false if only prev/next
+		changeTime: false, // True if time can be selected directly, false not show 
 		yearRange: "c-10:c+10", // Range of years to display in drop-down,
 			// either relative to today's year (-nn:+nn), relative to currently displayed year
 			// (c-nn:c+nn), absolute (nnnn:nnnn), or a combination of the above (nnnn:-n)
@@ -627,6 +690,7 @@ $.extend(Datepicker.prototype, {
 		}
 		extendRemove(inst.settings, settings || {});
 		date = (date && date.constructor === Date ? this._formatDate(inst, date) : date);
+        date += this._formatTime(inst,date);
 		this._dialogInput.val(date);
 
 		this._pos = (pos ? (pos.length ? pos : [pos.pageX, pos.pageY]) : null);
@@ -888,6 +952,7 @@ $.extend(Datepicker.prototype, {
 						onSelect = $.datepicker._get(inst, "onSelect");
 						if (onSelect) {
 							dateStr = $.datepicker._formatDate(inst);
+                            dateStr += $.datepicker._formatTime(inst);
 
 							// trigger custom callback
 							onSelect.apply((inst.input ? inst.input[0] : null), [dateStr, inst]);
@@ -1309,6 +1374,8 @@ $.extend(Datepicker.prototype, {
 	/* Action for selecting a day. */
 	_selectDay: function(id, month, year, td) {
 		var inst,
+		    timeFormat,
+            f,
 			target = $(id);
 
 		if ($(td).hasClass(this._unselectableClass) || this._isDisabledDatepicker(target[0])) {
@@ -1319,6 +1386,28 @@ $.extend(Datepicker.prototype, {
 		inst.selectedDay = inst.currentDay = $("a", td).attr("day");
 		inst.selectedMonth = inst.currentMonth = month;
 		inst.selectedYear = inst.currentYear = year;
+
+        timeFormat = this._get(inst, "timeFormat"),
+        f = timeFormat.toLowerCase().split(':');
+
+        if(typeof(f[0]) != "undefined" && f[0] == "hh"){
+            inst.selectedHour = inst.dpDiv.find(".ui-datepicker-time-i input[name='hh']:eq(0)").val();
+        }else{
+            inst.selectedHour = 0;
+        }
+
+        if(typeof(f[1]) != "undefined" && f[1] == "mm"){
+            inst.selectedMinute = inst.dpDiv.find(".ui-datepicker-time-i input[name='mm']:eq(0)").val();
+        }else{
+            inst.selectedMinute = 0;
+        }
+
+        if(typeof(f[2]) != "undefined" && f[2] == "ss"){
+            inst.selectedSecond = inst.dpDiv.find(".ui-datepicker-time-i input[name='ss']:eq(0)").val();
+        }else{
+            inst.selectedSecond = 0;
+        }
+
 		this._selectDate(id, this._formatDate(inst,
 			inst.currentDay, inst.currentMonth, inst.currentYear));
 	},
@@ -1335,7 +1424,9 @@ $.extend(Datepicker.prototype, {
 			target = $(id),
 			inst = this._getInst(target[0]);
 
-		dateStr = (dateStr != null ? dateStr : this._formatDate(inst));
+		dateStr = (dateStr != null ? dateStr : this._formatDate(inst) );
+        dateStr += this._formatTime(inst);
+
 		if (inst.input) {
 			inst.input.val(dateStr);
 		}
@@ -1861,6 +1952,43 @@ $.extend(Datepicker.prototype, {
 		date.setHours(date.getHours() > 12 ? date.getHours() + 2 : 0);
 		return date;
 	},
+    _setHMS: function(inst,clear) {
+        var v ,vd,
+            date = inst.input.val(),
+            tf = this._get(inst,"timeFormat").split(':');
+
+        if(clear){
+            inst.selectedHour = null;
+            inst.selectedMinute = null;
+            inst.selectedSecond = null;
+            return;
+        }
+    
+        /*
+        if(typeof(date) == "object"){
+            inst.selectedHour = date.getHours();
+            inst.selectedMinute = date.getMinutes();
+            inst.selectedSecond = date.getSeconds();
+        }*/
+
+        if(typeof(date) == "string"){
+            v = date.split(' ')
+            if(typeof(v[1]) != "undefined"){
+                vd = v[1].split(':');
+                if(typeof(tf[0]) != "undefined" && typeof(vd[0]) != "undefined"){
+                    inst.selectedHour = parseInt(vd[0]); 
+                }
+
+                if(typeof(tf[1]) != "undefined" && typeof(vd[1]) != "undefined"){
+                    inst.selectedMinute = parseInt(vd[1]); 
+                }
+
+                if(typeof(tf[2]) != "undefined" && typeof(vd[2]) != "undefined"){
+                    inst.selectedSecond = parseInt(vd[2]); 
+                }
+            }
+        }
+     },
 
 	/* Set the date(s) directly. */
 	_setDate: function(inst, date, noChange) {
@@ -1868,18 +1996,24 @@ $.extend(Datepicker.prototype, {
 		var clear = !date,
 			origMonth = inst.selectedMonth,
 			origYear = inst.selectedYear,
+            f,
+            timeFormat = this._get(inst,"timeFormat"),
 			newDate = this._restrictMinMax(inst, this._determineDate(inst, date, new Date()));
 
 		inst.selectedDay = inst.currentDay = newDate.getDate();
 		inst.drawMonth = inst.selectedMonth = inst.currentMonth = newDate.getMonth();
 		inst.drawYear = inst.selectedYear = inst.currentYear = newDate.getFullYear();
+
+
 		if ((origMonth !== inst.selectedMonth || origYear !== inst.selectedYear) && !noChange) {
 			this._notifyChange(inst);
 		}
 		this._adjustInstDate(inst);
 		if (inst.input) {
-			inst.input.val(clear ? "" : this._formatDate(inst));
+			inst.input.val(clear ? "" : this._formatDate(inst) + this._formatTime(inst));
+            this._setHMS(inst,clear);
 		}
+
 	},
 
 	/* Retrieve the date(s) directly. */
@@ -1947,6 +2081,23 @@ $.extend(Datepicker.prototype, {
 			};
 			$(this).bind(this.getAttribute("data-event"), handler[this.getAttribute("data-handler")]);
 		});
+
+        inst.dpDiv.find(".ui-datepicker-time").map(function (index) {
+            var that = this;
+            $("a",this).click(function(){
+                inst.dpDiv.find(".ui-datepicker-time-i input:eq(" + index + ")").val($(this).html());
+                $(that).hide();
+            });
+        });
+
+		inst.dpDiv.find(".ui-datepicker-time-i input").map(function (index) {
+            $(this).bind('click',function(e){
+                var of = $(this).position();
+                var name = $(this).attr("name");
+                $(".ui-datepicker-time").hide();
+                $(".ui-datepicker-time-" + name).css({top:of.top + 25,left:of.left}).show();
+            });
+        });
 	},
 
 	/* Generate the HTML for the current state of the date picker. */
@@ -1974,6 +2125,8 @@ $.extend(Datepicker.prototype, {
 			maxDate = this._getMinMaxDate(inst, "max"),
 			drawMonth = inst.drawMonth - showCurrentAtPos,
 			drawYear = inst.drawYear;
+            
+            this._setHMS(inst);
 
 		if (drawMonth < 0) {
 			drawMonth += 12;
@@ -2127,7 +2280,8 @@ $.extend(Datepicker.prototype, {
 					drawMonth = 0;
 					drawYear++;
 				}
-				calender += "</tbody></table></div>" + (isMultiMonth ? "</div>" +
+				calender += "</tbody></table>" + this._generateTimeSelect(inst) + "</div>";
+                calender += (isMultiMonth ? "</div>" +
 							((numMonths[0] > 0 && col === numMonths[1]-1) ? "<div class='ui-datepicker-row-break'></div>" : "") : "");
 				group += calender;
 			}
@@ -2138,6 +2292,100 @@ $.extend(Datepicker.prototype, {
 		return html;
 	},
 
+
+    _showTimePicker: function(){
+
+    },
+
+    /* Generate the time picker */
+    _generateTimeSelect: function(inst) {
+        var changeTime = this._get(inst, "changeTime"),
+		    timeFormat = this._get(inst, "timeFormat"),
+            html,
+            timeHtml = "",
+            i,j,
+            timeHH = '',timeMM = '',timeSS = '',
+            timeText = this._get(inst,"timeText");
+
+        if(!changeTime){
+            return '';
+        }
+
+        var f = timeFormat.toLowerCase().split(':');
+
+        var nowDate = new Date();
+        /*
+        var h = nowDate.getHours() < 10 ? '0' + nowDate.getHours() : nowDate.getHours(); 
+        var m = nowDate.getMinutes() < 10 ? '0' + nowDate.getMinutes() : nowDate.getMinutes(); 
+        var s = nowDate.getSeconds() < 10 ? '0' + nowDate.getSeconds() : nowDate.getSeconds(); 
+        */
+        var h = inst.selectedHour ? inst.selectedHour : nowDate.getHours(); 
+        var m = inst.selectedMinute ? inst.selectedMinute : nowDate.getMinutes(); 
+        var s = inst.selectedSecond ? inst.selectedSecond : nowDate.getSeconds(); 
+
+
+        html = '<div class="ui-datepicker-time-wrap">';
+
+        if(typeof(f[0]) != "undefined" && f[0] == 'hh'){
+            timeHH = '<div class="ui-datepicker-time ui-datepicker-time-hh" style="display:none;"><table><thead></thead><tbody>';
+            for(i = 0; i < 4; i++){
+                timeHH += '<tr>';
+                for(j = 0; j < 6; j++){
+                    //timeHH += '<td><a href="javascript:void(0);">' + ((6 * i + j) >= 10 ? (6 * i + j) : '0' + (6 * i + j)) + '</a></td>';
+                    timeHH += '<td><a href="javascript:void(0);">' + (6 * i + j) + '</a></td>';
+                }
+                timeHH += '</tr>';
+            }
+
+            timeHH += '</tbody></table></div>';
+        }
+
+        if(typeof(f[1]) != "undefined" && f[1] == 'mm'){
+            timeMM = '<div class="ui-datepicker-time ui-datepicker-time-mm" style="display:none;"><table><thead></thead><tbody>';
+            for(i = 0; i < 6; i++){
+                timeMM += '<tr>';
+                for(j = 0; j < 10; j++){
+                    //timeMM += '<td><a href="javascript:void(0);">' + ((10 * i + j) > 10 ? (10 * i + j) : '0' + (10 * i + j)) + '</a></td>';
+                    timeMM += '<td><a href="javascript:void(0);">' + (10 * i + j) + '</a></td>';
+                }
+                timeMM += '</tr>';
+            }
+
+            timeMM += '</tbody></table></div>';
+        }
+
+        if(typeof(f[2]) != "undefined" && f[2] == 'ss'){
+            timeSS = '<div class="ui-datepicker-time ui-datepicker-time-ss" style="display:none;"><table><thead></thead><tbody>';
+            for(i = 0; i < 6; i++){
+                timeSS += '<tr>';
+                for(j = 0; j < 10; j++){
+                    //timeSS += '<td><a href="javascript:void(0);">' + ((10 * i + j) > 10 ? (10 * i + j) : '0' + (10 * i + j)) + '</a></td>';
+                    timeSS += '<td><a href="javascript:void(0);">' + (10 * i + j) + '</a></td>';
+                }
+                timeSS += '</tr>';
+            }
+            timeSS += '</tbody></table></div>';
+        }
+
+        html += timeHH + timeMM + timeSS ;
+        html += '<div class="ui-datepicker-time-i"><label>' + timeText + ':</label>';
+
+        if(typeof(f[0]) != "undefined" && f[0] == 'hh'){
+            html += '<span><input type="text" name="hh" style="width:20px;" readonly value="' + h + '"/></span>';
+        }
+
+        if(typeof(f[1]) != "undefined" && f[1] == 'mm'){
+            html += ':<span><input type="text" name="mm" style="width:20px;" readonly value="' + m + '"/></span>';
+        }
+
+        if(typeof(f[2]) != "undefined" && f[2] == 'ss'){
+            html += ':<span><input type="text" name="ss" style="width:20px;" readonly value="' + s + '"/></span>';
+        }
+
+        html += '</div></div>';
+
+        return html;
+	},
 	/* Generate the month and year header. */
 	_generateMonthYearHeader: function(inst, drawMonth, drawYear, minDate, maxDate,
 			secondary, monthNames, monthNamesShort) {
@@ -2361,6 +2609,33 @@ $.extend(Datepicker.prototype, {
 			this._daylightSavingAdjust(new Date(year, month, day))) :
 			this._daylightSavingAdjust(new Date(inst.currentYear, inst.currentMonth, inst.currentDay)));
 		return this.formatDate(this._get(inst, "dateFormat"), date, this._getFormatConfig(inst));
+	},
+    _formatTime: function(inst){
+        var s = [],
+            f,
+            i,
+            timeFormat = this._get(inst,"timeFormat");
+
+        if(this._get(inst,"changeTime")){
+            f = timeFormat.toLowerCase().split(':');
+            if(typeof(f[0]) != "undefined" && f[0] == "hh"){
+                s[0] = parseInt(inst.selectedHour) > 10 ?  inst.selectedHour : '0' + inst.selectedHour; 
+            }
+
+            if(typeof(f[1]) != "undefined" && f[1] == "mm"){
+                s[1] = parseInt(inst.selectedMinute) > 10 ?  inst.selectedMinute : '0' + inst.selectedMinute; 
+            }
+
+            if(typeof(f[2]) != "undefined" && f[2] == "ss"){
+                s[2] = parseInt(inst.selectedSecond) > 10 ?  inst.selectedSecond : '0' + inst.selectedSecond; 
+            }
+
+            return " " + s.join(":");
+        }else{
+            return '';
+
+        }
+
 	}
 });
 
@@ -2451,5 +2726,7 @@ $.datepicker = new Datepicker(); // singleton instance
 $.datepicker.initialized = false;
 $.datepicker.uuid = new Date().getTime();
 $.datepicker.version = "1.10.3";
+
+$.datepicker.setDefaults($.datepicker.regional['zh-CN']);
 
 })(jQuery);
