@@ -10409,6 +10409,15 @@ kendo_module({
 
                     $(".message_ct > .arrow", messageLabel).addClass("arrow_west");
 
+                    if(p != "right" && p != "bottom"){
+                        labelSetting.position = "relative";
+                        labelSetting.top = pcssObj.top;
+                        labelSetting.left = pcssObj.left;
+                        if(pcssObj.equalInput){
+                            labelSetting.width = input.width() - that.options.errorLabelPadding;
+                        }
+                    }
+
                     if(p == "right"){
                         labelSetting.position = "absolute";
 
