@@ -414,7 +414,7 @@ function Datepicker() {
 		dayNamesShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], // For formatting
 		dayNamesMin: ["Su","Mo","Tu","We","Th","Fr","Sa"], // Column headings for days starting at Sunday
 		weekHeader: "Wk", // Column header for week of the year
-		dateFormat: "mm/dd/yy", // See format options on parseDate
+		dateFormat: "yy-mm-dd", // See format options on parseDate
 		timeFormat: "hh:mm", // See format options on parseDate
 		firstDay: 0, // The first day of the week, Sun = 0, Mon = 1, ...
 		isRTL: false, // True if right-to-left language, false if left-to-right
@@ -519,13 +519,19 @@ $.extend(Datepicker.prototype, {
 		}
 
         //by shaotian.hu
-        if( settings && settings.showDay){
-            var dayWrapper= inst.dayWrapper = $('<b class="ui-datepicker-daywrapper" />');
-            $(target).after(dayWrapper);
+        if(settings && settings.showDay){
+            var dayWrapper;
+            if($(target).next().hasClass('ui-datepicker-daywrapper')){
+                dayWrapper = $(target).next();
+            }else{
+                dayWrapper = $('<b class="ui-datepicker-daywrapper" />');
+                $(target).after(dayWrapper);
+            }
 
-            var date_value = $.datepicker.parseDate( "yy-mm-dd",inst.input.val());
+            inst.dayWrapper = dayWrapper;
 
-            if(date_value-0){
+            var data_value = $.datepicker.parseDate(this._get(inst, 'dateFormat'), inst.input.val());
+            if($.type(data_value) == 'date'){
                 $.datepicker._setDay(inst);
             }
         }
@@ -902,6 +908,9 @@ $.extend(Datepicker.prototype, {
 	_setDateDatepicker: function(target, date) {
 		var inst = this._getInst(target);
 		if (inst) {
+            // setDate by shaotian.hu
+            this._setDay(inst);
+
 			this._setDate(inst, date);
 			this._updateDatepicker(inst);
 			this._updateAlternate(inst);
@@ -1157,11 +1166,6 @@ $.extend(Datepicker.prototype, {
 		inst.dpDiv.empty().append(this._generateHTML(inst));
 		this._attachHandlers(inst);
 		inst.dpDiv.find("." + this._dayOverClass + " a").mouseover();
-
-        // by shaotian.hu
-        if(inst.settings.showDay){
-            $.datepicker._setDay(inst)
-        }
 
 
 		var origyearshtml,
@@ -1988,6 +1992,7 @@ $.extend(Datepicker.prototype, {
 
 	/* Set the date(s) directly. */
 	_setDate: function(inst, date, noChange) {
+
 		var clear = !date,
 			origMonth = inst.selectedMonth,
 			origYear = inst.selectedYear,
@@ -2022,9 +2027,19 @@ $.extend(Datepicker.prototype, {
     // by shaotian.hu
     _setDay: function(inst){
         var week = this._get(inst,"dayNamesShort");
-        var date_value = $.datepicker.parseDate( "yy-mm-dd",inst.input.val());
-        var index = new Date(this._getDate(inst)||date_value).getDay();
-        inst.dayWrapper.text(week[index]);
+        var index;
+        var data_value;
+
+        if(this._getDate(inst)){
+            data_value = this._getDate(inst);
+        }else{
+            data_value = $.datepicker.parseDate(this._get(inst, 'dateFormat'), inst.input.val());
+        }
+
+        if(data_value){
+            index = data_value.getDay(); 
+            inst.dayWrapper.text(week[index]);
+        }
     },
 
 	/* Attach the onxxx handlers.  These are declared statically so
