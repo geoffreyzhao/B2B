@@ -2,16 +2,17 @@ $.fn.fixedBar = function(args){
     var defaults = {
         fixed:false,  //是否始终固定位置
         css:"position:fixed;top:0;",
+        endAt:0,
         createShadow:'fixBarShadow'
     };
 
-    var callback;
+    var callback,opts;
 
     if( Object.prototype.toString.call(args) == "[object Function]" ){
         callback = args; 
     }
 
-    var opts = $.extend(defaults, args); 
+    opts = $.extend(defaults, args); 
 
     if (window.ActiveXObject) {
         window.isIE = window[window.XMLHttpRequest ? 'isIE7' : 'isIE6'] = true;
@@ -19,17 +20,27 @@ $.fn.fixedBar = function(args){
 
     if (window.isIE6) try {document.execCommand("BackgroundImageCache", false, true);} catch(e){}
 
-    this.each(function(){
-        var ele = $(this);
+    var ele = $(this).length > 1 ? $(this).eq(0) : $(this);
+
+    function init(){
         var eleOffsetTop = ele.offset().top;
         var elePositionTop = ele.position().top;
+        var endPos;
         var shadow;
 
+        if(opts.endAt){
+            if(typeof opts.endAt === 'number'){
+                endPos = opts.endAt;
+            }else{
+                endPos = $(opts.endAt).offset().top + $(opts.endAt).height();
+            }
+        }
+
         if(opts.createShadow){
-            if (typeof opts.createShadow === 'string'){
+            if(typeof opts.createShadow === 'string'){
                 shadow = $(opts.createShadow).length ? $(opts.createShadow) : $('<div class="'+opts.createShadow+'" />').css({
                     display:'none',
-                    height:ele.outerHeight()+1+'px'
+                    height:ele.outerHeight(true)+'px'
                 });
             }
             ele.before(shadow);
@@ -37,28 +48,41 @@ $.fn.fixedBar = function(args){
 
         if(opts.fixed){
             eleOffsetTop = -1; 
-            if (!ele.hasClass("fixedBar")) ele.addClass("fixedBar").attr("style",opts.css);
+            if(!ele.hasClass("fixedBar")) ele.addClass("fixedBar").attr("style",opts.css);
             if(window.isIE6) ele.css({"position":"absolute"});
         }
 
-        $(window).unbind("scroll.fixedBar").bind("scroll.fixedBar",function(e){
+        $(window).bind("scroll.fixedBar",function(e){
             var that = $(this);
             var scrollTop = that.scrollTop();
-            if(scrollTop > eleOffsetTop){
-                if (!ele.hasClass("fixedBar")){
-                    if (opts.createShadow){ shadow.show() }
-                    ele.addClass("fixedBar").attr("style",opts.css);
+            
+            if(ele.data('disabled') !== true){
+                if(scrollTop > eleOffsetTop){
+                    if(!ele.hasClass("fixedBar")){
+                        shadow.show();
+                        ele.addClass("fixedBar").attr("style",opts.css);
+                    }
+                    if(window.isIE6) ele.css({"top":scrollTop - eleOffsetTop + elePositionTop + "px","position":"absolute"});
+                }else{
+                    shadow.hide();
+                    ele.removeClass("fixedBar").removeAttr("style");
                 }
-                if(window.isIE6) ele.css({"top":scrollTop - eleOffsetTop + elePositionTop + "px","position":"absolute"});
-            }else{
-                if (opts.createShadow){ shadow.hide() }
-                ele.removeClass("fixedBar").removeAttr("style");
             }
 
-            if (callback) callback.call(ele,scrollTop);
-        }); 
+            if(callback) callback.call(ele,scrollTop);
 
-    });
+            if(opts.endAt){
+                if(scrollTop >= endPos){
+                    shadow.hide();
+                    ele.removeClass("fixedBar").removeAttr("style").data('disabled',true);
+                }else{
+                    ele.removeData('disabled'); 
+                }
+            }
+        }); 
+    }
+
+    init();
 
     return this;
 };

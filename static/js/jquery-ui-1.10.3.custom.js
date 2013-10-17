@@ -522,7 +522,10 @@ $.extend(Datepicker.prototype, {
         if( settings && settings.showDay){
             var dayWrapper= inst.dayWrapper = $('<b class="ui-datepicker-daywrapper" />');
             $(target).after(dayWrapper);
-            if(new Date(target.value)-0){
+
+            var date_value = $.datepicker.parseDate( "yy-mm-dd",inst.input.val());
+
+            if(date_value-0){
                 $.datepicker._setDay(inst);
             }
         }
@@ -2019,7 +2022,8 @@ $.extend(Datepicker.prototype, {
     // by shaotian.hu
     _setDay: function(inst){
         var week = this._get(inst,"dayNamesShort");
-        var index = new Date(this._getDate(inst)||inst.input.val()).getDay();
+        var date_value = $.datepicker.parseDate( "yy-mm-dd",inst.input.val());
+        var index = new Date(this._getDate(inst)||date_value).getDay();
         inst.dayWrapper.text(week[index]);
     },
 
