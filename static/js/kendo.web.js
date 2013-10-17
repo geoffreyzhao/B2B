@@ -10117,7 +10117,7 @@ kendo_module({
             that._errorTemplate = kendo.template(that.options.errorTemplate);
 
             if (that.element.is(FORM)) {
-                that.element.attr(NOVALIDATE, NOVALIDATE);
+                that.element.prop(NOVALIDATE, NOVALIDATE);
             }
 
             that._errors = {};
