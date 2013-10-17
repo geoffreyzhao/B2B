@@ -1,5 +1,7 @@
 /* Chinese initialisation for the jQuery UI date picker plugin. */
 /* Written by Cloudream (cloudream@gmail.com). */
+
+/** 已经废弃 
 jQuery(function($){
 	$.datepicker.regional['zh-CN'] = {
 		closeText: '关闭',
@@ -63,3 +65,4 @@ jQuery(function($){
     };
 	$.datepicker.setDefaults($.datepicker.regional['zh-CN']);
 });
+*/
