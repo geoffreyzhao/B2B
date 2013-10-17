@@ -8,6 +8,8 @@ $.fn.fixedBar = function(args){
 
     var callback,opts;
 
+    if(this.length==0) return;
+
     if( Object.prototype.toString.call(args) == "[object Function]" ){
         callback = args; 
     }
