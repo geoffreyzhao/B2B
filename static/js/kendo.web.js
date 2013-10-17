@@ -15089,7 +15089,7 @@ kendo_module({
                 element = that._focused;
 
             if (options.suggest !== undefined) {
-                element.attr("aria-autocomplete", options.suggest ? "both" : "list");
+                element.prop("aria-autocomplete", options.suggest ? "both" : "list");
             }
 
             id = id ? id + " " + that.ul[0].id : that.ul[0].id;
