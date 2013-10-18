@@ -526,6 +526,16 @@
             model.timePrice[ts]=jsonStr[p];
         }
     }
+
+    function refreshCalendar(_date)
+    {
+//        eve["2013/10/16"]=[33,33]
+//        calendar.options.dates.push(new Date("2013/10/16").getTime())
+        var anim=calendar.options.animation;
+        calendar.options.animation=false;
+        calendar.navigate(_date?_date:new Date(),"month");
+        calendar.options.animation=anim;
+    }
 </script>
 
 
