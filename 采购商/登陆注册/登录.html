@@ -49,10 +49,15 @@
     <form name="loginForm" method="get" action="." onsubmit="return formValiation(this);">
         <input type="hidden" name="user_mode" value="company_user"/>
         <div class="login_panel">
+            <ul class="tab_change clearfix">
+                <li class="current">
+                    <a class="br" href="javascript:void(0);">公司用户</a>
+                </li>
+                <li>
+                    <a class="bl" href="javascript:void(0);">个人用户</a>
+                </li>
+            </ul>
             <div class="input_area">
-                <h2 class="tt clearfix">
-                    <strong>登陆</strong>
-                </h2>
                 <div class="row tips" style="display:none;">
                     <span></span>
                 </div>
@@ -60,25 +65,16 @@
                     <i class="company_name"></i>
                     <input type="text" name="company_name" value="" style="width:200px;border:0;" />
                     <label class="cover">公司简称</label>
-                    <div class="pandg">
-                        <a href="javascript:void(0);">我是个人用户</a>
-                    </div>
-                    <!--<em>*</em>-->
                 </div>
                 <div class="row large">
                     <i class="username"></i>
                     <input type="text" name="username" value="" style="width:200px;border:0;" />
                     <label class="cover">用户名</label>
-                    <div class="pandg" style="display:none;">
-                        <a href="javascript:void(0);">我是公司用户</a>
-                    </div>
-                    <!--<em>*</em>-->
                 </div>
                 <div class="row large">
                     <i class="psw"></i>
                     <input type="password" autocomplete="off"  name="password" style="width:150px;border:0;" value="" />
                     <label class="cover">密码</label>
-                    <!--<em>*</em>-->
                     <div class="forget clearfix">
                         <a href="javascript:void(0)" class="pull-right" >忘记密码?</a>
                     </div>
@@ -86,7 +82,6 @@
                 <div class="row small">
                     <i></i>
                     <input type="text" autocomplete="off" name="auth_code" style="width:100px;border:0px;" value=""/>
-                    <!--<em>*</em>-->
                     <label class="cover" style="left:8px">验证码</label>
                     <a class="authcode" href="javascript:void(0);" title="点击刷新" style="width:110px;height:32px;" alt="点击刷新"><img style="width:110px;height:32px;" src="http://o.op.com:8180/tops-front-operator-biz/captcha/gen"/></a>
                 </div>
@@ -221,24 +216,21 @@ function Error(obj,message,isShow){
         }
     });
 
-    $(".login_panel .pandg").each(function(index){
-        if(index == 0){
-            $(this).click(function(){
-                $("input[name=user_mode]").val("personal_user");
-                $(".row:eq(2)").css("margin-top","15px");
-                $(".login_panel .first").hide();
 
-                $(".login_panel .pandg:eq(1)").show();
-            });
-        }else{
-            $(this).click(function(){
-                $(".row:eq(2)").css("margin-top","0px");
-                $("input[name=user_mode]").val("company_user");
+    $(".login_panel .tab_change li").each(function(index){
+        $(this).click(function(){
+            if(index != 0){
+                $(".login_panel .first").hide();
+            }else{
                 $(".login_panel .first").show();
-                $(".login_panel .pandg:eq(1)").hide();
-            });
-        }
+            }
+
+
+            $(this).parent().find("li").removeClass("current");
+            $(this).addClass("current");
+        });
     });
+    
 
     $(".row .cover").click(function(){
         $(this).hide();
