@@ -19200,6 +19200,10 @@ kendo_module({
 
                 that.input
                     .on("keydown" + ns, proxy(that._keydown, that))
+                    // @FIXED ff,360中文输入无法触发keydown by shaotian.hu
+                    .on("input.combobox" + ns, function(){
+                        that._search();
+                    })
                     .on("focus" + ns, function() {
                         wrapper.addClass(FOCUSED);
                         that._placeholder(false);
