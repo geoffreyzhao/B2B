@@ -15259,6 +15259,12 @@ kendo_module({
                 options = that.options,
                 wrapper = that.wrapper;
 
+            // @FEATURE sync className to popup ele by shaotian.hu
+            var classes = that.element.attr('class');
+            if(classes){
+                list.addClass(classes); 
+            }
+
             that.popup = new ui.Popup(list, extend({}, options.popup, {
                 anchor: wrapper,
                 open: function(e) {
