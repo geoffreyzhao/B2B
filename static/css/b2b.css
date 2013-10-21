@@ -688,9 +688,8 @@ input[type=checkbox] {vertical-align:middle;}
     background-color:#D8F4FB;
 }
 .tgrid {text-align:center;width:100%;}
-.tgrid_fix {table-layout:fixed;width:auto;}
-.tgrid td { padding:1px 3px;border:1px solid #e0e0e0;}
-.tgrid th { padding: 3px;border:1px solid #fff;}
+.tgrid td { text-overflow:ellipsis;white-space:nowrap; overflow:hidden; padding:5px; border:1px solid #e0e0e0;}
+.tgrid th { text-overflow:ellipsis;white-space:nowrap; overflow:hidden; padding:5px;border:1px solid #fff;}
 .tgrid thead th,.tgrid thead td,.tgrid .thead td {background-color:#e4e4e4;border-top:1px solid #D0D0D0;color:#393939;border-bottom:3px solid #FFA66F;border-right:1px solid #F6F6F6;}
 .tgrid thead .last,.tgrid .thead .last {border-right:1px solid #E0E0E0;}
 .tgrid tbody td {color:#393939;}
@@ -699,6 +698,8 @@ input[type=checkbox] {vertical-align:middle;}
 
 .tgrid tbody tr:hover { background: none repeat scroll 0 0 #FFFFDB;}
 .tgrid .last_col {padding:0px;}
+
+.tgrid .nowrap {white-space:normal;}
 
 .fixable {position:relative;z-index:100;}
 .fixable a {color:#0066CC;padding:3px;}
@@ -983,7 +984,7 @@ input[type=checkbox] {vertical-align:middle;}
 .adaptiveButton.small:active .right{background-position:0 -216px;}
 .center_1{ padding:0 5px !important;}
 
-.fixedButton .adaptiveButton {display:inline-block;margin-top:4px;margin-left:5px;}
+.fixedButton .adaptiveButton {display:inline-block;margin-left:5px;}
 
 .disabled_btn span{float:left;height:24px;display:inline-block;line-height:24px;}
 .disabled_btn .left{background:url('../images/button/disabled_btn.png') 0 0 no-repeat;width:5px}
@@ -1024,7 +1025,7 @@ input[type=checkbox] {vertical-align:middle;}
 
 .usercheck {display:inline-block;width:12px;border:1px solid #b1b1b1;height:12px;position:relative;}
 .usercheck .hidden_input {display:none;}
-.usercheck em {display:inline-block;width:8px;height:8px;position:absolute ;top:2px;left:2px;}
+.usercheck em {display:inline-block;width:16px;height:16px;position:absolute;top:-2px;left:-2px;cursor:pointer;}
 .userchecked em {background: url(../images/j-3.png) no-repeat center center;}
 .userchecked_1 em {background: url(../images/j-4.png) no-repeat center center;}
 .usercheck b {position:absolute ;left:20px;top:-3px;width:70px;}
@@ -1117,7 +1118,7 @@ input[type=checkbox] {vertical-align:middle;}
 .hui_bg,.hui_bg tr{ background:#f0f0f0;}
 .font_color,.font_color td{ color:#b1b1b1 !important;}
 .page{ background:#fff; border-left:1px solid #dfe3e5; border-right:1px solid #dfe3e5; border-bottom:2px solid #bfc3c5;}
-.scroll{ overflow-x:scroll; overflow-y:hidden;}
+.scroll{ overflow-x:auto; overflow-y:hidden;}
 
 .pull-left {float:left;}
 .pull-right {float:right;}

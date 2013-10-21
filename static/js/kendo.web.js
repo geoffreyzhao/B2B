@@ -39210,13 +39210,15 @@ kendo_module({
         init: function(element, options) {
             var that = this,
                 wrapper,
+                defaultOption = {animation:false},
                 offset, visibility, display,
                 isVisible = false,
                 content,
                 windowContent,
                 id;
 
-            Widget.fn.init.call(that, element, options);
+            
+            Widget.fn.init.call(that, element, extend(defaultOption,options));
             options = that.options;
             element = that.element;
             content = options.content;
