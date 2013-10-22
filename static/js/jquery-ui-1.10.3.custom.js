@@ -909,7 +909,9 @@ $.extend(Datepicker.prototype, {
 		var inst = this._getInst(target);
 		if (inst) {
             // setDate by shaotian.hu
-            this._setDay(inst);
+            if(inst.settings.showDay){
+                this._setDay(inst);
+            }
 
 			this._setDate(inst, date);
 			this._updateDatepicker(inst);
@@ -2011,6 +2013,8 @@ $.extend(Datepicker.prototype, {
 		this._adjustInstDate(inst);
 		if (inst.input) {
 			inst.input.val(clear ? "" : this._formatDate(inst) + this._formatTime(inst));
+            // @todo fix bug ,when set date directly to trigger the change event
+			inst.input.trigger("change");
             this._setHMS(inst,clear);
 		}
 
