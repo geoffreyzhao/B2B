@@ -2013,6 +2013,8 @@ $.extend(Datepicker.prototype, {
 		this._adjustInstDate(inst);
 		if (inst.input) {
 			inst.input.val(clear ? "" : this._formatDate(inst) + this._formatTime(inst));
+            // @todo fix bug ,when set date directly to trigger the change event
+			inst.input.trigger("change");
             this._setHMS(inst,clear);
 		}
 
