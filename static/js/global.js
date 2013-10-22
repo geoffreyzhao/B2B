@@ -233,9 +233,9 @@ var FloatLayer = function(opts){
 
     $(document).on('click',function(e){
         // $('.FLAYA').removeClass('FLAYA');
-        var t = $(e.target);
-        if ( !t.is(opts.trigger) ){
-            if ( t.closest('.ac-floatlayer').length !==1 ){
+        var t = kendo._activeElement();
+        if ( !$(t).is(opts.trigger) ){
+            if ( $(t).closest('.ac-floatlayer').length !==1 ){
                 layer.close();
             }
         }
@@ -434,7 +434,7 @@ var CityAutocomplete = function(settings){
             var $t = $(this);
             var text = $t.text();
 
-            hot_tabs.input.val(text);
+            hot_tabs.input.val(text).trigger('change');
             if (opts.codeEle){
                 $(opts.codeEle).val($t.data('code'));
             }else{
