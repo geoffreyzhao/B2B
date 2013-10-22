@@ -909,7 +909,9 @@ $.extend(Datepicker.prototype, {
 		var inst = this._getInst(target);
 		if (inst) {
             // setDate by shaotian.hu
-            this._setDay(inst);
+            if(inst.settings.showDay){
+                this._setDay(inst);
+            }
 
 			this._setDate(inst, date);
 			this._updateDatepicker(inst);
