@@ -17863,13 +17863,9 @@ kendo_module({
 
             that._popup();
 
-            // ff,360中文输入无法触发keydown事件,增加input.autocomplete事件 by @ash
             element
                 .addClass("k-input")
                 .on("keydown" + ns, proxy(that._keydown, that))
-                .on("input.autocomplete" + ns, function(){
-                    that._search();
-                })
                 .on("paste" + ns, proxy(that._search, that))
                 .on("focus" + ns, function () {
                     that._prev = that._accessor();
@@ -17886,6 +17882,13 @@ kendo_module({
                     role: "textbox",
                     "aria-haspopup": true
                 });
+
+            // ff,360中文输入无法触发keydown事件,增加input.autocomplete事件 by @ash
+                if($.support.input){
+                    element.on("input.autocomplete" + ns, function(){
+                        that._search();
+                    })
+                }
 
             that._enable();
 
@@ -18233,6 +18236,8 @@ kendo_module({
                     e.preventDefault();
                 }
                 that.close();
+            } else {
+                that._search(); 
             }
         },
 
@@ -19200,10 +19205,6 @@ kendo_module({
 
                 that.input
                     .on("keydown" + ns, proxy(that._keydown, that))
-                    // @FIXED ff,360中文输入无法触发keydown by shaotian.hu
-                    .on("input.combobox" + ns, function(){
-                        that._search();
-                    })
                     .on("focus" + ns, function() {
                         wrapper.addClass(FOCUSED);
                         that._placeholder(false);
@@ -19221,6 +19222,13 @@ kendo_module({
 
                         that.element.blur();
                     });
+
+                    // @FIXED ff,360中文输入无法触发keydown by shaotian.hu
+                if($.support.input){
+                    that.input.on("input.combobox" + ns, function(){
+                        that._search();
+                    })
+                }
 
             } else {
                 wrapper
