@@ -17626,6 +17626,7 @@ kendo_module({
         },
 
         _change: function(value) {
+
             var that = this;
 
             value = that._update(value);
@@ -17869,12 +17870,12 @@ kendo_module({
                 .on("paste" + ns, proxy(that._search, that))
                 .on("focus" + ns, function () {
                     that._prev = that._accessor();
-                    that._placeholder(false);
+                    // that._placeholder(false);
                     wrapper.addClass(FOCUSED);
                 })
                 .on("blur" + ns, function () {
                     that._change();
-                    that._placeholder();
+                    // that._placeholder();
                     wrapper.removeClass(FOCUSED);
                 })
                 .attr({
@@ -17883,12 +17884,35 @@ kendo_module({
                     "aria-haspopup": true
                 });
 
-            // ff,360中文输入无法触发keydown事件,增加input.autocomplete事件 by @ash
+            // ff,360中文输入无法触发keydown事件,增加input.autocomplete事件 by shaotian.hu
                 if($.support.input){
                     element.on("input.autocomplete" + ns, function(){
                         that._search();
                     })
                 }
+
+            // @FEATURE placeholder by shaotian.hu
+            if (!placeholderSupported) {
+                $(function(){
+                    element.placeholderEle = $('<span class="k-placeholder">'+options.placeholder+'</span>').insertAfter(element);
+                    element.placeholderEle.on('click',function(e){
+                        element.focus();
+                    });
+
+                    if(element[0].value === ''){
+                        element.placeholderEle.show();
+                    }
+
+                    element.on('change', function(){
+                        if(element[0].value !== ''){
+                            element.placeholderEle.hide();
+                        }else{
+                            element.placeholderEle.show();
+                        } 
+                    }); 
+
+                });
+            }
 
             that._enable();
 
@@ -17900,7 +17924,7 @@ kendo_module({
 
             that._aria();
 
-            that._placeholder();
+            //that._placeholder();
 
             kendo.notify(that);
         },
@@ -18214,6 +18238,18 @@ kendo_module({
 
             that._last = key;
 
+            // @FEATURE placeholder by shaotian.hu
+            if (!placeholderSupported) {
+                setTimeout(function(){
+                    var val = e.target.value;
+                    if(val === ''){
+                        that.element.placeholderEle.show(); 
+                    }else{
+                        that.element.placeholderEle.hide(); 
+                    }
+                },0);
+            }
+
             if (key === keys.DOWN) {
                 if (visible) {
                     that._move(current ? current.next() : $(ul.firstChild));
@@ -18239,6 +18275,7 @@ kendo_module({
             } else {
                 that._search(); 
             }
+
         },
 
         _move: function (li) {
