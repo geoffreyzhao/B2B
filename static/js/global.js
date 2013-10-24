@@ -83,7 +83,8 @@ function GridTable(trigger, customSettings){
     var kendoWinDefaults = {
         scrollable:false,
         pageable:{
-            pageSize: 10,
+            buttonCount:5,
+            pageSize: 5,
             messages: {
                 display: " 共 <b>{2}</b> 条记录，<b>{0}</b> - <b>{1}</b> 条",
                 empty: "共 <b>0</b> 条记录",
@@ -234,6 +235,9 @@ var FloatLayer = function(opts){
     $(document).on('click',function(e){
         // $('.FLAYA').removeClass('FLAYA');
         var t = kendo._activeElement();
+        if(t.tagName.toLowerCase()=='body'){
+            t = e.target;
+        }
         if ( !$(t).is(opts.trigger) ){
             if ( $(t).closest('.ac-floatlayer').length !==1 ){
                 layer.close();
