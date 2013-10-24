@@ -17892,7 +17892,7 @@ kendo_module({
                 }
 
             // @FEATURE placeholder by shaotian.hu
-            if (!placeholderSupported) {
+            if (!placeholderSupported && options.placeholder) {
                 $(function(){
                     element.placeholderEle = $('<span class="k-placeholder">'+options.placeholder+'</span>').insertAfter(element);
                     element.placeholderEle.on('click',function(e){
@@ -18239,7 +18239,7 @@ kendo_module({
             that._last = key;
 
             // @FEATURE placeholder by shaotian.hu
-            if (!placeholderSupported) {
+            if (!placeholderSupported && that.options.placeholder) {
                 setTimeout(function(){
                     var val = e.target.value;
                     if(val === ''){
