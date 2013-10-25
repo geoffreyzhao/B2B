@@ -82,7 +82,7 @@ $(function() {
 
         $(o.target).toggle();
 
-        if(t.toggleClass){
+        if(o.toggleClass){
             if(t.hasClass(o.toggleClass[0])){
                 t.removeClass(o.toggleClass[0]).addClass(o.toggleClass[1]);
             }else{
@@ -90,7 +90,7 @@ $(function() {
             }
         }
 
-        if(t.toggleText){
+        if(o.toggleText){
             if(t.html() == o.toggleText[0]){
                 t.html(o.toggleText[1]);
             }else{
