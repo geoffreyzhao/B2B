@@ -78,11 +78,14 @@ $(function() {
 
     $(".toggle_trigger").click(function(){
         var o = $.parseJSON($(this).attr("toggle"));
+        var t = $(o.filter,$(this));
+
         $(o.target).toggle();
-        if($(o.filter).hasClass(o.toggleClass[0])){
-            $(o.filter).removeClass(o.toggleClass[0]).addClass(o.toggleClass[1]);
+
+        if(t.hasClass(o.toggleClass[0])){
+            t.removeClass(o.toggleClass[0]).addClass(o.toggleClass[1]);
         }else{
-            $(o.filter).removeClass(o.toggleClass[1]).addClass(o.toggleClass[0]);
+            t.removeClass(o.toggleClass[1]).addClass(o.toggleClass[0]);
         }
     });
 });
