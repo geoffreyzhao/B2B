@@ -82,10 +82,20 @@ $(function() {
 
         $(o.target).toggle();
 
-        if(t.hasClass(o.toggleClass[0])){
-            t.removeClass(o.toggleClass[0]).addClass(o.toggleClass[1]);
-        }else{
-            t.removeClass(o.toggleClass[1]).addClass(o.toggleClass[0]);
+        if(t.toggleClass){
+            if(t.hasClass(o.toggleClass[0])){
+                t.removeClass(o.toggleClass[0]).addClass(o.toggleClass[1]);
+            }else{
+                t.removeClass(o.toggleClass[1]).addClass(o.toggleClass[0]);
+            }
+        }
+
+        if(t.toggleText){
+            if(t.html() == o.toggleText[0]){
+                t.html(o.toggleText[1]);
+            }else{
+                t.html(o.toggleText[0]);
+            }
         }
     });
 });
