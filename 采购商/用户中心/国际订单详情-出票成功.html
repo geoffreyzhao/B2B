@@ -289,7 +289,7 @@
                     <td>2013-09-09 08：20<br>2013-09-01 10：20</td>                   
                     <td><a href="#">1次中转 <small>&nbsp;</small></a></td> 
                     <td>大型机<br>......</td
-                </tr>
+                ></tr>
                 <tr class="dashed_top">
                     <td>戴高乐机场<br>马赛机场</td>
                     <td><i class="aviation_icon">东方航空<br>MU5183</i></td>
@@ -420,11 +420,11 @@
                          <p class="intiExplain"><i></i>填写已取消座位的退票PNR，部分退票时，需先分离出新PNR并取消座位，退票费以PNR取消时间为准</p>
                      </td>
                      <td rowspan="2">
-                         <div class="stipulateCon">
-                               <div> <b>退改签规定</b>  <em class="unFold">查看全部</em> <em class="packUp">收起</em> </div>
+                         <div class="stipulateCon toggle_trigger" toggle='{"target":"\\\\#allMes","filter":".stip em","toggleText":["查看全部","收起"]}'>
+                               <div class="stip"> <b>退改签规定</b> <em class="unFold">查看全部</em> <em class="packUp">收起</em> </div>
                                <p>【更改条件】同等舱位免费更改。</p>
                                <p>【退票条件】起飞前2小时（含）以外办理退票按订座</p>
-                               <div class="unfold" style="display:none;">
+                               <div class="unfold" id="allMes" style="display:none;">
                                    <p>舱位公布运价收取40％的退票费，2小时以内及起飞后退票按订座舱位公布运价收取50％的 退票费。退票费低于50元时按50元收取。</p>
                                    <p>【签转条件】不得签转。</p>
                                    <p><em>【补充规则】</em>（不管任何原因）签转到其他航空公司、跨月签转以及有政策航班改到无政策航班，需收回代理费</p>
@@ -615,7 +615,7 @@
                 <tr>
                     <th> </th>
                     <td style="text-align:center; padding-top:15px;">
-                        <a href="javascript:;" class="button_important adaptiveButton medium">
+                        <a href="javascript:void(0);" class="button_important adaptiveButton medium">
                             <span class="left"></span>
                             <span class="center" style="padding:0 25px;">提交</span>
                             <span class="right"></span>
@@ -646,14 +646,16 @@
 </footer>
 </div>
  
-<script type="text/javascript" src="../../static/js/store/international_flight.js"></script>
+
 <script>
 $(function(){
+		   
 	var price_confirm_win = new PopWindow(".ac_intiback",{
 		   title:"订单030312103112261 退废票",
 		   width:930,
 		   template:"#ac_intiback_template"
 	}).init();
+	
 		
 });
 

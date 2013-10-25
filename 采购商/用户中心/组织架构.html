@@ -226,7 +226,7 @@
                                     <div class="hyper-text">
                                         <a href="#">编辑</a>
                                         <a href="#">挂起</a>
-                                        <a href="#">注销</a>
+                                        <a href="javascript:void(0)" class="logout">注销</a>
                                         <a href="javascript:void(0)" class="reset_password">重置密码</a>
                                     </div>
                                     </span>
@@ -248,7 +248,7 @@
                                     <div class="hyper-text">
                                         <a href="#">编辑</a>
                                         <a href="#">挂起</a>
-                                        <a href="#">注销</a>
+                                        <a href="javascript:void(0)" class="logout">注销</a>
                                         <a href="javascript:void(0)" class="reset_password">重置密码</a>
                                     </div>
                                     </span>
@@ -270,7 +270,7 @@
                                     <div class="hyper-text">
                                         <a href="#">编辑</a>
                                         <a href="#">挂起</a>
-                                        <a href="#">注销</a>
+                                        <a href="javascript:void(0)" class="logout">注销</a>
                                         <a href="javascript:void(0)" class="reset_password">重置密码</a>
                                     </div>
                                     </span>
@@ -292,7 +292,7 @@
                                     <div class="hyper-text">
                                         <a href="#">编辑</a>
                                         <a href="#">挂起</a>
-                                        <a href="#">注销</a>
+                                        <a href="javascript:void(0)" class="logout">注销</a>
                                         <a href="javascript:void(0)" class="reset_password">重置密码</a>
                                     </div>
                                     </span>
@@ -333,7 +333,7 @@
                     </tr>
                     <tr>
                         <td class="td_head">电子邮箱：</td>
-                        <td><input value="234567@163.com" type="text" name="" id="" class="editable disabled" readonly="readonly"/></td>
+                        <td><input value="234567@163.com" type="text" name="" id="" class="editable disabled" readonly/></td>
                     </tr>
                     <tr>
                         <td class="td_head">登录密码：</td>
@@ -341,15 +341,15 @@
                     </tr>
                     <tr>
                         <td class="td_head">手机号码：</td>
-                        <td><input value="13912345678" type="text" name="" id="" class="editable disabled" readonly="readonly"/></td>
+                        <td><input value="13912345678" type="text" name="" id="" class="editable disabled" readonly/></td>
                     </tr>
                     <tr>
                         <td class="td_head">办公电话：</td>
-                        <td><input type="text" name="" id="" placeholder="区号"/>-<input value="021-543217890" type="text" name="" id="" class="editable disabled" readonly="readonly"/></td>
+                        <td><input type="text" name="" id="" placeholder="区号"/>-<input value="021-543217890" type="text" name="" id="" class="editable disabled" readonly/></td>
                     </tr>
                     <tr>
                         <td class="td_head">QQ：</td>
-                        <td><input value="13912345678" type="text" name="" id="" class="editable disabled" readonly="readonly"/></td>
+                        <td><input value="13912345678" type="text" name="" id="" class="editable disabled" readonly/></td>
                     </tr>
                     </tbody>
                 </table>
@@ -570,6 +570,28 @@
 </div>
 </script>
 
+<script type="text/x-kendo-template" id="logout-warn-template">
+<div class="warn">
+    <div class="logoutCon clearfix">  
+	    <i>&nbsp;</i><span>注销后，平台将不再保留该用户的任何信息。确定注销？</span>
+    </div>
+	<div class="logoutbox">
+		         <a class="adaptiveButton mediumOrange_btn" id="btn_logout_confirm">
+                      <span class="left"></span>
+                      <span class="center" style="padding:0 20px;">确 定</span>
+                      <span class="right"></span>
+                 </a>
+                 <a href="javascript:void(0);" class="callOff">取消</a>
+	</div>
+</div>
+</script>
+
+<script type="text/x-kendo-template" id="logout-success-template">
+<div class="win" style=" margin:15px 0 0 ;">
+    <h3><i>&nbsp;</i>用户B001注销成功！</h3>
+</div>
+</script>
+
 
 <script type="text/javascript">
     $(function(){
@@ -604,6 +626,18 @@
 			title:'重置成功',
 			width:'420'
 		}).init();
+		
+		new PopWindow('.logout',{
+            template:'#logout-warn-template',
+            title:'注销',
+            width:'420'
+        }).init();
+		
+		new PopWindow('#btn_logout_confirm',{
+            template:'#logout-success-template',
+            title:'注销',
+            width:'420'
+        }).init();
 
         /*
         new PopWindow('#reset_password_confirm',{
