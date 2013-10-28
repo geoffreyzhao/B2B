@@ -15,6 +15,7 @@
 	<script src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
 
 <script type="text/javascript" src="../static/js/kendo.web.js"></script>
+<script type="text/javascript" src="../static/js/global.js"></script>
 <style type="text/css">
 
     .example {border:1px solid #04ac00;margin:10px;padding:10px;}
@@ -26,6 +27,7 @@
 <body>
     <div>
         .............<button type="button" style="width:100px;height:30px" name="v">验证</button>
+        <input type="button" name="win" value="弹出一个模态窗口" onclick="javascript:modelWindow();"/>
     </div>
 
     <form name="form1" action="post" novalidate onsubmit="return submitForm(this);">
@@ -117,6 +119,19 @@
 
     <script>
 var validator;
+
+
+        function modelWindow(){
+
+            var win = new PopWindow("#notexts",{
+                title:"测试窗口",
+                width:500,
+                content:"aaa"
+            }).init();
+
+            win.center().open();
+
+        };
         $(function(){
 
             $( ".datepicker" ).datepicker({
