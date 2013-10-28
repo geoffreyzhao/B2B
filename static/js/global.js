@@ -120,7 +120,7 @@ GridTable.prototype = {
     render:function(){
         var customSettings = this.customSettings || eval('('+this.trigger.data('options')+')');
         var opts;
-        opts = $.extend( this.kendoWinSettings, customSettings);
+        opts = $.extend({}, this.kendoWinSettings, customSettings);
         if( typeof opts.dataSource === 'undefined' ){
             throw new Error(this.triggerText + '缺少dataSource属性');
         }else{
@@ -569,6 +569,8 @@ var CityAutocomplete = function(settings){
 // 加载谈层
 $.loadingbar = function(settings) {
     var defaults = {
+        autoHide:true,
+        replaceText:"正在刷新,请稍后...",
         container: 'body',
         showClose: true,
         template:'',
@@ -652,7 +654,11 @@ $.loadingbar = function(settings) {
     });
 
     $(document).ajaxStop(function(e) {
-        spin_wrap.hide();
+        if(cfg.autoHide){
+            spin_wrap.hide();
+        }else{
+            spin_wrap.find(".loading_text").html(cfg.replaceText);
+        }
     });
 
 
