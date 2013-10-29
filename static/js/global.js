@@ -610,10 +610,10 @@ $.loadingbar = function(settings) {
 
     spin_wrap.find(".ct_content").html(content_tpl);
 
-    if($(cfg.container).find(".lightbox").length){
-        $(".lightbox",$(cfg.container)).replaceWith(spin_wrap);
-    }else{
+    if(0 == $(cfg.container).find("> .lightbox").length){
         $(cfg.container).append(spin_wrap);
+    }else{
+        spin_wrap = $("> .lightbox",$(cfg.container));
     }
 
     $(document).ajaxSend(function(event, jqxhr, settings) {
