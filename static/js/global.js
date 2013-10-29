@@ -120,7 +120,7 @@ GridTable.prototype = {
     render:function(){
         var customSettings = this.customSettings || eval('('+this.trigger.data('options')+')');
         var opts;
-        opts = $.extend( this.kendoWinSettings, customSettings);
+        opts = $.extend({}, this.kendoWinSettings, customSettings);
         if( typeof opts.dataSource === 'undefined' ){
             throw new Error(this.triggerText + '缺少dataSource属性');
         }else{
