@@ -53,8 +53,8 @@
     <section class="main-body clearfix">
         <div class="hotel_search" style="margin-bottom: 10px;text-align: center;background-color:#f8f8f8">
             <div class="condition gray-border">
-            <label><strong><em class="important">*</em>入住日期</strong><input type="text" name="" placeholder="" style="width:110px" class="gray-border datepicker"/></label>
-            <label><strong><em class="important">*</em>离店日期</strong><input type="text" name="" placeholder="" style="width:110px" class="datepicker gray-border"/></label>
+            <label><strong><em class="important">*</em>入住日期</strong><input type="text" name="" placeholder="" style="width:140px" class="gray-border datepicker"/></label>
+            <label><strong><em class="important">*</em>离店日期</strong><input type="text" name="" placeholder="" style="width:140px" class="datepicker gray-border"/></label>
             <label>
                 <strong><em class="important">*</em>预订间数</strong>
                 <select data-role="dropdownlist" name="room_num" style="width:45px;vertical-align:middle;">
@@ -168,7 +168,7 @@
                                     <td><span class="hotelRoomPrice sold">￥450</span></td>
                                     <td style="text-align:center">售完</td>
                                 </tr>
-                                <tr class="last">
+                                <tr>
                                     <td class="roomTypeGroupDetailFirstField">连住两天</td>
                                     <td></td>
                                     <td>自助*1</td>
@@ -521,8 +521,13 @@
         $(".hotelGalleryImagesContainer").jCarouselLite({
             visible:5,
             btnNext:".btn_hotelImageGallery_right",
-            btnPrev:".btn_hotelImageGallery_left"
+            btnPrev:".btn_hotelImageGallery_left",
+            circular:false
         });
+        $(".hotelGalleryImagesContainer li").click(function(){
+            $(this).addClass("current").siblings().removeClass("current");
+            $(".hotelBigImage").attr("src",$("img",this).attr("src"));
+        })
         var layer=new FloatLayer({
             trigger:".rule",
             template:"<div class='location clearfix'> <!--浮层开始-->\
