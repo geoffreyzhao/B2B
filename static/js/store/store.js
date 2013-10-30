@@ -77,19 +77,39 @@ $(function() {
 
 
     $("body").delegate(".toggle_trigger","click",function(){
+        var that = $(this);
         var o = $.parseJSON($(this).attr("toggle"));
         var t = $(o.filter,$(this));
 
         $(o.target).toggle();
 
-        if(o.toggleClass){
-            if(t.hasClass(o.toggleClass[0])){
-                t.removeClass(o.toggleClass[0]).addClass(o.toggleClass[1]);
+        /* 折叠 toggle_trigger */
+        if(o.toggleSelfClass){
+            if(typeof(o.toggleSelfClass) == "string"){
+                that.toggleClass(o.toggleSelfClass);
             }else{
-                t.removeClass(o.toggleClass[1]).addClass(o.toggleClass[0]);
+                if(that.hasClass(o.toggleSelfClass[0])){
+                    that.removeClass(o.toggleSelfClass[0]).addClass(o.toggleSelfClass[1]);
+                }else{
+                    that.removeClass(o.toggleSelfClass[1]).addClass(o.toggleSelfClass[0]);
+                }
             }
         }
 
+        /* 折叠触发者 */
+        if(o.toggleClass){
+            if(typeof(o.toggleClass) == "string"){
+                t.toggleClass(o.toggleClass);
+            }else{
+                if(t.hasClass(o.toggleClass[0])){
+                    t.removeClass(o.toggleClass[0]).addClass(o.toggleClass[1]);
+                }else{
+                    t.removeClass(o.toggleClass[1]).addClass(o.toggleClass[0]);
+                }
+            }
+        }
+
+        /* 切换触发者文本 */
         if(o.toggleText){
             if(t.html() == o.toggleText[0]){
                 t.html(o.toggleText[1]);
