@@ -17,7 +17,7 @@
     <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
 	<script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>    
-
+    <script type="text/javascript" src="../../static/js/global.js"></script> 
     <!--[if IE]>
     <script src="../../static/js/html5.js"></script>
     <![endif]-->
@@ -25,6 +25,7 @@
 	<script src="../../static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
     
     <script type="text/javascript" src="../../static/js/store/store.js"></script>
+   
 </head>
 <body>
 
@@ -227,7 +228,7 @@
             </div>-->
             
             <div class="pay_btn">
-                 <a class="adaptiveButton brightRed_btn">
+                 <a class="adaptiveButton brightRed_btn btn_payconfirm">
                     <span class="left"></span>
                     <span class="center center_1">去支付</span>
                     <span class="right"></span>
@@ -278,6 +279,17 @@
     </div>
     
 </section>
+
+<script type="text/x-kendo-template" id="ac-payconfirm-template">
+     <!--payconfirm start-->
+	 <div class="payconfirm_con">
+	 <p class="con1">请您在新打开的付款页面进行支付，支付完成前请不要关闭该窗口。</p>
+	 <p class="con2">付款成功：<a href="">订单详情</a><a href="">国内机票</a></p>
+	 <p class="con2">付款失败：<a href="">重新选择支付方式</a></p>
+	 </div>
+     <!--payconfirm end-->
+</script>
+
 <footer class="main-footer">
     <center>
         <a href="#">隐私问题</a>
@@ -309,6 +321,20 @@
         });
 
     });
+</script>
+
+
+<script type="text/javascript">
+	$(function(){
+		
+        new PopWindow('.btn_payconfirm',{
+            template:'#ac-payconfirm-template',
+            title:'付款确认',
+            width:'500'
+        }).init();
+
+    });
+	
 </script>
 
 </body>
