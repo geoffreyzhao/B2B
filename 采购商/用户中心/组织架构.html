@@ -154,7 +154,7 @@
                             <td>正常</td>
                             <td></td>
                             <td>1</td>
-                            <td><a class="text1" href="#" style="margin-right:5px">编辑</a><a class="text1" href="#" style="margin-right:5px">挂起</a><a href="javascript:void(0)" class="text1 logout-remind">注销</a></td>
+                            <td><a class="text1 btn_checkRole" href="#" style="margin-right:5px">查看</a></td>
                         </tr>
                         <tr class="currentList">
                             <td>管理员</td>
@@ -451,6 +451,81 @@
 </div>
 </script>
 
+<script type="text/html" id="checkRoleTemplate">
+    <div id="addRoleContainer">
+        <table>
+            <colgroup><col style="width:70px"></colgroup>
+            <tr>
+                <td class="col-r"><i class="important">*</i>角色名称：</td>
+                <td>管理员</td>
+            </tr>
+            <tr>
+                <td class="col-r" style="vertical-align:top">备注：</td>
+                <td>备注</td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top"><i class="important">*</i>角色权限</td>
+                <td>
+                    <ul class="role">
+                        <li>
+                            <label><input type="checkbox" name="" id="" checked="checked" disabled="disabled"/><b>查询预订</b></label>
+                            <div>
+                                <label><input type="checkbox" name="" id="" checked="checked" disabled="disabled"/>国内机票</label>
+                                <label><input type="checkbox" name="" id="" checked="checked" disabled="disabled"/>国际机票</label>
+                                <label><input type="checkbox" name="" id="" checked="checked" disabled="disabled"/>酒店</label>
+                            </div>
+                        </li>
+                        <li>
+                            <label><input type="checkbox" name="" id="" checked="checked" disabled="disabled"/><b>订单管理</b></label>
+                            <div>
+                                <label><input type="checkbox" name="" id="" checked="checked" disabled="disabled"/>国内机票订单</label>
+                                <label><input type="checkbox" name="" id="" checked="checked" disabled="disabled"/>国际机票订单</label>
+                                <label><input type="checkbox" name="" id="" checked="checked" disabled="disabled"/>酒店订单</label>
+                            </div>
+                        </li>
+                        <li>
+                            <label><input type="checkbox" name="" id="" disabled="disabled"/><b>电子钱包</b></label>
+                            <div>
+                                <label><input type="checkbox" name="" id="" disabled="disabled"/>电子钱包</label>
+                                <label><input type="checkbox" name="" id="" disabled="disabled"/>修改支付密码</label>
+                            </div>
+                        </li>
+                        <li>
+                            <label><input type="checkbox" name="" id="" disabled="disabled"/><b>统计报表</b></label>
+                            <div>
+                                <label><input type="checkbox" name="" id="" disabled="disabled"/>机票业务报表</label>
+                                <label><input type="checkbox" name="" id="" disabled="disabled"/>酒店业务报表</label>
+                            </div>
+                        </li>
+                        <li>
+                            <label><input type="checkbox" name="" id="" disabled="disabled"/><b>系统设置</b></label>
+                            <div>
+                                <label><input type="checkbox" name="" id="" disabled="disabled"/>信息维护</label>
+                                <label><input type="checkbox" name="" id="" disabled="disabled"/>组织架构</label>
+                            </div>
+                        </li>
+                        <li>
+                            <label><input type="checkbox" name="" id="" checked="checked" disabled="disabled"/><b>我的工具</b></label>
+                            <div>
+                                <label><input type="checkbox" name="" id="" checked="checked" disabled="disabled"/>常旅客管理</label>
+                                <label><input type="checkbox" name="" id="" checked="checked" disabled="disabled"/>退废票规定</label>
+                                <label><input type="checkbox" name="" id="" checked="checked" disabled="disabled"/>升舱规定</label>
+                            </div>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+        <div class="col-c">
+            <a class="adaptiveButton mediumOrange_btn" id="btn_paying">
+                <span class="left"></span>
+                <span class="center center_1">关 闭</span>
+                <span class="right"></span>
+            </a>
+        </div>
+    </div>
+</script>
+
 <script type="text/html" id="addStaffTemplate">
     <table class="addstaff">
         <colgroup><col style="width:95px"><col><col style="width:95px"></colgroup>
@@ -676,6 +751,11 @@
         new PopWindow('#btn_addStaff',{
             template:'#addStaffTemplate',
             title:'添加员工账号',
+            width:'560'
+        }).init();
+        new PopWindow('.btn_checkRole',{
+            template:'#checkRoleTemplate',
+            title:'查看角色',
             width:'560'
         }).init();
     })
