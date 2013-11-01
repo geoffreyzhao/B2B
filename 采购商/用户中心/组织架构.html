@@ -154,28 +154,28 @@
                             <td>正常</td>
                             <td></td>
                             <td>1</td>
-                            <td><a class="text1" href="#" style="margin-right:5px">编辑</a><a class="text1" href="#" style="margin-right:5px">挂起</a><a class="text1" href="#">注销</a></td>
+                            <td><a class="text1" href="#" style="margin-right:5px">编辑</a><a class="text1" href="#" style="margin-right:5px">挂起</a><a href="javascript:void(0)" class="text1 logout-remind">注销</a></td>
                         </tr>
                         <tr class="currentList">
                             <td>管理员</td>
                             <td>注销</td>
                             <td></td>
                             <td>3</td>
-                            <td><a class="text1" href="#" style="margin-right:5px">编辑</a><a class="text1" href="#" style="margin-right:5px">挂起</a><a class="text1" href="#">注销</a></td>
+                            <td><a class="text1" href="#" style="margin-right:5px">编辑</a><a class="text1" href="#" style="margin-right:5px">挂起</a><a href="javascript:void(0)" class="text1 logout-remind">注销</a></td>
                         </tr>
                         <tr>
                             <td>管理员</td>
                             <td>注销</td>
                             <td></td>
                             <td>3</td>
-                            <td><a class="text1" href="#" style="margin-right:5px">编辑</a><a class="text1" href="#" style="margin-right:5px">挂起</a><a class="text1" href="#">注销</a></td>
+                            <td><a class="text1" href="#" style="margin-right:5px">编辑</a><a class="text1" href="#" style="margin-right:5px">挂起</a><a href="javascript:void(0)" class="text1 logout-remind">注销</a></td>
                         </tr>
                         <tr>
                             <td>管理员</td>
                             <td>注销</td>
                             <td></td>
                             <td>3</td>
-                            <td><a class="text1" href="#" style="margin-right:5px">编辑</a><a class="text1" href="#" style="margin-right:5px">挂起</a><a class="text1" href="#">注销</a></td>
+                            <td><a class="text1" href="#" style="margin-right:5px">编辑</a><a class="text1" href="#" style="margin-right:5px">挂起</a><a href="javascript:void(0)" class="text1 logout-remind">注销</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -562,6 +562,21 @@
 </div>
 </script>
 
+<script type="text/x-kendo-template" id="logout-remind-template">
+
+    <div class="logoutCon clearfix">  
+	    <i>&nbsp;</i><span>还有员工正在使用该角色权限，请去员工管理解除角色权限。</span>
+    </div>
+	<div class="logoutbox">
+		         <a class="adaptiveButton mediumOrange_btn" id="close_role_unreg" >
+                      <span class="left"></span>
+                      <span class="center" style="padding:0 20px;">关 闭</span>
+                      <span class="right"></span>
+                 </a>
+	</div>
+
+</script>
+
 <script type="text/x-kendo-template" id="logout-warn-template">
 
     <div class="logoutCon clearfix">  
@@ -586,6 +601,8 @@
 
 
 <script type="text/javascript">
+	var role_unreg_win = null;
+	
     $(function(){
         $(".btn_edit").click(function(){
             $("#tbl_mainBusinessContactInfo :text").removeClass("disabled").prop("readonly",false);
@@ -606,6 +623,8 @@
             });
 
         });
+		
+		
 
         new PopWindow('.reset_password',{
 			template:'#reset-password-template',
@@ -618,6 +637,12 @@
 			title:'重置成功',
 			width:'420'
 		}).init();
+		
+		role_unreg_win = new PopWindow('.logout-remind',{
+            template:'#logout-remind-template',
+            title:'注销',
+            width:'420'
+        }).init();
 		
 		new PopWindow('.logout',{
             template:'#logout-warn-template',
@@ -638,6 +663,10 @@
 			width:'420'
 		}).init();
         */
+		$("body").delegate("#close_role_unreg","click",function(){
+			role_unreg_win.close();
+			
+		});
 
         new PopWindow('#btn_addRole',{
             template:'#addRoleTemplate',
