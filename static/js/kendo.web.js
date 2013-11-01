@@ -10198,7 +10198,7 @@ kendo_module({
                     return true;
                 },
                 email: function(input) {
-                    return matcher(input, "[type=email],[" + kendo.attr("type") + "=email]", emailRegExp);
+                    return matcher(input, "[type=email],[" + kendo.attr("type") + "=email],[email]", emailRegExp);
                 },
                 url: function(input) {
                     return matcher(input, "[type=url],[" + kendo.attr("type") + "=url]", urlRegExp);
