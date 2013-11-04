@@ -10049,23 +10049,29 @@ kendo_module({
         FORM = "form",
         NOVALIDATE = "novalidate",
         proxy = $.proxy,
-        patternMatcher = function(value, pattern) {
+        patternMatcher = function(value, pattern, patternMode) {
             if (typeof pattern === "string") {
-                pattern = new RegExp('^(?:' + pattern + ')$');
+                if(patternMode){
+                    pattern = new RegExp('^(?:' + pattern + ')$',patternMode);
+                }else{
+                    pattern = new RegExp('^(?:' + pattern + ')$');
+                }
             }
             return pattern.test(value);
         },
-        matcher = function(input, selector, pattern) {
+        matcher = function(input, selector, pattern, patternMode) {
             var value = input.val();
 
             if (input.filter(selector).length && value !== "") {
-                return patternMatcher(value, pattern);
+                return patternMatcher(value, pattern, patternMode);
             }
             return true;
         },
         hasAttribute = function(input, name) {
             if (input.length)  {
-                return input[0].attributes[name] !== undefined;
+                // @todo fix ie8 下 input[0].attributes[name] 返回 null 的问题 
+                // return input[0].attributes[name] !== undefined;
+                return $(input[0]).attr(name) !== undefined;
             }
             return false;
         },
@@ -10159,7 +10165,7 @@ kendo_module({
                 },
                 pattern: function(input) {
                     if (input.filter("[type=text],[type=email],[type=url],[type=tel],[type=search],[type=password]").filter("[pattern]").length && input.val() !== "") {
-                        return patternMatcher(input.val(), input.attr("pattern"));
+                        return patternMatcher(input.val(), input.attr("pattern"), input.attr("pattern-mode"));
                     }
                     return true;
                 },
@@ -10198,10 +10204,10 @@ kendo_module({
                     return true;
                 },
                 email: function(input) {
-                    return matcher(input, "[type=email],[" + kendo.attr("type") + "=email],[email]", emailRegExp);
+                    return matcher(input, "[type=email],[" + kendo.attr("type") + "=email],[email]", emailRegExp,undefined);
                 },
                 url: function(input) {
-                    return matcher(input, "[type=url],[" + kendo.attr("type") + "=url]", urlRegExp);
+                    return matcher(input, "[type=url],[" + kendo.attr("type") + "=url]", urlRegExp, undefined);
                 },
                 date: function(input) {
                     if (input.filter("[type^=date],[" + kendo.attr("type") + "=date]").length && input.val() !== "") {
