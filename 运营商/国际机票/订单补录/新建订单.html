@@ -22,65 +22,9 @@
 <![endif]-->
 <script type="text/javascript" src="/static/js/sync.js"></script>
     <!-- @CLB@ -->
+
+
 <script>
-    function grid_manipulate(settings){
-        //var template = kendo.template($(settings.template).html());
-        var wrap = $(settings.container);
-
-        var model = kendo.observable({
-            data:settings.data
-        });
-
-        function init(){
-            //var content = kendo.render(template, settings.data);
-            //wrap.html(content); 
-            wrap.attr('data-bind','source:data');
-            wrap.attr('data-template',settings.template);
-            kendo.bind(wrap,model);
-            kendo.init(wrap);
-        }
-
-        init();
-
-        return {
-            data:model.data,
-            appendRow:function(d){
-                this.data.push(d);
-                return this;
-            },
-            copyRow:function(){
-                var data = $.map(this.data.toJSON(),function(ele,index){
-                    if($(settings.container).find('tr:eq('+(index)+') input:checked').length) return ele;
-                });
-
-                this.data.push.apply(this.data,data);
-                return this;
-            },
-            removeSelected:function(){
-                var data = this.data;
-                $.each($(settings.container).find('input:checked').closest('tr'),function(){
-                    $(this).find('[data-role]').each(function(){
-                        $(this).data('kendoDropDownList').list.remove(); 
-                        $('.k-animation-container:empty').remove();
-                    });
-                    data.splice($(this).index(),1);
-                });
-                return this;
-            },
-            removeUnSelected:function(){
-                var data = this.data;
-                $.each($(settings.container).find('input:checkbox:not(:checked)').closest('tr'),function(index,ele){
-                    $(this).find('[data-role]').each(function(){
-                        $(this).data('kendoDropDownList').list.remove(); 
-                        $('.k-animation-container:empty').remove();
-                    });
-                    data.splice($(this).index(),1);
-                });
-                return this;
-            }
-        }
-    };
-
 $(function(){
 
     var kp_data = [{
@@ -111,45 +55,130 @@ $(function(){
         c12:"中国"
     }];
 
+    var price_data = {
+        'ADT':[{
+            c1:'ADT',
+            count:4,
+            c3:0,
+            c4:0,
+            c5:0,
+            c6:0,
+            c7:0,
+            c8:0,
+            c9:0,
+            c10:0
+        },{
+            c1:'ADT',
+            count:2,
+            c3:0,
+            c4:0,
+            c5:0,
+            c6:0,
+            c7:0,
+            c8:0,
+            c9:0,
+            c10:0
+        }],
+        'CHD':[{
+            c1:'CHD',
+            count:12,
+            c3:0,
+            c4:0,
+            c5:0,
+            c6:0,
+            c7:0,
+            c8:0,
+            c9:0,
+            c10:0
+        }]
+    }; 
 
-    var kp = grid_manipulate({
+    function replaceName(str,newStr){
+        $('[name*='+str+']').each(function(){
+           $(this).attr('name',$(this).attr('name').replace(str,newStr)); 
+        }); 
+    }
+
+    kp = grid_manipulate({
         data:kp_data,
         template: 'ac-kp-row-template',
-        container:'#passenger_info_grid tbody'
+        change:function(e){
+            //console.log(e); 
+        },
+        rowNumChange:function(e){
+            //console.log(e); 
+        },
+        init:function(e){
+            e.set('office','222');
+            e.set('changeInputName',function(f){
+                return 'psr['+f.get('index')+']';
+            });
+        },
+        container:'.block7'
     });
 
 
-    $('.ac-btn1').on('click',function(){
-        kp.appendRow({
-            c1:"", 
-            c2:"", 
-            c3:"", 
-            c4:"", 
-            c5:"", 
-            c6:"", 
-            c7:"", 
-            c8:"", 
-            c9:"", 
-            c10:"",
-            c11:"", 
-            c12:""
-        });
+
+    var adt_grid = grid_manipulate({
+        data:price_data['ADT'],
+        template: 'ac-price-row-template',
+        container:'#adt_grid'
+    });
+
+    var chd_grid = grid_manipulate({
+        data:price_data['CHD'],
+        template: 'ac-price-row-template',
+        container:'#chd_grid'
+    });
+
+    $('.block7 .ac-btn1').on('click',function(){
+        kp.appendRow();
         $('#passenger_info_grid .checkall').cbFamily('#passenger_info_grid .checkitem');
     });
 
-    $('.ac-btn2').on('click',function(){
+    $('.block7 .ac-btn2').on('click',function(){
         kp.copyRow();
         $('#passenger_info_grid .checkall').cbFamily('#passenger_info_grid .checkitem');
     });
 
-    $('.ac-btn3').on('click',function(){
+    $('.block7 .ac-btn3').on('click',function(){
         kp.removeSelected();
     });
 
-    $('.ac-btn4').on('click',function(){
+    $('.block7 .ac-btn4').on('click',function(){
         kp.removeUnSelected();
     });
 
+    $('.block23 .ac-btn1').on('click',function(){
+        adt_grid.appendRow({
+            c1:'ADT',
+            count:0,
+            c3:0
+        });
+    });
+
+    $('.block23').on('click', '.ac-del', function(){
+        var tr = $(this).closest('tr');
+        if(tr.closest('table').attr('id') == 'adt_grid'){
+            adt_grid.remove(tr.index()); 
+        }
+    });
+
+    $('.block23 .ac-btn2').on('click',function(){
+        chd_grid.appendRow({
+            c1:'CHD',
+            count:0,
+            c3:0
+        });
+    });
+
+    $('.block23 .ac-btn3').on('click',function(){
+        inf_grid.appendRow({
+            c1:'INF',
+            count:0,
+            c3:0
+        });
+    });
 
 })
 
@@ -310,91 +339,92 @@ $(function(){
             <div class="block-title">
                 <span class="block-title-orange">航班信息</span>
             </div> 
-            <script type="text/x-kendo-template" id="flight_template">
-                <tr>
-                    <td><input type="checkbox" name="flight"/></td>
-                    <td><input type="text" value=""/></td>
-                    <td><input type="text" value=""/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text"/></td>
-                    <td><input type="text" value=""/></td>
-                    <td><input type="text" value=""/></td>
-                    <td><input type="text" value=""/></td>
-                    <td><input type="text" value=""/></td>
-                    <td><input type="text" value=""/></td>
-                    <td><input type="text" value=""/></td>
-                    <td><input type="text" value=""/></td>
-                    <td><input type="text" value=""/></td>
-                    <td><input type="text" value=""/></td>
-                </tr>
-            </script>
-            <div class="row">
-                <div id="flight_info_grid">
-                    <table class="grid-table gj" id="flight_table">
-                        <tr class="thead">
-                            <td><input type="checkbox" name="flight_all"/></td>
-                            <td width="50">PNR</td>
-                            <td width="60">大编码</td>
-                            <td width="50">新PNR</td>
-                            <td width="60">新大编码</td>
-                            <td>离港机场</td>
-                            <td>到港机场</td>
-                            <td width="50">航班号</td>
-                            <td width="30">舱位</td>
-                            <td width="30">机型</td>
-                            <td width="100">离港时间</td>
-                            <td width="100">到港时间</td>
-                            <td width="30">订座</td>
-                            <td width="70">预定OFFICE</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="flight"/></td>
-                            <td><input type="text" value="JZ4W50"/></td>
-                            <td><input type="text" value="MJWM9N"/></td>
-                            <td><input type="text" /></td>
-                            <td><input type="text" /></td>
-                            <td><input type="text" value="PEK T3"/></td>
-                            <td><input type="text" value="PVG T2"/></td>
-                            <td><input type="text" value="CZ3609"/></td>
-                            <td><input type="text" value="W"/></td>
-                            <td><input type="text" value="777"/></td>
-                            <td><input type="text" value="2013-06-22 20:35"/></td>
-                            <td><input type="text" value="2013-06-22 23:25"/></td>
-                            <td><input type="text" value="HK"/></td>
-                            <td><input type="text" value="SHA255"/></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="flight"/></td>
-                            <td><input type="text" value="JZ4W50"/></td>
-                            <td><input type="text" value="MJWM9N"/></td>
-                            <td><input type="text" /></td>
-                            <td><input type="text" /></td>
-                            <td><input type="text" value="PEK T3"/></td>
-                            <td><input type="text" value="PVG T2"/></td>
-                            <td><input type="text" value="CZ3609"/></td>
-                            <td><input type="text" value="W"/></td>
-                            <td><input type="text" value="777"/></td>
-                            <td><input type="text" value="2013-06-22 20:35"/></td>
-                            <td><input type="text" value="2013-06-22 23:25"/></td>
-                            <td><input type="text" value="HK"/></td>
-                            <td><input type="text" value="SHA255"/></td>
-                        </tr>
-                    </table> 
-                </div>
+            <div id="flight_info_grid">
+                <table class="grid-table gj" id="flight_table">
+                    <tr class="thead">
+                        <td><input type="checkbox" name="flight_all"/></td>
+                        <td width="50">PNR</td>
+                        <td width="60">大编码</td>
+                        <td width="50">新PNR</td>
+                        <td width="60">新大编码</td>
+                        <td>离港机场</td>
+                        <td>到港机场</td>
+                        <td width="50">航班号</td>
+                        <td width="30">舱位</td>
+                        <td width="30">机型</td>
+                        <td width="100">离港时间</td>
+                        <td width="100">到港时间</td>
+                        <td width="30">订座</td>
+                        <td width="70">预定OFFICE</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="flight"/></td>
+                        <td><input type="text" value="JZ4W50"/></td>
+                        <td><input type="text" value="MJWM9N"/></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" value="PEK T3"/></td>
+                        <td><input type="text" value="PVG T2"/></td>
+                        <td><input type="text" value="CZ3609"/></td>
+                        <td><input type="text" value="W"/></td>
+                        <td><input type="text" value="777"/></td>
+                        <td><input type="text" value="2013-06-22 20:35"/></td>
+                        <td><input type="text" value="2013-06-22 23:25"/></td>
+                        <td><input type="text" value="HK"/></td>
+                        <td><input type="text" value="SHA255"/></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="flight"/></td>
+                        <td><input type="text" value="JZ4W50"/></td>
+                        <td><input type="text" value="MJWM9N"/></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" value="PEK T3"/></td>
+                        <td><input type="text" value="PVG T2"/></td>
+                        <td><input type="text" value="CZ3609"/></td>
+                        <td><input type="text" value="W"/></td>
+                        <td><input type="text" value="777"/></td>
+                        <td><input type="text" value="2013-06-22 20:35"/></td>
+                        <td><input type="text" value="2013-06-22 23:25"/></td>
+                        <td><input type="text" value="HK"/></td>
+                        <td><input type="text" value="SHA255"/></td>
+                    </tr>
+                </table> 
             </div>
         </div>
 
-        <div class="block block3 block-module">
+        <div class="block block23 block-module">
             <div class="block-title">
                 <span class="block-title-blue">报价信息</span>
                 <span class="block-module-action">
-                    <button class="btns btn-ac-blue">添加成人报价</button> 
-                    <button class="btns btn-ac-blue">添加学生报价</button> 
-                    <button class="btns btn-ac-blue">添加儿童报价</button> 
-                    <button class="btns btn-ac-blue">添加婴儿报价</button> 
-                    <button class="btns btn-ac-blue">添加其他报价</button> 
+                    <button class="btns btn-ac-blue ac-btn1">添加成人报价</button> 
+                    <button class="btns btn-ac-blue ac-btn2">添加儿童报价</button> 
+                    <button class="btns btn-ac-blue ac-btn3">添加学生报价</button> 
+                    <button class="btns btn-ac-blue ac-btn4">添加婴儿报价</button> 
+                    <button class="btns btn-ac-blue ac-btn5">添加其他报价</button> 
                 </span>
             </div>
+
+            <script type="text/x-kendo-template" id="ac-price-row-template">
+                    <tr>
+                        <td><span data-bind="text:c1"></span></td>
+                        <td><input data-bind="value:count" type="text" name="xxx[$$].fff"></td>
+                        <td><input value="2244.00" type="text" name=""></td>
+                        <td><input value="2260" type="text" name=""></td>
+                        <td><input value="150" type="text" name=""></td>
+                        <td><input value="5.00%" type="text" name=""></td>
+                        <td><input value="5.00%" type="text" name=""></td>
+                        <td><input value="50.00" type="text" name=""></td>
+                        <td><input value="0.00" type="text" name=""></td>
+                        <td><input value="50.00" type="text" name=""></td>
+                        <td><a href="javascript:;" class="ac-del">删除</a></td>
+                    </tr>
+            </script>
+
+            <script type="text/x-kendo-template" id="ac-textinput">
+            
+            </script>
+
             <div class="row">
                 <table class="grid-table">
                     <colgroup>
@@ -411,6 +441,7 @@ $(function(){
                       <col width="80">
                     </colgroup>
                     
+                    <thead>
                     <tr class="thead">
                         <td>旅客类型</td>
                         <td>人数</td>
@@ -424,23 +455,11 @@ $(function(){
                         <td>附加费</td>
                         <td>操作</td>
                     </tr>
-                    <tr>
-                        <td>成人</td>
-                        <td><input value="2" type="text" name=""></td>
-                        <td><input value="2244.00" type="text" name=""></td>
-                        <td><input value="2260" type="text" name=""></td>
-                        <td><input value="150" type="text" name=""></td>
-                        <td><input value="5.00%" type="text" name=""></td>
-                        <td><input value="5.00%" type="text" name=""></td>
-                        <td><input value="50.00" type="text" name=""></td>
-                        <td><input value="0.00" type="text" name=""></td>
-                        <td><input value="50.00" type="text" name=""></td>
-                        <td><a href="javascript:;">删除</a></td>
-                    </tr>
+                    </thead>
                 </table> 
             </div>
             <div class="row">
-                <table class="grid-table">
+                <table class="grid-table" id="adt_grid">
                     <colgroup>
                         <col width="70">
                         <col width="80">
@@ -454,22 +473,26 @@ $(function(){
                         <col width="80">
                         <col width="80">
                     </colgroup>
-
-                    <tr>
-                        <td>学生</td>
-                        <td><input value="2" type="text" name=""></td>
-                        <td><input value="2244.00" type="text" name=""></td>
-                        <td><input value="2260" type="text" name=""></td>
-                        <td><input value="150" type="text" name=""></td>
-                        <td><input value="5.00%" type="text" name=""></td>
-                        <td><input value="5.00%" type="text" name=""></td>
-                        <td><input value="50.00" type="text" name=""></td>
-                        <td><input value="0.00" type="text" name=""></td>
-                        <td><input value="50.00" type="text" name=""></td>
-                        <td><a href="javascript:;">删除</a></td>
-                    </tr>
+                    <tbody></tbody>
                 </table>
-            
+            </div>
+            <div class="row">
+                <table class="grid-table" id="chd_grid">
+                    <colgroup>
+                        <col width="70">
+                        <col width="80">
+                        <col width="120">
+                        <col width="80">
+                        <col width="80">
+                        <col width="80">
+                        <col width="80">
+                        <col width="80">
+                        <col width="80">
+                        <col width="80">
+                        <col width="80">
+                    </colgroup>
+                    <tbody></tbody>
+                </table>
             </div>
 
         </div>
@@ -494,7 +517,7 @@ $(function(){
             <button class="ac-btn3 btns btn-ac-blue">删除所选</button> 
             <button class="ac-btn4 btns btn-ac-blue">删除未选</button> 
             <button class="ac-btn5 btns btn-ac-blue">提取票号</button> 
-            <label>选择常旅客：<input style="width:100px;" type="text" placeholder="输入姓名" /></label>
+            <label>选择常旅客：<input data-bind="value:office" style="width:100px;" type="text" placeholder="输入姓名" /></label>
             <label><input id="" type="checkbox" name=""> 添加至常旅客</label>
         </span>
     </div> 
@@ -534,8 +557,11 @@ $(function(){
         </table>
         <script type="text/x-kendo-template" id="ac-kp-row-template">
             <tr>
-                <td><input id="" data-bind="value:c1" class="checkitem" type="checkbox" name="c1"></td>
-                <td><input id="" data-bind="value:c3" type="text" name="c3"></td>
+                <td>
+                <input type="hidden" data-bind="value:office" name="">
+                <input id="" data-bind="value:c1,attr:{name:changeInputName}" class="checkitem" type="checkbox" name="c1"></td>
+                <td>
+                <input id="" data-bind="value:c3,attr:{name:changeInputName}" type="text" name="c3"></td>
                 <td><select data-role="dropdownlist" style="width:40px;" data-bind="value:c9" name="c9">
                     <option value="男">男</option>
                     <option value="女">女</option>
@@ -554,7 +580,8 @@ $(function(){
                     <option value="儿童">儿童</option>
                     <option value="婴儿">婴儿</option>
                 </select></td>
-                <td><input id="" data-bind="value:c10" type="text" name="c10"></td>
+                <td>
+                <input id="" data-bind="value:c10" type="text" name="c10[$$].fff"></td>
           </tr>
         </script>
 

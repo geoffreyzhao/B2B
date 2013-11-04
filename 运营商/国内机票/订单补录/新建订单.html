@@ -23,64 +23,6 @@
 <script type="text/javascript" src="/static/js/sync.js"></script>
     <!-- @CLB@ -->
 <script>
-    function grid_manipulate(settings){
-        //var template = kendo.template($(settings.template).html());
-        var wrap = $(settings.container);
-
-        var model = kendo.observable({
-            data:settings.data
-        });
-
-        function init(){
-            //var content = kendo.render(template, settings.data);
-            //wrap.html(content); 
-            wrap.attr('data-bind','source:data');
-            wrap.attr('data-template',settings.template);
-            kendo.bind(wrap,model);
-            kendo.init(wrap);
-        }
-
-        init();
-
-        return {
-            data:model.data,
-            appendRow:function(d){
-                this.data.push(d);
-                return this;
-            },
-            copyRow:function(){
-                var data = $.map(this.data.toJSON(),function(ele,index){
-                    if($(settings.container).find('tr:eq('+(index)+') input:checked').length) return ele;
-                });
-
-                this.data.push.apply(this.data,data);
-                return this;
-            },
-            removeSelected:function(){
-                var data = this.data;
-                $.each($(settings.container).find('input:checked').closest('tr'),function(){
-                    $(this).find('[data-role]').each(function(){
-                        $(this).data('kendoDropDownList').list.remove(); 
-                        $('.k-animation-container:empty').remove();
-                    });
-                    data.splice($(this).index(),1);
-                });
-                return this;
-            },
-            removeUnSelected:function(){
-                var data = this.data;
-                $.each($(settings.container).find('input:checkbox:not(:checked)').closest('tr'),function(index,ele){
-                    $(this).find('[data-role]').each(function(){
-                        $(this).data('kendoDropDownList').list.remove(); 
-                        $('.k-animation-container:empty').remove();
-                    });
-                    data.splice($(this).index(),1);
-                });
-                return this;
-            }
-        }
-    };
-
 $(function(){
 
     var kp_data = [{
