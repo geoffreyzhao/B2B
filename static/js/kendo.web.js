@@ -10467,6 +10467,10 @@ kendo_module({
                         labelSetting.width = pcssObj.width;
                     }
 
+                    if(pcssObj.zIndex){
+                        labelSetting.zIndex = pcssObj.zIndex;
+                    }
+
                     messageLabel.css(labelSetting);
 
                     if (!lbl.replaceWith(messageLabel).length) {
