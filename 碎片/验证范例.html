@@ -67,6 +67,10 @@
                 <div>
                     <span>c3</span><input type="text" required k-msg-position="bottom" k-msg-css="{top:10,width:100}" name="c3"/>
                 </div>
+                <h3>定义错误的层级</h3>
+                <div>
+                    <span>c5</span><input type="text" required k-msg-position="bottom" k-msg-css="{top:10,zIndex:30000}" name="c5"/>
+                </div>
             </div>
             <div class="example">
                 <h3>自定义验证函数 at_least_one (至少选择一个)</h3>
@@ -173,7 +177,7 @@ var validator;
                 },
                 rules : {
                     range:function(input){
-                        var j = eval("(" + $(this).attr("range") + ")");
+                        var j = eval("(" + $(input).attr("range") + ")");
                         if(parseInt(input.val()) > j.min && parseInt(input.val()) < j.max){
                             return true;
                         }else{
