@@ -1483,6 +1483,15 @@ $.fn.fixedBar = function(settings){
                 }
             }
         }); 
+
+        if(window.isIE){
+            $(document).on('click.fixedBar',function(){
+                if(ele.hasClass("fixedBar")){
+                    $(window).trigger('scroll.fixedBar');
+                }
+            });
+        }
+
     }
 
     init();

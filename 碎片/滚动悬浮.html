@@ -26,24 +26,48 @@
         </div>
     </div>
 
-    <div class="block end2" style="height:800px;font-size:180px;"> this is content</div>
-    <div class="block" style="height:100px;font-size:40px;"> this is bottom </div>
-    <h1>hello fixedbar1</h1>
-    <div class="block" style="height:100px;font-size:40px;"> this is bottom </div>
-    <div class="block" style="height:100px;font-size:40px;"> this is bottom </div>
-    <h1>hello fixedbar2</h1>
-    <div class="block" style="height:100px;font-size:40px;"> this is bottom </div>
-    <div class="block" style="height:800px;font-size:40px;"> this is content</div>
-    <div class="block" style="height:800px;font-size:40px;"> this is content</div>
 
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
     <script type="text/javascript">
         $(function(){
-            $('.actions').fixedBar({ endAt:'.end2' });
-            $('h1').fixedBar({ endAt:'.end1' });
+            $('.actions').fixedBar();
         });
     </script>
-    
+ 
+<button id="btn1">ADD content</button>
+<button id="btn2">REMOVE content</button>
+    <style>
+.box{
+    border:1px solid #333;
+    padding:30px;
+    margin:10px auto;
+    width:700px;
+    font-size:20px;
+} 
+button{
+    position:fixed;
+    left:20px;
+    top:100px;
+    padding:5px;
+}
+#btn2{
+    top:140px;
+}
+    </style>
+<script>
+$(window).on('scroll',function(){
+    console.log('bodyHeight='+$('body').height());
+});
+
+$('#btn1').on('click',function(){
+    $('body').append('<div class="box">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu magna vitae tellus vehicula fermentum vel sollicitudin mi. Suspendisse suscipit aliquet leo et mattis. Suspendisse in rhoncus mi. Morbi adipiscing sagittis nisl quis volutpat. Cras id lectus et justo blandit auctor. Fusce blandit nunc tempor risus aliquam, et consectetur nunc tempor. Quisque nec libero id nisl tincidunt convallis. Vivamus fringilla tellus lectus, non euismod lacus scelerisque id. Vivamus dignissim fringilla urna vitae dictum. Etiam sit amet velit sed magna facilisis tempus id nec felis. Donec a neque a neque tincidunt auctor vitae accumsan mi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse vulputate tortor quam, sit amet viverra sapien convallis eget. Sed vulputate tincidunt leo et pharetra. Aenean a nisl dui. </div>')
+});
+
+$('#btn2').on('click',function(){
+    $('.box').remove();
+});
+</script>
+   
 </body>
 </html>
