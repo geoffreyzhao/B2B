@@ -40,14 +40,14 @@ PopWindow.prototype = {
         var tmpl = $(opts.template).html();
 
         if ( typeof opts.content === 'undefined'
-            && opts.template ) {
+            && opts.template && tmpl) {
                 opts.content = {
                     template : kendo.template(tmpl)(opts.data||{}) 
                 }
         }
 
         if( typeof opts.content === 'undefined' ){
-            throw new Error(this.triggerText + '缺少content(弹窗内容)属性');
+            throw new Error('PopWindow Error.\n'+this.triggerText + '缺少弹窗内容'+ (opts.template ? ',已初始化template属性为' + opts.template :'') );
         }else{
             this.win = windowEle.kendoWindow( opts ).data('kendoWindow'); 
             this.win.triggerEle = this.trigger;
