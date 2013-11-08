@@ -1,316 +1,23 @@
 <!doctype html>
-
 <html xmlns="http://www.w3.org/1999/xhtml" >
-<head><title>
-	购票单打印
-</title>
-<meta charset="utf-8"/>
-        <script language="javascript" type="text/javascript">
-    </script>
-    <style>
-     .orderno
-     {
-     	 width:300px;
-     	}
+    <head>
+        <title>购票单打印</title>
+        <meta charset="utf-8"/>
+        <style>
+            div.crystalstyle div {position:absolute; z-index:25}
+            div.crystalstyle a {text-decoration:none}
+            div.crystalstyle a img {border-style:none; border-width:0}
+            .title {font-size:13pt;color:#000000;font-family:宋体;font-weight:bold;}
+            .font1 {font-size:9pt;color:#000000;font-family:宋体;font-weight:normal;}
+            .font2 {font-size:9pt;color:#000000;font-family:宋体;font-weight:normal;}
+            .font3 {font-size:9pt;color:#000000;font-family:宋体;font-weight:bold;}
+            .font4 {font-size:11pt;color:#000000;font-family:宋体;font-weight:bold;}
+            .font5 {font-size:10pt;color:#000000;font-family:宋体;font-weight:normal;}
+            .font0 {border-color:#000000;border-left-width:0;border-right-width:0;border-top-width:0;border-bottom-width:0;}
+        </style>
+    </head>
+<body>
 
-.crpage {
-    background-color: #FFFFFF;
-    color: #000000;
-    font-family: verdana,Arial;
-}
-.crheader {
-    background-color: #B2B2B2;
-    color: #000000;
-    font-family: verdana,Arial;
-}
-.crheader A {
-    color: #000000;
-    text-decoration: none;
-}
-.crheader A:hover {
-    color: #FF0000;
-    text-decoration: none;
-}
-.crtitle {
-    color: #000000;
-    font-family: verdana,Arial;
-    font-size: 10pt;
-}
-.crpagepath {
-    background-color: #006699;
-    color: #FFFFFF;
-}
-.crpagepath A {
-    color: #FFFFFF;
-    text-decoration: none;
-}
-.crpagepath A:hover {
-    color: #FF0000;
-    text-decoration: none;
-}
-.crwizard {
-    background-color: #CAC9D9;
-    color: #000000;
-    font-family: verdana,Arial;
-}
-.crwizardtabbackground {
-    background-color: #CAC9D9;
-    color: #000000;
-}
-.crwizardtoolbar {
-    background-color: #CAC9D9;
-    color: #000000;
-    font-family: verdana,Arial;
-}
-.crwizardtoolbar A {
-    color: #000000;
-    text-decoration: none;
-}
-.crwizardtoolbar A.hover {
-    color: #FF0000;
-    text-decoration: none;
-}
-.crwizardformula {
-    background-color: #CAC9D9;
-    color: #000000;
-    font-family: verdana,Arial;
-}
-.crwizardfields {
-    background-color: #CAC9D9;
-    color: #000000;
-    font-family: verdana,Arial;
-}
-.crsearchresults {
-    background-color: #FFFFFF;
-    color: #636384;
-    font-family: verdana,Arial;
-}
-.crsearchresults A {
-    color: #636384;
-    text-decoration: none;
-}
-.crsearchresults A:hover {
-    color: #636384;
-    text-decoration: none;
-}
-.crsearchresultstitle {
-    background-color: #DFDEEA;
-    color: #000000;
-    font-family: verdana,Arial;
-    font-size: 14pt;
-    font-weight: bold;
-}
-.crsearchresultstoolbar {
-    background-color: #FFFFFF;
-    color: #000000;
-}
-.crsearchresultstoolbar A {
-    color: #0000FF;
-    text-decoration: none;
-}
-.crsearchresultstoolbar A:hover {
-    color: #FF00FF;
-    text-decoration: none;
-}
-.crcaption {
-    color: #000000;
-    font-family: verdana,Arial;
-    font-size: 14pt;
-}
-.crtoolbar {
-    background-color: #E4E4EC;
-    border-bottom: 1px solid #BEBED1;
-    border-top: 1px solid #FFFFFF;
-    color: #000000;
-    font-family: verdana,Arial;
-    font-size: 8pt;
-}
-.crtoolbar A {
-    color: #000000;
-    text-decoration: none;
-}
-.crtoolbar A:hover {
-    color: #FF0000;
-    text-decoration: none;
-}
-.crtoolbar A IMG {
-    border-style: none;
-    border-width: 0;
-}
-.crtoolbarlist {
-    font-family: verdana,Arial;
-    font-size: 8pt;
-}
-.crtoolbartextbox {
-    font-family: verdana,Arial;
-    font-size: 8pt;
-}
-.crtoptoolbar {
-    background-color: #0073AA;
-    color: #FFFFFF;
-}
-.crtoptoolbar A {
-    color: #FFFFFF;
-    text-decoration: none;
-}
-.crtoptoolbar A:hover {
-    color: #FF0000;
-    text-decoration: none;
-}
-.crcontent {
-    font-size: 12pt;
-}
-.promptBorder {
-    background-color: #000000;
-}
-.promptHeader {
-    background-color: #008080;
-    border-width: thin;
-    color: #F5F5F5;
-    font-family: verdana,Arial;
-    font-weight: bold;
-}
-.promptElement {
-    background-color: #DFDFDF;
-}
-.promptElementText {
-    color: #444444;
-    font-family: verdana,Arial;
-    font-size: 10pt;
-}
-.promptingText {
-    color: #444444;
-    font-family: verdana,Arial;
-    font-size: 12pt;
-}
-.promptRuler {
-    color: #444444;
-}
-.promptMessage {
-    color: #444444;
-    font-family: verdana,Arial;
-    font-size: 14pt;
-    font-weight: bold;
-}
-.promptTextBox {
-    background-color: #FFFFFF;
-    border-color: #000000;
-    border-style: solid;
-    border-width: thin;
-    font-family: verdana,Arial;
-}
-.promptButton {
-    border-color: -moz-use-text-color;
-    border-style: solid;
-    border-width: thin;
-    font-family: verdana,Arial;
-    font-size: 10pt;
-}
-.promptDropDown {
-    border-color: -moz-use-text-color;
-    border-style: solid;
-    border-width: thin;
-    font-family: verdana,Arial;
-}
-.promptListBox {
-    border-color: -moz-use-text-color;
-    border-style: solid;
-    border-width: thin;
-    font-family: verdana,Arial;
-}
-.CRGridViewerToolbar {
-    background-color: #E4E4EC;
-    color: #000000;
-    font-family: verdana,Arial;
-    font-size: 8pt;
-}
-.CRGridViewerNavigationBar {
-    background-color: #FFFFFF;
-    color: #000000;
-    font-family: verdana,Arial;
-    font-size: 8pt;
-}
-.CRGridViewerHeading {
-    background-color: #CAC9D9;
-    font-family: verdana,Arial;
-}
-.CRGridViewerCell {
-    font-family: verdana,Arial;
-    padding: 2px;
-    text-align: center;
-}
-.CRGridViewerTable {
-    font-family: verdana,Arial;
-}
-.crgrptr a {
-    color: #000000;
-    font-family: verdana,Arial;
-    font-size: 10pt;
-}
-.crgrptr a:hover {
-    color: #FF0000;
-    text-decoration: underline;
-}
-.crgrplvl1 {
-}
-.crgrplvl2 {
-}
-
-    </style>
-</head>
-<body   onload="init()">
-    <form name="form1" method="post" action="OrderInfoPrint.aspx?OrderNo=311071138821&amp;neworderno=&amp;tmp=Thu+Nov+07+2013+11%3a39%3a51+GMT+0800" id="form1">
-<div>
-<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
-<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
-<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="" />
-<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMjAwNTM1MTU1Mg9kFgICAw9kFgICAQ8XBAUEQkFTRWQFA2Nzc2UFAnBtCyl7Q3J5c3RhbERlY2lzaW9ucy5XZWIuUHJpbnRNb2RlLCBDcnlzdGFsRGVjaXNpb25zLldlYiwgVmVyc2lvbj0xMC41LjM3MDAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj02OTJmYmVhNTUyMWUxMzA0AQUPUmVwb3J0Vmlld1N0YXRlFwYFCkRlc2lnbk1vZGVoBRJQYWdlUmVxdWVzdENvbnRleHQXAwUKUGFnZU51bWJlcgIBBRVJc0xhc3RQYWdlTnVtYmVyS25vd25nBQ5MYXN0UGFnZU51bWJlcgIBBQdGYWN0b3J5BZYBQ3J5c3RhbERlY2lzaW9ucy5SZXBvcnRTb3VyY2UuUmVwb3J0U291cmNlRmFjdG9yeSxDcnlzdGFsRGVjaXNpb25zLlJlcG9ydFNvdXJjZSwgVmVyc2lvbj0xMC41LjM3MDAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj02OTJmYmVhNTUyMWUxMzA0BQdSZWZyZXNoaAUJUmVwb3J0VVJJZQUJUnB0U291cmNlBTdDcnlzdGFsRGVjaXNpb25zLlJlcG9ydFNvdXJjZS5Ob25IVFRQQ2FjaGVkUmVwb3J0U291cmNlFgICAg8XBAUCYnMC3/f//w8FBHNpcG5mBQNzaHdoBQNwc3RkFgICCw8QDxYCHgtfIURhdGFCb3VuZGdkDxYBZhYBEAUJ5Li75oql6KGoBagDQUFFQUFBRC8vLy8vQVFBQUFBQUFBQUFFQVFBQUFCeFRlWE4wWlcwdVEyOXNiR1ZqZEdsdmJuTXVTR0Z6YUhSaFlteGxCd0FBQUFwTWIyRmtSbUZqZEc5eUIxWmxjbk5wYjI0SVEyOXRjR0Z5WlhJUVNHRnphRU52WkdWUWNtOTJhV1JsY2doSVlYTm9VMmw2WlFSTFpYbHpCbFpoYkhWbGN3QUFBd01BQlFVTENCeFRlWE4wWlcwdVEyOXNiR1ZqZEdsdmJuTXVTVU52YlhCaGNtVnlKRk41YzNSbGJTNURiMnhzWldOMGFXOXVjeTVKU0dGemFFTnZaR1ZRY205MmFXUmxjZ2pzVVRnL0F3QUFBQW9LQ3dBQUFBa0NBQUFBQ1FNQUFBQVFBZ0FBQUFNQUFBQUdCQUFBQUE1TVlYTjBVR0ZuWlU1MWJXSmxjZ1lGQUFBQUZVbHpUR0Z6ZEZCaFoyVk9kVzFpWlhKTGJtOTNiZ1lHQUFBQUNsQmhaMlZPZFcxaVpYSVFBd0FBQUFNQUFBQUlDQUVBQUFBSUFRRUlDQUVBQUFBTGcWAWZkGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYLBRhydHBPcmRlckluZm8kY3RsMDIkY3RsMDAFGHJ0cE9yZGVySW5mbyRjdGwwMiRjdGwwMQUYcnRwT3JkZXJJbmZvJGN0bDAyJGN0bDAyBRhydHBPcmRlckluZm8kY3RsMDIkY3RsMDMFGHJ0cE9yZGVySW5mbyRjdGwwMiRjdGwwNAUYcnRwT3JkZXJJbmZvJGN0bDAyJGN0bDA1BRhydHBPcmRlckluZm8kY3RsMDIkY3RsMDYFGHJ0cE9yZGVySW5mbyRjdGwwMiRjdGwwNwUYcnRwT3JkZXJJbmZvJGN0bDAyJGN0bDEwBRhydHBPcmRlckluZm8kY3RsMDIkY3RsMTIFGHJ0cE9yZGVySW5mbyRjdGwwMiRjdGwxNKwAM/nxb4+ZlUKQTjtEhQ0dQbWH" />
-</div>
-
-<script type="text/javascript">
-//<![CDATA[
-var theForm = document.forms['form1'];
-if (!theForm) {
-    theForm = document.form1;
-}
-function __doPostBack(eventTarget, eventArgument) {
-    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
-        theForm.__EVENTTARGET.value = eventTarget;
-        theForm.__EVENTARGUMENT.value = eventArgument;
-        theForm.submit();
-    }
-}
-//]]>
-</script>
-
-
-
-<script type="text/javascript">
-//<![CDATA[
-function ScrollToCrystalHighLighted() {
-                var highlighted = document.getElementById('CrystalHighLighted');
-                if(highlighted != null)
-                {
-                    var offset = highlighted.offsetTop;
-                    var myOffsetParent = highlighted.offsetParent;
-                    while( myOffsetParent )
-                    {
-                        offset += myOffsetParent.offsetTop;
-                        myOffsetParent = myOffsetParent.offsetParent;
-                    }
-                    window.scrollTo( 0, offset);
-                }
-            }//]]>
-</script>
-
-<div>
-
-	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWGQLaz//NDwLe8pXQBALe8qmrDQLe8oH1CwLe8uW8BwLe8vkXAt7yvYYGAt7y0eEOAt7yidIHAsOJ+LoKAsOJjJYDAuqn+q8DAsOJ0IQJAsOJ5N8BAsOJyKcNAsOJ3IIGAs3miu8KAsjmtu8KAsrmiu8KAuqn0bgNAvO1xqYIAuqnpbsNAuun0bgNAuSn0bgNAuWn0bgNanI9GUra0ba/n72RVrNmIH1bqu8=" />
-</div>
-      <object id="CrystalPrintControl"  height="0px"  classid="CLSID:83A3D1E4-ADC6-434D-9B61-B8CBA6183441"
-            codebase="/yeeskyTkt/PrintControl.cab" version="1.0.3300.0"
-            viewastext>
-        </object>
 
      <table  align="center"  border="0">
         <tr>
@@ -323,39 +30,6 @@ function ScrollToCrystalHighLighted() {
 <A HREF="#tree" TITLE="转到报表组树"></A><A HREF="#page" TITLE="转到报表页内容"></A><div class="" style="display:inline-block;height:26px;width:894px;top:0px;left:0px;"></div><A NAME="tree"></A>
 <A NAME="page"></A>
 
-    <script>
-        ie4up=false;
-        var agt = navigator.userAgent.toLowerCase();
-        var major = parseInt(navigator.appVersion);
-        if ((agt.indexOf('msie') != -1) && (major >= 4))
-            ie4up = true;
-    </script>
-    <script language="javascript">
-        <!--
-        function doGraphDrilldown_rtpOrderInfo$ctl04(event, name, brch, offsetX, offsetY, pageNumber, nextpart) {
-        if (ie4up)
-            javascript:__doPostBack('rtpOrderInfo$ctl04','name=' + name + '&brch=' + brch + '&coord=' + (event.offsetX*15 / 1
-+parseInt(offsetX)) + '-' + (event.offsetY*15 / 1 +parseInt(offsetY)) +
-'&pagenumber=' + pageNumber + '&nextpart=' + nextpart)
-        else
-            javascript:__doPostBack('rtpOrderInfo$ctl04','name=' + name + '&brch=' + brch + '&coord=' + (event.layerX*15 / 1
-+parseInt(offsetX)) + '-'  + (event.layerY*15 / 1 +parseInt(offsetY)) +
-'&pagenumber=' + pageNumber + '&nextpart=' + nextpart)
-        }
-        // -->
-    </script>
-<style>
-    div.crystalstyle div {position:absolute; z-index:25}
-    div.crystalstyle a {text-decoration:none}
-    div.crystalstyle a img {border-style:none; border-width:0}
-	.fcd4d328c3-b1fa-4fab-8eac-874952abc30d-0 {font-size:13pt;color:#000000;font-family:宋体;font-weight:bold;}
-	.fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1 {font-size:9pt;color:#000000;font-family:宋体;font-weight:normal;}
-	.fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2 {font-size:9pt;color:#000000;font-family:宋体;font-weight:normal;}
-	.fcd4d328c3-b1fa-4fab-8eac-874952abc30d-3 {font-size:9pt;color:#000000;font-family:宋体;font-weight:bold;}
-	.fcd4d328c3-b1fa-4fab-8eac-874952abc30d-4 {font-size:11pt;color:#000000;font-family:宋体;font-weight:bold;}
-	.fcd4d328c3-b1fa-4fab-8eac-874952abc30d-5 {font-size:10pt;color:#000000;font-family:宋体;font-weight:normal;}
-	.ade50300c0-2882-4441-b4be-7211beac2a62-0 {border-color:#000000;border-left-width:0;border-right-width:0;border-top-width:0;border-bottom-width:0;}
-</style>
 <div class="crystalstyle" style="width:767px;height:1089px;position:absolute;top:34px;left:135px">
 <div id="Line1" style="z-index:15;top:57px;left:0px;border-color:#000000;border-style:solid;border-width:0px;border-top-width:1px;width:759px;">
 
@@ -389,78 +63,78 @@ function ScrollToCrystalHighLighted() {
 <div id="Section1" style="z-index:3;clip:rect(0px,762px,64px,0px);top:0px;left:0px;width:762px;height:64px;">
 
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:16px;left:264px;width:208px;height:24px;">
+<div style="top:16px;left:264px;width:208px;height:24px;">
     <table width="208px" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-0">上海不夜城航空票务中心</span></td>
+                    <td><span class="title">上海不夜城航空票务中心</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:24px;left:512px;width:216px;height:16px;">
+<div style="top:24px;left:512px;width:216px;height:16px;">
     <table width="216px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">订&nbsp;单&nbsp;号&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">:&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">311071138821&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">订&nbsp;单&nbsp;号&#x200E;</span><span class="font1">:&#x200E;</span><span class="font1">311071138821&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:40px;left:8px;width:72px;height:16px;">
+<div class="font0" style="top:40px;left:8px;width:72px;height:16px;">
     <table width="72px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">客户名称&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">：&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">客户名称&#x200E;</span><span class="font1">：&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:40px;left:248px;width:72px;height:16px;">
+<div class="font0" style="top:40px;left:248px;width:72px;height:16px;">
     <table width="72px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">联系电话&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">：&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">联系电话&#x200E;</span><span class="font1">：&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:40px;left:88px;width:133px;height:16px;">
+<div class="font0" style="top:40px;left:88px;width:133px;height:16px;">
     <table width="133px" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">新517平台</span></td>
+                    <td><span class="font1">新517平台</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:40px;left:328px;width:133px;height:16px;">
+<div class="font0" style="top:40px;left:328px;width:133px;height:16px;">
     <table width="133px" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">12</span></td>
+                    <td><span class="font1">12</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:40px;left:512px;width:216px;height:16px;">
+<div class="font0" style="top:40px;left:512px;width:216px;height:16px;">
     <table width="216px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">票证类型&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">:&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">BJS&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">001&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">(&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">国内&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">)&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">票证类型&#x200E;</span><span class="font1">:&#x200E;</span><span class="font1">BJS&#x200E;</span><span class="font1">001&#x200E;</span><span class="font1">(&#x200E;</span><span class="font1">国内&#x200E;</span><span class="font1">)&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
@@ -469,111 +143,111 @@ function ScrollToCrystalHighLighted() {
 <div id="Section2" style="z-index:3;clip:rect(0px,762px,18px,0px);top:64px;left:0px;width:762px;height:18px;">
 
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:64px;left:12px;width:184px;height:14px;">
+<div class="font0" style="top:64px;left:12px;width:184px;height:14px;">
     <table width="184px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">旅客姓名&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">（&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">票号&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">）【&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">JNFM&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">8&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">D&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">】&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">旅客姓名&#x200E;</span><span class="font1">（&#x200E;</span><span class="font1">票号&#x200E;</span><span class="font1">）【&#x200E;</span><span class="font1">JNFM&#x200E;</span><span class="font1">8&#x200E;</span><span class="font1">D&#x200E;</span><span class="font1">】&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:64px;left:213px;width:32px;height:14px;">
+<div class="font0" style="top:64px;left:213px;width:32px;height:14px;">
     <table width="32px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">行程&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">行程&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:64px;left:307px;width:40px;height:14px;">
+<div class="font0" style="top:64px;left:307px;width:40px;height:14px;">
     <table width="40px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">航班号&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">航班号&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:64px;left:367px;width:32px;height:14px;">
+<div class="font0" style="top:64px;left:367px;width:32px;height:14px;">
     <table width="32px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">舱位&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">舱位&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:64px;left:424px;width:56px;height:14px;">
+<div class="font0" style="top:64px;left:424px;width:56px;height:14px;">
     <table width="56px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">航班日期&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">航班日期&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:64px;left:504px;width:32px;height:14px;">
+<div class="font0" style="top:64px;left:504px;width:32px;height:14px;">
     <table width="32px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">票款&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">票款&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:64px;left:552px;width:32px;height:14px;">
+<div class="font0" style="top:64px;left:552px;width:32px;height:14px;">
     <table width="32px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">税款&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">税款&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:64px;left:713px;width:48px;height:14px;">
+<div class="font0" style="top:64px;left:713px;width:48px;height:14px;">
     <table width="48px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">实收款&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">实收款&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:64px;left:665px;width:32px;height:14px;">
+<div class="font0" style="top:64px;left:665px;width:32px;height:14px;">
     <table width="32px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">后返&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">后返&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:64px;left:613px;width:32px;height:14px;">
+<div class="font0" style="top:64px;left:613px;width:32px;height:14px;">
     <table width="32px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">返点&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">返点&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
@@ -582,12 +256,12 @@ function ScrollToCrystalHighLighted() {
 <div id="Section3" style="z-index:3;clip:rect(0px,762px,41px,0px);top:82px;left:0px;width:762px;height:41px;">
 
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:82px;left:16px;width:160px;height:23px;">
+<div class="font0" style="top:82px;left:16px;width:160px;height:23px;">
     <table width="160px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">刘云启&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">(&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">7812146895663&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">)&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">刘云启&#x200E;</span><span class="font1">(&#x200E;</span><span class="font1">7812146895663&#x200E;</span><span class="font1">)&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
@@ -595,118 +269,118 @@ function ScrollToCrystalHighLighted() {
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">&nbsp;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">&nbsp;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:82px;left:160px;width:131px;height:24px;text-align:center;">
+<div class="font0" style="top:82px;left:160px;width:131px;height:24px;text-align:center;">
     <table width="131px" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="center"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">PVGPEK</span></td>
+                    <td align="center"><span class="font2">PVGPEK</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:82px;left:496px;width:44px;height:25px;text-align:center;">
+<div class="font0" style="top:82px;left:496px;width:44px;height:25px;text-align:center;">
     <table width="44px" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="center"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">&nbsp;920.00</span></td>
+                    <td align="center"><span class="font2">&nbsp;920.00</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:82px;left:540px;width:59px;height:25px;text-align:center;">
+<div class="font0" style="top:82px;left:540px;width:59px;height:25px;text-align:center;">
     <table width="59px" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="center"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">&nbsp;170.00</span></td>
+                    <td align="center"><span class="font2">&nbsp;170.00</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:82px;left:709px;width:50px;height:25px;text-align:center;">
+<div class="font0" style="top:82px;left:709px;width:50px;height:25px;text-align:center;">
     <table width="50px" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="center"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">&nbsp;988.49</span></td>
+                    <td align="center"><span class="font2">&nbsp;988.49</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:82px;left:360px;width:51px;height:23px;text-align:center;">
+<div class="font0" style="top:82px;left:360px;width:51px;height:23px;text-align:center;">
     <table width="51px" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="center"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">H</span></td>
+                    <td align="center"><span class="font2">H</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:82px;left:288px;width:68px;height:25px;text-align:center;">
+<div class="font0" style="top:82px;left:288px;width:68px;height:25px;text-align:center;">
     <table width="68px" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="center"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">MU&nbsp;5115</span></td>
+                    <td align="center"><span class="font2">MU&nbsp;5115</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:82px;left:600px;width:59px;height:24px;">
+<div class="font0" style="top:82px;left:600px;width:59px;height:24px;">
     <table width="59px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="center" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">.&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">00&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">%&#x200E;</span></td>
+                    <td align="center" style="line-height:1.0;"><span class="font2">.&#x200E;</span><span class="font2">00&#x200E;</span><span class="font2">%&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr><tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="center" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">+&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">97&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">.&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">52&#x200E;</span></td>
+                    <td align="center" style="line-height:1.0;"><span class="font2">+&#x200E;</span><span class="font2">97&#x200E;</span><span class="font2">.&#x200E;</span><span class="font2">52&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:82px;left:660px;width:48px;height:24px;">
+<div class="font0" style="top:82px;left:660px;width:48px;height:24px;">
     <table width="48px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">.&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">00&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">%&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font2">.&#x200E;</span><span class="font2">00&#x200E;</span><span class="font2">%&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:82px;left:392px;width:105px;height:32px;text-align:center;">
+<div class="font0" style="top:82px;left:392px;width:105px;height:32px;text-align:center;">
     <table width="105px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="center" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">2013&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">/&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">11&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">/&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">11&nbsp;&#x200E;</span></td>
+                    <td align="center" style="line-height:1.0;"><span class="font2">2013&#x200E;</span><span class="font2">/&#x200E;</span><span class="font2">11&#x200E;</span><span class="font2">/&#x200E;</span><span class="font2">11&nbsp;&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr><tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="center" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">15&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">:&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">00&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">:&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">00&#x200E;</span></td>
+                    <td align="center" style="line-height:1.0;"><span class="font2">15&#x200E;</span><span class="font2">:&#x200E;</span><span class="font2">00&#x200E;</span><span class="font2">:&#x200E;</span><span class="font2">00&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
@@ -715,12 +389,12 @@ function ScrollToCrystalHighLighted() {
 <div id="Section3" style="z-index:3;clip:rect(0px,762px,41px,0px);top:123px;left:0px;width:762px;height:41px;">
 
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:123px;left:16px;width:160px;height:23px;">
+<div class="font0" style="top:123px;left:16px;width:160px;height:23px;">
     <table width="160px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">(---)&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">(---)&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
@@ -728,29 +402,29 @@ function ScrollToCrystalHighLighted() {
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">&nbsp;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">&nbsp;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:123px;left:600px;width:59px;height:24px;">
+<div class="font0" style="top:123px;left:600px;width:59px;height:24px;">
     <table width="59px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="center" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">%+&#x200E;</span></td>
+                    <td align="center" style="line-height:1.0;"><span class="font2">%+&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:123px;left:660px;width:48px;height:24px;">
+<div class="font0" style="top:123px;left:660px;width:48px;height:24px;">
     <table width="48px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">%&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font2">%&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
@@ -759,12 +433,12 @@ function ScrollToCrystalHighLighted() {
 <div id="Section3" style="z-index:3;clip:rect(0px,762px,41px,0px);top:164px;left:0px;width:762px;height:41px;">
 
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:164px;left:16px;width:160px;height:23px;">
+<div class="font0" style="top:164px;left:16px;width:160px;height:23px;">
     <table width="160px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">(---)&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">(---)&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
@@ -772,29 +446,29 @@ function ScrollToCrystalHighLighted() {
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">&nbsp;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">&nbsp;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:164px;left:600px;width:59px;height:24px;">
+<div class="font0" style="top:164px;left:600px;width:59px;height:24px;">
     <table width="59px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="center" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">%+&#x200E;</span></td>
+                    <td align="center" style="line-height:1.0;"><span class="font2">%+&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:164px;left:660px;width:48px;height:24px;">
+<div class="font0" style="top:164px;left:660px;width:48px;height:24px;">
     <table width="48px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">%&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font2">%&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
@@ -803,12 +477,12 @@ function ScrollToCrystalHighLighted() {
 <div id="Section3" style="z-index:3;clip:rect(0px,762px,41px,0px);top:205px;left:0px;width:762px;height:41px;">
 
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:205px;left:16px;width:160px;height:23px;">
+<div class="font0" style="top:205px;left:16px;width:160px;height:23px;">
     <table width="160px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">(---)&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">(---)&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
@@ -816,29 +490,29 @@ function ScrollToCrystalHighLighted() {
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">&nbsp;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">&nbsp;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:205px;left:600px;width:59px;height:24px;">
+<div class="font0" style="top:205px;left:600px;width:59px;height:24px;">
     <table width="59px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="center" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">%+&#x200E;</span></td>
+                    <td align="center" style="line-height:1.0;"><span class="font2">%+&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:205px;left:660px;width:48px;height:24px;">
+<div class="font0" style="top:205px;left:660px;width:48px;height:24px;">
     <table width="48px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-2">%&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font2">%&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
@@ -847,166 +521,166 @@ function ScrollToCrystalHighLighted() {
 <div id="Section4" style="z-index:3;clip:rect(0px,762px,54px,0px);top:246px;left:0px;width:762px;height:54px;">
 
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:246px;left:7px;width:112px;height:14px;">
+<div class="font0" style="top:246px;left:7px;width:112px;height:14px;">
     <table width="112px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">合&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;计&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">:&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">合&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;计&#x200E;</span><span class="font1">:&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:254px;left:392px;width:40px;height:14px;">
+<div class="font0" style="top:254px;left:392px;width:40px;height:14px;">
     <table width="40px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-3">佣金&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-3">:&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font3">佣金&#x200E;</span><span class="font3">:&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:254px;left:488px;width:56px;height:14px;">
+<div class="font0" style="top:254px;left:488px;width:56px;height:14px;">
     <table width="56px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="right" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-3">实收款&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-3">：&#x200E;</span></td>
+                    <td align="right" style="line-height:1.0;"><span class="font3">实收款&#x200E;</span><span class="font3">：&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:254px;left:128px;width:264px;height:24px;">
+<div class="font0" style="top:254px;left:128px;width:264px;height:24px;">
     <table width="264px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-4">920&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-4">.&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-4">00&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-4">+&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-4">170&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-4">.&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-4">00&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-4">+-&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-4">3&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-4">.&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-4">99&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-4">+&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-4">0&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-4">.&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-4">00&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font4">920&#x200E;</span><span class="font4">.&#x200E;</span><span class="font4">00&#x200E;</span><span class="font4">+&#x200E;</span><span class="font4">170&#x200E;</span><span class="font4">.&#x200E;</span><span class="font4">00&#x200E;</span><span class="font4">+-&#x200E;</span><span class="font4">3&#x200E;</span><span class="font4">.&#x200E;</span><span class="font4">99&#x200E;</span><span class="font4">+&#x200E;</span><span class="font4">0&#x200E;</span><span class="font4">.&#x200E;</span><span class="font4">00&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:262px;left:7px;width:112px;height:14px;">
+<div class="font0" style="top:262px;left:7px;width:112px;height:14px;">
     <table width="112px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">(&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">票&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">+&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">税&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">+&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">附加&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">+&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">保险&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">)&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">(&#x200E;</span><span class="font1">票&#x200E;</span><span class="font1">+&#x200E;</span><span class="font1">税&#x200E;</span><span class="font1">+&#x200E;</span><span class="font1">附加&#x200E;</span><span class="font1">+&#x200E;</span><span class="font1">保险&#x200E;</span><span class="font1">)&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:254px;left:424px;width:56px;height:18px;">
+<div class="font0" style="top:254px;left:424px;width:56px;height:18px;">
     <table width="56px" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-4">&nbsp;97.52</span></td>
+                    <td><span class="font4">&nbsp;97.52</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:278px;left:423px;width:72px;height:14px;">
+<div class="font0" style="top:278px;left:423px;width:72px;height:14px;">
     <table width="72px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">出票日期&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">：&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">出票日期&#x200E;</span><span class="font1">：&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:278px;left:152px;width:56px;height:14px;">
+<div class="font0" style="top:278px;left:152px;width:56px;height:14px;">
     <table width="56px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">出票员&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">：&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">出票员&#x200E;</span><span class="font1">：&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:278px;left:271px;width:56px;height:14px;">
+<div class="font0" style="top:278px;left:271px;width:56px;height:14px;">
     <table width="56px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">收款员&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">：&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">收款员&#x200E;</span><span class="font1">：&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:278px;left:8px;width:56px;height:14px;">
+<div class="font0" style="top:278px;left:8px;width:56px;height:14px;">
     <table width="56px" border="0" cellpadding="0" cellspacing="0px">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="left" style="line-height:1.0;"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">订票员&#x200E;</span><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-1">：&#x200E;</span></td>
+                    <td align="left" style="line-height:1.0;"><span class="font1">订票员&#x200E;</span><span class="font1">：&#x200E;</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:278px;left:71px;width:64px;height:14px;">
+<div class="font0" style="top:278px;left:71px;width:64px;height:14px;">
     <table width="64px" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-5">autoZD</span></td>
+                    <td><span class="font5">autoZD</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:278px;left:207px;width:56px;height:14px;">
+<div class="font0" style="top:278px;left:207px;width:56px;height:14px;">
     <table width="56px" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-5">autoZD</span></td>
+                    <td><span class="font5">autoZD</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:278px;left:335px;width:80px;height:14px;">
+<div class="font0" style="top:278px;left:335px;width:80px;height:14px;">
     <table width="80px" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-5">autoWZ</span></td>
+                    <td><span class="font5">autoWZ</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:278px;left:495px;width:72px;height:14px;">
+<div class="font0" style="top:278px;left:495px;width:72px;height:14px;">
     <table width="72px" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-5">2013/11/6&nbsp;15:20:34</span></td>
+                    <td><span class="font5">2013/11/6&nbsp;15:20:34</span></td>
                 </tr>
             </table></td>
         </tr>
     </table>
 </div>
-<div class="ade50300c0-2882-4441-b4be-7211beac2a62-0" style="top:254px;left:552px;width:84px;height:14px;text-align:right;">
+<div class="font0" style="top:254px;left:552px;width:84px;height:14px;text-align:right;">
     <table width="84px" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td align="right"><span class="fcd4d328c3-b1fa-4fab-8eac-874952abc30d-4">&nbsp;988.49</span></td>
+                    <td align="right"><span class="font4">&nbsp;988.49</span></td>
                 </tr>
             </table></td>
         </tr>
@@ -1021,14 +695,6 @@ function ScrollToCrystalHighLighted() {
             </td>
         </tr>
      </table>
-        
-        
-
-<script type="text/javascript">
-//<![CDATA[
-ScrollToCrystalHighLighted();//]]>
-</script>
-</form>
 </body>
 </html>
 
