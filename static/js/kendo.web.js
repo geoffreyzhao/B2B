@@ -14404,38 +14404,39 @@ kendo_module({
                 top -= appendToOffset.top;
                 left -= appendToOffset.left;
             }
-
+            that.options.offsetX=that.options.offsetX?that.options.offsetX:0;
+            that.options.offsetY=that.options.offsetY?that.options.offsetY:0;
 
             if (verticalOrigin === BOTTOM) {
-                top += anchorHeight;
+                top += anchorHeight+that.options.offsetY;
             }
 
             if (verticalOrigin === CENTER) {
-                top += round(anchorHeight / 2);
+                top += round(anchorHeight / 2)+that.options.offsetY;
             }
 
             if (verticalPosition === BOTTOM) {
-                top -= height;
+                top -= height-that.options.offsetY;
             }
 
             if (verticalPosition === CENTER) {
-                top -= round(height / 2);
+                top -= round(height / 2)-that.options.offsetY;
             }
 
             if (horizontalOrigin === RIGHT) {
-                left += anchorWidth;
+                left += anchorWidth+that.options.offsetX;
             }
 
             if (horizontalOrigin === CENTER) {
-                left += round(anchorWidth / 2);
+                left += round(anchorWidth / 2)+that.options.offsetX;
             }
 
             if (horizontalPosition === RIGHT) {
-                left -= width;
+                left -= width-that.options.offsetX;
             }
 
             if (horizontalPosition === CENTER) {
-                left -= round(width / 2);
+                left -= round(width / 2)-that.options.offsetX;
             }
 
             return {
@@ -14594,6 +14595,10 @@ kendo_module({
             position: "bottom",
             showOn: "mouseenter",
             autoHide: true,
+            offsetX:0,
+            offsetY:0,
+            arrowOffsetX:-1,
+            arrowOffsetY:-1,
             animation: {
                 open: {
                     effects: "fade:in",
@@ -14779,7 +14784,7 @@ kendo_module({
                 },
                 copyAnchorStyles: false,
                 animation: options.animation
-            }, POSITIONS[options.position]));
+            }, POSITIONS[options.position],{offsetX:that.options.offsetX,offsetY:that.options.offsetY}));
 
             wrapper.css({
                 width: options.width,
@@ -14833,12 +14838,16 @@ kendo_module({
                 arrowBorder = parseInt(that.arrow.css("borderWidth"), 10),
                 elementOffset = $(popup.element).offset(),
                 cssClass = DIRCLASSES[popup.flipped ? REVERSE[position] : position],
-                offsetAmount = anchorOffset[offset] - elementOffset[offset] + ($(anchor)[dimensions.size]() / 2) - arrowBorder;
+//                offsetAmount = anchorOffset[offset] - elementOffset[offset] + ($(anchor)[dimensions.size]() / 2) - arrowBorder;
+                offsetAmount = offset=="left"?that.options.arrowOffsetX:that.options.arrowOffsetY + ($(anchor)[dimensions.size]() / 2) - arrowBorder;
 
            that.arrow
                .removeClass("k-callout-n k-callout-s k-callout-w k-callout-e")
-               .addClass("k-callout-" + cssClass)
-               .css(offset, offsetAmount);
+               .addClass("k-callout-" + cssClass);
+           if(that.options.arrowOffsetX!=-1 || that.options.arrowOffsetY!=-1)
+           {
+               that.arrow.css(offset, offsetAmount);
+           }
         },
 
         target: function() {
