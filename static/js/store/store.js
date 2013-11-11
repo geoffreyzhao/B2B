@@ -16,7 +16,7 @@ $(function() {
             $backToTopEle.css("top", st + winh - 166);
 //            $advice.css("top", st + winh - 166);
         }
-    },$advice=$('<a class="advice"></a>').appendTo($("body"));
+    };//$advice=$('<a class="advice"></a>').appendTo($("body"));
     
     $(window).bind("scroll", $backToTopFun);
     /*
