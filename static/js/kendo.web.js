@@ -10368,8 +10368,8 @@ kendo_module({
 
                 var messageLabel = $(template({ message: decode(messageText) }));
 
-                var p =  input.attr("k-msg-position");
-                var pcss = input.attr("k-msg-css");
+                var p =  input.attr("k-msg-position") || input.attr("data-k-msg-position");
+                var pcss = input.attr("k-msg-css") || input.attr("data-k-msg-css");
 
                 try {
                     var pcssObj = pcss != undefined ? eval("(" + pcss + ")") : {top: 0, left:0, equalInput:false};
@@ -10408,7 +10408,15 @@ kendo_module({
                 }
 
                 if(that.options.errorMsgShow){
+
+                    var vis = input.is(":visible");
+                    if (!vis)
+                        input.show();  // must be visible to get .position
+
                     inputOffset = input.position();
+
+                    if (!vis) 
+                        input.hide();
 
                     var labelSetting = {};
                     var checkPer = /%/;
