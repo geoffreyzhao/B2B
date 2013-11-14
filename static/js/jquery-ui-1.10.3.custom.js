@@ -528,6 +528,10 @@ $.extend(Datepicker.prototype, {
                 $(target).after(dayWrapper);
             }
 
+            dayWrapper.bind('click',function(){
+                $(target).focus();
+            });
+
             inst.dayWrapper = dayWrapper;
 
             var data_value = $.datepicker.parseDate(this._get(inst, 'dateFormat'), inst.input.val());
