@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>运营商 保险 订单管理</title>
+    <title>运营商 保险 保单查询</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <link href="../../static/css/common.css" rel="stylesheet" type="text/css" />
@@ -11,8 +11,8 @@
     <link href="../../static/css/b2b.css" rel="stylesheet" type="text/css" />
     <link href="../../static/css/kendo.reset.css" rel="stylesheet" />
     <link href="../../static/css/insurance.css" rel="stylesheet" type="text/css"/>
-    <script src="../../static/js/jquery.min.js" type="text/javascript"></script>
     
+    <script src="../../static/js/jquery.min.js" type="text/javascript"></script>    
     <script src="../../static/js/kendo.web.js" type="text/javascript"></script>
     <script type="text/javascript" src="../../static/js/scrollFix.js"></script>
     <script type="text/javascript" src="../../static/js/public.js"></script>
@@ -61,12 +61,12 @@
                         <button class="btns btn-return">返回</button>
                     </div>-->
                     <div class="col col-l">
-                         <a class="item highlight" href="订单管理.html" style="margin-left:20px;">订单查询</a> 
-                         <a class="item" href="保单查询.html">保单查询</a> 
+                         <a class="item" href="订单管理.html" style="margin-left:20px;">订单查询</a> 
+                         <a class="item highlight" href="保单查询.html">保单查询</a> 
                      </div>
-                     <div class="col col-r sep-l">
+                     <!--<div class="col col-r sep-l">
                            <button class="btns btn-blue ac-new">新建订单</button>
-                     </div>
+                     </div>-->
             </div>
             
             
@@ -82,20 +82,15 @@
                        <col width="90px"/>
                   </colgroup>
                   <tr>
+                     <td>保单号</td>
+                     <td>
+                         <input type="text" style="width:130px;" />
+                     </td>
                      <td>订单号</td>
                      <td>
                          <input type="text" style="width:130px;" />
                      </td>
-                     <td>保险产品</td>
-                     <td>
-                         <select style="width:130px;">
-                             <option>太平保险</option>
-                             <option>太平洋保险</option>
-                             <option>泰康保险</option>
-                             <option>……</option>
-                         </select>
-                     </td>
-                     <td>创建日期</td>
+                     <td>投保日期</td>
                      <td>
                           <input type="text" class="datepicker" style="width:100px;" value="2013-11-14"/>
                           <em> 至 </em>
@@ -110,31 +105,37 @@
                      </td>
                   </tr> 
                   <tr>
-                      <td>订单状态</td>
+                      <td>被保险人</td>
                      <td>
-                         <select style="width:135px;">
-                             <option>全部</option>
-                             <option>新建</option>
-                             <option>支付</option>
-                             <option>投保</option>
-                             <option>完成</option>
-                         </select>
+                         <input type="text" style="width:130px;" />
                      </td>
-                      <td>客户名称</td>
-                      <td>
-                          <input type="text" style="width:125px;" />
-                      </td>
                       <td>投保人</td>
                       <td>
                           <input type="text" style="width:130px;" />
                       </td>
+                      <td>保险产品</td>
+                      <td>
+                          <select style="width:135px;">
+                             <option>太平保险</option>
+                             <option>太平洋保险</option>
+                             <option>泰康保险</option>
+                             <option>……</option>
+                          </select>
+                      </td>
                   </tr>
                   <tr>
-                      <td>订单类型</td>
-                      <td colspan="3">
-                          <label><input type="checkbox"/>独立保险订单</label>
-                          <label><input type="checkbox"/>机票保险订单</label>
+                      <td>保单状态</td>
+                      <td>
+                          <select style="width:135px;">
+                             <option>全部</option>
+                             <option>投保成功</option>
+                             <option>投保失败</option>
+                             <option>退保成功</option>
+                             <option>退保失败</option>
+                          </select>
                       </td>
+                      <td></td>
+                      <td></td>
                       <td></td>
                       <td></td>
                   </tr>
@@ -147,95 +148,116 @@
                               <tr>
                                   <th class="line_left">操作</th>
                                   <th>状态</th>
+                                  <th>保单号</th>
                                   <th>订单号</th>
-                                  <th>客户名称</th>
-                                  <th>产品名称</th>
-                                  <th>险种名称</th>
-                                  <th>保险期</th>
+                                  <th>被保险人</th>
+                                  <th>证件类型</th>
+                                  <th>证件号码</th>
+                                  <th>性别</th>
+                                  <th>保险产品</th>
+                                  <th>数量</th>
                                   <th>投保人</th>
-                                  <th>合计费</th>
-                                  <th>订单类型</th>
-                                  <th class="line_right">创建日期</th>
+                                  <th class="line_right">投保日期</th>
                               </tr>
                           </thead>
                           <tbody>
                               <tr>
-                                  <td><a href="javascript:void(0);">受理</a></td>
-                                  <td>新建</td>
+                                  <td><a href="javascript:void(0);">日志</a></td>
+                                  <td>投保成功</td>
+                                  <td>201311130001</td>
                                   <td><a href="javascript:void(0);">131113144946304</a></td>
-                                  <td>苏宁易购</td>
-                                  <td>太平保险</td>
-                                  <td>e顺高额航空意外险</td>
-                                  <td>7天</td>
                                   <td>张大国</td>
-                                  <td>20.00元</td>
-                                  <td>独立保险</td>
-                                  <td>2012/11/14</td>
+                                  <td>身份证</td>
+                                  <td>420813198809131539</td>
+                                  <td>男</td>
+                                  <td>太平保险</td>
+                                  <td>1份</td>
+                                  <td>张大国</td>
+                                  <td>2013-11-13</td>
                                </tr>
                                <tr>
-                                  <td><a href="javascript:void(0);">受理</a></td>
-                                  <td>新建</td>
+                                  <td><a href="javascript:void(0);">人工投保</a></td>
+                                  <td>投保失败</td>
+                                  <td>201311130001</td>
                                   <td><a href="javascript:void(0);">131113144946304</a></td>
-                                  <td>苏宁易购</td>
-                                  <td>太平保险</td>
-                                  <td>e顺高额航空意外险</td>
-                                  <td>7天</td>
                                   <td>张大国</td>
-                                  <td>20.00元</td>
-                                  <td>独立保险</td>
-                                  <td>2012/11/14</td>
+                                  <td>身份证</td>
+                                  <td>420813198809131539</td>
+                                  <td>男</td>
+                                  <td>太平保险</td>
+                                  <td>1份</td>
+                                  <td>张大国</td>
+                                  <td>2013-11-13</td>
                                </tr>
                                <tr>
-                                  <td><a href="javascript:void(0);">受理</a></td>
-                                  <td>新建</td>
+                                  <td><a href="javascript:void(0);">日志</a></td>
+                                  <td>退保成功</td>
+                                  <td>201311130001</td>
                                   <td><a href="javascript:void(0);">131113144946304</a></td>
-                                  <td>苏宁易购</td>
-                                  <td>太平保险</td>
-                                  <td>e顺高额航空意外险</td>
-                                  <td>7天</td>
                                   <td>张大国</td>
-                                  <td>20.00元</td>
-                                  <td>独立保险</td>
-                                  <td>2012/11/14</td>
+                                  <td>身份证</td>
+                                  <td>420813198809131539</td>
+                                  <td>男</td>
+                                  <td>太平保险</td>
+                                  <td>1份</td>
+                                  <td>张大国</td>
+                                  <td>2013-11-13</td>
                                </tr>
                                <tr>
-                                  <td><a href="javascript:void(0);">受理</a></td>
-                                  <td>新建</td>
+                                  <td><a href="javascript:void(0);">人工投保</a></td>
+                                  <td>退保失败</td>
+                                  <td>201311130001</td>
                                   <td><a href="javascript:void(0);">131113144946304</a></td>
-                                  <td>苏宁易购</td>
-                                  <td>太平保险</td>
-                                  <td>e顺高额航空意外险</td>
-                                  <td>7天</td>
                                   <td>张大国</td>
-                                  <td>20.00元</td>
-                                  <td>独立保险</td>
-                                  <td>2012/11/14</td>
+                                  <td>身份证</td>
+                                  <td>420813198809131539</td>
+                                  <td>男</td>
+                                  <td>太平保险</td>
+                                  <td>1份</td>
+                                  <td>张大国</td>
+                                  <td>2013-11-13</td>
                                </tr>
                                <tr>
-                                  <td><a href="javascript:void(0);">受理</a></td>
-                                  <td>新建</td>
+                                  <td><a href="javascript:void(0);">日志</a></td>
+                                  <td>投保成功</td>
+                                  <td>201311130001</td>
                                   <td><a href="javascript:void(0);">131113144946304</a></td>
-                                  <td>苏宁易购</td>
-                                  <td>太平保险</td>
-                                  <td>e顺高额航空意外险</td>
-                                  <td>7天</td>
                                   <td>张大国</td>
-                                  <td>20.00元</td>
-                                  <td>独立保险</td>
-                                  <td>2012/11/14</td>
+                                  <td>身份证</td>
+                                  <td>420813198809131539</td>
+                                  <td>男</td>
+                                  <td>太平保险</td>
+                                  <td>1份</td>
+                                  <td>张大国</td>
+                                  <td>2013-11-13</td>
                                </tr>
                                <tr>
-                                  <td><a href="javascript:void(0);">受理</a></td>
-                                  <td>新建</td>
+                                  <td><a href="javascript:void(0);">日志</a></td>
+                                  <td>投保成功</td>
+                                  <td>201311130001</td>
                                   <td><a href="javascript:void(0);">131113144946304</a></td>
-                                  <td>苏宁易购</td>
-                                  <td>太平保险</td>
-                                  <td>e顺高额航空意外险</td>
-                                  <td>7天</td>
                                   <td>张大国</td>
-                                  <td>20.00元</td>
-                                  <td>独立保险</td>
-                                  <td>2012/11/14</td>
+                                  <td>身份证</td>
+                                  <td>420813198809131539</td>
+                                  <td>男</td>
+                                  <td>太平保险</td>
+                                  <td>1份</td>
+                                  <td>张大国</td>
+                                  <td>2013-11-13</td>
+                               </tr>
+                               <tr>
+                                  <td><a href="javascript:void(0);">日志</a></td>
+                                  <td>投保成功</td>
+                                  <td>201311130001</td>
+                                  <td><a href="javascript:void(0);">131113144946304</a></td>
+                                  <td>张大国</td>
+                                  <td>身份证</td>
+                                  <td>420813198809131539</td>
+                                  <td>男</td>
+                                  <td>太平保险</td>
+                                  <td>1份</td>
+                                  <td>张大国</td>
+                                  <td>2013-11-13</td>
                                </tr>
                       </tbody>
                   </table>
