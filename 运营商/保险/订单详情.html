@@ -3,7 +3,6 @@
 <head>
 <title>运营商 保险 订单详情</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 <link href="../../static/css/common.css" rel="stylesheet" type="text/css" />
 <link href="../../static/css/kendo.common.css" rel="stylesheet" type="text/css" />
 <link href="../../static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
@@ -15,8 +14,13 @@
 <link href="../../static/css/insurance.css" rel="stylesheet" type="text/css"/>
 <script src="../../static/js/jquery.min.js" type="text/javascript"></script>
 <script src="../../static/js/kendo.web.js" type="text/javascript"></script>
-<script type="text/javascript" src="../../static/js/scrollFix.js"></script>
-<script type="text/javascript" src="../../static/js/public.js"></script>
+<script type="text/javascript" src="../../static/js/global.js"></script>
+<script type="text/javascript" src="../../static/js/flight.js"></script>
+
+<!--[if lt IE 8]> 
+<link rel="stylesheet" href="../../static/css/ie.css" /> 
+<script type="text/javascript" src="../../static/js/vendor/IE7.min.js"></script> 
+<![endif]-->
 
 <!-- <script type="text/javascript" src="../../static/js/global.js"></script>
     <script type="text/javascript">
@@ -27,7 +31,6 @@ $(function(){
     }).init();
 }) 
     </script>-->
-<script src="../../static/js/hotel.js" type="text/javascript"></script><!--弹窗JS-->
 <script type="text/javascript" src="../../static/js/sync.js"></script>
 </head>
 <body>
@@ -75,17 +78,24 @@ $(function(){
         <div class="row"> <span>最后更新：<em>更改</em></span>&nbsp;&nbsp;<span>更新时间：<em>2013-06-15 11:23 </em></span>&nbsp;&nbsp;<span><a href="#">【更多操作日志】</a></span> </div>
       </div>
       <div class="col col-r">
-        <ul class="flat-list" style="text-align:center">
-          <li>
-            <div class="instr clearfix"> <span class="highlight-fl first">创建</span> <span>支付</span> <span>投保</span> <span class="last">完成</span> <em class="line">
-              <div style="width:0px"></div>
-              </em></div>
-          </li>
-          <li>
-            <div class="instr clearfix"> <span class="first">收款</span> <span class="last">结算</span> <em class="line"></em></div>
-          </li>
-          <li class="count"><span>关联订单</span><strong>3</strong> </li>
-        </ul>
+        <ul class="flat-list">
+                    <li>
+                    <div class="instr clearfix">
+                        <span class="highlight-fl">创建</span>
+                        <span>支付</span>
+                        <span>投保</span>
+                        <span>完成</span>
+                    </div> 
+                    </li>
+                    <li>
+                    <div class="instr clearfix">
+                        <span>收款</span>
+                        <span>结算</span>
+                    </div>
+                    </li>
+                    <li class="count"><span>关联订单</span><strong>3</strong>
+                    </li>
+                </ul>
       </div>
     </div>
     
@@ -194,45 +204,43 @@ $(function(){
       
       <div class="block-title"> <span class="block-title-orange">被保人信息</span> </div>
       <div class="row">
-        <div id="flight_info_grid">
-          <table cellpadding="0" cellspacing="0" class="insurance_pro">
-            <colgroup>
-            <col width="100px" />
-            <col width="80px" />
-            <col width="160px" />
-            <col width="110px" />
-            <col width="120px" />
-            <col width="130px" />
-            <col width="130px" />
-            <col width="170px" />
-            <col width="70px" />
-            </colgroup>
-            <thead>
-              <tr>
-                <th>姓名</th>
-                <th>证件类型</th>
-                <th>证件号码</th>
-                <th>性别</th>
-                <th>出生日期</th>
-                <th>手机号码</th>
-                <th>保险数量</th>
-                <th>保险单</th>
-                <th class="th-last">投保状态</th>
-              </tr>
-            </thead>
+        <table cellpadding="0" cellspacing="0" class="insurance_pro">
+          <colgroup>
+          <col width="100px" />
+          <col width="80px" />
+          <col width="160px" />
+          <col width="110px" />
+          <col width="120px" />
+          <col width="130px" />
+          <col width="130px" />
+          <col width="170px" />
+          <col width="70px" />
+          </colgroup>
+          <thead>
             <tr>
-              <td>张大国</td>
-              <td >身份证</td>
-              <td>420813198809131539</td>
-              <td>男</td>
-              <td>1985/10/23</td>
-              <td>13800138000</td>
-              <td>1份</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
+              <th>姓名</th>
+              <th>证件类型</th>
+              <th>证件号码</th>
+              <th>性别</th>
+              <th>出生日期</th>
+              <th>手机号码</th>
+              <th>保险数量</th>
+              <th>保险单</th>
+              <th class="th-last">投保状态</th>
             </tr>
-          </table>
-        </div>
+          </thead>
+          <tr>
+            <td>张大国</td>
+            <td >身份证</td>
+            <td>420813198809131539</td>
+            <td>男</td>
+            <td>1985/10/23</td>
+            <td>13800138000</td>
+            <td>1份</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
       </div>
       <div class="ipt02" style="border:none">
         <p><b>受益人信息：</b></p>
