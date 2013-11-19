@@ -1047,7 +1047,11 @@ $.role_ctype = function(settings){
 
 // data-role ctoggle 
 $.role_ctoggle = function(settings){
-    $('body').on('click.ctoggle','[data-role="ctoggle"]', function(){
+    var opt = $.extend({
+        evt:'click'
+    },settings);
+
+    $('body').on(opt.evt+'.ctoggle','[data-role="ctoggle"]', function(){
         var that = $(this);
         var text = that.data('text');
         var textArray;
