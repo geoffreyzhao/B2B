@@ -10409,14 +10409,16 @@ kendo_module({
 
                 if(that.options.errorMsgShow){
 
-                    var vis = input.is(":visible");
-                    if (!vis)
-                        input.show();  // must be visible to get .position
+                    var invis = input.is(":hidden");
+                    var shadow = $('<s style="display:none;"></s>');
 
-                    inputOffset = input.position();
-
-                    if (!vis) 
-                        input.hide();
+                    if (invis){
+                        input.before(shadow); 
+                        inputOffset = shadow.position();
+                        shadow.remove();
+                    }else{
+                        inputOffset = input.position();
+                    }
 
                     var labelSetting = {};
                     var checkPer = /%/;
