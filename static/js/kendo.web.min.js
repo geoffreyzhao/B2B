@@ -10551,6 +10551,10 @@ kendo_module({
                 that = this,
                 rule;
 
+            // @todo fix bug , placeholder 的问题
+            if (kendo.support.browser.msie && kendo.support.browser.version <= 9){
+                input.val() == input.attr("placeholder") ? input.val("") : "";
+            }
 
             for (rule in rules) {
                 /** @todo fix bug 定义过的规则才进行验证 */ 
