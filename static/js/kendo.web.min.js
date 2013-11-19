@@ -10410,7 +10410,7 @@ kendo_module({
                 if(that.options.errorMsgShow){
 
                     var invis = input.is(":hidden");
-                    var shadow = $('<s style="display:none;"></s>');
+                    var shadow = $('<s/>');
 
                     if (invis){
                         input.before(shadow); 
