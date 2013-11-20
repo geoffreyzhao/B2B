@@ -3,12 +3,6 @@
 * Email:  shaotian.hu@travelzen.com
 */
 
-$.extend($,{
-    _type:function(x){
-        return Object.prototype.toString.call(x).slice(8,-1).toLowerCase();
-    }
-});
-
 //弹窗封装
 function PopWindow(trigger, customSettings){
     var kendoWinDefaults = {
@@ -621,12 +615,12 @@ $.loadingbar = function(settings) {
         var state = false;
         if(typeof cfg.urls != 'undefined'){
             $.each(cfg.urls,function(i,item){
-                if($._type(item) === 'regexp'){
+                if($.type(item) === 'regexp'){
                     if(item.exec(surl)) {
                         state = true;
                         return false;
                     } 
-                }else if($._type(item) === 'string'){
+                }else if($.type(item) === 'string'){
                     if(item === surl) {
                         state = true;
                         return false;
