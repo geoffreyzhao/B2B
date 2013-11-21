@@ -23,41 +23,114 @@
 
     <div class="panel">
         <table class="hblue">
+            <colgroup>
+                <col width="150px">
+                <col width="200px">
+                <col width="200px">
+                <col width="200px">
+            </colgroup>
             <tr>
-                <th rowspan="2" class="head" style="width:20%;">
-                    <label>本单金额</label>
+                <th rowspan="2" class="head">
+                    <label>本单挂账</label>
                 </th>
-                <th class="col_title" style="width:30%;">应挂账</th>
+                <th class="col_title">实际成本</th>
+                <th class="col_title">挂账金额</th>
+                <th class="col_title">留账金额</th>
                 <th class="col_title">挂账备注</th>
             </tr>
             <tr>
                 <td>
                     <div class="editing">
                         <strong>￥ </strong>
-                        <input type="text" class="amount" style="width:80%;margin:0 5px;" value="37800.00"/>
+                        <span class="amount">37800.00</span>
                     </div>
+                </td>
+                <td>
+                    <input type="text" class="amount" style="width:120px;margin:0 5px;" value="-790"/>
+                </td>
+                <td style="padding:0;position: relative">
+                    <table class="noGrid">
+                        <tr>
+                            <td><span class="amount">0</span></td>
+                        </tr>
+                    </table>
+                    <span class="btn_liuzhang_edit"></span>
                 </td>
                 <td><input type="text" style="width:80%;margin:0 5px;" value="" placeholder="请输入备注"/></td>
             </tr>
         </table>
+        <div class="liuzhangInfoContainer">
+            <div class="panelTitle">留账信息</div>
+            <table class="tbl_common">
+                <thead>
+                    <tr>
+                        <td>订单号</td>
+                        <td>留账金额</td>
+                        <td>城市</td>
+                        <td>酒店/供应商</td>
+                        <td>酒店确认人</td>
+                        <td>添加日期</td>
+                        <td>留账有效期</td>
+                        <td>签约经理</td>
+                        <td>客户</td>
+                        <td>操作</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>123456789</td>
+                        <td>790</td>
+                        <td>上海</td>
+                        <td>宝华国际酒店</td>
+                        <td>刘伟</td>
+                        <td>2013/09/26</td>
+                        <td>2013/09/26</td>
+                        <td>李四</td>
+                        <td>清空旅行社</td>
+                        <td rowspan="2" style="text-align: center;vertical-align: middle"><a class="button_5" href="javascript:;">删除</a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="9">备注：本单酒店留账</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <div class="panel">
         <table class="hblue">
+            <colgroup>
+                <col width="150px">
+                <col width="200px">
+                <col width="200px">
+                <col width="200px">
+            </colgroup>
             <tr>
-                <th rowspan="2" class="head" style="width:20%;">
-                    <label>本单金额</label>
+                <th rowspan="2" class="head">
+                    <label>本单挂账</label>
                 </th>
-                <th class="col_title" style="width:30%;">应挂账</th>
+                <th class="col_title">实际成本</th>
+                <th class="col_title">挂账金额</th>
+                <th class="col_title">留账金额</th>
                 <th class="col_title">挂账备注</th>
             </tr>
             <tr>
                 <td>
                     <div class="editing">
-                        <strong>￥</strong>
-                        <input type="text" class="amount disabled" style="width:80%;margin:0 5px;" value="37800.00" readonly/>
+                        <strong>￥ </strong>
+                        <span class="amount">37800.00</span>
                     </div>
                 </td>
-                <td><input type="text" class="disabled" readonly placeholder="请输入备注" style="width:80%;margin:0 5px;" value=""/></td>
+                <td>
+                </td>
+                <td style="padding:0;position: relative">
+                    <table class="noGrid">
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <span class="btn_liuzhang_unedit"></span>
+                </td>
+                <td></td>
             </tr>
         </table>
     </div>
@@ -347,6 +420,309 @@
     </div>
 </div>
 
+<div class="panel">
+
+<div style="margin:30px 0 10px">
+    <span class="head">费用明细</span>
+        <span style="float:right;padding-left:10px;border-left:1px solid #ccc;margin-left:10px">
+            <a class="button_5 btn_modifyCurrent" href="javascript:;" data='{"target":".modifyable","cancel":true,"cancelButton":"#btn_cost_cancel","saveButton":"#btn_cost_save"}'>确认成本</a>
+            <a class="button_5" href="javascript:;" id="btn_cost_save" style="display:none">确认</a>
+            <a class="button_5" href="javascript:;" id="btn_cost_cancel" style="display:none">取消</a>
+        </span>
+
+        <span style="float:right">
+            结算点位：人名币
+            <span class="important">*预付费用不包含客人在酒店的自行消费的各项杂费。</span>
+        </span>
+</div>
+<div class="clearfix">
+<div class="hfee">
+<div class="room_info">
+    <div class="top_head"></div>
+    <div class="fee_room col1">
+        <h3>房型</h3>
+        <ul class="daylist">
+            <li class="day">标准商务房</li>
+            <li class="day"></li>
+            <li class="day"></li>
+            <li class="day summary_prev"></li>
+            <li class="day summary last">小计</li>
+        </ul>
+    </div>
+    <div class="fee_room col2">
+        <span class="line line_right"></span>
+        <span class="line line_left"></span>
+
+        <h3>日期</h3>
+        <ul class="daylist">
+            <li class="day">7/4 四</li>
+            <li class="day">7/5 五</li>
+            <li class="day weekend">7/6 六</li>
+            <li class="day weekend">7/7 日</li>
+            <li class="day summary last">4间夜</li>
+        </ul>
+    </div>
+</div>
+<div class="fee_list" id="tbl_priceDetail">
+<div class="wrapdata modifyable">
+<div class="fee_head clearfix">
+    <span class="first">房费(不含服务费)</span>
+    <span>增值服务费</span>
+</div>
+<ul class="fee_detail_head clearfix">
+    <li><em>数量</em></li>
+    <li><em>底价</em></li>
+    <li><em>加价</em></li>
+    <li><em>卖价</em></li>
+    <li><em>早餐</em></li>
+    <li><em>宽带</em></li>
+    <li><em>其他</em></li>
+    <li class="yellow">
+        <label><input type="checkbox"><b>早餐</b></label>
+
+        <div>
+            <span>￥30</span>
+            <select name="" style="width:40px">
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+        </div>
+    </li>
+    <li class="yellow">
+        <label><input type="checkbox"><b>儿童早餐</b></label>
+
+        <div>
+            <span>￥30</span>
+            <select name="" style="width:40px">
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+        </div>
+    </li>
+    <li class="yellow">
+        <label><input type="checkbox"><b>晚餐</b></label>
+
+        <div>
+            <span>￥30</span>
+            <select name="" style="width:40px">
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+        </div>
+    </li>
+    <li class="yellow">
+        <label><input type="checkbox"><b>宽带</b></label>
+
+        <div>
+            <span>￥30</span>
+            <select name="" style="width:40px">
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+        </div>
+    </li>
+    <li class="yellow">
+        <label><input type="checkbox"><b>司陪房</b></label>
+
+        <div>
+            <span>￥200</span>
+            <select name="" style="width:40px">
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+        </div>
+    </li>
+    <li class="yellow">
+        <label><input type="checkbox"><b>机场接送</b></label>
+
+        <div>
+            <span>￥150</span>
+            <select name="" style="width:40px">
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+        </div>
+    </li>
+    <li class="last yellow">
+        <label><input type="checkbox"><b>加床</b></label>
+
+        <div>
+            <select name="" style="width:40px">
+                <option value="加床200">加床200</option>
+            </select>
+        </div>
+    </li>
+</ul>
+<ul class="fee_row clearfix">
+    <li>1</li>
+    <li>
+        <input style="width:50px;" type="text" value="780" class="qt editable disable"/>
+    </li>
+    <li>100</li>
+    <li>
+        <input style="width:50px;" type="text" value="880" class="qt editable disable"/>
+    </li>
+    <li>
+        <select name="" style="width:60px">
+            <option value="单早">单早</option>
+        </select>
+    </li>
+    <li>
+        <select name="" style="width:60px">
+            <option value="有">有</option>
+            <option value="无">无</option>
+        </select>
+    </li>
+    <li class="other">
+        <a class="priceDetail_otherToolTip">/</a>
+    </li>
+    <li>60</li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li class="last"></li>
+</ul>
+<ul class="fee_row clearfix">
+    <li>1</li>
+    <li>
+        <input style="width:50px;" type="text" value="780" class="qt editable disable"/>
+    </li>
+    <li>100</li>
+    <li>
+        <input style="width:50px;" type="text" value="880" class="qt editable disable"/>
+    </li>
+    <li>
+        <select name="" style="width:60px">
+            <option value="单早">单早</option>
+        </select>
+    </li>
+    <li>
+        <select name="" style="width:60px">
+            <option value="有">有</option>
+            <option value="无">无</option>
+        </select>
+    </li>
+    <li class="other">
+        <a class="priceDetail_otherToolTip">/</a>
+    </li>
+    <li>60</li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li class="last"></li>
+</ul>
+<ul class="fee_row clearfix">
+    <li>1</li>
+    <li>
+        <input style="width:50px;" type="text" value="780" class="qt editable disable"/>
+    </li>
+    <li>100</li>
+    <li>
+        <input style="width:50px;" type="text" value="880" class="qt editable disable"/>
+    </li>
+    <li>
+        <select name="" style="width:60px">
+            <option value="单早">单早</option>
+        </select>
+    </li>
+    <li>
+        <select name="" style="width:60px">
+            <option value="有">有</option>
+            <option value="无">无</option>
+        </select>
+    </li>
+    <li class="other">
+        <a class="priceDetail_otherToolTip">/</a>
+    </li>
+    <li>60</li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li class="last"></li>
+</ul>
+<ul class="fee_row clearfix">
+    <li>1</li>
+    <li>
+        <input style="width:50px;" type="text" value="780" class="qt editable disable"/>
+    </li>
+    <li>100</li>
+    <li>
+        <input style="width:50px;" type="text" value="880" class="qt editable disable"/>
+    </li>
+    <li>
+        <select name="" style="width:60px">
+            <option value="单早">单早</option>
+        </select>
+    </li>
+    <li>
+        <select name="" style="width:60px">
+            <option value="有">有</option>
+            <option value="无">无</option>
+        </select>
+    </li>
+    <li class="other">
+        <a class="priceDetail_otherToolTip">/</a>
+    </li>
+    <li>60</li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li class="last"></li>
+</ul>
+<!-- 小计 -->
+<ul class="fee_row summary last clearfix">
+    <li></li>
+    <li>3400.00</li>
+    <li>400</li>
+    <li></li>
+    <li>
+    </li>
+    <li>
+    </li>
+    <li class="other">
+    </li>
+    <li>60</li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li class="last"></li>
+</ul>
+</div>
+</div>
+<div class="subtotal">
+    <div class="top_head"></div>
+    <h3>每日合计</h3>
+    <ul class="daylist">
+        <li class="day">940</li>
+        <li class="day">940</li>
+        <li class="day">940</li>
+        <li class="day">940</li>
+        <li class="summary last">3780.00</li>
+    </ul>
+</div>
+
+<div class="fee_total summary" style="clear:both;">
+    <span>合计</span>
+    <strong class="qt">￥3780.00</strong>
+</div>
+</div>
+</div>
+
+<div style="margin:10px 0 5px"><span class="head">修改价格说明：</span><span id="modifyCostExplain"></span></div>
+<div style="margin:10px 0 5px"><span class="head">备注说明</span></div>
+<div><textarea name="" id="" style="width:99%;height:38px;padding:0"></textarea></div>
+</div>
+
 </div>
 <a href="javascript:;" class="button_secondary adaptiveButton small" style="" id="btn_cancelBooking">
     <span class="left"></span>
@@ -361,6 +737,61 @@
         <a href="javascript:;" class="button_2_2 close">取&nbsp;消</a>
     </div>
 </script>
+
+<script type="text/html" id="addLiuzhangTemplate">
+    <table class="tbl_common">
+        <tr>
+            <td class="fieldName">订单号</td>
+            <td>12345678</td>
+            <td class="fieldName">客户名称</td>
+            <td>青空旅行社</td>
+            <td class="fieldName">联系人</td>
+            <td>张三</td>
+        </tr>
+        <tr>
+            <td class="fieldName">城市</td>
+            <td>上海</td>
+            <td class="fieldName">酒店/供应商</td>
+            <td>宝华国际酒店</td>
+            <td class="fieldName">签约经理</td>
+            <td>李四</td>
+        </tr>
+        <tr>
+            <td class="fieldName">留账金额</td>
+            <td><input type="text" value="790" style="width:80px"></td>
+            <td class="fieldName">酒店/供应商确认人</td>
+            <td><input type="text" name="" id="" value="王会计" style="width:80px"/></td>
+            <td class="fieldName">留账有效期</td>
+            <td><input type="text" name="" id="" class="datepicker" style="width:80px"/></td>
+        </tr>
+        <tr>
+            <td class="fieldName">备注</td>
+            <td colspan="5">酒店留账</td>
+        </tr>
+    </table>
+    <div style="text-align:right">
+        <a href="javascript:;" class="button_4_2" id="btn_confirm_liuzhang">确&nbsp;定</a>
+        <a href="javascript:;" class="button_2_2 close">取&nbsp;消</a>
+    </div>
+</script>
+
+<script type="text/html" id="confirmLiuzhangTemplate">
+    <div>请核对本单挂账金额</div>
+    <div style="text-align:right">
+        <a href="javascript:;" class="button_1_2">确&nbsp;定</a>
+    </div>
+</script>
+
+<script type="text/html" id="confirmCostModifyTemplate">
+    <div>请填写修改价格说明<span style="text-align:right">不超过200字</span></div>
+    <div style="margin-top:10px">
+        <textarea name="" id="textarea_costModify" style="width:98%"></textarea>
+    </div>
+    <div style="text-align:right">
+        <a href="javascript:;" class="button_1_2" id="btn_confirmCostModify">确&nbsp;定</a>
+    </div>
+</script>
+
 </div>
 
 <script type="text/javascript" src="../../../static/js/jquery.min.js"></script>
@@ -376,6 +807,68 @@
         template:"#cancelBookingTemplate",
         title:"取消原因"
     }).init();
+
+    var alw=new PopWindow(".btn_liuzhang_edit",{
+        template:"#addLiuzhangTemplate",
+        title:"添加留账"
+    }).init();
+
+    new PopWindow("#btn_confirm_liuzhang",{
+        template:"#confirmLiuzhangTemplate",
+        title:"注意",
+        open:function(){
+            alw.close();
+            $(".liuzhangInfoContainer").show();
+        }
+    }).init();
+
+    new PopWindow("#btn_cost_save",{
+        template:"#confirmCostModifyTemplate",
+        title:"注意"
+    }).init();
+
+
+    $(".btn_modifyCurrent").click(function(){
+        var opt= $.parseJSON($(this).attr("data"));
+        var tar=$(opt.target);
+        var modifyButton=$(this);
+        if(opt.cancel)
+        {
+            $(opt.cancelButton+','+opt.saveButton).show();
+            modifyButton.hide();
+
+            var arr_tmp=[];
+            tar.each(function(){
+                arr_tmp.push($(this).clone(true,true));
+            });
+            $(opt.cancelButton).data("oldValue",arr_tmp);
+
+            $(opt.cancelButton).click(function(){
+                var i=0;
+                var that=$(this);
+                tar.each(function(){
+                    $(this).replaceWith(that.data("oldValue")[i]);
+                    i++
+                })
+                $(this).unbind("click");
+                $(opt.cancelButton+','+opt.saveButton).hide();
+                modifyButton.show();
+            });
+
+            $(opt.saveButton).click(function(){
+                $("input,textarea",tar).addClass("disable").prop("readonly",true);
+                $(this).unbind("click");
+                $(opt.cancelButton+','+opt.saveButton).hide();
+                modifyButton.show();
+            })
+        }
+
+        $("input,textarea",tar).removeClass("disable").removeProp("readonly");
+    });
+
+    $("#btn_confirmCostModify").click(function(){
+        $("#modifyCostExplain").html($("#textarea_costModify").val());
+    })
 </script>
 
 </body>
