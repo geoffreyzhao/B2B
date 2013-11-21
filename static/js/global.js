@@ -1399,6 +1399,7 @@ function FixCol(target,userOpts) {
 // 悬浮条
 $.fn.fixedBar = function(settings){
     var defaults = {
+        inverse:false,
         fixed:false,  //是否始终固定位置
         css:"position:fixed;top:0;",
         endAt:0,
@@ -1411,6 +1412,10 @@ $.fn.fixedBar = function(settings){
 
     if( Object.prototype.toString.call(settings) == "[object Function]" ){
         callback = settings; 
+    }
+
+    if(settings && settings.inverse){
+        defaults.css = 'position:fixed;bottom:0;'; 
     }
 
     opts = $.extend(defaults, settings); 
@@ -1456,17 +1461,35 @@ $.fn.fixedBar = function(settings){
         $(window).bind("scroll.fixedBar",function(e){
             var that = $(this);
             var scrollTop = that.scrollTop();
+
+            var changeBar = function(){
+                if(!ele.hasClass("fixedBar")){
+                    shadow.show();
+                    ele.addClass("fixedBar").attr("style",opts.css);
+                }
+                // todo ie6
+                if(window.isIE6) ele.css({"top":scrollTop - eleOffsetTop + elePositionTop + "px","position":"absolute"});
+            };
+
+            var resetBar = function(){
+                shadow.hide();
+                ele.removeClass("fixedBar").removeAttr("style");
+            };
             
             if(ele.data('disabled') !== true){
-                if(scrollTop > eleOffsetTop){
-                    if(!ele.hasClass("fixedBar")){
-                        shadow.show();
-                        ele.addClass("fixedBar").attr("style",opts.css);
+                if(!opts.inverse){
+                    if(scrollTop > eleOffsetTop){
+                        changeBar();
+                    }else{
+                        resetBar();
                     }
-                    if(window.isIE6) ele.css({"top":scrollTop - eleOffsetTop + elePositionTop + "px","position":"absolute"});
                 }else{
-                    shadow.hide();
-                    ele.removeClass("fixedBar").removeAttr("style");
+                    var winHeight = $(window).innerHeight();
+                    if(scrollTop + winHeight - ele.outerHeight() < eleOffsetTop){
+                        changeBar();
+                    }else{
+                        resetBar();
+                    }
                 }
             }
 
@@ -1481,6 +1504,12 @@ $.fn.fixedBar = function(settings){
                 }
             }
         }); 
+
+        if(opts.inverse){
+            $(function(){
+                $(window).trigger('scroll.fixedBar'); 
+            })
+        }
 
         if(window.isIE){
             $(document).on('click.fixedBar',function(){
