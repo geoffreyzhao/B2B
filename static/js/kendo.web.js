@@ -10553,7 +10553,9 @@ kendo_module({
 
             // @todo fix bug , placeholder 的问题
             if (kendo.support.browser.msie && kendo.support.browser.version <= 9){
-                input.val() == input.attr("placeholder") ? input.val("") : "";
+                if(input.val() == input.attr("placholder")){
+                    input.val("");
+                }
             }
 
             for (rule in rules) {
