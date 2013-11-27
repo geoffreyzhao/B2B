@@ -93,15 +93,15 @@
                          <th>处理时间</th>
                          <th>操作员</th>
                          <th>处理信息</th>
-                         <th><a href="#">查看全部</a></th>
+                         <th><a href="javascript:void(0);" class="toggle_trigger" toggle='{"target":".trace_list .more","filter":"","toggleText":["查看全部","收起"]}'>查看全部</a></th>
                      </tr>
-                     <tr class="examine">
+                     <tr class="more examine">
                          <td>2013-11-16 07:20:15</td>
                          <td>客服</td>
                          <td>审核中</td>
                          <td> </td>
                      </tr>
-                     <tr>
+                     <tr class="more">
                          <td>2013-11-15 16:00:21</td>
                          <td>用户</td>
                          <td>提交订单，申请审核</td>
@@ -119,8 +119,8 @@
                  <col width="180"/>
            </colgroup>
            <tr>
-               <th class="orderNO"><b>改签订单号：</b><strong>31023242354364564</strong></th>
-               <th class="relevanceOr">关联订单<i>(3)</i> <em>&nbsp;</em></th>
+               <th><span class="orderNO"><b>改签订单号：</b><strong>31023242354364564</strong></span></th>
+               <th><span id="child_order_trigger" class="relevanceOr">关联订单<i>(3)</i> <em>&nbsp;</em></span></th>
                <th></th>
                <th></th>
            </tr>
@@ -138,8 +138,68 @@
            </tr>
     </table>   
     
+
     <div class="departure">
-        <div class="chief clearfix"> <h3 class="chiefTit">航班信息</h3> <a href="javascript:void(0);" class="look">查看原航班</a></div>
+        <div id="orignal_flight" style="display:none;">
+            <div class="chief clearfix" style="margin-bottom:10px;"> <h3 class="chiefTit">原航班信息</h3></div>
+            <table cellpadding="0" cellspacing="0" class="route">
+                <colgroup>
+                    <col width="125px"/>
+                    <col width="125px"/>
+                    <col width="105px"/>
+                    <col width="100px"/>
+                    <col width="120px"/>
+                    <col width="150px"/>
+                    <col width="110px"/>
+                    <col width="115px"/>
+                </colgroup>        
+                <thead>
+                    <tr>
+                        <th>起降机场</th>
+                        <th>航班号</th>
+                        <th>实际承运</th>
+                        <th>航位等级</th>
+                        <th>航位</th>
+                        <th>起降时间</th>                 
+                        <th>中转次数</th> 
+                        <th>机型</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>首都机场T3<br>戴高乐机场</td>
+                        <td><i class="aviation_icon">东方航空<br>......</i></td>
+                        <td>MU5183</td>
+                        <td>G/X</td>
+                        <td>特价经济航</td>
+                        <td>2013-09-09 08：20<br>2013-09-01 10：20</td>                   
+                        <td><a href="#">1次中转 <small>&nbsp;</small></a></td> 
+                        <td>大型机<br>......</td
+                            ></tr>
+                        <tr class="dashed_top">
+                            <td>戴高乐机场<br>马赛机场</td>
+                            <td><i class="aviation_icon">东方航空<br>MU5183</i></td>
+                            <td>MU5183</td>
+                            <td>G</td>
+                            <td>特价经济航</td>
+                            <td>2013-09-09 08：20<br>2013-09-01 10：20</td>                 
+                            <td>直飞</td>
+                            <td>大型机<br>333</td> 
+                        </tr>
+                        <tr class="dashed_top">
+                            <td>戴高乐机场<br>里昂国际机场</td>
+                            <td><i class="aviation_icon">东方航空<br>......</i></td>
+                            <td>MU5183</td>
+                            <td>G/X</td>
+                            <td>特价经济航</td>
+                            <td>2013-09-09 08：20<br>2013-09-01 10：20</td>                    
+                            <td><a href="#">1次中转 <small>&nbsp;</small></a></td>
+                            <td>大型机<br>......</td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+        <div class="chief clearfix"> <h3 class="chiefTit">航班信息</h3> <a href="javascript:void(0);" class="look toggle_trigger" toggle='{"target":"#orignal_flight","filter":"","toggleText":["查看原航班","收起原航班"]}'>查看原航班</a></div>
         <table cellpadding="0" cellspacing="0" class="route">
              <colgroup>
                  <col width="125px"/>
@@ -196,7 +256,97 @@
                 </tr>
             </tbody>
         </table>
-        <div class="chief clearfix"> <h3 class="chiefTit">客票信息</h3>  <a href="javascript:void(0);" class="look">查看原客票</a></div>        
+        <div id="orignal_ticket">
+            <div class="chief clearfix" style="margin-bottom:10px;"> <h3 class="chiefTit">原客票信息</h3></div>        
+
+            <table cellpadding="0" cellspacing="0" class="passTicket">
+                 <colgroup> 
+                     <col width="95px"/>
+                     <col width="120px"/>
+                     <col width="145px"/>
+                     <col width="175px"/>
+                     <col width="170px"/>
+                     <col width="100px"/>
+                     <col width="130px"/>
+                 </colgroup>        
+                <thead>
+                    <tr>              
+                        <th colspan="2">姓名：<b style="font-size:14px; color:#636363;">朱晓玲</b>  </th>
+                        <th colspan="2">身份证：3101011900101222333</th>
+                        <th>PNR：JZ4W50</th>
+                        <th colspan="2">票号：999-1234544 <a href="javascript:void(0);" class="copy">复制</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>性别：女</td>
+                        <td>国籍：中国</td>
+                        <td>生日：1989-01-01</td>
+                        <td>电话：13811234568</td>
+                        <td>大编码：MJWM9</td>
+                        <td>票序号：C2</td>
+                        <td>行程单号：未打印</td>
+                    </tr>
+                    <tr class="dashed_top">
+                        <td colspan="7" class="accountRec">                   
+                        票款 ￥220.00 &nbsp; + &nbsp; 税款 ￥2260.00 &nbsp; + &nbsp; 附加费 0.00 &nbsp; - &nbsp; 客户返佣 23.00 &nbsp; + &nbsp; 手续费 100.00 = <strong>应收</strong> &nbsp; <em><b>￥</b>2580.00</em>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table cellpadding="0" cellspacing="0" class="passTicket">
+                 <colgroup> 
+                     <col width="95px"/>
+                     <col width="120px"/>
+                     <col width="145px"/>
+                     <col width="175px"/>
+                     <col width="170px"/>
+                     <col width="100px"/>
+                     <col width="130px"/>
+                 </colgroup>        
+                <thead>
+                    <tr>              
+                        <th colspan="2">姓名：<b style="font-size:14px; color:#636363;">朱晓玲</b> </th>
+                        <th colspan="2">身份证：3101011900101222333</th>
+                        <th>PNR：JZ4W50</th>
+                        <th colspan="2">票号：999-1234544 <a href="javascript:void(0);" class="copy">复制</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>性别：女</td>
+                        <td>国籍：中国</td>
+                        <td>生日：1989-01-01</td>
+                        <td>电话：13811234568</td>
+                        <td>大编码：MJWM9</td>
+                        <td>票序号：C2</td>
+                        <td>行程单号：未打印</td>
+                    </tr>
+                    <tr class="dashed_top noborder">              
+                        <th colspan="2"> </th>
+                        <th colspan="2"> </th>
+                        <th>PNR：JZ4W50</th>
+                        <th colspan="2">票号：999-1234544 <a href="javascript:void(0);" class="copy">复制</a></th>
+                    </tr>
+                    <tr class="dashed_top">
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td>大编码：MJWM9</td>
+                        <td>票序号：C2</td>
+                        <td>行程单号：未打印</td>
+                    </tr>
+                    <tr class="dashed_top">
+                        <td colspan="7" class="accountRec">                   
+                        票款 ￥220.00 &nbsp; + &nbsp; 税款 ￥2260.00 &nbsp; + &nbsp; 附加费 0.00 &nbsp; - &nbsp; 客户返佣 23.00 &nbsp; + &nbsp; 手续费 100.00 = <strong>应收</strong> &nbsp; <em><b>￥</b>2580.00</em>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="chief clearfix"> <h3 class="chiefTit">客票信息</h3>  <a href="javascript:void(0);" class="look toggle_trigger" toggle='{"target":"#orignal_ticket","filter":"","toggleText":["查看原客票","收起原客票"]}'>查看原客票</a></div>        
         <div class="psr_files clearfix">
             <b>乘客证件：</b>
             <a href="#">学生组-某在在.jpg</a>
@@ -304,7 +454,7 @@
         <textarea class="remarkTex"></textarea>
         
      </div>
-     <div class="accountInfo">
+     <div class="accountInfo" id="ac">
          <div class="accountTit clearfix">
               <h3>结算信息</h3>
               <div class="acTotal">
@@ -313,12 +463,12 @@
          </div>
          <div class="operateBtn">
               <a class="printOrdBtn" href="javascript:void(0);">打印行程单</a>
-              <a class="adaptiveButton brightRed_btn medium">
+              <a class="adaptiveButton brightRed_btn">
                   <span class="left"></span>
                   <span class="center center_1">退 废</span>
                   <span class="right"></span>
               </a>
-              <a class="adaptiveButton brightRed_btn medium ac_endorse">
+              <a class="adaptiveButton brightRed_btn ac_endorse">
                   <span class="left"></span>
                   <span class="center center_1">改 签</span>
                   <span class="right"></span>
@@ -524,10 +674,10 @@
         </div>
 </script>   
      
-      <div class="reOrder">
+      <div class="reOrder" style="display:none;" id="child_order">
            <div class="reTi clearfix">
                <span class="reNO"><b>改签订单号：</b><strong>31023242354364564</strong></span>
-               <label class="re_order">关联订单 <i>(3)</i> <em></em></label>
+               <!--<label class="re_order">关联订单 <i>(3)</i> <em></em></label>-->
            </div>
            <div class="rawOrd clearfix">
                <span class="rawNum">原订单 1234567890</span>
@@ -647,19 +797,17 @@ $(function(){
 
  <script type="text/javascript">
 	$(function(){
-		$("input[name='ticket']").each(function(index){
-			
-			$(this).click(function(){
-				console.log(index);
-				if(index == 0){
-					$(".reftic").show();
-					$(".empty").hide();
-				}else{
-					$(".reftic").hide();
-					$(".empty").show();
-				}
-			});
-		});
+        $("body").click(function(e){
+            $("#child_order").hide();
+        });
+        $("#child_order_trigger").click(function(e){
+            var pos = $(this).offset();
+            $("#child_order").css({left:pos.left - 325,top:pos.top - 10}).toggle();;
+            e.stopPropagation();
+        });
+        $('#ac').fixedBar({
+            inverse:true
+        });
 	});
  </script>
 

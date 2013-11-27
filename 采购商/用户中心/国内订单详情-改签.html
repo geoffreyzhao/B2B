@@ -93,15 +93,15 @@
                          <th>处理时间</th>
                          <th>操作员</th>
                          <th>处理信息</th>
-                         <th><a href="#">查看全部</a></th>
+                         <th><a href="javascript:void(0);" class="toggle_trigger" toggle='{"target":".trace_list .more","filter":"","toggleText":["查看全部","收起"]}'>查看全部</a></th>
                      </tr>
-                     <tr class="examine">
+                     <tr class="more examine">
                          <td>2013-11-16 07:20:15</td>
                          <td>客服</td>
                          <td>审核中</td>
                          <td> </td>
                      </tr>
-                     <tr>
+                     <tr class="more">
                          <td>2013-11-15 16:00:21</td>
                          <td>用户</td>
                          <td>提交订单，申请审核</td>
@@ -119,8 +119,8 @@
                  <col width="180"/>
            </colgroup>
            <tr>
-               <th class="orderNO"><b>改签订单号：</b><strong>31023242354364564</strong></th>
-               <th class="relevanceOr">关联订单<i>(3)</i> <em>&nbsp;</em></th>
+               <th><span class="orderNO"><b>改签订单号：</b><strong>31023242354364564</strong></span></th>
+               <th><span id="child_order_trigger" class="relevanceOr">关联订单<i>(3)</i> <em>&nbsp;</em></span></th>
                <th></th>
                <th></th>
            </tr>
@@ -298,7 +298,7 @@
         <textarea class="remarkTex"></textarea>
         
      </div>
-     <div class="accountInfo">
+     <div class="accountInfo" id="ac">
          <div class="accountTit clearfix">
               <h3>结算信息</h3>
               <div class="acTotal">
@@ -307,12 +307,12 @@
          </div>
          <div class="operateBtn">
               <a class="printOrdBtn" href="javascript:void(0);">打印行程单</a>
-              <a class="adaptiveButton brightRed_btn medium">
+              <a class="adaptiveButton brightRed_btn">
                   <span class="left"></span>
                   <span class="center center_1">退 废</span>
                   <span class="right"></span>
               </a>
-              <a class="adaptiveButton brightRed_btn medium ac_endorse">
+              <a class="adaptiveButton brightRed_btn ac_endorse">
                   <span class="left"></span>
                   <span class="center center_1">改 签</span>
                   <span class="right"></span>
@@ -518,10 +518,10 @@
         </div>
 </script>   
      
-      <div class="reOrder">
+      <div class="reOrder" style="display:none;" id="child_order">
            <div class="reTi clearfix">
                <span class="reNO"><b>改签订单号：</b><strong>31023242354364564</strong></span>
-               <label class="re_order">关联订单 <i>(3)</i> <em></em></label>
+               <!--<label class="re_order">关联订单 <i>(3)</i> <em></em></label>-->
            </div>
            <div class="rawOrd clearfix">
                <span class="rawNum">原订单 1234567890</span>
@@ -641,19 +641,17 @@ $(function(){
 
  <script type="text/javascript">
 	$(function(){
-		$("input[name='ticket']").each(function(index){
-			
-			$(this).click(function(){
-				console.log(index);
-				if(index == 0){
-					$(".reftic").show();
-					$(".empty").hide();
-				}else{
-					$(".reftic").hide();
-					$(".empty").show();
-				}
-			});
-		});
+        $("body").click(function(e){
+            $("#child_order").hide();
+        });
+        $("#child_order_trigger").click(function(e){
+            var pos = $(this).offset();
+            $("#child_order").css({left:pos.left - 325,top:pos.top - 10}).toggle();;
+            e.stopPropagation();
+        });
+        $('#ac').fixedBar({
+            inverse:true
+        });
 	});
  </script>
 

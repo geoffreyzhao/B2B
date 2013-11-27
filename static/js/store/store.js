@@ -79,9 +79,13 @@ $(function() {
     $("body").delegate(".toggle_trigger","click",function(){
         var that = $(this);
         var o = $.parseJSON($(this).attr("toggle"));
-        var t = $(o.filter,$(this));
+        var t = $(this);
 
-        $(o.target).toggle();
+        if(o.filer){
+            t = $(o.filter,$(this));
+        }
+
+        $(o.target).toggle("normal");
 
         /* 折叠 toggle_trigger */
         if(o.toggleSelfClass){
