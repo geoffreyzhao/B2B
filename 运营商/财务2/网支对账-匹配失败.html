@@ -137,9 +137,36 @@
                 </tr>
             </table>
 
+            <script type="text/x-kendo-template" id="ac-return-template">
+                <div class="row"> 确认进行操作吗？ </div>
+                    <div class="row" style="text-align:right;">
+    <button class="btns button_1_2">确 认</button> 
+    <button class="btns button_2_2">取 消</button> 
+    </div>
+            </script>
+
+            <script type="text/x-kendo-template" id="ac-add-template">
+                <div class="row"> 确认进行操作吗？ </div>
+                    <div class="row" style="text-align:right;">
+    <button class="btns button_1_2">确 认</button> 
+    <button class="btns button_2_2">取 消</button> 
+    </div>
+            </script>
 <script type="text/javascript">
 $(function(){
     kendo.init('.block1');
+
+    new PopWindow('.ac-return',{
+        title:'确认',
+        width:470,
+        template:"#ac-return-template"
+    }).init();
+
+    new PopWindow('.ac-add',{
+        title:'确认',
+        width:470,
+        template:"#ac-add-template"
+    }).init();
 
     new GridTable('.block2 table',{
          scrollable:true,
@@ -171,14 +198,14 @@ $(function(){
 <script type="text/x-kendo-template" id="block2-grid-row-template">
     <tr>
 <td>
-    <a href="javascript:;">退银行</a>
-    <a href="javascript:;">补账</a>
+    <a href="javascript:;" class="ac-return">退银行</a>
+    <a href="javascript:;" class="ac-add">补账</a>
 </td>
 <td>待核查</td>
 <td>030312103112260001</td>
 <td>支付宝</td>
 <td>2012-9-17</td>
-<td>1000.00</td>
+<td><strong class="text1">1000.00</strong></td>
 <td>网支</td>
 <td>支付</td>
 <td>2012-9-17</td>
