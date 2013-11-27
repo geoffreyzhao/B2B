@@ -118,5 +118,19 @@ $(function() {
             }
         }
     });
+	
+	$(".upProcess i").each(function(index){
+		var cur = $(this);
+		var x = 0,y = 0;
+		if(cur.hasClass("hightlight")){
+			x = 16;
+		}else if(cur.hasClass("unable")){
+			x = 32;
+		}
+		
+		y = (parseInt(cur.html()) - 1) * 16;
+		
+		cur.css({"background-position":" -" + x + "px -" + y + "px"});
+	});
 });
 
