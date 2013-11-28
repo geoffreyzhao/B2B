@@ -253,18 +253,37 @@ var FloatLayer = function(opts){
 
     // todo: support more type;
     if(opts.trigger.selector != ""){
-        $('body').delegate(opts.trigger.selector,opts.type,function(e){
-            if($(e.target).is(opts.trigger.selector)){
-                var that = $(e.target);
-                set_pos(that);
-                layer.input = that;
-                if(opts.toggle){
-                    layer.toggle();
-                }else{
-                    layer.open();
+        if(opts.type === "hover"){
+           $('body').delegate(opts.trigger.selector,'mouseenter',function(e){
+               var that = $(e.target);
+               set_pos(that);
+               layer.open();
+           });
+
+           $('body').delegate(opts.trigger.selector,'mouseleave',function(e){
+               if($(e.relatedTarget).closest('.ac-floatlayer').length<1){
+                   layer.close();
+               }
+           });
+
+           layer.on('mouseleave',function(){
+                layer.close();
+           });
+
+        }else{
+            $('body').delegate(opts.trigger.selector,opts.type,function(e){
+                if($(e.target).is(opts.trigger.selector)){
+                    var that = $(e.target);
+                    set_pos(that);
+                    layer.input = that;
+                    if(opts.toggle){
+                        layer.toggle();
+                    }else{
+                        layer.open();
+                    }
                 }
-            }
-        });
+            });
+        }
     }else{
         opts.trigger.bind(opts.type,function(){
             var that = $(this);
