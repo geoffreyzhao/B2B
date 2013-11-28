@@ -85,7 +85,7 @@ $(function() {
             t = $(o.filter,$(this));
         }
 
-        $(o.target).toggle("normal");
+        $(o.target).slideToggle("normal");
 
         /* 折叠 toggle_trigger */
         if(o.toggleSelfClass){
