@@ -23,6 +23,13 @@
         </script>
     <script>
 $(function(){
+    var tooltip = FloatLayer({
+        trigger:'.insurancetip',
+        type:'hover',
+        template:'#insurance_tip'  
+    });
+
+
     var ac_refuse_window = new PopWindow('.ac-refuse',{
         title:'审核退回',
         reload:true,
@@ -195,7 +202,7 @@ $(function(){
         </li>
         <li>
         <label class="vertical-head">保险订单号</label>
-        <span class="text3">1231321321</span>
+        <a class="text3" href="xxx.html">1231321321</a>
         </li>
         <li>&nbsp;</li>
         <li class="col-wide">
@@ -317,6 +324,28 @@ $(function(){
     <!-- <label id="save_as_frequent"> -->
     <!--      <input type="checkbox">自动保存到长旅客  -->
     <!-- </label> -->
+    <script type="text/x-kendo-template" id="insurance_tip">
+<div class="message_ct insurance_tip">
+            <div class="arrow arrow_north"></div>
+            <div class="message_text">
+1、保险名称：泰康新生活交通工具意外伤害保险<br>
+2、份数限制：3份<br>
+3、保险生效日：投保人所购首次航班起飞时间<br>
+4、保险有效期：7天<br>
+5、特别约定：由于各种原因，由航空公司为保险有效期内航班所有旅客调整的班机或被保险人经航空公司同意对约定航班进行改签，且起始港和目的港与原约定航班相同的班机视为等效航班，保险责任有效。<br>
+6、保险费：20元/份<br>
+7、保险金额：飞机乘客意外伤害身故与残疾40万，轮船乘客意外伤害身故与残疾10万元，火车乘客意外伤害身故与残疾10万元。<br>
+8、年龄：被保险人投保年龄为3周岁（含）至75周岁（含）。<br>
+9、投保要求：成年人必须为本人投保；未成年人必须是其父母作为投保人。<br>
+10、保险公司将委托真旅网为有需要的客户提供保险定额发票以作报销。保险定额发票仅作报销凭证，不是保单凭证。<br>
+11、数据电文是合法的合同表现形式，电子保单与纸质保单具有同等法律效力，请妥善保存。电子保单可在保险公司网站上查询和下载。<br>
+12、适用条款：本保险计划适用条款为《泰康新生活交通工具意外伤害保险》<br>
+13、投保人或被保险人应据实填写投保信息，否则本公司有权解除保险合同。<br>
+14、保单信息查询请登陆：www.taikang.com；保险公司客服电话：95522。<br>
+备注：根据中国保监会《关于父母为其未成年子女投保以死亡为给付保险金条件人身保险有关问题的通知》（保监发 [2010]95 号）文件的规定，自2011年4月1日起，父母为其未成年子女（未满 18 周岁）投保人身保险，在被保险人成年之前，各保险合同约定的被保险人死亡给付的保险金额总和、被保险人死亡时各保险公司实际支付的保险金总和均不得超过人民币 10 万元（航空意外伤害死亡保额不受此限制）。
+</div>
+        </div>
+    </script>
     <div class="row">
     <div id="passenger_info_grid">
         <table class="grid-table">
@@ -343,7 +372,7 @@ $(function(){
               <td>1978-08-09</td>
               <td>13800138000</td>
               <td>
-                <span class="text3">意外险</span>
+                <a class="insurancetip text3" href="javascript:;">意外险</a>
                 &nbsp;
                 <strong class="text2">￥20/份</strong>
                 &nbsp;
@@ -363,12 +392,13 @@ $(function(){
               <td>1978-08-09</td>
               <td>13800138000</td>
               <td>
-                <span class="text3">意外险</span>
+                <a class="insurancetip text3" href="javascript:;">意外险</a>
                 &nbsp;
                 <strong class="text2">￥20/份</strong>
                 &nbsp;
                 <span>
                     <select id="" style="width:50px;" name="" data-role="dropdownlist">
+                        <option selected value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
