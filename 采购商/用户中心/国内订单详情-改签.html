@@ -803,47 +803,47 @@
 						 <tr>
 							 <td><input type="checkbox"/></td>
 							 <td>
-								 <i class="aviation_icon">东方航空<br/>MU5183</i>
+								 <input type="text" style="width:70px;" value="MU5183"/>
 							 </td>
 							 <td>
-								 <div>2013-09-01 08:20</div>
-								 <div>2013-09-01 10:20</div>
+								 <div><input type="text" style="width:135px;" value="2013-09-01 08:20"/></div>
+								 <div><input type="text" style="width:135px;" value="2013-09-01 08:20"/></div>
 							 </td>
 							 <td>
-								 <div>首都机场T3</div>
-								 <div>虹桥机场T2</div>
+								 <div><input type="text" style="width:80px;" value="首都机场T3"/></div>
+								 <div><input type="text" style="width:80px;" value="虹桥机场T2"/></div>
 							 </td>
-							 <td><input type="text" style="width:40px; height:23px; padding-left:5px;" value="G"/></td>
+							 <td><input type="text" style="width:40px;" value="G"/></td>
 							 <td>
-								 <div>成人2600</div>
-								 <div>儿童2000</div>
+								 <div><input type="text" style="width:80px;" value="成人2600"/></div>
+								 <div><input type="text" style="width:80px;" value="儿童2000"/></div>
 							 </td>
 							 <td>
-								 <div>工作日：08:25-20:30</div>
-								 <div>双休日：08:30-18:30</div>
+								 <div><input type="text" style="width:130px;" value="工作日：08:25-20:30"/></div>
+								 <div><input type="text" style="width:130px;" value="双休日：08:30-18:30"/></div>
 							 </td>
 						 </tr>
 						 <tr>
 							 <td><input type="checkbox"/></td>
 							 <td>
-								 <i class="aviation_icon">东方航空<br/>MU5183</i>
+								 <input type="text" style="width:70px;" value="MU5183"/>
 							 </td>
 							 <td>
-								 <div>2013-09-01 08:20</div>
-								 <div>2013-09-01 10:20</div>
+								 <div><input type="text" style="width:135px;" value="2013-09-01 08:20"/></div>
+								 <div><input type="text" style="width:135px;" value="2013-09-01 08:20"/></div>
 							 </td>
 							 <td>
-								 <div>首都机场T3</div>
-								 <div>虹桥机场T2</div>
+								 <div><input type="text" style="width:80px;" value="首都机场T3"/></div>
+								 <div><input type="text" style="width:80px;" value="虹桥机场T2"/></div>
 							 </td>
-							 <td><input type="text" style="width:40px; height:23px; padding-left:5px;" value="G"/></td>
+							 <td><input type="text" style="width:40px;" value="G"/></td>
 							 <td>
-								 <div>成人2600</div>
-								 <div>儿童2000</div>
+								 <div><input type="text" style="width:80px;" value="成人2600"/></div>
+								 <div><input type="text" style="width:80px;" value="儿童2000"/></div>
 							 </td>
 							 <td>
-								 <div>工作日：08:25-20:30</div>
-								 <div>双休日：08:30-18:30</div>
+								 <div><input type="text" style="width:130px;" value="工作日：08:25-20:30"/></div>
+								 <div><input type="text" style="width:130px;" value="双休日：08:30-18:30"/></div>
 							 </td>
 						 </tr>
 					 </tbody>
@@ -1041,10 +1041,13 @@ $(function(){
             $("#child_order").hide();
         });
         $("#child_order_trigger").click(function(e){
-            var pos = $(this).offset();
-            $("#child_order").css({left:pos.left - 325,top:pos.top - 15}).toggle();;
+			var pos = $(this).closest("table.endorseOrder").offset();
+			$("#child_order").css({left:pos.left,top:pos.top}).toggle();
             e.stopPropagation();
         });
+		$("#child_order").click(function(e){
+			e.stopPropagation();					 
+		});
         $('#ac').fixedBar({
             inverse:true
         });
