@@ -7,7 +7,7 @@
     <link href="../../static/css/kendo.common.css" rel="stylesheet" type="text/css" />
     <link href="../../static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
     <link href="../../static/css/b2b.css" rel="stylesheet" type="text/css" />
-<link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link href="../../static/css/kendo.reset.css" rel="stylesheet" />
     <link href="../../static/css/jiudianweihuzs.css" rel="stylesheet" type="text/css"/>
     <link href="../../static/css/xieyizhengche.css" rel="stylesheet" type="text/css"/>
     <script src="../../static/js/jquery.min.js" type="text/javascript"></script>
@@ -23,15 +23,6 @@ $(function(){
     }).init();
 }) 
     </script>
-
-	<!--<link href="/static/css/common.css" rel="stylesheet" />
-	<link href="/static/css/b2b.css" rel="stylesheet" />
-    <link href="/static/css/zhuzhijiagou.css" rel="stylesheet" type="text/css" />   
-	<link href="/static/css/kendo.common.css" rel="stylesheet" />
-	<link href="/static/css/kendo.gray.css" rel="stylesheet" />
-    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/static/js/kendo.web.js"></script>-->
-
 <!--[if lt IE 8]> 
 <link rel="stylesheet" href="/static/css/ie.css" /> 
 <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
@@ -76,7 +67,7 @@ $(function(){
         <div id="sub_menu_bar"></div>
         <div id="mainContent" style="overflow:hidden;">
         
-			<!-- start zhuzhijiagou -->
+			<!-- start -->
         
             <div class="zhuzhijiagou">
                <div class="xieyi">
@@ -146,28 +137,12 @@ $(function(){
                </table>
                </div>
               
-              <!--<div class="qx">
-                  <div class="xuanze">
-                    <p class="fxk"><input type="checkbox"/> <span>全选</span></p>
-                     <p class="qx_p"> <a href="#" class="qx_p_a_1">发布</a>
-                       <a href="#">挂起</a> <span>|</span>
-                       <a href="#">作废</a> <span>|</span>
-                       <a href="#" class="qx_p_a">修改返点</a>
-                     </p>
-                  </div>
-                  <div class="qx_right">
-                     <a href="#" class="qx_right_a">导出Excel</a>  <span>|</span>
-                     <a href="#" class="qx_right_a">模板导入</a>   <span>|</span>
-                     <a href="#" class="qx_right_a_1">导入说明【模板下载】</a>
-                  </div>
-              </div>-->
-              
               <div class="qx">
                   <div class="xuanze">
                       <button class="btns btn-ac-blue">发布</button>
                       <button class="btns btn-ac-blue">挂起</button>
                       <button class="btns btn-ac-blue">作废</button>
-                      <button class="btns btn-ac-blue">修改返点</button>
+                      <button class="btns btn-ac-blue ac_amend">修改返点</button>
                   </div>
                   <div class="qx_right">
                       <button class="btns btn-ac-blue">导出Excel</button>
@@ -415,8 +390,96 @@ $(function(){
            </div>
         </div>
         
-        <!-- end of zhuzhijiagou -->
+        <!-- end -->
     </div>
+<script id="ac_amend_template">    
+    <div class="amendWin">
+         <div class="date">
+             <b>乘机日期</b>
+             <input type="text" class="datepicker" value="2013-06-01"/>
+             <em> &nbsp;至&nbsp;</em>
+             <input type="text" class="datepicker" value="2013-06-01"/>
+             <a href="javascript:;" class="button_secondary adaptiveButton small">
+                    <span class="left"></span>
+                    <span class="center">添加</span>
+                    <span class="right"></span>
+             </a>
+         </div>
+         <div class="addDate">
+              <label>
+                    <em>2013-06-01至2013-08-31 <i></i> </em>                    
+              </label>
+              <label>
+                    <em>2013-06-01至2013-08-31 <i></i> </em>                    
+              </label>
+         </div>
+         <div class="date">
+             <b>返程乘机日期</b>
+             <input type="text" class="datepicker" value="2013-06-01"/>
+             <em> &nbsp;至&nbsp;</em>
+             <input type="text" class="datepicker" value="2013-06-01"/>
+             <a href="javascript:;" class="button_secondary adaptiveButton small">
+                    <span class="left"></span>
+                    <span class="center">添加</span>
+                    <span class="right"></span>
+             </a>
+         </div>
+         <div class="addDate">
+              <label>
+                    <em>2013-06-01至2013-08-31 <i></i> </em>                    
+              </label>
+              <label>
+                    <em>2013-06-01至2013-08-31 <i></i> </em>                    
+              </label>
+         </div>
+         <div class="basePice">
+              <b>现结底价</b>
+              <input type="text"/>
+              <em>&nbsp;+&nbsp;</em>
+              <input type="text"/>
+              <em>&nbsp;%</em>
+         </div>
+         <div class="backTr">
+              <b>预期后返</b>
+              <select>
+                    <option> </option>
+              </select>
+              <input type="text"/>
+              <em>&nbsp;%</em>
+         </div>
+         <div class="redRate">
+              <b>奖励扣率</b>
+              <input type="text"/>
+              <em>&nbsp;%</em>
+              <b>奖励金额</b>
+              <input type="text"/>
+              <em>&nbsp;元</em>
+              <label>
+                   <input type="checkbox"/>航司后返
+              </label>
+         </div>
+         <div class="maxPrice">
+              <b>限定最高值</b>
+              <input type="text"/>
+              <em>&nbsp;%</em>
+              <em>&nbsp;&nbsp; + &nbsp;&nbsp;</em>
+              <input type="text"/>
+              <em>&nbsp;元</em>
+         </div>
+         <div class="sbmitBtn">
+              <a href="javascript:;" class="button_important adaptiveButton medium">
+                    <span class="left"></span>
+                    <span class="center" style="padding:0 25px;">提交</span>
+                    <span class="right"></span>
+              </a>
+              <a href="javascript:;" class="button_unimportant adaptiveButton medium">
+                    <span class="left"></span>
+                    <span class="center changeBtn" style="padding:0 25px;">取消</span>
+                    <span class="right"></span>
+             </a>
+         </div>
+    </div>
+</script>
 	
     <div id="extFooter">
         <div>
@@ -432,3 +495,14 @@ $(function(){
     
 </body>
 </html>
+
+<script>
+$(function(){
+	var price_confirm_win = new PopWindow(".ac_amend",{
+		   title:"批量修改",
+		   width:570,
+		   template:"#ac_amend_template"
+	}).init();
+	
+ })
+</script>
