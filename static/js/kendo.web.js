@@ -18444,12 +18444,14 @@ kendo_module({
             wrapper.attr("role", "presentation");
 
             //end
-
-            wrapper[0].style.cssText = DOMelement.style.cssText;
-            element.css({
-                width: "100%",
-                height: DOMelement.style.height
-            });
+            
+            if (!wrapper.is("span.k-widget")) {
+                wrapper[0].style.cssText = DOMelement.style.cssText;
+                element.css({
+                    width: "100%",
+                    height: DOMelement.style.height
+                });
+            }
 
             that._focused = that.element;
             that.wrapper = wrapper
