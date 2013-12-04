@@ -10220,9 +10220,9 @@ kendo_module({
             validateOnChange: true,
             errorMsgShow:true,
             stopOnFirstInvalid:false,
+            fixBarHeight:40,
             defaultErrorMsgPosition:"right",
             errorMsgPosition:["right","bottom"],
-            useAnchor:false,
             /* 必须明确给定规则名称,没有给出规则名称的规则将略过 */
             needRuleAttrbute:true, 
             errorLabelPadding:6
@@ -10293,7 +10293,10 @@ kendo_module({
                 errIndex = -1,
                 invalid = false,
                 fieldName,
-                length;
+                length,
+                isvis,
+                shadow,
+                offset;
 
             that._errors = {};
 
@@ -10321,22 +10324,28 @@ kendo_module({
                     //inputs[0].focus();
                     inputs[errIndex] = inputs[errIndex].jquery ? inputs[errIndex] : $(inputs[errIndex]);
 
-                    if(that.options.useAnchor){
-                        var anchor = inputs[errIndex].prev(".k-anchor").attr("name");
-                        location.hash = anchor ;
-                    }else{
-                        var offset = inputs[errIndex].offset();
-                        var st = $(document).scrollTop(), winh = $(window).height();
-                        var sl = $(document).scrollLeft(), winw = $(window).width();
-                        
-                        if(offset.top > (st + winh)){
-                            $("html,body").scrollTop(offset.top);
-                            //$("html,body").animate({ scrollTop: offset.top}, 200);
-                        }
 
-                        if(offset.left > (sl + winw)){
-                            $("html,body").scrollLef(offset.left);
-                        }
+                    invis = inputs[errIndex].is(":hidden");
+                    shadow = $('<s/>');
+
+                    if (invis){
+                        inputs[errIndex].before(shadow); 
+                        offset = shadow.offset();
+                        shadow.remove();
+                    }else{
+                        offset = inputs[errIndex].offset();
+                    }
+
+                    var st = $(document).scrollTop(), winh = $(window).height();
+                    var sl = $(document).scrollLeft(), winw = $(window).width();
+
+                    if(offset.top > (st + winh)){
+                        $("html,body").scrollTop((offset.top - that.options.fixBarHeight) >=0 ? offset.top - that.options.fixBarHeight: 0);
+                        //$("html,body").animate({ scrollTop: offset.top}, 200);
+                    }
+
+                    if(offset.left > (sl + winw)){
+                        $("html,body").scrollLef(offset.left);
                     }
 
                     inputs[errIndex].focus();
@@ -10403,9 +10412,6 @@ kendo_module({
 
                 that._decorateMessageContainer(messageLabel, fieldName);
 
-                if(that.options.useAnchor && input.prev(".k-anchor").length == 0){
-                    $('<a class="k-anchor" style="display:inline;border:0;width:0px;height:0px;" name="k' + ((new Date()).getTime()) + '"></a>').insertBefore(input);
-                }
 
                 if(that.options.errorMsgShow){
 
