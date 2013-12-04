@@ -18451,7 +18451,7 @@ kendo_module({
                     width: "100%",
                     height: DOMelement.style.height
                 });
-                that.wrapper.addClass(DOMelement.className);
+                wrapper.addClass(DOMelement.className);
             }
 
             that._focused = that.element;
