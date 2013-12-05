@@ -22,6 +22,9 @@
       .store_loading .loading_text {line-height:80px;}
 
       .example {margin:20px 0;}
+      .grayIcon .loading_icon{
+          background-image:url(/static/images/loading/loading.gif);
+      }
     </style>
     
     
@@ -224,7 +227,7 @@
           });
 
           $(".ajax input[name=button1]").click(function(){
-              $.loadingbar({debug:true,autoHide:true});
+              $.loadingbar({debug:true,autoHide:false,wrapperClass:'grayIcon'});
               $.ajax({ url: encodeURI("城市选择-国内.html")});
           });
           $(".ajax input[name=button2]").click(function(){
