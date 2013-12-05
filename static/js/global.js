@@ -586,6 +586,8 @@ $.loadingbar = function(settings) {
         replaceText:"正在刷新,请稍后...",
         container: 'body',
         showClose: true,
+        wrapperClass:'',
+        text:'数据加载中，请稍候…',
         template:'',
         templateData:{}
     };
@@ -611,9 +613,9 @@ $.loadingbar = function(settings) {
             content_tpl = $(cfg.template).html();
         }
     }else{
-        content_tpl = '<div class="loading_box"><div class="lightbox-content">\
+        content_tpl = '<div class="loading_box '+cfg.wrapperClass+'"><div class="lightbox-content">\
                           <span class="loading_close">×</span>\
-                          <i class="loading_icon">&nbsp;</i><span class="loading_text">数据加载中，请稍候…</span>\
+                          <i class="loading_icon">&nbsp;</i><span class="loading_text">'+cfg.text+'</span>\
                           </div></div>';
     }
 
