@@ -37,7 +37,8 @@ $(function() {
 			numberOfMonths:[1,2],
 			minDate :new Date(),
 			firstDay:0,
-			showButtonPanel :true
+			showButtonPanel :true,
+            monthNames:['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
 		};
 
         var dpSettingUlt = {
