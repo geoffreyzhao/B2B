@@ -133,5 +133,28 @@ $(function() {
         }
     });
 	
+
+    function createCityAc(ele){
+        CityAutocomplete({
+            template: "#city_popup",
+            input: ele,
+            width: 200,
+            // autocomplete:{
+            //     dataSource:{
+            //         transport:{
+            //             read:{
+
+            //             } 
+            //         } 
+            //     },
+            //     placeholder:'三字吗/城市'
+            // },
+            // 以@分割热门非热门，以;分割条目，以|分割三字码拼音和中文
+            url:'/static/js/data.txt',
+            group: ["热门","GHJ", "ABCDEF", "KLMN", "PQSTW", "XYZ"]
+        });
+    }
+
+    createCityAc(".city_ac");
 });
 
