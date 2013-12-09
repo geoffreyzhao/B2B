@@ -78,7 +78,7 @@ $(function() {
 
     $("body").delegate(".toggle_trigger","click",function(){
         var that = $(this);
-        var o = $.parseJSON($(this).attr("toggle"));
+        var o = $.parseJSON($(this).attr("toggle") || "{}") || $.parseJSON($(this).attr("data-toggle") || "{}") ;
         var t = that;
         var textFilter = t; 
 

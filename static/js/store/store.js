@@ -75,14 +75,18 @@ $(function() {
         kendo.init($("body"));
     }
 
-
     $("body").delegate(".toggle_trigger","click",function(){
         var that = $(this);
-        var o = $.parseJSON($(this).attr("toggle"));
-        var t = $(this);
+        var o = $.parseJSON($(this).attr("toggle") || "{}") || $.parseJSON($(this).attr("data-toggle") || "{}") ;
+        var t = that;
+        var textFilter = t; 
 
         if(o.filer){
-            t = $(o.filter,$(this));
+            t = $(o.filter,that);
+        }
+
+        if(o.textFilter) {
+            textFilter = $(o.textFilter,that); 
         }
 
         $(o.target).slideToggle("normal");
@@ -115,13 +119,14 @@ $(function() {
 
         /* 切换触发者文本 */
         if(o.toggleText){
-            if(t.html() == o.toggleText[0]){
-                t.html(o.toggleText[1]);
+            if(textFilter.html() == o.toggleText[0]){
+                textFilter.html(o.toggleText[1]);
             }else{
-                t.html(o.toggleText[0]);
+                textFilter.html(o.toggleText[0]);
             }
         }
     });
+
 	
 	$(".upProcess i").each(function(index){
 		var cur = $(this);
