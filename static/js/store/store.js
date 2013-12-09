@@ -76,10 +76,15 @@ $(function() {
     }
 
     $("body").delegate(".toggle_trigger","click",function(){
-        var that = $(this);
-        var o = $.parseJSON($(this).attr("toggle") || "{}") || $.parseJSON($(this).attr("data-toggle") || "{}") ;
-        var t = that;
-        var textFilter = t; 
+        var that = $(this),
+            t = that,
+            textFilter = t; 
+
+        if($(this).attr("data-toggle")){
+            o = $.parseJSON($(this).attr("data-toggle"));
+        }else{
+            o = $.parseJSON($(this).attr("toggle"));
+        }
 
         if(o.filer){
             t = $(o.filter,that);
