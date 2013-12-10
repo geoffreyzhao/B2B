@@ -155,6 +155,8 @@ $(function() {
         });
     }
 
-    createCityAc(".city_ac");
+    if($("#city_popup").length){	
+		createCityAc(".city_ac");
+	}
 });
 

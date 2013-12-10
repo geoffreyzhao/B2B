@@ -561,7 +561,7 @@
              <div class="checkMore"><a href="javascript:void(0);">点击查看更多</a></div>
         </div>  <!--airContent end-->
     
-        <div style="position:absolute; bottom:15px; left:650px;"> <!--浮层 statr-->
+        <!--<div style="position:absolute; bottom:15px; left:650px;">
                 <div class="floatLayer">
                      <i class="arrowLayer"></i>
                      <p><b>退票：</b>仅退基建燃油费，机票款不退</p>
@@ -570,7 +570,8 @@
                      <p><b>签转：</b>不允许签转</p>
                      <p><b>备注：</b> </p>
                 </div>
-        </div> <!--浮层 end-->
+        </div>-->
+        
 	</div>
     </section>
     <footer class="main-footer">
@@ -579,18 +580,17 @@
 </div>
 	<script>
 
-$(function(){
-	$(".flight-item .linkA").kendoTooltip({
-        content:"退票：仅退基建燃油费，机票款不退<br>"+
-        "废票：每张收取N元费用<br>"+
-        "更改：不得改期、升舱<br>"+
-        "签转：不允许签转<br>"+
-        "备注：",
-		arrowOffsetX:20,
-		offsetX:42,
-		offsetY:5
-    });
-});
+		$(function(){
+				  
+			$(".flight-item .linkA").kendoTooltip({
+				position:"bottom", //left right top
+				content:function(){
+					return "退票：仅退基建燃油费，机票款不退<br>废票：每张收取N元费用<br>更改：不得改期、升舱<br>签转：不允许签转<br>备注：";
+				},
+				offsetY:10
+				
+			});
+		});
 	</script>
 </body>
 
