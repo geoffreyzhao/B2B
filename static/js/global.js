@@ -625,6 +625,10 @@ $.loadingbar = function(settings) {
 
     spin_wrap.find(".ct_content").html(content_tpl);
 
+    if(!cfg.showClose){
+        spin_wrap.find(".loading_close").hide();
+    }
+
     if(0 == $(cfg.container).find("> .lightbox").length){
         $(cfg.container).append(spin_wrap);
     }else{

@@ -78,6 +78,9 @@
             <button type="button" class="commonBtn lightBlueBtn" id="win1">弹窗来咯</button>
             <br/>
             <br/>
+            <button type="button" class="commonBtn lightBlueBtn" id="ajax1">异步请求</button>
+            <br/>
+            <br/>
 
             
             <div class="demo">
@@ -164,6 +167,14 @@
             height:500,
             content:"这里是弹窗内容"
         }).init();
+
+
+
+
+        $("#ajax1").click(function(){
+            $.loadingbar({debug:true,showClose:false,text:"正在努力加载数据中",autoHide:false});
+            $.ajax({ url: encodeURI("/碎片/城市选择-国内.html")});
+        });
 
 
 

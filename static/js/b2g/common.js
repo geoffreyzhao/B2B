@@ -162,6 +162,7 @@ $(function() {
 	
 
     function createCityAc(ele){
+        /*
         CityAutocomplete({
             template: "#city_popup",
             input: ele,
@@ -180,6 +181,7 @@ $(function() {
             url:'/static/js/data.txt',
             group: ["热门","GHJ", "ABCDEF", "KLMN", "PQSTW", "XYZ"]
         });
+        */
     }
 
     if($("#city_popup").length){	
