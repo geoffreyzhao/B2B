@@ -4,7 +4,7 @@
 */
 
 //弹窗封装
-function PopWindow(trigger, customSettings){
+function PopWindow(trigger, customSettings, window_id){
     var kendoWinDefaults = {
         visible:false,
         animation:false,
@@ -15,6 +15,7 @@ function PopWindow(trigger, customSettings){
     }
     this.triggerText = trigger;
     this.trigger = $(trigger);
+    this.window_id = window_id;
     this.settings = $.extend(kendoWinDefaults,customSettings);
     this.win = null;
 };
@@ -26,12 +27,23 @@ PopWindow.prototype = {
         return this.win;
     }, 
     render:function(){
-        var windowEle = $('<div class="popup-window">');
-        windowEle.appendTo($('body'));
-        var that = this;
+        var that = this,
+            windowEle,
+            opts,
+            tmpl;
 
-        var opts = this.settings;
-        var tmpl = $(opts.template).html();
+        opts = that.settings;
+        
+        if(typeof(opts.template) == "undefined" && typeof(that.window_id) != "undefined"){
+            //直接元素弹窗
+            that.win = $(that.window_id).kendoWindow( opts ).data('kendoWindow'); 
+            return ;
+        }else{
+            windowEle = $('<div class="popup-window">');
+            windowEle.appendTo($('body'));
+        }
+
+        tmpl = $(opts.template).html();
 
         if ( typeof opts.content === 'undefined'
             && opts.template && tmpl) {
@@ -41,11 +53,11 @@ PopWindow.prototype = {
         }
 
         if( typeof opts.content === 'undefined' ){
-            throw new Error('PopWindow Error.\n'+this.triggerText + '缺少弹窗内容'+ (opts.template ? ',已初始化template属性为' + opts.template :'') );
+            throw new Error('PopWindow Error.\n'+that.triggerText + '缺少弹窗内容'+ (opts.template ? ',已初始化template属性为' + opts.template :'') );
         }else{
-            this.win = windowEle.kendoWindow( opts ).data('kendoWindow'); 
-            this.win.triggerEle = this.trigger;
-            this.win.data = function(d){
+            that.win = windowEle.kendoWindow( opts ).data('kendoWindow'); 
+            that.win.triggerEle = that.trigger;
+            that.win.data = function(d){
                 var newcontent =  kendo.template(tmpl)(d);
                 that.win.content(newcontent); 
             }

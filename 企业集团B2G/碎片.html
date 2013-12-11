@@ -75,7 +75,10 @@
             <button type="button" class="commonBtn lightBlueBtn">提 交</button>
             <br/>
             <br/>
-            <button type="button" class="commonBtn lightBlueBtn" id="win1">弹窗来咯</button>
+            <button type="button" class="commonBtn lightBlueBtn" id="win1">弹窗来咯1</button>
+            <br/>
+            <br/>
+            <button type="button" class="commonBtn lightBlueBtn" id="win2">弹窗来咯2</button>
             <br/>
             <br/>
             <button type="button" class="commonBtn lightBlueBtn" id="ajax1">异步请求</button>
@@ -100,7 +103,7 @@
             <br/>
             <br/>
             <br/>
-            <input type="text" name="range" range="{min:3,max:10}" aria-invalid="true" class="k-invalid"/><span class="k-widget k-tooltip k-tooltip-validation k-invalid-msg" data-for="range" role="alert" style="position: relative; top: 0px; left: 0px;"><span class="k-icon k-warning"> </span> 最小3  最大 10</span>
+            <input type="text" name="range" range="{min:3,max:10}" aria-invalid="true" class="k-invalid"/><span class="k-widget k-tooltip k-tooltip-validation k-invalid-msg" data-for="range" role="alert" ><span class="k-icon k-warning"> </span> 最小3  最大 10</span>
             <br/>
             <br/>
             <br/>
@@ -157,22 +160,34 @@
     </footer>
 </div>
 
+<div id="test_win1">
+    这里是测试窗口1
+</div>
+
+<div id="test_win2">
+    这里是测试窗口2
+</div>
+
 <script>
 
     $(function(){
 
         var win1 = new PopWindow('#win1',{
-            title:"测试窗口",
+            title:"测试窗口1",
             width:600,
-            height:500,
-            content:"这里是弹窗内容"
-        }).init();
+            height:500
+        },"#test_win1").init();
+        var win2 = new PopWindow('#win2',{
+            title:"测试窗口2",
+            width:600,
+            height:500
+        },"#test_win2").init();
 
 
 
 
         $("#ajax1").click(function(){
-            $.loadingbar({debug:true,showClose:false,text:"正在努力加载数据中",autoHide:false});
+            $.loadingbar({debug:true,showClose:false,text:"正在努力加载数据",autoHide:false});
             $.ajax({ url: encodeURI("/碎片/城市选择-国内.html")});
         });
 
