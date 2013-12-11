@@ -95,6 +95,22 @@
             <br/>
             <br/>
 
+            <div class="demo">
+                <h2>选择差旅人</h2>
+                <input id="customers" style="width: 500px;"/>
+
+                <br/>
+                <br/>
+                <ul id="userWrapper" class="selectarea">
+
+                </ul>
+            </div>
+
+
+            <br/>
+            <br/>
+
+
             <div class="flowImg">
                 <em class="curFlowImg"><i></i>选择</em>
                 <em>预订</em>
@@ -138,6 +154,32 @@
             height:500,
             content:"这里是弹窗内容"
         }).init();
+
+
+        function setUser(e){
+            var item = e.item;
+            var text = item.text();
+            $("#userWrapper").append('<li class="k-button"><span>'+ item.text() + '</span><span class="k-icon k-delete">&nbsp;</span></li>');
+        }
+
+        var autocomplete = $("#customers").kendoAutoComplete({
+		    minLength: 1,
+		    dataTextField: "ContactName",
+		    template: '<img src=\"http://proto.b2b.com/kendoui.web/examples/content/web/Customers/${data.CustomerID}.jpg\" alt=\"${data.CustomerID}\" />' +
+			    '<h3>${ data.ContactName }</h3>' +
+			    '<p>${ data.CompanyName }</p>',
+		    dataSource: {
+			    transport: {
+                    read:{
+                        dataType: "jsonp",
+                        url: "http://demos.kendoui.com/service/Customers"
+                    }
+                }
+		    },
+            select:setUser,
+		    height: 370
+		}).data("kendoAutoComplete");
+
     });
 
 </script>
