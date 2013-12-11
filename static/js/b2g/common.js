@@ -79,12 +79,16 @@ $(function() {
     $("body").delegate(".toggle_trigger","click",function(){
         var that = $(this),
             t = that,
-            textFilter = t; 
+            textFilter = t, 
+            temp,
+            i,j,
+            noslide,
+            tags = ['th','tr','td','table','tbody','thead','tfooter'];
 
-        if($(this).attr("data-toggle")){
-            o = $.parseJSON($(this).attr("data-toggle"));
+        if(that.attr("data-toggle")){
+            o = $.parseJSON(that.attr("data-toggle"));
         }else{
-            o = $.parseJSON($(this).attr("toggle"));
+            o = $.parseJSON(that.attr("toggle"));
         }
 
         if(o.filer){
@@ -95,7 +99,30 @@ $(function() {
             textFilter = $(o.textFilter,that); 
         }
 
-        $(o.target).slideToggle("normal");
+        temp = $(o.target).get(0);
+        noslide = false;
+
+        for(i = 0, j = tags.length; i < j; i++){
+            if(temp && (temp.tagName.toLowerCase() == tags[i])){
+                noslide = true;
+                break;
+            }
+        }
+
+        if(noslide){
+            if(o.wrapper){
+                $(o.target,that.closest(o.wrapper)).toggle();
+            }else{
+                $(o.target).toggle();
+            }
+
+        }else{
+            if(o.wrapper){
+                $(o.target,that.closest(o.wrapper)).slideToggle("normal");
+            }else{
+                $(o.target).slideToggle("normal");
+            }
+        }
 
         /* 折叠 toggle_trigger */
         if(o.toggleSelfClass){
