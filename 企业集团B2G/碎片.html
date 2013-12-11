@@ -79,11 +79,21 @@
             <br/>
             <br/>
 
-            <select name="city" data-role="dropdownlist">
-                <option value="aaa">aaa</option>
-                <option value="abc">abc</option>
+            
+            <div class="demo">
+                <h2>选择差旅目的地</h2>
+                <select name="for_reason">
+                    <option value="开会01">开会01</option>
+                    <option value="开会01">开会02</option>
+                    <option value="开会01">开会03</option>
+                    <option value="开会01">开会04</option>
+                    <option value="开会01">开会05</option>
+                    <option value="开会01">开会06</option>
+                    <option value="开会01">开会07</option>
+                </select>
 
-            </select>
+                <ul id="tagWrapper"></ul>
+            </div>
             <br/>
             <br/>
             <br/>
@@ -154,6 +164,19 @@
             height:500,
             content:"这里是弹窗内容"
         }).init();
+
+
+
+        var dropdownlist = $("select[name=for_reason]").kendoDropDownList({
+
+            select:function(e){
+                var item = e.item;
+                
+                $("#tagWrapper").append('<li class="k-button"><span>'+ item.text() + '</span><span class="k-icon k-delete">&nbsp;</span></li>');
+            }
+
+		}).data("kendoAutoComplete");
+
 
 
         function setUser(e){
