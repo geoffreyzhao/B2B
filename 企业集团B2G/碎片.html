@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>天地行 B2G 首页</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
 
     <link rel="stylesheet" href="../static/css/smoothness/jquery-ui-1.10.3.custom.css" />
     <link rel="stylesheet" href="../static/css/b2g.css" media="all" />
@@ -153,6 +153,16 @@
 
 
 
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+
+
+            <div class="map">
+                <h1 style="font-size:30px;">用于酒店的交互</h1>
+                <div id="map_container" style="height:400px;width:800px;"></div>
+            </div>
         </div>
     </section>
     <footer class="main-footer">
@@ -168,9 +178,30 @@
     这里是测试窗口2
 </div>
 
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=qkNnEXk6nC3jcPTM8mv3dcE8&callback=initialize"></script>
 <script>
 
+    /**
+     * 地图初始化
+     */
+
+
+    function initialize(){
+        var map = new BMap.Map('map_container');  
+        map.enableScrollWheelZoom();
+        map.centerAndZoom(new BMap.Point(121.491, 31.233), 12);  
+        map.addControl(new BMap.NavigationControl());
+        map.addControl(new BMap.MapTypeControl({mapTypes: [BMAP_NORMAL_MAP,BMAP_HYBRID_MAP]}));
+
+
+
+
+    }
+
+
     $(function(){
+
+
 
         var win1 = new PopWindow('#win1',{
             title:"测试窗口1",
