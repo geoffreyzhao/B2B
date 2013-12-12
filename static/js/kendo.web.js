@@ -14617,6 +14617,7 @@ kendo_module({
             position: "bottom",
             showOn: "mouseenter",
             autoHide: true,
+            wrapperClass:"",
             offsetX:0,
             offsetY:0,
             arrowOffsetX:-1,
@@ -14780,6 +14781,10 @@ kendo_module({
                     dir: DIRCLASSES[options.position],
                     autoHide: options.autoHide
                 }));
+
+            if(options.wrapperClass){
+                wrapper.addClass(options.wrapperClass);
+            }
 
             that.popup = new Popup(wrapper, extend({
                 activate: function() {
