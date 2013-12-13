@@ -19,6 +19,9 @@
     <!--[if lte IE 9]>
     <script src="../static/js/html5.js"></script>
     <![endif]-->
+    <style type="text/css">
+        #ipt_customer:focus{border:none;box-shadow: none}
+    </style>
 </head>
 <body>
 <div class="main-wrapper">
@@ -33,7 +36,7 @@
                     <li><a herf="#">数据服务</a></li>
                     <li><a herf="#">创业维护</a></li>
                     <li class="last"><a herf="#">系统设置</a></li>
-                </ul> 
+                </ul>
             </nav>
         </div>
     </header>
@@ -48,7 +51,7 @@
             </div>
         </div>
     </div>
-
+</header>
     <section class="main-body clearfix">
         <div class="index_mainPanel">
             <div class="wrap1200 index_mainContainer">
@@ -92,6 +95,12 @@
                                         <td><input type="text" name="" id=""/></td>
                                     </tr>
                                 </table>
+
+                                <div class="xchange" style="top:100px;left:228px;">
+                                    <b></b>
+                                    <a href="javascript:void(0);">换</a>
+                                    <i></i>
+                                </div>
                             </div>
                             <ul class="ul_itemNav" style="position: static;margin-top: 10px">
                                 <li class="current">高级搜索</li>
@@ -147,6 +156,11 @@
                                         <td><input type="text" name="" id=""/></td>
                                     </tr>
                                 </table>
+                                <div class="xchange" style="top:100px;left:228px;">
+                                    <b></b>
+                                    <a href="javascript:void(0);">换</a>
+                                    <i></i>
+                                </div>
                             </div>
                             <ul class="ul_itemNav" style="position: static;margin-top: 10px">
                                 <li class="current">高级搜索</li>
@@ -456,117 +470,139 @@
  
     </section>
   <!-- 设置差旅人 内容 -->
-<script type="text/x-kendo-template" id="settour-template">
-	<div class="settour">
-		<h4><em>1.</em>选择差旅人</h4>
-		<div style="padding-left:16px"><select name="for_reason" style="width:142px;height:34px">
+    <div id="settour-template" style="padding:20px">
+        <div class="settour">
+            <h4><em>1.</em>选择差旅人</h4>
+
+            <div style="padding-left:16px;letter-spacing:-4px">
+                <select name="for_reason" style="width:142px;height:34px;letter-spacing:0">
                     <option value="差旅人">差旅人</option>
                     <option value="临时差旅人">临时差旅人</option>
-                </select><input id="" type="text" style="width:514px;border-left:none;" /> 
-		</div>
-		<table style="margin:10px 0 5px 0;"> 
-         <colgroup>
-              <col width="100px"/>
-			  <col width="500px"/>
-         </colgroup>
-		 <tbody>
-         <tr>
-             <td style="padding-left:26px">差旅人：</td>
-			 <td> <ul id="tagWrapper"></ul></td>
-         </tr>
-		  <tr>
-             <td style="padding-left:26px">临时差旅人：</td>
-			 <td>潘小梅</td>
-         </tr>
-		 </tbody>
-		 </table>
-		 
-		 <h4>请输入临时差旅人信息</h4>
-		 	 <table class="addtour-info">
-				<colgroup>
-                <col width="92px"/>
-			    <col width="125px"/>
-				<col width="92px"/>
-			    <col width="125px"/>
-				<col width="55px"/>
-			    <col width="55px"/>
-				<col width="55px"/>
-			    <col width="58px"/>
+                </select>
+                <input id="ipt_customer" type="text" style="width:514px;border-left:none;letter-spacing:0;vertical-align:top"/>
+                <div class="addtemptour-button nb" id="btn_addProvisionalCustomer">增加</div>
+            </div>
+            <table style="margin:10px 0 5px 0;">
+                <colgroup>
+                    <col width="100px"/>
+                    <col width="500px"/>
                 </colgroup>
-				<tbody>
-				<tr>
-				   <td><em>*</em>中文名：</td>
-				   <td><input name="" type="text" style="width:111px;"></td>
-				   <td><em>*</em>英文名：</td>
-				   <td><input name="" type="text" style="width:111px;"></td>
-				   <td><em>*</em>性别：</td>
-				   <td><select name="">
-				   		<option value="男">男</option>
-				   		<option value="女">女</option>
-				       </select>
-				   </td>
-				   <td><em>*</em>类型：</td>
-				   <td><select name="" style="width:56px;">
-				   		<option value="成人">成人</option>
-				   		<option value="儿童">儿童</option>
-				       </select>
-				   </td>
-				</tr>
-				<tr>
-				   <td><em>*</em>手机号码：</td>
-				   <td><input name="" type="text" style="width:111px;"></td>
-				   <td><em>*</em>邮箱地址：</td>
-				   <td colspan="5"><input name="" type="text" style="width:365px"></td>
-				</tr>
-				<tr>
-				   <td><em>*</em>证件类型：</td>
-				   <td><select name="" style="width:111px;">
-				   		<option value="身份证">身份证</option>
-				   		<option value="军官证">军官证</option>
-						<option value="国外护照">国外护照</option>
-				       </select></td>
-				   <td><em>*</em>证件号码：</td>
-				   <td colspan="2"><input name="" type="text" style="width:169px"></td>
-				   <td colspan="2" style="text-align:right">证件有效期：</td>
-				   <td><input name="" type="text" style="width:55px;"></td>
-				</tr>
-				<tr>
-				   <td><em>*</em>发证国家：</td>
-				   <td><input name="" type="text" style="width:111px;"></td>
-				   <td></td>
-				   <td></td>
-				   <td></td>
-				   <td></td>
-				   <td colspan="2" align="right">
-				     <div class="addtemptour-button">增加</div> <span class="fold-button"><a href="">收起</a></span></td>
-				</tr>
-				
-				</tbody>
-			</table>
-			
-		<h4><em>2.</em>选择差旅目的</h4> 
-		<div style="padding-left:16px"><input id="customers" type="text" style="width: 656px;"/>
-        	     
-			    <ul id="userWrapper" class="selectarea">
+                <tbody>
+                <tr>
+                    <td style="padding-left:26px">差旅人：</td>
+                    <td>
+                        <ul id="tagWrapper"></ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-left:26px">临时差旅人：</td>
+                    <td><ul id="tagWrapper_provisionalCustomers"></ul></td>
+                </tr>
+                </tbody>
+            </table>
 
-                 </ul>
-		   
-		 </div>
-		<h5>备注</h5>
-		<div style="padding-left:16px">
-			<textarea name="" style="width:630px"></textarea>
-		</div>
-		
-		  <div class="buttonbox">
-			<button type="button" class="commonBtn lightRedBtn" style="margin-right:5px">提 交</button>
-		    <button type="button" class="commonBtn grayBtn">取 消</button>
-		 </div> 
-		
-	</div>
-    
-</script>
-    
-    
+            <div id="provisionalCustomerContainer">
+
+            </div>
+
+            <h4><em>2.</em>选择差旅目的</h4>
+
+            <div style="padding-left:16px"><input id="customers" type="text" style="width: 656px;"/>
+            <div id="destinationContainer">
+                <ul id="userWrapper" class="selectarea">
+                    <li class="tourobj-button"><span>外出开会</span><span class="">&nbsp;</span></li>
+                    <li class="tourobj-button"><span>业务需要</span><span class="">&nbsp;</span></li>
+                    <li class="tourobj-button"><span>接客户</span><span class="">&nbsp;</span></li>
+                    <li class="tourobj-button"><span>接领导</span><span class="">&nbsp;</span></li>
+                    <li class="tourobj-button"><span>领导安排</span><span class="">&nbsp;</span></li>
+                    <li class="tourobj-button"><span>参加非常重要的会议</span><span class="">&nbsp;</span></li>
+                    <li class="tourobj-button"><span>我也不知道为什么</span><span class="">&nbsp;</span></li>
+                    <li class="tourobj-button"><span>这到底是为什么</span><span class="">&nbsp;</span></li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            </div>
+            <h5>备注</h5>
+
+            <div style="padding-left:16px">
+                <textarea name="" style="width:630px"></textarea>
+            </div>
+
+            <div class="buttonbox">
+                <button type="button" class="commonBtn lightRedBtn" style="margin-right:5px">提 交</button>
+                <button type="button" class="commonBtn grayBtn">取 消</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="text/html" id="provisionalCustomerTemplate">
+        <h4>请输入临时差旅人信息</h4>
+        <table class="addtour-info">
+            <colgroup>
+                <col width="92px"/>
+                <col width="125px"/>
+                <col width="92px"/>
+                <col width="125px"/>
+                <col width="55px"/>
+                <col width="55px"/>
+                <col width="55px"/>
+                <col width="58px"/>
+            </colgroup>
+            <tbody>
+            <tr>
+                <td><em>*</em>中文名：</td>
+                <td><input name="" id="pc_cnName" type="text" style="width:111px;"></td>
+                <td><em>*</em>英文名：</td>
+                <td><input name="" type="text" style="width:111px;"></td>
+                <td><em>*</em>性别：</td>
+                <td><select name="">
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+                </td>
+                <td><em>*</em>类型：</td>
+                <td><select name="" style="width:56px;">
+                    <option value="成人">成人</option>
+                    <option value="儿童">儿童</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td><em>*</em>手机号码：</td>
+                <td><input name="" type="text" style="width:111px;"></td>
+                <td><em>*</em>邮箱地址：</td>
+                <td colspan="5"><input name="" type="text" style="width:365px"></td>
+            </tr>
+            <tr>
+                <td><em>*</em>证件类型：</td>
+                <td><select name="" style="width:111px;">
+                    <option value="身份证">身份证</option>
+                    <option value="军官证">军官证</option>
+                    <option value="国外护照">国外护照</option>
+                </select></td>
+                <td><em>*</em>证件号码：</td>
+                <td colspan="2"><input name="" type="text" style="width:169px"></td>
+                <td colspan="2" style="text-align:right">证件有效期：</td>
+                <td><input name="" type="text" style="width:55px;"></td>
+            </tr>
+            <tr>
+                <td><em>*</em>发证国家：</td>
+                <td><input name="" type="text" style="width:111px;"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td colspan="2" align="right">
+                    <div class="addtemptour-button" id="btn_saveProvisionalCustomer">增加</div>
+                    <span class="fold-button"><a href="javascript:;" id="btn_hideProvisionalCustomerContainer">收起</a></span></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </script>
+
     <footer class="main-footer">
         <p class="copyright">Copyright &copy; 2013 天地行 All Rights Reserved.     沪ICP备08101503号</p>
     </footer>
@@ -625,20 +661,43 @@
     $(function(){
 
 		new PopWindow('#settour',{
-			template:'#settour-template',
 			title:'设置差旅人',
 			width:'750'
-		}).init();
+		},"#settour-template").init();
 		
 		var dropdownlist = $("select[name=for_reason]").kendoDropDownList({
-
-            select:function(e){
-                var item = e.item;
-                
-                $("#tagWrapper").append('<li class="touruser-button" ><span>'+ item.text() + '</span><span class="k-icon touruser-icon">&nbsp;</span></li>');
-            }
-
+            change:function(){$("#btn_addProvisionalCustomer").toggle();}
 		}).data("kendoAutoComplete");
+
+        $("#btn_addProvisionalCustomer").click(function(){
+            $("#provisionalCustomerContainer").html($("#provisionalCustomerTemplate").html());
+        })
+
+        $("#customers").focusin(function(){
+            $("#destinationContainer").slideDown();
+        })
+
+        $("#customers").focusout(function(){
+            $("#destinationContainer").slideUp();
+        })
+
+        $("#destinationContainer li").click(function(){
+            $("#customers").val($(this).text());
+            $(this).addClass("current").siblings().removeClass("current");
+        })
+
+        $("body").delegate("#btn_saveProvisionalCustomer","click",function(){
+            $("#tagWrapper_provisionalCustomers").append('<li class="touruser-button" ><span>'+ $("#pc_cnName").val() + '</span><span class="k-icon touruser-icon">&nbsp;</span></li>');
+            $("#provisionalCustomerContainer").html("");
+        })
+
+        $("body").delegate("#btn_hideProvisionalCustomerContainer","click",function(){
+            $("#provisionalCustomerContainer").html("");
+        })
+
+        $("body").delegate(".touruser-icon","click",function(){
+            $(this).closest("li").remove();
+        })
 
 
 
@@ -648,26 +707,37 @@
             $("#userWrapper").append('<li class="tourobj-button"><span>'+ item.text() + '</span><span class="">&nbsp;</span></li>');
         }
 
-        var autocomplete = $("#customers").kendoAutoComplete({
-		    minLength: 1,
-		    dataTextField: "ContactName",
-		    template: '<h1>aaa</h1><img src=\"http://proto.b2b.com/kendoui.web/examples/content/web/Customers/${data.CustomerID}.jpg\" alt=\"${data.CustomerID}\" />' +
-			    '<h3>${ data.ContactName }</h3>' +
-			    '<p>${ data.CompanyName }</p>',
-		    dataSource: {
-			    transport: {
+        $("#ipt_customer").kendoAutoComplete({
+            minLength: 1,
+            dataTextField: "ContactName",
+            template: '<h1>aaa</h1><img src=\"http://proto.b2b.com/kendoui.web/examples/content/web/Customers/${data.CustomerID}.jpg\" alt=\"${data.CustomerID}\" />' +
+                    '<h3>${ data.ContactName }</h3>' +
+                    '<p>${ data.CompanyName }</p>',
+            dataSource: {
+                transport: {
                     read:{
                         dataType: "jsonp",
                         url: "http://demos.kendoui.com/service/Customers"
                     }
                 }
-		    },
-            select:setUser,
-		    height: 370
-		}).data("kendoAutoComplete");
-		
-		
-     });      
+            },
+            select:function(e){
+                if($("select[name=for_reason]").val()=="差旅人")
+                {
+                    $("#tagWrapper").append('<li class="touruser-button" ><span>'+ e.item.text() + '</span><span class="k-icon touruser-icon">&nbsp;</span></li>');
+                }
+                else
+                {
+                    $("#tagWrapper_provisionalCustomers").append('<li class="touruser-button" ><span>'+ e.item.text() + '</span><span class="k-icon touruser-icon">&nbsp;</span></li>');
+                }
+            },
+            close:function(){
+                $("#ipt_customer").val("");
+            },
+            height: 370
+        }).data("kendoAutoComplete");
+
+     });
 
 </script>
 <script type="text/x-kendo-template" id="city_popup">
