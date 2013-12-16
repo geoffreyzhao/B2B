@@ -39746,6 +39746,12 @@ kendo_module({
                 modalWindows,
                 shouldHideOverlay, overlay;
 
+
+            if(that._closing){
+                return;
+            }
+
+
             if (wrapper.is(VISIBLE) && !that.trigger(CLOSE, { userTriggered: !!userTriggered })) {
                 that._closing = true;
                 options.visible = false;
