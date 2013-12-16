@@ -708,28 +708,22 @@
             $("#userWrapper").append('<li class="tourobj-button"><span>'+ item.text() + '</span><span class="">&nbsp;</span></li>');
         }
 
+        var customerData=[{name:"潘晓梅",phone:"18651668596",mail:"82494586@qq.com"},{name:"潘晓梅",phone:"18651668596",mail:"82494586@qq.com"},{name:"潘晓梅",phone:"18651668596",mail:"82494586@qq.com"},{name:"潘晓梅",phone:"18651668596",mail:"82494586@qq.com"}]
+
         $("#ipt_customer").kendoAutoComplete({
             minLength: 1,
-            dataTextField: "ContactName",
-            template: '<h1>aaa</h1><img src=\"http://proto.b2b.com/kendoui.web/examples/content/web/Customers/${data.CustomerID}.jpg\" alt=\"${data.CustomerID}\" />' +
-                    '<h3>${ data.ContactName }</h3>' +
-                    '<p>${ data.CompanyName }</p>',
-            dataSource: {
-                transport: {
-                    read:{
-                        dataType: "jsonp",
-                        url: "http://demos.kendoui.com/service/Customers"
-                    }
-                }
-            },
+            dataTextField: "phone",
+            template: '<span style="padding-right: 5px">#: name #</span><span style="padding-right: 5px">#: phone #</span><span>#: mail #</span>',
+            dataSource: customerData,
             select:function(e){
+                console.dir(e);
                 if($("select[name=for_reason]").val()=="差旅人")
                 {
-                    $("#tagWrapper").append('<li class="touruser-button" ><span>'+ e.item.text() + '</span><span class="k-icon touruser-icon">&nbsp;</span></li>');
+                    $("#tagWrapper").append('<li class="touruser-button" ><span>'+ $("span",e.item).eq(0).text() + '</span><span class="k-icon touruser-icon">&nbsp;</span></li>');
                 }
                 else
                 {
-                    $("#tagWrapper_provisionalCustomers").append('<li class="touruser-button" ><span>'+ e.item.text() + '</span><span class="k-icon touruser-icon">&nbsp;</span></li>');
+                    $("#tagWrapper_provisionalCustomers").append('<li class="touruser-button" ><span>'+ $("span",e.item).eq(0).text() + '</span><span class="k-icon touruser-icon">&nbsp;</span></li>');
                 }
             },
             close:function(){
