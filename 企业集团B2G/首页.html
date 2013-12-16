@@ -525,8 +525,8 @@
             </div>
             <h5>备注</h5>
 
-            <div style="padding-left:16px">
-                <textarea name="" style="width:630px"></textarea>
+            <div style="padding-left:16px;position: relative">
+                <textarea name="" style="width:630px" id="ipt_note"></textarea><span style="position: absolute;right: 10px;bottom: 10px"><span class="charNum">0</span>/100</span>
             </div>
 
             <div class="buttonbox">
@@ -653,6 +653,19 @@
         $(".specialHotelContent li").click(function(){
             $(".specialHotelContent .specialHotelDetailInfo").hide();
             $(".specialHotelDetailInfo",this).show();
+        })
+
+        $("#ipt_note").keyup(function(){
+            var charNum=$(this).val().length;
+            if(charNum>100)
+            {
+                $(this).val($(this).val().substr(0,100));
+                $(".charNum").text(100);
+            }
+            else
+            {
+                $(".charNum").text(charNum);
+            }
         })
     })
 </script>
