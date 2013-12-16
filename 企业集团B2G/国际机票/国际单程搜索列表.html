@@ -65,45 +65,49 @@
                 <div class="againSeek">
                     <table>
                           <colgroup>
-                               <col width="240px"/>
+                               <col width="210px"/>
                                <col width="70px"/>
-                               <col width="230px"/>
+                               <col width="210px"/>
                                <col width="70px"/>
-                               <col width="400px"/>
+                               <col width="210px"/>
+                               <col width="45px"/>
+                               <col width="190px"/>
                                <col width="130px"/>
                           </colgroup>
                           <tr>
                               <td rowspan="2">
-                                   <select data-role="dropdownlist"  style="width:160px;">
-                                         <option>单程</option>
-                                         <option>往返</option>
-                                         <option>联程</option>
+                                   <select data-role="dropdownlist" style="width:160px;" id="trip_type">
+                                         <option selected  value="one_way">单程</option>
+                                         <option value="round_trip">往返</option>
                                    </select>
                               </td>
                               <td>出发城市：</td>
                               <td><input type="text" value="北京（BJS）" /></td>
                               <td>出发时间：</td>
                               <td><input type="text" value="" class="datepicker"/></td>
-                              <td><button type="button" class="commonBtn lightBlueBtn" style="padding:7px 25px;">重新搜索</button></td>
-                          </tr>
-                          <tr>
-                              <td>到达城市：</td>
-                              <td><input type="text" value="纽约（NYC）"/></td>
                               <td>舱位：</td>
                               <td>
-                                  <select data-role="dropdownlist"  style="width:177px;">
+                                  <select data-role="dropdownlist" style="width:150px;">
                                        <option>不限</option>
                                        <option>经济舱</option>
                                        <option>商务舱</option>
                                        <option>头等舱</option>
                                   </select>
                               </td>
+                              <td><button type="button" class="commonBtn lightBlueBtn" style="padding:7px 25px;">重新搜索</button></td>
+                          </tr>
+                          <tr>
+                              <td>到达城市：</td>
+                              <td><input type="text" value="纽约（NYC）"/></td>
+                              <td colspan="2"><label id="return_label"><em>返程时间：</em><input type="text" value="" class="datepicker grayed" id="return_date"  disabled="disabled" /></label></td>
+                              <td></td>
+                              <td></td>
                               <td valign="bottom">
                                   <label class="heiSeek toggle_trigger" data-toggle='{"target":"#unfoldCon","textFilter":"i","toggleClass":["heiSeek","putAway"],"toggleText":["高级搜索","收起"]}'><i>高级搜索</i> <em></em></label>
                                   <label class="putAway" style="display:none;"><i>收起</i> <em></em></label>
                               </td>
                           </tr>
-                     </table> 
+                     </table>
                 </div>
                 <div class="unfoldCon" id="unfoldCon" style="display:none;">                    
                      <b>起飞时间：</b>
@@ -567,6 +571,24 @@
 			
 		});
 	</script>
+    
+    <script>
+
+        $(function(){
+
+            $("#trip_type").change(function(){
+				console.log($(this).val());
+                if($(this).val() == "one_way"){
+                    $("#return_label input").addClass("grayed").prop("disabled",true);                    
+                }else{
+					$("#return_date").removeClass("grayed").prop("disabled",false);
+
+                }
+            });
+        });
+    </script>
+    
+    
 </body>
 
 </html>

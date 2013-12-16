@@ -15,7 +15,7 @@
     <script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
     <script type="text/javascript" src="../../static/js/global.js"></script>
     <script type="text/javascript" src="../../static/js/b2g/common.js"></script>
-    <script src="../static/js/jquery-ui-1.10.3.custom.js"></script>
+    <script src="../../static/js/jquery-ui-1.10.3.custom.js"></script>
     <!--[if lte IE 9]>
     <script src="../../static/js/html5.js"></script>
     <![endif]-->
@@ -76,10 +76,10 @@
                           </colgroup>
                           <tr>
                               <td rowspan="2">
-                                   <select data-role="dropdownlist" style="width:160px;">
-                                         <option>单程</option>
-                                         <option selected>往返</option>
-                                         <option>联程</option>
+                                   <select data-role="dropdownlist" style="width:160px;" id="trip_type">
+                                         <option value="one_way">单程</option>
+                                         <option value="round_trip" selected>往返</option>
+                                         <option value="union_trip">联程</option>
                                    </select>
                               </td>
                               <td>出发城市：</td>
@@ -100,8 +100,7 @@
                           <tr>
                               <td>到达城市：</td>
                               <td><input type="text" value="重庆"/></td>
-                              <td>返程时间：</td>
-                              <td><input type="text" value="" class="datepicker"/></td>
+                              <td colspan="2"><label id="return_label"><em>返程时间：</em><input type="text" value="" class="datepicker" id="return_date"/></label></td>
                               <td></td>
                               <td></td>
                               <td valign="bottom">
@@ -474,6 +473,22 @@
     </footer>
 </div>
 </body>
+
+ <script>
+        $(function(){
+
+            $("#trip_type").change(function(){
+				console.log($(this).val());
+                if($(this).val() == "one_way"){
+                    $("#return_label input").addClass("grayed");
+					$("#return_date").prop("disabled",true);                     
+                }else{
+					$("#return_date").removeClass("grayed").prop("disabled",false);
+                }
+            });
+        });
+ </script>
+
 <script>
 	$(function(){
 			  
