@@ -21,6 +21,73 @@
 <div id="container" style="margin-top:0">
 <div id="mainContent">
 
+<div class="panel" style="padding:0;width:100%">
+    <div style="width:7px;background:#FE7218;float:left;height:63px"></div>
+    <div style="width:7px;background:#439CD3;float:right;height:63px"></div>
+    <div style="width:77px;background:#cff3fc;float:right;height:63px" id="associatedOrder">
+        <span style="float:left;padding:10px 16px 12px 7px">关联<br/>订单</span><span style="font-weight:bold;font-size:36px;line-height:57px;color:#111">1</span>
+    </div>
+    <div style="margin:0 7px;height:63px">
+        <div style="width:452px;float:left;border-right:1px dashed #FADBD3;height:53px;background:#FFFBF5;padding:10px 0 0 20px">
+            <div style="margin-top:13px">
+                <span class="head" style="font-size:14px">订单号:</span><span
+                    style="color:#FF4200;font-weight: bold;font-size:16px">12345678</span>
+                <span style="color:#888986;padding-left:20px">-订单类型：酒店</span>
+            </div>
+        </div>
+        <div style="width:388px;margin-left:453px;height:63px">
+            <div class="hotelOrderStatusContainer" style="margin-left:20px">
+                <div class="status_complete statusContainer first">
+                    <div class="statusDot"></div>
+                    <div class="statusLineLeft statusLine"></div>
+                    <div class="statusLineRight statusLine"></div>
+                    创建
+                </div>
+                <div class="status_complete statusContainer">
+                    <div class="statusDot"></div>
+                    <div class="statusLineLeft statusLine"></div>
+                    <div class="statusLineRight statusLine"></div>
+                    支付
+                </div>
+                <div class="status_ing statusContainer">
+                    <div class="statusDot"></div>
+                    <div class="statusLineLeft statusLine"></div>
+                    <div class="statusLineRight statusLine"></div>
+                    确认
+                </div>
+                <div class="status_uncomplete statusContainer last">
+                    <div class="statusDot"></div>
+                    <div class="statusLineLeft statusLine"></div>
+                    <div class="statusLineRight statusLine"></div>
+                    完成
+                </div>
+            </div>
+            <div class="hotelOrderStatusContainer">
+                <div class="status_complete statusContainer first last">
+                    <div class="statusDot"></div>
+                    <div class="statusLineLeft statusLine"></div>
+                    <div class="statusLineRight statusLine"></div>
+
+                </div>
+            </div>
+            <div class="hotelOrderStatusContainer">
+                <div class="status_uncomplete statusContainer first exception">
+                    <div class="statusDot"></div>
+                    <div class="statusLineLeft statusLine"></div>
+                    <div class="statusLineRight statusLine"></div>
+                    收银
+                </div>
+                <div class="status_uncomplete statusContainer last">
+                    <div class="statusDot"></div>
+                    <div class="statusLineLeft statusLine"></div>
+                    <div class="statusLineRight statusLine"></div>
+                    结算
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
     <div class="panel">
         <table class="hblue">
             <colgroup>
@@ -726,6 +793,120 @@
     <span class="right"></span>
 </a>
 
+<div class="panel">
+    <div class="panelTitle" style="border: 0">
+        最后更新日志
+    </div>
+    <span style="float:right">共&nbsp;<span class="journalTotalNum">5</span>&nbsp;条 <a class="button_5" id="btn_checkJournalDetail" href="javascript:;">查看日志详情</a></span>
+    <div class="panelContent clearfix">
+        <table class="operation_records">
+            <thead>
+            <tr>
+                <td style="width:130px">日期</td>
+                <td style="width:100px">操作人员</td>
+                <td style="width:300px">类型</td>
+                <td style="width:300px">操作内容</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>2013-06-06 14:55</td>
+                <td>liuwei</td>
+                <td>增加行政商务套房</td>
+                <td>增加行政商务套房</td>
+            </tr>
+            </tbody>
+        </table>
+        <table style="margin-top:10px">
+            <colgroup>
+                <col width="90">
+                <col width="80">
+                <col width="100">
+                <col>
+                <col width="100">
+            </colgroup>
+            <tr>
+                <td><input type="checkbox" name="" id=""/>发消息给</td>
+                <td>组织架构：</td>
+                <td><select name="" id="" data-role="dropdownlist" style="width:80px"><option>真旅网</option></select></td>
+                <td rowspan="2"><textarea name="" id="" style="width:96%;height: 100%"></textarea></td>
+                <td>
+                    <a href="javascript:;" class="button_secondary adaptiveButton small" style="" id="btn_cancelBooking">
+                        <span class="left"></span>
+                        <span class="center" style="padding:0 2px">添加客户说明</span>
+                        <span class="right"></span>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>员工：</td>
+                <td><select name="" id="" data-role="dropdownlist" style="width:80px"><option>真旅网</option></select></td>
+                <td class="txt_l6">不超过100字</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div id="journalDetailTemplate">
+    <div style="position:absolute;top:-29px;right:40px">
+        <span style="vertical-align: middle"><span class="journalCurrentNo">1</span>/<span class="journalTotalPageNo">3</span></span>
+        <a class="pagesLeft enable" href="javascript:;"></a>
+        <a class="pagesRight enable" href="javascript:;"></a>
+    </div>
+
+    <div style="padding:10px">
+        <table class="operation_records">
+            <thead>
+            <tr>
+                <td style="width:130px">日期</td>
+                <td style="width:100px">操作人员</td>
+                <td style="width:130px">类型</td>
+                <td style="width:300px">操作内容</td>
+                <td style="width:130px">接收方</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>2013-06-06 14:55</td>
+                <td>liuwei</td>
+                <td>增加行政商务套房</td>
+                <td>增加行政商务套房</td>
+                <td>酒店部/刘伟</td>
+            </tr>
+            <tr>
+                <td>2013-06-06 14:55</td>
+                <td>liuwei</td>
+                <td>增加行政商务套房</td>
+                <td>增加行政商务套房</td>
+                <td>酒店部/刘伟</td>
+            </tr>
+            <tr>
+                <td>2013-06-06 14:55</td>
+                <td>liuwei</td>
+                <td>增加行政商务套房</td>
+                <td>增加行政商务套房</td>
+                <td>酒店部/刘伟</td>
+            </tr>
+            <tr>
+                <td>2013-06-06 14:55</td>
+                <td>liuwei</td>
+                <td>增加行政商务套房</td>
+                <td>增加行政商务套房</td>
+                <td>酒店部/刘伟</td>
+            </tr>
+            <tr>
+                <td>2013-06-06 14:55</td>
+                <td>liuwei</td>
+                <td>增加行政商务套房</td>
+                <td>增加行政商务套房</td>
+                <td>酒店部/刘伟</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <script type="text/html" id="cancelBookingTemplate">
     <div><textarea name="" id="" style="width:545px" rows="10"></textarea></div>
     <div style="text-align:right;margin:35px 20px 0 0">
@@ -822,6 +1003,15 @@
         template:"#confirmCostModifyTemplate",
         title:"注意"
     }).init();
+
+    new PopWindow("#btn_checkJournalDetail",{
+        title:"订单日志",
+        width:730,
+        open:function(){
+            var x = $(this)[0].wrapper;
+            setTimeout(function(){$(x.find(".k-window-content")).css({"overflow":"visible","z-index":"1"})},0);
+        }
+    },"#journalDetailTemplate").init();
 
 
     $(".btn_modifyCurrent").click(function(){
