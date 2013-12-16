@@ -12,6 +12,7 @@
     <link href="../../static/css/jiudianweihuzs.css" rel="stylesheet" type="text/css"/>
     <script src="../../static/js/jquery.min.js" type="text/javascript"></script>
     <script src="../../static/js/kendo.web.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../static/js/global.js"></script>
 
 	<!--<link href="/static/css/common.css" rel="stylesheet" />
 	<link href="/static/css/b2b.css" rel="stylesheet" />
@@ -71,7 +72,8 @@
                <div class="jiudianweihu">
                  <h2>酒店维护</h2>
                   <div class="jdwh-btn">
-                    <a class="jdwh-btn-a" href="新增酒店 .html" onClick="add_department();">新增酒店</a>
+                    <a class="jdwh-btn-a" href="javascript:;" id="btn_exportStockStatus">导出库存状态</a>
+                    <a class="jdwh-btn-a" style="margin-left: 10px" href="新增酒店 .html" onClick="add_department();">新增酒店</a>
                   </div>
                </div>
                
@@ -259,6 +261,33 @@
             <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
+
+    <script type="text/html" id="exprotStockStatusTemplate">
+        <div id="esst_Container">
+            <div id="esst_btn_exportStockStatusContainer">
+                <a class="jdwh-btn-a" href="javascript:;">导出库存状态</a>
+            </div>
+            <div id="esst_tbl_Container">
+                <table id="esst_tbl_exportStockStatusContainer">
+                    <tr>
+                        <td>开始日期：</td>
+                        <td><input type="text" name="" id="" placeholder="YYYY-MM-DD"/></td>
+                    </tr>
+                    <tr>
+                        <td>结束日期：</td>
+                        <td><input type="text" name="" id="" placeholder="YYYY-MM-DD"/></td>
+                    </tr>
+                    <tr>
+                        <td>签约经理：</td>
+                        <td><select name="" id=""><option>全部</option></select></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:right"><a class="button_5" href="javascript:;">导 出</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </script>
     
     <script type="application/javascript">
 		var add_department = function(id){
@@ -277,6 +306,14 @@
 				$("#add_department").data("kendoWindow").open().center();
 			}
 		};
+
+        new FloatLayer({
+            trigger:"#btn_exportStockStatus",
+            template:"#exprotStockStatusTemplate",
+            type:"hover",
+            offsetX:-136,
+            offsetY:-7
+        })
 	
 	</script>
 </body>
