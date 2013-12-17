@@ -66,6 +66,7 @@ PopWindow.prototype = {
     bindClick:function(){
         var that = this;
         $('body').delegate(that.triggerText,'click',function(e){
+            that.win.target = $(this);
             e.preventDefault();
             if(that.settings.reload){
                 that.win.refresh(); 
