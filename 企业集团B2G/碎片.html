@@ -90,6 +90,7 @@
             <button type="button" class="commonBtn lightBlueBtn" id="ajax2">异步请求 加载中 酒店</button>
             <br/>
             <br/>
+
             <div class="smallLoading"><em></em> <b>数据正在加载中……</b></div>
             <br/>
             <br/>
@@ -171,6 +172,170 @@
                 <h1 style="font-size:30px;">用于酒店的交互</h1>
                 <div id="map_container" style="height:400px;width:800px;"></div>
             </div>
+
+
+
+            <div style="background:#fff;" class="scollpage">
+                <style scoped>
+                    table {width:100%;}
+                    table td {padding:5px;border:1px solid #cccccc;border-width:1px 0 1px 0;}
+                </style>
+                <table id="demo_scoll_content">
+                    <tbody>
+                        <tr>
+                            <td>01</td>
+                        </tr>
+                        <tr>
+                            <td>02</td>
+                        </tr>
+                        <tr>
+                            <td>03</td>
+                        </tr>
+                        <tr>
+                            <td>04</td>
+                        </tr>
+                        <tr>
+                            <td>05</td>
+                        </tr>
+                        <tr>
+                            <td>06</td>
+                        </tr>
+                        <tr>
+                            <td>07</td>
+                        </tr>
+                        <tr>
+                            <td>08</td>
+                        </tr>
+                        <tr>
+                            <td>09</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                        </tr>
+                        <tr>
+                            <td>18</td>
+                        </tr>
+                        <tr>
+                            <td>19</td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                        </tr>
+                        <tr>
+                            <td>21</td>
+                        </tr>
+                        <tr>
+                            <td>22</td>
+                        </tr>
+                        <tr>
+                            <td>23</td>
+                        </tr>
+                        <tr>
+                            <td>24</td>
+                        </tr>
+                        <tr>
+                            <td>25</td>
+                        </tr>
+                        <tr>
+                            <td>26</td>
+                        </tr>
+                        <tr>
+                            <td>27</td>
+                        </tr>
+                        <tr>
+                            <td>28</td>
+                        </tr>
+                        <tr>
+                            <td>29</td>
+                        </tr>
+                        <tr>
+                            <td>30</td>
+                        </tr>
+                        <tr>
+                            <td>31</td>
+                        </tr>
+                        <tr>
+                            <td>32</td>
+                        </tr>
+                        <tr>
+                            <td>33</td>
+                        </tr>
+                        <tr>
+                            <td>34</td>
+                        </tr>
+                        <tr>
+                            <td>35</td>
+                        </tr>
+                        <tr>
+                            <td>36</td>
+                        </tr>
+                        <tr>
+                            <td>37</td>
+                        </tr>
+                        <tr>
+                            <td>38</td>
+                        </tr>
+                        <tr>
+                            <td>39</td>
+                        </tr>
+                        <tr>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td>41</td>
+                        </tr>
+                        <tr>
+                            <td>42</td>
+                        </tr>
+                        <tr>
+                            <td>43</td>
+                        </tr>
+                        <tr>
+                            <td>44</td>
+                        </tr>
+                        <tr>
+                            <td>45</td>
+                        </tr>
+                        <tr>
+                            <td>46</td>
+                        </tr>
+                        <tr>
+                            <td>47</td>
+                        </tr>
+                        <tr>
+                            <td>48</td>
+                        </tr>
+                        <tr>
+                            <td>49</td>
+                        </tr>
+                        <tr>
+                            <td>50</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="display:none;" id="scroll_Loading" class="smallLoading"><em></em> <b>数据正在加载中……</b></div>
+            </div>
         </div>
     </section>
     <footer class="main-footer">
@@ -208,6 +373,31 @@
 
 
     $(function(){
+
+
+        $("#demo_scoll_content").scrollPagination({
+            'contentPage': '/php/data_row.php', 
+            'contentData': {username:"test",page:1,page_size:10}, 
+            'scrollTarget': $(window),
+            'heightOffset': 10, // it gonna request when scroll is 10 pixels before the page ends
+            'beforeLoad': function(){ // before load function, you can display a preloader div
+                $('#scroll_Loading').show();	
+            },
+            'afterLoad': function(data) {
+                console.log(data.size());
+
+                var i = 0;
+                $('#scroll_Loading').hide();
+
+                $(data).fadeInWithDelay();
+
+                if ($(data).size() == 0){ 
+                    $('#nomoreresults').fadeIn();
+                    $('#demo_scroll_content').stopScrollPagination();
+                }
+            }
+
+        });
 
 
 
