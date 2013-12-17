@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../static/css/b2g.css" media="all" />
     <link rel="stylesheet" href="../../static/css/kendo.common.css" />
     <link rel="stylesheet" href="../../static/css/kendo.b2g.css" />
+    <link rel="stylesheet" href="../../static/css/maintain.b2g.css" />
     <link rel="stylesheet" href="../../static/css/b2g_flight.css" media="all" />
     <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
@@ -52,14 +53,15 @@
     <section class="main-body clearfix">
   <div class="main-body-content">
         	<div class="titTop clearfix">
-                <h3 class="titleH3">编辑员工信息</h3>
+                <h3 class="editTith3">编辑员工信息</h3>
         	</div>  
        
       	 	<div class="infoBox">
                 <div class="infoCon">
                    <div class="editboxTitle">
-                   	   <h4>用户基础信息</h4>
-                       <span><button type="button" class="commonBtn lightBlueBtn" style="padding:7px 25px;">修改密码</button></span>
+                   	 <h4>用户基础信息</h4>
+                     <span>
+                     <button type="button" class="commonBtn lightBlueBtn changepwd" style="padding:7px 25px;">修改密码</button></span>
                    </div>
                     <table>
                           <colgroup>
@@ -94,10 +96,10 @@
                           <tr>
                           	<td class="tdTit"><em>*</em>所属部门：</td>
                             <td><input type="text" /></td>
-                            <td></td>
+                            <td><span class="infoMore orgchart"></span></td>
                             <td class="tdTit">所属成本中心：</td>
                             <td><input type="text" /></td>
-                            <td></td>
+                            <td><span class="infoMore orgchart"></span></td>
                             <td class="tdTit">员工级别：</td>
                             <td><select data-role="dropdownlist" style="width:186px;">
                                        <option>第一级</option>
@@ -144,14 +146,14 @@
                           	<td class="tdTit"><em>*</em>国籍：</td>
                             <td><select data-role="dropdownlist" style="width:186px;">
                                        <option>CN 中国</option>
-                                       <option>美国/option>
+                                       <option>美国</option>
                                   </select>
                             </td>
                             <td></td>
                             <td class="tdTit"><em>*</em>证件类型：</td>
                             <td><select data-role="dropdownlist" style="width:186px;">
                                        <option>身份证</option>
-                                       <option>军官证/option>
+                                       <option>军官证</option>
                                   </select>
                             </td>
                             <td></td>
@@ -168,7 +170,6 @@
                             <td class="tdTit">办公地址：</td>
                             <td><input type="text" style="width:310px;"/></td>
                           </tr>
-                          
                           </tbody>
                   </table> 
                 </div>
@@ -178,9 +179,12 @@
                   <div class="infoCon">
                    <div class="editboxTitle">
                    	   <h4>紧急联系人信息</h4>
-                       <span class="editInfo-unfold" style="margin-right:60px;"><i></i><em>展开</em></span>
+                       <div class="editInfo-unfold" style="margin-right:40px;">
+                        <span class="fold-info toggle_trigger" data-toggle='{"target":"#linkman-info","textFilter":"em","toggleClass":["fold-info","unfold-info"],"toggleText":["展开","收起"]}'><i></i><em>展开</em></span>
+                        <span class="unfold-info" style="display:none"><i></i><em>收起</em></span>
+                       </div>
                    </div>
-                    <table>
+                    <table id="linkman-info" style="display:none;">
                           <colgroup>
                                <col width="115px"/>
                                <col width="180px"/>
@@ -216,22 +220,25 @@
                   <div class="infoCon">
                    <div class="editboxTitle">
                    	   <h4>其他证件</h4>
-                       <span class="editInfo-unfold" style="margin-right:60px;"><i></i><em>展开</em></span>
+                       <div class="editInfo-unfold" style="margin-right:40px;">
+                        <span class="fold-info toggle_trigger" data-toggle='{"target":"#elsepapers","textFilter":"em","toggleClass":["fold-info","unfold-info"],"toggleText":["展开","收起"]}'><i></i><em>展开</em></span>
+                        <span class="unfold-info" style="display:none"><i></i><em>收起</em></span>
+                       </div>                    
                    </div>
-                    <table class="otherInfo">
+                    <table id="elsepapers"  class="otherInfo" style="display:none;margin:10px 0 20px 40px">
                           <colgroup>
                                <col width="80px"/>
                                <col width="120px"/>
-                               <col width="110px"/>
+                               <col width="125px"/>
                                <col width="120px"/>
-                               <col width="110px"/>
+                               <col width="130px"/>
                                <col width="120px"/>
                                <col width="100px"/>
                                <col width="100px"/>
                           </colgroup>
                           <tbody>
                           <tr>
-                          	<td class="tit">证件类型：</td>
+                          	<td style="font-weight:bold">证件类型：</td>
                             <td><select data-role="dropdownlist" style="width:150px;">
                                        <option>身份证</option>
                                        <option>护照</option>
@@ -241,17 +248,125 @@
                             <td><input type="text" /></td>
                             <td class="tit">证件到期日：</td>
                             <td><input type="text"  style="width:130px"/></td>
-                            <td colspan="2">
-                            <label class="editInfo-del"><i></i><em style="color:#666;">删除</em></label>
+                            <td colspan="2" class="noBorder">
+                            <label class="editInfo-del"><i></i></label>
+                            </td>
+                          </tr>
+                          <tr>
+                          	<td style="font-weight:bold">证件类型：</td>
+                            <td><select data-role="dropdownlist" style="width:150px;">
+                                       <option>身份证</option>
+                                       <option>护照</option>
+                                  </select>
+                            </td>
+                            <td class="tit">证件号码：</td>
+                            <td><input type="text" /></td>
+                            <td class="tit">证件到期日：</td>
+                            <td><input type="text"  style="width:130px"/></td>
+                            <td colspan="2" class="noBorder">
+                            <label class="editInfo-del"><i></i></label>
+                            </td>
+                          </tr>
+                          <tr>
+                          	<td style="font-weight:bold" class="last">证件类型：</td>
+                            <td class="last"><select data-role="dropdownlist" style="width:150px;">
+                                       <option>身份证</option>
+                                       <option>护照</option>
+                                  </select>
+                            </td>
+                            <td class="tit last">证件号码：</td>
+                            <td class="last"><input type="text" /></td>
+                            <td class="tit last">证件到期日：</td>
+                            <td class="last"><input type="text"  style="width:130px"/></td>
+                            <td colspan="2" class="last">
+                            <label class="editInfo-add"><i></i></label>
+                            <label class="editInfo-del" style="margin-left:0"><i></i></label>
+                            </td>
+                          </tr>
+                          
+                          <tr><td colspan="8">
+                            <table style="margin-left:40px">
+                             <colgroup>
+                               <col width="126px"/>
+                               <col width="120px"/>
+                             </colgroup>
+                             <tbody>
+                             <tr>
+                              <td style="font-weight:bold">其他证件发证国家：</td>
+                              <td><input type="text"  style="width:85px"/></td>
+                             </tr>
+                             </tbody>
+                            </table>
                             </td>
                           </tr>
                           </tbody>
                     </table> 
                 </div>
                 </div>
-                
+            <!-- 按钮 -->
+              <div class="editbuttonbox">
+                <button type="button" class="commonBtn lightRedBtn btnfontStyle" style="margin-right:12px">确 定</button>
+                <button type="button" class="commonBtn grayBtn btnfontStyle">取 消</button>
+            </div> 
                
     </section>
+     <!-- 修改密码 -->
+       <div id="changepwd-template" class="changepwdDiv">
+          <table>
+             <colgroup>
+              <col width="140px"/>
+              <col width="262px"/>
+              <col width="100px"/>
+             </colgroup>
+             <tbody>
+             <tr>
+              <td class="tdTit">请输入当前密码：</td>
+              <td><input type="text"  placeholder="密码为6位"  style="width:248px"/></td>
+              <td><span class="textright"></span></td>
+             </tr>
+              <tr>
+              <td class="tdTit">请输入新密码：</td>
+              <td><input type="password"  style="width:248px"/></td>
+              <td><span class="texterror"></span></td>
+             </tr>
+             <tr>
+              <td class="tdTit">确认新密码：</td>
+              <td><input type="password"  style="width:248px"/></td>
+              <td></td>
+             </tr>
+             <tr>
+              <td>&nbsp;</td>
+              <td colspan="2">
+                 <div class="pwd-tips"><p><i></i>定期更换密码可以让您的账户更加安全。</p>
+                      <ul>
+                        <li>请确保登录密码与支付密码不同，</li>
+                        <li>建议密码采用字母和数字混合，并不短于6位。</li>
+                      </ul>
+                 </div>
+              </td>
+             </tr>
+             </tbody>
+          </table>
+            <div class="buttonbox" style="padding:15px 0 20px 0">
+                 <button type="button" class="commonBtn lightRedBtn btnfontStyle" style="margin-right:12px">确 定</button>
+                <button type="button" class="commonBtn grayBtn btnfontStyle">取 消</button>
+            </div>
+       </div> 
+    <!-- 部门组织架构树 -->
+      <div id="orgchart-template" class="orgchartDiv">
+         <p>
+            <label >部门名称：</label><input type="text"  placeholder="请输入部门名称"  style="width:376px"/>
+         </p>
+         <p><label>组织架构树：</label></p>
+         <p><textarea cols="" rows="20" style="width:446px; border:1px solid #c7c7c7"></textarea>
+         </p>
+          <div class="buttonbox" style="padding:15px 0 20px 0">
+          <button type="button" class="commonBtn lightRedBtn btnfontStyle" style="margin-right:12px">确 定</button>
+          <button type="button" class="commonBtn grayBtn btnfontStyle">取 消</button>
+          </div>
+      </div>
+     
+    
     <footer class="main-footer">
         <p class="copyright">Copyright &copy; 2013 天地行 All Rights Reserved.     沪ICP备08101503号</p>
     </footer>
@@ -269,6 +384,22 @@
 			offsetY:10
 			
 		});
+	});
+</script>
+
+<script>
+
+    $(function(){
+
+		new PopWindow('.changepwd',{
+			title:'修改密码',
+			width:'580'
+		},"#changepwd-template").init();
+		
+		new PopWindow('.orgchart',{
+			title:'部门组织架构树',
+			width:'580'
+		},"#orgchart-template").init();
 	});
 </script>
 
