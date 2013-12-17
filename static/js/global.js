@@ -1639,7 +1639,7 @@ $.fn.fixedBar = function(settings){
 		}
 	 });
 	 
-	 //$.fn.scrollPagination.loadContent(obj, opts);
+	 $.fn.scrollPagination.loadContent(obj, opts);
 	 
  };
 	
