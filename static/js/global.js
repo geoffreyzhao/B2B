@@ -1440,6 +1440,7 @@ $.fn.fixedBar = function(settings){
         fixed:false,  //是否始终固定位置
         css:"position:fixed;top:0;",
         endAt:0,
+        offsetTop:0,
         createShadow:'fixBarShadow'
     };
 
@@ -1497,11 +1498,11 @@ $.fn.fixedBar = function(settings){
 
         $(window).bind("scroll.fixedBar",function(e){
             var that = $(this);
-            var scrollTop = that.scrollTop();
+            var scrollTop = that.scrollTop() + opts.offsetTop;
 
             var changeBar = function(){
                 if(!ele.hasClass("fixedBar")){
-                    shadow.show();
+                    opts.createShadow && shadow.show();
                     ele.addClass("fixedBar").attr("style",opts.css);
                 }
                 // todo ie6
@@ -1509,7 +1510,7 @@ $.fn.fixedBar = function(settings){
             };
 
             var resetBar = function(){
-                shadow.hide();
+                opts.createShadow && shadow.hide();
                 ele.removeClass("fixedBar").removeAttr("style");
             };
             

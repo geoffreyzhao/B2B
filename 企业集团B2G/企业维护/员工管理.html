@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天地行 B2G 员工管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="/static/css/b2g.css" media="all" />
+    <link rel="stylesheet" href="/static/css/kendo.common.css" />
+    <link rel="stylesheet" href="/static/css/kendo.b2g.css" />
+
+    <link rel="stylesheet" href="/static/css/b2g_management.css" media="all" />
+
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/b2g/common.js"></script>
+    <script src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+    <!--[if lte IE 9]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+    <script>
+$(function(){
+
+    $('.block-header').fixedBar();
+    $('.block-query').fixedBar({
+        offsetTop:60,
+    });
+    $('.table-header').fixedBar({
+        offsetTop:108,
+    });
+    $('.col-tree').fixedBar({
+        createShadow:false,
+        offsetTop:60,
+    });
+
+    new PopWindow('.ac-freeze',{
+        title:'冻结',
+        template:'#ac-freeze-template',
+        width:580
+    }).init();
+
+    new PopWindow('.ac-delete',{
+        title:'删除',
+        template:'#ac-delete-template',
+        open:function(){
+            // 获取当前的tr
+            console.log(this.triggerEle.closest('tr'));
+            var name = this.triggerEle.closest('tr').children('td').eq(1).text();
+            this.data({
+                name:name
+            });
+        },
+        width:580
+    }).init();
+
+    new PopWindow('.ac-batch1',{
+        title:'批量转调',
+        template:'#ac-batch1-template',
+        width:580
+    }).init();
+
+    new PopWindow('.ac-batch2',{
+        title:'批量设置商旅秘书',
+        template:'#ac-batch2-template',
+        open:function(){
+            $('.contact-search').kendoAutoComplete({
+                filter: "contains",
+                dataSource:{
+                    transport: {
+                        read: {
+                            dataType:'json',
+                            url: "/php/address.php"
+                        }
+                    }
+                },
+                placeholder:'姓名/电话/邮箱',
+                dataTextField:'name',
+                select:function(e){
+                    // var dataItem = this.dataItem(e.item.index());
+                    // var id = dataItem.id;
+                    // if($('li[rel='+id+']').length>0){
+                    //     treeview.expand('.k-item');
+                    //     treeview.select('li[rel='+id+']');
+                    //     selectedHandler(id,dataItem.name);
+                    // }
+                },
+                template:'<span class="address-name">#= name#</span><span class="address-phone">#= phone#</span><span class="address-email">#= email#</span>',
+                height:150
+            });
+        },
+        width:580
+    }).init();
+
+    var treeview = $('#treeview').data('kendoTreeView');
+    treeview.expand('.k-item');
+
+
+    function selectedHandler(id,text){
+        alert(id+text+'已被选中，修改selectedHandler函数进行查询');  
+    }
+
+
+    $('#filterText').kendoAutoComplete({
+        filter: "contains",
+        dataSource:{
+            transport: {
+                read: {
+                    dataType:'json',
+                    url: "/php/department.php",
+                }
+            }
+        },
+        dataTextField:'name',
+        select:function(e){
+            var dataItem = this.dataItem(e.item.index());
+            var id = dataItem.id;
+            if($('li[rel='+id+']').length>0){
+                treeview.expand('.k-item');
+                treeview.select('li[rel='+id+']');
+                selectedHandler(id,dataItem.name);
+            }
+        },
+        template:'<span class="department-belongs">#= belongs#</span><span class="department-name">#= name#</span>'
+    });
+
+}) 
+    </script>
+</head>
+<body>
+<div class="main-wrapper">
+    <div class="top-line"></div>
+    <header class="main-header">
+        <div class="header-content">
+            <a class="logo" href="/">天地行 B2G</a>
+            <nav class="main-nav">
+                <ul class="clearfix">
+                    <li class="first active"><a herf="#">行程预订</a></li>
+                    <li><a herf="#">行程管理</a></li>
+                    <li><a herf="#">数据服务</a></li>
+                    <li><a herf="#">创业维护</a></li>
+                    <li><a herf="#">系统设置</a></li>
+                </ul> 
+            </nav>
+        </div>
+    </header>
+    <div class="header-bar clearfix">
+        <div class="header-bar-content">
+            <i class="tips"></i><span>请先选择差旅人   * 默认状态下您为自己预订</span>
+            <div class="setuser">
+                <a href="javascript:void(0);">设置差旅人</a>
+            </div>
+            <div class="for_reason">
+                <span class="reason_checkbox checked"></span><label for="reason">因私</label><input type="checkbox" style="width:0;height:0;" id="reason" value="for_private" name="reason"/>
+            </div>
+        </div>
+    </div>
+    <section class="main-body clearfix">
+        <div class="main-body-content">
+            <div class="block block1">
+                <span>客户</span>
+                <select id="" style="width:160px" data-role="dropdownlist" name="">
+                    <option value="">不夜城</option>
+                </select>
+                <span>
+                    <a class="btns btn-c1 btn-s1" href="">企业组织</a>&nbsp;<a class="btns btn-c2 btn-s1">企业成本中心</a>
+                </span>
+            </div>
+            <div class="block block2">
+                <div class="block-header clearfix">
+                    <span class="tab-header">
+                        <a href="#">部门管理</a>
+                        <a href="#" class="active">员工管理</a>
+                    </span>
+                    <span class="links">
+                        <a href="#">
+                            <i class="icon icon1"></i>
+                            导入员工数据
+                        </a>
+                        <a href="#">
+                            <i class="icon icon2"></i>
+                            新增员工
+                        </a>
+                    </span>
+                </div>
+                <div class="block-body tab-body clearfix">
+                    <div class="col col-tree">
+                        <div class="wrap">
+                        <div class="tree-header">
+                            <span>部门名称：</span>
+                            <input id="filterText" style="width:140px;" type="text" name="">
+                        </div>
+                        <div class="tree-body">
+                            <ul id="treeview" data-role="treeview">
+                                <li>
+                                苏宁公司
+                                <ul>
+                                    <li>
+                                    北京分部
+                                    <ul>
+                                        <li>总裁部
+                                            <ul>
+                                                <li>业务部</li>
+                                                <li>行政部</li>
+                                                <li rel="1112">采购部</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    </li>
+
+                                    <li>
+                                    南京分部 
+                                    <ul>
+                                        <li rel="1412">
+                                        采购部 
+                                        <ul>
+                                            <li>家电部</li>
+                                        </ul>
+                                        </li>
+                                    </ul>
+                                    </li>
+                                    <li>业务部</li>
+                                </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col col-content">
+                        <div class="block block-query">
+                            <table>
+                                <colgroup>
+                                    <col width="80">
+                                    <col width="150">
+                                    <col width="80">
+                                    <col width="150">
+                                    <col width="80">
+                                    <col width="180">
+                                </colgroup>
+                                
+                                <tr>
+                                    <th>员工姓名：</th>
+                                    <td><input id="" type="text" name=""></td>
+                                    <th>用户名：</th>
+                                    <td><input id="" type="text" name=""></td>
+                                    <th>商旅秘书：</th>
+                                    <td><input id="" type="text" name=""></td>
+                                    <td><label>
+                                        <input id="" type="checkbox" name="">无商旅秘书
+                                    </label></td>
+                                </tr>
+                                <tr>
+                                    <th>员工级别：</th>
+                                    <td>
+                                        <select style="width:110px;" id="" data-role="dropdownlist" name="">
+                                            <option value="">第一级</option>
+                                        </select>
+                                    </td>
+                                    <th>用户角色：</th>
+                                    <td>
+                                        <select style="width:110px;"  id="" data-role="dropdownlist" name="">
+                                            <option value="">普通员工</option>
+                                        </select>
+                                    </td>
+                                    <th>员工状态：</th>
+                                    <td>
+                                        <select  style="width:110px;" id="" data-role="dropdownlist" name="">
+                                            <option value="">冻结</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button class="btns btn-c3">查 询</button>
+                                        <span>共<s class="text1">320</s>条信息</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="block block-result">
+                            <div class="table-action">
+                                <a href="" class="btns btn-c4 ac-batch1">批量转调</a>
+                                <a href="" class="btns btn-c4 ac-batch2">批量设置商旅秘书</a>
+                            </div>
+                             <table class="table-header">
+                                 <colgroup>
+                                     <col width="40">
+                                     <col width="80">
+                                     <col width="220">
+                                     <col width="120">
+                                     <col width="80">
+                                     <col width="80">
+                                     <col width="80">
+                                     <col width="80">
+                                     <col>
+                                 </colgroup>
+                                 
+                                 <thead>
+                                  <tr>
+                                        <th><input id="" type="checkbox" name=""></th>
+                                        <th>员工姓名</th>
+                                        <th>用户名</th>
+                                        <th>所属部门</th>
+                                        <th>员工级别</th>
+                                        <th>员工状态</th>
+                                        <th>员工角色</th>
+                                        <th>商旅秘书</th>
+                                        <th align="center">操作</th>
+                                  </tr>
+                                 </thead>
+                             </table>
+                             <table>
+                                 <colgroup>
+                                     <col width="40">
+                                     <col width="80">
+                                     <col width="220">
+                                     <col width="120">
+                                     <col width="80">
+                                     <col width="80">
+                                     <col width="80">
+                                     <col width="80">
+                                     <col>
+                                 </colgroup>
+                                 <tbody>
+                                 <tr>
+                                     <td><input id="" type="checkbox" name=""></td>
+                                     <td>潘小美</td>
+                                     <td>xiachen.pan@travelzen.com</td>
+                                     <td>北京分公司</td>
+                                     <td>第一级</td>
+                                     <td>正常</td>
+                                     <td>管理员</td>
+                                     <td>唐笑笑</td>
+                                     <td>
+                                         <span class="hyper-link"><u>操作</u>
+                                             <i class="arrow-down"></i>
+                                             <div class="hyper-text">
+                                                 <a href="#">编辑</a>
+                                                 <a href="#">转调</a>
+                                                 <a href="#" class="ac-freeze">冻结</a>
+                                                 <a href="#" class="ac-delete">删除</a>
+                                             </div>
+                                         </span>
+                                         <span><a href="" class="text2">详情</a></span>
+                                     </td>
+                                 </tr>
+                                 <tr class="del">
+                                     <td><input id="" type="checkbox" name=""></td>
+                                     <td>潘小美</td>
+                                     <td>xiachen.pan@travelzen.com</td>
+                                     <td>北京分公司</td>
+                                     <td>第一级</td>
+                                     <td>正常</td>
+                                     <td>管理员</td>
+                                     <td>唐笑笑</td>
+                                     <td>
+                                         <a href="#" class="btns btn-active">激活</a>
+                                     </td>
+                                 </tr>
+                                 <tr>
+                                     <td><input id="" type="checkbox" name=""></td>
+                                     <td>潘小美</td>
+                                     <td>xiachen.pan@travelzen.com</td>
+                                     <td>北京分公司</td>
+                                     <td>第一级</td>
+                                     <td>正常</td>
+                                     <td>管理员</td>
+                                     <td>唐笑笑</td>
+                                     <td>
+                                         <span class="hyper-link"><u>操作</u>
+                                             <i class="arrow-down"></i>
+                                             <div class="hyper-text">
+                                                 <a href="#">编辑</a>
+                                                 <a href="#">转调</a>
+                                                 <a href="#" class="ac-freeze">冻结</a>
+                                                 <a href="#" class="ac-delete">删除</a>
+                                             </div>
+                                         </span>
+                                         <span><a href="" class="text2">详情</a></span>
+                                     </td>
+                                 </tr>
+                                 <tr>
+                                     <td><input id="" type="checkbox" name=""></td>
+                                     <td>潘小美</td>
+                                     <td>xiachen.pan@travelzen.com</td>
+                                     <td>北京分公司</td>
+                                     <td>第一级</td>
+                                     <td>正常</td>
+                                     <td>管理员</td>
+                                     <td>唐笑笑</td>
+                                     <td>
+                                         <span class="hyper-link"><u>操作</u>
+                                             <i class="arrow-down"></i>
+                                             <div class="hyper-text">
+                                                 <a href="#">编辑</a>
+                                                 <a href="#">转调</a>
+                                                 <a href="#" class="ac-freeze">冻结</a>
+                                                 <a href="#" class="ac-delete">删除</a>
+                                             </div>
+                                         </span>
+                                         <span><a href="" class="text2">详情</a></span>
+                                     </td>
+                                 </tr>
+                                 <tr>
+                                     <td><input id="" type="checkbox" name=""></td>
+                                     <td>潘小美</td>
+                                     <td>xiachen.pan@travelzen.com</td>
+                                     <td>北京分公司</td>
+                                     <td>第一级</td>
+                                     <td>正常</td>
+                                     <td>管理员</td>
+                                     <td>唐笑笑</td>
+                                     <td>
+                                         <span class="hyper-link"><u>操作</u>
+                                             <i class="arrow-down"></i>
+                                             <div class="hyper-text">
+                                                 <a href="#">编辑</a>
+                                                 <a href="#">转调</a>
+                                                 <a href="#" class="ac-freeze">冻结</a>
+                                                 <a href="#" class="ac-delete">删除</a>
+                                             </div>
+                                         </span>
+                                         <span><a href="" class="text2">详情</a></span>
+                                     </td>
+                                 </tr>
+                                 <tr>
+                                     <td><input id="" type="checkbox" name=""></td>
+                                     <td>潘小美</td>
+                                     <td>xiachen.pan@travelzen.com</td>
+                                     <td>北京分公司</td>
+                                     <td>第一级</td>
+                                     <td>正常</td>
+                                     <td>管理员</td>
+                                     <td>唐笑笑</td>
+                                     <td>
+                                         <span class="hyper-link"><u>操作</u>
+                                             <i class="arrow-down"></i>
+                                             <div class="hyper-text">
+                                                 <a href="#">编辑</a>
+                                                 <a href="#">转调</a>
+                                                 <a href="#" class="ac-freeze">冻结</a>
+                                                 <a href="#" class="ac-delete">删除</a>
+                                             </div>
+                                         </span>
+                                         <span><a href="" class="text2">详情</a></span>
+                                     </td>
+                                 </tr>
+                                 <tr>
+                                     <td><input id="" type="checkbox" name=""></td>
+                                     <td>潘小美</td>
+                                     <td>xiachen.pan@travelzen.com</td>
+                                     <td>北京分公司</td>
+                                     <td>第一级</td>
+                                     <td>正常</td>
+                                     <td>管理员</td>
+                                     <td>唐笑笑</td>
+                                     <td>
+                                         <span class="hyper-link"><u>操作</u>
+                                             <i class="arrow-down"></i>
+                                             <div class="hyper-text">
+                                                 <a href="#">编辑</a>
+                                                 <a href="#">转调</a>
+                                                 <a href="#" class="ac-freeze">冻结</a>
+                                                 <a href="#" class="ac-delete">删除</a>
+                                             </div>
+                                         </span>
+                                         <span><a href="" class="text2">详情</a></span>
+                                     </td>
+                                 </tr>
+                                 <tr>
+                                     <td><input id="" type="checkbox" name=""></td>
+                                     <td>潘小美</td>
+                                     <td>xiachen.pan@travelzen.com</td>
+                                     <td>北京分公司</td>
+                                     <td>第一级</td>
+                                     <td>正常</td>
+                                     <td>管理员</td>
+                                     <td>唐笑笑</td>
+                                     <td>
+                                         <span class="hyper-link"><u>操作</u>
+                                             <i class="arrow-down"></i>
+                                             <div class="hyper-text">
+                                                 <a href="#">编辑</a>
+                                                 <a href="#">转调</a>
+                                                 <a href="#" class="ac-freeze">冻结</a>
+                                                 <a href="#" class="ac-delete">删除</a>
+                                             </div>
+                                         </span>
+                                         <span><a href="" class="text2">详情</a></span>
+                                     </td>
+                                 </tr>
+                                 <tr>
+                                     <td><input id="" type="checkbox" name=""></td>
+                                     <td>潘小美</td>
+                                     <td>xiachen.pan@travelzen.com</td>
+                                     <td>北京分公司</td>
+                                     <td>第一级</td>
+                                     <td>正常</td>
+                                     <td>管理员</td>
+                                     <td>唐笑笑</td>
+                                     <td>
+                                         <span class="hyper-link"><u>操作</u>
+                                             <i class="arrow-down"></i>
+                                             <div class="hyper-text">
+                                                 <a href="#">编辑</a>
+                                                 <a href="#">转调</a>
+                                                 <a href="#" class="ac-freeze">冻结</a>
+                                                 <a href="#" class="ac-delete">删除</a>
+                                             </div>
+                                         </span>
+                                         <span><a href="" class="text2">详情</a></span>
+                                     </td>
+                                 </tr>
+                                 <tr>
+                                     <td><input id="" type="checkbox" name=""></td>
+                                     <td>潘小美</td>
+                                     <td>xiachen.pan@travelzen.com</td>
+                                     <td>北京分公司</td>
+                                     <td>第一级</td>
+                                     <td>正常</td>
+                                     <td>管理员</td>
+                                     <td>唐笑笑</td>
+                                     <td>
+                                         <span class="hyper-link"><u>操作</u>
+                                             <i class="arrow-down"></i>
+                                             <div class="hyper-text">
+                                                 <a href="#">编辑</a>
+                                                 <a href="#">转调</a>
+                                                 <a href="#" class="ac-freeze">冻结</a>
+                                                 <a href="#" class="ac-delete">删除</a>
+                                             </div>
+                                         </span>
+                                         <span><a href="" class="text2">详情</a></span>
+                                     </td>
+                                 </tr>
+                                 </tbody>
+                             </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+        <p class="copyright">Copyright &copy; 2013 天地行 All Rights Reserved.     沪ICP备08101503号</p>
+    </footer>
+</div>
+
+<script type="text/x-kendo-template" id="ac-batch1-template">
+<div class="row treeview-header">
+    <strong>由当前部门 <b class="text3">产品设计部门</b> 转调至：</strong>
+</div>
+
+    <div class="row treeview-white">
+    <ul id="treeview2" data-role="treeview">
+        <li data-expanded="true">
+        苏宁公司
+        <ul>
+            <li data-expanded="true">
+            北京分部
+            <ul>
+                <li>总裁部
+                    <ul>
+                        <li>业务部</li>
+                        <li>行政部</li>
+                        <li rel="1112">采购部</li>
+                    </ul>
+                </li>
+            </ul>
+            </li>
+
+            <li>
+            南京分部 
+            <ul>
+                <li rel="1412">
+                采购部 
+                <ul>
+                    <li>家电部</li>
+                </ul>
+                </li>
+            </ul>
+            </li>
+            <li>业务部</li>
+        </ul>
+        </li>
+    </ul>
+</div>
+<div class="row row-btns">
+    <a href="javascript:;" class="btns btn-s2 btn-c1">确 定</a>
+    <a href="javascript:;" class="btns btn-s2 btn-c5">取 消</a>
+</div>
+</script>
+
+<script type="text/x-kendo-template" id="ac-batch2-template">
+    <div class="row" style="margin:10px 80px 100px 80px;">
+        <input class="contact-search" style="width:100%;" type="text" name="">
+    </div>
+    <div class="row row-btns">
+        <a href="javascript:;" class="btns btn-s2 btn-c1">确 定</a>
+        <a href="javascript:;" class="btns btn-s2 btn-c5">取 消</a>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="ac-freeze-template">
+    <div class="row row-icontext">
+        <i class="icon icon3"></i>
+            冻结后，该员工的帐号将不能登录，确认冻结吗？
+    </div>
+    <div class="row row-btns">
+        <a href="javascript:;" class="btns btn-s2 btn-c1">确 定</a>
+        <a href="javascript:;" class="btns btn-s2 btn-c5">取 消</a>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="ac-delete-template">
+    <div class="row row-icontext">
+        <i class="icon icon3"></i>
+        确认要删除员工：#= data.name # 吗？
+    </div>
+    <div class="row row-btns">
+        <a href="javascript:;" class="btns btn-s2 btn-c1">确 定</a>
+        <a href="javascript:;" class="btns btn-s2 btn-c5">取 消</a>
+    </div>
+</script>
+
+</body>
+</html>
+
