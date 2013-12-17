@@ -159,33 +159,23 @@ $(function() {
             }
         }
     });
-	
 
-    function createCityAc(ele){
-        /*
-        CityAutocomplete({
-            template: "#city_popup",
-            input: ele,
-            width: 200,
-            // autocomplete:{
-            //     dataSource:{
-            //         transport:{
-            //             read:{
 
-            //             } 
-            //         } 
-            //     },
-            //     placeholder:'三字吗/城市'
-            // },
-            // 以@分割热门非热门，以;分割条目，以|分割三字码拼音和中文
-            url:'/static/js/data.txt',
-            group: ["热门","GHJ", "ABCDEF", "KLMN", "PQSTW", "XYZ"]
-        });
-        */
-    }
+    $(".header-bar-content label").click(function(){
+        $(".header-bar-content .for_reason").trigger("click");
+    });
+    $(".header-bar-content .for_reason").click(function(e){
+        if($(".reason_checkbox",this).hasClass("checked")){
+            $("#settour").removeClass("setuser").addClass("setuser-invalid");
 
-    if($("#city_popup").length){	
-		createCityAc(".city_ac");
-	}
+            $(".reason_checkbox",this).removeClass("checked");
+            $("input[name=reason]",this).prop("checked",false);
+        }else{
+            $("#settour").removeClass("setuser-invalid").addClass("setuser");
+            $(".reason_checkbox",this).addClass("checked");
+            $("input[name=reason]",this).prop("checked",true);
+        }
+    });
+
 });
 
