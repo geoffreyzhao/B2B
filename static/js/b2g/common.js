@@ -166,12 +166,11 @@ $(function() {
     });
     $(".header-bar-content .for_reason").click(function(e){
         if($(".reason_checkbox",this).hasClass("checked")){
-            $("#settour").removeClass("setuser").addClass("setuser-invalid");
-
+            $("#settour").removeClass("setuser-invalid").addClass("setuser");
             $(".reason_checkbox",this).removeClass("checked");
             $("input[name=reason]",this).prop("checked",false);
         }else{
-            $("#settour").removeClass("setuser-invalid").addClass("setuser");
+            $("#settour").removeClass("setuser").addClass("setuser-invalid");
             $(".reason_checkbox",this).addClass("checked");
             $("input[name=reason]",this).prop("checked",true);
         }
