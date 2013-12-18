@@ -11,6 +11,7 @@ function PopWindow(trigger, customSettings, window_id){
         width:570,
         modal:true,
         autoHide:false,
+        closeClassName:'close',
         reload:false
     }
     this.triggerText = trigger;
@@ -81,6 +82,10 @@ PopWindow.prototype = {
             }
 
             kendo.init(that.win.element);
+        });
+
+        that.win.element.on('click','.'+that.settings.closeClassName,function(){
+            that.win.close();
         });
     }
 };
