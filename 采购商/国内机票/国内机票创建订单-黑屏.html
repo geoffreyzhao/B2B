@@ -171,12 +171,12 @@
                     <td>90%</td>
                     <td>B2B[自动出票]</td>
                 </tr>  
-                <tr data-row-tip="" class="remarkCont">
+                <tr class="remarkCont">
                     <td></td>
                     <td colspan="10">
                         <div class="beizhu clearfix">
                              <b>政策备注：</b>
-                             <div>(不管任何原因)签转到其他航空公司、跨月签转以及有政策航班改到无政策航班，需收回代理费</div>
+                             <div>(不管任何原因)签转到其他航空公司、跨月签转以及有政策航班改到无政策航班，需收回代理费1</div>
                         </div>                    
                     </td>
                 </tr>                  
@@ -191,37 +191,55 @@
                     <td>90%</td>
                     <td>B2B[自动出票]</td>
                 </tr>
-                <tr data-row-tip="" style="display:none;" class="remarkCont">
+                <tr class="remarkCont" style="display:none;">
                     <td></td>
                     <td colspan="10">
                         <div class="beizhu clearfix">
                              <b>政策备注：</b>
-                             <div>(不管任何原因)签转到其他航空公司、跨月签转以及有政策航班改到无政策航班，需收回代理费</div>
+                             <div>(不管任何原因)签转到其他航空公司、跨月签转以及有政策航班改到无政策航班，需收回代理费2</div>
                         </div>                    
                     </td>
-                </tr>    
+                </tr>                  
                 <tr class="dashed_top">
                     <td><input type="radio" name="fee" /></td>
-                    <td><em>2147</em></td>
-                    <td><em>2260</em></td>
-                    <td>300</td>
-                    <td><b>7.2% + 51=76</b></td>
+                    <td class="fontWeight"><em>2147</em></td>
+                    <td class="fontWeight"><em>2260</em></td>
+                    <td class="fontWeight">300</td>
+                    <td class="fontWeight"><b>7.2% + 51=76</b></td>
                     <td>工作日：08:25-20:30<br>双休日：08:30-18:30</td>
                     <td>工作日：08:25-20:30<br>双休日：08:30-18:30</td>
                     <td>90%</td>
                     <td>B2B[自动出票]</td>
                 </tr>
+                <tr class="remarkCont" style="display:none;">
+                    <td></td>
+                    <td colspan="10">
+                        <div class="beizhu clearfix">
+                             <b>政策备注：</b>
+                             <div>(不管任何原因)签转到其他航空公司、跨月签转以及有政策航班改到无政策航班，需收回代理费3</div>
+                        </div>                    
+                    </td>
+                </tr>                  
                 <tr class="dashed_top">
                     <td><input type="radio" name="fee" /></td>
-                    <td><em>2147</em></td>
-                    <td><em>2260</em></td>
-                    <td>300</td>
-                    <td><b>7.2% + 51=76</b></td>
+                    <td class="fontWeight"><em>2147</em></td>
+                    <td class="fontWeight"><em>2260</em></td>
+                    <td class="fontWeight">300</td>
+                    <td class="fontWeight"><b>7.2% + 51=76</b></td>
                     <td>工作日：08:25-20:30<br>双休日：08:30-18:30</td>
                     <td>工作日：08:25-20:30<br>双休日：08:30-18:30</td>
                     <td>90%</td>
                     <td>B2B[自动出票]</td>
                 </tr>
+                <tr class="remarkCont" style="display:none;">
+                    <td></td>
+                    <td colspan="10">
+                        <div class="beizhu clearfix">
+                             <b>政策备注：</b>
+                             <div>(不管任何原因)签转到其他航空公司、跨月签转以及有政策航班改到无政策航班，需收回代理费4</div>
+                        </div>                    
+                    </td>
+                </tr>                  
             </tbody>
         </table>
         <div class="rule dashed_top">
@@ -316,17 +334,25 @@
 	
 	$(function(){
 		
-		var feeList = $(".fare input[name=fee]");
-		
-		feeList.each(function(index){
+        $(".fare tbody tr").each(function(index){
+            var that = this;
 			$(this).click(function(){
-				$(".fare tr").removeClass("currentTr");
-				$(".fare tr[data-row-tip]").hide();
-				
-				$(this).closest('tr').addClass("currentTr");
-				$(this).closest('tr').next().show();
-				
+                console.log(index);
+                $(".fare input[name=fee]").prop("checked",false);
+                $("input[name=fee]:eq(0)",this).prop("checked",true);
+
+				$(".fare .remarkCont").hide();
+                $(".fare tbody tr").removeClass("currentTr");
+
+				$(this).addClass("currentTr");
+				$(this).closest('tr').next(".remarkCont").show();
 			});
+
+            $("input[name=fee]").click(function(){
+
+                $(this).closest("tr").trigger("click");
+
+            });
 		});
 	});
 	</script>
