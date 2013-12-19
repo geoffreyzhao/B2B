@@ -43,6 +43,9 @@
     <div class="header-bar clearfix">
         <div class="header-bar-content">
             <i class="tips"></i><span>请先选择差旅人   * 默认状态下您为自己预订</span>
+            <span class="touruser" ><span>孙小美</span></span>
+            <span class="touruser" ><span>阿土伯</span></span>
+            <span class="touruser" ><span>金贝贝</span></span>
             <div class="setuser" id="settour">
                 <a href="javascript:void(0);">设置差旅人</a>
             </div>
@@ -77,8 +80,8 @@
                                     <tr>
                                         <td>航程类型</td>
                                         <td colspan="3">
-                                            <label><input type="radio" name="tripType" id=""/>单程</label>
-                                            <label><input type="radio" name="tripType" id=""/>往返</label>
+                                            <label style="margin-right: 8px"><input type="radio" name="tripType" id=""/>单程</label>
+                                            <label style="margin-right: 8px"><input type="radio" name="tripType" id=""/>往返</label>
                                             <label><input type="radio" name="tripType" id=""/>联程</label>
                                         </td>
                                     </tr>
@@ -741,6 +744,9 @@
             },
             close:function(){
                 $("#ipt_customer").val("");
+            },
+            dataBound:function(e){
+                console.dir(e);
             },
             height: 370
         }).data("kendoAutoComplete");
