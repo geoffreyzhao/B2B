@@ -3,7 +3,7 @@
 
 sleep(1);
 
-$page_size = $_GET['page_size'] ? $_GET['page_size'] : 10;
+@$page_size = $_GET['page_size'] ? $_GET['page_size'] : 10;
 
 $html = array('count' => 0 , 'data' => array());
 for($i = 0; $i < $page_size; $i++){
