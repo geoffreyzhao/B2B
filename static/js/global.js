@@ -1510,6 +1510,9 @@ $.fn.fixedBar = function(settings){
                 if(!ele.hasClass("fixedBar")){
                     opts.createShadow && shadow.show();
                     ele.addClass("fixedBar").attr("style",opts.css);
+                    if(opts.offsetTop!==0){
+                       ele.css('top',opts.offsetTop);
+                    }
                 }
                 // todo ie6
                 if(window.isIE6) ele.css({"top":scrollTop - eleOffsetTop + elePositionTop + "px","position":"absolute"});
