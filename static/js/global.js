@@ -1620,8 +1620,9 @@ $.fn.fixedBar = function(settings){
 			  url: opts.contentPage,
 			  data: opts.contentData,
 			  success: function(data){
+                var newdata = data;
                 if(opts.dataType == "html"){
-                    var newdata = $(data);
+                    newdata = $(data);
 				    $(obj).append(newdata); 
                 }
 				
@@ -1661,8 +1662,6 @@ $.fn.fixedBar = function(settings){
 		 'heightOffset': 0,
          'dataType': 'html'
  };	
-})( jQuery );
-
 
 $.fn.fadeInWithDelay = function(){
     var delay = 0;
@@ -1671,5 +1670,9 @@ $.fn.fadeInWithDelay = function(){
         delay += 100;
     });
 };
+
+})( jQuery );
+
+
 
 
