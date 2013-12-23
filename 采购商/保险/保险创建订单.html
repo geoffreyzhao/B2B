@@ -160,7 +160,7 @@
     <div class="departure">
         <div class="chief clearfix"> <h3 class="chiefTit">被保险人信息</h3> <span class="toolTip_info">什么是被保险人？</span></div>
         <div class="insurantInfo">
-            <label><input type="checkbox" name="" id="copyapplicantInfo"/>同投保人</label>
+            <label style="height: 40px;display: inline-block;line-height: 40px"><input type="checkbox" name="" id="copyapplicantInfo"/>同投保人</label>
             <a href="javascript:;" class="btn_addApplicantInfo">新增</a>
             <table class="tbl_comm">
                 <tr>
@@ -197,7 +197,7 @@
         </div>
     </div>
 
-    <div class="departure">
+    <div class="departure" id="ac">
         <div class="chief clearfix"> <h3 class="chiefTit">结算信息</h3></div>
         <div class="acTotal" style="margin:10px 0">
             保险数量2份 &nbsp; x &nbsp; 保险费用 ￥4/份 &nbsp; = &nbsp; <em>合计费用</em> <strong class="orangeMoney">￥566</strong>
@@ -211,7 +211,7 @@
     </div>
     <script type="text/html" id="insurantInfoTemplate">
         <div class="newInsurantInfoContainer">
-            <a href="javascript:;" class="btn_delApplicantInfo">新增</a>
+            <a href="javascript:;" class="btn_delApplicantInfo">删除</a>
             <table class="tbl_comm">
                 <tr>
                     <td><i class="important">*</i>姓名：</td>
@@ -240,6 +240,8 @@
             </table>
         </div>
     </script>
+
+
 
 </section>
 <footer class="main-footer">
@@ -274,7 +276,13 @@
             $(this).closest(".newInsurantInfoContainer").remove();
         });
         $(".toolTip_info").kendoTooltip({
-            content:"这里是一段文字这里是一段文字这里是一段文字"
+            content:'<div class="message_ct gn-tip-div" style="display: block">'+
+                '<div class="arrow arrow_north"></div>'+
+                '<div class="message_text">'+
+                '这是一段文字这是一段文字这是一段文字这是一段文字'+
+                '</div>'+
+                '</div>',
+            offsetY:-10
         })
         $("#copyapplicantInfo").change(function(){
             if($(this).prop("checked"))
@@ -287,5 +295,8 @@
                 $(".insurantInfo input[name=insurantCellphoneNum]:first").val($("#applicantCellphoneNum").val());
             }
         })
+        $('#ac').fixedBar({
+            inverse:true
+        });
     });
  </script>
