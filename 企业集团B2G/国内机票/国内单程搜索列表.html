@@ -244,7 +244,7 @@
                                           <div>重庆江北机场T2</div>
                                       </th>
                                       <th>
-                                          <div><strong>09:20</strong></div>
+                                          <div class="addDay"><strong>09:20</strong> <em class="addDayTime">+1</em></div>
                                           <div>首都国际机场T2</div>
                                       </th>
                                       <th>
@@ -626,14 +626,28 @@
 				  
 			$(".flight-item .linkA").kendoTooltip({
 				position:"bottom", //left right top
+				wrapperClass:"lineWeight",
+				showOn:"click",
 				content:function(){
 					return "退票：仅退基建燃油费，机票款不退<br>废票：每张收取N元费用<br>更改：不得改期、升舱<br>签转：不允许签转<br>备注：";
 				},
 				offsetY:10
 				
 			});
+			
+			$(".addDay .addDayTime").kendoTooltip({
+				position:"bottom", //left right top
+				wrapperClass:"lineWeight",
+				showOn:"click",
+				content:function(){
+					return "到达时间为第2天，2013-12-24 09：20。";
+				},
+				offsetY:5				
+			});
+			
 		});
 	</script>
+    
     
     
 </body>

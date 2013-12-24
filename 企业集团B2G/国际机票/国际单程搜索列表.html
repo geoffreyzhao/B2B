@@ -217,6 +217,7 @@
                              <i>1程中转 </i>
                              <em>————</em>
                              <b>09:20</b>
+                             <span class="dayNumber">+1</span>
                         </div>
                         <ul class="place clearfix">
                             <li>北京</li>
@@ -553,6 +554,8 @@
 				  
 			$(".totalPrice .transit").kendoTooltip({
 					position:"bottom", //left right top
+					wrapperClass:"lineWeight",
+				    showOn:"click",
 					width:200,
 					content:function(){
 						return $("#transit").html();
@@ -562,6 +565,8 @@
 			
 			$(".totalPrice .difAir").kendoTooltip({
 				position:"bottom", //left right top
+				wrapperClass:"lineWeight",
+				showOn:"click",
 				width:200,
 				content:function(){
 					return $("#difAir").html();
@@ -571,10 +576,22 @@
 			
 			$(".airName #manyAirName").kendoTooltip({
 				position:"bottom", //left right top
+				wrapperClass:"lineWeight",
+				showOn:"click",
 				content:function(){
 					return $("#airLogo").html();
 				},
 				offsetY:-20				
+			});
+			
+			$(".transfTime .dayNumber").kendoTooltip({
+				position:"bottom", //left right top
+				wrapperClass:"lineWeight",
+				showOn:"click",
+				content:function(){
+					return "到达时间为第2天，2013-12-24 09：20。";
+				},
+				offsetY:5				
 			});
 			
 		});
