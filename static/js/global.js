@@ -1610,28 +1610,47 @@ $.fn.fixedBar = function(settings){
   
   $.fn.scrollPagination.loadContent = function(obj, opts){
 	 var target = opts.scrollTarget;
+     
 	 var mayLoadContent = $(target).scrollTop()+opts.heightOffset >= $(document).height() - $(target).height();
 	 if (mayLoadContent){
 		 if (opts.beforeLoad != null){
 			opts.beforeLoad(); 
 		 }
-		 $.ajax({
-			  type: 'POST',
-			  url: opts.contentPage,
-			  data: opts.contentData,
-			  success: function(data){
-                var newdata = data;
-                if(opts.dataType == "html"){
-                    newdata = $(data);
-				    $(obj).append(newdata); 
-                }
-				
-				if (opts.afterLoad != null){
-					opts.afterLoad(newdata);	
-				}
-			  },
-			  dataType: opts.dataType
-		 });
+
+         if(!$(obj).data('scrollPagination')){
+             var removeData = function(){
+                 $(obj).removeData('scrollPagination');
+             };
+
+             var xhr =  $.ajax({
+                 type: 'POST',
+                 url: opts.contentPage,
+                 data: opts.contentData,
+                 success: function(data){
+                     var newdata = data;
+                     if(opts.dataType == "html"){
+                         newdata = $(data);
+                         $(obj).append(newdata); 
+                     }
+
+                     if (opts.afterLoad != null){
+                         opts.afterLoad(newdata);	
+                     }
+                 },
+                 error:function(xhr, textStatus){
+                        opts.debug ? console.log("Scroll Pagination Load Error .." + textStatus) : ''  ; 
+                        removeData();
+                 },
+                 complete:function(xhr,textStatus){
+                        opts.debug ? console.log("Scroll Pagination Load Complete .." + textStatus) : ''  ; 
+                        removeData();
+                },
+                 dataType: opts.dataType
+             });
+
+             $(obj).data('scrollPagination',xhr);
+         }
+
 	 }
 	 
   };
