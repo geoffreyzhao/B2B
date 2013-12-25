@@ -178,6 +178,12 @@
 
             <br/>
             <br/>
+            <button type="button" class="commonBtn lightRedBtn" id="bsarea">商圈</button>
+            <br/>
+            <br/>
+            <button type="button" class="commonBtn lightRedBtn" id="district">行政区</button>
+            <br/>
+            <br/>
             <button type="button" class="commonBtn lightRedBtn" id="conveyance">交通</button>
             <br/>
             <br/>
@@ -683,6 +689,29 @@ CityAutocomplete({
 
 <script>
 $(function(){
+    var bsareaData = [{
+        bsgroup:'ABCDE',
+        bsitems:['八万人体育场地区','八万人体育场地区','八万人体育场地区','八万人体育场地区','八万人体育场地区','八万人体育场地区']
+    },{
+        bsgroup:'FGHTJK',
+        bsitems:['八万人体育场地区','八万人体育场地区','八万人体育场地区','八万人体育场地区','八万人体育场地区','八万人体育场地区']
+    }];
+
+var bsareaLayer = FloatLayer({
+    trigger:'#bsarea',
+    template:'#bsarea-template',
+    offsetY:70,
+    data:bsareaData
+});
+
+var districtData = ['长宁','长宁','长宁','长宁','长宁','长宁','长宁','长宁','长宁'];
+var districtLayer = FloatLayer({
+    trigger:'#district',
+    template:'#district-template',
+    offsetY:70,
+    data:districtData
+});
+
 var conveyanceData = [
     {
         lineName:'1号线',
@@ -707,6 +736,51 @@ $.role_ctype({ changeClass:true });
 conveyanceLayer.open();
 })
 </script>
+
+<script type="text/tempalte" id="bsarea-template">
+    <div class="cytab cytab-bsarea">
+        <div class="cytab-title">
+            <span>可直接选择地理位置</span>
+            <i class="close">&nbsp;</i>
+        </div>
+        
+        <div class="cytab-content">
+        # for (var i=0;i<data.length;i++) {#
+            <div class="cytab-group clearfix">
+            <span class="group-name">#= data[i].bsgroup #</span>
+            <ul>
+            # for (var j=0;j<data[i].bsitems.length;j++) {#
+                <li>   
+                    <a href="javascript:;" class="bsarea-item bsarea-item#=i#">#= data[i].bsitems[j] # </a>
+                </li>
+            # } #
+            </ul>
+            </div>
+        #}#
+        </div>
+    </div>
+</script>
+
+<script type="text/tempalte" id="district-template">
+    <div class="cytab cytab-district">
+        <div class="cytab-title">
+            <span>行政区</span>
+            <i class="close">&nbsp;</i>
+        </div>
+        
+        <div class="cytab-content clearfix">
+            <ul>
+            # for (var i=0;i<data.length;i++) {#
+                <li>   
+                    <a href="javascript:;" class="district-item district-item#=i#">#= data[i] # </a>
+                </li>
+            # } #
+            </ul>
+        </div>
+    </div>
+</script>
+
+
 <script type="text/tempalte" id="conveyance-template">
     <div class="cytab">
         <div class="cytab-title">
@@ -721,7 +795,7 @@ conveyanceLayer.open();
             </ul>
         </div>
         
-        <div class="cytab-content">
+        <div class="cytab-content" style="padding-left:100px;">
         # for (var i=0;i<data.length;i++) {#
         <div class="clearfix cytab-tab #if(i==0){#active#}#" data-role="ctype-item" data-group="cytab" data-index="#= i#">
             <ul>
