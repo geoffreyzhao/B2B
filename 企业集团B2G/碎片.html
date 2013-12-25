@@ -475,12 +475,19 @@
     function initialize(){
         var map = new BMap.Map('map_container');  
         map.enableScrollWheelZoom();
-        map.centerAndZoom(new BMap.Point(121.491, 31.233), 12);  
+        map.centerAndZoom(new BMap.Point(116.404, 39.915), 14);  
         map.addControl(new BMap.NavigationControl());
         map.addControl(new BMap.MapTypeControl({mapTypes: [BMAP_NORMAL_MAP,BMAP_HYBRID_MAP]}));
 
 
+        /* Marker */
+        var myIcon = new BMap.Icon("ico_map_point.gif", new BMap.Size(21, 31));  
+        var label = new BMap.Label("A");
+        label.setStyle({"text-indent":"5px", background:"transparent",color:"#e9e9eb",border:0});
+        var marker = new BMap.Marker(new BMap.Point(116.400, 39.900), {icon: myIcon});    
+        marker.setLabel(label);
 
+        map.addOverlay(marker);    
 
     }
 
