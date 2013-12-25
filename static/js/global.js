@@ -327,6 +327,9 @@ var FloatLayer = function(opts){
     };
 
     layer.open = function(){
+        if(opts.trigger.length<=1){
+            set_pos(opts.trigger);
+        }
         layer.show();
         opts.open.apply(this);
     };
@@ -1060,10 +1063,12 @@ $.fn.fileInput = function(settings){
 // data-role ctype
 $.role_ctype = function(settings){
     var settings = $.extend({
+        changeClass:false,
+        evt:'click',
         callback:function(){} 
     },settings);
 
-    $('body').delegate('[data-role="ctype"]', 'click', function(){
+    $('body').delegate('[data-role="ctype"]', settings.evt, function(e){
         var index = $(this).data('index');
         var group = $(this).data('group');
         var all = $('[data-role="ctype-item"][data-group="'+group+'"]');
@@ -1073,6 +1078,11 @@ $.role_ctype = function(settings){
 
         if(this.type == 'radio' || this.type == 'checkbox'){
             $(this).change(); 
+        }
+
+        if(settings.changeClass){
+            $('[data-role="ctype"][data-group="'+group+'"]').removeClass('active');
+            $(this).addClass('active');
         }
 
         settings.callback.call(this,{
