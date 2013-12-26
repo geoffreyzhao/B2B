@@ -800,13 +800,18 @@ var conveyanceLayer = FloatLayer({
     trigger:'#conveyance',
     template:'#conveyance-template',
     offsetY:70,
-    data:conveyanceData
+    async:true
 });
+
+// 异步加载，可替换成$.ajax.
+setTimeout(function(){
+    conveyanceLayer.data(conveyanceData);
+    conveyanceLayer.open();
+},3000);
 
 //tab切换
 $.role_ctype({ changeClass:true });
 
-conveyanceLayer.open();
 })
 </script>
 
