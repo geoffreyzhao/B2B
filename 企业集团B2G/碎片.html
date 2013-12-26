@@ -178,6 +178,9 @@
 
             <br/>
             <br/>
+            <button type="button" class="commonBtn lightRedBtn" id="morehotel">更多酒店</button>
+            <br/>
+            <br/>
             <button type="button" class="commonBtn lightRedBtn" id="bsarea">商圈</button>
             <br/>
             <br/>
@@ -689,6 +692,35 @@ CityAutocomplete({
 
 <script>
 $(function(){
+    var hotelData = [{
+        name:'如家',
+        selected:false
+    },{
+        name:'如家',
+        selected:false
+    },{
+        name:'如家',
+        selected:false
+    },{
+        name:'如家',
+        selected:false
+    },{
+        name:'如家',
+        selected:false
+    },{
+        name:'如家',
+        selected:false
+    },{
+        name:'汉庭', 
+        selected:true
+    }];
+    var hotelLayer = FloatLayer({
+        trigger:'#morehotel', 
+        template:'#morehotel-template',
+        offsetY:70,
+        data:hotelData
+    });
+
     var bsareaData = [{
         bsgroup:'ABCDE',
         bsitems:['八万人体育场地区','八万人体育场地区','八万人体育场地区','八万人体育场地区','八万人体育场地区','八万人体育场地区']
@@ -735,6 +767,33 @@ $.role_ctype({ changeClass:true });
 
 conveyanceLayer.open();
 })
+</script>
+
+<script type="text/template" id="morehotel-template">
+    <div class="cytab cytab-morehotel">
+        <div class="cytab-title">
+            <span>更多品牌酒店</span>
+            <i class="close">&nbsp;</i>
+        </div>
+
+        <div class="cytab-content">
+            <ul class="clearfix">
+                # for(var i=0;i<data.length;i++){#
+                <li>
+                    <label>
+                    <input # if(data[i].selected){#  checked  #}# type="checkbox" name="">
+                    <span class="morehotel-item morehotel-item#=i#">#= data[i].name#</span>
+                    </label>
+                </li>
+                #} #
+            </ul>
+        <div style="text-align:right">
+            <button type="button" class="commonBtn lightRedBtn" style="font-size:16px;padding:5px 20px;">确  定</button>
+        </div>
+</div>
+
+
+</div>
 </script>
 
 <script type="text/tempalte" id="bsarea-template">
