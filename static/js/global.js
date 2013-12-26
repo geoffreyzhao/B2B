@@ -235,6 +235,7 @@ var FloatLayer = function(opts){
         layer.css(opts.css);
     }
 
+    // 非异步则立即加载默认数据
     if(!opts.async){
         tpl = kendo.template( $(opts.template).html() );
         layer.html(tpl(opts.data));
@@ -339,7 +340,7 @@ var FloatLayer = function(opts){
         opts.close.apply(this);
     };
 
-    layer.find('.close').bind('click',function(){
+    layer.on('click','.close',function(){
         layer.close(); 
     });
     
