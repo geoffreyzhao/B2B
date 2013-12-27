@@ -14819,6 +14819,7 @@ kendo_module({
             });
 
             that.content = wrapper.find(".k-tooltip-content");
+            that.content.css({"min-height": options["min-height"] ? options["min-height"] : 40 });
             that.arrow = wrapper.find(".k-callout");
 
             if (options.autoHide) {
