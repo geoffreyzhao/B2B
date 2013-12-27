@@ -17,6 +17,7 @@
     <script type="text/javascript" src="../../static/js/global.js"></script>
     <script type="text/javascript" src="../../static/js/b2g/common.js"></script>
     <script src="../../static/js/jquery-ui-1.10.3.custom.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=qkNnEXk6nC3jcPTM8mv3dcE8"></script>
     <!--[if lte IE 9]>
     <script src="../../static/js/html5.js"></script>
     <![endif]-->
@@ -1243,7 +1244,26 @@
 	<script>
 
 		$(function(){
-				  
+            var map_window = new PopWindow(".hotel-map", { 
+                    title:"XXXX酒店",
+                    width:1080,
+                    height:480,
+                    content : { 
+                        url : 'map.html',
+                        data : {param1:'a',param2:'b'}
+                    }
+
+                }).init();
+
+            var image_window = new PopWindow(".more-pic", { 
+                    title:"XXXX酒店 图片展示",
+                    width:1080,
+                    content : { 
+                        url : 'images.html',
+                        data : {param1:'a',param2:'b'}
+                    }
+
+                }).init();
 
             var hotelData = [{
                 name:'如家',
