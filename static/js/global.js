@@ -291,7 +291,9 @@ var FloatLayer = function(opts){
 
         }else{
             $('body').delegate(opts.trigger.selector,opts.type,function(e){
-                if($(e.target).is(opts.trigger.selector)){
+                // if($(e.target).is(opts.trigger.selector) || $(e.target).closest(opts.trigger.selector).length>0){
+                // if($(e.target).is(opts.trigger.selector) || $.contains(opts.trigger.get(0), e.target)){
+                // if($(e.target).is(opts.trigger.selector) || opts.trigger.has(e.target).length>0){
                     var that = $(e.target);
                     set_pos(that);
                     layer.input = that;
@@ -300,7 +302,7 @@ var FloatLayer = function(opts){
                     }else{
                         layer.open();
                     }
-                }
+                // }
             });
         }
     }else{
