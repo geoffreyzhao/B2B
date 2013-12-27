@@ -251,7 +251,7 @@ var FloatLayer = function(opts){
         if(t.tagName.toLowerCase()=='body'){
             t = e.target;
         }
-        if ( !$(t).is(opts.trigger) ){
+        if ( !$(t).is(opts.trigger) && opts.trigger.has(t).length===0 ){
             if ( $(t).closest('.ac-floatlayer').length !==1 ){
                 layer.close();
             }
