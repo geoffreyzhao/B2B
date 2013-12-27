@@ -704,6 +704,8 @@ $.loadingbar = function(settings) {
         }
     });
 
+    return spin_wrap;
+
 
 };
 
