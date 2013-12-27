@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天地行 B2G 国内酒店搜索列表</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../../static/css/smoothness/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../../static/css/b2g.css" media="all" />
+    <link rel="stylesheet" href="../../static/css/kendo.common.css" />
+    <link rel="stylesheet" href="../../static/css/kendo.b2g.css" />
+    <link rel="stylesheet" href="../../static/css/b2g_flight.css" media="all" />
+    <link rel="stylesheet" href="../../static/css/b2g_hotel.css" />
+    <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../static/js/global.js"></script>
+    <script type="text/javascript" src="../../static/js/b2g/common.js"></script>
+    <script src="../../static/js/jquery-ui-1.10.3.custom.js"></script>
+    <!--[if lte IE 9]>
+    <script src="../../static/js/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="main-wrapper">
+    <div class="top-line"></div>
+    <header class="main-header">
+        <div class="header-content">
+            <a class="logo" href="/">天地行 B2G</a>
+            <nav class="main-nav">
+                <ul class="clearfix">
+                    <li class="first active"><a herf="#">行程预订</a></li>
+                    <li><a herf="#">行程管理</a></li>
+                    <li><a herf="#">数据服务</a></li>
+                    <li><a herf="#">创业维护</a></li>
+                    <li><a herf="#">系统设置</a></li>
+                </ul> 
+            </nav>
+        </div>
+    </header>
+    <div class="header-bar clearfix">
+        <div class="header-bar-content">
+            <span class="font-titbar">潘小美，您正在为<em>钱多多</em><em>唐笑笑</em><em>小可怜</em>预订</span>
+        </div>
+    </div>
+    <section class="main-body clearfix">
+        <div class="main-body-content">
+        	<div class="titTop clearfix">
+                <div class="flowImg">
+                        <em class="curFlowImg"><i></i>选择</em>
+                        <em>预订</em>
+                        <em>填写</em>
+                        <em>加入行程</em>
+                        <em class="lastFlowGray">提交行程</em>
+                </div>
+        	</div>  
+       <!-- 搜索 -->
+      	 	<div class="searchCon">
+                <div class="againSearch">
+                    <table>
+                          <colgroup>
+                               <col width="90px"/>
+                               <col width="160px"/>
+                               <col width="90px"/>
+                               <col width="160px"/>
+                               <col width="90px"/>
+                               <col width="160px"/>
+                               <col width="80px"/>
+                               <col width="210px"/>
+                               <col width="120px"/>
+                          </colgroup>
+                          <tbody>
+                          <tr>
+                              <td class="tdTit">入住城市：</td>
+                              <td><input type="text" placeholder="上海"/></td>
+                              <td class="tdTit">入住日期：</td>
+                              <td><input type="text" value="" class="datepicker"/></td>
+                              <td class="tdTit">退房日期：</td>
+                              <td><input type="text" value="" class="datepicker"/></td>
+                              <td class="tdTit">关键词：</td>
+                              <td><input type="text" placeholder="酒店品牌 / 位置"/></td>
+                              <td>
+                              <button type="button" class="commonBtn orangeBtn" style="padding:7px 25px;">重新搜索</button></td>
+                          </tr>
+                         </tbody>
+                     </table>  
+                </div>
+                <div class="searchMore">
+                   <div class="searchRow">
+                   	 <em>酒店位置：</em><span class="unlimited sel">不限</span><span>交通<i></i></span><span>行政区<i></i></span><span>商区<i></i></span>
+                   </div>
+                    <div class="searchRow">
+                   	 <em>酒店价格：</em><span class="unlimited sel">不限</span>
+                     <label><input type="radio" />150元以下</label>
+                     <label><input type="radio" />150-300元</label>
+                     <label><input type="radio" />300-600元</label>
+                     <label class="sel"><input type="radio" />600元以上</label>
+                     <label style="margin-right:0">自定义：<input type="text" placeholder="0元"/>到<input type="text" placeholder="1200元"/></label>
+                     <button type="button" class="sureBtn">确定</button>
+                   </div>
+                    <div class="searchRow">
+                   	 <em>酒店星级：</em><span class="unlimited">不限</span>
+                     <label><input type="checkbox" />五星/豪华</label>
+                     <label><input type="checkbox" />四星/高档</label>
+                     <label><input type="checkbox" />三星/舒适</label>
+                     <label><input type="checkbox" />二星及以下/经济</label>
+                   </div>
+                    <div class="searchRow">
+                   	 <em>酒店品牌：</em><span class="unlimited sel">不限</span>
+                     <label><input type="checkbox" />如家</label>
+                     <label><input type="checkbox" />汉庭</label>
+                     <label><input type="checkbox" />速8</label>
+                     <label><input type="checkbox" />莫泰</label>
+                     <label><input type="checkbox" />格林豪泰</label>
+                     <span class="more">更多<i></i></span>
+                   </div>
+                   <div class="searchRow last">
+                   	 <em>服务设施：</em><span class="unlimited sel">不限</span>
+                     <label><input type="checkbox" />免费wifi</label>
+                     <label><input type="checkbox" />免费宽带</label>
+                     <label><input type="checkbox" />免费停车场</label>
+                     <label><input type="checkbox" />游泳池</label>
+                     <label><input type="checkbox" />餐厅</label>
+                     <label><input type="checkbox" />会议室</label>
+                     <label><input type="checkbox" />健身房</label>
+                     <label><input type="checkbox" />免费接机</label>
+                     <label><input type="checkbox" />商务中心</label>
+                     <label><input type="checkbox" />大床</label>
+                   </div>
+                   <div class="searchResult">
+                     <div class="clear"><a href="#">清空条件</a></div>
+                     <em>253</em>家酒店满足条件：<span>航中路<i></i></span><span>150-300元<i></i></span>
+                     <span>锦江之星<i></i></span><span>格林豪泰<i></i></span><span>免费wifi<i></i></span>
+                   </div>
+                </div>
+                
+        </div>   
+    <!-- 搜索结束 -->
+    
+    <div class="searchContent">
+       <!-- 左边 -->
+       <div class="searchContent-left">
+         <div class="rankCon">
+             <label>价格<em class="arrDownGray"></em></label>
+             <label>星级<em></em></label>
+             <label class="current">距离<em class="arrDownOrange"></em></label>
+         </div>
+         
+          <div class="hotelCon">
+          <div style="clear:both;overflow:hidden">
+           <ul class="hotel-info">
+              <li class="hotel-pic">
+                <div class="picBox">
+                  <a href="" target="_blank"><img src="../../static/images/b2g/hotelPic.jpg" width="200px" height="135px"alt="" title=""/></a>   
+                </div>
+              </li>
+              <li class="hotel-name">
+                <h3><a href="">上海宝华国际酒店</a></h3><span><i class="hotel_stars05"></i><em>[ 五星/豪华 ]</em></span>
+                <p class="hotel-address">地址：<em>上海市虹口区西江湾路718号（近广中路）</em><span class="hotel-map"><i></i><em>地图</em></span></p>
+                <div class="icon-list">
+                   <span class="ico-free-wifi" title="免费wifi"></span>
+                   <span class="ico-gym" title="健身房"></span>
+                   <span class="ico-breakfast" title="餐厅"></span>
+                   <span class="ico-broadband" title="免费宽带"></span>
+                </div>
+                <p class="more-pic"><i></i><em>更多图片</em></p>
+              </li>
+              <li class="hotel-price"><span><em class="rmb">¥</em>6200</span>起
+              </li>
+           </ul>
+          </div>
+           
+           <div class="room-list">
+             <table class="hotel-datelist">
+                <colgroup>
+                   <col width="100px"/>
+                   <col width="60px"/>
+                   <col width="60px"/>
+                   <col width="60px"/>
+                   <col width="60px"/>
+                   <col width="100px"/>
+                   <col width="120px"/>
+                </colgroup>
+                <thead>
+                 <tr>
+                   <th>房型</th>
+                   <th>床型</th>
+                   <th>早餐</th>
+                   <th>宽带</th>
+                   <th>限制条件</th>
+                   <th colspan="2">房价（含服务费）</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 <tr>
+                   <td class="room-text"><a href="">尊贵豪华房</a><i>图</i></td>
+                   <td>双/大床</td>
+                   <td>无早餐</td>
+                   <td>无线免费</td>
+                   <td><a href="javascript:void(0);" class="linkA-not">不可取消</a></td>
+                   <td class="room-price">
+                    <span><em class="rmb">￥</em><em class="price">6200</em></span><em class="only">仅剩3间</em>
+                   </td>
+                   <td>
+                   <button type="button" class="commonBtn orangeBtn assureBtn" style="margin-right:15px">担 保</button>
+                   <button type="button" class="commonBtn lightRedBtn orderBtn">预 订</button>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td class="room-text"><a href="">尊贵豪华房</a><i>图</i></td>
+                   <td>双/大床</td>
+                   <td>无早餐</td>
+                   <td>无线免费</td>
+                   <td><a href="javascript:void(0);" class="linkA-free">免费取消</a></td>
+                   <td>
+                   <span class="room-price"><em class="rmb">￥</em><em class="price">6200</em></span>
+                   </td>
+                   <td>
+                     <button type="button" class="commonBtn orangeBtn assureBtn" style="margin-right:15px">担 保</button>
+                   <button type="button" class="commonBtn lightRedBtn orderBtn">预 订</button>
+                   </td>
+                 </tr>
+                 <!-- 需要展开的内容 -->
+                 <tr>
+                   <td>[ 含早 ]</td>
+                   <td>双/大床</td>
+                   <td>无早餐</td>
+                   <td>无线免费</td>
+                   <td class="room-policy-free">免费取消</td>
+                   <td>
+                   <span class="room-price"><em class="rmb">￥</em><em class="price">6200</em></span>
+                   </td>
+                   <td>
+                     <button type="button" class="commonBtn orangeBtn assureBtn" style="margin-right:15px">担 保</button>
+                   <button type="button" class="commonBtn lightRedBtn orderBtn">预 订</button>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td>特惠大床房</td>
+                   <td>双/大床</td>
+                   <td>无早餐</td>
+                   <td>无线免费</td>
+                   <td class="room-policy-free">免费取消</td>
+                   <td>
+                   <span class="room-price"><em class="rmb">￥</em><em class="price">6200</em></span>
+                   </td>
+                   <td>
+                     <button type="button" class="commonBtn orangeBtn assureBtn" style="margin-right:15px">担 保</button>
+                   <button type="button" class="commonBtn lightRedBtn orderBtn">预 订</button>
+                   </td>
+                 </tr>
+                  <tr>
+                   <td>[ 含早 ]</td>
+                   <td>双/大床</td>
+                   <td>无早餐</td>
+                   <td>无线免费</td>
+                   <td class="room-policy-free">免费取消</td>
+                   <td>
+                   <span class="room-price"><em class="rmb">￥</em><em class="price">6200</em></span>
+                   </td>
+                   <td>
+                     <button type="button" class="commonBtn orangeBtn assureBtn" style="margin-right:15px">担 保</button>
+                   <button type="button" class="commonBtn lightRedBtn orderBtn">预 订</button>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td class="last">特惠大床房</td>
+                   <td class="last">双/大床</td>
+                   <td class="last">无早餐</td>
+                   <td class="last">无线免费</td>
+                   <td class="room-policy-free last">免费取消</td>
+                   <td class="last">
+                   <span class="room-price"><em class="rmb">￥</em><em class="price">6200</em></span>
+                   </td>
+                   <td class="last">
+                     <button type="button" class="commonBtn orangeBtn assureBtn" style="margin-right:15px">担 保</button>
+                   <button type="button" class="commonBtn lightRedBtn orderBtn">预 订</button>
+                   </td>
+                 </tr>
+                 <!-- 需要展开的内容 结束 --> 
+                </tbody>
+             </table>
+             
+              <div class="hotelResultbtn" style="text-align:right;padding:0 20px 0 0;cursor:pointer
+">
+              <span class="hotelResult-fold"><em>收起房型</em><i></i></span>
+              </div>
+             
+           </div>
+         </div>
+         
+         <div class="hotelCon">
+          <div style="clear:both;overflow:hidden">
+           <ul class="hotel-info">
+              <li class="hotel-pic">
+                <div class="picBox">
+                  <a href="" target="_blank"><img src="../../static/images/b2g/hotelPic.jpg" width="200px" height="135px"alt="" title=""/></a>   
+                </div>
+              </li>
+              <li class="hotel-name">
+                <h3><a href="">上海宝华国际酒店</a></h3><span><i class="hotel_stars05"></i><em>[ 五星/豪华 ]</em></span>
+                <p class="hotel-address">地址：<em>上海市虹口区西江湾路718号（近广中路）</em><span class="hotel-map"><i></i><em>地图</em></span></p>
+                <div class="icon-list">
+                   <span class="ico-free-wifi" title="免费wifi"></span>
+                   <span class="ico-gym" title="健身房"></span>
+                   <span class="ico-breakfast" title="餐厅"></span>
+                </div>
+                <p class="more-pic"><i></i><em>更多图片</em></p>
+              </li>
+              <li class="hotel-price"><span><em class="rmb">¥</em>6200</span>起
+              </li>
+           </ul>
+          </div>
+           
+           <div class="room-list">
+             <table class="hotel-datelist">
+                <colgroup>
+                   <col width="100px"/>
+                   <col width="60px"/>
+                   <col width="60px"/>
+                   <col width="60px"/>
+                   <col width="60px"/>
+                   <col width="100px"/>
+                   <col width="120px"/>
+                </colgroup>
+                <thead>
+                 <tr>
+                   <th>房型</th>
+                   <th>床型</th>
+                   <th>早餐</th>
+                   <th>宽带</th>
+                   <th>限制条件</th>
+                   <th colspan="2">房价（含服务费）</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 <tr>
+                   <td class="room-text"><a href="">尊贵豪华房</a><i>图</i></td>
+                   <td>双/大床</td>
+                   <td>无早餐</td>
+                   <td>无线免费</td>
+                   <td class="room-policy-not">不可取消</td>
+                   <td class="room-price">
+                    <span><em class="rmb">￥</em><em class="price">6200</em></span><em class="only">仅剩3间</em>
+                   </td>
+                   <td>
+                   <button type="button" class="commonBtn orangeBtn assureBtn" style="margin-right:15px;">担 保</button>
+                   <button type="button" class="commonBtn lightRedBtn orderBtn">预 订</button>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td class="room-text"><a href="">尊贵豪华房</a><i>图</i></td>
+                   <td>双/大床</td>
+                   <td>无早餐</td>
+                   <td>无线免费</td>
+                   <td class="room-policy-free">免费取消</td>
+                   <td>
+                   <span class="room-price"><em class="rmb">￥</em><em class="price">6200</em></span>
+                   </td>
+                   <td>
+                     <button type="button" class="commonBtn orangeBtn assureBtn" style="margin-right:15px">担 保</button>
+                   <button type="button" class="commonBtn lightRedBtn orderBtn">预 订</button>
+                   </td>
+                 </tr>
+                 <!-- 需要展开的内容 -->
+                 <tr>
+                   <td>[ 含早 ]</td>
+                   <td>双/大床</td>
+                   <td>无早餐</td>
+                   <td>无线免费</td>
+                   <td class="room-policy-free">免费取消</td>
+                   <td>
+                   <span class="room-price"><em class="rmb">￥</em><em class="price">6200</em></span>
+                   </td>
+                   <td>
+                     <button type="button" class="commonBtn orangeBtn assureBtn" style="margin-right:15px">担 保</button>
+                   <button type="button" class="commonBtn lightRedBtn orderBtn">预 订</button>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td>特惠大床房</td>
+                   <td>双/大床</td>
+                   <td>无早餐</td>
+                   <td>无线免费</td>
+                   <td class="room-policy-free">免费取消</td>
+                   <td>
+                   <span class="room-price"><em class="rmb">￥</em><em class="price">6200</em></span>
+                   </td>
+                   <td>
+                     <button type="button" class="commonBtn orangeBtn assureBtn" style="margin-right:15px">担 保</button>
+                   <button type="button" class="commonBtn lightRedBtn orderBtn">预 订</button>
+                   </td>
+                 </tr>
+                  <tr>
+                   <td>[ 含早 ]</td>
+                   <td>双/大床</td>
+                   <td>无早餐</td>
+                   <td>无线免费</td>
+                   <td class="room-policy-free">免费取消</td>
+                   <td>
+                   <span class="room-price"><em class="rmb">￥</em><em class="price">6200</em></span>
+                   </td>
+                   <td>
+                     <button type="button" class="commonBtn orangeBtn assureBtn" style="margin-right:15px">担 保</button>
+                   <button type="button" class="commonBtn lightRedBtn orderBtn">预 订</button>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td>特惠大床房</td>
+                   <td>双/大床</td>
+                   <td>无早餐</td>
+                   <td>无线免费</td>
+                   <td class="room-policy-free">免费取消</td>
+                   <td>
+                   <span class="room-price"><em class="rmb">￥</em><em class="price">6200</em></span>
+                   </td>
+                   <td>
+                     <button type="button" class="commonBtn orangeBtn assureBtn" style="margin-right:15px">担 保</button>
+                   <button type="button" class="commonBtn lightRedBtn orderBtn">预 订</button>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td colspan="7" style="padding:0">
+                    <div class="hotel-picList">
+                     <a class="link" href="" target="_blank"><img src="../../static/images/b2g/hotelPic01.jpg" title="上海宝华国际酒店" alt="上海宝华国际酒店" /></a>
+                     <a class="link" href="" target="_blank"><img src="../../static/images/b2g/hotelPic01.jpg" title="上海宝华国际酒店" alt="上海宝华国际酒店" /></a>
+                     <a class="link" href="" target="_blank"><img src="../../static/images/b2g/hotelPic01.jpg" title="上海宝华国际酒店" alt="上海宝华国际酒店" /></a>
+                     <a class="link" href="" target="_blank"><img src="../../static/images/b2g/hotelPic01.jpg" title="上海宝华国际酒店" alt="上海宝华国际酒店" /></a>
+                     <a class="link" href="" target="_blank"><img src="../../static/images/b2g/hotelPic01.jpg" title="上海宝华国际酒店" alt="上海宝华国际酒店" /></a>
+                      <div class="caplistBox"><p>床型：双床（120cm*200cm）/大床（200cm*200cm）</p>
+                           <p>房间面积：32-37平方米</p>
+                           <p>楼层：5层-26层</p>
+                           <p>其它：有线宽带上网每日100元</p>
+                      </div>
+                      <div class="hotel-show_fold"><span><em>收起</em><i></i></span></div>
+                    </div>
+                   </td>
+                 </tr>
+                 <!-- 需要展开的内容 结束 --> 
+                  <tr>
+                   <td class="room-text"><a href="">尊贵豪华房</a><i>图</i></td>
+                   <td>双/大床</td>
+                   <td>无早餐</td>
+                   <td>无线免费</td>
+                   <td class="room-policy-free">免费取消</td>
+                   <td>
+                   <span class="room-price"><em class="rmb">￥</em><em class="price">6200</em></span>
+                   </td>
+                   <td>
+                     <button type="button" class="commonBtn orangeBtn assureBtn" style="margin-right:15px">担 保</button>
+                   <button type="button" class="commonBtn lightRedBtn orderBtn">预 订</button>
+                   </td>
+                 </tr>
+                  <tr>
+                   <td class="room-text last"><a href="">尊贵豪华房</a><i>图</i></td>
+                   <td class="last">双/大床</td>
+                   <td class="last">无早餐</td>
+                   <td class="last">无线免费</td>
+                   <td class="room-policy-free last">免费取消</td>
+                   <td class="last">
+                   <span class="room-price"><em class="rmb">￥</em><em class="price">6200</em></span>
+                   </td>
+                   <td class="last">
+                     <button type="button" class="commonBtn orangeBtn assureBtn" style="margin-right:15px">担 保</button>
+                   <button type="button" class="commonBtn lightRedBtn orderBtn">预 订</button>
+                   </td>
+                 </tr>
+                </tbody>
+             </table>
+             
+              <div class="hotelResultbtn" style="text-align:right;padding:0 20px 0 0;cursor:pointer
+">
+              <span class="hotelResult-fold"><em>收起房型</em><i></i></span>
+              </div>
+             
+           </div>
+         </div>
+         
+        
+        
+        <div class="hotelCon">
+          <div style="clear:both;overflow:hidden">
+           <ul class="hotel-info">
+              <li class="hotel-pic">
+                <div class="picBox">
+                  <a href="" target="_blank"><img src="../../static/images/b2g/hotelPic.jpg" width="200px" height="135px"alt="" title=""/></a>  
+                </div>
+              </li>
+              <li class="hotel-name">
+                <h3><a href="">上海宝华国际酒店</a></h3><span><i class="hotel_stars05"></i><em>[ 五星/豪华 ]</em></span>
+                <p class="hotel-address">地址：<em>上海市虹口区西江湾路718号（近广中路）</em><span class="hotel-map"><i></i><em>地图</em></span></p>
+                <div class="icon-list">
+                   <span class="ico-wifi" title="wifi"></span>
+                   <span class="ico-gym" title="健身房"></span>
+                   <span class="ico-breakfast" title="餐厅"></span>
+                </div>
+                <p class="more-pic"><i></i><em>更多图片</em></p>
+              </li>
+              <li class="hotel-price"><span><em class="rmb">¥</em>6200</span>起
+              </li>
+           </ul>
+          </div>
+           
+           <div class="room-list">
+             <table class="hotel-datelist">
+                <colgroup>
+                   <col width="100px"/>
+                   <col width="60px"/>
+                   <col width="60px"/>
+                   <col width="60px"/>
+                   <col width="60px"/>
+                   <col width="100px"/>
+                   <col width="120px"/>
+                </colgroup>
+                <thead>
+                 <tr>
+                   <th>房型</th>
+                   <th>床型</th>
+                   <th>早餐</th>
+                   <th>宽带</th>
+                   <th>限制条件</th>
+                   <th colspan="2">房价（含服务费）</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 <tr>
+                   <td class="room-text"><a href="">尊贵豪华房</a><i>图</i></td>
+                   <td>双/大床</td>
+                   <td>无早餐</td>
+                   <td>无线免费</td>
+                   <td class="room-policy-not">不可取消</td>
+                   <td class="room-price">
+                    <span><em class="rmb">￥</em><em class="price">6200</em></span><em class="only">仅剩3间</em>
+                   </td>
+                   <td>
+                   <button type="button" class="commonBtn orangeBtn assureBtn" style="margin-right:15px">担 保</button>
+                   <button type="button" class="commonBtn lightRedBtn orderBtn">预 订</button>
+                   </td>
+                 </tr>
+                 <tr>
+                   <td class="room-text last"><a href="">尊贵豪华房</a><i>图</i></td>
+                   <td class="last">双/大床</td>
+                   <td class="last">无早餐</td>
+                   <td class="last">无线免费</td>
+                   <td class="room-policy-free last">免费取消</td>
+                   <td class="last">
+                   <span class="room-price"><em class="rmb">￥</em><em class="price">6200</em></span>
+                   </td>
+                   <td class="last">
+                     <button type="button" class="commonBtn orangeBtn assureBtn" style="margin-right:15px">担 保</button>
+                   <button type="button" class="commonBtn lightRedBtn orderBtn">预 订</button>
+                   </td>
+                 </tr>
+                </tbody>
+             </table>
+             
+              <div class="hotelResultbtn" style="text-align:right;padding:0 20px 0 0;cursor:pointer
+">
+              <span class="hotelResult-unfold"><em>查看全部房型</em><i></i></span>
+              </div>
+             
+           </div>
+           
+         </div>
+         <div class="checkMore checkMore-box"><a href="javascript:void(0);">点击查看更多</a></div>
+         
+         
+         
+       </div>
+       <!-- 左边内容 结束 -->
+       
+       <!-- 右边 开始 -->
+       <div class="searchContent-right right">
+          <div class="sideRecommend"><h3>特惠推荐</h3>
+           <div class="recommendList-first">
+            <div class="picBox-recommend">
+             <a href="" target="_blank"><img src="../../static/images/b2g/hotelPic_tj.jpg" alt="上海威斯汀大酒店" title="上海威斯汀大酒店"/></a></div>
+             <div class="sideHotel-name"><em><a href="" target="_blank">上海威斯汀大酒店</a></em><i class="hotel_stars05"></i></div>
+             <div class="sideHotel-price">原价：<em class="rmb">￥</em><em class="price">820</em>优惠价：<em class="rmb-red">￥</em><em class="price-recommend">620</em></div>
+           </div>
+           
+           <div class="recommendList">
+            <div class="picBox-recommend">
+             <a href="" target="_blank"><img src="../../static/images/b2g/hotelPic_tj.jpg" alt="上海威斯汀大酒店" title="上海威斯汀大酒店"/></a></div>
+             <div class="sideHotel-name"><em><a href="" target="_blank">上海威斯汀大酒店</a></em><i class="hotel_stars05"></i></div>
+             <div class="sideHotel-price">原价：<em class="rmb">￥</em><em class="price">820</em>优惠价：<em class="rmb-red">￥</em><em class="price-recommend">620</em></div>
+           </div>
+           
+           <div class="recommendList">
+            <div class="picBox-recommend">
+            <a href="" target="_blank"> <img src="../../static/images/b2g/hotelPic_tj.jpg" alt="上海威斯汀大酒店" title="上海威斯汀大酒店"/></a></div>
+             <div class="sideHotel-name"><em><a href="" target="_blank">上海威斯汀大酒店</a></em><i class="hotel_stars05"></i></div>
+             <div class="sideHotel-price">原价：<em class="rmb">￥</em><em class="price">820</em>优惠价：<em class="rmb-red">￥</em><em class="price-red">620</em></div>
+           </div>
+          </div>
+          
+          <div class="sideViewed"><h3>我浏览过的酒店</h3>
+             <table class="hotel-sideViewed" >
+               <colgroup>
+                   <col width="100px"/>
+                   <col width="160px"/>
+               </colgroup>
+               <tbody>
+                 <tr>
+                   <td>
+                   <a href="" target="_blank"><img src="../../static/images/b2g/hotelsidePic01.jpg" width="100px" height="70px" alt="上海格林豪泰快捷酒店" title="上海格林豪泰快捷酒店"/></a>
+                   </td>
+                   <td><span class="name"><a href="" target="_blank">上海格林豪泰快捷...</a></span><div class="hotel-del"><i>X</i></div>
+                       <span><i class="hotel_stars02"></i></span>
+                       <span><em class="rmb-red">￥</em><em class="price-red">620</em></span>
+                   </td>
+                 </tr>
+                  <tr>
+                   <td>
+                   <a href="" target="_blank"><img src="../../static/images/b2g/hotelsidePic01.jpg" width="100px" height="70px" alt="上海威斯汀大酒店" title="上海威斯汀大酒店"/></a>
+                   </td>
+                   <td><span class="name"><a href="" target="_blank">上海威斯汀大酒店</a></span><div class="hotel-del"><i>X</i></div>
+                       <span><i class="hotel_stars03"></i></span>
+                       <span><em class="rmb-red">￥</em><em class="price-red">620</em></span>
+                   </td>
+                 </tr>
+                  <tr>
+                   <td>
+                   <a href="" target="_blank"><img src="../../static/images/b2g/hotelsidePic01.jpg" width="100px" height="70px" alt="上海威斯汀大酒店" title="上海威斯汀大酒店"/></a>
+                   </td>
+                   <td><span class="name"><a href="" target="_blank">上海威斯汀大酒店</a></span><div class="hotel-del"><i>X</i></div>
+                       <span><i class="hotel_stars01"></i></span>
+                       <span><em class="rmb-red">￥</em><em class="price-red">620</em></span>
+                   </td>
+                 </tr>
+                  <tr>
+                   <td>
+                   <a href="" target="_blank"><img src="../../static/images/b2g/hotelsidePic01.jpg" width="100px" height="70px" alt="上海威斯汀大酒店" title="上海威斯汀大酒店"/></a>
+                   </td>
+                   <td><span class="name"><a href="" target="_blank">上海威斯汀大酒店</a></span><div class="hotel-del"><i>X</i></div>
+                       <span><i class="hotel_stars04"></i></span>
+                       <span><em class="rmb-red">￥</em><em class="price-red">620</em></span>
+                   </td>
+                 </tr>
+                  <tr>
+                   <td>
+                   <a href="" target="_blank"><img src="../../static/images/b2g/hotelsidePic01.jpg" width="100px" height="70px" alt="上海威斯汀大酒店" title="上海威斯汀大酒店"/></a>
+                   </td>
+                   <td><span class="name"><a href="" target="_blank">上海威斯汀大酒店</a></span><div class="hotel-del"><i>X</i></div>
+                       <span><i class="hotel_stars02"></i></span>
+                       <span><em class="rmb-red">￥</em><em class="price-red">620</em></span>
+                   </td>
+                 </tr>
+               </tbody>
+             </table>
+          </div>
+       
+       </div>
+       <!-- 右边 结束 ->
+        
+    <!-- 内容结束 -->    
+        
+	 </div>
+    </div>
+          
+</section>
+<span class="cancel-tips"><i></i><em>订单一经预订成功，不可变更/取消。如未按时入<br>住，酒店将扣除您的担保金额作为违约金。</em></span>
+<span class="cancel-free-tips"><i></i><em>订单提交后可随时免费取消/更换。</em></span>
+
+     <table class="room-date" >
+               <colgroup>
+                   <col width="100px"/>
+                   <col width="100px"/>
+                   <col width="100px"/>
+                   <col width="100px"/>
+                   <col width="100px"/>
+                   <col width="100px"/>
+                   <col width="100px"/>
+                   <col width="100px"/>
+               </colgroup>
+               <thead>
+                 <tr>
+                   <th></th>
+                   <th>周一</th>
+                   <th>周二</th>
+                   <th>周三</th>
+                   <th>周四</th>
+                   <th>周五</th>
+                   <th class="room-date-red">周六</th>
+                   <th class="room-date-red">周日</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                  <td>第一周</td>
+                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
+                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
+                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
+                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
+                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
+                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
+                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
+                 </tr>
+                 <tr>
+                  <td>第二周</td>
+                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
+                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
+                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
+                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
+                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
+                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
+                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
+                 </tr>
+                 <tr>
+                   <td colspan="8" style="text-align:left">
+                      <p><span class="tdTit">早餐：</span>含早餐2份，单加每份￥68.00元（中西自助）。</p>
+                      <p><span class="tdTit">加床：</span>提供加床，加床价￥150.00元。</p>
+                      <p><span class="tdTit">支付方式：</span>预订免费，入住后酒店前台付款。</p>
+                   </td>
+                 </tr>
+               </tbody>
+           </table>
+    <footer class="main-footer">
+        <p class="copyright">Copyright &copy; 2013 天地行 All Rights Reserved.     沪ICP备08101503号</p>
+    </footer>
+</div>
+    
+    <script>
+
+        $(function(){
+
+            $("#trip_type").change(function(){
+				console.log($(this).val());
+                if($(this).val() == "one_way"){
+                    $("#return_label input").addClass("grayed").prop("disabled",true);                    
+                }else{
+					$("#return_date").removeClass("grayed").prop("disabled",false);
+
+                }
+            });
+        });
+    </script>
+    
+	<script>
+
+		$(function(){
+				  
+			$(".room-list .linkA-not").kendoTooltip({
+				position:"bottom", //left right top
+				wrapperClass:"lineWeight",
+				content:function(){
+					return "<span><i></i>订单一经预订成功，不可变更/取消。如未按时入<br>住，酒店将扣除您的担保金额作为违约金。</span>";
+				},
+				offsetY:10
+				
+			});
+			
+			$(".room-list .linkA-free").kendoTooltip({
+				position:"bottom", //left right top
+				wrapperClass:"lineWeight",
+				content:function(){
+					return "订单提交后可随时免费取消/更换。";
+				},
+				offsetY:10
+				
+			});
+			
+			
+			
+		});
+	</script>
+    
+    
+    
+</body>
+
+</html>
+
+
