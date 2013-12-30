@@ -1535,6 +1535,26 @@
                 }
             });
 
+            /* */
+
+            $(".hotelResult-fold").click(function(){
+                var item = $(this).closest(".hotelCon");
+                
+                var text = $(this).find("em").html();
+
+                if(/收起/.test(text)){
+                    item.find(".hotel-datelist tbody, .hotel-datelist tfoot").hide();
+                    $(this).removeClass("hotelResult-fold").addClass("hotelResult-unfold");
+                    $(this).find("em").html(text.replace("收起","展开"));
+                }else{
+                    item.find(".hotel-datelist tbody, .hotel-datelist tfoot").show();
+                    $(this).removeClass("hotelResult-unfold").addClass("hotelResult-fold");
+                    $(this).find("em").html(text.replace("展开","收起"));
+                }
+
+            });
+
+
             var imgDiv;
             if(0 == $("#bigImg_Popup").length){
                 imgDiv = $("<div></div>").attr({id:"bigImg_Popup"}).appendTo('body');
