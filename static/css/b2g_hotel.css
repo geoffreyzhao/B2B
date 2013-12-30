@@ -60,7 +60,7 @@
 .againSearch {
 	background:#fff0e8;
 	border:1px solid #f6b898;
-	padding:20px;
+	padding:20px 10px;
 	color:#333;
 	font-size:14px;
 }
@@ -94,36 +94,45 @@
 }
 .searchRow {
 	border-bottom:1px dotted #d2d2d2;
-	padding:0 20px;
-	height:36px;
-	line-height:36px;
+	padding:2px 10px 2px 30px;
+	min-height:36px;
 }
-.searchRow em {
+.searchRowTitle {
+	float:left;
+	padding:5px 0 0 0;
+}
+.searchRowTitle em {
 	font-weight:bold;
 	font-size:14px;
 }
-.searchRow span {
-	font-size:14px;
-	margin-right:40px;
-	cursor:pointer;
-}
-.searchRow .unlimited{
+.searchRowTitle span {
 	font-size:12px;
 	color:#4b4b4b;
 	padding:5px 20px;
-	margin-right:10px;
-	cursor:pointer
+	cursor:pointer;
+	margin-right:5px;
 }
-.searchRow .unlimited:hover {
+.searchRowTitle span:hover {
 	background:#feefe8;
 	color:#4b4b4b;
 }
-.searchRow .unlimited.sel{
-	background:#fe883c;
-	color:#fff;
+
+.searchRow table {
+	display:inline-block;
+	padding:5px 0 0 0;
+}
+.hotelLocation {
+	font-size:14px
 }
 
-.searchRow span i {
+.hotelLocation span {
+	cursor:pointer;
+	padding-left:10px;
+}
+.hotelLocation span:hover {
+	color:#f94f46
+}
+.hotelLocation span i {
 	background:url(../images/b2g/tltip_top_gray.png) no-repeat 0 -11px;
 	width:11px;
 	height:6px;
@@ -131,20 +140,48 @@
 	vertical-align:middle;
 	margin-left:3px;
 }
-.searchRow label {
-	margin-right:10px;
-	padding:5px 10px;
+.hotelLocation span:hover i {
+	background:url(../images/b2g/tltip_top_gray.png) no-repeat 0 -53px;
+	width:11px;
+	height:6px;
+	display:inline-block;
+	vertical-align:middle;
+	margin-left:3px;
 }
-.searchRow label.sel {
-	background:#fe883c;
-	color:#fff;
+.searchRow td {
+	padding:2px 0 4px 0;
+	width:96px;
+}
+.searchRow .tdTit {
+	font-weight:bold;
+	font-size:14px;
+	width:73px
+}
+.searchRow label {
+	font-size:12px;
+	color:#4b4b4b;
+	padding:5px 10px;
+	width:90px;
+	cursor:pointer
 }
 .searchRow label:hover {
 	background:#feefe8;
+	color:#4b4b4b;
 }
-.searchRow span.more {
+
+.searchRow .brandMore {
 	font-size:12px;
-	color:#0066cc
+	color:#0066cc;
+	margin-left:30px;
+	cursor:pointer;
+}
+.searchRow span i {
+	background:url(../images/b2g/tltip_top_gray.png) no-repeat 0 -11px;
+	width:11px;
+	height:6px;
+	display:inline-block;
+	vertical-align:middle;
+	margin-left:3px;
 }
 .sureBtn {
 	background:#feefe8;
@@ -161,10 +198,14 @@
 .searchRow.last {
 	border:none;
 }
+.searchRow .sel{
+	background:#fe883c;
+	color:#fff;
+}
 .searchResult {
 	background:#f7f7f7;
 	border-top:1px solid #e5dad4;
-	padding:10px 20px;
+	padding:10px 10px 10px 30px;
 }
 .searchResult em{
 	color:#f94037;
@@ -193,12 +234,15 @@
 .searchResult span:hover i {
 	background:url(../images/b2g/sprite.png) no-repeat -30px -140px;
 }
-.searchResult .clear{
+.searchResult .clearCondition{
 	margin-right:15px;
 	color:#0066cc;
 	font-size:14px;
 	display:inline-block;
 	float:right;
+}
+.searchResult span{
+	cursor:pointer
 }
 .searchResult .clear a {
 	color:#0066cc;
@@ -208,7 +252,6 @@
 	color:#f94f46;
 	text-decoration:underline
 }
-
 .searchContent{
 	clear:both;
 }
@@ -351,24 +394,40 @@
     width:36px;
     height:36px;
     margin-right:3px;
-    background:url(../images/b2g/sprite.png) no-repeat;
+    background:url(../images/b2g/icon-facility.png) no-repeat;
 	cursor:pointer;
 }
-.icon-list .ico-free-wifi {
-    background-position: 0 -302px;
-}
 .icon-list .ico-wifi {
-    background-position: -152px -302px;
+    background-position: 0 0;
 }
-.icon-list .ico-gym {
-    background-position: -38px -302px;
-}
-.icon-list .ico-breakfast {
-    background-position: -76px -302px;
+.icon-list .ico-free-wifi {
+    background-position: 0 -37px;
 }
 .icon-list .ico-broadband {
-    background-position: -114px -302px;
+    background-position: 0 -74px;
 }
+.icon-list .ico-free-broadband {
+    background-position: 0 -111px;
+}
+.icon-list .ico-park {
+    background-position: 0 -148px;
+}
+.icon-list .ico-free-park {
+    background-position: 0 -185px;
+}
+.icon-list .ico-gym {
+    background-position: 0 -222px;
+}
+.icon-list .ico-breakfast {
+    background-position: 0 -259px;
+}
+.icon-list .ico-indoorswim {
+    background-position: 0 -296px;
+}
+.icon-list .ico-outdoorswim {
+    background-position: 0 -333px;
+}
+
 .more-pic {
 	cursor:pointer
 }
@@ -510,7 +569,7 @@
 .hotel-picList {
 	background:#fffbe8;
 	position:relative;
-	padding:10px 0 10px 15px;
+	padding:10px 0 10px 12px;
 	border:1px solid #ed885b;
 	overflow:hidden;
 }
@@ -518,7 +577,8 @@
 	float:left;
     width:165px;
     height:110px;
-    margin-right:5px;
+	margin-right:1px;
+	border:2px solid transparent;
 }
 .hotel-picList .link:hover {
 	border:2px solid #ee665f
@@ -686,8 +746,18 @@
 .hotel-sideViewed tr:hover{
 	background:#f5f5f5
 }
-.hotel-sideViewed span{
-	display:block;
+.hotel-sideViewed tr .del-viewed{
+	position:relative;
+	right:10px;
+	bottom:30px;
+	display:none
+}
+.hotel-sideViewed tr:hover .del-viewed{
+	background:url(../images/b2g/sprite.png) no-repeat -35px -125px; 
+	width:9px;
+	height:10px;
+	display:inline-block;
+	cursor:pointer;
 }
 .hotel-sideViewed .name a{
 	font-size:14px;
@@ -764,25 +834,8 @@
 	height:12px;
 	display:inline-block;
 	margin-top:5px
+}
 
-	 
-}
-.hotel-del i{
-    position:absolute;
-    top:10px;
-    right:10px;
-    width:10px;
-	cursor:pointer;
-	display:none
-}
-.hotel-del:hover i{
-    position:absolute;
-    top:10px;
-    right:10px;
-    width:10px;
-	cursor:pointer;
-	display:inline-block;
-}
 
 .cancel-tips i {
 	background:url(../images/b2g/smallImg.png) no-repeat -134px 0; 
