@@ -246,11 +246,7 @@ var FloatLayer = function(opts){
     kendo.init(layer);
 
     $(document).on('click',function(e){
-        // $('.FLAYA').removeClass('FLAYA');
-        var t = kendo._activeElement();
-        if(t.tagName.toLowerCase()=='body'){
-            t = e.target;
-        }
+        t = e.target;
         if ( !$(t).is(opts.trigger) && opts.trigger.has(t).length===0 ){
             if ( $(t).closest('.ac-floatlayer').length !==1 ){
                 layer.close();
