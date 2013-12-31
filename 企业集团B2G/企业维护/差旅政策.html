@@ -99,13 +99,13 @@
         </div>
         <div class="policyLeftMenu">
             <ul>
-                <li class="current">默认政策<i class="policyLeftMenu_currentArrow"></i></li>
-                <li>级别一<i class="policyLeftMenu_currentArrow"></i></li>
-                <li>级别二<i class="policyLeftMenu_currentArrow"></i></li>
-                <li>级别三<i class="policyLeftMenu_currentArrow"></i></li>
-                <li>级别四<i class="policyLeftMenu_currentArrow"></i></li>
-                <li>级别五<i class="policyLeftMenu_currentArrow"></i></li>
-                <li>级别六<i class="policyLeftMenu_currentArrow"></i></li>
+                <li class="current">默认政策<i class="policyLeftMenu_currentArrow"></i><i class="policyLeftMenu_delButton"></i></li>
+                <li>级别一<i class="policyLeftMenu_currentArrow"></i><i class="policyLeftMenu_delButton"></i></li>
+                <li>级别二<i class="policyLeftMenu_currentArrow"></i><i class="policyLeftMenu_delButton"></i></li>
+                <li>级别三<i class="policyLeftMenu_currentArrow"></i><i class="policyLeftMenu_delButton"></i></li>
+                <li>级别四<i class="policyLeftMenu_currentArrow"></i><i class="policyLeftMenu_delButton"></i></li>
+                <li>级别五<i class="policyLeftMenu_currentArrow"></i><i class="policyLeftMenu_delButton"></i></li>
+                <li>级别六<i class="policyLeftMenu_currentArrow"></i><i class="policyLeftMenu_delButton"></i></li>
                 <li class="li_policyNewButton"><i class="ico_plusGreen"></i>新增</li>
             </ul>
         </div>
@@ -125,11 +125,11 @@
                             <table>
                                 <tr>
                                     <td style="width:30px"></td>
-                                    <td><label><input type="radio" name="" id=""/>不限价格</label></td>
+                                    <td><label><input type="radio" name="domestic_ticket" id=""/>不限价格</label></td>
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td><label><input type="radio" name="" id=""/>最低价格</label></td>
+                                    <td><label><input type="radio" name="domestic_ticket" id=""/>最低价格</label></td>
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -141,11 +141,11 @@
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td><label><input type="radio" name="" id=""/>协议价</label></td>
+                                    <td><label><input type="radio" name="domestic_ticket" id=""/>协议价</label></td>
                                 </tr>
                                 <tr>
                                     <td style="border-top: 1px dashed #d3d3d3"></td>
-                                    <td style="border-top: 1px dashed #d3d3d3;text-indent: 18px">提前预定天数 <input type="text" name="" id="" style="width:70px;height:30px"/> 天</td>
+                                    <td style="border-top: 1px dashed #d3d3d3;text-indent: 18px">提前预定天数 <input type="text" name="" id="" style="width:70px;height:30px"/> 天 <i class="ico_defaultPolicy"></i></td>
                                 </tr>
                             </table>
                         </li>
@@ -171,16 +171,16 @@
                                 </tr>
                             </table>
                         </li>
-                        <li>
+                        <li style="height: 269px">
                             <div class="policyContentTitle"><b>国际</b> 机票价格/时限</div>
                             <table>
                                 <tr>
                                     <td style="width:30px"></td>
-                                    <td><label><input type="radio" name="" id=""/>不限价格</label></td>
+                                    <td><label><input type="radio" name="internation_ticket" id=""/>不限价格</label></td>
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td><label><input type="radio" name="" id=""/>最低价格</label></td>
+                                    <td><label><input type="radio" name="internation_ticket" id=""/>最低价格</label></td>
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -192,7 +192,7 @@
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td><label><input type="radio" name="" id=""/>协议价</label></td>
+                                    <td><label><input type="radio" name="internation_ticket" id=""/>协议价</label></td>
                                 </tr>
                                 <tr>
                                     <td style="border-top: 1px dashed #d3d3d3"></td>
@@ -200,7 +200,7 @@
                                 </tr>
                             </table>
                         </li>
-                        <li>
+                        <li style="height: 269px">
                             <div class="policyContentTitle"><b>国际</b> 舱位设置</div>
                             <div class="limitReservationSwitchContainer">限制预订 <i class="switchButton"></i><span><i class="ico_infoWithYellowCircle" style="height: 20px"></i>开启限制预订，此类用户将只能预订勾选的舱位</span></div>
                             <table class="tbl_classSetup">
@@ -244,7 +244,7 @@
                                 </tr>
                             </table>
                         </li>
-                        <li>
+                        <li style="height:271px">
                             <div class="policyContentTitle"><b>国际</b> 酒店价格标准设置</div>
                             <table class="tbl_policyHotel">
                                 <tr>
@@ -312,7 +312,7 @@
         })
         $("body").delegate(".ul_policyType li","click",function(){
             $(this).addClass("current").siblings().removeClass("current");
-            $(this).closest("ul").siblings(".policyTypeLiBG").animate({left:$(this).position().left},"fast");
+            $(this).closest("ul").siblings(".policyTypeLiBG").animate({left:$(this).position().left+1},"fast");
             var pc=$(this).closest(".policyTypeHead").siblings(".PolicyContainer");
             pc.eq($(this).index()).show().siblings(".PolicyContainer").hide();
         })
