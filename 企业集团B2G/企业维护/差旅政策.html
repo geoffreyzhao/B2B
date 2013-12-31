@@ -99,7 +99,7 @@
         </div>
         <div class="policyLeftMenu">
             <ul>
-                <li class="current">默认政策<i class="policyLeftMenu_currentArrow"></i><i class="policyLeftMenu_delButton"></i></li>
+                <li class="current">默认政策<i class="policyLeftMenu_currentArrow"></i></li>
                 <li>级别一<i class="policyLeftMenu_currentArrow"></i><i class="policyLeftMenu_delButton"></i></li>
                 <li>级别二<i class="policyLeftMenu_currentArrow"></i><i class="policyLeftMenu_delButton"></i></li>
                 <li>级别三<i class="policyLeftMenu_currentArrow"></i><i class="policyLeftMenu_delButton"></i></li>
@@ -303,6 +303,10 @@
         $("body").delegate(".bis_save","click",function(){
             var ipt=$(this).siblings(":text");
             var li=$(this).closest("li");
+            if($.trim(ipt.val()).length == 0){
+                return false;
+                //li.remove();
+            }
             var t=kendo.template($("#bis_itemTemplate").html());
             li.html(t({oriTxt:ipt.val()})).removeClass("editing");
         })
