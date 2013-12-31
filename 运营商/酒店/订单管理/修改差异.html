@@ -21,6 +21,27 @@
 <div id="container" style="margin-top:0">
 <div id="mainContent">
 
+    <div>
+        <button class="showhint button_1_2">提示按钮</button>
+    </div>
+
+    <script type="text/x-kendo-template" id="hint-template">
+        <div class="jd-hint">
+            <div class="row">
+                <h3>此订单已不能修改挂账、留账。</h3>
+            </div>
+            <div class="row">
+                <em>可能因为：</em>
+                <em>*修改操作已经过了订单确认成本时间；</em>
+                <em>*订单已经在挂账审核中；</em>
+            </div>
+            <div class="row">
+                <span>如需要调节收入、成本，请使用调账单</span>
+            </div>
+            <div class="row row-btn"><a href="javascript:;" class="button_1_2 close">确 定</a></div>
+        </div>
+    </script>
+
 <div class="panel" style="padding:0;width:100%">
     <div style="width:7px;background:#FE7218;float:left;height:63px"></div>
     <div style="width:7px;background:#439CD3;float:right;height:63px"></div>
@@ -1056,6 +1077,16 @@
         $("#modifyCostExplain").html($("#textarea_costModify").val());
     })
 </script>
+
+    <script>
+$(function(){
+    new PopWindow('.showhint',{
+        title:'提示',
+        template:'#hint-template',
+        width:470
+    }).init();
+})
+    </script>
 
 </body>
 </html>
