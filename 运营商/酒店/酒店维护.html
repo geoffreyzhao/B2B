@@ -4,13 +4,13 @@
 <head>
     <title>酒店 酒店维护 酒店查询</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../../static/css/smoothness/jquery-ui-1.10.3.custom.css"/>
     <link href="../../static/css/common.css" rel="stylesheet" type="text/css" />
     <link href="../../static/css/b2b.css" rel="stylesheet" type="text/css" />
     <link href="../../static/css/kendo.common.css" rel="stylesheet" type="text/css" />
     <link href="../../static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
 <link href="/static/css/kendo.reset.css" rel="stylesheet" />
     <link href="../../static/css/jiudianweihuzs.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="../../static/css/smoothness/jquery-ui-1.10.3.custom.css"/>
     <script src="../../static/js/jquery.min.js" type="text/javascript"></script>
     <script src="../../static/js/kendo.web.js" type="text/javascript"></script>
     <script type="text/javascript" src="../../static/js/global.js"></script>
@@ -74,9 +74,14 @@
                <div class="jiudianweihu">
                  <h2>酒店维护</h2>
                   <div class="jdwh-btn">
-                      <a href="javascript:;" class="button_secondary adaptiveButton small" style="margin-top: -3px">
+                      <a href="javascript:;" id="btn_export_baseprice" class="button_secondary adaptiveButton small" style="margin-top: -3px">
                           <span class="left"></span>
-                          <span class="center" id="btn_exportStockStatus" style="padding:0 2px">导出库存状态</span>
+                          <span class="center" style="padding:0 2px">导出酒店低价</span>
+                          <span class="right"></span>
+                      </a>
+                      <a href="javascript:;" id="btn_exportStockStatus" class="button_secondary adaptiveButton small" style="margin-top: -3px">
+                          <span class="left"></span>
+                          <span class="center" style="padding:0 2px">导出库存状态</span>
                           <span class="right"></span>
                       </a>
                     <a class="jdwh-btn-a" style="margin-left: 10px" href="新增酒店 .html" onClick="add_department();">新增酒店</a>
@@ -268,6 +273,41 @@
         </div>
     </div>
 
+
+    <div id="exprotHotelBasePriceTemplate" style="position: absolute;display: none">
+        <div>
+            <div class="esst_export">
+                <a href="javascript:;" class="button_secondary adaptiveButton small">
+                    <span class="left"></span>
+                    <span class="center" style="padding:0 2px">导出酒店低价</span>
+                    <span class="right"></span>
+                </a>
+            </div>
+            <div class="esst_tbl_container">
+                <table class="esst_tbl_export">
+                    <colgroup>
+                        <col style="width:70px;"/>
+                        <col style="width:150px;"/>
+                    </colgroup>
+                    <tr>
+                        <td>开始日期：</td>
+                        <td><input type="text" name="" id="" class="datepicker" placeholder="YYYY-MM-DD"/></td>
+                    </tr>
+                    <tr>
+                        <td>结束日期：</td>
+                        <td><input type="text" name="" id="" class="datepicker orange" placeholder="YYYY-MM-DD"/></td>
+                    </tr>
+                    <tr>
+                        <td>签约经理：</td>
+                        <td><select name="" id="" style="width:100px"><option>全部</option></select></td>
+                    </tr>
+                    <tr>
+                        <td></td><td><label><input type="checkbox" />&nbsp;只看无低价</label><a class="button_5" href="javascript:void(0);">导 出</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
     <div id="exprotStockStatusTemplate" style="position: absolute;display: none">
         <div id="esst_Container">
             <div id="esst_btn_exportStockStatusContainer">
@@ -299,42 +339,49 @@
         </div>
     </div>
     
-    <script type="application/javascript">
-		var add_department = function(id){
-			id = 0;
-			if (!$("#add_department").data("kendoWindow")) {
-				$("#add_department").kendoWindow({
-					width: "100%",
-					minHeight: "100%",
-					title: "操作提示",
-					actions: ["Refresh", "Close"],
-					content: encodeURI("添加部门.html")  + "?orderID=" + id + "&timestamp=" + (new Date()).toString(),
-					visible: false,
-					modal:true
-				}).data("kendoWindow").open().center();
-			}else{
-				$("#add_department").data("kendoWindow").open().center();
-			}
-		};
+    <script>
 
-        $("#btn_exportStockStatus").mouseenter(function(){
-            $("#exprotStockStatusTemplate").css({top:$(this).offset().top-7,left:$(this).offset().left-126}).show();
-        })
+        $(function(){
+            $("#btn_exportStockStatus").click(function(e){
+                var offset = $(this).offset();
+                var w = $("#exprotStockStatusTemplate").width();
 
-        $(".datepicker").datepicker({
-            css : {
-                "z-index" : 20000
-            },
-            minDate : new Date(),
-            showButtonPanel : true
+                $("#exprotStockStatusTemplate").css({top:offset.top-7,left:offset.left - w + $(this).width() + 6}).show();
+
+                e.stopPropagation(); 
+            });
+
+            $("#btn_export_baseprice").click(function(e){
+                var offset = $(this).offset();
+                var w = $("#exprotHotelBasePriceTemplate").width();
+
+                $("#exprotHotelBasePriceTemplate").css({top:offset.top-7,left:offset.left - w + $(this).width() + 6}).show();
+
+                e.stopPropagation(); 
+            });
+
+            $(".datepicker").datepicker({
+                css : {
+                    "z-index" : 20000
+                },
+                minDate : new Date(),
+                showButtonPanel : true
+
+            });
+            $("#exprotStockStatusTemplate").click(function(e){
+                e.stopPropagation();
+            });
+
+            $("#exprotHotelBasePriceTemplate").click(function(e){
+                e.stopPropagation();
+            });
+
+            $(document).click(function(e){
+                $("#exprotStockStatusTemplate").hide();
+                $("#exprotHotelBasePriceTemplate").hide();
+            })
 
         });
-
-        $(document).click(function(e){
-            if($(e.target).closest("#exprotStockStatusTemplate").length<1 && $(e.target).closest(".ui-datepicker").length<1 && $(e.target).closest(".ui-datepicker-prev").length<1 && $(e.target).closest(".ui-datepicker-next").length<1)
-                $("#exprotStockStatusTemplate").hide();
-            console.log($(e.target).closest(".ui-datepicker").length);
-        })
 	
 	</script>
 </body>
