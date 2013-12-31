@@ -165,32 +165,38 @@
 
   <script>
 
-      function FixedLayer(){
-          var top = ($(window).scrollTop() + $(window).height() - 40) + "px";
-          $(".message_wrap").css("top",top);
-
-      }
       function popMessage(data){
           var id = "message_" + (new Date()).getTime();
           var message = kendo.template($("#new_message_template").html());
           var html = message(data);
 
-          var top = ($(window).scrollTop() + $(window).height() - 40) + "px";
-          var end_top = top - 50;
           var margin_left = ($(window).width() - 980)/2;
-
-          var messageObj = $('<div class="message_wrap" id="' + id + '" style="display:none;"></div>').html(html).css({top:top,"margin-left":margin_left});   
+          var messageObj = $('<div class="message_wrap" id="' + id + '" style="display:none;"></div>').html(html).css({"margin-left":margin_left});   
           messageObj.find(".know").click(function(e){
               $(this).closest(".message_wrap").fadeOut("slow",function(){
                   $(this).remove();
               });
           });
-          messageObj.appendTo("body").fadeIn();
+
+          var i_message = $(".message_wrap").size();
+          if( i_message < 3){
+            var offset = $(".message_wrap:last").offset();
+            messageObj.css({bottom:i_message * 40 + 20 }).appendTo('body').fadeIn();
+            //messageObj.animate({bottom:i_message * 40 + 20 },1000);
+
+            setTimeout(function(){
+                messageObj.fadeOut(function(){
+                    $(this).remove();
+                });
+            },3000);
+          }else{
+            return ;
+          }
+
 
       }
 
       $(function(){
-          $(window).scroll(FixedLayer);
           
           $("#new_message").click(function(){
                 popMessage({order_id:"1123432211111",message1:"出票退回",message2:"身份证不正确"});
