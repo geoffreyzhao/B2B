@@ -181,14 +181,18 @@
           var i_message = $(".message_wrap").size();
           if( i_message < 3){
             var offset = $(".message_wrap:last").offset();
-            messageObj.css({bottom:i_message * 40 + 20 }).appendTo('body').fadeIn();
-            //messageObj.animate({bottom:i_message * 40 + 20 },1000);
+            messageObj.css({bottom:-20 }).appendTo('body');
+
+            messageObj.animate({
+                bottom:20 + 40 * i_message,
+                duration:100
+            }).show();
 
             setTimeout(function(){
                 messageObj.fadeOut(function(){
                     $(this).remove();
                 });
-            },3000);
+            },10000);
           }else{
             return ;
           }
