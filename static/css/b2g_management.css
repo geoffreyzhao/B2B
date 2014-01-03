@@ -307,6 +307,9 @@
     font-size: 14px;
     cursor: pointer;
 }
+.bis_add:hover{
+    background: #E9FCED;
+}
 .bis_add i{
     background:url("../images/b2g/sprite.png") 0 -150px;
     width: 16px;
@@ -384,9 +387,6 @@
 .policyLeftMenu li:hover{
     background-color: #eaeaea;
 }
-.policyLeftMenu li:hover i.policyLeftMenu_delButton{
-    display: inline-block;
- }
 .policyLeftMenu li.current:hover{
     background-color: #F94F46;
 }
@@ -406,7 +406,10 @@
     right: 0;
     display: none;
 }
-.policyLeftMenu li.current i.policyLeftMenu_currentArrow{
+.policyLeftMenu li.current i.policyLeftMenu_currentArrow,.policyLeftMenu li.current i.policyLeftMenu_clearButton{
+    display: inline-block;
+}
+.policyLeftMenu li.cleared i.policyLeftMenu_clearedFlag{
     display: inline-block;
 }
 .policyRightPanel{
@@ -595,9 +598,9 @@
     display: none;
 }
 .switchButton{
-    background: url("../images/b2g/sprite.png") -140px -30px;
+    background: url("../images/b2g/sprite.png") -140px -32px;
     width:65px;
-    height: 30px;
+    height: 32px;
     display: inline-block;
     margin:0 5px;
     vertical-align: middle;
@@ -606,16 +609,21 @@
 }
 .switchButton.on{background-position: -140px 0;}
 .switchButtonOn{color:#FF5900}
-.policyLeftMenu_delButton{
-    background: url("../images/b2g/sprite.png") -36px -126px;
-    width:8px;
-    height: 8px;
-    display: inline-block;
-    cursor: pointer;
+.policyLeftMenu_clearButton{
+    color: #ffffff;
     position: absolute;
-    top:5px;
-    right: 5px;
+    bottom: 8px;
+    margin: 0 auto;
+    width: 100%;
+    font-size: 12px;
+    line-height: 1;
+    left: 0;
+    text-align: center;
+    font-weight: normal;
     display: none;
+}
+.policyLeftMenu_clearButton:hover{
+    text-decoration: underline;
 }
 .ico_defaultPolicy{
     background: url("../images/b2g/sprite.png") -110px -80px;
@@ -625,6 +633,22 @@
     margin: 0 5px;
     vertical-align: middle;
 }
+.policyLeftMenu_clearedFlag{
+    background: #F1F1F1;
+    color: #8E8E8E;
+    padding:3px 5px;
+    position: absolute;
+    bottom: 5px;
+    left:50%;
+    margin-left: -24px;
+    font-size: 12px;
+    line-height: 1;
+    font-weight: normal;
+    border:1px solid #CECECE;
+    display: none;
+}
+.policyLeftMenu li.cleared i.policyLeftMenu_clearButton{display: none}
+
 
 
 

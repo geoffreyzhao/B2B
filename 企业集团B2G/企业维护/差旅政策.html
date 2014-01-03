@@ -99,13 +99,11 @@
         </div>
         <div class="policyLeftMenu">
             <ul>
-                <li class="current">默认政策<i class="policyLeftMenu_currentArrow"></i></li>
-                <li>级别一<i class="policyLeftMenu_currentArrow"></i></li>
-                <li>级别二<i class="policyLeftMenu_currentArrow"></i></li>
-                <li>级别三<i class="policyLeftMenu_currentArrow"></i></li>
-                <li>级别四<i class="policyLeftMenu_currentArrow"></i></li>
-                <li>级别五<i class="policyLeftMenu_currentArrow"></i></li>
-                <li>级别六<i class="policyLeftMenu_currentArrow"></i></li>
+                <li>默认政策<i class="policyLeftMenu_currentArrow"></i></li>
+                <li>级别一<i class="policyLeftMenu_currentArrow"></i><i class="policyLeftMenu_clearButton">清 空</i><i class="policyLeftMenu_clearedFlag">已清空</i></li>
+                <li class="current">级别二<i class="policyLeftMenu_currentArrow"></i><i class="policyLeftMenu_clearButton">清 空</i><i class="policyLeftMenu_clearedFlag">已清空</i></li>
+                <li>级别三<i class="policyLeftMenu_currentArrow"></i><i class="policyLeftMenu_clearButton">清 空</i><i class="policyLeftMenu_clearedFlag">已清空</i></li>
+
                 <li class="li_policyNewButton"><i class="ico_plusGreen"></i>新增</li>
             </ul>
         </div>
@@ -224,7 +222,7 @@
                         </li>
                     </ul>
                     <div class="clearfix policySaveButtonContainer">
-                        <button type="button" class="commonBtn lightRedBtn btnfontStyle" style="margin-right:12px">保 存</button>
+                        <button type="button" class="commonBtn lightRedBtn btnfontStyle btn_policyItemSave" style="margin-right:12px">保 存</button>
                     </div>
                 </div>
                 <div class="PolicyContainer">
@@ -256,7 +254,7 @@
                         </li>
                     </ul>
                     <div class="clearfix policySaveButtonContainer">
-                        <button type="button" class="commonBtn lightRedBtn btnfontStyle" style="margin-right:12px">保 存</button>
+                        <button type="button" class="commonBtn lightRedBtn btnfontStyle btn_policyItemSave" style="margin-right:12px">保 存</button>
                     </div>
                 </div>
             </div>
@@ -276,8 +274,33 @@
     #: oriTxt #<i class="bis_del"></i><i class="bis_edit"></i>
 </script>
 
+<div id="policyLeftMenuItemClearPromptTemplate">
+    <div style="font-size:16px;text-align: center">
+        <i class="icon icon3" style="margin-left: 0"></i>您确定要清空级别三吗？
+    </div>
+    <div style="text-align: center;margin:30px 0 20px">
+        <span type="button" id="btn_saveTourUsers" onclick="clearPolicyData()" class="commonBtn lightRedBtn btn_popWinClose" style="margin-right:5px">确 定</span>
+        <span type="button" class="commonBtn grayBtn close btn_popWinClose">取 消</span>
+    </div>
+</div>
+
+<div id="policyItemSavePromptTemplate">
+    <div style="font-size:16px;text-align: center">
+        <i class="icon icon3" style="margin-left: 0"></i>您修改了数据，是否保存？
+    </div>
+    <div style="text-align: center;margin:30px 0 20px">
+        <span type="button" id="btn_saveTourUsers" onclick="savePolicyData()" class="commonBtn lightRedBtn btn_popWinClose" style="margin-right:5px">保 存</span>
+        <span type="button" class="commonBtn grayBtn close btn_popWinClose">取 消</span>
+    </div>
+</div>
+
+<script type="text/html" id="policyLeftMenuItemTemplate">
+    <li>#: name #<i class="policyLeftMenu_currentArrow"></i><i class="policyLeftMenu_clearButton">清 空</i><i class="policyLeftMenu_clearedFlag">已清空</i></li>
+</script>
+
 <script type="text/javascript">
     $(function(){
+        var policyLevel_txt=["一","二","三","四","五","六","七"];
         $(".bis_add").click(function(){
             var t=kendo.template($("#bis_newItemTemplate").html());
             $(this).siblings(".basicInfoSetup_items").append("<li class='editing'>"+ t({oriTxt:""})+"</li>");
@@ -324,8 +347,51 @@
             $(this).toggleClass("on");
             $(this).next("span").toggleClass("switchButtonOn");
         })
+        $("body").delegate(".policyLeftMenu li:not('.li_policyNewButton')","click",function(){
+            $(this).addClass("current").siblings().removeClass("current");
+        })
         $(".ul_policyType li:first").trigger("click");
+
+        new PopWindow('.policyLeftMenu_clearButton',{
+            title:'提示',
+            width:'500'
+        },"#policyLeftMenuItemClearPromptTemplate").init();
+
+        new PopWindow('.btn_policyItemSave',{
+            title:'提示',
+            width:'500'
+        },"#policyItemSavePromptTemplate").init();
+
+        $(".li_policyNewButton").click(function(){
+            var policyLeftMenuItemNum=$(".policyLeftMenu li").length-2;
+            var t=kendo.template($("#policyLeftMenuItemTemplate").html());
+            $(".policyLeftMenu li:last").before(t({name:"级别"+policyLevel_txt[policyLeftMenuItemNum]}));
+            if(policyLeftMenuItemNum==6)
+            {
+                $(this).hide();
+            }
+        })
+
+        $("body").delegate(".btn_popWinClose","click",function(){
+            $(this).closest(".k-window").find(".k-i-close").trigger("click");
+            return false;
+        })
     })
+
+    function clearPolicyData(){
+        $(".PolicyContainer :text").each(function(){
+            $(this).val("");
+        })
+        $(".PolicyContainer :radio,.PolicyContainer :checkbox").each(function(){
+            $(this).prop("checked",false);
+        })
+        $(".policyLeftMenu li.current").addClass("cleared");
+    }
+
+    function savePolicyData(){
+        $(".policyLeftMenu li.current").removeClass("cleared");
+
+    }
 </script>
 </body>
 </html>
