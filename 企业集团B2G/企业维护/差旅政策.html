@@ -100,9 +100,9 @@
         <div class="policyLeftMenu">
             <ul>
                 <li>默认政策<i class="policyLeftMenu_currentArrow"></i></li>
-                <li>级别一<i class="policyLeftMenu_currentArrow"></i><i class="policyLeftMenu_clearButton">清 空</i><i class="policyLeftMenu_clearedFlag">已清空</i></li>
-                <li class="current">级别二<i class="policyLeftMenu_currentArrow"></i><i class="policyLeftMenu_clearButton">清 空</i><i class="policyLeftMenu_clearedFlag">已清空</i></li>
-                <li>级别三<i class="policyLeftMenu_currentArrow"></i><i class="policyLeftMenu_clearButton">清 空</i><i class="policyLeftMenu_clearedFlag">已清空</i></li>
+                <li>级别一<i class="policyLeftMenu_currentArrow"></i><i class="policyLeftMenu_clearButton">清 空</i><i class="policyLeftMenu_clearedFlag">无数据</i></li>
+                <li class="current">级别二<i class="policyLeftMenu_currentArrow"></i><i class="policyLeftMenu_clearButton">清 空</i><i class="policyLeftMenu_clearedFlag">无数据</i></li>
+                <li>级别三<i class="policyLeftMenu_currentArrow"></i><i class="policyLeftMenu_clearButton">清 空</i><i class="policyLeftMenu_clearedFlag">无数据</i></li>
 
                 <li class="li_policyNewButton"><i class="ico_plusGreen"></i>新增</li>
             </ul>
@@ -143,7 +143,7 @@
                                 </tr>
                                 <tr>
                                     <td style="border-top: 1px dashed #d3d3d3"></td>
-                                    <td style="border-top: 1px dashed #d3d3d3;text-indent: 18px">提前预定天数 <input type="text" name="" id="" style="width:70px;height:30px"/> 天 <i class="ico_defaultPolicy"></i></td>
+                                    <td style="border-top: 1px dashed #d3d3d3;text-indent: 18px">提前预定天数 <input type="text" name="" id="" style="width:70px;height:30px"/> 天 </td>
                                 </tr>
                             </table>
                         </li>
@@ -354,12 +354,14 @@
 
         new PopWindow('.policyLeftMenu_clearButton',{
             title:'提示',
-            width:'500'
+            width:'500',
+            isPropagationStopped:true
         },"#policyLeftMenuItemClearPromptTemplate").init();
 
         new PopWindow('.btn_policyItemSave',{
             title:'提示',
-            width:'500'
+            width:'500',
+            isPropagationStopped:true
         },"#policyItemSavePromptTemplate").init();
 
         $(".li_policyNewButton").click(function(){

@@ -12,7 +12,8 @@ function PopWindow(trigger, customSettings, window_id){
         modal:true,
         autoHide:false,
         closeClassName:'close',
-        reload:false
+        reload:false,
+        isPropagationStopped:false
     }
     this.triggerText = trigger;
     this.trigger = $(trigger);
@@ -69,6 +70,10 @@ PopWindow.prototype = {
         $('body').delegate(that.triggerText,'click',function(e){
             that.win.target = $(this);
             e.preventDefault();
+            if(that.settings.isPropagationStopped)
+            {
+                e.stopPropagation();
+            }
             if(that.settings.reload){
                 that.win.refresh(); 
             }
