@@ -1,3 +1,4 @@
+var b2g = {};
 $(function() {
     /*
     var offset = $(".main-body").eq(0).offset();
@@ -57,10 +58,16 @@ $(function() {
 		};
 
 
+        b2g.dpSetting = dpSetting;
+        b2g.dpSettingUlt = dpSettingUlt;
+        b2g.dpSettingShort = dpSettingShort;
+
+
         var dpEle = $(".datepicker");
 
         $.each(dpEle,function(){
             var item = $(this);
+
             if( item.hasClass("dpUlt") ){
                 item.datepicker(dpSettingUlt);
             }else if(item.hasClass("dpShort")){
