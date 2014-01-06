@@ -103,53 +103,10 @@ $(function(){
                    </label>
                    <strong class="uploadedSuccess">上传成功</strong>
               </div>
- 
-              <!--<div class="qx tabHead">
-                  <div class="xuanze">
-                      <button class="btns btn-ac-blue">审核</button>
-                      <button class="btns btn-ac-blue">自动匹配</button>
-                      <button class="btns btn-ac-blue">导出Excel</button>
-                  </div>
-                  <div class="qx_right">
-                      <button class="btns btn-ac-blue">导出Excel</button>
-                      <button class="btns btn-ac-blue">模版导入</button>
-                      <button class="btns btn-ac-blue">导入说明【模版下载】</button>
-                  </div>
-              </div>-->
               
               <div class="refer">
                     <h4 style="padding:5px 0; margin-bottom:10px">上传记录：</h4>
-                    <!--<table cellpadding="0" cellspacing="0" class="refer_list">
-                        <colgroup>
-                            <col style="width:65px;"/>
-                            <col style="width:200px;"/>
-                            <col style="width:65px;"/>
-                            <col style="width:300px;"/>
-                            <col style="width:180px;"/>
-                        </colgroup>
-                        <tbody>
-                            <tr>
-                                <td>支付机构</td>
-                                <td>
-                                    <select name="pay_org" data-role="dropdownlist" style="width:150px;">
-                                        <option value="alipay">支付宝</option>
-                                        <option value="tenpay">财付通</option>
-                                    </select>
-                                </td>
-                                <td>上传日期</td>
-                                <td><input type="text" name="pay_start" style="width:120px;" class="datepicker"/> 至 <input type="text" name="pay_end" style="width:120px;" class="datepicker orange"/></td>
-                                <td>
-                                    <a id="search_btn" href="javascript:;" class="button_important adaptiveButton medium">
-                                        <span class="left"></span>
-                                        <span class="center" style="padding:0 20px;">查 询</span>
-                                        <span class="right"></span>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>-->
-
-
+                    
                    <table cellpadding="0" cellspacing="0" class="tgrid">
                       <thead>
                          <tr>
@@ -177,7 +134,7 @@ $(function(){
                               <td></td>
                           </tr>
                           <tr>
-                              <td><a href="javascript:void(0);">查看详情</a></td>
+                              <td><a  class="oper" href="javascript:void(0);">查看详情</a></td>
                               <td>制单完成</td>
                               <td>失败5个</td>
                               <td>51book</td>
@@ -188,7 +145,7 @@ $(function(){
                               <td>SHA225</td>
                           </tr>
                           <tr>
-                              <td><a href="javascript:void(0);">查看详情</a></td>
+                              <td><a class="oper" href="javascript:void(0);">查看详情</a></td>
                               <td>制单完成</td>
                               <td>失败0个</td>
                               <td>天下通</td>
@@ -200,7 +157,7 @@ $(function(){
                           </tr>
                       </tbody>                      
               </table>
-                <div class="grid-table-pagination page">
+                <div class="grid-table-pagination">
                   <span class="grid-table-count">
                       共 <em>132</em> 条记录
                   </span>
@@ -221,9 +178,8 @@ $(function(){
                   </span>
               </div>
                    
-                    <div style="height:10px;"></div>
-
-              </div>
+                   
+          </div>
                           
         </div>
     </div>
@@ -240,107 +196,149 @@ $(function(){
         </div>
     </div>
 
-<script type="text/x-kendo-template" id="ac-nextStep_template"> 
-<div class="nextStep">
-     <table cellpadding="0" cellspacing="0" class="nextStep_tab bsp">
-          <colgroup>
-               <col width="140px" />
-               <col width="200px" />
-          </colgroup>
-		  <tr>
-              <td style="text-align:right;">平台来源：</td>
-              <td><input type="radio" name="source" value="分销商平台"/>分销商平台 
-                  <input type="radio" name="source" value="外借配置" style="margin-left:40px"/>外借配置 
-              </td>
-          </tr>
-          <tr>
-              <td style="text-align:right;">客户名称：</td>
-              <td><input type="text"/></td>
-          </tr>
-          <tr>
-              <td></td>
-              <td class="nextStep_btn" style="padding:10px 0;">
-                  <a href="javascript:;" class="button_important adaptiveButton medium ac-uploadingWindow">
-                        <span class="left"></span>
-                        <span class="center">下一步</span>
-                        <span class="right"></span>
-                  </a>
-                  <a href="javascript:;" class="button_unimportant adaptiveButton medium">
-                        <span class="left"></span>
-                        <span class="center callOff" style="padding:0 20px;">取 消</span>
-                        <span class="right"></span>
-                 </a>
-              </td>
-          </tr>
-     </table>
+<div id="ac-nextStep_template"> 
+    <div class="nextStep">
+    	 <div class="source_list">
+         	<label><input type="radio" name="source" value="分销商平台"/>&nbsp;分销商平台</label>
+            <label><input type="radio" name="source" value="外借配置" style="margin-left:40px"/>&nbsp;外借配置			</label>
+         </div>
+         <table cellpadding="0" cellspacing="0" class="nextStep_tab fxs">
+              <colgroup>
+                   <col width="140px" />
+                   <col width="200px" />
+              </colgroup>
+              
+              <tr>
+                  <td style="text-align:right;">客户名称：</td>
+                  <td><input type="text" style="width:98px"/></td>
+              </tr>
+              <tr>
+                  <td></td>
+                  <td class="nextStep_btn" style="padding:10px 0;">
+                      <a href="javascript:;" class="button_important adaptiveButton medium ac-uploadingWindow">
+                            <span class="left"></span>
+                            <span class="center">下一步</span>
+                            <span class="right"></span>
+                      </a>
+                      <a href="javascript:;" class="button_unimportant adaptiveButton medium">
+                            <span class="left"></span>
+                            <span class="center callOff" style="padding:0 20px;">取 消</span>
+                            <span class="right"></span>
+                     </a>
+                  </td>
+              </tr>
+         </table>
+          <table cellpadding="0" cellspacing="0" class="nextStep_tab wjpz" style="display:none;">
+              <colgroup>
+                   <col width="140px" />
+                   <col width="200px" />
+              </colgroup>
+              
+              <tr>
+                  <td style="text-align:right;">客户名称：</td>
+                  <td><input type="text" style="width:98px"/></td>
+              </tr>
+               <tr>
+                  <td style="text-align:right;">支付方式：</td>
+                  <td><select style="width:100px;" data-role="dropdownlist">
+                                        <option>支付宝</option>
+                                        <option>财付通</option>
+                                    </select></td>
+              </tr>
+              <tr>
+                  <td style="text-align:right;">OFFICE号：</td>
+                  <td><select style="width:100px;" data-role="dropdownlist">
+                                        <option>SHA225</option>
+                                        <option>财付通</option>
+                                       
+                                    </select></td>
+              </tr>
+              <tr>
+                  <td></td>
+                  <td class="nextStep_btn" style="padding:10px 0;">
+                      <a href="javascript:;" class="button_important adaptiveButton medium ac-uploadingWindow">
+                            <span class="left"></span>
+                            <span class="center">下一步</span>
+                            <span class="right"></span>
+                      </a>
+                      <a href="javascript:;" class="button_unimportant adaptiveButton medium">
+                            <span class="left"></span>
+                            <span class="center callOff" style="padding:0 20px;">取 消</span>
+                            <span class="right"></span>
+                     </a>
+                  </td>
+              </tr>
+         </table>
+    </div>
 </div>
-</script>
 
-<script type="text/x-kendo-template" id="ac-uploadingWindow_template">
-<div class="uploadingWindow">
-     <table cellpadding="0" cellspacing="0">
-          <colgroup>
-               <col width="85px" />
-               <col width="250px" />
-               <col width="85px" />
-          </colgroup>
-          <tr>
-              <td>请上传文件：</td>
-              <td><input type="text" value="国际机票账单20120902.csv" style="width:240px;" /> </td>
-              <td>
-                  <input type="file" name="filename" id="fileupload"/>
-              </td> 
-          </tr>
-          <tr>
-              <td colspan="3" style=" text-align:center;">
-                  <a href="javascript:;" class="button_important adaptiveButton medium ac-uploadingWrong" style="margin-top:20px;">
-                        <span class="left"></span>
-                        <span class="center" style=" font-size:14px; font-weight:bold; padding:0 20px;">上 传</span>
-                        <span class="right"></span>
-                  </a>
-              </td>
-          </tr>
-     </table>
-</div>
-</script> 
+<div id="ac-uploadingWindow_template">
+    <div class="uploadingWindow">
+         <table cellpadding="0" cellspacing="0">
+              <colgroup>
+                   <col width="85px" />
+                   <col width="250px" />
+                   <col width="85px" />
+              </colgroup>
+              <tr>
+                  <td>请上传文件：</td>
+                  <td><input type="text" value="国际机票账单20120902.csv" style="width:240px;" /> </td>
+                  <td><input type="file" name="filename" id="fileupload"/></td> 
+              </tr>
+              <tr>
+                  <td colspan="3" style=" text-align:center;">
+                      <a href="javascript:;" class="button_important adaptiveButton medium ac-uploadingWrong" style="margin-top:20px;">
+                            <span class="left"></span>
+                            <span class="center" style=" font-size:14px; font-weight:bold; padding:0 20px;">上 传</span>
+                            <span class="right"></span>
+                      </a>
+                  </td>
+              </tr>
+         </table>
+    </div>
+</div> 
 
-    
-  </body>
-</html>
+<script>
+	$(function(){
+		$(".source_list input[type=radio]").each(function(index){
+			$(this).click(function(){
+				$(this).closest(".nextStep").find(".nextStep_tab").hide();
+				$(this).closest(".nextStep").find(".nextStep_tab:eq(" + index + ")").show(); 
+			});
+		});
+		
+		$("#fileupload").kendoUpload({
+            multiple:false,
+            showFileList:false,
+            localization:{ 
+                select: '请选择文件' 
+            } ,
+            async: {
+                saveUrl: "Home/Save",
+                removeUrl: "Home/Remove",
+                autoUpload: true
+            }
+        });
+		 	
+		 var nextStep_win = new PopWindow(".ac-nextStep",{
+			   title:"导入订单",
+			   width:470
+		},"#ac-nextStep_template").init();
+		 
+		  var nextStep_win = new PopWindow(".ac-uploadingWindow",{
+			   title:"导入订单",
+			   width:470
+		},"#ac-uploadingWindow_template").init();
+		
+	});
 
 
-
-<script type="text/javascript">
-	 var nextStep_win = new PopWindow(".ac-nextStep",{
-		   title:"导入订单",
-		   width:470,
-		   template:"#ac-nextStep_template"
-	}).init();
-	 
-	  var nextStep_win = new PopWindow(".ac-uploadingWindow",{
-		   title:"导入订单",
-		   width:470,
-           template:"#ac-uploadingWindow_template",
-           open:function(){
-                console.log("uploaded open");
-                $("#fileupload").kendoUpload({
-                    multiple:false,
-                    showFileList:false,
-                    localization:{ 
-                        select: '浏览' 
-                    } ,
-                    async: {
-                        saveUrl: "Home/Save",
-                        removeUrl: "Home/Remove",
-                        autoUpload: true
-                    }
-                });
-           }
-	}).init();
+	
  
 </script>
 
 
-
-
+    
+  </body>
+</html>
 
