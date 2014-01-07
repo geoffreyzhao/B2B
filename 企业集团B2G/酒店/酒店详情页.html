@@ -64,7 +64,7 @@
                          <em>￥</em>
                          <b>6200</b>
                          <i>起</i>
-                         <button type="button" class="commonBtn lightRedBtn">立即预订<strong></strong></button>
+                         <a href="#bookDetails"><button type="button" class="commonBtn lightRedBtn">立即预订<strong></strong></button></a>
                    </div>
               </div> 
               <ul class="hotelImgs clearfix">
@@ -110,7 +110,8 @@
               </ul>  
       </div>  <!--hotel_book end-->   	
             
-            <div class="searchContent clearfix">              
+            <div class="searchContent clearfix"> 
+                 <a name="bookDetails"></a>              
                <div class="searchContent-left">   <!-- 左边 -->              
                    <div class="hotelLeftCont">
                          <div class="changeList clearfix">
@@ -954,6 +955,9 @@
             var image_window = new PopWindow(".more-pic", { 
                     title:"XXXX酒店 图片展示",
                     width:1025,
+					open:function(){
+                        image_window.wrapper.find(".k-content").css({"background-color":"#293038"});
+                    },
                     content : { 
                         url : 'images.html',
                         data : {param1:'a',param2:'b'}
