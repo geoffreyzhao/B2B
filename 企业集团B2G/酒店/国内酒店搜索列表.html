@@ -2289,16 +2289,12 @@
                         tb.find("tbody").show();
                         tb.find(".roomPic").show();
                         tb.find("tfoot").show();
-                        tb.find(".hotel-show_unfold").removeClass("hotel-show_unfold").addClass("hotel-show_fold");
-
                     }else{
                         tb.find("tbody").hide();
                         tb.find(".roomPic").hide();
                         tb.find("tfoot").hide();
-                        tb.find(".hotel-show_fold").removeClass("hotel-show_fold").addClass("hotel-show_unfold");
                     }
                 }else{
-                    tb.find(".toggle_trigger").removeClass("hotel-show_unfold").addClass("hotel-show_fold");
                     tb.find("tbody").show();
                     tb.find(".roomPic").toggle();
                     tb.find("tfoot").toggle();
@@ -2312,16 +2308,13 @@
                 if(tb.find(".roomPic").is(":visible")){
                     tb.find(".roomPic").hide();
                     tb.find("tfoot").hide();
-                    //tb.find(".hotel-show_fold").removeClass("hotel-show_fold").addClass("hotel-show_unfold");
                 }else{
                     tb.find(".roomPic").show();
                     tb.find("tfoot").show();
-                    //tb.find(".hotel-show_unfold").removeClass("hotel-show_unfold").addClass("hotel-show_fold");
                 }
             });
 
-            /* */
-
+            /* 酒店单个结果 最后的 展开折叠 */
             $(".hotelResultbtn span").click(function(){
                 var item = $(this).closest(".hotelCon");
                 var text = $(this).find("em").html();
@@ -2343,8 +2336,6 @@
                     //展开
                     item.find(".hotel-datelist tbody").show();
                     item.find(".hotel-datelist tfoot").hide();
-                    item.find(".toggle_trigger").removeClass("hotel-show_fold hotel-show_unfold").addClass("hotel-show_unfold");
-
                     item.find(".roomPic").hide();
 
                     $(this).removeClass("hotelResult-unfold").addClass("hotelResult-fold");
