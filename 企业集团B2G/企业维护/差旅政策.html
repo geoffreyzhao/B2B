@@ -108,7 +108,7 @@
             </ul>
         </div>
         <div class="policyRightPanel">
-            <div class="policyLevel1">
+            <div class="policyLevel2">
                 <div class="policyTypeHead">
                     <ul class="ul_policyType">
                         <li class="current"><i class="ico_plane"></i>机 票</li>
@@ -149,7 +149,7 @@
                         </li>
                         <li>
                             <div class="policyContentTitle"><b>国内</b> 舱位设置</div>
-                            <div class="limitReservationSwitchContainer">限制预订 <i class="switchButton"></i><span><i class="ico_infoWithYellowCircle" style="height: 20px"></i>开启限制预订，此类用户将只能预订勾选的舱位</span></div>
+                            <div class="limitReservationSwitchContainer">限制预订 <i class="switchButton"></i><span class="switchButtonOff"><i class="ico_infoWithYellowCircle" style="height: 20px"></i>开启限制预订，此类用户将只能预订勾选的舱位</span></div>
                             <table class="tbl_classSetup">
                                 <tr>
                                     <td><label><input type="checkbox" name="" id=""/>全选 （不限舱位）</label></td>
@@ -200,7 +200,7 @@
                         </li>
                         <li style="height: 269px">
                             <div class="policyContentTitle"><b>国际</b> 舱位设置</div>
-                            <div class="limitReservationSwitchContainer">限制预订 <i class="switchButton"></i><span><i class="ico_infoWithYellowCircle" style="height: 20px"></i>开启限制预订，此类用户将只能预订勾选的舱位</span></div>
+                            <div class="limitReservationSwitchContainer">限制预订 <i class="switchButton"></i><span class="switchButtonOff"><i class="ico_infoWithYellowCircle" style="height: 20px"></i>开启限制预订，此类用户将只能预订勾选的舱位</span></div>
                             <table class="tbl_classSetup">
                                 <tr>
                                     <td><label><input type="checkbox" name="" id=""/>全选 （不限舱位）</label></td>
@@ -304,6 +304,7 @@
         $(".bis_add").click(function(){
             var t=kendo.template($("#bis_newItemTemplate").html());
             $(this).siblings(".basicInfoSetup_items").append("<li class='editing'>"+ t({oriTxt:""})+"</li>");
+            $(this).css("visibility","hidden");
         })
         $("body").delegate(".bis_edit","click",function(){
             var v=$(this).closest("li").text();
@@ -314,6 +315,7 @@
             var ipt=$(this).siblings(":text");
             var li=$(this).closest("li");
             var t=kendo.template($("#bis_itemTemplate").html());
+            li.closest(".basicInfoSetup_items").siblings(".bis_add").css("visibility","visible");
             if(ipt.attr("oriTxt"))
             {
                 li.html(t({oriTxt:ipt.attr("oriTxt")})).removeClass("editing");
@@ -332,6 +334,7 @@
             }
             var t=kendo.template($("#bis_itemTemplate").html());
             li.html(t({oriTxt:ipt.val()})).removeClass("editing");
+            li.closest(".basicInfoSetup_items").siblings(".bis_add").css("visibility","visible");
         })
         $("body").delegate(".bis_del","click",function(){
             var li=$(this).closest("li");
@@ -349,6 +352,9 @@
         })
         $("body").delegate(".policyLeftMenu li:not('.li_policyNewButton')","click",function(){
             $(this).addClass("current").siblings().removeClass("current");
+            var classStr="policyLevel"+$(this).index();
+            var oriClassStr=$(".policyRightPanel>div").attr("class");
+            $(".policyRightPanel>div").attr("class",oriClassStr.replace(/policyLevel\d/,classStr));
         })
         $(".ul_policyType li:first").trigger("click");
 
