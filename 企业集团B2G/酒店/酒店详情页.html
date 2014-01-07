@@ -50,7 +50,7 @@
             <div class="hotel_book_top clearfix"> 
                    <ul class="hotel-info">              
                           <li class="hotel-name">
-                            <h3><a href="javascript:void(0)">上海宝华国际酒店</a></h3><span><i class="hotel_stars05"></i><em>[ 五星/豪华 ]</em></span>
+                            <h3><a href="javascript:void(0)">上海宝华国际酒店</a></h3><span class="hotel-stars"><i class="hotel_stars05"></i></span> <span><em>[ 五星/豪华 ]</em></span>
                             <p class="hotel-address">地址：<em>上海市虹口区西江湾路718号（近广中路）</em><span class="hotel-map"><i></i><em>地图</em></span></p>
                             <div class="icon-list">
                                <span class="ico-free-wifi" title="免费wifi"></span>
@@ -69,7 +69,7 @@
               </div> 
               <ul class="hotelImgs clearfix">
                   <li class="hotelLeftBigImg more-pic">
-                      <a href="javascript:void(0)" target="_blank"><img src="../../static/images/b2g/hotelBigImg01.jpg"/>
+                      <a href="javascript:void(0);" target="_blank"><img src="../../static/images/b2g/hotelBigImg01.jpg"/>
                           <label class="ImgHover"><span>共<b>48</b>张图片</span></label>
                       </a>
                   </li>
@@ -136,7 +136,7 @@
                                          </td>
                                          <th>退房日期：</th>
                                          <td><input type="text" class="datepicker" /></td>
-                                         <td><button type="button" class="commonBtn smallBlueBtn">修改航班</button></td>
+                                         <td><button type="button" class="commonBtn smallBlueBtn">修改日期</button></td>
                                      </tr>
                                </table> 
                                <div class="room-list">
@@ -902,61 +902,6 @@
     </footer>
 </div>
 
-<script type="text/x-kendo-template" id="hotel_price_info">
-     <table class="room-date" >
-               <colgroup>
-                   <col width="100px"/>
-                   <col width="100px"/>
-                   <col width="100px"/>
-                   <col width="100px"/>
-                   <col width="100px"/>
-                   <col width="100px"/>
-                   <col width="100px"/>
-                   <col width="100px"/>
-               </colgroup>
-               <thead>
-                 <tr>
-                   <th></th>
-                   <th>周一</th>
-                   <th>周二</th>
-                   <th>周三</th>
-                   <th>周四</th>
-                   <th>周五</th>
-                   <th class="room-date-red">周六</th>
-                   <th class="room-date-red">周日</th>
-                 </tr>
-               </thead>
-               <tbody>
-                 <tr>
-                  <td>第一周</td>
-                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
-                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
-                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
-                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
-                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
-                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
-                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
-                 </tr>
-                 <tr>
-                  <td>第二周</td>
-                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
-                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
-                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
-                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
-                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
-                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
-                  <td><span class="room-date-price">￥<em>810</em></span><br>无早</td>
-                 </tr>
-                 <tr>
-                   <td colspan="8" style="text-align:left">
-                      <p><span class="tdTit">早餐：</span>含早餐2份，单加每份￥68.00元（中西自助）。</p>
-                      <p><span class="tdTit">加床：</span>提供加床，加床价￥150.00元。</p>
-                      <p><span class="tdTit">支付方式：</span>预订免费，入住后酒店前台付款。</p>
-                   </td>
-                 </tr>
-               </tbody>
-           </table>
-</script>
 
 	<script>
 
@@ -995,7 +940,7 @@
 			$(".changeList").fixedBar();
 
 
-            var map_window = new PopWindow(".hotel-map", { 
+             var map_window = new PopWindow(".hotel-map", { 
                     title:"XXXX酒店",
                     width:1080,
                     height:480,
@@ -1008,13 +953,17 @@
 
             var image_window = new PopWindow(".more-pic", { 
                     title:"XXXX酒店 图片展示",
-                    width:1080,
+                    width:1025,
                     content : { 
                         url : 'images.html',
                         data : {param1:'a',param2:'b'}
                     }
 
                 }).init();
+			
+			
+			//tab切换
+            $.role_ctype({ changeClass:true });
 
 
             /* 不可取消 */
