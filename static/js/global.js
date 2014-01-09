@@ -1487,12 +1487,12 @@ $.fn.fixedBar = function(settings){
     if (window.isIE6) try {document.execCommand("BackgroundImageCache", false, true);} catch(e){}
 
     var ele = $(this).length > 1 ? $(this).eq(0) : $(this);
+    var shadow;
 
     function init(){
         var eleOffsetTop = ele.offset().top;
         var elePositionTop = ele.position().top;
         var endPos;
-        var shadow;
 
         if(opts.endAt){
             if(typeof opts.endAt === 'number'){
@@ -1519,6 +1519,10 @@ $.fn.fixedBar = function(settings){
         }
 
         $(window).bind("scroll.fixedBar",function(e){
+            if(ele.is(':hidden')){
+                return; 
+            }
+
             var that = $(this);
             var scrollTop = that.scrollTop() + opts.offsetTop;
 
@@ -1585,6 +1589,23 @@ $.fn.fixedBar = function(settings){
     }
 
     init();
+
+    var api = {
+        reset:function(){
+            ele.removeClass("fixedBar").removeAttr("style");
+            $(window).unbind("scroll.fixedBar");
+            opts.createShadow && shadow.remove();
+            return this;
+        }, 
+        init:function(){
+            setTimeout(function(){
+                init(); 
+            },50);
+            return this;
+        }
+    };
+
+    ele.data('fixedBar',api);
 
     return this;
 };

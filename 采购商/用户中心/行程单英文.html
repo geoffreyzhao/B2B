@@ -30,14 +30,13 @@
 
 <script>
 $(function(){
-    var fixebar1 = $('.xcd-print1').fixedBar({inverse:true});
-    console.log(fixebar1);
-    var fixebar2 = $('.xcd-print2').fixedBar({inverse:true});
+    var fixbar1 = $('.xcd-print1').fixedBar({inverse:true}).data('fixedBar');
+    var fixbar2 = $('.xcd-print2').fixedBar({inverse:true}).data('fixedBar');
     $.role_ctype({
         changeClass:'currentState',
         callback:function(){
-            $('.xcd-print1').fixedBar({inverse:true,createShadow:false});
-            $('.xcd-print2').fixedBar({inverse:true,createShadow:false});
+            fixbar1.reset().init();
+            fixbar2.reset().init();
         }
     });
 })
