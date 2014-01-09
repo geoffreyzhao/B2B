@@ -30,10 +30,15 @@
 
 <script>
 $(function(){
-    $('.xcd-print1').fixedBar({inverse:true})
-    $('.xcd-print2').fixedBar({inverse:true})
+    var fixebar1 = $('.xcd-print1').fixedBar({inverse:true});
+    console.log(fixebar1);
+    var fixebar2 = $('.xcd-print2').fixedBar({inverse:true});
     $.role_ctype({
-        changeClass:'currentState' 
+        changeClass:'currentState',
+        callback:function(){
+            $('.xcd-print1').fixedBar({inverse:true,createShadow:false});
+            $('.xcd-print2').fixedBar({inverse:true,createShadow:false});
+        }
     });
 })
 </script></head>
