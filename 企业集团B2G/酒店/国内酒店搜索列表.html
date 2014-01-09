@@ -1494,8 +1494,16 @@
                 tb.removeClass("click");
             });
 
+
+
             /* 默认 状态 */
             $("body").delegate(".room-text a","click.singleMode",single_room_mode);
+            $("body").delegate(".room-text i","click",function(){
+                var tb = $(this).closest("table");
+                tb.find(".roomPic").toggle();
+                tb.find("tfoot").toggle();
+            });
+
 
             /* 酒店单个结果 展开折叠 */
             $("body").delegate(".hotelResultbtn span","click.allExpendMode",function(){
@@ -1539,6 +1547,7 @@
 
             $(document).tooltip({
                 items: ".hotel-picList img",
+                position:{my:"left top+5"},
                 content: function() {
                     var element = $( this );
                     if ( element.attr("data-big-src") ) {
