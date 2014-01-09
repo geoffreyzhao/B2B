@@ -1598,9 +1598,7 @@ $.fn.fixedBar = function(settings){
             return this;
         }, 
         init:function(){
-            setTimeout(function(){
-                init(); 
-            },50);
+            init(); 
             return this;
         }
     };

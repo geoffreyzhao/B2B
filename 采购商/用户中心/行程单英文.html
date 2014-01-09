@@ -32,11 +32,15 @@
 $(function(){
     var fixbar1 = $('.xcd-print1').fixedBar({inverse:true}).data('fixedBar');
     var fixbar2 = $('.xcd-print2').fixedBar({inverse:true}).data('fixedBar');
+
+    var fixbar = [];
+    fixbar.push(fixbar1);
+    fixbar.push(fixbar2);
+
     $.role_ctype({
         changeClass:'currentState',
         callback:function(){
-            fixbar1.reset().init();
-            fixbar2.reset().init();
+            fixbar[$(this).index()].reset().init();
         }
     });
 })
