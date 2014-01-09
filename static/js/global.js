@@ -1087,8 +1087,8 @@ $.role_ctype = function(settings){
         }
 
         if(settings.changeClass){
-            $('[data-role="ctype"][data-group="'+group+'"]').removeClass('active');
-            $(this).addClass('active');
+            $('[data-role="ctype"][data-group="'+group+'"]').removeClass(settings.changeClass);
+            $(this).addClass(settings.changeClass);
         }
 
         settings.callback.call(this,{

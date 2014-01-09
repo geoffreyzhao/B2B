@@ -30,7 +30,11 @@
 
 <script>
 $(function(){
-    $('.xcd-print').fixedBar({inverse:true})
+    $('.xcd-print1').fixedBar({inverse:true})
+    $('.xcd-print2').fixedBar({inverse:true})
+    $.role_ctype({
+        changeClass:'currentState' 
+    });
 })
 </script></head>
 <body>
@@ -130,12 +134,126 @@ $(function(){
         <div class="us-body">
             <aside>
                 <ul class="tab_change clearfix">
-                    <li><em><a href="#">中文版</a></em></li>
-                    <li class="currentState"><em><a href="#">英文版</a></em></li>
+                    <li class="currentState" data-role="ctype" data-group="tab" data-index="1"><em><a href="#">中文版</a></em></li>
+                    <li data-role="ctype" data-group="tab" data-index="2"><em><a href="#">英文版</a></em></li>
                 </ul>
             </aside>
 
-            <section class="us-result xcd-content">
+            <section class="us-result xcd-content" data-role="ctype-item" data-group="tab" data-index="1">
+                <div class="xcd-logo"></div>
+                <hr>
+                <h1>电子客票行程单</h1>
+                <table class="xcd-table1">
+                    <tr><td width="450"><s>航空公司记录编号：</s>K3GKZ6</td>	<td><s>订座记录编号：</s>JPTG9C</td></tr>
+                    <tr><td><s>旅客姓名：</s>CHU/KER TAI</td>	<td><s>票号：</s>297-3982243670</td></tr>
+                    <tr><td><s>身份识别代码：</s></td>	<td><s>联票：</s></td></tr>
+                    <tr><td>&nbsp;</td> <td>&nbsp;</td></tr>
+                    <tr><td><s>出票航空公司：</s>中华航空公司</td>	<td><s>出票时间：</s>05JUL13</td></tr>
+                    <tr><td>&nbsp;</td> <td>&nbsp;</td></tr>
+                    <tr><td><s>出票代理人：</s>上海不夜城旅行社有限公司</td>	<td><s>航协代码：</s>08307736</td></tr>
+                    <tr><td colspan="2"><s>代理人地址：</s>上海市长寿路699号3楼</td></tr>
+                    <tr><td><s>电话：</s>021 62772009</td>	<td><s>传真：</s>021 62776189</td></tr>
+                </table>
+                <hr>
+                <table class="xcd-table2">
+                    <thead>
+                        <tr>
+                            <th rowspan="2">始发地/目的地</th> 
+                            <th rowspan="2">航班</th>
+                            <th rowspan="2">座位等级</th>
+                            <th rowspan="2">日期</th>
+                            <th rowspan="2">起飞时间</th> 
+                            <th rowspan="2">到达时间</th>
+                            <th rowspan="2">有效期</th> 
+                            <th rowspan="2">客票状态</th>
+                            <th rowspan="2">行李</th> 
+                            <th colspan="2" style="border:0;text-align:center;">航站楼</th>
+                        </tr>
+                        <tr>
+                            <th style="text-align:center;padding-bottom:10px">起飞</th> 
+                            <th style="text-align:center;padding-bottom:10px">到达</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>台北松山机场</td>
+                        <td>CI0201</td>
+                        <td>J</td>
+                        <td>09JUL</td>
+                        <td>1230</td>
+                        <td></td>
+                        <td>/31DEC3</td>
+                        <td>OK</td>
+                        <td>30K</td>		
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>上海虹桥</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <hr>
+                <table class="xcd-table3">
+                    <tr>
+                        <td><s>票价计算：</s></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left:50px;">09JUL13TPE CI SHA918.23NUC918.23END ROE29.837800</td>
+                    </tr>
+                </table>
+                <table class="xcd-table4">
+                    <tr>
+                        <td><s>付款方式：</s>CASH</td>
+                        <td width="50">税款：</td>
+                        <td>PD62<br>PD265</td>
+                    </tr>
+                </table>
+                <table class="xcd-table5">
+                    <tr>
+                        <td><s>机票款：</s>TWD27398</td>
+                    </tr>
+                    <tr>
+                        <td><s>总 额：</s>CNY350</td> 
+                    </tr>
+                    <tr>
+                        <td><s style="float:left;">限制条件：</s><div style="margin-left:70px;">NONENDO/RFND/REISSUE CHRG OB VLD BETWEEN 01A PR13-31DEC13VLD ON ALL SHA WUX-TWN VV SHA-TWN VV INVLD CODESHARE FLT</div></td> 
+                    </tr>
+                </table>
+                <hr>
+                <table class="xcd-table6">
+                    <tr>
+                        <td><s>须知：</s></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>
+                            1、发送JP到10669018（本条免费） 得到服务列表，根据提示回复选择相关的服务-电子客票验真或电子客票状态跟踪 （一旦机票状态发生任何改变，我们将第一时间短信通知您）<br>
+                            2、发送YZ+有效身份证件号码或YZ+电子客票票号到10669018（每条一元）验明电子客票真伪<br>
+                            3、发送GZ+有效身份证件号码或GZ+电子客票票号到10669018（每条一元）获得电子客票全程状态跟踪（一旦机票状态 发生任何改变，我们将第一时间短信通知您）
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="xcd-print xcd-print1">
+                    <a class="adaptiveButton brightRed_btn">
+                        <span class="left"></span>
+                        <span class="center">打 印</span>
+                        <span class="right"></span>
+                    </a>
+                </div>
+            </section>
+
+            <section style="display:none;" class="us-result xcd-content" data-role="ctype-item" data-group="tab" data-index="2">
                 <div class="xcd-logo"></div>
                 <hr>
                 <h1>ITINERARY</h1>
@@ -238,7 +356,7 @@ $(function(){
                     </tr>
                 </table>
 
-                <div class="xcd-print">
+                <div class="xcd-print xcd-print2">
                     <a class="adaptiveButton brightRed_btn">
                         <span class="left"></span>
                         <span class="center">打 印</span>
