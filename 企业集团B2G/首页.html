@@ -662,20 +662,21 @@
 
             <h4><em>2.</em>选择差旅目的</h4>
 
-            <div style="padding-left:16px"><input id="customers" type="text" style="width: 656px;" placeholder="请选择差旅目的"/>
-            <div id="destinationContainer">
-                <ul id="userWrapper" class="selectarea">
-                    <li class="tourobj-button"><span>外出开会</span><span class="">&nbsp;</span></li>
-                    <li class="tourobj-button"><span>业务需要</span><span class="">&nbsp;</span></li>
-                    <li class="tourobj-button"><span>接客户</span><span class="">&nbsp;</span></li>
-                    <li class="tourobj-button"><span>接领导</span><span class="">&nbsp;</span></li>
-                    <li class="tourobj-button"><span>领导安排</span><span class="">&nbsp;</span></li>
-                    <li class="tourobj-button"><span>参加非常重要的会议</span><span class="">&nbsp;</span></li>
-                    <li class="tourobj-button"><span>我也不知道为什么</span><span class="">&nbsp;</span></li>
-                    <li class="tourobj-button"><span>这到底是为什么</span><span class="">&nbsp;</span></li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
+            <div style="padding-left:16px">
+                <input id="customers" class="likeKendoDDL" type="text" style="width: 656px;" placeholder="请选择差旅目的"/>
+                <div id="destinationContainer">
+                    <ul id="userWrapper" class="selectarea">
+                        <li class="tourobj-button"><span>外出开会</span><span class="">&nbsp;</span></li>
+                        <li class="tourobj-button"><span>业务需要</span><span class="">&nbsp;</span></li>
+                        <li class="tourobj-button"><span>接客户</span><span class="">&nbsp;</span></li>
+                        <li class="tourobj-button"><span>接领导</span><span class="">&nbsp;</span></li>
+                        <li class="tourobj-button"><span>领导安排</span><span class="">&nbsp;</span></li>
+                        <li class="tourobj-button"><span>参加非常重要的会议</span><span class="">&nbsp;</span></li>
+                        <li class="tourobj-button"><span>我也不知道为什么</span><span class="">&nbsp;</span></li>
+                        <li class="tourobj-button"><span>这到底是为什么</span><span class="">&nbsp;</span></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
             </div>
             <h5>备注</h5>
 
@@ -872,10 +873,12 @@
 
         $("#customers").focusin(function(){
             $("#destinationContainer").slideDown();
+            $(this).addClass("on");
         })
 
         $("#customers").focusout(function(){
             $("#destinationContainer").slideUp();
+            $(this).removeClass("on");
         })
 
         $("#destinationContainer li").click(function(){

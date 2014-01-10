@@ -121,7 +121,7 @@
                 <h3>选择商旅目的</h3>
              </div>
              <div class="case_infoCon" style="padding:10px 30px">
-             <input id="customers" type="text" style="width:397px;" placeholder="请选择差旅目的" />
+             <input id="customers" type="text" class="likeKendoDDL" style="width:397px;" placeholder="请选择差旅目的" />
             <div id="destinationContainer" >
                 <ul id="userWrapper" class="selectarea" >
                     <li class="tourobj-button"><span>外出开会</span><span class="">&nbsp;</span></li>
@@ -685,11 +685,14 @@
 				offsetX:0,
                 template:'#personBoxTemplate'
             });
-		$("#customers").focusin(function(){
+        $("#customers").focusin(function(){
             $("#destinationContainer").slideDown();
+            $(this).addClass("on");
         })
-		$("#customers").focusout(function(){
+
+        $("#customers").focusout(function(){
             $("#destinationContainer").slideUp();
+            $(this).removeClass("on");
         })
 		$("#destinationContainer li").click(function(){
             $("#customers").val($(this).text());
