@@ -17,6 +17,30 @@ $(function() {
 //            $advice.css("top", st + winh - 166);
         }
     };//$advice=$('<a class="advice"></a>').appendTo($("body"));
+
+    var backTimer = null;
+    var i = 0;
+
+    $backToTopEle.bind("mouseenter.myAnimate",function(){
+        var that = $(this);
+        if(backTimer){
+            clearInterval(backTimer);
+        }
+
+        backTimer = setInterval(function(){
+            that.css("background-position","0px -" + (i % 3 + 1) * 62 + "px");
+            i++;
+        },200);
+    });
+
+    $backToTopEle.bind("mouseleave.myAnimate",function(){
+        i = 0;
+        $(this).css("background-position","0px 0px");
+
+        if(backTimer){
+            clearInterval(backTimer);
+        }
+    });
     
     $(window).bind("scroll", $backToTopFun);
     /*
@@ -142,6 +166,10 @@ $(function() {
                     that.removeClass(o.toggleSelfClass[1]).addClass(o.toggleSelfClass[0]);
                 }
             }
+        }
+
+        if(o.toggleParentClass){
+
         }
 
         /* 折叠触发者 */
