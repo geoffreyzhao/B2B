@@ -27,7 +27,7 @@ PopWindow.prototype = {
         this.bindClick();
 
         return this.win;
-    }, 
+    },
     render:function(){
         var that = this,
             windowEle,
@@ -35,10 +35,10 @@ PopWindow.prototype = {
             tmpl;
 
         opts = that.settings;
-        
+
         if(typeof(opts.template) == "undefined" && typeof(that.window_id) != "undefined"){
             //直接元素弹窗
-            that.win = $(that.window_id).kendoWindow( opts ).data('kendoWindow'); 
+            that.win = $(that.window_id).kendoWindow( opts ).data('kendoWindow');
             return ;
         }else{
             windowEle = $('<div class="popup-window">');
@@ -50,18 +50,18 @@ PopWindow.prototype = {
         if ( typeof opts.content === 'undefined'
             && opts.template && tmpl) {
                 opts.content = {
-                    template : kendo.template(tmpl)(opts.data||{}) 
+                    template : kendo.template(tmpl)(opts.data||{})
                 }
         }
 
         if( typeof opts.content === 'undefined' ){
             throw new Error('PopWindow Error.\n'+that.triggerText + '缺少弹窗内容'+ (opts.template ? ',已初始化template属性为' + opts.template :'') );
         }else{
-            that.win = windowEle.kendoWindow( opts ).data('kendoWindow'); 
+            that.win = windowEle.kendoWindow( opts ).data('kendoWindow');
             that.win.triggerEle = that.trigger;
             that.win.data = function(d){
                 var newcontent =  kendo.template(tmpl)(d);
-                that.win.content(newcontent); 
+                that.win.content(newcontent);
             }
         }
     },
@@ -75,14 +75,14 @@ PopWindow.prototype = {
                 e.stopPropagation();
             }
             if(that.settings.reload){
-                that.win.refresh(); 
+                that.win.refresh();
             }
             that.win.center();
             that.win.open();
 
             if(that.settings.autoHide){
                 setTimeout(function(){
-                    that.win.close();  
+                    that.win.close();
                 },that.settings.autoHide);
             }
 
@@ -116,10 +116,10 @@ function GridTable(trigger, customSettings){
             }
         }
     }
-    this.kendoWinSettings = kendoWinDefaults; 
+    this.kendoWinSettings = kendoWinDefaults;
     this.triggerText = trigger;
     this.trigger = $(trigger);
-    this.customSettings = customSettings; 
+    this.customSettings = customSettings;
     this.grid = null;
 };
 GridTable.prototype = {
@@ -133,7 +133,7 @@ GridTable.prototype = {
             this.render();
             return this.grid;
         }
-    }, 
+    },
     render:function(){
         var customSettings = this.customSettings || eval('('+this.trigger.data('options')+')');
         var opts;
@@ -141,7 +141,7 @@ GridTable.prototype = {
         if( typeof opts.dataSource === 'undefined' ){
             throw new Error(this.triggerText + '缺少dataSource属性');
         }else{
-            this.grid = this.trigger.kendoGrid( opts ).data('kendoGrid'); 
+            this.grid = this.trigger.kendoGrid( opts ).data('kendoGrid');
         }
     }
 };
@@ -164,21 +164,21 @@ var Collpase = function(opts){
 Collpase.prototype = {
     init:function(){
         if(this.getContainerHeight()<this.limitHeight) return this;
-        this.render(); 
+        this.render();
         this.bindClick();
         return this;
     },
     render:function(){
-        var container = this.container; 
+        var container = this.container;
         this.originHeight = container[0].style.height;
-        this.padHeight = container[0].scrollHeight-container.height(); 
+        this.padHeight = container[0].scrollHeight-container.height();
         var trigger= this.triggerEle = $('<div class="'+(this.trigger+'_').slice(1,-1)+'"><div /></div>');
         trigger.appendTo(container).show();
         container.css({
             position:'relative',
             height:this.limitHeight + 'px',
             overflow:'hidden'
-        });  
+        });
     },
     getContainerHeight:function(){
         return this.container.height();
@@ -186,7 +186,7 @@ Collpase.prototype = {
     setHeight:function(){
         if (this.triggerEle.hasClass(this.triggerexp)){
             this.triggerEle.removeClass(this.triggerexp);
-            this.container.animate({height:this.limitHeight},this.duration);
+            this.container.animate({height:this.limitHeight},this.duration).removeClass('collapse-expand');
         }
     },
     resetHeight:function(){
@@ -195,7 +195,7 @@ Collpase.prototype = {
             var scrollHeight = this.container[0].scrollHeight - this.padHeight;
             this.triggerEle.addClass(this.triggerexp);
             this.container.animate({height:scrollHeight},this.duration,function(){
-                $(this).height(that.originHeight); 
+                $(this).height(that.originHeight).addClass('collapse-expand');
             });
         }
     },
@@ -268,7 +268,7 @@ var FloatLayer = function(opts){
     }
 
     if(opts.trigger.length>0){
-        opts.toggle=false; 
+        opts.toggle=false;
     };
 
     // todo: support more type;
@@ -316,12 +316,12 @@ var FloatLayer = function(opts){
             }else{
                 layer.open();
             }
-        }); 
+        });
     }
 
     layer.data = function(d){
         tpl = kendo.template( $(opts.template).html() );
-        layer.html(tpl(d)); 
+        layer.html(tpl(d));
         kendo.init(layer);
     };
 
@@ -344,9 +344,9 @@ var FloatLayer = function(opts){
     };
 
     layer.on('click','.close',function(){
-        layer.close(); 
+        layer.close();
     });
-    
+
     return layer;
 };
 
@@ -459,7 +459,7 @@ var CityAutocomplete = function(settings){
     }
 
     function render_hotcity_tabs(data,input){
-        var templateID = opts.template || "#city_popup_tpl"; 
+        var templateID = opts.template || "#city_popup_tpl";
 
         hot_tabs = FloatLayer({
             toggle:false,
@@ -535,11 +535,11 @@ var CityAutocomplete = function(settings){
 
         if (opts.width){
             input.each(function(){
-                var t = $(this); 
+                var t = $(this);
                 t.data('kendoAutoComplete').list.width(opts.width||200);
             });
         }
-        
+
         input.on('keyup',function(){
             var $t = $(this);
             if( $t.val() === '' ){
@@ -550,7 +550,7 @@ var CityAutocomplete = function(settings){
         });
 
         input.on('focus',function(){
-            hot_tabs.find('.tcy_tabstrip').data('kendoTabStrip').activateTab("#hot_city"); 
+            hot_tabs.find('.tcy_tabstrip').data('kendoTabStrip').activateTab("#hot_city");
         });
 
     };
@@ -669,12 +669,12 @@ $.loadingbar = function(settings) {
                     if(item.exec(surl)) {
                         state = true;
                         return false;
-                    } 
+                    }
                 }else if($.type(item) === 'string'){
                     if(item === surl) {
                         state = true;
                         return false;
-                    } 
+                    }
                 }else{
                     throw new Error('[urls] type error,string or regexp required');
                 }
@@ -907,13 +907,13 @@ var checkGroup = function(settings){
             var that = $(this);
             var name = that[0].name;
             if(names){
-                 
+
             }
             // var items = $(this).find('[type=checkbox]');
             // bindChange(items);
         });
     }
-    
+
     var bindChange = function(items){
         items.on('change',function(){
             items.filter(':checked').not(this).prop('checked',false);
@@ -928,8 +928,8 @@ var checkGroup = function(settings){
     init();
 
     return {
-    
-    
+
+
     };
 };
 
@@ -1004,7 +1004,7 @@ $.prompt=function(options){
     }
 }
 
-// checkFamily 
+// checkFamily
 ;(function ($) {
     $.fn.cbFamily = function (children) {
         return this.each(function () {
@@ -1051,7 +1051,7 @@ $.fn.fileInput = function(settings){
 
     this.each(function(){
         var that= $(this);
-        var pathInput = $('<span class="filePath"><i></i>'+settings.browseButton+'</span>').insertBefore(that); 
+        var pathInput = $('<span class="filePath"><i></i>'+settings.browseButton+'</span>').insertBefore(that);
         var fileInput = that.wrap(wrapper);
 
         fileInput.change(function(){
@@ -1071,7 +1071,7 @@ $.role_ctype = function(settings){
     var settings = $.extend({
         changeClass:false,
         evt:'click',
-        callback:function(){} 
+        callback:function(){}
     },settings);
 
     $('body').delegate('[data-role="ctype"]', settings.evt, function(e){
@@ -1079,11 +1079,11 @@ $.role_ctype = function(settings){
         var group = $(this).data('group');
         var all = $('[data-role="ctype-item"][data-group="'+group+'"]');
 
-        all.hide(); 
-        all.filter('[data-index~="'+index+'"]').show(); 
+        all.hide();
+        all.filter('[data-index~="'+index+'"]').show();
 
         if(this.type == 'radio' || this.type == 'checkbox'){
-            $(this).change(); 
+            $(this).change();
         }
 
         if(settings.changeClass){
@@ -1092,13 +1092,13 @@ $.role_ctype = function(settings){
         }
 
         settings.callback.call(this,{
-            index:index, 
+            index:index,
             group:group
         });
     });
 }
 
-// data-role ctoggle 
+// data-role ctoggle
 $.role_ctoggle = function(settings){
     var opt = $.extend({
         evt:'click'
@@ -1259,9 +1259,9 @@ function FixCol(target,userOpts) {
         //grid table scrollable 为 false
 
         if(c.isie8){
-            opts.lineAddUp += 30; 
+            opts.lineAddUp += 30;
         }else{
-            opts.lineAddUp += 18; 
+            opts.lineAddUp += 18;
         }
 	}
 
@@ -1271,7 +1271,7 @@ function FixCol(target,userOpts) {
         if(opts.xchange){
             opts.lastChangeIndex = opts.lastChangeIndex < 0 ? 0 : opts.lastChangeIndex;
             var fields =  $("tr:eq(0) th",thead).size();
-            opts.lastChangeIndex = opts.lastChangeIndex > fields ? fields : opts.lastChangeIndex; 
+            opts.lastChangeIndex = opts.lastChangeIndex > fields ? fields : opts.lastChangeIndex;
 
 
             var colgroup = $("colgroup",table);
@@ -1348,7 +1348,7 @@ function FixCol(target,userOpts) {
 
 	var setFixed = function() {
         var th = $("tr:eq(0) th:last", thead),
-            th_offset = th.offset(), 
+            th_offset = th.offset(),
             d = getDocScroll(),
             p = wrapper.offset(),
             last_w ,
@@ -1423,7 +1423,7 @@ function FixCol(target,userOpts) {
             });
             */
         });
-        this.vline.css({top: firstTop}); 
+        this.vline.css({top: firstTop});
     };
 
 	var unFixed = function() {
@@ -1444,7 +1444,7 @@ function FixCol(target,userOpts) {
         setFixed();
     };
 
-    this.startFixed = setFixed; 
+    this.startFixed = setFixed;
     this.stopFixed = unFixed;
     this.resizeFixed = resizeFixed;
 
@@ -1471,14 +1471,14 @@ $.fn.fixedBar = function(settings){
     if(this.length==0) return;
 
     if( Object.prototype.toString.call(settings) == "[object Function]" ){
-        callback = settings; 
+        callback = settings;
     }
 
     if(settings && settings.inverse){
-        defaults.css = 'position:fixed;bottom:0;'; 
+        defaults.css = 'position:fixed;bottom:0;';
     }
 
-    opts = $.extend(defaults, settings); 
+    opts = $.extend(defaults, settings);
 
     if (window.ActiveXObject) {
         window.isIE = window[window.XMLHttpRequest ? 'isIE7' : 'isIE6'] = true;
@@ -1513,14 +1513,14 @@ $.fn.fixedBar = function(settings){
         }
 
         if(opts.fixed){
-            eleOffsetTop = -1; 
+            eleOffsetTop = -1;
             if(!ele.hasClass("fixedBar")) ele.addClass("fixedBar").attr("style",opts.css);
             if(window.isIE6) ele.css({"position":"absolute"});
         }
 
         $(window).bind("scroll.fixedBar",function(e){
             if(ele.is(':hidden')){
-                return; 
+                return;
             }
 
             var that = $(this);
@@ -1542,7 +1542,7 @@ $.fn.fixedBar = function(settings){
                 opts.createShadow && shadow.hide();
                 ele.removeClass("fixedBar").removeAttr("style");
             };
-            
+
             if(ele.data('disabled') !== true){
                 if(!opts.inverse){
                     if(scrollTop > eleOffsetTop){
@@ -1567,14 +1567,14 @@ $.fn.fixedBar = function(settings){
                     shadow.hide();
                     ele.removeClass("fixedBar").removeAttr("style").data('disabled',true);
                 }else{
-                    ele.removeData('disabled'); 
+                    ele.removeData('disabled');
                 }
             }
-        }); 
+        });
 
         if(opts.inverse){
             $(function(){
-                $(window).trigger('scroll.fixedBar'); 
+                $(window).trigger('scroll.fixedBar');
             })
         }
 
@@ -1596,9 +1596,9 @@ $.fn.fixedBar = function(settings){
             $(window).unbind("scroll.fixedBar");
             opts.createShadow && shadow.remove();
             return this;
-        }, 
+        },
         init:function(){
-            init(); 
+            init();
             return this;
         }
     };
@@ -1619,37 +1619,37 @@ $.fn.fixedBar = function(settings){
 */
 
 (function( $ ){
-	 
-		 
+
+
  $.fn.scrollPagination = function(options) {
-  	
-		var opts = $.extend($.fn.scrollPagination.defaults, options);  
+
+		var opts = $.extend($.fn.scrollPagination.defaults, options);
 		var target = opts.scrollTarget;
 		if (target == null){
-			target = obj; 
+			target = obj;
 	 	}
 		opts.scrollTarget = target;
-	 
+
 		return this.each(function() {
 		  $.fn.scrollPagination.init($(this), opts);
 		});
 
   };
-  
+
   $.fn.stopScrollPagination = function(){
 	  return this.each(function() {
 	 	$(this).attr('scrollPagination', 'disabled');
 	  });
-	  
+
   };
-  
+
   $.fn.scrollPagination.loadContent = function(obj, opts){
 	 var target = opts.scrollTarget;
-     
+
 	 var mayLoadContent = $(target).scrollTop()+opts.heightOffset >= $(document).height() - $(target).height();
 	 if (mayLoadContent){
 		 if (opts.beforeLoad != null){
-			opts.beforeLoad(); 
+			opts.beforeLoad();
 		 }
 
          if(!$(obj).data('scrollPagination')){
@@ -1665,19 +1665,19 @@ $.fn.fixedBar = function(settings){
                      var newdata = data;
                      if(opts.dataType == "html"){
                          newdata = $(data);
-                         $(obj).append(newdata); 
+                         $(obj).append(newdata);
                      }
 
                      if (opts.afterLoad != null){
-                         opts.afterLoad(newdata);	
+                         opts.afterLoad(newdata);
                      }
                  },
                  error:function(xhr, textStatus){
-                        opts.debug ? console.log("Scroll Pagination Load Error .." + textStatus) : ''  ; 
+                        opts.debug ? console.log("Scroll Pagination Load Error .." + textStatus) : ''  ;
                         removeData();
                  },
                  complete:function(xhr,textStatus){
-                        opts.debug ? console.log("Scroll Pagination Load Complete .." + textStatus) : ''  ; 
+                        opts.debug ? console.log("Scroll Pagination Load Complete .." + textStatus) : ''  ;
                         removeData();
                 },
                  dataType: opts.dataType
@@ -1687,26 +1687,26 @@ $.fn.fixedBar = function(settings){
          }
 
 	 }
-	 
+
   };
-  
+
   $.fn.scrollPagination.init = function(obj, opts){
 	 var target = opts.scrollTarget;
 	 $(obj).attr('scrollPagination', 'enabled');
-	
+
 	 $(target).scroll(function(event){
 		if ($(obj).attr('scrollPagination') == 'enabled'){
-	 		$.fn.scrollPagination.loadContent(obj, opts);		
+	 		$.fn.scrollPagination.loadContent(obj, opts);
 		}
 		else {
-			event.stopPropagation();	
+			event.stopPropagation();
 		}
 	 });
-	 
+
 	 $.fn.scrollPagination.loadContent(obj, opts);
-	 
+
  };
-	
+
  $.fn.scrollPagination.defaults = {
       	 'contentPage' : null,
      	 'contentData' : {},
@@ -1715,7 +1715,7 @@ $.fn.fixedBar = function(settings){
 		 'scrollTarget': null,
 		 'heightOffset': 0,
          'dataType': 'html'
- };	
+ };
 
 $.fn.fadeInWithDelay = function(){
     var delay = 0;
