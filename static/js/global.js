@@ -276,6 +276,7 @@ var FloatLayer = function(opts){
         if(opts.type === "hover"){
            $('body').delegate(opts.trigger.selector,'mouseenter',function(e){
                var that = $(e.target);
+               layer.input = that;
                set_pos(that);
                layer.open();
            });
