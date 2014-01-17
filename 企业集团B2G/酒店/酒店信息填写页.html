@@ -15,7 +15,6 @@
 <script type="text/javascript" src="../../static/js/global.js"></script>
 <script type="text/javascript" src="../../static/js/b2g/common.js"></script>
 <script src="../../static/js/jquery-ui-1.10.3.custom.js"></script>
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=qkNnEXk6nC3jcPTM8mv3dcE8"></script>
 <!--[if lte IE 9]>
     <script src="../../static/js/html5.js"></script>
     <![endif]-->
@@ -101,51 +100,51 @@
                   <td colspan="3">
                     <div class="guestName">
                       <label>房间1</label>
-                      <span class="inconformGuest invalid"><select data-role="dropdownlist" style="width:165px;">
-                              <option>请选择</option>
-                              <option>王叔叔</option>
-                              <option>李阿姨</option>
-                              <option>小明</option>
-                              </select><i>不符合差旅政策</i>
+                      <span class="inconformGuest invalid">
+                      	<input class="guestList" type="text" style="width:165px;"/><i>不符合差旅政策</i>
                       </span>
-                      <span class="inconformGuest"><select data-role="dropdownlist" style="width:165px;">
-                              <option>请选择</option>
-                              <option>王叔叔</option>
-                              <option>李阿姨</option>
-                              <option>小明</option>
-                              </select>
-                      <i>不符合差旅政策</i>
+                      <span class="inconformGuest">
+                      	<input class="guestList" type="text" style="width:165px;"/><i>不符合差旅政策</i>
                       </span>
                     </div>
+                      <!--填写违背原因-->
                     <div class="againstReason">
                      <span class="fillinReason">填写违背原因：</span>
-                      <span class="inconformReason"><select data-role="dropdownlist" style="width:165px;">
+                     <label></label>
+                      <span class="inconformReason">
+                      	<select data-role="dropdownlist" style="width:165px;">
                               <option>陪领导出行</option>
                               <option>时间不合适</option>
-                              </select>
+                         </select>
                       </span>
-                      <span class="inconformReason"><select data-role="dropdownlist" style="width:165px;">
-                              <option>陪领导出行</option>
-                              <option>时间不合适</option>
-                              </select>
-                      </span>
+                       
+                   </div>
+                     <!--填写违背原因 结束--> 
                     
-                    </div>
                      <div class="guestName">
                       <label>房间2</label>
-                      <span class="conformGuest"><select data-role="dropdownlist" style="width:165px;">
-                              <option>请选择</option>
-                              <option>王叔叔</option>
-                              <option>李阿姨</option>
-                              <option>小明</option>
-                              </select>
+                      <span class="inconformGuest">
+                      	<input class="guestList" type="text" style="width:165px;"/><i>不符合差旅政策</i>
                       </span>
-                      <span class="conformGuest"><select data-role="dropdownlist" style="width:165px;">
-                              <option>请选择</option>
-                              <option>王叔叔</option>
-                              <option>李阿姨</option>
-                              <option>小明</option>
-                              </select>
+                      <span class="inconformGuest invalid">
+                      	<input class="guestList" type="text" style="width:165px;"/><i>不符合差旅政策</i>
+                      </span>
+                    </div>
+                     <div class="againstReason">
+                      <span class="fillinReason">填写违背原因：</span>
+                      <label></label>
+                      <span class="inconformReason" style="display:none">
+                      	<select data-role="dropdownlist" style="width:165px;">
+                              <option>陪领导出行</option>
+                              <option>时间不合适</option>
+                         </select>
+                      </span>
+                     
+                      <span class="inconformReason inconformReason-second" >
+                      	<select data-role="dropdownlist" style="width:165px;">
+                              <option>陪领导出行</option>
+                              <option>时间不合适</option>
+                         </select>
                       </span>
                     </div>
                   </td>
@@ -331,6 +330,25 @@
 
     <script>
 	
+			
+
+        $(function(){
+			
+			
+			var guestDs = [
+				{name:"请选择",value:"choose"},
+				{name:"王叔叔",value:"wss"},
+				{name:"李阿姨",value:"lay"},
+				{name:"小明",value:"xm"},
+			];
+			
+			$(".guestList").kendoDropDownList({
+				dataTextField : "name",
+                dataValueField : "value",
+				dataSource:guestDs,
+				template:"<div class='guest'><span>#=name#</span><i class='against_icon'></i></div>"
+			});
+			
 			$(".writeList .price").kendoTooltip({
 				position:"bottom", //left right top
 				wrapperClass:"lineWeight",
@@ -340,8 +358,6 @@
 				},
 				offsetY:10,
 			});
-
-        $(function(){
 			
 			$(".rightFillIn").fixedBar();
 			
