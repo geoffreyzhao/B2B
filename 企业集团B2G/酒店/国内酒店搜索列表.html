@@ -87,7 +87,7 @@
                 </div>
                 <div class="searchMore">
                    <div class="searchRow">
-                    <div class="searchRowTitle"><em>酒店位置：</em><span class="sel">不限</span></div>
+                    <div class="searchRowTitle"><em>酒店位置：</em><span class="nolimit sel" data-filter-type="locate">不限</span></div>
                      <table class="hotelLocation">
                        <tbody>
                          <tr>
@@ -106,7 +106,7 @@
                    </div>
                     <div class="searchRow">
                      <div class="searchRowTitle" style="padding:10px 0 0 0">
-                     <em>酒店价格：</em><span class="sel">不限</span>
+                     <em>酒店价格：</em><span class="nolimit sel" data-filter-type="price|customer_price">不限</span>
                      </div>
                      <table>
                        <tbody>
@@ -121,10 +121,10 @@
                            <label><input type="radio" name="price" value="300-600元"/>300-600元</label>
                            </td>
                            <td>
-                           <label class="sel"><input type="radio" name="price" value="600元以上"/>600元以上</label>
+                           <label><input type="radio" name="price" value="600元以上"/>600元以上</label>
                            </td>
                            <td style="width:240px">
-                           <span style="margin:0 0 0 10px">自定义：<input type="text" placeholder="0元"/>到<input type="text" placeholder="1200元"/></span>
+                           <span style="margin:0 0 0 10px">自定义：<input type="text" placeholder="0元" name="customer_price"/>到<input type="text" name="customer_price" placeholder="1200元"/></span>
                            </td>
                            <td> <button type="button" class="sureBtn">确定</button></td>
                          </tr>
@@ -132,7 +132,7 @@
                      </table>
                    </div>
                     <div class="searchRow">
-                      <div class="searchRowTitle"><em>酒店星级：</em><span>不限</span></div>
+                      <div class="searchRowTitle"><em>酒店星级：</em><span class="nolimit sel" data-filter-type="hotelStar">不限</span></div>
                      <table>
                        <tbody>
                          <tr>
@@ -153,7 +153,7 @@
                      </table>
                    </div>
                     <div class="searchRow">
-                     <div class="searchRowTitle"><em>酒店品牌：</em><span class="sel">不限</span></div>
+                     <div class="searchRowTitle"><em>酒店品牌：</em><span class="nolimit sel" data-filter-type="brand">不限</span></div>
                      <table>
                        <tbody>
                          <tr>
@@ -180,7 +180,7 @@
                      </table>
                    </div>
                    <div class="searchRow last">
-                      <div class="searchRowTitle"><em>酒店设施：</em><span class="sel">不限</span></div>
+                     <div class="searchRowTitle"><em>酒店设施：</em><span class="nolimit sel" data-filter-type="facility">不限</span></div>
                      <table>
                        <tbody>
                          <tr>
@@ -224,7 +224,8 @@
                    </div>
                    <div class="searchResult">
                      <div class="clearCondition"><a href="#">清空条件</a></div>
-                     <em>253</em><b>家酒店满足条件：</b><span><strong>航中路</strong><i></i></span><span><strong>150-300元</strong><i></i></span><span><strong>锦江之星</strong><i></i></span><span><strong>格林豪泰</strong><i></i></span><span><strong>免费wifi</strong><i></i></span>
+                     <em>253</em><b>家酒店满足条件：</b>
+                     <!--<span><strong>航中路</strong><i></i></span><span><strong>150-300元</strong><i></i></span><span><strong>锦江之星</strong><i></i></span><span><strong>格林豪泰</strong><i></i></span><span><strong>免费wifi</strong><i></i></span>-->
                    </div>
                 </div>
                 
@@ -1601,6 +1602,10 @@
     </div>
 </script>
 
+<script type="text/x-kendo-template" id="filter_item_tpl">
+    <span class="filter-item #=type_name#" # if(id) {# id="#=id#" #}#  data-filter-type="#=type_name#" value="#=value#"><strong>#=value#</strong><i></i></span>
+</script>
+
 	<script>
 
 		$(function(){
@@ -1612,7 +1617,6 @@
                         url : 'map.html',
                         data : {param1:'a',param2:'b'}
                     }
-
                 }).init();
 
             var image_window = new PopWindow(".more-pic", { 
@@ -1741,8 +1745,7 @@
             });
 
             //tab切换
-            $.role_ctype({ changeClass:true });
-
+            $.role_ctype({ changeClass:'active' });
 
             /* 不可取消 */
 			$(".room-list .linkA-not").kendoTooltip({
@@ -1886,8 +1889,96 @@
                 }
             });
 
+            /* 酒店筛选条件 */
+
+            $.loadingbar({showClose:false,text:"正在努力加载数据",wrapperClass:"hotel",urls:[new RegExp("^\\/php\\/searchHotel\\.php.*$")]});
+
+            function refreshList(){
+                $.ajax({
+                    type:"POST",
+                    url:"/php/searchHotel.php",
+                    data:{}, //please use $("form").serialize() 
+                    success:function(serverData){
+                        console.log(serverData);
+                    }
+                });
+            }
+
+            function addItem(id,value,type_name){
+                var tpl = kendo.template($("#filter_item_tpl").html());
+                var temp = tpl({
+                    id:id,
+                    type_name:type_name,
+                    value:value
+                });
+
+                if(id){
+                    removeFilterById(id);
+                }
+
+                $(".searchResult").append(temp);
+            }
+
+            function removeFilterByType(type){
+                var s = [];
+                if(/|/.test(type)){
+                    s = type.split('|');
+                }else{
+                    s.push(type);
+                }
+                
+                for(var i in s){
+                    $(".searchResult ." + s[i]).remove();
+                }
+            }
+
+            function removeFilterById(id){
+                $("#" + id).remove();
+            }
+
+            function removeItem(val){
+                $(".filter-item[value=\"" + val + "\"]").remove();
+            }
 
 
+            $("body").delegate(".searchMore input[type=radio]","click",function(){
+                addItem("filter_" + this.name,this.value,this.name);
+                refreshList();
+            });
+
+            $("body").delegate(".searchMore input[type=checkbox]","click",function(){
+                if($(this).prop("checked")){
+                    addItem("",this.value,this.name);
+                }else{
+                    removeItem(this.value);
+                }
+
+                refreshList();
+            });
+
+            $(".searchMore .nolimit").bind("click",function(){
+                removeFilterByType($(this).attr("data-filter-type"));
+
+                var searchRow = $(this).closest(".searchRow");
+
+                $("input[type=radio]",searchRow).prop("checked",false);
+                $("input[type=checkbox]",searchRow).prop("checked",false);
+
+                refreshList();
+            });
+
+            $("body").delegate(".filter-item","click",function(){
+                console.log("delete filter");
+                var s = $(this).attr("data-filter-type");
+                var v = $(this).attr("value");
+
+                $('input[name="' + s + '"][value="' + v + '"]').prop("checked",false);
+                $(this).remove();
+
+                refreshList();
+            });
+
+            /** 酒店筛选条件结束 */
 		});
 	</script>
     
