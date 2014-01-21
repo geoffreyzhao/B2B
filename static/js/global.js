@@ -219,6 +219,7 @@ var FloatLayer = function(opts){
     var opts = $.extend({
         trigger:"",
         className:"",
+        id:"",
         data:{},
         template:"",
         async:false,
@@ -234,7 +235,7 @@ var FloatLayer = function(opts){
 
     opts.trigger = opts.trigger.jquery ? opts.trigger : $(opts.trigger);
 
-    var layer = $('<div class="ac-floatlayer "'+ opts.className +' style="display:none;position:absolute;"/>');
+    var layer = $('<div' + (opts.id ? ' id="' + opts.id + '"' : '') + ' class="ac-floatlayer'+ (opts.className ? " " + opts.className : "") +'" style="display:none;position:absolute;"/>');
 
     if(opts.css) {
         layer.css(opts.css);

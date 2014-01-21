@@ -192,54 +192,53 @@
     </footer>
 </div>
 
-<script type="text/x-kendo-template" id="ac-section-template">
-<div class="row treeview-header">
-    <strong>部门名称：</strong>
-    <input id="" style="width:300px; vertical-align:middle;" type="text" name="" value="请输入部门名称">
-</div>
-<div class="row treeview-header">
-    <strong>组织架构树：</strong>
-</div>
+<div id="ac-section-template" style="display:none;">
+    <div class="row treeview-header">
+        <strong>部门名称：</strong>
+        <input id="" style="width:300px; vertical-align:middle;" type="text" name="" value="请输入部门名称">
+    </div>
+    <div class="row treeview-header">
+        <strong>组织架构树：</strong>
+    </div>
 
-    <div class="row treeview-white">
-    <ul id="treeview2" data-role="treeview">
-        <li data-expanded="true">
-           <label><input type="checkbox"/>苏宁公司</label>
-        <ul>
+        <div class="row treeview-white">
+        <ul id="treeview">
             <li data-expanded="true">
-               <label><input type="checkbox" disabled="disabled"/>北京分部</label>
-            <ul>
-                <li> <label><input type="checkbox"/>总裁部</label>
-                    <ul>
-                        <li><label><input type="checkbox"/>业务部</label></li>
-                        <li><label><input type="checkbox"/>行政部</label></li>
-                        <li rel="1112"><label><input type="checkbox"/>采购部</label></li>
-                    </ul>
-                </li>
-            </ul>
-            </li>
-
-            <li>
-                <label><input type="checkbox"/>南京分部 </label>
-            <ul>
-                <li rel="1412">
-                   <label><input type="checkbox"/>采购部 </label>
+               <label><input type="checkbox" name="dept"/>苏宁公司</label>
                 <ul>
-                    <li><label><input type="checkbox"/>家电部</label></li>
+                    <li data-expanded="true">
+                       <label><input type="checkbox" name="dept"/>北京分部</label>
+                        <ul>
+                            <li> <label><input type="checkbox" name="dept"/>总裁部</label>
+                                <ul>
+                                    <li><label><input type="checkbox" name="dept"/>业务部</label></li>
+                                    <li><label><input type="checkbox" name="dept"/>行政部</label></li>
+                                    <li><label><input type="checkbox" name="dept"/>采购部</label></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <label><input type="checkbox" name="dept"/>南京分部 </label>
+                        <ul>
+                            <li>
+                               <label><input type="checkbox" name="dept"/>采购部 </label>
+                                <ul>
+                                    <li><label><input type="checkbox" name="dept"/>家电部</label></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><label><input type="checkbox" name="dept"/>业务部</label></li>
                 </ul>
-                </li>
-            </ul>
             </li>
-            <li><label><input type="checkbox"/>业务部</label></li>
         </ul>
-        </li>
-    </ul>
+    </div>
+    <div class="row row-btns">
+        <a href="javascript:;" class="btns btn-s2 btn-c1">确 定</a>
+        <a href="javascript:;" class="btns btn-s2 btn-c5">取 消</a>
+    </div>
 </div>
-<div class="row row-btns">
-    <a href="javascript:;" class="btns btn-s2 btn-c1">确 定</a>
-    <a href="javascript:;" class="btns btn-s2 btn-c5">取 消</a>
-</div>
-</script>
 
 <script id="personBoxTemplate" type="text/html" >
 	  <div class="personalBox">
@@ -263,9 +262,8 @@
 		
 		new PopWindow('.selSection',{
 				title:'请选择终审部门',
-				template:'#ac-section-template',
 				width:500
-			}).init();
+			},"#ac-section-template").init();
 			
 			var layer = FloatLayer({
                 trigger: $('.groupSet'),
@@ -275,11 +273,9 @@
                 template:'#personBoxTemplate'
             });		
 		
-	});
-</script>
 
-<script type="text/javascript">
-	$(function(){		
+
+        /* 因公因私 切换 */
 		
 		$(".apprPeople label").each(function(index){
             $(this).click(function(){
@@ -288,7 +284,6 @@
                 $(".apprPeople label").removeClass("currentStatus");
                 $(this).addClass("currentStatus");
             });
-
         });
 		
 		$(".onBusiness label").each(function(index){
@@ -299,6 +294,41 @@
                 $(this).addClass("currentModel");
             });
 
+        });
+
+        /* 因公因私切换结束 */
+
+        $("#treeview").kendoTreeView({
+            change:function(e){
+                /*
+                console.log("Change", this.select());
+                console.log(this.parent(this.select()));
+                */
+            }
+
+        });
+
+        $("body").delegate(".treeview-white input[type=checkbox]","click.singleMode",function(){
+            var that = $(this);
+            var checked = that.prop("checked");
+            var li_items = that.closest("li").parents("li");
+
+            if(checked){
+                $.each(li_items,function(){
+                    $(">div input[type=checkbox]",this).prop("checked",false).attr("disabled",true);
+                });
+                /* 选中 */
+                that.closest("li").find("ul input[type=checkbox]").prop("checked",false).attr("disabled",true);
+            }else{
+                $.each(li_items,function(){
+                    $(">div input[type=checkbox]",this).attr("disabled",false);
+                });
+                that.closest("li").find("ul input[type=checkbox]").attr("disabled",false);
+
+                if($(".treeview-white input:checked").length){
+                    $(".treeview-white input[type=checkbox]:eq(0)").attr("disabled",true);
+                }
+            }
         });
 		
 	});
