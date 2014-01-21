@@ -68,24 +68,51 @@ $(function(){
         open:function(){
             $('.contact-search').kendoAutoComplete({
                 filter: "contains",
-                dataSource:{
-                    transport: {
-                        read: {
-                            dataType:'json',
-                            url: "/php/address.php"
-                        }
-                    }
-                },
-                placeholder:'姓名/电话/邮箱',
+                dataSource:[{
+                    "id":1012,
+                    "email":"xaoquan@163.com",
+                    "name":"张小全",
+                    "department":"产品设计部",
+                    "phone":"13800138000"
+                },{
+                    "id":1912,
+                    "email":"xaoquan@163.com",
+                    "name":"张小全",
+                    "department":"产品设计部",
+                    "phone":"13800138000"
+                },{
+                    "id":1422,
+                    "email":"xaoquan@163.com",
+                    "name":"张小按",
+                    "department":"产品设计部",
+                    "phone":"13800138000"
+                },{
+                    "id":141889,
+                    "email":"xaoquan@163.com",
+                    "name":"张黄非",
+                    "department":"产品设计部",
+                    "phone":"13800138000"
+                },{
+                    "id":1411,
+                    "email":"xaoquan@163.com",
+                    "name":"张小非",
+                    "department":"产品设计部",
+                    "phone":"13800138000"
+                }],
+                placeholder:'姓名/部门/邮箱',
                 dataTextField:'name',
                 select:function(e){
-                    // var dataItem = this.dataItem(e.item.index());
+                     var dataItem = this.dataItem(e.item.index());
                     // var id = dataItem.id;
                     // if($('li[rel='+id+']').length>0){
                     //     treeview.expand('.k-item');
                     //     treeview.select('li[rel='+id+']');
                     //     selectedHandler(id,dataItem.name);
                     // }
+                    if($(".ul_selectedTravelClerk li").length<5)
+                    {
+                        $(".ul_selectedTravelClerk").append(kendo.template("<li>#= name# #= phone# #= email# <i class='btn_del'></i></li>")(dataItem));
+                    }
                 },
                 template:'<span class="address-name">#= name#</span><span class="address-phone">#= phone#</span><span class="address-email">#= email#</span>',
                 height:150
@@ -93,13 +120,23 @@ $(function(){
         },
         width:580
     }).init();
+    new PopWindow('.ac-batch3',{
+        title:'批量设置审批人',
+        template:'#ac-batch3-template',
+        width:800
+    }).init();
+    new PopWindow('.link_setApprover',{
+        title:'设置审批人',
+        template:'#ac-batch4-template',
+        width:800
+    }).init();
 
     var treeview = $('#treeview').data('kendoTreeView');
     treeview.expand('.k-item');
 
 
     function selectedHandler(id,text){
-        alert(id+text+'已被选中，修改selectedHandler函数进行查询');  
+        alert(id+text+'已被选中，修改selectedHandler函数进行查询');
     }
 
 
@@ -126,8 +163,47 @@ $(function(){
         template:'<span class="department-belongs">#= belongs#</span><span class="department-name">#= name#</span>'
     });
 
-}) 
+    $("body").delegate(".ul_selectedTravelClerk i.btn_del","click",function(){$(this).closest("li").remove();})
+    $("body").delegate(".ul_allApprover_batch li","click",function(){
+        if($(".ul_selectedApprover_batch li").length<5)
+        {
+            $(".ul_selectedApprover_batch").append($(this).append("<i class='btn_del'></i>"));
+        }
+    })
+    $("body").delegate(".ul_allApprover li","click",function(){
+        if(!$(this).hasClass("select") && $(this).siblings(".select").length>4)
+        {
+            return false;
+        }
+        $(this).toggleClass("select");
+    })
+    $("body").delegate(".btn_setApprover.clickable","click",function(){
+        var target=$(this).attr("data-target");
+        $(".ul_allApprover li.select").each(function(){
+            if($("."+target).find("li").length>4)
+            {
+                return false;
+            }
+            $("."+target).append("<li>"+$(this).text()+"<i class='btn_del'></i></li>");
+        });
+        $(".ul_allApprover li").removeClass("select");
+    })
+
+    $("body").delegate(".iptWithSearchButtonContainer input","focus",function(){
+        $(this).siblings(".searchButtonInInputContainer").addClass("highLight");
+    })
+
+    $("body").delegate(".iptWithSearchButtonContainer input","blur",function(){
+        $(this).siblings(".searchButtonInInputContainer").removeClass("highLight");
+    })
+})
     </script>
+    <style type="text/css">
+        strong{
+            font-size: 14px;
+            color:#333333;
+        }
+    </style>
 </head>
 <body>
 <div class="main-wrapper">
@@ -142,7 +218,7 @@ $(function(){
                     <li><a herf="#">数据服务</a></li>
                     <li><a herf="#">创业维护</a></li>
                     <li><a herf="#">系统设置</a></li>
-                </ul> 
+                </ul>
             </nav>
         </div>
     </header>
@@ -211,10 +287,10 @@ $(function(){
                                     </li>
 
                                     <li>
-                                    南京分部 
+                                    南京分部
                                     <ul>
                                         <li rel="1412">
-                                        采购部 
+                                        采购部
                                         <ul>
                                             <li>家电部</li>
                                         </ul>
@@ -239,7 +315,7 @@ $(function(){
                                     <col width="80">
                                     <col width="180">
                                 </colgroup>
-                                
+
                                 <tr>
                                     <th>员工姓名：</th>
                                     <td><input id="" type="text" name=""></td>
@@ -279,6 +355,7 @@ $(function(){
                             <div class="table-action">
                                 <a href="" class="btns btn-c4 ac-batch1">批量转调</a>
                                 <a href="" class="btns btn-c4 ac-batch2">批量设置商旅秘书</a>
+                                <a href="" class="btns btn-c4 ac-batch3">批量设置审批人</a>
                             </div>
                         </div>
                         <div class="block block-result">
@@ -294,7 +371,7 @@ $(function(){
                                      <col width="80">
                                      <col>
                                  </colgroup>
-                                 
+
                                  <thead>
                                   <tr>
                                         <th><input id="" type="checkbox" name=""></th>
@@ -335,7 +412,8 @@ $(function(){
                                          <span class="hyper-link"><u>操作</u>
                                              <i class="arrow-down"></i>
                                              <div class="hyper-text">
-                                                 <a href="#">编辑</a>
+		     <a href="#">编辑</a>
+		     <a href="#" class="link_setApprover">设置审批人</a>
                                                  <a href="#">转调</a>
                                                  <a href="#" class="ac-freeze">冻结</a>
                                                  <a href="#" class="ac-delete">删除</a>
@@ -370,7 +448,8 @@ $(function(){
                                          <span class="hyper-link"><u>操作</u>
                                              <i class="arrow-down"></i>
                                              <div class="hyper-text">
-                                                 <a href="#">编辑</a>
+		     <a href="#">编辑</a>
+		     <a href="#" class="link_setApprover">设置审批人</a>
                                                  <a href="#">转调</a>
                                                  <a href="#" class="ac-freeze">冻结</a>
                                                  <a href="#" class="ac-delete">删除</a>
@@ -392,7 +471,8 @@ $(function(){
                                          <span class="hyper-link"><u>操作</u>
                                              <i class="arrow-down"></i>
                                              <div class="hyper-text">
-                                                 <a href="#">编辑</a>
+		     <a href="#">编辑</a>
+		     <a href="#" class="link_setApprover">设置审批人</a>
                                                  <a href="#">转调</a>
                                                  <a href="#" class="ac-freeze">冻结</a>
                                                  <a href="#" class="ac-delete">删除</a>
@@ -414,7 +494,8 @@ $(function(){
                                          <span class="hyper-link"><u>操作</u>
                                              <i class="arrow-down"></i>
                                              <div class="hyper-text">
-                                                 <a href="#">编辑</a>
+		     <a href="#">编辑</a>
+		     <a href="#" class="link_setApprover">设置审批人</a>
                                                  <a href="#">转调</a>
                                                  <a href="#" class="ac-freeze">冻结</a>
                                                  <a href="#" class="ac-delete">删除</a>
@@ -436,7 +517,8 @@ $(function(){
                                          <span class="hyper-link"><u>操作</u>
                                              <i class="arrow-down"></i>
                                              <div class="hyper-text">
-                                                 <a href="#">编辑</a>
+		     <a href="#">编辑</a>
+		     <a href="#" class="link_setApprover">设置审批人</a>
                                                  <a href="#">转调</a>
                                                  <a href="#" class="ac-freeze">冻结</a>
                                                  <a href="#" class="ac-delete">删除</a>
@@ -458,7 +540,8 @@ $(function(){
                                          <span class="hyper-link"><u>操作</u>
                                              <i class="arrow-down"></i>
                                              <div class="hyper-text">
-                                                 <a href="#">编辑</a>
+		     <a href="#">编辑</a>
+		     <a href="#" class="link_setApprover">设置审批人</a>
                                                  <a href="#">转调</a>
                                                  <a href="#" class="ac-freeze">冻结</a>
                                                  <a href="#" class="ac-delete">删除</a>
@@ -480,7 +563,8 @@ $(function(){
                                          <span class="hyper-link"><u>操作</u>
                                              <i class="arrow-down"></i>
                                              <div class="hyper-text">
-                                                 <a href="#">编辑</a>
+		     <a href="#">编辑</a>
+		     <a href="#" class="link_setApprover">设置审批人</a>
                                                  <a href="#">转调</a>
                                                  <a href="#" class="ac-freeze">冻结</a>
                                                  <a href="#" class="ac-delete">删除</a>
@@ -502,7 +586,8 @@ $(function(){
                                          <span class="hyper-link"><u>操作</u>
                                              <i class="arrow-down"></i>
                                              <div class="hyper-text">
-                                                 <a href="#">编辑</a>
+		     <a href="#">编辑</a>
+		     <a href="#" class="link_setApprover">设置审批人</a>
                                                  <a href="#">转调</a>
                                                  <a href="#" class="ac-freeze">冻结</a>
                                                  <a href="#" class="ac-delete">删除</a>
@@ -524,7 +609,8 @@ $(function(){
                                          <span class="hyper-link"><u>操作</u>
                                              <i class="arrow-down"></i>
                                              <div class="hyper-text">
-                                                 <a href="#">编辑</a>
+		     <a href="#">编辑</a>
+		     <a href="#" class="link_setApprover">设置审批人</a>
                                                  <a href="#">转调</a>
                                                  <a href="#" class="ac-freeze">冻结</a>
                                                  <a href="#" class="ac-delete">删除</a>
@@ -570,10 +656,10 @@ $(function(){
             </li>
 
             <li>
-            南京分部 
+            南京分部
             <ul>
                 <li rel="1412">
-                采购部 
+                采购部
                 <ul>
                     <li>家电部</li>
                 </ul>
@@ -592,8 +678,191 @@ $(function(){
 </script>
 
 <script type="text/x-kendo-template" id="ac-batch2-template">
-    <div class="row" style="margin:10px 80px 100px 80px;">
-        <input class="contact-search" style="width:100%;" type="text" name="">
+    <div class="row" style="margin:10px 80px;height:250px;">
+        <table class="tbl_comm">
+            <colgroup>
+                <col width="80">
+            </colgroup>
+            <tr>
+                <td rowspan="3" style="vertical-align:top;line-height:30px"><strong style="color:black">差旅秘书：</strong></td>
+                <td>
+                    <input class="contact-search" style="width:100%;" type="text" name="">
+                </td>
+            </tr>
+            <tr>
+                <td><i class="important">*</i>最多支持设置5个差旅秘书</td>
+            </tr>
+            <tr>
+                <td>
+                    <ul class="ul_selectedTravelClerk">
+                        <li>潘晓梅 行政部 123467589@qq.com<i class="btn_del"></i></li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="row row-btns">
+        <a href="javascript:;" class="btns btn-s2 btn-c1">确 定</a>
+        <a href="javascript:;" class="btns btn-s2 btn-c5">取 消</a>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="ac-batch3-template">
+    <div class="row">
+        <table class="tbl_comm">
+        <colgroup>
+            <col width="350">
+            <col width="60">
+        </colgroup>
+        <tr>
+            <td><strong>审批人：</strong></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="iptWithSearchButtonContainer">
+                    <input style="width:100%;" type="text" name="" placeholder="姓名/部门/邮箱">
+                    <div class="searchButtonInInputContainer"><i class="searchButtonInInput"></i></div>
+                </div>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><strong>所有审批人：</strong></td>
+            <td rowspan="2">
+                <div style="position:relative"><i class="btn_setApprover"></i></div>
+            </td>
+            <td><strong>第一级：</strong><i class="important">*</i>同级多人审批，最多增加5人</td>
+        </tr>
+        <tr>
+            <td>
+                <div class="oriApproverContainer" style="height:170px;">
+                    <ul class="ul_selectedTravelClerk ul_allApprover_batch">
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                    </ul>
+                </div>
+            </td>
+            <td>
+                <div class="oriApproverContainer" style="height:170px;overflow:hidden">
+                    <ul class="ul_selectedTravelClerk ul_selectedApprover_batch">
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    </table>
+    </div>
+    <div class="row row-btns">
+        <a href="javascript:;" class="btns btn-s2 btn-c1">确 定</a>
+        <a href="javascript:;" class="btns btn-s2 btn-c5">取 消</a>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="ac-batch4-template">
+    <div class="row">
+        <table class="tbl_comm">
+        <colgroup>
+            <col width="350">
+            <col width="60">
+        </colgroup>
+        <tr>
+            <td><strong>审批人：</strong></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="iptWithSearchButtonContainer">
+                    <input class="contact-search" style="width:100%;" type="text" name="" placeholder="姓名/部门/邮箱">
+                    <i class="searchButtonInInput"></i>
+                </div>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><strong>所有审批人：</strong><span class="approverTip">您已经选过该审批人，请勿重复选择</span></td>
+            <td></td>
+            <td><strong>第一级：</strong><i class="important">*</i>同级多人审批，最多增加5人</td>
+        </tr>
+        <tr>
+            <td rowspan="5">
+                <div class="oriApproverContainer" style="height:415px;">
+                    <ul class="ul_selectedTravelClerk ul_allApprover">
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                    </ul>
+                </div>
+            </td>
+            <td>
+                <div style="position:relative"><i class="btn_setApprover clickable" data-target="ul_selectedApprover_l1"></i></div>
+            </td>
+            <td>
+                <div class="oriApproverContainer" style="height:105px;">
+                    <ul class="ul_selectedTravelClerk ul_selectedApprover_l1">
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><strong>第二级：</strong></td>
+        </tr>
+        <tr>
+            <td>
+                <div style="position:relative"><i class="btn_setApprover clickable" data-target="ul_selectedApprover_l2"></i></div>
+            </td>
+            <td>
+                <div class="oriApproverContainer" style="height:105px;">
+                    <ul class="ul_selectedTravelClerk ul_selectedApprover_l2">
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><strong>第三级：</strong></td>
+        </tr>
+        <tr>
+            <td>
+                <div style="position:relative"><i class="btn_setApprover clickable" data-target="ul_selectedApprover_l3"></i></div>
+            </td>
+            <td>
+                <div class="oriApproverContainer" style="height:105px;">
+                    <ul class="ul_selectedTravelClerk ul_selectedApprover_l3">
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    </table>
     </div>
     <div class="row row-btns">
         <a href="javascript:;" class="btns btn-s2 btn-c1">确 定</a>
