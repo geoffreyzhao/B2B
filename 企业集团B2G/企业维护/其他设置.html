@@ -9,9 +9,7 @@
     <link rel="stylesheet" href="/static/css/b2g.css" media="all" />
     <link rel="stylesheet" href="/static/css/kendo.common.css" />
     <link rel="stylesheet" href="/static/css/kendo.b2g.css" />
-
     <link rel="stylesheet" href="/static/css/b2g_management.css" media="all" />
-
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/kendo.web.js"></script>
     <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
@@ -113,7 +111,7 @@
                                                           <label class="groupSet"><em>潘小美</em> <i></i></label>
                                                           <label class="groupSet"><em>潘小美</em> <i></i></label>
                                                           <label class="groupSet"><em>潘小美</em> <i></i></label>
-                                                          <span class="selSection" style="margin-bottom:8px;"><em></em>请选择终审部门</span> 
+                                                          <span class="examine" style="margin-bottom:8px;"><em></em>请选择审批人</span> 
                                                      </div>
                                                      <label><input type="checkbox" />无需终审审批人审批，仅以邮件或短信通知</label>
                                               </label>
@@ -171,7 +169,7 @@
                                                           <label class="groupSet"><em>潘小美</em> <i></i></label>
                                                           <label class="groupSet"><em>潘小美</em> <i></i></label>
                                                           <label class="groupSet"><em>潘小美</em> <i></i></label>
-                                                          <span class="selSection" style="margin-bottom:8px;"><em></em>请选择终审部门</span> 
+                                                          <span class="examine" style="margin-bottom:8px;"><em></em>请选择审批人</span> 
                                                      </div>
                                                      <label><input type="checkbox" />无需终审审批人审批，仅以邮件或短信通知</label>
                                               </label>
@@ -240,6 +238,17 @@
     </div>
 </div>
 
+<div id="ac-examine-template" style="display:none;">
+    <div class="row treeview-header">
+        <strong>审批人姓名：</strong>
+        <input id="" style="width:300px; vertical-align:middle;" type="text" name="" value="姓名 / 电话 / 邮箱">
+    </div>
+    <div class="row row-btns">
+        <a href="javascript:;" class="btns btn-s2 btn-c1">确 定</a>
+        <a href="javascript:;" class="btns btn-s2 btn-c5">取 消</a>
+    </div>
+</div>
+
 <script id="personBoxTemplate" type="text/html" >
 	  <div class="personalBox">
 		   <div class="personalBox-left">
@@ -260,10 +269,15 @@
 
     $(function(){
 		
-		new PopWindow('.selSection',{
+		    new PopWindow('.selSection',{
 				title:'请选择终审部门',
 				width:500
 			},"#ac-section-template").init();
+			
+			new PopWindow('.examine',{
+				title:'请选择审批人',
+				width:500
+			},"#ac-examine-template").init();
 			
 			var layer = FloatLayer({
                 trigger: $('.groupSet'),
