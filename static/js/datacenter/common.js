@@ -7,7 +7,7 @@ $(function() {
 
         var dpSetting = {
             css : {"z-index": 20000},
-			
+            showTomorrow:true,
 			numberOfMonths:[1,2],
 			minDate :new Date(),
 			firstDay:0,
@@ -17,7 +17,7 @@ $(function() {
 
         var dpSettingUlt = {
             css : {"z-index": 20000},
-			
+            showTomorrow:true,
 			numberOfMonths:[1,2],
 			firstDay:0,
 			showButtonPanel :true
@@ -25,6 +25,7 @@ $(function() {
 
         var dpSettingShort = {
             css : {"z-index": 20000},
+            showTomorrow:true,
 			numberOfMonths:[1,2],
 			firstDay:0,
 			showButtonPanel :true
