@@ -2910,6 +2910,7 @@ function Datepicker() {
 	};
 	this._defaults = { // Global defaults for all the date picker instances
         showDay:false,// by shaotian.hu
+        showTomorrow:false, // add by linbo.chen
 		showOn: "focus", // "focus" for popup on focus,
 			// "button" for trigger button, or "both" for either
 		showAnim: "fadeIn", // Name of jQuery animation for popup
@@ -4976,6 +4977,10 @@ $.extend(Datepicker.prototype, {
 
             if(printDate.getTime() === today.getTime()){
                 return '<em class="fastival today"></em>';
+            }else if((printDate.getTime() - today.getTime()) > 0 && (printDate.getTime() - today.getTime()) <= 86400000){
+                if(inst.settings.showTomorrow){
+                    return '<em class="fastival tomorrow"></em>';
+                }
             }else{
                 for(var i = 0; i < holidays.length; i++){
                     if(str == holidays[i].substring(0,8)){
