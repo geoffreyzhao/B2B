@@ -10,7 +10,7 @@ $(function() {
             $("html, body").animate({ scrollTop: 0 }, 120);
     }), $backToTopFun = function() {
         var st = $(document).scrollTop(), winh = $(window).height();
-        (st > 0)? $backToTopEle.show(): $backToTopEle.hide();    
+        (st > 800)? $backToTopEle.show(): $backToTopEle.hide();    
         //IE6下的定位
         if (!window.XMLHttpRequest) {
             $backToTopEle.css("top", st + winh - 166);
