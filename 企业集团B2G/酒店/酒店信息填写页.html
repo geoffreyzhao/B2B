@@ -18,6 +18,9 @@
 <!--[if lte IE 9]>
     <script src="../../static/js/html5.js"></script>
     <![endif]-->
+	<style type="text/css">
+		.ac-floatlayer{background-color:transparent}
+	</style>
 </head>
 <body>
 <div class="main-wrapper">
@@ -166,6 +169,18 @@
                    </div>
                  </td>
                 </tr>
+				<tr>
+				 <th>银行名称：</th>
+				 <td colspan="3">
+				  <input id="ipt_bank" type="text" class="" style="width:237px;" placeholder="请选择 / 输入信用卡银行">
+				 </td>
+				</tr>
+				<tr>
+				 <th>信用卡卡号：</th>
+				 <td colspan="3">
+				  <input id="ipt_cardNo" type="text" class="" style="width:237px;" placeholder="请输入信用卡卡号">
+				 </td>
+				</tr>
                
               </table>
               
@@ -356,12 +371,53 @@
 				content:function(){
                     return $("#hotel_price_info").html();
 				},
-				offsetY:10,
+				offsetY:10
 			});
 			
 			$(".rightFillIn").fixedBar();
 			
+			cardNo=FloatLayer({
+                trigger:'#ipt_cardNo', 
+                template:'#cardNoTemplate',
+                offsetY:26,
+				offsetX:-3,
+                data:{cardNo:""}
+
+			})
+			
+			$("#ipt_cardNo").keypress(function(e){
+				if(e.keyCode<48 || e.keyCode>57) return false;
+				setTimeout(function(){
+					var cardNo_txt=$("#ipt_cardNo").val().replace(/\s/g,"");
+					var tmp="";
+					while(cardNo_txt.length>4)
+					{
+						tmp+=cardNo_txt.substr(0,4)+" ";
+						cardNo_txt=cardNo_txt.substring(4);
+					}
+					tmp+=cardNo_txt;
+					$("#ipt_cardNo").val(tmp)
+					cardNo.data({cardNo:tmp});
+				},0);	
+			})
+			
+			$("#ipt_bank").kendoAutoComplete({
+			  dataTextField:"py",
+			  dataSource:[
+			  	{py:"gongshangyinhang",name:"工商银行"}
+			  ],
+			  template:kendo.template("#=name#"),
+			  select:function(e){
+				  setTimeout(function(){$("#ipt_bank").val(e.item.text())},0);
+			  }
+			})
         });
     </script>
+	
+	<script type="text/html" id="cardNoTemplate">
+		<div class="blockNumber">
+			#= cardNo #
+		</div>
+	</script>
 </body>
 </html>
