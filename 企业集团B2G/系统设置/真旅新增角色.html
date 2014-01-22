@@ -20,7 +20,39 @@
     <!--[if lte IE 9]>
     <script src="/static/js/html5.js"></script>
     <![endif]-->
+<script>
+$(function(){
+
+    new PopWindow('.ac-batch3',{
+        title:'批量设置审批人',
+        template:'#ac-batch3-template',
+        width:800
+    }).init();
   
+
+    $("body").delegate(".ul_selectedTravelClerk i.btn_del","click",function(){$(this).closest("li").remove();})
+    $("body").delegate(".ul_allApprover_batch li","click",function(){
+        if($(".ul_selectedApprover_batch li").length<5)
+        {
+            $(".ul_selectedApprover_batch").append($(this).append("<i class='btn_del'></i>"));
+        }
+    })
+    
+    $("body").delegate(".iptWithSearchButtonContainer input","focus",function(){
+        $(this).siblings(".searchButtonInInputContainer").addClass("highLight");
+    })
+
+    $("body").delegate(".iptWithSearchButtonContainer input","blur",function(){
+        $(this).siblings(".searchButtonInInputContainer").removeClass("highLight");
+    })
+})
+</script>
+  <style type="text/css">
+        b{
+            font-size: 14px;
+            color:#333333;
+        }
+    </style>
 </head>
 <body>
 <div class="main-wrapper">
@@ -94,18 +126,7 @@
                             <li><span><strong>企业名称</strong><i></i></span></li>
                             <li><span><strong>企业名称</strong><i></i></span></li>
                           </ul>
-                          <!-- <ul>
-                            <li><span><strong>苏宁易购</strong><i></i></span></li>
-                            <li><span><strong>光明乳业</strong><i></i></span></li>
-                            <li><span><strong>新疆龙泽</strong><i></i></span></li>
-                            <li><span><strong>企业名称</strong><i></i></span></li>
-                            <li><span><strong>企业名称</strong><i></i></span></li>
-                            <li><span><strong>企业名称</strong><i></i></span></li>
-                            <li><span><strong>企业名称</strong><i></i></span></li>
-                            <li><span><strong>企业名称</strong><i></i></span></li>
-                            <li><span><strong>企业名称</strong><i></i></span></li>
-                          </ul>-->
-                           <!-- <span><strong>苏宁易购</strong><i></i></span><span><strong>光明乳业</strong><i></i></span><span><strong>新疆龙泽</strong><i></i></span><span><strong>企业名称</strong><i></i></span><span><strong>企业名称</strong><i></i></span><span><strong>企业名称</strong><i></i></span><span><strong>企业名称</strong><i></i></span><span><strong>企业名称</strong><i></i></span><span><strong>企业名称</strong><i></i></span><span><strong>苏宁易购</strong><i></i></span><span><strong>光明乳业</strong><i></i></span><span><strong>新疆龙泽</strong><i></i></span><span><strong>企业名称</strong><i></i></span><span><strong>企业名称</strong><i></i></span><span><strong>企业名称</strong><i></i></span><span><strong>企业名称</strong><i></i></span><span><strong>企业名称</strong><i></i></span><span><strong>企业名称</strong><i></i></span>-->
+                         
           <!-- 收起的内容 -->
           <div class="" id="flowDetail-info" style="display:none; clear:both">
               <ul>
@@ -123,7 +144,7 @@
         <!-- 收起的内容 结束--> 
                            
                          </td>
-                         <td valign="top"><button type="button" class="editBtn lightBlueBtn">编辑</button>
+                         <td valign="top"><button type="button" class="editBtn lightBlueBtn ac-batch3">编辑</button>
                        <div class="groupClientTouch">
             <span class="groupClientTouch-unfold toggle_trigger" data-toggle='{"target":"#flowDetail-info","textFilter":"em","toggleClass":["groupClientTouch-unfold","groupClientTouch-fold"],"toggleText":["展开全部","收&nbsp;&nbsp;起"]}'><em>展开全部</em><i></i></span>
             <span class="groupClientTouch-fold"  style="display:none"><em>收&nbsp;&nbsp;起</em><i></i></span>
@@ -134,15 +155,8 @@
                      </tbody>
                      
                    </table>
-                  
-                   
-                   
-                   
-                   
-                   
                    
                 </div>
-               
                 
             </div>
             
@@ -506,6 +520,72 @@
         <p class="copyright">Copyright &copy; 2013 天地行 All Rights Reserved.     沪ICP备08101503号</p>
     </footer>
 </div>
+<!-- 批量设置审批人 内容 -->
+<script type="text/x-kendo-template" id="ac-batch3-template">
+    <div class="row">
+        <table class="tbl_comm">
+        <colgroup>
+            <col width="350">
+            <col width="60">
+        </colgroup>
+        <tr>
+            <td><b>审批人：</b></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="iptWithSearchButtonContainer">
+                    <input style="width:100%;" type="text" name="" placeholder="姓名/部门/邮箱">
+                    <div class="searchButtonInInputContainer"><i class="searchButtonInInput"></i></div>
+                </div>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><b>所有审批人：</b></td>
+            <td rowspan="2">
+                <div style="position:relative"><i class="btn_setApprover"></i></div>
+            </td>
+            <td><strong>第一级：</strong><i class="important">*</i>同级多人审批，最多增加5人</td>
+        </tr>
+        <tr>
+            <td>
+                <div class="oriApproverContainer" style="height:170px;">
+                    <ul class="ul_selectedTravelClerk ul_allApprover_batch">
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                        <li>潘晓梅 行政部 123467589@qq.com</li>
+                    </ul>
+                </div>
+            </td>
+            <td>
+                <div class="oriApproverContainer" style="height:170px;overflow:hidden">
+                    <ul class="ul_selectedTravelClerk ul_selectedApprover_batch">
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    </table>
+    </div>
+    <div class="row row-btns">
+        <a href="javascript:;" class="btns btn-s2 btn-c1">确 定</a>
+        <a href="javascript:;" class="btns btn-s2 btn-c5">取 消</a>
+    </div>
+</script>
 
 <script>
 
@@ -516,8 +596,10 @@
 			width:'580'
 		},"#orgchart-template").init();
 	});
+	
+	
 </script>
-  <script>
+<script>
 
         $(function(){
 			
