@@ -5,7 +5,7 @@ $(function() {
     var w = $(".main-body").eq(0).width();
     */
 
-    var $backToTopTxt = "返回顶部", $backToTopEle = $('<a class="backToTop"></a>').appendTo($("body"))
+    var $backToTopTxt = "返回顶部", $backToTopEle = $('<a class="backToTop"></a>').appendTo($(".main-body"))
     .text($backToTopTxt).attr("title", $backToTopTxt).click(function() {
             $("html, body").animate({ scrollTop: 0 }, 120);
     }), $backToTopFun = function() {
