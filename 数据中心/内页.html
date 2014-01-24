@@ -49,10 +49,9 @@
         <div class="mainContent clearfix"> <!--mainContent 开始-->
                 
                 <div class="leftMenu">  <!--leftMenu 开始-->
-                     <aside>
                          <ul class="menuChange">
                              <li class="firstLevel"><em>热门航段</em>
-                                  <ul class="secondLevel">
+                                  <ul class="secondLevel" style="display:none;">
                                       <li class="currentStatus">我是二级菜单</li>
                                       <li>我真的是二级菜单</li>
                                       <li>说是二级菜单信不</li>
@@ -60,46 +59,45 @@
                                   </ul>
                              </li>
                              <li class="firstLevel"><em>航段热门</em>
-                                  <ul class="secondLevel">
+                                  <ul class="secondLevel" style="display:none;">
                                       <li>我真的是二级菜单</li>
                                       <li>说是二级菜单信不</li>
                                       <li>我是二级菜单</li>
                                   </ul>
                              </li>
                              <li class="firstLevel"><em>热门航段</em>
-                                  <ul class="secondLevel">
+                                  <ul class="secondLevel" style="display:none;">
                                       <li>说是二级菜单信不</li>
                                       <li>我是二级菜单</li>
                                   </ul>
                              </li>
                              <li class="firstLevel"><em>航段热门</em>
-                                  <ul class="secondLevel">
+                                  <ul class="secondLevel" style="display:none;">
                                       <li>我是二级菜单</li>
                                       <li>我真的是二级菜单</li>
                                   </ul>
                              </li>
                              <li class="firstLevel"><em>热门航段</em>
-                                  <ul class="secondLevel">
+                                  <ul class="secondLevel" style="display:none;">
                                       <li>我真的是二级菜单</li>
                                       <li>说是二级菜单信不</li>
                                       <li>我是二级菜单</li>
                                   </ul>
                              </li>
                              <li class="firstLevel"><em>航段热门</em>
-                                  <ul class="secondLevel">
+                                  <ul class="secondLevel" style="display:none;">
                                       <li>我是二级菜单</li>
                                       <li>我真的是二级菜单</li>
                                       <li>说是二级菜单信不</li>
                                   </ul>
                              </li>
                              <li class="firstLevel"><em>热门航段</em>
-                                  <ul class="secondLevel">
+                                  <ul class="secondLevel" style="display:none;">
                                       <li>说是二级菜单信不</li>
                                       <li>我是二级菜单</li>
                                   </ul>
                              </li>
                          </ul>
-                      </aside>
                 </div> <!--leftMenu 结束-->
                 
                 <div class="rightCont">  <!--rightCont 开始-->
@@ -241,7 +239,7 @@
                                      <li><a href="javascript:void(0);">4</a></li>
                                      <li><a href="javascript:void(0);">5</a></li>
                                      <li class="omit"><a href="javascript:void(0);">...</a></li>
-                                     <li><a href="javascript:void(0);">10</a></li>
+                                     <li><a href="javascript:void(0);">100</a></li>
                                      <li class="upAndDown"><a href="javascript:void(0);">下一页</a></li>
                                  </ul>
                           </div>
@@ -315,17 +313,21 @@
 			});
 			
 		
+			
             $(".firstLevel em").bind("click",function(event) {
+			   $(this).parent().toggleClass("currentMenu");
 			   $(this).closest("li").find("ul").slideToggle();
             });
-			
 			
 			$(".secondLevel li").bind("click",function(){
 				$(this).closest("ul").find("li").removeClass("currentStatus");
 				$(this).addClass("currentStatus");
 			});
 			
-			
+			/*$(".menuChange li").bind("click",function(){
+				$(this).closest("ul").find("li").removeClass("currentMenu");
+				$(this).addClass("currentMenu");
+			});*/
 			
          });
      </script>
