@@ -21,6 +21,43 @@
 <![endif]-->
 <script type="text/javascript" src="/static/js/sync.js"></script>
     <!-- @CLB@ -->
+    <script>
+$(function(){
+    $('#check_policy').on('click',function(){
+        $('.check-policy-default').show();
+
+        // 匹配成功显示框
+        setTimeout(function(){
+            check_policy_pass();
+        },3000);
+
+        // 匹配失败显示框
+        setTimeout(function(){
+            // check_policy_fail();
+        },3000);
+    });
+
+    function check_policy_pass(){
+        $('.check-policy-default').hide();
+        $('.check-policy-pass').show().delay(2000).fadeOut();
+    }
+    function check_policy_fail(){
+        $('.check-policy-default').hide();
+        $('.check-policy-pass').show().delay(2000).fadeOut();
+    }
+
+    $(document).on('click',function(e){
+        if(!$.contains($('.check-policy-wrap')[0],e.target) && e.target.id !== 'check_policy') {
+            $('.check-policy-default').hide();    
+        }
+    });
+
+    $('.cancel-button').on('click',function(){
+        $('.check-policy').stop().hide();
+    });
+
+}); 
+    </script>
 
 </head>
 <body>  <div id="extHeader">
@@ -250,6 +287,22 @@
             <div class="block-title">
                 <span class="block-title-blue">报价信息</span>
                 <span class="block-module-action">
+                    <button class="btns btn-ac-orange" id="check_policy">精确匹配政策
+                        <div class="check-policy-wrap">
+                            <div class="check-policy check-policy-default">
+                                <h1>匹配中...</h1>
+                                <p>正在获取里程及共享航班信息</p>
+                                <p>AV:航班号1 里程数999 实际承运航班LF333</p>
+                                <a class="btns cancel-button" href="javascrip:;">取 消</a>
+                            </div>
+                            <div class="check-policy check-policy-pass">
+                                <h2 class="icon-policy-pass">匹配成功</h2>
+                            </div>
+                            <div class="check-policy check-policy-fail">
+                                <h2 class="icon-policy-fail">匹配失败</h2>
+                            </div>
+                        </div>
+                    </button> 
                     <button class="btns btn-ac-blue">添加成人报价</button> 
                     <button class="btns btn-ac-blue">添加儿童报价</button> 
                     <button class="btns btn-ac-blue">添加婴儿报价</button> 
@@ -257,6 +310,8 @@
                     <button class="btns btn-ac-blue">删除所选</button> 
                 </span>
             </div>
+
+
             <div class="row">
                 <table class="grid-table">
                     <colgroup>
