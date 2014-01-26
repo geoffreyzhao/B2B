@@ -163,7 +163,7 @@
 									</tr>
 								<tr>
 										<th>信用卡卡号：</th>
-										<td colspan="3"><input id="ipt_cardNo" type="text" class="" style="width:237px;" placeholder="请输入信用卡卡号"></td>
+										<td colspan="3"><input id="ipt_cardNo" type="text" class="" style="width:235px;" placeholder="请输入信用卡卡号" maxlength="19"></td>
 									</tr>
 							</table>
 							</div>
@@ -361,12 +361,14 @@
                 template:'#cardNoTemplate',
                 offsetY:25,
 				offsetX:-4,
-                data:{cardNo:""}
+                data:{cardNo:""},
+				type:"keypress"
 
 			})
 			
 			$("#ipt_cardNo").keypress(function(e){
-				if(e.keyCode<48 || e.keyCode>57) return false;
+				var code=e.keyCode || e.charCode;
+				if((code<48 || code>57) && (code!=8 && code !=46)) return false;
 				setTimeout(function(){
 					var cardNo_txt=$("#ipt_cardNo").val().replace(/\s/g,"");
 					var tmp="";
