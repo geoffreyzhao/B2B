@@ -250,7 +250,7 @@
                <div class="goBack">
                 <b>返</b><br/><em class="backArrow"></em>
                </div>
-                <span><strong>西安</strong><em>——</em><strong>北京</strong></span>
+               <span><strong>纽约</strong><em>—</em><i class="transfTime2">2程中转</i><em>—</em><strong>北京</strong></span>
                 <span>2013-12-17</span>
             </div>
             
@@ -306,7 +306,7 @@
         <div class="checkJourney color_white">
           <div class="airticket_info">
             <div class="airticket-place">
-                <span><strong>北京</strong><em>——</em><strong>纽约</strong></span>
+                <span><strong>胡志明市</strong><em>——</em><strong>埃塞尔比亚</strong></span>
                 <span>2013-12-17</span>
             </div>
             
@@ -365,12 +365,12 @@
               <div class="goBack">
                 <b>去</b><br/><em class="goArrow"></em>
                </div>
-                <span><strong>北京</strong><em>——</em><strong>纽约</strong></span>
+                <span><strong>胡志明市</strong><em>——</em><strong>埃塞尔比亚</strong></span>
                 <span>2013-12-17</span>
             </div>
             
             <div class="airplane-info">
-              <span style="margin-top:-5px;"><i class="airLogo" title="多家航空公司"></i><em>多家航空公司</em><em>CZ6437</em><em>机型</em><em>333（大）</em><em>经济舱</em></span>
+              <span style="margin-top:-5px;" id="manyAirName"><i class="airLogo" title="多家航空公司"></i><em>多家航空公司</em><em>CZ6437</em><em>机型</em><em>333（大）</em><em>经济舱</em></span>
               <span class="flightTime"><b>起飞：</b><em>07:40</em><em>北京</em><em>首都机场</em></span>
               <span class="flightTime"><b>到达：</b><em>10:25</em><em>纽约</em><em>纽瓦克机场</em></span>
             </div>
@@ -711,18 +711,64 @@
         $("#customers").focusin(function(){
             $("#destinationContainer").slideDown();
             $(this).addClass("on");
-        })
+        });
 
         $("#customers").focusout(function(){
             $("#destinationContainer").slideUp();
             $(this).removeClass("on");
-        })
+        });
 		$("#destinationContainer li").click(function(){
             $("#customers").val($(this).text());
             $(this).addClass("current").siblings().removeClass("current");
-        })
+        });
+		$(".airplane-info #manyAirName").kendoTooltip({
+				position:"bottom", //left right top
+				wrapperClass:"lineWeight",
+				content:function(){
+					return $("#airLogo").html();
+				},
+				offsetY:8,
+				offsetX:-83,				
+			});
+		$(".airticket-place .transfTime").kendoTooltip({
+				position:"bottom", //left right top
+				wrapperClass:"lineWeight",
+				content:function(){
+					return "经停：石家庄（12：30-13:20）";
+				},
+				offsetY:5				
+			});
+		$(".airticket-place .transfTime2").kendoTooltip({
+				position:"bottom", //left right top
+				wrapperClass:"lineWeight",
+				content:function(){
+					return "经停：石家庄（12：30-13:20）<br>经停：上海（12：30-13:20）";
+				},
+				offsetY:5				
+			});
 	});
 </script>
-
+<script type="text/x-kendo-template" id="airLogo">
+	<table class="moreAirCon">
+	       <colgroup>
+                 <col width="30px"/>
+                 <col width="65px"/>
+                 <col width="70px"/>
+                 <col width="70px"/>
+           </colgroup>
+           <tr>
+               <td><code></code></td>
+               <td>中国国航</td>
+               <td><b>CA1835</b></td>
+               <td>机型 777</td>
+           </tr>
+           <tr>
+               <td><code></code></td>
+               <td>荷兰航空</td>
+               <td><b>MU5137</b></td>
+               <td>机型 333</td>
+           </tr>
+	</table>	
+</script>	
 </body>
 </html>
