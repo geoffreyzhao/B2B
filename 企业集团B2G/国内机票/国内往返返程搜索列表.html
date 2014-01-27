@@ -145,8 +145,9 @@
         <div class="modFlight clearfix">
              <div class="selectedInfo">
                   <h2>已选航班信息 — 去程</h2>
-                  <h3>上海 <em>——</em> 西安</h3>
-                  <div>2013-12-17</div>
+				  <div>2013-12-17</div>
+                  <h3>上海<em>—</em><i class="transfer oneTransfer">1程中转</i><em>—</em>西安</h3>
+                  <div>北京</div>
              </div>
              <div class="modFliList">
                      <table>
@@ -543,7 +544,61 @@
 			offsetY:10
 			
 		});
+		$(".selectedInfo .oneTransfer").kendoTooltip({
+				position:"bottom", //left right top
+				wrapperClass:"lineWeight",
+				width:320,
+				content:function(){
+					return $("#oneTransfer").html();
+				},
+				offsetY:10				
+			});
+			
+			$(".selectedInfo .twiceTransfer").kendoTooltip({
+				position:"bottom", //left right top
+				wrapperClass:"lineWeight",
+				width:320,
+				content:function(){
+					return $("#twiceTransfer").html();
+				},
+				offsetY:10				
+			});
 	});
+</script>
+
+<script type="text/x-kendo-template" id="oneTransfer">
+	<table class="transferList">
+	       <colgroup>
+                 <col width="40px"/>
+                 <col width="140px"/>
+                 <col width="140px"/>
+           </colgroup>
+           <tr>
+               <th>中转</th>
+               <td>香港（香港国际机场）</td>
+               <td>停留时长：2小时15分</td>
+           </tr>
+	</table>	
+</script>
+
+<script type="text/x-kendo-template" id="twiceTransfer">
+	<table class="transferList">
+	       <colgroup>
+                 <col width="40px"/>
+                 <col width="140px"/>
+                 <col width="140px"/>
+           </colgroup>
+           <tr>
+               <th>中转</th>
+               <td>香港（香港国际机场）</td>
+               <td>停留时长：2小时15分</td>
+           </tr>
+		   <tr>
+               <th>经停</th>
+               <td>东京（东京国际机场）</td>
+               <td>停留时长：2小时15分</td>
+           </tr>
+	</table>	
 </script>
 </html>
 

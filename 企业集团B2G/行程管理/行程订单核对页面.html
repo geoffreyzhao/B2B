@@ -154,8 +154,9 @@
          <div class="journeyTit">行程订单编号：<em>1248745157974432141</em> <em class="reason">因公出行</em></div>
           <div class="airticket_info">
             <div class="airticket-place">
+			    <span>2013-12-17</span>
                 <span><span><strong>北京</strong><em>——</em><strong>西安</strong></span></span>
-                <span>2013-12-17</span>
+                
             </div>
             
             <div class="airplane-info">
@@ -216,8 +217,9 @@
               <div class="goBack">
                 <b>去</b><br/><em class="goArrow"></em>
                </div>
+			    <span>2013-12-17</span>
                 <span><strong>北京</strong><em>——</em><strong>西安</strong></span>
-                <span>2013-12-17</span>
+                
             </div>
             
             <div class="airplane-info">
@@ -250,8 +252,10 @@
                <div class="goBack">
                 <b>返</b><br/><em class="backArrow"></em>
                </div>
-               <span><strong>纽约</strong><em>—</em><i class="transfTime2">2程中转</i><em>—</em><strong>北京</strong></span>
-                <span>2013-12-17</span>
+			   <span>2013-12-17</span>
+               <span><strong>纽约</strong><em>—</em><i class="transfer twiceTransfer">2程中转</i><em>—</em><strong>北京</strong></span>
+               
+			   <!--<span style="padding-left:60px;">香港</span>-->
             </div>
             
             <div class="airplane-info">
@@ -306,8 +310,8 @@
         <div class="checkJourney color_white">
           <div class="airticket_info">
             <div class="airticket-place">
+			    <span>2013-12-17</span>
                 <span><strong>胡志明市</strong><em>——</em><strong>埃塞尔比亚</strong></span>
-                <span>2013-12-17</span>
             </div>
             
             <div class="airplane-info">
@@ -365,8 +369,9 @@
               <div class="goBack">
                 <b>去</b><br/><em class="goArrow"></em>
                </div>
+			    <span>2013-12-17</span>
                 <span><strong>胡志明市</strong><em>——</em><strong>埃塞尔比亚</strong></span>
-                <span>2013-12-17</span>
+               
             </div>
             
             <div class="airplane-info">
@@ -381,8 +386,10 @@
               <div class="goBack">
                 <b>返</b><br/><em class="backArrow"></em>
                </div>
-                <span><strong>纽约</strong><em>—</em><i class="transfTime">1程中转</i><em>—</em><strong>北京</strong></span>
-                <span>2013-12-17</span>
+			    <span>2013-12-17</span>
+                <span><strong>纽约</strong><em>—</em><i class="transfer oneTransfer">1程中转</i><em>—</em><strong>北京</strong></span>
+				<span style="padding-left:60px;">香港</span>
+               
             </div>
             
             <div class="airplane-info">
@@ -730,24 +737,62 @@
 				offsetY:8,
 				offsetX:-83,				
 			});
-		$(".airticket-place .transfTime").kendoTooltip({
+		$(".airticket-place .oneTransfer").kendoTooltip({
 				position:"bottom", //left right top
 				wrapperClass:"lineWeight",
+				width:320,
 				content:function(){
-					return "经停：石家庄（12：30-13:20）";
+					return $("#oneTransfer").html();
 				},
-				offsetY:5				
+				offsetY:10				
 			});
-		$(".airticket-place .transfTime2").kendoTooltip({
+			
+			$(".airticket-place .twiceTransfer").kendoTooltip({
 				position:"bottom", //left right top
 				wrapperClass:"lineWeight",
+				width:320,
 				content:function(){
-					return "经停：石家庄（12：30-13:20）<br>经停：上海（12：30-13:20）";
+					return $("#twiceTransfer").html();
 				},
-				offsetY:5				
+				offsetY:10				
 			});
 	});
 </script>
+<script type="text/x-kendo-template" id="oneTransfer">
+	<table class="transferList">
+	       <colgroup>
+                 <col width="40px"/>
+                 <col width="140px"/>
+                 <col width="140px"/>
+           </colgroup>
+           <tr>
+               <th>中转</th>
+               <td>香港（香港国际机场）</td>
+               <td>停留时长：2小时15分</td>
+           </tr>
+	</table>	
+</script>
+
+<script type="text/x-kendo-template" id="twiceTransfer">
+	<table class="transferList">
+	       <colgroup>
+                 <col width="40px"/>
+                 <col width="140px"/>
+                 <col width="140px"/>
+           </colgroup>
+           <tr>
+               <th>中转</th>
+               <td>香港（香港国际机场）</td>
+               <td>停留时长：2小时15分</td>
+           </tr>
+		   <tr>
+               <th>经停</th>
+               <td>东京（东京国际机场）</td>
+               <td>停留时长：2小时15分</td>
+           </tr>
+	</table>	
+</script>
+
 <script type="text/x-kendo-template" id="airLogo">
 	<table class="moreAirCon">
 	       <colgroup>
