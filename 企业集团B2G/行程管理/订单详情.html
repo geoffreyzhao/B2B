@@ -391,7 +391,7 @@
             </div>
             
             <div class="airplane-info">
-              <span style="margin-top:-5px;"><i class="airLogo" title="多家航空公司"></i><em>多家航空公司</em><em>CZ6437</em><em>机型</em><em>333（大）</em><em>经济舱</em></span>
+              <span style="margin-top:-5px;" id="manyAirName"><i class="airLogo" title="多家航空公司"></i><em>多家航空公司</em><em>CZ6437</em><em>机型</em><em>333（大）</em><em>经济舱</em></span>
               <span class="flightTime"><b>起飞：</b><em>07:40</em><em>北京</em><em>首都机场</em></span>
               <span class="flightTime"><b>到达：</b><em>10:25</em><em>纽约</em><em>纽瓦克机场</em></span>
             </div>
@@ -570,12 +570,43 @@
 			offsetY:10
 			
 		});
+		$(".airplane-info #manyAirName").kendoTooltip({
+				position:"bottom", //left right top
+				wrapperClass:"lineWeight",
+				content:function(){
+					return $("#airLogo").html();
+				},
+				offsetY:8,
+				offsetX:-83,				
+			});
 	});
 	
 	$('#totalP').fixedBar({
             inverse:true
         });
 </script>
+<script type="text/x-kendo-template" id="airLogo">
+	<table class="moreAirCon">
+	       <colgroup>
+                 <col width="30px"/>
+                 <col width="65px"/>
+                 <col width="70px"/>
+                 <col width="70px"/>
+           </colgroup>
+           <tr>
+               <td><code></code></td>
+               <td>中国国航</td>
+               <td><b>CA1835</b></td>
+               <td>机型 777</td>
+           </tr>
+           <tr>
+               <td><code></code></td>
+               <td>荷兰航空</td>
+               <td><b>MU5137</b></td>
+               <td>机型 333</td>
+           </tr>
+	</table>	
+</script>	
 
 <script>
 
