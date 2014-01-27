@@ -215,15 +215,15 @@
                         <div class="transfTime">
                              <b>07:20</b>
                              <em>————</em>
-                             <i>1程中转 </i>
+                             <i class="twiceTransfer">2程中转 </i>
                              <em>————</em>
                              <b>09:20</b>
                              <span class="dayNumber" style="right:13%;">+1</span>
                         </div>
                         <ul class="place clearfix">
                             <li>北京</li>
-                            <li>上海</li>
-                            <li>纽约</li>
+                            <!--<li>上海</li>-->
+                            <li class="pullRight">纽约</li>
                         </ul>
                         <div class="airportName">
                              <em>首都国际机场T2</em>
@@ -303,7 +303,7 @@
                         <div class="transfTime">
                              <b>07:20</b>
                              <em>————</em>
-                             <i>1程中转 </i>
+                             <i class="oneTransfer">1程中转 </i>
                              <em>————</em>
                              <b>09:20</b>
                         </div>
@@ -345,14 +345,14 @@
                         <div class="transfTime">
                              <b>07:20</b>
                              <em>————</em>
-                             <i>1程中转 </i>
+                             <i class="twiceTransfer">2程中转 </i>
                              <em>————</em>
                              <b>09:20</b>
                         </div>
                         <ul class="place clearfix">
                             <li>北京</li>
-                            <li>上海</li>
-                            <li>纽约</li>
+                            <!--<li>上海</li>-->
+                            <li class="pullRight">纽约</li>
                         </ul>
                         <div class="airportName">
                              <em>首都国际机场T2</em>
@@ -388,7 +388,7 @@
                         <div class="transfTime">
                              <b>07:20</b>
                              <em>————</em>
-                             <i>1程中转 </i>
+                             <i class="oneTransfer">1程中转 </i>
                              <em>————</em>
                              <b>09:20</b>
                         </div>
@@ -430,14 +430,14 @@
                         <div class="transfTime">
                              <b>07:20</b>
                              <em>————</em>
-                             <i>1程中转 </i>
+                             <i class="twiceTransfer">2程中转 </i>
                              <em>————</em>
                              <b>09:20</b>
                         </div>
                         <ul class="place clearfix">
                             <li>北京</li>
-                            <li>上海</li>
-                            <li>纽约</li>
+                            <!--<li>上海</li>-->
+                            <li class="pullRight">纽约</li>
                         </ul>
                         <div class="airportName">
                              <em>首都国际机场T2</em>
@@ -473,7 +473,7 @@
                         <div class="transfTime">
                              <b>07:20</b>
                              <em>————</em>
-                             <i>1程中转 </i>
+                             <i class="oneTransfer">1程中转 </i>
                              <em>————</em>
                              <b>09:20</b>
                         </div>
@@ -549,6 +549,41 @@
 	</table>	
 </script>	
 
+<script type="text/x-kendo-template" id="oneTransfer">
+	<table class="transferList">
+	       <colgroup>
+                 <col width="40px"/>
+                 <col width="140px"/>
+                 <col width="140px"/>
+           </colgroup>
+           <tr>
+               <th>中转</th>
+               <td>香港（香港国际机场）</td>
+               <td>停留时长：2小时15分</td>
+           </tr>
+	</table>	
+</script>
+
+<script type="text/x-kendo-template" id="twiceTransfer">
+	<table class="transferList">
+	       <colgroup>
+                 <col width="40px"/>
+                 <col width="140px"/>
+                 <col width="140px"/>
+           </colgroup>
+           <tr>
+               <th>中转</th>
+               <td>香港（香港国际机场）</td>
+               <td>停留时长：2小时15分</td>
+           </tr>
+		   <tr>
+               <th>经停</th>
+               <td>东京（东京国际机场）</td>
+               <td>停留时长：2小时15分</td>
+           </tr>
+	</table>	
+</script>
+
 	<script>
 		
 		$(function(){
@@ -590,6 +625,28 @@
 				},
 				offsetY:5				
 			});
+			
+			//中转浮层
+			$(".transfTime .oneTransfer").kendoTooltip({
+				position:"bottom", //left right top
+				wrapperClass:"lineWeight",
+				width:320,
+				content:function(){
+					return $("#oneTransfer").html();
+				},
+				offsetY:10				
+			});
+			
+			$(".transfTime .twiceTransfer").kendoTooltip({
+				position:"bottom", //left right top
+				wrapperClass:"lineWeight",
+				width:320,
+				content:function(){
+					return $("#twiceTransfer").html();
+				},
+				offsetY:10				
+			});
+		
 			
 		});
 	</script>
@@ -773,7 +830,7 @@
 
 
 
-    <script type="text/x-kendo-template" id="delete-template">
+<script type="text/x-kendo-template" id="delete-template">
     <div class="row row-icontext">
         <i class="icon icon3"></i>
         确认要删除该订单吗？
@@ -784,46 +841,48 @@
     </div>
 </script>
 
-    <script>
-$(function(){
-
-    $(document).click(function(e){
-        if($(e.target).closest('.shopcart').length!==1){
-            $('.sc-active').slideUp(100);
-            $('.sc-total').hide();
-        }
-    });
-
-    $('.sc-default').click(function(){
-        $('.sc-active').slideToggle(100);
-        $('.sc-background',this).css({'top':0});
-        $('.sc-total',this).toggle();
-    }).hover(function(){
-              $('.sc-background',this).animate({'top':'-10px'},200)
-           },function(){
-              $('.sc-background',this).animate({'top':0},200)
-    });
-
-    var delete_window = new PopWindow('.shopcart .close',{
-        title:'删除订单',
-        width:500,
-        template:'#delete-template',
-        open:function(e){
-           // 从购物车删除叉叉上获取单子的uid
-           var uid = this.target.data('uid'); 
-           // 在模板的确认按钮上获取这个uid
-           this.data({'uid':uid});
-        }
-    }).init();
-
-
-    // 购物车确定删除订单
-    $('body').on('click','.ac-delete',function(){
-        alert('订单uid：'+$(this).data('uid')); 
-    });
-
-}); 
-    </script>
+<script>
+	$(function(){
+	
+		$(document).click(function(e){
+			if($(e.target).closest('.shopcart').length!==1){
+				$('.sc-active').slideUp(100);
+				$('.sc-total').hide();
+			}
+		});
+	
+		$('.sc-default').click(function(){
+			$('.sc-active').slideToggle(100);
+			$('.sc-background',this).css({'top':0});
+			$('.sc-total',this).toggle();
+		}).hover(function(){
+				  $('.sc-background',this).animate({'top':'-10px'},200)
+			   },function(){
+				  $('.sc-background',this).animate({'top':0},200)
+		});
+	
+		var delete_window = new PopWindow('.shopcart .close',{
+			title:'删除订单',
+			width:500,
+			template:'#delete-template',
+			open:function(e){
+			   // 从购物车删除叉叉上获取单子的uid
+			   var uid = this.target.data('uid'); 
+			   // 在模板的确认按钮上获取这个uid
+			   this.data({'uid':uid});
+			}
+		}).init();
+	
+	
+		// 购物车确定删除订单
+		$('body').on('click','.ac-delete',function(){
+			alert('订单uid：'+$(this).data('uid')); 
+		});
+		
+		
+	
+	}); 
+</script>
 </body>
 
 </html>

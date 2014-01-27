@@ -212,15 +212,15 @@
                                         <div class="transfTime">
                                              <b>07:20</b>
                                              <em>———</em>
-                                             <i>&nbsp;1程中转&nbsp;</i>
+                                             <i class="twiceTransfer">&nbsp;2程中转&nbsp;</i>
                                              <em>———</em>
                                              <b>09:20</b>
                                              <span class="dayNumber">+1</span>
                                         </div>
                                         <ul class="place clearfix">
                                             <li>北京</li>
-                                            <li>上海</li>
-                                            <li>纽约</li>
+                                            <!--<li>上海</li>-->
+                                            <li class="pullRight">纽约</li>
                                         </ul>
                                         <div class="airportName" style="margin-bottom:0;">
                                              <em>首都国际机场T2</em>
@@ -249,7 +249,7 @@
                                         <div class="transfTime">
                                              <b>07:20</b>
                                              <em>———</em>
-                                             <i>&nbsp;1程中转&nbsp;</i>
+                                             <i class="oneTransfer">&nbsp;1程中转&nbsp;</i>
                                              <em>———</em>
                                              <b>09:20</b>
                                         </div>
@@ -302,14 +302,14 @@
                                         <div class="transfTime">
                                              <b>07:20</b>
                                              <em>———</em>
-                                             <i>&nbsp;1程中转&nbsp;</i>
+                                             <i class="twiceTransfer">&nbsp;2程中转&nbsp;</i>
                                              <em>———</em>
                                              <b>09:20</b>
                                         </div>
                                         <ul class="place clearfix">
                                             <li>北京</li>
-                                            <li>上海</li>
-                                            <li>纽约</li>
+                                            <!--<li>上海</li>-->
+                                            <li class="pullRight">纽约</li>
                                         </ul>
                                         <div class="airportName" style="margin-bottom:0;">
                                              <em>首都国际机场T2</em>
@@ -338,7 +338,7 @@
                                         <div class="transfTime">
                                              <b>07:20</b>
                                              <em>———</em>
-                                             <i>&nbsp;1程中转&nbsp;</i>
+                                             <i class="oneTransfer">&nbsp;1程中转&nbsp;</i>
                                              <em>———</em>
                                              <b>09:20</b>
                                         </div>
@@ -391,14 +391,14 @@
                                         <div class="transfTime">
                                              <b>07:20</b>
                                              <em>———</em>
-                                             <i>&nbsp;1程中转&nbsp;</i>
+                                             <i class="twiceTransfer">&nbsp;2程中转&nbsp;</i>
                                              <em>———</em>
                                              <b>09:20</b>
                                         </div>
                                         <ul class="place clearfix">
                                             <li>北京</li>
-                                            <li>上海</li>
-                                            <li>纽约</li>
+                                            <!--<li>上海</li>-->
+                                            <li class="pullRight">纽约</li>
                                         </ul>
                                         <div class="airportName" style="margin-bottom:0;">
                                              <em>首都国际机场T2</em>
@@ -427,7 +427,7 @@
                                         <div class="transfTime">
                                              <b>07:20</b>
                                              <em>———</em>
-                                             <i>&nbsp;1程中转&nbsp;</i>
+                                             <i class="oneTransfer">&nbsp;1程中转&nbsp;</i>
                                              <em>———</em>
                                              <b>09:20</b>
                                         </div>
@@ -480,7 +480,7 @@
                                         <div class="transfTime">
                                              <b>07:20</b>
                                              <em>———</em>
-                                             <i>&nbsp;1程中转&nbsp;</i>
+                                             <i class="oneTransfer">&nbsp;1程中转&nbsp;</i>
                                              <em>———</em>
                                              <b>09:20</b>
                                         </div>
@@ -516,14 +516,14 @@
                                         <div class="transfTime">
                                              <b>07:20</b>
                                              <em>———</em>
-                                             <i>&nbsp;1程中转&nbsp;</i>
+                                             <i class="twiceTransfer">&nbsp;2程中转&nbsp;</i>
                                              <em>———</em>
                                              <b>09:20</b>
                                         </div>
                                         <ul class="place clearfix">
                                             <li>北京</li>
-                                            <li>上海</li>
-                                            <li>纽约</li>
+                                            <!--<li>上海</li>-->
+                                            <li class="pullRight">纽约</li>
                                         </ul>
                                         <div class="airportName" style="margin-bottom:0;">
                                              <em>首都国际机场T2</em>
@@ -661,6 +661,43 @@
 	</table>	
 </script>	
 
+<script type="text/x-kendo-template" id="oneTransfer">
+	<table class="transferList">
+	       <colgroup>
+                 <col width="40px"/>
+                 <col width="140px"/>
+                 <col width="140px"/>
+           </colgroup>
+           <tr>
+               <th>中转</th>
+               <td>香港（香港国际机场）</td>
+               <td>停留时长：2小时15分</td>
+           </tr>
+	</table>	
+</script>
+
+<script type="text/x-kendo-template" id="twiceTransfer">
+	<table class="transferList">
+	       <colgroup>
+                 <col width="40px"/>
+                 <col width="140px"/>
+                 <col width="140px"/>
+           </colgroup>
+           <tr>
+               <th>中转</th>
+               <td>香港（香港国际机场）</td>
+               <td>停留时长：2小时15分</td>
+           </tr>
+		   <tr>
+               <th>经停</th>
+               <td>东京（东京国际机场）</td>
+               <td>停留时长：2小时15分</td>
+           </tr>
+	</table>	
+</script>
+
+
+
 	<script>
 		
 		$(function(){
@@ -711,6 +748,26 @@
 					return "到达时间为第2天，2013-12-24 09：20。";
 				},
 				offsetY:5				
+			});
+			
+			$(".transfTime .oneTransfer").kendoTooltip({
+				position:"bottom", //left right top
+				wrapperClass:"lineWeight",
+				width:320,
+				content:function(){
+					return $("#oneTransfer").html();
+				},
+				offsetY:10				
+			});
+			
+			$(".transfTime .twiceTransfer").kendoTooltip({
+				position:"bottom", //left right top
+				wrapperClass:"lineWeight",
+				width:320,
+				content:function(){
+					return $("#twiceTransfer").html();
+				},
+				offsetY:10				
 			});
 			
 		});
