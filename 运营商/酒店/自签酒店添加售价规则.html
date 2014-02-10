@@ -570,9 +570,9 @@
         <div class="panel" style="padding-bottom:0">
             <div class="subPanel" style="border:none;padding-bottom:0">
                 <div class="subPanel_title">
-                    <span class="head">设置客户：</span>
-                    <label style="margin-right:25px"><input type="radio" name="" id="">按客户组</label>
-                    <label style="margin-right:25px"><input type="radio" name="" id="">按客户</label>
+                    <span class="head">客户设置：</span>
+                    <label style="margin-right:25px"><input type="radio" class="radio_customerSet" name="radio_customerSet" id="">按客户组</label>
+                    <label style="margin-right:25px"><input type="radio" class="radio_customerSet" name="radio_customerSet" id="">按客户</label>
                 </div>
                 <div class="expandPanel">
                     <table>
@@ -1004,6 +1004,15 @@
     </div>
 </div>
 
+<div id="customerSetPopWin" style="width:400px;margin:10px auto">
+    <p style="padding:5px 0;font-size: 14px">切换客户设置类型将会重置客户设置数据。</p>
+    <p style="padding:5px 0;font-size: 14px">是否继续切换客户设置类型？</p>
+    <div style="margin-top: 30px;text-align: right">
+        <button class="large_button" style="font-size: 14px;font-weight: bold;letter-spacing: 8px">切换</button>
+        <button class="large_button disable" style="font-size: 14px;font-weight: bold;letter-spacing: 8px;color:#363636">取消</button>
+    </div>
+</div>
+
 <script type="text/x-kendo-template" id="tooltipRoomTypeTemplate">
     <table class="txt_l6 tbl_tooltipRoomType" style="width:100%">
         <tr>
@@ -1060,6 +1069,7 @@
             $.prompt({content:$("#clearExcludeTemplate").html()}).center().open();
 
         })
+        new PopWindow(".radio_customerSet",{width:500,title:"提示"},"#customerSetPopWin").init();
     })
 </script>
 </body>
