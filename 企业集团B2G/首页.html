@@ -39,7 +39,6 @@
                 </ul>
             </nav>
         </div>
-    </header>
     <div class="header-bar clearfix">
         <div class="header-bar-content">
             <i class="tips"></i><span>请先选择差旅人   * 默认状态下您为自己预订</span>
@@ -106,7 +105,7 @@
                             <ul class="ul_itemNav" style="position: static;margin-top: 10px">
                                 <li class="current">高级搜索</li>
                             </ul>
-                            <div class="advancedSearchContainer" class="domestic_advancedSearch">
+                            <div class="advancedSearchContainer domestic_advancedSearch">
                                 <table class="tbl_comm">
                                     <colgroup>
                                         <col width="100">
@@ -290,7 +289,7 @@
                                     </tr>
                                     <tr>
                                         <td>关键词</td>
-                                        <td><input type="text" style="width:150px;" name="" id="" placeholder=""/></td>
+                                        <td><input type="text" style="width:150px;" name="" id="bsarea" placeholder="酒店品牌/位置"/></td>
                                         <td></td>
                                         <td style="text-align: right"><button type="button" class="commonBtn lightRedBtn" style="font-size: 14px">搜 索</button></td>
                                     </tr>
@@ -623,6 +622,7 @@
         </div>
  
     </section>
+    
   <!-- 设置差旅人 内容 -->
     <div id="settour-template" style="padding:20px">
         <div class="settour">
@@ -842,6 +842,36 @@
                 $(".charNum").text(charNum);
             }
         })
+		
+		
+		var bsareaData = [{
+				bsgroup:'热门商圈',
+				bsitems:['八万人体育场地区','宝钢工业园区','北外滩','曹杨、真如地区','漕河泾开发区','长风公园地区','长寿路商业区','崇明、长兴岛、横...','打浦桥地区','大宁国际商业区','滴水湖临港地区']
+			},{
+				bsgroup:'行政区',
+				bsitems:['奉贤开发区','顾村公园地区','北外滩','曹杨、真如地区','虹口足球场地区','长寿路商业区','崇明、长兴岛、横...','嘉定工业区','江湾、五角场商业区','滴水湖临港地区','金山枫泾古镇地区','静安寺地区']
+			},{
+				bsgroup:'机场火车站',
+				bsitems:['南汇及野生动物园','南京西路商业区','南外滩地区','彭浦地区、浦东机场区域','浦东金桥地区','浦东陆家嘴金融...','浦东世博园区','浦东外高桥地区','浦东新国际博览中心','浦东张江地区','浦江镇地区']
+			},{
+				bsgroup:'地铁线',
+				bsitems:['七浦路商业区','青浦城区','人民广场地区','上海火车南站地区','上海火车站地区','佘山、松江大学城','四川北路商业区','外滩地区','莘庄、七宝']
+			},{
+				bsgroup:'下辖市/县',
+				bsitems:['崇明']
+			}];
+		
+		var bsareaLayer = FloatLayer({
+			trigger:'#bsarea',
+			template:'#bsarea-template',
+			offsetY:63,
+			data:bsareaData
+		});
+		
+		$(".bsarea-item").click(function(){
+			$("#bsarea").val($(this).text());bsareaLayer.close();
+		})
+		
     })
 </script>
 
@@ -995,6 +1025,31 @@
 
 # } #
 </div>
+</script>
+
+
+<script type="text/tempalte" id="bsarea-template">
+    <div class="cytab cytab-bsarea">
+        <div class="cytab-title">
+            <span>可直接选择地理位置</span>
+            <i class="close">&nbsp;</i>
+        </div>
+        
+        <div class="cytab-content">
+        # for (var i=0;i<data.length;i++) {#
+            <div class="cytab-group clearfix">
+            <span class="group-name">#= data[i].bsgroup #</span>
+            <ul>
+            # for (var j=0;j<data[i].bsitems.length;j++) {#
+                <li>   
+                    <a href="javascript:;" class="bsarea-item bsarea-item#=i#">#= data[i].bsitems[j] # </a>
+                </li>
+            # } #
+            </ul>
+            </div>
+        #}#
+        </div>
+    </div>
 </script>
 
 </body>
