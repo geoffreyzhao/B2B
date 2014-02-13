@@ -294,18 +294,22 @@ var FloatLayer = function(opts){
 
         }else{
             $('body').delegate(opts.trigger.selector,opts.type,function(e){
-                // if($(e.target).is(opts.trigger.selector) || $(e.target).closest(opts.trigger.selector).length>0){
-                // if($(e.target).is(opts.trigger.selector) || $.contains(opts.trigger.get(0), e.target)){
-                // if($(e.target).is(opts.trigger.selector) || opts.trigger.has(e.target).length>0){
-                    var that = $(e.target);
-                    set_pos(that);
-                    layer.input = that;
-                    if(opts.toggle){
-                        layer.toggle();
-                    }else{
-                        layer.open();
-                    }
-                // }
+                var that = $(e.target);
+
+                // fix children clicked;
+                var container = that.closest(opts.trigger.selector);
+                if(container.length){
+                    that = container;
+                }
+                // endfix
+
+                set_pos(that);
+                layer.input = that;
+                if(opts.toggle){
+                    layer.toggle();
+                }else{
+                    layer.open();
+                }
             });
         }
     }else{
@@ -333,9 +337,6 @@ var FloatLayer = function(opts){
     };
 
     layer.open = function(){
-        if(opts.trigger.length<=1){
-            set_pos(opts.trigger);
-        }
         layer.show();
         opts.open.apply(this);
     };
