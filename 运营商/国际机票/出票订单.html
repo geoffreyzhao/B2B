@@ -370,8 +370,15 @@
                 <tr>
                     <th>退回原因：</th>
                     <td>
-                        <label><input id="" type="radio" checked name="xx"> 暂不能出票</label>
-                        <label><input id="" type="radio" name="xx"> 拒绝出票</label>
+                        <div class="row">
+                        <label><input id="" data-role="ctype" data-group="d1" data-index="1" type="radio" checked name="xx"> 拒绝出票</label>
+                        </div>
+                        <div class="row">
+                        <label><input id="" data-role="ctype" data-group="d1" data-index="2" type="radio" name="xx"> 暂不能出票</label>
+                        </div>
+                        <div class="row" data-role="ctype-item" data-group="d1" data-index="2" style="display:none;">
+                        <s><input style="width:340px;" id="" type="text" name=""></s>
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -389,12 +396,14 @@
 
         <script>
 $(function(){
+    $.role_ctype();
+
     new PopWindow('.ac-refuse',{
         title:'退回',
         width:470,
         template: '#ac-refuse-template'
     }).init();
-}); 
+});
         </script>
 
 
