@@ -18,6 +18,11 @@ function PopWindow(trigger, customSettings, window_id){
     this.triggerText = trigger;
     this.trigger = $(trigger);
     this.window_id = window_id;
+    if(typeof arguments[0]!='string'){
+        // 没有选择器
+        customSettings = trigger; 
+        this.triggerText = "#POPWINDOW_NULL";
+    }
     this.settings = $.extend(kendoWinDefaults,customSettings);
     this.win = null;
 };
@@ -63,6 +68,12 @@ PopWindow.prototype = {
                 var newcontent =  kendo.template(tmpl)(d);
                 that.win.content(newcontent);
             }
+        }
+
+        that.win.show = function(){
+            kendo.init(that.win.element);
+            that.win.center().open(); 
+            return that.win;
         }
     },
     bindClick:function(){
