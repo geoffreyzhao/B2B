@@ -81,10 +81,17 @@ $(function() {
 			showButtonPanel :true
 		};
 
+        var dpSettingSingle = {
+            css : {"z-index": 20000},
+			numberOfMonths:[1,1],
+			firstDay:0,
+			showButtonPanel :true
+		};
 
         b2g.dpSetting = dpSetting;
         b2g.dpSettingUlt = dpSettingUlt;
         b2g.dpSettingShort = dpSettingShort;
+        b2g.dpSettingSingle = dpSettingSingle;
 
 
         var dpEle = $(".datepicker");
@@ -96,6 +103,8 @@ $(function() {
                 item.datepicker(dpSettingUlt);
             }else if(item.hasClass("dpShort")){
                 item.datepicker(dpSettingShort);
+            }else if(item.hasClass("dpSingle")){
+                item.datepicker(dpSettingSingle);
             }else{
                 item.datepicker(dpSetting);
             }
