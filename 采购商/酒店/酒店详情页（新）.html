@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
     <meta content="text/html" charset="utf-8">
-    <title>酒店 酒店搜索结果</title>
+    <title>酒店 酒店详情页</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
 
     <link rel="stylesheet" href="../../static/css/store_reset.css" media="all" />
     <link rel="stylesheet" href="../../static/css/store.css" media="screen" />
     <link rel="stylesheet" href="../../static/css/store_hotel.css" media="screen" />
+	<link rel="stylesheet" href="../../static/css/smoothness/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../../static/css/kendo.common.css" />
+
     <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../static/js/kendo.web.js"></script>
+	<script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
     <!--[if IE]>
     <script src="../../static/js/html5.js"></script>
     <![endif]-->
@@ -67,10 +71,11 @@
 		     <li><span class="hotel-stars05"></span></li>
 			 <li>五星级豪华酒店</li>
 			 <li class="icon-list">
-			   <span class="ico-wifi" title="wifi"></span>
+			   <span class="ico-wifi" title="收费wifi"></span>
                <span class="ico-park" title="停车场"></span>
-               <span class="ico-breakfast" title="餐厅"></span>
+               <span class="ico-restaurant" title="餐厅"></span>
                <span class="ico-outdoorswim" title="室外泳池"></span>
+			   <span class="ico-pickup" title="接机服务"></span>
 			 </li>
 		  </ul>
 		
@@ -655,6 +660,19 @@
             template:'#salePriceTblTemplate',
             offsetX:-107
         });
+		
+		var image_window = new PopWindow(".more-pic", { 
+                    title:"上海衡山宾馆",
+                    width:770,
+					open:function(){
+                        image_window.wrapper.find(".k-content").css({"background-color":"#f1f1f1"});
+                    },
+                    content : { 
+                        url : 'images.html',
+                        data : {param1:'a',param2:'b'}
+                    }
+
+                }).init();
 		
     })
 </script>
