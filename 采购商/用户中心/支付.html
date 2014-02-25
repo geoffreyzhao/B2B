@@ -65,7 +65,7 @@
                    <li class="current">
                        <div>
                             <em class="payStyleTitle">余额支付</em> 
-                            <label class="balance"><input type="radio"/><span>账户可支付余额<b class="weight">5678989.00</b>元</span></label>
+                            <label class="balance"><input type="radio" checked="checked" /><span>账户可支付余额<b class="weight">5678989.00</b>元</span></label>
                        </div>
                    </li>
                    <li>
@@ -120,10 +120,11 @@
                                    </tbody>
                             </table>
                        </div>
+                       <div class="cftCont"></div>
                    </li>
                </ul>
                <div class="payBtn">
-                     <a class="adaptiveButton brightRed_btn">
+                     <a class="adaptiveButton brightRed_btn ac-payAffirm">
                           <span class="left"></span>
                           <span class="center">确认付款</span>
                           <span class="right"></span>
@@ -160,17 +161,103 @@
 	</div>
 </script>
 
-<script>
+<script type="text/x-kendo-template" id="thirdPaymentTemplate">
+    <div class="balanceCont">
+	    <p>报错文案报错文案报错文案报错文案报错文案</p>
+	</div>
+</script>
+
+<script type="text/x-kendo-template" id="ac-payAffirm-template">
+     <ul class="payAffirm">
+	     <li>请您在新打开的付款页面进行支付，支付完成前请不要关闭该窗口。</li>
+		 <li>
+		     <i class="paySucceed"></i>
+			 <em>付款成功：</em>
+			 <a href="javascript:void(0);" class="orangeFont">订单详情</a>
+		 </li>
+		 <li>
+		     <i class="payFail"></i>
+			 <em>付款失败：</em>
+			 <a href="javascript:void(0);" class="againPaymentBtn">重新选择支付方式</a>
+		 </li>
+	 </ul>  
+</script>
+
+<script type="text/javascript">
 	$(function(){
 		
+		//余额浮层
 		$(".changeWay .balance").kendoTooltip({
 			position:"bottom", //left right top
 			content:function(){
 				return $("#balanceTemplate").html();
 			},
 			offsetY:10,
-			width:280
+			width:280		
 		});
+		
+		//第三方浮层
+		$(".thirdPayment .thirdPayStyle").kendoTooltip({
+			position:"bottom", //left right top
+			content:function(){
+				return $("#thirdPaymentTemplate").html();
+			},
+			offsetY:10,
+			width:280		
+		});
+		
+		//支付内容切换
+		$(".changeWay li").each(function(index){
+            $(this).click(function(){
+                //$(".changeWay .payCont").hide();
+               // $(".changeWay .payCont:eq(" + index + ")").show();
+                $(".changeWay li").removeClass("current");
+                $(this).addClass("current");
+            });
+
+        });
+		
+		//第三方内容切换
+		$(".thirdPayment label").each(function(index){
+            $(this).click(function(){
+                //$(".changeWay .payCont").hide();
+               // $(".changeWay .payCont:eq(" + index + ")").show();
+                $(".thirdPayment label").removeClass("currentWay");
+                $(this).addClass("currentWay");
+            });
+
+        });
+		
+		// 弹窗
+		new PopWindow('.ac-payAffirm',{
+			template:'#ac-payAffirm-template',
+			title:'付款确认',
+			width:'400'
+		}).init();
+		
+		
 	});
+</script>
+
+<script type="text/javascript">
+ $(function(){
+    $(".thirdPayment").find("input[type='radio']").each(function (index) {
+        $(this).click(function () {
+            //console.log(index);
+            switch (index) {
+                case 0:
+                    $(".zfbCont").show();
+                    $(".cftCont").hide();
+                    break;
+                case 1:
+                    $(".zfbCont").hide();
+                    $(".cftCont").show();
+                    break;
+                default:
+                    break;
+            }
+        });
+    });
+ });	
 </script>
 
