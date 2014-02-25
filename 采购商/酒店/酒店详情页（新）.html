@@ -10,10 +10,14 @@
     <link rel="stylesheet" href="../../static/css/store_hotel.css" media="screen" />
 	<link rel="stylesheet" href="../../static/css/smoothness/jquery-ui-1.10.3.custom.css" />
     <link rel="stylesheet" href="../../static/css/kendo.common.css" />
+	<link rel="stylesheet" href="../../static/css/kendo.store.css" />
 
     <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
 	<script type="text/javascript" src="../../static/js/kendo.web.js"></script>
 	<script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+	
+	<script type="text/javascript" src="../../static/js/jcarousellite_1.0.1.pack.js"></script>
+	<script type="text/javascript" src="../../static/js/global.js"></script>
     <!--[if IE]>
     <script src="../../static/js/html5.js"></script>
     <![endif]-->
@@ -505,7 +509,13 @@
         </center>
     </footer>
 </div>
-
+<script type="text/x-kendo-template" id="stipulateTemplate">
+    <div class="stipulateCont">
+	    <p><b>入住时间：</b>14点以后</p>
+		<p><b>退房时间：</b>14点以前</p>
+		<p><b>变更/取消：</b>入住前1天12点之前取消或变更，不收取任何费用；入住前1天12点之后取消或变更，将收取首晚房费。</p>
+	</div>
+</script>
 <script type="text/x-kendo-template" id="salePriceTblTemplate">
     <div class="salePriceTblContainer">
         <table class="hotelSalePriceTbl">
@@ -606,10 +616,7 @@
     </div>
 </script>
 
-<script type="text/javascript" src="../../static/js/jquery.min.js"></script>
-<script type="text/javascript" src="../../static/js/jcarousellite_1.0.1.pack.js"></script>
-<script type="text/javascript" src="../../static/js/kendo.web.js"></script>
-<script type="text/javascript" src="../../static/js/global.js"></script>
+
 <script type="text/javascript">
     $(function(){
         $(".expand").click(function(){
@@ -642,6 +649,17 @@
             $(this).addClass("current").siblings().removeClass("current");
             $(".hotelBigImage").attr("src",$("img",this).attr("src"));
         })
+		
+		 $(".roomTypeDetailContainer .fontColor_loess").kendoTooltip({
+			position:"bottom", //left right top
+			content:function(){
+				return $("#stipulateTemplate").html();
+			},
+			offsetY:10,
+			width:480
+		});
+		
+		
         var layer=new FloatLayer({
             trigger:".rule",
             template:"<div class='location clearfix'> <!--浮层开始-->\

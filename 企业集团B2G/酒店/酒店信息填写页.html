@@ -142,23 +142,26 @@
 									</tr>
 								<tr>
 										<th style="vertical-align:top; padding-top:5px;">房间保留时间：</th>
-										<td colspan="3"><div>
+										<td colspan="3">
+										<div class="ensureCost">
 												<label>
-												<input name="" type="radio" value="">
+												<input name="keepTime" type="radio" checked="checked">
 												12月21日 23:59</label>
-												<i class="roundBeadBorder">推荐</i> </div>
-										<div>
+												<i class="roundBeadBorder">推荐</i> 
+										<br>
 												<label>
-												<input name="" type="radio" value="">
+												<input name="keepTime" type="radio">
 												12月22日 06:00</label>
-												<span>（<i class="card-mark"></i>需要信用卡或支付宝担保房费<em class="red">￥<strong style="font-size:16px;">620.00</strong></em> 元）</span> </div>
-										<div class="ensureTips">
+												<span>（<i class="card-mark"></i>需要信用卡或支付宝担保房费<em class="red">￥<strong style="font-size:16px;">620.00</strong></em> 元）</span> 
+										</div>
+										<div class="ensureTips" style="display:none">
 												<p>担保方式：</p>
 												<p>房间保留至12月22日06:00，需冻结/暂扣首晚房费担保订单：金额<em class="red">￥<strong style="font-size:16px;">620.00</strong></em>元 , 结账后立即操作解冻/退款。</p>
 											</div></td>
 								</tr>
 								<tr>
-										<th colspan="4" class="cardSel" style="text-align:left;font-weight:normal;">
+										<th colspan="4" class="" style="text-align:left;font-weight:normal;">
+										<div class="cardEnsure" style="display:none;">
 										 <div class="cardSelTit"><b>请选择担保信用卡：</b></div>
 										 <div class="cardType">
 										   <ul>
@@ -185,7 +188,10 @@
 										   <i></i>添加一张信用卡
 										   </span>
 										 </div>
+										   <div class="cardEdit"><a href="javascript:void(0);">修改信用卡信息</a></div>
+										 </div>
 										 <!--添加 填写信用卡内容-->
+										 <div class="fillCard" >
 										 <div class="cardSelTit"><b>请选择担保信用卡：</b>
 										  <span class="cardSelTips">请确保信用卡证件登记信息与发卡行记录信息一致 !</span>
 										 </div>
@@ -256,9 +262,16 @@
 											</tr>
 										   </tbody>
 										 </table>
+										 <div class="buttonBox">
+										  <button type="button" class="commonBtn lightRedBtn btnfontStyle" style="margin-right:12px">保 存</button>
+                                          <button type="button" class="commonBtn grayBtn btnfontStyle close">取 消</button>
+										 </div>
+										 </div>
 										 
-										 <div class="cardEdit"><a href="javascript:void(0);">修改信用卡信息</a></div>
 										</th>
+								</tr>
+								<tr>
+								 <th colspan="4" class="noEnsure"></th>
 								</tr>
 								<!--<tr>
 										<th>银行名称：</th>
@@ -502,6 +515,31 @@
 		<div class="blockNumber">
 			#= cardNo #
 		</div>
+	</script>
+	
+	<script type="text/javascript">
+	 $(function(){
+		$(".ensureCost").find("input[type='radio']").each(function (index) {
+			$(this).click(function () {
+				//console.log(index);
+				switch (index) {
+					case 0:
+						$(".noEnsure").show();
+						$(".cardEnsure,.ensureTips").hide();
+						break;
+					case 1:
+						$(".noEnsure").hide();
+						$(".cardEnsure,.ensureTips").show();
+						break;
+					default:
+						break;
+				}
+			});
+		});
+		
+		
+		
+	 });	
 	</script>
 </body>
 </html>
