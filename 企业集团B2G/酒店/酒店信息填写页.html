@@ -163,7 +163,7 @@
 										<th colspan="4" class="" style="text-align:left;font-weight:normal;">
 										<div class="cardEnsure" style="display:none;">
 										 <div class="cardSelTit"><b>请选择担保信用卡：</b></div>
-										 <div class="cardType">
+										 <div class="cardType basicInfoSetup_items">
 										   <ul>
 										    <li><span><i class="zs"></i>招商银行</span></li>
 											<li><span class="cardNumber">6222 3333 4444 5555</span></li>
@@ -191,7 +191,7 @@
 										   <div class="cardEdit"><a href="javascript:void(0);">修改信用卡信息</a></div>
 										 </div>
 										 <!--添加 填写信用卡内容-->
-										 <div class="fillCard" >
+										 <div class="fillCard" style="display:none">
 										 <div class="cardSelTit"><b>请选择担保信用卡：</b>
 										  <span class="cardSelTips">请确保信用卡证件登记信息与发卡行记录信息一致 !</span>
 										 </div>
@@ -264,7 +264,7 @@
 										 </table>
 										 <div class="buttonBox">
 										  <button type="button" class="commonBtn lightRedBtn btnfontStyle" style="margin-right:12px">保 存</button>
-                                          <button type="button" class="commonBtn grayBtn btnfontStyle close">取 消</button>
+                                          <button type="button" class="commonBtn grayBtn btnfontStyle close bis_cancel">取 消</button>
 										 </div>
 										 </div>
 										 
@@ -384,6 +384,11 @@
 		<p class="copyright">Copyright &copy; 2013 天地行 All Rights Reserved.     沪ICP备08101503号</p>
 	</footer>
 	</div>
+<script type="text/html" id="bis_newItemTemplate">
+</script>	
+<script type="text/html" id="bis_itemTemplate">
+</script>	
+	
 <script type="text/x-kendo-template" id="hotel_price_info">
      <table class="room-date" >
                <colgroup>
@@ -525,7 +530,7 @@
 				switch (index) {
 					case 0:
 						$(".noEnsure").show();
-						$(".cardEnsure,.ensureTips").hide();
+						$(".cardEnsure,.ensureTips,.fillCard").hide();
 						break;
 					case 1:
 						$(".noEnsure").hide();
@@ -537,6 +542,18 @@
 			});
 		});
 		
+		 $(".cardType_add").click(function(){
+            var t=kendo.template($("#bis_newItemTemplate").html());
+			$(".fillCard").show();
+			$(".cardEnsure,.cardType_add").hide();
+        })
+       
+        $("body").delegate(".bis_cancel","click",function(){
+			$(".fillCard").hide();
+			$(".cardEnsure,.cardType_add").show();
+           
+        })
+       
 		
 		
 	 });	
