@@ -234,6 +234,7 @@ table{width:100%}
 }
 .summary_left {
 	float:left;
+	width:86%;
 	min-width:86%;
 }
 .summary_left .hotelInfo {
@@ -381,17 +382,23 @@ i.hotel_stars05 {
 /*酒店图片 开始*/
 .hotelImgs{
 	padding-right:0px;
+	position:relative;
+	height:auto;
+	overflow:hidden;
 }
 .hotelImgs li {
 	float: left;
+	display:inline-block;
 	cursor: pointer;
 	color: #fff;
 	text-align: center;
 }
 .hotelLeftBigImg {
 	margin: 0 10px 0 0;
+	float:left;
 	display: inline-block;
 	position: relative;
+	width:320px;
 }
 .hotelLeftBigImg img {
 	width: 320px;
@@ -403,7 +410,7 @@ i.hotel_stars05 {
 .hotelMoSmImgTop {
 	margin-bottom: 12px;
 }
-.hotelMoSmImgTop li {
+.hotelMoSmImgTop li, .hotelMoSmImgBtm li {
 	margin: 0 10px 0 0;
 	width: 152px;
 	height: 114px;
@@ -412,25 +419,13 @@ i.hotel_stars05 {
 	float: left;
 	position: relative;
 }
-.hotelMoSmImgTop li img {
+.hotelMoSmImgTop li img, .moddleSmallImg li img {
 	width: 152px;
 	height: 114px;
-}
-.hotelMoSmImgBtm li {
-	margin-right: 10px;
-	float: left;
-	position: relative;
-}
-.moddleSmallImg img {
-	width: 152px;
-	height: 114px;
-}
-.moddleSmallLongImg img {
-	width: 230px;
-	height: 105px;
 }
 .hotelImgs .hotelRightMap{
 	float:right;
+	width:325px;
 }
 .hotelRightMap img {
 	width: 325px;
@@ -475,38 +470,75 @@ i.hotel_stars05 {
 /*four item*/
 .changeList {
 	background: #f8f8f8;
-	border-top:1px solid #e1e1e1;
 	border-bottom:1px solid #e1e1e1;
+		border-top:1px solid #e1e1e1;
+
 	margin-bottom: 20px;
-	z-index: 2;
-	-webkit-transform: translateZ(0)
+	-webkit-transform: translateZ(0);
+	position:relative;
+}
+.changeList ul {
+	float:left;
+}
+.changeList li {
+	float:left;
+	position:relative;
+    height:40px;
+	line-height:40px;
+	font-size:14px;
+	font-weight:bold;
+	color:#404040;
 }
 .changeList a {
 	float: left;
-	border-right: 1px solid #d0d0d0;
-	min-width: 120px;
-	padding: 10px 0;
+	display:inline-block;
+    min-width:120px;
+	text-align:center;
+	color: #404040;
 	font-size: 14px;
 	font-weight: bold;
-	color: #404040;
-	text-align: center;
-	position: relative;
+	text-decoration: none;
 }
-.changeList a:hover {
+/*.changeList a:hover {
 	color: #404040;
 	text-decoration: none;
 	background: #ededed;
-}
+}*/
 .changeList .currentLi, .changeList .currentLi:hover {
-	background: #fff;
-	border-top:2px solid #f1634c;
+	background:#fff;
 	border-right:1px solid #e3e3e3;
 	border-left:1px solid #e3e3e3;
-	border-bottom:0px solid #fff;
-	color: #f1634c;
+	color:#f1634c;
+	height:41px;
+	z-index:3;
+}
+.changeList .currentLi i {
+	position:absolute;
+	top:-1px;
+	left:0px;
+	background:#f1634c;
+	height:2px;
+	min-width:120px;
+}
+.changeList .liLine {
+	background:url(../images/store/div_line.png) no-repeat 0 0;
+	width:1px;
+	height:14px;
+	margin:13px 0 0 0;
+	z-index:2px;
 }
 .changeList .currentLi {
-	margin-left: -1px;
+	margin-left:-1px;
+	margin-right:-1px;
+}
+.itemBorder {
+	border:1px solid #e1e1e1;
+}
+.itemPoint {
+	padding:10px;
+}
+.itemContent {
+	padding:10px 20px;
 }
 /*four item End*/
 .house_search .condition {
@@ -672,7 +704,7 @@ i.hotel_stars05 {
 	width: 100px;
 	float: right;
 	height: 420px;
-	overflow-y: scroll;
+	overflow:hidden;
 	position: absolute;
 	top: 0px;
 	right: -10px;
