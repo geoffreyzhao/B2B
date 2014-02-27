@@ -15,7 +15,7 @@
     <script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
     <script type="text/javascript" src="../../static/js/global.js"></script>
     <script type="text/javascript" src="../../static/js/b2g/common.js"></script>
-    <script src="../../static/js/jquery-ui-1.10.3.custom.js"></script>
+    <script src="../../static/js/b2g/jquery-ui-1.10.3.custom.js"></script>
     <!--[if lte IE 9]>
     <script src="../../static/js/html5.js"></script>
     <![endif]-->
@@ -157,9 +157,7 @@
                                   <label class="groupSet"><em>员工</em> <i></i></label>
                                   <label class="groupSet"><em>审批人</em> <i></i></label>
                                   <label class="groupSet moreRole"><em>. . .</em></label>
-                                 <select data-role="dropdownlist" style="width:93px;">
-                                     <option>请选择</option>                                     
-                                 </select>
+                                  <span id="sel_customerRole">请选择</span>
                             </td>                            
                           </tr>
                            <tr>
@@ -213,7 +211,7 @@
                             <td class="tdTit">电话：</td>
                             <td><input type="text"  style="width:150px"/></td>
                             <td class="tdTit">国籍：</td>
-                            <td><input type="text"  style="width:150px"/></td>
+                            <td><input type="text" id="ipt_nationality"  style="width:150px;padding:0;"/></td>
                           </tr>
                           </tbody>
                     </table> 
@@ -511,6 +509,18 @@
 	});
 </script>
 
+<script id="sel_customerRoleTemplate" type="text/x-kendo-template">
+    <ul class="ul_sel_customerRole">
+        <li><label><input type="checkbox" name="" id=""/>管理员</label></li>
+        <li><label><input type="checkbox" name="" id=""/>商旅秘书</label></li>
+        <li><label><input type="checkbox" name="" id=""/>普通员工</label></li>
+        <li><label><input type="checkbox" name="" id=""/>审批人</label></li>
+        <li class="sel_customerRole_confirmButton">
+            确 定
+        </li>
+    </ul>
+</script>
+
 <script>
 
     $(function(){
@@ -524,6 +534,20 @@
 			title:'部门组织架构树',
 			width:'580'
 		},"#orgchart-template").init();
+
+        $("#ipt_nationality").kendoAutoComplete({
+            dataSource:["新加坡","新西兰","新几内亚"]
+        })
+
+        new frequentFlyer({
+            template:"#sel_customerRoleTemplate",
+            trigger:"#sel_customerRole",
+            offsetX:0.5,
+            offsetY:31,
+            openEffect:"slideDown",
+            closeEffect:"slideUp",
+            css:{padding:0,"border-color":"#BCBCBC",background:"#ffffff",width:"90px"}
+        });
 	});
 </script>
 </body>

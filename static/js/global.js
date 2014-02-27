@@ -239,7 +239,10 @@ var FloatLayer = function(opts){
         offsetY:20,
         toggle:true,
         open:$.noop,
-        close:$.noop
+        close:$.noop,
+        css:"",
+        openEffect:"",
+        closeEffect:""
     },opts);
 
     var tpl;
@@ -348,12 +351,24 @@ var FloatLayer = function(opts){
     };
 
     layer.open = function(){
-        layer.show();
+        if(opts.openEffect)
+        {
+            layer[opts.openEffect]();
+        }
+        else{
+            layer.show();
+        }
         opts.open.apply(this);
     };
 
     layer.close = function(){
-        layer.hide();
+        if(opts.closeEffect)
+        {
+            layer[opts.closeEffect]();
+        }
+        else{
+            layer.hide();
+        }
         opts.close.apply(this);
     };
 
