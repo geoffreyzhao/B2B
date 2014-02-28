@@ -1661,6 +1661,11 @@ $.fn.fixedBar = function(settings){
 
 		return this.each(function() {
 		  $.fn.scrollPagination.init($(this), opts);
+		  
+			if(opts.loadFirst){
+				$(target).data('loadFirst',true);
+				$.fn.scrollPagination.loadContent($(this),opts);
+			}
 		});
 
   };
@@ -1676,7 +1681,12 @@ $.fn.fixedBar = function(settings){
 	 var target = opts.scrollTarget;
 
 	 var mayLoadContent = $(target).scrollTop()+opts.heightOffset >= $(document).height() - $(target).height();
-	 if (mayLoadContent){
+	 var loadFirst = $(target).data('loadFirst');
+	 
+	 if (mayLoadContent || loadFirst){
+
+		 $(target).removeData('loadFirst');
+
 		 if (opts.beforeLoad != null){
 			opts.beforeLoad();
 		 }
