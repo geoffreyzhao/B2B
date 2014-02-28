@@ -19,6 +19,13 @@
     <!--[if lte IE 9]>
     <script src="../../static/js/html5.js"></script>
     <![endif]-->
+    
+    <style>
+         .ac-floatlayer{ border:0; background:rgba(41, 48, 56,.8); padding:4px;}
+		 .cytab-morehotel{ width:430px;}
+		 .cytab-content li{ min-width:190px;}
+    </style>
+    
 </head>
 <body>
 <div class="main-wrapper">
@@ -161,7 +168,7 @@
                                           <label class="groupSet"><em>商旅秘书</em></label>
                                     </li>
                                     <li class="secondGroupList">                                    
-                                          <span id="sel_customerRole">请选择</span>
+                                          <span id="sel_customerRole" class="morehotel">请选择</span>
                                     </li>
                                 </ul>
                             </td>                            
@@ -178,7 +185,7 @@
                                           <label class="groupSet"><em>产品说这里会有10个字</em></label>
                                     </li>
                                     <li class="secondGroupList">                                    
-                                          <span id="sel_customerRole">请选择</span>
+                                          <span id="sel_customerRole" class="morehotel">请选择</span>
                                     </li>
                                 </ul>
                             </td>                            
@@ -234,7 +241,7 @@
                             <td class="tdTit">电话：</td>
                             <td><input type="text"  style="width:150px"/></td>
                             <td class="tdTit">国籍：</td>
-                            <td><input type="text" id="ipt_nationality"  style="width:150px;padding:0;"/></td>
+                            <td><input type="text" id="ipt_nationality" name="" style="width:150px;padding:0;"/></td>
                           </tr>
                           </tbody>
                     </table> 
@@ -516,6 +523,67 @@
         <p class="copyright">Copyright &copy; 2013 天地行 All Rights Reserved.     沪ICP备08101503号</p>
     </footer>
 </div>
+<script>
+          $(function(){
+				var hotelData = [{
+					name:'普通职工',
+					selected:false
+				},{
+					name:'普通职工',
+					selected:false
+				},{
+					name:'差旅秘书',
+					selected:false
+				},{
+					name:'差旅秘书',
+					selected:false
+				},{
+					name:'审批人',
+					selected:false
+				},{
+					name:'审批人',
+					selected:false
+				},{
+					name:'产品说这里会有10个字', 
+					selected:true
+				},{
+					name:'产品说这里会有10个字', 
+					selected:true
+				}];
+				var hotelLayer = FloatLayer({
+					trigger:'.morehotel', 
+					template:'#morehotel-template',
+					offsetY:65,
+					data:hotelData
+				});
+				
+		  });
+</script>
+    
+<script type="text/template" id="morehotel-template">
+    <div class="cytab cytab-morehotel">
+        <div class="cytab-title">
+            <span>请选择员工职务</span>
+            <i class="close">&nbsp;</i>
+        </div>
+
+        <div class="cytab-content">
+            <ul class="clearfix">
+                # for(var i=0;i<data.length;i++){#
+                <li>
+                    <label>
+                    <input # if(data[i].selected){#  checked  #}# type="checkbox" name="">
+                    <span class="morehotel-item morehotel-item#=i#">#= data[i].name#</span>
+                    </label>
+                </li>
+                #} #
+            </ul>
+            <div style="text-align:right">
+                 <button type="button" class="commonBtn lightRedBtn" style="font-size:16px;padding:5px 20px;">确  定</button>
+            </div>
+        </div>
+    </div>
+</script>
 
 
 <script>
@@ -532,7 +600,7 @@
 	});
 </script>
 
-<script id="sel_customerRoleTemplate" type="text/x-kendo-template">
+<!--<script id="sel_customerRoleTemplate" type="text/x-kendo-template">
     <ul class="ul_sel_customerRole">
         <li><label><input type="checkbox" name="" id=""/>管理员</label></li>
         <li><label><input type="checkbox" name="" id=""/>商旅秘书</label></li>
@@ -542,7 +610,7 @@
             确 定
         </li>
     </ul>
-</script>
+</script>-->
 
 <script>
 
@@ -562,7 +630,7 @@
             dataSource:["新加坡","新西兰","新几内亚"]
         })
 
-        new frequentFlyer({
+        /*new frequentFlyer({
             template:"#sel_customerRoleTemplate",
             trigger:"#sel_customerRole",
             offsetX:0.5,
@@ -570,7 +638,8 @@
             openEffect:"slideDown",
             closeEffect:"slideUp",
             css:{padding:0,"border-color":"#BCBCBC",background:"#ffffff",width:"142px"}
-        });
+        });*/
+		
 	});
 </script>
 </body>
