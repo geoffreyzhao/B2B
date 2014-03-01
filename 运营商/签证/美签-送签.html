@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>签证 美签无需面试</title>
+        <title>签证 美签-送签</title>
         <meta charset="utf-8" />
         <link href="/static/css/common.css" rel="stylesheet" />
         <link href="/static/css/b2b.css" rel="stylesheet" />
@@ -15,6 +15,10 @@
         <script type="text/javascript" src="/static/js/jquery.min.js"></script>
         <script type="text/javascript" src="/static/js/kendo.web.js"></script>
         <script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
+        <script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+        <script type="text/javascript" src="../../static/js/global.js"></script>
+        <script type="text/javascript" src="../../static/js/finance.js"></script>
+        
         <script type="text/javascript">
             $(function(){
                     $('.actions').fixedBar();
@@ -24,7 +28,7 @@
                         if(that.find('.highlight-fl').size()>0){
                         var ele = that.find('.highlight');
                         var len = ele.size();
-                        var wid = ele.width()*len + -100;
+                        var wid = ele.width()*len + -70;
                         that.find('.line').prepend('<div style="background-color:#00ae42;height:2px;width:'+wid+'px" />')
                         }
                         });
@@ -32,12 +36,12 @@
                     lensf();
                     });
         </script>
-
-<!--[if lt IE 8]> 
-<link rel="stylesheet" href="/static/css/ie.css" /> 
-<script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
-<![endif]-->
-<script type="text/javascript" src="/static/js/sync.js"></script>
+            
+        <!--[if lt IE 8]> 
+        <link rel="stylesheet" href="/static/css/ie.css" /> 
+        <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
+        <![endif]-->
+        <script type="text/javascript" src="/static/js/sync.js"></script>
                     <!-- @CLB@ -->
 </head>
 <body>  
@@ -85,9 +89,19 @@
                                  <b>签证详情</b>
                             </div>
                             <div class="col col-r sep-l">
-                                <a href="javascript:;" class="button_important adaptiveButton small">
+                                <a href="美签-出签.html" class="button_important adaptiveButton small">
                                     <span class="left"></span>
-                                    <span class="center">提 交</span>
+                                    <span class="center">出 签</span>
+                                    <span class="right"></span>
+                                </a>
+                                <a href="javascript:;" class="button_secondary adaptiveButton small ac-refuse">
+                                    <span class="left"></span>
+                                    <span class="center">拒 签</span>
+                                    <span class="right"></span>
+                                </a>
+                                <a href="美签-护照已到.html" class="button_secondary adaptiveButton small">
+                                    <span class="left"></span>
+                                    <span class="center">重新预约</span>
                                     <span class="right"></span>
                                 </a>
                             </div>
@@ -107,8 +121,7 @@
                                     <li>
                                         <div class="instr clearfix">
                                             <span class="highlight first">材料到齐/已齐</span>
-                                            <span class="highlight">预约</span>
-                                            <span class="highlight highlight-fl">面试</span>
+                                            <span class="highlight highlight-fl">送签</span>
                                             <span>出签</span>
                                             <span>护照已到</span>
                                             <span class="last">护照已取走</span>
@@ -177,76 +190,54 @@
                                         <tr class="thead">
                                             <th>材料名称</th>
                                             <th>材料要求</th>
-                                            <th>备注</th>
-                                            <th style="text-align:center;">操作</th>
+                                            <th style="text-align:center;">是否通过</th>
                                         </tr> 
                                         <tr>
-                                            <td><em class="redFont">*</em>护照原件（可自带）</td>
-                                            <td>1. 前往美国旅行的有效护照，有效期需超出在美预定停留期至少六个月，护照末页需本人中文签名，护照至少留有连续2页空白签证页，不含备注页 。<br/>
-                                                2. 如有旧护照，则一并提供原件（或面签时自带）。
+                                            <td><em class="redFont">*</em>护照：原件  复印件</td>
+                                            <td>1、护照在归国后至少还有半年以上有效期，护照末页需本人中文签名（不要用铅笔签名）；护照至少留有连续2页的空白签证页，不含备注页。<br/>
+                                                2、如有旧护照，则一并提供原件。
                                             </td>
-                                            <td> </td>
                                             <td> 
-                                                <div class="operation">
-                                                    <a href="javascript:void(0);" title="通过" class="right"></a>
-                                                    <a href="javascript:void(0);" title="不通过" class="wrong"></a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><em class="redFont">*</em>护照复印件</td>
-                                            <td>两份护照首页复印件，需清楚印明客人基本信息，首页上需写明团号、销售、同行、签证费用、行程首站。</td>
-                                            <td>照片尺寸不符合规范</td>
-                                            <td> 
-                                                <div class="operation">
-                                                    <a href="javascript:void(0);" title="通过" class="right"></a>
-                                                    <a href="javascript:void(0);" title="不通过" class="wrong"></a>
+                                                <div class="whetherThrough">
+                                                    <a href="javascript:void(0);" class="passHint"></a>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td><em class="redFont">*</em>签证表格</td>
-                                            <td>表格中内容必须如实仔细填写完整</td>
-                                            <td> </td>
+                                            <td>签证表格需全部填写完整</td>
                                             <td> 
-                                                <div class="operation">
-                                                    <a href="javascript:void(0);" title="通过" class="right"></a>
-                                                    <a href="javascript:void(0);" title="不通过" class="wrong"></a>
+                                                <div class="whetherThrough">
+                                                    <a href="javascript:void(0);" class="passHint"></a>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td><em class="redFont">*</em>照片</td>
-                                            <td>1.实体照：两张最近六个月内拍摄的2英寸x2英寸（5厘米x5厘米）白底彩色数码照片，照片背面请用铅笔备注姓名<br/>
-                                                2.电子照：必须提供相应尺寸照片并以客人姓名命名文件发送。 （请面签时自带实体照）
+                                            <td>1、纸质照片：半年内拍摄的5.0cmx5.0cm白底彩照2张（每张照片后务必以铅笔注明客人的姓名）。<br/>
+                                                2、电子照片（每张照片必须正确命名，如因命名错误导致的后续问题，责任由客人承担）。
                                             </td>
-                                            <td> </td>
                                             <td> 
-                                                <div class="operation">
-                                                    <a href="javascript:void(0);" title="通过" class="right"></a>
-                                                    <a href="javascript:void(0);" title="不通过" class="wrong"></a>
+                                                <div class="whetherThrough">
+                                                    <a href="javascript:void(0);" class="passHint"></a>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td><em class="redFont">*</em>身份证复印件</td>
-                                            <td>申请人身份证复印件正反面（出生证明）</td>
-                                            <td> </td>
+                                            <td>身份证正反面复印件</td>
                                             <td> 
-                                                <div class="operation">
-                                                    <a href="javascript:void(0);" title="通过" class="right"></a>
-                                                    <a href="javascript:void(0);" title="不通过" class="wrong"></a>
+                                                <div class="whetherThrough">
+                                                    <a href="javascript:void(0);" class="noPass"></a>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td><em class="redFont">*</em>签证费用</td>
-                                            <td>团签、单签每人各多少费用</td>
-                                            <td> </td>
+                                            <td>签证费用1200元</td>
                                             <td> 
-                                                <div class="operation">
-                                                    <a href="javascript:void(0);" title="通过" class="right"></a>
-                                                    <a href="javascript:void(0);" title="不通过" class="wrong"></a>
+                                                <div class="whetherThrough">
+                                                    <a href="javascript:void(0);" class="noPass"></a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -257,7 +248,6 @@
                         
                         
                     </div> <!--内容结束-->
-
                 </div>
 
                 <div id="extFooter">
@@ -271,4 +261,31 @@
                         <p>客户服务热线:400-720-6666</p>
                     </div>
                 </div>
-        </body></html>
+                
+                <script type="text/x-kendo-template" id="ac-refuse-template">
+						<div class="refuseVisa">
+						     <h4 class="remarkTitle">请填写拒签备注：</h4>
+							 <div class="refuseRemark">
+							      <textarea>请输入……</textarea>
+								  <em class="lineNumber">0/30</em>
+							 </div>
+							 <div class="orangeBtn">
+							      <button class="large_button" type="button" name="a">确 定</button>
+							 </div>
+						</div>						
+				</script>
+                
+                <script type="text/javascript">
+						$(function(){
+							new PopWindow('.ac-refuse',{
+								template:'#ac-refuse-template',
+								title:'拒签原因',
+								width:'470'
+							}).init();
+							
+						});
+						
+				</script> 
+                
+        </body>
+     </html>
