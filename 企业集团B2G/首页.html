@@ -15,7 +15,8 @@
     <script type="text/javascript" src="../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
     <script type="text/javascript" src="../static/js/global.js"></script>
     <script type="text/javascript" src="../static/js/b2g/common.js"></script>
-    <script src="../static/js/jquery-ui-1.10.3.custom.js"></script>
+    <script type="text/javascript" src="../static/js/jquery-ui-1.10.3.custom.js"></script>
+	
     <!--[if lte IE 9]>
     <script src="../static/js/html5.js"></script>
     <![endif]-->
@@ -626,7 +627,7 @@
   <!-- 设置差旅人 内容 -->
     <div id="settour-template" style="padding:20px">
         <div class="settour">
-            <h4><em>1.</em>选择差旅人</h4>
+            <h4>选择差旅人</h4>
 
             <div style="padding-left:16px;letter-spacing:-4px">
                 <select name="for_reason" style="width:142px;height:34px;letter-spacing:0">
@@ -636,12 +637,11 @@
                 <input id="ipt_customer" type="text" style="width:514px;border-left:none;letter-spacing:0;vertical-align:top"/>
                 <div class="addtemptour-button nb" id="btn_addProvisionalCustomer"><i></i>增加</div>
             </div>
-            <table style="margin:10px 0 5px 0;">
+            <table class="travelTable">
                 <colgroup>
                     <col width="100px"/>
                     <col width="500px"/>
                 </colgroup>
-
                 <tbody>
                 <tr>
                     <td style="padding-left:26px">差旅人：</td>
@@ -658,30 +658,6 @@
 
             <div id="provisionalCustomerContainer">
 
-            </div>
-
-            <h4><em>2.</em>选择差旅目的</h4>
-
-            <div style="padding-left:16px">
-                <input id="customers" class="likeKendoDDL" type="text" style="width: 656px;" placeholder="请选择差旅目的"/>
-                <div id="destinationContainer">
-                    <ul id="userWrapper" class="selectarea">
-                        <li class="tourobj-button"><span>外出开会</span><span class="">&nbsp;</span></li>
-                        <li class="tourobj-button"><span>业务需要</span><span class="">&nbsp;</span></li>
-                        <li class="tourobj-button"><span>接客户</span><span class="">&nbsp;</span></li>
-                        <li class="tourobj-button"><span>接领导</span><span class="">&nbsp;</span></li>
-                        <li class="tourobj-button"><span>领导安排</span><span class="">&nbsp;</span></li>
-                        <li class="tourobj-button"><span>参加非常重要的会议</span><span class="">&nbsp;</span></li>
-                        <li class="tourobj-button"><span>我也不知道为什么</span><span class="">&nbsp;</span></li>
-                        <li class="tourobj-button"><span>这到底是为什么</span><span class="">&nbsp;</span></li>
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-            <h5>备注</h5>
-
-            <div style="padding-left:16px;position: relative">
-                <textarea name="" style="width:630px" id="ipt_note"></textarea><span style="position: absolute;right: 10px;bottom: 10px"><span class="charNum">0</span>/100</span>
             </div>
 
             <div class="buttonbox">
@@ -705,28 +681,28 @@
         <h4>请输入临时差旅人信息</h4>
         <table class="addtour-info">
             <colgroup>
-                <col width="92px"/>
+                <col width="82px"/>
+                <col width="105px"/>
+                <col width="82px"/>
                 <col width="125px"/>
-                <col width="92px"/>
-                <col width="125px"/>
-                <col width="55px"/>
+                <col width="95px"/>
                 <col width="55px"/>
                 <col width="55px"/>
                 <col width="58px"/>
             </colgroup>
             <tbody>
             <tr>
-                <td><em>*</em>中文名：</td>
-                <td><input name="" id="pc_cnName" type="text" style="width:111px;"></td>
-                <td><em>*</em>英文名：</td>
-                <td><input name="" type="text" style="width:111px;"></td>
-                <td><em>*</em>性别：</td>
+                <th><em>*</em>姓：</th>
+                <td><input name="" id="pc_cnName" type="text" style="width:103px;" placeholder="中文/英文"></td>
+                <th><em>*</em>名：</th>
+                <td><input name="" type="text" style="width:140px;" placeholder="中文/英文"></td>
+                <th><em>*</em>性别：</th>
                 <td><select name="">
                     <option value="男">男</option>
                     <option value="女">女</option>
                 </select>
                 </td>
-                <td><em>*</em>类型：</td>
+                <th><em>*</em>类型：</th>
                 <td><select name="" style="width:56px;">
                     <option value="成人">成人</option>
                     <option value="儿童">儿童</option>
@@ -734,37 +710,37 @@
                 </td>
             </tr>
             <tr>
-                <td><em>*</em>手机号码：</td>
-                <td><input name="" type="text" style="width:111px;"></td>
-                <td><em>*</em>邮箱地址：</td>
-                <td colspan="5"><input name="" type="text" style="width:365px"></td>
+			    <th><em>*</em>国籍：</th>
+                <td><input name="" type="text" style="width:103px;"></td>
+                <th><em>*</em>手机号码：</th>
+                <td><input name="" type="text" style="width:140px;"></td>
+                <th><em>*</em>邮箱地址：</th>
+                <td colspan="3"><input name="" type="text" style="width:177px"></td>
             </tr>
             <tr>
-                <td><em>*</em>证件类型：</td>
-                <td><select name="" style="width:111px;">
+                <th><em>*</em>证件类型：</th>
+                <td><select name="" id="sel_certificateType" style="width:103px;">
                     <option value="身份证">身份证</option>
                     <option value="军官证">军官证</option>
                     <option value="国外护照">国外护照</option>
                 </select></td>
-                <td><em>*</em>证件号码：</td>
-                <td colspan="2"><input name="" type="text" style="width:169px"></td>
-                <td colspan="2" style="text-align:right">证件有效期：</td>
-                <td><input name="" type="text" style="width:55px;"></td>
+                <th><em>*</em>证件号码：</th>
+                <td><input name="" type="text" style="width:140px"></td>
+                <th>证件有效期：</th>
+                <td colspan="3"><input type="text" class="datepicker" style="width:177px;" /></td>
             </tr>
-            <tr>
-                <td><em>*</em>发证国家：</td>
-                <td><input name="" type="text" style="width:111px;"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td colspan="2" align="right">
-                    <div class="addtemptour-button" id="btn_saveProvisionalCustomer"><i></i>增加</div>
-                    <span class="fold-button"><a href="javascript:;" id="btn_hideProvisionalCustomerContainer">收起</a></span></td>
+            <tr id="certificateState" style="display:none;">
+                <th><em>*</em>发证国家：</th>
+                <td colspan="7"><input name="" type="text" style="width:103px;"></td>
             </tr>
-
             </tbody>
         </table>
+		  <div style="text-align:right;padding-right:10px;margin-top:5px;">
+		     <div class="addtemptour-button" id="btn_saveProvisionalCustomer"><i></i>添加</div>
+             <span class="fold-button">
+			   <a href="javascript:;" id="btn_hideProvisionalCustomerContainer">收起</a>
+			 </span>
+		  </div>
     </script>
 
     <footer class="main-footer">
@@ -951,7 +927,7 @@
         $("#ipt_customer").kendoAutoComplete({
             minLength: 1,
             dataTextField: "phone",
-            template: '<span style="padding-right: 5px">#: name #</span><span style="padding-right: 5px">#: phone #</span><span>#: mail #</span>',
+            template: '<span style="padding-right:10px">#: name #</span><span style="padding-right:10px;color:red;">#: phone #</span><span>#: mail #</span>',
             dataSource: customerData,
             select:function(e){
                 console.dir(e);
@@ -982,6 +958,17 @@
             }
             $(this).closest(".k-window").find(".k-i-close").trigger("click");
         });
+		
+		$("body").delegate("#sel_certificateType","change",function(){
+			if($(this).val()=="国外护照")
+			{
+				$("#certificateState").show();	
+			}
+			else
+			{
+				$("#certificateState").hide();
+			}
+		})
 
      });
 
