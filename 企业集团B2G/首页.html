@@ -4,19 +4,16 @@
     <meta charset="UTF-8">
     <title>天地行 B2G 首页</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link rel="stylesheet" href="../static/css/smoothness/jquery-ui-1.10.3.custom.css" />
     <link rel="stylesheet" href="../static/css/b2g.css" media="all" />
     <link rel="stylesheet" href="../static/css/kendo.common.css" />
     <link rel="stylesheet" href="../static/css/kendo.b2g.css" />
-
     <script type="text/javascript" src="../static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../static/js/kendo.web.js"></script>
     <script type="text/javascript" src="../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
     <script type="text/javascript" src="../static/js/global.js"></script>
     <script type="text/javascript" src="../static/js/b2g/common.js"></script>
-    <script type="text/javascript" src="../static/js/jquery-ui-1.10.3.custom.js"></script>
-	
+    <script type="text/javascript" src="../static/js/b2g/jquery-ui-1.10.3.custom.js"></script>
     <!--[if lte IE 9]>
     <script src="../static/js/html5.js"></script>
     <![endif]-->
@@ -35,7 +32,7 @@
                     <li class="first active"><a herf="#">行程预订</a></li>
                     <li><a herf="#">行程管理</a></li>
                     <li><a herf="#">数据服务</a></li>
-                    <li><a herf="#">创业维护</a></li>
+                    <li><a herf="#">企业维护</a></li>
                     <li class="last"><a herf="#">系统设置</a></li>
                 </ul>
             </nav>
@@ -680,16 +677,6 @@
     <script type="text/html" id="provisionalCustomerTemplate">
         <h4>请输入临时差旅人信息</h4>
         <table class="addtour-info">
-            <colgroup>
-                <col width="82px"/>
-                <col width="105px"/>
-                <col width="82px"/>
-                <col width="125px"/>
-                <col width="95px"/>
-                <col width="55px"/>
-                <col width="55px"/>
-                <col width="58px"/>
-            </colgroup>
             <tbody>
             <tr>
                 <th><em>*</em>姓：</th>
@@ -697,7 +684,7 @@
                 <th><em>*</em>名：</th>
                 <td><input name="" type="text" style="width:140px;" placeholder="中文/英文"></td>
                 <th><em>*</em>性别：</th>
-                <td><select name="">
+                <td><select name="" style="width:42px;">
                     <option value="男">男</option>
                     <option value="女">女</option>
                 </select>
@@ -711,11 +698,11 @@
             </tr>
             <tr>
 			    <th><em>*</em>国籍：</th>
-                <td><input name="" type="text" style="width:103px;"></td>
+                <td><input name="" id="ipt_nationality" type="text" style="width:103px;"></td>
                 <th><em>*</em>手机号码：</th>
                 <td><input name="" type="text" style="width:140px;"></td>
                 <th><em>*</em>邮箱地址：</th>
-                <td colspan="3"><input name="" type="text" style="width:177px"></td>
+                <td colspan="3"><input name="" type="text" style="width:168px"></td>
             </tr>
             <tr>
                 <th><em>*</em>证件类型：</th>
@@ -727,7 +714,7 @@
                 <th><em>*</em>证件号码：</th>
                 <td><input name="" type="text" style="width:140px"></td>
                 <th>证件有效期：</th>
-                <td colspan="3"><input type="text" class="datepicker" style="width:177px;" /></td>
+                <td colspan="3"><input type="text" class="datepicker dpSingle" style="width:168px;" /></td>
             </tr>
             <tr id="certificateState" style="display:none;">
                 <th><em>*</em>发证国家：</th>
@@ -969,6 +956,9 @@
 				$("#certificateState").hide();
 			}
 		})
+		 $("#ipt_nationality").kendoAutoComplete({
+            dataSource:["新加坡","新西兰","新几内亚"]
+        })
 
      });
 
