@@ -1353,7 +1353,22 @@
 <script>
 	$(function(){
         $('.wb-trigger').on('click',function(){
-            $('.workbench').toggleClass('expanded'); 
+            var workbench = $('.workbench');
+            if(workbench.hasClass('expanded')){
+                workbench.animate({
+                    left:-740
+                },function(){
+                    workbench.removeClass('expanded');
+                }).animate({
+                    left:-650
+                });
+            }else{
+                workbench.addClass('expanded');
+                workbench.animate({
+                    left:0
+                },function(){
+                });
+            }
         });
 
         $('.wb-tabs .wb-slides').each(function(){
