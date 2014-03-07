@@ -27,17 +27,19 @@
     
     <script type="text/javascript" src="../../static/js/store/store.js"></script>
     <script>
-$(function(){
-    var coll_ele = new Collpase({
-        limitHeight: 136, //合拢后的高度
-        duration:0,
-        container: '.us-query',  //需要定高的dom
-        trigger:'.collapse-withtext', //下拉按钮样式
-        triggerexp:'active'
-    }).init();
-
-}) 
+		$(function(){
+			var coll_ele = new Collpase({
+				limitHeight: 136, //合拢后的高度
+				duration:0,
+				container: '.us-query',  //需要定高的dom
+				trigger:'.collapse-withtext', //下拉按钮样式
+				triggerexp:'active'
+			}).init();
+			   coll_ele.resetHeight();
+		}) 
     </script>
+ 
+    
 </head>
 <body>
 
@@ -140,7 +142,7 @@ $(function(){
             </aside>
             <div class="tab_item">
                 <!-- 查询 -->
-                <section class="us-query clearfix" style="padding-bottom:30px; background:#f8f8f8;">
+                <section class="us-query clearfix" style="padding-bottom:30px;">
                    <div class="ureport">     
                         <table class="us-query-table fixed-table us-query-report">
                             <colgroup>
@@ -163,19 +165,19 @@ $(function(){
                         <span class="right"></span>
                     </a>
                     
-                    <table class="us-query-table fixed-table">
+                    <table class="us-query-table fixed-table" style="width:87%;">
                         <colgroup>
-                            <col width="60">
-                            <col width="160">
-                            <col width="60">
-                            <col width="160">
-                            <col width="60">
-                            <col width="160">
+                            <col width="60px">
+                            <col width="160px">
+                            <col width="60px">
+                            <col width="160px">
+                            <col width="60px">
+                            <col width="160px">
                         </colgroup>
                         <tr>
                             <th>航空公司：</th>
                             <td><input id="" style="width:120px;" type="text" name=""></td>
-                            <th>客票状态：</th>
+                            <th>付款状态：</th>
                             <td>
                                 <select data-role="dropdownlist" style="width:126px" id="" name="">
                                     <option value="">全部</option>
@@ -199,7 +201,7 @@ $(function(){
                             <td><input id="" style="width:120px;" type="text" name=""></td>
                         </tr>
                         <tr>
-                          <th>付款状态：</th>
+                          <th>三方协议：</th>
                             <td> <select data-role="dropdownlist" style="width:126px" id="" name="">
                                     <option value="">全部</option>
                                 </select></td>
@@ -209,12 +211,15 @@ $(function(){
                             <td><input id="" style="width:120px;" type="text" name=""></td>
                         </tr>                        
                         <tr>
-                            <th>三方协议：</th>
-                            <td><input id="" style="width:120px;" type="text" name=""></td>
-                            <th> </th>
-                            <td> </td>
-                            <th> </th>
-                            <td> </td>
+                            <th>客票状态：</th>
+                            <td colspan="5" class="statusList">
+                                 <label><input type="checkbox" />正常</label>
+                                 <label><input type="checkbox" />退票</label>
+                                 <label><input type="checkbox" />废票</label>
+                                 <label><input type="checkbox" />改签</label>
+                                 <label><input type="checkbox" />升舱</label>
+                                 <label style="border-left:1px dashed #cdcdcd; padding-left:10px;"><input type="checkbox" />包含调账单</label>
+                            </td>
                         </tr>
                     </table>
                     
