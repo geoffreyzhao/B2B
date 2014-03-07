@@ -24,6 +24,31 @@
     <script>
 $(function(){
 
+    $("#ajax-loader-table").scrollPagination({
+        'contentPage': '/php/data_row2.php', 
+        'contentData': {username:"test",page:1,page_size:10}, 
+        'scrollTarget': $(window),
+        'heightOffset': 10, // it gonna request when scroll is 10 pixels before the page ends
+        'beforeLoad': function(){ // before load function, you can display a preloader div
+            $('#scroll_Loading').show();	
+        },
+        'afterLoad': function(data) {
+            console.log(data.size());
+
+            var i = 0;
+            $('#scroll_Loading').hide();
+
+            $(data).fadeInWithDelay();
+
+            if ($(data).size() == 0){ 
+                $('#nomoreresults').fadeIn();
+                $('#ajax-loader-table').stopScrollPagination();
+            }
+        }
+
+    });
+
+
     $('.block-header').fixedBar();
     $('.block-query').fixedBar({
         offsetTop:60
@@ -381,7 +406,7 @@ $(function(){
                                   </tr>
                                  </thead>
                              </table>
-                             <table>
+                             <table id="ajax-loader-table">
                                  <colgroup>
                                      <col width="40">
                                      <col width="80">
