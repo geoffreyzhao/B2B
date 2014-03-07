@@ -4900,15 +4900,19 @@ $.extend(Datepicker.prototype, {
 		} else {
 			inMinYear = (minDate && minDate.getFullYear() === drawYear);
 			inMaxYear = (maxDate && maxDate.getFullYear() === drawYear);
-			monthHtml += "<select class='ui-datepicker-month' data-handler='selectMonth' data-event='change'>";
-			for ( month = 0; month < 12; month++) {
-				if ((!inMinYear || month >= minDate.getMonth()) && (!inMaxYear || month <= maxDate.getMonth())) {
-					monthHtml += "<option value='" + month + "'" +
-						(month === drawMonth ? " selected='selected'" : "") +
-						">" + monthNamesShort[month] + "</option>";
-				}
-			}
-			monthHtml += "</select>";
+            //by zzz
+            monthHtml += "<input type='text' class='ui-datepicker-month-ipt' value='" + (drawMonth+1) + "'>";
+            /*
+             monthHtml += "<select class='ui-datepicker-month' data-handler='selectMonth' data-event='change'>";
+             for ( month = 0; month < 12; month++) {
+             if ((!inMinYear || month >= minDate.getMonth()) && (!inMaxYear || month <= maxDate.getMonth())) {
+             monthHtml += "<option value='" + month + "'" +
+             (month === drawMonth ? " selected='selected'" : "") +
+             ">" + monthNamesShort[month] + "</option>";
+             }
+             }
+             monthHtml += "</select>";
+             */
 		}
 
 		if (!showMonthAfterYear) {
@@ -4919,7 +4923,7 @@ $.extend(Datepicker.prototype, {
 		if ( !inst.yearshtml ) {
 			inst.yearshtml = "";
 			if (secondary || !changeYear) {
-				html += "<input type='text' class='ui-datepicker-year-ipt' readOnly='readOnly' data-handler='selectYear' data-event='change' value='" + drawYear + "'>";
+                html += "<span class='ui-datepicker-year'>" + drawYear + "</span>";
 			} else {
 				// determine range of years to display
 				years = this._get(inst, "yearRange").split(":");
@@ -4934,6 +4938,10 @@ $.extend(Datepicker.prototype, {
 				endYear = Math.max(year, determineYear(years[1] || ""));
 				year = (minDate ? Math.max(year, minDate.getFullYear()) : year);
 				endYear = (maxDate ? Math.min(endYear, maxDate.getFullYear()) : endYear);
+
+                //by zzz
+                html += "<input type='text' class='ui-datepicker-year-ipt' data-handler='selectYear' data-event='change' value='" + drawYear + "'>";
+                /*
 				inst.yearshtml += "<select class='ui-datepicker-year' data-handler='selectYear' data-event='change'>";
 				for (; year <= endYear; year++) {
 					inst.yearshtml += "<option value='" + year + "'" +
@@ -4944,6 +4952,7 @@ $.extend(Datepicker.prototype, {
 
 				html += inst.yearshtml;
 				inst.yearshtml = null;
+				*/
 			}
 		}
 

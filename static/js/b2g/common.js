@@ -88,10 +88,21 @@ $(function() {
 			showButtonPanel :true
 		};
 
+        var dpSettingChangeMonthYear={
+            css : {"z-index": 20000},
+            numberOfMonths:[1,1],
+            firstDay:0,
+            changeMonth:true,
+            changeYear:true,
+            showButtonPanel :true
+        }
+
         b2g.dpSetting = dpSetting;
         b2g.dpSettingUlt = dpSettingUlt;
         b2g.dpSettingShort = dpSettingShort;
         b2g.dpSettingSingle = dpSettingSingle;
+        b2g.dpSettingChangeMonthYear=dpSettingChangeMonthYear;
+
 
 
         var dpEle = $(".datepicker");
@@ -105,6 +116,109 @@ $(function() {
                 item.datepicker(dpSettingShort);
             }else if(item.hasClass("dpSingle")){
                 item.datepicker(dpSettingSingle);
+            }else if(item.hasClass("dpChangeMonthYear")){
+                item.datepicker(dpSettingChangeMonthYear);
+                var datepicker_monthSelectTemplate='<div>\
+                                                        <div class="datepicker-monthSelectPanel">\
+                                                            <ul>\
+                                                                <li data-value="0">一月</li>\
+                                                                <li data-value="1">二月</li>\
+                                                                <li data-value="2">三月</li>\
+                                                                <li data-value="3">四月</li>\
+                                                                <li data-value="4">五月</li>\
+                                                                <li data-value="5">六月</li>\
+                                                            </ul>\
+                                                            <ul>\
+                                                                <li data-value="6">七月</li>\
+                                                                <li data-value="7">八月</li>\
+                                                                <li data-value="8">九月</li>\
+                                                                <li data-value="9">十月</li>\
+                                                                <li data-value="10">十一月</li>\
+                                                                <li data-value="11">十二月</li>\
+                                                            </ul>\
+                                                            <div class="clearfix"></div>\
+                                                        </div>\
+                                                    </div>';
+                var datepicker_yearSelectTemplate='<div>\
+                                                        <div class="datepicker-yearSelectPanel">\
+                                                            <ul>\
+                                                            # for (var i=minY; i<maxY;i++) { # \
+                                                                <li data-value="#= i #">#= i #</li>  \
+                                                            # } #\
+                                                            </ul>\
+                                                    </div></div>';
+
+                //datepicker修改
+                $(".dpChangeMonthYear").click(function(){
+                    $("body").data("currentDP",this);
+                })
+
+                var currentY=new Date().getFullYear();
+
+                var fl_datepicker_monthSelect=new FloatLayer({
+                    css:{padding:0,zIndex:99999},
+                    trigger:".ui-datepicker-month-ipt",
+                    template:datepicker_monthSelectTemplate
+                })
+                var fl_datepicker_yearSelect=new FloatLayer({
+                    css:{padding:0,zIndex:99999},
+                    trigger:".ui-datepicker-year-ipt",
+                    template:datepicker_yearSelectTemplate,
+                    data:{minY:currentY-10,maxY:currentY+30}
+                })
+
+                $("body").delegate(".ui-datepicker-month-ipt","change",function(){
+                    if(/^(\d|1[0-1])$/.test($(this).val()))
+                    {
+                        $.data($("body").data("currentDP"),"datepicker").drawMonth=parseInt($(this).val())-1;
+                        $($("body").data("currentDP")).datepicker("refresh");
+                        fl_datepicker_monthSelect.close();
+                        return false;
+                    }
+                    else
+                    {
+                        alert("error!");
+                    }
+                })
+                $("body").delegate(".ui-datepicker-year-ipt","change",function(){
+                    if(/^(19|20)\d{2}$/.test($(this).val()))
+                    {
+                        $.data($("body").data("currentDP"),"datepicker").drawYear=parseInt($(this).val());
+                        $($("body").data("currentDP")).datepicker("refresh");
+                        fl_datepicker_monthSelect.close();
+                        return false;
+                    }
+                    else
+                    {
+                        alert("error!");
+                    }
+                })
+
+                $("body").delegate(".datepicker-monthSelectPanel,.datepicker-yearSelectPanel","mousedown",function(){
+                    return false;
+                })
+
+                $("body").delegate(".datepicker-monthSelectPanel li","click",function(){
+                    $.data($("body").data("currentDP"),"datepicker").drawMonth=$(this).attr("data-value");
+                    $($("body").data("currentDP")).datepicker("refresh");
+                    fl_datepicker_monthSelect.close();
+                    return false;
+                })
+
+                $("body").delegate(".datepicker-yearSelectPanel li","click",function(){
+                    $.data($("body").data("currentDP"),"datepicker").drawYear=$(this).attr("data-value");
+                    $($("body").data("currentDP")).datepicker("refresh");
+                    fl_datepicker_yearSelect.close();
+                    return false;
+                })
+
+                fl_datepicker_yearSelect.show();
+
+                $(".datepicker-yearSelectPanel").jScrollPane({
+                    showArrows:true
+                });
+
+                fl_datepicker_yearSelect.hide();
             }else{
                 item.datepicker(dpSetting);
             }

@@ -2797,8 +2797,8 @@ border-radius: 0;
     scrollbar-darkshadow-color:#e2e2e2;
 }
 
-.ui-datepicker-year-ipt{
-    width: 35px;
+.ui-datepicker-year-ipt,.ui-datepicker-month-ipt{
+    width: 40px;
     color:#EA5C55 !important;
     font-family: "Microsoft YaHei", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !important;
     font-weight: bold;
@@ -2806,18 +2806,171 @@ border-radius: 0;
     vertical-align: text-bottom;
     height: 18px !important;
     margin-right: 3px;
-    background: transparent;
-    border:0 !important;
-    box-shadow: none !important;
-}
-
-.ui-datepicker-year-ipt.enable{
-    background:url("../images/b2g/datepickerInputArrow.gif") no-repeat right center #32373C;
+    background: url("../images/b2g/datepickerInputArrow.gif") no-repeat right center #32373C;
     border:1px solid #292D31 !important;
     padding-right: 13px;
+    box-shadow: none !important;
+    cursor: pointer;
 }
 
-/****
+.ui-datepicker-month-ipt{
+    width:22px;
+}
+
+.datepicker-monthSelectPanel{
+    background: #32373C;
+    border:1px solid #292D31;
+    width: 101px;
+}
+.datepicker-monthSelectPanel ul{
+    width:50px;
+    float:left;
+}
+.datepicker-monthSelectPanel ul:first-child{
+    border-right:1px solid #292D31;
+}
+.datepicker-monthSelectPanel li{
+    color: #7F7F7F;
+    cursor: pointer;
+    padding:5px;
+}
+.datepicker-monthSelectPanel li:hover{
+    color: #E95D55;
+    background: #292D31;
+}
+
+.datepicker-yearSelectPanel{
+    background: #32373C;
+    border:1px solid #292D31;
+    width:53px;
+    height: 150px;
+    overflow-y: scroll;
+}
+.datepicker-yearSelectPanel li{
+    color: #7F7F7F;
+    cursor: pointer;
+    padding:5px 4px;
+}
+.datepicker-yearSelectPanel li:hover{
+    color: #E95D55;
+    background: #292D31;
+}
+
+/*scrollpanel样式修改*/
+.jspContainer
+{
+    overflow: hidden;
+    position: relative;
+}
+
+.jspPane
+{
+    position: absolute;
+}
+
+.jspVerticalBar
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 16px;
+    height: 100%;
+    background: red;
+}
+
+.jspHorizontalBar
+{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 16px;
+    background: red;
+}
+
+.jspCap
+{
+    display: none;
+}
+
+.jspHorizontalBar .jspCap
+{
+    float: left;
+}
+
+.jspTrack
+{
+    background: #272A2E;
+    position: relative;
+}
+
+.jspDrag
+{
+    background: url("/static/images/b2g/scrollDrag.gif") center center;
+    position: relative;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+.jspHorizontalBar .jspTrack,
+.jspHorizontalBar .jspDrag
+{
+    float: left;
+    height: 100%;
+}
+
+.jspArrow
+{
+    text-indent: -20000px;
+    display: block;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+
+}
+
+.jspArrow.jspDisabled
+{
+    cursor: default;
+    background: #80808d;
+}
+
+.jspVerticalBar .jspArrow
+{
+    height: 14px;
+}
+
+.jspHorizontalBar .jspArrow
+{
+    width: 14px;
+    float: left;
+    height: 100%;
+}
+
+.jspVerticalBar .jspArrow:focus
+{
+    outline: none;
+}
+
+.jspCorner
+{
+    background: #eeeef4;
+    float: left;
+    height: 100%;
+}
+
+/* Yuk! CSS Hack for IE6 3 pixel bug :( */
+* html .jspCorner
+{
+    margin: 0 -3px 0 0;
+}
+.jspArrowUp{
+    background: url("/static/images/b2g/scrollUpArrow.png") !important;
+}
+.jspArrowDown{
+    background: url("/static/images/b2g/scrollDownArrow.png") !important;
+}/****
  *工作台
  * *******/
 .workbench{
