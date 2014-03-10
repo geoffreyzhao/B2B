@@ -49,6 +49,23 @@
         .effective_period_rightButton{display:inline-block;position:absolute;background:url("../../static/images/pricePlanArrow.png") -28px -39px;width:18px;height:32px;top:0;right:0}
         .effective_period_leftButton.active{background-position:-1px -39px}
         .effective_period_rightButton.active{background-position:-28px -1px}
+        .booking_time_picker_item{
+            cursor:pointer;
+        }
+        .booking_time_picker_item:hover{
+            background: #F66E19;
+            color: #ffffff;
+        }
+        .tbl_booking_time td,.tbl_booking_time th{
+            border:1px solid #e0e0e0;
+            background: #ffffff;
+        }
+        .tbl_booking_time th{
+            font-weight: bold;
+            background: #F3F3F3;
+            vertical-align: middle;
+            text-align: center;
+        }
     </style>
 
 <!--[if lt IE 8]> 
@@ -108,7 +125,7 @@
                 <colgroup>
                     <col width="60">
                     <col width="120">
-                    <col width="180">
+                    <col width="280">
                 </colgroup>
                 <tr>
                     <td style="padding:5px 0"><span class="head">预定要求</span></td>
@@ -118,7 +135,9 @@
                 <tr>
                     <td></td>
                     <td><label><input type="radio" name="" id=""/>提前预订优惠</label></td>
-                    <td style="vertical-align: middle">最少提前 <input type="text" style="width: 50px;height:20px;"> 天</td>
+                    <td style="vertical-align: middle">最少提前 <input type="text" style="width: 50px;height:20px;"> 天 /
+                        <input type="text" name="" id="" class="booking_time" style="width: 50px;height:20px;"/> 时
+                    </td>
                 </tr>
                 <tr>
                     <td></td>
@@ -128,7 +147,9 @@
                 <tr>
                     <td></td>
                     <td><label><input type="radio" name="" id=""/>提前且连住</label></td>
-                    <td style="vertical-align: middle">最少提前 <input type="text" style="width: 50px;height:20px;"> 天 </td>
+                    <td style="vertical-align: middle">最少提前 <input type="text" style="width: 50px;height:20px;"> 天 /
+                        <input type="text" name="" id="" class="booking_time" style="width: 50px;height:20px;"/> 时
+                    </td>
                     <td style="vertical-align: middle">最多入住 <input type="text" style="width: 50px;height:20px;"> 天</td>
                 </tr>
             </table>
@@ -218,10 +239,51 @@
     </div>
 </div>
 
+<div id="booking_time_Template">
+    <table class="tbl_booking_time">
+        <tr>
+            <th rowspan="2">上午</th>
+            <td class="booking_time_picker_item">1:00</td>
+            <td class="booking_time_picker_item">2:00</td>
+            <td class="booking_time_picker_item">3:00</td>
+            <td class="booking_time_picker_item">4:00</td>
+            <td class="booking_time_picker_item">5:00</td>
+            <td class="booking_time_picker_item">6:00</td>
+        </tr>
+        <tr>
+            <td class="booking_time_picker_item">7:00</td>
+            <td class="booking_time_picker_item">8:00</td>
+            <td class="booking_time_picker_item">9:00</td>
+            <td class="booking_time_picker_item">10:00</td>
+            <td class="booking_time_picker_item">11:00</td>
+            <td class="booking_time_picker_item">12:00</td>
+        </tr>
+        <tr>
+            <th rowspan="2">下午</th>
+            <td class="booking_time_picker_item">13:00</td>
+            <td class="booking_time_picker_item">14:00</td>
+            <td class="booking_time_picker_item">15:00</td>
+            <td class="booking_time_picker_item">16:00</td>
+            <td class="booking_time_picker_item">17:00</td>
+            <td class="booking_time_picker_item">18:00</td>
+        </tr>
+        <tr>
+            <td class="booking_time_picker_item">19:00</td>
+            <td class="booking_time_picker_item">20:00</td>
+            <td class="booking_time_picker_item">21:00</td>
+            <td class="booking_time_picker_item">22:00</td>
+            <td class="booking_time_picker_item">23:00</td>
+            <td class="booking_time_picker_item">23:59</td>
+        </tr>
+    </table>
+</div>
+
+
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/kendo.web.js"></script>
 <script type="text/javascript" src="/static/js/scrollFix.js"></script>
 <script type="text/javascript" src="/static/js/hotel.js"></script>
+<script type="text/javascript" src="/static/js/global.js"></script>
 
 <script id="period_prices_listItem_template" type="text/x-kendo-template">
     <div class="period_prices_listItem">
@@ -530,6 +592,20 @@
                 title:"关闭编辑价格计划？"
             });
             $("#window2").data("kendoWindow").center();
+        })
+
+        var current_booking_time_el=null;
+
+        var booking_time_fl=new FloatLayer({
+            trigger:".booking_time",
+            template:"#booking_time_Template",
+            open:function(){
+                current_booking_time_el=this;
+            }
+        })
+        $(".booking_time_picker_item").click(function(){
+            $(booking_time_fl.input).val($(this).text());
+            booking_time_fl.close();
         })
     });
 </script>
