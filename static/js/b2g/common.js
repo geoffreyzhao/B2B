@@ -155,12 +155,12 @@ $(function() {
 
                 var currentY=new Date().getFullYear();
 
-                var fl_datepicker_monthSelect=new FloatLayer({
+                var fl_datepicker_monthSelect=FloatLayer({
                     css:{padding:0,zIndex:99999},
                     trigger:".ui-datepicker-month-ipt",
                     template:datepicker_monthSelectTemplate
                 })
-                var fl_datepicker_yearSelect=new FloatLayer({
+                var fl_datepicker_yearSelect=FloatLayer({
                     css:{padding:0,zIndex:99999},
                     trigger:".ui-datepicker-year-ipt",
                     template:datepicker_yearSelectTemplate,

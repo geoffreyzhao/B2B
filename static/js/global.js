@@ -249,6 +249,10 @@ var FloatLayer = function(opts){
 
     opts.trigger = opts.trigger.jquery ? opts.trigger : $(opts.trigger);
 
+    if($(opts.template).prop('tagName') == 'SCRIPT'){
+        opts.template = $(opts.template).html();
+    }
+
     var layer = $('<div' + (opts.id ? ' id="' + opts.id + '"' : '') + ' class="ac-floatlayer'+ (opts.className ? " " + opts.className : "") +'" style="display:none;position:absolute;"/>');
 
     if(opts.css) {
@@ -257,7 +261,7 @@ var FloatLayer = function(opts){
 
     // 非异步则立即加载默认数据
     if(!opts.async){
-        tpl = kendo.template( $(opts.template).html() );
+        tpl = kendo.template( opts.template );
         layer.html(tpl(opts.data));
     }
 
@@ -267,7 +271,8 @@ var FloatLayer = function(opts){
 
     $(document).on('click',function(e){
         t = e.target;
-        if ( !$(t).is(opts.trigger) && opts.trigger.has(t).length===0 ){
+        var ele = opts.trigger.length > 0 ? opts.trigger:opts.trigger.selector;
+        if ( !$(t).is(ele) && opts.trigger.has(t).length===0 ){
             if ( $(t).closest('.ac-floatlayer').length !==1 ){
                 layer.close();
             }
@@ -340,7 +345,7 @@ var FloatLayer = function(opts){
     }
 
     layer.data = function(d){
-        tpl = kendo.template( $(opts.template).html() );
+        tpl = kendo.template( opts.template );
         layer.html(tpl(d));
         kendo.init(layer);
     };
@@ -382,7 +387,7 @@ var FloatLayer = function(opts){
 //常旅客模块
 var frequentFlyer=function(opts){
     var opts=$.extend({trigger:"zAutocomplete",offsetX:-1,offsetY:19},opts);
-    var layer=new FloatLayer(opts);
+    var layer=FloatLayer(opts);
     kendo.init(layer);
 
     $("#ffc_input").focusin(function(){
