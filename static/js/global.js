@@ -257,13 +257,7 @@ var FloatLayer = function(opts){
 
     // 非异步则立即加载默认数据
     if(!opts.async){
-        try
-        {
-            tpl = kendo.template( $(opts.template).html() );
-        }
-        catch(e) {
-            tpl=kendo.template(opts.template);
-        }
+        tpl = kendo.template( $(opts.template).html() );
         layer.html(tpl(opts.data));
     }
 
@@ -273,7 +267,7 @@ var FloatLayer = function(opts){
 
     $(document).on('click',function(e){
         t = e.target;
-        if ( !$(t).is($(opts.trigger.selector)) && $(opts.trigger.selector).has(t).length===0 ){
+        if ( !$(t).is(opts.trigger) && opts.trigger.has(t).length===0 ){
             if ( $(t).closest('.ac-floatlayer').length !==1 ){
                 layer.close();
             }
