@@ -909,15 +909,29 @@ var lensf = function (settings){
         var that = $(this);
         var current = that.find('[class]').eq(-1);
         var ele = that.find('span');
+        var firstWidth = ele.eq(0).outerWidth(true);
+        var lastWidth = ele.eq(-1).outerWidth(true);
+        var containerWidth = that.innerWidth()-firstWidth/2-lastWidth/2;
+
         ele.eq(0).addClass('first');
         ele.eq(-1).addClass('last');
-        if(current.length>0){
-            var hi = current.prevAll().addClass('highlight');
-            var wid = ele.eq(0).outerWidth(true)*(hi.length);
-            that.append('<em class="line"><div style="width:'+wid+'px" /></em>')
-        }else{
-            that.append('<em class="line"></em>')
+        function addLine(){
+            var hi = current.prevAll().addClass('highlight').andSelf();
+            var wid = (function(){
+                var w=0;
+                hi.each(function(){
+                    w+=$(this).outerWidth(true);
+                });
+                return w;
+            })();
+
+            if(current.length>0){
+                 wid = wid-firstWidth/2-lastWidth/2;
+            }
+
+            that.append('<em class="line" style="left:'+firstWidth/2+'px;width:'+containerWidth+'px"><div style="width:'+wid+'px" /></em>')
         }
+        addLine();
     });
 };
 
