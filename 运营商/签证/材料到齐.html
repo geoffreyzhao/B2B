@@ -8,29 +8,15 @@
         <link href="/static/css/kendo.common.css" rel="stylesheet" />
         <link href="/static/css/kendo.gray.css" rel="stylesheet" />
         <link href="/static/css/kendo.reset.css" rel="stylesheet" />
-        <link rel="stylesheet" href="/static/css/global.css" />
         <link href="/static/css/visa.css" rel="stylesheet">
         
-        <script src="/static/js/purchaseorder.js"></script>
         <script type="text/javascript" src="/static/js/jquery.min.js"></script>
         <script type="text/javascript" src="/static/js/kendo.web.js"></script>
-        <script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
-        <script type="text/javascript">
-            $(function(){
-                    $('.actions').fixedBar();
-                    var lensf = function (){
-                    $.each($('.instr'),function(){
-                        var that = $(this);
-                        if(that.find('.highlight-fl').size()>0){
-                        var ele = that.find('.highlight');
-                        var len = ele.size();
-                        var wid = ele.width()*len + -100;
-                        that.find('.line').prepend('<div style="background-color:#00ae42;height:2px;width:'+wid+'px" />')
-                        }
-                        });
-                    }
-                    lensf();
-                    });
+        <script type="text/javascript" src="/static/js/global.js"></script>
+        <script>
+$(function(){
+        lensf(); 
+})
         </script>
 
 <!--[if lt IE 8]> 
@@ -106,14 +92,13 @@
                                 <ul class="flat-list">
                                     <li>
                                         <div class="instr clearfix">
-                                            <span class="highlight first">材料到齐/已齐</span>
-                                            <span class="highlight">预约</span>
-                                            <span class="highlight highlight-fl">面试</span>
+                                            <span>材料到齐/已齐</span>
+                                            <span>预约</span>
+                                            <span>面试</span>
                                             <span>出签</span>
-                                            <span>护照已到</span>
-                                            <span class="last">护照已取走</span>
-                                            <em class="line">&nbsp;</em>
-                                        </div> 
+                                            <span class="highlight-fl">护照已到</span>
+                                            <span>护照已取走</span>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>

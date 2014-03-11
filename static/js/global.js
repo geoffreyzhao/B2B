@@ -926,7 +926,7 @@ var lensf = function (settings){
             })();
 
             if(current.length>0){
-                 wid = wid-firstWidth/2-lastWidth/2;
+                 wid = wid-firstWidth/2-current.outerWidth(true)/2;
             }
 
             that.append('<em class="line" style="left:'+firstWidth/2+'px;width:'+containerWidth+'px"><div style="width:'+wid+'px" /></em>')
