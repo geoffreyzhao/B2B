@@ -14,6 +14,8 @@
     <script type="text/javascript" src="../static/js/global.js"></script>
     <script type="text/javascript" src="../static/js/b2g/common.js"></script>
     <script type="text/javascript" src="../static/js/b2g/jquery-ui-1.10.3.custom.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.jscrollpane.js"></script>
     <!--[if lte IE 9]>
     <script src="../static/js/html5.js"></script>
     <![endif]-->
@@ -640,13 +642,13 @@
                     <col width="500px"/>
                 </colgroup>
                 <tbody>
-                <tr>
+                <tr class="hide travelerContainer">
                     <td style="padding-left:26px">差旅人：</td>
                     <td>
                         <ul id="tagWrapper" data-template="touruserTemplate" data-bind="source:touruser"></ul>
                     </td>
                 </tr>
-                <tr>
+                <tr class="hide temp_travelerContainer">
                     <td style="padding-left:26px">临时差旅人：</td>
                     <td><ul id="tagWrapper_provisionalCustomers" data-template="touruserTemplate" data-bind="source:touruser_tmp"></ul></td>
                 </tr>
@@ -719,7 +721,7 @@
                 <th><em>*</em>证件号码：</th>
                 <td><input name="" type="text" style="width:140px"></td>
                 <th>证件有效期：</th>
-                <td colspan="3"><input type="text" class="datepicker dpSingle" style="width:168px;" /></td>
+                <td colspan="3"><input type="text" class="datepicker dpChangeMonthYear" style="width:168px;" /></td>
             </tr>
             <tr id="certificateState" style="display:none;">
                 <th><em>*</em>发证国家：</th>
@@ -867,6 +869,7 @@
 
         $("#btn_addProvisionalCustomer").click(function(){
             $("#provisionalCustomerContainer").html($("#provisionalCustomerTemplate").html());
+            initDatePicker($(".addtour-info .datepicker"));
         })
 
         $("#customers").focusin(function(){
@@ -889,6 +892,7 @@
 
             model.touruser_tmp.push($("#pc_cnName").val());
             $("#provisionalCustomerContainer").html("");
+            $(".temp_travelerContainer").show();
         })
 
         $("body").delegate("#btn_hideProvisionalCustomerContainer","click",function(){
@@ -926,10 +930,12 @@
                 if($("select[name=for_reason]").val()=="差旅人")
                 {
                     model.touruser.push($("span",e.item).eq(0).text());
+                    $(".travelerContainer").show();
                 }
                 else
                 {
                     model.touruser_tmp.push($("span",e.item).eq(0).text());
+                    $(".temp_travelerContainer").show();
                 }
             },
             close:function(){
