@@ -448,39 +448,42 @@ $(function(){
         <tr>
             <th style="vertical-align:top"><strong>关联组织：</strong></th>
             <td>
-                <div class="row treeview-white" style="margin:0">
-                    <ul id="treeview2" data-role="treeview">
-                        <li data-expanded="true">
-                            苏宁公司
-                            <ul>
-                                <li data-expanded="true">
-                                    北京分部
-                                    <ul>
-                                        <li>总裁部
-                                            <ul>
-                                                <li>业务部</li>
-                                                <li>行政部</li>
-                                                <li rel="1112">采购部</li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
+                <!--<div class="row treeview-white" style="margin:0">-->
+                    <!--<ul id="treeview2" data-role="treeview">-->
+                        <!--<li data-expanded="true">-->
+                            <!--苏宁公司-->
+                            <!--<ul>-->
+                                <!--<li data-expanded="true">-->
+                                    <!--北京分部-->
+                                    <!--<ul>-->
+                                        <!--<li>总裁部-->
+                                            <!--<ul>-->
+                                                <!--<li>业务部</li>-->
+                                                <!--<li>行政部</li>-->
+                                                <!--<li rel="1112">采购部</li>-->
+                                            <!--</ul>-->
+                                        <!--</li>-->
+                                    <!--</ul>-->
+                                <!--</li>-->
 
-                                <li>
-                                    南京分部
-                                    <ul>
-                                        <li rel="1412">
-                                            采购部
-                                            <ul>
-                                                <li>家电部</li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>业务部</li>
-                            </ul>
-                        </li>
-                    </ul>
+                                <!--<li>-->
+                                    <!--南京分部-->
+                                    <!--<ul>-->
+                                        <!--<li rel="1412">-->
+                                            <!--采购部-->
+                                            <!--<ul>-->
+                                                <!--<li>家电部</li>-->
+                                            <!--</ul>-->
+                                        <!--</li>-->
+                                    <!--</ul>-->
+                                <!--</li>-->
+                                <!--<li>业务部</li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+                <div class="row treeview-white" style="margin:0">
+
                 </div>
             </td>
         </tr>
@@ -541,6 +544,32 @@ $(function(){
         <a href="javascript:;" class="btns btn-s2 btn-c1">确 定</a>
         <a href="javascript:;" class="btns btn-s2 btn-c5">取 消</a>
     </div>
+</script>
+
+<script type="text/javascript">
+    $(function(){
+        var tv=$(".treeview-white").kendoTreeView({
+            checkboxes:{checkChildren:true},
+            dataSource:[
+                {text:"苏宁公司",items:[
+                    {text:"北京分部",items:[
+                        {text:"总裁部",items:[
+                            {text:"业务部"},
+                            {text:"行政部"},
+                            {text:"采购部"}
+                        ]}
+                    ]},
+                    {text:"南京分部",items:[
+                        {text:"采购部",items:[
+                            {text:"家电部"}
+                        ]},
+                        {text:"业务部"}
+                    ]}
+                ]}
+            ]
+        }).data("kendoTreeView");
+        tv.expand(".k-item");
+    })
 </script>
 
 </body>
