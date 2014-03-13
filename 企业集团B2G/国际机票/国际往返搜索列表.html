@@ -204,7 +204,7 @@
                                         <div class="goBackLogo">
                                                 <div id="manyAirName">
                                                     <div class="airMore"><i class="airLogo"></i></div>
-                                                    <div class="nameMany"><em>多家航空公司</em></div>
+                                                    <div class="nameMany"><em>多家航空公司  中国国航中国国航中国国</em></div>
                                                 </div>
                                         </div>
                                    </div>
@@ -242,7 +242,7 @@
                                         </div>
                                         <div class="goBackLogo">
                                                 <div class="airMore"><i class="logo_CA"></i></div>
-                                                <div class="airInfoName"><em>中国国航</em></div> 
+                                                <div class="airInfoName"><em>中国国航  中国国航中国国航中国国</em></div> 
                                         </div>
                                    </div>
                                    <div class="centercon leftIntent">
@@ -580,13 +580,13 @@
                </div>
                <div class="airInfoCont">
                       <em class="airLeftLine"></em>
-                      <div class="takeOffArrive">
+                      <div class="takeOffArrive resestDistance">
                            <p>起飞：12月01日 &nbsp; <b>08:00</b> &nbsp; 北京   首都国际机场 PEK</p>
                            <p>到达：12月01日 &nbsp; <b> 08:00 </b> &nbsp; 北京   首都国际机场 PEK</p>
                       </div>
-                      <div class="tranTime">
+                      <div class="tranTime resestDistance">
                            <i class="tranImg"></i>
-                           <span class="tran_air">上海中转 &nbsp; 虹桥机场  &nbsp; <em>不同机场</em></span>
+                           <span class="tran_air" style="min-width:319px;">上海中转 &nbsp; 虹桥机场  &nbsp; <em>不同机场</em></span>
                            <label class="stopTime">
                                  <em></em>
                                  <span>停留时长：6小时15分</span>
@@ -602,7 +602,7 @@
                     <label class="airDuration"><em></em>飞行时长：2小时15分</label>
                </div>
                <div class="airInfoCont">
-                      <div class="takeOffArrive">
+                      <div class="takeOffArrive resestDistance">
                            <p>起飞：12月01日 &nbsp; <b>08:00</b> &nbsp; 北京   首都国际机场 PEK</p>
                            <p>到达：12月01日 &nbsp; <b> 08:00 </b> &nbsp; 北京   首都国际机场 PEK</p>
                       </div>
@@ -624,7 +624,7 @@
                     <label class="airDuration"><em></em>飞行时长：2小时15分</label>
                </div>
                <div class="airInfoCont">
-                      <div class="takeOffArrive">
+                      <div class="takeOffArrive resestDistance">
                            <p>起飞：12月01日 &nbsp; <b>08:00</b> &nbsp; 北京   首都国际机场 PEK</p>
                            <p>到达：12月01日 &nbsp; <b> 08:00 </b> &nbsp; 北京   首都国际机场 PEK</p>
                       </div>
@@ -696,6 +696,15 @@
 	</table>	
 </script>
 
+<script type="text/x-kendo-template" id="backChangeSign">
+	<div class="floatLayer">
+		 <p><b>退票：</b>仅退基建燃油费，机票款不退</p>
+		 <p><b>废票：</b>每张收取N元费用</p>
+		 <p><b>更改：</b>不得改期、升舱</p>
+		 <p><b>签转：</b>不允许签转</p>
+		 <p><b>备注：</b> </p>
+	</div>
+</script>
 
 
 	<script>
@@ -766,6 +775,16 @@
 				width:320,
 				content:function(){
 					return $("#twiceTransfer").html();
+				},
+				offsetY:10				
+			});
+			
+			$(".flyTime .linkA").kendoTooltip({
+				position:"bottom", //left right top
+				wrapperClass:"lineWeight",
+                width:300,
+				content:function(){
+					return $("#backChangeSign").html();
 				},
 				offsetY:10				
 			});
