@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>天地行 采购商 酒店首页</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link href="../static/css/coin-slider-styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="../static/css/smoothness/jquery-ui-1.10.3.custom.css" />
     <link rel="stylesheet" href="../static/css/store_reset.css" media="all" />
@@ -13,23 +12,17 @@
     <link rel="stylesheet" href="../static/css/store_hotel.css">
     <link rel="stylesheet" href="../static/css/kendo.common.min.css" />
     <link rel="stylesheet" href="../static/css/kendo.store.css" />
-
     <script type="text/javascript" src="../static/js/jquery.min.js"></script>
-
     <script type="text/javascript" src="../static/js/kendo.web.js"></script>
     <script type="text/javascript" src="../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
     <script type="text/javascript" src="../static/js/global.js"></script>
     <script type="text/javascript" src="../static/js/store/store.js"></script>
     <script type="text/javascript" src="../static/js/coin-slider.js"></script>
-
     <!--[if IE]>
     <script src="../static/js/html5.js"></script>
     <![endif]-->
     <script src="../static/js/jquery-ui-1.10.3.custom.js"></script>
 	<script src="../static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
-    <style type="text/css">
-
-    </style>
 </head>
 <body>
 
@@ -38,10 +31,11 @@
     <a class="logo" href="/"><h1>天地行</h1></a>
     <nav class="main-nav">
         <ul class="clearfix">
-            <li class="first active"><a herf="#">首页</a></li>
+            <li class="first"><a herf="#">首页</a></li>
             <li><a herf="#">国内机票</a></li>
             <li><a herf="#">国际机票</a></li>
-            <li><a herf="#">酒店</a></li>
+            <li class="active"><a herf="#">酒店</a></li>
+			<li><a herf="#">保险</a></li>
         </ul> 
     </nav>
     <nav class="main-links">
@@ -71,11 +65,17 @@
     
     <div class="tavern clearfix"> <!--tavern start-->
          <div class="hotel pull-left clearfix">
-             <div class="hotel_title"> 
+            <!-- <div class="hotel_title"> 
                  <h3>国内及港澳酒店</h3>
                  <div>精选全球32，156家酒店 <em>&nbsp;</em></div>
-             </div>         
-             <table class="hotel_tab">
+             </div>-->
+			 <div class="hotel_title"> 
+                 <ul>
+				   <li>国内酒店</li>
+				   <li class="current">港澳及国际酒店<em></em></li>
+				 </ul>
+             </div>            
+             <table class="hotel_tab" style="position:relative;">
                 <colgroup>
                    <col style="width:30%;"/>
                 </colgroup>
@@ -92,7 +92,8 @@
                  <tr>
                     <td><i class="important">*</i>离店日期</td>
                     <td>
-                        <input type="text" class="datepicker gray-border" value=""/>
+                        <input type="text" class="datepicker gray-border violateInput" value=""/>
+						<div class="errorBlock"><span class="errorVerify"><i></i>=30天，请联系客服400-720-6666</span></div>
                     </td>
                  </tr>
                  <tr>
@@ -100,6 +101,10 @@
                     <td>
                         <input type="text" class="gray-border" value="1"/>
                     </td>
+                 </tr>
+				 <tr>
+                    <td>客人国籍</td>
+                    <td><input type="text" class="gray-border" value="中国" /></td>
                  </tr>
                  <tr>
                     <td>关键字</td>
@@ -134,15 +139,15 @@
     <div style="width:980px;"> <!--bottom start-->
         <div class="headline">
             <h3>热门城市酒店特惠</h3>
-            <!--<ul>
+            <ul>
                <li class="pitch-on">上海</li>
                <li>广州</li>
                <li>深圳</li>
                <li>武汉</li>
-            </ul>-->
+            </ul>
         </div>
         <div class="odds_show">
-            <!--<dl>
+            <dl>
                <dt> <a href="#"><img src="../static/images/store/odds_show1.jpg" title="上海宝华国际酒店"/></a> <em>&nbsp;</em> </dt>
                <dd>
                   <p> <a href="#">上海宝华国际酒店</a></p>
@@ -176,8 +181,8 @@
                   <p> <a href="#">上海宝华国际酒店</a></p>
                   <span>￥450</span>
                </dd>
-            </dl>-->
-            <img src="../static/images/store/hotelHead.png"/>
+            </dl>
+            <!--<img src="../static/images/store/hotelHead.png"/>-->
         </div>
     </div> <!--bottom end-->
     </section>
@@ -202,7 +207,7 @@
 <script type="text/javascript" src="../static/js/jquery.cycle.all.js"></script>
 <script type="text/javascript">
     $(function(){
-        $('#coin-slider').after('<div id="nav" class="slider_nav" style="left:40%;bottom:10px;">').cycle({fx:"fade",timeout: 2000,height:"300px",pause:true,pager:"#nav",pagerEvent: "click.cycle"});
+        $('#coin-slider').after('<div id="nav_homepage" class="slider_nav_homepage" style="top:289px">').cycle({fx:"fade",timeout: 2000,height:"300px",pause:true,pager:"#nav_homepage",pagerEvent: "click.cycle"});
         var slideMsgEve=setInterval(slideMessage,3000);
         $(".annPrompt").hover(function(){
                     clearInterval(slideMsgEve);
@@ -211,6 +216,7 @@
                     slideMsgEve=setInterval(slideMessage,3000);
                 }
         );
+		
     })
 
     function slideMessage()
