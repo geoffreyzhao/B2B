@@ -13,7 +13,7 @@
     <script type="text/javascript" src="../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
     <script type="text/javascript" src="../static/js/global.js"></script>
     <script type="text/javascript" src="../static/js/b2g/common.js"></script>
-    <script type="text/javascript" src="../static/js/b2g/jquery-ui-1.10.3.custom.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui-1.10.3.custom.js"></script>
     <script type="text/javascript" src="../static/js/jquery.mousewheel.js"></script>
     <script type="text/javascript" src="../static/js/jquery.jscrollpane.js"></script>
     <!--[if lte IE 9]>
@@ -86,13 +86,13 @@
                                         <td>出发城市</td>
                                         <td><input type="text" style="width:150px;" name="" id=""/></td>
                                         <td>出发日期</td>
-                                        <td><input type="text" style="width:150px;" name="" id=""/></td>
+                                        <td><input type="text" style="width:150px;" name="" id="departure_date"/></td>
                                     </tr>
                                     <tr>
                                         <td>到达城市</td>
-                                        <td><input type="text" style="width:150px;" name="" id=""/></td>
+                                        <td><input type="text" style="width:150px;" name=""/></td>
                                         <td>返回日期</td>
-                                        <td><input type="text" style="width:150px;" name="" id=""/></td>
+                                        <td><input type="text" style="width:150px;" name="" id="return_date"/></td>
                                     </tr>
                                 </table>
 
@@ -744,6 +744,28 @@
 
 <script type="text/javascript">
     $(function(){
+
+        $( "#departure_date" ).datepicker({
+            css : {"z-index":2000},
+            numberOfMonths:[1,2],
+            minDate :new Date(),
+            showButtonPanel :true,
+            onSelect:function(dateText,inst){
+                //console.log(dateText);
+                //console.log(inst);
+                var date = new Date(inst.selectedYear,inst.selectedMonth,inst.selectedDay);
+
+                $( "#return_date" ).datepicker( "option", "minDate", date);
+                $( "#return_date" ).datepicker( "setDate", dateText);
+            }
+        });
+
+        $( "#return_date" ).datepicker({
+            numberOfMonths:[1,2],
+            minDate :new Date(),
+            showButtonPanel :true
+        });
+
 
         /*国内国际机票切换*/
         $("#flight_tab li").click(function(){
