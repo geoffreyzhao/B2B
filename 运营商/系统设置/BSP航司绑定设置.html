@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>系统设置 公司信息 B2B航司绑定设置</title>
+    <title>系统设置 公司信息 BSP航司绑定设置</title>
     <meta charset="utf-8"/>
     <link href="/static/css/kendo.common.css" rel="stylesheet"/>
     <link href="/static/css/kendo.gray.css" rel="stylesheet"/>
@@ -74,8 +74,8 @@
                             <span class="rightCover"></span>
                         </div>
                     </li>
-                    <li class="current">
-                        <div class="mtab">
+                    <li>
+                        <div class="mtab gray">
                             <a href="B2B航司绑定设置.html" for="fid2">B2B航司绑定设置</a>
                             <span class="rightCover"></span>
                         </div>                    
@@ -86,8 +86,8 @@
                             <span class="rightCover"></span>
                         </div>                    
                     </li>
-                    <li>
-                        <div class="mtab gray">
+                    <li class="current">
+                        <div class="mtab">
                             <a href="BSP航司绑定设置.html" for="fid3">BSP航司绑定设置</a>
                             <span class="rightCover"></span>
                         </div>                    
@@ -96,7 +96,7 @@
              <section>
                  <div style="position:relative;">
                       <div class="setBtn">
-                           <a href="javascript:;" class="button_secondary adaptiveButton small ac-addB2BAir">
+                           <a href="javascript:;" class="button_secondary adaptiveButton small ac-addBSPAir">
                                 <span class="left"></span>
                                 <span class="center">添加航司绑定</span>
                                 <span class="right"></span>
@@ -105,21 +105,15 @@
                       <table class="grayTitleTab">
                            <colgroup>
                                 <col width="100" />
-                                <col width="70" />
-                                <col width="230" />
-                                <col width="150" />
-                                <col width="135" />
-                                <col width="160" />
-                                <col width="70" />
+                                <col width="120" />
+                                <col width="440" />
+                                <col width="260" />
                            </colgroup>
                            <thead>
                                <tr>
                                    <th style="text-align:center;">操作</th>
                                    <th style="text-align:center;">航空公司</th>
-                                   <th>支付账号</th>
-                                   <th>B2B账号</th>
-                                   <th>账号联系人</th>
-                                   <th>联系电话</th>
+                                   <th>账号</th>
                                    <th>状态</th>
                                </tr>
                            </thead>
@@ -131,9 +125,6 @@
                                    </td>
                                    <td rowspan="4" style="text-align:center;">MU</td>
                                    <td class="gray">zhifubao@zhifubao.com</td>
-                                   <td class="gray">BYCB2B</td>
-                                   <td class="gray">张三</td>
-                                   <td class="gray">139999999999</td>
                                    <td class="gray">禁用</td>
                                </tr>
                                <tr>
@@ -142,9 +133,6 @@
                                        <a href="javascript:void(0);">删除</a>
                                    </td>
                                    <td>huifu@huifu.com</td>
-                                   <td>BYCB2B</td>
-                                   <td>张三</td>
-                                   <td>139999999999</td>
                                    <td>启用</td>
                                </tr>
                                <tr>
@@ -153,9 +141,6 @@
                                        <a href="javascript:void(0);">删除</a>
                                    </td>
                                    <td class="gray">zhifubao@zhifubao.com</td>
-                                   <td class="gray">BYCB2B</td>
-                                   <td class="gray">张三</td>
-                                   <td class="gray">139999999999</td>
                                    <td class="gray">禁用</td>
                                </tr>
                                <tr>
@@ -164,9 +149,6 @@
                                        <a href="javascript:void(0);">删除</a>
                                    </td>
                                    <td>zhifubao@zhifubao.com</td>
-                                   <td>BYCB2B</td>
-                                   <td>张三</td>
-                                   <td>139999999999</td>
                                    <td>启用</td>
                                </tr>
                            </tbody>
@@ -179,10 +161,10 @@
             <script type="text/javascript">
 
                 $(function () {
-                    new PopWindow('.ac-addB2BAir', {
-                        width: 570,
+                    new PopWindow('.ac-addBSPAir', {
+                        width: 470,
                         title: '添加航司绑定',
-                        template: '#ac-addB2BAir-template'
+                        template: '#ac-addBSPAir-template'
                     }).init();
 					
 					$("#rolemenu li").hover(function(){
@@ -202,66 +184,28 @@
             </script>
 
 
-            <script type="text/x-kendo-template" id="ac-addB2BAir-template">
+            <script type="text/x-kendo-template" id="ac-addBSPAir-template">
                 <table class="cv-table">
 				    <colgroup>
-					     <col width="90"/>
-						 <col width="185"/>
-						 <col width="75"/>
-						 <col width="160"/>
+					     <col width="100"/>
+						 <col width="300"/>
 					</colgroup>
                     <tr>
+                        <th>账号：</th>
+                        <td>
+                            <input type="text" style="width:170px;" />
+                        </td>
+                    </tr>
+					<tr>
                         <th><em class="redFont">*</em>航空公司：</th>
                         <td>
                             <select data-role="dropdownlist" style="width:170px;">
 							    <option>请选择航空公司</option>
 							</select>
                         </td>
-						<th></th>
-						<td></td>
-                    </tr>
-					<tr>
-                        <th><em class="redFont">*</em>支付账号：</th>
-                        <td colspan="3">
-                            <select data-role="dropdownlist" style="width:170px;">
-							    <option>请选择航空公司</option>
-							</select>
-						     <em>---</em>
-							 <select data-role="dropdownlist">
-							    <option>请选择航空公司</option>
-							</select>
-						</td>
-                    </tr>
-					<tr>
-                        <th><em class="redFont">*</em>B2B账号：</th>
-                        <td>
-                            <input type="text" style="width:170px;" />
-                        </td>
-						<th></th>
-						<td></td>
-                    </tr>
-					<tr>
-                        <th><em class="redFont">*</em>账号密码：</th>
-                        <td>
-                            <input type="password" style="width:170px;" />
-                        </td>
-						<th><em class="redFont">*</em>确认密码：</th>
-                        <td>
-                            <input type="password" style="width:150px;" />
-                        </td>
-                    </tr>
-					<tr>
-                        <th><em class="redFont">*</em>账号联系人：</th>
-                        <td>
-                            <input type="text" style="width:170px;" />
-                        </td>
-						<th><em class="redFont">*</em>联系电话：</th>
-                        <td>
-                            <input type="text" style="width:150px;" />
-                        </td>
                     </tr>
                 </table>
-                <div class="row" style="text-align:right;padding-right:10px;">
+                <div class="row" style="text-align:right;padding-right:15px;">
                     <button class="btns button_1_2">添 加</button>
                     <button class="btns button_2_2">取 消</button>
                 </div>
