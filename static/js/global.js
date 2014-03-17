@@ -477,16 +477,27 @@ var CityAutocomplete = function(settings){
                 value:[]
             };
             result[r]['name'] = group[r];
-            jQuery.each(arr, function(index,i) {
-                var str = i[col];
-                var first_letter = str.toUpperCase().charCodeAt(0);
-                var rangeStart = item.charCodeAt(0);
-                var rangeEnd = item.charCodeAt(group[r].length-1);
 
-                if (first_letter >= rangeStart && first_letter <= rangeEnd) {
-                    result[r]['value'].push(i);
-                }
-            });
+            // 如果是字母的tab
+            if(item[0].charCodeAt(0)<=122){
+                jQuery.each(arr, function(index,i) {
+                    var str = i[col];
+                    var first_letter = str.toUpperCase().charCodeAt(0);
+                    var rangeStart = item.charCodeAt(0);
+                    var rangeEnd = item.charCodeAt(group[r].length-1);
+
+                    if (first_letter >= rangeStart && first_letter <= rangeEnd) {
+                        result[r]['value'].push(i);
+                    }
+                });
+            }else{
+                jQuery.each(arr, function(index,i) {
+                    var str = i[col];
+                    if (item === str) {
+                        result[r]['value'].push(i);
+                    }
+                });
+            }
         }
 
         return result;
