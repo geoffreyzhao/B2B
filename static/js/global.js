@@ -1551,15 +1551,6 @@ $.fn.fixedBar = function(settings){
     function init(){
         var eleOffsetTop = ele.offset().top;
         var elePositionTop = ele.position().top;
-        var endPos;
-
-        if(opts.endAt){
-            if(typeof opts.endAt === 'number'){
-                endPos = opts.endAt;
-            }else{
-                endPos = $(opts.endAt).offset().top + $(opts.endAt).height();
-            }
-        }
 
         if(opts.createShadow){
             if(typeof opts.createShadow === 'string'){
@@ -1576,6 +1567,19 @@ $.fn.fixedBar = function(settings){
             if(!ele.hasClass("fixedBar")) ele.addClass("fixedBar").attr("style",opts.css);
             if(window.isIE6) ele.css({"position":"absolute"});
         }
+
+
+        function getEndPos(){
+            var end;
+            if(typeof opts.endAt === 'number'){
+                end = opts.endAt;
+            }else{
+                end = $(opts.endAt).offset().top + $(opts.endAt).height();
+            }
+
+            return end;
+        }
+
 
         $(window).bind("scroll.fixedBar",function(e){
             if(ele.is(':hidden')){
@@ -1622,11 +1626,11 @@ $.fn.fixedBar = function(settings){
             if(callback) callback.call(ele,scrollTop);
 
             if(opts.endAt){
-                if(scrollTop >= endPos){
-                    shadow.hide();
-                    ele.removeClass("fixedBar").removeAttr("style").data('disabled',true);
+                if(scrollTop + ele.outerHeight() >= getEndPos()){
+                    shadow && shadow.hide();
+                    ele.removeClass("fixedBar").removeAttr("style").data('disabled',true).addClass('fixedBarEndAt');
                 }else{
-                    ele.removeData('disabled');
+                    ele.removeData('disabled').removeClass('fixedBarEndAt');
                 }
             }
         });

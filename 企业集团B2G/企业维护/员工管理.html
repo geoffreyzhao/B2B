@@ -33,7 +33,9 @@ $(function(){
             $('#scroll_Loading').show();	
         },
         'afterLoad': function(data) {
-            console.log(data.size());
+            window.scrollBy(0,10);
+            $(window).trigger('scroll');
+
 
             var i = 0;
             $('#scroll_Loading').hide();
@@ -58,6 +60,7 @@ $(function(){
     });
     $('.col-tree').fixedBar({
         createShadow:false,
+        endAt:'.block-body',
         offsetTop:60
     });
 
@@ -288,7 +291,7 @@ $(function(){
                             <span>部门名称：</span>
                             <input id="filterText" style="width:140px;" type="text" name="">
                         </div>
-                        <div class="tree-body">
+                        <div class="tree-body" style="height:600px;">
                             <ul id="treeview" data-role="treeview">
                                 <li>
                                 苏宁公司
