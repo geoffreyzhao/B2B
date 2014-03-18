@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/static/css/ie.css"/>
     <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script>
     <![endif]-->
-    <script type="text/javascript" src="/static/js/supplier/supplier_sync.js"></script>
+    <script type="text/javascript" src="/static/js/sync.js"></script>
     <!-- @CLB@ -->
 </head>
 <body>
@@ -71,30 +71,6 @@
             </div>
         </div>
 
-        <div class="block1 block block-query clearfix">
-            <form method="post">
-                <div class="col col-l" style="width:860px;padding-top:5px;">
-                    <table>
-                        <colgroup>
-                            <col width="80">
-                            <col width="120">
-                            <col width="70">
-                            <col width="120">
-                        </colgroup>
-                        <tr>
-                            <th>航空公司</th>
-                            <td><input id="" type="text" name=""></td>
-                            <th>OFFICE</th>
-                            <td><input id="" type="text" name=""></td>
-                        </tr>
-
-                    </table>
-                </div>
-                <div class="col col-r">
-                    <button class="btns button_2_1">查 询</button>
-                </div>
-            </form>
-        </div>
         <div class="block2 block block-query-result">
             <div class="block-header">
                 <button class="btns btn-ac-blue">删除</button>
@@ -103,14 +79,20 @@
                 <colgroup>
                     <col width="30">
                     <col width="100">
-                    <col width="120">
+                    <col width="100">
+                    <col width="100">
+                    <col width="100">
+                    <col width="100">
                     <col width="">
                     <col width="200">
                 </colgroup>
                 <tr>
                     <th><input id="" type="checkbox" class="checkall" name=""></th>
                     <th>OFFICE</th>
+                    <th>销售单位代号</th>
+                    <th>填开单位</th>
                     <th>航空公司</th>
+                    <th>分公司</th>
                     <th>备注</th>
                     <th>操作</th>
                 </tr>
@@ -154,6 +136,14 @@
             <script type="text/x-kendo-template" id="ac-new-template">
                 <table class="cv-table">
                     <tr>
+                        <th>分公司：</th>
+                        <td>
+                            <select data-role="dropdownlist" style="width:150px;" id="" name="">
+                                <option value="">上海分公司</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
                         <th>航空公司：</th>
                         <td>
                             <select data-role="dropdownlist" style="width:150px;" id="" name="">
@@ -162,7 +152,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>OFFICE：</th>
+                        <th><u>*</u>OFFICE：</th>
+                        <td><input id="" style="width:150px;" type="text" name=""></td>
+                    </tr>
+                    <tr>
+                        <th>销售单位代号：</th>
+                        <td><input id="" style="width:150px;" type="text" name=""></td>
+                    </tr>
+                    <tr>
+                        <th>填写单位：</th>
                         <td><input id="" style="width:150px;" type="text" name=""></td>
                     </tr>
                     <tr>
@@ -183,6 +181,9 @@
                     <td>SHA225</td>
                     <td>东航</td>
                     <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td class="ac-td"><a href="">编辑</a> <a href="">删除</a><span class="btn_autoTicket">自动出票</span> </td>
                 </tr>
                 <tr>
@@ -190,7 +191,10 @@
                     <td>SHA225</td>
                     <td>东航</td>
                     <td></td>
-                    <td class="ac-td"><a href="">编辑</a> <a href="">删除</a><a href="javascript:;" class="btn_setAutoTicket office_autoTicket">设置自动出票</a> </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="ac-td"><a href="">编辑</a> <a href="">删除</a><a href="javascript:;" class="office_autoTicket">设置自动出票</a> </td>
                 </tr>
             </script>
 
