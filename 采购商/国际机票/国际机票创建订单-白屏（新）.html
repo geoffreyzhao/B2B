@@ -10,22 +10,31 @@
     <link href="../../static/css/coin-slider-styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="../../static/css/store_reset.css" media="all" />
     <link rel="stylesheet" href="../../static/css/store.css" media="screen" />
-    <link rel="stylesheet" href="../../static/css/store_flight.css" media="screen" />
-    
+    <link rel="stylesheet" href="../../static/css/store_flight.css" media="screen" />    
     <link rel="stylesheet" href="../../static/css/kendo.common.min.css" />
 	<link rel="stylesheet" href="../../static/css/kendo.store.css" />
+    
+    <script type="text/javascript" src="./../static/js/vendor/jquery.min.js"></script>
+    <script type="text/javascript" src="./../static/js/plugins/jquery.fixedBar.js"></script>
+    <script type="text/javascript" src="./../static/js/flight.js"></script>    
     <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
-	<script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>    
-
+	<script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script src="../../static/js/jquery-ui-1.10.3.custom.js"></script>
+	<script src="../../static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+    <script type="text/javascript" src="../../static/js/global.js"></script>    
+    <script type="text/javascript" src="../../static/js/store/store.js"></script>
+    
+    <script>
+		$(function(){
+			kendo.init('body');
+			lensf();
+		})
+    </script>
+    
     <!--[if IE]>
     <script src="../../static/js/html5.js"></script>
     <![endif]-->
-    <script src="../../static/js/jquery-ui-1.10.3.custom.js"></script>
-	<script src="../../static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
-    <script type="text/javascript" src="../../static/js/global.js"></script>
-    
-    <script type="text/javascript" src="../../static/js/store/store.js"></script>
 </head>
 <body>
 
@@ -64,163 +73,348 @@
 <section class="main-body clearfix">
 
     <div class="flow clearfix">
-       <h3>返回搜索结果页</h3>
-       <ul>
-          <li class="current_li">创建订单</li>
-          <li>审核</li>
-          <li>支付</li>
-          <li style="margin-right:0;">出票</li>     
-          <div style="width:65px;" class="line"></div>     
-       </ul>
-       
+        <h3>返回搜索结果页</h3>       
+        <div class="instr pull-right clearfix">
+            <span class="highlight-fl">创建订单</span>
+            <span>审核</span>
+            <span>支付</span>
+            <span>出票</span>
+        </div>  
+        <!--<div class="instr pull-right clearfix">
+            <span class="highlight-fl">创建订单</span>
+            <span class="travel-instr">审核</span>
+            <span class="travel-instr highlight-fl">支付</span>
+            <span>出票</span>
+        </div> -->     
     </div>
     <div class="departure">
         <div class="chief"> <h3>航班信息</h3> </div>
         <table cellpadding="0" cellspacing="0" class="route">
              <colgroup>
-                 <col width="110px"/>
-                 <col width="140px"/>
-                 <col width="113px"/>
-                 <col width="80px"/>
-                 <col width="96px"/>
-                 <col width="126px"/>
-                 <col width="130px"/>
-                 <col width="111px"/>
-             </colgroup>        
-            <thead>
-                <tr>
-                    <th>航班号</th>
-                    <th>实际承运</th>
-                    <th>机型</th>
-                    <th>舱位等级</th>
-                    <th>舱位</th>
-                    <th>中转次数</th>
-                    <th>起降时间</th>
-                    <th>起降机场</th>
-                </tr>
-            </thead>
+                 <col width="350"/>
+                 <col width="150"/>
+                 <col width="330"/>
+                 <col width="130"/>
+             </colgroup> 
             <tbody>
                 <tr>
-                    <td><i class="aviation_icon">东方航空<br>MU5183</i></td>
-                    <td>MU5183</td>
-                    <td>大型机</td>
-                    <td>G/X</td>
-                    <td>特价经济舱</td>
-                    <td><a href="#">1次中转 <small>&nbsp;</small></a></td>
-                    <td>2013-09-09 08：20<br>2013-09-01 10：20</td>
-                    <td>首都机场T3<br>虹桥机场T2</td>
+                    <td>
+                        <div class="airPlace">
+                             <b class="weightFont">上海</b>
+                             <label class="transferTime">
+                                  <div class="transferNumber">1次中转</div>
+                                  <div>18小时35分钟</div>
+                             </label>
+                             <b class="weightFont">阿姆斯特丹</b>
+                        </div>
+                    </td>
+                    <td>
+                         <div><em class="airLogo"></em><b>荷兰皇家航空</b></div>
+                         <div style="margin-left:20px;"><b>KL894/KL2344</b></div>                   
+                    </td>
+                    <td>
+                        <div>起飞：<b>&nbsp;&nbsp;08:20&nbsp;&nbsp;</b>浦东国际机场(PVG)</div>
+                        <div>到达：<b>&nbsp;&nbsp;10:20&nbsp;&nbsp;</b>阿姆斯特丹西佛尔国际机场(AMS)</div>
+                    </td>
+                    <td>
+                        <div>舱位：经济舱Y </div>
+                        <div>机型：大型机 74E</div>
+                    </td>
                 </tr>
                 <tr class="dashed_top">
-                   <td><i class="aviation_icon">东方航空<br>MU5183</i></td>
-                    <td>MU5183</td>
-                    <td>大型机</td>
-                    <td>G/X</td>
-                    <td>特价经济舱</td>
-                    <td><a href="#">1次中转 <small>&nbsp;</small></a></td>
-                    <td>2013-09-09 08：20<br>2013-09-01 10：20</td>
-                    <td>首都机场T3<br>虹桥机场T2</td>
+                    <td>
+                        <div class="airPlace">
+                             <b class="weightFont">阿姆斯特丹</b>
+                             <label class="transferTime">
+                                  <div class="transferNumber">1次中转</div>
+                                  <div>18小时35分钟</div>
+                             </label>
+                             <b class="weightFont">阿姆斯特丹</b>
+                        </div>
+                    </td>
+                    <td>
+                         <div><em class="airLogo"></em><b>荷兰皇家航空</b></div>
+                         <div style="margin-left:20px;"><b>KL894/KL2344</b></div>                   
+                    </td>
+                    <td>
+                        <div>起飞：<b>&nbsp;&nbsp;08:20&nbsp;&nbsp;</b>浦东国际机场(PVG)</div>
+                        <div>到达：<b>&nbsp;&nbsp;10:20&nbsp;&nbsp;</b>阿姆斯特丹西佛尔国际机场(AMS)</div>
+                    </td>
+                    <td>
+                        <div>舱位：经济舱Y </div>
+                        <div>机型：大型机 74E</div>
+                    </td>
+                </tr>
+                <tr class="dashed_top">
+                    <td>
+                        <div class="airPlace">
+                             <b class="weightFont">阿姆斯特丹</b>
+                             <label class="transferTime">
+                                  <div class="transferNumber">1次中转</div>
+                                  <div>18小时35分钟</div>
+                             </label>
+                             <b class="weightFont">阿姆斯特丹</b>
+                        </div>
+                    </td>
+                    <td>
+                         <div><em class="airLogo"></em><b>荷兰皇家航空</b></div>
+                         <div style="margin-left:20px;"><b>KL894/KL2344</b></div>  
+                         <div class="practicalTips">实际承运</div>          
+                    </td>
+                    <td>
+                        <div>起飞：<b>&nbsp;&nbsp;08:20&nbsp;&nbsp;</b>浦东国际机场(PVG)</div>
+                        <div>到达：<b>&nbsp;&nbsp;10:20&nbsp;&nbsp;</b>阿姆斯特丹西佛尔国际机场(AMS)</div>
+                    </td>
+                    <td>
+                        <div>舱位：经济舱Y </div>
+                        <div>机型：大型机 74E</div>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
+    
+    <div class="departure">
+        <div class="chief"> <h3>退改签信息</h3> </div>
+            <div> <!--成人-->
+                  <table class="offerInfoTab">
+                        <colgroup>
+                             <col width="55"/>
+                             <col width="25"/>
+                             <col width="90"/>
+                             <col width="70"/>
+                             <col width="55"/>
+                             <col width="70"/>
+                             <col width="75"/>
+                             <col width="80"/>
+                             <col width="65"/>
+                             <col width="90"/>
+                             <col width="105"/>
+                             <col width="65"/>
+                             <col width="105"/>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th><label class="typeTips"><b class="typeContent">成人</b> <i class="typeTipsIcon"></i></label></th>
+                                <th></th>
+                                <th>应收票款</th>
+                                <th>票面价</th>
+                                <th>税款</th>
+                                <th>代理费</th>
+                                <th>奖励扣率</th>
+                                <th>奖励金额</th>
+                                <th>开票费</th>
+                                <th>出票时间</th>
+                                <th>退废票时间</th>
+                                <th>出票类型</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td><input type="radio" name="infor"/></td>
+                                <td><b class="orangeFont">2147</b></td>
+                                <td><big class="bigFont">2260</big></td>
+                                <td><big class="bigFont">300</big></td>
+                                <td><b class="weightFont">7.2%</b></td>
+                                <td><b class="weightFont">5%</b></td>
+                                <td><b class="weightFont">10</b></td>
+                                <td><big class="bigFont">100</big></td>
+                                <td>24小时</td>
+                                <td>8:00-22:00</td>
+                                <td>BSP</td>
+                                <td><a href="javascript:void(0);" class="pnrA">更换PNR出票</a></td>
+                            </tr>
+                            <tr class="dashed_top">
+                                <td></td>
+                                <td><input type="radio" name="infor"/></td>
+                                <td><b class="orangeFont">2147</b></td>
+                                <td><big class="bigFont">2260</big></td>
+                                <td><big class="bigFont">300</big></td>
+                                <td><b class="weightFont">7.2%</b></td>
+                                <td><b class="weightFont">5%</b></td>
+                                <td><b class="weightFont">10</b></td>
+                                <td><big class="bigFont">100</big></td>
+                                <td>24小时</td>
+                                <td>8:00-22:00</td>
+                                <td>BSP</td>
+                                <td><a href="javascript:void(0);" class="pnrA">更换PNR出票</a></td>
+                            </tr>
+                            <tr class="dashed_top">
+                                <td></td>
+                                <td><input type="radio" name="infor"/></td>
+                                <td><b class="orangeFont">2147</b></td>
+                                <td><big class="bigFont">2260</big></td>
+                                <td><big class="bigFont">300</big></td>
+                                <td><b class="weightFont">7.2%</b></td>
+                                <td><b class="weightFont">5%</b></td>
+                                <td><b class="weightFont">10</b></td>
+                                <td><big class="bigFont">100</big></td>
+                                <td>24小时</td>
+                                <td>8:00-22:00</td>
+                                <td>BSP</td>
+                                <td><a href="javascript:void(0);" class="pnrA">更换PNR出票</a></td>
+                            </tr>
+                            <tr class="dashed_top">
+                                <td></td>
+                                <td><input type="radio" name="infor"/></td>
+                                <td><b class="orangeFont">2147</b></td>
+                                <td><big class="bigFont">2260</big></td>
+                                <td><big class="bigFont">300</big></td>
+                                <td><b class="weightFont">7.2%</b></td>
+                                <td><b class="weightFont">5%</b></td>
+                                <td><b class="weightFont">10</b></td>
+                                <td><big class="bigFont">100</big></td>
+                                <td>24小时</td>
+                                <td>8:00-22:00</td>
+                                <td>BSP</td>
+                                <td> </td>
+                            </tr>
+                            <tr class="dashed_top">
+                                <td></td>
+                                <td><input type="radio" name="infor"/></td>
+                                <td><b class="orangeFont">2147</b></td>
+                                <td><big class="bigFont">2260</big></td>
+                                <td><big class="bigFont">300</big></td>
+                                <td><b class="weightFont">7.2%</b></td>
+                                <td><b class="weightFont">5%</b></td>
+                                <td><b class="weightFont">10</b></td>
+                                <td><big class="bigFont">100</big></td>
+                                <td>24小时</td>
+                                <td>8:00-22:00</td>
+                                <td>BSP</td>
+                                <td> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="flexibleType">
+                         <em class="packUp"></em>
+                         <em class="upfold" style="display:none;"></em>
+                    </div>
+            </div>  
+            <div>  <!--儿童-->
+                  <table class="offerInfoTab">
+                        <colgroup>
+                             <col width="55"/>
+                             <col width="25"/>
+                             <col width="90"/>
+                             <col width="70"/>
+                             <col width="55"/>
+                             <col width="70"/>
+                             <col width="75"/>
+                             <col width="80"/>
+                             <col width="65"/>
+                             <col width="90"/>
+                             <col width="105"/>
+                             <col width="65"/>
+                             <col width="105"/>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th><label class="typeTips"><b class="typeContent">儿童</b> <i class="typeTipsIcon"></i></label></th>
+                                <th></th>
+                                <th>应收票款</th>
+                                <th>票面价</th>
+                                <th>税款</th>
+                                <th>代理费</th>
+                                <th>奖励扣率</th>
+                                <th>奖励金额</th>
+                                <th>开票费</th>
+                                <th>出票时间</th>
+                                <th>退废票时间</th>
+                                <th>出票类型</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td><input type="radio" name="infor"/></td>
+                                <td><b class="orangeFont">2147</b></td>
+                                <td><big class="bigFont">2260</big></td>
+                                <td><big class="bigFont">300</big></td>
+                                <td><b class="weightFont">7.2%</b></td>
+                                <td><b class="weightFont">5%</b></td>
+                                <td><b class="weightFont">10</b></td>
+                                <td><big class="bigFont">100</big></td>
+                                <td>24小时</td>
+                                <td>8:00-22:00</td>
+                                <td>BSP</td>
+                                <td><a href="javascript:void(0);" class="pnrA">更换PNR出票</a></td>
+                            </tr>
+                            <tr class="dashed_top">
+                                <td></td>
+                                <td><input type="radio" name="infor"/></td>
+                                <td><b class="orangeFont">2147</b></td>
+                                <td><big class="bigFont">2260</big></td>
+                                <td><big class="bigFont">300</big></td>
+                                <td><b class="weightFont">7.2%</b></td>
+                                <td><b class="weightFont">5%</b></td>
+                                <td><b class="weightFont">10</b></td>
+                                <td><big class="bigFont">100</big></td>
+                                <td>24小时</td>
+                                <td>8:00-22:00</td>
+                                <td>BSP</td>
+                                <td><a href="javascript:void(0);" class="pnrA">更换PNR出票</a></td>
+                            </tr>
+                            <tr class="dashed_top">
+                                <td></td>
+                                <td><input type="radio" name="infor"/></td>
+                                <td><b class="orangeFont">2147</b></td>
+                                <td><big class="bigFont">2260</big></td>
+                                <td><big class="bigFont">300</big></td>
+                                <td><b class="weightFont">7.2%</b></td>
+                                <td><b class="weightFont">5%</b></td>
+                                <td><b class="weightFont">10</b></td>
+                                <td><big class="bigFont">100</big></td>
+                                <td>24小时</td>
+                                <td>8:00-22:00</td>
+                                <td>BSP</td>
+                                <td><a href="javascript:void(0);" class="pnrA">更换PNR出票</a></td>
+                            </tr>
+                            <tr class="dashed_top">
+                                <td></td>
+                                <td><input type="radio" name="infor"/></td>
+                                <td><b class="orangeFont">2147</b></td>
+                                <td><big class="bigFont">2260</big></td>
+                                <td><big class="bigFont">300</big></td>
+                                <td><b class="weightFont">7.2%</b></td>
+                                <td><b class="weightFont">5%</b></td>
+                                <td><b class="weightFont">10</b></td>
+                                <td><big class="bigFont">100</big></td>
+                                <td>24小时</td>
+                                <td>8:00-22:00</td>
+                                <td>BSP</td>
+                                <td> </td>
+                            </tr>
+                            <tr class="dashed_top">
+                                <td></td>
+                                <td><input type="radio" name="infor"/></td>
+                                <td><b class="orangeFont">2147</b></td>
+                                <td><big class="bigFont">2260</big></td>
+                                <td><big class="bigFont">300</big></td>
+                                <td><b class="weightFont">7.2%</b></td>
+                                <td><b class="weightFont">5%</b></td>
+                                <td><b class="weightFont">10</b></td>
+                                <td><big class="bigFont">100</big></td>
+                                <td>24小时</td>
+                                <td>8:00-22:00</td>
+                                <td>BSP</td>
+                                <td> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="flexibleType">
+                         <em class="packUp"></em>
+                         <em class="upfold" style="display:none;"></em>
+                    </div>
+            </div> 
+    </div>
 
-    <div class="quote">
-       <ul class="message_ul clearfix">
-           <li class="message_li"><em><a href="#">成人报价信息</a></em></li>
-           <li><em><a href="#">儿童报价信息</a></em></li>
-           <li><em><a href="#">婴儿报价信息</a></em></li>           
-       </ul>
-       <table cellpadding="0" cellspacing="0" class="fare">
-             <colgroup>
-                 <col width="25px"/>
-                 <col width="80px"/>
-                 <col width="60px"/>
-                 <col width="60px"/>
-                 <col width="70px"/>
-                 <col width="80px"/>
-                 <col width="75px"/>
-                 <col width="60px"/>
-                 <col width="140px"/>
-                 <col width="140px"/>
-                 <col width="70px"/>
-             </colgroup>        
-            <thead>
-                <tr>
-                    <th> </th>
-                    <th>应收票款</th>
-                    <th>票款</th>
-                    <th>税款</th>
-                    <th>代理费</th>
-                    <th>奖励扣率</th>
-                    <th>奖励金额</th>
-                    <th>开票费</th>
-                    <th>出票时间</th>
-                    <th>退废票时间</th>
-                    <th>出票效率</th>
-                    <th>出票类型</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><input type="radio" name="fee" checked="" /></td>
-                    <td><em>2147</em></td>
-                    <td><em>2260</em></td>
-                    <td>300</td>
-                    <td><em>5%</em></td>
-                    <td><em>5%</em></td>
-                    <td><em>10</em></td>
-                    <td><em>100</em></td>
-                    <td>工作日：08:25-20:30<br>双休日：08:30-18:30</td>
-                    <td>工作日：08:25-20:30<br>双休日：08:30-18:30</td>
-                    <td>90%</td>
-                    <td>BSP</td>
-                </tr>
-                <tr class="dashed_top">
-                    <td><input type="radio" name="fee" /></td>
-                    <td><em>2147</em></td>
-                    <td><em>2260</em></td>
-                    <td>300</td>
-                    <td><em>5%</em></td>
-                    <td><em>5%</em></td>
-                    <td><em>10</em></td>
-                    <td><em>100</em></td>
-                    <td>工作日：08:25-20:30<br>双休日：08:30-18:30</td>
-                    <td>工作日：08:25-20:30<br>双休日：08:30-18:30</td>
-                    <td>90%</td>
-                    <td>BSP</td>
-                </tr>
-                <tr class="dashed_top">
-                    <td><input type="radio" name="fee" /></td>
-                    <td><em>2147</em></td>
-                    <td><em>2260</em></td>
-                    <td>300</td>
-                    <td><em>5%</em></td>
-                    <td><em>5%</em></td>
-                    <td><em>10</em></td>
-                    <td><em>100</em></td>
-                    <td>工作日：08:25-20:30<br>双休日：08:30-18:30</td>
-                    <td>工作日：08:25-20:30<br>双休日：08:30-18:30</td>
-                    <td>90%</td>
-                    <td>BSP</td>
-                </tr>
-                <tr class="dashed_top">
-                    <td><input type="radio" name="fee" /></td>
-                    <td><em>2147</em></td>
-                    <td><em>2260</em></td>
-                    <td>300</td>
-                    <td><em>5%</em></td>
-                    <td><em>5%</em></td>
-                    <td><em>10</em></td>
-                    <td><em>100</em></td>
-                    <td>工作日：08:25-20:30<br>双休日：08:30-18:30</td>
-                    <td>工作日：08:25-20:30<br>双休日：08:30-18:30</td>
-                    <td>90%</td>
-                    <td>BSP</td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="rule dashed_top">
-            <h3>退改签规定</h3>
+    <div class="departure">
+        <div class="chief"> <h3>退改签信息</h3> </div>
+        <div class="rule">
             <p><b>【更改条件】</b>同等舱位免费更改。</p>
             <p><b>【退票条件】</b>起飞前2小时（含）以外办理退票按订座舱位公布运价收取40％的退票费，2小时以内及起飞后退票按订座舱位公布运价收取50％的 退票费。退票费低于50元时按50元收取。</p>        
             <p><b>【签转条件】</b>不得签转。</p>
@@ -390,84 +584,6 @@
            </a>
         </div>
     </div>
-
-       <div class="location_1"> <!--浮层开始-->
-          <div class="floating">
-              <i>&nbsp;</i>
-              <table class="floating_title">
-                 <colgroup>
-                   <col width="58px"/>
-                   <col width="120px"/>
-                   <col width="113px"/>
-                   <col width="60px"/>
-                   <col width="47px"/>
-                 </colgroup>
-                   <tr>
-                      <td>航班号</td>
-                      <td>起降时间</td>
-                      <td>起降机场</td>
-                      <td>飞行时间</td>
-                      <td>机型</td>
-                      <td>舱位</td>
-                   </tr>
-              </table>
-              <div class="aviation"> 
-                  <table>
-                     <colgroup>
-                       <col width="58px"/>
-                       <col width="120px"/>
-                       <col width="113px"/>
-                       <col width="60px"/>
-                       <col width="47px"/>
-                     </colgroup>
-                       <tr>
-                          <td>东方航空</td>
-                          <td>2012-12-12  09：00</td>
-                          <td>上海浦东机场(PVG)</td>
-                          <td>2：30</td>
-                          <td>大型机</td>
-                          <td>G</td>
-                       </tr>
-                       <tr>
-                          <td>MU5183</td>
-                          <td>2012-12-12  12：00</td>
-                          <td>台北桃园机场(MMK)</td>
-                          <td> </td>
-                          <td>333</td>
-                          <td> </td>
-                       </tr>
-                  </table>                   
-               </div>
-               <div class="aviation" style="border:0"> 
-                  <table>
-                     <colgroup>
-                       <col width="58px"/>
-                       <col width="120px"/>
-                       <col width="113px"/>
-                       <col width="60px"/>
-                       <col width="47px"/>
-                     </colgroup>
-                       <tr>
-                          <td>东方航空</td>
-                          <td>2012-12-12  09：00</td>
-                          <td>上海浦东机场(PVG)</td>
-                          <td>2：30</td>
-                          <td>大型机</td>
-                          <td>G</td>
-                       </tr>
-                       <tr>
-                          <td>MU5183</td>
-                          <td>2012-12-12  12：00</td>
-                          <td>台北桃园机场(MMK)</td>
-                          <td> </td>
-                          <td>333</td>
-                          <td> </td>
-                       </tr>
-                  </table> 
-               </div>
-          </div>
-      </div> <!--浮层结束-->
-    
     
 </section>
 <footer class="main-footer">
@@ -487,6 +603,46 @@
     </center>
 </footer>
 </div>
+
+<script type="text/x-kendo-template" id="practicalTipsTemplate">
+      <div class="tooltipsContent">
+	       <div class="tooltipsArrow"></div>
+		   <div><em class="airLogo"></em><b>荷兰皇家航空</b></div>
+		   <div style="margin-left:20px;"><b>KL894/KL2344</b></div>
+	  </div>		
+</script>
+<script type="text/javascript">
+    $(function(){
+		$(".route .practicalTips").kendoTooltip({
+				position:"bottom", //left right top
+				content:function(){
+					return $("#practicalTipsTemplate").html();
+				},
+				callout:false,
+				offsetY:10,
+				width:150
+			});
+		
+		$(".flexible").click(function(){
+            $(".offerInfoTab tbody").slideToggle();
+            if($(this).hasClass("down"))
+            {
+                $(this).removeClass("down");
+                //$(this).text("收起");
+            }
+            else
+            {
+                $(this).addClass("down");
+                //$(this).text("展开");
+            }
+        })
+
+
+		
+		
+	})
+</script>
+
 
 
 <!--模板文件-->
