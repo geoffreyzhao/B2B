@@ -534,6 +534,16 @@
 	</table>	
 </script>
 
+<script type="text/x-kendo-template" id="backChangeSign">
+	<div class="floatLayer">
+		 <p><b>退票：</b>仅退基建燃油费，机票款不退</p>
+		 <p><b>废票：</b>每张收取N元费用</p>
+		 <p><b>更改：</b>不得改期、升舱</p>
+		 <p><b>签转：</b>不允许签转</p>
+		 <p><b>备注：</b> </p>
+	</div>
+</script>
+
 <script>
 		
 		$(function(){
@@ -575,6 +585,16 @@
 					return $("#airLogo").html();
 				},
 				offsetY:-20				
+			});
+			
+			$(".limitContent .linkA").kendoTooltip({
+				position:"bottom", //left right top
+				wrapperClass:"lineWeight",
+                width:300,
+				content:function(){
+					return $("#backChangeSign").html();
+				},
+				offsetY:10				
 			});
 			
 		});
