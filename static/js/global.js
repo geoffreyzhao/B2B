@@ -1588,10 +1588,11 @@ $.fn.fixedBar = function(settings){
 
             var that = $(this);
             var scrollTop = that.scrollTop() + opts.offsetTop;
+            var winHeight = $(window).innerHeight();
 
             var changeBar = function(){
                 if(!ele.hasClass("fixedBar")){
-                    opts.createShadow && shadow.show();
+                    shadow && shadow.show();
                     ele.addClass("fixedBar").attr("style",opts.css);
                     if(opts.offsetTop!==0){
                        ele.css('top',opts.offsetTop);
@@ -1602,11 +1603,22 @@ $.fn.fixedBar = function(settings){
             };
 
             var resetBar = function(){
-                opts.createShadow && shadow.hide();
+                shadow && shadow.hide();
                 ele.removeClass("fixedBar").removeAttr("style");
             };
 
-            if(ele.data('disabled') !== true){
+            // if(opts.endAt && ele.outerHeight() < winHeight-opts.offsetTop){
+            if(opts.endAt){
+                // if(scrollTop + ele.outerHeight() >= getEndPos() && scrollTop > eleOffsetTop){
+                if( scrollTop + ele.outerHeight() >= getEndPos() && scrollTop > eleOffsetTop){
+                    resetBar();
+                    ele.addClass('fixedBarEndAt');
+                }else{
+                    ele.removeClass('fixedBarEndAt');
+                }
+            }
+
+            if(!ele.hasClass('fixedBarEndAt')){
                 if(!opts.inverse){
                     if(scrollTop > eleOffsetTop){
                         changeBar();
@@ -1614,7 +1626,6 @@ $.fn.fixedBar = function(settings){
                         resetBar();
                     }
                 }else{
-                    var winHeight = $(window).innerHeight();
                     if(scrollTop + winHeight - ele.outerHeight() < eleOffsetTop){
                         changeBar();
                     }else{
@@ -1623,16 +1634,9 @@ $.fn.fixedBar = function(settings){
                 }
             }
 
+
             if(callback) callback.call(ele,scrollTop);
 
-            if(opts.endAt){
-                if(scrollTop + ele.outerHeight() >= getEndPos()){
-                    shadow && shadow.hide();
-                    ele.removeClass("fixedBar").removeAttr("style").data('disabled',true).addClass('fixedBarEndAt');
-                }else{
-                    ele.removeData('disabled').removeClass('fixedBarEndAt');
-                }
-            }
         });
 
         if(opts.inverse){
