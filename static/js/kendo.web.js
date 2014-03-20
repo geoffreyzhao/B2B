@@ -14500,7 +14500,7 @@ kendo_module({
         CONTENTLOAD = "contentLoad",
         REQUESTSTART = "requestStart",
         KCONTENTFRAME = "k-content-frame",
-        TEMPLATE = '<div role="tooltip" class="k-widget k-tooltip#if (!autoHide) {# k-tooltip-closable#}#">#if (!autoHide) {# <div class="k-tooltip-button"><a href="\\#" class="k-icon k-i-close">close</a></div> #}#' +
+        TEMPLATE = '<div role="tooltip" class="k-widget k-tooltip-dir-#=dir# k-tooltip#if (!autoHide) {# k-tooltip-closable#}#">#if (!autoHide) {# <div class="k-tooltip-button"><a href="\\#" class="k-icon k-i-close">close</a></div> #}#' +
                 '<div class="k-tooltip-content"></div>' +
                 '#if (callout){ #<div class="k-callout k-callout-#=dir#"></div>#}#' +
             '</div>',
@@ -14638,7 +14638,9 @@ kendo_module({
         events: [ SHOW, HIDE, CONTENTLOAD, ERROR, REQUESTSTART ],
 
         _mouseenter: function(e) {
-            saveTitleAttributes($(e.currentTarget));
+            if(this.options.filter !== ''){
+                saveTitleAttributes($(e.currentTarget));
+            }
         },
 
         _showOn: function(e) {
@@ -14796,9 +14798,9 @@ kendo_module({
                         this.element.attr("id", ariaId + ARIAIDSUFFIX);
                     }
 
-                    if (options.callout) {
+                    // if (options.callout) {
                         that._positionCallout();
-                    }
+                    // }
 
                     this.element.removeAttr("aria-hidden");
 
@@ -14869,12 +14871,18 @@ kendo_module({
 //                offsetAmount = anchorOffset[offset] - elementOffset[offset] + ($(anchor)[dimensions.size]() / 2) - arrowBorder;
                 offsetAmount = offset=="left"?that.options.arrowOffsetX:that.options.arrowOffsetY + ($(anchor)[dimensions.size]() / 2) - arrowBorder;
 
-           that.arrow
-               .removeClass("k-callout-n k-callout-s k-callout-w k-callout-e")
-               .addClass("k-callout-" + cssClass);
-           if(that.options.arrowOffsetX!=-1 || that.options.arrowOffsetY!=-1)
-           {
-               that.arrow.css(offset, offsetAmount);
+           that.popup.element
+               .removeClass("k-tooltip-dir-n k-tooltip-dir-s k-tooltip-dir-w k-tooltip-dir-e")
+               .addClass("k-tooltip-dir-" + cssClass);
+
+           if(that.options.callout){
+               that.arrow
+                .removeClass("k-callout-n k-callout-s k-callout-w k-callout-e")
+                .addClass("k-callout-" + cssClass);
+
+               if(that.options.arrowOffsetX!=-1 || that.options.arrowOffsetY!=-1){
+                       that.arrow.css(offset, offsetAmount);
+                   }
            }
         },
 
