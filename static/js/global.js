@@ -943,6 +943,7 @@ var lensf = function (settings){
             that.append('<em class="line" style="left:'+firstWidth/2+'px;width:'+containerWidth+'px"><div style="width:'+wid+'px" /></em>')
         }
         addLine();
+        that.addClass('lensf_status');
     });
 };
 
