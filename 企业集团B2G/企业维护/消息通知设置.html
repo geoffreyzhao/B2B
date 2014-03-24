@@ -35,19 +35,70 @@
             }
         });
 
-    new PopWindow('.ac-tmp .tmp-more',{
-        title:'请选择模板',
-        width:900,
-        template:'#ac-tmp-template',
-        open:function(){
-            // 获取当前的tr
-            // console.log(this.target.closest('tr'));
-            // var name = this.target.closest('tr').children('td').eq(1).text();
-            // this.data({
-            //     name:name
-            // });
+        function Select_tempalte(){
+            this.detailTemplate = kendo.template($('#tmp-detail').html());
+            this.initPopup();
         }
-    }).init();
+
+        Select_tempalte.prototype = {
+            setPopDetail:function(data){
+                data = $.extend({
+                    'sys':'空',
+                    'sms':'空',
+                    'attachment':'/'
+                },data);
+                var html = this.detailTemplate(data);
+                this.detailContainer.html(html);
+            },
+            initPopup:function(){
+                var that = this;
+                that.popupWindow = new PopWindow('.ac-tmp .tmp-more',{
+                    title:'请选择模板',
+                    width:900,
+                    template:'#ac-tmp-template',
+                    open:function(e){
+                        // 打开的时候更新数据
+                        /* $.ajax({
+                        });*/
+                        that.trigger = e.sender.target;
+                        var tid = that.trigger.data('tid');
+
+                        if(!tid){
+                            throw Error('需要有data-tid属性');
+                        }else{
+                            that.radios.filter('#TID_'+tid).attr('checked',true).trigger('click').trigger('change');
+                        }
+
+                    }
+               }).init();
+
+               that.popup = that.popupWindow.element;
+               that.detailContainer = that.popup.find('.tmp-col2');
+               that.radios = that.popup.find('[type=radio]');
+
+               that.bindChangeDetail();
+               that.bindSave();
+            },
+            bindChangeDetail:function(){
+                var that = this;
+                that.radios.on('change',function(){
+                    var data = $(this).data();
+                    that.setPopDetail(data);
+                });
+            },
+            bindSave:function(){
+                //$.ajax();
+                var that = this;
+                that.popup.find('.btn-c1').on('click',function(){
+                    var tid = that.radios.filter(':checked').attr('value');
+                    that.trigger.data('tid',tid);
+                    that.popupWindow.close();
+                });
+            }
+        };
+
+        new Select_tempalte();
+
 })
    </script>
 </head>
@@ -136,19 +187,19 @@
                                             <td>
                                                 <label><input id="" type="checkbox" name="">预订人</label>
                                             </td>
-                                            <td class="disabled"><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
+                                            <td class="disabled"><span class="ac-tmp">CHALFE1009<i data-tid="15" class="icon tmp-more"></i></span></td>
                                         </tr>
                                         <tr>
                                             <td>
                                                 <label><input id="" type="checkbox" name="" checked>差旅人</label>
                                             </td>
-                                            <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
+                                            <td><span class="ac-tmp">CHALFE1009<i data-tid="123" class="icon tmp-more"></i></span></td>
                                         </tr>
                                         <tr>
                                             <td>
                                                 <label><input id="" type="checkbox" name="" checked>差旅联系人</label>
                                             </td>
-                                            <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
+                                            <td><span class="ac-tmp">CHALFE1009<i data-tid="1" class="icon tmp-more"></i></span></td>
                                         </tr>
                                     </table>
                                 </td>
@@ -512,181 +563,184 @@
         <ul>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="TID_1" value="1" data-sms="短信文字短信文字短信文字短信文字短信文字短信文字"
+                        data-sys="系系统消息系统消息系统消息系统消息统消息"
+                        data-attachment="http://www.baidu.com/hello.doc"
+                         id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="TID_15" value="15" data-sms="2222222222短信文字短信文字短信文字短信文字短信文字短信文字"
+                        data-sys="22222222系系统消息系统消息系统消息系统消息统消息"
+                        data-attachment="http://www.baidu.com/hello.doc"
+                         id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" checked type="checkbox" name="">
+                    <input id="TID_123" value="123" data-sms="xalfdksajfldksajl2222222222短信文字短信文字短信文字短信文字短信文字短信文字"
+                        data-sys="fdasjfdlksajl22222222系系统消息系统消息系统消息系统消息统消息"
+                        data-attachment="http://www.baidu.com/hello.doc"
+                         id="" type="radio" name="xox">
                     <span><s>已选中的模板XXX</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" checked type="checkbox" name="">
-                    <span><s>已选中的模板XXX</s></span>
+                    <input id="" type="radio" name="xox">
+                    <span><s>模板XXX</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
             <li>
                 <label>
-                    <input id="" type="checkbox" name="">
+                    <input id="" type="radio" name="xox">
                     <span><s>模板名称字段有十个字</s></span>
                 </label>
             </li>
         </ul>
 </div>
 <div class="col tmp-col2">
-    <h4>短信</h4>
-    <p>文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字...</p>
-    <h4>系统消息</h4>
-    <p>文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字...</p>
-    <h4>邮件</h4>
-    <a href=""><i class="icon icon-mail">&nbsp;</i>下载附件</a>
 </div>
 
 </div>
@@ -696,6 +750,16 @@
         <a href="javascript:;" class="close btns btn-s2 btn-c5">取 消</a>
     </div>
 </script>
+
+<script type="text/x-kendo-template" id="tmp-detail">
+    <h4>短信</h4>
+    <p>#= data.sms #</p>
+    <h4>系统消息</h4>
+    <p>#= data.sys #</p>
+    <h4>邮件</h4>
+    <a href="#= data.attachment #"><i class="icon icon-mail">&nbsp;</i>下载附件</a>
+</script>
+
 
 </body>
 </html>
