@@ -23,7 +23,19 @@
 
         $.role_ctoggle({evt:'change'});
 
-    new PopWindow('.tmp-more',{
+        $('.tmp-inner-table :checkbox').on('change',function(){
+            var that = $(this);
+            var td = that.closest('tr').find('td').last();
+            if(that.prop('checked')){
+                td.removeClass('disabled');
+                td.find('span').addClass('ac-tmp');
+            }else{
+                td.addClass('disabled');
+                td.find('span').removeClass('ac-tmp');
+            }
+        });
+
+    new PopWindow('.ac-tmp .tmp-more',{
         title:'请选择模板',
         width:900,
         template:'#ac-tmp-template',
@@ -65,7 +77,7 @@
                     <option value="">不夜城</option>
                 </select>
                 <span class="barBtns">
-                    <a href="javascript:void(0);" class="btn-color1 btn-color" >企业组织</a>&nbsp;<a href="javascript:void(0);" class="btn-color1 btn-color">企业成本中心</a>&nbsp;<a href="javascript:void(0);" class="btn-color1 btn-color">差旅政策</a>&nbsp;<a href="javascript:void(0);" class="btn-color1 btn-color">临时差旅人</a>&nbsp;<a href="javascript:void(0);" class="btn-color2 btn-color">其他设置</a>
+                    <a href="javascript:void(0);" class="btn-color1 btn-color" >企业组织</a>&nbsp;<a href="javascript:void(0);" class="btn-color1 btn-color">企业成本中心</a>&nbsp;<a href="javascript:void(0);" class="btn-color1 btn-color">差旅政策</a>&nbsp;<a href="javascript:void(0);" class="btn-color1 btn-color">临 checked时差旅人</a>&nbsp;<a href="javascript:void(0);" class="btn-color2 btn-color">其他设置</a>
                 </span>
             </div>
         </div>
@@ -124,17 +136,17 @@
                                             <td>
                                                 <label><input id="" type="checkbox" name="">预订人</label>
                                             </td>
-                                            <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
+                                            <td class="disabled"><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label><input id="" type="checkbox" name="">差旅人</label>
+                                                <label><input id="" type="checkbox" name="" checked>差旅人</label>
                                             </td>
                                             <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label><input id="" type="checkbox" name="">差旅联系人</label>
+                                                <label><input id="" type="checkbox" name="" checked>差旅联系人</label>
                                             </td>
                                             <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
@@ -167,17 +179,17 @@
                                             <td>
                                                 <label><input id="" type="checkbox" name="">预订人</label>
                                             </td>
-                                            <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
+                                            <td class="disabled"><span>CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label><input id="" type="checkbox" name="">差旅人</label>
+                                                <label><input id="" type="checkbox" name="" checked>差旅人</label>
                                             </td>
                                             <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label><input id="" type="checkbox" name="">差旅联系人</label>
+                                                <label><input id="" type="checkbox" name="" checked>差旅联系人</label>
                                             </td>
                                             <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
@@ -210,17 +222,17 @@
                                             <td>
                                                 <label><input id="" type="checkbox" name="">预订人</label>
                                             </td>
-                                            <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
+                                            <td class="disabled"><span>CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label><input id="" type="checkbox" name="">差旅人</label>
+                                                <label><input id="" type="checkbox" name="" checked>差旅人</label>
                                             </td>
                                             <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label><input id="" type="checkbox" name="">差旅联系人</label>
+                                                <label><input id="" type="checkbox" name="" checked>差旅联系人</label>
                                             </td>
                                             <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
@@ -253,17 +265,17 @@
                                             <td>
                                                 <label><input id="" type="checkbox" name="">预订人</label>
                                             </td>
-                                            <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
+                                            <td class="disabled"><span>CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label><input id="" type="checkbox" name="">差旅人</label>
+                                                <label><input id="" type="checkbox" name="" checked>差旅人</label>
                                             </td>
                                             <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label><input id="" type="checkbox" name="">差旅联系人</label>
+                                                <label><input id="" type="checkbox" name="" checked>差旅联系人</label>
                                             </td>
                                             <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
@@ -296,17 +308,17 @@
                                             <td>
                                                 <label><input id="" type="checkbox" name="">预订人</label>
                                             </td>
-                                            <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
+                                            <td class="disabled"><span>CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label><input id="" type="checkbox" name="">差旅人</label>
+                                                <label><input id="" type="checkbox" name="" checked>差旅人</label>
                                             </td>
                                             <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label><input id="" type="checkbox" name="">差旅联系人</label>
+                                                <label><input id="" type="checkbox" name="" checked>差旅联系人</label>
                                             </td>
                                             <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
@@ -339,17 +351,17 @@
                                             <td>
                                                 <label><input id="" type="checkbox" name="">预订人</label>
                                             </td>
-                                            <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
+                                            <td class="disabled"><span>CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label><input id="" type="checkbox" name="">差旅人</label>
+                                                <label><input id="" type="checkbox" name="" checked>差旅人</label>
                                             </td>
                                             <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label><input id="" type="checkbox" name="">差旅联系人</label>
+                                                <label><input id="" type="checkbox" name="" checked>差旅联系人</label>
                                             </td>
                                             <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
@@ -397,17 +409,17 @@
                                             <td>
                                                 <label><input id="" type="checkbox" name="">预订人</label>
                                             </td>
-                                            <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
+                                            <td class="disabled"><span>CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label><input id="" type="checkbox" name="">差旅人</label>
+                                                <label><input id="" type="checkbox" name="" checked>差旅人</label>
                                             </td>
                                             <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label><input id="" type="checkbox" name="">差旅联系人</label>
+                                                <label><input id="" type="checkbox" name="" checked>差旅联系人</label>
                                             </td>
                                             <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
@@ -448,17 +460,17 @@
                                             <td>
                                                 <label><input id="" type="checkbox" name="">预订人</label>
                                             </td>
-                                            <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
+                                            <td class="disabled"><span>CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label><input id="" type="checkbox" name="">差旅人</label>
+                                                <label><input id="" type="checkbox" name="" checked>差旅人</label>
                                             </td>
                                             <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label><input id="" type="checkbox" name="">差旅联系人</label>
+                                                <label><input id="" type="checkbox" name="" checked>差旅联系人</label>
                                             </td>
                                             <td><span class="ac-tmp">CHALFE1009<i class="icon tmp-more"></i></span></td>
                                         </tr>
@@ -491,7 +503,7 @@
 <script type="text/x-kendo-template" id="ac-tmp-template">
 <div class="row">
     <div class="search-wrapper">
-         <input class="search-input" id="" name="">
+         <input placeholder="请输入模板名称" type="text" class="search-input" id="" name="">
         <i class="icon icon-search">&nbsp;</i>
     </div>
 </div>
