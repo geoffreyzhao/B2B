@@ -219,6 +219,10 @@ function initDatePicker(dpEle)
                 var minDate=$(el).attr("minDate")?new Date($(el).attr("minDate")):inst.settings.minDate;
                 var maxDate=$(el).attr("maxDate")?new Date($(el).attr("maxDate")):inst.settings.maxDate;
                 changeMinMaxYear(minDate.getFullYear(),maxDate.getFullYear());
+            },
+            onSelect:function(){
+                fl_datepicker_monthSelect.close();
+                fl_datepicker_yearSelect.close();
             }
         }
 
