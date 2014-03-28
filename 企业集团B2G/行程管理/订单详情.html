@@ -715,20 +715,25 @@
 <script>
 
     $(function(){
-		
-        $('.uc-ticket').hover(function(){
-            $(this).find('b').html('&#12288;收起&#12288;');
-            var detail = $(this).find('.uc-ticket-detail');
+            $('.uc-ticket').click(function(){
+                var that= $(this);
+                var detail = that.find('.uc-ticket-detail');
+                
+                if(!that.hasClass('ticket-active')){
+                    that.find('b').html('&#12288;收起&#12288;');
+    
+                    detail.css({'visiblity':'hidden','display':'block'}).css({
+                        'margin-left': '-'+(parseInt(detail.width()/2)-47)+'px'
+                    });
+                    that.addClass('ticket-active');
+                }else{
+                    that.find('b').html('客票信息');
+                    that.removeClass('ticket-active');
+                    detail.hide();
+                }
 
-            detail.css({'visiblity':'hidden','display':'block'}).css({
-                'margin-left': '-'+(parseInt(detail.width()/2)-47)+'px'
             });
-            
-        },function(){
-            $(this).find('b').html('客票信息');
-            $(this).find('.uc-ticket-detail').hide();
-        });
-
+			
 		new PopWindow('.orgchart',{
 				title:'部门组织架构树',
 				template:'#orgchart-template',
