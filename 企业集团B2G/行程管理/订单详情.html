@@ -80,7 +80,22 @@
        </div>
        
        <div class="checkJourney color_white" style="padding:0;border-top:none">
-       <div class="suborderTit"><em class="wait">等待关联子订单</em>子订单编号：<em>XC19830610-1</em> </div>
+           <div class="suborderTit"><em class="wait">等待关联子订单</em>子订单编号：<em>XC19830610-1</em>    
+               <span class="uc-ticket">
+                   <b>客票信息</b>
+                   <i class="icon"></i>
+                   <div class="uc-ticket-detail"><i></i>
+                       <table>
+                           <tr class="uc-ticket-item"><td><s>票号：<em>4574878454578</em></s></td>
+                               <td>
+                                   <u><em>CZ6437</em>  上海浦东国际机场- 西安咸阳国际机场</u>
+                               </td>
+                           </tr>
+
+                       </table>
+                   </div>
+               </span>
+           </div>
        <div class="orderTracking">
          <div class="trackingFlow">
            <ul><!--等待完成-->
@@ -308,7 +323,30 @@
        <div class="tipsItem"> 
        
        <div class="checkJourney color_white" style="padding:0;border-top:none">
-       <div class="suborderTit"><em class="wait">待<b>李大川</b>审批<i class="phoneIcon"></i><strong class="phoneNumber">13551788100</strong></em>子订单编号：<em>XC19830610-1</em> </div>
+           <div class="suborderTit"><em class="wait">待<b>李大川</b>审批<i class="phoneIcon"></i><strong class="phoneNumber">13551788100</strong></em>子订单编号：<em>XC19830610-1</em>
+               <span class="uc-ticket">
+                   <b>客票信息</b>
+                   <i class="icon"></i>
+                   <div class="uc-ticket-detail"><i></i>
+                       <table>
+                           <tr class="uc-ticket-item"><td><s>票号：<em>4574878454578</em></s></td>
+                               <td>
+                                   <u><em>CZ6437</em>  上海浦东国际机场- 西安咸阳国际机场</u>
+                               </td>
+                           </tr>
+                           <tr class="uc-ticket-item">
+                               <td><s>票号：<em>4574878454578</em></s></td>
+                               <td>
+                                   <div><u><em>CZ6437</em>  上海浦东国际机场- 西安咸阳国际机场</u>
+                                       <u><em>CZ6437</em>  上海浦东国际机场- 西安咸阳国际机场</u></div>
+                                   <div>
+                                       <u><em>CZ6437</em>  上海浦东国际机场- 西安咸阳国际机场</u>
+                                       <u><em>CZ6437</em>  上海浦东国际机场- 西安咸阳国际机场</u></div></td>
+                           </tr>
+                       </table>
+                   </div>
+               </span>
+           </div>
        <div class="orderTracking">
          <div class="trackingFlow">
            <ul><!--待审批-->
@@ -678,6 +716,19 @@
 
     $(function(){
 		
+        $('.uc-ticket').hover(function(){
+            $(this).find('b').html('&#12288;收起&#12288;');
+            var detail = $(this).find('.uc-ticket-detail');
+
+            detail.css({'visiblity':'hidden','display':'block'}).css({
+                'margin-left': '-'+(parseInt(detail.width()/2)-47)+'px'
+            });
+            
+        },function(){
+            $(this).find('b').html('客票信息');
+            $(this).find('.uc-ticket-detail').hide();
+        });
+
 		new PopWindow('.orgchart',{
 				title:'部门组织架构树',
 				template:'#orgchart-template',
