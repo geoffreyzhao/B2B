@@ -365,17 +365,23 @@
 
 
     $(function() {
-            $('.uc-ticket').hover(function(){
-                $(this).find('b').html('&#12288;收起&#12288;');
-                var detail = $(this).find('.uc-ticket-detail');
-
-                detail.css({'visiblity':'hidden','display':'block'}).css({
-                    'margin-left': '-'+(parseInt(detail.width()/2)-47)+'px'
-                });
+            $('.uc-ticket').click(function(){
+                var that= $(this);
+                var detail = that.find('.uc-ticket-detail');
                 
-            },function(){
-                $(this).find('b').html('客票信息');
-                $(this).find('.uc-ticket-detail').hide();
+                if(!that.hasClass('ticket-active')){
+                    that.find('b').html('&#12288;收起&#12288;');
+    
+                    detail.css({'visiblity':'hidden','display':'block'}).css({
+                        'margin-left': '-'+(parseInt(detail.width()/2)-47)+'px'
+                    });
+                    that.addClass('ticket-active');
+                }else{
+                    that.find('b').html('客票信息');
+                    that.removeClass('ticket-active');
+                    detail.hide();
+                }
+
             });
 
 
