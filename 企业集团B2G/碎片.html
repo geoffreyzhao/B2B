@@ -430,7 +430,30 @@
             <button type="button" class="commonBtn lightBlueBtn" id="ajax2">异步请求 加载中 酒店</button>
             <br/>
             <br/>
-
+            <button type="button" class="commonBtn orangeBtn" id="toLoadContent">加 载</button>
+            <button type="button" class="commonBtn orangeBtn" id="toLoadSuccess">成功提示</button>
+            <br/>
+            <br/>
+            <!-- 加载 内容 -->
+            <div class="toLoadHint clearfix">
+                  <em></em>
+                  <i class="toLoadCharacter">正在提交，请稍后</i>
+            </div>
+            
+            
+            
+            <br/>
+            <br/>
+            <!-- 提交成功 内容 -->
+            <div class="submitSuccess">
+                 <em class="successPic"></em>
+                 <i class="successHint">行程订单已提交成功</i>
+            </div>
+            
+            <br/>
+            <br/>
+           
+            
             <div class="smallLoading"><em></em> <b>数据正在加载中……</b></div>
             <br/>
             <br/>
@@ -676,6 +699,10 @@
                 </table>
                 <div style="display:none;" id="scroll_Loading" class="smallLoading"><em></em> <b>数据正在加载中……</b></div>
             </div>
+            
+            
+            
+            
         </div>
     </section>
     <footer class="main-footer">
@@ -758,8 +785,15 @@
             width:600,
             height:500
         },"#test_win2").init();
-
-
+		
+		$('#toLoadContent').on('click',function(){
+		   $('.lightboxToLoadContent').show();
+		});
+		
+		$('#toLoadSuccess').on('click',function(){
+		   $('.lightboxToLoadSuccess').show();
+		});
+		
 
 
         $("#ajax1").click(function(){
@@ -1129,5 +1163,54 @@ $.role_ctype({ changeClass:"active"});
     </div>
 </script>
 
+
+<div class="lightbox lightboxToLoadContent toloadLightbox" style="position: fixed;">        
+    <table cellspacing="0" class="ct">
+        <tbody>
+            <tr>
+                <td class="ct_content">
+                    <div class="loading_box ">
+                            <div class="lightbox-content">
+                                   <!--span class="loading_close" style="display: none;">×</span-->                         
+                                    <div class="toLoadHint clearfix">
+                                          <em></em>
+                                          <i class="toLoadCharacter">正在提交，请稍后</i>
+                                    </div>
+                        
+                           </div>
+                    </div>
+                 </td>
+            </tr>
+         </tbody>
+     </table>        
+ </div>
+ 
+ 
+ 
+ <div class="lightbox lightboxToLoadSuccess toloadLightbox" style="position: fixed;">       
+      <table cellspacing="0" class="ct">
+          <tbody>
+              <tr>
+                  <td class="ct_content">
+                      <div class="loading_box ">
+                              <div class="lightbox-content">                          
+                                  <!--span class="loading_close" style="display: none;">×</span-->                         
+                                  <div class="submitSuccess">
+                                         <em class="successPic"></em>
+                                         <i class="successHint">行程订单已提交成功</i>
+                                  </div>
+                            
+                             </div>
+                     </div>
+                 </td>
+             </tr>
+         </tbody>
+     </table>
+ </div>
+
+ 
+
 </body>
 </html>
+
+ 
