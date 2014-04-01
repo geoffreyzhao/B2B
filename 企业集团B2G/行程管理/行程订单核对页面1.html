@@ -68,9 +68,9 @@
                 <tr>
                     <td style="padding-left:40px">
                         <div style="position:relative">
-                            <input id="customers" type="text" class="likeKendoDDL" style="width:250px;" placeholder="请选择差旅目的">
+                            <input type="text" class="customers likeKendoDDL" style="width:251px;" placeholder="请选择差旅目的">
 
-                            <div id="destinationContainer" style="display: none;">
+                            <div class="destinationContainer" style="display: none;">
                                 <ul id="userWrapper" class="selectarea">
                                     <li class="tourobj-button"><span>外出开会</span><span class="">&nbsp;</span></li>
                                     <li class="tourobj-button"><span>业务需要</span><span class="">&nbsp;</span></li>
@@ -92,9 +92,9 @@
                 <tr>
                     <td style="padding-left:40px">
                         <div style="position:relative">
-                            <input id="customers" type="text" class="likeKendoDDL" style="width:250px;" placeholder="请选择差旅目的">
+                            <input type="text" class="customers likeKendoDDL" style="width:250px;" placeholder="请选择差旅目的">
 
-                            <div id="destinationContainer" style="display: none;">
+                            <div class="destinationContainer" style="display: none;">
                                 <ul id="userWrapper" class="selectarea">
                                     <li class="tourobj-button"><span>外出开会</span><span class="">&nbsp;</span></li>
                                     <li class="tourobj-button"><span>业务需要</span><span class="">&nbsp;</span></li>
@@ -116,9 +116,9 @@
                 <tr>
                     <td style="padding-left:40px">
                         <div style="position:relative">
-                            <input id="customers" type="text" class="likeKendoDDL" style="width:250px;" placeholder="请选择差旅目的">
+                            <input type="text" class="customers likeKendoDDL" style="width:250px;" placeholder="请选择差旅目的">
 
-                            <div id="destinationContainer" style="display: none;">
+                            <div class="destinationContainer" style="display: none;">
                                 <ul id="userWrapper" class="selectarea">
                                     <li class="tourobj-button"><span>外出开会</span><span class="">&nbsp;</span></li>
                                     <li class="tourobj-button"><span>业务需要</span><span class="">&nbsp;</span></li>
@@ -140,9 +140,9 @@
                 <tr>
                     <td style="padding-left:40px">
                         <div style="position:relative">
-                            <input id="customers" type="text" class="likeKendoDDL" style="width:250px;" placeholder="请选择差旅目的">
+                            <input type="text" class="customers likeKendoDDL" style="width:250px;" placeholder="请选择差旅目的">
 
-                            <div id="destinationContainer" style="display: none;">
+                            <div class="destinationContainer" style="display: none;">
                                 <ul id="userWrapper" class="selectarea">
                                     <li class="tourobj-button"><span>外出开会</span><span class="">&nbsp;</span></li>
                                     <li class="tourobj-button"><span>业务需要</span><span class="">&nbsp;</span></li>
@@ -164,9 +164,9 @@
                 <tr>
                     <td style="padding-left:40px">
                         <div style="position:relative">
-                            <input id="customers" type="text" class="likeKendoDDL" style="width:250px;" placeholder="请选择差旅目的">
+                            <input type="text" class="customers likeKendoDDL" style="width:250px;" placeholder="请选择差旅目的">
 
-                            <div id="destinationContainer" style="display: none;">
+                            <div class="destinationContainer" style="display: none;">
                                 <ul id="userWrapper" class="selectarea">
                                     <li class="tourobj-button"><span>外出开会</span><span class="">&nbsp;</span></li>
                                     <li class="tourobj-button"><span>业务需要</span><span class="">&nbsp;</span></li>
@@ -199,9 +199,9 @@
 
         <div class="case_infoCon" style="padding:10px 30px; ">
             <div style="position:relative">
-                <input id="customers" type="text" class="likeKendoDDL" style="width:397px;" placeholder="请选择差旅目的"/>
+                <input type="text" class="customers likeKendoDDL" style="width:397px;" placeholder="请选择差旅目的"/>
 
-                <div id="destinationContainer">
+                <div class="destinationContainer" style="width:391px">
                     <ul id="userWrapper" class="selectarea">
                         <li class="tourobj-button"><span>外出开会</span><span class="">&nbsp;</span></li>
                         <li class="tourobj-button"><span>业务需要</span><span class="">&nbsp;</span></li>
@@ -818,17 +818,17 @@
             offsetX: 0,
             template: '#personBoxTemplate'
         });
-        $("#customers").focusin(function () {
-            $("#destinationContainer").slideDown();
+        $(".customers").focusin(function () {
+            $(this).siblings(".destinationContainer").slideDown("fast");
             $(this).addClass("on");
         });
 
-        $("#customers").focusout(function () {
-            $("#destinationContainer").slideUp();
+        $(".customers").focusout(function () {
+            $(this).siblings(".destinationContainer").slideUp("fast");
             $(this).removeClass("on");
         });
-        $("#destinationContainer li").click(function () {
-            $("#customers").val($(this).text());
+        $(".destinationContainer li").click(function () {
+            $(this).closest(".destinationContainer").siblings(".customers").val($(this).text());
             $(this).addClass("current").siblings().removeClass("current");
         });
         $(".airplane-info #manyAirName").kendoTooltip({
@@ -838,7 +838,7 @@
                 return $("#airLogo").html();
             },
             offsetY: 8,
-            offsetX: -83,
+            offsetX: -83
         });
         $(".airticket-place .oneTransfer").kendoTooltip({
             position: "bottom", //left right top
