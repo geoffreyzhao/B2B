@@ -927,7 +927,17 @@ var lensf = function (settings){
         ele.eq(0).addClass('first');
         ele.eq(-1).addClass('last');
         function addLine(){
-            var hi = current.prevAll().addClass('highlight').andSelf();
+            //var hi = current.prevAll().addClass('highlight').andSelf();
+            var hi = (function(){
+                var allprev = current.prevAll();
+                allprev.map(function(i,item){
+                    if(!$(item).hasClass('ignore')){
+                        $(item).addClass('highlight')
+                    }
+                });
+                return  allprev.andSelf();
+            })();
+
             var wid = (function(){
                 var w=0;
                 hi.each(function(){
