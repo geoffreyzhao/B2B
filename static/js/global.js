@@ -911,7 +911,8 @@ $.fieldsetFormat = function(type,settings){
 // [demo](http://dev.b2b.com/%E7%A2%8E%E7%89%87/%E8%AE%A2%E5%8D%95%E7%8A%B6%E6%80%81%E6%8C%87%E7%A4%BA%E6%A0%87%E8%AF%86.html)
 var lensf = function (settings){
     var defaults = {
-        container:'.instr'
+        container:'.instr',
+        highlight:'highlight'
     };
     var opts = $.extend(defaults,settings);
 
@@ -925,16 +926,11 @@ var lensf = function (settings){
 
         function addLine(){
 
-            //var hi = current.prevAll().addClass('highlight').andSelf();
-            var hi = (function(){
-                var allprev = current.prevAll();
-                allprev.map(function(i,item){
-                    if(!$(item).hasClass('ignore')){
-                        $(item).addClass('highlight')
-                    }
-                });
-                return  allprev.andSelf();
-            })();
+            var allprev = current.prevAll();
+            if( opts.highlight ){
+                allprev.addClass(opts.highlight);
+            }
+            hi = allprev.andSelf();
 
             var wid = (function(){
                 var w=0;
@@ -948,9 +944,6 @@ var lensf = function (settings){
                  wid = wid-firstWidth/2-current.outerWidth(true)/2;
             }
 
-            if(that.find(':not(".ignore")').length==0){
-                wid = 0;
-            }
             that.append('<em class="line" style="left:'+firstWidth/2+'px;width:'+containerWidth+'px"><div style="width:'+wid+'px" /></em>');
         }
         addLine();
