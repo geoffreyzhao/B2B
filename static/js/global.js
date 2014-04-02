@@ -911,8 +911,7 @@ $.fieldsetFormat = function(type,settings){
 // [demo](http://dev.b2b.com/%E7%A2%8E%E7%89%87/%E8%AE%A2%E5%8D%95%E7%8A%B6%E6%80%81%E6%8C%87%E7%A4%BA%E6%A0%87%E8%AF%86.html)
 var lensf = function (settings){
     var defaults = {
-        container:'.instr',
-        highlight:'.highlight-fl'
+        container:'.instr'
     };
     var opts = $.extend(defaults,settings);
 
@@ -924,9 +923,8 @@ var lensf = function (settings){
         var lastWidth = ele.eq(-1).outerWidth(true);
         var containerWidth = that.innerWidth()-firstWidth/2-lastWidth/2;
 
-        ele.eq(0).addClass('first');
-        ele.eq(-1).addClass('last');
         function addLine(){
+
             //var hi = current.prevAll().addClass('highlight').andSelf();
             var hi = (function(){
                 var allprev = current.prevAll();
@@ -950,7 +948,10 @@ var lensf = function (settings){
                  wid = wid-firstWidth/2-current.outerWidth(true)/2;
             }
 
-            that.append('<em class="line" style="left:'+firstWidth/2+'px;width:'+containerWidth+'px"><div style="width:'+wid+'px" /></em>')
+            if(that.find(':not(".ignore")').length==0){
+                wid = 0;
+            }
+            that.append('<em class="line" style="left:'+firstWidth/2+'px;width:'+containerWidth+'px"><div style="width:'+wid+'px" /></em>');
         }
         addLine();
         that.addClass('lensf_status');
