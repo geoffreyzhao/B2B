@@ -5,6 +5,7 @@
     <title>天地行 采购商 酒店首页（新）</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../static/css/tmp/store_hotel_ly.css">
+	<script type="text/javascript" src="../static/js/jquery.min.js"></script>
     <!--[if IE]>
     <script src="../static/js/html5.js"></script>
     <![endif]-->
@@ -24,8 +25,8 @@
     <div class="hotHotelContent"> 
         <div class="blockTopTitle clearfix">
             <b>热门酒店推荐</b>
-            <ul>
-               <li class="li_current"><a href="javascript:void(0);">上海</a></li>
+            <ul class="hotelPlace">
+               <li class="li_current"><a href="#">上海</a></li>
                <li><a href="javascript:void(0);">北京</a></li>
 			   <li><a href="javascript:void(0);">广州</a></li>
                <li><a href="javascript:void(0);">成都</a></li>
@@ -67,6 +68,43 @@
                </dd>
             </dl>
         </div>
+		
+		<div class="hotHotel_show clearfix" style="display:none;">
+            <dl>
+               <dt><a href="javascript:void(0);"><img src="../static/images/store/homeStore/homeHotelImg01.jpg" title="上海世和酒店"/></a></dt>
+               <dd>
+                  <span style="vertical-align:middle;"><a href="javascript:void(0);">南京世和酒店</a></span>
+				  <span class="hotelStar"><em class="star04"></em></span>
+                  <p class="price"><em>￥</em>4500</p>
+               </dd>
+            </dl>
+            <dl>
+               <dt><a href="javascript:void(0);"><img src="../static/images/store/homeStore/homeHotelImg02.jpg" title="上海世和酒店"/></a></dt>
+               <dd>
+                  <span style="vertical-align:middle;"><a href="javascript:void(0);">南京世和酒店</a></span>
+				  <span class="hotelStar"><em class="star03"></em></span>
+                  <p class="price"><em>￥</em>4500</p>
+               </dd>
+            </dl>
+            <dl>
+               <dt><a href="javascript:void(0);"><img src="../static/images/store/homeStore/homeHotelImg03.jpg" title="上海世和酒店"/></a></dt>
+               <dd>
+                  <span style="vertical-align:middle;"><a href="javascript:void(0);">南京世和酒店</a></span>
+				  <span class="hotelStar"><em class="star02"></em></span>
+                  <p class="price"><em>￥</em>4500</p>
+               </dd>
+            </dl>
+            <dl style="margin-right:0;">
+               <dt><a href="javascript:void(0);"><img src="../static/images/store/homeStore/homeHotelImg04.jpg" title="上海世和酒店"/></a></dt>
+               <dd>
+                  <span style="vertical-align:middle;"><a href="javascript:void(0);">南京世和酒店</a></span>
+				  <span class="hotelStar"><em class="star01"></em></span>
+                  <p class="price"><em>￥</em>4500</p>
+               </dd>
+            </dl>
+        </div>
+		
+		
     </div> 
 <!--hotHotel end-->
 	
@@ -137,7 +175,33 @@
  <div class="homePageBanner clearfix"><img src="../static/images/store/homeStore/homeBannerBottom.jpg" title="天地行 钻石服务" /></div>
  <!--homePage Banner end-->
  
- 
+<script>
+    $(function(){
+        $(".hotelPlace li").each(function(index){
+            $(this).click(function(){
+                $(".hotHotelContent .hotHotel_show").hide();
+                $(".hotHotelContent .hotHotel_show:eq(" + index + ")").show();
+                $(".hotelPlace li").removeClass("li_current");
+                $(this).addClass("li_current");
+            });
+        });
+        
+		
+    });
+</script> 
+
+<!--<script type="text/javascript">
+$(function(){
+     $(".pnrImport").click(function () {
+       $(".pnrImportInfor,.enquiryInfor-gray").show();
+       $(".pnrImport,.enquiryInfor,.enquiryInfor").hide();
+        });
+	 $(".enquiryInfor-gray").click(function () {
+       $(".enquiryInfor,.pnrImport").show();
+       $(".pnrImportInfor,.enquiryInfor-gray").hide();
+        })
+})
+</script>-->
 
 
 </body>
