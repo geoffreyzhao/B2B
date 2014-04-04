@@ -28,13 +28,13 @@
             <div class="querytab-wrapper col clearfix">
             <aside class="querytab-controller">
             <ul>
-                <li><b class="current"> 机票预定</b></li>
-                <li><b>PNR导入</b></li>
+                <li><b data-role="ctype" data-index="1" data-group="qtab" class="current"> 机票预定</b></li>
+                <li><b data-role="ctype" data-index="2" data-group="qtab">PNR导入</b></li>
                 <li><b>询价单</b></li>
             </ul>
             </aside>
             <div class="querytab-content col">
-                <div class="querytab-flight">
+                <div class="querytab-flight" data-role="ctype-item" data-index="1" data-group="qtab">
                         <ul>
                             <li class="trip_type gap">
                             <strong>航程类型</strong>
@@ -178,11 +178,84 @@
                         </ul>
 
                             <div class="btn_area">
-                                <button type="button" class="btn btn-search">搜  索</button>
+                                <button type="button" class="btn btn-c1 btn-s1">搜  索</button>
                             </div>
                 </div>
 
-                <div class="querytab-pnr"></div>
+                <div class="querytab-pnr" data-role="ctype-item" data-index="2" data-group="qtab" style="display:none;">
+                    <section class="row" data-role="ctype-item" data-group="tab" data-index="c1">
+                    <ul class="black_booking">
+                        <li class="passenger gap">
+                        <span class="subline">乘客类型</span>
+                        <label><input type="radio" data-role="ctype" data-group="passenger_type" name="passenger_type" value="adult" checked/><span>成人</span></label>
+                        <label><input type="radio" data-role="ctype" data-group="passenger_type" data-index="c1" name="passenger_type" value="child"/><span>儿童</span></label>
+                        <label><input type="radio" data-role="ctype" data-group="passenger_type" name="passenger_type" data-index="c3" value="student"/><span>学生</span></label>
+                        <label><input type="radio" data-role="ctype" data-group="passenger_type" name="passenger_type" value="team"/><span>团队</span></label>
+                        <label>
+                            <input type="radio" data-role="ctype" data-group="passenger_type" data-index="c2" name="passenger_type" value="others" /><span>其他类型</span>
+                        </label>
+                        <select data-role="dropdownlist" style="width:80px;" name="other">
+                            <option value="青年">青年</option>
+                            <option value="老人">老人</option>
+                            <option value="移民" selected="selected">移民</option>
+                            <option value="海员">海员</option>
+                            <option value="劳务">劳务</option>
+                        </select>
+
+                        </li>
+
+                        <li class="passenger gap clearfix" data-role="ctype-item" data-group="passenger_type" data-index="c2 c3" style="display:none;">
+                        <span class="subline">上传证件</span>
+
+                        <a class="upload-button" href="javascript:;"><span id="UploaderPlaceholder_1"></span></a>
+                        <span allowSize="100kb" allowFile="*.jpg;*.jpeg;*.png;*.iso" class="Uploader fl-uploader">该乘客类型需传证明文件，支持上传多个<b class="fl-uploader-error">上传文件失败，请重新上传（失败原因<i class='fl-error'>&#12288;
+                                    <div class="fl-uploader-wrap message_ct">
+                                        <div class="arrow arrow_north"></div>
+                                        <div class="message_text fl-uploader-errfiles"></div>
+                        </div></i>）</b></span>
+
+                        <p class="fl-upholder" id="UploaderProgress_1"></p>
+
+
+
+                        </li>
+
+                        <li class="passenger gap" id="child_extra" data-role="ctype-item" data-group="passenger_type" data-index="c1" style="display:none;">
+                        <span class="subline">成人票号</span>
+                        <label id="adult_order"><input type="text" class="normal_txt" style="width:200px"/></label><span style="padding-left:10px;color:#e94749;">请确认儿童有成人陪伴，提供成人票号。如是无成人陪伴儿童，请向航空公司申请。</span>
+                        </li>
+                        <li class="ways">
+                        <span class="subline">导入PNR</span>
+                        <input type="text" placeholder="请输入6位PNR编码" class="input-pnr">
+                        </li>
+                        <li class="ways way-console" style="position:relative;">
+                        <textarea style="" class="black-paste">
+使用方法:
+1. 请使用您的Eterm系统提取PNR内容。
+2. 再执行PAT:A指令,将全部内容复制,并粘贴到黑色输入框内。
+3. 团队从RT:N/编码开始复制到PAT:A结果的所有内容。
+4. 根据航空公司出票要求,PNR内容中必须备注手机号码。
+5. 注意:复制的内容建议从RT编码开始复制到PAT:A结果的所有内容。
+儿童PNR编码,请走儿童订单专用通道。
+                        </textarea>
+
+                        <div class="btn_area">
+                              <button type="button" class="btn btn-c1 btn-s1">创建订单</button>
+                        </div>
+
+                        <p class="muted">
+                        注意事项:<br/>
+                        1.请确保该PNR姓名组正确;<br/>
+                        2.请确保航段组正确，舱位状态正确;<br/>
+                        3.请确保每个乘客具有真实有效的信息;<br/>
+                        4.该PNR不能包含票价组项，如：FC/FN/FP.<br/>
+                        </p>
+                        </li>
+                    </ul>
+                    </section>
+                
+                
+                </div>
                 <div class="querytab-sheet"></div>
             </div>
             </div>
@@ -256,8 +329,8 @@ function createSwfUpload(index,allowSize, allowFile){
 	upload_complete_handler : uploadComplete,
 	// Button Settingsimg/fee
    // button_image_url : "/static/images/button_3_3_5.png",
-	button_text : '<span class="text">上传</span>',
-	button_text_style : ".text{text-align:center;font-family:Simsun}",
+	button_text : '<span class="text">上 传</span>',
+	button_text_style : ".text{text-align:center;font-size:13px;}",
 	button_text_top_padding: 5,
 
 	button_placeholder_id : "UploaderPlaceholder_" + index,
@@ -285,7 +358,9 @@ function createSwfUpload(index,allowSize, allowFile){
 var uploads = [];
 
 $(function(){
-    $.role_ctype();
+    $.role_ctype({
+        changeClass:'current'
+    });
     $(".Uploader").each(function(index){
         uploads.push(createSwfUpload(index + 1,$(this).attr("allowSize"),$(this).attr("allowFile")));
     });
