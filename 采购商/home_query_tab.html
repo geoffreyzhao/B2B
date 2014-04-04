@@ -368,6 +368,14 @@ $(function(){
         $('.invalid-text').show();
     });
 
+    $('.black-paste').on('focus',function(){
+        $('.uploader-wrapper').hide();
+    });
+
+    $('.querytab').on('click','.uploadComplete .progressCancel',function(){
+         $(this).closest('.progressWrapper').remove();
+    });
+
 
     $(".Uploader").each(function(index){
         uploads.push(createSwfUpload(index + 1,$(this).attr("allowSize"),$(this).attr("allowFile")));

@@ -89,7 +89,7 @@ FileProgress.prototype.setProgress = function (percentage) {
 	this.appear();	
 };
 FileProgress.prototype.setComplete = function () {
-	this.fileProgressElement.className = "progressContainer blue";
+	this.fileProgressElement.className = "progressContainer blue uploadComplete";
 	this.fileProgressElement.childNodes[3].className = "progressBarComplete";
 	this.fileProgressElement.childNodes[3].style.width = "";
 
@@ -252,7 +252,8 @@ function fileQueued(file) {
 
 }
 
-function fileDialogStart(){
+function fileDialogStart(e){
+    $('.uploader-wrapper').show();
     $('.fl-uploader-errfiles').empty();
     $('.fl-uploader-error:visible').hide();
 }
