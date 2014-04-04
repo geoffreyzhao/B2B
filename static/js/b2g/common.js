@@ -279,7 +279,7 @@ function initDatePicker(dpEle)
                                                         </div></div>';
 
                     //datepicker修改
-                    $(".dpChangeMonthYear").click(function(){
+                    $("body").delegate(".dpChangeMonthYear","click",function(){
                         $("body").data("currentDP",this);
                     })
 
