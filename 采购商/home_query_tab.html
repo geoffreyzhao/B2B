@@ -376,6 +376,11 @@ $(function(){
          $(this).closest('.progressWrapper').remove();
     });
 
+    $('.querytab').on('click','.progressCancel',function(){
+         if($('.querytab .progressWrapper').length<1){
+                $('.uploader-wrapper').hide();
+         }
+    });
 
     $(".Uploader").each(function(index){
         uploads.push(createSwfUpload(index + 1,$(this).attr("allowSize"),$(this).attr("allowFile")));
