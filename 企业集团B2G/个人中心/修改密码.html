@@ -95,12 +95,29 @@
                                 </tr>
                             </table>
                         </div>
+
+                        <div class="row row-btns">
+                            <a href="javascript:;" class="btns btn-s2 btn-c1" id="btn_applyModify">确 定</a>
+                            <a href="javascript:;" class="btns btn-s2 btn-c5">取 消</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 </div>
+<script type="text/html" id="successPromptTemplate">
+    <div class="successPrompt">
+        <i class="ico"></i>恭喜您，密码修改成功
+    </div>
+</script>
+<script>
+    $(function(){
+        $("#btn_applyModify").click(function(){
+            $.prompt({content:$("#successPromptTemplate").html()}).open().center();
 
+        })
+    })
+</script>
 </body>
 </html>
