@@ -257,6 +257,9 @@
 	height:100%;
 	position:absolute;
 }
+.uploader-inner{
+    padding-top: 95px;
+}
 .querytab-pnr{
     padding:25px;
     font-size:1.4em;
@@ -271,6 +274,14 @@
 .subline{
 	padding-right: 5px;
 	font-weight: 500;
+}
+.querytab-pnr .input-pnr.invalid{
+    border-color:#ff4e00;
+}
+.way-console .invalid-text{
+    display:none;
+    background-color:#feefe9;
+    color:#ff4e00;
 }
 .pnr-notes{
 	line-height: 24px;
@@ -311,8 +322,8 @@
 	color:lime;
 }
 .way-console{
-	border-top:1px dashed #ccc;
-	padding-top: 15px;
+	padding-bottom:10px;
+	border-bottom:1px dashed #ccc;
 	position:relative;
 }
 .ways{
@@ -327,15 +338,18 @@
 	list-style-type: decimal;
 }
 /** override style of swfuploader*/
-.black_booking .progressBarInProgressWrapper{
-	top: -1px;
-	left: -1px;
+.progressBarInProgressWrapper{
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	border: 1px solid #76cce8;
 }
-.black_booking .progressWrapper {
+.inProgress .progressBarInProgressWrapper{
+    top: -1px;
+    left: -1px;
+    border: solid 1px #76cce8;
+}
+
+.progressWrapper {
 	width: 170px;
 	overflow: hidden;
     float:left;
@@ -344,13 +358,17 @@
     padding-bottom:5px;
 }
 
-.black_booking .progressContainer {
+.progressContainer {
 	height: 23px;
 	position: relative;
 	border: solid 1px #aaa;
 	background-color: #fff;
 	/* overflow: hidden; */
     color:#666;
+}
+
+.progressContainer:hover{
+    border-color:#76cce8;
 }
 /* Message */
 .black_booking .message {
@@ -374,7 +392,6 @@
 
 /* Complete */
 .black_booking .blue {
-	border: solid 1px #aaa;
 	background-color: #fff;
 }
 
@@ -397,13 +414,13 @@
 	font-size: 0;
 	width: 0%;
 	height: 100%;
-	background-color: #bcedfd;
 }
 
+.progressBarInProgress{
+	background-color: #bcedfd;
+}
 .progressBarComplete {
-	width: 100%;
-	background-color: green;
-	visibility: hidden;
+	background-color: #bcedfd;
 }
 
 .progressBarError {
@@ -431,9 +448,10 @@ a.progressCancel {
 	background: url(../../images/store/querytab.png)  6px -13px no-repeat;
 	float: right;
 }
-a.progressCancel:hover{
+.progressContainer:hover .progressCancel{
 	background-position: -8px -13px;
 }
+
 
 
 /* -- SWFUpload Object Styles ------------------------------- */
@@ -450,7 +468,9 @@ a.progressCancel:hover{
 }
 .fl-uploader-error{
     margin-bottom: 10px;
-    margin-top: 60px;
+    position:absolute;
+    top:63px;
+    left:0;
     display:none;
     background-color: #f4f4f4;
     font-weight:normal;

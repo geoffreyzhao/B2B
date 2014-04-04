@@ -16,8 +16,7 @@
 
 <script type="text/javascript" src="/static/js/swfup/swfupload.js"></script>
 <script type="text/javascript" src="/static/js/swfup/swfupload.queue.js"></script>
-<script type="text/javascript" src="/static/js/swfup/handlers.js"></script>
-<script type="text/javascript" src="/static/js/swfup/fileprogress_yysfl.js"></script>
+<script type="text/javascript" src="/static/js/swfup/fileprogress_cgs.js"></script>
 <!--[if IE]>
 <script src="../static/js/html5.js"></script>
 <![endif]-->
@@ -210,12 +209,14 @@
                         <span allowSize="1000mb" allowFile="*.jpg;*.jpeg;*.png;*.iso" class="Uploader fl-uploader">该乘客类型需传证明文件，支持上传多个</span>
 
                         <div class="uploader-wrapper">
+                            <div class="uploader-inner">
                         <div class="fl-uploader-error">上传文件失败，请重新上传（失败原因<i class='fl-error'>&#12288;
                                 <div class="fl-uploader-wrap message_ct">
                                     <div class="arrow arrow_north"></div>
                                     <div class="message_text fl-uploader-errfiles"></div>
                         </div></i>）</div>
                         <div class="fl-upholder" id="UploaderProgress_1"></div>
+                        </div>
                     </div>
 
 
@@ -227,10 +228,11 @@
                         <label><input type="text" style="width:128px"/></label><span class="text3">请确认儿童有成人陪伴，提供成人票号。如是无成人陪伴儿童，请向航空公司申请。</span>
                         </li>
                         <li class="ways clearfix">
-                        <div class="col way-console">
-                        <p>
+                        <div class="col">
+                        <p class="way-console">
                             <span class="subline">导入PNR</span>
                             <input type="text" placeholder="请输入6位PNR编码" class="input-pnr">
+                            <span class="invalid-text">PNR和黑屏必须填写一个</span>
                         </p>
                         <textarea class="black-paste">
 使用方法:
@@ -360,6 +362,13 @@ $(function(){
     $.role_ctype({
         changeClass:'current'
     });
+
+    $('.input-pnr').on('blur',function(){
+        $(this).addClass('invalid');
+        $('.invalid-text').show();
+    });
+
+
     $(".Uploader").each(function(index){
         uploads.push(createSwfUpload(index + 1,$(this).attr("allowSize"),$(this).attr("allowFile")));
     });

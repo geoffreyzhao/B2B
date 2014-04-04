@@ -120,7 +120,7 @@ function uploadSuccess(file, serverData) {
 	try {
 		var progress = new FileProgress(file, this.customSettings.progressTarget);
 		// progress.setComplete();
-        progress.disappear();
+        //progress.disappear();
         showImg(file.name,serverData);
 		progress.setStatus("上传成功");
 		progress.toggleCancel(false);
