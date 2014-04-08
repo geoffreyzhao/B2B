@@ -59,8 +59,34 @@
         </nav>
     </header>
 </div>
-<div class="internalSearchingBG">
+<div class="internalSearchingBG clearfix">
+    <div class="annPrompt">
+        <a href="#" style="top: 0px;">免费机票大作战 第一波甜蜜来袭2！</a>
+        <a href="#" style="top: 0px;">免费机票大作战 第一波甜蜜来袭3！</a>
+        <a href="#" style="top: 0px;">免费机票大作战 第一波甜蜜来袭4！</a>
+        <a href="#" style="top: 0px;">免费机票大作战 第一波甜蜜来袭1！</a>
+    </div>
+    <script>
+        $(function(){
+            var slideMsgEve=setInterval(slideMessage,3000);
+            $(".annPrompt").hover(function(){
+                        clearInterval(slideMsgEve);
+                    },
+                    function(){
+                        slideMsgEve=setInterval(slideMessage,3000);
+                    }
+            );
 
+            function slideMessage()
+            {
+                $(".annPrompt a").animate({"top":"-22px"},"1000")
+                setTimeout(function(){
+                    $(".annPrompt").append($(".annPrompt a:first").remove());
+                    $(".annPrompt a").css({"top":"0"});
+                },1200);
+            }
+        })
+    </script>
 </div>
 <div class="main-wrapper">
         <section class="querytab querytab-domestic">
