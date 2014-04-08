@@ -16,7 +16,6 @@
     <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
     <script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
     <script type="text/javascript" src="../../static/js/global.js"></script>
-    <script type="text/javascript" src="../../static/js/store/store.js"></script>
     <script src="../../static/js/jquery-ui-1.10.3.custom.js"></script>
 	<script src="../../static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
     
@@ -162,7 +161,73 @@
                                 <button type="button" class="btn btn-c1 btn-s1">搜  索</button>
                             </div>
                 </div>
+                <div class="querytab-hotel-content" style="display:none;" data-role="ctype-item" data-index="2" data-group="qtab">
+                    <h3>港澳台 · 国际 预付酒店</h3>
+                    <span class="text1" style="" data-role="ctype-item" data-group="trip_type" data-index="c2"> 团队单请咨询：<b class="tel">400-720-6666</b></span>
+                        <ul>
+                            <li>
+                                <table class="default_search">
+                                     <colgroup>
+                                         <col class="col1">
+                                         <col class="col2">
+                                         <col class="col3">
+                                         <col class="col4">
+                                    </colgroup>
+                                    <tr>
+                                        <th>出发城市</th>
+                                        <td><input class="city_ac" type="text"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>入住日期</th>
+                                        <td><input class="startDate" type="text"></td>
+                                        <th>离店日期</th>
+                                        <td><input class="endDate" type="text"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>预定房间</th>
+                                        <td>
+                                            <select data-role="dropdownlist" style="width:152px;">
+                                                <option>双人双床房</option>
+                                                </select>
+                                        </td>
+                                        <th>间数</th>
+                                        <td>
+                                            <select data-role="dropdownlist" style="width:152px;">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                </select>
+                                        </td>
+                                    </tr>
+                                    </table>
+                            </li>
+                            <li>
+                            <h4 class="underline-title"><span><i class="icon icon-arrows"></i>高级搜索</span></h4>
+                            <table class="hotel_advanced_search">
+                                <colgroup>
+                                    <col class="col1">
+                                    <col class="col2">
+                                    <col class="col3">
+                                    <col class="col4">
+                                    </colgroup>
+                                <tr>
+                                    <th>客人国籍</th>
+                                    <td>
+                                        <input type="text" value="中国">
+                                    </td>
+                                    <th>关键字</th>
+                                    <td>
+                                        <input type="text" placeholder="酒店名称，商圈，地标">
+                                    </td>
+                                </tr>
+                            </table>
+                            </li>
+                        </ul>
 
+                            <div class="btn_area">
+                                <button type="button" class="btn btn-c1 btn-s1">搜  索</button>
+                            </div>
+                </div>
             </div>
             </div>
         </section>
@@ -209,7 +274,9 @@
 </script>
 <script>
     $(function(){
-        $.role_ctype();
+        $.role_ctype({
+            changeClass:'current' 
+        });
         kendo.init('body');
         $('.startDate').datepicker({
             minDate :new Date(),
