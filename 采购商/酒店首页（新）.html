@@ -30,16 +30,18 @@
         <div>用户中心</div>
     </div>
     <div class="customerCenterItemsContainer">
-        <i></i>
-        <ul>
-            <li class="cc_orderManagerment"><div>订单管理</div></li>
-            <li class="cc_e-wallet"><div>电子钱包</div></li>
-            <li class="cc_statisticalReport"><div>统计报表</div></li>
-            <li class="cc_customerService"><div>客户服务</div></li>
-            <li class="cc_notice"><div>公告</div></li>
-            <li class="cc_message"><div>消息</div></li>
-            <li class="cc_onlineService"><div>在线客服</div></li>
-        </ul>
+        <div class="customerCenterItemsPanel">
+            <i></i>
+            <ul>
+                <li class="cc_orderManagerment"><div>订单管理</div></li>
+                <li class="cc_e-wallet"><div>电子钱包</div></li>
+                <li class="cc_statisticalReport"><div>统计报表</div></li>
+                <li class="cc_customerService"><div>客户服务</div></li>
+                <li class="cc_notice"><div>公告</div></li>
+                <li class="cc_message"><div>消息</div></li>
+                <li class="cc_onlineService"><div>在线客服</div></li>
+            </ul>
+        </div>
     </div>
 </div>
 
@@ -606,11 +608,13 @@ $(function(){
             if(!$(".customerCenterContainer").hasClass("off"))
             {
                 $(".customerCenterContainer").addClass("off");
+                $(".customerCenterItemsPanel").hide();
                 $(this).animate({width:"90px"},200,function(){$(".customerCenterContainer").removeClass("expanded");})
                 return false;
             }
             if($(".customerCenterContainer").hasClass("expanded"))
             {
+                $(".customerCenterItemsPanel").slideDown("fast");
                 $(".customerCenterContainer").removeClass("off");
             }
         })
