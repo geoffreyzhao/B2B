@@ -91,7 +91,7 @@ $(function(){
                 <ul class="flat-list travel-instr">
                     <li>
                     <div class="instr">
-                        <span class="highlight">创建</span>
+                        <span class="highlight-fe">创建</span>
                         <span>支付</span>
                         <span>完成</span>
                     </div>
@@ -162,74 +162,84 @@ $(function(){
         <div class="block block-module">
             <div class="block-title">游客信息</div>
             <div class="xscroll">
-            <table class="grid-table">
+            <table class="grid-table" style="width: 160%">
                 <colgroup>
                     <col width="60">
-                    <col width="130">
-                    <col width="60">
-                    <col width="100">
-                    <col width="90">
-                    <col width="60">
-                    <col width="60">
-                    <col width="60">
-                    <col width="80">
-                    <col width="100">
+                    <col width="120">
                     <col width="70">
                     <col width="60">
-                    <col width="120">
-                    <col width="100">
                     <col width="60">
+                    <col width="120">
+                    <col width="80">
+                    <col width="140">
+                    <col width="90">
+                    <col width="60">
+                    <col width="80">
+                    <col width="40">
+                    <col width="60">
+                    <col width="80">
+                    <col width="120">
+                    <col width="120">
                 </colgroup>
                 <tr class="thead">
                     <td>中文姓名</td>
                     <td>拼音</td>
+                    <td>成人/儿童</td>
+                    <td>是否房差</td>
                     <td>证件类型</td>
                     <td>证件号码</td>
                     <td>证件有效期</td>
-                    <td>性别</td>
-                    <td>国籍</td>
+                    <td>身份证号码</td>
+                    <td>手机号</td>
                     <td>出生地</td>
                     <td>出生日期</td>
-                    <td>手机号</td>
-                    <td>成人/儿童</td>
+                    <td>性别</td>
+                    <td>国籍</td>
                     <td>有无签证</td>
                     <td>签证产品</td>
                     <td>签证状态</td>
                     <td>报名状态</td>
+                    <td>退团费</td>
                 </tr>
                 <tr>
                     <td>张大国</td>
                     <td>ZHANG/DAGUO</td>
+                    <td>成人</td>
+                    <td>是</td>
                     <td>护照</td>
                     <td>G23364650</td>
-                    <td>31/Dec/14</td>
-                    <td>M</td>
-                    <td>中国</td>
+                    <td>31/Dec/14-<br/>31/Dec/14</td>
+                    <td>420325198108141534</td>
+                    <td>13001203003</td>
                     <td>上海</td>
                     <td>11/Aug/76</td>
-                    <td>13001203003</td>
-                    <td>成人</td>
+                    <td>M</td>
+                    <td>中国</td>
                     <td>无</td>
                     <td>美国个人旅游签证</td>
                     <td>材料到齐/已齐</td>
                     <td>正常</td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>张大国</td>
                     <td>ZHANG/DAGUO</td>
+                    <td>成人</td>
+                    <td>是</td>
                     <td>护照</td>
                     <td>G23364650</td>
-                    <td>31/Dec/14</td>
-                    <td>M</td>
-                    <td>中国</td>
+                    <td>31/Dec/14-<br/>31/Dec/14</td>
+                    <td>420325198108141534</td>
+                    <td>13001203003</td>
                     <td>上海</td>
                     <td>11/Aug/76</td>
-                    <td>13001203003</td>
-                    <td>成人</td>
+                    <td>M</td>
+                    <td>中国</td>
                     <td>无</td>
                     <td>美国个人旅游签证</td>
-                    <td>材料齐全</td>
+                    <td>材料到齐/已齐</td>
                     <td>正常</td>
+                    <td><span class="text2">2500</span>元</td>
                 </tr>
             </table>
             </div>
@@ -248,39 +258,67 @@ $(function(){
             </table>
         </div>
 
+        <div class="block block-module">
+            <div class="block-title">支付信息</div>
+            <table class="tbl_comm">
+                <thead>
+                    <tr>
+                        <th>支付时间</th>
+                        <th>支付金额</th>
+                        <th>支付/收款状态</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>2014-03-01 15:30:09</td>
+                    <td><span class="text2">2000.00</span>元</td>
+                    <td>收款成功</td>
+                </tr>
+                <tr>
+                    <td>2014-03-01 15:30:09</td>
+                    <td><span class="text2">2000.00</span>元</td>
+                    <td>收款成功</td>
+                </tr>
+                <tr>
+                    <td>2014-03-01 15:30:09</td>
+                    <td><span class="text2">2000.00</span>元</td>
+                    <td>收款成功</td>
+                </tr>
+            </table>
+        </div>
+
 
         <div class="block block5 block-calc">
             <div id="order_calc">
                 <ul class="flat-list">
                     <li class="first">
-                    <label>
-                        <span>应收合计</span> 
-                        <input readonly="" value="2580.00" class="input-b"> 
-                    </label>
-                    </li> 
-                    <li>
-                    <label>
-                        <span>成人价</span>
-                        <s class="operator">=</s><input readonly="" value="320.00"> 元/人
-                    </label>
+                        <label>
+                            <span>应收合计</span>
+                            <input readonly="" value="2580.00" class="input-b">
+                        </label>
                     </li>
                     <li>
-                    <label>
-                        <span>人数</span>
-                        <s class="operator">×</s><input style="width:40px;" readonly="" value="2"> 人
-                    </label>
+                        <label>
+                            <span>成人合计</span>
+                            <s class="operator">=</s><input readonly="" value="320.00x1">
+                        </label>
                     </li>
                     <li>
-                    <label>
-                        <span>儿童价</span>
-                        <s class="operator">+</s><input readonly="" value="2321.00"> 元/人
-                    </label>
+                        <label>
+                            <span>儿童合计</span>
+                            <s class="operator">+</s><input readonly="" value="2321.00x1">
+                        </label>
                     </li>
                     <li>
-                    <label>
-                        <span>人数</span>
-                        <s class="operator">×</s><input style="width:40px;" readonly="" value="2"> 人
-                    </label>
+                        <label>
+                            <span>房差</span>
+                            <s class="operator">+</s><input readonly="" value="1500.00x1">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <span>损失费用</span>
+                            <s class="operator">+</s><input readonly="" value="1500.00">
+                        </label>
                     </li>
                 </ul> 
             </div>
