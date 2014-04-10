@@ -112,7 +112,11 @@ $(function(){
                 </li>
                 <li>
                 <label class="vertical-head">收款方式</label>
-                <span>xxx</span>
+                <span>
+                    <select name="" id="">
+                        <option value="xxx">xxx</option>
+                    </select>
+                </span>
                 </li>
                 <li>
                 <label class="vertical-head">可用余额</label>
@@ -227,7 +231,7 @@ $(function(){
                             <tr>
                                 <th>身份证号码：</th>
                                 <td>
-                                    <input type="text" name="" id="" style="width: 90px;"/>
+                                    <input type="text" name="" id="" style="width: 160px;"/>
                                 </td>
                                 <th>手机号码：</th>
                                 <td>
@@ -266,7 +270,18 @@ $(function(){
                                 </td>
                             </tr>
                             <tr>
-                            <th>护照签发地：</th>
+                            <th>有无签证：</th>
+                                <td colspan=3>
+                               <select id="" class="hasPassport" name="" style="width:65px;">
+                                   <option value="1">有</option>
+                                   <option value="0">无</option>
+                               </select>
+                               <input id="" style="width:230px;" placeholder="请输入签证产品名称" type="text" name="">
+                               <button class="btns btn-search">&nbsp;</button>
+                                </td>
+                            </tr>
+                            <tr class="hide">
+                                <th>护照签发地：</th>
                                 <td>
                                     <input style="width:160px;" id="" type="text" name="">
                                 </td>
@@ -276,15 +291,8 @@ $(function(){
                                 </td>
                             </tr>
                             <tr>
-                            <th>有无签证：</th>
-                                <td colspan=3>
-                               <select id="" name="" style="width:65px;">
-                                   <option value="">有</option>
-                                   <option value="">无</option>
-                               </select>
-                               <input id="" style="width:230px;" placeholder="请输入签证产品名称" type="text" name="">
-                               <button class="btns btn-search">&nbsp;</button>
-                                </td>
+                                <th><u>*</u>签证团号：</th>
+                                <td colspan="3"><input type="text" name="" id="" style="width: 160px;"/></td>
                             </tr>
                         </table>
                 </div>
@@ -349,7 +357,7 @@ $(function(){
                         <tr>
                             <th>身份证号码：</th>
                             <td>
-                                <input type="text" name="" id="" style="width: 90px;"/>
+                                <input type="text" name="" id="" style="width: 160px;"/>
                             </td>
                             <th>手机号码：</th>
                             <td>
@@ -388,6 +396,17 @@ $(function(){
                             </td>
                         </tr>
                         <tr>
+                            <th>有无签证：</th>
+                            <td colspan=3>
+                                <select id="" class="hasPassport" name="" style="width:65px;">
+                                    <option value="1">有</option>
+                                    <option value="0">无</option>
+                                </select>
+                                <input id="" style="width:230px;" placeholder="请输入签证产品名称" type="text" name="">
+                                <button class="btns btn-search">&nbsp;</button>
+                            </td>
+                        </tr>
+                        <tr class="hide">
                             <th>护照签发地：</th>
                             <td>
                                 <input style="width:160px;" id="" type="text" name="">
@@ -398,15 +417,8 @@ $(function(){
                             </td>
                         </tr>
                         <tr>
-                            <th>有无签证：</th>
-                            <td colspan=3>
-                                <select id="" name="" style="width:65px;">
-                                    <option value="">有</option>
-                                    <option value="">无</option>
-                                </select>
-                                <input id="" style="width:230px;" placeholder="请输入签证产品名称" type="text" name="">
-                                <button class="btns btn-search">&nbsp;</button>
-                            </td>
+                            <th><u>*</u>签证团号：</th>
+                            <td colspan="3"><input type="text" name="" id="" style="width: 160px;"/></td>
                         </tr>
                     </table>
                 </div>
@@ -478,5 +490,18 @@ $(function(){
         <p>客户服务热线:400-720-6666</p>
     </div>
 </div>
+<script>
+    $(function(){
+        $(".hasPassport").change(function(){
+            console.log($(this).val());
+            if($(this).val()=="1"){
+                $(this).closest("tr").next("tr").hide();
+            }
+            else{
+                $(this).closest("tr").next("tr").show();
+            }
+        })
+    })
+</script>
 </body>
 </html>
