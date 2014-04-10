@@ -3,17 +3,17 @@
 <head>
     <title>酒店 订单管理 酒店订单管理</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="../../static/css/common.css" rel="stylesheet" type="text/css"/>
-    <link href="../../static/css/kendo.common.css" rel="stylesheet" type="text/css"/>
-    <link href="../../static/css/kendo.gray.css" rel="stylesheet" type="text/css"/>
-    <link href="../../static/css/b2b.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../static/css/common.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../static/css/kendo.common.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../static/css/kendo.gray.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../static/css/b2b.css" rel="stylesheet" type="text/css"/>
     <link href="/static/css/kendo.reset.css" rel="stylesheet"/>
-    <link href="../../static/css/xieyizhengche.css" rel="stylesheet" type="text/css"/>
-    <script src="../../static/js/jquery.min.js" type="text/javascript"></script>
-    <script src="../../static/js/kendo.web.js" type="text/javascript"></script>
+    <link href="../../../static/css/xieyizhengche.css" rel="stylesheet" type="text/css"/>
+    <script src="../../../static/js/jquery.min.js" type="text/javascript"></script>
+    <script src="../../../static/js/kendo.web.js" type="text/javascript"></script>
     <script type="text/javascript" src="/static/js/scrollFix.js"></script>
 
-    <script type="text/javascript" src="../../static/js/global.js"></script>
+    <script type="text/javascript" src="../../../static/js/global.js"></script>
     <script type="text/javascript">
         $(function () {
             var c = new Collpase({
@@ -83,8 +83,9 @@
     </div>
     <div class="fixedMenu" style="font-size:12px;">
         <a href="#">现付酒店订单</a>
-        <a href="#" class="politics">艺龙现付订单</a>
-        <a href="#">团队申请单</a>
+        <a href="#">艺龙现付订单</a>
+        <a href="#" class="politics">GTA订单</a>
+        <a href="#">未完成订单 <i class="numRemind">50</i></a>
     </div>
     <div class="fixedButton">
         <a class="button_secondary adaptiveButton small" href="javascript:;">
@@ -98,7 +99,7 @@
     <div class="pay_div">
         <table cellspacing="0" cellpadding="0" class="xyzc_tab1 change">
             <colgroup>
-                <col width="60">
+                <col width="80">
                 <col width="220">
                 <col width="70">
                 <col width="220">
@@ -106,12 +107,12 @@
             </colgroup>
             <tbody style="margin-right:10px;">
             <tr>
-                <td>城市</td>
+                <td>天地行订单号</td>
                 <td><input type="text" style="width:194px;"/></td>
-                <td>酒店名称</td>
+                <td>GTA订单号</td>
                 <td><input type="text" style="width:194px;"/></td>
-                <td>订单号</td>
-                <td><input type="text" style="width:194px"/></td>
+                <td></td>
+                <td></td>
                 <td rowspan="3"><a href="#" class="xyzc_cx_a" style="margin-left:80px;">查询</a></td>
             </tr>
             <tr>
@@ -172,53 +173,23 @@
         <li style="width:145px;">
             <div class="title_bg">
                 <div class="checkbox_title">
-                    <b>担保</b>
-                    <label> <input type="checkbox"/> 全选</label>
-                </div>
-            </div>
-            <div class="checkbox_div">
-                <label><input type="checkbox"/>无担保</label>
-                <label><input type="checkbox"/>有担保</label>
-                <label><input type="checkbox"/>强制担保</label>
-            </div>
-        </li>
-        <li style="width:145px;">
-            <div class="title_bg">
-                <div class="checkbox_title">
                     <b>订单类型</b>
                     <label> <input type="checkbox"/> 全选</label>
                 </div>
             </div>
             <div class="checkbox_div">
-                <label><input type="checkbox"/>预订单</label>
-                <label><input type="checkbox"/>变更单</label>
-                <label><input type="checkbox"/>退订单</label>
-            </div>
-        </li>
-        <li style="width:200px;">
-            <div class="title_bg">
-                <div class="checkbox_title">
-                    <b>订单来源</b>
-                    <label> <input type="checkbox"/> 全选</label>
-                </div>
-            </div>
-            <div class="checkbox_div">
-                <label><input type="checkbox"/>天地行</label>
-                <label><input type="checkbox"/>携程</label>
-                <label><input type="checkbox"/>真旅网</label>
-                <label><input type="checkbox"/>同程</label>
-                <label><input type="checkbox"/>去哪儿</label>
-                <label><input type="checkbox"/>艺龙</label>
+                <label><input type="checkbox"/>GTA正常单</label>
+                <label><input type="checkbox"/>GTA退订单</label>
             </div>
         </li>
         <li style="width:488px;">
             <div class="title_bg">
-                <div class="checkbox_title" style="border-right: 0">
+                <div class="checkbox_title">
                     <b>订单状态</b>
                     <label> <input type="checkbox"/> 全选</label>
                 </div>
             </div>
-            <div class="checkbox_div" style="border-right: 0">
+            <div class="checkbox_div">
                 <label><input type="checkbox"/>未支付</label>
                 <label><input type="checkbox"/>未审核</label>
                 <label><input type="checkbox"/>退订中</label>
@@ -232,6 +203,32 @@
                 <label><input type="checkbox"/>已取消</label>
                 <label><input type="checkbox"/>已变更</label>
                 <label><input type="checkbox"/>已确认</label>
+            </div>
+        </li>
+        <li style="width:145px;">
+            <div class="title_bg">
+                <div class="checkbox_title">
+                    <b>订单来源</b>
+                    <label> <input type="checkbox"/> 全选</label>
+                </div>
+            </div>
+            <div class="checkbox_div">
+                <label><input type="checkbox"/>天地行</label>
+            </div>
+        </li>
+        <li style="width:200px;">
+            <div class="title_bg">
+                <div class="checkbox_title" style="border-right: 0">
+                    <b>支付方式</b>
+                    <label> <input type="checkbox"/> 全选</label>
+                </div>
+            </div>
+            <div class="checkbox_div" style="border-right: 0">
+                <label><input type="checkbox"/>预存</label>
+                <label><input type="checkbox"/>信用额度</label>
+                <label><input type="checkbox"/>支付宝</label>
+                <label><input type="checkbox"/>财付通</label>
+                <label><input type="checkbox"/>汇付天下</label>
             </div>
         </li>
     </ul>
@@ -253,18 +250,15 @@
     <th>操作</th>
     <th>受理员</th>
     <th>客户名称</th>
-    <th>收款方式</th>
     <th>订单号</th>
     <th>城市</th>
     <th>酒店名称</th>
     <th>客人姓名</th>
-    <th>订单类型</th>
-    <th>订单来源</th>
-    <th>账户类型</th>
     <th>预定日期</th>
     <th>入住/离店日期</th>
     <th>订单金额</th>
     <th>订单状态</th>
+    <th>确认状态</th>
     <th>建单员</th>
 </tr>
 </thead>
@@ -279,18 +273,15 @@
     </td>
     <td>OP</td>
     <td>青空旅行社</td>
-    <td>账户余额</td>
     <td>12345678</td>
     <td>上海</td>
     <td>宝华国际酒店</td>
     <td>刘伟</td>
-    <td>预订单</td>
-    <td>天地行</td>
-    <td>单笔</td>
     <td>2013/7/11</td>
     <td>2013/7/11到2013/7/15</td>
     <td>1234.00</td>
     <td>待审核</td>
+    <td>待确认</td>
     <td>OP</td>
 </tr>
 <tr class="hui_bg">
@@ -301,20 +292,18 @@
             <span class="right"></span>
         </a>
     </td>
+    </td>
     <td>OP</td>
     <td>青空旅行社</td>
-    <td>账户余额</td>
     <td>12345678</td>
     <td>上海</td>
     <td>宝华国际酒店</td>
     <td>刘伟</td>
-    <td>预订单</td>
-    <td>天地行</td>
-    <td>单笔</td>
     <td>2013/7/11</td>
     <td>2013/7/11到2013/7/15</td>
     <td>1234.00</td>
     <td>待审核</td>
+    <td>待确认</td>
     <td>OP</td>
 </tr>
 <tr>
@@ -327,18 +316,15 @@
     </td>
     <td>OP</td>
     <td>青空旅行社</td>
-    <td>账户余额</td>
     <td>12345678</td>
     <td>上海</td>
     <td>宝华国际酒店</td>
     <td>刘伟</td>
-    <td>预订单</td>
-    <td>天地行</td>
-    <td>单笔</td>
     <td>2013/7/11</td>
     <td>2013/7/11到2013/7/15</td>
     <td>1234.00</td>
     <td>待审核</td>
+    <td>待确认</td>
     <td>OP</td>
 </tr>
 <tr class="hui_bg">
@@ -349,20 +335,18 @@
             <span class="right"></span>
         </a>
     </td>
+    </td>
     <td>OP</td>
     <td>青空旅行社</td>
-    <td>账户余额</td>
     <td>12345678</td>
     <td>上海</td>
     <td>宝华国际酒店</td>
     <td>刘伟</td>
-    <td>预订单</td>
-    <td>天地行</td>
-    <td>单笔</td>
     <td>2013/7/11</td>
     <td>2013/7/11到2013/7/15</td>
     <td>1234.00</td>
     <td>待审核</td>
+    <td>待确认</td>
     <td>OP</td>
 </tr>
 <tr>
@@ -375,18 +359,15 @@
     </td>
     <td>OP</td>
     <td>青空旅行社</td>
-    <td>账户余额</td>
     <td>12345678</td>
     <td>上海</td>
     <td>宝华国际酒店</td>
     <td>刘伟</td>
-    <td>预订单</td>
-    <td>天地行</td>
-    <td>单笔</td>
     <td>2013/7/11</td>
     <td>2013/7/11到2013/7/15</td>
     <td>1234.00</td>
     <td>待审核</td>
+    <td>待确认</td>
     <td>OP</td>
 </tr>
 <tr class="hui_bg">
@@ -397,20 +378,18 @@
             <span class="right"></span>
         </a>
     </td>
+    </td>
     <td>OP</td>
     <td>青空旅行社</td>
-    <td>账户余额</td>
     <td>12345678</td>
     <td>上海</td>
     <td>宝华国际酒店</td>
     <td>刘伟</td>
-    <td>预订单</td>
-    <td>天地行</td>
-    <td>单笔</td>
     <td>2013/7/11</td>
     <td>2013/7/11到2013/7/15</td>
     <td>1234.00</td>
     <td>待审核</td>
+    <td>待确认</td>
     <td>OP</td>
 </tr>
 </tbody>

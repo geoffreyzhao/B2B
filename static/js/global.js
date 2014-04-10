@@ -282,8 +282,8 @@ var FloatLayer = function(opts){
     function set_pos(ele){
         var pos = ele.offset();
         layer.css({
-            left:pos.left + opts.offsetX,
-            top:pos.top + opts.offsetY
+            left:pos.left + parseInt(typeof(opts.offsetX)=="function"?opts.offsetX.call(this,layer):opts.offsetX),
+            top:pos.top + parseInt(typeof(opts.offsetY)=="function"?opts.offsetY.call(this,layer):opts.offsetY)
         });
     }
 
