@@ -70,7 +70,7 @@
     <div id="sub_menu_bar"></div>
     <div id="mainContent">
 
-        <!-- 舱位代码开始 -->
+        <!-- 内容开始 -->
         <div class="code">
             <p><a href="#" class="code_a_1">采购商中心</a>
             <a href="#">资质审核</a>
@@ -123,7 +123,7 @@
                     <td>大区归属</td>
                     <td> 
                         <select style="width:200px;">
-                            <option>不限</option>
+                             <option>不限</option>
                         </select>
                     </td>
                 </tr>
@@ -196,7 +196,7 @@
                         <tr>
                             <th class="th_left"><input type="checkbox" /></th>
                             <th class="last_td" style="text-align:center;">
-                                <a href="#">修改</a> 
+                                <a href="#" class="allocation">分配</a> 
                                 <a href="#">挂起</a> 
                             </th>
                             <th style="text-align:center;">客户名称</th>
@@ -367,11 +367,15 @@
                             <a href="#" class="next">&nbsp;</a>
                         </span>
                  </div>
-        <!-- 舱位代码结束 -->
+        <!-- 内容结束 -->
     </div>
 </div>
 
-
+<label class="usdHint">
+    <em>至少需要选择一个用户</em>
+    <i>X</i>
+    <span class="arrowDown"></span>
+</label>
 
 <div id="extFooter">
     <div>
@@ -432,10 +436,36 @@
         </div>
     </div>
     
+    <div id="allocationTemplate">
+         <table class="allocationTab">
+              <colgroup>
+                   <col width="200"/>
+                   <col width="220"/>
+              </colgroup>
+              <tr>
+                  <td>销售员：
+                       <select style="width:125px;" data-role="dropdownlist">
+                            <option>选择部门</option>
+                       </select>
+                  </td>
+                  <td>
+                      <select style="width:125px;" data-role="dropdownlist">
+                            <option>选择销售员</option>
+                       </select>
+                  </td>
+              </tr>
+         </table>
+         <div class="operationBtn">
+              <button class="large_button" type="button">提 交</button>
+              <button class="large_button disable" type="button">取 消</button>
+         </div>
+         
+    </div>
+    
     <script>
         $(function(){
 
-            kendo.init('body');
+           kendo.init('body');
 			
 			new PopWindow("#btn_checkJournalDetail",{
 			title:"操作日志 客户名称：携程",
@@ -446,9 +476,15 @@
 			}
 		   },"#journalDetailTemplate").init();
 			
+			new PopWindow(".allocation",{
+			title:"分配销售员",
+			width:470,
+		   },"#allocationTemplate").init();
+			
         });
     </script>
     
 </div>
+
 </body>
 </html>
