@@ -40,9 +40,120 @@
 <div class="scene s1"></div>
 <div class="scene s2"></div>
 <div class="scene s3">
-    <div class="s3_0 scene"></div>
+    <div class="s3_0"></div>
     <div class="s3_1"></div>
 </div>
+<script>
+    function scrollScene(){
+        this.animId = 0;
+        this.eles = $('.scene');
+        this.init();
+    }
+    scrollScene.prototype = {
+        init:function(){
+            var that = this;
+            //that.hideScrollBar();
+            window.onload = function(){
+                that.scroll();
+            };
+            that.resize();
+            that.stopAnim();
+            that.setSceneDimension();
+        },
+        hideScrollBar:function(){
+            $('body').css({overflow:'hidden'});
+        },
+        setSceneDimension:function(){
+            var that = this;
+            var eles = that.eles;
+
+            eles.css({
+                height:window.innerHeight,
+                width:window.innerWidth
+            });
+        },
+        getCurrentScene:function(){
+            var that = this;
+            var pos = that.getCurrentScrollPosition();
+            var i = 0;
+            var len = that.eles.length;
+            var index,min,max;
+            var baseHeight = window.innerHeight;
+            var baseWidth = window.innerWidth;
+            var firstEleOffsetTop = that.eles.eq(0).offset().top;
+
+            for(;i<len;i++){
+                if ( pos.y > i*baseHeight && pos.y < (i+1)*baseHeight ){
+                    index = i;
+                    break;
+                }
+            }
+
+            //min = parseInt((index+1)*baseHeight+firstEleOffsetTop-baseHeight/2);
+            //max = parseInt((index+2)*baseHeight+firstEleOffsetTop-baseHeight/2);
+            min = parseInt((index+0)*baseHeight+firstEleOffsetTop);
+            max = parseInt((index+1)*baseHeight+firstEleOffsetTop);
+
+            return {
+                index:index,
+                base:index*baseHeight+firstEleOffsetTop,
+                min:min,
+                max:max
+            };
+        },
+        getSceneDimension:function(){
+            var that = this;
+            var eles = that.eles;
+        },
+        getCurrentScrollPosition:function(){
+            return {
+                x:window.scrollX,
+                y:window.scrollY
+            }
+        },
+        scroll:function(){
+            var that = this;
+            $(window).on('scroll',function(){
+                that.anim();
+            });
+        },
+        anim:function(){
+            var that = this;
+            var pos = that.getCurrentScrollPosition();
+            var current = that.getCurrentScene();
+            var max = window.innerHeight;
+            console.log(current);
+            console.log(pos.y);
+            if( pos.y > current.min && pos.y < current.max ){
+
+            }else{
+                //return that.stopAnim();
+            }
+
+            (function animloop(){
+                that.animId = requestAnimationFrame(animloop);
+                max--;
+                if(max<0) return that.stopAnim();
+                window.scrollBy(0,1);
+            })();
+        },
+        resize:function(){
+            var that = this;
+            $(window).on('resize',function(){
+                console.log('window resized,rebind,redimensiton');
+                that.stopAnim();
+                that.setSceneDimension();
+            });
+        },
+        stopAnim:function(){
+            cancelAnimationFrame(this.animId);
+        }
+    };
+
+    $(function(){
+        new scrollScene();
+    });
+</script>
 </section> <!--body end-->
         <footer class="main-footer">
             <div class="footerContainer">
