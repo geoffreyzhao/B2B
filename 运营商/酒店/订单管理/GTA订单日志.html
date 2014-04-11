@@ -30,7 +30,7 @@
         </span>
     </div>
     <div class="col col-r sep-l">
-        <a href="javascript:;" class="button_secondary adaptiveButton small createOrder" style="margin:0">
+        <a href="javascript:;" class="button_secondary adaptiveButton small createOrder" id="btn_tdd" style="margin:0">
             <span class="left createOrder"></span>
             <span class="center createOrder">退订单</span>
             <span class="right createOrder"></span>
@@ -783,6 +783,64 @@
     </div>
 </div>
 
+<script type="text/html" id="tddTemplate">
+<div class="rulesContainer">
+    <div class="tdx_rulesContainer">
+        <div class="title">天地行变更取消政策</div>
+        <div class="unimportant">北京时间 2014年4月3日 12:32</div>
+        <ul>
+            <li class="current">酒店预订成功，不能变更预订，包含客人姓名</li>
+            <li>酒店预订成功，不能变更预订，包含客人姓名</li>
+            <li>酒店预订成功，不能变更预订，包含客人姓名酒店预订成功，不能变更预订，包含客人姓名酒店预订成功，不能变更预订，包含客人姓名酒店预订成功，不能变更预订，包含客人姓名</li>
+            <li>酒店预订成功，不能变更预订，包含客人姓名</li>
+            <li>酒店预订成功，不能变更预订，包含客人姓名</li>
+        </ul>
+    </div>
+    <div class="gta_rulesContainer">
+        <div class="title">GTA变更取消政策</div>
+        <div class="unimportant">格林威治时间 2014年4月3日 12:32</div>
+        <div class="subTitle">取消费用</div>
+        <ul>
+            <li class="current">酒店预订成功，不能变更预订，包含客人姓名</li>
+            <li>酒店预订成功，不能变更预订，包含客人姓名</li>
+            <li>酒店预订成功，不能变更预订，包含客人姓名酒店预订成功，不能变更预订，包含客人姓名酒店预订成功，不能变更预订，包含客人姓名酒店预订成功，不能变更预订，包含客人姓名</li>
+            <li>酒店预订成功，不能变更预订，包含客人姓名</li>
+            <li>酒店预订成功，不能变更预订，包含客人姓名</li>
+        </ul>
+        <div class="subTitle">更改费用</div>
+        <ul>
+            <li class="current">酒店预订成功，不能变更预订，包含客人姓名</li>
+            <li>酒店预订成功，不能变更预订，包含客人姓名</li>
+            <li>酒店预订成功，不能变更预订，包含客人姓名酒店预订成功，不能变更预订，包含客人姓名酒店预订成功，不能变更预订，包含客人姓名酒店预订成功，不能变更预订，包含客人姓名</li>
+            <li>酒店预订成功，不能变更预订，包含客人姓名</li>
+            <li>酒店预订成功，不能变更预订，包含客人姓名</li>
+        </ul>
+    </div>
+    <div class="vfengexian"></div>
+    <div class="clearfix"></div>
+</div>
+<div class="amount">
+    <div class="amountDetail">采购商需支付 RMB <span class="txt_orange fwb" style="font-size: 18px;">0.00</span> 元</div>
+    <div class="amountDetail" style="width:280px;">需支付 GTA USD <span class="txt_orange fwb" style="font-size: 18px;">0.00</span>
+        元
+    </div>
+</div>
+<div class="popWinBottomButtonContainer">
+    <a class="button_1_2 btn_createOrder" href="javascript:;">确认建单</a>
+    <a class="button_2_2" href="javascript:;">取消</a>
+</div>
+</script>
+
+<script type="text/html" id="tddPromptTemplate">
+    <div class="tddPrompt" style="z-index: 10010">
+        <div>
+            退订费用不匹配，请更新费用。
+        </div>
+        <div class="popWinBottomButtonContainer">
+            <a class="button_1_2" onclick="closePrompt()" href="javascript:;" id="btn_cost_save">确 定</a>
+        </div>
+    </div>
+</script>
 
 <script type="text/javascript" src="../../../static/js/jquery.min.js"></script>
 <script type="text/javascript" src="../../../static/js/kendo.web.js"></script>
@@ -801,7 +859,21 @@
                 setTimeout(function(){$(x.find(".k-window-content")).css({"overflow":"visible","z-index":"1"})},0);
             }
         },"#journalDetailTemplate").init();
+        new PopWindow("#btn_tdd",{
+            title:"确认退订费用",
+            width:730,
+            template:$("#tddTemplate")
+        }).init();
     })
+
+    var promptW=$.prompt({content:$("#tddPromptTemplate").html(),bgOpacity:0,autoClose:false,zIndex:10101});
+    $("body").delegate(".btn_createOrder","click",function(){
+        promptW.open().center();
+    })
+
+    function closePrompt(){
+        promptW.close();
+    }
 </script>
 </body>
 </html>
