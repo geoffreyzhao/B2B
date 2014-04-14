@@ -1934,8 +1934,26 @@ scrollScene.prototype = {
             that.animId = requestAnimationFrame(repeat);
         }
  
-        //start
-        that.animId = requestAnimationFrame(repeat);
+        function repeat_bottom(){
+            if(window.scrollY >= document.documentElement.scrollHeight - window.innerHeight ){
+                setTimeout(function(){
+                    that.inAnim = false; //unlock mousewheel
+                },lockTime);
+                return that.stopAnim();
+            }else{
+                window.scrollBy(0,step*2);
+            }
+            that.animId = requestAnimationFrame(repeat_bottom);
+        }
+
+        if(index == -1){
+            //scrollBackToPagebottom
+            that.currentScene=that.eles.length-1;
+            that.animId = requestAnimationFrame(repeat_bottom);
+        }else{
+            //start
+            that.animId = requestAnimationFrame(repeat);
+        }
     },
     scrollUp:function(index){
         var that = this;
@@ -1962,9 +1980,27 @@ scrollScene.prototype = {
  
             that.animId = requestAnimationFrame(repeat);
         }
- 
-        //start
-        that.animId = requestAnimationFrame(repeat);
+
+        function repeat_top(){
+            if(window.scrollY == 0){
+                setTimeout(function(){
+                    that.inAnim = false; //unlock mousewheel
+                },lockTime);
+                return that.stopAnim();
+            }else{
+                window.scrollBy(0,-step*2);
+            }
+            that.animId = requestAnimationFrame(repeat_top);
+        }
+
+        if(index == -1){
+            //scrollBackToPageTop 
+            that.currentScene=0;
+            that.animId = requestAnimationFrame(repeat_top);
+        }else{
+            //start
+            that.animId = requestAnimationFrame(repeat);
+        }
     },
     resize:function(){
         var that = this;
