@@ -11,6 +11,7 @@
 
     $(".tabstrip").kendoTabStrip({ animation: { open: { effects: 'toggle'}} });
 
+
 });
 
 
