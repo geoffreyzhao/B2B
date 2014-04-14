@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="/static/css/ie.css" /> 
         <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
         <![endif]-->
-<script type="text/javascript" src="/static/js/supplier/supplier_sync.js"></script>
+<script type="text/javascript" src="/static/js/sync.js"></script>
 <!-- @CLB@ -->
 </head>
 <body> 
@@ -115,6 +115,7 @@
 <script type="text/javascript">
 
 $(function(){
+    $.role_ctype();
     new PopWindow('.ac-new',{
         width:470,
         title:'添加OFFICE', 
@@ -164,6 +165,31 @@ $(function(){
         <th>OFFICE：</th>
         <td><input id="" style="width:150px;" type="text" name=""></td>
       </tr>
+      <tr>
+          <th>账户类型：</th>
+          <td>
+              <label><input data-role="ctype" data-group="x1" data-index="1" type="radio" checked name="xx"> 预存</label> 
+              <label><input data-role="ctype" data-group="x1" data-index="2" type="radio" name="xx"> 信用</label> 
+          </td>
+      </tr>
+      <tr style="display:none" data-role="ctype-item" data-group="x1" data-index="2" >
+          <th>授信金额：</th>
+          <td><input type="text" style="width:120px;"></td>
+      </tr>
+      <tr style="display:none" data-role="ctype-item" data-group="x1" data-index="2" >
+          <th>账期选择：</th>
+          <td><select style="width:120px;">
+                  <option>每天一次T+1</option>
+          </select></td>
+      </tr>
+      <tr>
+          <th>销售单位代号：</th>
+          <td><input type="text" stype="width:120px;"></td>
+          </tr>
+      <tr>
+          <th>填开单位：</th>
+          <td><input type="text" stype="width:120px;"></td>
+          </tr>
       <tr>
       <th>备注：</th>
         <td>
