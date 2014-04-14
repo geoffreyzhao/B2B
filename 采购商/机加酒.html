@@ -36,20 +36,47 @@
 </div>
 <div class="main-wrapper">
 <section class="main-body clearfix">
-<b class="roll"><span>向下滚动</span><i>&nbsp;</i></b>
-<div class="s0"></div>
+<b class="roll vsroll"><span>向下滚动</span><i class="state1">&nbsp;</i><i class="state2">&nbsp;</i></b>
+<div class="s0">
+<b class="roll"><span>向下滚动</span><i class="state1">&nbsp;</i><i class="state2">&nbsp;</i></b>
+</div>
 <div class="scene s1"></div>
 <div class="scene s2"></div>
 <div class="scene s3">
+    <b class="roll"><span>返回顶部</span><i class="state3">&nbsp;</i><i class="state4">&nbsp;</i></b>
     <div class="s3_0"></div>
     <div class="s3_1"></div>
 </div>
 <script>
     $(function(){
-        x = new scrollScene('.scene');
+        scrollSc = new scrollScene('.scene');
         $(window).on('scroll',function(){
-            console.log(x.currentScene); 
+            if(window.scrollY >= scrollSc.firstEleOffsetTop && window.scrollY <= scrollSc.lastEleOffsetTop-window.innerHeight){
+                $('.vsroll').show(); 
+            }else{
+                $('.vsroll').hide(); 
+            }
         });
+
+        $('.vsroll').on('click',function(){
+            scrollSc.currentScene = scrollSc.currentScene + 1;
+            scrollSc.scrollDown(scrollSc.currentScene); 
+        });
+
+        $('.s0 .roll').on('click',function(){
+            scrollSc.currentScene = 0;
+            scrollSc.scrollDown(scrollSc.currentScene); 
+        });
+
+        $('.s3 .roll').on('click',function(){
+            scrollSc.scrollUp(-1); 
+        });
+
+        (function animlight(){
+            requestAnimationFrame(animlight);
+            $('.state2').fadeIn(500).fadeOut(500);
+            $('.state4').fadeIn(500).fadeOut(500);
+        })();
     });
 </script>
 </section> <!--body end-->
