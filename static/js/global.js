@@ -1811,4 +1811,172 @@ $.fn.fadeInWithDelay = function(){
 
 
 
+/*滑动模块*/
+function scrollScene(eles){
+    this.eles = $(eles)||$('.scene');
+    this.animId = 0;
+    this.inAnim = false;
+    this.currentScene = 0;
+    this.step = 40;
+    this.smallstep = 4;
+    this.lockTime = 1000 ;//minimum use this value;
+    this.init();
+}
+scrollScene.prototype = {
+    init:function(){
+        var that = this;
+        window.onload = function(){
+            that.scroll();
+            that.currentScene = that.getCurrentScene();
+        };
+        that.resize();
+        that.stopAnim();
+        that.disableScrollBar();
+        that.setSceneDimension();
+    },
+    scroll:function(){
+        var that = this;
+        $(window).on('DOMMouseScroll mousewheel',function(e){
+            //release mouse outside scollScence
+            if(window.scrollY<that.firstEleOffsetTop || window.scrollY>=that.lastEleOffsetTop){
+               that.inAnim = false;
+               that.stopAnim();
+               return that.enableScrollBar();
+            }
+            //lock mouse when animation runs
+            if(that.inAnim){
+               that.disableScrollBar();
+               return false;
+            }
+            if(e.originalEvent.detail > 0 || e.originalEvent.wheelDelta < 0) {
+                if (that.currentScene < that.eles.length-1){
+                    that.currentScene++;
+                }
+                that.scrollDown(that.currentScene);
+            } else {
+                if (that.currentScene > 0){
+                    that.currentScene--;
+                }
+                that.scrollUp(that.currentScene);
+            }
+            //prevent page fom scrolling
+            //return false;
+            //console.log(that.currentScene);
+        });
+    },
+    enableScrollBar:function(){
+        //$('html').css({'overflow':'auto'});
+        //$('body').css({'overflow': '-moz-scrollbars-none'})
+    },
+    disableScrollBar:function(){
+        //$('html').css({'overflow-y':'hidden'});
+        //$('body').css({'overflow': '-moz-scrollbars-none'})
+    },
+    setSceneDimension:function(){
+        var that = this;
+        var eles = that.eles;
+ 
+        eles.css({
+            height:window.innerHeight,
+            width:'100%'
+        });
+ 
+        that.firstEleOffsetTop = that.eles.eq(0).offset().top;
+        that.lastEleOffsetTop = that.eles.eq(-1).offset().top;
+    },
+    getCurrentScene:function(){
+        var that = this;
+ 
+        var i = 0;
+        var len = that.eles.length;
+        var index;
+        var scrollY = window.scrollY;
+        var baseHeight = window.innerHeight;
+        var offsetY = that.firstEleOffsetTop;
+        if(scrollY < offsetY){
+            return index = 0;
+        }
+        if(scrollY > offsetY + (len-1)*baseHeight){
+            return index = len-1;
+        }
+ 
+        for(;i<len;i++){
+            if ( scrollY < i*baseHeight + offsetY ){
+                index = i-1;
+                break;
+            }
+        }
+        return index;
+    },
+    scrollDown:function(index){
+        var that = this;
+        var smallstep = that.smallstep;
+        var step = that.step;
+        var endPos = window.innerHeight*index+that.firstEleOffsetTop;
+        var lockTime = that.lockTime;
+        that.inAnim = true; //lock mousewheel
+        function repeat() {
+            if(window.scrollY >= endPos) {
+                setTimeout(function(){
+                    that.inAnim = false; //unlock mousewheel
+                },lockTime);
+                return that.stopAnim();
+            }
+ 
+            if(endPos - window.scrollY < smallstep){
+                window.scrollBy(0,1);
+            }else if(endPos - window.scrollY < step){
+                window.scrollBy(0,smallstep);
+            }else{
+                window.scrollBy(0,step);
+            }
+ 
+            that.animId = requestAnimationFrame(repeat);
+        }
+ 
+        //start
+        that.animId = requestAnimationFrame(repeat);
+    },
+    scrollUp:function(index){
+        var that = this;
+        var smallstep = that.smallstep;
+        var step = that.step;
+        var endPos = window.innerHeight*index+that.firstEleOffsetTop;
+        var lockTime = that.lockTime;
+        that.inAnim = true; //lock mousewheel
+        function repeat() {
+            if(window.scrollY <= endPos) {
+                setTimeout(function(){
+                    that.inAnim = false; //unlock mousewheel
+                },lockTime);
+                return that.stopAnim();
+            }
+ 
+            if(window.scrollY - endPos < smallstep){
+                window.scrollBy(0,-1);
+            }else if(window.scrollY - endPos < step){
+                window.scrollBy(0,-smallstep);
+            }else{
+                window.scrollBy(0,-step);
+            }
+ 
+            that.animId = requestAnimationFrame(repeat);
+        }
+ 
+        //start
+        that.animId = requestAnimationFrame(repeat);
+    },
+    resize:function(){
+        var that = this;
+        $(window).on('resize',function(){
+            that.stopAnim();
+            that.setSceneDimension();
+        });
+    },
+    stopAnim:function(){
+        var that = this;
+        cancelAnimationFrame(that.animId);
+    }
+};
+
 
