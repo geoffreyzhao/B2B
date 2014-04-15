@@ -1912,7 +1912,8 @@ scrollScene.prototype = {
         var that = this;
         var smallstep = that.smallstep;
         var step = that.step;
-        var endPos = window.innerHeight*index+that.firstEleOffsetTop;
+        //var endPos = window.innerHeight*index+that.firstEleOffsetTop;
+        var endPos = that.eles.eq(index).offset().top;
         var lockTime = that.lockTime;
         that.inAnim = true; //lock mousewheel
         function repeat() {
@@ -1959,7 +1960,8 @@ scrollScene.prototype = {
         var that = this;
         var smallstep = that.smallstep;
         var step = that.step;
-        var endPos = window.innerHeight*index+that.firstEleOffsetTop;
+        //var endPos = window.innerHeight*index+that.firstEleOffsetTop;
+        var endPos = that.eles.eq(index).offset().top;
         var lockTime = that.lockTime;
         that.inAnim = true; //lock mousewheel
         function repeat() {
