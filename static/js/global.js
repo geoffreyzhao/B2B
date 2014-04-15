@@ -1825,18 +1825,17 @@ function scrollScene(eles){
 scrollScene.prototype = {
     init:function(){
         var that = this;
-        window.onload = function(){
-            that.scroll();
-            that.currentScene = that.getCurrentScene();
-        };
+        that.scroll();
         that.resize();
         that.stopAnim();
         that.disableScrollBar();
         that.setSceneDimension();
+        that.currentScene = that.getCurrentScene();
     },
     scroll:function(){
         var that = this;
-        $(window).on('DOMMouseScroll mousewheel',function(e){
+        var win = window.addEventListener && !window.attachEvent ? $(window) : $('body');
+        win.on('DOMMouseScroll mousewheel',function(e){
             //release mouse outside scollScence
             if(window.scrollY<that.firstEleOffsetTop || window.scrollY>=that.lastEleOffsetTop){
                that.inAnim = false;
@@ -1861,16 +1860,13 @@ scrollScene.prototype = {
             }
             //prevent page fom scrolling
             //return false;
-            //console.log(that.currentScene);
         });
     },
     enableScrollBar:function(){
-        //$('html').css({'overflow':'auto'});
-        //$('body').css({'overflow': '-moz-scrollbars-none'})
+        //$('html').css({'overflow-y':'auto'});
     },
     disableScrollBar:function(){
         //$('html').css({'overflow-y':'hidden'});
-        //$('body').css({'overflow': '-moz-scrollbars-none'})
     },
     setSceneDimension:function(){
         var that = this;
@@ -1888,21 +1884,22 @@ scrollScene.prototype = {
         var that = this;
  
         var i = 0;
-        var len = that.eles.length;
+        var eles = that.eles;
+        var len = eles.length;
         var index;
         var scrollY = window.scrollY;
-        var baseHeight = window.innerHeight;
-        var offsetY = that.firstEleOffsetTop;
-        if(scrollY < offsetY){
+
+        if(scrollY < that.firstEleOffsetTop){
             return index = 0;
         }
-        if(scrollY > offsetY + (len-1)*baseHeight){
+
+        if(scrollY > that.lastEleOffsetTop ){
             return index = len-1;
         }
- 
+
         for(;i<len;i++){
-            if ( scrollY < i*baseHeight + offsetY ){
-                index = i-1;
+            if ( scrollY <= eles.eq(i).offset().top ){
+                index = i;
                 break;
             }
         }

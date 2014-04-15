@@ -52,13 +52,19 @@
 <script>
     $(function(){
         scrollSc = new scrollScene('.scene');
-        $(window).on('scroll',function(){
-            if(scrollSc.currentScene > 0 && window.scrollY <= scrollSc.lastEleOffsetTop-window.innerHeight){
+
+        var scrollEv = function(){
+            if(scrollSc.inAnim == false){
+                scrollSc.currentScene = scrollSc.getCurrentScene();
+            }
+            if(scrollSc.currentScene > 0 && scrollSc.currentScene < scrollSc.eles.length-1){
                 $('.vsroll').show(); 
             }else{
                 $('.vsroll').hide(); 
             }
-        });
+        };
+        $(window).on('scroll',scrollEv);
+
 
         $('.vsroll').on('click',function(){
             scrollSc.currentScene = scrollSc.currentScene + 1;
