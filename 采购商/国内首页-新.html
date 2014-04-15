@@ -97,7 +97,7 @@
             <ul>
                 <li><b data-role="ctype" data-index="1" data-group="qtab" class="current"> 机票预定</b></li>
                 <li><b data-role="ctype" data-index="2" data-group="qtab">PNR导入</b></li>
-                <li><a href="#"><b>询价单</b></a></li>
+                <li><b data-role="ctype" data-index="3" data-group="qtab">询价单</b></li>
             </ul>
             </aside>
             <div class="querytab-content col">
@@ -236,7 +236,15 @@
                         </li>
                     </ul>
                 </div>
-                <div class="querytab-sheet"></div>
+                <div class="querytab-sheet" data-role="ctype-item" data-index="3" data-group="qtab" style="display:none;">
+                    <div class="sheet-text">如有疑问请拨打 <s class="tel">400-720-6666</s>
+                        或联系 <a class="qqlink" href="javascript:;">QQ客服</a>
+                    </div>
+                    <ul class="clearfix">
+                        <li><a href="#" title="团队询价"><i class="sheet-icon1"></i><span class="sheet-name">团队询价</span></a></li>
+                        <li><a href="#" title="即将上线，敬请期待"><i class="sheet-icon2"></i><span class="sheet-name">公务机询价</span></a></li>
+                        </ul>
+                </div>
             </div>
             </div>
         </section>
@@ -295,10 +303,6 @@ $(function(){
     $('.input-pnr').on('blur',function(){
         $(this).addClass('invalid');
         $('.invalid-text').show();
-    });
-
-    $('.black-paste').on('focus',function(){
-        $('.uploader-wrapper').hide();
     });
 
     $('.querytab').on('click','.uploadComplete .progressCancel',function(){
