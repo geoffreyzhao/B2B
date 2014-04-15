@@ -7,9 +7,16 @@
 
     <link rel="stylesheet" href="../static/css/store_reset.css" media="all" />
     <link rel="stylesheet" href="../static/css/store.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="../static/css/kendo.store.css" />
     <!--[if IE]>
     <script src="../static/js/html5.js"></script>
     <![endif]-->
+    <script type="text/javascript" src="../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/js/global.js"></script>
+    <script type="text/javascript" src="../static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="../static/js/store/store.js"></script>
+
    <style>
       body{ color:#646464; font-size:12px;}
    </style> 
@@ -106,8 +113,40 @@
    
    <br>
    <br>
-   
-   <div class="pagination clearfix">
+    <br>
+
+    <h2>下面是四种超时状态</h2>
+    <br>
+    <a class="adaptiveButton mediumOrange_btn ac-overtimeFirst">
+        <span class="left"></span>
+        <span class="center center_1">超时状态1</span>
+        <span class="right"></span>
+    </a>
+    <br>
+    <br>
+    <a class="adaptiveButton mediumOrange_btn ac-overtimeSecond">
+        <span class="left"></span>
+        <span class="center center_1">超时状态2</span>
+        <span class="right"></span>
+    </a>
+    <br>
+    <br>
+    <a class="adaptiveButton mediumOrange_btn ac-overtimeThird">
+        <span class="left"></span>
+        <span class="center center_1">超时状态3</span>
+        <span class="right"></span>
+    </a>
+    <br>
+    <br>
+    <a class="adaptiveButton mediumOrange_btn ac-overtimeFourth">
+        <span class="left"></span>
+        <span class="center center_1">超时状态4</span>
+        <span class="right"></span>
+    </a>
+    <br>
+    <br>
+
+    <div class="pagination clearfix">
         <ul>
              <li><a href="#">上一页</a></li>
              <li><a href="#">1</a></li>
@@ -230,11 +269,144 @@
         <br/>
         <br/>
         <br/>
-    </div>
+</div>
+
+
+
+    <script type="text/x-kendo-template" id="ac-overtimeFirst-template">
+        <div class="overTimeContent">
+            <div class="row userContent">
+                <b class="userName">yiding2324</b>
+            </div>
+            <div class="row large">
+                <i class="psw"></i>
+                <input type="password" autocomplete="off" name="password" style="width:200px;border:0;" value="">
+                <label class="cover">请输入密码</label>
+                <div class="forget clearfix">
+                    <a href="javascript:void(0)" class="pull-right">忘记密码?</a>
+                </div>
+            </div>
+            <div class="row loadingBtn">登 录</div>
+            <div class="changeAccNumber">
+                <a href="javascript:void(0);">切换账号</a>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-overtimeSecond-template">
+        <div class="overTimeContent">
+            <div class="row userContent">
+                <b class="userName">yiding2324</b>
+            </div>
+            <div class="row tips">
+                <i class="wrong"></i>
+                <label class="tipContent">用户名密码错误</label>
+                <div class="tipChange clearfix">
+                    <a href="javascript:void(0)" class="pull-right">切换账号</a>
+                </div>
+            </div>
+            <div class="row large">
+                <i class="psw"></i>
+                <input type="password" autocomplete="off" name="password" style="width:200px;border:0;" value="">
+                <label class="cover">请输入密码</label>
+                <div class="forget clearfix">
+                    <a href="javascript:void(0)" class="pull-right">忘记密码?</a>
+                </div>
+            </div>
+            <div class="row small">
+                <i></i>
+                <input type="text" autocomplete="off" name="auth_code" style="width:100px;border:0px;" value="">
+                <label class="cover" style="left:8px">验证码</label>
+                <a class="authcode" href="javascript:void(0);" title="点击刷新" ><img style="width:110px;height:40px;" src="http://o.op.com:8180/tops-front-operator-biz/captcha/gen"></a>
+            </div>
+            <div class="row loadingBtn">登 录</div>
+            <div class="changeAccNumber">
+                <a href="javascript:void(0);">切换账号</a>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-overtimeThird-template">
+        <div class="overTimeContent">
+            <div class="row large">
+                <i class="username"></i>
+                <input type="text" name="username" value="" style="width:200px;border:0;">
+                <label class="cover">请输入用户名</label>
+            </div>
+            <div class="row large">
+                <i class="psw"></i>
+                <input type="password" autocomplete="off" name="password" style="width:200px;border:0;" value="">
+                <label class="cover">请输入密码</label>
+                <div class="forget clearfix">
+                    <a href="javascript:void(0)" class="pull-right">忘记密码?</a>
+                </div>
+            </div>
+            <div class="row loadingBtn">登 录</div>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-overtimeFourth-template">
+        <div class="overTimeContent">
+            <div class="row tips">
+                <i class="wrong"></i>
+                <label class="tipContent">用户名密码错误</label>
+            </div>
+            <div class="row large">
+                <i class="username"></i>
+                <input type="text" name="username" value="" style="width:200px;border:0;">
+                <label class="cover">请输入用户名</label>
+            </div>
+            <div class="row large">
+                <i class="psw"></i>
+                <input type="password" autocomplete="off" name="password" style="width:200px;border:0;" value="">
+                <label class="cover">请输入密码</label>
+                <div class="forget clearfix">
+                    <a href="javascript:void(0)" class="pull-right">忘记密码?</a>
+                </div>
+            </div>
+            <div class="row small">
+                <i></i>
+                <input type="text" autocomplete="off" name="auth_code" style="width:100px;border:0px;" value="">
+                <label class="cover" style="left:8px">验证码</label>
+                <a class="authcode" href="javascript:void(0);" title="点击刷新"><img style="width:110px;height:40px;" src="http://o.op.com:8180/tops-front-operator-biz/captcha/gen"></a>
+            </div>
+            <div class="row loadingBtn">登 录</div>
+        </div>
+    </script>
 
    
-   <br>
-   <br>
-   </div>
+    <script>
+        $(function(){
+            new PopWindow('.ac-overtimeFirst',{
+                template:'#ac-overtimeFirst-template',
+                title:'请重新登录',
+                actions:false,
+                width:'420'
+            }).init();
+
+            new PopWindow('.ac-overtimeSecond',{
+                template:'#ac-overtimeSecond-template',
+                title:'请重新登录',
+                actions:false,
+                width:'420'
+            }).init();
+
+            new PopWindow('.ac-overtimeThird',{
+                template:'#ac-overtimeThird-template',
+                title:'请重新登录',
+                actions:false,
+                width:'420'
+            }).init();
+
+            new PopWindow('.ac-overtimeFourth',{
+                template:'#ac-overtimeFourth-template',
+                title:'请重新登录',
+                actions:false,
+                width:'420'
+            }).init();
+
+        });
+    </script>
+
 </body>
 </html>
