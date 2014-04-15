@@ -38,6 +38,7 @@
 <div class="main-wrapper">
 <section class="main-body clearfix">
 <b class="roll vsroll"><span>向下滚动</span><i class="state1">&nbsp;</i><i class="state2">&nbsp;</i></b>
+<div class="scene" style="position:absolute;top:-70px;"></div>
 <div class="s0">
 <b class="roll"><span>向下滚动</span><i class="state1">&nbsp;</i><i class="state2">&nbsp;</i></b>
 </div>
@@ -52,7 +53,7 @@
     $(function(){
         scrollSc = new scrollScene('.scene');
         $(window).on('scroll',function(){
-            if(window.scrollY >= scrollSc.firstEleOffsetTop && window.scrollY <= scrollSc.lastEleOffsetTop-window.innerHeight){
+            if(scrollSc.currentScene > 0 && window.scrollY <= scrollSc.lastEleOffsetTop-window.innerHeight){
                 $('.vsroll').show(); 
             }else{
                 $('.vsroll').hide(); 
@@ -65,7 +66,7 @@
         });
 
         $('.s0 .roll').on('click',function(){
-            scrollSc.currentScene = 0;
+            scrollSc.currentScene = 1;
             scrollSc.scrollDown(scrollSc.currentScene); 
         });
 
