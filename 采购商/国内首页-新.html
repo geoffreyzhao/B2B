@@ -212,7 +212,7 @@
 5. 注意:复制的内容建议从RT编码开始复制到PAT:A结果的所有内容。儿童PNR编码,请走儿 童订单专用通道。
 </textarea>
                         <div class="btn_area">
-                              <button type="button" class="btn btn-c1 btn-s1">创建订单</button>
+                              <button type="button" class="btn btn-c1 btn-s1 ac-new">创建订单</button>
                         </div>
                         </div>
                     <div class="col pnr-notes">
@@ -245,6 +245,17 @@
             </div>
             </div>
         </section>
+<script type="text/x-kendo-template" id="ac-new-template">
+    <div class="new-order">
+        <center>
+            <p>提示文字提示文提示文提示文字字字</p>
+            <div>
+                <button type="button" class="btn btn-c1 btn-s2">提交</button>
+                <b class="btn close">取消</b>
+            </div>
+        </center>
+    </div>
+</script>
 
 <script type="text/x-kendo-template" id="city_popup">
 <div id="gn-tabstrip" class="tcy_tabstrip">
@@ -296,6 +307,12 @@ $(function(){
     $.role_ctype({
         changeClass:'current'
     });
+
+    new PopWindow('.ac-new',{
+        template:'#ac-new-template',
+        title:'创建订单',
+        width:470
+    }).init();
 
     $('.input-pnr').on('blur',function(){
         $(this).addClass('invalid');
