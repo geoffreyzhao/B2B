@@ -234,7 +234,7 @@
 
 
 <div class="panel">
-<div class="panelTitle">退订产品</div>
+<div class="panelTitle">预定产品</div>
 <span class="unimportantText" style="float:right">酒店确认码：<span class="txt_l3">xxxxxx</span></span>
 
 <div class="clearfix">
@@ -261,9 +261,9 @@
         <tr>
             <td class="fieldName">电话</td>
             <td class="txt_orange fwb">021-11111111</td>
-            <td class="fieldName">加床</td>
-            <td>不可加床</td>
             <td class="fieldName">房型</td>
+            <td>标准房</td>
+            <td class="fieldName">床型</td>
             <td>大床 1800*2200mm</td>
             <td class="fieldName">入住人数</td>
             <td>2人</td>
@@ -828,6 +828,28 @@
 </div>
 </script>
 
+<script type="text/html" id="checkSupplierRulesTemplate">
+    <div class="checkSupplierRulesContainer">
+        <div class="tab"></div>
+        <div class="checkSupplierRulesContent">
+            <div class="fwb">取消费用：</div>
+            <ul>
+                <li>2014年04月 18 日 或更早 不收取费用sfdsdwerwerwerhdfhdghrew</li>
+                <li>2014年04月 18 日 或更早 不收取费用</li>
+                <li>2014年04月 18 日 或更早 不收取费用</li>
+                <li>2014年04月 18 日 或更早 不收取费用</li>
+            </ul>
+            <div class="fwb" style="margin-top: 15px;">更改费用：</div>
+            <ul>
+                <li>2014年04月 18 日 或更早 不收取费用</li>
+                <li>2014年04月 18 日 或更早 不收取费用</li>
+                <li>2014年04月 18 日 或更早 不收取费用</li>
+                <li>2014年04月 18 日 或更早 不收取费用</li>
+            </ul>
+        </div>
+    </div>
+</script>
+
 <script type="text/html" id="tddPromptTemplate">
     <div class="tddPrompt" style="z-index: 10010">
         <div>
@@ -861,6 +883,16 @@
             width:730,
             template:$("#tddTemplate")
         }).init();
+
+        FloatLayer({
+            trigger:".btn_checkSupplierRules",
+            template:"#checkSupplierRulesTemplate",
+            offsetX:function(el){
+                var tmp=parseInt(-$(el).width()+115);
+                return tmp;
+            },
+            offsetY:20
+        })
     })
 
     var promptW=$.prompt({content:$("#tddPromptTemplate").html(),bgOpacity:0,autoClose:false,zIndex:10101});
