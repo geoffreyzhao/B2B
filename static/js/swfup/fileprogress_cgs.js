@@ -253,9 +253,7 @@ function fileQueued(file) {
 }
 
 function fileDialogStart(e){
-    $('.uploader-wrapper').show();
-    $('.fl-uploader-errfiles').empty();
-    $('.fl-uploader-error:visible').hide();
+
 }
 
 
@@ -263,6 +261,9 @@ function fileDialogComplete(numFilesSelected, numFilesQueued) {
 	try {
 		if (numFilesQueued > 0) {
 			/* I want auto start and I can do that here */
+			$('.uploader-wrapper').show();
+    		$('.fl-uploader-errfiles').empty();
+   			$('.fl-uploader-error:visible').hide();
 			this.startUpload();
 		}
 		
