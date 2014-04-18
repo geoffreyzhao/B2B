@@ -10,14 +10,14 @@ $(function() {
             $("html, body").animate({ scrollTop: 0 }, 120);
     }), $backToTopFun = function() {
         var st = $(document).scrollTop(), winh = $(window).height();
-        (st > 800)? $backToTopEle.show(): $backToTopEle.hide();    
+        (st > 800)? $backToTopEle.show(): $backToTopEle.hide();
         //IE6下的定位
         if (!window.XMLHttpRequest) {
             $backToTopEle.css("top", st + winh - 166);
 //            $advice.css("top", st + winh - 166);
         }
     };//$advice=$('<a class="advice"></a>').appendTo($("body"));
-    
+
     $(window).bind("scroll", $backToTopFun);
     /*
     $(window).bind("resize", function(){
@@ -28,7 +28,7 @@ $(function() {
     });
     */
     $(function() { $backToTopFun(); });
-	
+
     if(typeof($.datepicker) != "undefined"){
         $.datepicker.regional[ "zh-CN" ];
 
@@ -38,7 +38,10 @@ $(function() {
 			numberOfMonths:[1,2],
 			minDate :new Date(),
 			firstDay:0,
-			showButtonPanel :true
+			showButtonPanel :true,
+            onSelect:function(){
+                $(this).trigger("change");
+            }
 		};
 
         var dpSettingUlt = {
@@ -70,7 +73,7 @@ $(function() {
             }
         });
     }
-		
+
     if(typeof(kendo) != "undefined"){
         kendo.init($("body"));
     }
@@ -78,7 +81,7 @@ $(function() {
     $("body").delegate(".toggle_trigger","click",function(){
         var that = $(this),
             t = that,
-            textFilter = t, 
+            textFilter = t,
             temp,
             i,j,
             noslide,
@@ -95,7 +98,7 @@ $(function() {
         }
 
         if(o.textFilter) {
-            textFilter = $(o.textFilter,that); 
+            textFilter = $(o.textFilter,that);
         }
 
         temp = $(o.target).get(0);
@@ -159,7 +162,7 @@ $(function() {
         }
     });
 
-	
+
 	$(".upProcess i").each(function(index){
 		var cur = $(this);
 		var x = 0,y = 0;
@@ -168,9 +171,9 @@ $(function() {
 		}else if(cur.hasClass("unable")){
 			x = 32;
 		}
-		
+
 		y = (parseInt(cur.html()) - 1) * 16;
-		
+
 		cur.css({"background-position":" -" + x + "px -" + y + "px"});
 	});
 });
