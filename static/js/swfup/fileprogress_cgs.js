@@ -50,7 +50,9 @@ function FileProgress(file, targetID) {
 
 		this.fileProgressWrapper.appendChild(this.fileProgressElement);
 
-		document.getElementById(targetID).appendChild(this.fileProgressWrapper);
+		//document.getElementById(targetID).appendChild(this.fileProgressWrapper);
+		var container = document.getElementById(targetID)
+            container.insertBefore(this.fileProgressWrapper,container.firstChild);
 	} else {
 		this.fileProgressElement = this.fileProgressWrapper.firstChild;
 		this.reset();
