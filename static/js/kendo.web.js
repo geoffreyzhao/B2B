@@ -17950,10 +17950,8 @@ kendo_module({
             if (!placeholderSupported && options.placeholder) {
                 $(function(){
                     element.placeholderEle = $('<span class="k-placeholder">'+options.placeholder+'</span>').insertAfter(element);
-                    element.placeholderEle.on('click',function(e){
-                        setTimeout(function(){
-                            element.focus();
-                        },10);
+                    element.placeholderEle.on('focus',function(e){
+                        element.focus();
                     });
 
                     if(element[0].value === ''){
@@ -17965,8 +17963,8 @@ kendo_module({
                             element.placeholderEle.hide();
                         }else{
                             element.placeholderEle.show();
-                        } 
-                    }); 
+                        }
+                    });
 
                 });
             }
