@@ -17951,7 +17951,9 @@ kendo_module({
                 $(function(){
                     element.placeholderEle = $('<span class="k-placeholder">'+options.placeholder+'</span>').insertAfter(element);
                     element.placeholderEle.on('click',function(e){
-                        element.focus();
+                        setTimeout(function(){
+                            element.focus();
+                        },10);
                     });
 
                     if(element[0].value === ''){
