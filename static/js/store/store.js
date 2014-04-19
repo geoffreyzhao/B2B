@@ -176,5 +176,22 @@ $(function() {
 
 		cur.css({"background-position":" -" + x + "px -" + y + "px"});
 	});
+
+
+    $('body').on('change','.placeholdersjs',function(){
+        var that = $(this);
+        var ptext = that.data('placeholderValue');
+        var val = that.val();
+
+        console.log('val:'+$(this).val());
+        console.log('ptext:'+ptext);
+
+        if( val=='' || val == ptext){
+            that.css('color','#aaa');
+        }else{
+            that.css('color','#666');
+        }
+    });
+
 });
 
