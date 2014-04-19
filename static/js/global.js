@@ -273,7 +273,7 @@ var FloatLayer = function(opts){
         t = e.target;
         var ele = opts.trigger.length > 0 ? opts.trigger:opts.trigger.selector;
         if ( !$(t).is(ele) && opts.trigger.has(t).length===0 ){
-            if ( $(t).closest('.ac-floatlayer').length !==1 ){
+            if ( $(t).closest('.ac-floatlayer').length !==1 && !$(t).hasClass('k-placeholder') ){
                 layer.close();
             }
         }
