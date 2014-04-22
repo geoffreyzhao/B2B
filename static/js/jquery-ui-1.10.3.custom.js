@@ -3022,9 +3022,11 @@ $.extend(Datepicker.prototype, {
 
             inst.dayWrapper = dayWrapper;
 
-            var data_value = $.datepicker.parseDate(this._get(inst, 'dateFormat'), inst.input.val());
-            if($.type(data_value) == 'date'){
-                $.datepicker._setDay(inst);
+            if(!/[^\d-]/.test(inst.input.val())) {//by zzz 2014-04-22
+                var data_value = $.datepicker.parseDate(this._get(inst, 'dateFormat'), inst.input.val());
+                if ($.type(data_value) == 'date') {
+                    $.datepicker._setDay(inst);
+                }
             }
         }
 	},
