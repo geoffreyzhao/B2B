@@ -183,9 +183,6 @@ $(function() {
         var ptext = that.data('placeholderValue');
         var val = that.val();
 
-        console.log('val:'+$(this).val());
-        console.log('ptext:'+ptext);
-
         if( val=='' || val == ptext){
             that.css('color','#aaa');
         }else{
