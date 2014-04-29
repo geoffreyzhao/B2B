@@ -181,7 +181,7 @@
                                     </colgroup>
                                     <tr>
                                         <th>出发城市</th>
-                                        <td><input class="city_ac" style="width:150px;" type="text"></td>
+                                        <td><input class="inter_city_ac" style="width:150px;" type="text"></td>
                                     </tr>
                                     <tr>
                                         <th>入住日期</th>
@@ -278,6 +278,47 @@
 # } #
 </div>
 </script>
+
+<script type="text/x-kendo-template" id="inter_city_popup">
+            <div id="gn-tabstrip" class="tcy_tabstrip">
+<span class="tcy_title">
+    热门城市
+</span>
+                <ul style="display: none;">
+                    <li id="hot_city" class="k-state-active">热门</li>
+                    # for (var i=0; i<data.group.length; i++ ) { #
+                    <li>#= data.group[i] #</li>
+                    # } #
+                </ul>
+                <div id="hot_city_tab">
+                    <ul class="tcy_list clearfix">
+
+                        # for(var j=0;j<hotcitylist.length;j++){ #
+                        # var citylist_item = hotcitylist[j] #
+                        <li class="item" title="#= citylist_item.code #" data-code="#= citylist_item.code #">#= citylist_item.name #</li>
+                        # } #
+                    </ul>
+                </div>
+
+                # for(var i=0;i<data.citylist.length;i++){ #
+                # var citylist_item = data.citylist[i] #
+                <div class="city_tab">
+                    <ul class="tcy_list clearfix">
+                        # for(var k=0;k<data.group[i].length;k++){ #
+                        <li class="tcy_list_sep">#= data.group[i].split('')[k] #</li>
+                        # for(var j=0;j<citylist_item.value.length;j++){ #
+                        # var citylist_value_item = citylist_item.value[j]; #
+                        # if(citylist_value_item.py.slice(0,1) == data.group[i].split('')[k]) {#
+                        <li class="item" title="#= citylist_value_item.code #" data-code="#= citylist_value_item.code #">#= citylist_value_item.name #</li>
+                        # } #
+                        # } #
+                        # } #
+                    </ul>
+                </div>
+
+                # } #
+            </div>
+</script>
 <script>
     $(function(){
         $.role_ctype({
@@ -331,6 +372,18 @@
     }
 
     createCityAc(".city_ac");
+
+        function createInterCityAc(ele){
+            CityAutocomplete({
+                template: "#inter_city_popup",
+                input: ele,
+                width: 200,
+                url:'/static/js/data.txt',
+                group: ["热门"]
+            });
+        }
+
+        createInterCityAc(".inter_city_ac");
 
     })
     </script>
