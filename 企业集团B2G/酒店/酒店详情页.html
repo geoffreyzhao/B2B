@@ -961,41 +961,44 @@
 
 	<script>
 
-		$(function(){
-				   
-           var a_pos = [];
-           $(".changeList a").each(function(index){
-               var href= $(this).attr("href");
-               a_pos.push($("a[name=" + href.substring(1) + "]").offset());
-                $(this).click(function(e){
-                    e.preventDefault();
+        $(function(){
 
-                    $(this).siblings().removeClass('currentLi');
-                    $(this).addClass("currentLi");
-                    setTimeout(function(){
-                      location.href=href;		
-                    },100);
+            $(function(){
+
+                var a_pos = [];
+                $(".changeList a").each(function(index){
+                    var href= $(this).attr("href");
+                    a_pos.push($("a[name=" + href.substring(1) + "]").offset());
+                    $(this).click(function(e){
+                        e.preventDefault();
+
+                        $(this).siblings().removeClass('currentLi');
+                        $(this).addClass("currentLi");
+                        setTimeout(function(){
+                            location.href=href;
+                        },100);
+                    });
                 });
-            });
 
-            $(window).bind("scroll",function(e){
-                var that = $(".changeList");
-                var currentPos = that.offset();
-                var i = 0;
-                for(i = a_pos.length - 1; i >=0 ; i--){
-                    if(currentPos.top >= a_pos[i].top){
-                        that.find("a").removeClass('currentLi');
-                        $("a:eq(" + i + ")" , that).addClass("currentLi");
-                        break;
+                $(window).bind("scroll",function(e){
+                    var that = $(".changeList");
+                    var currentPos = that.offset();
+                    var i = 0;
+                    for(i = a_pos.length - 1; i >=0 ; i--){
+                        if(currentPos.top >= a_pos[i].top){
+                            that.find("a").removeClass('currentLi');
+                            $("a:eq(" + i + ")" , that).addClass("currentLi");
+                            break;
+                        }
                     }
-                }
 
-            });
+                });
 
-			$(".changeList").fixedBar();
+                $(".changeList").fixedBar();
 
 
-             var map_window = new PopWindow(".hotel-map", { 
+
+                var map_window = new PopWindow(".hotel-map", { 
                     title:"XXXX酒店",
                     width:1080,
                     height:480,

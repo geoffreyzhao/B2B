@@ -28,7 +28,7 @@
 <body>
 <div class="main-wrapper">
     <header class="main-header">
-        <a class="logo" href="/"><h1>天地行</h1></a>
+        <a class="logo" href="/" name="hotel_img"><h1>天地行</h1></a>
         <nav class="main-nav">
             <ul class="clearfix">
                 <li class="first"><a herf="#">首页</a></li>
@@ -137,15 +137,15 @@
       
 		<!--houseType booking-->
 		 <div class="hotel-info-item" style="border-bottom:none">
-			  <ul class="changeList clearfix">
-			    <li><a href="#"><i></i>酒店图片</a></li>
-				<li class="liLine"></li>
-				<li><a href="#house_type" class="currentLi"><i></i>房型预定</a></li>
-				<li class="liLine"></li>
-				<li><a href="#introduce"><i></i>酒店介绍</a></li>
-				<li class="liLine"></li>
-				<li><a href="#facility"><i></i>服务设施</a></li>
-			  </ul>
+              <ul class="changeList clearfix">
+                  <li><a href="#hotel_img"><i></i>酒店图片</a></li>
+                  <li class="liLine"></li>
+                  <li><a href="#house_type" class="currentLi"><i></i>房型预定</a></li>
+                  <li class="liLine"></li>
+                  <li><a href="#introduce"><i></i>酒店介绍</a></li>
+                  <li class="liLine"></li>
+                  <li><a href="#facility"><i></i>服务设施</a></li>
+              </ul>
 			<div class="house_search">
 			  <div class="condition">
 			  <b>重新查询价格</b>
@@ -157,7 +157,7 @@
                     <option value="1">1</option>
                 </select>
             </label>
-            <a class="adaptiveButton brightRed_btn medium">
+            <a class="adaptiveButton brightRed_btn medium" name="house_type">
                 <span class="left"></span>
                 <span class="center">查询</span>
                 <span class="right"></span>
@@ -635,9 +635,53 @@
 
                 }).init();
 
-        $(".changeList").fixedBar();
-		
     })
+</script>
+<script>
+
+    $(function(){
+
+        var a_pos = [];
+        var flag=true;
+        $(".changeList a:gt(0)").each(function(index){
+            var href= $(this).attr("href");
+            a_pos.push($("a[name=" + href.substring(1) + "]").offset());
+
+        });
+
+        $(".changeList a").click(function(e){
+            flag=false;
+            e.preventDefault();
+            var href= $(this).attr("href");
+            $(this).closest("li").siblings().find("a").removeClass('currentLi');
+            $(this).addClass("currentLi");
+            setTimeout(function(){
+                location.href=href;
+            },100);
+        });
+
+        $(window).bind("scroll",function(e){
+            if(flag){
+                var that = $(".changeList");
+                var currentPos = that.offset();
+                var i = 0;
+                console.dir(a_pos);
+                for(i = a_pos.length - 1; i >=0 ; i--){
+                    if(currentPos.top >= a_pos[i].top){
+                        that.find("a").removeClass('currentLi');
+                        $("a:eq(" + (i+1) + ")" , that).addClass("currentLi");
+                        return false;
+                    }
+                }
+                that.find("a").removeClass('currentLi');
+                $("a:first" , that).addClass("currentLi");
+            }
+            flag=true;
+        });
+
+        $(".changeList").fixedBar();
+
+    });
 </script>
 </body>
 </html>

@@ -27,7 +27,7 @@
 <body>
 <div class="main-wrapper">
     <header class="main-header">
-        <a class="logo" href="/"><h1>天地行</h1></a>
+        <a class="logo" href="/" name="hotel_img"><h1>天地行</h1></a>
         <nav class="main-nav">
             <ul class="clearfix">
                 <li class="first"><a herf="#">首页</a></li>
@@ -137,7 +137,7 @@
 		<!--houseType booking-->
 		 <div class="hotel-info-item" style="border-bottom:none">
 			  <ul class="changeList clearfix">
-			    <li><a href="#"><i></i>酒店图片</a></li>
+			    <li><a href="#hotel_img"><i></i>酒店图片</a></li>
 				<li class="liLine"></li>
 				<li><a href="#house_type" class="currentLi"><i></i>房型预定</a></li>
 				<li class="liLine"></li>
@@ -163,7 +163,7 @@
                  </select>间
             
 			<label style="margin-left: 6px;"><strong>客人国籍</strong><input type="text" name="" placeholder="" style="width:100px;" class="gray-border"/></label>
-            <a class="adaptiveButton brightRed_btn medium" style="margin-top: -4px;">
+            <a class="adaptiveButton brightRed_btn medium" style="margin-top: -4px;" name="house_type">
                 <span class="left"></span>
                 <span class="center center_1">查询</span>
                 <span class="right"></span>
@@ -349,9 +349,8 @@
 	  <!--house introduce-->
 		 <div class="hotel-info-item">
 		    <a name="introduce"></a>
-			<ul class="changeList clearfix">
-				<li style="padding-left: 20px;">酒店介绍</li>
-			 </ul>
+             <div class="hotelItemTitle">酒店介绍</div>
+			 
 			<div class="abroadhotelIntroduce">
 			  <h5>餐厅</h5>
 			  <p>Great American Grill.</p>
@@ -391,9 +390,9 @@
 	   <!--house equipments-->
 		 <div class="hotel-info-item">
 		    <a name="facility"></a>
-		     <ul class="changeList clearfix">
-				<li style="padding-left: 20px;">位置交通</li>
-		     </ul>
+		     <div class="hotelItemTitle">
+				位置交通
+		     </div>
 			<div class="abroadhotelEquipment">
 			   <div class="hotelMap" style="position: relative;">
 		        <img src="../../static/images/store/abroadhotelMap.jpg" alt="地图" />
@@ -639,14 +638,14 @@
 			trigger:'.roomTypeDetailContainer .importantFont',
 			template:'#importantTemplate',
 			offsetY:30,
-			offsetX:-140,
+			offsetX:-140
 		});
 
 		FloatLayer({
 			trigger:'.roomTypeDetailContainer .stipulateFont',
 			template:'#stipulateTemplate',
 			offsetY:30,
-			offsetX:-342,
+			offsetX:-342
 		});
 
 		 $(".roomTypeDetailContainer .assistTips").kendoTooltip({
@@ -665,7 +664,7 @@
 				return $("#salePriceTblTemplate").html();
 			},
 			callout:false,
-			offsetY:8,
+			offsetY:8
 		});
 
         $(".hotelGalleryImagesContainer").jCarouselLite({
@@ -757,19 +756,62 @@
                 var lis=$("li",ul).length;
                 if(ul.position().left<=-(lis-1)*400) return false;
                 ul.animate({left:"-=400"});
-            })
+            });
 
             $("body").delegate(".right_Arrow","click",function(){
                 var ul=$(this).siblings(".bigImgBlock").find("ul");
                 var lis=$("li",ul).length;
                 if(ul.position().left>=0) return false;
                 ul.animate({left:"+=400"});
-            })
+            });
 
-            $(".changeList").fixedBar();
-
-		
     })
+</script>
+<script>
+
+    $(function(){
+
+        var a_pos = [];
+        var flag=true;
+        $(".changeList a:gt(0)").each(function(index){
+            var href= $(this).attr("href");
+            a_pos.push($("a[name=" + href.substring(1) + "]").offset());
+            
+        });
+
+        $(".changeList a").click(function(e){
+            flag=false;
+            e.preventDefault();
+            var href= $(this).attr("href");
+            $(this).closest("li").siblings().find("a").removeClass('currentLi');
+            $(this).addClass("currentLi");
+            setTimeout(function(){
+                location.href=href;
+            },100);
+        });
+
+        $(window).bind("scroll",function(e){
+            if(flag){
+                var that = $(".changeList");
+                var currentPos = that.offset();
+                var i = 0;
+                console.dir(a_pos);
+                for(i = a_pos.length - 1; i >=0 ; i--){
+                    if(currentPos.top >= a_pos[i].top){
+                        that.find("a").removeClass('currentLi');
+                        $("a:eq(" + (i+1) + ")" , that).addClass("currentLi");
+                        return false;
+                    }
+                }
+                that.find("a").removeClass('currentLi');
+                $("a:first" , that).addClass("currentLi");
+            }
+            flag=true;
+        });
+
+        $(".changeList").fixedBar();
+
+    });
 </script>
 </body>
 </html>
