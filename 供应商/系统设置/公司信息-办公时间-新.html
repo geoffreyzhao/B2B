@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>系统设置 公司信息</title>
+    <meta charset="utf-8"/>
+    <link href="/static/css/kendo.common.css" rel="stylesheet"/>
+    <link href="/static/css/kendo.gray.css" rel="stylesheet"/>
+    <link href="/static/css/common.css" rel="stylesheet"/>
+    <link href="/static/css/supplier.css" rel="stylesheet"/>
+    <link href="/static/css/kendo.reset.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/static/css/ie.css"/>
+    <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/static/js/supplier/supplier_sync.js"></script>
+    <!-- @CLB@ -->
+
+    <style>
+        
+    </style>
+</head>
+<body>
+<div id="extHeader">
+    <div></div>
+</div>
+
+<div id="container">
+    <div class="header">
+        <h1></h1>
+
+        <div>
+            <span>你好,${name}</span>
+            <a href="javascript:void(0);">退出</a>
+        </div>
+        <ul id="top_menu">
+            <li><a href="javascript:void(0);">国内机票</a></li>
+            <li><a href="javascript:void(0);">国际机票</a></li>
+            <li><a href="javascript:void(0);">酒店</a></li>
+            <li><a href="javascript:void(0);">票证中心</a></li>
+            <li><a href="javascript:void(0);">财务管理</a></li>
+            <li><a href="javascript:void(0);">客户管理</a></li>
+            <li class="current"><a href="javascript:void(0);">系统设置</a></li>
+        </ul>
+        <ol class="sub_menu">
+            <li class="current"><a href="javascript:void(0);">公告信息</a></li>
+            <li><a href="javascript:void(0);">公司信息</a></li>
+            <li><a href="javascript:void(0);">组织架构</a></li>
+            <li><a href="javascript:void(0);">角色维护</a></li>
+            <li><a href="javascript:void(0);">基础数据</a></li>
+        </ol>
+        <div id="message">
+            <a href="javascript:void(0);">消息</a>
+            <span>New</span>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="sub_menu_bar"></div>
+    <div id="mainContent">
+        <div class="actions block">
+            <div class="col col-l">
+                <a class="item" href="">基本信息</a>
+                <a class="item highlight" href="">办公时间</a>
+            </div>
+            <div class="col col-r sep-l">
+                <a href="javascript:;" class="button_important adaptiveButton small">
+                    <span class="left"></span>
+                    <span class="center">保存</span>
+                    <span class="right"></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="block domesticTicketTimeContainer">
+            <div class="block-title-domesticTicket">
+                <span class="block-title-content">国内机票</span>
+                <a href="javascript:;" class="copyInternationalTicketTime">复制国际时间</a>
+            </div>
+            <div class="block-field">
+                <table class="cv-table">
+                    <colgroup>
+                        <col width="100">
+                        <col width="">
+                    </colgroup>
+
+                    <tr>
+                        <th>正常上班时间：</th>
+                        <td>
+                            <span class="mm10" style="line-height: 22px">周一、二、三、四、五上班时间</span>
+                            <div class="timeModifyContainer">
+                                <a href="javascript:;" class="ac-add" data-bind="click:nwtD_add">添加</a>
+                                <div data-template="wtTemplate" data-bind="source:nwtD">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>双休上班时间：</th>
+                        <td>
+                            <span class="mm10" style="line-height: 22px">周六、日双休上班时间</span>
+                            <div class="timeModifyContainer">
+                                <a href="javascript:;" class="ac-add" data-bind="click:dwtD_add">添加</a>
+                                <div data-template="wtTemplate" data-bind="source:dwtD">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>法定假日时间：</th>
+                        <td>
+                            <span class="mm10" style="line-height: 22px">国家法定节假日上班时间</span>
+                            <div class="timeModifyContainer">
+                                <a href="javascript:;" class="ac-add" data-bind="click:lwtD_add">添加</a>
+                                <div data-template="wtTemplate" data-bind="source:lwtD">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="block internationalTicketTimeContainer">
+            <div class="block-title-internationalTicket">
+                <span class="block-title-content">国际机票</span>
+                <a href="javascript:;" class="copyDomesticTicketTime">复制国内时间</a>
+            </div>
+            <div class="block-field">
+                <table class="cv-table">
+                    <colgroup>
+                        <col width="100">
+                        <col width="">
+                    </colgroup>
+
+                    <tr>
+                        <th>正常上班时间：</th>
+                        <td>
+                            <span class="mm10" style="line-height: 22px">周一、二、三、四、五上班时间</span>
+                            <div class="timeModifyContainer">
+                                <a href="javascript:;" class="ac-add" data-bind="click:nwtD_add">添加</a>
+                                <div data-template="wtTemplate" data-bind="source:nwtD">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>双休上班时间：</th>
+                        <td>
+                            <span class="mm10" style="line-height: 22px">周六、日双休上班时间</span>
+                            <div class="timeModifyContainer">
+                                <a href="javascript:;" class="ac-add" data-bind="click:dwtD_add">添加</a>
+                                <div data-template="wtTemplate" data-bind="source:dwtD">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>法定假日时间：</th>
+                        <td>
+                            <span class="mm10" style="line-height: 22px">国家法定节假日上班时间</span>
+                            <div class="timeModifyContainer">
+                                <a href="javascript:;" class="ac-add" data-bind="click:lwtD_add">添加</a>
+                                <div data-template="wtTemplate" data-bind="source:lwtD">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+<script type="text/html" id="wtTemplate">
+    <div class="div_worktime">
+        <input class="time60 hours_select" data-bind="value:sth" type="text">
+        <b>:</b>
+        <input class="time60 minutes_select" data-bind="value:stm" type="text">
+        <span class="mm10">至</span>
+        <input class="time60 hours_select" data-bind="value:endh" type="text">
+        <b>:</b>
+        <input class="time60 minutes_select" data-bind="value:endm" type="text">
+        <span class="mm10">
+            <span class="timeofitems" data-bind="attr:{class:getSt1Class},click:st1_click">出票</span>
+            <span class="timeofitems" data-bind="attr:{class:getSt2Class},click:st2_click">废票</span>
+            <span class="timeofitems" data-bind="attr:{class:getSt3Class},click:st3_click">退票</span>
+        </span>
+        <span class="mm10">
+            <a href="javascript:;" data-bind="click:del">删除</a>
+        </span>
+    </div>
+</script>
+
+<script type="text/html" id="hoursSelectTemplate">
+    <div class="hoursSelectContainer">
+        <ul>
+            # for(i=0;i<data.length;i++){ #
+            <li>#= data[i] #</li>
+            # } #
+        </ul>
+    </div>
+</script>
+
+<script type="text/html" id="minutesSelectTemplate">
+    <div class="minutesSelectContainer">
+        <ul>
+            # for(i=0;i<data.length;i++){ #
+            <li>#= data[i] #</li>
+            # } #
+        </ul>
+    </div>
+</script>
+
+<script>
+    var domesticModel =new kendo.data.ObservableObject({
+        hours: ["08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"],
+        minutes: ["00", "10", "20", "30", "40", "50"],
+        getNwtSt1Class:function(){
+            if(this.get("nwt").get("st1")==-1){
+                return "timeofitems unchoose";
+            }else{
+                return "timeofitems";
+            }
+        },
+        nwtD:[],
+        dwtD:[],
+        lwtD:[],
+        nwt:{st1:0,st2:0,st3:0,group:"st1",mf:"nwt"},
+        dwt:{st1:0,st2:0,st3:0,group:"st2",mf:"dwt"},
+        lwt:{st1:0,st2:0,st3:0,group:"st3",mf:"lwt"},
+        nwtD_add:function(){
+            if(this.nwtD.length>2){
+                return false;
+            }
+            var temp={
+                sth:"08",stm:"00",endh:"08",endm:"00",st1:this.nwt.st1,st2:this.nwt.st2,st3:this.nwt.st3,
+                getSt1Class:function() {
+                    switch (this.get("st1")){
+                        case -1:return "timeofitems unchoose";break;
+                        case 0:return "timeofitems";break;
+                        case 1:return "timeofitems choosed";break;
+                    }
+                },
+                getSt2Class:function() {
+                    switch (this.get("st2")){
+                        case -1:return "timeofitems unchoose";break;
+                        case 0:return "timeofitems";break;
+                        case 1:return "timeofitems choosed";break;
+                    }
+                },
+                getSt3Class:function() {
+                    switch (this.get("st3")){
+                        case -1:return "timeofitems unchoose";break;
+                        case 0:return "timeofitems";break;
+                        case 1:return "timeofitems choosed";break;
+                    }
+                },
+                st1_click:function(){
+                    if(this.st1==1)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st1",0);
+                        }
+                        this.parent().parent().nwt.set("st1",0);
+                        return false;
+                    }
+                    if(this.st1==0)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st1",-1);
+                        }
+                        this.set("st1",1);
+                        this.parent().parent().nwt.set("st1",-1);
+                        return false;
+                    }
+                },
+                st2_click:function(){
+                    if(this.st2==1)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st2",0);
+                        }
+                        this.parent().parent().nwt.set("st2",0);
+                        return false;
+                    }
+                    if(this.st2==0)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st2",-1);
+                        }
+                        this.set("st2",1);
+                        this.parent().parent().nwt.set("st2",-1);
+                        return false;
+                    }
+                },
+                st3_click:function(){
+                    if(this.st3==1)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st3",0);
+                        }
+                        this.parent().parent().nwt.set("st3",0);
+                        return false;
+                    }
+                    if(this.st3==0)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st3",-1);
+                        }
+                        this.set("st3",1);
+                        this.parent().parent().nwt.set("st3",-1);
+                        return false;
+                    }
+                },
+                del:function(){
+                    if(this.st1==1){
+                        this.st1_click();
+                    }
+                    if(this.st2==1){
+                        this.st2_click();
+                    }
+                    if(this.st3==1){
+                        this.st3_click();
+                    }
+                    this.parent().splice(this.parent().indexOf(this),1);
+                }
+            }  
+            this.nwtD.push(temp);
+        },
+        dwtD_add:function(){
+            if(this.dwtD.length>2){
+                return false;
+            }
+            var temp={
+                sth:"08",stm:"00",endh:"08",endm:"00",st1:this.dwt.st1,st2:this.dwt.st2,st3:this.dwt.st3,
+                getSt1Class:function() {
+                    switch (this.get("st1")){
+                        case -1:return "timeofitems unchoose";break;
+                        case 0:return "timeofitems";break;
+                        case 1:return "timeofitems choosed";break;
+                    }
+                },
+                getSt2Class:function() {
+                    switch (this.get("st2")){
+                        case -1:return "timeofitems unchoose";break;
+                        case 0:return "timeofitems";break;
+                        case 1:return "timeofitems choosed";break;
+                    }
+                },
+                getSt3Class:function() {
+                    switch (this.get("st3")){
+                        case -1:return "timeofitems unchoose";break;
+                        case 0:return "timeofitems";break;
+                        case 1:return "timeofitems choosed";break;
+                    }
+                },
+                st1_click:function(){
+                    if(this.st1==1)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st1",0);
+                        }
+                        this.parent().parent().dwt.set("st1",0);
+                        return false;
+                    }
+                    if(this.st1==0)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st1",-1);
+                        }
+                        this.set("st1",1);
+                        this.parent().parent().dwt.set("st1",-1);
+                        return false;
+                    }
+                },
+                st2_click:function(){
+                    if(this.st2==1)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st2",0);
+                        }
+                        this.parent().parent().dwt.set("st2",0);
+                        return false;
+                    }
+                    if(this.st2==0)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st2",-1);
+                        }
+                        this.set("st2",1);
+                        this.parent().parent().dwt.set("st2",-1);
+                        return false;
+                    }
+                },
+                st3_click:function(){
+                    if(this.st3==1)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st3",0);
+                        }
+                        this.parent().parent().dwt.set("st3",0);
+                        return false;
+                    }
+                    if(this.st3==0)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st3",-1);
+                        }
+                        this.set("st3",1);
+                        this.parent().parent().dwt.set("st3",-1);
+                        return false;
+                    }
+                },
+                del:function(){
+                    if(this.st1==1){
+                        this.st1_click();
+                    }
+                    if(this.st2==1){
+                        this.st2_click();
+                    }
+                    if(this.st3==1){
+                        this.st3_click();
+                    }
+                    this.parent().splice(this.parent().indexOf(this),1);
+                }
+            }  
+            this.dwtD.push(temp);
+        },
+        lwtD_add:function(){
+            if(this.lwtD.length>2){
+                return false;
+            }
+            var temp={
+                sth:"08",stm:"00",endh:"08",endm:"00",st1:this.lwt.st1,st2:this.lwt.st2,st3:this.lwt.st3,
+                getSt1Class:function() {
+                    switch (this.get("st1")){
+                        case -1:return "timeofitems unchoose";break;
+                        case 0:return "timeofitems";break;
+                        case 1:return "timeofitems choosed";break;
+                    }
+                },
+                getSt2Class:function() {
+                    switch (this.get("st2")){
+                        case -1:return "timeofitems unchoose";break;
+                        case 0:return "timeofitems";break;
+                        case 1:return "timeofitems choosed";break;
+                    }
+                },
+                getSt3Class:function() {
+                    switch (this.get("st3")){
+                        case -1:return "timeofitems unchoose";break;
+                        case 0:return "timeofitems";break;
+                        case 1:return "timeofitems choosed";break;
+                    }
+                },
+                st1_click:function(){
+                    if(this.st1==1)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st1",0);
+                        }
+                        this.parent().parent().lwt.set("st1",0);
+                        return false;
+                    }
+                    if(this.st1==0)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st1",-1);
+                        }
+                        this.set("st1",1);
+                        this.parent().parent().lwt.set("st1",-1);
+                        return false;
+                    }
+                },
+                st2_click:function(){
+                    if(this.st2==1)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st2",0);
+                        }
+                        this.parent().parent().lwt.set("st2",0);
+                        return false;
+                    }
+                    if(this.st2==0)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st2",-1);
+                        }
+                        this.set("st2",1);
+                        this.parent().parent().lwt.set("st2",-1);
+                        return false;
+                    }
+                },
+                st3_click:function(){
+                    if(this.st3==1)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st3",0);
+                        }
+                        this.parent().parent().nwt.set("st3",0);
+                        return false;
+                    }
+                    if(this.st3==0)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st3",-1);
+                        }
+                        this.set("st3",1);
+                        this.parent().parent().nwt.set("st3",-1);
+                        return false;
+                    }
+                },
+                del:function(){
+                    this.parent().splice(this.parent().indexOf(this),1);
+                }
+            }
+            if(this.st1==1){
+                this.st1_click();
+            }
+            if(this.st2==1){
+                this.st2_click();
+            }
+            if(this.st3==1){
+                this.st3_click();
+            }
+            this.lwtD.push(temp);
+        }
+    })
+    var internationalModel =new kendo.data.ObservableObject({
+        hours: ["08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"],
+        minutes: ["00", "10", "20", "30", "40", "50"],
+        getNwtSt1Class:function(){
+            if(this.get("nwt").get("st1")==-1){
+                return "timeofitems unchoose";
+            }else{
+                return "timeofitems";
+            }
+        },
+        nwtD:[],
+        dwtD:[],
+        lwtD:[],
+        nwt:{st1:0,st2:0,st3:0,group:"st1",mf:"nwt"},
+        dwt:{st1:0,st2:0,st3:0,group:"st2",mf:"dwt"},
+        lwt:{st1:0,st2:0,st3:0,group:"st3",mf:"lwt"},
+        nwtD_add:function(){
+            if(this.nwtD.length>2){
+                return false;
+            }
+            var temp={
+                sth:"08",stm:"00",endh:"08",endm:"00",st1:this.nwt.st1,st2:this.nwt.st2,st3:this.nwt.st3,
+                getSt1Class:function() {
+                    switch (this.get("st1")){
+                        case -1:return "timeofitems unchoose";break;
+                        case 0:return "timeofitems";break;
+                        case 1:return "timeofitems choosed";break;
+                    }
+                },
+                getSt2Class:function() {
+                    switch (this.get("st2")){
+                        case -1:return "timeofitems unchoose";break;
+                        case 0:return "timeofitems";break;
+                        case 1:return "timeofitems choosed";break;
+                    }
+                },
+                getSt3Class:function() {
+                    switch (this.get("st3")){
+                        case -1:return "timeofitems unchoose";break;
+                        case 0:return "timeofitems";break;
+                        case 1:return "timeofitems choosed";break;
+                    }
+                },
+                st1_click:function(){
+                    if(this.st1==1)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st1",0);
+                        }
+                        this.parent().parent().nwt.set("st1",0);
+                        return false;
+                    }
+                    if(this.st1==0)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st1",-1);
+                        }
+                        this.set("st1",1);
+                        this.parent().parent().nwt.set("st1",-1);
+                        return false;
+                    }
+                },
+                st2_click:function(){
+                    if(this.st2==1)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st2",0);
+                        }
+                        this.parent().parent().nwt.set("st2",0);
+                        return false;
+                    }
+                    if(this.st2==0)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st2",-1);
+                        }
+                        this.set("st2",1);
+                        this.parent().parent().nwt.set("st2",-1);
+                        return false;
+                    }
+                },
+                st3_click:function(){
+                    if(this.st3==1)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st3",0);
+                        }
+                        this.parent().parent().nwt.set("st3",0);
+                        return false;
+                    }
+                    if(this.st3==0)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st3",-1);
+                        }
+                        this.set("st3",1);
+                        this.parent().parent().nwt.set("st3",-1);
+                        return false;
+                    }
+                },
+                del:function(){
+                    if(this.st1==1){
+                        this.st1_click();
+                    }
+                    if(this.st2==1){
+                        this.st2_click();
+                    }
+                    if(this.st3==1){
+                        this.st3_click();
+                    }
+                    this.parent().splice(this.parent().indexOf(this),1);
+                }
+            }  
+            this.nwtD.push(temp);
+        },
+        dwtD_add:function(){
+            if(this.dwtD.length>2){
+                return false;
+            }
+            var temp={
+                sth:"08",stm:"00",endh:"08",endm:"00",st1:this.dwt.st1,st2:this.dwt.st2,st3:this.dwt.st3,
+                getSt1Class:function() {
+                    switch (this.get("st1")){
+                        case -1:return "timeofitems unchoose";break;
+                        case 0:return "timeofitems";break;
+                        case 1:return "timeofitems choosed";break;
+                    }
+                },
+                getSt2Class:function() {
+                    switch (this.get("st2")){
+                        case -1:return "timeofitems unchoose";break;
+                        case 0:return "timeofitems";break;
+                        case 1:return "timeofitems choosed";break;
+                    }
+                },
+                getSt3Class:function() {
+                    switch (this.get("st3")){
+                        case -1:return "timeofitems unchoose";break;
+                        case 0:return "timeofitems";break;
+                        case 1:return "timeofitems choosed";break;
+                    }
+                },
+                st1_click:function(){
+                    if(this.st1==1)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st1",0);
+                        }
+                        this.parent().parent().dwt.set("st1",0);
+                        return false;
+                    }
+                    if(this.st1==0)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st1",-1);
+                        }
+                        this.set("st1",1);
+                        this.parent().parent().dwt.set("st1",-1);
+                        return false;
+                    }
+                },
+                st2_click:function(){
+                    if(this.st2==1)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st2",0);
+                        }
+                        this.parent().parent().dwt.set("st2",0);
+                        return false;
+                    }
+                    if(this.st2==0)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st2",-1);
+                        }
+                        this.set("st2",1);
+                        this.parent().parent().dwt.set("st2",-1);
+                        return false;
+                    }
+                },
+                st3_click:function(){
+                    if(this.st3==1)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st3",0);
+                        }
+                        this.parent().parent().dwt.set("st3",0);
+                        return false;
+                    }
+                    if(this.st3==0)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st3",-1);
+                        }
+                        this.set("st3",1);
+                        this.parent().parent().dwt.set("st3",-1);
+                        return false;
+                    }
+                },
+                del:function(){
+                    if(this.st1==1){
+                        this.st1_click();
+                    }
+                    if(this.st2==1){
+                        this.st2_click();
+                    }
+                    if(this.st3==1){
+                        this.st3_click();
+                    }
+                    this.parent().splice(this.parent().indexOf(this),1);
+                }
+            }  
+            this.dwtD.push(temp);
+        },
+        lwtD_add:function(){
+            if(this.lwtD.length>2){
+                return false;
+            }
+            var temp={
+                sth:"08",stm:"00",endh:"08",endm:"00",st1:this.lwt.st1,st2:this.lwt.st2,st3:this.lwt.st3,
+                getSt1Class:function() {
+                    switch (this.get("st1")){
+                        case -1:return "timeofitems unchoose";break;
+                        case 0:return "timeofitems";break;
+                        case 1:return "timeofitems choosed";break;
+                    }
+                },
+                getSt2Class:function() {
+                    switch (this.get("st2")){
+                        case -1:return "timeofitems unchoose";break;
+                        case 0:return "timeofitems";break;
+                        case 1:return "timeofitems choosed";break;
+                    }
+                },
+                getSt3Class:function() {
+                    switch (this.get("st3")){
+                        case -1:return "timeofitems unchoose";break;
+                        case 0:return "timeofitems";break;
+                        case 1:return "timeofitems choosed";break;
+                    }
+                },
+                st1_click:function(){
+                    if(this.st1==1)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st1",0);
+                        }
+                        this.parent().parent().lwt.set("st1",0);
+                        return false;
+                    }
+                    if(this.st1==0)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st1",-1);
+                        }
+                        this.set("st1",1);
+                        this.parent().parent().lwt.set("st1",-1);
+                        return false;
+                    }
+                },
+                st2_click:function(){
+                    if(this.st2==1)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st2",0);
+                        }
+                        this.parent().parent().lwt.set("st2",0);
+                        return false;
+                    }
+                    if(this.st2==0)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st2",-1);
+                        }
+                        this.set("st2",1);
+                        this.parent().parent().lwt.set("st2",-1);
+                        return false;
+                    }
+                },
+                st3_click:function(){
+                    if(this.st3==1)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st3",0);
+                        }
+                        this.parent().parent().nwt.set("st3",0);
+                        return false;
+                    }
+                    if(this.st3==0)
+                    {
+                        var p=this.parent()
+                        for(i=0;i<p.length;i++)
+                        {
+                            p[i].set("st3",-1);
+                        }
+                        this.set("st3",1);
+                        this.parent().parent().nwt.set("st3",-1);
+                        return false;
+                    }
+                },
+                del:function(){
+                    if(this.st1==1){
+                        this.st1_click();
+                    }
+                    if(this.st2==1){
+                        this.st2_click();
+                    }
+                    if(this.st3==1){
+                        this.st3_click();
+                    }
+                    this.parent().splice(this.parent().indexOf(this),1);
+                }
+            }  
+            this.lwtD.push(temp);
+        }
+    })
+    $(function () {
+        
+        kendo.bind($(".domesticTicketTimeContainer"), domesticModel);
+        kendo.bind($(".internationalTicketTimeContainer"), internationalModel);
+        
+//        var t=kendo.template($("#wtTemplate").html());
+        
+        
+        
+        var hsfl=new FloatLayer({
+                    template:"#hoursSelectTemplate",
+                    trigger:".hours_select",
+                    data:domesticModel.hours,
+                    offsetX:0,
+                    offsetY:20
+                });
+        $("body").delegate(".hoursSelectContainer li","click",function(){
+            hsfl.input.val($(this).text());
+            hsfl.input.trigger("change");
+            hsfl.close();
+        })
+        
+        var msfl=new FloatLayer({
+                    template:"#minutesSelectTemplate",
+                    trigger:".minutes_select",
+                    data:domesticModel.minutes,
+                    offsetX:0,
+                    offsetY:20
+                });
+        $("body").delegate(".minutesSelectContainer li","click",function(){
+            msfl.input.val($(this).text());
+            msfl.input.trigger("change");
+            msfl.close();
+        })
+        
+        $(".ac-add").trigger("click");
+        
+        $(".timeofitems:first",".timeModifyContainer").trigger("click");
+        
+        $(".copyInternationalTicketTime").click(function(){
+            copyTicketTime(internationalModel,domesticModel);
+        })
+        $(".copyDomesticTicketTime").click(function(){
+            copyTicketTime(domesticModel,internationalModel);
+        })
+        function copyTicketTime(ori,dst)
+        {
+            var itemName=["nwt","dwt","lwt"];
+            for(var i=0;i<itemName.length;i++){
+                dst.set(itemName[i],ori[itemName[i]]);
+                dst[itemName[i]+"D"].splice(0,dst[itemName[i]+"D"].length);
+                var Num=ori[itemName[i]+"D"].length;
+                for(var j=0;j<Num;j++){
+                    dst[itemName[i]+"D_add"]();
+                    dst[itemName[i]+"D"][j].set("st1",ori[itemName[i]+"D"][j].st1);
+                    dst[itemName[i]+"D"][j].set("st2",ori[itemName[i]+"D"][j].st2);
+                    dst[itemName[i]+"D"][j].set("st3",ori[itemName[i]+"D"][j].st3);
+                    dst[itemName[i]+"D"][j].set("sth",ori[itemName[i]+"D"][j].sth);
+                    dst[itemName[i]+"D"][j].set("stm",ori[itemName[i]+"D"][j].stm);
+                    dst[itemName[i]+"D"][j].set("endh",ori[itemName[i]+"D"][j].endh);
+                    dst[itemName[i]+"D"][j].set("endm",ori[itemName[i]+"D"][j].endm);
+                }
+            }
+        }
+        
+    });
+</script>
+
+<div id="extFooter">
+    <div>
+        <p>
+            <a href="javascript:void(0);">关于我们</a>&nbsp;|
+            <a href="javascript:void(0);">微博</a>&nbsp;|
+            <a href="javascript:void(0);">服务条款</a>&nbsp;|
+            <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+        </p>
+
+        <p>客户服务热线:400-720-6666</p>
+    </div>
+</div>
+</body>
+</html>
