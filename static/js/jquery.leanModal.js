@@ -25,7 +25,7 @@
 
 		leanModal: function(options) {
 			var defaults = {
-				top: 100,
+				top: '100px',
 				overlay: 0.5,
 				closeButton: null,
 				posType: 'fixed'
@@ -70,7 +70,7 @@
 						'z-index': 11000,
 						'left': 50 + '%',
 						'margin-left': - (modal_width / 2) + "px",
-						'top': posTop + "px"
+						'top': posTop
 					}).fadeTo(200, 1);
 
 					e.preventDefault();
