@@ -507,10 +507,23 @@
             }else{
                 $(this).html(no_text[1]);
             }
-            wp.toggleClass("currentnotice");
-            if(document.body.scrollIntoView){
-                wp.get(0).scrollIntoView(); 
+            if(wp.hasClass("currentnotice")){
+                wp.find(".uploadContent").slideUp(function(){
+                    if(document.body.scrollIntoView){
+                        wp.get(0).scrollIntoView();
+                    }
+                });
             }
+            else{
+                $(".uploadContent").hide();
+                wp.find(".uploadContent").slideDown(function(){
+                    if(document.body.scrollIntoView){
+                        wp.get(0).scrollIntoView();
+                    }
+                });
+            }
+            wp.toggleClass("currentnotice");
+            
         });
 		
     });
