@@ -1,8 +1,3 @@
-/*
-* Author: shaotian.hu
-* Email:  shaotian.hu@travelzen.com
-*/
-
 //弹窗封装
 function PopWindow(trigger, customSettings, window_id){
     var kendoWinDefaults = {
@@ -764,7 +759,7 @@ $.fn.serialize_form = function(){
         var name = i.attr('name');
         var eleType = i.attr('type');
         var isDisabled = i.attr('disabled');
-        var value = i.attr('value');
+        var value = i.attr('value')||'';
 
         var isChecked = i.attr('checked');
 
