@@ -42,10 +42,14 @@
 <section class="main-body clearfix">
     <div class="conf_block1">
         <span class="conf_main">
-        <div id="player" style="display:hidden;">
+
+      <div id="player" style="display:hidden;">
             <object type="application/x-shockwave-flash" data="http://static.youku.com/v1.0.0429/v/swf/loader.swf" width="100%" height="100%" id="player_flash"><param name="allowFullScreen" value="true"><param name="allowscriptaccess" value="always"><param name="flashvars" value="VideoIDS=XNzA4ODU4NjM2&amp;ShowId=286183&amp;category=85&amp;Cp=authorized&amp;ev=1&amp;Light=on&amp;THX=off&amp;unCookie=0&amp;frame=0&amp;pvid=1399616427744e4A&amp;uepflag=0&amp;Tid=0&amp;isAutoPlay=true&amp;Version=/v1.0.0947&amp;show_ce=0&amp;winType=interior&amp;"><param name="wmode" value="opaque"><param name="movie" value="http://static.youku.com/v1.0.0429/v/swf/loader.swf"><div class="player_html5"><div class="picture" style="height:100%"><div style="line-height:460px;"><span style="font-size:18px">您还没有安装flash播放器,请点击<a href="http://www.adobe.com/go/getflash" target="_blank">这里</a>安装</span></div></div></div></object>
 
         </div> 
+
+<!--            <object type="application/x-shockwave-flash" id="ckplayer_a1" name="ckplayer_a1" menu="false" data="../../flash/ckplayer/ckplayer.swf" width="100%" height="100%"><param name="wmode" value="opaque"><param name="bgcolor" value="#FFF"><param name="allowFullScreen" value="true"><param name="allowScriptAccess" value="always"><param name="flashvars" value="f=http://movie.ks.js.cn/flv/other/1_0.flv&amp;a=&amp;s=0&amp;c=1&amp;x=&amp;i=&amp;d=&amp;u=&amp;l=&amp;r=&amp;t=10|10&amp;y=&amp;z=http://www.ckplayer.com/down/buffer.swf&amp;e=3&amp;v=80&amp;p=0&amp;h=0&amp;q=&amp;m=0&amp;o=&amp;w=&amp;g=&amp;wh=&amp;ct=2"></object>  -->
+
         </span>
     </div>
     <div class="conf_block2"></div>
@@ -72,20 +76,25 @@
 
 <script>
 (function(){
-    var player = document.getElementById('player');
-    var flash = document.getElementById('player_flash');
-    var tmid;
-    function lightOff(){
-        if(flash.setLight){
-            flash.setLight('off'); 
-            player.style.visibility="visible";
-            return clearTimeout(tmid);
+
+
+    function setYoukuSkin(){
+        var player = document.getElementById('player');
+        var flash = document.getElementById('player_flash');
+        var tmid;
+        function lightOff(){
+            if(flash.setLight){
+                flash.setLight('off'); 
+                player.style.visibility="visible";
+                return clearTimeout(tmid);
+            }
+            tmid = setTimeout(function(){
+                lightOff();
+            },300);
         }
-        tmid = setTimeout(function(){
-            lightOff();
-        },300);
+        lightOff();
     }
-    lightOff();
+    setYoukuSkin();
 
     var tar = $(".conf_main");
 
@@ -95,9 +104,12 @@
         }
     });
 
-    function createRaves(cl,layerID){
+    function createRaves(cl,layerID,tip){
         layerID = layerID || ''
-        var ele = $('<i class="tip '+cl+'"><img src="../../images/store/rat.png" /><s data-modal="'+layerID+'" class="tipcontent" /></i>')
+        var ele = $('<i class="tip '+cl+'"><img src="../../images/store/rat.png" /><s class="tipbody" /></i>');
+        ele.find('s').html('<u class="tipTitle">'+ tip.tipTitle +'</u>'+
+            '<u class="tipContent">'+ tip.tipContent +'</u>'+
+            '<u data-modal="'+layerID+'"  class="tipMore">了解更多</u><u class="arrow"></u>');
         tar.append(ele);
         raveAnim(ele);
     }
@@ -118,9 +130,12 @@
         });
     }
 
-    createRaves('tipsh','#shtip');
+    createRaves('tipsh','#shtip',{
+        tipTitle:'上海发布会现场',
+        tipContent:'4月23日，“2014天地行一站式综合旅游服务平台发布会”在上海新锦江大酒店隆重举行。发布会现场气氛浓烈，与会嘉宾有：上海市闸北区旅游局局长洪明铭，上海市旅游行业....'
+    });
 
-    $(".tipsh .tipcontent").leanModal({closeButton:'.close',top:"10%" });
+    $(".tipsh .tipMore").leanModal({closeButton:'.close',top:"10%" });
 
 })();
 </script>
