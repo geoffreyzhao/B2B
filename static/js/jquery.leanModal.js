@@ -45,7 +45,7 @@
 						posTop = o.top();
 					};
 
-					var modal_id = $(this).attr("href");
+					var modal_id = $(this).data("modal");
 
 					layer.click(function() {
 						close_modal(modal_id);
