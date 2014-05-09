@@ -212,7 +212,7 @@ $(function() {
         }
         return prefix+"/special/source/conference.html";
     })();
-    var conf_enter = $('.main-header').append('<a href="'+conf_enter_url+'" class="conf_enter_wrapper"><i></i><s></s></a>');
+    //var conf_enter = $('.main-header').append('<a href="'+conf_enter_url+'" class="conf_enter_wrapper"><i></i><s></s></a>');
 
 });
 
