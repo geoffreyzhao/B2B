@@ -1,5 +1,15 @@
 /** 采购商 公共 js 文件 */
 $(function() {
+
+    domain_check = {
+        product_store:'store.tdxinfo.com',
+        product_static:'sc1.tdxinfo.com',
+        dev_static:'static.travelzensh.com',
+        dev_store:'f.op.com:8280'
+    };
+    domain_check.isProduct = (function(){ return !!~location.hostname.indexOf("tdxinfo.com"); }());
+    domain_check.isDev = (function(){ return !!~location.hostname.indexOf("op.com"); }());
+
     /*
     var offset = $(".main-body").eq(0).offset();
     var w = $(".main-body").eq(0).width();
@@ -189,6 +199,20 @@ $(function() {
             that.css('color','#666');
         }
     });
+    
+
+    // 增加发布会页面入口
+    var conf_enter_url = (function(){
+        var prefix = "/static";
+        if (domain_check.isProduct){
+            prefix = '//'+ domain_check.product_static;
+        }
+        if (domain_check.isDev){
+            prefix = '//'+ domain_check.dev_static;
+        }
+        return prefix+"/special/source/conference.html";
+    })();
+    var conf_enter = $('.main-header').append('<a href="'+conf_enter_url+'" class="conf_enter_wrapper"><i></i><s></s></a>');
 
 });
 

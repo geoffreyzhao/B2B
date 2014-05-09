@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天地行 采购商 发布会专题页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../../css/store_reset.css" media="all" />
+    <link rel="stylesheet" href="../../css/store_v2/store.css"/>
+    <link rel="stylesheet" href="../../css/store_v2/store_publicity.css"/>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery.leanModal.js"></script>
+    
+     <!--[if IE]>
+    <script src="../../js/html5.js"></script>
+    <![endif]-->
+
+     <base href="" />
+</head>
+<body >
+
+<div class="headBG">
+    <header class="main-header">
+        <a class="logo" href="http://store.tdxinfo.com/tops-front-purchaser/"><h1>天地行</h1></a>
+    </header>
+</div>
+
+
+<style>
+    body{min-width:1050px;}
+#lean_overlay {
+    position: fixed;
+    z-index:100;
+    top: 0px;
+    left: 0px;
+    height:100%;
+    width:100%;
+    background: #000;
+    display: none;
+}
+</style>
+
+<section class="main-body clearfix">
+    <div class="conf_block1">
+        <span class="conf_main">
+        <div id="player" style="display:hidden;">
+            <object type="application/x-shockwave-flash" data="http://static.youku.com/v1.0.0429/v/swf/loader.swf" width="100%" height="100%" id="player_flash"><param name="allowFullScreen" value="true"><param name="allowscriptaccess" value="always"><param name="flashvars" value="VideoIDS=XNzA4ODU4NjM2&amp;ShowId=286183&amp;category=85&amp;Cp=authorized&amp;ev=1&amp;Light=on&amp;THX=off&amp;unCookie=0&amp;frame=0&amp;pvid=1399616427744e4A&amp;uepflag=0&amp;Tid=0&amp;isAutoPlay=true&amp;Version=/v1.0.0947&amp;show_ce=0&amp;winType=interior&amp;"><param name="wmode" value="opaque"><param name="movie" value="http://static.youku.com/v1.0.0429/v/swf/loader.swf"><div class="player_html5"><div class="picture" style="height:100%"><div style="line-height:460px;"><span style="font-size:18px">您还没有安装flash播放器,请点击<a href="http://www.adobe.com/go/getflash" target="_blank">这里</a>安装</span></div></div></div></object>
+
+        </div> 
+        </span>
+    </div>
+    <div class="conf_block2"></div>
+    <div class="conf_block3"></div>
+</section>
+
+<div id="shtip" class="ztipcontent">
+    <a href="javascript:;" class="close"></a>
+    <div class="ztipdetail">
+        <h1>【2014“天地行”一站式综合旅游服务平台发布会】</h1>
+        <h2>—— 借助旅游分销平台实现资源共享，合作共赢</h2>
+            <p>
+            4月23日，“2014天地行一站式综合旅游服务平台发布 会”在上海新锦江大酒店隆重举行。发布会现场气氛浓烈，与会嘉宾有：上海市闸北区旅游局局长洪明铭，上海市旅游行业协会秘书长陈雪羽，上海市旅游行业协会在线旅游分会秘书长秦龙根，中航信结算公司副总经理、德付通董事长刁育新等领导莅临会场。华东地区旅游行业众多企业代表及业界媒体应邀出席了发布会。
+            </p>
+            <p><img src="../../images/store/confimg1.jpg"><span class="imgtext">（图为嘉宾签到）</span></p>
+            <p>
+            真旅网集团董事长兼CEO施纪军在会上致辞：天地行平台是用互联网技术打造的B2B品牌，基于强大的核心资源和领先的技术优势，加上中国航信旗下徳付通的强大战略支持，天地行平台将为旅游分销开创新的模式，为同业伙伴们提供一个“好操作，好管理，好赚钱”的旅游分销平台，实现真正意义上的资源共享，合作共赢。
+            </p>
+            <p><img src="../../images/store/confimg2.jpg"><span class="imgtext">（图为真旅网集团董事长施纪军上台致词）</span></p>
+            <p>至此，“2014天地行一站式综合旅游服务平台发布会——上海站”圆满结束。 </p>
+            <br><br>
+    </div>
+</div>
+
+<script>
+(function(){
+    var player = document.getElementById('player');
+    var flash = document.getElementById('player_flash');
+    var tmid;
+    function lightOff(){
+        if(flash.setLight){
+            flash.setLight('off'); 
+            player.style.visibility="visible";
+            return clearTimeout(tmid);
+        }
+        tmid = setTimeout(function(){
+            lightOff();
+        },300);
+    }
+    lightOff();
+
+    var tar = $(".conf_main");
+
+    $.extend(jQuery.easing,{
+        easeOutQuart: function (x, t, b, c, d) {
+            return -c * ((t=t/d-1)*t*t*t - 1) + b;
+        }
+    });
+
+    function createRaves(cl,layerID){
+        layerID = layerID || 'javascript:;'
+        var ele = $('<i class="tip '+cl+'"><img src="../../images/store/rat.png" /><a href="'+layerID+'" class="tipcontent" /></i>')
+        tar.append(ele);
+        raveAnim(ele);
+    }
+
+    function raveAnim(r){
+        var tip = $(".tip");
+        tip.animate({
+            'margin-left': "-=10px",
+            'margin-top': "-=10px",
+            'padding': "+=10px"
+        },800,'easeOutQuart',function(){
+            tip.animate({
+                'margin-left': "+=10px",
+                'margin-top': "+=10px",
+                'padding': "-=10px"
+            },400,'swing');
+            raveAnim($(this)); 
+        });
+    }
+
+    createRaves('tipsh','#shtip');
+
+    $(".tipsh .tipcontent").leanModal({closeButton:'.close'});
+
+})();
+</script>
+
+
+<footer class="main-footer tiny-footer">
+	<center>
+		<a href="http://store.tdxinfo.com/tops-front-purchaser/facade/about-tdx" target="_blank">关于我们</a>
+		<i class="bar">|</i>
+		<a href="http://store.tdxinfo.com/tops-front-purchaser/facade/service-center" target="_blank">服务中心</a>
+		<i class="bar">|</i>
+		<a href="http://store.tdxinfo.com/tops-front-purchaser/facade/contact-us" target="_blank">联系我们</a>
+	</center>
+	<center class="copyright">
+		Copyright © 2014 天地行 All Rights Reserved. 沪ICP备08101503号
+	</center>
+</footer>
+
+</body>
+</html>
