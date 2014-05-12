@@ -42,8 +42,7 @@ PopWindow.prototype = {
             that.win = $(that.window_id).kendoWindow( opts ).data('kendoWindow');
             return ;
         }else{
-            windowEle = $('<div class="'+opts.wrapperClass+'">');
-            windowEle.appendTo($('body'));
+            windowEle = $('<div class="'+opts.wrapperClass+'" />');
         }
 
         tmpl = $(opts.template).html();
