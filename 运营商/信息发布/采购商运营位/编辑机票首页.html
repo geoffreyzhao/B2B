@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>系统设置 信息发布 采购商运营位 编辑登录页</title>
+    <title>系统设置 信息发布 采购商运营位 编辑机票首页</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="../../../static/css/common.css" rel="stylesheet" type="text/css" />
     <link href="../../../static/css/kendo.common.css" rel="stylesheet" type="text/css" />
@@ -68,7 +68,7 @@
                      <a href="#" style="display:inline-block;line-height:33px;font-size: 14px;font-weight: bold;border-right: 1px solid #CDCECE;padding: 0 8px;">返回</a>
                  </div>
                  <div class="fixedMenu">
-                     <strong style="display:inline-block; font-size:14px; font-weight:bold; margin-left:10px;">登录页幻灯片</strong>
+                     <strong style="display:inline-block; font-size:14px; font-weight:bold; margin-left:10px;">机票首页-专题</strong>
                  </div>
                 <div class="fixedButton">
                     <a class="button_secondary adaptiveButton small ac-addAd">
@@ -314,6 +314,12 @@
                 template:'#ac-addAd-template',
                 width:750
             }).init();
+
+            new PopWindow('.ac-uncommitted ',{
+                title:false,
+                template:'#ac-uncommitted-template',
+                width:310
+            }).init();
             
             kendo.init($("body"));
             
@@ -322,7 +328,46 @@
 
     <script type="text/x-kendo-template" id="ac-modifiedAd-template">
         <div class="adContent">
-            <div class="loadBanner"><img src="../../../static/images/loadImg.jpg" style="width: 720px; height: 172px;"></div>
+            <div class="loadBanner clearfix">
+                <ul class="leftBannerPic clearfix">
+                    <li style="position: relative;" class="ac-uncommitted">
+                        <img src="../../../static/images/flightLoadPic1.jpg" style="width: 430px; height: 163px;">
+                        <div class="adBannerBorder"> </div>
+                    </li>
+                    <li>
+                        <label style="position: relative; display: inline-block; margin-right: 4px;" class="ac-uncommitted">
+                            <img src="../../../static/images/flightLoadPic3.jpg" style="width: 211px; height: 89px;">
+                            <div class="clickSelectAd">
+                                <div class="clickSelectAdBg"></div>
+                                <b class="clickSelectFont">点击选择广告</b>
+                            </div>
+                        </label>
+                        <label style="position: relative; display: inline-block;" class="ac-uncommitted">
+                            <img src="../../../static/images/flightLoadPic4.jpg" style="width: 211px; height: 89px;">
+                            <div class="clickSelectAd">
+                                <div class="clickSelectAdBg"></div>
+                                <b class="clickSelectFont">点击选择广告</b>
+                            </div>
+                        </label>
+                    </li>
+                </ul>
+                <ul class="rightBannerPic clearfix">
+                    <li class="ac-uncommitted">
+                        <img src="../../../static/images/flightLoadPic2.jpg" style="width: 277px; height: 89px;">
+                        <div class="clickSelectAd">
+                            <div class="clickSelectAdBg"></div>
+                            <b class="clickSelectFont">点击选择广告</b>
+                        </div>
+                    </li>
+                    <li class="ac-uncommitted">
+                        <img src="../../../static/images/flightLoadPic5.jpg" style="width: 277px; height: 163px;">
+                        <div class="clickSelectAd">
+                            <div class="clickSelectAdBg"></div>
+                            <b class="clickSelectFont">点击选择广告</b>
+                        </div>
+                    </li>
+                </ul>
+            </div>
             <div class="adInfo">
                 <table>
                     <tr>
@@ -333,7 +378,7 @@
                                 <span class="center">上 传</span>
                                 <span class="right"></span>
                             </a>
-                            <em class="adImgSize">（1680*470px jpg）</em>
+                            <em class="adImgSize">（580*220px jpg）</em>
                         </td>
                     </tr>
                     <!--<tr>
@@ -344,7 +389,7 @@
                                 <span class="center">上传中...</span>
                                 <span class="right"></span>
                             </a>
-                            <em class="adImgSize">（1680*470px jpg）</em>
+                            <em class="adImgSize">（580*220px jpg）</em>
                         </td>
                     </tr>
                     <tr>
@@ -356,31 +401,13 @@
                                 <span class="center">重新上传</span>
                                 <span class="right"></span>
                             </a>
-                            <em class="adImgSize">（1680*470px jpg）</em>
+                            <em class="adImgSize">（580*220px jpg）</em>
                         </td>
                     </tr>-->
-                    <tr>
-                        <th>背景代码 \\\#</th>
-                        <td>
-                            <input type="text" style="width: 100px;"/>
-                        </td>
-                    </tr>
                     <tr>
                         <th>URL</th>
                         <td>
                             <input type="text" value="http://" style="width: 450px;" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>位置</th>
-                        <td>
-                            <select>
-                                <option>第一张</option>
-                                <option>第二张</option>
-                                <option>第三张</option>
-                                <option>第四张</option>
-                                <option>第五张</option>
-                            </select>
                         </td>
                     </tr>
                     <tr>
@@ -431,12 +458,51 @@
                     </tr>
                 </table>
             </div>
-        </div>        
+        </div>
     </script>
 
     <script type="text/x-kendo-template" id="ac-addAd-template">
         <div class="adContent">
-            <div class="loadBanner"><img src="../../../static/images/loadImg.jpg" style="width: 720px; height: 172px;"></div>
+            <div class="loadBanner clearfix">
+                <ul class="leftBannerPic clearfix">
+                    <li style="position: relative;" class="ac-uncommitted">
+                        <img src="../../../static/images/flightLoadPic1.jpg" style="width: 430px; height: 163px;">
+                        <div class="adBannerBorder"> </div>
+                    </li>
+                    <li>
+                        <label style="position: relative; display: inline-block; margin-right: 4px;" class="ac-uncommitted">
+                            <img src="../../../static/images/flightLoadPic3.jpg" style="width: 211px; height: 89px;">
+                            <div class="clickSelectAd">
+                                <div class="clickSelectAdBg"></div>
+                                <b class="clickSelectFont">点击选择广告</b>
+                            </div>
+                        </label>
+                        <label style="position: relative; display: inline-block;" class="ac-uncommitted">
+                            <img src="../../../static/images/flightLoadPic4.jpg" style="width: 211px; height: 89px;">
+                            <div class="clickSelectAd">
+                                <div class="clickSelectAdBg"></div>
+                                <b class="clickSelectFont">点击选择广告</b>
+                            </div>
+                        </label>
+                    </li>
+                </ul>
+                <ul class="rightBannerPic clearfix">
+                    <li class="ac-uncommitted">
+                        <img src="../../../static/images/flightLoadPic2.jpg" style="width: 277px; height: 89px;">
+                        <div class="clickSelectAd">
+                            <div class="clickSelectAdBg"></div>
+                            <b class="clickSelectFont">点击选择广告</b>
+                        </div>
+                    </li>
+                    <li class="ac-uncommitted">
+                        <img src="../../../static/images/flightLoadPic5.jpg" style="width: 277px; height: 163px;">
+                        <div class="clickSelectAd">
+                            <div class="clickSelectAdBg"></div>
+                            <b class="clickSelectFont">点击选择广告</b>
+                        </div>
+                    </li>
+                </ul>
+            </div>
             <div class="adInfo">
                 <table>
                     <tr>
@@ -447,7 +513,7 @@
                                 <span class="center">上 传</span>
                                 <span class="right"></span>
                             </a>
-                            <em class="adImgSize">（1680*470px jpg）</em>
+                            <em class="adImgSize">（580*220px jpg）</em>
                         </td>
                     </tr>
                     <!--<tr>
@@ -470,31 +536,13 @@
                                 <span class="center">重新上传</span>
                                 <span class="right"></span>
                             </a>
-                            <em class="adImgSize">（1680*470px jpg）</em>
+                            <em class="adImgSize">（580*220px jpg）</em>
                         </td>
                     </tr>-->
-                    <tr>
-                        <th>背景代码 \\\#</th>
-                        <td>
-                            <input type="text" style="width: 100px;"/>
-                        </td>
-                    </tr>
                     <tr>
                         <th>URL</th>
                         <td>
                             <input type="text" value="http://" style="width: 450px;" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>位置</th>
-                        <td>
-                            <select>
-                                <option>第一张</option>
-                                <option>第二张</option>
-                                <option>第三张</option>
-                                <option>第四张</option>
-                                <option>第五张</option>
-                            </select>
                         </td>
                     </tr>
                     <tr>
@@ -548,5 +596,24 @@
         </div>
     </script>
 
+    <script type="text/x-kendo-template" id="ac-uncommitted-template">
+        <div class="uncommittedCont">
+            <span class="close"></span>
+            <h2 class="title">更新的信息还未提交</h2>
+            <div class="uncommittedFont">切换广告位置将导致信息作废，是否继续？</div>
+            <div>
+                <a href="javascript:;" class="button_important adaptiveButton small">
+                    <span class="left"></span>
+                    <span class="center">继 续</span>
+                    <span class="right"></span>
+                </a>
+                <a href="javascript:;" class="button_unimportant adaptiveButton small">
+                    <span class="left"></span>
+                    <span class="center">取 消</span>
+                    <span class="right"></span>
+                </a>
+            </div>
+        </div>
+    </script>
 </body>
 </html>
