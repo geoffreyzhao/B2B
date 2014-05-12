@@ -5,6 +5,7 @@ function PopWindow(trigger, customSettings, window_id){
         animation:false,
         width:570,
         modal:true,
+        wrapperClass:'popup-window',
         autoHide:false,
         closeClassName:'close',
         reload:false,
@@ -41,7 +42,7 @@ PopWindow.prototype = {
             that.win = $(that.window_id).kendoWindow( opts ).data('kendoWindow');
             return ;
         }else{
-            windowEle = $('<div class="popup-window">');
+            windowEle = $('<div class="'+opts.wrapperClass+'">');
             windowEle.appendTo($('body'));
         }
 
