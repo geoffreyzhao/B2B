@@ -143,10 +143,6 @@
                  </ul>
                  <div class="orderArrowUp"></div>
          </div>  
-         <div class="twoDimensionOrder">
-             <i class="twoDimensionOrderSmall"></i>
-             <img class="twoDimensionOrderBig_M" src="/static/images/store/twoDimensionOrderBig.jpg"/>
-         </div>
     </div>  <!--order end-->
 
     
@@ -362,7 +358,7 @@
 
 <script type="text/x-kendo-template" id="salePriceTblTemplate">
         <div class="layerGrayContainer_noArrow">
-            <p class="abroadhotelPriceBlock"><span>2014/05/01 周六   至  2014/05/04 周二</span><span style="float:right;"><i>3</i>晚&nbsp;&nbsp;<i>1</i>间</span></p>
+            <p class="abroadhotelPriceBlock"><span>2014/05/01 周六   至  2014/05/04 周二</span><span style="float:right;"><i>3</i>晚<i>1</i>间</span></p>
             <table class="abroadhotelSalePriceTbl">
                 <thead>
                 <tr>
@@ -429,6 +425,7 @@
 </script>
 
 <div style="display:none;position: absolute" class="newEndorseOrder" id="child_order">
+    <div class="hideBorderBot"></div>
     <div class="newReOrder">
         <div class="rawOrd clearfix">
             <span class="rawNum">原订单 <a href="javascript:void(0);">1234567890</a></span>
@@ -573,17 +570,18 @@
                 return $("#advanceHotelName").html();
             },
             callout:false,
-            offsetY:5,
+            offsetY:-2,
             offsetX:87
         });
 
         $(".route .trRow_room").kendoTooltip({
             position:"bottom", //left right top
+            wrapperClass:"lineWeight",
             content:function(){
                 return $("#salePriceTblTemplate").html();
             },
             callout:false,
-            offsetY:5,
+            offsetY:-2,
             offsetX:135
         });
 
