@@ -7,6 +7,8 @@
     <link href="../../static/css/kendo.common.css" rel="stylesheet" type="text/css" />
     <link href="../../static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
     <link href="../../static/css/kendo.reset.css" rel="stylesheet" type="text/css" /> <!--弹窗CSS-->
+    <link href="../../static/css/toolkit.css" rel="stylesheet" type="text/css" />
+    <link href="../../static/css/flight_logo.css" rel="stylesheet" type="text/css" />
     <link href="../../static/css/b2b.css" rel="stylesheet" type="text/css" />
     <link href="/static/css/kendo.reset.css" rel="stylesheet" />
     <link href="../../static/css/information_publish.css" rel="stylesheet" type="text/css"/>
@@ -16,17 +18,100 @@
     <script type="text/javascript" src="/static/js/scrollFix.js"></script>
     <script type="text/javascript" src="../../static/js/public.js"></script>
 
-   <!-- <script type="text/javascript" src="../../static/js/global.js"></script>
-    <script type="text/javascript">
-$(function(){
-    new Collpase({
-        limitHeight:140,
-        container:'.xyzc_div' 
-    }).init();
-}) 
-    </script>-->
+   <script type="text/javascript" src="../../static/js/global.js"></script>
+
 <script src="../../static/js/hotel.js" type="text/javascript"></script> <!--弹窗JS--> 
 <script type="text/javascript" src="/static/js/sync.js"></script>
+
+<link rel="stylesheet" href="../../static/css/store_message.css" />
+<script>
+$(function(){
+    var previewWin =  new PopWindow('.previewit',{
+        title:'预览',
+        wrapperClass:'noticeLitst',
+        template:'#preview-template',
+        data:{
+            'title':'标题标题xxx',
+            'target': {
+                'role': '采购商',
+                'category':'国内机票'
+            },
+            'flight':{
+                'code':'MU',
+                'airline':'东方空'
+            },
+            'startDate':'2014-08-01 10:31',
+            'endDate':'2014-08-01 18:30',
+            'detailShort':'公公告截取字符公告截取字符公告截取字符公告截取字符公告截取字符告截取字符',
+            'detail':'公告内容公告<h2>内容公告</h2>内容公<strong>告内容</strong>公告内<p>容公告内容</p>',
+            'attachment':{
+                'url':'http://www.tdxinfo.com', 
+                'name':'发达国家.doc',
+                'size':'200MB',
+                'extention':'doc'
+            }
+        },
+        width:980
+    }).init();
+});
+</script>
+
+
+<script type="template" id="preview-template">
+    <div class="currentnotice">
+                           <div class="titleDiv">
+                               <em class="noticeType">
+                                        # if ( target.category == '国际机票' || target.category == '国内机票' ) {#
+<i class="icon1"></i>
+# } #
+
+                                        # if ( target.category == '酒店') {#
+<i class="icon2"></i>
+# } #
+
+#= target.category #</em>
+                               <div class="noticeTitleContainer">
+                                   <span class="nocTitleWrapper">
+                                       <label class="nocTitle">
+                                           <i>#= title #</i>
+                                       </label>
+                                        # if ( target.category == '国际机票' || target.category == '国内机票' ) {#
+                                       <span class="fico"><span class="pubFlights_#= flight.code #">&nbsp;</span>#= flight.airline #</span>
+                                        # } #
+                                       <span class="noticeDate">#= startDate #</span>
+                                   </span>
+                                   <span class="nocDetailShortWrapper">
+                                       <span class="nocDetailShort">#= detailShort #</span>
+                                       <a class="notice_see_detail" href="javascript:void(0);">收起详情<i class="icon-arrow-double-up"></i></a>
+                                   </span>
+                                     
+                               </div>
+                           </div>
+                           <div class="uploadContent" style="display: block;">
+                                #= detail #
+                                # if( attachment) { #
+                                <div class="downLoad">
+                                     <a href="#= attachment.url #">
+                                        # if (attachment.extention == 'doc'){ #
+                                        <em class="fliePic word"></em>
+                                        # } #
+
+                                        <!--<em class="fliePic excel"></em>
+                                        <em class="fliePic ppt"></em>
+                                        <em class="fliePic other"></em>-->
+
+                                        <label class="flieInfo">
+                                             <div>#= attachment.name #</div>
+                                             <div>#= attachment.size #</div>
+                                        </label>
+                                        <em class="downLoadPic"></em>
+                                     </a>
+                                </div>
+                                # } #
+                           </div>
+      </div>
+</script>
+
 </head>
 <body>
     <div id="extHeader">
@@ -175,7 +260,7 @@ $(function(){
                       <tr>
                           <td><input type="checkbox" checked="" /></td>
                           <td>2013-09-01 至 2013-09-31</td>
-                          <td>东航特惠游四川</td>
+                          <td class="previewit">东航特惠游四川</td>
                           <td>有</td>
                           <td>采购商-旅行社</td>
                           <td>有效</td>
@@ -189,7 +274,7 @@ $(function(){
                       <tr class="hui_bg">
                           <td><input type="checkbox" /></td>
                           <td>2013-09-01 至 2013-09-31</td>
-                          <td>东航特惠游四川</td>
+                          <td class="previewit">东航特惠游四川</td>
                           <td>无</td>
                           <td>采购商</td>
                           <td>过期</td>
@@ -203,7 +288,7 @@ $(function(){
                       <tr>
                           <td><input type="checkbox" /></td>
                           <td>2013-09-01 至 2013-09-31</td>
-                          <td>东航特惠游四川</td>
+                          <td class="previewit">东航特惠游四川</td>
                           <td>有</td>
                           <td>采购商</td>
                           <td>有效</td>
@@ -217,7 +302,7 @@ $(function(){
                       <tr class="hui_bg">
                           <td><input type="checkbox" /></td>
                           <td>2013-09-01 至 2013-09-31</td>
-                          <td>东航特惠游四川</td>
+                          <td class="previewit">东航特惠游四川</td>
                           <td>无</td>
                           <td>运营商</td>
                           <td>过期</td>
@@ -231,7 +316,7 @@ $(function(){
                       <tr>
                           <td><input type="checkbox" /></td>
                           <td>2013-09-01 至 2013-09-31</td>
-                          <td>东航特惠游四川</td>
+                          <td class="previewit">东航特惠游四川</td>
                           <td>有</td>
                           <td>运营商</td>
                           <td>过期</td>
