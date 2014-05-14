@@ -109,7 +109,7 @@
                     </span>
                     <span data-bind="visible:isEditing">
                         <span class="label">选择酒店</span> 
-                        <input type="text">
+                        <input type="text" data-bind="value:edit_city.tmpHotelName" class="hotel_name_suggest">
                         <a href="javascript:;" data-bind="click:edit_city.addHotel" class="button_secondary adaptiveButton small">
                             <span class="left"></span>
                             <span class="center">添 加</span>
@@ -133,17 +133,57 @@
             </script>
         </div>
 <script>
-(function(){
+function hotelNameAutoComplete(obj, hotelKeyWriteSelector) {
+	var dataSource = new kendo.data.DataSource({
+		transport : {
+                    read : {
+                        url : "//dev:5000/gethotel",
+                        dataType : "jsonp"
+                    }
+		},
+                schema: {
+                    // the data which the data source will be bound to is in the "results" field
+                    data: "results"
+                }
+	});
 
-var source = [{
-    cityName:'广州',
-    orderNum: 1,
-    suggestCount: 4
-},{
-    cityName:'北京',
-    orderNum: 2,
-    suggestCount: 4
-}];
+	$(obj).each(function() {
+		$(this).kendoAutoComplete({
+			minLength : 1,
+			dataTextField : 'hotelName',
+			animation : false,
+			filter : "contains",
+			template : '<span id="${data.key}">${data.hotelName}</span>',
+			dataSource : dataSource,
+			highlightFirst : true,
+			placeholder : "拼音/中文",
+                        /*
+			select : function(t) {
+				t.preventDefault();
+				t.sender.value(t.item[0].children[0].innerHTML);
+				$(hotelKeyWriteSelector).val(t.item[0].children[0].id);
+			}
+                       */
+		});
+	})
+}
+
+
+(function(){
+datasource = new kendo.data.DataSource({
+    transport: {
+        read: {
+            url: "//dev:5000/getcity",
+            dataType: "jsonp",
+            data: {
+                key: "test"
+            }
+        }
+    },
+    schema: {
+        data: "results"
+    }
+});
 
 model = kendo.observable({
     datalist:[],
@@ -164,10 +204,14 @@ model = kendo.observable({
         }
     },
     edit_city:{
+        tmpHotelName:'',
+        hotelName:'',
         currentEditItemNum:0,
         editCity:function(e){
             var data = e.data; 
             e.data.set('isEditing',true);
+
+            hotelNameAutoComplete($(e.target).closest('.city-block').find('.hotel_name_suggest'));
         },
         removeCity:function(e){
             var data = e.data;
@@ -182,9 +226,9 @@ model = kendo.observable({
     }
 });
 
-if(source.length>0){
-   model.set('datalist',source);
-}
+datasource.fetch(function(){
+    model.set('datalist',datasource.data());
+});
 
 kendo.bind('#citywrapper',model);
 
