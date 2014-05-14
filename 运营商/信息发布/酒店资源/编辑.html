@@ -117,12 +117,12 @@
                         </a>
                         
                         <span class="pull-right">
-                        <a href="javascript:;" data-bind="click:edit_city.saveHotel" class="button_important adaptiveButton medium">
-                            <span class="left"></span>
-                            <span class="center">保 存</span>
-                            <span class="right"></span>
-                        </a>
-                        <span class="bluelink">删除城市</span>
+                            <a href="javascript:;" data-bind="click:edit_city.saveHotel" class="button_important adaptiveButton medium">
+                                <span class="left"></span>
+                                <span class="center">保 存</span>
+                                <span class="right"></span>
+                            </a>
+                            <span class="bluelink" data-bind="click:edit_city.removeCity">删除城市</span>
                         </span>
                     </span>
                 </div> 
@@ -168,6 +168,11 @@ model = kendo.observable({
         editCity:function(e){
             var data = e.data; 
             e.data.set('isEditing',true);
+        },
+        removeCity:function(e){
+            var data = e.data;
+            var index = this.datalist.indexOf(data);
+            this.datalist.splice(index,1);
         },
         saveHotel:function(e){
             var data = e.data; 
