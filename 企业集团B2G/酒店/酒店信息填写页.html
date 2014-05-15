@@ -521,9 +521,9 @@
 
         $("#ipt_cardNo").keydown(function (e) {
             var code = e.keyCode || e.charCode;
-            if ((code < 48 || code > 57) && (code != 8 && code != 46) && (code < 96 || code > 105)) return false;
+            if (code !=229 && (code < 48 || code > 57) && (code != 8 && code != 46) && (code < 96 || code > 105)) return false;
             setTimeout(function () {
-                var cardNo_txt = $("#ipt_cardNo").val().replace(/\s/g, "");
+                var cardNo_txt = $("#ipt_cardNo").val().replace(/\D/g, "");
                 var tmp = "";
                 while (cardNo_txt.length > 4) {
                     tmp += cardNo_txt.substr(0, 4) + " ";
