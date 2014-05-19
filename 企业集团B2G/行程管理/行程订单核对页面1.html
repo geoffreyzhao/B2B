@@ -824,8 +824,10 @@
         });
 
         $(".customers").focusout(function () {
-            $(this).siblings(".destinationContainer").slideUp("fast");
-            $(this).removeClass("on");
+            setTimeout(function(){
+                $(this).siblings(".destinationContainer").slideUp("fast");
+                $(this).removeClass("on");
+            }.bind(this),100);
         });
         $(".destinationContainer li").click(function () {
             $(this).closest(".destinationContainer").siblings(".customers").val($(this).text());
