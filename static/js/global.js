@@ -6,6 +6,15 @@ function loadCss(url) {
     document.getElementsByTagName("head")[0].appendChild(link);
 }
 
+function hasOwnValue(obj, val){
+    for(var prop in obj) {
+        if(obj.hasOwnProperty(prop) && obj[prop] === val) {
+            return true;   
+        }
+    }
+    return false;
+}
+
 
 //弹窗封装
 function PopWindow(trigger, customSettings, window_id){
@@ -71,6 +80,7 @@ PopWindow.prototype = {
             that.win.data = function(d){
                 var newcontent =  kendo.template(tmpl)(d);
                 that.win.content(newcontent);
+                return that.win;
             }
         }
 
@@ -525,7 +535,7 @@ var CityAutocomplete = function(settings){
             var $t = $(this);
             var text = $t.text();
 
-            hot_tabs.input.val(text).trigger('change');
+            hot_tabs.input.val(text).trigger('change').trigger('blur');
             if (opts.codeEle){
                 $(opts.codeEle).val($t.data('code'));
             }else{
