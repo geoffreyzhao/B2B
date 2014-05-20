@@ -113,18 +113,15 @@
                     <span data-bind="visible:isEditing">
                         <span class="label">选择酒店</span> 
                         <input type="text"
-			data-minLength = "1"
-			data-dataTextField = 'hotelName'
-			data-animation = false
-			data-filter = "contains"
-			data-highlightFirst = true
-			data-placeholder = "拼音/中文"
- data-role="autocomplete" data-bind="source:hotelNames,value:tmpHotelName" class="hotel_name_suggest">
-                        <a href="javascript:;" data-bind="click:edit_city.addHotel" class="button_secondary adaptiveButton small">
-                            <span class="left"></span>
-                            <span class="center">添 加</span>
-                            <span class="right"></span>
-                        </a>
+                        data-role="autocomplete" 
+			data-text-field ='hotelName'
+                        data-bind="source:hotelNames,value:tmpHotelName" 
+                        class="hotel_name_suggest">
+                            <a href="javascript:;" data-bind="click:edit_city.addHotel" class="button_secondary adaptiveButton small">
+                                <span class="left"></span>
+                                <span class="center">添 加</span>
+                                <span class="right"></span>
+                            </a>
                         
                         <span class="pull-right">
                             <a href="javascript:;" data-bind="click:edit_city.saveCity" class="button_important adaptiveButton medium">
@@ -158,6 +155,10 @@
                      <b class="bluelink lnkdel" data-bind="click:edit_city.removeItem">删除</b>
                 </dd>
                 </dl>
+            </script>
+
+            <script type="template" id="fdss">
+            <span data-key='key'>22</span>
             </script>
 
 
@@ -251,6 +252,7 @@ $(function(){
 
     model = kendo.observable({
         datalist:[],
+        hotelNames:hotelNameSource,
         add_city:{
             tmpcity:'',
             city:'',
@@ -285,6 +287,7 @@ $(function(){
             }
         },
         edit_city:{
+            tmpSelectedHotel:'',
             editCity:function(e){
                 if (this.edit_city.get('hasEditingCity') == true){
                     return; 
@@ -301,19 +304,19 @@ $(function(){
                 this.edit_city.set('hasEditingCity',false);
 
                 // 请求服务器删除
-                datasource.read({
+                citySource.read({
                     deleteCity:e.data.cityName
                 }); 
             },
             saveCity:function(e){
                 if(e.data.hotelList.length<4){
-                    return alertWin.data({text:"每个城市资源必须推荐4个"}).show();
+                    //return alertWin.data({text:"每个城市资源必须推荐4个"}).show();
                 }
                 e.data.set('isEditing',false);
                 this.edit_city.set('hasEditingCity',false);
 
                 // 请求服务器保存
-                datasource.read({
+                citySource.read({
                     saveCity:e.data.toJSON()
                 }); 
             },
@@ -324,7 +327,7 @@ $(function(){
                 if(e.data.tmpHotelName == ''){
                     return;
                 }
-                e.data.set('hotelName',e.data.tmpHotelName);
+                this.edit_city.set('tmpSelectedHotel',e.data.tmpHotelName);
                 e.data.set('tmpHotelName','');
                 var exist = e.data.hotelList.indexOf(this.edit_city.tmpSelectedHotel);
                 if(!~exist){
@@ -352,10 +355,6 @@ $(function(){
 
     citySource.fetch(function(e){
         model.set('datalist',e.sender.data());
-    });
-
-    hotelNameSource.fetch(function(e){
-        model.set('hotelNames',e.sender.data());
     });
 
     kendo.bind('#citywrapper',model);
