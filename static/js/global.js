@@ -336,8 +336,8 @@ var FloatLayer = function(opts){
                 }
                 // endfix
 
-                set_pos(that);
                 layer.input = that;
+                set_pos(that);
                 if(opts.toggle){
                     layer.toggle();
                 }else{

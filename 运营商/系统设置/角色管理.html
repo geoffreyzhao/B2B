@@ -526,7 +526,15 @@
             FloatLayer({
                 template:"#usedTimesTemplate",
                 trigger:".usedTimes",
-                offsetX:"-156"
+                offsetX:"-156",
+                offsetY:function(layer){
+                    console.log(layer);
+                    if(($(window).height()-layer.input.offset().top-30)<layer.outerHeight()){
+                        return (-layer.outerHeight())
+                    }else{
+                        return 25;
+                    }
+                }
             });
         })
         var add_department = function(id) {
