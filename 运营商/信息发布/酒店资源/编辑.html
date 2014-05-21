@@ -133,7 +133,7 @@
                         </span>
                     </span>
                 </div> 
-                <div class="active-state" data-bind="visible:isEditing">
+                <div class="active-state" data-bind="visible:isEditingOrPreivew">
                     <div data-template="hotel_list_template" data-bind="source:hotelList" class="hotHotel_show clearfix"></div>
                 </div>
             </div>
@@ -149,7 +149,7 @@
                 <span class="price"><a href="javascript:;"><em>￥</em>#= hotelPrice #</a></span>
                 </div>
                 </dd>
-                <dd class="hotel_move">
+                <dd class="hotel_move" data-bind="visible:isEditing">
                      <b class="bluelink lnkarr lnkarr-left" data-bind="click:edit_city.moveItemBefore"><i class="icon-left"></i></b>
                      <b class="bluelink lnkarr lnkarr-right" data-bind="click:edit_city.moveItemAfter"><i class="icon-right"></i></b>
                      <b class="bluelink lnkdel" data-bind="click:edit_city.removeItem">删除</b>
@@ -283,6 +283,9 @@ $(function(){
                         'cityName':this.add_city.city,
                         'hotelList':[]
                     }); 
+                    this.datalist[0].set('isEditing',true);
+                    this.datalist[0].set('isEditingOrPreivew',true);
+                    this.edit_city.set('hasEditingCity',true);
                 }
             }
         },
@@ -295,6 +298,7 @@ $(function(){
                 var data = e.data; 
                 this.edit_city.set('hasEditingCity',true);
                 e.data.set('isEditing',true);
+                e.data.set('isEditingOrPreivew',true);
                 e.data.set('tmpHotelName','');
             },
             removeCity:function(e){
@@ -312,6 +316,7 @@ $(function(){
                     alertWin.data({text:"每个城市资源必须推荐4个"}).show();
                 }else{
                     e.data.set('isEditing',false);
+                    e.data.set('isEditingOrPreivew',false);
                     this.edit_city.set('hasEditingCity',false);
                     // 请求服务器保存
                     citySource.read({
@@ -347,7 +352,8 @@ $(function(){
                 parent.splice(index-1,2,e.data,parent[index-1]);
             },
             preview:function(e){
-
+                var toggle = e.data.get('isEditingOrPreivew');
+                e.data.set('isEditingOrPreivew',!toggle);
             }
         }
     });
