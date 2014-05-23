@@ -114,6 +114,8 @@
                         <span class="label">选择酒店</span> 
                         <input type="text"
                         data-role="autocomplete" 
+                        data-highlight-first=true
+			data-filter ='contains'
 			data-text-field ='hotelName'
                         data-bind="source:hotelNames,value:tmpHotelName" 
                         class="hotel_name_suggest">
@@ -166,28 +168,6 @@
         </div>
 <script>
 
-
-
-function hotelNameAutoComplete(obj, model) {
-	$(obj).each(function() {
-		$(this).kendoAutoComplete({
-			minLength : 1,
-			dataTextField : 'hotelName',
-			animation : false,
-			filter : "contains",
-			template : '<span data-key="#=key#">#= hotelName#</span>',
-			dataSource : dataSource,
-			highlightFirst : true,
-			placeholder : "拼音/中文",
-			select : function(e) {
-                            var selectedItem = this.dataItem(e.item.index());
-                            model.edit_city.set('tmpSelectedHotel',selectedItem);
-			}
-		});
-	});
-}
-
-
 $(function(){
     var alertWin = new PopWindow('.ac-uncommitted ',{
                 title:false,
@@ -202,9 +182,15 @@ $(function(){
         input: "#add_city_input",
         // 以@分割热门非热门，以;分割条目，以|分割三字码拼音和中文
         url:'/static/js/data.txt',
+        select:function(t){
+            var dataItem = this.dataItem(t.item.index());
+            t.preventDefault();
+            t.sender.value(dataItem.name);
+            //$(t.sender.element).data('code').val(dataItem.code);
+            model.add_city.set('tmpcity',dataItem.name);
+        },
         group: ["热门","GHJ", "ABCDEF", "KLMN", "PQSTW", "XYZ"]
     });
-
 
     hotelNameSource = new kendo.data.DataSource({
         transport : {
@@ -335,10 +321,10 @@ $(function(){
                 this.edit_city.set('tmpSelectedHotel',e.data.tmpHotelName.toJSON());
 
                 e.data.set('tmpHotelName','');
-                var exist = e.data.hotelList.indexOf(this.edit_city.tmpSelectedHotel);
-                if(!~exist){
+                //var exist = e.data.hotelList.indexOf(this.edit_city.tmpSelectedHotel);
+                //if(!~exist){
                     e.data.hotelList.push(this.edit_city.tmpSelectedHotel);
-                }
+                //}
             },
             removeItem:function(e){
                 e.data.parent().remove(e.data);
