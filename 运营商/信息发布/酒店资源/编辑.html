@@ -331,7 +331,9 @@ $(function(){
                 if(e.data.tmpHotelName == ''){
                     return;
                 }
-                this.edit_city.set('tmpSelectedHotel',e.data.tmpHotelName);
+
+                this.edit_city.set('tmpSelectedHotel',e.data.tmpHotelName.toJSON());
+
                 e.data.set('tmpHotelName','');
                 var exist = e.data.hotelList.indexOf(this.edit_city.tmpSelectedHotel);
                 if(!~exist){
