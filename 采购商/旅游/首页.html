@@ -77,7 +77,7 @@
                     <input id="arrival" style="width:150px;" type="text" />
                 </span>
                 <script>
-                    ff = $("#arrival").kendoDropDownList({
+                    $("#arrival").kendoDropDownList({
                         dataSource:[ {id: 0, name:'北美', value:'北美'},
                         {id: 1, name:'美国', value:'美国'},
                         {id: 2, name:'加拿大', value:'加拿大'} ],
@@ -181,25 +181,6 @@
        </div>
    </section>
 
-<script>
-    $(function(){
-        $(".airWay li").each(function(index){
-            $(this).click(function(){
-                $(".salePriceFlight .flightInfoList").hide();
-                $(".salePriceFlight .flightInfoList:eq(" + index + ")").show();
-                $(".airWay li").removeClass("current");
-                $(this).addClass("current");
-            });
-        });
-
-
-		$(".commitmentContent li").mouseenter(function(){
-			$(".fadinShallowOut",this).animate({opacity:0.4},40).animate({opacity:0},40);
-		});
-
-
-    });
-</script>
 </section> <!--body end-->
         <footer class="main-footer">
             <div class="footerContainer">
@@ -265,52 +246,5 @@
         </span>
 	</div>
 </div>
-
-<script>
-    $(function(){
-        $(".airWay li").each(function(index){
-            $(this).click(function(){
-                $(".salePriceFlight .flightInfoList").hide();
-                $(".salePriceFlight .flightInfoList:eq(" + index + ")").show();
-                $(".airWay li").removeClass("current");
-                $(this).addClass("current");
-            });
-
-        });
-        $(".customerCenterButton").hover(
-                function(){
-                    $(this).animate(
-                            {width:"100%"},
-                            200,
-                            function(){$(".customerCenterContainer").addClass("expanded");}
-                    )},
-                function(){
-                    if($(".customerCenterContainer").hasClass("off")){
-                        $(this).animate(
-                                {width:"90px"},
-                                200,
-                                function(){
-                                    $(".customerCenterContainer").removeClass("expanded");
-                                }
-                        )
-                    }
-                }
-        )
-        $(".customerCenterButton").click(function(){
-            if(!$(".customerCenterContainer").hasClass("off"))
-            {
-                $(".customerCenterContainer").addClass("off");
-                $(".customerCenterItemsPanel").hide();
-                $(this).animate({width:"90px"},200,function(){$(".customerCenterContainer").removeClass("expanded");})
-                return false;
-            }
-            $(".customerCenterButton").animate({width:"100%"},"fast");
-            $(".customerCenterItemsPanel").slideDown("fast");
-            $(".customerCenterContainer").removeClass("off");
-
-        })
-    });
-</script>
-
 </body>
 </html>
