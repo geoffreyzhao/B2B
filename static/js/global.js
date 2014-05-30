@@ -252,6 +252,7 @@ var FloatLayer = function(opts){
         offsetX:0,
         offsetY:20,
         toggle:true,
+        expectClose:true,
         open:$.noop,
         close:$.noop,
         css:"",
@@ -283,15 +284,17 @@ var FloatLayer = function(opts){
 
     kendo.init(layer);
 
-    $(document).on('click',function(e){
-        t = e.target;
-        var ele = opts.trigger.length > 0 ? opts.trigger:opts.trigger.selector;
-        if ( !$(t).is(ele) && opts.trigger.has(t).length===0 ){
-            if ( $(t).closest('.ac-floatlayer').length !==1 && !$(t).hasClass('k-placeholder') ){
-                layer.close();
+    if (opts.expectClose) {
+        $(document).on('click',function(e){
+            t = e.target;
+            var ele = opts.trigger.length > 0 ? opts.trigger:opts.trigger.selector;
+            if ( !$(t).is(ele) && opts.trigger.has(t).length===0 ){
+                if ( $(t).closest('.ac-floatlayer').length !==1 && !$(t).hasClass('k-placeholder') ){
+                    layer.close();
+                }
             }
-        }
-    });
+        });
+    }
 
     function set_pos(ele){
         var pos = ele.offset();
