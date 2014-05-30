@@ -74,7 +74,7 @@
          <span class="tr-arrival">
                 <s>目的地</s> 
                 <span class="tr-arrival-bg">
-                    <input id="arrival" type="text" />
+                    <input id="arrival" style="width:150px;" type="text" />
                 </span>
                 <script>
                     ff = $("#arrival").kendoDropDownList({
@@ -83,8 +83,18 @@
                         {id: 2, name:'加拿大', value:'加拿大'} ],
                         dataTextField: 'name',
                         dataValueField: 'value',
-                        valueTemplate: '#= data.id # vasdfa',
-                        template: '<div class="arrial-row arrial-icon#: data.id #">#: data.name #</div>' 
+                        template: '<div class="arrial-row arrial-icon#: data.id #">#: data.name #</div>',
+                        select: function(e){
+                            setTimeout(function(){
+                                var id = e.sender.dataItem().id;
+                                $('.tr-arrival-bg').removeClass(function(i,x){
+                                    var matched = x.match(/arrial-icon\d+/g);
+                                    if (matched){
+                                        return matched.join(' ');
+                                    }
+                                }).addClass('arrial-icon'+id);
+                            },0);
+                        }
                     }).data('kendoDropDownList');
                 </script>
                         
