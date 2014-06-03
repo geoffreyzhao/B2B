@@ -33,22 +33,44 @@
     <style>
         .k-calendar .k-content .k-link {
             padding: 0;
-            line-height: 19px;;
+            line-height: 19px;
+            font-size: 12px;
         }
         .k-state-selected.k-state-focused{
             background: #ffffff;
         }
 
         #calendarTitle{color:#FF6500;font-size:12px;font-weight:bold;width:780px;margin:0 auto 10px}
-        #calendarContainer{background:#D8F0FF;padding:60px 20px 30px;box-shadow:3px 3px 3px #1F6491;width:780px;margin:0 auto;position:relative}
+        #calendarContainer{
+            background:#D8F0FF;
+            padding:60px 20px 30px;
+            box-shadow:3px 3px 3px #1F6491;
+            width:780px;
+            margin:0 auto;
+            position:relative
+        }
+        .calendarContainer {
+            font-size: 12px;;
+        }
         #calendarHead{position:absolute;top:30px;left:120px}
-        .calendarHead th{width:93px;text-align:center}
+        .calendarHead th{
+            width:93px;
+            text-align:center;
+            font-size: 12px;
+        }
         .calendar{width:358px;border:1px solid #9AC8E7;}
         .calendar .k-header{display:none}
-        .calendar thead th{background: #99C9F1;color:#ffffff;}
-        .calendar td{height:38px;width:65px;border:1px solid #ccc;padding:0}
-        .calendar td.hover{background:url('../images/calendarAddButton.gif') center center no-repeat;}
-        .calendar_date{position:absolute;top:3px;left:3px;color: #ADADAD}
+        .calendar thead th{background: #99C9F1;color:#ffffff;font-size: 12px;}
+        .calendar td{height:38px;width:65px;border:1px solid #eaeaea;padding:0}
+        
+        .calendar td:hover{background:#f4fcff;}
+        .calendar_date{
+            position:absolute;
+            top:3px;
+            left:3px;
+            color: #aeaeae;
+            font-size: 12px;
+        }
         .canlendar_jqjr{position:absolute;top:6px;left:20px;line-height:1.25;width:40px;word-break:break-all;text-align:left;color:#878787}
         #calendarOperationPanel{width:83px;height:440px;border:1px solid #AFD2E9;background:#EBF7FF;float:left;position:relative}
         #calendarMonthUp,#calendarMonthUp.disabled{background:url('../images/calendarButton.gif') no-repeat 0 -50px;width:50px;height:41px;position:absolute;top:10px;left:16px;cursor:pointer}
@@ -61,14 +83,19 @@
         .calendar th{text-align:center}
         .calendar div.sale{background:#E8F4FF}
         .calendar b.edge{background:url('../images/calendarEdge.gif') no-repeat;width:10px;height:11px;position:absolute;top:0;right:0}
-        .calendar .remainNum{color:#338331;float: left; padding-left: 22px;}
+        .calendar .remainNum{
+            color:#338331;
+            float: left; 
+            padding-left: 22px;
+            font-size: 12px;
+        }
         .calendar .salePrice{color:#FF6500;float: left;display: block;text-align: center}
         .calendarOperation{background: #99c9f1;height: 35px;line-height: 35px;position: relative}
         .calendarMonthLeft{background: url("../../static/images/store/calendar_arrow.png") 0 0 no-repeat;width: 6px;height: 11px;position:absolute;top:12px;left:10px;cursor: pointer}
         .calendarMonthRight{background: url("../../static/images/store/calendar_arrow.png") 0 -12px no-repeat;width: 6px;height: 11px;position:absolute;top:12px;right:10px;cursor: pointer}
         .calendarMonthLeft:hover{background-position: 0 -24px;}
         .calendarMonthRight:hover{background-position: 0 -36px;}
-        .calendarDate{text-align: center;font-size: 12px;color: #ffffff;font-weight: bold}
+        .calendarDate{text-align: center;font-size: 14px;color: #ffffff;font-weight: bold}
     </style>
     
     
@@ -130,8 +157,9 @@
      <div class="tour_searchBar">
          <span><i class="sign"></i><span class="font16">上海</span>出发</span>
          <span class="font14">出发日期段
-         <label><input value="2013-09-11" type="text" name="" class="normal_txt datepicker" style="width:195px;"/> 至 
-                <input value="2013-09-11" type="text" name="" class="normal_txt datepicker" style="width:195px;"/>
+         <label><input type="text" value="2013-09-11" name="departure_date" style="width:195px;"  class="datepicker"> 至 
+               
+                <input type="text" value="2013-09-11" name="departure_date" style="width:195px;"  class="datepicker">
          </label>
          <button class="adaptiveButton tour_blue_btn">搜&nbsp;&nbsp;索</button>
          </span>
@@ -185,7 +213,8 @@
             <div class=" pull-right" style="width:auto;">
                  <span class="tour_result_sortButtonContainer" style="float: left; margin-top: 4px;">
                             <span>排序：</span>
-                            <span class="sorttab ">价格<i></i></span>
+                            <span class="sorttab">价格<i></i></span>
+                           <!--<span class="sorttab ascend">价格<i></i></span> <span class="sorttab descend">价格<i></i></span>-->
                 </span>
                 <div class="pagination" style="display: inline; ">
                 <ul>
@@ -442,7 +471,7 @@
         <div style="position:relative;height:38px" class="sale">
             <span class="calendar_date">#= data.value #</span>
             <span class="remainNum">余#= eve[$.dateToString(date)][0] #</span>
-            <span class="salePrice">￥#= eve[$.dateToString(date)][1] #<span>起</span></span>
+            <span class="salePrice">￥#= eve[$.dateToString(date)][1] #</span>
             <b class="edge"></b>
             # } #
             #}else{#
