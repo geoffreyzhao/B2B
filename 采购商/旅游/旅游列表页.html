@@ -18,13 +18,61 @@
     <script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
     <script type="text/javascript" src="../../static/js/global.js"></script>
     <script type="text/javascript" src="../../static/js/store/store.js"></script>
+    <script type="text/javascript" src="../../static/js/DateControl.js"></script>
     <script src="../../static/js/jquery-ui-1.10.3.custom.js"></script>
 	<script src="../../static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+
+
+    
     
       <!--[if IE]>
     <script src="../../static/js/html5.js"></script>
     <script src="../../static/js/vendor/IE7.min.js"></script>
     <![endif]-->
+
+    <style>
+        .k-calendar .k-content .k-link {
+            padding: 0;
+            line-height: 19px;;
+        }
+        .k-state-selected.k-state-focused{
+            background: #ffffff;
+        }
+
+        #calendarTitle{color:#FF6500;font-size:12px;font-weight:bold;width:780px;margin:0 auto 10px}
+        #calendarContainer{background:#D8F0FF;padding:60px 20px 30px;box-shadow:3px 3px 3px #1F6491;width:780px;margin:0 auto;position:relative}
+        #calendarHead{position:absolute;top:30px;left:120px}
+        .calendarHead th{width:93px;text-align:center}
+        .calendar{width:358px;border:1px solid #9AC8E7;}
+        .calendar .k-header{display:none}
+        .calendar thead th{background: #99C9F1;color:#ffffff;}
+        .calendar td{height:38px;width:65px;border:1px solid #ccc;padding:0}
+        .calendar td.hover{background:url('../images/calendarAddButton.gif') center center no-repeat;}
+        .calendar_date{position:absolute;top:3px;left:3px;color: #ADADAD}
+        .canlendar_jqjr{position:absolute;top:6px;left:20px;line-height:1.25;width:40px;word-break:break-all;text-align:left;color:#878787}
+        #calendarOperationPanel{width:83px;height:440px;border:1px solid #AFD2E9;background:#EBF7FF;float:left;position:relative}
+        #calendarMonthUp,#calendarMonthUp.disabled{background:url('../images/calendarButton.gif') no-repeat 0 -50px;width:50px;height:41px;position:absolute;top:10px;left:16px;cursor:pointer}
+        #calendarMonthDown,#calendarMonthDown.disabled{background:url('../images/calendarButton.gif') no-repeat 0 -150px;width:50px;height:41px;position:absolute;bottom:10px;left:16px;cursor:pointer}
+        #calendarMonthUp.disabled{background-position:0 0;cursor:default}
+        #calendarMonthDown.disabled{background-position:0 -100px;cursor:default}
+        #calendarDateInfo{position:absolute;top:50%;margin-top:-50px;left:15px;text-align:center}
+        #calendarDateInfo .monthValue{font-size:26px;color:#3399CB;vertical-align:top}
+        #calendarMonthTag{font-size:16px;line-height:42px;display:inline-block;height:26px;+line-height:33px}
+        .calendar th{text-align:center}
+        .calendar div.sale{background:#E8F4FF}
+        .calendar b.edge{background:url('../images/calendarEdge.gif') no-repeat;width:10px;height:11px;position:absolute;top:0;right:0}
+        .calendar .remainNum{color:#338331;float: left; padding-left: 22px;}
+        .calendar .salePrice{color:#FF6500;float: left;display: block;text-align: center}
+        .calendarOperation{background: #99c9f1;height: 35px;line-height: 35px;position: relative}
+        .calendarMonthLeft{background: url("../../static/images/store/calendar_arrow.png") 0 0 no-repeat;width: 6px;height: 11px;position:absolute;top:12px;left:10px;cursor: pointer}
+        .calendarMonthRight{background: url("../../static/images/store/calendar_arrow.png") 0 -12px no-repeat;width: 6px;height: 11px;position:absolute;top:12px;right:10px;cursor: pointer}
+        .calendarMonthLeft:hover{background-position: 0 -24px;}
+        .calendarMonthRight:hover{background-position: 0 -36px;}
+        .calendarDate{text-align: center;font-size: 12px;color: #ffffff;font-weight: bold}
+    </style>
+    
+    
+    
 </head>
 <body>
 
@@ -167,8 +215,29 @@
                     </a>
                 </div>
 
-                <div class="tour_unfoldCon" id="unfoldCon" style="display: none; ">
-                    哈哈哈哈哈哈哈哈日历日历日历双双日历
+                <div class="tour_unfoldCon" id="unfoldCon" style="display: none;">
+                    <!--日历-->
+                    <div style="width: 360px;float: left; margin-right:10px;">
+                    <div class="calendarOperation">
+                        <div class="calendarMonthLeft"></div>
+                        <div class="calendarDate cd1"></div>
+                        
+                    </div>
+                    <div class="calendar" class="calendarContainer" id="calendar01">
+
+                    </div>
+                    </div>
+
+                    <div style="width: 360px; float: left">
+                        <div class="calendarOperation">
+                            
+                            <div class="calendarDate cd2"></div>
+                            <div class="calendarMonthRight"></div>
+                        </div>
+                        <div class="calendar" class="calendarContainer" id="calendar02">
+
+                        </div>
+                    </div>
                 </div>
                 
             </div>
@@ -359,6 +428,190 @@
         })
     });
 </script>
+
+
+
+
+<script id="calendarTemplate" type="text/x-kendo-template">
+    # if($.inArray(+data.date, data.dates) != -1){ #
+    # if(!eve[$.dateToString(data.date)]){ #
+    <div style="position:relative;height:38px">
+        <span class="calendar_date">#= data.value #</span>
+        <b class="holiday"></b>
+        # }else{ #
+        <div style="position:relative;height:38px" class="sale">
+            <span class="calendar_date">#= data.value #</span>
+            <span class="remainNum">余#= eve[$.dateToString(date)][0] #</span>
+            <span class="salePrice">￥#= eve[$.dateToString(date)][1] #<span>起</span></span>
+            <b class="edge"></b>
+            # } #
+            #}else{#
+            <div style="position:relative;height:38px">
+                <span class="calendar_date">#= data.value #</span>
+                #}#
+            </div>
+</script>
+
+<script type="text/html" id="testJsonStr">
+    {
+    "2014/5/02": [
+    {
+    "tourGroupId": "123",
+    "numberOfPlanSignUp": "123",
+    "adultPrice": "123",
+    "childPrice": "123",
+    "balancePrice": "123",
+    "signUpEndDate": "2013-10-29",
+    "hotelStarLevel": "3"
+    },
+    {
+    "tourGroupId": "22",
+    "numberOfPlanSignUp": "22",
+    "adultPrice": "22",
+    "childPrice": "22",
+    "balancePrice": "22",
+    "signUpEndDate": "2013-10-23",
+    "hotelStarLevel": "3"
+    }
+    ]
+    }
+</script>
+
+
+
+
+
+
+<script>
+    eve={"2014/05/12":[15,15000],"2014/5/1":"","2014/5/2":"","2014/5/3":"","2014/5/4":"","2013/10/5":"","2013/10/6":"","2013/10/7":"","2013/10/22":[22,45678]};
+
+    $.dateToString = function (s, sep) {
+        var sep = sep || '/'
+        return [s.getFullYear(), (s.getMonth() < 9 ? "0" : "") + (s.getMonth() + 1), (s.getDate() < 10 ? "0" : "") + s.getDate()].join(sep);
+    };
+
+    var today = new Date(),
+            toDate=today;
+    var nextMonthDate=new Date(today.getFullYear(),toDate.getMonth()+1,toDate.getDate());
+
+    $(function(){
+//        var t=kendo.template($("#tripDetailAddContainer").html());
+
+
+        
+
+        
+        console.log(nextMonthDate);
+        var spDate=(function(){
+            var arr=[];
+            for(name in eve){
+                arr.push(+new Date(name));
+            }
+            return arr;
+        })();
+        var calendar=$("#calendar01").kendoCalendar({
+            culture:"zh-CN",
+            dates:spDate,
+            value:today,
+            footer:false,
+            month:{content:$("#calendarTemplate").html()}
+
+        }).data("kendoCalendar");
+
+        var calendar1=$("#calendar02").kendoCalendar({
+            culture:"zh-CN",
+            dates:spDate,
+            value:nextMonthDate,
+            footer:false,
+            month:{content:$("#calendarTemplate").html()}
+
+        }).data("kendoCalendar");
+
+        changeCalendarDateInfo(new Date());
+
+        $(".calendarMonthRight").click(function(){
+            if(!$(this).hasClass("disabled"))
+            {
+                toDate=toDate.DateAdd("m",+1);
+                nextMonthDate=nextMonthDate.DateAdd("m",+1);
+                calendar.navigate(toDate,"month");
+                calendar1.navigate(nextMonthDate,"month");
+                changeCalendarDateInfo(toDate);
+            }
+        })
+        $(".calendarMonthLeft").click(function(){
+            if(!$(this).hasClass("disabled"))
+            {
+                toDate=toDate.DateAdd("m",-1);
+                nextMonthDate=nextMonthDate.DateAdd("m",-1);
+                calendar.navigate(toDate,"month");
+                calendar1.navigate(nextMonthDate,"month");
+                changeCalendarDateInfo(toDate);
+            }
+        })
+
+
+
+
+    })
+
+    function changeCalendarDateInfo(toDate)
+    {
+        $(".calendarDate.cd1").html(toDate.getFullYear()+"年"+(toDate.getMonth()+1)+"月");
+        $(".calendarDate.cd2").html(nextMonthDate.getFullYear()+"年"+(nextMonthDate.getMonth()+1)+"月");
+    }
+
+    function getjqjr(year,month,day)
+    {
+        myCal=new CCC(year,month,day);
+        myLunarCal=myCal.lunar();
+        sTerm=myCal.solarTerm();
+        var tmp="";
+        tmp+=myCal.sFtvl()!=""?myCal.sFtvl()+"<br />":"";
+        tmp+=myCal.jqFtvl()!=""?myCal.jqFtvl()+"<br />":"";
+        tmp+=myLunarCal.lunFtvl()!=""?myLunarCal.lunFtvl()+"<br />":"";
+        return (tmp);
+    }
+
+    function hashDate(t)
+    {
+        t= t.replace(/0/g,'a');
+        t= t.replace(/1/g,'b');
+        t= t.replace(/2/g,'c');
+        t= t.replace(/3/g,'d');
+        t= t.replace(/4/g,'e');
+        t= t.replace(/5/g,'f');
+        t= t.replace(/6/g,'g');
+        t= t.replace(/7/g,'h');
+        t= t.replace(/8/g,'i');
+        t= t.replace(/9/g,'j');
+        return t;
+    }
+
+    function dehashDate(t)
+    {
+        t= t.replace(/a/g,'0');
+        t= t.replace(/b/g,'1');
+        t= t.replace(/c/g,'2');
+        t= t.replace(/d/g,'3');
+        t= t.replace(/e/g,'4');
+        t= t.replace(/f/g,'5');
+        t= t.replace(/g/g,'6');
+        t= t.replace(/h/g,'7');
+        t= t.replace(/i/g,'8');
+        t= t.replace(/j/g,'9');
+        return t;
+    }
+</script>
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>

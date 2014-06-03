@@ -350,9 +350,10 @@
                         <tr>
                             <th></th>
                             <td>
-                                <select data-role="dropdownlist" style="width:194px;" name="">
+                               <!-- <select data-role="dropdownlist" style="width:194px;" name="">
                                     <option value="">请选择签证产品</option>
-                                </select>
+                                </select>-->
+                                <input type="text" name="" style="" class="departureInfo" readonly="readonly" placeholder="请选择签证产品"/>
                                 
                                 <span class="add_btn">删除</span>
                             </td>
@@ -527,6 +528,56 @@
 
     });
 </script>
+
+
+
+
+
+
+<script type="text/html" id="departureInfoTemplate">
+    <div class="departureInfoContainer">
+        <ul>
+            # for(var i=0;i<data.length;i++){ #
+            <li>
+                <span>#=data[i].type#</span>
+                <span>#=data[i].typetips#</span>
+                <span class="departureMoney">¥#=data[i].Price#起</span>
+            </li>
+            #}#
+        </ul>
+    </div>
+</script>
+
+
+
+<script>
+    $(function(){
+        var data=[{type:"美国个人旅游签证",typetips:"（中信银行代传递免面试，用于团队，上海送签）", Price:9865},
+                  {type:"加拿大个人旅游签证",typetips:"（中信银行代传递免面试，用于团队，上海送签）", Price:9865}];
+        
+        var departureFL=new FloatLayer({
+            trigger:".departureInfo",
+            template:"#departureInfoTemplate",
+            data:data
+        });
+
+
+        $(".departureInfoContainer li").click(function(){
+            var i=$(this).index();
+            departureFL.input.val(data[i].type);
+            departureFL.close();
+        })
+
+       
+
+        
+    });
+</script>
+
+
+
+
+
 
 
 
