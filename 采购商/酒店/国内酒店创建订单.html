@@ -157,7 +157,7 @@
                         </tr>
                         <tr>
                             <th>入住时间：</th>
-                            <td>2014年3月13日 入住；2014年3月16日 离店</td>
+                            <td>2014年3月13日 入住；2014年3月16日 离店 <a href="javascript:;" class="button5 modifyDate">修改日期</a></td>
                         </tr>
                         <tr>
                             <th>预订间数：</th>
@@ -448,6 +448,30 @@
     </ul>
 </script>
 
+<script type="text/html" id="modifyDateTemplate">
+    <div class="modifyDateContainer">
+        <div>
+            入住时间 <input type="text" name="" id="" class="gray-border" style="height: 23px;width:80px;" value="2014-5-12" /> 至 <input type="text" name="" id="" class="gray-border" style="height: 23px;width:80px;" value="2014-5-12"/>
+            <a class="adaptiveButton brightOrange_btn">
+                <span class="left"></span>
+                <span class="center center_1">确定</span>
+                <span class="right"></span>
+            </a>
+        </div>
+        <div>
+            <span>预订间数</span>
+            <span class="mdt_roombookingNum">1</span>
+            <span class="mdt_roombookingNum">2</span>
+            <span class="mdt_roombookingNum current">3</span>
+            <span class="mdt_roombookingNum">4</span>
+            <span class="mdt_roombookingNum">5</span>
+        </div>
+        <div>
+            <span class="promptTxt">入住30天或大于5间</span>请联系客服请联系客服
+        </div>
+    </div>
+</script>
+
 <!--模板文件-->
 <script type="text/javascript" src="../../static/js/store/freq_traveler.js"></script>
 
@@ -585,6 +609,11 @@ $(function(){
         inverse:true
     });
 
+    new FloatLayer({
+        trigger:".modifyDate",
+        template:"#modifyDateTemplate"
+    })
+    
 });
 </script>
 </body>
