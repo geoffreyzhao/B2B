@@ -118,7 +118,7 @@
                         data-highlight-first=true
 			data-filter ='contains'
 			data-text-field ='hotelName'
-                        data-bind="source:hotelNames,value:tmpHotelName" 
+                        data-bind="source:hotelNames" 
                         class="hotel_name_suggest">
                             <a href="javascript:;" data-bind="click:edit_city.addHotel" class="button_secondary adaptiveButton small">
                                 <span class="left"></span>
@@ -290,7 +290,6 @@ $(function(){
                 this.edit_city.set('hasEditingCity',true);
                 e.data.set('isEditing',true);
                 e.data.set('isEditingOrPreivew',true);
-                e.data.set('tmpHotelName','');
             },
             removeCityConfirm:function(e){
                 var that = this;
@@ -333,21 +332,14 @@ $(function(){
                 }
             },
             addHotel:function(e){
+                var autocomplete = $(e.target).closest('.city-block').find('input.hotel_name_suggest').data('kendoAutoComplete');
                 if(e.data.hotelList.length==4){
-                    return e.data.set('tmpHotelName','');
-                }
-                if(e.data.tmpHotelName == ''){
                     return;
                 }
 
-                if ( typeof e.data.tmpHotelName.toJSON == 'undefined' ) return;
-
-                this.edit_city.set('tmpSelectedHotel',  e.data.tmpHotelName.toJSON());
-                e.data.set('tmpHotelName','');
-                //var exist = e.data.hotelList.indexOf(this.edit_city.tmpSelectedHotel);
-                //if(!~exist){
-                    e.data.hotelList.push(this.edit_city.tmpSelectedHotel);
-                //}
+                this.edit_city.set('tmpSelectedHotel',autocomplete.selectedDataItem.toJSON());
+                e.data.hotelList.push(this.edit_city.tmpSelectedHotel);
+                autocomplete.value('');
             },
             removeItem:function(e){
                 e.data.parent().remove(e.data);

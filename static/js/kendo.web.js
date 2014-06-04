@@ -18426,6 +18426,8 @@ kendo_module({
 
                 if (idx > -1) {
                     data = data[idx];
+                    // by shaotian.hu, save Selected DataItem
+                    that.selectedDataItem = data;
                     text = that._text(data);
 
                     if (separator) {
@@ -18991,6 +18993,8 @@ kendo_module({
                 idx = ui.List.inArray(li[0], that.ul[0]);
                 if (idx > -1) {
                     data = data[idx];
+                    // by shaotian.hu, save Selected DataItem
+                    that.selectedDataItem = data;
                     text = that._text(data);
                     value = that._value(data);
                     that.selectedIndex = idx;
@@ -19813,6 +19817,8 @@ kendo_module({
                 that._current.addClass(STATE_SELECTED);
 
                 data = data[idx];
+                // by shaotian.hu, save Selected DataItem
+                that.selectedDataItem = data;
                 text = that._text(data);
                 value = that._value(data);
 
