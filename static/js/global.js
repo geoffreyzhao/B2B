@@ -9,7 +9,7 @@ function loadCss(url) {
 function hasOwnValue(obj, val){
     for(var prop in obj) {
         if(obj.hasOwnProperty(prop) && obj[prop] === val) {
-            return true;   
+            return true;
         }
     }
     return false;
@@ -34,7 +34,7 @@ function PopWindow(trigger, customSettings, window_id){
     this.window_id = window_id;
     if(typeof arguments[0]!='string'){
         // 没有选择器
-        customSettings = trigger; 
+        customSettings = trigger;
         this.triggerText = "#POPWINDOW_NULL";
     }
     this.settings = $.extend(kendoWinDefaults,customSettings);
@@ -86,7 +86,7 @@ PopWindow.prototype = {
 
         that.win.show = function(){
             kendo.init(that.win.element);
-            that.win.center().open(); 
+            that.win.center().open();
             return that.win;
         }
     },
@@ -240,7 +240,7 @@ Collpase.prototype = {
 
 
 // 浮层模块
-var FloatLayer = function(opts){
+var FloatLayer = function(settings){
     var opts = $.extend({
         trigger:"",
         className:"",
@@ -258,7 +258,7 @@ var FloatLayer = function(opts){
         css:"",
         openEffect:"",
         closeEffect:""
-    },opts);
+    },settings);
 
     var tpl;
 
@@ -287,11 +287,12 @@ var FloatLayer = function(opts){
     if (opts.expectClose) {
         $(document).on('click',function(e){
             t = e.target;
-            var ele = opts.trigger.length > 0 ? opts.trigger:opts.trigger.selector;
-            if ( !$(t).is(ele) && opts.trigger.has(t).length===0 ){
-                if ( $(t).closest('.ac-floatlayer').length !==1 && !$(t).hasClass('k-placeholder') ){
+            var ele = $(settings.trigger);
+            if ( !$(t).is(ele)
+                && $(t).closest(ele).length===0
+                && $(t).closest('.ac-floatlayer').length===0
+                && !$(t).hasClass('k-placeholder') ){
                     layer.close();
-                }
             }
         });
     }
@@ -1721,7 +1722,7 @@ $.fn.fixedBar = function(settings){
 
 		return this.each(function() {
 		  $.fn.scrollPagination.init($(this), opts);
-		  
+
 			if(opts.loadFirst){
 				$(target).data('loadFirst',true);
 				$.fn.scrollPagination.loadContent($(this),opts);
@@ -1742,7 +1743,7 @@ $.fn.fixedBar = function(settings){
 
 	 var mayLoadContent = $(target).scrollTop()+opts.heightOffset >= $(document).height() - $(target).height();
 	 var loadFirst = $(target).data('loadFirst');
-	 
+
 	 if (mayLoadContent || loadFirst){
 
 		 $(target).removeData('loadFirst');
@@ -1888,18 +1889,18 @@ scrollScene.prototype = {
     setSceneDimension:function(){
         var that = this;
         var eles = that.eles;
- 
+
         eles.css({
             height:window.innerHeight,
             width:'100%'
         });
- 
+
         that.firstEleOffsetTop = that.eles.eq(0).offset().top;
         that.lastEleOffsetTop = that.eles.eq(-1).offset().top;
     },
     getCurrentScene:function(){
         var that = this;
- 
+
         var i = 0;
         var eles = that.eles;
         var len = eles.length;
@@ -1937,7 +1938,7 @@ scrollScene.prototype = {
                 },lockTime);
                 return that.stopAnim();
             }
- 
+
             if(endPos - window.scrollY < smallstep){
                 window.scrollBy(0,1);
             }else if(endPos - window.scrollY < step){
@@ -1945,10 +1946,10 @@ scrollScene.prototype = {
             }else{
                 window.scrollBy(0,step);
             }
- 
+
             that.animId = requestAnimationFrame(repeat);
         }
- 
+
         function repeat_bottom(){
             if(window.scrollY >= document.documentElement.scrollHeight - window.innerHeight ){
                 setTimeout(function(){
@@ -1985,7 +1986,7 @@ scrollScene.prototype = {
                 },lockTime);
                 return that.stopAnim();
             }
- 
+
             if(window.scrollY - endPos < smallstep){
                 window.scrollBy(0,-1);
             }else if(window.scrollY - endPos < step){
@@ -1993,7 +1994,7 @@ scrollScene.prototype = {
             }else{
                 window.scrollBy(0,-step);
             }
- 
+
             that.animId = requestAnimationFrame(repeat);
         }
 
@@ -2010,7 +2011,7 @@ scrollScene.prototype = {
         }
 
         if(index == -1){
-            //scrollBackToPageTop 
+            //scrollBackToPageTop
             that.currentScene=0;
             that.animId = requestAnimationFrame(repeat_top);
         }else{
