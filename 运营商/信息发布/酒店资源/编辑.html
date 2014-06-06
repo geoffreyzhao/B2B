@@ -14,10 +14,10 @@
     <!--<script type="text/javascript" src="../../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>-->
     <!--<script type="text/javascript" src="../../../static/js/plugins/jquery.fixedBar.js"></script>-->
     <script type="text/javascript" src="../../../static/js/global.js"></script>
-    
-<!--[if lt IE 8]> 
-<link rel="stylesheet" href="/static/css/ie.css" /> 
-<script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
+
+<!--[if lt IE 8]>
+<link rel="stylesheet" href="/static/css/ie.css" />
+<script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script>
 <![endif]-->
 <script type="text/javascript" src="/static/js/sync.js"></script>
 <!-- @CLB@ -->
@@ -98,10 +98,10 @@
             <script type="template" id="city_block_template">
             <div class="block city-block">
                 <div class="default-state clearfix">
-                    <span class="city-name">#= cityName #</span> 
+                    <span class="city-name">#= cityName #</span>
                     <span class="city-order">排序：<b data-bind="indexFrom:datalist"></b>
                         <span data-bind="visible:isEditing,click:edit_city.moveItemBefore" class="mvcity bluelink">上移</span>
-                    </span> 
+                    </span>
                     <span class="city-suggest">推荐酒店：<b data-bind="count:hotelList"></b>个</span>
                     <span data-bind="invisible:isEditing">
                         <span class="seemore" data-bind="click:edit_city.preview">查看详情</span>
@@ -112,20 +112,20 @@
                         </a>
                     </span>
                     <span data-bind="visible:isEditing">
-                        <span class="label">选择酒店</span> 
+                        <span class="label">选择酒店</span>
                         <input type="text"
-                        data-role="autocomplete" 
+                        data-role="autocomplete"
                         data-highlight-first=true
 			data-filter ='contains'
 			data-text-field ='hotelName'
-                        data-bind="source:hotelNames" 
+                        data-bind="source:hotelNames"
                         class="hotel_name_suggest">
                             <a href="javascript:;" data-bind="click:edit_city.addHotel" class="button_secondary adaptiveButton small">
                                 <span class="left"></span>
                                 <span class="center">添 加</span>
                                 <span class="right"></span>
                             </a>
-                        
+
                         <span class="pull-right">
                             <a href="javascript:;" data-bind="click:edit_city.saveCity" class="button_important adaptiveButton medium">
                                 <span class="left"></span>
@@ -135,7 +135,7 @@
                             <span class="bluelink" data-bind="click:edit_city.removeCityConfirm">删除城市</span>
                         </span>
                     </span>
-                </div> 
+                </div>
                 <div class="active-state" data-bind="visible:isEditingOrPreivew">
                     <div data-template="hotel_list_template" data-bind="source:hotelList" class="hotHotel_show clearfix"></div>
                 </div>
@@ -198,22 +198,6 @@ $(function(){
         }
     });
 
-    citySource = new kendo.data.DataSource({
-        transport: {
-            read: {
-                url: "http://192.168.163.166:5000/getcity",
-                dataType: "jsonp",
-                data: {
-                    q: "all"
-                }
-            }
-        },
-        schema: {
-            data: "results"
-        }
-    });
-
-
     kendo.data.binders.indexFrom = kendo.data.Binder.extend({
         refresh: function() {
             var param = this.bindings["indexFrom"].get();
@@ -230,142 +214,131 @@ $(function(){
         }
     });
 
-    model = kendo.observable({
-        datalist:[],
-        hotelNames:hotelNameSource,
-        add_city:{
-            tmpcity:'',
-            city:'',
-            cityNotValid:false,
-            isInvisible:true,
-            changeState:function(){
-                if(this.edit_city.hasEditingCity){
-                    return alertWin.data({text:"正在编辑中，不能添加"}).show();
-                }
-                var state = this.add_city.get('isInvisible');
-                this.add_city.set('isInvisible',!state);
-            },
-            addCity:function(e){
-                //if (this.add_city.tmpcity=='') return;
-                var val = $('#add_city_input').data('kendoAutoComplete').value();
-                var codeEle = $('#add_city_input').data('code');
-
-                if(codeEle.val() == "") return this.add_city.set('cityNotValid',true);
-
-                this.add_city.set('tmpcity',val);
-                this.add_city.set('isInvisible',true);
-                this.add_city.set('city',this.add_city.tmpcity);
-                this.add_city.set('tmpcity','');
-                var exist = false;
-                for (x in this.datalist ){
-                    if( this.datalist[x]['cityName'] == this.add_city.get('city') ) {
-                        exist = true;
-                        break;
+    function createModel(citySourceData){
+        model = kendo.observable({
+            datalist:citySourceData,
+            hotelNames:hotelNameSource,
+            add_city:{
+                tmpcity:'',
+                city:'',
+                cityNotValid:false,
+                isInvisible:true,
+                changeState:function(){
+                    if(this.edit_city.hasEditingCity){
+                        return alertWin.data({text:"正在编辑中，不能添加"}).show();
                     }
-                }
+                    var state = this.add_city.get('isInvisible');
+                    this.add_city.set('isInvisible',!state);
+                },
+                addCity:function(e){
+                    //if (this.add_city.tmpcity=='') return;
+                    var val = $('#add_city_input').data('kendoAutoComplete').value();
+                    var codeEle = $('#add_city_input').data('code');
 
-                if(exist){
-                    return alertWin.data({text:"已添加这个城市"}).show();
-                }else {
-                    this.datalist.unshift({
-                        'cityName':this.add_city.city,
-                        'hotelList':[],
-                        'isEditing':true,
-                        'isEditingOrPreivew':true
-                    }); 
+                    if(codeEle.val() == "") return this.add_city.set('cityNotValid',true);
+
+                    this.add_city.set('tmpcity',val);
+                    this.add_city.set('isInvisible',true);
+                    this.add_city.set('city',this.add_city.tmpcity);
+                    this.add_city.set('tmpcity','');
+                    var exist = false;
+                    for (x in this.datalist ){
+                        if( this.datalist[x]['cityName'] == this.add_city.get('city') ) {
+                            exist = true;
+                            break;
+                        }
+                    }
+
+                    if(exist){
+                        return alertWin.data({text:"已添加这个城市"}).show();
+                        }else {
+                        this.datalist.unshift({
+                            'cityName':this.add_city.city,
+                            'hotelList':[],
+                            'isEditing':true,
+                            'isEditingOrPreivew':true
+                        });
+                        this.edit_city.set('hasEditingCity',true);
+                    }
+
+                    codeEle.val("");
+                    this.add_city.set('cityNotValid',false);
+                }
+            },
+            edit_city:{
+                tmpSelectedHotel:'',
+                editCity:function(e){
+                    if (this.edit_city.get('hasEditingCity') == true){
+                        return;
+                    }
+                    var data = e.data;
                     this.edit_city.set('hasEditingCity',true);
-                }
+                    e.data.set('isEditing',true);
+                    e.data.set('isEditingOrPreivew',true);
+                },
+                removeCityConfirm:function(e){
+                    var that = this;
+                    confirmWin.data({text:"删除城市后，所有推荐酒店都会下架"}).show();
+                    confirmWin.element.find('.ac-confirm').bind('click',function(){
+                        var index = that.datalist.indexOf(e.data);
+                        that.datalist.splice(index,1);
+                        that.edit_city.set('hasEditingCity',false);
 
-                codeEle.val("");
-                this.add_city.set('cityNotValid',false);
+                        // 请求服务器删除
+                        // $.ajax();
+                    });
+                },
+                saveCity:function(e){
+                    if(e.data.hotelList.length<4){
+                        alertWin.data({text:"每个城市资源必须推荐4个"}).show();
+                        }else{
+                        e.data.set('isEditing',false);
+                        e.data.set('isEditingOrPreivew',false);
+                        this.edit_city.set('hasEditingCity',false);
+                        // 请求服务器保存
+                        //$.ajax();
+                    }
+                },
+                addHotel:function(e){
+                    var autocomplete = $(e.target).closest('.city-block').find('input.hotel_name_suggest').data('kendoAutoComplete');
+                    if(e.data.hotelList.length==4){
+                        return;
+                    }
+
+                    this.edit_city.set('tmpSelectedHotel',autocomplete.selectedDataItem.toJSON());
+                    e.data.hotelList.push(this.edit_city.tmpSelectedHotel);
+                    autocomplete.value('');
+                },
+                removeItem:function(e){
+                    e.data.parent().remove(e.data);
+                },
+                moveItemAfter:function(e){
+                    parent = e.data.parent();
+                    index = parent.indexOf(e.data);
+                    parent.splice(index,2,parent[index+1],e.data);
+                },
+                moveItemBefore:function(e){
+                    parent = e.data.parent();
+                    index = parent.indexOf(e.data);
+                    parent.splice(index-1,2,e.data,parent[index-1]);
+                },
+                preview:function(e){
+                    var toggle = e.data.get('isEditingOrPreivew');
+                    e.data.set('isEditingOrPreivew',!toggle);
+                }
             }
-        },
-        edit_city:{
-            tmpSelectedHotel:'',
-            editCity:function(e){
-                if (this.edit_city.get('hasEditingCity') == true){
-                    return; 
-                }
-                var data = e.data; 
-                this.edit_city.set('hasEditingCity',true);
-                e.data.set('isEditing',true);
-                e.data.set('isEditingOrPreivew',true);
-            },
-            removeCityConfirm:function(e){
-                var that = this;
-                confirmWin.data({text:"删除城市后，所有推荐酒店都会下架"}).show();
-                confirmWin.element.find('.ac-confirm').bind('click',function(){
-                    var index = that.datalist.indexOf(e.data);
-                    that.datalist.splice(index,1);
-                    that.edit_city.set('hasEditingCity',false);
+        });
+    }
 
-                    // 请求服务器删除
-                    citySource.read({
-                        deleteCity:e.data.cityName
-                    }); 
-                    confirmWin.close();
-
-                });
-            },
-            removeCity:function(e){
-                /* old method */
-                var index = this.datalist.indexOf(e.data);
-                this.datalist.splice(index,1);
-                this.edit_city.set('hasEditingCity',false);
-
-                // 请求服务器删除
-                citySource.read({
-                    deleteCity:e.data.cityName
-                }); 
-            },
-            saveCity:function(e){
-                if(e.data.hotelList.length<4){
-                    alertWin.data({text:"每个城市资源必须推荐4个"}).show();
-                }else{
-                    e.data.set('isEditing',false);
-                    e.data.set('isEditingOrPreivew',false);
-                    this.edit_city.set('hasEditingCity',false);
-                    // 请求服务器保存
-                    citySource.read({
-                        saveCity:e.data.toJSON()
-                    }); 
-                }
-            },
-            addHotel:function(e){
-                var autocomplete = $(e.target).closest('.city-block').find('input.hotel_name_suggest').data('kendoAutoComplete');
-                if(e.data.hotelList.length==4){
-                    return;
-                }
-
-                this.edit_city.set('tmpSelectedHotel',autocomplete.selectedDataItem.toJSON());
-                e.data.hotelList.push(this.edit_city.tmpSelectedHotel);
-                autocomplete.value('');
-            },
-            removeItem:function(e){
-                e.data.parent().remove(e.data);
-            },
-            moveItemAfter:function(e){
-                parent = e.data.parent();
-                index = parent.indexOf(e.data);
-                parent.splice(index,2,parent[index+1],e.data);
-            },
-            moveItemBefore:function(e){
-                parent = e.data.parent();
-                index = parent.indexOf(e.data);
-                parent.splice(index-1,2,e.data,parent[index-1]);
-            },
-            preview:function(e){
-                var toggle = e.data.get('isEditingOrPreivew');
-                e.data.set('isEditingOrPreivew',!toggle);
-            }
-        }
+    $.ajax({
+        url:"http://192.168.163.166:5000/getcity?q=all",
+        dataType : "jsonp",
+        success: function(e){
+            createModel(e.results);
+            kendo.bind('#citywrapper',model);
+         }
     });
 
-    citySource.fetch(function(e){
-        model.set('datalist',e.sender.data());
-    });
-
-    kendo.bind('#citywrapper',model);
 
     CityAutocomplete({
         template: "#city_popup",
@@ -378,9 +351,9 @@ $(function(){
 </script>
 
         </div> <!-- 内容结束 -->
-          
+
     </div>
-    
+
     <div id="extFooter">
         <div>
             <p>
@@ -392,7 +365,7 @@ $(function(){
             <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
-    
+
 
 <script type="text/x-kendo-template" id="city_popup">
 <div class="tcy_tabstrip gn-tabstrip ">
@@ -470,6 +443,6 @@ $(function(){
             </div>
         </div>
     </script>
-   
+
 </body>
 </html>
