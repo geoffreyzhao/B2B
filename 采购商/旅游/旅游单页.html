@@ -37,7 +37,7 @@
         .k-state-hover{
             background-color: transparent;
         }
-        
+        td.k-other-month{cursor: default}
         #calendarTitle{color:#FF6500;font-size:14px;font-weight:bold;width:780px;margin:0 auto 10px}
         #calendarContainer{background:#D8F0FF;padding:60px 20px 30px;box-shadow:3px 3px 3px #1F6491;width:780px;margin:0 auto;position:relative}
         #calendarHead{position:absolute;top:30px;left:120px}
@@ -70,6 +70,25 @@
             width:64px;
             border:1px solid #ff6500;
             margin:-1px 0  0 -1px;
+        }
+        #calendar .k-other-month .remainNum,#calendar .k-other-month .salePrice{
+            display: none;
+        }
+        #calendar .k-other-month div.sale{
+            background: transparent;
+            cursor: default;
+        }
+        #calendar .k-other-month div.sale:hover {
+            position: relative !important;
+            width:auto;
+            border:0;
+            margin:0;
+        }
+        .k-other-month .sale .calendar_date{
+            color: #ADADAD;
+        }
+        #calendar .k-state-focused{
+            background: transparent;
         }
     </style>
 </head>
@@ -380,7 +399,6 @@
             <span class="calendar_date">#= data.value #</span>
             <span class="remainNum">余#= eve[$.dateToString(date)][0] #</span>
             <span class="salePrice">￥#= eve[$.dateToString(date)][1] #<span>起</span></span>
-            <b class="edge"></b>
             # } #
             #}else{#
             <div style="position:relative;height:38px">
@@ -578,7 +596,7 @@
 </script>
 
 <script>
-    eve={"2014/05/12":[15,15000],"2014/5/1":"","2014/5/2":"","2014/5/3":"","2014/5/4":"","2013/10/5":"","2013/10/6":"","2013/10/7":"","2013/10/22":[22,45678]};
+    eve={"2014/05/12":[15,15000],"2014/06/01":[15,15000],"2014/5/2":"","2014/5/3":"","2014/5/4":"","2013/10/5":"","2013/10/6":"","2013/10/7":"","2013/10/22":[22,45678]};
 
     $.dateToString = function (s, sep) {
         var sep = sep || '/'
@@ -612,7 +630,11 @@
             value:today,
             footer:false,
             month:{content:$("#calendarTemplate").html()},
-
+            navigate:function(){
+                console.dir(this);
+                changeCalendarDateInfo(this.current());
+                $(".k-other-month a").click(function(){return false;})//禁止点击其他月份日期
+            }
         }).data("kendoCalendar");
         
         changeCalendarDateInfo(new Date());
@@ -622,7 +644,6 @@
             {
                 toDate=toDate.DateAdd("m",+1);
                 calendar.navigate(toDate,"month");
-                changeCalendarDateInfo(toDate);
             }
         })
         $(".calendarMonthLeft").click(function(){
@@ -630,7 +651,6 @@
             {
                 toDate=toDate.DateAdd("m",-1);
                 calendar.navigate(toDate,"month");
-                changeCalendarDateInfo(toDate);
             }
         })
         
