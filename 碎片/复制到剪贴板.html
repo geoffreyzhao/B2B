@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+    <head>
+        <link href="/static/css/toolkit.css" rel="stylesheet" />
+        <script src="/static/js/zeroclipboard.min.js"></script>
+    </head>
+    <body>
+
+<button id="copy-button" data-clipboard-text="内容xxx" title="复制到剪贴板">复制</button>
+
+    <script>
+var client = new ZeroClipboard( document.getElementById("copy-button") );
+client.on( "ready", function( readyEvent ) {
+  // alert( "ZeroClipboard SWF is ready!" );
+
+  client.on( "aftercopy", function( event ) {
+    // `this` === `client`
+    // `event.target` === the element that was clicked
+    alert("复制到剪贴板了: " + event.data["text/plain"] );
+  } );
+} );
+    </script>
+
+    </body>
+</html>
