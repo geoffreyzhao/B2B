@@ -145,6 +145,8 @@
     </table>
 </div>
 
+<a href="javascript:void(0);" class="ac-closeAnAccount">结算费率配置</a>
+
 <script type="text/javascript">
 $(function(){
     new GridTable('.block2 .grid-table',{
@@ -476,6 +478,89 @@ $(function(){
         <td>#= data.c4 #</td>
     </tr>
 </script>
+
+<script type="text/x-kendo-template" id="ac-closeAnAccount-template">
+    <ul class="closeAnAccountCont">
+        <li>
+            <em>模板名称</em>
+            <input type="text" style="width: 130px;">
+        </li>
+        <li class="closeAnAccountStyle">
+            <em>结算类型</em>
+            <label class="marRight20">
+                <input type="radio" checked="checked" name="by">按金额
+            </label>
+            <label>
+                <input type="radio" name="by">按单
+            </label>
+        </li>
+        <li>
+            <ul class="byMoney">                
+                <li>
+                   <span class="marRight20">
+                       <em>平台费率</em>
+                       <label>
+                           <input type="text" value="0.3" style="width: 50px;">&nbsp;%
+                       </label>
+                   </span>
+                   <span class="marRight20">
+                       <em>精确方式</em>
+                       <select style="width: 100px;" data-role="dropdownlist">
+                           <option>四舍五入</option>
+                       </select>
+                   </span> 
+                   <span class="marRight20">
+                       <em>退款返还平台费</em>
+                       <select style="width: 55px;" data-role="dropdownlist">
+                           <option>是</option>
+                           <option>否</option>
+                       </select>
+                   </span>  
+                </li>
+                <li>
+                   <span class="marRight20">
+                       <em>单笔最低平台费</em>
+                       <label>
+                           <input type="text" value="1" style="width: 55px;">&nbsp;元
+                       </label>
+                   </span>
+                   <span class="marRight20">
+                       <em>单笔最高平台费</em>
+                       <label>
+                           <input type="text" value="100" style="width: 55px;">&nbsp;元
+                       </label>
+                   </span>
+                </li>
+            </ul>
+            <ul class="byOrder" style="display: none;">
+                <li>
+                   <span class="marRight20">
+                       <em>平台费率</em>
+                       <select style="width: 75px;" data-role="dropdownlist">
+                           <option>按个体</option>
+                       </select>
+                   </span>
+                   <span class="marRight20">
+                       <input type="text" value="2" style="width: 50px;">
+                       <em>&nbsp;元/笔</em>
+                   </span> 
+                   <span class="marRight20">
+                       <em>退款返还平台费</em>
+                       <select style="width: 55px;" data-role="dropdownlist">
+                           <option>是</option>
+                           <option>否</option>
+                       </select>
+                   </span>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <div class="closeAnAccountBtn">
+        <button class="large_button" type="button" name="a">确 定</button>
+        <button class="large_button disable color666" type="button" name="a">取 消</button>
+    </div>
+</script>
+
 <script type="text/javascript">
 $(function(){
     $('body').on('click','.popup-window .button_2_2',function(){
@@ -516,6 +601,12 @@ $(function(){
         title:'确认提现', 
         template:'#ac-submit-template',
         width:470
+    }).init();
+
+    new PopWindow('.ac-closeAnAccount',{
+        title:'结算费率配置',
+        template:'#ac-closeAnAccount-template',
+        width:570
     }).init();
 
     var ac_search_customer_window = new PopWindow('.ac-search-customer',{
@@ -635,9 +726,27 @@ $(function(){
         container:'.block1'
     }).init();
 
+    $(".closeAnAccountStyle").find("input[type='radio']").each(function (index) {
+        $(this).click(function () {
+            //console.log(index);
+            switch (index) {
+                case 0:
+                    $(".byMoney").show();
+                    $(".byOrder").hide();
+                    break;
+                case 1:
+                    $(".byMoney").hide();
+                    $(".byOrder").show();
+                    break;
+            }
+        });
+    });
+    
+    
 });
 
-</script>            </div>
+</script>            
+    </div>
 </div>
 
 <div id="extFooter">

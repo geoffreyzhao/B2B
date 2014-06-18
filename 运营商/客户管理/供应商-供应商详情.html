@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>客户管理 供应商-供应商详情</title>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+<link rel="stylesheet" href="../../static/css/kendo.common.min.css" />
+<link rel="stylesheet" href="../../static/css/kendo.gray.css" />
+<link rel="stylesheet" href="../../static/css/kendo.reset.css" />
+<link rel="stylesheet" href="../../static/css/common.css" />
+<link rel="stylesheet" href="../../static/css/b2b.css" />
+
+<script type="text/javascript" src="../../static/js/vendor/jquery.min.js"></script>
+<script type="text/javascript" src="../../static/js/plugins/jquery.fixedBar.js"></script>
+<script type="text/javascript" src="../../static/js/kendo.web.js"></script>
+<script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+<script type="text/javascript" src="../../static/js/global.js"></script>
+<script type="text/javascript" src="../../static/js/khgl.js"></script>
+<!--[if lt IE 8]>
+    <link rel="stylesheet" href="../../static/css/ie.css" />
+    <script type="text/javascript" src="../../static/js/vendor/IE7.min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="../../static/js/sync.js"></script>
+    <style type="text/css">
+        div.k-window-content{ padding: 0;}
+        .detailsList .tgrid td{ padding: 8px 5px;}
+    </style>
+</head>
+<body> 
+<div id="extHeader">
+    <div></div>
+</div>
+
+<div id="container">
+    <div class="header">
+        <h1></h1>
+        <div>
+            <span>你好,${name}</span>
+            <a href="javascript:void(0);">退出</a>
+        </div>
+        <ul id="top_menu">
+            <li><a href="javascript:void(0);">国内机票</a></li>
+            <li><a href="javascript:void(0);">国际机票</a></li>
+            <li><a href="javascript:void(0);">酒店</a></li>
+            <li><a href="javascript:void(0);">票证中心</a></li>
+            <li><a href="javascript:void(0);">财务管理</a></li>
+            <li><a href="javascript:void(0);">客户管理</a></li>
+            <li class="current"><a href="javascript:void(0);">系统设置</a></li>
+        </ul>
+        <ol class="sub_menu">
+            <li class="current"><a href="javascript:void(0);">公告信息</a></li>
+            <li><a href="javascript:void(0);">公司信息</a></li>
+            <li><a href="javascript:void(0);">组织架构</a></li>
+            <li><a href="javascript:void(0);">角色维护</a></li>
+            <li><a href="javascript:void(0);">基础数据</a></li>
+        </ol>
+        <div id="message">
+            <a href="javascript:void(0);">消息</a>
+            <span>New</span>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="sub_menu_bar"></div>
+    <div id="mainContent">
+                <div class="actions block">
+            <div class="col col-l sep-r">
+                <button class="btns btn-return">返回</button>
+            </div>
+            <div class="col col-l" style="padding-left:10px;">
+                <a class="item highlight" href="#">供应商详情</a>
+            </div>            
+        </div>
+        <div class="block">
+        <div class="block-field">
+            <div class="block-title">
+                <span>账号信息</span>
+            </div>
+            <ul class="flat-list">
+                <li style="width:220px;">
+                    <label class="vertical-head">用户名：</label>
+                    <em class="color666">zhoushixiang</em>
+                </li>
+                <li style="width:220px;">
+                    <label class="vertical-head">密码：</label>
+                    <em class="color666">**********</em>
+                </li>
+                <li style="width:270px;">
+                    <label class="vertical-head">电子邮箱：</label>
+                    <em class="color666">45784551@qq.com</em>
+                </li>
+                <li>
+                    <label class="vertical-head">账号状态：</label>
+                    <em class="color666">挂起</em>
+                </li>
+            </ul>
+        </div>
+        <div class="block-field" style="border-bottom: 0; padding-bottom: 0;">
+            <div class="block-title">
+                <span>内部设置</span>
+            </div>
+            <ul class="flat-list">
+                <li class="setStyle">
+                    <label class="vertical-head" style="margin-right: 30px;"><input type="checkbox" checked="checked" />&nbsp;机票</label>
+                    <label class="vertical-head"><input type="checkbox" checked="checked" />&nbsp;酒店</label>
+                </li>
+                <li class="setInfo">
+                    <ul class="setContentList clearfix">
+                        <li class="current">机票信息</li>
+                        <li>酒店信息</li>
+                    </ul>
+                    <div class="setInfoListCont">
+                        <div class="infoDetails">
+                            <table>
+                                <colgroup>
+                                    <col width="60"/>
+                                    <col width="140"/>
+                                    <col width="60"/>
+                                    <col width="140"/>
+                                    <col width="60"/>
+                                    <col width="140"/>
+                                    <col width="40"/>
+                                    <col width="250"/>
+                                </colgroup>
+                                <tr>
+                                    <td>结算方式</td>
+                                    <td>
+                                        <em class="color666">账期结算</em>
+                                    </td>
+                                    <td>授信金额</td>
+                                    <td>
+                                        <em class="color666">5000</em>
+                                    </td>
+                                    <td>账期选择</td>
+                                    <td>
+                                        <em class="color666">5天+0</em>
+                                    </td>
+                                    <td>备注</td>
+                                    <td> </td>
+                                </tr>
+                                <tr>
+                                    <td>收款账户</td>
+                                    <td>
+                                        <em class="color666">第三方支付</em>
+                                    </td>
+                                    <td>支付机构</td>
+                                    <td>
+                                        <em class="color666">支付宝</em>
+                                    </td>
+                                    <td>开户名</td>
+                                    <td>
+                                        <em class="color666">xiayizhan</em>
+                                    </td>
+                                    <td>账号</td>
+                                    <td>
+                                        <em class="color666">xiayizhan@sohu.com</em>
+                                        <i class="statusFont">已绑定 支付/退款</i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>供应类型</td>
+                                    <td>
+                                        <em class="color666">高级供应商</em>
+                                    </td>
+                                    <td>支付方式</td>
+                                    <td>
+                                        <em class="color666">授信支付</em>
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                </tr>
+                            </table>
+                            <h4 class="businessLinkman">业务联系人</h4>
+                            <table>
+                                <colgroup>
+                                    <col width="45"/>
+                                    <col width="80"/>
+                                    <col width="68"/>
+                                    <col width="110"/>
+                                    <col width="45"/>
+                                    <col width="95"/>
+                                    <col width="45"/>
+                                    <col width="95"/>
+                                    <col width="68"/>
+                                    <col width="105"/>
+                                    <col width="35"/>
+                                    <col width="90"/>
+                                </colgroup>
+                                <tr>
+                                    <td>姓名：</td>
+                                    <td>
+                                        <em class="color666">周世祥</em>
+                                    </td>
+                                    <td>办公电话：</td>
+                                    <td>
+                                        <em class="color666">021-12345875</em>
+                                    </td>
+                                    <td>手机：</td>
+                                    <td>
+                                        <em class="color666">13467845854</em>
+                                    </td>
+                                    <td>传真：</td>
+                                    <td>
+                                        <em class="color666">02152845521</em>
+                                    </td>
+                                    <td>电子邮箱：</td>
+                                    <td>
+                                        <em class="color666">asoa@qq.com</em>
+                                    </td>
+                                    <td>QQ：</td>
+                                    <td>
+                                        <em class="color666">78458745</em>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        组织架构：
+                                        <a href="javascript:void(0);" class="lookDetails ac-lookDetails">查看详细</a>
+                                    </td>
+                                    <td colspan="9"> </td>
+                                </tr>
+                            </table>
+                            <ul class="offerTime clearfix">
+                                <li>
+                                    <h6 class="titleTime">国内机票办公时间</h6>
+                                    <ul class="timeList clearfix">
+                                        <li>
+                                            <i class="smallSquare">·</i>
+                                            <div>正常上班：周一、二、三、四、五</div>
+                                            <div class="color666">出票 8:00-18:00 &nbsp; 废票 8:00-18:00 &nbsp; 退票 8:00-18:00  </div>
+                                        </li>
+                                        <li>
+                                            <i class="smallSquare">·</i>
+                                            <div>双休上班：周六、日</div>
+                                            <div class="color666">出票 8:00-18:00 &nbsp; 废票 8:00-18:00 &nbsp; 退票 8:00-18:00  </div>
+                                        </li>
+                                        <li>
+                                            <i class="smallSquare">·</i>
+                                            <div>法定假日：国家法定节假日</div>
+                                            <div class="color666">出票 8:00-18:00 &nbsp; 废票 8:00-18:00 &nbsp; 退票 8:00-18:00  </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li style="margin-left: 20px;">
+                                    <h6 class="titleTime">国内机票办公时间</h6>
+                                    <ul class="timeList clearfix">
+                                        <li>
+                                            <i class="smallSquare">·</i>
+                                            <div>正常上班：周一、二、三、四、五</div>
+                                            <div class="color666">出票 8:00-18:00 &nbsp; 废票 8:00-18:00 &nbsp; 退票 8:00-18:00  </div>
+                                        </li>
+                                        <li>
+                                            <i class="smallSquare">·</i>
+                                            <div>双休上班：周六、日</div>
+                                            <div class="color666">出票 8:00-18:00 &nbsp; 废票 8:00-18:00 &nbsp; 退票 8:00-18:00  </div>
+                                        </li>
+                                        <li>
+                                            <i class="smallSquare">·</i>
+                                            <div>法定假日：国家法定节假日</div>
+                                            <div class="color666">出票 8:00-18:00 &nbsp; 废票 8:00-18:00 &nbsp; 退票 8:00-18:00  </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="infoDetails" style="display: none;">
+                            <table>
+                                <colgroup>
+                                    <col width="60"/>
+                                    <col width="140"/>
+                                    <col width="60"/>
+                                    <col width="140"/>
+                                    <col width="60"/>
+                                    <col width="140"/>
+                                    <col width="40"/>
+                                    <col width="250"/>
+                                </colgroup>
+                                <tr>
+                                    <td>结算方式</td>
+                                    <td>
+                                        <em class="color666">账期结算</em>
+                                    </td>
+                                    <td>授信金额</td>
+                                    <td>
+                                        <em class="color666">5000</em>
+                                    </td>
+                                    <td>账期选择</td>
+                                    <td>
+                                        <em class="color666">5天+0</em>
+                                    </td>
+                                    <td>备注</td>
+                                    <td> </td>
+                                </tr>
+                                <tr>
+                                    <td>收款账户</td>
+                                    <td>
+                                        <em class="color666">开户银行账号</em>
+                                    </td>
+                                    <td>开户银行</td>
+                                    <td>
+                                        <em class="color666">上海银行</em>
+                                    </td>
+                                    <td>开户名</td>
+                                    <td>
+                                        <em class="color666">上海不夜城国旅</em>
+                                    </td>
+                                    <td>账号</td>
+                                    <td>
+                                        <em class="color666">622583848384838</em>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>供应类型</td>
+                                    <td>
+                                        <em class="color666">直连供应商</em>
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                </tr>
+                            </table>
+                            <h4 class="businessLinkman">业务联系人</h4>
+                            <table>
+                                <colgroup>
+                                    <col width="45"/>
+                                    <col width="80"/>
+                                    <col width="68"/>
+                                    <col width="110"/>
+                                    <col width="45"/>
+                                    <col width="95"/>
+                                    <col width="45"/>
+                                    <col width="95"/>
+                                    <col width="68"/>
+                                    <col width="105"/>
+                                    <col width="35"/>
+                                    <col width="90"/>
+                                </colgroup>
+                                <tr>
+                                    <td>姓名：</td>
+                                    <td>
+                                        <em class="color666">周世祥</em>
+                                    </td>
+                                    <td>办公电话：</td>
+                                    <td>
+                                        <em class="color666">021-12345875</em>
+                                    </td>
+                                    <td>手机：</td>
+                                    <td>
+                                        <em class="color666">13467845854</em>
+                                    </td>
+                                    <td>传真：</td>
+                                    <td>
+                                        <em class="color666">02152845521</em>
+                                    </td>
+                                    <td>电子邮箱：</td>
+                                    <td>
+                                        <em class="color666">asoa@qq.com</em>
+                                    </td>
+                                    <td>QQ：</td>
+                                    <td>
+                                        <em class="color666">78458745</em>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        组织架构：
+                                        <a href="javascript:void(0);" class="lookDetails ac-lookDetails">查看详细</a>
+                                    </td>
+                                    <td colspan="9"> </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="block-field">
+            <div class="block-title">
+                <span>平台费</span> 
+            </div>
+            <ul class="flat-list platformFee">
+                <li>
+                    <label class="vertical-head">模板名称：</label>
+                    <em class="color666">面税费</em>
+                </li>
+                <li>
+                    <label class="vertical-head">结算类型：</label>
+                    <em class="color666">单笔</em>
+                </li>
+                <li>
+                    <label class="vertical-head">费率：</label>
+                    <em class="color666">1%</em>
+                </li>
+                <li>
+                    <label class="vertical-head">平台费：</label>
+                    <em class="color666">21元</em>
+                </li>
+                <li>
+                    <label class="vertical-head">精确方式：</label>
+                    <em class="color666">舍位</em>
+                </li>
+                <li>
+                    <label class="vertical-head">单笔最低：</label>
+                    <em class="color666">21元</em>
+                </li>
+                <li>
+                    <label class="vertical-head">单笔最高：</label>
+                    <em class="color666">20元</em>
+                </li>
+                <li>
+                    <label class="vertical-head">退款返还：</label>
+                    <em class="color666">是</em>
+                </li>
+            </ul>
+        </div>
+        <div class="block-field">
+            <div class="block-title">
+                <span>公司信息</span>
+            </div>
+            <ul class="flat-list">
+                <li style="width:260px;">
+                <label class="vertical-head">公司全称：</label> 
+                <em class="color666">真旅网计算机有限公司</em>
+                </li>
+                <li style="width:180px;">
+                <label class="vertical-head">公司简称：</label> 
+                <em class="color666">真旅网</em>
+                </li>
+                <li style="width:160px;">
+                <label class="vertical-head">法人姓名：</label> 
+                <em class="color666">石继军</em>
+                </li>
+                <li>
+                <label class="vertical-head">法人证件：</label> 
+                <em class="color666">身份证 32072119871011088x</em>
+                </li>
+                <li style="width:443px;">
+                <label class="vertical-head">公司地址：</label> 
+                <em class="color666">万荣路555号宝华国际大厦16楼</em>
+                </li>
+                <li style="width:160px;">
+                <label class="vertical-head">邮政编码：</label> 
+                <em class="color666">200075</em>
+                </li>
+                <li>
+                    <label class="vertical-head" style="width: 48px;">备注</label>    
+                    <em></em>
+                </li>
+            </ul>
+        </div>
+
+        <div class="block-field">
+            <div class="block-title">
+                <span>负责人信息</span> 
+            </div>
+            <ul class="flat-list">
+                <li style="width:140px;">
+                <label class="vertical-head" style="width:40px;">姓名：</label> 
+                <em class="color666">周世祥</em>
+                </li>
+                <li style="width:180px;">
+                <label class="vertical-head" style="width:60px;">办公电话：</label>
+                <em class="color666">021-15481512</em>
+                </li>
+                <li style="width:140px;">
+                <label class="vertical-head" style="width:40px;">手机：</label> 
+                <em class="color666">134557845421</em>
+                </li>
+                <li style="width:140px;">
+                    <label class="vertical-head" style="width:40px;">传真：</label>
+                    <em class="color666">02151245525</em>
+                </li>
+                <li style="width:185px;">
+                <label class="vertical-head" style="width:60px;">电子邮箱：</label> 
+                <em class="color666">7845484@qq.com</em>
+                </li>
+                <li style="width:125px;">
+                <label class="vertical-head" style="width:35px;">QQ：</label> 
+                <em class="color666">54487854215 </em>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="block-field">
+            <div class="block-title">
+                <span>资质证书</span> 
+            </div>
+            <ul class="flat-list">
+                <li style="min-width: 320px;">
+                <label class="vertical-head">营业执照扫描件</label> 
+                <a href="javascript:void(0);" class="blueFontLink">附件1</a>
+                </li>
+                <li style="min-width: 320px;">
+                <label class="vertical-head">税务登记证扫描件</label> 
+                <a href="javascript:void(0);"></a>
+                </li>
+                <li>
+                <label class="vertical-head">一般纳税人证书扫描件</label>
+                <a href="javascript:void(0);"></a>
+                </li>
+            </ul>
+        </div>        
+        <div class="block-field">
+            <div class="block-title">
+                <span>合作协议</span> 
+            </div>
+            <ul class="flat-list">
+                <li style="padding-right:40px;">
+                <label class="vertical-head">有效期</label> 
+                <em class="color666">2014-2-3 至 2014-6-29</em>
+                <a href="javascript:void(0);" class="blueFontLink">附件1</a>
+                </li> 
+            </ul>
+        </div>
+
+        </div>
+        <script type="text/x-kendo-template" id="ac-add-agreement-template">
+            <ul class="flat-list">
+                    <li style="padding-right:40px;">
+                    <label class="vertical-head">有效期</label> 
+                    <input style="width:120px;" data-role="datepicker"> 至
+                    <input style="width:120px;" data-role="datepicker">
+                    </li> 
+                    <li>
+                    <label class="vertical-head">附件</label> 
+                    <input style="width:100;">
+                <input type="file">
+                    <button class="btns btn-ac-blue ac-remove-agreement">删除</button>
+                    </li>
+            </ul>
+        </script>
+
+        </div>
+</div>
+
+<script type="text/x-kendo-template" id="ac-lookDetails_template">
+    <div class="detailsList">        
+        <table class="tgrid">
+            <thead>
+            <tr>
+                <td class="th_left">姓名</td>
+                <td>角色</td>
+                <td>手机</td>
+                <td>电话</td>
+                <td>传真</td>
+                <td class="th_right">邮箱</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>张无忌</td>
+                <td>出票员</td>
+                <td>13465878952</td>
+                <td>021-51254558</td>
+                <td>021-51254552</td>
+                <td>2552484@qq.com</td>
+            </tr>
+            <tr>
+                <td>张无忌</td>
+                <td>出票员</td>
+                <td>13465878952</td>
+                <td>021-51254558</td>
+                <td>021-51254552</td>
+                <td>2552484@qq.com</td>
+            </tr>
+            <tr>
+                <td>张无忌</td>
+                <td>出票员</td>
+                <td>13465878952</td>
+                <td>021-51254558</td>
+                <td>021-51254552</td>
+                <td>2552484@qq.com</td>
+            </tr>
+            <tr>
+                <td>张无忌</td>
+                <td>出票员</td>
+                <td>13465878952</td>
+                <td>021-51254558</td>
+                <td>021-51254552</td>
+                <td>2552484@qq.com</td>
+            </tr>
+            <tr>
+                <td>张无忌</td>
+                <td>出票员</td>
+                <td>13465878952</td>
+                <td>021-51254558</td>
+                <td>021-51254552</td>
+                <td>2552484@qq.com</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="grid-table-pagination page">
+                  <span class="grid-table-count">
+                      共 <em>132</em> 条记录
+                  </span>
+                  <span>
+                      <a href="javascript:void(0);" class="prev">&nbsp;</a>
+                  </span>
+                  <span class="links">
+                      <a href="javascript:void(0);">1</a>
+                      <a href="javascript:void(0);">2</a>
+                      <a href="javascript:void(0);" class="current">3</a>
+                      <a href="javascript:void(0);">4</a>
+                      <a href="javascript:void(0);">5</a>
+                      <a href="javascript:;">...</a>
+                      <a href="javascript:void(0);">50</a>
+                  </span>
+                  <span>
+                      <a href="javascript:void(0);" class="next">&nbsp;</a>
+                  </span>
+        </div>
+    </div>
+</script>
+
+<script>
+    $(function(){
+        $(".setContentList li").each(function(index){
+            $(this).click(function(){
+                $(".setInfoListCont .infoDetails").hide();
+                $(".setInfoListCont .infoDetails:eq(" + index + ")").show();
+                $(".setContentList li").removeClass("current");
+                $(this).addClass("current");
+            });
+        });
+
+        new PopWindow('.ac-lookDetails',{
+            title:'真旅网员工信息',
+            width:570,
+            template:'#ac-lookDetails_template'
+        }).init();
+
+    });
+</script>
+
+<div id="extFooter">
+    <div>
+        <p>
+        <a href="javascript:void(0);">关于我们</a>&nbsp;|
+        <a href="javascript:void(0);">微博</a>&nbsp;|
+        <a href="javascript:void(0);">服务条款</a>&nbsp;|
+        <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+        </p>
+        <p>客户服务热线:400-720-6666</p>
+    </div>
+</div>
+</body>
+</html>
