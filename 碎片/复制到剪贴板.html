@@ -10,14 +10,15 @@
 <button id="copy-button" data-clipboard-text="内容xxx" title="复制到剪贴板">复制</button>
 
     <script>
-var client = new ZeroClipboard( document.getElementById("copy-button") );
-client.on( "ready", function( readyEvent ) {
-  // alert( "ZeroClipboard SWF is ready!" );
+var client = new ZeroClipboard( document.getElementById("copy-button") ,{
+  moviePath: "/static/js/ZeroClipboard.swf"
+});
+client.on( "load", function(client) {
+  // alert( "movie is loaded" );
 
-  client.on( "aftercopy", function( event ) {
-    // `this` === `client`
-    // `event.target` === the element that was clicked
-    alert("复制到剪贴板了: " + event.data["text/plain"] );
+  client.on( "complete", function(client, args) {
+    // `this` is the element that was clicked
+    alert("复制到剪贴板了:" + args.text );
   } );
 } );
     </script>
