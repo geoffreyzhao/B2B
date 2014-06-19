@@ -257,7 +257,9 @@
                                     </td>
                                     <td width="40"><span class="hotel_ensure expand_hide" style="display: none;">担保</span></td>
                                     <td width="84">
-                                        <!--<span class="remain_room">仅剩3间</span>-->
+                                        <div class="opp_remainRoom">
+                                            <span class="remain_room">仅剩3间</span>
+                                        </div>
                                         <div class="expand_hide" style="display:none;">
                                             <a class="adaptiveButton mediumOrange_btn">
                                                 <span class="left"></span>
@@ -339,7 +341,9 @@
                                     </td>
                                     <td width="40"><span class="hotel_ensure expand_hide" style="display: none;">担保</span></td>
                                     <td width="84">
-                                        <!--<span class="remain_room">仅剩3间</span>-->
+                                        <div class="opp_remainRoom">
+                                            <span class="remain_room">仅剩3间</span>
+                                        </div>
                                         <div class="expand_hide" style="display:none;">
                                             <a class="adaptiveButton mediumOrange_btn">
                                                 <span class="left"></span>
@@ -421,7 +425,9 @@
                                     </td>
                                     <td width="40"><span class="hotel_ensure expand_hide" style="display: none;">担保</span></td>
                                     <td width="84">
-                                        <!--<span class="remain_room">仅剩3间</span>-->
+                                        <div class="opp_remainRoom">
+                                            <span class="remain_room">仅剩3间</span>
+                                        </div>
                                         <div class="expand_hide" style="display:none;">
                                             <a class="adaptiveButton mediumOrange_btn">
                                                 <span class="left"></span>
@@ -534,7 +540,9 @@
                             </td>
                             <td width="40"><span class="hotel_ensure expand_hide" style="display: none;">担保</span></td>
                             <td width="84">
-                                <!--<span class="remain_room">仅剩3间</span>-->
+                                <div class="opp_remainRoom">
+                                    <span class="remain_room">仅剩3间</span>
+                                </div>
                                 <div class="expand_hide" style="display:none;">
                                     <a class="adaptiveButton mediumOrange_btn">
                                         <span class="left"></span>
@@ -616,7 +624,9 @@
                             </td>
                             <td width="40"><span class="hotel_ensure expand_hide" style="display: none;">担保</span></td>
                             <td width="84">
-                                <!--<span class="remain_room">仅剩3间</span>-->
+                                <div class="opp_remainRoom">
+                                    <span class="remain_room">仅剩3间</span>
+                                </div>
                                 <div class="expand_hide" style="display:none;">
                                     <a class="adaptiveButton mediumOrange_btn">
                                         <span class="left"></span>
@@ -698,7 +708,9 @@
                             </td>
                             <td width="40"><span class="hotel_ensure expand_hide" style="display: none;">担保</span></td>
                             <td width="84">
-                                <!--<span class="remain_room">仅剩3间</span>-->
+                                <div class="opp_remainRoom">
+                                    <span class="remain_room">仅剩3间</span>
+                                </div>
                                 <div class="expand_hide" style="display:none;">
                                     <a class="adaptiveButton mediumOrange_btn">
                                         <span class="left"></span>
@@ -966,6 +978,39 @@
         </div>
     </div>
 </script>
+
+<script type="text/x-kendo-template" id="canNotcancelledTemplate">
+    <div class="layerGrayBlock">
+        <div class="abroadtooltipsCont">
+            <div class="layerGrayArrow"></div>
+            <div class="warmTips">
+                <table>
+                    <tr>
+                        <td style="width:65px;vertical-align: top;"><b>温馨提示：</b></td>
+                        <td>不可取消不可取消！！</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="cancelledTemplate">
+    <div class="layerGrayBlock">
+        <div class="abroadtooltipsCont">
+            <div class="layerGrayArrow"></div>
+            <div class="warmTips">
+                <table>
+                    <tr>
+                        <td style="width:65px;vertical-align: top;"><b>温馨提示：</b></td>
+                        <td>免费取消免费取消！！</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</script>
+
  
 <script type="text/x-kendo-template" id="salePriceTblTemplate">
 <div class="layerGrayBlock">
@@ -1082,12 +1127,12 @@
                 $(".roomTypeDetailContainer",container).each(function(){
                     var self = this;
 
-                    $(this).animate({height:this.scrollHeight},function(){$(".expand_hide",self).hide();});
+                    $(this).animate({height:this.scrollHeight},function(){$(".expand_hide",self).hide(); $(".opp_remainRoom",self).show()});
                 });
             }else{
                 $(".roomTypeDetailContainer",container).each(function(){
                     var self = this;
-                    $(this).css({"overflow":"hidden"}).animate({height:"45px"},function(){$(".expand_hide",self).show();});
+                    $(this).css({"overflow":"hidden"}).animate({height:"45px"},function(){$(".expand_hide",self).show(); $(".opp_remainRoom",self).hide()});
                 });
             }
 
@@ -1105,12 +1150,14 @@
                 $(".roomTypeDetailContainer",container).each(function(){
                     var self = this;
 
-                    $(this).animate({height:this.scrollHeight},function(){$(".expand_hide",self).hide();});
+                    $(this).animate({height:this.scrollHeight},function(){$(".expand_hide",self).hide(); $(".opp_remainRoom",self).show();});
+                    
                 });
             }else{
                 $(".roomTypeDetailContainer",container).each(function(){
                     var self = this;
-                    $(this).css({"overflow":"hidden"}).animate({height:"45px"},function(){$(".expand_hide",self).show();});
+                    $(this).css({"overflow":"hidden"}).animate({height:"45px"},function(){$(".expand_hide",self).show(); $(".opp_remainRoom",self).hide();});
+                    
                 });
             }
 
@@ -1188,6 +1235,28 @@
 			offsetY:8,
             width:358
 		});
+
+        $(".roomTypeDetailContainer .canNotcancelled").kendoTooltip({
+            position:"bottom", //left right top
+            wrapperClass:"lineWeight",
+            content:function(){
+                return $("#canNotcancelledTemplate").html();
+            },
+            callout:false,
+            offsetY:8,
+            width:358
+        });
+
+        $(".roomTypeDetailContainer .cancelled").kendoTooltip({
+            position:"bottom", //left right top
+            wrapperClass:"lineWeight",
+            content:function(){
+                return $("#cancelledTemplate").html();
+            },
+            callout:false,
+            offsetY:8,
+            width:358
+        });
 
         $(".roomTypeDetailContainer .floatLayer").kendoTooltip({
             position:"bottom", //left right top
