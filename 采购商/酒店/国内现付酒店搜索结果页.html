@@ -85,10 +85,42 @@
                         <li><label><input type="radio" name="">奉贤区</label></li>
                         <li><label><input type="radio" name="">浦东区</label></li>
                         <li><label><input type="radio" name="">卢湾区</label></li>
-                        <li class="last"><a href="#">更多<i class="ico_down"></i></a></li>
+                        <li class="last"><span class="moreBtnblock" id="moreSelect_trigger">更多<i class="ico_down"></i></span></li>
                     </ul>
                 </div>
-                <div class="searchRowUl">
+                <!--hide area more-->
+                                
+                <div style="display:none;" class="newEndorseOrder moreAreaList" >
+                    <div class="moreArea_search">
+                    <div class="inner_moreArea">
+                        <ul>
+                            <li><label>浦东新区</label></li>
+                            <li><label>闵行区</label></li>
+                            <li><label>黄浦区</label></li>
+                            <li><label>徐汇区</label></li>
+                            <li><label>松江区</label></li>
+                            <li><label>杨浦区</label></li>
+                            <li><label>长宁区</label></li>
+                            <li><label>虹口区</label></li>
+                            <li><label>普陀区</label></li>
+                            <li><label>宝山宝山宝区</label></li>
+                            <li><label class="sel">闸北区</label></li>
+                            <li><label>嘉定区</label></li>
+                            <li><label>静安区</label></li>
+                            <li><label>奉贤区</label></li>
+                            <li><label>卢湾区</label></li>
+                            <li><label>崇明区</label></li>
+                            <li><label>金山区</label></li>
+                            <li><label>卢湾区</label></li>
+                            <li><label>崇明区</label></li>
+                        </ul>
+                        <span class="search_close"></span>
+                    </div>
+                    </div>
+                </div>
+                
+                <!--hide area more End-->
+                <div class="searchRowUl clearfix">
                     <b>商业区</b>
                     <span class="sel">不限</span>
                     <ul>
@@ -98,7 +130,7 @@
                         <li><label><input type="radio" name="">上海火车站</label></li>
                         <li><label><input type="radio" name="">徐家汇</label></li>
                         <li><label><input type="radio" name="">新国际博览中心</label></li>
-                        <li class="last"><a href="#">更多<i class="ico_down"></i></a></li>
+                        <li class="last"><span class="moreBtnblock" id="moreSelect_trigger2">更多<i class="ico_down"></i></span></li>
                     </ul>
                 </div>
                 <div class="searchRowUl">
@@ -121,7 +153,7 @@
                         <li><label><input type="checkbox" name="">希尔顿</label></li>
                         <li><label><input type="checkbox" name="">汉庭</label></li>
                         <li><label><input type="checkbox" name="">新锦江</label></li>
-                        <li class="last"><a href="#">更多<i class="ico_down"></i></a></li>
+                        <li class="last"><span class="moreBtnblock" id="moreSelect_trigger3">更多<i class="ico_down"></i></span></li>
                     </ul>
                 </div>
                 <div class="searchRowUl">
@@ -134,7 +166,7 @@
                         <li><label><input type="checkbox" name="">会议室</label></li>
                         <li><label><input type="checkbox" name="">水疗/SPA</label></li>
                         <li><label><input type="checkbox" name="">足疗</label></li>
-                        <li class="last"><a href="#">更多<i class="ico_down"></i></a></li>
+                        <li class="last"><span class="moreBtnblock" id="moreSelect_trigger4">更多<i class="ico_down"></i></span></li>
                     </ul>
                 </div>
                 <div class="searchRowUl">
@@ -1280,5 +1312,24 @@
 		
     })
 </script>
+
+<script type="text/javascript">
+    $(function(){
+        $(".search_close").click(function(e){
+            $(".moreAreaList").hide();
+        });
+        $("#moreSelect_trigger").click(function(e){
+            var pos = $(this).offset();
+            $(".moreAreaList").toggle();
+            e.stopPropagation();
+            $(".moreBtnblock").toggleClass("relevanceOr_click");
+        });
+        $(".search_close").click(function(){
+            $(".moreBtnblock").removeClass("relevanceOr_click");
+        })
+        
+    });
+</script>
+
 </body>
 </html>
