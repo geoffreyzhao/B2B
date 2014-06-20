@@ -13561,7 +13561,7 @@ kendo_module({
         CLICK = "click",
         KEYDOWN = "keydown",
         DISABLED = "disabled",
-        iconTemplate = kendo.template('<a href="\\#" title="#=text#" class="k-link"><span class="k-icon #= className #">#=text#</span></a>');
+        iconTemplate = kendo.template('<a href="javascript:;" title="#=text#" class="k-link"><span class="k-icon #= className #">#=text#</span></a>');
 
     function button(template, idx, text, numeric) {
         return template( {

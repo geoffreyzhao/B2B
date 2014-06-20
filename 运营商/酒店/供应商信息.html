@@ -23,7 +23,15 @@
 <!-- @CLB@ -->
 </head>
 <body>
-<div class="main">
+<div class="main" style="position: relative">
+
+    <div class="chooseSupplier">
+        <strong>选择供应商</strong>
+        <select name="" id="" class="ddl_chooseSupplier">
+            <option value="supplier_zq">无</option>
+            <option value="supplier_zl">直连供应商</option>
+        </select>
+    </div>
     <div class="actions block">
         <div class="col col-l sep-r">
             <button class="btns btn-return">返回</button>
@@ -39,10 +47,10 @@
             <a class="button_4_3" href="#" style="color:#ffffff;margin-top:4px">关闭</a>
         </div>
     </div>
-    <div class="panel" style="height:21px">
+    <div class="panel">
         <div class="panelTitle">签约信息</div>
-        <div style="float:left;">
-            <span class="head" style="margin-left:75px">城市：<span style="color:#1C64A7">上海</span></span>
+        <div class="clearfix">
+            <span class="head" style="">城市：<span style="color:#1C64A7">上海</span></span>
             <span class="head" style="margin-left:75px">酒店名称：<span style="color:#1C64A7">----</span></span>
             <span class="head" style="margin-left:75px"><span class="important">*</span>签约经理</span>
             <select>
@@ -50,21 +58,27 @@
                 <option value="李小路" selected="">李小路</option>
             </select>
             <span class="head" style="margin-left:75px">状态：<span style="color:#1C64A7">草稿</span></span>
-        </div>
-        <div style="float:right;margin-right:17px">
-            <a class="button_3_3" href="javascipt:;">保存</a>
+            <a class="button_4_3" href="javascipt:;" style="float: right;margin-right: 17px;">保存</a>
         </div>
     </div>
-    <div class="panel">
-        <div class="panelTitle">
-            合同信息
+    <div class="contractInfoPanel supplier_zq">
+        <div class="contractInfoContainer">
+            <div class="panelTitle">
+                合同信息
+            </div>
+            <div style="float:left;margin-top: -4px;">
+                <a class="button_3_3 popwin" href="javascipt:;" data='{"url":"编辑合同.html","width":700,"height":360,"title":"编辑合同"}'>编辑</a>
+            </div>
+            <div class="clearfix"></div>
         </div>
-        <div style="float:left">
-            <a class="button_3_3 popwin" href="javascipt:;" data='{"url":"编辑合同.html","width":700,"height":360,"title":"编辑合同"}'>编辑</a>
-        </div>
+        <div class="panel">
         <table class="tblInfo">
             <tr>
-                <td style="width:83px"><span class="head">合同有效期</span></td>
+                <td><span class="head">合作类型：</span></td>
+                <td colspan="2">自签酒店</td>
+            </tr>
+            <tr>
+                <td style="width:83px"><span class="head">合同有效期：</span></td>
                 <td colspan="2">2013-01-01 至 2013-12-30</td>
             </tr>
             <tr>
@@ -77,21 +91,21 @@
                 </td>
             </tr>
             <tr>
-                <td><span class="head">供应商类型</span></td>
+                <td><span class="head">供应商类型：</span></td>
                 <td width="200">
                     酒店业主-宝华国际酒店
                 </td>
                 <td width="250">
-                    <span class="head">供应商实体</span>
+                    <span class="head">供应商实体：</span>
                     中国大陆
                 </td>
                 <td>
-                    <span class="head">结算提醒</span>
+                    <span class="head">结算提醒：</span>
                     现结
                 </td>
             </tr>
             <tr>
-                <td><span class="head">收款账户</span></td>
+                <td><span class="head">收款账户：</span></td>
                 <td colspan="2">
                     <span class="subhead">账户名：</span>刘伟<span style="color:#cccccc;padding:0 10px">|</span>
                     <span class="subhead">开户银行：</span>刘伟<span style="color:#cccccc;padding:0 10px">|</span>
@@ -99,13 +113,11 @@
                 </td>
             </tr>
         </table>
-    </div>
-
-    <div class="panel">
+        <div style="margin-top: 20px;"></div>
         <div class="panelTitle">
-            联系人
+            <i class="ico_contact"></i>联系人
         </div>
-        <div style="float:left">
+        <div style="float:left;margin-top: -4px;">
             <a class="button_3_3 popwin" href="javascipt:;" data='{"url":"添加联系人.html","width":800,"height":360,"title":"添加联系人"}'>添加</a>
         </div>
         <div class="tblContact clearfix">
@@ -183,6 +195,78 @@
             </ul>
         </div>
     </div>
+    </div>
+
+    <div class="contractInfoPanel supplier_zl">
+        <div class="contractInfoContainer">
+            <div class="panelTitle" style="border:0">
+                合同信息
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel">
+        <table class="tblInfo">
+            <tr>
+                <td><span class="head">供应商类型：</span></td>
+                <td colspan="2">直连非自签</td>
+            </tr>
+            <tr>
+                <td style="width:83px"><span class="head">合同有效期：</span></td>
+                <td colspan="2">2013-01-01 至 2013-12-30</td>
+                <td>
+                    <span class="head">结算提醒：</span>现结
+                </td>
+            </tr>
+            <tr>
+                <td><span class="head">供应商名称：</span></td>
+                <td width="200" colspan="2">
+                    大都市酒店
+                </td>
+            </tr>
+            <tr>
+                <td><span class="head">收款账户：</span></td>
+                <td colspan="2">
+                    <span class="subhead">账户名：</span>刘伟<span style="color:#cccccc;padding:0 10px">|</span>
+                    <span class="subhead">开户银行：</span>刘伟<span style="color:#cccccc;padding:0 10px">|</span>
+                    <span class="subhead">账号：</span>刘伟
+                </td>
+            </tr>
+        </table>
+        <div style="margin-top: 20px;"></div>
+        <div class="panelTitle" style="border:0">
+            <i class="ico_contact"></i>业务联系人
+        </div>
+        <div class="tblContact clearfix">
+            <ul>
+                <li>
+                    <table class="tblInfo">
+                        <tr>
+                            <td style="width:20px;vertical-align:middle;border-right:1px solid #ccc;text-align:center" rowspan="2">2</td>
+                            <td rowspan="2" style="vertical-align: middle;text-align:center;"><span class="subhead">刘伟</span></td>
+                            <td><span class="subhead">手机：</span><input type="text" value="188210888666" class="disabled" readonly="readonly"></td>
+                            <td><span class="subhead">传真：</span><input type="text" value="021-23456789-1234" class="disabled" readonly="readonly"></td>
+                            <td><span class="subhead">座机：</span><input type="text" value="021-23456789-1234" class="disabled" readonly="readonly"></td>
+                            <td><span class="subhead">邮箱：</span><input type="text" value="liuwei@vip.qq.com" class="disabled" readonly="readonly"></td>
+                            <td></td>
+                            <td style="width:110px;text-align:center">
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                
+                            </td>
+                            <td><span class="subhead">备注：</span><input type="text" value="酒店销售部联系人" class="disabled" readonly="readonly"></td>
+                            <td></td>
+                            <td style="text-align:center"></td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </div>
+    
     <div class="panel">
         <div class="panelTitle" style="border: 0">
             操作日志
@@ -242,6 +326,11 @@
                 li.remove();
             }
             $(this).hide().siblings(".editbutton").toggle();
+        })
+        
+        $(".ddl_chooseSupplier").change(function(){
+            $(".contractInfoPanel").hide();
+            $("."+$(this).val()).show();
         })
     })
 </script>

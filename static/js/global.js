@@ -138,7 +138,9 @@ function GridTable(trigger, customSettings){
                 next: "后一页",
                 last: "最后页",
                 refresh: "刷新"
-            }
+            },
+
+            iconTemplate :kendo.template('<a href="javascript:;" title="#=text#" class="k-link"><span class="k-icon #= className #">#=text#</span></a>')
         }
     }
     this.kendoWinSettings = kendoWinDefaults;
