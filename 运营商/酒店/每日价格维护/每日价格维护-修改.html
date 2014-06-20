@@ -6,12 +6,12 @@
     <link href="../../../static/css/common.css" rel="stylesheet" type="text/css"/>
     <link href="../../../static/css/b2b.css" rel="stylesheet" type="text/css"/>
     <link href="../../../static/css/kendo.common.css" rel="stylesheet" type="text/css"/>
-    <link href="../../../static/css/kendo.gray.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../static/css/kendo.uniform.css" rel="stylesheet" type="text/css"/>
     <link href="/static/css/kendo.reset.css" rel="stylesheet"/>
     <link href="../../../static/css/modify.css" rel="stylesheet" type="text/css"/>
-    <script src="../../static/js/jquery.min.js" type="text/javascript"></script>
-    <script src="../../static/js/kendo.web.js" type="text/javascript"></script>
-    <script src="../../static/js/public.js" type="text/javascript"></script>
+    <script src="../../../static/js/jquery.min.js"></script>
+    <script src="../../../static/js/kendo.web.js" type="text/javascript"></script>
+    <script src="../../../static/js/public.js" type="text/javascript"></script>
 
     <!--[if lt IE 8]>
     <link rel="stylesheet" href="/static/css/ie.css"/>
@@ -96,9 +96,16 @@
         <option>全部房型</option>
     </select>
     <label>共&nbsp;&nbsp;5&nbsp;&nbsp;个房型</label>
+    <div style="float:right;margin-right: 25px;">
+        <strong>选择供应商</strong>
+        <select name="" id="" class="chooseSupplier">
+            <option value="supplier_zq">自签</option>
+            <option value="supplier_dds">大都市</option>
+        </select>
+    </div>
 </div>
 
-<div class="sfbzf"> <!--sfbzf开始-->
+<div class="sfbzf supplier_zq"> <!--sfbzf开始-->
     <div class="sfbzf_content"> <!--sfbzf_content开始-->
         <div class="sfbzf_top">
             <h3>商务标准房</h3>
@@ -337,7 +344,7 @@
 </div>
 <!--sfbzf结束-->
 
-<div class="sfbzf"> <!--sfbzf开始-->
+<div class="sfbzf supplier_zq"> <!--sfbzf开始-->
     <div class="sfbzf_content"> <!--sfbzf_content开始-->
         <div class="sfbzf_top">
             <h3>商务套房（双床）</h3>
@@ -583,7 +590,7 @@
 </div>
 <!--sfbzf结束-->
 
-<div class="sfbzf"> <!--sfbzf开始-->
+<div class="sfbzf supplier_zq"> <!--sfbzf开始-->
     <div class="sfbzf_content"> <!--sfbzf_content开始-->
         <div class="sfbzf_top">
             <h3>行政商务套房</h3>
@@ -821,6 +828,71 @@
 </div>
 <!--sfbzf结束-->
 
+<div class="sfbzf supplier_dds" style="margin-top: 0"> <!--sfbzf开始-->
+<div class="sfbzf_content"> <!--sfbzf_content开始-->
+<div class="sfbzf_top">
+    <h3>商务套房（双床）</h3>
+    <ul>
+    </ul>
+</div>
+<div class="df_page_btn">
+    <span>&nbsp;</span> <a href="#" class="df_toppage">上一页</a>
+    <label>开始日期</label> <input type="text" value="2013-06-24"/> <a href="#" class="df_page_a">查 询</a>
+
+    <p>
+        <em>&nbsp;</em> <a href="#" class="df_toppage_1">下一页</a>
+    </p>
+</div>
+<table cellspacing="0" cellpadding="0" class="tab_bzf">
+<tr>
+    <th rowspan="2" class="one1 tab_bzf_th">日期</th>
+    <th>06-24</th>
+    <th>06-25</th>
+    <th>06-26</th>
+    <th>06-27</th>
+    <th>06-28</th>
+    <th class="color">06-29</th>
+    <th class="tab_bzf_th_1 color">06-30</th>
+</tr>
+<tr class="second">
+    <th>一</th>
+    <th>二</th>
+    <th>三</th>
+    <th>四</th>
+    <th>五</th>
+    <th class="color">六</th>
+    <th class="tab_bzf_th_1 color">日</th>
+</tr>
+<tr class="tab_bzf_border bg" style="border-bottom: 1px solid #e0e0e0;">
+    <td class="tab_bzf_left">商务标准房【大床房】</td>
+    <td >
+        <div class="priceContainer_show" title="含双早">400&nbsp;&nbsp;</div>
+    </td>
+    <td >
+        <div class="priceContainer_show">400</div>
+    </td>
+    <td >
+        <div class="priceContainer_show">400</div>
+    </td>
+    <td>
+        <div class="priceContainer_show">400</div>
+    </td>
+    <td >
+        <div class="priceContainer_show">400</div>
+    </td>
+    <td>
+        <div class="priceContainer_show">400</div>
+    </td>
+    <td>
+        <div class="priceContainer_show">400</div>
+    </td>
+</tr>
+</table>
+</div>
+<!--sfbzf_content结束-->
+</div>
+<!--sfbzf结束-->
+
 <div class="czrz">
     <h3>操作日志</h3>
     <table cellpadding="0" cellspacing="0" class="czrz_tab">
@@ -877,5 +949,15 @@
         -720-6666</p>
     </div>
 </div>
+<script>
+    $(".chooseSupplier").change(function(){
+        $(".sfbzf").hide();
+        $("."+$(this).val()).show();
+    })
+    abc=$(".supplier_dds").kendoTooltip({
+        filter:".priceContainer_show",
+        "min-height":1
+    }).data("kendoTooltip");
+</script>
 </body>
 </html>
