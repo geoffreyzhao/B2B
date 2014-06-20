@@ -63,22 +63,7 @@
             <a class="button_4_3" href="#" style="color:#ffffff;margin-top:4px">关闭</a>
         </div>
     </div>
-    <div class="panel" style="height:21px">
-        <div class="panelTitle">签约信息</div>
-        <div style="float:left;">
-            <span class="head" style="margin-left:75px">城市：<span style="color:#1C64A7">上海</span></span>
-            <span class="head" style="margin-left:75px">酒店名称：<span style="color:#1C64A7">----</span></span>
-            <span class="head" style="margin-left:75px"><span class="important">*</span>签约经理</span>
-            <select>
-                <option value="签约经理列表">签约经理列表</option>
-                <option value="李小路" selected="">李小路</option>
-            </select>
-            <span class="head" style="margin-left:75px">状态：<span style="color:#1C64A7">草稿</span></span>
-        </div>
-        <div style="float:right;margin-right:17px">
-            <a class="button_3_3" href="javascipt:;">保存</a>
-        </div>
-    </div>
+    
     <div class="panel" style="height:10px">
         <div class="panelTitle" style="border: 0;margin-top:-5px">
             价格计划
@@ -88,10 +73,17 @@
                 <option value="">全部房型</option>
             </select>
             共 <span style="color:#0FA9DD">5</span> 个房型
+            <div style="float: right;">
+                <strong>选择供应商</strong>
+                <select name="" id="" class="chooseSupplier" style="position: static">
+                    <option value="supplier_zq">自签</option>
+                    <option value="supplier_dds">大都市</option>
+                </select>
+            </div>
         </div>
     </div>
 
-    <div class="panel" style="padding:0;width:980px">
+    <div class="panel jgjh supplier_zq" style="padding:0;width:980px">
         <div style="overflow-x: auto;overflow-y: hidden">
             <div class="roomStyleName">
                 <div class="roomStyleNameFixed">
@@ -388,7 +380,7 @@
         </div>
     </div>
 
-    <div class="panel" style="padding:0;width:980px">
+    <div class="panel jgjh supplier_zq" style="padding:0;width:980px">
         <div style="overflow-x: auto;overflow-y: hidden">
             <div class="roomStyleName">
                 <div class="roomStyleNameFixed">
@@ -409,7 +401,7 @@
         </div>
     </div>
 
-    <div class="panel" style="padding:0;width:980px">
+    <div class="panel jgjh supplier_zq" style="padding:0;width:980px">
         <div style="overflow-x: auto;overflow-y: hidden">
             <div class="roomStyleName">
                 <div class="roomStyleNameFixed">
@@ -426,6 +418,62 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel jgjh supplier_dds" style="padding:0;">
+        <div style="overflow-x: auto;overflow-y: hidden">
+            <div class="roomStyleName">
+                <div class="roomStyleNameFixed">
+                    <span style="font-weight:bold">房型名称：商务标准房【大床房】</span>
+
+                    <div style="position:absolute;right:10px;top:0;">
+                        <span style="color:#0FA9DD">4</span> / 20 个价格计划
+                    </div>
+                </div>
+            </div>
+            <div class="priceName">
+                <div class="priceNameFixed">
+                    <div class="priceNameInfo">
+                        <span class="head">价格名称：</span>商务标准房【大床房】
+                    </div>
+                </div>
+            </div>
+            <div class="priceListItem">
+                <div class="priceListItemTableHead">
+                    <p>时段名称</p>
+                    价格
+                </div>
+                <table style="margin-left:98px;width:auto">
+                    <tr>
+                        <td class="priceListItemToolTip">
+                            <p>平日周中</p>
+                            <b>400</b>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="priceName">
+                <div class="priceNameFixed">
+                    <div class="priceNameInfo">
+                        <span class="head">价格名称：</span>商务标准房【大床房】
+                    </div>
+                </div>
+            </div>
+            <div class="priceListItem">
+                <div class="priceListItemTableHead">
+                    <p>时段名称</p>
+                    价格
+                </div>
+                <table style="margin-left:98px;width:auto">
+                    <tr>
+                        <td class="priceListItemToolTip">
+                            <p>平日周中</p>
+                            <b>400</b>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
@@ -570,6 +618,10 @@
             }).data("kendoWindow");
             w.center();
         });
+        $(".chooseSupplier").change(function(){
+            $(".jgjh").hide();
+            $("."+$(this).val()).show();
+        })
     })
 </script>
 
