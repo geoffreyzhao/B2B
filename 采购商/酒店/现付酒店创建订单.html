@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>采购商 国内酒店创建订单</title>
+    <title>采购商 现付酒店创建订单</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
 
     <link rel="stylesheet" href="../../static/css/smoothness/jquery-ui-1.10.3.custom.css" />
@@ -82,7 +82,7 @@
 				<span>支付</span>
 				<span style="margin-right:0px;">确认</span>
 			</div>
-        <!--<div class="instr pull-right">
+       <!-- <div class="instr pull-right">
             <span class="travel-instr">创建订单</span>
             <span class="highlight-hotel">支付</span>
             <span style="margin-right:0px;">确认</span>
@@ -157,12 +157,13 @@
                         </tr>
                         <tr>
                             <th>入住时间：</th>
-                            <td>2014年3月13日 入住；2014年3月16日 离店 <a href="javascript:;" class="button5 modifyDate">修改日期</a></td>
+                            <td>2014年3月13日 入住；2014年3月16日 离店 <a href="javascript:void(0);" class="button5 modifyDate">修改日期</a></td>
                         </tr>
                         <tr>
                             <th>预订间数：</th>
-                            <td>2间
-                               <!-- <select  style="width:80px;display:none" name="checkin_room_count" id="booking_room_count">
+                            <td>
+                                <input type="text" placeholder="2" style="width:50px" class="modifyQuantity"/>间 
+                                <!--<select  style="width:80px;display:none" name="checkin_room_count" id="booking_room_count">
                                     <option value="1">1</option>
                                     <option value="2" selected="">2</option>
                                     <option value="3">3</option>
@@ -175,7 +176,12 @@
                         </tr>
                         <tr>
                             <th>房费总价：</th>
-                            <td><span class="trRow_price"><em>¥</em>1700.30</span><span class="trRow_room">房费信息</span></td>
+                            <td>
+                                <span class="trRow_price"><em>¥</em>1700.30</span>
+                                <span class="trRow_room">房费信息</span>
+                                <span class="hotel_return">60元</span>
+                                <span style="vertical-align: super;">预订免费，入住后酒店前台付款。</span>
+                            </td>
                         </tr>
                         <tr>
                             <th style="vertical-align:top;">住客姓名：</th>
@@ -197,17 +203,81 @@
                             </td>
                         </tr>
                         <tr>
-                            <th style="vertical-align:top;">礼包信息：</th>
-                            <td>2014年4月1日~4月30日入住酒店，贈送酒店SPA服務，每間房贈送1次，入住時請與酒店前臺聯繫。</td>
+                            <th style="vertical-align:top;" rowspan="3">最晚到店时间：</th>
+                            <td>
+                                <input type="radio" checked/>yyyy-mm-dd  hh:mm<span class="hotelCreateRec">推荐</span> 
+                                <span class="hotelCreateTips"><i></i>通常酒店14点办理入住，早到可能需要等待。</span>
+                            </td>
                         </tr>
                         <tr>
+                            <td>
+                                <input type="radio"/>yyyy-mm-dd  hh:mm
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="assureTipsBox">
+                                    <h5><b>担保提示：</b></h5>
+                                    <p>
+                                        房间保留至次日6:00，需冻结/暂扣首晚房费担保订单：金额￥338元，结账后立即操作解冻/退款。订单一经预订成功，不可变更/取消。如未按时入住，酒店将扣除您的担保金额作为违约金。
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <!--<tr>
                             <th style="vertical-align:top;">备注信息：</th>
                             <td>
                                 <textarea name="" cols="60" rows="6" placeholder="请填写您的其他预订需求。" class="gray-border block_gap"></textarea>
                             </td>
-                        </tr>
+                        </tr>-->
                     </tbody>
                 </table>
+                <div class="fillCardblock">
+                    <p>请填写担保信用卡：请确保信用卡证件登记信息与发卡行记录信息一致!</p>
+                    <table class="checkin_info_table">
+                        <colgroup>
+                            <col width="115"/>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th>持卡人姓名：</th>
+                            <td><input type="text" style="width:238px;"/></td>
+                        </tr>
+                        <tr>
+                            <th>发卡银行：</th>
+                            <td><input type="text" style="width:238px;" placeholder="招商银行" class="bankGather"/></td>
+                        </tr>
+                        <tr>
+                            <th>卡号：</th>
+                            <td><input type="text" style="width:133px;"/>
+                                <span class="cardCVV">CVV码</span><input type="text" style="width:58px;"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>信用卡有效期：</th>
+                            <td><input type="text" style="width:133px;margin-right: 5px;"/><span>月</span>
+                                <input type="text" style="width:58px;margin:0 5px;"/>年
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>发卡银行预留证件：</th>
+                            <td>
+                                <select style="width:238px;">
+                                    <option value="身份证" selected="">身份证</option>
+                                    <option value="军官证">军官证</option>
+                                    <option value="驾驶证">驾驶证</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>证件号：</th>
+                            <td><input type="text" style="width:238px;"/></td>
+                        </tr>
+                        </tbody>
+                        
+                    </table>
+                </div>
+                
             </section>
 
             <h3 class="h_order_title"><strong>联系人信息</strong></h3>
@@ -251,7 +321,7 @@
                 </table>
             </section>
 
-            <h3 class="h_order_title"><strong>酒店规定</strong></h3>
+            <!--<h3 class="h_order_title"><strong>酒店规定</strong></h3>
             <section>
                 <table class="checkin_info_table">
                     <colgroup>
@@ -296,7 +366,7 @@
                         </tbody>
                     </table>
                 </div>
-            </section>
+            </section>-->
             
         </div>
      </div>
@@ -308,7 +378,8 @@
 
 <div class="accountInfoBlock" id="ac">
     <div class="inner_accountInfoBlock">
-        <span class="accountCon">应付合计<strong class="totlePrice"><em style="font-size: 20px;"> ¥</em><b style="font-family: Arial">566.00</b></strong>
+        <span class="accountConTips">注：如需发票，请从酒店前台索取</span>
+        <span class="accountCon">房费合计<strong class="totlePrice"><em style="font-size: 20px;"> ¥</em><b style="font-family: Arial">566.00</b></strong>
         </span>
         <span>
               <a class="adaptiveButton brightRed_btn" style="margin-right: 10px;">
@@ -360,41 +431,33 @@
                 <td class="first">
                     <div><b>价格</b></div>
                     <div><b>早餐</b></div>
-                    <div><b>宽带</b></div>
                 </td>
                 <td>
                     <div class="price">600.10</div>
                     <div>2份</div>
-                    <div>包含</div>
                 </td>
                 <td>
                     <div class="price">600.10</div>
                     <div>2份</div>
-                    <div>包含</div>
                 </td>
                 <td>
                     <div class="price">600.10</div>
                     <div>2份</div>
-                    <div>包含</div>
                 </td>
                 <td>
                     <div class="price">-</div>
-                    <div>-</div>
                     <div>-</div>
                 </td>
                 <td>
                     <div class="price">-</div>
                     <div>-</div>
-                    <div>-</div>
                 </td>
                 <td>
                     <div class="price">-</div>
-                    <div>-</div>
                     <div>-</div>
                 </td>
                 <td class="last">
                     <div class="price">-</div>
-                    <div>-</div>
                     <div>-</div>
                 </td>
             </tr>
@@ -404,7 +467,74 @@
             <!--<span style="text-decoration:line-through;margin-right:15px;">原价：1800.30</span>-->
             <span style="font-weight:bold;">总价：<span class="totlePrice"><em>650.10</em>元</span></span>
         </div>
+        <div class="hotelCreateOrderTips">
+            <table>
+                <tr>
+                    <th>早餐：</th>
+                    <td>含早餐2份。加早每份早餐￥120.00（中心自助）；</td>
+                </tr>
+                <tr>
+                    <th>加床：</th>
+                    <td>提供加床。加床每张￥150.00；</td>
+                </tr>
+                <tr>
+                    <th>支付方式：</th>
+                    <td>预订免费，入住时酒店前台付款。</td>
+                </tr>
+            </table>
+        </div>
     </div>
+</script>
+
+<script type="text/x-kendo-template" id="cardCVVTemplate">
+    <div class="layerGrayContainer_noArrow" style="background: #fff;">
+       <div class="cardChart"><span>信用卡图示</span></div>
+        <div class="cardChartCon"></div>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="bankGatherTemplate">
+    <!--<div class="layerGrayBlock">
+        <div class="abroadtooltipsCont" style="width:275px;">
+            <div class="abroadtoolclickArrow"></div>
+            <h4>重要信息<i class="close">&nbsp;</i></h4>
+            <p><b>大陆广场-Orlando 奥兰多，United States美国</b></p>
+            <p>须于酒店当场支付每天每房约1-5美元的硬性度假村费用 从2012年04月01日起生效</p>
+        </div>
+    </div>-->
+
+    <div class="layerGrayContainer_noArrow floatLayer" style="width:660px;">
+        <div class="bankChartBox">
+            <div class="bankChart"><span>境内卡</span><i class="close">&nbsp;</i></div>
+            <div class="inland_bank">
+                <ul>
+                    <li class="checked"><span class="business"></span><i></i></li>
+                    <li><span class="commerce"></span><i></i></li>
+                    <li><span class="construct"></span><i></i></li>
+                    <li><span class="citic"></span><i></i></li>
+                    <li><span class="postal"></span><i></i></li>
+                    <li><span class="china"></span><i></i></li>
+                    <li><span class="agriculture"></span><i></i></li>
+                    <li><span class="shenzhen"></span><i></i></li>
+                    <li><span class="tsation"></span><i></i></li>
+                    <li><span class="spdb"></span><i></i></li>
+                    <li><span class="brighten"></span><i></i></li>
+                    <li><span class="shanghai"></span><i></i></li>
+                </ul>
+            </div>
+
+            <div class="bankChart"><span>境外卡</span></div>
+            <div class="abroad_bank">
+                <ul>
+                    <li><span class="card_visa"></span><i></i></li>
+                    <li><span class="card_master"></span><i></i></li>
+                    <li><span class="card_amex"></span><i></i></li>
+                    <li><span class="card_jcb"></span><i></i></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
 </script>
 
 
@@ -450,7 +580,7 @@
 
 <script type="text/html" id="modifyDateTemplate">
     <div class="modifyDateContainer">
-        <div>
+        <div  class="rowNumber">
             入住时间 <input type="text" name="" id="" class="gray-border" style="height: 23px;width:80px;" value="2014-5-12" /> 至 <input type="text" name="" id="" class="gray-border" style="height: 23px;width:80px;" value="2014-5-12"/>
             <a class="adaptiveButton brightOrange_btn">
                 <span class="left"></span>
@@ -458,7 +588,15 @@
                 <span class="right"></span>
             </a>
         </div>
-        <div>
+        <div class="rowBg">
+            <span class="promptTxt">入住20天以上</span>请联系客服请联系客服
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="modifyQuantityTemplate">
+    <div class="modifyQuantityContainer">
+        <div class="rowNumber">
             <span>预订间数</span>
             <span class="mdt_roombookingNum">1</span>
             <span class="mdt_roombookingNum">2</span>
@@ -466,11 +604,13 @@
             <span class="mdt_roombookingNum">4</span>
             <span class="mdt_roombookingNum">5</span>
         </div>
-        <div>
-            <span class="promptTxt">入住30天或大于5间</span>请联系客服请联系客服
+        <div class="rowBg">
+            <span class="promptTxt">大于5间</span>请联系客服请联系客服
         </div>
     </div>
 </script>
+
+
 
 <!--模板文件-->
 <script type="text/javascript" src="../../static/js/store/freq_traveler.js"></script>
@@ -604,6 +744,17 @@ $(function(){
         offsetY:-2,
         offsetX:135
     });
+
+    $(".cardCVV").kendoTooltip({
+        position:"bottom", //left right top
+        wrapperClass:"lineWeight",
+        content:function(){
+            return $("#cardCVVTemplate").html();
+        },
+        callout:false,
+        offsetX:100,
+        width:450
+    });
     
     $('#ac').fixedBar({
         inverse:true
@@ -612,7 +763,21 @@ $(function(){
     new FloatLayer({
         trigger:".modifyDate",
         template:"#modifyDateTemplate"
-    })
+    });
+
+    new FloatLayer({
+        trigger:".modifyQuantity",
+        template:"#modifyQuantityTemplate",
+        offsetY:28
+    });
+
+    new FloatLayer({
+        trigger:'.bankGather',
+        template:'#bankGatherTemplate',
+        offsetY:24,
+        offsetX:-140
+    });
+    
     
 });
 </script>
