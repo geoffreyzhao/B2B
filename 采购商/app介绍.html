@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天地行 采购商 国内-首页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../../static/css/store_reset.css" media="all" />
+    <link rel="stylesheet" href="/static/css/toolkit.css"/>
+    <link rel="stylesheet" href="/static/css/store_v2/store.css"/>
+    <link rel="stylesheet" href="../static/css/store_v2/apphome.css"/>
+    
+    <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/js/global.js"></script>
+    
+    <!--[if IE]>
+    <script src="../../static/js/html5.js"></script>
+    <script src="../../static/js/vendor/IE7.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="headBG">
+    <header class="main-header">
+        <a class="logo" href="/"><h1>天地行</h1></a>
+        <nav class="main-nav">
+            <ul class="clearfix">
+                <li class="active"><a herf="#">国内机票</a></li>
+                <li><a herf="#">国际机票</a></li>
+                <li><a herf="#">保险</a></li>
+                <li><a herf="#">酒店</a></li>
+                <li><a herf="#">机 + 酒</a></li>
+                <li><a herf="#">旅游</a></li>
+                <li><a herf="#">订单<i class="orderNum">10</i> </a></li>
+            </ul>
+        </nav>
+    </header>
+</div>
+<div class="main-wrapper">
+<section class="main-body clearfix app-body">
+<div class="layerstar full"></div>
+<div class="scene s0"></div>
+<div class="scene s1">
+    <div class="box">
+        <div class="item item1" data-from="left"></div>
+        <div class="item item2" data-from="top"></div>
+        <div class="item item3" data-from="right"></div>
+    </div>
+</div>
+<div class="scene s2">
+    <div class="box">
+        <div class="item item1" data-from="left"></div>
+        <div class="item item2" data-from="top"></div>
+        <div class="item item3" data-from="right"></div>
+    </div>
+</div>
+<div class="scene s3">
+    <div class="box">
+        <div class="item item1" data-from="left"></div>
+        <div class="item item2" data-from="top"></div>
+        <div class="item item3" data-from="right"></div>
+    </div>
+</div>
+<div class="scene s4">
+    <div class="box">
+        <div class="item item1" data-from="left"></div>
+        <div class="item item2" data-from="top"></div>
+        <div class="item item3" data-from="right"></div>
+    </div>
+</div>
+<div class="scene s5"></div>
+<script>
+
+    // slide into its background-position;
+    $.fn.randomSlideIn = function(opts){
+        var opt = $.extend({
+            duration:600,
+            fadeIn:true 
+        },opts);
+
+        $.each(this,function(i,ele){
+            var that = $(ele);
+            var endPos = that.data('endPos') || getEndPos(that);
+            var datalist = that.data();
+            var delay = 600;
+            var eleWidth = that.width();
+            var eleHeight = that.height();
+            var boxWidth = that.parent().width();
+            var boxHeight = that.parent().height();
+
+            // end anim
+            that.stop();
+
+            // 'left', 'top' , 'right' , 'bottom';
+            var f = {
+                'left':function(d){ 
+                    that.css({
+                        'display':'inline',
+                        'opacity':0,
+                        'left':'-'+eleWidth+'px',
+                        'top':endPos[1]
+                    }).animate({
+                        'left':endPos[0],
+                        'opacity':1
+                    },opt.duration); 
+                }, 
+                'top':function(d){ 
+                    that.css({
+                        'display':'inline',
+                        'opacity':0,
+                        'top':'-'+eleHeight+'px',
+                        'left':endPos[0],
+                    }).animate({
+                        'top':endPos[1],
+                        'opacity':1
+                    },opt.duration);
+                }, 
+                'right':function(d){ 
+                    that.css({
+                        'display':'inline',
+                        'opacity':0,
+                        'left':''+(eleWidth+boxWidth)+'px',
+                        'top':endPos[1]
+                    }).animate({
+                        'left':endPos[0],
+                        'opacity':1
+                    },opt.duration); 
+                },
+                'bottom':function(d){ 
+                    that.css({
+                        'display':'inline',
+                        'opacity':0,
+                        'top':''+(eleHeight+boxHeight)+'px',
+                        'left':endPos[0],
+                    }).animate({
+                        'top':endPos[1],
+                        'opacity':1
+                    },opt.duration);
+                }
+            };
+
+            // save endpos;
+            if( !datalist['endPos']){
+                that.data('endPos',endPos);
+            }
+
+            if(datalist.from){
+                if(datalist.delay){
+                    delay = datalist.delay;
+                }
+                f[datalist.from](delay);
+            }
+        });
+
+        function getEndPos(ele){
+            var arr = ele.css('background-position').split(' ');
+            return $.map(arr,function(e){
+                return 0-parseInt(e); 
+            });
+        }
+
+    };
+
+
+    $(function(){
+        scrollSc = new scrollScene('.scene',{
+            step:20,
+            smallstep:2,
+            onScrollDown:function(e){
+                $('.scene').eq(e.currentScene).find('.item').randomSlideIn(); 
+            }
+        });
+
+        $('.s0 .roll').on('click',function(){
+            scrollSc.currentScene = 1;
+            scrollSc.scrollDown(scrollSc.currentScene); 
+        });
+
+        posLayer();
+
+        function posLayer(){
+            var appbody = $('.app-body');
+            var layerstar = $('.layerstar');
+            $(window).on('scroll',function(e){
+                appbody.css('background-position','0 -' + parseInt(window.scrollY/15) + 'px');
+                layerstar.css('background-position','0 -' + parseInt(window.scrollY/4) + 'px');
+            });
+        }
+
+    });
+</script>
+
+</section> <!--body end-->
+        <footer class="main-footer tiny-footer">
+	<center>
+		<a href="/tops-front-purchaser/facade/about-tdx" target="_blank">关于我们</a>
+		<i class="bar">|</i>
+		<a href="/tops-front-purchaser/facade/service-center" target="_blank">服务中心</a>
+		<i class="bar">|</i>
+		<a href="/tops-front-purchaser/facade/contact-us" target="_blank">联系我们</a>
+	</center>
+	<center class="copyright">
+		Copyright © 2014 天地行 All Rights Reserved. 沪ICP备08101503号
+	</center>
+</footer>
+</div>
+
+</body>
+</html>

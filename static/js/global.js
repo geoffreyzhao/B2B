@@ -1832,7 +1832,7 @@ $.fn.fadeInWithDelay = function(){
 
 
 /*滑动模块*/
-function scrollScene(eles){
+function scrollScene(eles,options){
     this.eles = $(eles)||$('.scene');
     this.animId = 0;
     this.inAnim = false;
@@ -1840,6 +1840,12 @@ function scrollScene(eles){
     this.step = 40;
     this.smallstep = 4;
     this.lockTime = 1000 ;//minimum use this value;
+    this.onScrollUp = function(){};
+    this.onScrollDown = function(){};
+    // merge
+    if(typeof options !== 'undefined'){
+        $.extend(this,options);
+    }
     this.init();
 }
 scrollScene.prototype = {
@@ -1972,6 +1978,8 @@ scrollScene.prototype = {
             //start
             that.animId = requestAnimationFrame(repeat);
         }
+        
+        that.onScrollDown.call(null,this);
     },
     scrollUp:function(index){
         var that = this;
@@ -2020,6 +2028,8 @@ scrollScene.prototype = {
             //start
             that.animId = requestAnimationFrame(repeat);
         }
+
+        that.onScrollUp.call(null,this);
     },
     resize:function(){
         var that = this;
