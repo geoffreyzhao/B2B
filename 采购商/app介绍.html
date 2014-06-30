@@ -12,6 +12,7 @@
     
     <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../static/js/global.js"></script>
+    <script type="text/javascript" src="../../static/js/jquery.nav.js"></script>
     
     <!--[if IE]>
     <script src="../../static/js/html5.js"></script>
@@ -38,51 +39,86 @@
 <div class="main-wrapper">
 <section class="main-body clearfix app-body">
 <div class="layerstar full"></div>
-<div class="scene s0"></div>
-<div class="scene s1">
+<div class="scene s0" id="section0"></div>
+<div class="scene s1" id="section1">
     <div class="box">
         <div class="item item1" data-from="left"></div>
         <div class="item item2" data-from="top"></div>
         <div class="item item3" data-from="right"></div>
     </div>
 </div>
-<div class="scene s2">
+<div class="scene s2" id="section2">
     <div class="box">
         <div class="item item1" data-from="left"></div>
         <div class="item item2" data-from="top"></div>
         <div class="item item3" data-from="right"></div>
     </div>
 </div>
-<div class="scene s3">
+<div class="scene s3" id="section3">
     <div class="box">
         <div class="item item1" data-from="left"></div>
         <div class="item item2" data-from="top"></div>
         <div class="item item3" data-from="right"></div>
     </div>
 </div>
-<div class="scene s4">
+<div class="scene s4" id="section4">
     <div class="box">
         <div class="item item1" data-from="left"></div>
         <div class="item item2" data-from="top"></div>
         <div class="item item3" data-from="right"></div>
     </div>
 </div>
-<div class="scene s5"></div>
+<div class="scene s5" id="section5"></div>
+
+ <ul class="mod-nav-list">
+        <li class="current"><a href="#section0"></a></li>
+        <li><a href="#section1"></a></li>
+        <li><a href="#section2"></a></li>
+        <li><a href="#section3"></a></li>
+        <li><a href="#section4"></a></li>
+        <li><a href="#section5"></a></li>
+    </ul>
+
 <script>
 
     $(function(){
-        scrollSc = new scrollScene('.scene',{
-            step:40,
-            smallstep:2,
-            onScrollDown:function(e){
-                $('.scene').eq(e.currentScene).find('.item').randomSlideIn(); 
-            }
-        });
+        var scene = $('.mod-nav-list');
+        var locked = false;
+        ;(function(){
+            $('.mod-nav-list').onePageNav({
+                currentClass: 'current',
+                changeHash: false,
+                scrollSpeed: 750,
+                scrollThreshold: 0.5,
+                filter: '',
+                begin:function(){
+                    locked = true;
+                },
+                end:function(e){
+                    locked = false;
+                    var index=$('.mod-nav-list .current').index();
+                    $('.scene').eq(index).find('.item').randomSlideIn(); 
+                },
+                easing: 'swing'
+            });
+        })();
 
-        $('.s0 .roll').on('click',function(){
-            scrollSc.currentScene = 1;
-            scrollSc.scrollDown(scrollSc.currentScene); 
-        });
+        //鼠标滚轮控制
+        ;(function(){
+            $(window).on("mousewheel DOMMouseScroll", function(e){
+                e.preventDefault(); 
+                var currentScene = scene.find('.current').index();
+                var delta = e.originalEvent.wheelDelta/120 || -e.originalEvent.detail/3;
+                if(locked) return false;
+                if(delta>0 && currentScene>0){
+                    scene.find('a').eq(currentScene-1).click();
+                };
+                if(delta<0){
+                    scene.find('a').eq(currentScene+1).click();
+                };
+            });
+        })();
+
 
         posLayer();
 

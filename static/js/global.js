@@ -1839,6 +1839,7 @@ function scrollScene(eles,options){
     this.currentScene = 0;
     this.step = 40;
     this.smallstep = 4;
+    this.lockTime = 1000 ;//minimum use this value;
     this.onScrollUp = function(){};
     this.onScrollDown = function(){};
     // merge
@@ -1850,18 +1851,26 @@ function scrollScene(eles,options){
 scrollScene.prototype = {
     init:function(){
         var that = this;
-        that.bindScroll();
-        that.bindResize();
+        that.scroll();
+        that.resize();
         that.stopAnim();
+        that.disableScrollBar();
         that.setSceneDimension();
         that.currentScene = that.getCurrentScene();
     },
-    bindScroll:function(){
+    scroll:function(){
         var that = this;
         var win = window.addEventListener && !window.attachEvent ? $(window) : $('body');
         win.on('DOMMouseScroll mousewheel',function(e){
+            //release mouse outside scollScence
+            if(window.scrollY<that.firstEleOffsetTop || window.scrollY>=that.lastEleOffsetTop){
+               that.inAnim = false;
+               that.stopAnim();
+               return that.enableScrollBar();
+            }
             //lock mouse when animation runs
             if(that.inAnim){
+               that.disableScrollBar();
                return false;
             }
             if(e.originalEvent.detail > 0 || e.originalEvent.wheelDelta < 0) {
@@ -1875,7 +1884,15 @@ scrollScene.prototype = {
                 }
                 that.scrollUp(that.currentScene);
             }
+            //prevent page fom scrolling
+            //return false;
         });
+    },
+    enableScrollBar:function(){
+        //$('html').css({'overflow-y':'auto'});
+    },
+    disableScrollBar:function(){
+        //$('html').css({'overflow-y':'hidden'});
     },
     setSceneDimension:function(){
         var that = this;
@@ -1885,17 +1902,26 @@ scrollScene.prototype = {
             height:window.innerHeight,
             width:'100%'
         });
-        that.mod = window.innerHeight % that.step;
-        // hide scroll bar
-        $('html').css({'overflow-y':'hidden'});
+
+        that.firstEleOffsetTop = that.eles.eq(0).offset().top;
+        that.lastEleOffsetTop = that.eles.eq(-1).offset().top;
     },
     getCurrentScene:function(){
         var that = this;
+
         var i = 0;
         var eles = that.eles;
         var len = eles.length;
         var index;
         var scrollY = window.scrollY;
+
+        if(scrollY < that.firstEleOffsetTop){
+            return index = 0;
+        }
+
+        if(scrollY > that.lastEleOffsetTop ){
+            return index = len-1;
+        }
 
         for(;i<len;i++){
             if ( scrollY <= eles.eq(i).offset().top ){
@@ -1909,23 +1935,23 @@ scrollScene.prototype = {
         var that = this;
         var smallstep = that.smallstep;
         var step = that.step;
+        //var endPos = window.innerHeight*index+that.firstEleOffsetTop;
         var endPos = that.eles.eq(index).offset().top;
-        var mod = that.mod;
+        var lockTime = that.lockTime;
         that.inAnim = true; //lock mousewheel
         function repeat() {
             if(window.scrollY >= endPos) {
-                that.inAnim = false; //unlock mousewheel
+                setTimeout(function(){
+                    that.inAnim = false; //unlock mousewheel
+                },lockTime);
                 return that.stopAnim();
             }
 
-            if( mod > 0){
-                mod--; 
-                step = that.step+1;
+            if(endPos - window.scrollY < smallstep){
+                window.scrollBy(0,1);
+            }else if(endPos - window.scrollY < step){
+                window.scrollBy(0,smallstep);
             }else{
-                step = that.step; 
-            }
-
-            if( window.scrollY - endPos < 0 ){
                 window.scrollBy(0,step);
             }
 
@@ -1934,7 +1960,9 @@ scrollScene.prototype = {
 
         function repeat_bottom(){
             if(window.scrollY >= document.documentElement.scrollHeight - window.innerHeight ){
-                that.inAnim = false; //unlock mousewheel
+                setTimeout(function(){
+                    that.inAnim = false; //unlock mousewheel
+                },lockTime);
                 return that.stopAnim();
             }else{
                 window.scrollBy(0,step*2);
@@ -1957,11 +1985,15 @@ scrollScene.prototype = {
         var that = this;
         var smallstep = that.smallstep;
         var step = that.step;
+        //var endPos = window.innerHeight*index+that.firstEleOffsetTop;
         var endPos = that.eles.eq(index).offset().top;
+        var lockTime = that.lockTime;
         that.inAnim = true; //lock mousewheel
         function repeat() {
             if(window.scrollY <= endPos) {
-                that.inAnim = false; //unlock mousewheel
+                setTimeout(function(){
+                    that.inAnim = false; //unlock mousewheel
+                },lockTime);
                 return that.stopAnim();
             }
 
@@ -1978,7 +2010,9 @@ scrollScene.prototype = {
 
         function repeat_top(){
             if(window.scrollY == 0){
-                that.inAnim = false; //unlock mousewheel
+                setTimeout(function(){
+                    that.inAnim = false; //unlock mousewheel
+                },lockTime);
                 return that.stopAnim();
             }else{
                 window.scrollBy(0,-step*2);
@@ -1997,7 +2031,7 @@ scrollScene.prototype = {
 
         that.onScrollUp.call(null,this);
     },
-    bindResize:function(){
+    resize:function(){
         var that = this;
         $(window).on('resize',function(){
             that.stopAnim();
@@ -2009,97 +2043,4 @@ scrollScene.prototype = {
         cancelAnimationFrame(that.animId);
     }
 };
-
-
-
-// slide into its background-position;
-$.fn.randomSlideIn = function(opts){
-    var opt = $.extend({
-        duration:600,
-        fadeIn:true 
-    },opts);
-
-    $.each(this,function(i,ele){
-        var that = $(ele);
-        var endPos = that.data('endPos') || getEndPos(that);
-        var datalist = that.data();
-        var delay = 600;
-        var eleWidth = that.width();
-        var eleHeight = that.height();
-        var boxWidth = that.parent().width();
-        var boxHeight = that.parent().height();
-
-        // end anim
-        that.stop();
-
-        // 'left', 'top' , 'right' , 'bottom';
-        var f = {
-            'left':function(d){ 
-                that.css({
-                    'display':'inline',
-                'opacity':0,
-                'left':'-'+eleWidth+'px',
-                'top':endPos[1]
-                }).animate({
-                    'left':endPos[0],
-                'opacity':1
-                },opt.duration); 
-            }, 
-            'top':function(d){ 
-                that.css({
-                    'display':'inline',
-                'opacity':0,
-                'top':'-'+eleHeight+'px',
-                'left':endPos[0],
-                }).animate({
-                    'top':endPos[1],
-                'opacity':1
-                },opt.duration);
-            }, 
-            'right':function(d){ 
-                that.css({
-                    'display':'inline',
-                'opacity':0,
-                'left':''+(eleWidth+boxWidth)+'px',
-                'top':endPos[1]
-                }).animate({
-                    'left':endPos[0],
-                'opacity':1
-                },opt.duration); 
-            },
-            'bottom':function(d){ 
-                that.css({
-                    'display':'inline',
-                'opacity':0,
-                'top':''+(eleHeight+boxHeight)+'px',
-                'left':endPos[0],
-                }).animate({
-                    'top':endPos[1],
-                'opacity':1
-                },opt.duration);
-            }
-        };
-
-        // save endpos;
-        if( !datalist['endPos']){
-            that.data('endPos',endPos);
-        }
-
-        if(datalist.from){
-            if(datalist.delay){
-                delay = datalist.delay;
-            }
-            f[datalist.from](delay);
-        }
-    });
-
-    function getEndPos(ele){
-        var arr = ele.css('background-position').split(' ');
-        return $.map(arr,function(e){
-            return 0-parseInt(e); 
-        });
-    }
-
-};
-
 
