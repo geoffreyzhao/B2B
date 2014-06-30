@@ -2044,3 +2044,100 @@ scrollScene.prototype = {
     }
 };
 
+
+// slide into its background-position;
+$.fn.randomSlideIn = function(opts){
+    var opt = $.extend({
+        duration:600,
+        fadeIn:true 
+    },opts);
+
+    $.each(this,function(i,ele){
+        var that = $(ele);
+        if(that.data('animated')){
+            return false;
+        }
+
+        var endPos = that.data('endPos') || getEndPos(that);
+        var datalist = that.data();
+        var delay = 600;
+        var eleWidth = that.width();
+        var eleHeight = that.height();
+        var boxWidth = that.parent().width();
+        var boxHeight = that.parent().height();
+
+        // end anim
+        that.stop();
+
+        // 'left', 'top' , 'right' , 'bottom';
+        var f = {
+            'left':function(d){ 
+                that.css({
+                    'display':'inline',
+                'opacity':0,
+                'left':'-'+eleWidth+'px',
+                'top':endPos[1]
+                }).animate({
+                    'left':endPos[0],
+                'opacity':1
+                },opt.duration); 
+            }, 
+            'top':function(d){ 
+                that.css({
+                    'display':'inline',
+                'opacity':0,
+                'top':'-'+eleHeight+'px',
+                'left':endPos[0],
+                }).animate({
+                    'top':endPos[1],
+                'opacity':1
+                },opt.duration);
+            }, 
+            'right':function(d){ 
+                that.css({
+                    'display':'inline',
+                'opacity':0,
+                'left':''+(eleWidth+boxWidth)+'px',
+                'top':endPos[1]
+                }).animate({
+                    'left':endPos[0],
+                'opacity':1
+                },opt.duration); 
+            },
+            'bottom':function(d){ 
+                that.css({
+                    'display':'inline',
+                'opacity':0,
+                'top':''+(eleHeight+boxHeight)+'px',
+                'left':endPos[0],
+                }).animate({
+                    'top':endPos[1],
+                'opacity':1
+                },opt.duration);
+            }
+        };
+
+        // save endpos;
+        if( !datalist['endPos']){
+            that.data('endPos',endPos);
+        }
+
+        if(datalist.from){
+            if(datalist.delay){
+                delay = datalist.delay;
+            }
+            f[datalist.from](delay);
+            that.data('animated',true);
+        }
+    });
+
+    function getEndPos(ele){
+        var arr = ele.css('background-position').split(' ');
+        return $.map(arr,function(e){
+            return 0-parseInt(e); 
+        });
+    }
+
+};
+
+
