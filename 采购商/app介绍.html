@@ -39,7 +39,15 @@
 <div class="main-wrapper">
 <section class="main-body clearfix app-body">
 <div class="layerstar full"></div>
-<div class="scene s0" id="section0"></div>
+<div class="scene s0" id="section0">
+    <div class="box">
+        <div class="item item1"></div>
+        <div class="item item2"></div>
+        <div class="pic pic1"></div> 
+        <div class="pic pic2"></div> 
+        <div class="pic pic3"></div> 
+    </div>
+</div>
 <div class="scene s1" id="section1">
     <div class="box">
         <div class="item item1" data-from="left"></div>
@@ -49,26 +57,35 @@
 </div>
 <div class="scene s2" id="section2">
     <div class="box">
-        <div class="item item1" data-from="left"></div>
-        <div class="item item2" data-from="top"></div>
-        <div class="item item3" data-from="right"></div>
+        <div class="item item1" data-from="top"></div>
+        <div class="item item2" data-from="right"></div>
+        <div class="item item3" data-from="bottom"></div>
     </div>
 </div>
 <div class="scene s3" id="section3">
     <div class="box">
         <div class="item item1" data-from="left"></div>
-        <div class="item item2" data-from="top"></div>
-        <div class="item item3" data-from="right"></div>
+        <div class="item item2" data-from="bottom"></div>
+        <div class="item item3" data-from="700,0"></div>
+        <div class="item item4"></div>
     </div>
 </div>
 <div class="scene s4" id="section4">
     <div class="box">
-        <div class="item item1" data-from="left"></div>
-        <div class="item item2" data-from="top"></div>
-        <div class="item item3" data-from="right"></div>
+        <div class="item item1" data-from="400,0"></div>
+        <div class="item item2" data-from="right"></div>
+        <div class="item item3" data-from="bottom"></div>
     </div>
 </div>
-<div class="scene s5" id="section5"></div>
+<div class="scene s5" id="section5">
+    <div class="box">
+        <div class="item item1" data-from="left" data-delay="1000"></div>
+        <div class="item item2" data-from="517,263" data-delay="1000" data-duration="1400"></div>
+        <div class="item item3" data-from="93,490" data-delay="3000"></div>
+        <div class="item item4" data-from="920,-100" data-delay="1000"></div>
+        <div class="item item5" data-from="114,43" data-to="114,43"></div>
+    </div>
+</div>
 
  <ul class="mod-nav-list">
         <li class="current"><a href="#section0"></a></li>
@@ -82,10 +99,29 @@
 <script>
 
     $(function(){
-        var scene = $('.mod-nav-list');
+        var nav = $('.mod-nav-list');
+        var scene = $('.scene');
         var locked = false;
+        var index;
+
+        //窗口缩放
         ;(function(){
-            $('.mod-nav-list').onePageNav({
+            $(window).on('resize',function(){
+                setSceneDimension(scene);
+            });
+
+            function setSceneDimension(eles){
+                eles.css({
+                    height:window.innerHeight,
+                    width:'100%'
+                });
+            }
+
+            setSceneDimension(scene);
+        })();
+
+        ;(function(){
+            nav.onePageNav({
                 currentClass: 'current',
                 changeHash: false,
                 scrollSpeed: 750,
@@ -93,32 +129,61 @@
                 filter: '',
                 begin:function(){
                     locked = true;
+                    scene.eq(index+1).find('.item').randomSlideIn({
+                        duration:1000,
+                        end:function(){
+                            console.log(222); 
+                        },
+                        delay:1000
+                    }); 
                 },
                 end:function(e){
                     locked = false;
-                    var index=$('.mod-nav-list .current').index();
-                    $('.scene').eq(index).find('.item').randomSlideIn(); 
+                    index=nav.find('.current').index();
                 },
                 easing: 'swing'
             });
+
+            setTimeout(function(){
+                index = nav.find('.current').index();
+                scene.eq(index).prevAll('.scene').andSelf().find('.item').randomSlideIn({
+                    duration:1000
+                }); 
+                if(index == 3) showBarCode();
+            },500);
         })();
+
 
         //鼠标滚轮控制
         ;(function(){
             $(window).on("mousewheel DOMMouseScroll", function(e){
                 e.preventDefault(); 
-                var currentScene = scene.find('.current').index();
-                var delta = e.originalEvent.wheelDelta/120 || -e.originalEvent.detail/3;
                 if(locked) return false;
+                var currentScene = index;
+                var delta = e.originalEvent.wheelDelta/120 || -e.originalEvent.detail/3;
                 if(delta>0 && currentScene>0){
-                    scene.find('a').eq(currentScene-1).click();
+                    nav.find('a').eq(currentScene-1).click();
                 };
                 if(delta<0){
-                    scene.find('a').eq(currentScene+1).click();
+                    nav.find('a').eq(currentScene+1).click();
                 };
             });
         })();
 
+        function showBarCode(upToBottom){
+            var ele = $('.s3 .item4');
+            if( ele.data('animated') ) return false;
+            setTimeout(function(){
+                ele.css({
+                    'left':308,
+                    'top':185,
+                    'display':'block' 
+                    }).animate({
+                    'left':308,
+                    'top':306
+                },800).data('animated',true);
+            },1400);
+        }
 
         posLayer();
 
