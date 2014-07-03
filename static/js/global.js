@@ -2061,7 +2061,11 @@ $.fn.randomSlideIn = function(opts){
     },opts);
 
     function getArrayMax(arr){
-       return Math.max.apply(null,arr);
+        if(arr.length>0){
+            return Math.max.apply(null,arr);
+        }else{
+            return null;
+        }
     }
 
     $.each(this,function(i,ele){
@@ -2070,16 +2074,14 @@ $.fn.randomSlideIn = function(opts){
             return false;
         }
 
-        if(that.data('animated')){
-            timeArr.push();
-        }
-
         var datalist = that.data();
         var endPos = getPos(that);
         var eleWidth = that.width();
         var eleHeight = that.height();
         var boxWidth = that.parent().width();
         var boxHeight = that.parent().height();
+        var delay;
+        var duration;
 
         // end anim
         that.stop();
@@ -2155,19 +2157,24 @@ $.fn.randomSlideIn = function(opts){
         };
 
         if(datalist.from){
+            delay = datalist.delay||opt.delay; 
+            duration = datalist.duration||opt.duration;
+            timeArr.push(delay+duration);
             if(/^[+-]?\d+,[+-]?\d+$/.test(datalist.from)){
-                f['xy'](datalist.delay||opt.delay,function(){
-                    opt.callback.call(null,that);
+                f['xy'](delay,function(){
                     that.data('animated',true);
-                },datalist.duration||opt.duration,datalist.opacity||opt.opacity);
+                },duration,datalist.opacity||opt.opacity);
             }else{
-                f[datalist.from](datalist.delay||opt.delay,function(){
-                    opt.callback.call(null,that);
+                f[datalist.from](delay,function(){
                     that.data('animated',true);
-                },datalist.duration||opt.duration,datalist.opacity||opt.opacity);
+                },duration,datalist.opacity||opt.opacity);
             }
         }
     });
+
+    setTimeout(function(){
+        opt.callback.call(null,this);
+    },getArrayMax(timeArr));
 
     function getPos(ele){
         var arr;

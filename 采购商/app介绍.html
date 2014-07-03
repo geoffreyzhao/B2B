@@ -129,17 +129,16 @@
                 filter: '',
                 begin:function(){
                     locked = true;
-                    scene.eq(index+1).find('.item').randomSlideIn({
-                        duration:1000,
-                        end:function(){
-                            console.log(222); 
-                        },
-                        delay:1000
-                    }); 
                 },
                 end:function(e){
                     locked = false;
                     index=nav.find('.current').index();
+                    scene.eq(index).find('.item').randomSlideIn({
+                        duration:1000,
+                        callback:function(){
+                            showBarCode();
+                        }
+                    }); 
                 },
                 easing: 'swing'
             });
@@ -147,12 +146,44 @@
             setTimeout(function(){
                 index = nav.find('.current').index();
                 scene.eq(index).prevAll('.scene').andSelf().find('.item').randomSlideIn({
-                    duration:1000
+                    duration:1000,
+                    callback:function(){
+                        if (index==3) showBarCode();
+                    }
                 }); 
-                if(index == 3) showBarCode();
             },500);
         })();
-
+        
+        ;(function(){
+            var html = $('.s0 .box').html();
+            var eles = $('.s0 .pic');
+            var i=2;
+            var duration = 1900;
+            function callAf(){
+                if(i<0) i=2;
+                eles.eq(i-2).css({
+                    'z-index':0
+                })
+                eles.eq(i-1).css({
+                    'z-index':1,
+                    'background-position-x':'207px'
+                }).animate({
+                    'background-position-x':'0px'
+                },duration);
+                eles.eq(i).css({
+                    'z-index':2
+                }).animate({
+                    'background-position-x':'-207px'    
+                },duration,function(){
+                    $(this).css({
+                        'background-position-x':'0px'
+                    }); 
+                    i--;
+                    callAf();
+                }); 
+            }
+            callAf();
+        })();
 
         //鼠标滚轮控制
         ;(function(){
@@ -170,19 +201,25 @@
             });
         })();
 
-        function showBarCode(upToBottom){
+        function showBarCode(){
             var ele = $('.s3 .item4');
-            if( ele.data('animated') ) return false;
-            setTimeout(function(){
+            if(ele.data('animated')){
+                ele.css({
+                    'left':308,
+                    'top':306,
+                    'display':'block' 
+                });
+            }else{
                 ele.css({
                     'left':308,
                     'top':185,
                     'display':'block' 
-                    }).animate({
+                }).animate({
                     'left':308,
                     'top':306
-                },800).data('animated',true);
-            },1400);
+                },800);
+            }
+            ele.data('animated',true);
         }
 
         posLayer();
