@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>天地行 采购商 财务管理-帐户管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css">
+    <link rel="stylesheet" href="/static/css/jquery-ui-1.10.3.custom.css" />     
+    <link rel="stylesheet" href="/static/css/store_reset.css" media="all" />
+    <link rel="stylesheet" href="/static/css/store.css" media="screen" />
+    <link rel="stylesheet" href="/static/css/store_ucenter.css" media="screen" />
+    <link rel="stylesheet" href="/static/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="/static/css/kendo.store.css" />
+    
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>    
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>    
+
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+    <script src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+	<script src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>    
+    <script type="text/javascript" src="/static/js/store/store.js"></script>
+
+</head>
+<body>
+
+<div class="main-wrapper">
+<header class="main-header">
+    <a class="logo" href="/"><h1>天地行</h1></a>
+    <nav class="main-nav">
+        <ul class="clearfix">
+            <li class="first active"><a href="#">国内机票</a></li>
+            <li><a href="#">国际机票</a></li>
+            <li><a href="#">保险</a></li>
+            <li><a href="#">酒店</a></li>
+            <li><a href="#">机 + 酒</a></li>
+            <li><a href="#">旅游</a></li>
+        </ul>
+    </nav>
+    <nav class="main-userInfo">
+        <span>你好，</span>
+        <span>Angle@66454</span>
+        <a href="#">退出</a>
+    </nav>
+    <nav class="main-links">
+        <ul class="clearfix">
+            <li class="first"><a href="#">订单管理</a></li>
+            <li><a href="#">分销管理</a></li>
+            <li><a href="#">电子钱包</a></li>
+            <li><a href="#">票据管理</a></li>
+            <li class="special"><a href="#">统计报表</a></li>
+            <li><i class="tellphone">400-720-6666</i></li>
+            <li><a href="#"> <i class="qq">QQ客服</i></a></li>
+        </ul>
+    </nav>
+</header>
+<section class="main-body clearfix">
+    <aside class="us-nav">
+        <nav>
+            <h3>分销管理</h3>
+            <dl>
+                <dt><i class="ucnav_07"></i>订单管理</dt>
+                <dd><a href="#">国内机票</a></dd>
+                <dd><a href="#">国际机票</a></dd>
+            </dl>
+            <dl>
+                <dt><i class="ucnav_33"></i>销售管理</dt>
+                <dd><a href="#">国内机票</a></dd>
+                <dd><a href="#">国际机票</a></dd>
+            </dl>
+
+            <dl>
+                <dt><i class="ucnav_12"></i>财务管理</dt>
+                <dd><a href="#">充值管理</a></dd>
+                <dd><a href="#">收支明细</a></dd>
+                <dd><a class="current" href="#">账户管理</a></dd>
+                <dd><a href="#">授信管理</a></dd>
+                <dd><a href="#">冻结管理</a></dd>
+            </dl>
+
+            <dl>
+                <dt><i class="ucnav_34"></i>基本设置</dt>
+                <dd><a href="#">下级开户</a></dd>
+                <dd><a href="#">个性化设置</a></dd>
+            </dl>
+
+            <dl>
+                <dt><i class="ucnav_17"></i>统计报表</dt>
+                <dd><a href="#">机票业务</a></dd>
+            </dl>
+        </nav>
+    </aside>
+    <!--充值管理-->
+    <main class="us-content">
+        <div class="tdxTitle clearfix">
+            <h3>账户管理</h3>
+            <a href="javascript:void(0);" class="tdxFonts">
+                <b>我的天地行</b>
+                <i class="tdxIcon"></i>
+            </a>
+        </div>
+        <div class="us-body">
+            <aside>
+                <ul class="tab_change clearfix">
+                    <li class="currentState"><em><a href="javascript:void(0);">收款账号设置</a></em></li>
+                    <li><em><a href="javascript:void(0);">分润账号设置</a></em></li>
+                    <li><em><a href="javascript:void(0);">账户明细</a></em></li>
+                </ul>
+            </aside>
+            <div class="detail_content">
+                <!-- 收款账号设置 -->
+                <div class="tab">
+                <section class="clearfix" style="padding: 10px 0;">
+                   
+                    <div class="add_ac_table" >
+                        <table>
+                            <colgroup>
+                                <col width="65">
+                                <col width="180">
+                                <col width="121">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th>开户行：</th>
+                                <td>
+                                    <select data-role="dropdownlist" style="width:138px" name="">
+                                        <option value="">全部</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <a class="adaptiveButton brightRed_btn s_font_14">
+                                        <span class="left"></span>
+                                        <span class="center">搜 索</span>
+                                        <span class="right"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                   
+                </section>
+                <section class="usResult">
+                    <div class="tblToolsBar">
+                        <div class="toolBarBtn">
+                            <a class="addAc addAccount" href="javascript:void(0);"><i class="addIcon">+</i>添加账户</a>
+                            <a class="addAc setRemark" href="javascript:void(0);">设置备注</a>
+                            <span class="tipsRemark"></span>
+                        </div>
+                        <a class="text1" href="javascript:;">导出Excel</a>
+                    </div>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>开户行</th>
+                            <th>开户名</th>
+                            <th>开户账号</th>
+                            <th>状态</th>
+                            <th colspan="2">操作</th>
+                        </tr>
+                        </thead>
+                        <tr>
+                            <td>上海银行（大宁支行）</td>
+                            <td>苏宁易购有限责任公司</td>
+                            <td>3920109903910314</td>
+                            <td>启用</td>
+                            <td><a class="text1 outage" href="javascript:(0);">停用</a></td>
+                            <td><a class="text1 del_account" href="javascript:(0);">删除</a></td>
+                        </tr>
+                        <tr class="currentList">
+                            <td>上海银行（大宁支行）</td>
+                            <td>苏宁易购有限责任公司</td>
+                            <td>3920109903910314</td>
+                            <td>启用</td>
+                            <td><a class="text1 outage" href="javascript:(0);">停用</a></td>
+                            <td><a class="text1 del_account" href="javascript:(0);">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td>上海银行（大宁支行）</td>
+                            <td>苏宁易购有限责任公司</td>
+                            <td>3920109903910314</td>
+                            <td>启用</td>
+                            <td><a class="text1 outage" href="javascript:(0);">停用</a></td>
+                            <td><a class="text1 del_account" href="javascript:(0);">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td>上海银行（大宁支行）</td>
+                            <td>苏宁易购有限责任公司</td>
+                            <td>3920109903910314</td>
+                            <td>启用</td>
+                            <td><a class="text1 outage" href="javascript:(0);">停用</a></td>
+                            <td><a class="text1 del_account" href="javascript:(0);">删除</a></td>
+                        </tr>
+                        <tr>
+                            <td>上海银行（大宁支行）</td>
+                            <td>苏宁易购有限责任公司</td>
+                            <td>3920109903910314</td>
+                            <td>启用</td>
+                            <td><a class="text1 outage" href="javascript:(0);">停用</a></td>
+                            <td><a class="text1 del_account" href="javascript:(0);">删除</a></td>
+                        </tr>
+                    </table>
+                </section>
+                </div>
+                
+                <!-- 分润账户设置 -->
+                <div class="tab" style="display: none">
+                    <section class="clearfix" style="padding: 10px 0;">
+
+                        <div class="add_ac_table" >
+                            <table>
+                                <colgroup>
+                                    <col width="65">
+                                    <col width="140">
+                                    <col width="65">
+                                    <col width="180">
+                                    <col width="120">
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <th>开户行：</th>
+                                    <td>
+                                        <select data-role="dropdownlist" style="width:138px" name="">
+                                            <option value="">全部</option>
+                                        </select>
+                                    </td>
+                                    <th>状态：</th>
+                                    <td>
+                                        <select data-role="dropdownlist" style="width:138px" name="">
+                                            <option value="">全部</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <a class="adaptiveButton brightRed_btn s_font_14">
+                                            <span class="left"></span>
+                                            <span class="center">搜 索</span>
+                                            <span class="right"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </section>
+                    <section class="usResult">
+                        <div class="tblToolsBar">
+                            <div class="toolBarBtn">
+                                <a class="addAc addAccount_fr" href="javascript:void(0);"><i class="addIcon">+</i>添加账户</a>
+                            </div>
+                            <a class="text1" href="javascript:;">导出Excel</a>
+                        </div>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>支付公司</th>
+                                <th>开户名</th>
+                                <th>账号</th>
+                                <th>状态</th>
+                                <th>自动支付</th>
+                                <th>自动退款</th>
+                                <th>备注</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tr>
+                                <td>支付宝</td>
+                                <td>test 1</td>
+                                <td>test 1</td>
+                                <td>正常</td>
+                                <td>否</td>
+                                <td>否</td>
+                                <td>test 1</td>
+                                <td><a class="text1 edit_account" href="javascript:(0);">编辑</a></td>
+                            </tr>
+                            <tr class="currentList">
+                                <td>支付宝</td>
+                                <td>test 1</td>
+                                <td>test 1</td>
+                                <td>正常</td>
+                                <td>否</td>
+                                <td>否</td>
+                                <td>test 1</td>
+                                <td><a class="text1 edit_account" href="javascript:(0);">编辑</a></td>
+                            </tr>
+                            <tr>
+                                <td>支付宝</td>
+                                <td>test 1</td>
+                                <td>test 1</td>
+                                <td>正常</td>
+                                <td>否</td>
+                                <td>否</td>
+                                <td>test 1</td>
+                                <td><a class="text1 edit_account" href="javascript:(0);">编辑</a></td>
+                            </tr>
+                            <tr>
+                                <td>支付宝</td>
+                                <td>test 1</td>
+                                <td>test 1</td>
+                                <td>正常</td>
+                                <td>否</td>
+                                <td>否</td>
+                                <td>test 1</td>
+                                <td><a class="text1 edit_account" href="javascript:(0);">编辑</a></td>
+                            </tr>
+                            <tr>
+                                <td>支付宝</td>
+                                <td>test 1</td>
+                                <td>test 1</td>
+                                <td>正常</td>
+                                <td>否</td>
+                                <td>否</td>
+                                <td>test 1</td>
+                                <td><a class="text1 edit_account" href="javascript:(0);">编辑</a></td>
+                            </tr>
+                        </table>
+                    </section>
+                </div>
+            
+            <!-- 账户明细 -->
+                <div class="tab" style="display: none">
+                    <section class="clearfix" style="padding: 10px 0;">
+
+                        <div class="searchModel add_ac_table">
+                            <table>
+                                <colgroup>
+                                    <col width="75">
+                                    <col width="130">
+                                    <col width="85">
+                                    <col width="155">
+                                    <col width="90">
+                                    <col width="130">
+                                    <col width="121">
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <th>客户名称：</th>
+                                    <td>
+                                        <div class="locateBlock">
+                                            <input type="text" name="" style="width:100px;"/><span class="dottedBlock"></span>
+                                        </div>
+                                    </td>
+                                    <th>帐户类型：</th>
+                                    <td>
+                                        <select data-role="dropdownlist" style="width:155px" name="">
+                                            <option value="">全部</option>
+                                        </select>
+                                    </td>
+                                    <th>冻结类型：</th>
+                                    <td>
+                                        <select data-role="dropdownlist" style="width:134px" name="">
+                                            <option value="">全部</option>
+                                        </select>
+                                    </td>
+                                    <td rowspan="2" style="text-align: right;">
+                                        <a class="adaptiveButton brightRed_btn s_font_14">
+                                            <span class="left"></span>
+                                            <span class="center">搜 索</span>
+                                            <span class="right"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>截止时间：</th>
+                                    <td>
+                                        <input id="" class="datepicker dpShort" value="" type="text" name="" style="width:124px;">
+                                    </td>
+                                    
+                                    <td colspan="5">
+                                        <input type="checkbox"/>显示挂起客户
+                                    </td>
+                                </tr>
+                                </tbody></table>
+                        </div>
+
+                    </section>
+                    <section class="usResult">
+                        <div class="tblToolsBar">
+                            <div class="toolBarBtn">
+                                <a class="addAc addAccount_fr" href="javascript:void(0);"><i class="addIcon">+</i>添加账户</a>
+                            </div>
+                            <a class="text1" href="javascript:;">导出Excel</a>
+                        </div>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>支付公司</th>
+                                <th>开户名</th>
+                                <th>账号</th>
+                                <th>状态</th>
+                                <th>自动支付</th>
+                                <th>自动退款</th>
+                                <th>备注</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tr>
+                                <td>支付宝</td>
+                                <td>test 1</td>
+                                <td>test 1</td>
+                                <td>正常</td>
+                                <td>否</td>
+                                <td>否</td>
+                                <td>test 1</td>
+                                <td><a class="text1 edit_account" href="javascript:(0);">编辑</a></td>
+                            </tr>
+                            <tr class="currentList">
+                                <td>支付宝</td>
+                                <td>test 1</td>
+                                <td>test 1</td>
+                                <td>正常</td>
+                                <td>否</td>
+                                <td>否</td>
+                                <td>test 1</td>
+                                <td><a class="text1 edit_account" href="javascript:(0);">编辑</a></td>
+                            </tr>
+                            <tr>
+                                <td>支付宝</td>
+                                <td>test 1</td>
+                                <td>test 1</td>
+                                <td>正常</td>
+                                <td>否</td>
+                                <td>否</td>
+                                <td>test 1</td>
+                                <td><a class="text1 edit_account" href="javascript:(0);">编辑</a></td>
+                            </tr>
+                            <tr>
+                                <td>支付宝</td>
+                                <td>test 1</td>
+                                <td>test 1</td>
+                                <td>正常</td>
+                                <td>否</td>
+                                <td>否</td>
+                                <td>test 1</td>
+                                <td><a class="text1 edit_account" href="javascript:(0);">编辑</a></td>
+                            </tr>
+                            <tr>
+                                <td>支付宝</td>
+                                <td>test 1</td>
+                                <td>test 1</td>
+                                <td>正常</td>
+                                <td>否</td>
+                                <td>否</td>
+                                <td>test 1</td>
+                                <td><a class="text1 edit_account" href="javascript:(0);">编辑</a></td>
+                            </tr>
+                        </table>
+                    </section>
+                </div>
+                
+                
+                
+            </div>
+            <div class="pagination clearfix">
+                <ul>
+                    <li><a href="#">上一页</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#" class="present">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li> <span>...</span> </li>
+                    <li><a href="#">60</a></li>
+                    <li><a href="#">下一页</a></li>
+                </ul>
+                <div>
+                    <span>共<em>132</em>条记录 &nbsp;&nbsp;&nbsp;共14页</span>
+                </div>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+    </main>
+    
+    
+    
+</section>
+
+<script type="text/x-kendo-template" id="addAccount-template">
+    <div class="innerPop_psw">
+        <table style="margin: 0 auto;width:100%;">
+            <tr>
+                <th style="width:70px;"><b>开户行：</b></th>
+                <td style="width:200px;">
+                    <select data-role="dropdownlist" style="width:170px" name="">
+                        <option value="">上海银行</option>
+                    </select>
+                </td>
+                <th style="width: 112px;"><b>支行：</b></th>
+                <td ><input type="text" name="" style="width:108px;"/></td>
+            </tr>
+            <tr>
+                <th><b>开户名：</b></th>
+                <td colspan="3"><input type="text" name="" style="width:420px;" placeholder="不夜城有限责任公司"/></td>
+            </tr>
+            <tr>
+                <th><b>开户账号：</b></th>
+                <td colspan="3"><input type="text" name="" style="width:420px;"/></td>
+            </tr>
+        </table>
+        <div style="margin: 20px 0 0 0;text-align: center;">
+            <a class="adaptiveButton brightOrange_btn s_font_14">
+                <span class="left"></span>
+                <span class="center">提交</span>
+                <span class="right"></span>
+            </a>
+            <a href="javascript:void(0);" class="callOff s_font_14">取消</a>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="addAccount_fr-template">
+    <div class="innerPop_psw">
+        <table style="margin: 0 auto;width:100%;">
+            <tr>
+                <th style="width:92px;"><b>账户类型：</b></th>
+                <td>第三方支付</td>
+            </tr>
+            <tr>
+                <th><b>支付公司：</b></th>
+                <td>
+                    <select data-role="dropdownlist" style="width:170px" name="">
+                        <option value="">支付宝</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th><b>开户名：</b></th>
+                <td><input type="text" name="" style="width:401px;" placeholder="不夜城有限责任公司"/></td>
+            </tr>
+            <tr>
+                <th><b>账号：</b></th>
+                <td><input type="text" name="" style="width:401px;"/></td>
+            </tr>
+            <tr>
+                <th><b>绑定分润账户：</b></th>
+                <td><span class="c4">立即去签约</span></td>
+            </tr>
+            <tr>
+                <th style="vertical-align: top;"><b>备注：</b></th>
+                <td>
+                    <textarea placeholder="请输入备注" style="width: 401px; height: 56px;"></textarea>
+                </td>
+            </tr>
+        </table>
+        <div style="margin: 20px 0 0 0;text-align: center;">
+            <a class="adaptiveButton brightOrange_btn s_font_14">
+                <span class="left"></span>
+                <span class="center">提交</span>
+                <span class="right"></span>
+            </a>
+            <a href="javascript:void(0);" class="callOff s_font_14">取消</a>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="setRemark-template">
+    <div class="innerPop_psw">
+        <table style="margin: 0 auto;width:100%;">
+            <tr>
+                <th style="vertical-align: top;"><b>备注：</b></th>
+                <td colspan="3">
+                    <textarea placeholder="请输入备注" style="width: 451px; height: 79px;"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td colspan="3"><em class="c3">*</em> 以上备注内容将会显示在下级采购商汇款页面的温馨提示中。</td>
+            </tr>
+        </table>
+        <div style="margin: 20px 0 0 0;text-align: center;">
+            <a class="adaptiveButton brightOrange_btn s_font_14">
+                <span class="left"></span>
+                <span class="center">提交</span>
+                <span class="right"></span>
+            </a>
+            <a href="javascript:void(0);" class="callOff s_font_14">取消</a>
+        </div>
+    </div>
+</script>
+
+<script id="tipsRemarkTemplate" type="text/html" >
+    <div class="tipsRemarkBox">
+        <b>设置备注：</b>为下级采购商在汇款页面设置温馨提示。
+    </div>
+</script>
+
+<footer class="main-footer">
+    <center class="copyright">
+        Copyright &copy; 2014 天地行 All Rights Reserved.     沪ICP备08101503号
+    </center>
+</footer>
+</div>
+
+<script>
+    $(function(){
+        $(".tab_change li").each(function(index){
+            $(this).click(function(){
+                $(".us-body .tab").hide();
+                $(".us-body .tab:eq(" + index + ")").show();
+                $(".tab_change li").removeClass("currentState");
+                $(this).addClass("currentState");
+            });
+
+        });
+
+    });
+</script>
+
+<script type="text/javascript">
+	$(function(){
+		new PopWindow('.setRemark',{
+			template:'#setRemark-template',
+			title:'设置备注',
+			width:'560'
+		}).init();
+		
+		new PopWindow('.addAccount',{
+			template:'#addAccount-template',
+			title:'添加收款账号',
+			width:'560'
+		}).init();
+
+        new PopWindow('.addAccount_fr',{
+            template:'#addAccount_fr-template',
+            title:'添加分润账号',
+            width:'560'
+        }).init();
+
+        var layer = FloatLayer({
+            trigger: $('.tipsRemark'),
+            type:"hover",
+            offsetY:12,
+            offsetX:14,
+            template:'#tipsRemarkTemplate'
+        });
+
+    });
+	
+</script>
+
+
+
+<!--<script>
+    $(function(){
+        $(".tab_window li").each(function(index){
+            $(this).click(function(){
+                $(".pay .pay_tab").hide();
+                $(".pay .pay_tab:eq(" + index + ")").show();
+                $(".tab_window li").removeClass("currentWindow");
+                $(this).addClass("currentWindow");
+            });
+
+        });
+
+    });
+</script>-->
+
+</body>
+</html>
+
