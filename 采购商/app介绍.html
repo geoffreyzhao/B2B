@@ -43,9 +43,18 @@
     <div class="box">
         <div class="item item1"></div>
         <div class="item item2"></div>
-        <div class="pic pic1"></div> 
-        <div class="pic pic2"></div> 
-        <div class="pic pic3"></div> 
+        <!--
+        <div class="slideOne">
+            <div class="pic pic1"></div> 
+            <div class="pic pic2"></div> 
+            <div class="pic pic3"></div> 
+        </div>
+        -->
+        <div class="slideTwo">
+            <div class="pic pic1"></div> 
+            <div class="pic pic2"></div> 
+            <div class="pic pic3"></div> 
+        </div>
     </div>
 </div>
 <div class="scene s1" id="section1">
@@ -79,10 +88,12 @@
 </div>
 <div class="scene s5" id="section5">
     <div class="box">
-        <div class="item item1" data-from="left" data-delay="1000"></div>
-        <div class="item item2" data-from="517,263" data-delay="1000" data-duration="1400"></div>
-        <div class="item item3" data-from="93,490" data-delay="3000"></div>
-        <div class="item item4" data-from="920,-100" data-delay="1000"></div>
+        <div class="item item1" data-from="left" data-delay="700"></div>
+        <div class="item item2" data-from="517,263" data-delay="700" data-duration="1400"></div>
+        <div class="item item3" data-from="93,490" data-delay="2500">
+            <a href="#bbbb" class="barcode"><img src="/static/images/store/app/barcode.jpg" /></a> 
+        </div>
+        <div class="item item4" data-from="920,-100" data-delay="700"></div>
         <div class="item item5" data-from="114,43" data-to="114,43"></div>
     </div>
 </div>
@@ -102,127 +113,120 @@
         var nav = $('.mod-nav-list');
         var scene = $('.scene');
         var locked = false;
-        var index;
 
-        //窗口缩放
-        ;(function(){
-            $(window).on('resize',function(){
-                setSceneDimension(scene);
-            });
-
-            function setSceneDimension(eles){
-                eles.css({
-                    height:window.innerHeight,
-                    width:'100%'
-                });
-            }
-
-            setSceneDimension(scene);
-        })();
-
-        ;(function(){
-            nav.onePageNav({
-                currentClass: 'current',
-                changeHash: false,
-                scrollSpeed: 750,
-                scrollThreshold: 0.5,
-                filter: '',
-                begin:function(){
-                    locked = true;
-                },
-                end:function(e){
-                    locked = false;
-                    index=nav.find('.current').index();
-                    scene.eq(index).find('.item').randomSlideIn({
-                        duration:1000,
-                        callback:function(){
-                            showBarCode();
-                        }
-                    }); 
-                },
-                easing: 'swing'
-            });
-
-            setTimeout(function(){
-                index = nav.find('.current').index();
-                scene.eq(index).prevAll('.scene').andSelf().find('.item').randomSlideIn({
-                    duration:1000,
+        var scc = new scrollScene('.scene',{
+            onScrollDownEnd:function(e){
+                scene.eq(e.currentScene).find('.item').randomSlideIn({
+                    duration:600,
                     callback:function(){
-                        if (index==3) showBarCode();
+                        showBarCode()
                     }
                 }); 
-            },500);
-        })();
+            },
+            onScrollUpEnd:function(e){
+                scene.eq(e.currentScene).find('.item').randomSlideIn({
+                    duration:600
+                }); 
+            } 
+        });
+
+
+        setTimeout(function(){
+            scene.eq(scc.currentScene).prevAll('.scene').andSelf().find('.item').randomSlideIn({
+                duration:600,
+                callback:function(){
+                    if (scc.currentScene==3) showBarCode();
+                    if (scc.currentScene!=0) slideAnim.empty();
+                }
+            });
+        },1000);
         
-        ;(function(){
-            var html = $('.s0 .box').html();
-            var eles = $('.s0 .pic');
-            var i=2;
-            var duration = 1900;
+        // 轮播
+        function slideOne(eles,duration,delay){
+            var eles = $(eles);
+            var delayTime = delay||1500;
+            var durationTime = duration||600;
+            var max,i;
+            max = i = eles.length-1;
             function callAf(){
-                if(i<0) i=2;
+                if(i<0) i=max;
                 eles.eq(i-2).css({
                     'z-index':0
-                })
+                }).delay(delayTime).animate({
+                    'left':'207px'
+                },durationTime);
+
                 eles.eq(i-1).css({
                     'z-index':1,
-                    'background-position-x':'207px'
-                }).animate({
-                    'background-position-x':'0px'
-                },duration);
+                    'left':'207px'
+                }).delay(delayTime).animate({
+                    'left':'0px'
+                },durationTime);
+
                 eles.eq(i).css({
                     'z-index':2
-                }).animate({
-                    'background-position-x':'-207px'    
-                },duration,function(){
+                }).delay(delayTime).animate({
+                    'left':'-207px'    
+                },durationTime,function(){
                     $(this).css({
-                        'background-position-x':'0px'
+                        'left':'414px',
+                        'z-index':0
                     }); 
                     i--;
                     callAf();
                 }); 
             }
             callAf();
-        })();
+        }
 
-        //鼠标滚轮控制
-        ;(function(){
-            $(window).on("mousewheel DOMMouseScroll", function(e){
-                e.preventDefault(); 
-                if(locked) return false;
-                var currentScene = index;
-                var delta = e.originalEvent.wheelDelta/120 || -e.originalEvent.detail/3;
-                if(delta>0 && currentScene>0){
-                    nav.find('a').eq(currentScene-1).click();
-                };
-                if(delta<0){
-                    nav.find('a').eq(currentScene+1).click();
-                };
-            });
-        })();
+        setTimeout(function(){
+            slideOne('.slideOne .pic');
+            slideOne('.slideTwo .pic');
+        },2000);
+
+        function SlideAnim(ele,options){
+            this.ele = ele;
+            this.cached = ele.html();
+            this.conf =  $.extend({
+                onRecover:null 
+            },options);
+        }
+
+        SlideAnim.prototype = {
+            empty : function(){
+                this.ele.html(''); 
+            },
+            recover : function(){
+                this.ele.html(this.cached);
+                this.conf.onRecover.apply(null,this);
+            }
+        }
+
+        var slideAnim = new SlideAnim($('.slideOne'),{
+            onRecover:function(){
+                slideOne();
+            } 
+        });
+
 
         function showBarCode(){
             var ele = $('.s3 .item4');
-            if(ele.data('animated')){
-                ele.css({
-                    'left':308,
-                    'top':306,
-                    'display':'block' 
-                });
-            }else{
-                ele.css({
-                    'left':308,
-                    'top':185,
-                    'display':'block' 
-                }).animate({
-                    'left':308,
-                    'top':306
-                },800);
-            }
-            ele.data('animated',true);
+                if(ele.data('animated')) return;
+                if(scc.currentScene == 3){
+                    ele.css({
+                        'left':308,
+                        'top':185,
+                        'display':'block' 
+                    }).animate({
+                        'left':308,
+                        'top':306
+                    },800).data('animated',true);
+                }
         }
 
+        /*
         posLayer();
+        */
 
         function posLayer(){
             var appbody = $('.app-body');
@@ -232,7 +236,6 @@
                 layerstar.css('background-position','0 -' + parseInt(window.scrollY/4) + 'px');
             });
         }
-
     });
 </script>
 
