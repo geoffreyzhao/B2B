@@ -68,6 +68,23 @@ $(function() {
 			firstDay:0,
 			showButtonPanel :true
 		};
+        
+        var dpSettingDistributor={
+            css : {"z-index": 20000},
+            numberOfMonths:[1,2],
+            firstDay:0,
+            showButtonPanel :true,
+            showOtherMonths:true,
+            selectOtherMonths:true
+        }
+        
+        var dpSettingSingle={
+            css : {"z-index": 20000},
+            firstDay:0,
+            showButtonPanel :true,
+            showOtherMonths:true,
+            selectOtherMonths:true
+        }
 
 
         var dpEle = $(".datepicker");
@@ -78,6 +95,10 @@ $(function() {
                 item.datepicker(dpSettingUlt);
             }else if(item.hasClass("dpShort")){
                 item.datepicker(dpSettingShort);
+            }else if(item.hasClass("dpSettingDistributor")){
+                item.datepicker(dpSettingDistributor);
+            }else if(item.hasClass("dpSettingSingle")){
+                item.datepicker(dpSettingSingle);
             }else{
                 item.datepicker(dpSetting);
             }
