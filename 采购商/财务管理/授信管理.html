@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>天地行 采购商 财务管理-授信管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css">
+    <link rel="stylesheet" href="/static/css/jquery-ui-1.10.3.custom.css" />     
+    <link rel="stylesheet" href="/static/css/store_reset.css" media="all" />
+    <link rel="stylesheet" href="/static/css/store.css" media="screen" />
+    <link rel="stylesheet" href="/static/css/store_ucenter.css" media="screen" />
+    <link rel="stylesheet" href="/static/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="/static/css/kendo.store.css" />
+    
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>    
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>    
+
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+    <script src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+	<script src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>    
+    <script type="text/javascript" src="/static/js/store/store.js"></script>
+
+</head>
+<body>
+
+<div class="main-wrapper">
+<header class="main-header">
+    <a class="logo" href="/"><h1>天地行</h1></a>
+    <nav class="main-nav">
+        <ul class="clearfix">
+            <li class="first active"><a href="#">国内机票</a></li>
+            <li><a href="#">国际机票</a></li>
+            <li><a href="#">保险</a></li>
+            <li><a href="#">酒店</a></li>
+            <li><a href="#">机 + 酒</a></li>
+            <li><a href="#">旅游</a></li>
+        </ul>
+    </nav>
+    <nav class="main-userInfo">
+        <span>你好，</span>
+        <span>Angle@66454</span>
+        <a href="#">退出</a>
+    </nav>
+    <nav class="main-links">
+        <ul class="clearfix">
+            <li class="first"><a href="#">订单管理</a></li>
+            <li><a href="#">分销管理</a></li>
+            <li><a href="#">电子钱包</a></li>
+            <li><a href="#">票据管理</a></li>
+            <li class="special"><a href="#">统计报表</a></li>
+            <li><i class="tellphone">400-720-6666</i></li>
+            <li><a href="#"> <i class="qq">QQ客服</i></a></li>
+        </ul>
+    </nav>
+</header>
+<section class="main-body clearfix">
+    <aside class="us-nav">
+        <nav>
+            <h3>分销管理</h3>
+            <dl>
+                <dt><i class="ucnav_07"></i>订单管理</dt>
+                <dd><a href="#">国内机票</a></dd>
+                <dd><a href="#">国际机票</a></dd>
+            </dl>
+            <dl>
+                <dt><i class="ucnav_33"></i>销售管理</dt>
+                <dd><a href="#">国内机票</a></dd>
+                <dd><a href="#">国际机票</a></dd>
+            </dl>
+
+            <dl>
+                <dt><i class="ucnav_12"></i>财务管理</dt>
+                <dd><a href="#">充值管理</a></dd>
+                <dd><a href="#">收支明细</a></dd>
+                <dd><a href="#">账户管理</a></dd>
+                <dd><a class="current" href="#">授信管理</a></dd>
+                <dd><a href="#">冻结管理</a></dd>
+            </dl>
+
+            <dl>
+                <dt><i class="ucnav_34"></i>基本设置</dt>
+                <dd><a href="#">下级开户</a></dd>
+                <dd><a href="#">个性化设置</a></dd>
+            </dl>
+
+            <dl>
+                <dt><i class="ucnav_17"></i>统计报表</dt>
+                <dd><a href="#">机票业务</a></dd>
+            </dl>
+        </nav>
+    </aside>
+    <!--授信管理-->
+    <main class="us-content">
+        <div class="tdxTitle clearfix">
+            <h3>授信管理</h3>
+            <a href="javascript:void(0);" class="tdxFonts">
+                <b>我的天地行</b>
+                <i class="tdxIcon"></i>
+            </a>
+        </div>
+        <div class="us-body">
+            <aside>
+                <ul class="tab_change clearfix">
+                    <li class="currentState"><em><a href="javascript:void(0);">授信额度设置</a></em></li>
+                    <li><em><a href="javascript:void(0);">账期查看</a></em></li>
+                </ul>
+            </aside>
+            <div class="detail_content">
+                <!--授信额度设置-->
+                <div class="tab">
+                <section class="us-query clearfix" style=" padding-top:15px; padding-bottom:5px;">
+                    
+                    <div class="searchModel add_ac_table">
+                        <table>
+                            <colgroup>
+                                <col width="90">
+                                <col width="110">
+                                <col width="93">
+                                <col width="110">
+                                <col width="80">
+                                <col width="180">
+                                <col width="123">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th>客户名称：</th>
+                                <td>
+                                    <div class="locateBlock">
+                                    <input type="text" name="" style="width:93px;"/><span class="dottedBlock"></span>
+                                    </div>
+                                </td>
+                                <th>状态：</th>
+                                <td>
+                                    <select data-role="dropdownlist" style="width:110px" name="">
+                                        <option value="">全部</option>
+                                    </select>
+                                </td>
+                                <th>申请人：</th>
+                                <td>
+                                    <div class="locateBlock">
+                                        <input type="text" name="" style="width:153px;"/><span class="dottedBlock"></span>
+                                    </div>
+                                </td>
+                                <td rowspan="2" style="text-align: right;">
+                                    <a class="adaptiveButton brightRed_btn s_font_14">
+                                        <span class="left"></span>
+                                        <span class="center">搜 索</span>
+                                        <span class="right"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>业务审核人：</th>
+                                <td>
+                                    <select data-role="dropdownlist" style="width:109px" name="">
+                                        <option value="">全部</option>
+                                    </select>
+                                </td>
+                                <th>财务审核人：</th>
+                                <td>
+                                    <div class="locateBlock">
+                                        <input type="text" name="" style="width:80px;"/><span class="dottedBlock"></span>
+                                    </div>
+                                </td>
+                                <th>
+                                    <select data-role="dropdownlist" style="width:80px;margin: 0 4px;" name="">
+                                        <option value="">申请日期</option>
+                                    </select>
+                                </th>
+                                <td>
+                                    <input id="" class="datepicker dpShort" value="" type="text" name="" style="width:76px;">
+                                    <s> - </s>
+                                    <input id="" class="datepicker dpShort" value="" type="text" name="" style="width:76px;">
+                                </td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                   
+                </section>
+                <section class="usResult">
+                    <div class="tblToolsBar">
+                        <div class="toolBarBtn">
+                            <a class="addAc addExtension" href="javascript:void(0);"><i class="addIcon">+</i>新增协议授信</a>
+                            <a class="addAc editExtension" href="javascript:void(0);">修改协议授信</a>
+                        </div>
+                        <a class="text1" href="javascript:;">导出Excel</a>
+                    </div>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>客户名称</th>
+                            <th>授信金额</th>
+                            <th>账期</th>
+                            <th>审核状态</th>
+                            <th>申请人</th>
+                            <th>申请时间</th>
+                            <th>审核人</th>
+                            <th>审核时间</th>
+                            <th colspan="2">操作</th>
+                        </tr>
+                        </thead>
+                        <tr>
+                            <td>宝华国际广场</td>
+                            <td><span class="text2">5000.00</span></td>
+                            <td>每月一次+5</td>
+                            <td>待审核</td>
+                            <td>潘小美</td>
+                            <td>
+                                2014-06-24
+                                <div>17:38:13</div>
+                            </td>
+                            <td>潘小美</td>
+                            <td>
+                                2014-06-24
+                                <div>17:38:13</div>
+                            </td>
+                            <td><a class="text1" href="javascript:(0);">通过</a></td>
+                            <td><a class="text1" href="javascript:(0);">退回</a></td>
+                        </tr>
+                        <tr class="currentList">
+                            <td>宝华国际广场</td>
+                            <td><span class="text2">5000.00</span></td>
+                            <td>每月一次+5</td>
+                            <td>待审核</td>
+                            <td>潘小美</td>
+                            <td>
+                                2014-06-24
+                                <div>17:38:13</div>
+                            </td>
+                            <td>潘小美</td>
+                            <td>
+                                2014-06-24
+                                <div>17:38:13</div>
+                            </td>
+                            <td><a class="text1" href="javascript:(0);">通过</a></td>
+                            <td><a class="text1" href="javascript:(0);">退回</a></td>
+                        </tr>
+                        <tr>
+                            <td>宝华国际广场</td>
+                            <td><span class="text2">5000.00</span></td>
+                            <td>每月一次+5</td>
+                            <td>待审核</td>
+                            <td>潘小美</td>
+                            <td>
+                                2014-06-24
+                                <div>17:38:13</div>
+                            </td>
+                            <td>潘小美</td>
+                            <td>
+                                2014-06-24
+                                <div>17:38:13</div>
+                            </td>
+                            <td><a class="text1" href="javascript:(0);">通过</a></td>
+                            <td><a class="text1" href="javascript:(0);">退回</a></td>
+                        </tr>
+                        <tr>
+                            <td>宝华国际广场</td>
+                            <td><span class="text2">5000.00</span></td>
+                            <td>每月一次+5</td>
+                            <td>待审核</td>
+                            <td>潘小美</td>
+                            <td>
+                                2014-06-24
+                                <div>17:38:13</div>
+                            </td>
+                            <td>潘小美</td>
+                            <td>
+                                2014-06-24
+                                <div>17:38:13</div>
+                            </td>
+                            <td><a class="text1" href="javascript:(0);">通过</a></td>
+                            <td><a class="text1" href="javascript:(0);">退回</a></td>
+                        </tr>
+                        <tr>
+                            <td>宝华国际广场</td>
+                            <td><span class="text2">5000.00</span></td>
+                            <td>每月一次+5</td>
+                            <td>待审核</td>
+                            <td>潘小美</td>
+                            <td>
+                                2014-06-24
+                                <div>17:38:13</div>
+                            </td>
+                            <td>潘小美</td>
+                            <td>
+                                2014-06-24
+                                <div>17:38:13</div>
+                            </td>
+                            <td><a class="text1" href="javascript:(0);">通过</a></td>
+                            <td><a class="text1" href="javascript:(0);">退回</a></td>
+                        </tr>
+                    </table>
+                </section>
+                </div>
+                <!--账期查看-->
+                <div class="tab" style="display: none;">
+                    <section class="us-query clearfix" style=" padding-top:15px; padding-bottom:5px;">
+
+                        <div class="searchModel add_ac_table">
+                            <table>
+                                <colgroup>
+                                    <col width="73">
+                                    <col width="113">
+                                    <col width="133">
+                                    <col width="130">
+                                    <col width="123">
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <th>客户名称：</th>
+                                    <td>
+                                        <div class="locateBlock">
+                                            <input type="text" name="" style="width:93px;"/><span class="dottedBlock"></span>
+                                        </div>
+                                    </td>
+                                    <th>状态：</th>
+                                    <td>
+                                        <select data-role="dropdownlist" style="width:122px" name="">
+                                            <option value="">全部</option>
+                                        </select>
+                                    </td>
+                                    <td rowspan="2" style="text-align: right;">
+                                        <a class="adaptiveButton brightRed_btn s_font_14">
+                                            <span class="left"></span>
+                                            <span class="center">搜 索</span>
+                                            <span class="right"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="padding-left: 12px;">
+                                        <select data-role="dropdownlist" style="width:96px" name="">
+                                            <option value="">实际还款日</option>
+                                        </select>
+                                        <input id="" class="datepicker dpShort" value="" type="text" name="" style="width:154px;">
+                                        <s> - </s>
+                                        <input id="" class="datepicker dpShort" value="" type="text" name="" style="width:154px;">
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </section>
+                    <section class="usResult">
+                        <div class="tblToolsBar">
+                            <a class="text1" href="javascript:;">导出Excel</a>
+                        </div>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>客户名称</th>
+                                <th>账期开始日</th>
+                                <th>账期截止日</th>
+                                <th>还款日</th>
+                                <th>已用金额 / 授信金额</th>
+                                <th>还款状态</th>
+                                <th>实际还款日</th>
+                            </tr>
+                            </thead>
+                            <tr>
+                                <td>宝华国际广场</td>
+                                <td>2014-06-27</td>
+                                <td>2014-06-27</td>
+                                <td>2014-06-27</td>
+                                <td><span class="text2"><b>8682.50</b></span> / <span class="text2">9000.00</span></td>
+                                <td>未还款</td>
+                                <td>2014-06-27</td>
+                            </tr>
+                            <tr class="currentList">
+                                <td>宝华国际广场</td>
+                                <td>2014-06-27</td>
+                                <td>2014-06-27</td>
+                                <td>2014-06-27</td>
+                                <td><span class="text2"><b>8682.50</b></span> / <span class="text2">9000.00</span></td>
+                                <td>未还款</td>
+                                <td>2014-06-27</td>
+                            </tr>
+                            <tr>
+                                <td>宝华国际广场</td>
+                                <td>2014-06-27</td>
+                                <td>2014-06-27</td>
+                                <td>2014-06-27</td>
+                                <td><span class="text2"><b>8682.50</b></span> / <span class="text2">9000.00</span></td>
+                                <td>未还款</td>
+                                <td>2014-06-27</td>
+                            </tr>
+                            <tr>
+                                <td>宝华国际广场</td>
+                                <td>2014-06-27</td>
+                                <td>2014-06-27</td>
+                                <td>2014-06-27</td>
+                                <td><span class="text2"><b>8682.50</b></span> / <span class="text2">9000.00</span></td>
+                                <td>未还款</td>
+                                <td>2014-06-27</td>
+                            </tr>
+                            <tr>
+                                <td>宝华国际广场</td>
+                                <td>2014-06-27</td>
+                                <td>2014-06-27</td>
+                                <td>2014-06-27</td>
+                                <td><span class="text2"><b>8682.50</b></span> / <span class="text2">9000.00</span></td>
+                                <td>未还款</td>
+                                <td>2014-06-27</td>
+                            </tr>
+                            <tr>
+                                <td>宝华国际广场</td>
+                                <td>2014-06-27</td>
+                                <td>2014-06-27</td>
+                                <td>2014-06-27</td>
+                                <td><span class="text2"><b>8682.50</b></span> / <span class="text2">9000.00</span></td>
+                                <td>未还款</td>
+                                <td>2014-06-27</td>
+                            </tr>
+                        </table>
+                    </section>
+                </div>
+            </div>
+            <div class="pagination clearfix">
+                <ul>
+                    <li><a href="#">上一页</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#" class="present">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li> <span>...</span> </li>
+                    <li><a href="#">60</a></li>
+                    <li><a href="#">下一页</a></li>
+                </ul>
+                <div>
+                    <span>共<em>132</em>条记录 &nbsp;&nbsp;&nbsp;共14页</span>
+                </div>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+    </main>
+    
+    
+    
+</section>
+
+<script type="text/x-kendo-template" id="addExtension-template">
+    <div class="innerPop_psw">
+        <table style="margin: 0 auto;width:100%;">
+            <tr>
+                <th style="width: 70px;">客户名称：</th>
+                <td style="width:123px;">
+                    <div class="locateBlock">
+                        <input type="text" name="" style="width:93px;"/><span class="dottedBlock" style="top:0px;"></span>
+                    </div>
+                </td>
+                <th style="width: 77px;">账期：</th>
+                <td style="width: 100px;">
+                    <select data-role="dropdownlist" style="width:93px" name="">
+                        <option value="">请选择</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>授信金额：</th>
+                <td colspan="3"><input type="text" name="" style="width:117px;"/></td>
+            </tr>
+            <tr>
+                <th>确认金额：</th>
+                <td colspan="3"><input type="text" name="" style="width:117px;"/></td>
+            </tr>
+            <tr>
+                <th style="vertical-align: top;">备注：</th>
+                <td colspan="3">
+                    <textarea style="width: 290px;">
+
+                    </textarea>
+                </td>
+            </tr>
+        </table>
+        <div style="margin: 20px 0 0 0;text-align: center;">
+            <a class="adaptiveButton brightOrange_btn s_font_14">
+                <span class="left"></span>
+                <span class="center">提交</span>
+                <span class="right"></span>
+            </a>
+            <a href="javascript:void(0);" class="callOff s_font_14">取消</a>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="editExtension-template">
+    <div class="innerPop_psw">
+        <table style="margin: 0 auto;width:100%;">
+            <tr>
+                <th style="width: 100px;">客户名称：</th>
+                <td style="width:123px;">
+                    <div class="locateBlock">
+                        <input type="text" name="" style="width:93px;"/><span class="dottedBlock" style="top:0px;"></span>
+                    </div>
+                </td>
+                <th style="width: 77px;">账期：</th>
+                <td style="width: 200px;">
+                    <select data-role="dropdownlist" style="width:93px" name="">
+                        <option value="">请选择</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>原授信金额：</th>
+                <td><input type="text" name="" style="width:117px;"/></td>
+                <th rowspan="3" style="vertical-align: top;">备注：</th>
+                <td rowspan="3">
+                    <textarea style="width: 180px;">
+
+                    </textarea>
+                </td>
+            </tr>
+            <tr>
+                <th>新授信金额：</th>
+                <td><input type="text" name="" style="width:117px;"/></td>
+            </tr>
+            <tr>
+                <th>确认新授信金额：</th>
+                <td><input type="text" name="" style="width:117px;"/></td>
+            </tr>
+        </table>
+        <div style="margin: 20px 0 0 0;text-align: center;">
+            <a class="adaptiveButton brightOrange_btn s_font_14">
+                <span class="left"></span>
+                <span class="center">提交</span>
+                <span class="right"></span>
+            </a>
+            <a href="javascript:void(0);" class="callOff s_font_14">取消</a>
+        </div>
+    </div>
+</script>
+
+
+<footer class="main-footer">
+    <center class="copyright">
+        Copyright &copy; 2014 天地行 All Rights Reserved.     沪ICP备08101503号
+    </center>
+</footer>
+</div>
+
+<script>
+    $(function(){
+        $(".tab_change li").each(function(index){
+            $(this).click(function(){
+                $(".us-body .tab").hide();
+                $(".us-body .tab:eq(" + index + ")").show();
+                $(".tab_change li").removeClass("currentState");
+                $(this).addClass("currentState");
+            });
+
+        });
+
+    });
+</script>
+
+<script type="text/javascript">
+	$(function(){
+				
+		new PopWindow('.addExtension',{
+			template:'#addExtension-template',
+			title:'新增协议授信',
+			width:'410'
+		}).init();
+
+        new PopWindow('.editExtension',{
+            template:'#editExtension-template',
+            title:'修改协议授信',
+            width:'535'
+        }).init();
+
+    });
+	
+</script>
+
+
+
+<!--<script>
+    $(function(){
+        $(".tab_window li").each(function(index){
+            $(this).click(function(){
+                $(".pay .pay_tab").hide();
+                $(".pay .pay_tab:eq(" + index + ")").show();
+                $(".tab_window li").removeClass("currentWindow");
+                $(this).addClass("currentWindow");
+            });
+
+        });
+
+    });
+</script>-->
+
+</body>
+</html>
+

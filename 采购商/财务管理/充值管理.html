@@ -95,7 +95,7 @@
     <!--充值管理-->
     <main class="us-content">
         <div class="tdxTitle clearfix">
-            <h3>冻结管理</h3>
+            <h3>充值管理</h3>
             <a href="javascript:void(0);" class="tdxFonts">
                 <b>我的天地行</b>
                 <i class="tdxIcon"></i>
@@ -108,7 +108,9 @@
                     <li><em><a href="javascript:void(0);">充值审核</a></em></li>
                 </ul>
             </aside>
-            <div class="tab_item">
+            <div class="detail_content">
+                <!--充值明细-->
+                <div class="tab">
                 <section class="us-query clearfix" style=" padding-top:15px; padding-bottom:5px;">
                     
                     <div class="searchModel add_ac_table">
@@ -130,13 +132,13 @@
                                     <input type="text" name="" style="width:100px;"/><span class="dottedBlock"></span>
                                     </div>
                                 </td>
-                                <th>帐户类型：</th>
+                                <th>操作人：</th>
                                 <td>
-                                    <select data-role="dropdownlist" style="width:155px" name="">
-                                        <option value="">全部</option>
-                                    </select>
+                                    <div class="locateBlock">
+                                        <input type="text" name="" style="width:121px;"/><span class="dottedBlock"></span>
+                                    </div>
                                 </td>
-                                <th>冻结类型：</th>
+                                <th>充值方式：</th>
                                 <td>
                                     <select data-role="dropdownlist" style="width:134px" name="">
                                         <option value="">全部</option>
@@ -151,34 +153,27 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>冻结状态：</th>
-                                <td>
-                                    <select data-role="dropdownlist" style="width:129px" name="">
-                                        <option value="">全部</option>
+                                <td colspan="6" style="padding-left: 8px;">
+                                    <select data-role="dropdownlist" style="width:96px;margin-right: 5px;margin-top: -2px;" name="">
+                                        <option value="">创建日期</option>
                                     </select>
+                                    <span>
+                                    <input id="" class="datepicker dpShort" value="" type="text" name="" style="width:137px;">
+                                    <s> 至 </s>
+                                    <input id="" class="datepicker dpShort" value="" type="text" name="" style="width:137px;">
+                                    </span>
                                 </td>
-                                <th>冻结操作人：</th>
-                                <td>
-                                    <div class="locateBlock">
-                                        <input type="text" name="" style="width:125px;"/><span class="dottedBlock"></span>
-                                    </div>
-                                </td>
-                                <th>解冻操作人：</th>
-                                <td>
-                                    <div class="locateBlock">
-                                        <input type="text" name="" style="width:128px;"/><span class="dottedBlock"></span>
-                                    </div>
-                                </td>
-                                <td></td>
                             </tr>
-                            </tbody></table>
+                            </tbody>
+                        </table>
                     </div>
                    
                 </section>
                 <section class="usResult">
                     <div class="tblToolsBar">
                         <div class="toolBarBtn">
-                            <a class="addAc addThaw" href="javascript:void(0);"><i class="addIcon">+</i>新增冻结</a>
+                            <a class="addAc addRecharge" href="javascript:void(0);"><i class="addIcon">+</i>新增充值</a>
+                            <a class="addAc addWithhold" href="javascript:void(0);">新增扣款</a>
                         </div>
                         <a class="text1" href="javascript:;">导出Excel</a>
                     </div>
@@ -271,6 +266,205 @@
                         </tr>
                     </table>
                 </section>
+                </div>
+                <!--充值审核-->
+                <div class="tab" style="display: none;">
+                    <section class="us-query clearfix" style=" padding-top:15px; padding-bottom:5px;">
+
+                        <div class="searchModel add_ac_table">
+                            <table>
+                                <colgroup>
+                                    <col width="75">
+                                    <col width="130">
+                                    <col width="90">
+                                    <col width="156">
+                                    <col width="80">
+                                    <col width="114">
+                                    <col width="141">
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <th>客户名称：</th>
+                                    <td>
+                                        <div class="locateBlock">
+                                            <input type="text" name="" style="width:100px;"/><span class="dottedBlock"></span>
+                                        </div>
+                                    </td>
+                                    <th>充值银行：</th>
+                                    <td>
+                                        <select data-role="dropdownlist" style="width:142px" name="">
+                                            <option value="">全部</option>
+                                        </select>
+                                    </td>
+                                    <th>审核状态：</th>
+                                    <td>
+                                        <select data-role="dropdownlist" style="width:134px" name="">
+                                            <option value="">全部</option>
+                                        </select>
+                                    </td>
+                                    <td rowspan="2" style="text-align: right;">
+                                        <a class="adaptiveButton brightRed_btn s_font_14">
+                                            <span class="left"></span>
+                                            <span class="center">搜 索</span>
+                                            <span class="right"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="padding-left: 8px;">
+                                        <select data-role="dropdownlist" style="width:96px;margin-right: 5px;margin-top: -2px;" name="">
+                                            <option value="">申请日期</option>
+                                        </select>
+                                    <span>
+                                    <input id="" class="datepicker dpShort" value="" type="text" name="" style="width:132px;">
+                                    <s> 至 </s>
+                                    <input id="" class="datepicker dpShort" value="" type="text" name="" style="width:132px;">
+                                    </span>
+                                    </td>
+                                    <th>审核人：</th>
+                                    <td>
+                                        <div class="locateBlock">
+                                            <input type="text" name="" style="width:104px;"/><span class="dottedBlock"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </section>
+                    <section class="usResult">
+                        <div class="tblToolsBar">
+                            <a class="text1" href="javascript:;">导出Excel</a>
+                        </div>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>凭单号</th>
+                                <th>客户名称</th>
+                                <th>银行/银行卡号</th>
+                                <th>付款人</th>
+                                <th>充值金额</th>
+                                <th>付款日期</th>
+                                <th>审核状态</th>
+                                <th>申请时间</th>
+                                <th>审核时间</th>
+                                <th colspan="2">操作</th>
+                            </tr>
+                            </thead>
+                            <tr>
+                                <td>12345678</td>
+                                <td>Angela</td>
+                                <td>
+                                    中国农业银行（个人）
+                                    <div>6228450034582114</div>
+                                </td>
+                                <td>潘小美</td>
+                                <td><span class="text2"><b>700.00</b></span></td>
+                                <td>2015-02-28</td>
+                                <td>通过</td>
+                                <td>
+                                    2015-02-28
+                                    <div>18:22:23</div>
+                                </td>
+                                <td>
+                                    2015-02-28
+                                    <div>18:22:23</div>
+                                </td>
+                                <td><a class="text1" href="javascript:(0);">通过</a></td>
+                                <td><a class="text1" href="javascript:(0);">退回</a></td>
+                            </tr>
+                            <tr class="currentList">
+                                <td>12345678</td>
+                                <td>Angela</td>
+                                <td>
+                                    中国农业银行（个人）
+                                    <div>6228450034582114</div>
+                                </td>
+                                <td>潘小美</td>
+                                <td><span class="text2"><b>700.00</b></span></td>
+                                <td>2015-02-28</td>
+                                <td>通过</td>
+                                <td>
+                                    2015-02-28
+                                    <div>18:22:23</div>
+                                </td>
+                                <td>
+                                    2015-02-28
+                                    <div>18:22:23</div>
+                                </td>
+                                <td><a class="text1" href="javascript:(0);">通过</a></td>
+                                <td><a class="text1" href="javascript:(0);">退回</a></td>
+                            <tr>
+                                <td>12345678</td>
+                                <td>Angela</td>
+                                <td>
+                                    中国农业银行（个人）
+                                    <div>6228450034582114</div>
+                                </td>
+                                <td>潘小美</td>
+                                <td><span class="text2"><b>700.00</b></span></td>
+                                <td>2015-02-28</td>
+                                <td>通过</td>
+                                <td>
+                                    2015-02-28
+                                    <div>18:22:23</div>
+                                </td>
+                                <td>
+                                    2015-02-28
+                                    <div>18:22:23</div>
+                                </td>
+                                <td><a class="text1" href="javascript:(0);">通过</a></td>
+                                <td><a class="text1" href="javascript:(0);">退回</a></td>
+                            </tr>
+                            <tr>
+                                <td>12345678</td>
+                                <td>Angela</td>
+                                <td>
+                                    中国农业银行（个人）
+                                    <div>6228450034582114</div>
+                                </td>
+                                <td>潘小美</td>
+                                <td><span class="text2"><b>700.00</b></span></td>
+                                <td>2015-02-28</td>
+                                <td>通过</td>
+                                <td>
+                                    2015-02-28
+                                    <div>18:22:23</div>
+                                </td>
+                                <td>
+                                    2015-02-28
+                                    <div>18:22:23</div>
+                                </td>
+                                <td><a class="text1" href="javascript:(0);">通过</a></td>
+                                <td><a class="text1" href="javascript:(0);">退回</a></td>
+                            </tr>
+                            <tr>
+                                <td>12345678</td>
+                                <td>Angela</td>
+                                <td>
+                                    中国农业银行（个人）
+                                    <div>6228450034582114</div>
+                                </td>
+                                <td>潘小美</td>
+                                <td><span class="text2"><b>700.00</b></span></td>
+                                <td>2015-02-28</td>
+                                <td>通过</td>
+                                <td>
+                                    2015-02-28
+                                    <div>18:22:23</div>
+                                </td>
+                                <td>
+                                    2015-02-28
+                                    <div>18:22:23</div>
+                                </td>
+                                <td><a class="text1" href="javascript:(0);">通过</a></td>
+                                <td><a class="text1" href="javascript:(0);">退回</a></td>
+                            </tr>
+                        </table>
+                    </section>
+                </div>
+                
             </div>
             <div class="pagination clearfix">
                 <ul>
@@ -295,62 +489,103 @@
     
     
 </section>
-<script type="text/x-kendo-template" id="thaw-template">
+
+<script type="text/x-kendo-template" id="addRecharge-template">
     <div class="innerPop_psw">
         <table style="margin: 0 auto;width:100%;">
             <tr>
-                <td style="width: 65px;">客户名称：</td>
-                <td>宝华国际广场</td>
-                <td style="width: 65px;">冻结金额：</td>
-                <td class="c2 s1">10000.00</td>
+                <th style="width: 70px;"><b>选择客户：</b></th>
+                <td style="width:250px;">
+                    <div class="locateBlock">
+                        <input type="text" name="" style="width:142px;"/><span class="dottedBlock" style="top:0px;right:78px; "></span>
+                    </div>
+                </td>
+                <th style="width: 70px;"><b>可用余额：</b></th>
+                <td style="width: 130px;"><input type="text" name="" style="width:105px;"/></td>
             </tr>
             <tr>
-                <td colspan="4" style="padding-top: 20px;">您将对此冻结记录进行解冻，请输入解冻原因：</td>
+                <th><b>充值方式：</b></th>
+                <td>
+                    <select data-role="dropdownlist" style="width:64px;margin-top: -2px;" name="">
+                        <option value="">现金</option>
+                    </select>
+                    <input type="text" name="" style="width:98px;" placeholder="充值金额"/>
+                    <label class="basic-oper_block"><i class="oper_add"></i><span class="hoverFonts">增加</span></label>
+                </td>
+                <td colspan="2">
+                    <label class="rechargeType_block">
+                    <span class="selected">现金</span>
+                    <span>刷卡</span>
+                    <span>支票</span>
+                    <span>汇款</span>
+                    </label>
+                </td>
             </tr>
             <tr>
-                <td colspan="4" style="" class="">
-                    <textarea>
-                        
+                <th></th>
+                <td>
+                    <select data-role="dropdownlist" style="width:64px;margin-top: -2px;" name="">
+                        <option value="">现金</option>
+                    </select>
+                    <input type="text" name="" style="width:98px;" placeholder="充值金额"/>
+                    <label class="basic-oper_block"><i class="oper_del"></i><span class="hoverFonts">删除</span></label>
+                </td>
+                <td colspan="2">
+                </td>
+            </tr>
+            <tr>
+                <th><b>总计金额：</b></th>
+                <td colspan="3"><span class="c5 s2">800.00</span> </td>
+            </tr>
+            <tr>
+                <th style="vertical-align: top;"><b>备注：</b></th>
+                <td colspan="3">
+                    <textarea style="width: 423px;">
+
                     </textarea>
                 </td>
             </tr>
         </table>
-                 <div style="margin: 20px 0 0 0;text-align: center;">
-                     <a class="adaptiveButton brightOrange_btn s_font_14">
-                      <span class="left"></span>
-                      <span class="center">提交</span>
-                      <span class="right"></span>
-                     </a>
-                     <a href="javascript:void(0);" class="callOff s_font_14">取消</a>
-                 </div>
-     </div>       
+        <div style="margin: 20px 0 0 0;text-align: center;">
+            <a class="adaptiveButton brightOrange_btn s_font_14">
+                <span class="left"></span>
+                <span class="center">提交</span>
+                <span class="right"></span>
+            </a>
+            <a href="javascript:void(0);" class="callOff s_font_14">取消</a>
+        </div>
+    </div>
 </script>
 
-<script type="text/x-kendo-template" id="addThaw-template">
+<script type="text/x-kendo-template" id="addWithhold-template">
     <div class="innerPop_psw">
         <table style="margin: 0 auto;width:100%;">
             <tr>
-                <th style="width: 70px;">客户名称：</th>
-                <td style="width:123px;">
+                <th style="width: 70px;"><b>选择客户：</b></th>
+                <td style="width:250px;">
                     <div class="locateBlock">
-                        <input type="text" name="" style="width:93px;"/><span class="dottedBlock" style="top:0px;"></span>
+                        <input type="text" name="" style="width:142px;"/><span class="dottedBlock" style="top:0px;right:78px; "></span>
                     </div>
                 </td>
-                <th style="width: 77px;">可用余额：</th>
-                <td style="width: 100px;"><input type="text" name="" style="width:93px;"/></td>
+                <th style="width: 70px;"><b>现金余额：</b></th>
+                <td style="width: 130px;"><input type="text" name="" style="width:105px;"/></td>
             </tr>
             <tr>
-                <th>冻结金额：</th>
-                <td colspan="3"><input type="text" name="" style="width:117px;"/></td>
-            </tr>
-            <tr>
-                <th>确认金额：</th>
-                <td colspan="3"><input type="text" name="" style="width:117px;"/></td>
-            </tr>
-            <tr>
-                <th style="vertical-align: top;">备注：</th>
+                <th><b>扣款金额：</b></th>
                 <td colspan="3">
-                    <textarea style="width: 290px;">
+                    <input type="text" name="" style="width:165px;"/>
+                </td>
+            </tr>
+            <tr>
+                <th><b>扣款金额：</b></th>
+                <td colspan="3">
+                    <input type="text" name="" style="width:165px;"/>
+                </td>
+            </tr>
+            <tr>
+                <th style="vertical-align: top;"><b>备注：</b></th>
+                <td colspan="3">
+                    <textarea style="width: 423px;">
 
                     </textarea>
                 </td>
@@ -392,16 +627,16 @@
 
 <script type="text/javascript">
 	$(function(){
-		new PopWindow('.thaw',{
-			template:'#thaw-template',
-			title:'确认解冻',
-			width:'410'
+		new PopWindow('.addWithhold',{
+			template:'#addWithhold-template',
+			title:'新增扣款',
+			width:'560'
 		}).init();
 		
-		new PopWindow('.addThaw',{
-			template:'#addThaw-template',
-			title:'新增解冻',
-			width:'410'
+		new PopWindow('.addRecharge',{
+			template:'#addRecharge-template',
+			title:'新增充值',
+			width:'560'
 		}).init();
 
     });
