@@ -43,17 +43,17 @@
     <div class="box">
         <div class="item item1"></div>
         <div class="item item2"></div>
-        <!--
+        <div class="slideAnim">
         <div class="slideOne">
             <div class="pic pic1"></div> 
             <div class="pic pic2"></div> 
             <div class="pic pic3"></div> 
         </div>
-        -->
         <div class="slideTwo">
-            <div class="pic pic1"></div> 
             <div class="pic pic2"></div> 
             <div class="pic pic3"></div> 
+            <div class="pic pic1"></div> 
+        </div>
         </div>
     </div>
 </div>
@@ -93,8 +93,9 @@
         <div class="item item3" data-from="93,490" data-delay="2500">
             <a href="#bbbb" class="barcode"><img src="/static/images/store/app/barcode.jpg" /></a> 
         </div>
-        <div class="item item4" data-from="920,-100" data-delay="700"></div>
+        <div class="item item4" data-from="920,-100" data-delay="700" data-duration="1000"></div>
         <div class="item item5" data-from="114,43" data-to="114,43"></div>
+        <div class="item item6" data-from="614,265" data-delay="2500" data-to="614,265"></div>
     </div>
 </div>
 
@@ -114,7 +115,8 @@
         var scene = $('.scene');
         var locked = false;
 
-        var scc = new scrollScene('.scene',{
+        scc = new scrollScene('.scene',{
+            step:40,
             onScrollDownEnd:function(e){
                 scene.eq(e.currentScene).find('.item').randomSlideIn({
                     duration:600,
@@ -122,92 +124,70 @@
                         showBarCode()
                     }
                 }); 
+                setNav(e.currentScene);
+                if (scc.currentScene!=0) slideAnim.empty();
             },
             onScrollUpEnd:function(e){
                 scene.eq(e.currentScene).find('.item').randomSlideIn({
                     duration:600
                 }); 
+                setNav(e.currentScene);
+                if (scc.currentScene==0) slideAnim.recover();
             } 
         });
-
 
         setTimeout(function(){
             scene.eq(scc.currentScene).prevAll('.scene').andSelf().find('.item').randomSlideIn({
                 duration:600,
                 callback:function(){
                     if (scc.currentScene==3) showBarCode();
-                    if (scc.currentScene!=0) slideAnim.empty();
                 }
             });
-        },1000);
-        
-        // 轮播
-        function slideOne(eles,duration,delay){
-            var eles = $(eles);
-            var delayTime = delay||1500;
-            var durationTime = duration||600;
-            var max,i;
-            max = i = eles.length-1;
-            function callAf(){
-                if(i<0) i=max;
-                eles.eq(i-2).css({
-                    'z-index':0
-                }).delay(delayTime).animate({
-                    'left':'207px'
-                },durationTime);
 
-                eles.eq(i-1).css({
-                    'z-index':1,
-                    'left':'207px'
-                }).delay(delayTime).animate({
-                    'left':'0px'
-                },durationTime);
+            setNav(scc.currentScene);
+            if (scc.currentScene==0) initSlide();
+        },600);
 
-                eles.eq(i).css({
-                    'z-index':2
-                }).delay(delayTime).animate({
-                    'left':'-207px'    
-                },durationTime,function(){
-                    $(this).css({
-                        'left':'414px',
-                        'z-index':0
-                    }); 
-                    i--;
-                    callAf();
-                }); 
-            }
-            callAf();
-        }
+        navClick();
+        posLayer();
 
-        setTimeout(function(){
-            slideOne('.slideOne .pic');
-            slideOne('.slideTwo .pic');
-        },2000);
-
-        function SlideAnim(ele,options){
-            this.ele = ele;
-            this.cached = ele.html();
-            this.conf =  $.extend({
-                onRecover:null 
-            },options);
-        }
-
-        SlideAnim.prototype = {
-            empty : function(){
-                this.ele.html(''); 
-            },
-            recover : function(){
-                this.ele.html(this.cached);
-                this.conf.onRecover.apply(null,this);
-            }
-        }
-
-        var slideAnim = new SlideAnim($('.slideOne'),{
+        var slideAnim = new SlideAnim($('.slideAnim'),{
             onRecover:function(){
-                slideOne();
+                initSlide();
             } 
         });
 
+        function setNav(i){
+            nav.find('.current').removeClass('current');
+            nav.find('li').eq(i).addClass('current');
+        }
+
+        function navClick(){
+            nav.on('click','li',function(e){
+                e.preventDefault(); 
+                if(scc.inAnim) return;
+                var index = $(this).index();
+                if(index>scc.currentScene){
+                    scc.scrollDown(index,40*Math.abs(index-scc.currentScene));
+                }
+                if(index<scc.currentScene){
+                    scc.scrollUp(index,40*Math.abs(index-scc.currentScene));
+                }
+                scc.currentScene=index;
+            });
+        }
+
+        function initSlide(){
+            $('.slideAnim').fadeIn(600,function(){
+                slideOne('.slideOne .pic',{
+                    opacity:0.3
+                });
+                slideOne('.slideTwo .pic',{
+                    width:192,
+                    shadow:true
+                });
+            });
+        }
 
         function showBarCode(){
             var ele = $('.s3 .item4');
@@ -224,18 +204,30 @@
                 }
         }
 
-        /*
-        posLayer();
-        */
-
         function posLayer(){
             var appbody = $('.app-body');
             var layerstar = $('.layerstar');
             $(window).on('scroll',function(e){
+                var ts = document.body.style.transform||document.body.style.webkitTransform||document.body.style.MozTransform;
+                /*
+                var initial = "-webkit-transform: translate" + axis + "(" + dist + ");" +
+                            "transform: translate" + axis + "(" + dist + ");" +
+                            */
                 appbody.css('background-position','0 -' + parseInt(window.scrollY/15) + 'px');
                 layerstar.css('background-position','0 -' + parseInt(window.scrollY/4) + 'px');
             });
         }
+
+        function addStars(num){
+            var layerstar = $('.layerstar');
+            var starHTML = "";
+            for(var i=0;i<num;i++){
+                starHTML+= "<i class='star'></i>";
+            }
+            layerstar.append(starHTML);
+        }
+
+        addStars(3);
     });
 </script>
 

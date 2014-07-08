@@ -185,12 +185,13 @@ var Collpase = function(opts){
     this.triggerexp = 'col-expp';
     this.duration = 0;
     this.trigger = '.content-collapse';
+    this.html = '<div />';
     $.extend(this,opts);
     this.container = $(this.container);
 };
 Collpase.prototype = {
     init:function(){
-        if(this.getContainerHeight()<this.limitHeight) return this;
+        if(this.getContainerHeight()<=this.limitHeight) return this;
         this.render();
         this.bindClick();
         return this;
@@ -199,7 +200,7 @@ Collpase.prototype = {
         var container = this.container;
         this.originHeight = container[0].style.height;
         this.padHeight = container[0].scrollHeight-container.height();
-        var trigger= this.triggerEle = $('<div class="'+(this.trigger+'_').slice(1,-1)+'"><div /></div>');
+        var trigger= this.triggerEle = $('<div class="'+(this.trigger+'_').slice(1,-1)+'">'+this.html+'</div>');
         trigger.appendTo(container).show();
         container.css({
             position:'relative',
@@ -1876,6 +1877,7 @@ scrollScene.prototype = {
             if(that.inAnim){
                return false;
             }
+
             if(delta<0) {
                 if (that.currentScene < that.eles.length-1){
                     that.currentScene++;
@@ -1897,7 +1899,6 @@ scrollScene.prototype = {
             height:window.innerHeight,
             width:'100%'
         });
-        that.mod = window.innerHeight % that.step;
         // hide scroll bar
         if(that.hideScrollBar){
             $('html').css({'overflow-y':'hidden'});
@@ -1922,14 +1923,16 @@ scrollScene.prototype = {
         }
         return index;
     },
-    scrollDown:function(index){
+    scrollDown:function(index,step){
         var that = this;
-        var step = that.step;
+        var step = tmpstep = step||that.step;
         var endPos = that.eles.eq(index).offset().top;
-        var mod = that.mod;
+        var mod = window.innerHeight % step;
+
         if(endPos<window.innerHeight){
-            mod = endPos % that.step;
+            mod = endPos % step;
         }
+
         that.inAnim = true; //lock mousewheel
         function repeat() {
             if(window.scrollY >= endPos) {
@@ -1940,13 +1943,13 @@ scrollScene.prototype = {
 
             if( mod > 0){
                 mod--; 
-                step = that.step+1;
+                tmpstep = step+1;
             }else{
-                step = that.step; 
+                tmpstep = step; 
             }
 
             if( window.scrollY - endPos < 0 ){
-                window.scrollBy(0,step);
+                window.scrollBy(0,tmpstep);
             }
 
             that.animId = requestAnimationFrame(repeat);
@@ -1955,11 +1958,12 @@ scrollScene.prototype = {
         that.onScrollDown.call(null,that);
         that.animId = requestAnimationFrame(repeat);
     },
-    scrollUp:function(index){
+    scrollUp:function(index,step){
         var that = this;
-        var step = that.step;
+        var step = tmpstep = step||that.step;
         var endPos = that.eles.eq(index).offset().top;
-        var mod = that.mod;
+        var mod = window.innerHeight % step;
+
         that.inAnim = true; //lock mousewheel
         if(index <= -1){
             endPos = 0; 
@@ -1976,14 +1980,14 @@ scrollScene.prototype = {
             if(index>-1){
                 if( mod > 0){
                     mod--; 
-                    step = that.step+1;
+                    tmpstep = step+1;
                 }else{
-                    step = that.step; 
+                    tmpstep = step; 
                 }
             }
 
             if( window.scrollY - endPos > 0 ){
-                window.scrollBy(0,-step);
+                window.scrollBy(0,-tmpstep);
             }
 
             that.animId = requestAnimationFrame(repeat);
@@ -2154,3 +2158,88 @@ $.fn.randomSlideIn = function(opts){
 };
 
 
+/* restore and clear animation element for performance*/
+function SlideAnim(ele,options){
+    this.ele = ele;
+    this.cached = ele.html();
+    this.conf =  $.extend({
+        onRecover:null,
+    },options);
+}
+
+SlideAnim.prototype = {
+    empty : function(){
+        this.ele.html('').data('empty',true).hide();
+    },
+    recover : function(duration){
+        var that = this;
+        if(that.ele.data('empty') == true){
+            that.ele.html(that.cached).fadeIn(duration||600,function(){
+                that.conf.onRecover.apply(null,that);
+                that.ele.data('empty',false);
+            });
+        }
+    }
+}
+
+
+// 轮播
+function slideOne(eles,opt){
+    var settings = $.extend({
+        delay:1500,
+        duration:600,
+        opacity:1,
+        shadow:false,
+        width:207
+    },opt);
+    var eles = $(eles);
+    var wid = settings.width;
+    var delayTime = settings.delay;
+    var durationTime = settings.duration;
+    var max,i;
+    max = i = eles.length-1;
+    function callAf(){
+        if(i<0) i=max;
+
+        // shadow slide item
+        if(settings.shadow){
+            var gg = eles.eq(i).clone().addClass('slideShadow').appendTo(eles.parent()).css({
+                'left':wid*3,
+                'z-index':0
+            }).delay(delayTime).animate({
+                'left':wid*2
+            },durationTime,function(){
+                gg.remove();
+            }); 
+        }
+
+        eles.eq(i-2).css({
+            'z-index':0
+        }).delay(delayTime).animate({
+            'left':wid
+        },durationTime);
+
+        eles.eq(i-1).css({
+            'z-index':1,
+            'left':wid
+        }).delay(delayTime).animate({
+            'left':0
+        },durationTime);
+
+        eles.eq(i).css({
+            'z-index':2
+        }).delay(delayTime).animate({
+            'left':-wid,
+            'opacity':settings.opacity
+        },durationTime,function(){
+            $(this).css({
+                'left':wid*2,
+                'opacity':1,
+                'z-index':0
+            }); 
+            i--;
+            callAf();
+        }); 
+    }
+    callAf();
+}
