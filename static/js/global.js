@@ -1927,28 +1927,28 @@ scrollScene.prototype = {
         var that = this;
         var step = tmpstep = step||that.step;
         var endPos = that.eles.eq(index).offset().top;
-        var mod = window.innerHeight % step;
-
-        if(endPos<window.innerHeight){
-            mod = endPos % step;
-        }
+        var all = (endPos<window.innerHeight)?endPos:window.innerHeight;
 
         that.inAnim = true; //lock mousewheel
         function repeat() {
-            if(window.scrollY >= endPos) {
+            if(window.scrollY >= endPos){
                 that.inAnim = false; //unlock mousewheel
                 that.onScrollDownEnd.call(null,that);
                 return that.stopAnim();
             }
 
-            if( mod > 0){
-                mod--; 
-                tmpstep = step+1;
+            if( all - tmpstep > 0 && all % step!=0 ){
+                if(all % step==1){
+                    tmpstep = step+1;
+                }else{
+                    tmpstep = step+2;
+                }
+                all = all - tmpstep;
             }else{
-                tmpstep = step; 
+                tmpstep = step;
             }
 
-            if( window.scrollY - endPos < 0 ){
+            if( window.scrollY - endPos <= 0 ){
                 window.scrollBy(0,tmpstep);
             }
 
@@ -1962,7 +1962,7 @@ scrollScene.prototype = {
         var that = this;
         var step = tmpstep = step||that.step;
         var endPos = that.eles.eq(index).offset().top;
-        var mod = window.innerHeight % step;
+        var all = window.innerHeight;
 
         that.inAnim = true; //lock mousewheel
         if(index <= -1){
@@ -1977,13 +1977,15 @@ scrollScene.prototype = {
                 return that.stopAnim();
             }
 
-            if(index>-1){
-                if( mod > 0){
-                    mod--; 
+            if( all - tmpstep > 0 && all % step!=0 ){
+                if(all % step==1){
                     tmpstep = step+1;
                 }else{
-                    tmpstep = step; 
+                    tmpstep = step+2;
                 }
+                all = all - tmpstep;
+            }else{
+                tmpstep = step;
             }
 
             if( window.scrollY - endPos > 0 ){
@@ -2011,9 +2013,10 @@ scrollScene.prototype = {
 
 
 // slide into its background-position;
-$.fn.randomSlideIn = function(opts){
+$.fn.slideIn = function(opts){
     var callback = function(){};
     var timeArr = [];
+    var timer;
     if ( $.type(opts) === "function" ){
         callback = opts;
     }
@@ -2054,7 +2057,8 @@ $.fn.randomSlideIn = function(opts){
         // 'left', 'top' , 'right' , 'bottom';
         var f = {
             'left':function(d,cb,duration,opacity){ 
-                that.delay(d).css({
+                setTimeout(function(){
+                that.css({
                     'display':'inline',
                     'opacity':opacity,
                     'left':-eleWidth,
@@ -2063,9 +2067,11 @@ $.fn.randomSlideIn = function(opts){
                     'left':endPos[0],
                     'opacity':1
                 },duration,cb); 
+                },d);
             }, 
             'top':function(d,cb,duration,opacity){ 
-                that.delay(d).css({
+                setTimeout(function(){
+                that.css({
                     'display':'inline',
                     'opacity':opacity,
                     'top':-eleHeight,
@@ -2074,9 +2080,11 @@ $.fn.randomSlideIn = function(opts){
                     'top':endPos[1],
                     'opacity':1
                 },duration,cb);
+                },d);
             }, 
             'right':function(d,cb,duration,opacity){ 
-                that.delay(d).css({
+                setTimeout(function(){
+                that.css({
                     'display':'inline',
                     'opacity':opacity,
                     'left':eleWidth+boxWidth,
@@ -2085,9 +2093,11 @@ $.fn.randomSlideIn = function(opts){
                     'left':endPos[0],
                     'opacity':1
                 },duration,cb); 
+                },d);
             },
             'bottom':function(d,cb,duration,opacity){ 
-                that.delay(d).css({
+                setTimeout(function(){
+                that.css({
                     'display':'inline',
                     'opacity':opacity,
                     'top':eleHeight+boxHeight,
@@ -2096,13 +2106,15 @@ $.fn.randomSlideIn = function(opts){
                     'top':endPos[1],
                     'opacity':1
                 },duration,cb);
+                },d);
             },
             'xy':function(d,cb,duration,opacity){
                 var startPos = $.map(datalist.from.split(','),function(i,index){
                     return +i;
                 });
 
-                that.delay(d).css({
+                setTimeout(function(){
+                that.css({
                     'display':'inline',
                     'opacity':opacity,
                     'left':startPos[0],
@@ -2112,6 +2124,7 @@ $.fn.randomSlideIn = function(opts){
                     'top':endPos[1],
                     'opacity':1
                 },duration,cb);
+                },d);
             }
         };
 
@@ -2131,9 +2144,11 @@ $.fn.randomSlideIn = function(opts){
         }
     });
 
-    setTimeout(function(){
+    /*
+    timer = setTimeout(function(){
         opt.callback.call(null,this);
     },getArrayMax(timeArr));
+    */
 
     function getPos(ele){
         var arr=[];

@@ -39,6 +39,7 @@
 <div class="main-wrapper">
 <section class="main-body clearfix app-body">
 <div class="layerstar full"></div>
+<div class="animstars full"></div>
 <div class="scene s0" id="section0">
     <div class="box">
         <div class="item item1"></div>
@@ -76,7 +77,7 @@
         <div class="item item1" data-from="left"></div>
         <div class="item item2" data-from="bottom"></div>
         <div class="item item3" data-from="700,0"></div>
-        <div class="item item4"></div>
+        <div class="item item4" data-from="308,185" data-to="308,306" data-delay="800" data-opacity="1"></div>
     </div>
 </div>
 <div class="scene s4" id="section4">
@@ -95,7 +96,7 @@
         </div>
         <div class="item item4" data-from="920,-100" data-delay="700" data-duration="1000"></div>
         <div class="item item5" data-from="114,43" data-to="114,43"></div>
-        <div class="item item6" data-from="614,265" data-delay="2500" data-to="614,265"></div>
+        <div class="item item6" data-from="614,265" data-delay="3000" data-to="614,265"></div>
     </div>
 </div>
 
@@ -118,37 +119,31 @@
         scc = new scrollScene('.scene',{
             step:40,
             onScrollDownEnd:function(e){
-                scene.eq(e.currentScene).find('.item').randomSlideIn({
-                    duration:600,
-                    callback:function(){
-                        showBarCode()
-                    }
-                }); 
+                scene.eq(e.currentScene).find('.item').slideIn(); 
                 setNav(e.currentScene);
                 if (scc.currentScene!=0) slideAnim.empty();
             },
             onScrollUpEnd:function(e){
-                scene.eq(e.currentScene).find('.item').randomSlideIn({
-                    duration:600
-                }); 
+                scene.eq(e.currentScene).find('.item').slideIn(); 
                 setNav(e.currentScene);
                 if (scc.currentScene==0) slideAnim.recover();
             } 
         });
 
         setTimeout(function(){
-            scene.eq(scc.currentScene).prevAll('.scene').andSelf().find('.item').randomSlideIn({
-                duration:600,
-                callback:function(){
-                    showBarCode();
-                }
-            });
+            scene.eq(scc.currentScene).prevAll('.scene').andSelf().find('.item').slideIn();
             setNav(scc.currentScene);
-            if (scc.currentScene==0) initSlide();
+            if (scc.currentScene==0){
+                initSlide();
+            }else{
+                slideAnim.empty(); 
+            }
         },1000);
 
         navClick();
         posLayer();
+        addStars(108,'.animstars');
+        addStars(25,'.s5');
 
         var slideAnim = new SlideAnim($('.slideAnim'),{
             onRecover:function(){
@@ -206,6 +201,7 @@
         function posLayer(){
             var appbody = $('.app-body');
             var layerstar = $('.layerstar');
+            var animstars = $('.animstars');
             $(window).on('scroll',function(e){
                 var ts = document.body.style.transform||document.body.style.webkitTransform||document.body.style.MozTransform;
                 /*
@@ -214,19 +210,61 @@
                             */
                 appbody.css('background-position','0 -' + parseInt(window.scrollY/15) + 'px');
                 layerstar.css('background-position','0 -' + parseInt(window.scrollY/4) + 'px');
+                animstars.css('top','-' + parseInt(window.scrollY/4) + 'px');
             });
         }
 
-        function addStars(num){
-            var layerstar = $('.layerstar');
-            var starHTML = "";
-            for(var i=0;i<num;i++){
-                starHTML+= "<i class='star'></i>";
+        function addStars(num,ele){
+            var ele = $(ele);
+            var stars = generateStar();
+            
+            function generateStar(){
+                var pos;
+                var starHTML = "";
+                for(var i=0;i<num;i++){
+                    (function(){
+                        pos = getPos();
+                    })();
+                    starHTML+= "<i style='left:"+pos.x+"px;top:"+pos.y+"px;' class='star'><b /></i>";
+                }
+                return $(starHTML);
             }
-            layerstar.append(starHTML);
+
+            function getPos(){
+                var pos = {};
+                //var vx = window.innerWidth/num;
+                //var vy = window.innerHeight/num;
+                var vx = ele.width()/num;
+                var vy = ele.height()/num;
+
+
+                pos.x = Math.floor(getRamdonScale()*vx); 
+                pos.y = Math.floor(getRamdonScale()*vy); 
+                return pos;
+            }
+
+            function getRamdonScale(n){
+                var n = n || num;
+                return Math.random()*n;
+            }
+
+            function animStar(){
+                $.each(stars.find('b'),function(){
+                    var i = $(this);
+                    (function loop(){
+                        i.delay(getRamdonScale(4000)).animate({opacity:1},400,function(){
+                            i.delay(300).animate({opacity:0},400,function(){
+                                loop(); 
+                            }); 
+                        });
+                    })();
+                });
+            }
+
+            stars.appendTo(ele);
+            animStar();
         }
 
-        addStars(3);
     });
 </script>
 
