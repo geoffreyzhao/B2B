@@ -1832,6 +1832,7 @@ $.fn.fadeInWithDelay = function(){
 
 
 /*滑动模块*/
+var animationFrame;
 function scrollScene(eles,options){
     this.eles = $(eles);
     this.animId = 0;
@@ -1952,11 +1953,12 @@ scrollScene.prototype = {
                 window.scrollBy(0,tmpstep);
             }
 
-            that.animId = requestAnimationFrame(repeat);
+            //that.animId = requestAnimationFrame(repeat);
         }
 
         that.onScrollDown.call(null,that);
-        that.animId = requestAnimationFrame(repeat);
+//        that.animId = requestAnimationFrame(repeat);
+        animationFrame=setInterval(repeat,18);
     },
     scrollUp:function(index,step){
         var that = this;
@@ -1992,11 +1994,12 @@ scrollScene.prototype = {
                 window.scrollBy(0,-tmpstep);
             }
 
-            that.animId = requestAnimationFrame(repeat);
+            //that.animId = requestAnimationFrame(repeat);
         }
 
         that.onScrollUp.call(null,that);
-        that.animId = requestAnimationFrame(repeat);
+        animationFrame=setInterval(repeat,18);
+        //that.animId = requestAnimationFrame(repeat);
     },
     bindResize:function(){
         var that = this;
@@ -2007,7 +2010,8 @@ scrollScene.prototype = {
     },
     stopAnim:function(){
         var that = this;
-        cancelAnimationFrame(that.animId);
+        clearInterval(animationFrame);
+//        cancelAnimationFrame(that.animId);
     }
 };
 
