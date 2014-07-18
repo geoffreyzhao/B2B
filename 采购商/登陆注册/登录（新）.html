@@ -54,12 +54,12 @@
 
 <div style="background-color:#fff;position:relative;">
     <div id="scrollImg" style="height:470px;z-index:5;" >
-        <div class="fullscreen clickable-ad" ad="conference" style="background:#971a12 url(/static/images/login/beijing.jpg) no-repeat 50% 50%;"></div>
-        <div class="fullscreen clickable-ad" ad="conference" adurl="http://static.travelzensh.com/special/source/xunjiadan_domesticTicket.html" style="background:#799cba url(/static/images/login/xunjiadan.jpg) no-repeat 50% 50%;"></div>
-        <div class="fullscreen clickable-ad" ad="conference" style="background:#62b7e7 url(/static/images/login/duolunduo.jpg) no-repeat 50% 50%;"></div>
+        <div class="fullscreen clickable-ad" ad="conference" style="background:#971a12 url(http://media.tdxinfo.com/tops-mediaserver//imageservice?mediaImageId=53a2b2ff45ce9216061ccb7c) no-repeat 50% 50%;"></div>
+        <div class="fullscreen clickable-ad" ad="conference" adurl="http://static.travelzensh.com/special/source/xunjiadan_domesticTicket.html" style="background:#799cba url(http://media.tdxinfo.com/tops-mediaserver//imageservice?mediaImageId=53b1136a45ce0bdf5d439dcd) no-repeat 50% 50%;"></div>
+        <div class="fullscreen clickable-ad" ad="conference" style="background:#62b7e7 url(http://media.tdxinfo.com/tops-mediaserver//imageservice?mediaImageId=53c7658645ced146cfadf377) no-repeat 50% 50%;"></div>
         <div class="fullscreen" style="background:#5f41a1 url(../../static/images/login/niuyue.jpg) no-repeat 50% 50%;"></div>
-        <div class="fullscreen clickable-ad" ad="if-refund" style="background:#fbe288 url(/static/images/login/banner8.jpg) no-repeat 50% 50%;"></div>
-        <div class="fullscreen clickable-ad" ad="cz" style="background:#a8e3f5 url(/static/images/login/B777-300ER.jpg) no-repeat 50% 50%;"></div>
+        <div class="fullscreen clickable-ad" ad="if-refund" style="background:#fbe288 url(../../static/images/login/banner8.jpg) no-repeat 50% 50%;"></div>
+        <div class="fullscreen clickable-ad" ad="cz" style="background:#a8e3f5 url(../../static/images/login/B777-300ER.jpg) no-repeat 50% 50%;"></div>
         <div class="fullscreen" style="background:#128bdc url(../../static/images/login/banner4.jpg) no-repeat 50% 50%;"></div>
         <div class="fullscreen" style="background:#c4dae8 url(../../static/images/login/banner1.jpg) no-repeat 50% 50%;"></div>
         <div class="fullscreen" style="background:#e6d0a1 url(../../static/images/login/banner2.jpg) no-repeat 50% 50%;"></div>
@@ -323,6 +323,15 @@ function Error(obj,message,isShow){
     }
 
     $(function(){
+        // DOM ready, hide scroll images except the first one
+        // otherwise all the loading images will appear
+        $('#scrollImg div:gt(0)').css('display', 'none');
+    });
+    $(window).load(function(){
+        // when the whole window resource(include scroll images) ready, 
+        // display and start image cycle
+        $('#scrollImg div:gt(0)').css('display', 'block');
+
         $('#scrollImg').before('<div id="nav" class="slider_nav" style="left:47%;top:90%;">').cycle({fx:"fade",timeout: 2000,center:true,pause:true,pager:"#nav",pagerEvent: "click.cycle"});
     });
 
