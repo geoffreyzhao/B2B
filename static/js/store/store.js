@@ -235,5 +235,29 @@ $(function() {
     })();
     //var conf_enter = $('.main-header').append('<a href="'+conf_enter_url+'" class="conf_enter_wrapper"><i></i><s></s></a>');
 
+    // Gif动画logo执行3分钟后，切换为静态logo，5分钟后再次切换回动画，依此循环
+    // 获取图片所在根目录
+    var dirArr = $("#headLogo").attr("src").split('/');
+    var parentDir = dirArr.slice(0, dirArr.length - 1).join('/');
+
+    // 切换效果 start
+    function switchLogo() {
+
+        $("#headLogo").attr("src", parentDir + "/newLogo.png");
+        $("#headLogo").addClass("headStaticLogo");
+
+        setTimeout(function() {
+            $("#headLogo").attr("src", parentDir + "/logoGif.gif");
+            $("#headLogo").removeClass("headStaticLogo");
+        }, 1000*5*60);
+    }
+
+    setTimeout(function(){
+        switchLogo();
+        setInterval(switchLogo, 1000*8*60);
+    }, 1000*3*60);
+
+    // 切换效果 end
+
 });
 
