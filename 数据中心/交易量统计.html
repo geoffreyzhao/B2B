@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>真旅网数据中心 交易量统计</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/smoothness/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../static/css/date.css" media="all" />
+    <link href="../static/css/kendo.common.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../static/css/kendo.default.css" />
+    <link rel="stylesheet" href="../static/css/dateCenter.css"/>
+
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/jquery-ui-1.10.3.custom.js"></script>    
+    <script src="../static/js/kendo.web.min.js"></script>
+    <script src="../static/js/datacenter/common.js"></script>
+    
+    <!--[if lte IE 9]>
+    <script src="../static/js/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="main-wrapper">
+    <header class="main-header">
+        <div class="wrap clearfix">
+            <a class="logo" href="/"><h1>真率数据中心</h1></a>
+            <a class="exit" href="javascript:void(0);"></a>
+        </div>
+    </header>
+    <section class="main-body clearfix">
+
+        <div class="topContentTitle">
+             <div class="clearfix">
+                 <ul class="classify clearfix">
+                     <li class="firstModel currentModel">机票</li>
+                     <li class="secondModel">酒店</li>
+                     <li class="thirdModel">保险</li>
+                 </ul>
+             </div>
+        </div>
+        
+        <div class="mainContent clearfix"> <!--mainContent 开始-->
+                
+                <div class="leftMenu">  <!--leftMenu 开始-->
+                         <ul class="menuChange">
+                             <li class="firstLevel"><em>用户量<span class="menuTreeIcon menuFold"></span></em>
+                                  <ul class="secondLevel">
+                                      <li>用户量同比</li>
+                                      <li>用户量统计</li>
+                                  </ul>
+                             </li>
+                             <li class="firstLevel"><em>交易量<span class="menuTreeIcon menuFold"></span></em>
+                                  <ul class="secondLevel">
+                                      <li>交易量同比</li>
+                                      <li class="currentStatus">交易量统计</li>
+                                  </ul>
+                             </li>
+                             
+                         </ul>
+                </div> <!--leftMenu 结束-->
+
+                <div class="rightCont"> <!-- 右边内容开始 -->
+                  <div class="rightContTop">
+                    <div class="dateSearch">
+                       <span class="searchTitle">完成日期：</span>
+                       <input type="text" placeholder="YY-MM-DD" class="datepicker"/>
+                       <em class="interval">—</em>
+                       <input type="text" placeholder="YY-MM-DD" class="datepicker"/>
+                    </div>
+                    <div class="areaSearch">
+                      <span class="searchTitle">区域：</span>
+                      <select id="area">
+                        <option>全部</option>
+                        <option>华北</option>
+                        <option>华南</option>
+                        <option>华东</option>
+                      </select>
+                    </div>
+                    <div class="busiType">
+                      <span class="searchTitle">业务类型：</span>
+                      <select id="busiType">
+                        <option>全部</option>
+                      </select>
+                    </div>
+                    <div class="searchIcon">
+                      <em class="searchImg"></em>
+                    </div>
+                  </div>
+                  <div class="rightContChartSale">
+                    <span id="switchMonthChart">月</span>
+                    <div class="ticketChart"> <!-- 机票报表 -->
+                      <div id="ticketChartRate" style="height:500px;width:100%;min-width:1030px;"></div> <!-- 销售量同比 -->
+                    </div>
+
+                    <div id="hotelChart"></div>
+                    <div id="insuranceChart"></div>
+                  </div>
+                  <div class="rightContBottom">
+                    <label>本期累计订单数：<em>123,465,789</em> 张</label>
+                    <label>本期累计销售额：<em>987,654,321.00</em> 元</label>
+                  </div>
+                </div>  <!-- 右边内容结束 -->
+        
+        </div> <!--mainContent 结束-->
+    </section>
+        <footer class="main-footer">
+            <center class="copyright">
+                Copyright &copy; 2013 天地行 All Rights Reserved.      沪ICP备08101503号
+            </center>
+        </footer>
+  </div>
+
+  <!-- 对echarts 标签引入时，最好放在body体结尾 -->
+  <script src="../static/js/plugins/echarts/echarts-plain.js"></script>
+
+  <script>
+
+	$(function(){  
+
+    $("#area").kendoDropDownList();
+    $("#busiType").kendoDropDownList();
+
+    /* 用echarts(Enterprise Charts 商业级数据图表)生成统计报表，示例为机票统计报表，酒店统计报表、保险统计报表 类似  */
+    // 生成报表开始
+
+    // 初始化echart对象
+    var ticketChartRate = echarts.init(document.getElementById("ticketChartRate"));
+
+    //  横坐标数据
+    var dateArr = ['2001','2002','2003','2004','2005',
+                '2006','2007','2008','2009','2010','2011'];
+
+    var ticketOptionRate = {
+        title: {
+            text: '交易量增量报表',
+            x: 20,
+            y: 20,
+            padding: 20,
+            textStyle: {
+              fontSize: 18, 
+              color: '#333',
+              fontWeight: 500,
+              fontFamily: '"Microsoft YaHei", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif'
+            }
+        },
+        xAxis: [{
+          type: 'category',
+          position: 'bottom',
+          boundaryGap: true,
+          axisLine: {
+            show: false
+          },
+          axisTick: {
+            show: false
+          },
+          splitLine: {
+            show: false
+          },
+          axisLabel: {
+            textStyle: {
+              fontSize: 14
+            }
+          },
+          data: dateArr
+        }],
+        yAxis : [{
+          type : 'value',
+          axisLine: {
+            show: false
+          },
+          splitLine: {
+            show: true
+          },
+          axisLabel: {
+            textStyle: {
+              fontSize: 14
+            },
+            formatter: function (v) {
+                return v + ' %'
+            }
+          }
+        }],
+        legend: {
+          x: 'center',
+          y: 'bottom',
+          itemGap: 20,
+          textStyle: {
+            fontSize: 14,
+            fontWeight: 500,
+            fontFamily: '"Microsoft YaHei", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif'
+          },
+          data: [{
+            name: '新增用户数'
+          }, {
+            name: '新增有效用户数'
+          }, {
+            name: '用户总量'
+          }, {
+            name: '有效用户总量'
+          }]
+        },
+        series : [{
+            name: '新增用户数',
+            type: 'line',
+            smooth: true,
+            symbol: 'emptyCircle',
+            symbolSize: 4,
+            data: ['-',9,7,6,5,4,2,5,10,11,-4]
+        }, {
+            name: '新增有效用户数',
+            type: 'line',
+            smooth: true,
+            symbol: 'emptyCircle',
+            symbolSize: 4,
+            data: ['-',7,8,-6,5,4,7,5,-10,11,-2]
+        }, {
+            name: '用户总量',
+            type: 'line',
+            smooth: true,
+            symbol: 'emptyCircle',
+            symbolSize: 4,
+            data: ['-',6,7,6,5,4,7,2,10,-11,-4]
+        }, {
+            name: '有效用户总量',
+            type: 'line',
+            smooth: true,
+            symbol: 'emptyCircle',
+            symbolSize: 4,
+            data: ['-',9,-8,6,5,4,7,5,1,11,-5]
+        }],
+        tooltip: {
+            trigger: 'axis',
+            showDelay: 0,
+            backgroundColor: 'rgba(0,0,0,.9)',
+            padding: [10,10,10,10],
+            formatter: function (params) {
+              var res = "<table><tr><td>" + params[0][1] + "</td><td></td></tr>";
+              for (var i = 0; i < params.length; i++) {
+                res += "<tr><td>" + params[i][0] + " : </td>";
+                res += "<td style='text-align:right;'>" + params[i][2] + "%</td></tr>";
+              }
+              res += "</table>";
+              return res;
+            }
+        }        
+    };
+
+    // 为chart对象赋值option
+    ticketChartRate.setOption(ticketOptionRate);
+
+    // 生成报表结束
+
+    $("#switchMonthChart").click(function(){
+      ticketOptionRate.xAxis[0].data = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月'];
+      ticketChartRate.setOption(ticketOptionRate);
+      ticketChartRate.refresh();
+    });
+  });
+  </script> 
+    
+</body>
+</html>
