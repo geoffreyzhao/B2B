@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <title>旅游 线路管理 描述信息</title>
+    <title>旅游 线路管理 营销申请</title>
     <meta charset="utf-8" />
     <link href="/static/css/kendo.common.css" rel="stylesheet" />
     <link href="/static/css/kendo.gray.css" rel="stylesheet" />
     <link href="/static/css/common.css" rel="stylesheet" />
     <link href="/static/css/supplier.css" rel="stylesheet" />
     <link href="/static/css/kendo.reset.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/static/js/themes/default/default.css" />
     <link href="/static/css/supplierTravel.css" rel="stylesheet" />
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/kendo.web.js"></script>
@@ -16,8 +15,6 @@
     <script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
     <script type="text/javascript" src="/static/js/global.js"></script>
     <script type="text/javascript" src="/static/js/flight.js"></script>
-    <script charset="utf-8" src="/static/js/kindeditor.js"></script>
-    <script charset="utf-8" src="/static/js/lang/zh_CN.js"></script>
     
     <!--[if lt IE 8]> 
         <link rel="stylesheet" href="/static/css/ie.css" /> 
@@ -91,57 +88,11 @@
                      <div class="editorModel">
                          <div class="editorCommonModel">
                              <h4 class="editorModelTitle">产品经理推荐:</h4>
-                             <form>
-                                 <textarea name="content" class="editorText"></textarea>
-                             </form>
+                             <textarea class="editorText"></textarea>
                          </div>
-                         <div class="editorCommonModel">
-                             <h4 class="editorModelTitle">费用包含:</h4>
-                             <form>
-                                 <textarea name="content" class="editorText"></textarea>
-                             </form>
-                         </div>
-                         <div class="editorCommonModel">
-                             <h4 class="editorModelTitle">费用不含:</h4>
-                             <form>
-                                 <textarea name="content" class="editorText"></textarea>
-                             </form>
-                         </div>
-                         <div class="editorCommonModel">
-                             <h4 class="editorModelTitle">费用须知:</h4>
-                             <form>
-                                 <textarea name="content" class="editorText"></textarea>
-                             </form>
-                         </div>
-                         <div class="editorCommonModel">
-                             <h4 class="editorModelTitle">预定须知:</h4>
-                             <form>
-                                 <textarea name="content" class="editorText"></textarea>
-                             </form>
-                         </div>
-                         <div class="editorCommonModel">
-                             <h4 class="editorModelTitle">签证/签注:</h4>
-                             <form>
-                                 <textarea name="content" class="editorText"></textarea>
-                             </form>
-                         </div>
-                         <div class="editorCommonModel addEditorModel hiddenEditor">
-                             <h4 class="editorModelTitle">
-                                 <input type="text"/>
-                                 <em class="titleHint">请输入标题，限8个字</em>
-                             </h4>
-                             <a href="javascript:void(0);" class="deleteBtn">删 除</a>
-                             <form>
-                                 <textarea name="content" class="editorText"></textarea>
-                             </form>
-                         </div>
-                         <div class="addContentItem">
-                             <i class="addIcon"></i>
-                             <em>添加内容</em>
-                         </div>
+                         
                      </div>
-                     
-                 
+                                      
                  </div>   <!--mainBody start-->
              </section>
         </div>
@@ -158,31 +109,6 @@
             <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
-    <script>
-        $(function(){
-            $(".addContentItem").click(function(){
-                $(".addContentItem").before("<div class='editorCommonModel'>" + $(".addEditorModel").html() + "</div>");
-                $(".ke-container").css("width","902px");
-            });
-            
-            
-        });
-    </script>
-    
-    <script>
-        var editor;
-        KindEditor.ready(function(K) {
-            K.options.items = ['fontsize', 'forecolor', 'insertorderedlist'];
-            K.create('textarea[name="content"]', {
-                //autoHeightMode : true,
-                uploadJson : "/upload_json.php",
-                afterCreate : function() {
-                    this.loadPlugin('autoheight');
-                }
-            });
-        });
-
-    </script>
 
 </body>
 </html>
