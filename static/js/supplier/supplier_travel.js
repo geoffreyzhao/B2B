@@ -19,4 +19,69 @@ $(function(){
 		$(this).siblings().children(".menu-item-title-normal").removeClass('menu-item-title-active');
 	});
 
+	// 删除景点图片
+	$(".del-spot-picture").click(function(){
+		$(this).parent('li').remove();
+	});
+
+	// 景点弹层
+	$(".add-spot-popup").hide();
+
+	$(".add-spot").click(function(){
+		$(".add-spot-popup").show();
+	});
+
+	$(".travel-path").delegate(".popup-close", "click", function(){
+		$(".add-spot-popup").hide();
+	});
+
+	$(".add-spot").delegate(".popup-add-button", "click", function(){
+		var newSpot = $(this).parent().siblings().children('input').val();
+		var oldSpot = $(".spot-path").html();
+		$(".spot-path").html(oldSpot + "——" + newSpot);
+	});
+
+	// 照片图层
+	$(".add-pic-popup").hide();
+
+	$(".add-picture").click(function(){
+		$(".add-pic-popup").show();
+	});
+
+	$(".travel-path").delegate(".pic-popup-close", "click", function(){
+		$(".add-pic-popup").hide();
+	});
+
+	$(".pic-popup-body").hover(function(){
+		$(".upload-pic-icon").addClass("upload-pic-icon-hover");
+	}, function(){
+		$(".upload-pic-icon").removeClass("upload-pic-icon-hover");
+	});
+
+
+	// 文本框内容提示 和 错误提示 (参照“标题”的效果)
+	$(".title-input-tip").hide();
+	$(".title-error-tip").hide();
+
+	$(".travel-title input").focus(function(){
+		$(this).removeClass("error-tip-border");
+		$(this).addClass("input-tip-border");
+
+		$(".title-input-tip").show();
+		$(".title-error-tip").hide();
+	});
+
+	$(".travel-title input").blur(function(){
+
+		$(".title-input-tip").hide();
+		if ($(this).val() == "") {
+			$(this).addClass("error-tip-border");
+			$(".title-error-tip").show();
+		} else {
+			$(this).removeClass("error-tip-border");
+			$(".title-error-tip").hide();
+		}
+		$(this).removeClass("input-tip-border");
+	});
+
 });
