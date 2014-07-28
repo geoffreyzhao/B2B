@@ -10,11 +10,11 @@ $(function(){
 	$(".navi-slide-hover").hide();
 
 	$(".second-navi-li").each(function() {
-		// $(this).hover(function(){
-		// 	$(this).children(".navi-slide-hover").show('600');
-		// }, function(){
-		// 	$(this).children('.navi-slide-hover').hide('600');
-		// });
+		$(this).hover(function(){
+			$(this).children(".navi-slide-hover").show('600');
+		}, function(){
+			$(this).children('.navi-slide-hover').hide('600');
+		});
 
 		$(this).click(function() {
 			$(this).children(".navi-slide-hover").show();
