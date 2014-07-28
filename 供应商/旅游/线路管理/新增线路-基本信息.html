@@ -11,6 +11,7 @@
     <link href="/static/css/kendo.gray.css" rel="stylesheet" />
     <link href="/static/css/common.css" rel="stylesheet" />
     <link href="/static/css/supplier.css" rel="stylesheet" />
+    <link href="/static/css/supplier_common.css" rel="stylesheet" type="text/css" />
     <link href="/static/css/kendo.reset.css" rel="stylesheet" />
     <link href="/static/css/supplierTravel.css" rel="stylesheet" />
 
@@ -20,6 +21,7 @@
     <script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
     <script type="text/javascript" src="/static/js/global.js"></script>
     <script type="text/javascript" src="/static/js/flight.js"></script>
+    <script type="text/javascript" src="/static/js/supplier/supplier_travel.js"></script>
 
         <!--[if IE]>
         <script src="/static/js/html5.js"></script>
@@ -180,7 +182,7 @@
                              <ul class="uploadImgBlock">
                                  <li>
                                      <img src="/static/images/supplier/uploadImg01.jpg"/>
-                                     <p><span>左移</span><span>右移</span><span class="last">删除</span></p>
+                                     <p><span>左移</span><span>右移</span><span class="last del-spot-picture">删除</span></p>
                                  </li>
                                  <li class="uploadingBox">
                                      <div class="uploadBar"><span class="uploadinged"></span></div>
@@ -188,7 +190,7 @@
                                  </li>
                                  <li>
                                      <img src="/static/images/supplier/uploadImg01.jpg"/>
-                                     <p><span>左移</span><span>右移</span><span class="last">删除</span></p>
+                                     <p><span>左移</span><span>右移</span><span class="last del-spot-picture">删除</span></p>
                                  </li>
                                  <li class="addImgBox">
                                      <i></i>添加照片
@@ -197,7 +199,7 @@
                              <ul class="uploadImgBlock">
                                  <li>
                                      <img src="/static/images/supplier/uploadImg01.jpg"/>
-                                     <p><span>左移</span><span>右移</span><span class="last">删除</span></p>
+                                     <p><span>左移</span><span>右移</span><span class="last del-spot-picture">删除</span></p>
                                  </li>
                              </ul>
                          </td>
@@ -568,6 +570,11 @@
             title:'选择城市',
             width:'738'
         }).init();
+
+        // 删除上传照片
+        $(".del-spot-picture").click(function(){
+            $(this).parents('li').remove();
+        });
     })
 </script>
 
