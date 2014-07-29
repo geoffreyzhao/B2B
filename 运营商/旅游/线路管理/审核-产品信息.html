@@ -756,8 +756,8 @@
         $(".changeList a").each(function(index){
             var href= $(this).attr("href");
             a_pos.push($("a[name=" + href.substring(1) + "]").offset());
-
         });
+        
 
         $(".changeList a").click(function(e){
             flag=false;
@@ -769,7 +769,8 @@
 //                location.href=href;
 //            },100);
             var i=$(this).closest("li").index();
-            i-=Math.round(i/2);
+            console.log(i);
+//            i-=Math.round(i/2);
             $("html,body").animate({"scrollTop":a_pos[i].top-41},1);
         });
 
@@ -780,7 +781,8 @@
                 var i = 0;
 //                console.dir(a_pos);
                 for(i = a_pos.length - 1; i >=0 ; i--){
-                    if(currentPos.top >= a_pos[i].top-45){
+//                    console.log(a_pos[i].top);
+                    if(currentPos.top >= a_pos[i].top-145){
                         that.find("a").removeClass('currentLi');
                         $("a:eq(" + (i) + ")" , that).addClass("currentLi");
                         return false;
