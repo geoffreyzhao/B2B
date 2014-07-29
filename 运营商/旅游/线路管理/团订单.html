@@ -123,8 +123,9 @@
                       </tr>
                   </tbody>
                 </table>
-            </div>  
-              
+            </div>              
+
+            <div class="table-model" style="margin-top:15px;">
               <span class="table-title">团订单</span>
               <table class="tgrid team-order-table">
                   <colgroup>
@@ -216,7 +217,7 @@
                       <a href="#" class="next">&nbsp;</a>
                   </span>
               </div>
-              
+            </div>   
             </div>
           </div>
  
@@ -234,6 +235,34 @@
             <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
+
+    <script type="text/javascript">
+
+      $(".team-order-table tbody tr").each(function(index){
+        if (index % 2 == 0) {
+          $(this).hover(function(){
+            $(this).css("background-color", "#ffffdb");
+            $(".team-order-table tbody tr:eq(" + (index + 1) + ")").css("background-color", "#ffffdb");
+          }, function(){
+            $(this).css("background-color", "#fff");
+            $(".team-order-table tbody tr:eq(" + (index + 1) + ")").css("background-color", "#fff");
+          });
+          
+        } else {
+          $(this).hover(function(){
+            $(this).css("background-color", "#ffffdb");
+            $(".team-order-table tbody tr:eq(" + (index - 1) + ")").css("background-color", "#ffffdb");
+          }, function(){ 
+            $(this).css("background-color", "#fff");
+            $(".team-order-table tbody tr:eq(" + (index - 1) + ")").css("background-color", "#fff");
+          });
+        }
+      });
+
+      $(".team-order-table tbody tr:eq(-2) td").css("color", "#b6b6b6");
+      $(".team-order-table tbody tr:eq(-1) td").css("color", "#b6b6b6");
+
+    </script>
     
 </body>
 </html>
