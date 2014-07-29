@@ -17,18 +17,43 @@ $(function(){
 		});
 	});
 
-	$(".navi-slide-hover").hide();
+	var indexArr = [];
 
-	$(".second-navi-li").each(function() {
-		$(this).hover(function(){
-			$(this).children(".navi-slide-hover").show('600');
-		}, function(){
-			$(this).children('.navi-slide-hover').hide('600');
+	$(".second-navi-li").each(function(index) {
+
+		$(this).bind("mouseenter", function(){
+			$(this).children(".navi-slide-hover").animate({
+				height: '5px'
+			}, 300, 'swing');
+		});
+
+		$(this).bind("mouseleave", function(){
+			$(this).children('.navi-slide-hover').animate({
+				height: '0px'
+			}, 200, 'swing');
 		});
 
 		$(this).click(function() {
-			$(this).children(".navi-slide-hover").show();
-			$(this).siblings().children('.navi-slide-hover').hide();
+			// 用数组存放每次的索引号，为减少内存占用，只取数组最新加入的两个
+			indexArr.push(index);
+			if (indexArr.length > 2) {
+				indexArr = indexArr.slice(indexArr.length - 2);
+			}
+
+			// 解除 mouseleave 事件的绑定，以免和click事件冲突
+			$(this).unbind("mouseleave");
+
+			$(this).children(".navi-slide-hover").css("height","5px");
+			$(this).siblings().children('.navi-slide-hover').css("height","0px");
+
+			// 为上一次点击的li 重新绑定 mouseleave 事件
+			if (indexArr.length == 2) {
+				$(this).parent().children('li').eq(indexArr[0]).bind("mouseleave", function(){
+					$(this).children('.navi-slide-hover').animate({
+						height: '0px'
+					}, 200, 'swing');
+				});
+			}
 		});
 	});
 
@@ -74,38 +99,20 @@ $(function(){
 		$(this).parent('li').remove();
 	});
 
-	// 景点弹层
-	$(".add-spot-popup").hide();
-
-	$(".add-spot").click(function(){
-		$(".add-spot-popup").show();
+	// 弹层手动关闭	
+	$("body").delegate('.popup-close', 'click', function() {
+		$(this).parents(".k-tooltip-content").siblings(".k-tooltip-button").click();
 	});
 
-	$(".travel-path").delegate(".popup-close", "click", function(){
-		$(".add-spot-popup").hide();
-	});
-
-	$(".add-spot").delegate(".popup-add-button", "click", function(){
-		var newSpot = $(this).parent().siblings().children('input').val();
-		var oldSpot = $(".spot-path").html();
-		$(".spot-path").html(oldSpot + "——" + newSpot);
-	});
 
 	// 照片图层
-	$(".add-pic-popup").hide();
 
-	$(".add-picture").click(function(){
-		$(".add-pic-popup").show();
+	$("body").delegate(".pic-popup-body", "mouseenter", function() {
+	    $(".upload-pic-icon").addClass("upload-pic-icon-hover");
 	});
 
-	$(".travel-path").delegate(".pic-popup-close", "click", function(){
-		$(".add-pic-popup").hide();
-	});
-
-	$(".pic-popup-body").hover(function(){
-		$(".upload-pic-icon").addClass("upload-pic-icon-hover");
-	}, function(){
-		$(".upload-pic-icon").removeClass("upload-pic-icon-hover");
+	$("body").delegate(".pic-popup-body", "mouseleave", function() {
+	    $(".upload-pic-icon").removeClass("upload-pic-icon-hover");
 	});
 
 
