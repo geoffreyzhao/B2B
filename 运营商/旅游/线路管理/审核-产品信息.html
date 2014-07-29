@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>运营商 旅游 审核-产品信息</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />    
+    <link href="/static/css/travel.css" rel="stylesheet" type="text/css"/>
+    
+    <script src="/static/js/jquery.min.js" type="text/javascript"></script>    
+    <script src="/static/js/kendo.web.js" type="text/javascript"></script>
+    <!--<script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>-->
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/scrollFix.js"></script>
+    <script type="text/javascript" src="/static/js/public.js"></script>
+    
+    
+    
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+    
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/static/css/ie.css" />
+    <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/static/js/sync.js"></script>
+    <!-- @CLB@ -->
+    <style type="text/css">
+        .lineWeight {
+            box-shadow:none;
+        }
+    </style>
+</head>
+<body>
+    <div id="extHeader">
+        <div></div>
+    </div>
+
+    <div id="container">
+        <div class="header">
+            <h1></h1>
+            <div>
+                <span>你好,${name}</span>
+                <a href="javascript:void(0);">退出</a>
+            </div>
+            <ul id="top_menu">
+                <li><a href="javascript:void(0);">国内机票</a></li>
+                <li><a href="javascript:void(0);">国际机票</a></li>
+                <li><a href="javascript:void(0);">酒店</a></li>
+                <li><a href="javascript:void(0);">票证中心</a></li>
+                <li><a href="javascript:void(0);">财务管理</a></li>
+                <li><a href="javascript:void(0);">客户管理</a></li>
+                <li class="current"><a href="javascript:void(0);">系统设置</a></li>
+            </ul>
+            <ol class="sub_menu">
+                <li class="current"><a href="javascript:void(0);">公告信息</a></li>
+                <li><a href="javascript:void(0);">公司信息</a></li>
+                <li><a href="javascript:void(0);">组织架构</a></li>
+                <li><a href="javascript:void(0);">角色维护</a></li>
+                <li><a href="javascript:void(0);">基础数据</a></li>
+            </ol>
+            <div id="message">
+            	<a href="javascript:void(0);">&nbsp;</a>
+                <span>&nbsp;</span>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="sub_menu_bar"></div>
+        <div id="mainContent" style="overflow:hidden;">
+			<!-- start content -->
+            
+            <!--<div class="topFixedToolsBar">
+                <div class="fixedMenu" style="width:auto; font-size:12px;">
+                    <a href="#">线路查询</a>
+                    <a href="#" class="currentState">待审核（<em class="menuRedFonts">12</em>）</a>
+                    <a href="#">审核退回（<em class="menuRedFonts">5</em>）</a>
+                    <a href="#">已上线（<em class="menuRedFonts">5</em>）</a>
+                    <a href="#">已下线（<em class="menuRedFonts">5</em>）</a>
+                    <label class="lineStatus">
+                        <em>线路状态说明</em>
+                        <i class="lineStatusIcon"></i>
+                    </label>
+                </div>                  
+           </div>-->
+
+            <div class="actions block">
+                <div class="col col-l sep-r">
+                    <button class="btns btn-return">返回</button>
+                </div>
+                <div class="col col-l">
+                    <span class="page-title"></span>
+                </div>
+                <div class="col col-r sep-l">
+                    <a href="javascript:;" class="button_secondary adaptiveButton small"> <span class="left"></span> <span class="center sendBackReason">退 回</span> <span class="right"></span></a>
+                    <a href="javascript:;" class="button_secondary adaptiveButton small"> <span class="left"></span> <span class="center">上 线</span> <span class="right"></span></a>
+                </div>
+            </div>
+            
+            
+            <div class="information_div">
+                <ul class="modifyPointBlock">
+                    <li>● 基本信息（出发地、目的地）</li>
+                    <li>● 团期报价</li>
+                    <li>● 线路行程（第1天、第2天）</li>
+                    <li>● 产品经理推荐</li>
+                </ul>
+            </div>
+
+            <div class="information_div proInformationBlock">
+                <table class="infoSummary">
+                    <colgroup>
+                        <col width="320">
+                        <col width="460">
+                        <col width="120">
+                    </colgroup>
+                    <tr>
+                        <td>供应商线路编号：<span class="c1">2014051400011904</span></td>
+                        <td>供应商线路名称：<span class="c2">美国东西海岸夏威夷14天，10天9晚跟团</span></td>
+                        <td>当前状态：<span class="c1">待审核</span></td>
+                    </tr>
+                    <tr>
+                        <td>供应商名称：<span class="c3">不夜城北美旅游部</span></td>
+                        <td>最后更新：<span class="c1">保存</span>&nbsp;&nbsp;更新时间：<span class="c1">2013-06-15 11:23</span> <span class="ac-journal">【更多操作日志】</span></td>
+                    </tr>
+                </table>
+
+                <div class="infoDetailBlock">
+                    <div class="travelDetailDiv tab_change">
+                        <span class="currentSpan">线路信息</span>
+                        <span>团期报价</span>
+                    </div>
+                    <!-- 线路信息 开始 -->
+                    <div class="lineInfoBlock tab">
+                        <ul class="changeList clearfix">
+                            <li><a href="#tripBasicInfo" class="currentLi"><i></i>基本信息</a></li>
+                            <li><a href="#tripLineDetail"><i></i>线路行程</a></li>
+                            <li><a href="#tripManagerRecom"><i></i>产品经理推荐</a></li>
+                            <li><a href="#triPriceInclude"><i></i>费用包含</a></li>
+                            <li><a href="#triPriceNoInclude"><i></i>费用不包含</a></li>
+                            <li><a href="#tripBookingNote"><i></i>预订须知</a></li>
+                            <li><a href="#tripVisaExplain"><i></i>签证说明</a></li>
+                            <li><a href="#tripOther"><i></i>其他</a></li>
+                            <li><a href="#markingApplication"><i></i>营销申请</a></li>
+                        </ul>
+                        <div class="tripBasicInfo">
+                        <a href="#" name="tripBasicInfo"></a>
+                        <table class="basicInfoTable">
+                            <colgroup>
+                                <col width="110">
+                                <col width="">
+                            </colgroup>
+                            <tr>
+                                <th>供应商线路编号：</th>
+                                <td>2014051400011904</td>
+                            </tr>
+                            <tr>
+                                <th>供应商线路名称：</th>
+                                <td>美国东西海岸14天，10天9晚跟团</td>
+                            </tr>
+                            <tr>
+                                <th><em>*</em>售卖线路名称：</th>
+                                <td>
+                                    <input type="text" placeholder="美国东西海岸14天跟团游-全程五星酒店"/>
+                                    <span class="orangeExplainBlcok"><i class="orangeExplain"></i></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>出发地：</th>
+                                <td>上海</td>
+                            </tr>
+                            <tr>
+                                <th>目的地：</th>
+                                <td>美国</td>
+                            </tr>
+                            <tr>
+                                <th>行程天数：</th>
+                                <td>10天</td>
+                            </tr>
+                            <tr>
+                                <th>线路类型：</th>
+                                <td>出境游</td>
+                            </tr>
+                            <tr>
+                                <th>线路形态：</th>
+                                <td>跟团游</td>
+                            </tr>
+                            <tr>
+                                <th>线路钻级：</th>
+                                <td>
+                                    <select style="width:100px;height: 22px;border: 1px solid #ccc;">
+                                        <option value="6">6钻</option>
+                                        <option value="5">5钻</option>
+                                        <option value="4">4钻</option>
+                                    </select>
+                                    <span class="orangeExplainBlcok"><i class="orangeExplain"></i>钻级说明</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>售卖地：</th>
+                                <td>
+                                    <input type="text" placeholder="上海，北京，苏州，杭州" class="salePlaceInput"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="vertical-align: top;">内部备注：</th>
+                                <td>
+                                    <textarea style="height: 50px;"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="vertical-align: top;">上传照片：</th>
+                                <td>
+                                    <ul class="uploadImgBlock">
+                                        <li>
+                                            <img src="/static/images/supplier/uploadImg01.jpg"/>
+                                            <p><span>左移</span><span>右移</span><span class="last del-spot-picture">删除</span></p>
+                                        </li>
+                                        <li class="uploadingBox">
+                                            <div class="uploadBar"><span class="uploadinged"></span></div>
+                                            <div style="color: #0074d2;">上传中</div>
+                                        </li>
+                                        <li>
+                                            <img src="/static/images/supplier/uploadImg01.jpg"/>
+                                            <p><span>左移</span><span>右移</span><span class="last del-spot-picture">删除</span></p>
+                                        </li>
+                                        <li class="addImgBox">
+                                            <i></i>添加照片
+                                        </li>
+                                    </ul>
+                                    <ul class="uploadImgBlock">
+                                        <li>
+                                            <img src="/static/images/supplier/uploadImg01.jpg"/>
+                                            <p><span>左移</span><span>右移</span><span class="last del-spot-picture">删除</span></p>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+                        </div>
+                        
+                        <div class="tripLineDetail">
+                            
+                            <div class="itemsTitleDiv">线路行程<a href="#" name="tripLineDetail"></a></div>
+                            <ul class="tripDetailContext">
+                                <li>
+                                    <i class="tripDays">第1天</i>
+                                    <div class="tripDetailContextTxt">
+                                        <p class="tripName">上海-旧金山</p>
+                                        <div>
+                                            <p>办理登机：于航班出发前3小时集合于上海浦东国际机场出发大厅。公司专业领队协助您办理登机手续。</p>
+                                            <p>活动时间：约3小时；( 预计时间)</p>
+                                            <p>航班：由上海搭乘班机直飞前往旧金山（具体航班信息请在预订下一步中查看）。</p>
+                                            <p>抵达旧金山，办理过关手续</p>
+                                            <p>前往景点：渔人码头</p>
+                                            <p>到了旧金山，选一个阳光明媚的天气，一定要去渔人码头走走看看。这里是旧金山的象征之一，原本是意大利的渔民聚集的港口，由于收获量少了，渐渐的就变成了热闹的观光景点。</p>
+                                            <p style="margin-top: 20px;">航班： 由上海搭乘班机直飞前往旧金山（具体航班信息请在预订下一步中查看）。</p>
+                                            <p>晚餐：飞机上</p>
+                                            <p>早餐：飞机上</p>
+                                            <p>酒店：旧金山酒店</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="tripDays highlight">第2天</i>
+                                    <div class="tripDetailContextTxt">
+                                        <p class="tripName">上海-旧金山</p>
+                                        <div>
+                                            <p>办理登机：于航班出发前3小时集合于上海浦东国际机场出发大厅。公司专业领队协助您办理登机手续。</p>
+                                            <p>活动时间：约3小时；( 预计时间)</p>
+                                            <p>航班：由上海搭乘班机直飞前往旧金山（具体航班信息请在预订下一步中查看）。</p>
+                                            <p>抵达旧金山，办理过关手续</p>
+                                            <p>前往景点：渔人码头</p>
+                                            <p>到了旧金山，选一个阳光明媚的天气，一定要去渔人码头走走看看。这里是旧金山的象征之一，原本是意大利的渔民聚集的港口，由于收获量少了，渐渐的就变成了热闹的观光景点。</p>
+                                            <p style="margin-top: 20px;">航班： 由上海搭乘班机直飞前往旧金山（具体航班信息请在预订下一步中查看）。</p>
+                                            <p>晚餐：飞机上</p>
+                                            <p>早餐：飞机上</p>
+                                            <p>酒店：旧金山酒店</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="tripDays">第3天</i>
+                                    <div class="tripDetailContextTxt">
+                                        <p class="tripName">上海-旧金山</p>
+                                        <div>
+                                            <p>办理登机：于航班出发前3小时集合于上海浦东国际机场出发大厅。公司专业领队协助您办理登机手续。</p>
+                                            <p>活动时间：约3小时；( 预计时间)</p>
+                                            <p>航班：由上海搭乘班机直飞前往旧金山（具体航班信息请在预订下一步中查看）。</p>
+                                            <p>抵达旧金山，办理过关手续</p>
+                                            <p>前往景点：渔人码头</p>
+                                            <p>到了旧金山，选一个阳光明媚的天气，一定要去渔人码头走走看看。这里是旧金山的象征之一，原本是意大利的渔民聚集的港口，由于收获量少了，渐渐的就变成了热闹的观光景点。</p>
+                                            <p style="margin-top: 20px;">航班： 由上海搭乘班机直飞前往旧金山（具体航班信息请在预订下一步中查看）。</p>
+                                            <p>晚餐：飞机上</p>
+                                            <p>早餐：飞机上</p>
+                                            <p>酒店：旧金山酒店</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tripManagerRecom">
+                        
+                            <div class="itemsTitleDiv">产品经理推荐<a href="#" name="tripManagerRecom"></a></div>
+                            <div class="itemsContentText">
+                                <p>★ 东航来回直飞,不走回头路!全程3钻酒店,为你精打细算省更多,购物更尽兴!</p>
+                                <p>★ 17里湾享受1号公路绝世美景!卡梅尔体验艺术小镇情调!圣地亚哥感受军港魅力!</p>
+                                <p>★ 洛杉矶酒店提供巴士前往迪士尼!洛杉矶1晚、拉斯3晚自由活动,我的行程我做主!</p>
+                            </div>
+                        </div>
+
+                        <div class="triPriceInclude">
+                            <a href="#" name="triPriceInclude"></a>
+                            <div class="itemsTitleDiv">费用包含</div>
+                            <div class="itemsContentText">
+                                <p>1.往返经济舱机票、燃油附加费、机票税</p>
+                                <p>2.行程所列酒店住宿费用;</p>
+                                <p>3.行程内所列餐食（飞机餐及行程中注明的自理餐除外）。</p>
+                                <p>4.中文领队兼导游服务或领队和当地中文导游服务。</p>
+                                <p>5.行程中所列景点首道大门票，及旅游观光用车（自由活动期间除外）</p>
+                            </div>
+                        </div>
+
+                        <div class="triPriceNoInclude">
+                           
+                            <div class="itemsTitleDiv">费用不包含 <a href="#" name="triPriceNoInclude"></a></div>
+                            <div class="itemsContentText">
+                                <p>1.本产品儿童入住酒店如不占床不含早餐，如需用早餐，请于酒店现付。</p>
+                                <p>2.非自由活动日期，景点游览与其他当地携程客人共同前往。</p>
+                                <p>3.若您不想参加第二、第六天檀香山的行程，可以在下一步套餐信息中选择“夏威夷大岛＋檀香山旅游套餐（不含第二、第六天檀香山行程）”</p>
+                                <p>4.观星之旅注意事项：年龄低于16岁；怀孕，有心血管病的人，呼吸系统有问题，血液循环，健康状况差的人等都禁止上山顶。24小时之内建议不要参加潜水活动。</p>
+                                <p>5.此产品不包含岛间航班行李托运费，通常行李按照件数收费，前两件每件每程17美金（限重23公斤/件），具体以当天机场公布牌价为准。</p>
+                            </div>
+                        </div>
+
+                        <div class="tripBookingNote">
+                            
+                            <div class="itemsTitleDiv">预订须知<a href="#" name="tripBookingNote"></a></div>
+                            <div class="itemsContentText">
+                                <p>1.本产品儿童入住酒店如不占床不含早餐，如需用早餐，请于酒店现付。</p>
+                                <p>2.非自由活动日期，景点游览与其他当地携程产品确认后我公司将在24小时内通知您收取全款。</p>
+                                <p>3.若您不想参加第二、第六天檀香山的行程，可以在下一步套餐信息中选择“夏威夷大岛＋檀香山旅游套餐（不含第二、第六天檀香山行程）”</p>
+                                <p>4.请杭州出发的客人自行从杭州往返上海浦东机场。</p>
+                                <p>5.请南京出发的客人自行从南京往返上海浦东机场。</p>
+                                <p>6.若您在距离出发日期前16个工作日(团队产品），18个工作日（半自助/自由行产品）以上预订本产品，携程提供美国个人签证服务，保证预约成功。</p>
+                                <p>7.若您在2年之内办理过美国签证，距离出发日期前21个工作日(团队产品），23个工作日（半自助/自由行产品）以上预订本产品，携程提供美国个人旅游签证（中信银行代传递免面试）服务，免去前往领馆面试的时间。</p>
+                                <p>8.建议您尽早交齐材料，这样能提早知晓您的美国签证面试时间！</p>
+                                <p>9.如所预约的签证面试时间无法保证成功出行，携程将建议您在其他日期出发，签证费用不退，您无需承担任何因为延期造成的产品损失。</p>
+                                <p>10.本行程无最低出行人数限制，稳定班期出发，无领队陪同，不召开出团说明会。客人共同前往</p>
+                                <p>11.若您不想参加第二、第六天檀香山的行程，可以在下一步套餐信息中选择“夏威夷大岛＋檀香山旅游套餐（不含第二、第六天檀香山行程）”</p>
+                                <p>12.观星之旅注意事项：年龄低于16岁；怀孕，有心血管病的人，呼吸系统有问题，血液循环，健康状况差的人等都禁止上山顶。24小时之内建议不要参加潜水活动。</p>
+                                <p>此产品不包含岛间航班行李托运费，通常行李按照件数收费，前两件每件每程17美金（限重23公斤/件），具体以当天机场公布牌价为准。</p>
+                            </div>
+                        </div>
+
+                        <div class="tripVisaExplain">
+                            
+                            <div class="itemsTitleDiv">签证说明<a href="#" name="tripVisaExplain"></a></div>
+                            <div class="itemsContentText">
+                                <p>1.预订夏威夷产品，在截止收材料前均可预订美国个人旅游签证。如无法选择，请在预订备注栏中注明需要签证或待我处工作人员联系您时告知相关需求。</p>
+                                <p>2.携程代办美国签证共分两种形式详情见：美国个人旅游签证预约类型说明</p>
+                                <p>3.面试时间一旦确认无法取消或更改。请您务必按时参加面试，否则将影响您今后申请美国签证。</p>
+                                <p>4.携程独家拒签保障：如预订本产品同时选择美国签证选项，一旦拒签，我们将退还被拒签人的全部签证费，被拒签人的其他费用将按我司特殊原因退订保障的方式退回。</p>
+                                <p>5.请在被拒签后的两个工作日内一并提供美国领馆拒签说明信、拒签人护照和签证费收据（成都办签客人不需提供签证费收据扫描件，由携程提供），否则无法享受此优惠政策。</p>
+                                <p>6.若您已获得美国签证，或在等待面试时，此行程因故宣布取消：</p>
+                                <p>7.由于美国商务及旅游签证（B1/B2签证）有效期通常为一年，有效期内可多次进出美国。持有此类签证，您可以自由制定您的旅行计划，单独或者跟随任意团队前往。因此签证费用恕不退还。</p>
+                            </div>
+                        </div>
+
+                        <div class="tripOther">
+                            
+                            <div class="itemsTitleDiv">其他<a href="#" name="tripOther"></a></div>
+                            <div class="itemsContentText">
+                                <p>请在被拒签后的两个工作日内一并提供美国领馆拒签说明信、拒签人护照和签证费收据（成都办签客人不需提供签证费收据扫描件，由携程提供），否则无法享受此优惠政策。</p>
+                                <p>若您已获得美国签证，或在等待面试时，此行程因故宣布取消：</p>
+                                <p>由于美国商务及旅游签证（B1/B2签证）有效期通常为一年，有效期内可多次进出美国。持有此类签证，您可以自由制定您的旅行计划，单独或者跟随任意团队前往。因此签证费用恕不退还。</p>
+                            </div>
+                        </div>
+
+                        <div class="markingApplication">
+                            
+                            <div class="itemsTitleDiv">营销申请<a href="#" name="markingApplication"></a></div>
+                            <div class="itemsContentText">
+                             <p>申请营销活动原因：</p>
+                            <textarea></textarea>
+                            </div>
+                        </div>
+                        
+                    
+                        
+                        
+                            
+                    </div>
+                    <!-- 线路信息 结束 -->
+                
+                <!--团期报价 开始-->
+                    <div class="tab" style="display:none;">
+                        啊啊吼叫中
+                    </div>
+                <!--团期报价 结束-->
+                
+                </div>
+                
+
+                
+            </div>
+           
+              
+             
+          
+              
+            </div>
+          </div>
+ 
+    <!-- end of content -->
+    </div>
+    
+    <div id="extFooter">
+        <div>
+            <p>
+                <a href="javascript:void(0);">关于我们</a>&nbsp;|
+                <a href="javascript:void(0);">微博</a>&nbsp;|
+                <a href="javascript:void(0);">服务条款</a>&nbsp;|
+                <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+
+    <script type="text/html" id="sendBackReasonTemplate">
+        <div>
+           <div class="sendBackReasonDiv">
+               <p style="margin-bottom: 10px;">请填写退回原因：</p>
+               <textarea></textarea>
+           </div> 
+           
+            <div class="cityBtn clearfix ">
+                <div class="rightOperationA">
+                    <a class="large_button button_2_1">
+                        <span class="left"></span>
+                        <span class="center">确 定</span>
+                        <span class="right"></span>
+                    </a>
+                    <a class="large_button button_2_2">
+                        <span class="left"></span>
+                        <span class="center">取 消</span>
+                        <span class="right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </script>
+
+
+    <script type="text/x-kendo-template" id="ac-journal-template">
+        <table class="commonTab">
+            <colgroup>
+                <col width="350"/>
+                <col width="140"/>
+                <col width="70"/>
+            </colgroup>
+            <thead>
+            <th>操作记录</th>
+            <th>操作时间</th>
+            <th>操作人</th>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <div class="limitWidth">操作记录操作记录操作记录操作记录操操作作记录操作记录操作记录操作</div>
+                </td>
+                <td>2014-09-21  18:01</td>
+                <td>客服</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="limitWidth">操作记录操作记录操作记录操作记录操操作作记录操作记录操作记录操作</div>
+                </td>
+                <td>2014-09-21  18:01</td>
+                <td>admin</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="limitWidth">操作记录操作记录操作记录操作记录</div>
+                </td>
+                <td>2014-09-21  18:01</td>
+                <td>admin</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="limitWidth">操作记录操作记录操作记录操作记录</div>
+                </td>
+                <td>2014-09-21  18:01</td>
+                <td>admin</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="limitWidth">操作记录操作记录操作记录操作记录</div>
+                </td>
+                <td>2014-09-21  18:01</td>
+                <td>admin</td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div class="grid-table-pagination" style="padding: 0">
+                      <span class="grid-table-count">
+                          共 <em>132</em> 条记录
+                      </span>
+                      <span>
+                          <a href="javascript:void(0);" class="prev">&nbsp;</a>
+                      </span>
+                      <span class="links">
+                          <a href="javascript:void(0);">1</a>
+                          <a href="javascript:void(0);">2</a>
+                          <a href="javascript:void(0);" class="current">3</a>
+                          <a href="javascript:void(0);">4</a>
+                          <a href="javascript:void(0);">5</a>
+                          <a href="javascript:void(0);" class="ellipsis">...</a>
+                          <a href="javascript:void(0);">50</a>
+                      </span>
+                      <span>
+                          <a href="javascript:void(0);" class="next">&nbsp;</a>
+                      </span>
+                    </div> 
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        
+        <div class="pullRightStyle">
+            <a class="large_button button_2_1">
+                <span class="left"></span>
+                <span class="center">关 闭</span>
+                <span class="right"></span>
+            </a>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="orangeExplainTemplate">
+        <div class="layerContainer">
+            <div class="layerOrangeArrow"></div>
+            <div class="warmTips">
+                说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字
+            </div>
+        </div>
+    </script>
+    
+    
+    
+    
+    
+    <script type="text/html" id="salePlaceInputTemplate">
+        <div id="" style="position: relative;" class="salePlaceWindow">
+            <div class="salePlaceWindowH" >
+                <table>
+                    <colgroup>
+                        <col width="75">
+                        <col width="80">
+                        <col width="80">
+                    </colgroup>
+                    <tr>
+                        <th>选择：</th>
+                        <td><input type="checkbox" name="" id="" />全选</td>
+                        <td><input type="checkbox" name="" id="" />反选</td>
+                    </tr>
+                </table>
+            </div>
+            <div style="overflow-y: auto; height: 390px;">
+                <table style="margin: 10px 0 0 0;" class="salePlaceWindowC">
+                    <colgroup>
+                        <col width="75">
+                        <col width="80">
+                        <col width="80">
+                        <col width="80">
+                        <col width="80">
+                        <col width="80">
+                        <col width="80">
+                        <col width="80">
+                        <col width="80">
+                    </colgroup>
+                    <tr>
+                        <th>东北：</th>
+                        <td><input type="checkbox" name="" id="" />全选</td>
+                        <td><input type="checkbox" name="" id="" />沈阳</td>
+                        <td><input type="checkbox" name="" id="" />大连</td>
+                        <td><input type="checkbox" name="" id="" />哈尔滨</td>
+                        <td><input type="checkbox" name="" id="" />长春</td>
+                        <td><input type="checkbox" name="" id="" />长春</td>
+                        <td><input type="checkbox" name="" id="" />长春</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th rowspan="4" style="vertical-align: top;">东中：</th>
+                        <td><input type="checkbox" name="" id="" />全选</td>
+                        <td><input type="checkbox" name="" id="" />上海</td>
+                        <td><input type="checkbox" name="" id="" />南京</td>
+                        <td><input type="checkbox" name="" id="" />杭州</td>
+                        <td><input type="checkbox" name="" id="" />苏州</td>
+                        <td><input type="checkbox" name="" id="" />宁波</td>
+                        <td><input type="checkbox" name="" id="" />无锡</td>
+                        <td><input type="checkbox" name="" id="" />温州</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="" id="" />济南</td>
+                        <td><input type="checkbox" name="" id="" />合肥</td>
+                        <td><input type="checkbox" name="" id="" />常州</td>
+                        <td><input type="checkbox" name="" id="" />金华</td>
+                        <td><input type="checkbox" name="" id="" />嘉兴</td>
+                        <td><input type="checkbox" name="" id="" />台州</td>
+                        <td><input type="checkbox" name="" id="" />绍兴</td>
+                        <td><input type="checkbox" name="" id="" />扬州</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="" id="" />南通</td>
+                        <td><input type="checkbox" name="" id="" />徐州</td>
+                        <td><input type="checkbox" name="" id="" />烟台</td>
+                        <td><input type="checkbox" name="" id="" />盐城</td>
+                        <td><input type="checkbox" name="" id="" />芜湖</td>
+                        <td><input type="checkbox" name="" id="" />蚌埠</td>
+                        <td><input type="checkbox" name="" id="" />青岛</td>
+                        <td><input type="checkbox" name="" id="" />福州</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="" id="" />厦门</td>
+                        <td><input type="checkbox" name="" id="" />泉州</td>
+                    </tr>
+                    <tr>
+                        <th>东中：</th>
+                        <td><input type="checkbox" name="" id="" />全选</td>
+                        <td><input type="checkbox" name="" id="" />武汉</td>
+                        <td><input type="checkbox" name="" id="" />郑州</td>
+                        <td><input type="checkbox" name="" id="" />南昌</td>
+                        <td><input type="checkbox" name="" id="" />长沙</td>
+                        <td><input type="checkbox" name="" id="" />襄阳</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th rowspan="2" style="vertical-align: top;">东北：</th>
+                        <td><input type="checkbox" name="" id="" />全选</td>
+                        <td><input type="checkbox" name="" id="" />北京</td>
+                        <td><input type="checkbox" name="" id="" />天津</td>
+                        <td><input type="checkbox" name="" id="" />石家庄</td>
+                        <td><input type="checkbox" name="" id="" />太原</td>
+                        <td><input type="checkbox" name="" id="" />唐山</td>
+                        <td><input type="checkbox" name="" id="" />大同</td>
+                        <td><input type="checkbox" name="" id="" />运城</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="" id="" />呼和浩特</td>
+                        <td><input type="checkbox" name="" id="" />包头</td>
+                    </tr>
+                    <tr>
+                        <th rowspan="2" style="vertical-align: top;">东南：</th>
+                        <td><input type="checkbox" name="" id="" />全选</td>
+                        <td><input type="checkbox" name="" id="" />深圳</td>
+                        <td><input type="checkbox" name="" id="" />广东</td>
+                        <td><input type="checkbox" name="" id="" />东莞</td>
+                        <td><input type="checkbox" name="" id="" />佛山</td>
+                        <td><input type="checkbox" name="" id="" />南宁</td>
+                        <td><input type="checkbox" name="" id="" />中山</td>
+                        <td><input type="checkbox" name="" id="" />珠海</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="" id="" />汕头</td>
+                        <td><input type="checkbox" name="" id="" />江门</td>
+                        <td><input type="checkbox" name="" id="" />桂林</td>
+                        <td><input type="checkbox" name="" id="" />三亚</td>
+                    </tr>
+                    <tr>
+                        <th>西北：</th>
+                        <td><input type="checkbox" name="" id="" />全选</td>
+                        <td><input type="checkbox" name="" id="" />西安</td>
+                        <td><input type="checkbox" name="" id="" />延安</td>
+                        <td><input type="checkbox" name="" id="" />榆林</td>
+                        <td><input type="checkbox" name="" id="" />银川</td>
+                        <td><input type="checkbox" name="" id="" />兰州</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>西南：</th>
+                        <td><input type="checkbox" name="" id="" />全选</td>
+                        <td><input type="checkbox" name="" id="" />成都</td>
+                        <td><input type="checkbox" name="" id="" />重庆</td>
+                        <td><input type="checkbox" name="" id="" />昆明</td>
+                        <td><input type="checkbox" name="" id="" />贵阳</td>
+                        <td><input type="checkbox" name="" id="" />遵义</td>
+                        <td><input type="checkbox" name="" id="" />绵阳</td>
+                        <td><input type="checkbox" name="" id="" />万州</td>
+                    </tr>
+                    <tr>
+                        <th>港澳台：</th>
+                        <td><input type="checkbox" name="" id="" />全选</td>
+                        <td><input type="checkbox" name="" id="" />香港</td>
+                        <td><input type="checkbox" name="" id="" />澳门</td>
+                        <td><input type="checkbox" name="" id="" />台湾</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="cityBtn clearfix salePlaceWindowBottom">
+                <div class="rightOperationA">
+                    <label style="margin-right: 40px;">共选择<b class="redFonts">0</b>个城市</label>
+                    <a class="large_button button_2_1">
+                        <span class="left"></span>
+                        <span class="center">确 定</span>
+                        <span class="right"></span>
+                    </a>
+                    <a class="large_button button_2_2">
+                        <span class="left"></span>
+                        <span class="center">取 消</span>
+                        <span class="right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </script>
+
+
+
+
+
+    <script>
+    $(function(){
+        var ac_window = new PopWindow('.sendBackReason',{
+            title:'退回原因',
+            width:'470',
+            template:'#sendBackReasonTemplate'
+        }).init();
+
+        var ac_window = new PopWindow('.ac-journal',{
+            title:'日志',
+            width:'730',
+            template:'#ac-journal-template'
+        }).init();
+
+        $(".basicInfoTable .orangeExplain").kendoTooltip({
+            position:"bottom", //left right top
+            wrapperClass:"lineWeight",
+            content:function(){
+                return $("#orangeExplainTemplate").html();
+            },
+            callout:false,
+            offsetY:10,
+            offsetX:80,
+            width:358
+        });
+        
+        var a_pos = [];
+        var flag=true;
+        $(".changeList a").each(function(index){
+            var href= $(this).attr("href");
+            a_pos.push($("a[name=" + href.substring(1) + "]").offset());
+
+        });
+
+        $(".changeList a").click(function(e){
+            flag=false;
+            e.preventDefault();
+//            var href= $(this).attr("href");
+            $(this).closest("li").siblings().find("a").removeClass('currentLi');
+            $(this).addClass("currentLi");
+//            setTimeout(function(){
+//                location.href=href;
+//            },100);
+            var i=$(this).closest("li").index();
+            i-=Math.round(i/2);
+            $("html,body").animate({"scrollTop":a_pos[i].top-41},1);
+        });
+
+        $(window).bind("scroll",function(e){
+            if(flag){
+                var that = $(".changeList");
+                var currentPos = that.offset();
+                var i = 0;
+//                console.dir(a_pos);
+                for(i = a_pos.length - 1; i >=0 ; i--){
+                    if(currentPos.top >= a_pos[i].top-45){
+                        that.find("a").removeClass('currentLi');
+                        $("a:eq(" + (i) + ")" , that).addClass("currentLi");
+                        return false;
+                    }
+                }
+                that.find("a").removeClass('currentLi');
+                $("a:first" , that).addClass("currentLi");
+            }
+            flag=true;
+        });
+
+        $(".changeList").fixedBar();
+
+        new PopWindow('.salePlaceInput',{
+            template:'#salePlaceInputTemplate',
+            title:'选择城市',
+            width:'738'
+        }).init();
+
+        // 删除上传照片
+        $(".del-spot-picture").click(function(){
+            $(this).parents('li').remove();
+        });
+    })
+</script>
+
+    <script>
+        $(function(){
+            $(".tab_change span").each(function(index){
+                $(this).click(function(){
+                    $(".infoDetailBlock .tab").hide();
+                    $(".infoDetailBlock .tab:eq(" + index + ")").show();
+                    $(".tab_change span").removeClass("currentSpan");
+                    $(this).addClass("currentSpan");
+                });
+
+            });
+
+        });
+    </script>
+
+
+
+
+
+
+
+
+</body>
+</html>
