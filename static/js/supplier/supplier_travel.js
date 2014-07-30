@@ -2,12 +2,14 @@
 $(function(){
 
 	// header common js start
-	window.onresize = function() {
-		var headWidthStr = $(".bg-header-repeat").css("width");
-		var totalWidth = headWidthStr.substring(0, headWidthStr.length - 2);
-		var width = totalWidth / 2 - 490;
-		$(".header-top-left").css("width", width + "px");
-	};
+	if ($(".bg-header-repeat") != null) {
+		window.onresize = function() {
+			var headWidthStr = $(".bg-header-repeat").css("width");
+			var totalWidth = headWidthStr.substring(0, headWidthStr.length - 2);
+			var width = totalWidth / 2 - 490;
+			$(".header-top-left").css("width", width + "px");
+		};
+	}
 
 
 	$(".first-navi-li").each(function(index) {
