@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <title>旅游 线路管理 线路管理</title>
+    <title>旅游 线路管理 团管理</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css">
     <link href="/static/css/kendo.common.css" rel="stylesheet" />
@@ -43,18 +43,18 @@
                     <div class="supplier-logo"></div>
                 </div>
                 <ul class="first-navi">
-                    <li class="first-navi-li">国内机票</li>
+                    <li class="first-navi-li first-navi-active">国内机票</li>
                     <li class="first-navi-li">国际机票</li>
-                    <li class="first-navi-li first-navi-active">
+                    <li class="first-navi-li">
                         旅游
                         <ul class="second-navi">
                             <li class="second-navi-li">首页
                                 <div class="navi-slide-hover"></div>
                             </li>
                             <li class="second-navi-li">线路管理
-                                <div class="navi-slide-hover" style="height:5px;"></div>
-                                <ul class="third-navi">
-                                    <li class="third-navi-li" style="color: #fff;">全部线路</li>
+                                <div class="navi-slide-hover"></div>
+                                <!-- <ul class="third-navi">
+                                    <li class="third-navi-li">全部线路</li>
                                     <li class="third-navi-li">
                                         <span>待提交</span>
                                         <span class="small-info-tip">99+</span>
@@ -67,13 +67,24 @@
                                         <span>已下线</span>
                                         <span class="small-info-tip">10</span>
                                     </li>
-                                </ul>
+                                </ul> -->
                             </li>
                             <li class="second-navi-li">团管理
                                 <div class="navi-slide-hover"></div>
                             </li>
                             <li class="second-navi-li">订单管理
                                 <div class="navi-slide-hover"></div>
+                            </li>
+                            <li class="second-navi-li">
+                                <div class="navi-slide-hover"></div>
+                                <ul class="extend-navi">
+                                    <li class="extend-navi-li">新增线路</li>
+                                    <li class="extend-navi-li">基本信息</li>
+                                    <li class="extend-navi-li extend-navi-li-active">行程展示</li>
+                                    <li class="extend-navi-li">团期管理</li>
+                                    <li class="extend-navi-li">描述信息</li>
+                                    <li class="extend-navi-li">营销申请</li>
+                                </ul>
                             </li>
                         </ul>
                     </li>
@@ -113,7 +124,7 @@
          <table class="searchTab">
              <colgroup>
                  <col width="65"/>
-                 <col width="120"/>
+                 <col width="110"/>
                  <col width="65"/>
                  <col width="120"/>
                  <col width="65"/>
@@ -133,10 +144,6 @@
                     <input type="text" id="destCity" />
                     <input name="" id="id_dest" type="hidden" />
                  </td>
-                 <th>线路编号</th>
-                 <td>
-                     <input type="text" />
-                 </td>
                  <th>
                      <select data-role="dropdownlist" style="width: 93px;">
                          <option>线路名称</option>
@@ -144,7 +151,17 @@
                      </select>
                  </th>
                  <td>
-                     <input type="text" style="width: 189px;" />
+                     <input type="text" style="width: 100px;" />
+                 </td>
+                 <td colspan="2">
+                     <span class="tr-datepicker input-date">
+                        <em>出发日期</em> 
+                        <span class="tr-datepicker-bg">
+                            <input type="text" class="dpUlt datepicker" /> 
+                            <u>—</u>
+                            <input type="text" class="dpUlt datepicker" /> 
+                        </span>
+                    </span>
                  </td>
                  <td rowspan="2">
                      <a class="supplierButton brightRedBig_btn">
@@ -155,40 +172,26 @@
                  </td>
              </tr>
              <tr>
-                 <th>线路类型</th>
+                 <th>团号</th>
+                 <td>
+                     <input type="text" style="width: 100px;" />
+                 </td>
+                 <th>团状态</th>
                  <td>
                      <select data-role="dropdownlist" style="width: 105px;">
-                         <option>全部</option>
-                         <option>出境游</option>
-                         <option>国内游</option>
-                         <option>周边游</option>
+                         <option>请选择</option>
+                         <option>已发出团通知</option>
+                         <option>已发团</option>
+                         <option>不成团</option>
                      </select>
                  </td>
-                 <th>线路形态</th>
+                 <th>线路编号</th>
                  <td>
-                     <select data-role="dropdownlist" style="width: 105px;">
-                         <option>全部</option>
-                         <option>跟团游</option>
-                         <option>自由行</option>
-                         <option>半自动游</option>
-                         <option>当地游</option>
-                     </select>
-                 </td>
-                 <th>线路状态</th>
-                 <td>
-                     <select data-role="dropdownlist" style="width: 105px;">
-                         <option>全部</option>
-                         <option>等提交</option>
-                         <option>审核中</option>
-                         <option>审核退回</option>
-                         <option>审核通过</option>
-                         <option>已上线</option>
-                         <option>已下线</option>
-                     </select>
+                     <input type="text" style="width: 100px;" />
                  </td>
                  <td colspan="2">
                      <span class="tr-datepicker input-date">
-                        <em>录入日期</em> 
+                        <em>截止报名</em> 
                         <span class="tr-datepicker-bg">
                             <input type="text" class="dpUlt datepicker" /> 
                             <u>—</u>
@@ -198,219 +201,273 @@
                 </td>
              </tr>
          </table>
-         <table class="commonTab">
+         <table class="commonTab addEdit">
          <colgroup>
-             <col width="120"/>
-             <col width="150"/>
-             <col width="310"/>
-             <col width="90"/>
-             <col width="90"/>
-             <col width="200"/>
+             <col width="165"/>
+             <col width="190"/>
+             <col width="65"/>
+             <col width="57"/>
+             <col width="47"/>
+             <col width="95"/>
+             <col width="97"/>
+             <col width="73"/>
+             <col width="190"/>
          </colgroup>
          <thead>
          <tr>
-             <th>线路编号</th>
-             <th>类型/形态</th>
+             <th>团号/线路编号</th>
              <th>线路名称</th>
-             <th>出发地</th>
-             <th>状态</th>
+             <th>总库存</th>
+             <th>已使用<br>库存</th>
+             <th>剩余<br>库存</th>
+             <th>出发时间</th>
+             <th>截止报名时间</th>
+             <th>团队状态</th>
              <th>操作</th>
          </tr>
          </thead>
          <tbody>
          <tr>
-             <td>1000100000</td>
              <td>
-                 <i class="exitTravel"></i>
-                 <i class="freeWalker"></i>
+                 <div>
+                     <i class="groupIcon"></i>
+                     <a href="javascript:void(0);">HAWAI20140714</a>
+                 </div>
+                 <div>
+                     <i class="lineIcon"></i>
+                     <em>13413413413413</em>
+                 </div>
              </td>
-             <td>
+             <td class="shrinkWidth">
                  <div class="lineLink">
                      <a href="javascript:void(0);">美西8日游游游游游游游游游游游游游游游游游游游游游游游游游游游游游</a>
                  </div>
                  <div class="lineName">汉子哈尼族</div>
              </td>
-             <td>上海</td>
-             <td>待提交</td>
+             <td>30<a href="javascript:void(0);" class="editLink">编辑</a></td>
+             <td>30</td>
              <td>
-                 <a href="javascript:void(0);">发送审核</a>
-                 <a href="javascript:void(0);">编辑 </a>
-                 <a href="javascript:void(0);">复制</a>
-                 <a href="javascript:void(0);" class="ac-journal">日志</a>
+                 <b class="redFonts">30</b>
+             </td>
+             <td>2014-08-02</td>
+             <td>2014-08-02</td>
+             <td>
+                 <em class="statusWidth">待成团</em>
+             </td>
+             <td>
+                 <a href="javascript:void(0);">成团</a>
+                 <a href="javascript:void(0);">不成团 </a>
+                 <a href="javascript:void(0);">日志</a>
              </td>
          </tr>
          <tr>
-             <td>1000100000</td>
              <td>
-                 <i class="inlandTravel"></i>
-                 <i class="groupTravel"></i>
-             </td>
-             <td>
-                 <div class="lineLink">
-                     <a href="javascript:void(0);">美西8日游游游游游游游</a>
+                 <div>
+                     <i class="groupIcon"></i>
+                     <a href="javascript:void(0);">HAWAI20140714</a>
+                 </div>
+                 <div>
+                     <i class="lineIcon"></i>
+                     <em>13413413413413</em>
                  </div>
              </td>
-             <td>上海</td>
-             <td>待提交</td>
-             <td>
-                 <a href="javascript:void(0);">发送审核</a>
-                 <a href="javascript:void(0);">编辑 </a>
-                 <a href="javascript:void(0);">复制</a>
-                 <a href="javascript:void(0);" class="ac-journal">日志</a>
-             </td>
-         </tr>
-         <tr>
-             <td>1000100000</td>
-             <td>
-                 <i class="rimTravel"></i>
-                 <i class="localTravel"></i>
-             </td>
-             <td>
+             <td class="shrinkWidth">
                  <div class="lineLink">
                      <a href="javascript:void(0);">美西8日游游游游游游游游游游游游游游游游游游游游游游游游游游游游游</a>
                  </div>
                  <div class="lineName">汉子哈尼族</div>
              </td>
-             <td>上海</td>
-             <td class="redFonts">审核退回</td>
+             <td>30<a href="javascript:void(0);" class="editLink">编辑</a></td>
+             <td>30</td>
              <td>
-                 <a href="javascript:void(0);">复制</a>
+                 <b class="redFonts">30</b>
+             </td>
+             <td>2014-08-02</td>
+             <td>2014-08-02</td>
+             <td>已成团</td>
+             <td>
+                 <a href="javascript:void(0);">成团</a>
+                 <a href="javascript:void(0);">不成团 </a>
+                 <a href="javascript:void(0);">日志</a>
              </td>
          </tr>
          <tr>
-             <td>1000100000</td>
              <td>
-                 <i class="exitTravel"></i>
-                 <i class="semiSelfService"></i>
+                 <div>
+                     <i class="groupIcon"></i>
+                     <a href="javascript:void(0);">HAWAI20140714</a>
+                 </div>
+                 <div>
+                     <i class="lineIcon"></i>
+                     <em>13413413413413</em>
+                 </div>
              </td>
-             <td>
+             <td class="shrinkWidth">
                  <div class="lineLink">
                      <a href="javascript:void(0);">美西8日游游游游游游游游游游游游游游游游游游游游游游游游游游游游游</a>
                  </div>
-                 <div class="lineName">赐给你赶快来</div>
              </td>
-             <td>上海</td>
-             <td class="greenFonts">审核通过</td>
+             <td>30<a href="javascript:void(0);" class="editLink">编辑</a></td>
+             <td>30</td>
              <td>
-                 <a href="javascript:void(0);">编辑 </a>
-                 <a href="javascript:void(0);">复制</a>
+                 <b class="redFonts">20</b>
              </td>
-         </tr>
-         <tr class="grayFonts">
-             <td>1000100000</td>
+             <td>2014-08-02</td>
+             <td>2014-08-02</td>
+             <td>已关闭</td>
              <td>
-                 <i></i>
-                 <i></i>
-             </td>
-             <td>
-                 <div class="lineLink">
-                     <a href="javascript:void(0);" class="linkGrayFonts">美西8日游</a>
-                 </div>
-             </td>
-             <td>上海</td>
-             <td>待提交</td>
-             <td>
-                 <a href="javascript:void(0);">发送审核</a>
-                 <a href="javascript:void(0);">编辑 </a>
-                 <a href="javascript:void(0);">复制</a>
-                 <a href="javascript:void(0);" class="ac-journal">日志</a>
+                 <a href="javascript:void(0);" class="ac-emitInform">发送出团通知书</a>
+                 <a href="javascript:void(0);">开团 </a>
+                 <a href="javascript:void(0);">日志</a>
              </td>
          </tr>
          <tr>
-             <td>1000100000</td>
              <td>
-                 <i></i>
-                 <i></i>
-             </td>
-             <td>
-                 <div class="lineLink">
-                     <a href="javascript:void(0);">美西8日游</a>
+                 <div>
+                     <i class="groupIcon"></i>
+                     <a href="javascript:void(0);">HAWAI20140714</a>
+                 </div>
+                 <div>
+                     <i class="lineIcon"></i>
+                     <em>13413413413413</em>
                  </div>
              </td>
-             <td>上海</td>
-             <td>待提交</td>
+             <td class="shrinkWidth">
+                 <div class="lineLink">
+                     <a href="javascript:void(0);">美西8日游游游游游游游游游游游游游游游游游游游游游游游游游游游游游</a>
+                 </div>
+             </td>
+             <td>30<a href="javascript:void(0);" class="editLink">编辑</a></td>
+             <td>30</td>
              <td>
-                 <a href="javascript:void(0);">发送审核</a>
-                 <a href="javascript:void(0);">编辑 </a>
-                 <a href="javascript:void(0);">复制</a>
-                 <a href="javascript:void(0);" class="ac-journal">日志</a>
+                 <b class="redFonts">10</b>
+             </td>
+             <td>2014-08-02</td>
+             <td>2014-08-02</td>
+             <td>已关闭</td>
+             <td>
+                 <a href="javascript:void(0);" class="ac-emitInform">发送出团通知书</a>
+                 <a href="javascript:void(0);">开团 </a>
+                 <a href="javascript:void(0);">日志</a>
              </td>
          </tr>
          <tr>
-             <td>1000100000</td>
              <td>
-                 <i></i>
-                 <i></i>
-             </td>
-             <td>
-                 <div class="lineLink">
-                     <a href="javascript:void(0);">美西8日游</a>
+                 <div>
+                     <i class="groupIcon"></i>
+                     <a href="javascript:void(0);">HAWAI20140714</a>
+                 </div>
+                 <div>
+                     <i class="lineIcon"></i>
+                     <em>13413413413413</em>
                  </div>
              </td>
-             <td>上海</td>
-             <td>待提交</td>
+             <td class="shrinkWidth">
+                 <div class="lineLink">
+                     <a href="javascript:void(0);">美西8日游游游游游游游游游游游游游游游游游游游游游游游游游游游游游</a>
+                 </div>
+             </td>
+             <td>30<a href="javascript:void(0);" class="editLink">编辑</a></td>
+             <td>30</td>
              <td>
-                 <a href="javascript:void(0);" class="ac-returnReasons">查看原因</a>
-                 <a href="javascript:void(0);">编辑 </a>
-                 <a href="javascript:void(0);">复制</a>
+                 <b class="redFonts">20</b>
+             </td>
+             <td>2014-08-02</td>
+             <td>2014-08-02</td>
+             <td>已关闭</td>
+             <td>
+                 <a href="javascript:void(0);" class="ac-emitInform">发送出团通知书</a>
+                 <a href="javascript:void(0);">开团 </a>
+                 <a href="javascript:void(0);">日志</a>
              </td>
          </tr>
          <tr>
-             <td>1000100000</td>
              <td>
-                 <i></i>
-                 <i></i>
-             </td>
-             <td>
-                 <div class="lineLink">
-                     <a href="javascript:void(0);">美西8日游</a>
+                 <div>
+                     <i class="groupIcon"></i>
+                     <a href="javascript:void(0);">HAWAI20140714</a>
+                 </div>
+                 <div>
+                     <i class="lineIcon"></i>
+                     <em>13413413413413</em>
                  </div>
              </td>
-             <td>上海</td>
-             <td>待提交</td>
+             <td class="shrinkWidth">
+                 <div class="lineLink">
+                     <a href="javascript:void(0);">美西8日游游游游游游游游游游游游游游游游游游游游游游游游游游游游游</a>
+                 </div>
+             </td>
+             <td>30<a href="javascript:void(0);" class="editLink">编辑</a></td>
+             <td>30</td>
              <td>
-                 <a href="javascript:void(0);" class="ac-returnReasons">查看原因</a>
-                 <a href="javascript:void(0);">编辑 </a>
-                 <a href="javascript:void(0);">复制</a>
-                 <a href="javascript:void(0);" class="ac-journal">日志</a>
+                 <b class="redFonts">10</b>
+             </td>
+             <td>2014-08-02</td>
+             <td>2014-08-02</td>
+             <td>已出团</td>
+             <td>
+                 <a href="javascript:void(0);" class="ac-emitInform">发送出团通知书</a>
+                 <a href="javascript:void(0);">日志</a>
              </td>
          </tr>
          <tr>
-             <td>1000100000</td>
              <td>
-                 <i></i>
-                 <i></i>
-             </td>
-             <td>
-                 <div class="lineLink">
-                     <a href="javascript:void(0);">美西8日游</a>
+                 <div>
+                     <i class="groupIcon"></i>
+                     <a href="javascript:void(0);">HAWAI20140714</a>
+                 </div>
+                 <div>
+                     <i class="lineIcon"></i>
+                     <em>13413413413413</em>
                  </div>
              </td>
-             <td>上海</td>
-             <td>待提交</td>
+             <td class="shrinkWidth">
+                 <div class="lineLink">
+                     <a href="javascript:void(0);">美西8日游游游游游游游游游游游游游游游游游游游游游游游游游游游游游</a>
+                 </div>
+             </td>
+             <td>30<a href="javascript:void(0);" class="editLink">编辑</a></td>
+             <td>30</td>
              <td>
-                 <a href="javascript:void(0);">发送审核</a>
-                 <a href="javascript:void(0);">编辑 </a>
-                 <a href="javascript:void(0);">复制</a>
+                 <b class="redFonts">10</b>
+             </td>
+             <td>2014-08-02</td>
+             <td>2014-08-02</td>
+             <td>已发出团通知书</td>
+             <td>
+                 <a href="javascript:void(0);">成团</a>
+                 <a href="javascript:void(0);">不成团</a>
+                 <a href="javascript:void(0);">日志</a>
              </td>
          </tr>
          <tr>
-             <td>1000100000</td>
              <td>
-                 <i></i>
-                 <i></i>
-             </td>
-             <td>
-                 <div class="lineLink">
-                     <a href="javascript:void(0);">美西8日游</a>
+                 <div>
+                     <i class="groupIcon"></i>
+                     <a href="javascript:void(0);">HAWAI20140714</a>
+                 </div>
+                 <div>
+                     <i class="lineIcon"></i>
+                     <em>13413413413413</em>
                  </div>
              </td>
-             <td>上海</td>
+             <td class="shrinkWidth">
+                 <div class="lineLink">
+                     <a href="javascript:void(0);">美西8日游游游游游游游游游游游游游游游游游游游游游游游游游游游游游</a>
+                 </div>
+             </td>
+             <td>30<a href="javascript:void(0);" class="editLink">编辑</a></td>
+             <td>30</td>
+             <td>
+                 <b class="redFonts">20</b>
+             </td>
+             <td>2014-08-02</td>
+             <td>2014-08-02</td>
              <td>待提交</td>
              <td>
-                 <a href="javascript:void(0);">发送审核</a>
-                 <a href="javascript:void(0);">编辑 </a>
-                 <a href="javascript:void(0);">复制</a>
+                 <a href="javascript:void(0);">成团</a>
+                 <a href="javascript:void(0);">不成团</a>
+                 <a href="javascript:void(0);">日志</a>
              </td>
          </tr>
          </tbody>
@@ -435,9 +492,16 @@
               <span>
                   <a href="#" class="next">&nbsp;</a>
               </span>
-         </div>
+         </div>    
     </section>
 
+
+    <!-- 操作提示 -->
+    <div class="status_button">
+        <button id="emit" type="button">发送成功</button>
+        <button id="operation" type="button">操作成功</button>
+    </div>
+    
     <div id="extFooter">
         <div>
             <p>
@@ -450,99 +514,44 @@
         </div>
     </div>
 
-    <script type="text/x-kendo-template" id="ac-returnReasons-template">
-        <p class="causeContent">退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明
-            文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回
-            说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回
-            说明文字退回说明文字退回说明文字此处省略200字</p>
-        <div class="pullRightStyle">
-            <a class="supplierButton brightRedBig_btn">
+    <script type="text/x-kendo-template" id="ac-emitInform-template">
+        <div class="upLoadingFile">
+            <em>选择文件：</em>
+            <input type="text" style="width: 300px;"/>
+            <label class="uploadBtn">
+                <form method="post" action="submit">
+                    <div class="demo-section">
+                        <div class="k-widget k-upload">
+                            <div class="k-dropzone">
+                                <div class="k-button k-upload-button">
+                                    <input id="files" type="file" name="files" data-role="upload" multiple="multiple" autocomplete="off">
+                                    <span>上 传</span>
+                                </div>
+                                <em>drop files here to upload</em>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </label>    
+        </div>
+        <div class="downLoadContent">
+            请先<a href="javascript:void(0);" class="downLoadModel">下载模板</a>，填写后上传
+        </div>
+        <div class="emitBtn">
+            <a class="adaptiveButton brightBtn brightBtn-blue">
                 <span class="left"></span>
-                <span class="center center_1">查 询</span>
+                <span class="center">发  送</span>
                 <span class="right"></span>
             </a>
         </div>
     </script>
 
-    <script type="text/x-kendo-template" id="ac-journal-template">
-        <table class="commonTab">
-            <colgroup>
-                <col width="350"/>
-                <col width="140"/>
-                <col width="70"/>
-            </colgroup>
-            <thead>
-            <th>操作记录</th>
-            <th>操作时间</th>
-            <th>操作人</th>
-            </thead>
-            <tbody>
-            <tr>
-                <td>
-                    <div class="limitWidth">操作记录操作记录操作记录操作记录操操作作记录操作记录操作记录操作</div>
-                </td>
-                <td>2014-09-21  18:01</td>
-                <td>客服</td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="limitWidth">操作记录操作记录操作记录操作记录操操作作记录操作记录操作记录操作</div>
-                </td>
-                <td>2014-09-21  18:01</td>
-                <td>admin</td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="limitWidth">操作记录操作记录操作记录操作记录</div>
-                </td>
-                <td>2014-09-21  18:01</td>
-                <td>admin</td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="limitWidth">操作记录操作记录操作记录操作记录</div>
-                </td>
-                <td>2014-09-21  18:01</td>
-                <td>admin</td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="limitWidth">操作记录操作记录操作记录操作记录</div>
-                </td>
-                <td>2014-09-21  18:01</td>
-                <td>admin</td>
-            </tr>
-            </tbody>
-        </table>
-        <div class="grid-table-pagination">
-              <span class="grid-table-count">
-                  共 <em>132</em> 条记录
-              </span>
-              <span>
-                  <a href="javascript:void(0);" class="prev">&nbsp;</a>
-              </span>
-              <span class="links">
-                  <a href="javascript:void(0);">1</a>
-                  <a href="javascript:void(0);">2</a>
-                  <a href="javascript:void(0);" class="current">3</a>
-                  <a href="javascript:void(0);">4</a>
-                  <a href="javascript:void(0);">5</a>
-                  <a href="javascript:void(0);" class="ellipsis">...</a>
-                  <a href="javascript:void(0);">50</a>
-              </span>
-              <span>
-                  <a href="javascript:void(0);" class="next">&nbsp;</a>
-              </span>
-        </div>
-        <div class="pullRightStyle">
-            <a class="supplierButton brightRedBig_btn">
-                <span class="left"></span>
-                <span class="center center_1">关 闭</span>
-                <span class="right"></span>
-            </a>
+    <script type="text/x-kendo-template" id="message_template">
+        <div class="#=statusClass#">
+            <p>#=message#</p>
         </div>
     </script>
-
+    
     <script type="text/x-kendo-template" id="city_popup">
         <div class="tcy_tabstrip">
             <span class="tcy_title">
@@ -603,16 +612,10 @@
     
     <script type="text/javascript">
         $(function(){
-            var ac_window = new PopWindow('.ac-returnReasons',{
-                title:'退回原因',
+            var ac_window = new PopWindow('.ac-emitInform',{
+                title:'发送出团通知',
                 width:'550',
-                template:'#ac-returnReasons-template'
-            }).init();
-
-            var ac_window = new PopWindow('.ac-journal',{
-                title:'日志',
-                width:'600',
-                template:'#ac-journal-template'
+                template:'#ac-emitInform-template'
             }).init();
 
             // 日期控件
@@ -624,6 +627,28 @@
                     minDate :new Date(),
                     firstDay:0,
                     showButtonPanel :true
+                });
+            });
+
+            $(".status_button button").each(function(){
+                $(this).click(function(){
+                    var id = $(this).prop("id");
+                    var messageTpl = kendo.template($("#message_template").html());
+                    var message = '';
+
+                    switch(id){
+                        case 'emit':
+                            message = '发送成功！';
+                            break;
+                        case 'operation':
+                            message = '操作成功！';
+                            break;
+                    }
+
+                    var data = {statusClass:id,message:message};
+                    messageTpl(data);
+
+                    $.prompt({content:messageTpl(data)}).center().open();
                 });
             });
             
