@@ -7,21 +7,28 @@
     <link rel="stylesheet" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css">
     <link rel="stylesheet" href="/static/css/jquery-ui-1.10.3.custom.css" />     
     <link rel="stylesheet" href="/static/css/store_reset.css" media="all" />
-    <link rel="stylesheet" href="/static/css/store.css" media="screen" />
-    <link rel="stylesheet" href="/static/css/store_ucenter.css" media="screen" />
     <link rel="stylesheet" href="/static/css/kendo.common.min.css" />
     <link rel="stylesheet" href="/static/css/kendo.store.css" />
+    <link rel="stylesheet" href="/static/css/store.css" media="screen" />
+    <link rel="stylesheet" href="/static/css/store_ucenter.css" media="screen" />
     
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>    
     <script type="text/javascript" src="/static/js/kendo.web.js"></script>
-    <script type="text/javascript" src="/static/js/global.js"></script>    
-
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+    <script src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+    <script type="text/javascript" src="/static/js/store/store.js"></script>
+    
     <!--[if IE]>
     <script src="/static/js/html5.js"></script>
-    <![endif]-->
-    <script src="/static/js/jquery-ui-1.10.3.custom.js"></script>
-	<script src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>    
-    <script type="text/javascript" src="/static/js/store/store.js"></script>
+    <![endif]-->    
+
+    <script>
+        $(function(){
+            kendo.init('body');
+            lensf();
+        })
+    </script>
 
 </head>
 <body>
@@ -149,6 +156,12 @@
                                     <td><input type="text" placeholder="www.taobao.com"></td>
                                 </tr>
                                 <tr>
+                                    <th> </th>
+                                    <td>
+                                        <a href="javascript:void(0);" class="bindDomainName">需绑定其它域名</a>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>备案号：</th>
                                     <td>
                                         <input type="text" placeholder="123456">
@@ -218,7 +231,57 @@
     </main>
 </section>
 
+<script type="text/x-kendo-template" id="ac-pers_tab-template">
+    <div class="layerGrayBlock"> 
+        <div class="tooltipsContent">
+            <div class="layerGrayArrow"></div>
+            <div class="bindDomainNameStep">
+                <h3 class="stepTitle">绑定其它域名步骤：</h3>
+                <ul class="stepList">
+                    <li class="clearfix">
+                        <i class="nthStep">1</i>
+                        <em class="pull-left">购买好需绑定的域名。</em>
+                        <i class="downArrow"></i>
+                    </li>
+                    <li class="clearfix">
+                        <i class="nthStep">2</i>
+                        <em class="pull-left">解析完成，解析地址向在线客服索取。   解析地址向在线客服索取解析地址向在线客服索取解析地址向在线客服索取解析地址向在线客服索取</em>
+                        <i class="downArrow"></i>
+                    </li>
+                    <li class="clearfix">
+                        <i class="nthStep">3</i>
+                        <em class="pull-left">到工信部提交备案。<span class="fonts999">(备案步骤详见工信部官网)</span></em>
+                        <i class="downArrow"></i>
+                    </li>
+                    <li class="lastList clearfix">
+                        <i class="nthStep">4</i>
+                        <em class="pull-left">把域名提交给在线客服。由天地行工作人员协助绑定。</em>
+                        <i class="downArrow"></i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</script>
 
+
+<script type="text/javascript">
+    $(function(){
+        
+        $(".pers_tab .bindDomainName").kendoTooltip({
+            position:"bottom", //bottom left top
+            wrapperClass:"lineWeight",
+            content:function(){
+                return $("#ac-pers_tab-template").html();
+            },
+            callout:false,
+            offsetX:0,
+            offsetY:5,
+            width:350
+        });
+
+    })
+</script>
 
 
 
