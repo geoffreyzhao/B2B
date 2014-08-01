@@ -3,6 +3,7 @@
     <head>
     <title>旅游 线路管理 团期管理</title>
     <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css">
     <link href="/static/css/kendo.common.css" rel="stylesheet" />
     <link href="/static/css/kendo.gray.css" rel="stylesheet" />
     <link href="/static/css/common.css" rel="stylesheet" />
@@ -19,6 +20,8 @@
     <script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
     <script type="text/javascript" src="/static/js/global.js"></script>
     <script type="text/javascript" src="/static/js/flight.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+    <script type="text/javascript" src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
     <script type="text/javascript" src="/static/js/supplier/supplier_travel.js"></script>
 
         <!--[if IE]>
@@ -117,6 +120,7 @@
 
         <!-- <hr class="navi-split-line" /> -->
         <div class="main-header"></div>
+    </div>
     </header>
     <section class="main-body">
         <div class="mainBodyHead">
@@ -125,7 +129,7 @@
                 <em class="numberContent">线路编号：2356985455959849845</em>
             </div>
             <span class="mainBodyOper">
-                <span style="margin-right: 10px;vertical-align: middle;"class="ac-journal"><a href="#">日志</a></span>
+                <span style="margin-right: 10px;vertical-align: middle;" class="ac-journal"><a href="#">日志</a></span>
                 <span style="margin-right: 15px;vertical-align: middle;"><a href="#">预览</a></span>
                 <span>
                     <a class="adaptiveButton brightBtn normalButton">
@@ -144,78 +148,29 @@
             </span>        
         </div>
                      
-         <div class="travel-groupManage">
-             <div class="setGroupBar">
-                 <b>设置团期</b>请点击日历上的日期设置团期  或者<span class="setBlock"><i></i>批量设置</span><span class="delBlock"><i></i>批量删除</span>
+         
+             
+             <div class="setGroupHead">
+                 <b>设置团期</b>
+                 <span><em>团号：</em><input type="text"/></span>
+                 <span class="tr-datepicker input-date">
+                        <em>录入日期</em> 
+                        <span class="tr-datepicker-bg">
+                            <input type="text" class="dpUlt datepicker" /> 
+                            <u>—</u>
+                            <input type="text" class="dpUlt datepicker" /> 
+                        </span>
+                 </span>
              </div>
-             <!--日历 开始-->
-             <div id="calendarContainer">
-                 <div id="calendarOperationPanel">
-                     <div id="calendarMonthUp" class=""></div>
-                     <div id="calendarDateInfo">
-                         <div style="padding:0 5px;border-bottom:1px dashed #ccc;margin-bottom:5px"><b id="calendarMonthValue" class="monthValue">10</b><span id="calendarMonthTag">月</span></div>
-                         <div style="font-weight:bold"><span id="calendarYearValue">2013</span>年</div>
-                     </div>
-                     <div id="calendarMonthDown"></div>
-                 </div>
-                 <div id="calendarHead">
-                     <table>
-                         <tr>
-                             <th>日</th>
-                             <th>一</th>
-                             <th>二</th>
-                             <th>三</th>
-                             <th>四</th>
-                             <th>五</th>
-                             <th>六</th>
-                         </tr>
-                     </table>
-                 </div>
-                 <div id="calendar"></div>
-             </div>
-             <!--日历 结束-->
-         </div>
+             <!--列表内容 开始-->
+             
+             <!--列表内容 结束-->
+       
                                       
      </section>
 
 
-    <div style="width:780px;margin: 0 auto; border: 1px solid #0b83d1;height: 100%;overflow: hidden;background: #fff">
-        <div class="groupWindowCon">
-            <div class="groupWSidebar">
-                <ul class="groupDetailItem">
-                    <li>
-                        <p>团号：-</p>
-                        <p class="priceP"><em>0</em>起</p>
-                    </li>
-                    <li>
-                        <p>团号:A923049</p>
-                        <p class="priceP"><em>23450</em>起</p>
-                    </li>
-                    <li class="addGroupBlock"><i></i>增加团</li>
-                </ul>
-            </div>
-            
-            <div class="groupWindowR">
-                <table class="groupWindowTable">
-                    <colgroup>
-                        <col width="50">
-                        <col width="200">
-                        <col width="100">
-                    </colgroup>
-                    <tr>
-                        <td>日期：</td>
-                        <td colspan="2">2014-07-19 周一</td>
-                    </tr>
-                    <tr>
-                        <td>团号：</td>
-                        <td><input type="text" value="HAWAI" style="width:70px;"/>- 20140709  </td>
-                        <td><input type="checkbox" />铁定成团</td>
-                    </tr>
-                </table>
-            </div>
-
-        </div>
-    </div>
+    
 
 
 
@@ -333,6 +288,18 @@
             width:'600',
             template:'#ac-journal-template'
         }).init();
+
+        // 日期控件
+        $.datepicker.regional[ "zh-CN" ];
+        $(function(){
+            $( ".datepicker" ).datepicker({
+                showDay:true,
+                numberOfMonths:[1,2],
+                minDate :new Date(),
+                firstDay:0,
+                showButtonPanel :true
+            });
+        });
     })
 </script>
 
