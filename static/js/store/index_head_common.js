@@ -27,7 +27,7 @@ $(function(){
     // 为gif logo添加点击事件，跳转至app介绍.html
     $("#headLogo").click(function(){
         if ($(this).attr("src") == parentDir + "/logoGif.gif") {
-            window.location.href = "/采购商/app介绍.html";
+            window.location.href = "http://sc1.tdxinfo.com/special/source/appjieshao.html";
         }
     });
 });
