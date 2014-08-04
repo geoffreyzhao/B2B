@@ -38,28 +38,32 @@ $(function(){
 		}
 
 		$(this).click(function() {
-			$(this).addClass("second-navi-active");
-			$(this).siblings().removeClass("second-navi-active");
 
-			// 用数组存放每次的索引号，为减少内存占用，只取数组最新加入的两个
-			indexArr.push(index);
-			if (indexArr.length > 2) {
-				indexArr = indexArr.slice(indexArr.length - 2);
-			}
+			if (!$(this).hasClass('second-navi-active')) {
 
-			// 解除 mouseleave 事件的绑定，以免和click事件冲突
-			$(this).unbind("mouseleave");
+				$(this).addClass("second-navi-active");
+				$(this).siblings().removeClass("second-navi-active");
 
-			$(this).children(".navi-slide-hover").css("height","5px");
-			$(this).siblings().children('.navi-slide-hover').css("height","0px");
+				// 用数组存放每次的索引号，为减少内存占用，只取数组最新加入的两个
+				indexArr.push(index);
+				if (indexArr.length > 2) {
+					indexArr = indexArr.slice(indexArr.length - 2);
+				}
 
-			// 为上一次点击的li 重新绑定 mouseleave 事件
-			if (indexArr.length == 2) {
-				$(this).parent().children('li').eq(indexArr[0]).bind("mouseleave", function(){
-					$(this).children('.navi-slide-hover').animate({
-						height: '0px'
-					}, 200, 'swing');
-				});
+				// 解除 mouseleave 事件的绑定，以免和click事件冲突
+				$(this).unbind("mouseleave");
+
+				$(this).children(".navi-slide-hover").css("height","5px");
+				$(this).siblings().children('.navi-slide-hover').css("height","0px");
+
+				// 为上一次点击的li 重新绑定 mouseleave 事件
+				if (indexArr.length == 2) {
+					$(this).parent().children('li').eq(indexArr[0]).bind("mouseleave", function(){
+						$(this).children('.navi-slide-hover').animate({
+							height: '0px'
+						}, 200, 'swing');
+					});
+				}
 			}
 		});
 	});
