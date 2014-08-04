@@ -69,20 +69,21 @@ $(function(){
 		});
 	});
 
+
+	// 设置部分
 	$(".setting-content").hide();
 
 	$(".setting-icon").hover(function(){
 		$(this).addClass("setting-icon-active");
 		$(".setting-content").show();
-	}, function(){
-		$(this).removeClass("setting-icon-active");
-		$(".setting-content").mouseout();
-	});
+	}, function(){	});
+
 
 	$(".setting-content").hover(function() {
 		$(".setting-content").show();
 	}, function(){
 		$(".setting-content").hide();
+		$(".setting-icon").removeClass("setting-icon-active");
 	});
 
 	// header common js end
