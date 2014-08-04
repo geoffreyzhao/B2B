@@ -168,7 +168,7 @@
         </div>
          <!--列表内容 开始-->
         <div style="position: relative">
-        <table class="groupStageTab">
+        <table class="groupStageTab" >
             <colgroup>
                 <col width="120"/>
                 <col width="140"/>
@@ -189,10 +189,10 @@
                 <th>日期</th>
                 <th>团号</th>
                 <th>剩余<br/>库存</th>
-                <th>结算价</th>
+                <th class="adultBorderL">结算价</th>
                 <th>建议售卖价</th>
-                <th>结算价</th>
-                <th>建议售卖价</th>
+                <th class="kidsBorderL">结算价</th>
+                <th class="kidsBorderR">建议售卖价</th>
                 <th>单房差</th>
                 <th>星级</th>
                 <th>提前<br/>预定</th>
@@ -205,10 +205,10 @@
                 <td><input type="checkbox"/>2014-07-09</td>
                 <td>HWAI2014-07-09</td>
                 <td><span class="cf2">5</span></td>
-                <td>12000.00</td>
+                <td class="adultBorderL">12000.00</td>
                 <td>15000.00</td>
-                <td>10000.00</td>
-                <td>12000.00</td>
+                <td class="kidsBorderL">10000.00</td>
+                <td class="kidsBorderR">12000.00</td>
                 <td>500.00</td>
                 <td>3星</td>
                 <td>20天</td>
@@ -220,10 +220,10 @@
                 <td><input type="checkbox"/>2014-07-09</td>
                 <td>HWAI2014-07-09</td>
                 <td><span class="">30</span></td>
-                <td>12000.00</td>
+                <td class="adultBorderL">12000.00</td>
                 <td>15000.00</td>
-                <td>10000.00</td>
-                <td>12000.00</td>
+                <td class="kidsBorderL">10000.00</td>
+                <td class="kidsBorderR">12000.00</td>
                 <td>500.00</td>
                 <td>3星</td>
                 <td>20天</td>
@@ -235,10 +235,10 @@
                 <td><input type="checkbox"/>2014-07-09</td>
                 <td>HWAI2014-07-09</td>
                 <td><span class="">30</span></td>
-                <td>12000.00</td>
+                <td class="adultBorderL">12000.00</td>
                 <td>15000.00</td>
-                <td>10000.00</td>
-                <td>12000.00</td>
+                <td class="kidsBorderL">10000.00</td>
+                <td class="kidsBorderR">12000.00</td>
                 <td>500.00</td>
                 <td>3星</td>
                 <td>20天</td>
@@ -250,10 +250,10 @@
                 <td><input type="checkbox"/>2014-07-09</td>
                 <td>HWAI2014-07-09</td>
                 <td><span class="">30</span></td>
-                <td>12000.00</td>
+                <td class="adultBorderL">12000.00</td>
                 <td>15000.00</td>
-                <td>10000.00</td>
-                <td>12000.00</td>
+                <td class="kidsBorderL">10000.00</td>
+                <td class="kidsBorderR">12000.00</td>
                 <td>500.00</td>
                 <td>3星</td>
                 <td>20天</td>
@@ -265,10 +265,10 @@
                 <td><input type="checkbox"/>2014-07-09</td>
                 <td>HWAI2014-07-09</td>
                 <td><span class="">30</span></td>
-                <td>12000.00</td>
-                <td>15000.00</td>
-                <td>10000.00</td>
-                <td>12000.00</td>
+                <td class="adultBorderL adultBorderB">12000.00</td>
+                <td class="adultBorderB">15000.00</td>
+                <td class="kidsBorderL kidsBorderB">10000.00</td>
+                <td class="kidsBorderR kidsBorderB">12000.00</td>
                 <td>500.00</td>
                 <td>3星</td>
                 <td>20天</td>
@@ -280,6 +280,7 @@
         </table>
             <div class="personTypeBox">
                 <div class="adultBox"><i>成人</i></div>
+                <div class="kidsBox"><i>儿童</i></div>
             </div>
         </div>
          <!--列表内容 结束-->
@@ -423,6 +424,12 @@
     $(function(){
         var ac_window = new PopWindow('.ac-journal',{
             title:'日志',
+            width:'600',
+            template:'#ac-journal-template'
+        }).init();
+
+        var ac_window = new PopWindow('.ac-journal',{
+            title:'添加团',
             width:'600',
             template:'#ac-journal-template'
         }).init();
