@@ -23,17 +23,19 @@ $(function(){
 
 	$(".second-navi-li").each(function(index) {
 
-		$(this).bind("mouseenter", function(){
-			$(this).children(".navi-slide-hover").animate({
-				height: '5px'
-			}, 300, 'swing');
-		});
+		if (!$(this).hasClass('second-navi-active')) {
+			$(this).bind("mouseenter", function(){
+				$(this).children(".navi-slide-hover").animate({
+					height: '5px'
+				}, 300, 'swing');
+			});
 
-		$(this).bind("mouseleave", function(){
-			$(this).children('.navi-slide-hover').animate({
-				height: '0px'
-			}, 200, 'swing');
-		});
+			$(this).bind("mouseleave", function(){
+				$(this).children('.navi-slide-hover').animate({
+					height: '0px'
+				}, 200, 'swing');
+			});
+		}
 
 		$(this).click(function() {
 			$(this).addClass("second-navi-active");
