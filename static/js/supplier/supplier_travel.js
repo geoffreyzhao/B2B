@@ -59,6 +59,13 @@ $(function(){
 		});
 	});
 
+	$(".third-navi-li").each(function(){
+		$(this).click(function(){
+			$(this).siblings().removeClass("third-navi-active");
+			$(this).addClass("third-navi-active");
+		});
+	});
+
 	$(".setting-content").hide();
 
 	$(".setting-icon").hover(function(){
