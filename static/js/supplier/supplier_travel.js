@@ -36,6 +36,9 @@ $(function(){
 		});
 
 		$(this).click(function() {
+			$(this).addClass("second-navi-active");
+			$(this).siblings().removeClass("second-navi-active");
+
 			// 用数组存放每次的索引号，为减少内存占用，只取数组最新加入的两个
 			indexArr.push(index);
 			if (indexArr.length > 2) {
