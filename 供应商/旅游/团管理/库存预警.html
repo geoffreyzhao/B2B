@@ -499,64 +499,6 @@
         </div>
     </script>
     
-    <script type="text/x-kendo-template" id="city_popup">
-        <div class="tcy_tabstrip">
-            <span class="tcy_title">
-                可直接输入中文的城市/机场/三字码
-            </span>
-            <ul>
-            <li id="hot_city" class="k-state-active">热门</li>
-            # for (var i=0; i<data.group.length; i++ ) { #
-            <li>#= data.group[i] #</li>
-            # } #
-            </ul>
-            <div id="hot_city_tab">
-                <ul class="tcy_list clearfix">
-
-                # for(var j=0;j<hotcitylist.length;j++){ #
-                #   var citylist_item = hotcitylist[j] #
-                    <li class="item" title="#= citylist_item.code #" data-code="#= citylist_item.code #">#= citylist_item.name #</li>
-                # } #
-                </ul>
-            </div>
-
-            # for(var i=0;i<data.citylist.length;i++){ #
-                # var citylist_item = data.citylist[i] #
-                <div class="city_tab">
-                    <ul class="tcy_list clearfix">
-                      # for(var k=0;k<data.group[i].length;k++){ #
-                        <li class="tcy_list_sep">#= data.group[i].split('')[k] #</li>
-                        # for(var j=0;j<citylist_item.value.length;j++){ #
-                            # var citylist_value_item = citylist_item.value[j]; #
-                            # if(citylist_value_item.py.slice(0,1) == data.group[i].split('')[k]) {#
-                                <li class="item" title="#= citylist_value_item.code #" data-code="#= citylist_value_item.code #">#= citylist_value_item.name #</li>
-                            # } #
-                        # } #
-                      # } #
-                    </ul>
-                </div>
-            # } #
-        </div>
-    </script>
-
-    <!-- <script type="text/javascript">
-        CityAutocomplete({
-            template: "#city_popup",
-            input: "#depCity",
-            // 以@分割热门非热门，以;分割条目，以|分割三字码拼音和中文
-            url:'/static/js/data.txt',
-            group: ["热门", "ABCDEF", "GHJ", "KLMN", "PQRSTW", "XYZ"]
-        });
-
-        CityAutocomplete({
-            template: "#city_popup",
-            input: "#destCity",
-            // 以@分割热门非热门，以;分割条目，以|分割三字码拼音和中文
-            url:'/static/js/data.txt',
-            group: ["热门", "ABCDEF", "GHJ", "KLMN", "PQRSTW", "XYZ"]
-        });
-    </script> -->
-    
     <script type="text/javascript">
         $(function(){
             var ac_window = new PopWindow('.ac-emitInform',{
