@@ -184,4 +184,30 @@ $(function(){
 		$(this).removeClass("input-tip-border");
 	});
 
+/*  团期管理  动态添加table样式  */
+	function addClassForGroupStageTab() {
+		// 表格最后一行添加边框线
+		$(".adultBorderL:last").addClass("adultBorderB");
+		$(".adultBorderL:last").next().addClass("adultBorderB");
+
+		$(".kidsBorderL:last").addClass("kidsBorderB");
+		$(".kidsBorderR:last").addClass("kidsBorderB");
+
+		// table头部添加两个div样式
+		var p1 = $(".groupStageTab tr:first th:eq(3)").position();
+		var p2 = $(".groupStageTab tr:first th:eq(5)").position();
+		var p3 = $(".groupStageTab tr:first th:eq(7)").position();
+
+		var adultWidth = p2.left - p1.left;
+		var kidsWidth = p3.left - p2.left;
+
+		var adultLeft = p1.left;
+
+		$(".personTypeBox").css("left", adultLeft + 1 + "px");
+		$(".adultBox").css("width", adultWidth + 1 + "px");
+		$(".kidsBox").css("width", kidsWidth + 1 + "px");		
+	}
+	addClassForGroupStageTab();
+
 });
+
