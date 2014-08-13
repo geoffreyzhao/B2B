@@ -2,14 +2,18 @@
 <html lang="en">
 <head>
     <title>分销商 登录页</title>
+    <meta charset="utf-8" />
     <meta content="text/html" charset="utf-8">
     <link rel="stylesheet" href="../static/css/store_reset.css"/>
     <link rel="stylesheet" href="../static/css/distributor.css"/>
     <link rel="stylesheet" href="../static/css/blue_skin.css"/>
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <!--[if IE]>
     <script src="../static/js/html5.js"></script>
     <![endif]-->
 </head>
+
+
 <body>
     <div class="loginHeader">
         <div class="main-content">
@@ -22,10 +26,10 @@
         <div class="main-content loginPanel">
             <div style="float:left;width:810px;">
                 <span>用户名：</span>
-                <input type="text" class="loginInputErrorBorder"/>
+                <input type="text" class="loginInputErrorBorder loginPanelFocus loginPanelFocus"/>
                 <!-- 验证错误时：添加样式 loginInputErrorBorder -->
                 <span>密码：</span>
-                <input type="password"/>
+                <input type="password" class="loginPanelFocus"/>
 
                 <div style="width:280px;float:right;">
                     <span>验证码：</span>
@@ -86,4 +90,34 @@
         </center>
     </footer>
 </body>
+
 </html>
+
+<script>
+    $(function(){
+         
+        var logFoc = $(".loginPanelFocus");
+        logFoc.each(function(){
+
+            // for(var i=0; i<logFoc.size(); i++)
+            // {
+            //     if(this == logFoc[i])
+            //         console.log("hello");
+            //     else
+            //         console.log("bye");
+            // }
+            
+            $(this).focus(function(){
+                for(var i=0; i<logFoc.size(); i++)
+                {
+                    if(this == logFoc.eq(i).get(0))
+                         logFoc.eq(i).css({background:"#ffffff"});
+                        // logFoc[i].css("bolder","1px red");
+                    else
+                        logFoc.eq(i).css({background:"#505050"});
+                        // logFoc[i].css("bolder","none"); 
+                }
+            });
+        });
+    });
+</script>
