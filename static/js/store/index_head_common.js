@@ -9,11 +9,13 @@ $(function(){
     function switchLogo() {
 
         $("#headLogo").attr("src", parentDir + "/newLogo.png");
+        $("#headLogo").removeClass("headGifLogo");
         $("#headLogo").addClass("headStaticLogo");
 
         setTimeout(function() {
             $("#headLogo").attr("src", parentDir + "/logoGif.gif");
             $("#headLogo").removeClass("headStaticLogo");
+            $("#headLogo").addClass("headGifLogo");
         }, 1000*3*60);
     }
 
