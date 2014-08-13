@@ -10,7 +10,12 @@ $(function(){
 
         $("#headLogo").attr("src", parentDir + "/newLogo.png");
         $("#headLogo").removeClass("headGifLogo");
-        $("#headLogo").addClass("headStaticLogo");
+        if ($("#headLogo").parents(".headBG").css("position") == "absolute") {
+            $("#headLogo").addClass("headStaticLogo_jijiajiu");
+        } else {
+            $("#headLogo").addClass("headStaticLogo");
+        }
+        
 
         setTimeout(function() {
             $("#headLogo").attr("src", parentDir + "/logoGif.gif");
