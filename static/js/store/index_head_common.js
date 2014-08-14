@@ -10,21 +10,12 @@ $(function(){
 
         $("#headLogo").attr("src", parentDir + "/newLogo.png");
         $("#headLogo").removeClass("headGifLogo");
-        if ($("#headLogo").parents(".headBG").css("position") == "absolute") {
-            $("#headLogo").addClass("headStaticLogo_jijiajiu");
-        } else {
-            $("#headLogo").addClass("headStaticLogo");
-        }
-        
+        $("#headLogo").addClass("headStaticLogo");        
 
         setTimeout(function() {
             $("#headLogo").attr("src", parentDir + "/logoGif.gif");
             $("#headLogo").removeClass("headStaticLogo");
-            if ($("#headLogo").parents(".headBG").css("position") == "absolute") {
-                $("#headLogo").addClass("headGifLogo_jijiajiu");
-            } else {
-                $("#headLogo").addClass("headGifLogo");
-            }
+            $("#headLogo").addClass("headGifLogo");
         }, 1000*3*60);
     }
 
@@ -33,26 +24,36 @@ $(function(){
         $("#headLogo").removeClass("headGifLogo");
         $("#headLogo").addClass("headStaticLogo");
 
-        $("#headlogo").parent().children(".main_userInfo").css({
-          "position": "relative",
-          "top": "-80px"
-        });     
+        $("#headLogo").parent().children(".main-userInfo").removeClass("main-userInfo_insurance_dynamic");
+        $("#headLogo").parent().children(".main-userInfo").addClass("main-userInfo_insurance_static");
 
         setTimeout(function() {
             $("#headLogo").attr("src", parentDir + "/logoGif.gif");
             $("#headLogo").removeClass("headStaticLogo");
             $("#headLogo").addClass("headGifLogo");
 
-            $("#headlogo").parent().children(".main_userInfo").css({
-              "position": "relative",
-              "top": "-98px"
-            });
+            $("#headLogo").parent().children(".main-userInfo").removeClass("main-userInfo_insurance_static");
+            $("#headLogo").parent().children(".main-userInfo").addClass("main-userInfo_insurance_dynamic");
+        }, 1000*3*60);
+    }
+
+    function switchLogoForJijiajiu() {
+        $("#headLogo").attr("src", parentDir + "/newLogo.png");
+        $("#headLogo").removeClass("headGifLogo_jijiajiu");
+        $("#headLogo").addClass("headStaticLogo_jijiajiu");        
+
+        setTimeout(function() {
+            $("#headLogo").attr("src", parentDir + "/logoGif.gif");
+            $("#headLogo").removeClass("headStaticLogo_jijiajiu");
+            $("#headLogo").addClass("headGifLogo_jijiajiu");
         }, 1000*3*60);
     }
 
     setTimeout(function(){
         if ($("#headlogo").parent().parent().hasClass('headBG')) {
             switchLogo();
+        } if ($("#headLogo").parents(".headBG").css("position") == "absolute") {
+            switchLogoForJijiajiu();
         } else {
             switchLogoForInsurance();
         }
