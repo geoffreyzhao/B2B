@@ -20,12 +20,42 @@ $(function(){
         setTimeout(function() {
             $("#headLogo").attr("src", parentDir + "/logoGif.gif");
             $("#headLogo").removeClass("headStaticLogo");
+            if ($("#headLogo").parents(".headBG").css("position") == "absolute") {
+                $("#headLogo").addClass("headGifLogo_jijiajiu");
+            } else {
+                $("#headLogo").addClass("headGifLogo");
+            }
+        }, 1000*3*60);
+    }
+
+    function switchLogoForInsurance() {
+        $("#headLogo").attr("src", parentDir + "/newLogo.png");
+        $("#headLogo").removeClass("headGifLogo");
+        $("#headLogo").addClass("headStaticLogo");
+
+        $("#headlogo").parent().children(".main_userInfo").css({
+          "position": "relative",
+          "top": "-80px"
+        });     
+
+        setTimeout(function() {
+            $("#headLogo").attr("src", parentDir + "/logoGif.gif");
+            $("#headLogo").removeClass("headStaticLogo");
             $("#headLogo").addClass("headGifLogo");
+
+            $("#headlogo").parent().children(".main_userInfo").css({
+              "position": "relative",
+              "top": "-98px"
+            });
         }, 1000*3*60);
     }
 
     setTimeout(function(){
-        switchLogo();
+        if ($("#headlogo").parent().parent().hasClass('headBG')) {
+            switchLogo();
+        } else {
+            switchLogoForInsurance();
+        }
         setInterval(switchLogo, 1000*3.5*60);
     }, 1000*0.5*60);
 
