@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>天地行 采购商 旅游 旅游列表页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../../static/css/smoothness/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../../static/css/store_reset.css" media="all" />
+    <link rel="stylesheet" href="../../static/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="../../static/css/kendo.store.css" />
+    <link rel="stylesheet" href="../../static/css/toolkit.css"/>
+    <link rel="stylesheet" href="../../static/css/store_v2/store.css"/>
+    <link rel="stylesheet" href="../../static/css/tmp/store_travel_ly.css"/>
+    
+    <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../static/js/global.js"></script>
+    <script type="text/javascript" src="../../static/js/store/store.js"></script>
+    <script type="text/javascript" src="../../static/js/DateControl.js"></script>
+
+
+    <!--[if IE]>
+    <script src="../../static/js/html5.js"></script>
+    <script src="../../static/js/vendor/IE7.min.js"></script>
+    <![endif]-->
+
+    <style>
+        .k-calendar .k-content .k-link {
+            padding: 0;
+            line-height: 19px;;
+        }
+        .k-state-selected.k-state-focused{
+            background: #ffffff;
+        }
+        .k-state-hover{
+            background-color: transparent;
+        }
+        td.k-other-month{cursor: default}
+        #calendarTitle{color:#FF6500;font-size:14px;font-weight:bold;width:780px;margin:0 auto 10px}
+        #calendarContainer{background:#D8F0FF;padding:60px 20px 30px;box-shadow:3px 3px 3px #1F6491;width:780px;margin:0 auto;position:relative}
+        #calendarHead{position:absolute;top:30px;left:120px}
+        #calendarHead th{width:93px;text-align:center}
+        #calendar{width:458px;border:1px solid #9AC8E7;}
+        #calendar .k-header{display:none}
+        #calendar thead th{background: #99C9F1;color:#ffffff;}
+        #calendar td{height:38px;width:65px;border:1px solid #ccc;padding:0;vertical-align: top;}
+        .calendar_date{position:absolute;top:3px;left:3px;color: #ADADAD}
+        #calendarOperationPanel{width:83px;height:440px;border:1px solid #AFD2E9;background:#EBF7FF;float:left;position:relative}
+        #calendarDateInfo{position:absolute;top:50%;margin-top:-50px;left:15px;text-align:center}
+        #calendarDateInfo .monthValue{font-size:26px;color:#3399CB;vertical-align:top}
+        #calendarMonthTag{font-size:16px;line-height:42px;display:inline-block;height:26px;+line-height:33px}
+        #calendar th{text-align:center}
+        #calendar td a{cursor: default}
+        #calendar td a .sale{cursor: pointer}
+        #calendar div.sale{background:#E8F4FF}
+        #calendar b.edge{background:url('../images/calendarEdge.gif') no-repeat;width:10px;height:11px;position:absolute;top:0;right:0}
+        #calendar .remainNum{color:#338331;float: left; padding-left: 22px;}
+        #calendar .salePrice{color:#FF6500;float: left;display: block;text-align: center}
+        .calendarOperation{background: #99c9f1;height: 35px;line-height: 35px;position: relative}
+        .calendarMonthLeft{background: url("../../static/images/store/calendar_arrow.png") 0 0 no-repeat;width: 6px;height: 11px;position:absolute;top:12px;left:10px;cursor: pointer}
+        .calendarMonthRight{background: url("../../static/images/store/calendar_arrow.png") 0 -12px no-repeat;width: 6px;height: 11px;position:absolute;top:12px;right:10px;cursor: pointer}
+        .calendarMonthLeft:hover{background-position: 0 -24px;}
+        .calendarMonthRight:hover{background-position: 0 -36px;}
+        .calendarDate{text-align: center;font-size: 14px;color: #ffffff;font-weight: bold}
+        .sale .calendar_date{color: #333333;}
+        .sale:hover{
+            position: absolute !important;
+            width:64px;
+            border:1px solid #ff6500;
+            margin:-1px 0  0 -1px;
+        }
+        #calendar .k-other-month .remainNum,#calendar .k-other-month .salePrice{
+            display: none;
+        }
+        #calendar .k-other-month div.sale{
+            background: transparent;
+            cursor: default;
+        }
+        #calendar .k-other-month div.sale:hover {
+            position: relative !important;
+            width:auto;
+            border:0;
+            margin:0;
+        }
+        .k-other-month .sale .calendar_date{
+            color: #ADADAD;
+        }
+        #calendar .k-state-focused{
+            background: transparent;
+        }
+    </style>
+</head>
+<body>
+
+<!--<div class="customerCenterContainer off">
+    <div class="customerCenterButton">
+        <div>用户中心</div>
+    </div>
+    <div class="customerCenterItemsContainer">
+        <div class="customerCenterItemsPanel">
+            <i></i>
+            <ul>
+                <li class="cc_orderManagerment"><div>订单管理</div></li>
+                <li class="cc_e-wallet"><div>电子钱包</div></li>
+                <li class="cc_statisticalReport"><div>统计报表</div></li>
+                <li class="cc_customerService"><div>客户服务</div></li>
+                <li class="cc_notice"><div>公告</div></li>
+                <li class="cc_message"><div>消息</div></li>
+                <li class="cc_onlineService"><div>在线客服</div></li>
+            </ul>
+        </div>
+    </div>
+</div>-->
+
+<div class="headBG">
+    <header class="main-header">
+        <a class="logo" href="/"><h1>天地行</h1></a>
+        <!--<nav class="main-nav">
+            <ul class="clearfix">
+                <li><a href="#">国内机票</a></li>
+                <li><a href="#">国际机票</a></li>
+                <li><a href="#">保险</a></li>
+                <li><a href="#">酒店</a></li>
+                <li><a href="#">机 + 酒</a></li>
+                <li class="active"><a href="#">旅游</a></li>
+                <li><a href="#">订单 &lt;!&ndash;<i class="orderNum">10</i>&ndash;&gt; </a></li>
+            </ul>
+        </nav>
+        
+        <nav class="main-nav phoneAndQQ">
+            <ul class="clearfix">
+                <li><span class="wjphone"></span></li>
+                <li>
+                <a href="javascript:void(0);" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&amp;sid=4007206666&amp;eid=218808P8z8p8Q8K8y8R8R&amp;o=&amp;q=7&amp;ref='+document.location, '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');">
+                    <span class="wjqq"></span>
+                </a>
+                </li>
+            </ul>
+        </nav>-->
+    </header>
+</div>
+
+<div class="main-wrapper">
+       
+<section class="main-body clearfix"> <!--body start-->
+    <div class="mainContainer">
+        <div class="travel_birthland_destination">
+            <span class="birthland">上海</span>
+            出发<i class="icon-right-open-1"></i>
+            旅游<i class="icon-right-open-1"></i>北美
+            <i class="icon-right-open-1"></i>美国
+            <i class="icon-right-open-1"></i>出发
+            <i class="icon-right-open-1"></i>
+            <span class="destination">美国东西海岸夏威夷+加拿大18日游</span>
+        </div>
+        <div class="tripInfoAndBooking">
+            <div class="tripInfoAndBooking_left">
+                <ul>
+                    <li style="margin-bottom: 8px;"><img src="../../static/images/store/tripImg.jpg" alt=""/></li>
+                    <li>
+                        <div class="calendarOperation">
+                            <div class="calendarMonthLeft"></div>
+                            <div class="calendarDate"></div>
+                            <div class="calendarMonthRight"></div>
+                        </div>
+                        <div id="calendar" class="calendarContainer">
+                            
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="tripInfoAndBooking_right">
+                <ul>
+                    <li class="tripName">
+                        <p>[美国东西海岸夏威夷+加拿大18日游] 6月29日暑期特价游，韩亚航空</p>
+                        <span class="unimportantTxt87">产品编号：</span>60891
+                        <span class="unimportantTxt87">出发地：</span>上海
+                        <span class="unimportantTxt87">团期：</span><!--6/29  7/8  7/21  7/29-->
+                        
+                    </li>
+                    <li style="border-color: #D2E2F3">
+                        <span class="importantTxt1" style="font-size:18px;font-weight: bold">￥<span style="font-size: 30px;">0</span></span>起
+                        <span style="text-decoration:underline">起价说明</span>
+                        <span class="hotline">10106266</span>
+                    </li>
+                    <li class="tripBookingContainer">
+                        <div>
+                            <span class="unimportantTxt63">出发</span>&nbsp;<input type="text" name="" id="" class="departureInfo" readonly="readonly"/>
+                            <span class="unimportantTxt63" style="padding-left: 15px;">成人&nbsp;</span>
+                            <select name="" id="" data-role="dropdownlist" style="width: 59px;">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                            </select>
+                            <span class="unimportantTxt63" style="padding-left: 15px;">儿童&nbsp;</span>
+                            <select name="" id="" data-role="dropdownlist" style="width: 59px;">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                            </select>
+                        </div>
+                        <div>
+                            <span class="unimportantTxt63">价 格：</span>成人 <span class="importantTxt1">￥0</span>/人  儿童 <span class="importantTxt1">￥0</span>/人
+                        </div>
+                        <div>
+                            <span class="unimportantTxt63">附 加：</span>保险<i class="icon-info-circled-2" style="color:#96C2E8;padding-right: 15px;"></i>
+                            签证<i class="icon-info-circled-2" style="color:#96C2E8;padding-right: 15px;"></i>
+                            单房差<i class="icon-info-circled-2" style="color:#96C2E8;padding-right: 15px;"></i>
+                        </div>
+                        <!--<span class="btn_booking_clickable" style="top:60px;right: 20px;">立即预订</span>-->
+                    </li>
+                </ul>
+                <ul class="recommendedByPM unimportantTxt63">
+                    <li style="font-weight: bold;font-size: 14px;">产品经理推荐</li>
+                    <!--<li><i class="icon-star"></i>尼亚加拉大瀑布-只有在加拿大才能观赏到的完美马蹄形瀑布。</li>
+                    <li><i class="icon-star"></i>畅游北美经典城市：温哥华、多伦多、纽约、费城、华盛顿、拉斯、洛杉矶！</li>
+                    <li><i class="icon-star"></i>搭乘星空联盟成员、北美最佳航空公司之一的加拿大航空公司，直飞往返。</li>
+                    <li><i class="icon-star"></i>畅游北美经典城市：温哥华、多伦多、纽约、费城、华盛顿、拉斯、洛杉矶！</li>-->
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="tripDetailInfo">
+            <ul class="changeList clearfix">
+                <li><a href="#tripDetail"><i></i>线路行程</a></li>
+                <li class="liLine"></li>
+                <li><a href="#priceExplain" class="currentLi"><i></i>费用说明</a></li>
+                <li class="liLine"></li>
+                <li><a href="#bookingNote"><i></i>预订须知</a></li>
+                <li class="liLine"></li>
+                <li><a href="#visaInfo"><i></i>签证信息</a></li>
+                <li style="float:right">
+                   <!-- <span class="btn_booking">立即预订</span>-->
+                    <div class="bookingContainer1">
+                        <table>
+                            <colgroup>
+                                <col width="70"/>
+                            </colgroup>
+                            <tr>
+                                <th><span class="unimportantTxt63">出发</span></th>
+                                <td><input type="text" name="" id="" style="" class="departureInfo" readonly="readonly"/></td>
+                            </tr>
+                            <tr>
+                                <th><span class="unimportantTxt63">成人</span></th>
+                                <td>
+                                    <select name="" id="" data-role="dropdownlist" style="width: 59px;">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                    </select>
+                                    <span class="importantTxt1">￥9865</span>/人
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><span class="unimportantTxt63">儿童</span></th>
+                                <td>
+                                    <select name="" id="" data-role="dropdownlist" style="width: 59px;">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                    </select>
+                                    <span class="importantTxt1">￥9865</span>/人
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <span class="btn_booking_clickable" style="position: static;">立即预订</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </li>
+            </ul>
+            <div class="tripDetail">
+                <a href="#" name="tripDetail"></a>
+                <ul class="tripDetailContext">
+                    <li>
+                        <i class="tripDays">第1天</i>
+                        <div class="tripDetailContextTxt">
+                            <p class="tripName">标题</p>
+                            <div>
+                                <strong class="minHeight">行程内容：</strong><br/>
+                                <strong>用餐：</strong><br/>
+                                <strong>酒店：</strong>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="tripDays highlight">第2天</i>
+                        <div class="tripDetailContextTxt">
+                            <p class="tripName">标题</p>
+                            <div>
+                                <strong class="minHeight">行程内容：</strong><br/>
+                                <strong>用餐：</strong><br/>
+                                <strong>酒店：</strong>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="tripDays">第3天</i>
+                        <div class="tripDetailContextTxt">
+                            <p class="tripName">标题</p>
+                            <div>
+                                <strong class="minHeight">行程内容：</strong><br/>
+                                <strong>用餐：</strong><br/>
+                                <strong>酒店：</strong>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="tripDays">第4天</i>
+                        <div class="tripDetailContextTxt">
+                            <p class="tripName">标题</p>
+                            <div>
+                                <strong class="minHeight">行程内容：</strong><br/>
+                                <strong>用餐：</strong><br/>
+                                <strong>酒店：</strong>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="tripDetailOtherInfo">
+                <div class="tdoi_title">费用说明<a href="#" name="priceExplain"></a></div>
+                <ul class="tdoi_priceExplain_contain">
+                    <li class="tdoi_subTitle">费用包含</li>                    
+                </ul>
+                <ul class="tdoi_priceExplain_notcontain">
+                    <li class="tdoi_subTitle">费用不包含</li>                    
+                </ul>
+                
+                <div class="tdoi_title">预订须知<a href="#" name="bookingNote"></a></div>
+                <ul class="tdoi_bookingNote">
+                    <li class="tdoi_subTitle">预订须知</li>
+                </ul>
+                
+                <div class="tdoi_title">签证信息<a href="#" name="visaInfo"></a></div>
+                <ul class="tdoi_visaInfo">
+                    <li class="tdoi_subTitle">美国旅游签证</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+ <!--body end-->
+
+<!--footer start-->
+<footer class="main-footer">
+    <center>
+        <a href="#">隐私问题</a>
+        <i class="bar">|</i>
+        <a href="#">常见问题</a>
+        <i class="bar">|</i>
+        <a href="#">关于我们</a>
+        <i class="bar">|</i>
+        <a href="#">媒体中心</a>
+        <i class="bar">|</i>
+        <a href="#">联系我们</a>
+    </center>
+    <center class="copyright">
+        Copyright &copy; 2014 天地行 All Rights Reserved.     沪ICP备08101503号
+    </center>
+</footer>
+
+
+</div>
+
+<script id="calendarTemplate" type="text/x-kendo-template">
+    # if($.inArray(+data.date, data.dates) != -1){ #
+    # if(!eve[$.dateToString(data.date)]){ #
+    <div style="position:relative;height:38px">
+        <span class="calendar_date">#= data.value #</span>
+        <b class="holiday"></b>
+        # }else{ #
+        <div style="position:relative;height:38px" class="sale">
+            <span class="calendar_date">#= data.value #</span>
+            <span class="remainNum">余#= eve[$.dateToString(date)][0] #</span>
+            <span class="salePrice">￥#= eve[$.dateToString(date)][1] #<span>起</span></span>
+            # } #
+            #}else{#
+            <div style="position:relative;height:38px">
+                <span class="calendar_date">#= data.value #</span>
+                #}#
+            </div>
+</script>
+
+<script type="text/html" id="testJsonStr">
+    {
+    "2014/5/02": [
+    {
+    "tourGroupId": "123",
+    "numberOfPlanSignUp": "123",
+    "adultPrice": "123",
+    "childPrice": "123",
+    "balancePrice": "123",
+    "signUpEndDate": "2013-10-29",
+    "hotelStarLevel": "3"
+    },
+    {
+    "tourGroupId": "22",
+    "numberOfPlanSignUp": "22",
+    "adultPrice": "22",
+    "childPrice": "22",
+    "balancePrice": "22",
+    "signUpEndDate": "2013-10-23",
+    "hotelStarLevel": "3"
+    }
+    ]
+    }
+</script>
+
+<script type="text/html" id="departureInfoTemplate">
+    <div class="departureInfoContainer">
+        <ul>
+            # for(var i=0;i<data.length;i++){ #
+            <!--<li>
+                <span>#=data[i].date#</span>
+                <span>#=data[i].ddd#</span>
+                成人<span class="departureMoney">¥#=data[i].adultPrice#起</span>
+                儿童<span class="departureMoney">¥#=data[i].childPrice#起</span>
+            </li>-->
+            #}#
+        </ul>
+    </div>
+</script>
+
+<script type="text/html" id="bookingTemplate2">
+    <div class="bookingContainer2">
+        <table>
+            <colgroup>
+                <col width="40"/>
+            </colgroup>
+            <tr>
+                <td><span class="unimportantTxt63">出发</span></td>
+                <td># data.getFullYear() #</td>
+            </tr>
+            <tr>
+                <td><span class="unimportantTxt63">成人&nbsp;</span></td>
+                <td>
+                    <select name="" id="" data-role="dropdownlist" style="width: 59px;">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select> 
+                    <span class="importantTxt1">￥9865</span>/人
+                </td>
+            </tr>
+            <tr>
+                <td><span class="unimportantTxt63">儿童&nbsp;</span></td>
+                <td>
+                    <select name="" id="" data-role="dropdownlist" style="width: 59px;">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                    <span class="importantTxt1">￥9865</span>/人
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span class="btn_booking_clickable" style="position: static;margin:10px 0">立即预订</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</script>
+
+<script>
+    $(function(){
+        var data=[{date:"2013-06-30",ddd:"周六",adultPrice:11234,childPrice:9234},{date:"2013-06-30",ddd:"周六",adultPrice:11234,childPrice:9234}];
+        
+        $(".btn_booking").click(function(){
+            $(this).toggleClass("expand");
+            $(this).siblings(".bookingContainer1").toggle();
+            return false;
+        })
+        
+        var departureFL=new FloatLayer({
+            trigger:".departureInfo",
+            template:"#departureInfoTemplate",
+            data:data
+        });
+        
+        
+        $(".departureInfoContainer li").click(function(){
+            var i=$(this).index();
+            departureFL.input.val(data[i].date+"      "+data[i].ddd);
+            departureFL.close();
+        })
+        
+        $(".main-wrapper").click(function(e){
+            if(!$(".bookingContainer1").find($(e.target)).length) {
+                $(".btn_booking").removeClass("expand");
+                $(".btn_booking").siblings(".bookingContainer1").hide();
+            }
+        })
+        
+        $(".customerCenterButton").hover(
+                function(){
+                    $(this).animate(
+                            {width:"100%"},
+                            200,
+                            function(){$(".customerCenterContainer").addClass("expanded");}
+                    )},
+                function(){
+                    if($(".customerCenterContainer").hasClass("off")){
+                        $(this).animate(
+                                {width:"90px"},
+                                200,
+                                function(){
+                                    $(".customerCenterContainer").removeClass("expanded");
+                                }
+                        )
+                    }
+                }
+        )
+        $(".customerCenterButton").click(function(){
+            if(!$(".customerCenterContainer").hasClass("off"))
+            {
+                $(".customerCenterContainer").addClass("off");
+                $(".customerCenterItemsPanel").hide();
+                $(this).animate({width:"90px"},200,function(){$(".customerCenterContainer").removeClass("expanded");})
+                return false;
+            }
+            $(".customerCenterButton").animate({width:"100%"},"fast");
+            $(".customerCenterItemsPanel").slideDown("fast");
+            $(".customerCenterContainer").removeClass("off");
+
+        })
+
+
+        var a_pos = [];
+        var flag=true;
+        $(".changeList a").each(function(index){
+            var href= $(this).attr("href");
+            a_pos.push($("a[name=" + href.substring(1) + "]").offset());
+
+        });
+
+        $(".changeList a").click(function(e){
+            flag=false;
+            e.preventDefault();
+//            var href= $(this).attr("href");
+            $(this).closest("li").siblings().find("a").removeClass('currentLi');
+            $(this).addClass("currentLi");
+//            setTimeout(function(){
+//                location.href=href;
+//            },100);
+            var i=$(this).closest("li").index();
+            i-=Math.round(i/2);
+            $("html,body").animate({"scrollTop":a_pos[i].top-42},1);
+        });
+
+        $(window).bind("scroll",function(e){
+            if(flag){
+                var that = $(".changeList");
+                var currentPos = that.offset();
+                var i = 0;
+//                console.dir(a_pos);
+                for(i = a_pos.length - 1; i >=0 ; i--){
+                    if(currentPos.top >= a_pos[i].top-45){
+                        that.find("a").removeClass('currentLi');
+                        $("a:eq(" + (i) + ")" , that).addClass("currentLi");
+                        return false;
+                    }
+                }
+                that.find("a").removeClass('currentLi');
+                $("a:first" , that).addClass("currentLi");
+            }
+            flag=true;
+        });
+
+        $(".changeList").fixedBar();
+    });
+</script>
+
+<script>
+    eve={"2014/05/12":[15,15000],"2014/06/01":[15,15000],"2014/5/2":"","2014/5/3":"","2014/5/4":"","2013/10/5":"","2013/10/6":"","2013/10/7":"","2013/10/22":[22,45678]};
+
+    $.dateToString = function (s, sep) {
+        var sep = sep || '/'
+        return [s.getFullYear(), (s.getMonth() < 9 ? "0" : "") + (s.getMonth() + 1), (s.getDate() < 10 ? "0" : "") + s.getDate()].join(sep);
+    };
+    
+    $(function(){
+//        var t=kendo.template($("#tripDetailAddContainer").html());
+
+
+        var bookingOfCalendar=new FloatLayer({
+            trigger:".sale",
+            template:"#bookingTemplate2",
+            type:'click',
+            data:new Date()
+        })
+        
+        
+        var today = new Date(),
+                toDate=today;
+        var spDate=(function(){
+            var arr=[];
+            for(name in eve){
+                arr.push(+new Date(name));
+            }
+            return arr;
+        })();
+        var calendar=$("#calendar").kendoCalendar({
+            culture:"zh-CN",
+            dates:spDate,
+            value:today,
+            footer:false,
+            month:{content:$("#calendarTemplate").html()},
+            navigate:function(){
+                console.dir(this);
+                changeCalendarDateInfo(this.current());
+                $(".k-other-month a").click(function(){return false;})//禁止点击其他月份日期
+            }
+        }).data("kendoCalendar");
+        
+        changeCalendarDateInfo(new Date());
+
+        $(".calendarMonthRight").click(function(){
+            if(!$(this).hasClass("disabled"))
+            {
+                toDate=toDate.DateAdd("m",+1);
+                calendar.navigate(toDate,"month");
+            }
+        })
+        $(".calendarMonthLeft").click(function(){
+            if(!$(this).hasClass("disabled"))
+            {
+                toDate=toDate.DateAdd("m",-1);
+                calendar.navigate(toDate,"month");
+            }
+        })
+        
+        
+        
+        
+    })
+
+    function changeCalendarDateInfo(toDate)
+    {
+        $(".calendarDate").html(toDate.getFullYear()+"年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+(toDate.getMonth()+1)+"月");
+    }
+
+    function getjqjr(year,month,day)
+    {
+        myCal=new CCC(year,month,day);
+        myLunarCal=myCal.lunar();
+        sTerm=myCal.solarTerm();
+        var tmp="";
+        tmp+=myCal.sFtvl()!=""?myCal.sFtvl()+"<br />":"";
+        tmp+=myCal.jqFtvl()!=""?myCal.jqFtvl()+"<br />":"";
+        tmp+=myLunarCal.lunFtvl()!=""?myLunarCal.lunFtvl()+"<br />":"";
+        return (tmp);
+    }
+</script>
+
+</body>
+</html>
+
