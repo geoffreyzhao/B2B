@@ -207,7 +207,7 @@ $(function(){
 		$(".adultBox").css("width", adultWidth + 1 + "px");
 		$(".kidsBox").css("width", kidsWidth + 1 + "px");		
 	}
-	addClassForGroupStageTab();
+	// addClassForGroupStageTab();
 
 });
 

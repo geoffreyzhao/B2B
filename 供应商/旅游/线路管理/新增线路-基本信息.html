@@ -360,10 +360,20 @@
     
 <script type="text/x-kendo-template" id="level-explainTemplate">
         <div class="layerContainer">
-            <div class="layerBlueArrow"></div>
-            <div class="warmTips">
-                说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字
-            </div>
+            <table>
+                <colgroup>
+                    <col width="350"/>
+                    <col width="140"/>
+                    <col width="70"/>
+                </colgroup>
+                <thead>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </thead>
+            </table>
         </div>
 </script>
 
@@ -600,18 +610,12 @@
             width:'600',
             template:'#ac-journal-template'
         }).init();
-        
-        $(".basicInfoTable .level-explain").kendoTooltip({
-            position:"bottom", //left right top
-            wrapperClass:"lineWeight",
-            content:function(){
-                return $("#level-explainTemplate").html();
-            },
-            callout:false,
-            offsetY:5,
-            offsetX:80,
-            width:358
-        });
+
+        new PopWindow('', {
+            template:'#level-explainTemplate',
+            title:'钻级说明',
+            width:'930'
+        }).init();
 
         new PopWindow('.ac-selectCity',{
             template:'#ac-selectCity-template',
