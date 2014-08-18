@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>运营商 旅游 订单详情</title>
+<meta charset="utf-8" />
+<link href="/static/css/kendo.common.css" rel="stylesheet" />
+<link href="/static/css/kendo.gray.css" rel="stylesheet" />
+<link href="/static/css/common.css" rel="stylesheet" />
+<link href="/static/css/b2b.css" rel="stylesheet" />
+<link href="/static/css/kendo.reset.css" rel="stylesheet" />
+<link href="/static/css/order.css" rel="stylesheet">
+
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/kendo.web.js"></script>
+<script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
+<script type="text/javascript" src="/static/js/global.js"></script>
+<script type="text/javascript" src="/static/js/flight.js"></script>
+    <script>
+        $(function(){
+            kendo.init('body');
+            lensf();
+        })
+    </script>
+
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+<!--[if lt IE 8]> 
+<link rel="stylesheet" href="/static/css/ie.css" /> 
+<script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
+<![endif]-->
+<script type="text/javascript" src="/static/js/sync.js"></script>
+<!-- @CLB@ -->
+</head>
+<body>  
+<div id="extHeader">
+        <div></div>
+</div>
+
+    <div id="container">
+        <div class="header">
+            <h1></h1>
+            <div>
+                <span>你好,${name}</span>
+                <a href="javascript:void(0);">退出</a>
+            </div>
+            <ul id="top_menu">
+                <li><a href="javascript:void(0);">国内机票</a></li>
+                <li><a href="javascript:void(0);">国际机票</a></li>
+                <li><a href="javascript:void(0);">酒店</a></li>
+                <li><a href="javascript:void(0);">票证中心</a></li>
+                <li><a href="javascript:void(0);">财务管理</a></li>
+                <li><a href="javascript:void(0);">客户管理</a></li>
+                <li class="current"><a href="javascript:void(0);">系统设置</a></li>
+            </ul>
+            <ol class="sub_menu">
+                <li class="current"><a href="javascript:void(0);">公告信息</a></li>
+                <li><a href="javascript:void(0);">公司信息</a></li>
+                <li><a href="javascript:void(0);">组织架构</a></li>
+                <li><a href="javascript:void(0);">角色维护</a></li>
+                <li><a href="javascript:void(0);">基础数据</a></li>
+            </ol>
+            <div id="message">
+            	<a href="javascript:void(0);">消息</a>
+                <span>New</span>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="sub_menu_bar"></div>
+        <div id="mainContent">
+<div class="actions block">
+    <div class="col col-l sep-r">
+        <button class="btns btn-return">返回</button>
+    </div>
+    <div class="col col-r sep-l">
+        <button class="btns btn-blue">退回</button>
+        <a href="javascript:;" class="button_important adaptiveButton small">
+            <span class="left"></span>
+            <span class="center">审核通过</span>
+            <span class="right"></span>
+        </a>
+    </div>
+</div>
+
+<div class="block block0 clearfix">
+    <div class="col col-l">
+        <div class="row">
+            <span class="text1">订单号：<strong>12311321983921</strong></span>&nbsp;
+            <span class="text2"> - 订单类型：国内机票 </span>
+        </div>
+        <div class="row">
+            <span>最后更新：<em>航班号更改为CZ3609</em></span>&nbsp;&nbsp;<span>更新时间：<em>2013-06-15 11:23 </em></span>&nbsp;&nbsp;<span><a href="#">【更多操作日志】</a></span>
+        </div>
+    </div>
+    <div class="col col-r">
+        <ul class="flat-list travelOrder">
+            <li>
+            <div class="instr clearfix">
+                <span>创建</span>
+                <span class="highlight-fl">支付</span>
+                <span>确认</span>
+            </div>
+            </li>
+            <li>
+            <div class="instr clearfix">
+                <span>收款</span>
+                <span>结算</span>
+            </div>
+            </li>
+            <li class="orderStatus">
+                状态：<b class="redFont">占位</b>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- 订单信息 -->
+<div class="block block1 block-module orderBlock-m">
+    <div class="block-title">客户信息</div>
+    <ul class="flat-list" style="margin-right: -120px;">
+        <li>
+        <label class="vertical-head">客户名称</label>
+        <span>苏宁</span>
+        </li>
+        <li>
+        <label class="vertical-head">结算方式</label>
+        <span>订单授信</span>
+        </li>
+        <li>
+        <label class="vertical-head">可用余额</label>
+        <span><em class="orangeFont">6870.00</em>元</span>
+        </li>
+        <li>&nbsp;</li>
+        <li>
+        <label class="vertical-head">联系人</label>
+        <span>张大中</span>
+        </li>
+        <li>
+        <label class="vertical-head">联系电话</label>
+        <span>52800886</span>
+        </li>
+        <li>
+        <label class="vertical-head">手机号码</label>
+        <span>13800138000</span>
+        </li>
+        <li>&nbsp;</li>
+        <li>
+        <label class="vertical-head">采购备注</label>
+        <span> </span>
+        </li>
+        <li>&nbsp;</li>
+        <li>
+        <label class="vertical-head">内部备注</label>
+        <span> </span>
+        </li>
+        <li>&nbsp;</li>        
+    </ul>
+</div>
+
+<div class="departure">
+    <div class="chief"> <h3>产品信息</h3> </div>
+    <table cellpadding="0" cellspacing="0" class="productInfo">
+        <colgroup>
+            <col width="75"/>
+            <col width="650"/>
+            <col width="130"/>
+            <col width="115"/>
+        </colgroup>
+        <tbody>
+        <tr>
+            <td colspan="2">
+                <h2 class="productTitle">[美国东西海岸夏威夷+加拿大18日游] 6月29日暑期特价游，韩亚航空东海岸四星级酒店住宿</h2>
+            </td>
+            <td>
+                <em class="font14">成人:</em>
+            </td>
+            <td>
+                <span style="font-size: 14px;"><em style="color: #ef4423;">￥9865</em> /人 x2 </span>
+            </td>
+        </tr>
+        <tr class="moveTop">
+            <td colspan="2" class="productSmallInfo">
+                <label>产品编号：<em class="font404040">60891</em></label>
+                <label>出发地：<em class="font404040">上海</em></label>
+                <label>出发：<em class="font404040">2014 - 06 - 08 </em></label>
+                <label>天数：<em class="font404040">15天</em></label>
+            </td>
+            <td>
+                <em class="font14">儿童:</em>
+            </td>
+            <td>
+                <span style="font-size: 14px;"><em style="color: #ef4423;">￥7523</em> /人 x1 </span>
+            </td>
+        </tr>
+        <tr class="dotted_top">
+            <td>可 &nbsp;&nbsp; 选：</td>
+            <td>
+                <em class="circularBeadBorder">签证</em>
+                <span>美国个人旅游签证（中信银行代传递免面试，用于团队，上海送签）</span>
+            </td>
+            <td>
+                <em class="font14">签证:</em>
+            </td>
+            <td>
+                <span style="font-size: 14px;"><em style="color: #ef4423;">￥9865</em> /人 x2 </span>
+            </td>
+        </tr>
+        <tr class="moveTop">
+            <td> </td>
+            <td>
+                <em class="circularBeadBorder noContent"> </em>
+                <span>美国个人旅游签证（中信银行代传递免面试，用于团队，上海送签）</span>
+            </td>
+            <td> </td>
+            <td>
+                <span style="font-size: 14px;"><em style="color: #ef4423;">￥9865</em> /人 x2 </span>
+            </td>
+        </tr>
+        <tr class="moveTop">
+            <td> </td>
+            <td>
+                <em class="circularBeadBorder">附加费用</em>
+                <span>单人房差</span>
+            </td>
+            <td>
+                <em class="font14">单房差:</em>
+            </td>
+            <td>
+                <span style="font-size: 14px;"><em style="color: #ef4423;">￥7523</em> /人 x1 </span>
+            </td>
+        </tr>
+        <tr class="moveTop">
+            <td></td>
+            <td class="costTd">
+                <div class="costContent" style="display: none;">
+                    <ul class="costList clearfix">
+                        <li class="current">费用包含</li>
+                        <li>费用不包含</li>
+                    </ul>
+                    <div class="costListChange">
+                        <div class="costP changeContent">
+                            <p>机票：全程往返团队经济舱机票含税费（团队机票一经开出，不得更改、不得签转、不得退票）。</p>
+                            <p>当地用车：空调旅游车（参团人数决定车型大小）。</p>
+                            <p>酒店：行程中所列酒店或同类别酒店双人标间*美洲无统一的酒店星级评定标准）。</p>
+                            <p>用餐：行程中所列团队标准用餐。</p>
+                            <p>门票：行程中标明的景点普通参观门票。</p>
+                            <p>导服：专业领队以及当地导游。</p>
+                            <p>服务费：领队、当地司机、中英文双语导游服务费。</p>
+                        </div>
+                        <div class="changeContent" style="display: none;"> </div>
+                    </div>
+                </div>
+                <div class="costFlexibleType">
+                    查看费用详情
+                </div>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="departure">
+    <div class="chief"> <h3>旅客信息</h3> </div>
+    <table class="orderCommonTab">
+        <colgroup>
+            <col width="40"/>
+            <col width="60"/>
+            <col width="90"/>
+            <col width="65"/>
+            <col width="130"/>
+            <col width="75"/>
+            <col width="55"/>
+            <col width="45"/>
+            <col width="80"/>
+            <col width="60"/>
+            <col width="68"/>
+            <col width="170"/>
+        </colgroup>
+        <thead>
+        <th style="text-align: center;"></th>
+        <th>姓名</th>
+        <th>状态</th>
+        <th>证件类型</th>
+        <th>证件号码</th>
+        <th>证件有效期</th>
+        <th>国籍</th>
+        <th>性别</th>
+        <th>生日</th>
+        <th>出生地</th>
+        <th>手机号</th>
+        <th>附加</th>
+        </thead>
+        <tbody>
+        <tr>
+            <td style="text-align: center;">
+                <span class="blueBgStyle">成人</span>
+            </td>
+            <td>张大国</td>
+            <td class="redFont">已确认</td>
+            <td>身份证</td>
+            <td>420813198809131539</td>
+            <td>18/09/18</td>
+            <td>中国</td>
+            <td>男</td>
+            <td>1985-10-23</td>
+            <td>上海</td>
+            <td>13800138000</td>
+            <td>
+                <a href="javascript:void(0);">美国个人旅游签证</a>
+                <em>材料已到</em>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">
+                <span class="blueBgStyle">儿童</span>
+            </td>
+            <td>张大国</td>
+            <td class="redFont">已确认</td>
+            <td>身份证</td>
+            <td>420813198809131539</td>
+            <td>18/09/18</td>
+            <td>中国</td>
+            <td>男</td>
+            <td>1985-10-23</td>
+            <td>上海</td>
+            <td>13800138000</td>
+            <td>
+                <a href="javascript:void(0);">美国个人旅游签证</a>
+                <em>材料已到</em>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="block block5 block-calc">
+    <div id="order_calc">
+        <ul class="flat-list">
+            <li class="first">
+            <label>
+                <span>应收合计</span> 
+                <input value="2580.00" class="input-b"> 
+            </label>
+            </li> 
+            <li>
+            <label>
+                <span>票款合计</span>
+                <input value="320.00">
+            </label>
+            </li>
+            <li>
+            <label>
+                <span>税款合计(机建/燃油)</span>
+                <input>
+            </label>
+            </li>
+            <li>
+            <label>
+                <span>附加费</span>
+                <input>
+            </label>
+            </li>
+            <li>
+            <label>
+                <span>客户返佣</span>
+                <input>
+            </label>
+            </li>
+            <li>
+            <label>
+                <span>服务费</span>
+                <input>
+            </label>
+            </li>
+        </ul> 
+    </div>
+</div>
+
+<script>
+    $(function(){
+
+        $(".costFlexibleType").click(function(){
+            $(".costTd .costContent").slideToggle();
+            if($(this).hasClass("down"))
+            {
+                $(this).removeClass("down");
+                $(this).text("查看费用详情");
+            }
+            else
+            {
+                $(this).addClass("down");
+                $(this).text("收起详情");
+            }
+        });
+
+        $(".costList li").each(function(index){
+            $(this).click(function(){
+                $(".costListChange .changeContent").hide();
+                $(".costListChange .changeContent:eq(" + index + ")").show();
+                $(".costList li").removeClass("current");
+                $(this).addClass("current");
+            });
+        });
+        
+
+    });
+</script>
+
+
+     </div>
+
+    </div>
+		
+    <div id="extFooter">
+        <div>
+            <p>
+                <a href="javascript:void(0);">关于我们</a>&nbsp;|
+                <a href="javascript:void(0);">微博</a>&nbsp;|
+                <a href="javascript:void(0);">服务条款</a>&nbsp;|
+                <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+</body></html>
