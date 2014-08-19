@@ -16,14 +16,67 @@ $(function(){
 		$(this).click(function(){
 			$(this).addClass("first-navi-active");
 			$(this).siblings("li").removeClass('first-navi-active');
+
+			$(".user-setting").removeClass("user-setting-active");
+			$(".user-setting-nav").css("display", "none");
+
+			$(this).children('.second-navi').css("display", "block");
+			$(".third-navi").css("display", "block");
 		});
 	});
 
 	var indexArr = [];
 
-	$(".second-navi-li").each(function(index) {
+	// $(".second-navi-li").each(function(index) {
 
-		if (!$(this).hasClass('second-navi-active')) {
+	// 	if (!$(this).hasClass('second-navi-active')) {
+	// 		$(this).bind("mouseenter", function(){
+	// 			$(this).children(".navi-slide-hover").animate({
+	// 				height: '5px'
+	// 			}, 300, 'swing');
+	// 		});
+
+	// 		$(this).bind("mouseleave", function(){
+	// 			$(this).children('.navi-slide-hover').animate({
+	// 				height: '0px'
+	// 			}, 200, 'swing');
+	// 		});
+	// 	}
+
+	// 	$(this).click(function() {
+
+	// 		if (!$(this).hasClass('second-navi-active')) {
+
+	// 			$(this).addClass("second-navi-active");
+	// 			$(this).siblings().removeClass("second-navi-active");
+
+	// 			// 用数组存放每次的索引号，为减少内存占用，只取数组最新加入的两个
+	// 			indexArr.push(index);
+	// 			if (indexArr.length > 2) {
+	// 				indexArr = indexArr.slice(indexArr.length - 2);
+	// 			}
+
+	// 			// 解除 mouseleave 事件的绑定，以免和click事件冲突
+	// 			$(this).unbind("mouseleave");
+
+	// 			$(this).children(".navi-slide-hover").css("height","5px");
+	// 			$(this).siblings().children('.navi-slide-hover').css("height","0px");
+
+	// 			// 为上一次点击的li 重新绑定 mouseleave 事件
+	// 			if (indexArr.length == 2) {
+	// 				$(this).parent().children('li').eq(indexArr[0]).bind("mouseleave", function(){
+	// 					$(this).children('.navi-slide-hover').animate({
+	// 						height: '0px'
+	// 					}, 200, 'swing');
+	// 				});
+	// 			}
+	// 		}
+	// 	});
+	// });
+
+	$(".first-navi li").each(function(){
+		$(this).children('.second-navi').children('.second-navi-li').each(function(index){
+			if (!$(this).hasClass('second-navi-active')) {
 			$(this).bind("mouseenter", function(){
 				$(this).children(".navi-slide-hover").animate({
 					height: '5px'
@@ -66,6 +119,7 @@ $(function(){
 				}
 			}
 		});
+		});
 	});
 
 	$(".third-navi-li").each(function(){
@@ -76,21 +130,25 @@ $(function(){
 	});
 
 
-	// 设置部分
-	$(".setting-content").hide();
+	// 设置部分 点击事件
+	$(".user-setting").click(function(){
+		$(this).addClass("user-setting-active");
+		$(".user-setting-nav").css("display","block");
 
-	$(".setting-icon").hover(function(){
-		$(this).addClass("setting-icon-active");
-		$(".setting-content").show();
-	}, function(){	});
+		// var $curNav = $(".user-setting-nav").children('.second-navi')
+		// 		.children(".second-navi-li:first-child");
+		// $curNav.addClass("second-navi-active");
+		// $curNav.children(".navi-slide-hover").css("height", "5px");
 
+		$(".first-navi-li .second-navi-active").parent("ol").css("display","none");
+		$(".third-navi-active").parent("ul").css("display", "none")
 
-	$(".setting-content").hover(function() {
-		$(".setting-content").show();
-	}, function(){
-		$(".setting-content").hide();
-		$(".setting-icon").removeClass("setting-icon-active");
+		$(".first-navi-li").each(function(){
+			$(this).removeClass("first-navi-active");
+		});
+
 	});
+
 
 	// header common js end
 
