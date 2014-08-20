@@ -36,10 +36,19 @@ $(function() {
 	logoAll.push(logo3);
 	logoAll.push(logo4);
 
-	$.each(logoAll,function(){
+	// $.each(logoAll,function(){
+	// 	$(this).on("click",function(){
+	// 		var titleSel = $("#title").find(".titleBlock");
+	// 		$.each(titleSel,function(){
+	// 			$(this).removeClass("titleBlock");
+	// 		});
+	// 			$(this).addClass("titleBlock");
+	// 	});
+	// });
+	$(logoAll).each(function(){
 		$(this).on("click",function(){
 			var titleSel = $("#title").find(".titleBlock");
-			$.each(titleSel,function(){
+			$(titleSel).each(function(){
 				$(this).removeClass("titleBlock");
 			});
 				$(this).addClass("titleBlock");
