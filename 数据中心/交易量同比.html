@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../static/css/smoothness/jquery-ui-1.10.3.custom.css" />
     <link rel="stylesheet" href="../static/css/date.css" media="all" />
     <link href="../static/css/kendo.common.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../static/css/kendo.store.css" />
     <link rel="stylesheet" href="../static/css/kendo.default.css" />
     <link rel="stylesheet" href="../static/css/dateCenter.css"/>
 
@@ -89,7 +90,7 @@
                   <div class="rightContTab">
                     <div class="rightContFirstModel">
                       <div class="modelTop">
-                        <span class="modelTopTitle">机票订单量</span>
+                        <span class="modelTopTitle orderQuantityTitle">机票订单量 <i class="greenIcon"></i></span>
                         <span class="modelTopDownload"></span>
                       </div>
                       <table>
@@ -167,7 +168,7 @@
                     </div>
                     <div class="rightContSecondModel">
                       <div class="modelTop">
-                        <span class="modelTopTitle">机票销售额</span>
+                        <span class="modelTopTitle saleroomTitle">机票销售额 <i class="greenIcon"></i></span>
                         <span class="modelTopDownload"></span>
                       </div>
                       <table>
@@ -255,7 +256,7 @@
 
                     <div class="rightContFirstModel">
                       <div class="modelTop">
-                        <span class="modelTopTitle">酒店订单量</span>
+                        <span class="modelTopTitle orderQuantityTitle">酒店订单量 <i class="greenIcon"></i></span>
                         <span class="modelTopDownload"></span>
                       </div>
                       <table>
@@ -333,7 +334,7 @@
                     </div>
                     <div class="rightContSecondModel">
                       <div class="modelTop">
-                        <span class="modelTopTitle">酒店销售额</span>
+                        <span class="modelTopTitle saleroomTitle">酒店销售额 <i class="greenIcon"></i></span>
                         <span class="modelTopDownload"></span>
                       </div>
                       <table>
@@ -421,7 +422,7 @@
 
                     <div class="rightContFirstModel">
                       <div class="modelTop">
-                        <span class="modelTopTitle">保险订单量</span>
+                        <span class="modelTopTitle orderQuantityTitle">保险订单量 <i class="greenIcon"></i></span>
                         <span class="modelTopDownload"></span>
                       </div>
                       <table>
@@ -499,7 +500,7 @@
                     </div>
                     <div class="rightContSecondModel">
                       <div class="modelTop">
-                        <span class="modelTopTitle">保险销售额</span>
+                        <span class="modelTopTitle saleroomTitle">保险销售额 <i class="greenIcon"></i></span>
                         <span class="modelTopDownload"></span>
                       </div>
                       <table>
@@ -591,25 +592,70 @@
             </center>
         </footer>
   </div>
-  
-  <script>
-	
+
+<script type="text/x-kendo-template" id="orderQuantityTemplate">
+    <div class="tooltipsContent">
+        <div class="tooltipsArrow"></div>
+        <div class="detailsP">
+            <p><em class="greenFonts">新增用户数：</em>每日新增的用户人数，以在平台注册为准。</p>
+            <p><em class="greenFonts">新增有效用户数：</em>每日新增的用户人数，以在平台注册为准为准为准为准为准的第三方都是法国法国法国法国梵蒂冈梵蒂冈电饭锅梵蒂冈梵蒂冈梵蒂冈。</p>
+            <p><em class="greenFonts">用户总量：</em>每日新增的用户人数，以在平台注册为准地方水电费地方的的。</p>
+            <p><em class="greenFonts">有效用户总量：</em>每日新增的用户人数，以在平台注册为准都是缩放第三方擦的地方第三方第三方第三方地方地方的地方第三方地方的。</p>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="saleroomTemplate">
+    <div class="tooltipsContent">
+        <div class="tooltipsArrow"></div>
+        <div class="detailsP">
+            <p><em class="greenFonts">新增用户数：</em>每日新增的用户人数，以在平台注册为准。</p>
+            <p><em class="greenFonts">新增有效用户数：</em>每日新增的用户人数，以在平台注册为准为准为准为准为准的第三方都是法国法国法国法国梵蒂冈梵蒂冈电饭锅梵蒂冈梵蒂冈梵蒂冈。</p>
+            <p><em class="greenFonts">用户总量：</em>每日新增的用户人数，以在平台注册为准地方水电费地方的的。</p>
+            <p><em class="greenFonts">有效用户总量：</em>每日新增的用户人数，以在平台注册为准都是缩放第三方擦的地方第三方第三方第三方地方地方的地方第三方地方的。</p>
+        </div>
+    </div>
+</script>
+
+  <script>	
 		$(function(){
 
-    $(".rightContTab:gt(0)").hide();
-    // tab 切换
-    $(".classify li").each(function(index){
-      $(this).click(function(){
-          $(".rightContTab").hide();
-          $(".rightContTab:eq(" + index + ")").show();
-      });
-    });
+            $(".rightContTab:gt(0)").hide();
+            // tab 切换
+            $(".classify li").each(function(index){
+              $(this).click(function(){
+                  $(".rightContTab").hide();
+                  $(".rightContTab:eq(" + index + ")").show();
+              });
+            });
+        
+              // 启用 kendoUI dropDownList 效果
+              $("#area").kendoDropDownList();
+              $("#busiType").kendoDropDownList();
 
-      // 启用 kendoUI dropDownList 效果
-      $("#area").kendoDropDownList();
-      $("#busiType").kendoDropDownList();
+            $(".modelTop .orderQuantityTitle").kendoTooltip({
+                position:"left", //bottom right top 
+                content:function(){
+                    return $("#orderQuantityTemplate").html();
+                },
+                callout:false,
+                offsetX:18,
+                offsetY:5,
+                width:450
+            });
 
-    });
+            $(".modelTop .saleroomTitle").kendoTooltip({
+                position:"left", //bottom right top 
+                content:function(){
+                    return $("#saleroomTemplate").html();
+                },
+                callout:false,
+                offsetX:18,
+                offsetY:5,
+                width:450
+            });
+
+        });
   </script>
    
     

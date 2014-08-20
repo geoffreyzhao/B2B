@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../static/css/smoothness/jquery-ui-1.10.3.custom.css" />
     <link rel="stylesheet" href="../static/css/date.css" media="all" />
     <link href="../static/css/kendo.common.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../static/css/kendo.store.css" />
     <link rel="stylesheet" href="../static/css/kendo.default.css" />
     <link rel="stylesheet" href="../static/css/dateCenter.css"/>
 
@@ -54,8 +55,7 @@
                                       <li>交易量同比</li>
                                       <li class="currentStatus">交易量统计</li>
                                   </ul>
-                             </li>
-                             
+                             </li>                             
                          </ul>
                 </div> <!--leftMenu 结束-->
 
@@ -99,6 +99,51 @@
                     <label>本期累计订单数：<em>123,465,789</em> 张</label>
                     <label>本期累计销售额：<em>987,654,321.00</em> 元</label>
                   </div>
+                    <div class="rightContSecondModel">
+                        <div class="modelTop">
+                            <span class="modelTopTitle detailTitle">数据明细 <i class="greenIcon"></i></span>
+                            <!--<span class="modelTopDownload"></span>-->
+                        </div>
+                        <table class="dateCenterCommonTab">
+                            <colgroup>
+                                <col width="20%"/>
+                                <col width="40%"/>
+                                <col width="40%"/>
+                            </colgroup>
+                            <tr>
+                                <th>日期</th>
+                                <th>销售额</th>
+                                <th>订单数</th>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">2014-05-04</td>
+                                <td>
+                                    <span class="textAlignRight">0.00</span>
+                                </td>
+                                <td>
+                                    <span class="textAlignRight">1718979</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">2014-05-03</td>
+                                <td>
+                                    <span class="textAlignRight">2，210，246.00</span>
+                                </td>
+                                <td>
+                                    <span class="textAlignRight">1718979</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">2014-05-01</td>
+                                <td>
+                                    <span class="textAlignRight">2，2684.00</span>
+                                </td>
+                                <td>
+                                    <span class="textAlignRight">1718979</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div> 
                 </div>  <!-- 右边内容结束 -->
         
         </div> <!--mainContent 结束-->
@@ -110,13 +155,38 @@
         </footer>
   </div>
 
+<script type="text/x-kendo-template" id="detailTemplate">
+    <div class="tooltipsContent">
+        <div class="tooltipsArrow"></div>
+        <div class="detailsP">
+            <p><em class="greenFonts">新增用户数：</em>每日新增的用户人数，以在平台注册为准。</p>
+            <p><em class="greenFonts">新增有效用户数：</em>每日新增的用户人数，以在平台注册为准为准为准为准为准的第三方都是法国法国法国法国梵蒂冈梵蒂冈电饭锅梵蒂冈梵蒂冈梵蒂冈。</p>
+            <p><em class="greenFonts">用户总量：</em>每日新增的用户人数，以在平台注册为准地方水电费地方的的。</p>
+            <p><em class="greenFonts">有效用户总量：</em>每日新增的用户人数，以在平台注册为准都是缩放第三方擦的地方第三方第三方第三方地方地方的地方第三方地方的。</p>
+        </div>
+    </div>
+</script>
+
+
   <!-- 对echarts 标签引入时，最好放在body体结尾 -->
   <script src="../static/js/plugins/echarts/echarts-plain.js"></script>
 
   <script>
 
-	$(function(){  
+	$(function(){
 
+        $(".modelTop .detailTitle").kendoTooltip({
+            position:"left", //bottom right top 
+            content:function(){
+                return $("#detailTemplate").html();
+            },
+            callout:false,
+            offsetX:18,
+            offsetY:5,
+            width:450
+        });
+        
+        
     $("#area").kendoDropDownList();
     $("#busiType").kendoDropDownList();
 

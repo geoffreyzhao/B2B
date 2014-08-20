@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../static/css/smoothness/jquery-ui-1.10.3.custom.css" />
     <link rel="stylesheet" href="../static/css/date.css" media="all" />
     <link href="../static/css/kendo.common.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../static/css/kendo.store.css" />
     <link rel="stylesheet" href="../static/css/kendo.default.css" />
     <link rel="stylesheet" href="../static/css/dateCenter.css"/>
 
@@ -75,7 +76,7 @@
                   <div class="rightContTab">
                     <div class="rightContFirstModel">
                       <div class="modelTop">
-                        <span class="modelTopTitle">客户增量报表-同比</span>
+                        <span class="modelTopTitle statementTitle">客户增量报表-同比 <i class="greenIcon"></i></span>
                         <span class="modelTopDownload"></span>
                       </div>
                       <table>
@@ -160,7 +161,8 @@
                     <label>本期注册用户增加量：<em>10250</em> 人</label>
                     <label>有效用户：<em>9898</em> 人</label><br/>
                     <small>*有效用户为注册后有完成订单的用户</small>
-                  </div>
+                  </div>      
+                    
                 </div>  <!-- 右边内容结束 -->
         
         </div> <!--mainContent 结束-->
@@ -172,13 +174,36 @@
         </footer>
   </div>
 
+<script type="text/x-kendo-template" id="statementTemplate">
+    <div class="tooltipsContent">
+        <div class="tooltipsArrow"></div>
+        <div class="detailsP">
+            <p><em class="greenFonts">新增用户数：</em>每日新增的用户人数，以在平台注册为准。</p>
+            <p><em class="greenFonts">新增有效用户数：</em>每日新增的用户人数，以在平台注册为准为准为准为准为准的第三方都是法国法国法国法国梵蒂冈梵蒂冈电饭锅梵蒂冈梵蒂冈梵蒂冈。</p>
+            <p><em class="greenFonts">用户总量：</em>每日新增的用户人数，以在平台注册为准地方水电费地方的的。</p>
+            <p><em class="greenFonts">有效用户总量：</em>每日新增的用户人数，以在平台注册为准都是缩放第三方擦的地方第三方第三方第三方地方地方的地方第三方地方的。</p>
+        </div>
+    </div>
+</script>
+
+
   <!-- 对echarts 标签引入时，最好放在body体结尾 -->
   <script src="../static/js/plugins/echarts/echarts-plain.js"></script>
 
   <script>
+	$(function(){
 
-	$(function(){  
-
+        $(".modelTop .statementTitle").kendoTooltip({
+            position:"left", //bottom right top 
+            content:function(){
+                return $("#statementTemplate").html();
+            },
+            callout:false,
+            offsetX:18,
+            offsetY:5,
+            width:450
+        });
+        
     $("#area").kendoDropDownList();
     $("#busiType").kendoDropDownList();
 

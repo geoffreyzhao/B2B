@@ -67,11 +67,11 @@ $(function() {
     });
 
     // 为左侧菜单栏添加点击事件  实现slideToggle效果
-    $(".secondLevel").hide();
+    /*$(".secondLevel").hide();*/
 
     $(".firstLevel em").click(function() {
         $(this).closest("li").find("ul").slideToggle();
-        $(this).parent().siblings('.firstLevel').closest("li").find("ul").slideUp();
+        /*$(this).parent().siblings('.firstLevel').closest("li").find("ul").slideUp();*/
 
         var $siblingFirstLevel = $(this).parent().siblings('.firstLevel').children('em').children('span');
         $siblingFirstLevel.removeClass('menuExpand');
