@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>旅游 线路管理 订单详情</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css">
+    <link href="/static/css/kendo.common.css" rel="stylesheet" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" />
+    <link href="/static/css/common.css" rel="stylesheet" />
+    <link href="/static/css/supplier.css" rel="stylesheet" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link href="/static/css/supplier_common.css" rel="stylesheet" />
+    <link href="/static/css/supplierTravel.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/flight.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+    <script type="text/javascript" src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+    <script type="text/javascript" src="/static/js/supplier/supplier_travel.js"></script>
+        
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+        
+    <!--[if lt IE 8]> 
+    <link rel="stylesheet" href="/static/css/ie.css" /> 
+    <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
+    <![endif]-->
+    <script type="text/javascript" src="/static/js/supplier/supplier_sync.js"></script>
+    <!-- @CLB@ -->
+        <style type="text/css">
+            .lineWeight {
+                box-shadow:none;
+            }
+            .k-tooltip-content {
+                padding: 0;
+            }
+        </style>
+        <script>
+            $(function(){
+                kendo.init('body');
+                lensf();
+            })
+        </script>
+    </head>
+<body style="background: #f6f6f6;">
+    <div class="bg-header-repeat">
+        <div class="bg-header-top"></div>
+        <div class="navi-split-line"></div>
+        <div class="main-header"></div>
+    </div>
+
+    <div id="container" class="new-container">
+        <div class="header-top-center">
+            <div class="head-left">
+                <div class="supplier-logo"></div>
+            </div>
+            <ul class="first-navi">
+                <li class="first-navi-li"><a href="javascript:void(0);">国内机票</a></li>
+                <li class="first-navi-li"><a href="javascript:void(0);">国际机票</a></li>
+                <li class="first-navi-li first-navi-active"><a href="javascript:void(0);">旅游</a>
+                    <ol class="second-navi">
+                        <li class="second-navi-li"><a href="javascript:void(0);">首页</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">线路管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">团管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li second-navi-active"><a href="javascript:void(0);">订单管理</a>
+                            <div class="navi-slide-hover" style="height:5px;"></div>
+                        </li>
+                    </ol>
+                </li>
+                <li class="first-navi-li"><a href="javascript:void(0);">财务管理</a></li>
+            </ul>
+            <div class="head-right">
+                <ul class="feature">
+                    <li class="split-line"></li>
+                    <li class="person-info">
+                        <span class="person-icon"></span>
+                        <span class="person-name">zhaoshuaigeng</span>
+                    </li>
+                    <li class="split-line"></li>
+                    <li class="notice-icon-active"></li>
+                    <li class="split-line"></li>
+                    <li class="setting-icon">
+                        <ul class="setting-content">
+                            <li>我的账号</li>
+                            <li>公司信息</li>
+                            <li>员工管理</li>
+                            <li>角色管理</li>
+                            <li>账户设置</li>
+                            <li>OFFICE管理</li>
+                        </ul>
+                    </li>
+                    <li class="split-line"></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="sub_menu_bar"></div>
+
+    <div id="mainContent" class="mainOrderContent clearfix">
+        <!--订单流程-->
+        <div class="flow">
+            <div class="instr pull-right">
+                <span class="highlightTravel">创建</span>
+                <span>支付</span>
+                <span>确认</span>
+                <span>结算</span>
+            </div>
+            <!--<div class="instr pull-right">
+                <span>创建</span>
+                <span class="highlightTravel">支付</span>
+                <span>确认</span>
+                <span>结算</span>
+            </div>-->
+            <!--<div class="instr pull-right">
+                <span>创建</span>
+                <span>支付</span>
+                <span>确认</span>
+                <span class="highlightTravel">结算</span>
+            </div>-->
+            <!--<div class="instr pull-right">
+                <span>创建</span>
+                <span>支付</span>
+                <span>确认</span>
+                <span class="highlightTravel">取消</span>
+            </div>-->
+            <!--<div class="instr pull-right">
+                <span>创建</span>
+                <span>支付</span>
+                <span class="highlightTravel">取消</span>
+            </div>-->
+        </div>
+        <!--order start-->
+        <div class="travelOrderBlock">
+            <div class="travelOrderStatus">
+                <table>
+                    <colgroup>
+                        <col width="300"/>
+                        <col width="220"/>
+                        <col width="300"/>
+                        <col width="140"/>
+                    </colgroup>
+                    <tr>
+                        <td><span class="orderNO">订单号：<strong>1409483920498374</strong></span></td>
+                        <td colspan="3">
+                            <span id="contactServiceTips" class="contactService"><i></i>联系客服</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <label style="margin-right: 50px;"><em class="fc1">下单时间：</em><i class="fc2">2013-08-08 12:30</i></label>
+                            <label><em class="fc1">团号：</em><i class="fc2">HAWA20140709</i></label>
+                        </td>
+                        <td><em class="fc1">状态：</em><b class="f-status">询位</b></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="orderTracking">
+                <h3>订单跟踪：</h3>
+                <ul class="trackingList">
+                    <li>
+                        <i class="dotIcon"></i>
+                        <div class="trackingListText first-trackingListText">
+                            <!--<span class="orderOper">提交支付</span>-->
+                            <span class="orderOper fc1"><b>正常订单出票退回</b>（退回原因：乘客证件号有问题，拒绝出票）</span>
+                            <span class="operUser"><em>2013-11-15 07:20:15</em>操作人：客服</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="dotIcon"></i>
+                        <div class="trackingListText">
+                            <span class="orderOper">出票中</span><span class="operUser"><em>2013-11-15 07:20:15</em>操作人：王小飞</span>
+                        </div>
+                    </li>
+                    <li class="flexiBleContent">
+                        <i class="dotIcon"></i>
+                        <div class="trackingListText">
+                            <span class="orderOper">提交支付</span><span class="operUser"><em>2013-11-15 07:20:15</em>操作人：王小飞</span>
+                        </div>
+                    </li>
+                    <li class="flexiBleContent">
+                        <i class="dotIcon"></i>
+                        <div class="trackingListText">
+                            <span class="orderOper">新建订单</span><span class="operUser"><em>2013-11-15 07:20:15</em>操作人：王小飞</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="trackingListText">
+                            <div class="orderFlexibleType">查看更多</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--order end-->
+
+        <div class="travelOrderBlock">
+            <div class="chief"> <h3>旅客信息</h3></div>
+            <table cellpadding="0" cellspacing="0" class="traveller noMarginTop">
+                <colgroup>
+                    <col width="120"/>
+                    <col width="125"/>
+                    <col width="85"/>
+                    <col width="105"/>
+                    <col width="105"/>
+                    <col width="80"/>
+                    <col width="120"/>
+                    <col width="70"/>
+                    <col width="150"/>
+                </colgroup>
+                <thead>
+                <tr class="noborder">
+                    <th style="padding-left: 49px;">姓名</th>
+                    <th>拼音</th>
+                    <th>证件类型</th>
+                    <th>证件号</th>
+                    <th>证件有效期</th>
+                    <th>国籍</th>
+                    <th>性别</th>
+                    <th>附加</th>
+                    <th>报名状态</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="solid_bottom">
+                    <td><span class="font14 fc1"><em class="peopleType-adult">成人</em>唐笑笑</span></td>
+                    <td><span>TANGXIAOXIAO</span></td>
+                    <td>护照</td>
+                    <td>12325498</td>
+                    <td>18/09/18</td>
+                    <td>中国</td>
+                    <td>女<span class="moreInfo travelMoreInfo">更多信息</span></td>
+                    <td>单房差</td>
+                    <td><span class="font14 fc3">已调价</span><span class="fc1" style="margin-left: 20px;">金额：500.00</span></td>
+                </tr>
+                <tr class="solid_bottom">
+                    <td><span class="font14 fc1"><em class="peopleType-child">儿童</em>张小小</span></td>
+                    <td><span>TANGXIAOXIAO</span></td>
+                    <td>护照</td>
+                    <td>12325498</td>
+                    <td>18/09/18</td>
+                    <td>坦桑尼亚</td>
+                    <td>女<span class="moreInfo travelMoreInfo">更多信息</span></td>
+                    <td>单房差</td>
+                    <td><span class="font14 fc3">已调价</span><span class="fc1" style="margin-left: 20px;">金额：500.00</span></td>
+                </tr>
+                <tr class="solid_bottom">
+                    <td><span class="font14 fc1"><em class="peopleType-child">儿童</em>张小小</span></td>
+                    <td><span>TANGXIAOXIAO</span></td>
+                    <td>护照</td>
+                    <td>12325498</td>
+                    <td>18/09/18</td>
+                    <td>坦桑尼亚</td>
+                    <td>女<span class="moreInfo travelMoreInfo">更多信息</span></td>
+                    <td>单房差</td>
+                    <td><span class="font14 fc3">已调价</span><span class="fc1" style="margin-left: 20px;">金额：500.00</span></td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="storeRemark">
+                <b>采购商备注：</b>请安排无烟房
+            </div>
+        </div>
+
+        <div class="travelOrderBlock">
+            <div class="chief"><h3>退团旅客</h3></div>
+            <table cellpadding="0" cellspacing="0" class="traveller noMarginTop">
+                <colgroup>
+                    <col width="120"/>
+                    <col width="125"/>
+                    <col width="85"/>
+                    <col width="105"/>
+                    <col width="105"/>
+                    <col width="80"/>
+                    <col width="120"/>
+                    <col width="70"/>
+                    <col width="90"/>
+                    <col width="60"/>
+                </colgroup>
+                <thead>
+                <tr class="noborder">
+                    <th style="padding-left: 49px;">姓名</th>
+                    <th>拼音</th>
+                    <th>证件类型</th>
+                    <th>证件号</th>
+                    <th>证件有效期</th>
+                    <th>国籍</th>
+                    <th>性别</th>
+                    <th>附加</th>
+                    <th colspan="2">报名状态</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="solid_bottom">
+                    <td><span class="font14 fc1"><em class="peopleType-adult">成人</em>唐笑笑</span></td>
+                    <td><span>TANGXIAOXIAO</span></td>
+                    <td>护照</td>
+                    <td>12325498</td>
+                    <td>18/09/18</td>
+                    <td>中国</td>
+                    <td>女<span class="moreInfo travelMoreInfo">更多信息</span></td>
+                    <td>单房差</td>
+                    <td><span class="font14 fc3">已取消</span>
+                        <div><span class="fc1">费用：500.00</span></div>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr class="solid_bottom">
+                    <td><span class="font14 fc1"><em class="peopleType-child">儿童</em>张小小</span></td>
+                    <td><span>TANGXIAOXIAO</span></td>
+                    <td>护照</td>
+                    <td>12325498</td>
+                    <td>18/09/18</td>
+                    <td>坦桑尼亚</td>
+                    <td>女<span class="moreInfo travelMoreInfo">更多信息</span></td>
+                    <td>单房差</td>
+                    <td><span class="font14 fc3">退团审核</span>
+                        <div><span class="fc1">费用：500.00</span></div>
+                    </td>
+                    <td>
+                        <span class="annul">撤 销</span>
+                    </td>
+                </tr>
+                <tr class="solid_bottom">
+                    <td><span class="font14 fc1"><em class="peopleType-child">儿童</em>张小小</span></td>
+                    <td><span>TANGXIAOXIAO</span></td>
+                    <td>护照</td>
+                    <td>12325498</td>
+                    <td>18/09/18</td>
+                    <td>坦桑尼亚</td>
+                    <td>女<span class="moreInfo travelMoreInfo">更多信息</span></td>
+                    <td>单房差</td>
+                    <td><span class="font14 fc3">退团审核</span>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    
+        <div class="travelOrderBlock">
+            <div class="chief"><h3>产品信息</h3></div>
+            <table cellpadding="0" cellspacing="0" class="productInfo">
+                <colgroup>
+                    <col width="55"/>
+                    <col width="710"/>
+                    <col width="100"/>
+                    <col width="95"/>
+                </colgroup>
+                <tbody>
+                <tr>
+                    <td colspan="2">
+                        <h2 class="productTitle">
+                            [美国东西海岸夏威夷+加拿大18日游] 6月29日暑期特价游，韩亚航空东海岸四星级酒店住宿，6月
+                            29日暑期特价游，显示不下回行
+                        </h2>
+                    </td>
+                    <td colspan="2">
+                        <div>
+                            <span style="font-size: 14px;">成人:<em style="color: #ef4423;">￥9865</em> /人 x2 </span> 
+                        </div>
+                        <div>
+                            <span style="font-size: 14px;">儿童:<em style="color: #ef4423;">￥9865</em> /人 x2 </span>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="moveTop">
+                    <td colspan="4" class="productSmallInfo">
+                        <label>产品编号：60891</label>
+                        <label>出发地：上海</label>
+                        <label>出发：2014-08-06</label>
+                        <label>天数：15天</label>
+                    </td>
+                </tr>
+                <tr class="dashed_top">
+                    <td>可选：</td>
+                    <td>
+                        <em class="circularBeadBorder">附加费用</em>
+                        <span>单人房差<span style="color: #ef4423;">￥3400/人</span></span>
+                    </td>
+                    <td colspan="2">
+                        <span style="font-size: 14px;">单房差:<em style="color: #ef4423;">￥9865</em> /人 x2 </span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="foldType">
+                查看费用详情
+            </div>
+            <div class="costBlock costContent" style="display: none;">
+                <ul class="costList clearfix">
+                    <li class="current">费用包含</li>
+                    <li>费用不包含</li>
+                </ul>
+                <div class="costListChange">
+                    <div class="costP changeContent">
+                        <p>机票：全程往返团队经济舱机票含税费（团队机票一经开出，不得更改、不得签转、不得退票）。</p>
+                        <p>当地用车：空调旅游车（参团人数决定车型大小）。</p>
+                        <p>酒店：行程中所列酒店或同类别酒店双人标间*美洲无统一的酒店星级评定标准）。</p>
+                        <p>用餐：行程中所列团队标准用餐。</p>
+                        <p>门票：行程中标明的景点普通参观门票。</p>
+                        <p>导服：专业领队以及当地导游。</p>
+                        <p>服务费：领队、当地司机、中英文双语导游服务费。</p>
+                    </div>
+                    <div class="changeContent" style="display: none;"> </div>
+                </div>
+            </div>
+           
+        </div>
+         
+    </div>
+</div>
+
+    <div class="accountInfoBlock" id="ac">
+       <!-- <div class="inner_accountInfoBlock">
+            <span class="accountCon">
+                成人<b>15000</b> X 2 + 儿童 <b>15000</b> X 2 + 单房差 <b>500</b> X 1 = <em style="font-size: 16px;">应收合计</em>
+                <strong class="totlePrice"><em style="font-size: 20px;"> ¥</em><b style="font-family: Arial">566000.00</b></strong>
+            </span>
+            <span>
+              <a class="adaptiveButton grayOper_btn backToBack" style="margin-right: 10px;">
+                  <span class="left"></span>
+                  <span class="center">退 回</span>
+                  <span class="right"></span>
+              </a>
+              <a class="adaptiveButton brightRed_btn travelAffirm">
+                  <span class="left"></span>
+                  <span class="center">确 认</span>
+                  <span class="right"></span>
+              </a>
+            </span>
+        </div>-->
+
+        <!--<div class="inner_accountInfoBlock">
+            <span class="accountCon">
+                成人<b>15000</b> X 2 + 儿童 <b>15000</b> X 2 + 单房差 <b>500</b> X 1 = <em style="font-size: 16px;">应收合计</em>
+                <strong class="totlePrice"><em style="font-size: 20px;"> ¥</em><b style="font-family: Arial">566000.00</b></strong>
+            </span>
+            <span>
+              <a class="adaptiveButton grayOper_btn quitCluster" style="margin-right: 10px;">
+                  <span class="left"></span>
+                  <span class="center">退 团</span>
+                  <span class="right"></span>
+              </a>
+              <a class="adaptiveButton brightRed_btn adjustPrice">
+                  <span class="left"></span>
+                  <span class="center">调 价</span>
+                  <span class="right"></span>
+              </a>
+            </span>
+        </div>-->
+
+        <div class="inner_accountInfoBlock">
+            <span class="accountCon">
+                成人<b>15000</b> X 2 + 儿童 <b>15000</b> X 2 + 单房差 <b>500</b> X 1 + 调价金额 - <b>1100</b> = <em style="font-size: 16px;">应收合计</em>
+                <strong class="totlePrice"><em style="font-size: 20px;"> ¥</em><b style="font-family: Arial">566000.00</b></strong>
+            </span>
+            <span>
+              <a class="adaptiveButton grayOper_btn undoPrice" style="margin-right: 10px;">
+                  <span class="left"></span>
+                  <span class="center">取消调价</span>
+                  <span class="right"></span>
+              </a>
+              <a class="adaptiveButton brightRed_btn adjustPrice">
+                  <span class="left"></span>
+                  <span class="center">调 价</span>
+                  <span class="right"></span>
+              </a>
+            </span>
+        </div>
+
+        <!--<div class="inner_accountInfoBlock">
+            <span class="accountCon">
+                成人<b>15000</b> X 2 + 儿童 <b>15000</b> X 2 + 单房差 <b>500</b> X 1 + 退团费用 <b>1100</b> = <em style="font-size: 16px;">应收合计</em>
+                <strong class="totlePrice"><em style="font-size: 20px;"> ¥</em><b style="font-family: Arial">566000.00</b></strong>
+            </span>
+            <span>
+              <a class="adaptiveButton grayOper_btn undoQuit" style="margin-right: 10px;">
+                  <span class="left"></span>
+                  <span class="center">取消退团</span>
+                  <span class="right"></span>
+              </a>
+              <a class="adaptiveButton grayOper_btn">
+                  <span class="left"></span>
+                  <span class="center">退 团</span>
+                  <span class="right"></span>
+              </a>
+            </span>
+        </div>-->
+
+        <!--<div class="inner_accountInfoBlock">
+            <span class="accountCon">
+                成人<b>15000</b> X 2 + 儿童 <b>15000</b> X 2 + 单房差 <b>500</b> X 1 - 取消费用 <b>1100</b> = <em style="font-size: 16px;">应收合计</em>
+                <strong class="totlePrice"><em style="font-size: 20px;"> ¥</em><b style="font-family: Arial">566000.00</b></strong>
+            </span>
+            <span>
+              <a class="adaptiveButton grayOper_btn quitCheck">
+                  <span class="left"></span>
+                  <span class="center">退团审核</span>
+                  <span class="right"></span>
+              </a>
+            </span>
+        </div>-->
+    </div>
+   
+   
+    <div id="extFooter">
+        <div>
+            <p>
+            <a href="javascript:void(0);">关于我们</a>&nbsp;|
+            <a href="javascript:void(0);">微博</a>&nbsp;|
+            <a href="javascript:void(0);">服务条款</a>&nbsp;|
+            <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+
+
+
+<script type="text/x-kendo-template" id="backToBack_template">
+    <div class="popWindowBox">
+        <table class="orderPopWindowTable">
+            <colgroup>
+                <col width="400px"/>
+            </colgroup>
+            <thead>
+            <tr style="text-align: center;">
+                <td>
+                    <span class="backRow"><i></i>退回该订单？</span>
+                </td>
+            </tr>
+            
+            <tr style="text-align: right; padding-right:10px;" class="trGap">
+                <td style="font-size: 14px;">
+                    <a class="adaptiveButton brightRed_btn">
+                        <span class="left"></span>
+                        <span class="center">确 定</span>
+                        <span class="right"></span>
+                    </a>
+                    <a href="javascript:void(0);" class="subtabCancel">取消</a>
+                </td>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="travelAffirm_template">
+    <div class="popWindowBox">
+        <table class="orderPopWindowTable">
+            <colgroup>
+                <col width="400px"/>
+            </colgroup>
+            <thead>
+            <tr style="text-align: center;">
+                <td>
+                    <span class="backRow"><i></i>确认该订单？</span>
+                </td>
+            </tr>
+
+            <tr style="text-align: right; padding-right:10px;" class="trGap">
+                <td style="font-size: 14px;">
+                    <a class="adaptiveButton brightRed_btn">
+                        <span class="left"></span>
+                        <span class="center">确 定</span>
+                        <span class="right"></span>
+                    </a>
+                    <a href="javascript:void(0);" class="subtabCancel">取消</a>
+                </td>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="quitCluster_template">
+    <div class="popWindowBox">
+        <table class="orderPopWindowTable">
+            <colgroup>
+                <col width="30px"/>
+                <col width="110px"/>
+                <col width="105px"/>
+                <col width="115px"/>
+                <col width="75px"/>
+                <col width="90px"/>
+                <col width="100px"/>
+                <col width="63px"/>
+                <col width="95px"/>
+                <col width="85px"/>
+            </colgroup>
+            <thead>
+            <tr>
+                <th><input type="checkbox"/></th>
+                <th>全选</th>
+                <th>退团费用</th>
+                <th>拼音</th>
+                <th>证件类型</th>
+                <th>证件号</th>
+                <th>证件有效期</th>
+                <th>国籍</th>
+                <th>性别</th>
+                <th>附加</th>
+            </tr>
+            <tr class="solid_bottom">
+                <td><input type="checkbox"/></td> 
+                <td><span class="fs14 fc1">唐笑笑</span><span class="fc1">（成人）</span></td>
+                <td><input type="text" placeholder="500.00" style="width:80px"/></td>
+                <td>TANGXIAOXIAO</td>
+                <td>护照</td>
+                <td>12325498</td>
+                <td>18/09/18</td>
+                <td>中国</td>
+                <td>女<span class="moreInfo travelMoreInfo">更多信息</span></td>
+                <td>单房差</td>
+            </tr>
+            <tr class="solid_bottom">
+                <td><input type="checkbox"/></td>
+                <td><span class="fs14 fc1">张小小</span><span class="fc1">（儿童）</span></td>
+                <td><input type="text" placeholder="500.00" style="width:80px"/></td>
+                <td>TANGXIAOXIAO</td>
+                <td>护照</td>
+                <td>12325498</td>
+                <td>18/09/18</td>
+                <td>坦桑尼亚</td>
+                <td>男<span class="moreInfo travelMoreInfo">更多信息</span></td>
+                <td>单房差</td>
+            </tr>
+            <tr class="trGap">
+                <td colspan="10">
+                    <label class="fs14 fc1 quitReason">退团原因</label>
+                    <select style="width: 200px; height: 30px;">
+                        <option>请选择</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10">
+                    <label class="fs14 fc1 quitRemark">备注</label>
+                    <textarea style="width:756px;" rows="3">
+                    </textarea>
+                </td>
+            </tr>
+            <tr style="text-align: right; padding-right:10px;" class="trGap">
+                <td colspan="10" style="font-size: 14px;">
+                    <a class="adaptiveButton brightRed_btn">
+                        <span class="left"></span>
+                        <span class="center">提 交</span>
+                        <span class="right"></span>
+                    </a>
+                    <a href="javascript:void(0);" class="subtabCancel">取消</a>
+                </td>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</script>
+
+
+<script type="text/x-kendo-template" id="adjustPrice_template">
+    <div class="popWindowBox">
+        <table class="orderPopWindowTable">
+            <colgroup>
+                <col width="30px"/>
+                <col width="110px"/>
+                <col width="105px"/>
+                <col width="115px"/>
+                <col width="75px"/>
+                <col width="90px"/>
+                <col width="100px"/>
+                <col width="63px"/>
+                <col width="95px"/>
+                <col width="85px"/>
+            </colgroup>
+            <thead>
+            <tr>
+                <th><input type="checkbox"/></th>
+                <th>全选</th>
+                <th>退团费用</th>
+                <th>拼音</th>
+                <th>证件类型</th>
+                <th>证件号</th>
+                <th>证件有效期</th>
+                <th>国籍</th>
+                <th>性别</th>
+                <th>附加</th>
+            </tr>
+            <tr class="solid_bottom">
+                <td><input type="checkbox"/></td>
+                <td><span class="fs14 fc1">唐笑笑</span><span class="fc1">（成人）</span></td>
+                <td><input type="text" placeholder="500.00" style="width:80px"/></td>
+                <td>TANGXIAOXIAO</td>
+                <td>护照</td>
+                <td>12325498</td>
+                <td>18/09/18</td>
+                <td>中国</td>
+                <td>女<span class="moreInfo travelMoreInfo">更多信息</span></td>
+                <td>单房差</td>
+            </tr>
+            <tr class="solid_bottom">
+                <td><input type="checkbox"/></td>
+                <td><span class="fs14 fc1">张小小</span><span class="fc1">（儿童）</span></td>
+                <td><input type="text" placeholder="500.00" style="width:80px"/></td>
+                <td>TANGXIAOXIAO</td>
+                <td>护照</td>
+                <td>12325498</td>
+                <td>18/09/18</td>
+                <td>坦桑尼亚</td>
+                <td>男<span class="moreInfo travelMoreInfo">更多信息</span></td>
+                <td>单房差</td>
+            </tr>
+            <tr class="trGap">
+                <td colspan="10">
+                    <label class="fs14 fc1 quitReason">调价原因</label>
+                    <select style="width: 200px; height: 30px;">
+                        <option>请选择</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10">
+                    <label class="fs14 fc1 quitRemark">备注</label>
+                    <textarea style="width:756px;" rows="3">
+                    </textarea>
+                </td>
+            </tr>
+            <tr style="text-align: right; padding-right:10px;" class="trGap">
+                <td colspan="10" style="font-size: 14px;">
+                    <a class="adaptiveButton brightRed_btn">
+                        <span class="left"></span>
+                        <span class="center">提 交</span>
+                        <span class="right"></span>
+                    </a>
+                    <a href="javascript:void(0);" class="subtabCancel">取消</a>
+                </td>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="undoPrice_template">
+    <div class="popWindowBox">
+        <div class="tipsBox"><i></i>是否将以下旅客的调价取消？</div>
+        <table class="orderPopWindowTable">
+            <colgroup>
+                <col width="110px"/>
+                <col width="105px"/>
+                <col width="115px"/>
+                <col width="75px"/>
+                <col width="90px"/>
+                <col width="100px"/>
+                <col width="63px"/>
+                <col width="95px"/>
+                <col width="85px"/>
+            </colgroup>
+            <thead>
+            <tr>
+                <th>全选</th>
+                <th>退团费用</th>
+                <th>拼音</th>
+                <th>证件类型</th>
+                <th>证件号</th>
+                <th>证件有效期</th>
+                <th>国籍</th>
+                <th>性别</th>
+                <th>附加</th>
+            </tr>
+            <tr class="solid_bottom">
+                <td><span class="fs14 fc1">唐笑笑</span><span class="fc1">（成人）</span></td>
+                <td><span class="fs14 fc2 ff1"><b>500.00</b></span></td>
+                <td>TANGXIAOXIAO</td>
+                <td>护照</td>
+                <td>12325498</td>
+                <td>18/09/18</td>
+                <td>中国</td>
+                <td>女<span class="moreInfo travelMoreInfo">更多信息</span></td>
+                <td>单房差</td>
+            </tr>
+            <tr class="solid_bottom">
+                <td><span class="fs14 fc1">张小小</span><span class="fc1">（儿童）</span></td>
+                <td><span class="fs14 fc2 ff1"><b>500.00</b></span></td>
+                <td>TANGXIAOXIAO</td>
+                <td>护照</td>
+                <td>12325498</td>
+                <td>18/09/18</td>
+                <td>坦桑尼亚</td>
+                <td>男<span class="moreInfo travelMoreInfo">更多信息</span></td>
+                <td>单房差</td>
+            </tr>
+           
+            <tr style="text-align: right; padding-right:10px;" class="trGap">
+                <td colspan="10" style="font-size: 14px;">
+                    <a class="adaptiveButton brightRed_btn">
+                        <span class="left"></span>
+                        <span class="center">提 交</span>
+                        <span class="right"></span>
+                    </a>
+                    <a href="javascript:void(0);" class="subtabCancel">取消</a>
+                </td>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="undoQuit_template">
+    <div class="popWindowBox">
+        <div class="tipsBox"><i></i>是否将以下旅客的调价取消？</div>
+        <table class="orderPopWindowTable">
+            <colgroup>
+                <col width="110px"/>
+                <col width="105px"/>
+                <col width="115px"/>
+                <col width="75px"/>
+                <col width="90px"/>
+                <col width="100px"/>
+                <col width="63px"/>
+                <col width="95px"/>
+                <col width="85px"/>
+            </colgroup>
+            <thead>
+            <tr>
+                <th>全选</th>
+                <th>退团费用</th>
+                <th>拼音</th>
+                <th>证件类型</th>
+                <th>证件号</th>
+                <th>证件有效期</th>
+                <th>国籍</th>
+                <th>性别</th>
+                <th>附加</th>
+            </tr>
+            <tr class="solid_bottom">
+                <td><span class="fs14 fc1">唐笑笑</span><span class="fc1">（成人）</span></td>
+                <td><span class="fs14 fc2 ff1"><b>500.00</b></span></td>
+                <td>TANGXIAOXIAO</td>
+                <td>护照</td>
+                <td>12325498</td>
+                <td>18/09/18</td>
+                <td>中国</td>
+                <td>女<span class="moreInfo travelMoreInfo">更多信息</span></td>
+                <td>单房差</td>
+            </tr>
+            <tr class="solid_bottom">
+                <td><span class="fs14 fc1">张小小</span><span class="fc1">（儿童）</span></td>
+                <td><span class="fs14 fc2 ff1"><b>500.00</b></span></td>
+                <td>TANGXIAOXIAO</td>
+                <td>护照</td>
+                <td>12325498</td>
+                <td>18/09/18</td>
+                <td>坦桑尼亚</td>
+                <td>男<span class="moreInfo travelMoreInfo">更多信息</span></td>
+                <td>单房差</td>
+            </tr>
+
+            <tr style="text-align: right; padding-right:10px;" class="trGap">
+                <td colspan="10" style="font-size: 14px;">
+                    <a class="adaptiveButton brightRed_btn">
+                        <span class="left"></span>
+                        <span class="center">确 认</span>
+                        <span class="right"></span>
+                    </a>
+                    <a href="javascript:void(0);" class="subtabCancel">关闭</a>
+                </td>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="quitCheck_template">
+    <div class="popWindowBox">
+        <table class="orderPopWindowTable">
+            <colgroup>
+                <col width="30px"/>
+                <col width="110px"/>
+                <col width="105px"/>
+                <col width="115px"/>
+                <col width="75px"/>
+                <col width="90px"/>
+                <col width="100px"/>
+                <col width="63px"/>
+                <col width="95px"/>
+                <col width="85px"/>
+            </colgroup>
+            <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>退团费用</th>
+                <th>拼音</th>
+                <th>证件类型</th>
+                <th>证件号</th>
+                <th>证件有效期</th>
+                <th>国籍</th>
+                <th>性别</th>
+                <th>附加</th>
+            </tr>
+            <tr class="solid_bottom">
+                <td></td>
+                <td><span class="fs14 fc1">唐笑笑</span><span class="fc1">（成人）</span></td>
+                <td><input type="text" placeholder="500.00" style="width:80px"/></td>
+                <td>TANGXIAOXIAO</td>
+                <td>护照</td>
+                <td>12325498</td>
+                <td>18/09/18</td>
+                <td>中国</td>
+                <td>女<span class="moreInfo travelMoreInfo">更多信息</span></td>
+                <td>单房差</td>
+            </tr>
+            <tr class="solid_bottom">
+                <td></td>
+                <td><span class="fs14 fc1">张小小</span><span class="fc1">（儿童）</span></td>
+                <td><input type="text" placeholder="500.00" style="width:80px"/></td>
+                <td>TANGXIAOXIAO</td>
+                <td>护照</td>
+                <td>12325498</td>
+                <td>18/09/18</td>
+                <td>坦桑尼亚</td>
+                <td>男<span class="moreInfo travelMoreInfo">更多信息</span></td>
+                <td>单房差</td>
+            </tr>
+            <tr class="trGap">
+                <td colspan="10">
+                    <label class="fs14 fc1 quitReason">退回原因</label>
+                    <span style="vertical-align: middle;">调价原因调价原因调价原因调价原因调价原因调价原因调价原因调价原因不好玩不好玩呐</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10">
+                    <label class="fs14 fc1 quitRemark">备注</label>
+                    <span style="vertical-align: middle;">备注备注备注备注备注备注备注备注备注备注备注备注备注备备注备注备注备注</span>
+                </td>
+            </tr>
+            <tr style="text-align: right; padding-right:10px;" class="trGap">
+                <td colspan="10" style="font-size: 14px;">
+                    <a class="adaptiveButton brightRed_btn">
+                        <span class="left"></span>
+                        <span class="center">提 交</span>
+                        <span class="right"></span>
+                    </a>
+                    <a href="javascript:void(0);" class="subtabCancel">取消</a>
+                </td>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="contactServiceTipsTemplate">
+    <div class="layerContainer">
+        <div class="layerBlueArrow"></div>
+            <table class="travelTipsTable">
+                <colgroup>
+                    <col width="45"/>
+                    <col width="140"/>
+                    <col width="70"/>
+                    <col width="130"/>
+                </colgroup>
+                <tr>
+                    <td><b>运营：</b></td>
+                    <td>李晓明</td>
+                    <td><b>运营主管：</b></td>
+                    <td>张黑</td>
+                </tr>
+                <tr>
+                    <td><b>电话：</b></td>
+                    <td>021-63558428-8888</td>
+                    <td><b>电话：</b></td>
+                    <td>021-63558428-8888</td>
+                </tr>
+                <tr>
+                    <td><b>QQ：</b></td>
+                    <td>95924895626  <span class="fc1">复制</span></td>
+                    <td><b>QQ：</b></td>
+                    <td>95924895626  <span class="fc1">复制</span></td>
+                </tr>
+            </table>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="travelMoreInfoTemplate">
+    <div class="layerContainer">
+        <div class="layerBlueArrow"></div>
+        <table class="travelTipsTable">
+            <colgroup>
+                <col width="100"/>
+                <col width="90"/>
+                <col width="110"/>
+            </colgroup>
+            <tr>
+                <th>生日</th>
+                <th>出生地</th>
+                <th>手机号</th>
+            </tr>
+            <tr>
+                <td>1988-02-02</td>
+                <td>上海</td>
+                <td>13956821458</td>
+            </tr>
+        </table>
+    </div>
+</script>
+    
+    
+    
+    <script type="text/javascript">
+        $(function(){
+
+            $(".orderFlexibleType").click(function(){
+                $(".trackingList .flexiBleContent").slideToggle();
+                if($(this).hasClass("down"))
+                {
+                    $(this).removeClass("down");
+                    $(this).text("查看全部");
+                }
+                else
+                {
+                    $(this).addClass("down");
+                    $(this).text("收起");
+                }
+            });
+
+            $(".foldType").click(function(){
+                $(".costContent").slideToggle();
+                if($(this).hasClass("down"))
+                {
+                    $(this).removeClass("down");
+                    $(this).text("查看费用详情");
+                }
+                else
+                {
+                    $(this).addClass("down");
+                    $(this).text("收起费用详情");
+                }
+            });
+            $(".costList li").each(function(index){
+                $(this).click(function(){
+                    $(".costListChange .changeContent").hide();
+                    $(".costListChange .changeContent:eq(" + index + ")").show();
+                    $(".costList li").removeClass("current");
+                    $(this).addClass("current");
+                });
+            });
+
+
+            $("#contactServiceTips").kendoTooltip({
+                position:"bottom", //left right top
+                wrapperClass:"lineWeight",
+                content:function(){
+                    return $("#contactServiceTipsTemplate").html();
+                },
+                callout:false,
+                autoHide:false,
+                offsetY:5,
+                offsetX:75,
+                width:390
+            });
+
+            
+            $(".travelMoreInfo").kendoTooltip({
+                position:"bottom", //left right top
+                wrapperClass:"lineWeight",
+                content:function(){
+                    return $("#travelMoreInfoTemplate").html();
+                },
+                callout:false,
+                offsetY:5,
+                offsetX:66,
+                width:300
+            });
+
+
+        var price_confirm_win = new PopWindow(".backToBack",{
+                title:"退回",
+                width:450,
+                template:"#backToBack_template"
+            }).init();
+
+            var price_confirm_win = new PopWindow(".travelAffirm",{
+                title:"确认",
+                width:450,
+                template:"#travelAffirm_template"
+            }).init();
+
+            var price_confirm_win = new PopWindow(".quitCluster",{
+                title:"退团",
+                width:908,
+                template:"#quitCluster_template"
+            }).init();
+
+            var price_confirm_win = new PopWindow(".adjustPrice",{
+                title:"调价",
+                width:908,
+                template:"#adjustPrice_template"
+            }).init();
+
+            var price_confirm_win = new PopWindow(".undoPrice",{
+                title:"取消调价",
+                width:908,
+                template:"#undoPrice_template"
+            }).init();
+
+            var price_confirm_win = new PopWindow(".undoQuit",{
+                title:"取消退团",
+                width:908,
+                template:"#undoQuit_template"
+            }).init();
+
+            var price_confirm_win = new PopWindow(".quitCheck",{
+                title:"退团审核",
+                width:908,
+                template:"#quitCheck_template"
+            }).init();
+            
+            // 日期控件
+            $.datepicker.regional[ "zh-CN" ];
+            $(function(){
+                $( ".datepicker" ).datepicker({
+                    showDay:true,
+                    numberOfMonths:[1,2],
+                    minDate :new Date(),
+                    firstDay:0,
+                    showButtonPanel :true
+                });
+            });
+
+            $('#ac').fixedBar({
+                inverse:true
+            });
+            
+        });
+    </script>
+</body>
+</html>
