@@ -1964,6 +1964,9 @@ scrollScene.prototype = {
         var that = this;
         var step = tmpstep = step||that.step;
         var endPos = that.eles.eq(index).offset().top;
+        if (endPos < 0) {
+            endPos = 0;
+        }
         var all = window.innerHeight;
 
         that.inAnim = true; //lock mousewheel
