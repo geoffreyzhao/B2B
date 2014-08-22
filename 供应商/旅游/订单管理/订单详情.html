@@ -3,16 +3,14 @@
     <head>
     <title>旅游 线路管理 订单详情</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css">
-    <link href="/static/css/kendo.common.css" rel="stylesheet" />
-    <link href="/static/css/kendo.gray.css" rel="stylesheet" />
-    <link href="/static/css/common.css" rel="stylesheet" />
-    <link href="/static/css/supplier.css" rel="stylesheet" />
-    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
-    <link href="/static/css/supplier_common.css" rel="stylesheet" />
-    <link href="/static/css/supplierTravel.css" rel="stylesheet" />
-       <!-- <link rel="stylesheet" href="/static/css/kendo.common.min.css" />
-        <link rel="stylesheet" href="/static/css/kendo.store.css" />-->
+    <link type="text/css" rel="stylesheet" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css" />
+    <link type="text/css" rel="stylesheet" href="/static/css/kendo.common.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/kendo.gray.css" />
+    <link type="text/css" rel="stylesheet" href="/static/css/common.css" />
+    <link type="text/css" rel="stylesheet" href="/static/css/supplier.css" />
+    <link type="text/css" rel="stylesheet" href="/static/css/kendo.reset.css" />
+    <link type="text/css" rel="stylesheet" href="/static/css/supplier_common.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/supplierTravel.css" />
 
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/kendo.web.js"></script>
@@ -23,8 +21,6 @@
     <script type="text/javascript" src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
     <script type="text/javascript" src="/static/js/supplier/supplier_travel.js"></script>
 
-       
-           
         
         
     <!--[if IE]>
@@ -158,7 +154,8 @@
                     <tr>
                         <td><span class="orderNO">订单号：<strong>1409483920498374</strong></span></td>
                         <td colspan="3">
-                            <span id="contactServiceTips" class="contactService"><i></i>联系客服</span>
+                            <!--<span id="contactServiceTips" class="contactService"><i></i>联系客服</span>-->
+                            <span id="contactService_trigger" class="contactService"><i></i>联系客服<em>&nbsp;</em></span>
                         </td>
                     </tr>
                     <tr>
@@ -534,6 +531,37 @@
         </div>
     </div>
 
+    <div style="display:none;position: absolute" id="contactServiceCon">
+        <div class="hideBorderBot"></div>
+        <div class="expand-contactService">
+            <table class="travelTipsTable">
+                <colgroup>
+                    <col width="45"/>
+                    <col width="140"/>
+                    <col width="70"/>
+                    <col width="130"/>
+                </colgroup>
+                <tr>
+                    <td><b>运营：</b></td>
+                    <td>李晓明</td>
+                    <td><b>运营主管：</b></td>
+                    <td>张黑</td>
+                </tr>
+                <tr>
+                    <td><b>电话：</b></td>
+                    <td>021-63558428-8888</td>
+                    <td><b>电话：</b></td>
+                    <td>021-63558428-8888</td>
+                </tr>
+                <tr>
+                    <td><b>QQ：</b></td>
+                    <td>95924895626  <span class="fc1 copyFont">复制</span></td>
+                    <td><b>QQ：</b></td>
+                    <td>95924895626  <span class="fc1 copyFont">复制</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
 
 
 <script type="text/x-kendo-template" id="backToBack_template">
@@ -966,7 +994,7 @@
     </div>
 </script>
 
-<script type="text/x-kendo-template" id="contactServiceTipsTemplate">
+<!--<script type="text/x-kendo-template" id="contactServiceTipsTemplate">
     <div class="layerContainer">
         <div class="layerBlueArrow"></div>
             <table class="travelTipsTable">
@@ -996,7 +1024,7 @@
                 </tr>
             </table>
     </div>
-</script>
+</script>-->
 
 <script type="text/x-kendo-template" id="travelMoreInfoTemplate">
     <div class="layerContainer">
@@ -1062,34 +1090,7 @@
                 });
             });
 
-
-            $("#contactServiceTips").kendoTooltip({
-                position:"bottom", //left right top
-                wrapperClass:"lineWeight",
-                content:function(){
-                    return $("#contactServiceTipsTemplate").html();
-                },
-                callout:false,
-                autoHide:false,
-                offsetY:5,
-                offsetX:80,
-                width:390
-            });
-
             
-            $(".travelMoreInfo").kendoTooltip({
-                position:"bottom", //left right top
-                wrapperClass:"lineWeight",
-                content:function(){
-                    return $("#travelMoreInfoTemplate").html();
-                },
-                callout:false,
-                offsetY:0,
-                offsetX:61,
-                width:300
-            });
-
-
         var price_confirm_win = new PopWindow(".backToBack",{
                 title:"退回",
                 width:450,
@@ -1131,8 +1132,33 @@
                 width:908,
                 template:"#quitCheck_template"
             }).init();
+
+            $(".travelMoreInfo").kendoTooltip({
+                position:"bottom", //left right top
+                wrapperClass:"lineWeight",
+                content:function(){
+                    return $("#travelMoreInfoTemplate").html();
+                },
+                callout:false,
+                offsetY:0,
+                offsetX:61,
+                width:300
+            });
+
+            /* $("#contactServiceTips").kendoTooltip({
+             position:"bottom", //left right top
+             wrapperClass:"lineWeight",
+             content:function(){
+             return $("#contactServiceTipsTemplate").html();
+             },
+             callout:false,
+             autoHide:false,
+             offsetY:5,
+             offsetX:80,
+             width:390
+             });*/
             
-            // 日期控件
+           /* // 日期控件
             $.datepicker.regional[ "zh-CN" ];
             $(function(){
                 $( ".datepicker" ).datepicker({
@@ -1142,7 +1168,7 @@
                     firstDay:0,
                     showButtonPanel :true
                 });
-            });
+            });*/
 
             $('#ac').fixedBar({
                 inverse:true
@@ -1150,5 +1176,27 @@
             
         });
     </script>
+
+    <script type="text/javascript">
+        $(function(){
+            $("body").click(function(e){
+                $("#contactServiceCon").hide();
+            });
+            $("#contactService_trigger").click(function(e){
+                var pos = $(this).offset();
+                $("#contactServiceCon").css({left:pos.left,top:pos.top+30}).toggle();
+                e.stopPropagation();
+                $(".contactService").toggleClass("contactService_click");
+            });
+            $(window).click(function(){
+                $(".contactService").removeClass("contactService_click");
+            })
+            $("#contactServiceCon").click(function(e){
+                e.stopPropagation();
+            });
+           
+        });
+    </script>
+
 </body>
 </html>
