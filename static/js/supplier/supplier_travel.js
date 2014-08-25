@@ -266,8 +266,8 @@ $(function(){
 		$(".kidsBox").css("width", kidsWidth + 1 + "px");		
 	}
 
-	// addClassForGroupStageTab();
 
+	// addClassForGroupStageTab();
 
 });
 
