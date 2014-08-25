@@ -25,6 +25,10 @@
 	<script src="../../static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
     <script type="text/javascript" src="../../static/js/global.js"></script>    
     <script type="text/javascript" src="../../static/js/store/store.js"></script>
+
+    
+    <script type="text/javascript" src="../../../firebug-lite/build/firebug-lite-debug.js"></script>
+
     <script>
         $(function(){
             kendo.init('body');
@@ -897,11 +901,15 @@ $(function(){
 
 <script type="text/javascript">
     $(function(){
+
+        var i=100
         $("body").click(function(e){
             $("#child_order").hide();
         });
         $("#child_order_trigger").click(function(e){
             var pos = $(this).offset();
+            // $("#child_order").css({left:pos.left,top:pos.top+30}).toggle();
+
             $("#child_order").css({left:pos.left,top:pos.top+30}).toggle();
             e.stopPropagation();
             $(".relevanceOr").toggleClass("relevanceOr_click");
