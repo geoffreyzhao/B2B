@@ -159,31 +159,44 @@
                         </tr>
                     </tbody>
                 </table>
-                <h1 class="us-title">公司负责人信息</h1>
-                <table>
+                <h1 class="us-title">公司负责人信息
+                    <span style="float:right;margin-top:-8px">
+                        <a class="adaptiveButton medium brightRed_btn btn_edit_companyHeaderInfo">
+                            <span class="left"></span>
+                            <span class="center center_1">编辑</span>
+                            <span class="right"></span>
+                        </a>
+                        <a class="adaptiveButton medium brightRed_btn btn_save_companyHeaderInfo" style="display:none">
+                            <span class="left"></span>
+                            <span class="center center_1">保存</span>
+                            <span class="right"></span>
+                        </a>
+                    </span>
+                </h1>
+                <table id="tbl_companyHeaderInfo">
                     <colgroup>
                         <col width="75">
                     </colgroup>
                     <tbody>
                         <tr>
-                            <td class="td_head">姓名：</td>
-                            <td>旅行社</td>
+                            <td class="td_head"><i class="important" style="display:none">*</i>姓名：</td>
+                            <td><input value="白展堂" type="text" name="" id="" class="editable disabled" readonly="readonly"/></td>
                         </tr>
                         <tr>
-                            <td class="td_head">电子邮箱：</td>
-                            <td>旅行社</td>
+                            <td class="td_head"><i class="important" style="display:none">*</i>电子邮箱：</td>
+                            <td><input value="234567@163.com" type="text" name="" id="" class="editable disabled" readonly="readonly"/></td>
                         </tr>
                         <tr>
-                            <td class="td_head">手机号码：</td>
-                            <td>旅行社</td>
+                            <td class="td_head"><i class="important" style="display:none">*</i>手机号码：</td>
+                            <td><input value="13912345678" type="text" name="" id="" class="editable disabled" readonly="readonly"/></td>
                         </tr>
                         <tr>
-                            <td class="td_head">办公电话：</td>
-                            <td>旅行社</td>
+                            <td class="td_head"><i class="important" style="display:none">*</i>办公电话：</td>
+                            <td><input type="text" name="" id="" class="editable disabled" readonly="readonly" value="021" style="width:30px"/>-<input value="543217890" type="text" name="" id="" class="editable disabled" readonly="readonly" style="width:92px"/></td>
                         </tr>
                         <tr>
                             <td class="td_head">QQ：</td>
-                            <td>旅行社</td>
+                            <td><input value="13912345678" type="text" name="" id="" class="editable disabled" readonly="readonly"/></td>
                         </tr>
                     </tbody>
                 </table>
@@ -270,8 +283,8 @@
                         <td><input value="234567@163.com" type="text" name="" id="" class="editable disabled" readonly="readonly"/></td>
                     </tr>
                     <tr>
-                        <td class="td_head"><i class="important" style="display:none">*</i>手机号码：</td>
-                        <td><input value="13912345678" type="text" name="" id="" class="editable disabled" readonly="readonly"/></td>
+                        <td class="td_head">手机号码：</td>
+                        <td>13912345678<a href="javascript:;" class="btn_modifyPhoneNum">修改</a></td>
                     </tr>
                     <tr>
                         <td class="td_head"><i class="important" style="display:none">*</i>办公电话：</td>
@@ -352,6 +365,61 @@
     </center>
 </footer>
 </div>
+<!--  修改手机号弹窗模板  -->
+<script type="text/x-kendo-template" id="modify-phoneNum">
+<div class="pw-modify-pn">
+    <table class="tbl-modify-phoneNum">
+        <colgroup>
+            <col width="85"/>
+            <col width="175"/>
+            <col width="80"/>
+            <col width="100"/>
+        </colgroup>
+        <tbody>
+            <tr>
+                <th>原手机号码：</th>
+                <td>13912345678</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>现手机号码：</th>
+                <td><input type="text"></td>
+                <td><span class="btn-msg getMessage">获取短信</span></td>
+                <td><i class="small-success-icon"></i>已发送成功</td>
+            </tr>
+            <tr>
+                <th>短信验证码：</th>
+                <td><input type="text"></td>
+                <td colspan="2"><i class="small-warn-icon"></i>验证码不正确</td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="adaptiveButton brightOrange_btn s_font_14">
+        <span class="left"></span>
+        <span class="center">确定</span>
+        <span class="right"></span>
+    </a>
+    <span class="cancelLink s_font_14">
+        <a href="javascript:void(0);">取消</a>
+    </span>    
+</div>
+</script>
+
+<script type="text/x-kendo-template" id="modify-phoneNum-success">
+    <div class="pw-modify-pn-success">
+        <div class="tip-content">
+            <i class="large-success-icon"></i>
+            手机号码修改成功！
+        </div>
+        <a class="adaptiveButton brightOrange_btn s_font_14">
+            <span class="left"></span>
+            <span class="center">确定</span>
+            <span class="right"></span>
+        </a>
+    </div>
+</script>
+
 <script type="text/javascript">
     $(function(){
         $(".btn_edit").click(function(){
@@ -375,6 +443,68 @@
             });
 
         });
+
+        // 编辑 保存 公司负责人信息
+        $(".btn_edit_companyHeaderInfo").click(function(){
+            $("#tbl_companyHeaderInfo :text").removeClass("disabled").prop("readonly",false);
+            $("#tbl_companyHeaderInfo i.important").show();
+            $(this).hide();
+            $(".btn_save_companyHeaderInfo").show();
+        });
+        $(".btn_save_companyHeaderInfo").click(function(){
+            $("#tbl_companyHeaderInfo :text").addClass("disabled").prop("readonly",true);
+            $("#tbl_companyHeaderInfo i.important").hide();
+            $(this).hide();
+            $(".btn_edit_companyHeaderInfo").show();
+        });
+
+        // 修改主演业务联系人手机号
+        var modifyPhoneNum = new PopWindow(".btn_modifyPhoneNum",{
+               title:"修改手机号",
+               width:500,
+               height: 260,
+               template:"#modify-phoneNum"
+        }).init();
+
+        $(".btn-msg").click(function(){
+            if ($(this).hasClass("getMessage")) {
+                var secTimer = 60;
+                $(".btn-msg").html( secTimer + "s后重发");
+                var timer = setInterval(function(){
+                    secTimer--;
+                    $(".btn-msg").html( secTimer + "s后重发");
+                    if (secTimer == 0) {
+                        window.clearInterval(timer);
+                        $(".btn-msg").html("获取短信");
+                        $(".btn-msg").removeClass("resetMessage");
+                        $(".btn-msg").addClass("getMessage");
+                    }
+                }, 1000);
+
+                $(this).removeClass("getMessage");
+                $(this).addClass("resetMessage");
+            }
+        });
+
+        $(".cancelLink").click(function(){
+            modifyPhoneNum.close();
+        });
+
+        $(".pw-modify-pn .brightOrange_btn").click(function(){
+            modifyPhoneNum.close();
+        });
+
+        var modifyPhoneNumSuccess = new PopWindow(".pw-modify-pn .brightOrange_btn", {
+            title:"提示",
+            width:500,
+            height: 240,
+            template:"#modify-phoneNum-success"
+        }).init();
+
+        $(".pw-modify-pn-success .brightOrange_btn").click(function(){
+            modifyPhoneNumSuccess.close();
+        });
+
     })
 </script>
 </body>
