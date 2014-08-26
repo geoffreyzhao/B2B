@@ -430,10 +430,9 @@
                                 <span class="hyper-link oper_block"><u>操作</u>
                                     <i class="arrow-down"></i>
                                     <div class="hyper-text oper_hyper-text">
-                                        <a href="#">提交审核</a>
-                                        <a href="#">申请出票</a>
-                                        <a href="#">提交审核</a>
-                                        <a href="#">提交审核</a>
+                                        <a href="#">打印</a>
+                                        <a href="#">改签</a>
+                                        <a class="oper-send-msg" href="#">发短信</a>
                                     </div>
                                 </span>
 
@@ -950,6 +949,100 @@
 </footer>
 </div>
 
+<script type="text/x-kendo-template" id="pw-send-msg">
+    <div class="pw-send-msg">
+        <div class="div-phone-num">
+            <span>收信号码：</span>
+            <textarea class="receiver-phone-num">【潘小美】18551788124;【周candy】18754269875;【sukie】18554788422;【周candy】18754269875;【潘小美】18551788124;【周candy】18754269875;【sukie】18554788422;【周candy】18754269875;</textarea>
+        </div>
+        <div class="warn-block">
+            <span>
+                <i class="warn-icon"></i>收信号码不能为空
+            </span>
+            <span>
+                <i class="warn-icon"></i>短信内容不能为空
+            </span>
+            <span>
+                <i class="warn-icon"></i>收信号码不能为空
+            </span>
+        </div>
+        <div class="div-msg-content">
+            <span>短信内容：</span>
+            <textarea class="msg-content" onpropertychange="getMsgLength()" oninput="getMsgLength()">2014-06-21，成都双流机场T1到济南南遥机场的3U8843航班（1212:55起飞/14:55到达）已出票。xxx票号876-23232323232；请提前2小时到达机场办理乘机手续。</textarea>
+            <div class="msg-content-tip">
+                <span>字数：<em class="word-num"></em></span>
+                <span style="margin-left:10px;">短信条数：<em class="message-num"></em></span><br/>
+                <span>每条短信最多为 60 个字符，超过该长度，系统将分为多条发送</span>
+            </div>
+        </div>
+        <div class="msg-operation">
+            <a class="adaptiveButton brightOrange_btn s_font_14">
+                <span class="left"></span>
+                <span class="center">发 送</span>
+                <span class="right"></span>
+            </a>
+            <span class="cancelLink s_font_14">
+                <a href="javascript:void(0);">取消</a>
+            </span> 
+        </div>
+    </div>    
+</script>
+
+<script type="text/x-kendo-template" id="pw-send-msg-success">
+    <div class="send-msg-success"><i class="large-success-icon"></i>发送成功！</div>
+</script>
+
+<script type="text/javascript">
+    var sendMsgPw = new PopWindow(".oper-send-msg",{
+           title:"发送短信",
+           width:710,
+           template:"#pw-send-msg"
+    }).init();
+
+    var wordNum = $(".div-msg-content textarea").val().length;
+    var messageNum = wordNum % 60 == 0 ? wordNum / 60 : parseInt(wordNum / 60) + 1;
+
+    function setWordNumText() {
+        $(".word-num").text(wordNum);
+        $(".message-num").text(messageNum);
+    }
+
+    setWordNumText();
+
+    function getMsgLength() {
+        wordNum = $(".div-msg-content textarea").val().length;
+        messageNum = wordNum % 60 == 0 ? wordNum / 60 : parseInt(wordNum / 60) + 1;
+        setWordNumText();
+    }
+
+    $(".msg-operation .cancelLink").click(function(){
+        sendMsgPw.close();
+    });
+
+    $(".msg-operation .brightOrange_btn").click(function(){
+        sendMsgPw.close();
+    });
+
+    var sendMsgSuccessPw = new PopWindow(".msg-operation .brightOrange_btn", {
+        title: false,
+        width: 410,
+        template: "#pw-send-msg-success",
+        autoHide: 3*1000,
+        animation: {
+            open: {
+                effects: "fade:in",
+                duration: 300
+            },
+            close: {
+                effects: "fade:out",
+                duration: 300
+            }
+        }
+    }).init();
+
+    $(".send-msg-success").parents(".k-window").css("padding-top","8px");    
+
+</script>
 
 </body>
 </html>
