@@ -951,19 +951,24 @@
 
 <script type="text/x-kendo-template" id="pw-send-msg">
     <div class="pw-send-msg">
+        <div class="send-msg-error-block">
+            <div style="margin-left:85px;">
+                <i class="large-warn-icon"></i>发送失败！
+            </div>
+        </div>
+        <div class="msg-tip-block">您已经发送过<em>1</em>次</div>
+        <div class="warn-block">
+            <span>
+                <i class="small-warn-icon"></i>收信号码不能为空
+            </span>
+        </div>
         <div class="div-phone-num">
             <span>收信号码：</span>
             <textarea class="receiver-phone-num">【潘小美】18551788124;【周candy】18754269875;【sukie】18554788422;【周candy】18754269875;【潘小美】18551788124;【周candy】18754269875;【sukie】18554788422;【周candy】18754269875;</textarea>
         </div>
         <div class="warn-block">
             <span>
-                <i class="warn-icon"></i>收信号码不能为空
-            </span>
-            <span>
-                <i class="warn-icon"></i>短信内容不能为空
-            </span>
-            <span>
-                <i class="warn-icon"></i>收信号码不能为空
+                <i class="small-warn-icon"></i>收信号码不能为空
             </span>
         </div>
         <div class="div-msg-content">
@@ -983,7 +988,8 @@
             </a>
             <span class="cancelLink s_font_14">
                 <a href="javascript:void(0);">取消</a>
-            </span> 
+            </span>
+            <a class="send-msg-error" style="margin-left:20px;cursor:pointer;">发送失败Temp</a>
         </div>
     </div>    
 </script>
@@ -1040,7 +1046,18 @@
         }
     }).init();
 
-    $(".send-msg-success").parents(".k-window").css("padding-top","8px");    
+    $(".send-msg-success").parents(".k-window").css("padding-top","8px");
+
+    /* 发送失败时 滑出提示块 */
+    $(".send-msg-error").click(function(){
+        $(".send-msg-error-block").animate({
+            "height": "62px"
+          }, 500);
+
+        $(".msg-tip-block").animate({
+            "margin-top": "50px"
+        }, 500);
+    });
 
 </script>
 
