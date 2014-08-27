@@ -219,29 +219,26 @@
 					<tr class="travel-path">
 						<th style="vertical-align: top;">游览景点：</th>
 						<td style="vertical-align: top;">
-							<span class="spot-path">
-                                <span class="twain">
-                                    <label class="showClose clearfix">
-                                        <em>夏威夷</em>
-                                        <i></i>
-                                    </label>
-                                    <label class="enDash">—</label>
-                                    <label class="showClose clearfix">
-                                        <em>白沙滩</em>
-                                        <i></i>
-                                    </label>
-                                </span>
-                                <span class="twain">
-                                    <label class="showClose clearfix">
-                                        <em>夏威夷</em>
-                                        <i></i>
-                                    </label>
-                                    <label class="enDash">—</label>
-                                    <label class="showClose clearfix">
-                                        <em>白沙滩</em>
-                                        <i></i>
-                                    </label>
-                                </span>
+							<span class="spot-path">              
+                                <label class="showClose clearfix">
+                                    <em>夏威夷威夷</em>
+                                    <i></i>
+                                </label>
+                                <label class="enDash">—</label>
+                                <label class="showClose clearfix">
+                                    <em>白沙滩</em>
+                                    <i></i>
+                                </label>
+                                <label class="enDash">—</label>
+                                <label class="showClose clearfix">
+                                    <em>夏威夷</em>
+                                    <i></i>
+                                </label>
+                                <label class="enDash">—</label>
+                                <label class="showClose clearfix">
+                                    <em>白沙滩沙滩</em>
+                                    <i></i>
+                                </label>
                             </span>
 							<span class="add-spot ac-addSpotTemplate"></span>
 							<span class="add-picture ac-addPic"></span>						
@@ -348,7 +345,9 @@
 		$(function(){
 
 			$(".travel-path .ac-addSpotTemplate").kendoTooltip({
-	            position: "top",
+	            position: "bottom",
+                offsetX:1,
+                offsetY:20,
 	            content: function(){
 	                return $("#ac-addSpotTemplate-template").html();
 	            },
@@ -360,6 +359,8 @@
 
 	        $(".travel-path .ac-addPic").kendoTooltip({
 	            position: "bottom",
+                offsetX:-1,
+                offsetY:-8,
 	            content: function(){
 	                return $("#ac-addPic-template").html();
 	            },
@@ -368,6 +369,17 @@
 	            autoHide: false,
 	            callout: false
 	        });
+            
+            $(".showClose i").click(function(){
+                $(this).parent(".showClose").hide();
+                var showColse = $(this).parent(".showClose").get(0);
+                var showColseSet = $(".showClose").eq(0).get(0);
+                if(showColse==showColseSet){
+                    $(this).parent().next().hide();
+                }else{
+                    $(this).parent().prev().hide();
+                } 
+            });
 
 		});
 	</script>	
