@@ -371,14 +371,17 @@
 	        });
             
             $(".showClose i").click(function(){
-                $(this).parent(".showClose").hide();
-                var showColse = $(this).parent(".showClose").get(0);
-                var showColseSet = $(".showClose").eq(0).get(0);
-                if(showColse==showColseSet){
-                    $(this).parent().next().hide();
-                }else{
-                    $(this).parent().prev().hide();
-                } 
+                var $showCloseChildren = $(this).parents(".spot-path").children("label.showClose");
+                $showCloseChildren.each(function(index){
+                    if (index == 0) {
+                        $(this).next(".enDash").remove();
+                        $(this).remove();
+                    } else {
+                        $(this).prev(".enDash").remove();
+                        $(this).remove();
+                    }
+                    return false;
+                });
             });
 
 		});
