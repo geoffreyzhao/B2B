@@ -40,13 +40,14 @@ $(function(){
 				
 		});
 
+		
 
-		// modelTitle.on('propertychange',function(){
-		// 	alert("ok");
+		// modelTitle.bind('propertychange',function(){
+		// 	$(this).css('border','1px solid green');
 		// });
 	// modelTitle.get(0).attachEvent("onpropertychange",function (){
- //                          alert("ok");
- //                    });
+ //                           $(this).css('border','1px solid green');
+ //                     });
 
 });
 
@@ -58,6 +59,7 @@ function setWordNumText() {
 }
 
 function getModleTitleFontNum(){
+
 	var modelTitle = $('.modelTitlePos2');
 	var errorInfo = $('#errorInfo');
 	var modelFontNum = modelTitle.val().length;
