@@ -23,6 +23,7 @@
     <script src="../../static/js/jquery-ui-1.10.3.custom.js"></script>
 	<script src="../../static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>    
     <script type="text/javascript" src="../../static/js/store/store.js"></script>
+    <script type="text/javascript" src="../../static/js/purchaser/infoSet.js"></script>
 </head>
 <body>
 
@@ -538,8 +539,159 @@
                     </div>
                  </div>   <!-- 余额/发送记录 结束 -->
                          
-                 <div class="tab" style="display:none;">  <!-- 短信设置 开始 -->
-                          
+                 <div class="tab messageCon" style="display:none;">  <!-- 短信设置 开始 -->
+                     <div id="content" class="contentCls" > 
+                         <div id="signatureSet" class="signatureCls">
+                             <span class="signFont1">签名设置:</span>
+                              <span id="signBtn">
+                                <span class="signFont2">天地行平台</span>
+                                <span class="singImg1"></span>
+                              </span>
+                              <span id="signSave">
+                                <input type="text" class="signTxtCls" name="signature">
+                                <span><button  class="saveBtn">保存</button></span>
+                                <span class="explain">短信签名为短信后的附加信息，例如：天地行。最多不能超过6个字。</span>
+                              </span>
+                         </div>
+                         <div id="modelList" class="modelCls">
+                              <span class="modelFont1">
+                                <span class="modelFont2">模板列表: </span>
+                                <span class="modelFont3">
+                                  <span>全部</span>
+                                  <span>机票</span>
+                                  <span>酒店</span>
+                                  <span>其它</span>
+                                </span>
+                              </span>
+                             <div class="modelFont4">
+                                 <em class="modelFont5">+</em><em class="modelFont6"> 新增模板</em>
+                             </div>
+                         </div>
+                         <div id="bisinessType" class="bisinessCls">
+
+                             <table cellpadding="0" cellspacing="0" class="bisTable">
+                                 <colgroup>
+                                     <col width="25px"/>
+                                     <col width="72px"/>
+                                     <col width="136px"/>
+                                     <col width="100px"/>
+                                     <col width="316px"/>
+                                     <col width="120px"/>
+                                 </colgroup>
+                                 <tr class="head">
+                                     <th></th>
+                                     <th>业务类型</th>
+                                     <th>标题</th>
+                                     <th>创建时间</th>
+                                     <th>内容</th>
+                                     <th>操作</th>
+                                 </tr>
+
+                                 <tr class="tableDash">
+                                     <td></td>
+                                     <td></td>
+                                     <td></td>
+                                     <td></td>
+                                     <td></td>
+                                     <td></td>
+                                 </tr>
+                                 <tr>
+                                     <td></td>
+                                     <td class="tableFont1">
+                                         <div class="planeImg"></div>
+                                         <div>机票</div>
+                                     </td>
+                                     <td class="tableFont2">机票出票成功</td>
+                                     <td class="tableFont3">2014-4-15</td>
+                                     <td class="tableFont4">
+                                         <div>您好，今天出行的城市天气晴朗，祝您旅途愉快，生活幸福。您的航班已经延误，请您提早出行做好准备……</div>
+                                     </td>
+                                     <td>
+                                    <span class="tableFont5">
+                                      <span>修改</span><span>挂起</span><span>删除</span>
+                                    </span>
+                                     </td>
+                                 </tr>
+                                 <tr>
+                                     <td></td>
+                                     <td class="tableFont1">
+                                         <div class="hotelImg"></div>
+                                         <div>机票</div>
+                                     </td>
+                                     <td class="tableFont2">
+                                         <div class="hangup">挂起</div>
+                                         <div>机票出票成功</div>
+                                     </td>
+                                     <td class="tableFont3">2014-4-15</td>
+                                     <td class="tableFont4">
+                                         <div>您好，今天出行的城市天气晴朗，祝您旅途愉快，生活幸福。您的航班已经延误，请您提早出行做好准备……</div>
+                                     </td>
+                                     <td>
+                                    <span>
+                                      <span class="unlock">解挂</span><span class="del">删除</span>
+                                    </span>
+                                     </td>
+                                 </tr>
+                                 <tr>
+                                     <td></td>
+                                     <td class="tableFont1">
+                                         <div class="otherImg"></div>
+                                         <div>机票</div>
+                                     </td>
+                                     <td class="tableFont2">天气提醒</td>
+                                     <td class="tableFont3">2014-4-15</td>
+                                     <td class="tableFont4">
+                                         <div>您好，今天出行的城市天气晴朗，祝您旅途愉快，生活幸福。您的航班已经延误，请您提早出行做好准备……</div>
+                                     </td>
+                                     <td>
+                                    <span class="tableFont5">
+                                      <span>修改</span><span>挂起</span><span>删除</span>
+                                    </span>
+                                     </td>
+                                 </tr>
+                                 <tr>
+                                     <td></td>
+                                     <td class="tableFont1">
+                                         <div class="planeImg"></div>
+                                         <div>机票</div>
+                                     </td>
+                                     <td class="tableFont2">
+                                         <div class="sysModel">系统模板</div>
+                                         <div>机票出票成功</div>
+                                     </td>
+                                     <td class="tableFont3">2014-4-15</td>
+                                     <td class="tableFont4">
+                                         <div>您好，今天出行的城市天气晴朗，祝您旅途愉快，生活幸福。您的航班已经延误，请您提早出行做好准备……</div>
+                                     </td>
+                                     <td>
+                                    <span class="tableFont5">
+                                      <span>修改</span>
+                                    </span>
+                                     </td>
+                                 </tr>
+                                 <tr>
+                                     <td></td>
+                                     <td class="tableFont1">
+                                         <div class="planeImg"></div>
+                                         <div>机票</div>
+                                     </td>
+                                     <td class="tableFont2">
+                                         <div class="sysModel">系统模板</div>
+                                         <div>机票出票成功</div>
+                                     </td>
+                                     <td class="tableFont3">2014-4-15</td>
+                                     <td class="tableFont4">
+                                         <div>您好，今天出行的城市天气晴朗，祝您旅途愉快，生活幸福。您的航班已经延误，请您提早出行做好准备……</div>
+                                     </td>
+                                     <td>
+                                    <span class="tableFont5">
+                                      <span>修改</span>
+                                    </span>
+                                     </td>
+                                 </tr>
+                             </table>
+                         </div>
+                     </div> 
                         
                  </div>   <!-- 短信设置 结束 -->
                  
