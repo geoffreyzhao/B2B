@@ -172,13 +172,12 @@
                              <span class="fs14 fc333" style="margin-right: 15px;">短信内容</span><span class="fc999">每条短信最多为60个字，超过该长度，系统将分为多条发送</span>
                              <span class="errorsTips"><i></i>短信内容不得为空</span>
                          </p>
-                         <p class="">
-                             <textarea class="" placeholder="请拷贝PNR内容">
-
+                         <p class="messageConTextarea">
+                             <textarea onpropertychange="getMsgLength()" oninput="getMsgLength()">你是小坏小坏小坏你是小坏小坏小坏你是小坏小坏小坏你是小坏小坏小坏你是小坏小坏小坏你是小坏小
                              </textarea>
                          </p>
                          <p style="text-align: right;">
-                             <span>字数：<em class="fc0066ff">23</em>，短信条数：<em class="fc0066ff">1</em></span>
+                             <span>字数：<em class="fc0066ff word-num"></em>，短信条数：<em class="fc0066ff message-num"></em></span>
                          </p>
                          <p class="sendMessageRow">
                              <a class="adaptiveButton brightOrange_btn sendMessageBtn" style="font-size: 14px;">
@@ -409,8 +408,11 @@
                                   <td>
                                       <div class="smsCon">
                                           <p>您好，今天出行的城市天气晴朗，祝您旅行愉快，生活幸福。您的航班已经延误，请您提早出行做好今天出行的城市天气晴朗，祝
-                                              您旅行愉快，生活幸福今天出行的城市天气晴朗，祝您旅行愉快，生活幸福准备请生活幸福准备请生活幸福准备请</p>
-                                      </div>
+                                              您旅行愉快，生活幸福今天出行的城市天气晴朗，祝您旅行愉快，生活幸福准备请生活幸福准备请生活幸福准备请生活幸福准备请生活幸福准备请生活幸福准备请
+                                              生活幸福准备请生活幸福准备请生活幸福准备请
+                                              生活幸福准备请生活幸福准备请生活幸福准备请
+                                          </p>
+                                      </div><span>...</span>
                                   </td>
                                   <td class="sentTime">
                                       <div>2014-04-15</div>
@@ -865,6 +867,35 @@
 
         });
 
+        $(".sendMessageBtn").click(function(){
+            $(this).hide();
+            $(".sendingMessageBtn").show();
+        });
+        $(".selMessageTemplate .flightSpan").click(function(){
+            $(".selMessageTemplateConT").slideDown();
+            $(".selMessageTemplateConQt").hide();
+        });
+        $(".selMessageTemplate .otherSpan").click(function(){
+            $(".selMessageTemplateConQt").slideDown();
+            $(".selMessageTemplateConT").hide();
+        });
+
+        var wordNum = $(".messageConTextarea textarea").val().length;
+        var messageNum = wordNum % 60 == 0 ? wordNum / 60 : parseInt(wordNum / 60) + 1;
+
+        function setWordNumText() {
+            $(".word-num").text(wordNum);
+            $(".message-num").text(messageNum);
+        };
+
+        setWordNumText();
+
+        function getMsgLength() {
+            wordNum = $(".messageConTextarea textarea").val().length;
+            messageNum = wordNum % 60 == 0 ? wordNum / 60 : parseInt(wordNum / 60) + 1;
+            setWordNumText();
+        };
+
     });
 </script>
 
@@ -884,8 +915,19 @@
 		
 		new PopWindow('.sendSuccessTips',{
 			template:'#sendSuccessTips-template',
-			title:'提示',
-			width:'410'
+			title:false,
+			width:'410',
+            autoHide:3*1000,
+            animation:{
+            open:{   
+                effect:"fade:in",
+                duration:300
+            },
+            close:{
+                effect:"fade:out",
+                duration:300
+            }
+            }
 		}).init();
 
         new PopWindow('.sendFailTips',{
@@ -913,24 +955,8 @@
 	
 </script>
 
-<script>
+<script type="text/javascript">
     $(function(){
-        $(".sendMessageBtn").click(function(){
-            $(this).hide();
-            $(".sendingMessageBtn").show();
-        });
-        $(".selMessageTemplate .flightSpan").click(function(){
-            $(".selMessageTemplateConT").slideDown();
-            $(".selMessageTemplateConQt").hide();
-        });
-        $(".selMessageTemplate .otherSpan").click(function(){
-            $(".selMessageTemplateConQt").slideDown();
-            $(".selMessageTemplateConT").hide();
-        });
-
-
-
-        
         
 //        $(".figcaption").each(function(){
 //            console.log($(this));
@@ -948,7 +974,7 @@
 //        });
         
 
-    })
+    });
 </script>
 
 
