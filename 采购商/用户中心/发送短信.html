@@ -174,7 +174,7 @@
                              <span class="errorsTips" style="display: none;"><i></i>短信内容不得为空</span>
                          </p>
                          <p class="messageConTextarea">
-                             <textarea onpropertychange="getMsgLength()" oninput="getMsgLength()"></textarea>
+                             <textarea ></textarea>
                          </p>
                          <p style="text-align: right;">
                              <span>字数：<em class="fc0066ff word-num">0</em>，短信条数：<em class="fc0066ff message-num">0</em></span>
@@ -1000,7 +1000,7 @@
             </div>
             <div id="modelTitle" class="modelTitleCls">
                 <span class="modelTitlePos1">模板标题:</span>
-                <input type="text" name="title" maxlength= 20 class="modelTitlePos2 onpropertychange="getModleTitleFontNum()" oninput="getModleTitleFontNum()">
+                <input type="text" name="title" maxlength= 20 class="modelTitlePos2">
                 <div class="modelTitlePos3">不超过20字，且不能与已有标题重复。例：生日祝福</div>
                 <div id="errorInfo">
                     <span class="errorImg"></span>
@@ -1108,8 +1108,6 @@
 
         var errorInfo = $('.errorsTips');//焦点失去 textarea报错
         var modelTitle = $('.messageConTextarea textarea');
-//        console.log(errorInfo);
-//        console.log(modelTitle);
         modelTitle.on('blur',function(){
             var titleNum = $(this).val().length;
             if(0 == titleNum)
@@ -1119,30 +1117,10 @@
             }
         });
         
-        
-       
-        
     });
 
-    function getMsgLength(){
-        var modelTitle = $('.messageConTextarea textarea');//焦点得到 textarea取消报错
-        var errorInfo = $('.errorsTips');
-        var modelFontNum = modelTitle.val().length;
-        if(modelFontNum > 0)
-        {
-            errorInfo.hide();
-            modelTitle.css('border','1px solid #abadb3');
-        }
 
-        wordNum = $(".messageConTextarea textarea").val().length;
-        messageNum = wordNum % 60 == 0 ? wordNum / 60 : parseInt(wordNum / 60) + 1;
-        setWordNumText(wordNum,messageNum);
-    };
 
-    function setWordNumText(wordNum,messageNum) {
-        $(".word-num").text(wordNum);
-        $(".message-num").text(messageNum);
-    };
 </script>
 
 <script type="text/javascript">

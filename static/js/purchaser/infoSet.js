@@ -30,24 +30,15 @@ $(function(){
 
 	var errorInfo = $('#errorInfo');
 	var modelTitle = $('.modelTitlePos2');
-		modelTitle.on('blur',function(){
-			var titleNum = $(this).val().length;
-			if(0 == titleNum)
-			{
-				errorInfo.show();
-				$(this).css('border','1px solid red');
-			}
+		// modelTitle.on('blur',function(){
+		// 	var titleNum = $(this).val().length;
+		// 	if(0 == titleNum)
+		// 	{
+		// 		errorInfo.show();
+		// 		$(this).css('border','1px solid red');
+		// 	}
 				
-		});
-
-		
-
-		// modelTitle.bind('propertychange',function(){
-		// 	$(this).css('border','1px solid green');
 		// });
-	// modelTitle.get(0).attachEvent("onpropertychange",function (){
- //                           $(this).css('border','1px solid green');
- //                     });
 
 });
 
@@ -69,3 +60,23 @@ function getModleTitleFontNum(){
 		modelTitle.css('border','1px solid #abadb3');
 	}
 }
+
+
+
+function getMsgLength(){
+        var modelTitle = $('.messageConTextarea textarea');//焦点得到 textarea取消报错
+        var errorInfo = $('.errorsTips');
+        var modelFontNum = modelTitle.val().length;
+        if(modelFontNum > 0)
+        {
+            errorInfo.hide();
+            modelTitle.css('border','1px solid #abadb3');
+        }
+
+        wordNum = $(".messageConTextarea textarea").val().length;
+        messageNum = wordNum % 60 == 0 ? wordNum / 60 : parseInt(wordNum / 60) + 1;
+        setWordNumText(wordNum,messageNum);
+
+        $(".word-num").text(wordNum);
+        $(".message-num").text(messageNum);
+};
