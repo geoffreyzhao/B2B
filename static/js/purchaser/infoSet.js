@@ -26,19 +26,32 @@ $(function(){
 		modelTxtarea.val(function(){
 		 	return this.value+$(_modelPoint).text();
 		 });
+		setWordNumText();
 	});
+
+
 
 	var errorInfo = $('#errorInfo');
 	var modelTitle = $('.modelTitlePos2');
-		// modelTitle.on('blur',function(){
-		// 	var titleNum = $(this).val().length;
-		// 	if(0 == titleNum)
-		// 	{
-		// 		errorInfo.show();
-		// 		$(this).css('border','1px solid red');
-		// 	}
+		modelTitle.on('blur',function(){
+			var titleNum = $(this).val().length;
+			if(0 == titleNum)
+			{
+				errorInfo.show();
+				$(this).css('border','1px solid red');
+			}
 				
-		// });
+		});
+
+		modelTitle.on('focus',function(){
+			var titleNum = $(this).val().length;
+			if(0 == titleNum)
+			{
+				errorInfo.hide();
+				$(this).css('border','1px solid #abadb3');
+			}
+				
+		});
 
 });
 
