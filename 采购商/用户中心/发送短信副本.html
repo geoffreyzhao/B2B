@@ -174,7 +174,7 @@
                              <span class="errorsTips" style="display: none;"><i></i>短信内容不得为空</span>
                          </p>
                          <div class="messageConDiv">
-                             <textarea style="border: none;" class="messageConTextarea" onpropertychange="getMsgTextareaLength()" oninput="getMsgTextareaLength()"></textarea>
+                             <textarea style="border: none;" class="messageConTextarea" onpropertychange="getMsgLength()" oninput="getMsgLength()"></textarea>
                          </div>
                          <p style="text-align: right;">
                              <span>字数：<em class="fc0066ff word-num">0</em>，短信条数：<em class="fc0066ff message-num">0</em></span>
@@ -1000,7 +1000,7 @@
             </div>
             <div id="modelTitle" class="modelTitleCls">
                 <span class="modelTitlePos1">模板标题:</span>
-                <input type="text" name="title" maxlength= 20 class="modelTitlePos2">
+                <input type="text" name="title" maxlength= 20 class="modelTitlePos2 onpropertychange="getModleTitleFontNum()" oninput="getModleTitleFontNum()">
                 <div class="modelTitlePos3">不超过20字，且不能与已有标题重复。例：生日祝福</div>
                 <div id="errorInfo">
                     <span class="errorImg"></span>
@@ -1191,12 +1191,12 @@
             if(0 == titleNum)
             {
                 errorInfo.show();
-                $('.messageConDiv').css('border','1px solid #ff6600');
+                $('.messageConDiv').css('border','1px solid orange');
             }
         });
     });
 
-    function getMsgTextareaLength() {
+    function getMsgLength() {
         var modelTitle = $('.messageConTextarea');//焦点得到 textarea取消报错
         var errorInfo = $('.errorsTips');
         var modelFontNum = modelTitle.val().length;
@@ -1208,17 +1208,15 @@
 
         wordNum = $(".messageConTextarea").val().length;
         messageNum = (wordNum % 60 == 0) ? wordNum / 60 : parseInt(wordNum / 60) + 1;
-        setWordNumInfoText(wordNum, messageNum);
+        setWordNumText(wordNum, messageNum);
     };
 
-    function setWordNumInfoText(wordNum, messageNum) {
+    function setWordNumText(wordNum, messageNum) {
         $(".word-num").text(wordNum);
         $(".message-num").text(messageNum);
     };
 
 </script>
-
-
 
 
 
