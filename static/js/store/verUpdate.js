@@ -36,24 +36,78 @@ $(function() {
 	logoAll.push(logo3);
 	logoAll.push(logo4);
 
-	// $.each(logoAll,function(){
-	// 	$(this).on("click",function(){
-	// 		var titleSel = $("#title").find(".titleBlock");
-	// 		$.each(titleSel,function(){
-	// 			$(this).removeClass("titleBlock");
-	// 		});
-	// 			$(this).addClass("titleBlock");
-	// 	});
-	// });
-	$(logoAll).each(function(){
+	var logoLeftCover = $("#title").find(".logoLeftCover");
+	var logoMidCover = $("#title").find(".logoMidCover");
+	var logoRigCover = $("#title").find(".logoRigCover");
+	var logoCoverAll = [];
+	logoCoverAll.push(logoLeftCover);
+	logoCoverAll.push(logoMidCover);
+	logoCoverAll.push(logoRigCover);
+
+	$(logoCoverAll).each(function(){
+		
 		$(this).on("click",function(){
-			var titleSel = $("#title").find(".titleBlock");
-			$(titleSel).each(function(){
-				$(this).removeClass("titleBlock");
+			$(logoCoverAll).each(function(){
+				$(this).removeClass("logoClickCover");
 			});
-				$(this).addClass("titleBlock");
+
+			if($(this).hasClass("logoLeftCover"))
+				$(this).addClass("logoClickCover");
+			else if($(this).hasClass("logoMidCover"))
+				$(this).addClass("logoClickCover");
+			else if($(this).hasClass("logoRigCover"))
+				$(this).addClass("logoClickCover");
 		});
 	});
+
+	$(logoAll).each(function(){
+		$(this).on("click",function(){
+
+			$(logoCoverAll).each(function(){
+				$(this).removeClass("logoClickCover");
+				
+			});
+
+
+
+			if($(this).hasClass("logo2"))
+				logoLeftCover.addClass("logoClickCover");
+			else if($(this).hasClass("logo3"))
+				logoMidCover.addClass("logoClickCover");
+			else if($(this).hasClass("logo4"))
+				logoRigCover.addClass("logoClickCover");
+		});
+
+	});
+
+	logo2.hover(
+		function(){
+			logoLeftCover.addClass("logoClickCover2");
+
+		},
+		function(){
+			logoLeftCover.removeClass("logoClickCover2");
+		}
+	);
+
+	logo3.hover(
+		function(){
+			logoMidCover.addClass("logoClickCover2");
+		},
+		function(){
+			logoMidCover.removeClass("logoClickCover2");
+		}
+	);
+
+	logo4.hover(
+		function(){
+			logoRigCover.addClass("logoClickCover2");
+		},
+		function(){
+			logoRigCover.removeClass("logoClickCover2");
+		}
+	);
+
 });
 
 
