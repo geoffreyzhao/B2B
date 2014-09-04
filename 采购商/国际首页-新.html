@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../static/css/kendo.common.min.css" />
     <link rel="stylesheet" href="../static/css/kendo.store.css" />
     <link rel="stylesheet" href="../static/css/toolkit.css"/>
-    <link rel="stylesheet" href="../static/css/store_v2/store.css"/>
+    <link rel="stylesheet" href="../static/css/store_v3/store.css"/>
 
     <script type="text/javascript" src="../static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../static/js/kendo.web.js"></script>
@@ -71,8 +71,7 @@
 
 <div class="headBG">
     <header class="main-header">
-        <a class="logo" href="/"><h1>天地行</h1></a>
-        <!-- <img id="headLogo" src="../static/images/store/logoGif.gif"> -->
+        <img id="headLogo" src="../static/images/store/logoGif.gif">
         <nav class="main-nav index-page-nav">
             <ul class="clearfix">
                 <li><a herf="#">国内机票</a></li>
@@ -81,40 +80,38 @@
                 <li><a herf="#">酒店</a></li>
                 <li><a herf="#">机 + 酒</a></li>
                 <li><a herf="#">旅游</a></li>
-                <li><a herf="#">订单<i class="orderNum">10</i> </a></li>
             </ul>
         </nav>
     </header>
 </div>
-<div class="internationSearchingBG clearfix">
-    <div class="annPrompt prompt-top-pass">
-        <a href="#" style="top: 0px;">免费机票大作战 第一波甜蜜来袭2！</a>
-        <a href="#" style="top: 0px;">免费机票大作战 第一波甜蜜来袭3！</a>
-        <a href="#" style="top: 0px;">免费机票大作战 第一波甜蜜来袭4！</a>
-        <a href="#" style="top: 0px;">免费机票大作战 第一波甜蜜来袭1！</a>
-    </div>
-    <script>
-        $(function(){
-            var slideMsgEve=setInterval(slideMessage,3000);
-            $(".annPrompt").hover(function(){
-                        clearInterval(slideMsgEve);
-                    },
-                    function(){
-                        slideMsgEve=setInterval(slideMessage,3000);
-                    }
-            );
-
-            function slideMessage()
-            {
-                $(".annPrompt a").animate({"top":"-22px"},"1000")
-                setTimeout(function(){
-                    $(".annPrompt").append($(".annPrompt a:first").remove());
-                    $(".annPrompt a").css({"top":"0"});
-                },1200);
-            }
-        })
-    </script>
+<div class="internationSearchingBG clearfix"></div>
+<div class="annPrompt prompt-top-pass">
+    <a href="#" style="top: 0px;">免费机票大作战 第一波甜蜜来袭2！</a>
+    <a href="#" style="top: 0px;">免费机票大作战 第一波甜蜜来袭3！</a>
+    <a href="#" style="top: 0px;">免费机票大作战 第一波甜蜜来袭4！</a>
+    <a href="#" style="top: 0px;">免费机票大作战 第一波甜蜜来袭1！</a>
 </div>
+<script>
+    $(function(){
+        var slideMsgEve=setInterval(slideMessage,3000);
+        $(".annPrompt").hover(function(){
+                    clearInterval(slideMsgEve);
+                },
+                function(){
+                    slideMsgEve=setInterval(slideMessage,3000);
+                }
+        );
+
+        function slideMessage()
+        {
+            $(".annPrompt a").animate({"top":"-22px"},"1000")
+            setTimeout(function(){
+                $(".annPrompt").append($(".annPrompt a:first").remove());
+                $(".annPrompt a").css({"top":"0"});
+            },1200);
+        }
+    })
+</script>
 <div class="main-wrapper main-top-pass">
         <section class="querytab querytab-international">
             <div class="querytab-wrapper col clearfix querytab-top-pass">
