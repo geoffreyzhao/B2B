@@ -68,8 +68,6 @@ $(function() {
 				
 			});
 
-
-
 			if($(this).hasClass("logo2"))
 				logoLeftCover.addClass("logoClickCover");
 			else if($(this).hasClass("logo3"))
