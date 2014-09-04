@@ -18,8 +18,8 @@
     <script type="text/javascript" src="/static/js/global.js"></script>
     <script type="text/javascript" src="/static/js/scrollFix.js"></script>
     <script type="text/javascript" src="/static/js/public.js"></script>
-    
-    
+
+   
     
     <!--[if IE]>
     <script src="/static/js/html5.js"></script>
@@ -170,43 +170,46 @@
                         </tr>
                     </table>
                     </div>
-                <div class="addContentItem">
-                    <i class="addIcon"></i>
-                    <em>添加内容</em>
+                
+                    <div class="editInfoItem addBournInfo" style="display: none">
+                    <div class="delBournInfo"><span class="delSpan"><i></i>删除</span></div>
+                    <table class="package-basicInfoTable">
+                        <colgroup>
+                            <col width="78">
+                            <col width="">
+                        </colgroup>
+                        <tr>
+                            <th>信息标题：</th>
+                            <td>
+                                <input type="text" placeholder="输入文本..." style="width:385px;"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="vertical-align: top;">添加照片：<div class="uploadImgNo"><span>2</span>/5</div></th>
+                            <td>
+                                <ul class="uploadImgBlock">
+                                    <li class="addImgBox">
+                                        <i></i>添加照片
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="vertical-align: top;">信息内容：</th>
+                            <td>
+                                <textarea style="height: 50px;width:856px;"></textarea>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
+                
+                    <div class="addContentItem">
+                        <i class="addIcon"></i>
+                        <em>添加内容</em>
+                    </div>
+                
             </div>
-            <!-- 添加内容 -->
-            <div class="addBournInfo" style="display: none;">
-                <div class="delBournInfo"><span class="delSpan"><i></i>删除</span></div>
-                <table class="package-basicInfoTable">
-                    <colgroup>
-                        <col width="78">
-                        <col width="">
-                    </colgroup>
-                    <tr>
-                        <th>信息标题：</th>
-                        <td>
-                            <input type="text" placeholder="输入文本..." style="width:385px;"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th style="vertical-align: top;">添加照片：<div class="uploadImgNo"><span>2</span>/5</div></th>
-                        <td>
-                            <ul class="uploadImgBlock">
-                                <li class="addImgBox">
-                                    <i></i>添加照片
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th style="vertical-align: top;">信息内容：</th>
-                        <td>
-                            <textarea style="height: 50px;width:856px;"></textarea>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+           
            
             <!-- 操作日志 开始-->
             <div class="panel">
@@ -270,7 +273,6 @@
 
         $(".addContentItem").click(function(){
             $(".addContentItem").before("<div class='editInfoItem blockTopBorder'>" + $(".addBournInfo").html() + "</div>");
-           // $(".ke-container").css("width","902px");
         });
 
         $(".packagePro").delegate('.delSpan', 'click', function(event) {
