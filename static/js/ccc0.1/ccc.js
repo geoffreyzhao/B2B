@@ -1,14 +1,14 @@
 ﻿//引用基本日历函数库
 document.write(
-'<script src="../../static/js/ccc0.1/math.js"></script>'+
-'<script src="../../static/js/ccc0.1/solar.js"></script>'+
-'<script src="../../static/js/ccc0.1/sterm.js"></script>'+
-'<script src="../../static/js/ccc0.1/ganzhi.js"></script>'+
-'<script src="../../static/js/ccc0.1/lunar.js"></script>'+
-'<script src="../../static/js/ccc0.1/string.js"></script>'+
-'<script src="../../static/js/ccc0.1/ftvl.js"></script>'+
-'<script src="../../static/js/ccc0.1/era.js"></script>'+
-'<script src="../../static/js/ccc0.1/timezone.js"></script>'
+'<script src="/static/js/ccc0.1/math.js"></script>'+
+'<script src="/static/js/ccc0.1/solar.js"></script>'+
+'<script src="/static/js/ccc0.1/sterm.js"></script>'+
+'<script src="/static/js/ccc0.1/ganzhi.js"></script>'+
+'<script src="/static/js/ccc0.1/lunar.js"></script>'+
+'<script src="/static/js/ccc0.1/string.js"></script>'+
+'<script src="/static/js/ccc0.1/ftvl.js"></script>'+
+'<script src="/static/js/ccc0.1/era.js"></script>'+
+'<script src="/static/js/ccc0.1/timezone.js"></script>'
 );
 
 //节气子类
