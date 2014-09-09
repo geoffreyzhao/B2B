@@ -405,6 +405,163 @@
             </div>
 </script>
 
+<script type="text/x-kendo-template" id="checkTicketWindow">
+    <div class="check-ticket-window">
+        <div class="ticket">
+            <div class="win-tab-title"><b>交通政策：</b> 飞机</div>
+            <table class="tgrid" style="width:700px;">
+                <thead>
+                  <tr>
+                      <th class="line_left">行程</th>
+                      <th>政策ID</th>
+                      <th>航司</th>
+                      <th>出发机场</th>
+                      <th>到达机场</th>
+                      <th>航程</th>
+                      <th>库存情况</th>
+                      <th>票价</th>
+                      <th>返点</th>
+                      <th>后返</th>
+                      <th>乘客类型</th>
+                      <th>乘机日期</th>
+                      <th class="line_right">出票日期</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>全程</td>
+                        <td>12344</td>
+                        <td>东航</td>
+                        <td>北京国际机场</td>
+                        <td>上海虹桥机场</td>
+                        <td>往返</td>
+                        <td>10/5</td>
+                        <td>800</td>
+                        <td>3</td>
+                        <td>0</td>
+                        <td>成人</td>
+                        <td>2014-08-12</td>
+                        <td>2014-08-09</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="hotel-policy">
+            <div class="win-tab-title"><b>酒店政策：</b></div>
+            <table class="tgrid" style="width: 700px;">
+                <colgroup>
+                    <col width="50" />
+                    <col width="40" />
+                    <col width="120" />
+                    <col width="30" />
+                    <col width="85" />
+                    <col width="85" />
+                    <col width="50" />
+                    <col width="50" />
+                    <col width="45" />
+                    <col width="45" />
+                    <col width="80" />
+                </colgroup>
+                <thead>
+                  <tr>
+                      <th class="line_left">行程</th>
+                      <th>城市</th>
+                      <th>酒店名称</th>
+                      <th>星级</th>
+                      <th>房型名称</th>
+                      <th>价格计划</th>
+                      <th>保留房</th>
+                      <th>CutoffDay</th>
+                      <th>早餐</th>
+                      <th>宽带</th>
+                      <th class="line_right">价格01/02/03</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>全程</td>
+                        <td>上海</td>
+                        <td>大宁绿地酒店酒店酒店酒店酒店</td>
+                        <td>3.5</td>
+                        <td>标准房（包）</td>
+                        <td>含早</td>
+                        <td>5</td>
+                        <td>3</td>
+                        <td>含早</td>
+                        <td>包含</td>
+                        <td>600/700/800</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <table class="other-info-tab">
+            <tr>
+                <th rowspan="3">库存与价格：</th>
+                <td>库存数量：</td>
+                <td width="130px">使用政策库存</td>
+                <td></td>
+                <td width="130px;"></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>库存不足：</td>
+                <td>不可预订</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>每份人数：</td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th rowspan="2">同行价格：</th>
+                <td>成人价格：</td>
+                <td>2000.00</td>
+                <td>儿童价格：</td>
+                <td>1800.00</td>
+                <td>单房差：</td>
+                <td>600.00</td>
+            </tr>
+            <tr>
+                <td>外宾价格：</td>
+                <td>0.00</td>
+                <td>外宾单房差：</td>
+                <td>0.00</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th rowspan="2">市场价格：</th>
+                <td>成人价格：</td>
+                <td>2000.00</td>
+                <td>儿童价格：</td>
+                <td>1800.00</td>
+                <td>单房差：</td>
+                <td>600.00</td>
+            </tr>
+            <tr>
+                <td>外宾价格：</td>
+                <td>0.00</td>
+                <td>外宾单房差：</td>
+                <td>0.00</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>预订时段：</th>
+                <td colspan="2">提前 <em>1</em> 天 <em>16</em> 点</td>
+            </tr>
+        </table>
+    </div>
+</script>
+
 <script type="text/html" id="testJsonStr">
     {
     "2013/10/02": [
@@ -757,6 +914,14 @@
 
             $middlePart.css("background-color", "#40b1e2");
         });
+
+        
+        // 弹窗
+        var checkTicketWindow = new PopWindow('.addTicketPolicy',{
+            title:'出发日期',
+            width:'750',
+            template:'#checkTicketWindow'
+        }).init();
 
     });
 </script>
