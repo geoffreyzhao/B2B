@@ -27,11 +27,11 @@
     
     <!--[if IE]>
     <script src="/static/js/html5.js"></script>
-    <script src="/static/js/vendor/IE7.min.js"></script>
     <![endif]-->
     
     <!--[if lt IE 8]>
-    <!--<link rel="stylesheet" href="/static/css/ie.css" />-->
+    <link rel="stylesheet" href="/static/css/ie.css" />
+    <script src="/static/js/vendor/IE7.min.js"></script>
     <![endif]-->
     <script type="text/javascript" src="/static/js/sync.js"></script>
     <!-- @CLB@ -->
@@ -871,7 +871,386 @@
 
 <script type="text/x-kendo-template" id="addTicketPolicyWindow">
     <div class="add-ticket-window">
-
+        <div class="search-condition-block">
+            <table>
+                <tr>
+                    <th>添加行程政策</th>
+                    <td class="tripTypeTd">
+                        <label><input type="radio" name="tripType">往返</label>
+                        <label><input type="radio" name="tripType">去程</label>
+                        <label><input type="radio" name="tripType">返程</label>
+                    </td>
+                    <td colspan="2">前移<input type="text" style="width:62px;margin:0 5px;padding:0 3px;">天
+                        <span class="prompt"><i></i>最早出发日期：2014-09-28</span>
+                    </td>
+                    <td rowspan="4">
+                        <a href="javascript:;" class="button_important adaptiveButton small" style="">
+                                <span class="left"></span>
+                                <span class="center">查 询</span>
+                                <span class="right"></span>
+                            </a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>航空公司</th>
+                    <td>
+                        <select>
+                            <option>全部</option>
+                            <option>3U 川航</option>
+                            <option>MU 东航</option>
+                            <option>CZ 南航</option>
+                            <option>MF 厦航</option>
+                            <option>......</option>
+                        </select>
+                    </td>
+                    <th>乘机时段</th>
+                    <td>
+                        <input type="text" class="datepicker" style="width:112px;padding-left:3px;" value="2013-09-30">
+                        <em> 至 </em>
+                        <input type="text" class="datepicker orange" style="width:112px;padding-left:3px;" value="2013-10-07">
+                    </td>
+                </tr>
+                <tr>
+                    <th>政策供应商</th>
+                    <td>
+                        <select>
+                            <option>不夜城国旅</option>
+                        </select>
+                    </td>
+                    <th>政策ID</th>
+                    <td>
+                        <input type="text" style="width:250px;">
+                    </td>
+                </tr>
+                <tr>
+                    <th>打包销售</th>
+                    <td><label><input type="checkbox" style="margin-right:3px;">是</label>
+                    </td>
+                    <th>政策类型</th>
+                    <td class="policyTypeTd">
+                        <label><input type="checkbox">全部</label>
+                        <label><input type="checkbox">普通</label>
+                        <label><input type="checkbox">往返打包</label>
+                        <label><input type="checkbox">特价申请</label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="policyInfoBlock">
+            <div class="tabsContainer setCustomer" style="margin:0;width:700px;">
+                <ul id="setCustomerTabsContainer" class="cityTabsContainer" style="padding:0 10px;">
+                    <li class="current">
+                        <div class="mtab tabsItem">
+                            勾选政策
+                            <span class="rightCover"></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="mtab tabsItem gray">
+                            已选<em>3</em>条
+                            <span class="rightCover"></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="splitLine"></div>
+            <div class="allPolicyList">
+                <table class="tgrid">
+                    <thead>
+                      <tr>
+                          <th class="line_left" style="width:20px;">选择</th>
+                          <th>供应商</th>
+                          <th>政策</th>
+                          <th style="width:20px;">航司</th>
+                          <th>出发机场</th>
+                          <th>到达机场</th>
+                          <th>航程</th>
+                          <th>库存情况</th>
+                          <th>票价</th>
+                          <th style="width:20px;">返点</th>
+                          <th style="width:20px;">后返</th>
+                          <th>乘客类型</th>
+                          <th>乘机日期</th>
+                          <th class="line_right">出票日期</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center;"><input type="checkbox"></td>
+                            <td>不夜城</td>
+                            <td>12344</td>
+                            <td>东航</td>
+                            <td>北京国际机场</td>
+                            <td>上海虹桥机场</td>
+                            <td>往返</td>
+                            <td>10/5</td>
+                            <td>800</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>成人</td>
+                            <td>2014-08-12</td>
+                            <td>2014-08-09</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;"><input type="checkbox"></td>
+                            <td>不夜城</td>
+                            <td>12344</td>
+                            <td>东航</td>
+                            <td>北京国际机场</td>
+                            <td>上海虹桥机场</td>
+                            <td>往返</td>
+                            <td>10/5</td>
+                            <td>800</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>成人</td>
+                            <td>2014-08-12</td>
+                            <td>2014-08-09</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;"><input type="checkbox"></td>
+                            <td>不夜城</td>
+                            <td>12344</td>
+                            <td>东航</td>
+                            <td>北京国际机场</td>
+                            <td>上海虹桥机场</td>
+                            <td>往返</td>
+                            <td>10/5</td>
+                            <td>800</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>成人</td>
+                            <td>2014-08-12</td>
+                            <td>2014-08-09</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;"><input type="checkbox"></td>
+                            <td>不夜城</td>
+                            <td>12344</td>
+                            <td>东航</td>
+                            <td>北京国际机场</td>
+                            <td>上海虹桥机场</td>
+                            <td>往返</td>
+                            <td>10/5</td>
+                            <td>800</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>成人</td>
+                            <td>2014-08-12</td>
+                            <td>2014-08-09</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;"><input type="checkbox"></td>
+                            <td>不夜城</td>
+                            <td>12344</td>
+                            <td>东航</td>
+                            <td>北京国际机场</td>
+                            <td>上海虹桥机场</td>
+                            <td>往返</td>
+                            <td>10/5</td>
+                            <td>800</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>成人</td>
+                            <td>2014-08-12</td>
+                            <td>2014-08-09</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;"><input type="checkbox"></td>
+                            <td>不夜城</td>
+                            <td>12344</td>
+                            <td>东航</td>
+                            <td>北京国际机场</td>
+                            <td>上海虹桥机场</td>
+                            <td>往返</td>
+                            <td>10/5</td>
+                            <td>800</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>成人</td>
+                            <td>2014-08-12</td>
+                            <td>2014-08-09</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;"><input type="checkbox"></td>
+                            <td>不夜城</td>
+                            <td>12344</td>
+                            <td>东航</td>
+                            <td>北京国际机场</td>
+                            <td>上海虹桥机场</td>
+                            <td>往返</td>
+                            <td>10/5</td>
+                            <td>800</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>成人</td>
+                            <td>2014-08-12</td>
+                            <td>2014-08-09</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;"><input type="checkbox"></td>
+                            <td>不夜城</td>
+                            <td>12344</td>
+                            <td>东航</td>
+                            <td>北京国际机场</td>
+                            <td>上海虹桥机场</td>
+                            <td>往返</td>
+                            <td>10/5</td>
+                            <td>800</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>成人</td>
+                            <td>2014-08-12</td>
+                            <td>2014-08-09</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;"><input type="checkbox"></td>
+                            <td>不夜城</td>
+                            <td>12344</td>
+                            <td>东航</td>
+                            <td>北京国际机场</td>
+                            <td>上海虹桥机场</td>
+                            <td>往返</td>
+                            <td>10/5</td>
+                            <td>800</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>成人</td>
+                            <td>2014-08-12</td>
+                            <td>2014-08-09</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;"><input type="checkbox"></td>
+                            <td>不夜城</td>
+                            <td>12344</td>
+                            <td>东航</td>
+                            <td>北京国际机场</td>
+                            <td>上海虹桥机场</td>
+                            <td>往返</td>
+                            <td>10/5</td>
+                            <td>800</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>成人</td>
+                            <td>2014-08-12</td>
+                            <td>2014-08-09</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="grid-table-pagination">
+                      <span class="grid-table-count">
+                          共 <em>132</em> 条记录
+                      </span>
+                      <span>
+                          <a href="javascript:void(0);" class="prev">&nbsp;</a>
+                      </span>
+                      <span class="links">
+                          <a href="javascript:void(0);">1</a>
+                          <a href="javascript:void(0);">2</a>
+                          <a href="javascript:void(0);" class="current">3</a>
+                          <a href="javascript:void(0);">4</a>
+                          <a href="javascript:void(0);">5</a>
+                          <a href="javascript:void(0);">...</a>
+                          <a href="javascript:void(0);">50</a>
+                      </span>
+                      <span>
+                          <a href="javascript:void(0);" class="next">&nbsp;</a>
+                      </span>
+                </div>
+            </div>
+            <div class="checkedPolicyList" style="display:none;">
+                <table class="tgrid">
+                    <thead>
+                      <tr>
+                          <th class="line_left" style="width:20px;">选择</th>
+                          <th>供应商</th>
+                          <th>政策</th>
+                          <th style="width:20px;">航司</th>
+                          <th>出发机场</th>
+                          <th>到达机场</th>
+                          <th>航程</th>
+                          <th>库存情况</th>
+                          <th>票价</th>
+                          <th style="width:20px;">返点</th>
+                          <th style="width:20px;">后返</th>
+                          <th>乘客类型</th>
+                          <th>乘机日期</th>
+                          <th class="line_right">出票日期</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center;"><i class="excludeDelButton"></i></td>
+                            <td>不夜城</td>
+                            <td>12344</td>
+                            <td>东航</td>
+                            <td>北京国际机场</td>
+                            <td>上海虹桥机场</td>
+                            <td>往返</td>
+                            <td>10/5</td>
+                            <td>800</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>成人</td>
+                            <td>2014-08-12</td>
+                            <td>2014-08-09</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;"><i class="excludeDelButton"></i></td>
+                            <td>不夜城</td>
+                            <td>12344</td>
+                            <td>东航</td>
+                            <td>北京国际机场</td>
+                            <td>上海虹桥机场</td>
+                            <td>往返</td>
+                            <td>10/5</td>
+                            <td>800</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>成人</td>
+                            <td>2014-08-12</td>
+                            <td>2014-08-09</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;"><i class="excludeDelButton"></i></td>
+                            <td>不夜城</td>
+                            <td>12344</td>
+                            <td>东航</td>
+                            <td>北京国际机场</td>
+                            <td>上海虹桥机场</td>
+                            <td>往返</td>
+                            <td>10/5</td>
+                            <td>800</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>成人</td>
+                            <td>2014-08-12</td>
+                            <td>2014-08-09</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="grid-table-pagination">
+                      <span class="grid-table-count">
+                          共 <em>132</em> 条记录
+                      </span>
+                      <span>
+                          <a href="javascript:void(0);" class="prev">&nbsp;</a>
+                      </span>
+                      <span class="links">
+                          <a href="javascript:void(0);">1</a>
+                          <a href="javascript:void(0);">2</a>
+                          <a href="javascript:void(0);" class="current">3</a>
+                          <a href="javascript:void(0);">4</a>
+                          <a href="javascript:void(0);">5</a>
+                          <a href="javascript:void(0);">...</a>
+                          <a href="javascript:void(0);">50</a>
+                      </span>
+                      <span>
+                          <a href="javascript:void(0);" class="next">&nbsp;</a>
+                      </span>
+                </div>
+            </div>
+        </div>
     </div>
 </script>
 
@@ -1252,8 +1631,8 @@
 
         // 添加机票政策弹窗
         var addHotelResWin = new PopWindow('.addTicketPolicy',{
-            title:'添加机票政策',
-            width:'750',
+            title:'批量添加机票政策',
+            width:'800',
             template:'#addTicketPolicyWindow'
         }).init();
 
@@ -1285,6 +1664,22 @@
 
         $(".date-item-list").delegate("i.del-icon", "click", function(){
             $(this).parents("li").remove();
+        });
+
+        // 批量添加机票政策 tab切换效果
+        $(".cityTabsContainer li").each(function(index){
+            $(this).click(function(){
+                $(this).children("div").removeClass("gray");
+                $(this).siblings("li").children("div").addClass("gray");
+
+                if (index == 0) {
+                    $(".allPolicyList").show();
+                    $(".checkedPolicyList").hide();
+                } else if (index == 1) {
+                    $(".allPolicyList").hide();
+                    $(".checkedPolicyList").show();
+                }
+            }); 
         });
 
     });
