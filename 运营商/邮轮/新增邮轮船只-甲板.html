@@ -10,9 +10,13 @@
     <link href="../../static/css/kendo.reset.css" rel="stylesheet" />
     <link href="../../static/css/passengerLinerHead.css" rel="stylesheet" />
     <link href="../../static/css/passengerLiner/passengerDeck.css" rel="stylesheet" />
+    <link href="../../static/css/operatorShip.css" rel="stylesheet" type="text/css"/>
+
     <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
-    <script type="text/javascript" src="../../static/js/header.js"></script>
+    <script type="text/javascript" src="../../static/js/header.js"></script>    
+    <script type="text/javascript" src="/static/js/global.js"></script>
+
 
 <!--[if lt IE 8]> 
 <link rel="stylesheet" href="../static/css/ie.css" /> 
@@ -96,6 +100,20 @@
         </div>
     </div>
 
+    <div class="topFixedToolsBar topFixAdd">
+        <div class="commonReturnBtn">
+            <!-- <span class="returnArrow"></span> -->
+            <a href="#">返回</a>
+        </div>
+        <div class="fixedMenu">
+            <h3 class="fixedMenuTitle">新增邮轮船只</h3>
+            <a href="#">基本信息</a>
+            <a href="#">舱房</a>
+            <a href="#"  class="current">甲板</a>
+            <a href="#">餐娱</a>
+        </div>
+    </div>
+
     <div id="passengerInfo">
         <div id="passengerInfo-cell">
             <div class="clearfix">
@@ -103,8 +121,20 @@
                     <span>保罗高更邮轮</span>
                     <em>Paul Gauguin</em>
                 </div>
-                <div class="addDeckBtn">
+                <!-- <div class="addDeckBtn ac-refuse">
                     + 新增甲板
+                </div> -->
+                <div class="addButton ac-refuse">
+                    <a href="javascript:void(0);" class="button_secondary adaptiveButton small">
+                        <span class="left"></span>
+                        <span class="center">+ 新 增</span>
+                        <span class="right"></span>
+                    </a>
+                   <!-- <a class="button_secondary adaptiveButton small" href="javascript:void(0);">
+                        <span class="left"></span>
+                        <span class="center">发 布</span>
+                        <span class="right"></span>
+                    </a>-->
                 </div>
             </div>
             <div class="storey">
@@ -204,6 +234,73 @@
             <p>客户服务热线:400-720-6666</p>
         </div>
 </div>
+
+
+
+<!-- <div class="row" style="text-align:right;">
+                <button class="btns button_1_2">提 交</button> 
+                <button class="btns button_2_2">取 消</button> 
+            </div> -->
+<script type="text/x-kendo-template" id="ac-refuse-template">
+    <div id="addDeck-popWindow">
+        <div class="shipName">
+            <span>邮轮船只:</span><em>双子星号</em>
+        </div>
+        <div class="deckName">
+            <span><i>*</i>甲板名称:</span><input type="text" class="deckName-input"/>
+        </div>
+        <div class="introduce">
+            <span class="introduce-span">介绍:</span><textarea></textarea>
+        </div>
+        <div class="introduce-node">不超过100字</div>
+        <div class="deckImg">
+            <span class="deckImg-span"><i>*</i>甲板图:</span>
+            <div class="shipImgLi">
+                <img src="../../static/images/supplier/shipUploadImg01.jpg"/>
+                <div class="memberFile">
+                    <!--<span class="imgPrev"></span>-->
+                    <span class="imgDel"></span>
+                    <span class="imgNext"></span>
+                </div>
+            </div>
+            <div class="addImgBox">
+                <i></i>
+                添加照片
+            </div>
+        </div>
+        <div class="sort">
+            <span>排序</span><input type="text" class="sort-input"/>
+        </div>
+        <div class="btn">
+            <button class="btns button_1_2">保 存</button> 
+            <button class="btns button_2_2">取 消</button> 
+        </div>
+
+
+
+    </div>
+</script>
+
+
+        <script>
+$(function(){
+    new PopWindow('.ac-refuse',{
+        title:'甲板信息',
+        template:'#ac-refuse-template',
+        width:640,
+        height:534
+    }).init();
+
+
+    // $(".addDeckBtn").trigger('click');
+
+
+})
+        </script>
+
+
+
+
 
 
 </body>
