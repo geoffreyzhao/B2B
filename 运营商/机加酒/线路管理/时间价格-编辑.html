@@ -406,6 +406,7 @@
 </script>
 
 <script type="text/x-kendo-template" id="modifyOperWindow">
+    <span class="extendTitleDate">2014-08-09</span>
     <div class="check-ticket-window">
         <div class="ticket">
             <div class="win-tab-title">
@@ -746,6 +747,11 @@
 </script>
 
 <script type="text/x-kendo-template" id="addHotelResourceWindow">
+    <span class="extendTripInfo">
+        <span>出发地：北京</span>
+        <span>目的地：上海</span>
+        <span>4天3晚</span>
+    </span>
     <div class="add-hotel-window">
         <div class="trip-info-block">
             <span><i class="red-star">*</i><b>行程：</b></span>
@@ -753,13 +759,16 @@
                 <option>全程</option>
                 <option>第N晚</option>
             </select>
-            <b style="margin-left:170px;">酒店名称：</b>
-            <input type="text" style="width:240px;padding-left:3px;">
+            <span>住<input type="text" style="width:50px;margin:0 5px;padding:0 3px;"/>晚</span>            
             <a class="button_secondary adaptiveButton small" style="float:right;margin-top:-2px;" href="javascript:void(0);">
                 <span class="left"></span>
                 <span class="center">添 加</span>
                 <span class="right"></span>
             </a>
+            <span style="float:right;margin-right:15px;">
+                <b>酒店名称：</b>
+                <input type="text" style="width:210px;padding-left:3px;">
+            </span>
         </div>
         <table class="tgrid" style="width: 700px;">
             <colgroup>
@@ -811,7 +820,7 @@
                 </tr>
             </tbody>
         </table>
-        <div class="traffic-live-date" style="display:none;">
+        <div class="traffic-live-date">
             <span>
                 <b>入住日期：</b>去程机票乘机日 加<input type="text">天
                 <span class="prompt"><i></i>乘机日当天入住为0天，依次类推</span>
@@ -875,7 +884,11 @@
 </script>
 
 <script type="text/x-kendo-template" id="addTicketPolicyWindow">
-    <span class="extendTitleDate">2014/08/01</span>
+    <span class="extendTicketInfo">
+        <span>出发地：北京</span>
+        <span>目的地：上海</span>
+        <span>4天3晚</span>
+    </span>
     <div class="add-ticket-window">
         <div class="search-condition-block">
             <table>
@@ -1644,7 +1657,7 @@
 
         // 添加酒店资源弹窗
         var addHotelResWin = new PopWindow('.addHotelResource',{
-            title:'添加酒店资源',
+            title:'添加酒店资源—无大交通',
             width:'750',
             template:'#addHotelResourceWindow',
             wrapperClass:'extendPwTitle'
