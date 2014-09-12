@@ -626,6 +626,11 @@
 </script>
 
 <script type="text/x-kendo-template" id="modifyPriceWindow">
+    <span class="extendTitleInfo">
+        <span>出发地：北京</span>
+        <span>目的地：上海</span>
+        <span>4天3晚</span>
+    </span>
     <div class="date-block">
         <div style="margin:5px 0;">
             <i class="red-star">*</i><b>出发时段：</b>
@@ -870,6 +875,7 @@
 </script>
 
 <script type="text/x-kendo-template" id="addTicketPolicyWindow">
+    <span class="extendTitleDate">2014/08/01</span>
     <div class="add-ticket-window">
         <div class="search-condition-block">
             <table>
@@ -1250,6 +1256,18 @@
                       </span>
                 </div>
             </div>
+        </div>        
+        <div class="btn-oper">
+            <a href="javascript:;" class="button_important adaptiveButton medium">
+                <span class="left"></span>
+                <span class="center" style="padding:0 25px;">保 存</span>
+                <span class="right"></span>
+            </a>
+            <a href="javascript:;" class="button_unimportant adaptiveButton medium">
+                <span class="left"></span>
+                <span class="center" style="padding:0 25px;">取 消</span>
+                <span class="right"></span>
+            </a>
         </div>
     </div>
 </script>
@@ -1612,28 +1630,32 @@
         var modifyOperWin = new PopWindow('.modify-operation',{
             title:'出发日期',
             width:'750',
-            template:'#modifyOperWindow'
+            template:'#modifyOperWindow',
+            wrapperClass:'extendPwTitle'
         }).init();
 
         // 修改时段价格弹窗
         var modifyPriceWin = new PopWindow('.modifyPrice',{
             title:'修改时段价格',
             width:'750',
-            template:'#modifyPriceWindow'
+            template:'#modifyPriceWindow',
+            wrapperClass:'extendPwTitle'
         }).init();
 
         // 添加酒店资源弹窗
         var addHotelResWin = new PopWindow('.addHotelResource',{
             title:'添加酒店资源',
             width:'750',
-            template:'#addHotelResourceWindow'
+            template:'#addHotelResourceWindow',
+            wrapperClass:'extendPwTitle'
         }).init();
 
         // 添加机票政策弹窗
         var addHotelResWin = new PopWindow('.addTicketPolicy',{
             title:'批量添加机票政策',
             width:'800',
-            template:'#addTicketPolicyWindow'
+            template:'#addTicketPolicyWindow',
+            wrapperClass:'extendPwTitle'
         }).init();
 
 
