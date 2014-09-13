@@ -18,20 +18,8 @@
     <script type="text/javascript" src="/static/js/global.js"></script>
     <script type="text/javascript" src="/static/js/scrollFix.js"></script>
     <script type="text/javascript" src="/static/js/public.js"></script>
-
-
-
-    
-
-<script type="text/javascript" src="/static/js/flight.js"></script>
-
-
-
-
-
-
-
-    
+    <script type="text/javascript" src="/static/js/flight.js"></script>
+ 
     <!--[if IE]>
     <script src="/static/js/html5.js"></script>
     <![endif]-->
@@ -115,14 +103,16 @@
                     <a href="#">标签</a>
                 </div>
                 <div class="fixedButton">
-                    <a href="javascript:void(0);" class="button_secondary adaptiveButton small">
+                    
+                    <a href="javascript:void(0);" class="button_secondary adaptiveButton small addDownPayment">
                         <span class="left"></span>
                         <span class="center">+ 新增定金规则</span>
                         <span class="right"></span>
 
                     </a>
+                   
 
-                    <a class="button_secondary adaptiveButton small" href="javascript:void(0);">
+                    <a class="button_secondary adaptiveButton small addRefundTicket" href="javascript:void(0);">
                         <span class="left"></span>
                         <span class="center">+ 新增退改签规则</span>
                         <span class="right"></span>
@@ -314,58 +304,128 @@
             <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
-    
-    <script type="text/html" id="delShipCompanyTemplate">
-        <div>
-            <div class="templateTipsText">
-               <i class="tipsIcon"></i>确定要删除该船只吗?
+
+    <script type="text/x-kendo-template" id="addDownPaymentWindow">
+        <div class="addCabinWindow">
+            <table class="addCartering">
+                <colgroup>
+                    <col width="70"/>
+                    <col width="600"/>
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <th>规则名称：</th>
+                        <td>
+                            <input type="text">
+
+                        </td>
+                    </tr>
+                    <tr >
+                        <th>邮轮公司：</th>
+                        <td>
+                            <select style="width:312px;" data-role="dropdownlist">
+                                <option selected="" value="请选择">请选择</option>
+                                <option value="提交我司改签">提交我司改签</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>细则：</th>
+                        <td>
+                            <textarea class="addDownPayment-area"></textarea>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr> 
+                    
+                </tbody>
+            </table>
+            <div class="operBtn">
+                <a href="javascript:;" class="button_important adaptiveButton medium">
+                    <span class="left"></span>
+                    <span class="center" style="padding:0 25px;">保 存</span>
+                    <span class="right"></span>
+                </a>
+                <a href="javascript:;" class="button_unimportant adaptiveButton medium">
+                    <span class="left"></span>
+                    <span class="center" style="padding:0 25px;">取 消</span>
+                    <span class="right"></span>
+                </a>
             </div>
-            <div class="templateBtnBlock clearfix ">
-                <div class="rightOperationA">
-                    <a class="large_button button_2_1">
-                        <span class="left"></span>
-                        <span class="center">确 定</span>
-                        <span class="right"></span>
-                    </a>
-                    <a class="large_button button_2_2">
-                        <span class="left"></span>
-                        <span class="center">取 消</span>
-                        <span class="right"></span>
-                    </a>
-                </div>
+        </div>    
+    </script>
+
+    <script type="text/x-kendo-template" id="addRefundTicketWindow">
+         <div class="addCabinWindow">
+            <table class="addCartering">
+                <colgroup>
+                    <col width="70"/>
+                    <col width="600"/>
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <th>规则名称：</th>
+                        <td>
+                            <input type="text">
+
+                        </td>
+                    </tr>
+                    <tr >
+                        <th>邮轮公司：</th>
+                        <td>
+                            <select style="width:312px;" data-role="dropdownlist">
+                                <option selected="" value="请选择">请选择</option>
+                                <option value="提交我司改签">提交我司改签</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>细则：</th>
+                        <td>
+                            <textarea class="addDownPayment-area"></textarea>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr> 
+                    
+                </tbody>
+            </table>
+            <div class="operBtn">
+                <a href="javascript:;" class="button_important adaptiveButton medium">
+                    <span class="left"></span>
+                    <span class="center" style="padding:0 25px;">保 存</span>
+                    <span class="right"></span>
+                </a>
+                <a href="javascript:;" class="button_unimportant adaptiveButton medium">
+                    <span class="left"></span>
+                    <span class="center" style="padding:0 25px;">取 消</span>
+                    <span class="right"></span>
+                </a>
             </div>
-        </div>
+        </div> 
     </script>
  
 
 <script>
     $(function(){
-        //多行文本格式化
-        /*$(".ship-reasonText").each(function(){
-            var characterWidth=100;
-            if($(this).text().length>characterWidth){
-                $(this).text($(this).text().substring(0,characterWidth));
-                $(this).html($(this).html()+"…");
-            }
-        });*/
-
-       /* $(".ship-reasonText").each(function(){
-            var divH = $(this).height();
-            var $p = $("p", $(this)).eq(0);
-            while ($p.outerHeight() > divH) {
-                $p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
-            };
-        });*/
         
-        var ac_window = new PopWindow('.delShipCompany',{
-            title:'提示',
-            width:'380',
-            template:'#delShipCompanyTemplate'
-        }).init();
+        var addDownPaymentWin = new PopWindow('.addDownPayment',{
+                title:'新增定金规则',
+                width:'700',
+                template:'#addDownPaymentWindow'
+            }).init();
 
+        var addRefundTicketWin = new PopWindow('.addRefundTicket',{
+                title:'新增退改签规则',
+                width:'700',
+                template:'#addRefundTicketWindow'
+            }).init();
        
 
-        $(".topFixedToolsBar").fixedBar();
+
+        // $(".addDownPayment").trigger("click");
+
+
     })
 </script>
 
