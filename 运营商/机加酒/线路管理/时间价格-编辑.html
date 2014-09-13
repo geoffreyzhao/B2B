@@ -240,135 +240,128 @@
         </div>
     </div>
 
- 
+ <!-- 添加操作  弹窗内容替换, 保留 div.tripDetailAddContainer  -->
 <script type="text/x-kendo-template" id="tripDetailAddContainer">
-<div class="tripDetailAddContainer" style="height:400px">
-    <div class="tripDetailContainerLeft" style="width:220px;">
-        # console.dir(data) #
-        # for(var i=0;i<data.length;i++){ #
-        <div class="tripDetailItem" data-itemIndex="#=i#">
-            <div style="margin-bottom:8px"><b>团号：</b>#= data[i].tuanhao #</div>
-            <span style="margin:0 20px 0 30px;font-weight:bold">余15位</span><span style="font-size:16px;font-weight:bold;font-family:arial">￥15000起</span>
+    <div class="tripDetailAddContainer">    
+        <span class="extendTitleInfo">
+            <span>出发地：北京</span>
+            <span>目的地：上海</span>
+            <span>4天3晚</span>
+        </span>
+        <div class="date-block">
+            <div style="margin:5px 0;">
+                <i class="red-star">*</i><b>出发时段：</b>
+                <input type="text" class="datepicker" style="width:112px;padding-left:3px;" value="2013-09-30">
+                <em> 至 </em>
+                <input type="text" class="datepicker orange" style="width:112px;padding-left:3px;" value="2013-10-07">
+                          
+            </div>
+            <div>
+                <i class="red-star">*</i><b>星 期：</b>
+                <ul class="week-day">
+                    <li>一</li>
+                    <li>二</li>
+                    <li>三</li>
+                    <li>四</li>
+                    <li>五</li>
+                    <li>六</li>
+                    <li>日</li>
+                </ul>
+            </div>
         </div>
-        # } #
-        <div class="tripDetailAddButton" id="btn_addnewTimePriceItem">添加团</div>
-        <div class="spliteArrowLeft"></div>
-    </div>
-    <div class="tripDetailContainerRight" style="width:270px;padding:10px 20px">
-        <ul>
-            <li><b>出发日期：</b>2013-10-27</li>
-            <li><b class="important">*</b><b>团号：</b><input value="" type="text" name="" id="tuanhao" style="width:100px"></li>
-            <li style="padding-bottom:8px"><b class="important">*</b><b>计划人数：</b><input value="" type="text" name="" id="" style="width:33px"> 人</li>
-            <li style="padding-bottom:8px">
-                <table>
+        <div class="other-info-block">
+                <table class="other-info-tab">
                     <tr>
-                        <th>价格</th>
-                        <th>人数</th>
-                    </tr>
-                    <tr>
-                        <td><b class="important">*</b>成人：<span class="important"><input value="" type="text" name="" id="" style="width:43px;"></span> 元</td>
-                        <td><input value="" type="text" name="" id="" style="width:34px"> 人</td>
-                    </tr>
-                    <tr>
-                        <td><b class="important">*</b>儿童：<span class="important"><input value="" type="text" name="" id="" style="width:43px;"></span> 元</td>
-                        <td><input value="" type="text" name="" id="" style="width:34px;"> 人</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <b class="important">*</b>单房差：
-                            <select name="" id="" style="width: 75px">
-                                <option value="">三星</option>
-                            </select>
+                        <th rowspan="3"><i class="red-star">*</i>库存设置：</th>
+                        <td style="text-align:right;">库存数量：</td>
+                        <td width="130px">
+                            <label><input type="radio" checked="checked"/>使用政策库存</label>
                         </td>
-                        <td>价格： <input value="20" type="text" name="" id=""  style="width:50px;"></td>
+                        <td>
+                            <label><input type="radio" />自定义库存</label>
+                        </td>
+                        <td width="130px;">
+                            <input type="text" value="0"/>人
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right;">库存不足：</td>
+                        <td><label><input type="radio" checked="checked"/>不可预订</label></td>
+                        <td><label><input type="radio" />待确认</label></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right;">每份人数：</td>
+                        <td colspan="3">
+                            <input type="text" value="1"/>
+                            <span class="prompt"><i></i>订单人数将以此倍数增减</span>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th rowspan="2"><i class="red-star">*</i>同行价格：</th>
+                        <td style="text-align:right;"><i class="red-star">*</i>成人价格：</td>
+                        <td><input type="text" value="0"/></td>
+                        <td>儿童价格：</td>
+                        <td><input type="text" value="0"/></td>
+                        <td>单房差：</td>
+                        <td><input type="text" value="0"/></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right;">外宾价格：</td>
+                        <td><input type="text" value="0"/></td>
+                        <td>外宾单房差：</td>
+                        <td><input type="text" value="0"/></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th rowspan="2"><i class="red-star">*</i>市场价格：</th>
+                        <td style="text-align:right;"><i class="red-star">*</i>成人价格：</td>
+                        <td><input type="text" value="0"/></td>
+                        <td>儿童价格：</td>
+                        <td><input type="text" value="0"/></td>
+                        <td>单房差：</td>
+                        <td><input type="text" value="0"/></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right;">外宾价格：</td>
+                        <td><input type="text" value="0"/></td>
+                        <td>外宾单房差：</td>
+                        <td><input type="text" value="0"/></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th><i class="red-star">*</i>预订时段：</th>
+                        <td colspan="5" style="padding-left:10px;">
+                            提前<input type="text" value="0"/>天<input type="text" value="0"/>点
+                            <span class="prompt"><i></i>0天0点表示出发日当天0点后不可预订</span>
+                        </td>
                     </tr>
                 </table>
-            </li>
-            <li>
-                <b>当前是否接受报名：</b><label><input type="radio" name="" id="" checked="checked">是</label><label style="margin-left:20px"><input type="radio" name="" id="">否</label>
-            </li>
-            <li>
-                <b>报名截止日期：</b><input type="text" name="" id="" class="datePicker" style="width:100px">
-            </li>
-            <li>
-                <a href="javascript:;" id="btn_timePriceItemSave" class="button_important adaptiveButton medium">
+            </div>
+            <div class="btn-oper">
+                <a href="javascript:;" class="button_important adaptiveButton medium">
                     <span class="left"></span>
-                    <span class="center" style="padding:0 35px">保存</span>
+                    <span class="center" style="padding:0 25px;">保 存</span>
                     <span class="right"></span>
                 </a>
-
-                <a href="javascript:;" id="btn_timePriceItemDelete" class="button_unimportant adaptiveButton medium">
+                <a href="javascript:;" class="button_unimportant adaptiveButton medium">
                     <span class="left"></span>
-                    <span class="center" style="padding:0 35px">删除</span>
+                    <span class="center" style="padding:0 25px;">取 消</span>
                     <span class="right"></span>
                 </a>
-            </li>
-        </ul>
-        <div id="tripDetailContainerRightConver"></div>
+            </div>
     </div>
-</div>
-
 </script>
-
-<div class="tripDetailContainer">
-    <div class="tripDetailContainerLeft">
-        <div class="tripDetailItem">
-            <div style="margin-bottom:8px"><b>团号：</b>BM-130908-001</div>
-            <span style="color:#339900;margin:0 20px 0 30px;font-weight:bold">余15位</span><span style="color:#FF3300;font-size:16px;font-weight:bold;font-family:arial">￥15000起</span>
-        </div>
-        <div class="tripDetailItem">
-            <div style="margin-bottom:8px"><b>团号：</b>BM-130908-001</div>
-            <span style="color:#339900;margin:0 20px 0 30px;font-weight:bold">余15位</span><span style="color:#FF3300;font-size:16px;font-weight:bold;font-family:arial">￥15000起</span>
-        </div>
-        <div class="spliteArrowLeft"></div>
-    </div>
-    <div class="tripDetailContainerRight">
-        <ul>
-            <li><b>出发日期：</b>2013-10-27</li>
-            <li><b>团号：</b>BM-130908-001</li>
-            <li style="border-bottom:1px solid #ccc;padding-bottom:8px"><b>计划人数：</b>45人</li>
-            <li>
-                <table>
-                    <tr>
-                        <th>价格</th>
-                        <th>人数</th>
-                    </tr>
-                    <tr>
-                        <td>成人：<span class="important">15000</span> 元</td>
-                        <td>
-                            <select name="" id="" style="width:50px">
-                                <option value value="">1</option>
-                                <option value value="">2</option>
-                                <option value value="">3</option>
-                                <option value value="">4</option>
-                                <option value value="">5</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>儿童：<span class="important">15000</span> 元</td>
-                        <td>
-                            <select name="" id="" style="width:50px">
-                                <option value value="">1</option>
-                                <option value value="">2</option>
-                                <option value value="">3</option>
-                                <option value value="">4</option>
-                                <option value value="">5</option>
-                            </select>
-                        </td>
-                    </tr>
-                </table>
-            </li>
-            <li>
-                <a href="javascript:;" class="button_important adaptiveButton small">
-                    <span class="left"></span>
-                    <span class="center">立即报名</span>
-                    <span class="right"></span>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
 
 <div id="window"></div>
 
@@ -1346,40 +1339,41 @@
                 }
 
                 var c=t(model.timePrice[ts]);
-                w1.setOptions({"title":toDate.Format("yyyy/MM/dd")})
                 w1.refresh({"template":c})
-                w1.center().open();
+                // w1.center().open();
                 setWP("timePriceItemName",ts);
                 setWP("editStatus","addible")
             }
         }).data("kendoCalendar");
 
         $("#calendarMonthDown").click(function(){
-            if(!$(this).hasClass("disabled"))
-            {
+            if(!$(this).hasClass("disabled")) {
                 toDate=toDate.DateAdd("m",+1);
                 calendar.navigate(toDate,"month");
                 changeCalendarDateInfo(toDate);
             }
+            showOperBtn();
         })
         $("#calendarMonthUp").click(function(){
-            if(!$(this).hasClass("disabled"))
-            {
+            if(!$(this).hasClass("disabled")) {
                 toDate=toDate.DateAdd("m",-1);
                 calendar.navigate(toDate,"month");
                 changeCalendarDateInfo(toDate);
             }
+            showOperBtn();
         })
 
-        $("#calendar").delegate("td","mouseenter mouseleave",function(e){
-            if(e.type==="mouseenter")
-            {
+        $("#calendar").delegate("td","mouseenter mouseleave click",function(e){
+            if(e.type==="mouseenter") {
                 if(!$("div.sale",this).length)
                     $(this).addClass("hover");
-            }
-            else
-            {
+            } else if (e.type === "mouseleave") {
                 $(this).removeClass("hover");
+            } else if (e.type === "click") {
+                if (!$("div.sale",this).length) {
+                    w1.center().open();
+                    $(".extendTitleInfo").parents(".k-window-content").addClass("extendPwTitle");
+                }
             }
         });
 
@@ -1406,50 +1400,18 @@
 
         //$(".tripDetailItem:first").trigger("click");
 
-        var w=$(".tripDetailContainer").kendoWindow({
-            visible:false,
-            modal:true,
-            animation:false,
-            title:"2013/09/12"
-        }).data("kendoWindow");
+        // var w=$(".tripDetailContainer").kendoWindow({
+        //     visible:false,
+        //     modal:true,
+        //     animation:false,
+        //     title:"2013/09/12"
+        // }).data("kendoWindow");
         var w1=$("#window").kendoWindow({
             visible:false,
             modal:true,
             animation:false,
-            title:"2013/09/12"
+            title:"修改时段价格"
         }).data("kendoWindow");
-
-        $("body").delegate("#btn_timePriceItemSave","click",function(){
-            if(getWP("timePriceItemName"))
-            {
-                switch($("#window").data("editStatus"))
-                {
-                    case "addible":model.timePrice[getWP("timePriceItemName")].push(new TimePriceItem());break;
-                    case "editable":model.timePrice[getWP("timePriceItemName")][getWP("editItemIndex")]=new TimePriceItem();break;
-                    default :return;
-                }
-                w1.refresh({"template":t(model.timePrice[getWP("timePriceItemName")])});
-                setWP("editStatus","uneditable");
-                refreshCalendar_add(getWP("timePriceItemName"));
-                $("#tripDetailContainerRightConver").show();
-            }
-        })
-
-        $("body").delegate("#btn_timePriceItemDelete","click",function(){
-            if(getWP("timePriceItemName") && getWP("editItemIndex") && getWP("editStatus")!="uneditable")
-            {
-                model.timePrice[getWP("timePriceItemName")].splice(getWP("editItemIndex"),1);
-                w1.refresh({"template":t(model.timePrice[getWP("timePriceItemName")])});
-                setWP("editStatus","uneditable");
-                refreshCalendar_delete(getWP("timePriceItemName"));
-            }
-        });
-
-
-        $("body").delegate("#btn_addnewTimePriceItem","click",function(){
-            $("#window").data("editStatus","addible");
-            $("#tripDetailContainerRightConver").hide();
-        })
 
     });
 
@@ -1473,8 +1435,6 @@
             calendar.navigate(new Date(t),"month");
             calendar.options.animation=anim;
         }
-
-
     }
 
     function refreshCalendar_delete(t)
@@ -1603,13 +1563,14 @@
 <script type="text/javascript">
     $(function(){
         // 日期Hover显示 看、改、删、关操作
-        $(".bottomCont").parents("td").hover(function(){
-            $(".iconFlag").hide();
-            $(".operationFlag").show();
-        },function(){
-            $(".operationFlag").hide();
-            $(".iconFlag").show();
-        });
+        // $(".bottomCont").parents("td").hover(function(){
+        //     $(".iconFlag").hide();
+        //     $(".operationFlag").show();
+        // },function(){
+        //     $(".operationFlag").hide();
+        //     $(".iconFlag").show();
+        // });
+        showOperBtn();
 
         // 按钮hover改变背景
         $(".addTicketPolicy, .addHotelResource, .modifyPrice").hover(function(){
@@ -1718,6 +1679,16 @@
         });
 
     });
+
+    function showOperBtn() {
+        $(".bottomCont").parents("td").hover(function(){
+            $(".iconFlag").hide();
+            $(".operationFlag").show();
+        },function(){
+            $(".operationFlag").hide();
+            $(".iconFlag").show();
+        });
+    }
 </script>
  
 </body>
