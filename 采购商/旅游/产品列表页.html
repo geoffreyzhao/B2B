@@ -5,7 +5,6 @@
     <title>天地行 采购商 旅游 产品列表页</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css">
-    <link rel="stylesheet" href="/static/css/jquery-ui-1.10.3.custom.css" />     
     <link rel="stylesheet" href="/static/css/store_reset.css" media="all" />
     <link rel="stylesheet" href="/static/css/store.css" media="screen" />
     <link rel="stylesheet" href="/static/css/kendo.common.min.css" />
@@ -22,6 +21,9 @@
     <script type="text/javascript" src="/static/js/jquery-ui-1.10.3.custom.js"></script>
     <script type="text/javascript" src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
 
+
+    
+
     <!--[if IE]>
     <script src="/static/js/html5.js"></script>
     <script src="/static/js/vendor/IE7.min.js"></script>
@@ -32,6 +34,12 @@
         }
         .ui-datepicker-daywrapper {
             display: none;;
+        }
+        input[type="text"]:focus {
+            border: none;
+        }
+        .travel-filter-list input[type=text]:focus {
+            border:1px solid #76cbe8;
         }
     </style>
     
@@ -92,12 +100,11 @@
             <div class="searchForm tab">
                 <span class="inputWhiteBgRow">
                     <span class="startOff-bg">
-                    <input id="startOff" style="width:90px;" type="text" class="startOff city_ac"/>
+                        <input id="startOff" style="width:90px;" type="text" class="startOff city_ac"/>
+                        <span class="startFont">出发</span>
                     </span>
                     <input style="width:310px;" type="text" class="scenicPlace" placeholder="请输入目的地、景点、游玩类型等关键词"/>
                 </span>
-               <!-- <input type="text" placeholder="上海" class="placeStartSelect"/>
-                <input type="text" class="scenicPlace"/>-->
                <span class="inputNoBgRow">
                 <input type="text" value="" name="departure_date" style="width:90px;"  class="datepicker newSearchDate"> <em>-</em>
                 <input type="text" value="" name="departure_date" style="width:90px;"  class="datepicker newSearchDate">
@@ -145,7 +152,7 @@
                 </div>
             </li>
             <li>
-                <label class="filterTitle">钻级<i class="tipsIcon"></i> ：</label>
+                <label class="filterTitle">钻级<i class="tipsIcon level-explain"></i> ：</label>
                 <div class="filterCheck">
                     <span class="selectedSpan">2钻</span>
                     <span>3钻</span>
@@ -200,7 +207,7 @@
                 <li>
                     <label class="filterTitle">价&nbsp;&nbsp;&nbsp;&nbsp;格：</label>
                     <div class="priceRow">
-                        <em>￥</em><input type="text" placeholder="不退"/> <em>- ￥</em><input type="text" placeholder="不限"/><i class="sureBtn">确定</i>
+                        <em>￥</em><input type="text" placeholder="不限" /> <em>- ￥</em><input type="text" placeholder="不限"/><i class="sureBtn">确定</i>
                     </div>
                 </li>
                 <li class="selectedRow">
@@ -225,23 +232,6 @@
 
 <div class="tour_main_listNew">
     <div class="tour_resultInfoNew clearfix">
-        <!--<div class="pull-left">
-            <span>共<span class="tour_resultNo">93</span>条线路满足条件</span>
-        </div>
-
-        <div class=" pull-right" style="width:auto;">
-                 <span class="tour_result_sortButtonContainer" style="float: left; margin-top: 4px;">
-                            <span>排序：</span>
-                            <span class="sorttab">价格<i></i></span>
-                           &lt;!&ndash;<span class="sorttab ascend">价格<i></i></span> <span class="sorttab descend">价格<i></i></span>&ndash;&gt;
-                </span>
-            <div class="pagination" style="display: inline; ">
-                <ul>
-                    <li class="pageNoCAT">9/25</li>
-                    <li ><a href="#" style="padding:3px 8px;">下一页</a></li>
-                </ul>
-            </div>
-        </div>-->
         <table>
             <colgroup>
                 <col width="185"/>
@@ -255,9 +245,11 @@
                     <span class="currentSpan">默认</span>
                     <span>最新</span>
                     <span>最热</span>
-                    <span>结算价</span>
-                    <!--<span>结算价<i class="upIcon"></i></span>
+                    <!--<span>结算价</span>
+                    <span>结算价<i class="upIcon"></i></span>
                     <span>结算价<i class="downIcon"></i></span>-->
+                    <span class="sorttab">结算价<i></i></span>
+                    <span class="sorttab ascend">结算价<i></i></span> <span class="sorttab descend">结算价<i></i></span>
                 </td>
                 <td>市场价</td>
                 <td>
@@ -280,7 +272,7 @@
                 <div class="textContent">
                     <p class="fontTitleP">
                         <span class="fontBigTitle">美国东西海岸夏威夷+加拿大18日游美国东西海岸夏威夷+加拿大1日游美国东西海岸夏威夷</span>
-                        <span class="jewelevel04 jewelMargin"></span>
+                        <span class="jewelevel04 jewelMargin level-explain"></span>
                         <span class="palyTypeTag-ball"></span>
                         <span class="groupTour">铁定成团</span>
                         <span class="placeStart">上海出发</span>
@@ -312,7 +304,7 @@
 
             <div class="tour_unfoldCon" id="unfoldCon" style="display: none;">
                 <!--日历-->
-                <div style="width: 360px;float: left; margin-right:10px;">
+                <div style="width: 360px;float: left; margin-right:10px; height: auto; overflow: hidden;">
                     <div class="calendarOperation">
                         <div class="calendarMonthLeft"></div>
                         <div class="calendarDate cd1"></div>
@@ -563,9 +555,141 @@
 </footer>
 </div>
 
+<script type="text/x-kendo-template" id="city_popup">
+    <div id="gn-tabstrip" class="tcy_tabstrip">
+<span class="tcy_title">
+    热门城市/国家（支持中文名/拼音/英文名/三字码）
+</span>
+        <ul>
+            <li id="hot_city" class="k-state-active">热门</li>
+            # for (var i=0; i<data.group.length; i++ ) { #
+            <li>#= data.group[i] #</li>
+            # } #
+        </ul>
+        <div id="hot_city_tab">
+            <ul class="tcy_list clearfix">
+
+                # for(var j=0;j<hotcitylist.length;j++){ #
+                # var citylist_item = hotcitylist[j] #
+                <li class="item" title="#= citylist_item.code #" data-code="#= citylist_item.code #">#= citylist_item.name #</li>
+                # } #
+            </ul>
+        </div>
+
+        # for(var i=0;i<data.citylist.length;i++){ #
+        # var citylist_item = data.citylist[i] #
+        <div class="city_tab">
+            <ul class="tcy_list clearfix">
+                # for(var k=0;k<data.group[i].length;k++){ #
+                <li class="tcy_list_sep">#= data.group[i].split('')[k] #</li>
+                # for(var j=0;j<citylist_item.value.length;j++){ #
+                # var citylist_value_item = citylist_item.value[j]; #
+                # if(citylist_value_item.py.slice(0,1) == data.group[i].split('')[k]) {#
+                <li class="item" title="#= citylist_value_item.code #" data-code="#= citylist_value_item.code #">#= citylist_value_item.name #</li>
+                # } #
+                # } #
+                # } #
+            </ul>
+        </div>
+
+        # } #
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="level-explainTemplate">
+    <div class="layerContainer">
+        <table class="diamondLevelPopwindow">
+            <colgroup>
+                <col width="90"/>
+                <col width="210"/>
+                <col width="190"/>
+                <col width="96"/>
+                <col width="145"/>
+                <col/>
+            </colgroup>
+            <thead>
+            <th><i class="diamondLevel-icon"></i>钻级</th>
+            <th><i class="hotel-icon"></i>酒店</th>
+            <th><i class="useCar-icon"></i>用车</th>
+            <th><i class="team-icon"></i>团队</th>
+            <th><i class="dinner-icon"></i>餐食</th>
+            <th><i class="flightSeat-icon"></i>座舱</th>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <ul class="small-diamond-level" style="width:84px;">
+                        <li></li><li></li><li></li><li></li><li></li><li></li>
+                    </ul>
+                    <div class="diamond-level-title">6钻</div>
+                </td>
+                <td>全球高端品牌酒店或地标性酒店，入住天数至少占产品行程总入住天数的70%</td>
+                <td>旅游用车空座率不低于<span class="remark-orange">40%</span>或专用商务车配行李车，保证空间宽敞<span class="remark-gray">（景区特别要求用车除外）</span></td>
+                <td>每团最多<span class="remark-orange">15人</span></td>
+                <td>行程内包含的餐食50%为当地特色餐，有用餐专区</td>
+                <td>包含飞机、火车、轮船、汽车等,提供商务、头等舱，豪华舱房升舱的选择，不使用红眼航班</td>
+            </tr>
+            <tr>
+                <td>
+                    <ul class="small-diamond-level" style="width:70px;">
+                        <li></li><li></li><li></li><li></li><li></li>
+                    </ul>
+                    <div class="diamond-level-title">5钻</div>
+                </td>
+                <td>入住5星级酒店，或当地精品特色酒店，位于当地繁华市区或主要景点周边的酒店。入住天数至少占产品行程总入住天数的70%</td>
+                <td>旅游用车空座率不低于<span class="remark-orange">25%</span>或专用商务车配行李车<span class="remark-gray">（景区特别要求用车除外）</span></td>
+                <td>每团最多<span class="remark-orange">25人</span></td>
+                <td>行程内安排当地特色餐</td>
+                <td><span class="remark-gray">无</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <ul class="small-diamond-level" style="width:56px;">
+                        <li></li><li></li><li></li><li></li>
+                    </ul>
+                    <div class="diamond-level-title">4钻</div>
+                </td>
+                <td>入住4星级酒店，入住天数至少占产品行程总入住天数的70%</td>
+                <td>旅游用车空座率不低于<span class="remark-orange">10%</span><span class="remark-gray">（景区特别要求用车除外）</span></td>
+                <td>每团最多<span class="remark-orange">35人</span></td>
+                <td><span class="remark-gray">无</span></td>
+                <td><span class="remark-gray">无</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <ul class="small-diamond-level" style="width:42px;">
+                        <li></li><li></li><li></li>
+                    </ul>
+                    <div class="diamond-level-title">3钻</div>
+                </td>
+                <td>3星级或知名连锁经济型酒店或特色客栈、民宿，入住天数至少占产品行程总入住天数的70%</td>
+                <td>旅游用车每人一正座<span class="remark-gray">（景区特别要求用车除外）</span></td>
+                <td><span class="remark-gray">无</span></td>
+                <td><span class="remark-gray">无</span></td>
+                <td><span class="remark-gray">无</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <ul class="small-diamond-level" style="width:28px;">
+                        <li></li><li></li>
+                    </ul><div class="diamond-level-title">2钻</div>
+                </td>
+                <td>3星级以下或当地经济型酒店、农家院，入住天数至少占产品行程总入住天数的70%</td>
+                <td>旅游用车每人一正座<span class="remark-gray">（景区特别要求用车除外）</span></td>
+                <td><span class="remark-gray">无</span></td>
+                <td><span class="remark-gray">无</span></td>
+                <td><span class="remark-gray">无</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</script>
+
 
 <script>
     $(function(){
+
+       
 
         $(".customerCenterButton").hover(
                 function(){
@@ -599,6 +723,28 @@
             $(".customerCenterContainer").removeClass("off");
 
         });
+
+        function createCityAc(ele){
+            CityAutocomplete({
+                template: "#city_popup",
+                input: ele,
+                width: 200,
+                autocomplete:{
+                     placeholder:''
+                },
+//                以@分割热门非热门，以;分割条目，以|分割三字码拼音和中文
+                url:'/static/js/data.txt',
+                group: ["热门","ABCDEF", "GHJ", "KLMN", "PQSTW", "XYZ"]
+            });
+        }
+
+        createCityAc(".city_ac");
+
+        new PopWindow('.level-explain', {
+            template:'#level-explainTemplate',
+            title:'钻级说明',
+            width:'930'
+        }).init();
 
         $(".newSearchTab li").each(function(index){
             $(this).click(function(){
@@ -674,7 +820,7 @@
 
 
 <script>
-    eve={"2014/05/12":[15,15000],"2014/5/1":"","2014/5/2":"","2014/5/3":"","2014/5/4":"","2013/10/5":"","2013/10/6":"","2013/10/7":"","2013/10/22":[22,45678]};
+    eve={"2014/07/12":[9,26089],"2014/07/23":[0,26026],"2014/5/2":"","2014/5/3":"","2014/5/4":"","2013/10/5":"","2013/10/6":"","2013/10/7":"","2013/10/22":[22,45678]};
 
     $.dateToString = function (s, sep) {
         var sep = sep || '/'
