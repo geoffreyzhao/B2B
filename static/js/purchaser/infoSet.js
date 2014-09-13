@@ -8,6 +8,7 @@ $(function(){
 	singImg1.bind('click',function(){
 		signBtn.css('display','none');
 		signSave.css('display','inline');
+		$(".setNameTip").hide();
 	});
 
 	saveBtn.bind('click',function(){

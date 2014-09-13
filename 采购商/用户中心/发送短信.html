@@ -547,14 +547,22 @@
                          <div id="signatureSet" class="signatureCls">
                              <span class="signFont1">签名设置:</span>
                               <span id="signBtn">
-                                <span class="signFont2">天地行平台</span>
-                                <span class="singImg1"></span>
+                                <span class="signFont2" style="display:none;">天地行平台</span>
+                                <span class="singImg1"></span>                                
                               </span>
                               <span id="signSave">
                                 <input type="text" class="signTxtCls" name="signature">
                                 <span><button  class="saveBtn">保存</button></span>
                                 <span class="explain">短信签名为短信后的附加信息，例如：天地行。最多不能超过6个字。</span>
-                              </span>
+                              </span>                              
+                         </div>
+                         <div class="setNameTip">
+                            <i class="orangeArrow"></i>
+                            <span class="tipContent">
+                                <i class="warnIcon"></i>
+                                <span>需要先设置签名，才能使用其它功能哦</span>
+                                <i class="delIcon"></i>
+                            </span>
                          </div>
                          <div id="modelList" class="modelCls">
                               <span class="modelFont1">
@@ -1217,6 +1225,10 @@
             });
             $(this).addClass("model-listSel");
             $(this).css("color","#ffffff");
+        });
+
+        $(".setNameTip .delIcon").click(function(){
+            $(this).parents(".setNameTip").hide();
         });
 
     });
