@@ -219,7 +219,7 @@
                     <table class="tour_guestInfo" >
                         <colgroup>
                             <col width="140"/>
-                            <col width="240"/>
+                            <col width="220"/>
                             <col width="100"/>
                             <col width=""/>
                         </colgroup>
@@ -269,7 +269,7 @@
                         </tr>
                         <tr>
                             <th>证件类型</th>
-                            <td>
+                            <td class="papersStyleTd">
                                 <div class="papersStyle">
                                     <select data-role="dropdownlist" style="width:194px;" name="">
                                         <option value="">护照</option>
@@ -279,16 +279,17 @@
                             </td>
                             <th class="addIdentityCard">证件类型</th>
                             <td class="addIdentityCard">
-                                <select data-role="dropdownlist" style="width:194px;" name="">
+                                <select data-role="dropdownlist" style="width:180px;" name="">
                                     <option value="">身份证</option>
                                 </select>
+                                <span class="delAddContent">删除</span>
                             </td>
                         </tr>
                         <tr>
                             <th>证件号</th>
                             <td><input type="text" name="" placeholder="证件号码"></td>
                             <th class="addIdentityCard">证件号</th>
-                            <td class="addIdentityCard"><input type="text" name="" placeholder="证件号码"></td>
+                            <td class="addIdentityCard"><input type="text" name="" placeholder="证件号码" style="width: 173px;"></td>
                         </tr>
                         <tr>
                             <th>证件有效期</th>
@@ -358,7 +359,7 @@
                     <table class="tour_guestInfo" id="addGuest_02">
                         <colgroup>
                             <col width="140"/>
-                            <col width="240"/>
+                            <col width="220"/>
                             <col width="100"/>
                             <col width=""/>
                         </colgroup>
@@ -461,7 +462,7 @@
                         <table class="tour_guestInfo" >
                             <colgroup>
                                 <col width="140"/>
-                                <col width="240"/>
+                                <col width="220"/>
                                 <col width="100"/>
                                 <col width=""/>
                             </colgroup>
@@ -511,7 +512,7 @@
                             </tr>
                             <tr>
                                 <th>证件类型</th>
-                                <td>
+                                <td class="papersStyleTd">
                                     <div class="papersStyle">
                                         <select data-role="dropdownlist" style="width:194px;" name="">
                                             <option value="">护照</option>
@@ -521,16 +522,17 @@
                                 </td>
                                 <th class="addIdentityCard">证件类型</th>
                                 <td class="addIdentityCard">
-                                    <select data-role="dropdownlist" style="width:194px;" name="">
+                                    <select data-role="dropdownlist" style="width:180px;" name="">
                                         <option value="">身份证</option>
                                     </select>
+                                    <span class="delAddContent">删除</span>
                                 </td>
                             </tr>
                             <tr>
                                 <th>证件号</th>
                                 <td><input type="text" name="" placeholder="证件号码"></td>
                                 <th class="addIdentityCard">证件号</th>
-                                <td class="addIdentityCard"><input type="text" name="" placeholder="证件号码"></td>
+                                <td class="addIdentityCard"><input type="text" name="" placeholder="证件号码" style="width: 173px;"></td>
                             </tr>
                             <tr>
                                 <th>证件有效期</th>
@@ -738,6 +740,12 @@
         $(".delStyleContent").click(function(){
             $(this).parents(".tour_infoList").hide();
             $(this).parents(".tour_infoList").prev(".solid_topbor").hide();
+        });
+
+        $(".delAddContent").click(function(){
+            $(this).parents(".tour_guestInfo tr").children(".addIdentityCard").hide();
+            $(this).parents(".tour_guestInfo tr").next().children(".addIdentityCard").hide();
+            $(this).parents(".tour_guestInfo").find(".papersStyleTd .add_btn").show();
         });
 
         var new_win = new PopWindow(".ac-submitOrder",{

@@ -5,12 +5,10 @@
     <title>天地行 采购商 用户中心 旅游订单列表</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
      
-    <link rel="stylesheet" href="../../static/css/smoothness/jquery-ui-1.10.3.custom.css" />
-     
+    <link rel="stylesheet" href="../../static/css/smoothness/jquery-ui-1.10.3.custom.css" />     
     <link rel="stylesheet" href="../../static/css/store_reset.css" media="all" />
     <link rel="stylesheet" href="../../static/css/store.css" media="screen" />
     <link rel="stylesheet" href="../../static/css/store_ucenter.css" media="screen" />
-
     <link rel="stylesheet" href="../../static/css/kendo.common.min.css" />
     <link rel="stylesheet" href="../../static/css/kendo.store.css" />
     
@@ -23,9 +21,16 @@
     <script src="../../static/js/html5.js"></script>
     <![endif]-->
     <script src="../../static/js/jquery-ui-1.10.3.custom.js"></script>
-	<script src="../../static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
-    
+	<script src="../../static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>    
     <script type="text/javascript" src="../../static/js/store/store.js"></script>
+
+    <script>
+        $(function(){
+            kendo.init('body');
+            lensf();
+        })
+    </script>
+
 </head>
 <body>
 
@@ -47,15 +52,18 @@
             <li><a href="#">电子钱包</a></li>
             <li><a href="#">统计报表</a></li>
             <li><a href="#">客服服务</a></li>
-            <li><span class="hyper-link"><u>lfdak</u>
-                                    <i class="arrow-down"></i>
-                                    <div class="hyper-text">
-                                        <a href="#">提交审核</a>
-                                        <a href="#">申请出票</a>
-                                        <a href="#">提交审核</a>
-                                        <a href="#">提交审核</a>
-                                    </div>
-                                    </span></li>
+            <li>
+                <span class="hyper-link">
+                    <u>lfdak</u>
+                    <i class="arrow-down"></i>
+                    <div class="hyper-text">
+                        <a href="#">提交审核</a>
+                        <a href="#">申请出票</a>
+                        <a href="#">提交审核</a>
+                        <a href="#">提交审核</a>
+                    </div>
+                </span>
+            </li>
             <li><a class="link-message" href="#"><i class="icon-message"></i>消息<i class="message-count">5</i></a></li>
             </ul>
         </nav>
@@ -127,10 +135,10 @@
                 <ul class="tab_change clearfix">
                     <li class="currentState"><em><a href="javascript:void(0);">订单查询</a></em></li>
                     <li><em><a href="javascript:void(0);">未支付</a></em></li>           
-                    <li><em><a href="javascript:void(0);">部分支付</a></em></li>           
-                    <li><em><a href="javascript:void(0);">完成</a></em></li>           
-                    <li><em><a href="javascript:void(0);">已取消</a></em></li>           
-                    <li><em><a href="javascript:void(0);">退款</a></em></li>           
+                    <li><em><a href="javascript:void(0);">待付款(8)</a></em></li>           
+                    <li><em><a href="javascript:void(0);">调价中(2)</a></em></li>           
+                    <li><em><a href="javascript:void(0);">退团中</a></em></li>           
+                    <li><em><a href="javascript:void(0);">已确认</a></em></li>           
                 </ul>
             </aside>
             <div class="tab_item">
@@ -138,16 +146,22 @@
                     <table class="us-query-table fixed-table">
                         <colgroup>
                             <col width="60">
-                            <col width="160">
+                            <col width="140">
                             <col width="60">
-                            <col width="280">
+                            <col width="140">
+                            <col width="60">
+                            <col width="200">
                         </colgroup>
                         <tr>
                             <th>订单编号：</th>
                             <td><input id="" style="width:120px;" type="text" name=""></td>
+                            <th>旅客名称：</th>
+                            <td><input id="" style="width:120px;" type="text" name=""></td>
                             <th>下单日期：</th>
                             <td>
-                                <input id="" style="width:100px" class="datepicker dpShort" value="2013-08-08" type="text" name=""><s> - </s><input id="" style="width:100px" class="datepicker dpShort" value="2013-08-08" type="text" name="">
+                                <input id="" style="width:75px" class="datepicker dpShort" value="2013-08-08" type="text" name="">
+                                <s> - </s>
+                                <input id="" style="width:75px" class="datepicker dpShort" value="2013-08-08" type="text" name="">
                             </td>
                         </tr>
                         <tr>
@@ -157,9 +171,13 @@
                                     <option value="">全部</option>
                                 </select>
                             </td>
+                            <th>线路名称：</th>
+                            <td><input id="" style="width:120px;" type="text" name=""></td>
                             <th>出发日期：</th>
                             <td>
-                                <input id="" class="datepicker dpShort" style="width:100px" value="2013-08-08" type="text" name=""><s> - </s><input id="" class="datepicker dpShort" style="width:100px" value="2013-08-08" type="text" name="">
+                                <input id="" class="datepicker dpShort" style="width:75px" value="2013-08-08" type="text" name="">
+                                <s> - </s>
+                                <input id="" class="datepicker dpShort" style="width:75px" value="2013-08-08" type="text" name="">
                             </td>
                         </tr>
                     </table>
@@ -171,194 +189,157 @@
                 </section>
                 <section class="us-result">
                     <table>
+                        <colgroup>
+                            <col width="140"/>
+                            <col width="210"/>
+                            <col width="110"/>
+                            <col width="95"/>
+                            <col width="90"/>
+                            <col width="100"/>
+                        </colgroup>
                         <thead>
                             <tr>
                                 <th>订单编号</th>
+                                <th>线路名称</th>
                                 <th>下单日期</th>
-                                <th>产品名称</th>
-                                <th>出发日期</th>
                                 <th>订单金额</th>
                                 <th>订单状态</th>
-                                <th>操作</th>
+                                <th style="width: 100px; text-align: center;">操作</th>
                             </tr>
                         </thead>
                         <tbody>
                             <!-- <tr class="currentList"> -->
                             <tr>
                                 <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                                <td>
+                                    <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                    <div class="oper">出发日期：2014/07/25</div>
+                                </td>
                                 <td>2013-08-14</td>
-                                <td>美国东西海岸夏威夷大瀑布14天</td>
-                                <td>2013-08-14</td>
-                                <td>￥6,800</td>
-                                <td>创建</td> 
+                                <td class="text2">￥510</td>
+                                <td>
+                                    <div>已支付</div>
+                                </td> 
                                 <!-- <td><a class="ac&#45;oper" href="">操作<i class="active"></i></a></td> -->
-                                <td><span class="hyper-link"><u>操作</u>
+                                <!--<td>
+                                    <span class="hyper-link"><u>操作</u>
                                         <i class="arrow-down"></i>
                                         <div class="hyper-text">
                                             <a href="#">支付</a>
                                             <a href="#">取消</a>
                                         </div>
-                                </span></td>
+                                    </span>
+                                </td>-->
+                                <td class="operationLink">
+                                    <div>
+                                        <a href="javascript:void(0);" class="minWidthLink">确认</a>
+                                        <a href="javascript:void(0);" class="ac_cancelBook">退团</a>
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
                                 <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                                <td>
+                                    <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                    <div class="oper">出发日期：2014/07/25</div>
+                                </td>
                                 <td>2013-08-14</td>
-                                <td>美国东西海岸夏威夷大瀑布14天</td>
-                                <td>2013-08-14</td>
-                                <td>￥6,800</td>
-                                <td>创建</td> 
-                                <!-- <td><a class="ac&#45;oper" href="">操作<i class="active"></i></a></td> -->
-                                <td><span class="hyper-link"><u>操作</u>
-                                        <i class="arrow-down"></i>
-                                        <div class="hyper-text">
-                                            <a href="#">支付</a>
-                                            <a href="#">取消</a>
-                                        </div>
-                                </span></td>
+                                <td class="text2">￥510</td>
+                                <td>
+                                    <div>创建</div>
+                                    <div class="timeContent" title="剩余支付时间">
+                                        <i class="timeIcon"></i>
+                                        <b class="blueFonts timerFonts">00:00:00</b>
+                                    </div>
+                                </td>
+                                <td class="operationLink">
+                                    <div>
+                                        <a href="javascript:void(0);" class="minWidthLink">定金支付</a>
+                                        <a href="javascript:void(0);" class="ac_modifyInformation">修改</a>
+                                    </div>
+                                    <div>
+                                        <a href="javascript:void(0);" class="minWidthLink">全额支付</a>
+                                        <a href="javascript:void(0);" class="ac_cancelBook">退团</a>
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
                                 <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                                <td>
+                                    <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                    <div class="oper">出发日期：2014/07/25</div>
+                                </td>
                                 <td>2013-08-14</td>
-                                <td>美国东西海岸夏威夷大瀑布14天</td>
-                                <td>2013-08-14</td>
-                                <td>￥6,800</td>
-                                <td>创建</td> 
-                                <!-- <td><a class="ac&#45;oper" href="">操作<i class="active"></i></a></td> -->
-                                <td><span class="hyper-link"><u>操作</u>
-                                        <i class="arrow-down"></i>
-                                        <div class="hyper-text">
-                                            <a href="#">支付</a>
-                                            <a href="#">取消</a>
-                                        </div>
-                                </span></td>
+                                <td class="text2">￥510</td>
+                                <td>
+                                    <div>已取消</div>
+                                </td>
+                                <td class="operationLink">
+                                    <div> </div>
+                                </td>
                             </tr>
                             <tr>
                                 <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                                <td>
+                                    <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                    <div class="oper">出发日期：2014/07/25</div>
+                                </td>
                                 <td>2013-08-14</td>
-                                <td>美国东西海岸夏威夷大瀑布14天</td>
-                                <td>2013-08-14</td>
-                                <td>￥6,800</td>
-                                <td>创建</td> 
-                                <!-- <td><a class="ac&#45;oper" href="">操作<i class="active"></i></a></td> -->
-                                <td><span class="hyper-link"><u>操作</u>
-                                        <i class="arrow-down"></i>
-                                        <div class="hyper-text">
-                                            <a href="#">支付</a>
-                                            <a href="#">取消</a>
-                                        </div>
-                                </span></td>
+                                <td class="text2">￥510</td>
+                                <td>
+                                    <div>已支付</div>
+                                </td>
+                                <td class="operationLink">
+                                    <div>
+                                        <a href="javascript:void(0);" class="minWidthLink">确认</a>
+                                        <a href="javascript:void(0);" class="ac_cancelBook">退团</a>
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
                                 <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                                <td>
+                                    <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                    <div class="oper">出发日期：2014/07/25</div>
+                                </td>
                                 <td>2013-08-14</td>
-                                <td>美国东西海岸夏威夷大瀑布14天</td>
-                                <td>2013-08-14</td>
-                                <td>￥6,800</td>
-                                <td>创建</td> 
-                                <!-- <td><a class="ac&#45;oper" href="">操作<i class="active"></i></a></td> -->
-                                <td><span class="hyper-link"><u>操作</u>
-                                        <i class="arrow-down"></i>
-                                        <div class="hyper-text">
-                                            <a href="#">支付</a>
-                                            <a href="#">取消</a>
-                                        </div>
-                                </span></td>
+                                <td class="text2">￥510</td>
+                                <td>
+                                    <div>已取消</div>
+                                </td>
+                                <td class="operationLink">
+                                    <div> </div>
+                                </td>
                             </tr>
                             <tr>
                                 <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                                <td>
+                                    <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                    <div class="oper">出发日期：2014/07/25</div>
+                                </td>
                                 <td>2013-08-14</td>
-                                <td>美国东西海岸夏威夷大瀑布14天</td>
-                                <td>2013-08-14</td>
-                                <td>￥6,800</td>
-                                <td>创建</td> 
-                                <!-- <td><a class="ac&#45;oper" href="">操作<i class="active"></i></a></td> -->
-                                <td><span class="hyper-link"><u>操作</u>
-                                        <i class="arrow-down"></i>
-                                        <div class="hyper-text">
-                                            <a href="#">支付</a>
-                                            <a href="#">取消</a>
-                                        </div>
-                                </span></td>
+                                <td class="text2">￥510</td>
+                                <td>
+                                    <div>已取消</div>
+                                </td>
+                                <td class="operationLink">
+                                    <div> </div>
+                                </td>
                             </tr>
                             <tr>
                                 <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                                <td>
+                                    <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                    <div class="oper">出发日期：2014/07/25</div>
+                                </td>
                                 <td>2013-08-14</td>
-                                <td>美国东西海岸夏威夷大瀑布14天</td>
-                                <td>2013-08-14</td>
-                                <td>￥6,800</td>
-                                <td>创建</td> 
-                                <!-- <td><a class="ac&#45;oper" href="">操作<i class="active"></i></a></td> -->
-                                <td><span class="hyper-link"><u>操作</u>
-                                        <i class="arrow-down"></i>
-                                        <div class="hyper-text">
-                                            <a href="#">支付</a>
-                                            <a href="#">取消</a>
-                                        </div>
-                                </span></td>
-                            </tr>
-                            <tr>
-                                <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
-                                <td>2013-08-14</td>
-                                <td>美国东西海岸夏威夷大瀑布14天</td>
-                                <td>2013-08-14</td>
-                                <td>￥6,800</td>
-                                <td>创建</td> 
-                                <!-- <td><a class="ac&#45;oper" href="">操作<i class="active"></i></a></td> -->
-                                <td><span class="hyper-link"><u>操作</u>
-                                        <i class="arrow-down"></i>
-                                        <div class="hyper-text">
-                                            <a href="#">支付</a>
-                                            <a href="#">取消</a>
-                                        </div>
-                                </span></td>
-                            </tr>
-                            <tr>
-                                <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
-                                <td>2013-08-14</td>
-                                <td>美国东西海岸夏威夷大瀑布14天</td>
-                                <td>2013-08-14</td>
-                                <td>￥6,800</td>
-                                <td>创建</td> 
-                                <!-- <td><a class="ac&#45;oper" href="">操作<i class="active"></i></a></td> -->
-                                <td><span class="hyper-link"><u>操作</u>
-                                        <i class="arrow-down"></i>
-                                        <div class="hyper-text">
-                                            <a href="#">支付</a>
-                                            <a href="#">取消</a>
-                                        </div>
-                                </span></td>
-                            </tr>
-                            <tr>
-                                <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
-                                <td>2013-08-14</td>
-                                <td>美国东西海岸夏威夷大瀑布14天</td>
-                                <td>2013-08-14</td>
-                                <td>￥6,800</td>
-                                <td>创建</td> 
-                                <!-- <td><a class="ac&#45;oper" href="">操作<i class="active"></i></a></td> -->
-                                <td><span class="hyper-link"><u>操作</u>
-                                        <i class="arrow-down"></i>
-                                        <div class="hyper-text">
-                                            <a href="#">支付</a>
-                                            <a href="#">取消</a>
-                                        </div>
-                                </span></td>
-                            </tr>
-                            <tr>
-                                <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
-                                <td>2013-08-14</td>
-                                <td>美国东西海岸夏威夷大瀑布14天</td>
-                                <td>2013-08-14</td>
-                                <td>￥6,800</td>
-                                <td>创建</td> 
-                                <!-- <td><a class="ac&#45;oper" href="">操作<i class="active"></i></a></td> -->
-                                <td><span class="hyper-link"><u>操作</u>
-                                        <i class="arrow-down"></i>
-                                        <div class="hyper-text">
-                                            <a href="#">支付</a>
-                                            <a href="#">取消</a>
-                                        </div>
-                                </span></td>
+                                <td class="text2">￥510</td>
+                                <td>
+                                    <div>已取消</div>
+                                </td>
+                                <td class="operationLink">
+                                    <div> </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -402,6 +383,337 @@
 </footer>
 </div>
 
+<script type="text/x-kendo-template" id="ac_cancelBook_template">
+    <div class="hintContent clearfix">
+        <h3 class="hintTitle">【提示】</h3>
+        <div class="hintFonts">
+            <p>1、成团前，取消预订，不收取损失费用，双方互不承担违约责任；</p>
+            <p>2、成团后，取消预订的，将收取相应的损失费用，并承担一定的违约责任，</p>
+            <p>3、签证受理后，取消将不退取费用。</p>
+        </div>
+    </div>
+    <table class="commonWinTab">       
+        <colgroup>
+            <col width="30">
+            <col width="62">
+            <col width="45">
+            <col width="80">
+            <col width="65">
+            <col width="75">
+            <col width="90">
+            <col width="70">
+        </colgroup>
+        <thead>
+        <th></th>
+        <th>旅客类型</th>
+        <th>姓名</th>
+        <th>拼音</th>
+        <th>证件类型</th>
+        <th>证件号</th>
+        <th>证件有效期</th>
+        <th>手机号码</th>
+        </thead>
+        <tbody>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>成人</td>
+            <td>罗倩</td>
+            <td>XIAOLIN/ZHU</td>
+            <td>护照</td>
+            <td>G12325498</td>
+            <td>
+                <em>18/09/18</em>
+                <a href="javascript:void(0);" class="retreatDetails">详情</a>
+            </td>
+            <td>13811234567</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>成人</td>
+            <td>罗倩</td>
+            <td>XIAOLIN/ZHU</td>
+            <td>护照</td>
+            <td>G12325498</td>
+            <td>
+                <em>18/09/18</em>
+                <a href="javascript:void(0);" class="retreatDetails">详情</a>
+            </td>
+            <td>13811234567</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="cancelCause">
+        <em class="cancelCauseFonts">取消原因：</em>
+        <textarea class="cancelCauseTextarea"></textarea>
+    </div>
+    <div class="sureSubmitBtn">
+        <a class="adaptiveButton brightOrange_btn">
+            <span class="left"></span>
+            <span class="center center_1">确认提交</span>
+            <span class="right"></span>
+        </a>
+        <a href="javascript:void(0);" class="cancel">取消</a>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="retreatDetails">
+    <div class="layerGrayBlock">
+        <div class="layerGrayContainer">
+            <div class="layerGrayArrow"></div>
+            <table class="floatLayerTab">
+                <colgroup>
+                    <col width="65">
+                    <col width="65">
+                    <col width="50">
+                    <col width="80">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <td>国籍</td>
+                    <td>出生地</td>
+                    <td>性别</td>
+                    <td>生日</td>
+                </tr>
+                <tr class="last">
+                    <td>中国</td>
+                    <td>上海</td>
+                    <td>女</td>
+                    <td>1988-02-02</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>   
+</script>
+
+<script type="text/x-kendo-template" id="ac_modifyInformation_template">
+    <div class="tour_infoList">
+        <div class="tour_infoListDiv">
+            <p>李晓明</p>
+            <span class="peopleType">成人</span>
+        </div>
+        <table class="tour_guestInfo" >
+            <colgroup>
+                <col width="140"/>
+                <col width="220"/>
+                <col width="100"/>
+                <col width=""/>
+            </colgroup>
+            <tbody>
+            <tr>
+                <th>中文姓名</th>
+                <td><input type="text" name="" placeholder="中文姓名（如张三）"></td>
+                <th> </th>
+                <td> </td>
+            </tr>
+            <tr>
+                <th>英文姓名</th>
+                <td>
+                    <div class="errorStyleHint">
+                        <input type="text" name="" placeholder="姓（拼音或英文）" class="redErrorBorder">
+                        <label class="errorHint">
+                            <div class="message_ct">
+                                <div class="arrow arrow_west"></div>
+                                <div class="message_text">格式错误</div>
+                            </div>
+                        </label>
+                    </div>
+                </td>
+                <th> </th>
+                <td> </td>
+            </tr>
+            <tr>
+                <th>手机号</th>
+                <td>
+                    <input type="text" name="" placeholder="输入手机号">
+                </td>
+                <th> </th>
+                <td> </td>
+            </tr>
+            <tr>
+                <th>证件类型</th>
+                <td class="papersStyleTd">
+                    <div class="papersStyle">
+                        <select data-role="dropdownlist" style="width:194px;" name="">
+                            <option value="">护照</option>
+                        </select>
+                        <span class="add_btn">&nbsp; + &nbsp;添加身份证</span>
+                    </div>
+                </td>
+                <th class="addIdentityCard">证件类型</th>
+                <td class="addIdentityCard">
+                    <select data-role="dropdownlist" style="width:180px;" name="">
+                        <option value="">身份证</option>
+                    </select>
+                    <span class="delAddContent">删除</span>
+                </td>
+            </tr>
+            <tr>
+                <th>证件号</th>
+                <td><input type="text" name="" placeholder="证件号码"></td>
+                <th class="addIdentityCard">证件号</th>
+                <td class="addIdentityCard"><input type="text" name="" placeholder="证件号码" style="width: 172px;"></td>
+            </tr>
+            <tr>
+                <th>证件有效期</th>
+                <td>
+                    <input class="datepicker"  type="text" name="" placeholder="2014 - 04 - 01">
+                </td>
+                <th> </th>
+                <td> </td>
+            </tr>
+            <tr>
+                <th>国籍</th>
+                <td><input type="text" name="" placeholder="输入国籍"></td>
+                <th> </th>
+                <td> </td>
+            </tr>
+            <tr>
+                <th>出生地</th>
+                <td><input type="text" name="" placeholder="输入出生地"></td>
+                <th> </th>
+                <td> </td>
+            </tr>
+            <tr>
+                <th>出生日期</th>
+                <td><input class="datepicker"  type="text" name="" placeholder="2014 - 04 - 01"></td>
+                <th> </th>
+                <td> </td>
+            </tr>
+            <tr>
+                <th>性别</th>
+                <td>
+                    <label>
+                        <input type="radio" name="gender" checked="checked"> 男
+                    </label>
+                    <label>
+                        <input type="radio" name="gender"> 女
+                    </label>
+                </td>
+                <th> </th>
+                <td> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--旅客2-->
+    
+    <div>
+        <div class="dotted_topbor addGuest_02" style="height: 1px;"></div>
+        <div class="tour_infoList">
+            <div class="tour_infoListDiv" id="">
+                <p>张小白</p>
+                <span class="peopleType">儿童</span>
+            </div>
+            <table class="tour_guestInfo" id="addGuest_02">
+                <colgroup>
+                    <col width="140"/>
+                    <col width="230"/>
+                    <col width="100"/>
+                    <col width=""/>
+                </colgroup>
+                <tbody>
+                <tr>
+                    <th>中文姓名</th>
+                    <td><input type="text" name="" placeholder="中文姓名（如张三）"></td>
+                    <th> </th>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <th>英文姓名</th>
+                    <td>
+                        <div class="errorStyleHint">
+                            <input type="text" name="" placeholder="姓（拼音或英文）" class="redErrorBorder">
+                            <label class="errorHint">
+                                <div class="message_ct">
+                                    <div class="arrow arrow_west"></div>
+                                    <div class="message_text">格式错误</div>
+                                </div>
+                            </label>
+                        </div>
+                    </td>
+                    <th> </th>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <th>手机号</th>
+                    <td>
+                        <input type="text" name="" placeholder="输入手机号">
+                    </td>
+                    <th> </th>
+                    <td> </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="sureSubmitBtn">
+        <a class="adaptiveButton brightOrange_btn">
+            <span class="left"></span>
+            <span class="center">保 存</span>
+            <span class="right"></span>
+        </a>
+        <a href="javascript:void(0);" class="cancel">取消</a>
+    </div>
+</script>
+
+<script>
+    function autoTimer(){
+        var d = new Date("2014-01-01 00:00:00");
+        setInterval(function(){
+            d.setSeconds(d.getSeconds() + 1);
+            var h = d.getHours();
+            var m = d.getMinutes();
+            var s = d.getSeconds();
+            if (h<10) {h = "0" + h;}
+            if (m<10) {m = "0" + m;}
+            if (s<10) {s = "0" + s;}
+            $(".timerFonts").html(h +":" + m + ":" + s);
+        }, 1000);
+    }
+    
+    $(function(){        
+        autoTimer();
+
+        var price_confirm_win = new PopWindow(".ac_cancelBook",{
+            title:"取消预订",
+            width:570,
+            template:"#ac_cancelBook_template"
+        }).init();
+
+        var price_confirm_win = new PopWindow(".ac_modifyInformation",{
+            title:"修改旅客信息",
+            width:720,
+            template:"#ac_modifyInformation_template"
+        }).init();
+
+
+        $(".commonWinTab .retreatDetails").kendoTooltip({
+            position:"bottom", //left right top
+            wrapperClass:"lineWeight",
+            width:270,
+            content:function(){
+                return $("#retreatDetails").html();
+            },
+            callout:false,
+            offsetY:0,
+            offsetX:-2
+        });
+
+        $(".add_btn").click(function(){
+            $(this).parents(".tour_guestInfo td").siblings(".addIdentityCard").show();
+            $(this).parents(".tour_guestInfo tr").next().children(".addIdentityCard").show();
+            $(this).hide();
+        });
+        
+        $(".delAddContent").click(function(){
+            $(this).parents(".tour_guestInfo tr").children(".addIdentityCard").hide();
+            $(this).parents(".tour_guestInfo tr").next().children(".addIdentityCard").hide();
+            $(this).parents(".tour_guestInfo").find(".papersStyleTd .add_btn").show();
+        });
+        
+    });
+</script>
 
 </body>
 </html>
