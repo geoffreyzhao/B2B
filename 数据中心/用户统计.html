@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../static/css/smoothness/jquery-ui-1.10.3.custom.css" />
     <link rel="stylesheet" href="../static/css/date.css" media="all" />
     <link href="../static/css/kendo.common.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../static/css/kendo.store.css" />
+    <!-- <link rel="stylesheet" href="../static/css/kendo.store.css" /> -->
     <link rel="stylesheet" href="../static/css/kendo.default.css" />
     <link rel="stylesheet" href="../static/css/dateCenter.css"/>
 
@@ -72,7 +72,16 @@
                 </div> <!--leftMenu 结束-->
 
                 <div class="rightCont"> <!-- 右边内容开始 -->
-                  <div class="rightContChart">
+                  <div class="rightContChart" style="position:relative;top:15px;">
+                    <div class="chartOper">
+                      <span class="switchDateAxis">
+                        <span>日</span>
+                        <span>周</span>
+                        <span>月</span>
+                      </span>
+                      <span class="export-excel"><i></i>导出EXCEL</span>
+                    </div>
+                    <div class="gray-line"><i class="gray-arrow"></i></div>
                     <div class="ticketChart"> <!-- 机票报表 -->
                       <div id="ticketChartRate" style="height:400px;width:100%;min-width:1030px;"></div> <!-- 销售量同比 -->
                       <div id="ticketChartQuantity" style="height:270px;width:100%;margin-top:-90px;min-width:1030px;"></div>  <!-- 销售量数量 -->
@@ -227,7 +236,7 @@
         title: {
             text: '交易量增量报表',
             x: 20,
-            y: 20,
+            y: 0,
             padding: 20,
             textStyle: {
               fontSize: 18, 
@@ -251,7 +260,8 @@
           },
           axisLabel: {
             textStyle: {
-              fontSize: 14
+              fontSize: 14,
+              fontFamily: '"Microsoft YaHei"'
             }
           },
           data: dateArr
@@ -443,6 +453,37 @@
     ticketChartQuantity.connect(ticketChartRate);
 
     // 生成报表结束
+
+
+    $(".switchDateAxis span").each(function(index){
+      $(this).click(function(){
+        $(this).addClass("orangeFont");
+        $(this).siblings("span").removeClass("orangeFont");
+
+        if (index == 0) {  /* 时间坐标轴：日*/
+          $("i.gray-arrow").css({"display":"inline-block","right":"402px"});
+
+          ticketOptionRate.xAxis[0].data = [];
+          for (var i = 1; i <= 30; i++) {
+            ticketOptionRate.xAxis[0].data.push(i);
+          }
+
+        } else if (index == 1) {  /* 时间坐标轴：周*/
+          $("i.gray-arrow").css({"display":"inline-block","right":"352px"});
+
+          ticketOptionRate.xAxis[0].data = [];
+          ticketOptionRate.xAxis[0].data = ['第一周','二周','三周','四周','五周','六周','七周','八周','九周','十周','十一周'];
+
+        } else if (index == 2) {  /* 时间坐标轴：月*/
+          $("i.gray-arrow").css({"display":"inline-block","right":"303px"});
+
+          ticketOptionRate.xAxis[0].data = [];
+          ticketOptionRate.xAxis[0].data = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月'];
+        }   
+        ticketChartRate.setOption(ticketOptionRate);
+        ticketChartRate.refresh();     
+      });
+    });
   });
   </script> 
     
