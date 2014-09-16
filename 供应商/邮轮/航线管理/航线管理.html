@@ -285,7 +285,7 @@
              <td>
                  <a href="javascript:void(0);">编辑</a><br>
                  <a href="javascript:void(0);">复制</a><br>
-                 <a href="javascript:void(0);">日志</a><br>
+                 <a href="javascript:void(0);" class="ac-lineJournal">日志</a><br>
                  <a href="javascript:void(0);">添加团期</a>
              </td>
          </tr>
@@ -334,7 +334,7 @@
                  <div>潘小美</div>
              </td>
              <td>
-                 <a href="javascript:void(0);">日志</a>
+                 <a href="javascript:void(0);" class="ac-lineJournal">日志</a>
              </td>
          </tr>
          <tr>
@@ -378,7 +378,7 @@
              <td>
                  <a href="javascript:void(0);">编辑</a><br>
                  <a href="javascript:void(0);">复制</a><br>
-                 <a href="javascript:void(0);">日志</a><br>
+                 <a href="javascript:void(0);" class="ac-lineJournal">日志</a><br>
                  <a href="javascript:void(0);" class="ac-completeInfor">提交审核</a>
              </td>
          </tr>
@@ -423,7 +423,7 @@
              <td>
                  <a href="javascript:void(0);">编辑</a><br>
                  <a href="javascript:void(0);">复制</a><br>
-                 <a href="javascript:void(0);">日志</a><br>
+                 <a href="javascript:void(0);" class="ac-lineJournal">日志</a><br>
                  <a href="javascript:void(0);" class="ac-seeCause">查看原因</a>
              </td>
          </tr>
@@ -483,22 +483,74 @@
     </script>
 
     <script type="text/x-kendo-template" id="ac-seeCause-template">
+        <p class="lineNumberWindow">航线编号 14878 上海-济州-仁川（首尔）-上海4晚5天</p>
         <div class="seeContent">
             <h3 class="title">退回原因：</h3>
-            <p>请核实该团期报价。与同类产品相差过大。</p>
+            <p>请核实该团期报价。与同类产品相差过大。请核实该团期报价。与同类产品相差过大。</p>
         </div>
         <div class="centerStyleBtn">
             <a class="supplierButton brightRedBig_btn">
                 <span class="left"></span>
-                <span class="center center_1">确 定</span>
+                <span class="center">确 定</span>
                 <span class="right"></span>
             </a>
         </div>
     </script>
+
+    <script type="text/x-kendo-template" id="ac-lineJournal-template">
+        <b class="addTitleContent">共<em>100</em>条记录</b>
+        <ul class="journalList">
+            <li>
+                <i class="journalIcon"></i>
+                <i class="journalLeftLine"></i>
+                <div class="journalTitle">
+                    <label>2013-06-24 &nbsp; 15:20</label>
+                    <em>潘小美</em>
+                </div>
+                <p class="journalP">操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作</p>
+            </li>
+            <li>
+                <i class="journalIcon"></i>
+                <i class="journalLeftLine"></i>
+                <div class="journalTitle">
+                    <label>2013-06-24 &nbsp; 15:20</label>
+                    <em>潘小美</em>
+                </div>
+                <p class="journalP">操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作</p>
+            </li>
+            <li>
+                <i class="journalIcon"></i>
+                <i class="journalLeftLine"></i>
+                <div class="journalTitle">
+                    <label>2013-06-24 &nbsp; 15:20</label>
+                    <em>潘小美</em>
+                </div>
+                <p class="journalP">操作操作操作操作操作操作操作操作操作操作操作作操作操作操作操作操作操作操作作操作操作操作</p>
+            </li>
+            <li>
+                <i class="journalIcon"></i>
+                <i class="journalLeftLine"></i>
+                <div class="journalTitle">
+                    <label>2013-06-24 &nbsp; 15:20</label>
+                    <em>潘小美</em>
+                </div>
+                <p class="journalP">操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作作操作操作操作</p>
+            </li>
+            <li>
+                <i class="journalIcon"></i>
+                <i class="journalLeftLine"></i>
+                <div class="journalTitle">
+                    <label>2013-06-24 &nbsp; 15:20</label>
+                    <em>潘小美</em>
+                </div>
+                <p class="journalP">操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作</p>
+            </li>
+        </ul>
+    </script>
     
     <script type="text/javascript">
         function autoTimer(){
-            var d = new Date("2014-01-01 00:00:00");
+            var d = new Date("01 01,2014 00:00:00");
             setInterval(function(){
                 d.setSeconds(d.getSeconds() + 1);
                 var h = d.getHours();
@@ -529,8 +581,15 @@
                 template:'#ac-completeInfor-template'
             }).init();
 
+            var ac_window = new PopWindow('.ac-lineJournal',{
+                title:'操作日志',
+                width:'600',
+                wrapperClass:'addTitleStyle',
+                template:'#ac-lineJournal-template'
+            }).init();
+
             var ac_window = new PopWindow('.ac-seeCause',{
-                title:'航线编号 14878 上海-济州-仁川（首尔）-上海4晚5天',
+                title:'退回原因',
                 width:'450',
                 template:'#ac-seeCause-template'
             }).init();

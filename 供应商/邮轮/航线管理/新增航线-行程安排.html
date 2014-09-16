@@ -124,14 +124,19 @@
 	         </div>
             <span class="mainBodyOper">
                 <span>
-                    <a class="adaptiveButton brightBtn normalButton">
+                    <a class="adaptiveButton brightBtn normalButton succeedHint" id="pass">
+                        <span class="left"></span>
+                        <span class="center center_2">保存信息成功</span>
+                        <span class="right"></span>
+                    </a>
+                    <a class="adaptiveButton brightBtn normalButton ac-saveFail">
                         <span class="left"></span>
                         <span class="center center_2">保存信息</span>
                         <span class="right"></span>
                     </a>
                 </span>
                 <span>
-                    <a class="adaptiveButton brightBtn brightBtn-blue">
+                    <a class="adaptiveButton brightBtn brightBtn-blue ac-submitAudit">
                         <span class="left"></span>
                         <span class="center center_2">提交审核</span>
                         <span class="right"></span>
@@ -329,6 +334,7 @@
 				</table>
 			</div>
 		</div>
+        
         </div>
     </div>
 
@@ -344,29 +350,38 @@
         </div>
     </div>
 
-	<script type="text/x-kendo-template" id="ac-addSpotTemplate-template">
-		<ul class="add-spot-popup">
-			<li><span>添加景点</span></li>
-			<li><input type="text" /></li>
-			<li><span class="popup-add-button"></span></li>
-			<li><a class="popup-close" href="javascript:void(0);">关闭</a></li>
-		</ul>
-	</script>
+    <script type="text/x-kendo-template" id="ac-submitAudit-template">
+        <ul class="inforList clearfix">
+            <li>· 基本信息</li>
+            <li>· 行程安排</li>
+            <li>· 描述信息</li>
+            <li>· 添加航班</li>
+        </ul>
+        <div class="centerStyleBtn">
+            <a class="supplierButton brightRedBig_btn">
+                <span class="left"></span>
+                <span class="center center_1">继续完成</span>
+                <span class="right"></span>
+            </a>
+        </div>
+    </script>
 
-	<script type="text/x-kendo-template" id="ac-addPic-template">
-		<div class="add-pic-popup">
-			<span class="pic-popup-head">添加景点</span>
-			<div class="pic-popup-body">
-				<span class="upload-pic-icon"></span>
-				<span class="upload-pic-title">添加图片</span>
-			</div>
-			<ul class="pic-popup-bottom">
-				<li style="margin-left:0;"><input type="text" placeholder="请输入对应景点" style="width:170px;"/></li>
-				<li><span class="popup-add-button"></span></li>
-				<li><a class="popup-close" href="javascript:void(0);">取消</a></li>
-			</ul>
-		</div>
-	</script>
+    <script type="text/x-kendo-template" id="ac-saveFail-template">
+        <p class="modifiedHint">该行程天数与基本信息模块天数不一致，请修改</p>
+        <div class="centerStyleBtn">
+            <a class="supplierButton brightRedBig_btn">
+                <span class="left"></span>
+                <span class="center">确 定</span>
+                <span class="right"></span>
+            </a>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="message_template">
+        <div class="#=statusClass#">
+            <p>#=message#</p>
+        </div>
+    </script>
 
 	<script type="text/javascript">
 
@@ -375,46 +390,18 @@
             kendo.init('body');
             lensf();
 
-			$(".travel-path .ac-addSpotTemplate").kendoTooltip({
-	            position: "bottom",
-                offsetX:1,
-                offsetY:20,
-	            content: function(){
-	                return $("#ac-addSpotTemplate-template").html();
-	            },
-	            wrapperClass: "add-popup",
-	            showOn: "click",
-	            autoHide: false,
-	            callout: false
-	        });
+            var ac_window = new PopWindow('.ac-submitAudit',{
+                title:'您还需完成以下信息：',
+                width:'400',
+                template:'#ac-submitAudit-template'
+            }).init();
 
-	        $(".travel-path .ac-addPic").kendoTooltip({
-	            position: "bottom",
-                offsetX:-1,
-                offsetY:-8,
-	            content: function(){
-	                return $("#ac-addPic-template").html();
-	            },
-	            wrapperClass: "add-popup",
-	            showOn: "click",
-	            autoHide: false,
-	            callout: false
-	        });
-            
-            $(".showClose i").click(function(){
-                var $showCloseChildren = $(this).parents(".spot-path").children("label.showClose");
-                $showCloseChildren.each(function(index){
-                    if (index == 0) {
-                        $(this).next(".enDash").remove();
-                        $(this).remove();
-                    } else {
-                        $(this).prev(".enDash").remove();
-                        $(this).remove();
-                    }
-                    return false;
-                });
-            });
-
+            var ac_window = new PopWindow('.ac-saveFail',{
+                title:'',
+                width:'400',
+                template:'#ac-saveFail-template'
+            }).init();
+			
             $(".menu-item-title-normal").each(function(){
                 var characterWidth=20;
                 if($(this).text().length>characterWidth){
@@ -422,6 +409,27 @@
                     $(this).text($(this).text().substring(0,characterWidth));
                     $(this).html($(this).html()+"…");
                 }
+            });
+
+            $(".mainBodyOper .succeedHint").each(function(){
+                $(this).click(function(){
+                    var id = $(this).prop("id");
+                    var messageTpl = kendo.template($("#message_template").html());
+                    var message = '';
+
+                    switch(id){
+                        case 'pass':
+                            message = '内容已保存!';
+                            break;
+                        default:
+                            break;
+                    }
+
+                    var data = {statusClass:id,message:message};
+                    messageTpl(data);
+
+                    $.prompt({content:messageTpl(data)}).center().open();
+                });
             });
 
 		});
