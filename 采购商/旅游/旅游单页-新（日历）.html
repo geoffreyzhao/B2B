@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>天地行 采购商 旅游 旅游列表页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../../static/css/smoothness/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../../static/css/store_reset.css" media="all" />
+    <link rel="stylesheet" href="../../static/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="../../static/css/kendo.store.css" />
+    <link rel="stylesheet" href="../../static/css/toolkit.css"/>
+    <link rel="stylesheet" href="../../static/css/store_v2/store.css"/>
+    <link rel="stylesheet" href="../../static/css/tmp/store_travel_ly.css"/>
+    
+    <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../static/js/global.js"></script>
+    <script type="text/javascript" src="../../static/js/store/store.js"></script>
+    <script type="text/javascript" src="../../static/js/DateControl.js"></script>
+
+
+    <!--[if IE]>
+    <script src="../../static/js/html5.js"></script>
+    <script src="../../static/js/vendor/IE7.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .tabSwitchMonth {
+            background-color: #fff;
+        }
+
+        .tabSwitchMonth li {
+            background-color: #e3e3e3;
+            margin-right: 2px;
+            height: 25px;
+            width: 85px;
+            float: left;
+            font-size: 14px;
+            color: #868686;
+            text-align: center;
+            line-height: 25px;
+        }
+
+        .tabSwitchMonth li:hover {
+            cursor: pointer;
+        }
+
+        .tabCurrentMonth {
+            background-color: #99c9f2;
+        }
+    </style>
+</head>
+<body>
+
+<div id="priceCalendar">
+    <ul class="tabSwitchMonth">
+    </ul>
+    <table class="calTable">
+        <tr>
+            <th>日</th>
+            <th>一</th>
+            <th>二</th>
+            <th>三</th>
+            <th>四</th>
+            <th>五</th>
+            <th>六</th>
+        </tr>
+    </table>
+</div>
+
+<script type="text/javascript">
+    var data = [
+        //tourFlag: 0 不成团, 1 成团,  2 铁定成团
+        { month : "2014/9",
+          info : [
+            { day: "1", isMultiTour: true, leftNum: 10, price: 19950, tourFlag: '0' },
+            { day: "2", isMultiTour: false, leftNum: 12, price: 16950, tourFlag: '0' },
+            { day: "3", isMultiTour: true, leftNum: 20, price: 17850, tourFlag: '0' }
+          ]
+        },
+        { month : "2015/1",
+          info : [
+            { day: "12", isMultiTour: true, leftNum: 10, price: 19950, tourFlag: '0' },
+            { day: "13", isMultiTour: false, leftNum: 12, price: 16950, tourFlag: '0' },
+            { day: "18", isMultiTour: true, leftNum: 0, price: 27850, tourFlag: '1' }
+          ]
+        }
+    ];
+
+    var liStr = "";
+    for (var i = 0; i < data.length; i++) {
+        var temp = new Date(data[i].month);
+
+        if (temp.getFullYear() == new Date().getFullYear()) {
+            liStr += "<li name='" + data[i].month + "'>" + (temp.getMonth() + 1) + "月</li>";
+        } else {
+            liStr += "<li name='" + data[i].month + "'>" + temp.getFullYear() + "年" +
+                    (temp.getMonth() + 1) + "月</li>";
+        }
+    }
+
+    $(".tabSwitchMonth").append(liStr);
+
+    /*  切换月份 */
+    $(".tabSwitchMonth li").each(function(){
+        $(this).click(function(){
+            $(this).addClass("tabCurrentMonth");
+            $(this).siblings("li").removeClass("tabCurrentMonth");
+
+            setCalendar($(this).attr("name"));
+        });
+    });
+
+    setCalendar(data[0].month);
+
+    /* 动态生成日历 */
+    function setCalendar(monthDate) {
+
+        var monthInfo;  // 获得当前月份的数据信息
+        for (var i = 0; i < data.length; i++) {
+            if (monthDate == data[i].month) {
+                monthInfo = data[i];
+            }
+        }
+
+        $("table tr:gt(0)").remove();
+        var calStr = "<tr>";  // 拼接字符串生成表格日期内容
+
+        var curentMonthDate = new Date(monthInfo.month);
+        var nextMonthDate = new Date(curentMonthDate.getFullYear(), curentMonthDate.getMonth() + 1,
+            curentMonthDate.getDate());
+        var monthDays = (nextMonthDate - curentMonthDate)/(1000*60*60*24);  // 获得当前月天数
+
+        var firstWeekDay = curentMonthDate.getDay();  // 获得当前月1号是周几, 范围0-6
+
+        var currentDay = 1;  // 从1号开始排列当月的日期
+
+        for (var j = 0; j < firstWeekDay; j++) {  // 当月1号之前td为空
+            calStr += "<td></td>";
+        }
+
+        for (; currentDay <= monthDays; currentDay++) {
+            if (currentDay % 7 == (7 - firstWeekDay)) {
+                calStr += "<td>" + currentDay + "</td></tr><tr>";
+            } else if (currentDay == monthDays) {
+                calStr += "<td>" + currentDay + "</td>";
+                for (var t = 0; t < (7 - firstWeekDay) - monthDays % 7; t++) {
+                    calStr += "<td></td>";
+                }
+                calStr += "</tr>";
+            } else {
+                calStr += "<td>" + currentDay + "</td>";
+            }
+        }
+        $("table").append(calStr);
+    }
+
+</script>
+
+</body>
+</html>
+
