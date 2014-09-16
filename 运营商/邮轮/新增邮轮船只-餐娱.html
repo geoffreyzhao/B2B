@@ -262,7 +262,7 @@
                     <tr class="facilityType">
                         <th><i class="redStar">*</i>设施类型：</th>
                         <td>
-                            <div>餐饮</div>
+                            <div class="facilityTypeClick">餐饮</div>
                             <div>娱乐</div>
                         </td>
                     </tr>
@@ -388,10 +388,18 @@
             //     template:'#editCabinWindow'
             // }).init();
 
-            var facilityType = $(".facilityType div").on("click",function(){
+            // var facilityType = $(".facilityType div").on("click",function(){
+            //     $(this).removeClass();
+            //     $(this).addClass("facilityTypeClick");
+            // });
+        var facilityType = $(".facilityType div");
+        facilityType.on("click",function(){
+            facilityType.each(function(){
                 $(this).removeClass();
-                $(this).addClass("facilityTypeClick");
             });
+
+            $(this).addClass("facilityTypeClick");
+        });
 
              // $('.center').trigger('click');
             
