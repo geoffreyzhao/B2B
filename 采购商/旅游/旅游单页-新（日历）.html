@@ -47,8 +47,212 @@
         }
 
         .tabCurrentMonth {
-            background-color: #99c9f2;
+            background-color: #99c9f2!important;
+            color: #fff!important;
+            padding-bottom: 2px;
         }
+
+        /* 日历部分  */
+
+        .grayFont {
+            color: #e3e3e3;
+        }
+
+        .calTable {
+            width: 464px;
+            /*border: 1px solid #e3e3e3;*/
+        }
+
+        .calTable th, .calTable td {
+            text-align: center;
+        }
+
+        .calTable th {
+            background-color: #99caf2;
+            color: #fff;            
+        }
+
+        .calTable td {
+            border: 1px solid #e3e3e3;
+            color: #aeaeae;
+            width: 66px;
+            height: 56px;
+            position: relative;
+        }
+
+        .calTable .multiTour {
+            display: inline-block;
+            width: 19px;
+            height: 19px;
+            background: url(../../static/images/store/travl/calendar-price-icons.png) no-repeat 0 -32px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .calTable .disa-multiTour {
+            background: url(../../static/images/store/travl/calendar-price-icons.png) no-repeat -21px -32px;
+        }
+
+        .calTable .tourFlag {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+        }
+
+        .calTable .sureTour {
+            background: url(../../static/images/store/travl/calendar-price-icons.png) no-repeat 0 0;
+            display: inline-block;
+            width: 46px;
+            height: 14px;
+        }
+
+        .calTable .disa-sureTour {
+            background: url(../../static/images/store/travl/calendar-price-icons.png) no-repeat 0 -16px;
+            display: inline-block;
+            width: 46px;
+            height: 14px;
+        }
+
+        .calTable .tour {
+            background: url(../../static/images/store/travl/calendar-price-icons.png) no-repeat -48px 0;
+            display: inline-block;
+            width: 25px;
+            height: 14px;
+        }
+
+        .calTable .disa-tour {
+            background: url(../../static/images/store/travl/calendar-price-icons.png) no-repeat -48px -16px;
+            display: inline-block;
+            width: 25px;
+            height: 14px;
+        }
+
+        .leftNormal, .leftMore {
+            font-size: 12px;
+            color: #348332;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
+
+        .leftNone {
+            font-size: 12px;
+            color: #aeaeae;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
+
+        .price {
+            font-size: 12px;
+            color: #ff6500;
+            position: absolute;
+            top: 21px;
+            left: 0;
+        }
+
+        .disa-price {
+            color: #aeaeae;
+        }
+
+        .price b {
+            font-weight: bold;
+            padding: 0 1px;
+        }
+
+        .dateDay {
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            color: #333;
+        }
+
+        .disa-dateDay {
+            color: #aeaeae;
+        }
+
+        .enableTd:hover,
+        .enableTdMt:hover {
+            background-color: #fffef4;
+            /*border: 1px solid #fe9149;*/
+            cursor: pointer;
+        }
+
+        .trBorderBottom {
+            border-bottom: 1px dashed #aeaeae;
+        }
+
+        .priceTotal {
+            font-size: 14px;
+            text-align: right;
+            padding-top: 10px;
+        }
+
+        .orderBtnOrange {
+            padding-left: 20px;
+        }
+
+        .multiTem {
+            width: 273px;
+            position: relative;
+        }
+
+        .multiTem table{
+            width: 100%;
+        }
+
+        .multiTem .departureInfo {
+            width: 215px;
+            height: 24px;
+            padding-left: 10px;
+        }
+
+        .multiTem .orderBtnOrange {
+            padding-left: 130px;
+        }
+
+        .multiTem span.importantTxt1 {
+            padding-left: 40px;
+        }
+
+        ul.mtSelectItems {
+            width: 227px;
+            margin-left: 40px;
+            /*border: 1px solid #cbcbcb;*/
+        }
+
+        ul.mtSelectItems li {
+            height: 24px;
+            line-height: 24px;
+            border-bottom: 1px solid #cbcbcb;
+            border-right: 1px solid #cbcbcb;
+            border-left: 1px solid #cbcbcb;
+            padding-left: 10px;
+            cursor: pointer;
+        }
+
+        .mtSelectItems span {
+            color: #909090;
+            padding-right: 10px;
+        }
+
+        .mtSelectItems .mtPrice em,
+        .mtSelectedItem .mtPrice em{
+            color: #ff6500;
+        }
+
+        .mtSelectItems .mtLeftNum em,
+        .mtSelectedItem .mtLeftNum em {
+            color: #348332;
+        }
+
+        .mtSelectedItem {
+            position: absolute;
+            top: 40px;
+            left: 70px;
+        }
+
     </style>
 </head>
 <body>
@@ -56,8 +260,8 @@
 <div id="priceCalendar">
     <ul class="tabSwitchMonth">
     </ul>
-    <table class="calTable">
-        <tr>
+    <table class="calTable clearfix">
+        <tr style="height:28px;">
             <th>日</th>
             <th>一</th>
             <th>二</th>
@@ -69,21 +273,146 @@
     </table>
 </div>
 
+<script type="text/html" id="bookingTemplate">
+    <div class="bookingContainer2">
+        <table>
+            <colgroup>
+                <col width="40"/>
+            </colgroup>
+            <tr>
+                <td><span class="unimportantTxt63">出发</span></td>
+                <td>#= data #</td>
+            </tr>
+            <tr>
+                <td><span class="unimportantTxt63">成人&nbsp;</span></td>
+                <td>
+                    <select name="" id="" data-role="dropdownlist" style="width: 59px;">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select> 
+                    <span class="importantTxt1">￥9865</span>/人
+                </td>
+            </tr>
+            <tr class="trBorderBottom">
+                <td><span class="unimportantTxt63">儿童&nbsp;</span></td>
+                <td>
+                    <select name="" id="" data-role="dropdownlist" style="width: 59px;">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                    <span class="importantTxt1">￥9865</span>/人
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="priceTotal">
+                    合计<span class="importantTxt1">￥9865</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="orderBtnOrange">
+                    <span class="btn_booking_clickable" style="position: static;margin:10px 0">立即预订</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</script>
+
+<script type="text/html" id="moreBookingTemplate">
+    <div class="bookingContainer2 multiTem">
+        <table>
+            <colgroup>
+                <col width="40"/>
+            </colgroup>
+            <tr>
+                <td><span class="unimportantTxt63">出&nbsp;发</span></td>
+                <td>#= data #</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span class="unimportantTxt63">请选择</span>
+                    <input type="text" style="" class="departureInfo" readonly="readonly"/>
+                    <span class="mtSelectedItem" style="display:none;">
+                        <span class="mtPrice">成人<em>￥9856</em></span>
+                        <span class="mtPrice">儿童<em>￥9856</em></span>
+                        <span class="mtLeftNum"><em>充足</em></span>
+                    </span>
+                    <ul class="mtSelectItems" style="display:none;">
+                        <li>
+                            <span class="mtPrice">成人<em>￥9856</em></span>
+                            <span class="mtPrice">儿童<em>￥9856</em></span>
+                            <span class="mtLeftNum"><em>充足</em></span>
+                        </li>
+                        <li>
+                            <span class="mtPrice">成人<em>￥9856</em></span>
+                            <span class="mtPrice">儿童<em>￥9856</em></span>
+                            <span class="mtLeftNum">余<em>9</em>位</span>
+                        </li>
+                        <li>
+                            <span class="mtPrice">成人<em>￥9856</em></span>
+                            <span class="mtPrice">儿童<em>￥9856</em></span>
+                            <span class="mtLeftNum">余<em>9</em>位</span>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><span class="unimportantTxt63">成&nbsp;人&nbsp;</span></td>
+                <td>
+                    <select name="" id="" data-role="dropdownlist" style="width: 125px;">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select> 
+                    <span class="importantTxt1">￥9865</span>/人
+                </td>
+            </tr>
+            <tr class="trBorderBottom">
+                <td><span class="unimportantTxt63">儿&nbsp;童&nbsp;</span></td>
+                <td>
+                    <select name="" id="" data-role="dropdownlist" style="width: 125px;">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                    <span class="importantTxt1">￥9865</span>/人
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="priceTotal">
+                    合计<span class="importantTxt1">￥9865</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="orderBtnOrange">
+                    <span class="btn_booking_clickable" style="position: static;margin:10px 0">立即预订</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</script>
+
 <script type="text/javascript">
+    /* 
+        按照json格式初始化data  即可生成对应的日历
+
+        dayDate: 当月几号
+        isMultiTour: true 多团   false 不是多团
+        leftNum: 资源余量， 为0售罄   大于20充足 其它显示数字
+        price: 价格
+        tourFlag: 0 不成团, 1 成团,  2 铁定成团 
+    */
+
     var data = [
-        //tourFlag: 0 不成团, 1 成团,  2 铁定成团
         { month : "2014/9",
           info : [
-            { day: "1", isMultiTour: true, leftNum: 10, price: 19950, tourFlag: '0' },
-            { day: "2", isMultiTour: false, leftNum: 12, price: 16950, tourFlag: '0' },
-            { day: "3", isMultiTour: true, leftNum: 20, price: 17850, tourFlag: '0' }
+            { dayDate: 1, isMultiTour: true, leftNum: 10, price: 19950, tourFlag: '0' },
+            { dayDate: 2, isMultiTour: false, leftNum: 12, price: 16950, tourFlag: '1' },
+            { dayDate: 6, isMultiTour: true, leftNum: 25, price: 17850, tourFlag: '2' }
           ]
         },
         { month : "2015/1",
           info : [
-            { day: "12", isMultiTour: true, leftNum: 10, price: 19950, tourFlag: '0' },
-            { day: "13", isMultiTour: false, leftNum: 12, price: 16950, tourFlag: '0' },
-            { day: "18", isMultiTour: true, leftNum: 0, price: 27850, tourFlag: '1' }
+            { dayDate: 12, isMultiTour: true, leftNum: 10, price: 19950, tourFlag: '1' },
+            { dayDate: 13, isMultiTour: false, leftNum: 12, price: 16950, tourFlag: '1' },
+            { dayDate: 14, isMultiTour: true, leftNum: 0, price: 27850, tourFlag: '1' }
           ]
         }
     ];
@@ -101,6 +430,7 @@
     }
 
     $(".tabSwitchMonth").append(liStr);
+    $(".tabSwitchMonth li:first-child").addClass("tabCurrentMonth");
 
     /*  切换月份 */
     $(".tabSwitchMonth li").each(function(){
@@ -109,6 +439,7 @@
             $(this).siblings("li").removeClass("tabCurrentMonth");
 
             setCalendar($(this).attr("name"));
+            addEnableTd();
         });
     });
 
@@ -142,20 +473,123 @@
 
         for (; currentDay <= monthDays; currentDay++) {
             if (currentDay % 7 == (7 - firstWeekDay)) {
-                calStr += "<td>" + currentDay + "</td></tr><tr>";
+                calStr += "<td>" + geneTdContent(currentDay, monthInfo) + "</td></tr><tr>";
             } else if (currentDay == monthDays) {
-                calStr += "<td>" + currentDay + "</td>";
+                calStr += "<td>" + geneTdContent(currentDay, monthInfo) + "</td>";
                 for (var t = 0; t < (7 - firstWeekDay) - monthDays % 7; t++) {
                     calStr += "<td></td>";
                 }
                 calStr += "</tr>";
             } else {
-                calStr += "<td>" + currentDay + "</td>";
+                calStr += "<td>" + geneTdContent(currentDay, monthInfo) + "</td>";
             }
         }
-        $("table").append(calStr);
+        $("table.calTable").append(calStr);
     }
 
+    function getDayInfo(currentDay, monthInfo) {
+        for (var i = 0; i < monthInfo.info.length; i++) {
+            if (monthInfo.info[i].dayDate == currentDay) {
+                return monthInfo.info[i];
+            }
+        }
+        return null;
+    }
+
+    function geneTdContent(currentDay, monthInfo) {
+        var dayInfo = getDayInfo(currentDay, monthInfo);
+        var tdCont = "";
+        
+        if (!!dayInfo) {            
+
+            // 售罄状态下 td内所有元素都是灰色
+            if (dayInfo.leftNum == 0) {
+                tdCont += "<span class='dateDay disa-dateDay'>" + dayInfo.dayDate + "</span>";
+                tdCont += "<i class='multiTour disa-multiTour'></i>";
+                tdCont += "<span class='leftNum leftNone'>售罄</span>";
+                tdCont += "<span class='price disa-price'>￥<b>" + dayInfo.price + "</b>起</span>";
+                tdCont += "<i class='tourFlag disa-sureTour'></i>";
+            } else {
+                tdCont += "<span class='dateDay'>" + dayInfo.dayDate + "</span>";
+
+                if (dayInfo.leftNum > 20) {
+                    tdCont += "<span class='leftNum leftMore'>充足</span>";
+                } else {               
+                    tdCont += "<span class='leftNum leftNormal'>余" + dayInfo.leftNum + "</span>";
+                }
+
+                tdCont += "<span class='price'>￥<b>" + dayInfo.price + "</b>起</span>";
+
+                // 是否有多团标志
+                if (dayInfo.isMultiTour) {
+                    tdCont += "<i class='multiTour'></i>";
+                }
+
+                // 判断成团类型  tourFlag: 0 不成团, 1 成团,  2 铁定成团
+                if (dayInfo.tourFlag == 1) {
+                    tdCont += "<i class='tourFlag tour'></i>";
+                } else if (dayInfo.tourFlag == 2) {
+                    tdCont += "<i class='tourFlag sureTour'></i>";
+                }
+                
+            }
+        } else {
+            tdCont += "<span class='dateDay disa-dateDay'>" + currentDay + "</span>";
+        }
+        return tdCont;
+    }
+
+    addEnableTd();
+    function addEnableTd() {
+        $(".leftNormal, .leftMore").parents("td").each(function(){
+            if ($(this).children(".multiTour").length == 0) {
+                $(this).addClass("enableTd");
+            } else {
+                $(this).addClass("enableTdMt");
+            }
+        });
+    }
+
+    $(".calTable").delegate(".enableTd", "click", function(){
+        var clickCurrentDay = $(this).children(".dateDay").html();
+        var $currentDate = $(".tabCurrentMonth").attr("name");
+        var showDate = $currentDate.split('/')[0] + "-" + $currentDate.split('/')[1] + "-" + clickCurrentDay;
+
+        new FloatLayer({
+            trigger: ".enableTd",
+            template:"#bookingTemplate",
+            type:'click',
+            data: showDate,
+            offsetX:0,
+            offsetY:57
+        });
+    });
+
+    $(".calTable").delegate(".enableTdMt", "click", function(){
+        var clickCurrentDay = $(this).children(".dateDay").html();
+        var $currentDate = $(".tabCurrentMonth").attr("name");
+        var showDate = $currentDate.split('/')[0] + "-" + $currentDate.split('/')[1] + "-" + clickCurrentDay;
+
+        new FloatLayer({
+            trigger: ".enableTdMt",
+            template:"#moreBookingTemplate",
+            type:'click',
+            data: showDate,
+            offsetX:0,
+            offsetY:57
+        });
+    });
+
+    $("body").delegate(".multiTem .departureInfo", "click", function(){
+        $(this).siblings("ul.mtSelectItems").toggle();
+    });
+
+    $("body").delegate('.mtSelectItems li', 'click', function() {
+        $(".mtSelectedItem").html($(this).html());
+        $(".mtSelectedItem").show();
+        $(".mtSelectItems").hide();
+    });
+    
 </script>
 
 </body>
