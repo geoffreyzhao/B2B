@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>旅游 线路管理 线路管理</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css">
+    <link href="/static/css/kendo.common.css" rel="stylesheet" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" />
+    <link href="/static/css/common.css" rel="stylesheet" />
+    <link href="/static/css/supplier.css" rel="stylesheet" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link href="/static/css/supplierTravel.css" rel="stylesheet" />
+    <link href="/static/css/supplier.css" rel="stylesheet" />
+    <link href="/static/css/supplier_common.css" rel="stylesheet" />
+    <link href="/static/css/supplierShip.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/store_ucenter.css" media="screen" />
+
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/flight.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+    <script type="text/javascript" src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+    <script type="text/javascript" src="/static/js/supplier/supplier_travel.js"></script>
+   
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+        
+    <!--[if lt IE 8]> 
+    <link rel="stylesheet" href="/static/css/ie.css" /> 
+    <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
+    <![endif]-->
+    <script type="text/javascript" src="/static/js/supplier/supplier_sync.js"></script>
+    <!-- @CLB@ -->
+    </head>
+<body>
+
+    <div class="bg-header-repeat">
+        <div class="bg-header-top"></div>
+        <div class="navi-split-line"></div>
+        <div class="main-header"></div>
+    </div>
+
+    <div id="container" class="new-container">
+        <div class="header-top-center">
+            <div class="head-left">
+                <div class="supplier-logo"></div>
+            </div>
+            <ul class="first-navi">
+                <li class="first-navi-li"><a href="javascript:void(0);">国内机票</a></li>
+                <li class="first-navi-li"><a href="javascript:void(0);">国际机票</a></li>
+                <li class="first-navi-li" style="width:65px";><a href="javascript:void(0);">旅游</a></li>
+                <li class="first-navi-li first-navi-active" style="width:65px;"><a href="javascript:void(0);">邮轮</a>
+                    <ol class="second-navi">
+                        <li class="second-navi-li"><a href="javascript:void(0);">航线管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li second-navi-active"><a href="javascript:void(0);">团管理</a>
+                            <div class="navi-slide-hover" style="height:5px;"></div>
+                        </li>
+                    </ol>
+                </li>
+
+                <li class="first-navi-li"><a href="javascript:void(0);">财务管理</a></li>
+                <li class="first-navi-li notice-icon-active notice-icon-active-position"><a href="javascript:void(0);"></a></li>
+                <li class="user-setting-nav" style="display:none;">
+                    <ol class="second-navi">
+                        <li class="second-navi-li"><a href="javascript:void(0);">我的账号</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">公司信息</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">员工管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">角色管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">账户设置</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);"><span style="font-size:14px;">OFFICE</span>管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                    </ol>
+                </li>
+            </ul>
+            <div class="head-right">
+                <ul class="feature">
+                    <!-- <li class="notice-icon-active"></li> -->
+                    <li class="split-line"></li>
+                    <li class="person-info">
+                        <span class="person-icon"></span>
+                        <span class="person-name" title="zhaoshuaigeng12312321">zhaoshuaigeng12312321</span>
+                        <a class="logout" href="javascript:void(0);">退出</a>
+                        <span class="user-setting">设置</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="sub_menu_bar"></div>
+
+    <div id="mainContent" class="mainContent travelModule">
+        <ul class="third-navi">
+                
+                <li class="third-navi-li third-navi-active"><a href="javascript:void(0);">全部</a></li>
+                <li class="third-navi-li">
+                    <a href="javascript:void(0);">截止收客</a>
+                </li>
+                <li class="third-navi-li">
+                    <a href="javascript:void(0);">已停售</a>                    
+                </li>
+                
+                
+            </ul>
+
+
+        <table class="flightNum-table">
+             <colgroup>
+                 <col width="25"/>
+                 <col width="82"/>
+                 <col width="665"/>
+                 <col width="104"/>
+                 <col width="118"/>
+             </colgroup>
+             <tr>
+                <td></td>
+                 <th>航班编号:</th>
+                 <td>
+                    23569 【歌诗达邮轮-维多利亚号】 济州岛+福冈 5天
+                 </td>
+                 <td>
+                     <span class="preview"></span>
+                 </td>
+                 <td>
+                     <span>
+                        <a class="adaptiveButton brightBtn brightBtn-blue submitCheck">
+                        <span class="left"></span>
+                        <span class="center center_2">提交审核</span>
+                        <span class="right"></span>
+                        </a>
+                    </span>
+                 </td>
+             </tr>
+         </table>
+
+         <table class="offSearchTab">
+             <colgroup>
+                 <col width="68"/>
+                 <col width="224"/>
+                 <col width="68"/>
+                 <col width="220"/>
+                 
+                 <col width="50"/>
+                 <col width="236"/>
+                 <col width="108"/>
+             </colgroup>
+             <tr>
+                 <th>开始日期</th>
+                 <td>
+                    <input type="text" class="dpUlt datepicker hideDateTag" placeholder=" yy-mm-dd" />
+                 </td>
+                 <th>结束日期</th>
+                 <td>
+                    <input type="text" class="dpUlt datepicker hideDateTag" placeholder=" yy-mm-dd"/>
+                 </td>
+                 <th>团状态</th>
+                 <td>
+                     <select data-role="dropdownlist" style="width: 186px;margin-left: 30px;vertical-align: top;">
+                         <option>请选择</option>
+                         <option>全部</option>
+                     </select>
+                 </td>
+                 <td rowspan="2">
+                     <a class="supplierButton brightRedBig_btn">
+                         <span class="left"></span>
+                         <span class="center center_1">查 询</span>
+                         <span class="right"></span>
+                     </a>
+                 </td>
+             </tr>
+         </table>
+
+         <table class="batchProcess">
+            <colgroup>
+                <col width="117"/>
+                <col width="104"/>
+            </colgroup>
+            <tr>
+                <td>
+                    <i class="batchDel"></i>
+                </td>
+                <td>
+                    <i class="addTeamTerm"></i>
+                </td>
+            </tr>
+         </table>
+
+         <table class="offerContent-table">
+         <colgroup>
+             <col width="10"/>
+             <col width="38"/>
+             <col width="128"/>
+             <col width="180"/>
+             <col width="128"/>
+             <col width="102"/>
+             <col width="96"/>
+             <col width="142"/>
+             <col width="142"/>             
+         </colgroup>
+         <thead>
+         <tr>
+            <th></th>
+            <th></th>
+             <th>启航日期</th>
+             <th>团号</th>
+             <th>截止收客时间</th>
+             <th>起价</th>
+             <th>库存</th>
+             <th>团状态</th>
+             <th class="operateHead">操作</th>
+         </tr>
+         </thead>
+         <tbody>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="checkbox"/>
+                </td>
+                <td>2014-07-28</td>
+                <td>
+                    <div class="buyShip"></div>
+                    <div>20140720维多利亚号</div>
+                </td>
+                <td>2014-07-28</td>
+                <td class="startPointCost">1584</td>
+                <td>
+                    <span class="stock">总</span>
+                    <span class="stockFont1">80</span>
+                </td>
+                <td class="create">新建</td>
+                <td class="operate">
+                    <i>编辑</i><i>详情</i><i class="ac-seeCause">删除</i>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="checkbox"/>
+                </td>
+                <td>2014-07-28</td>
+                <td>
+                    <div class="buyShip"></div>
+                    <div>20140720维多利亚号</div>
+                </td>
+                <td>2014-07-28</td>
+                <td class="startPointCost">1584</td>
+                <td>
+                    <span class="stock">总</span>
+                    <span class="stockFont1">80</span>
+                </td>
+                <td class="create saling">售卖中</td>
+                <td class="operate left">
+                    <i>编辑</i><i>详情</i>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="checkbox"/>
+                </td>
+                <td>2014-07-28</td>
+                <td>
+                    <div class="buyShip"></div>
+                    <div>20140720维多利亚号</div>
+                </td>
+                <td>2014-07-28</td>
+                <td class="startPointCost">1584</td>
+                <td>
+                    <div>
+                        <span class="stock">总</span>
+                        <span class="stockFont1 stockFont2">80</span>
+                    </div>
+                    <div>
+                        <span class="stock">售</span>
+                        <span class="stockFont1 stockFont2">60</span>
+                    </div>
+                    <div>
+                        <span class="stock">余</span>
+                        <span class="stockFont1 stockFont2">20</span>
+                    </div>
+                    
+                </td>
+                <td class="create">变更</td>
+                <td class="operate">
+                    <i>详情</i>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="checkbox"/>
+                </td>
+                <td>2014-07-28</td>
+                <td>
+                    <div class="buyShip"></div>
+                    <div>20140720维多利亚号</div>
+                </td>
+                <td>2014-07-28</td>
+                <td class="startPointCost">1584</td>
+                <td>
+                    <span class="stock">总</span>
+                    <span class="stockFont1">80</span>
+                </td>
+                <td class="create shutdown">截止收客</td>
+                <td class="operate left">
+                    <i>编辑</i><i>详情</i>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="checkbox"/>
+                </td>
+                <td>2014-07-28</td>
+                <td>
+                    <div class="buyShip"></div>
+                    <div>20140720维多利亚号</div>
+                </td>
+                <td>2014-07-28</td>
+                <td class="startPointCost">1584</td>
+                <td>
+                    <span class="stock">总</span>
+                    <span class="stockFont1">80</span>
+                </td>
+                <td class="create">已发出团通知</td>
+                <td class="operate">
+                    <i>详情</i>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="checkbox"/>
+                </td>
+                <td>2014-07-28</td>
+                <td>
+                    <div class="buyShip"></div>
+                    <div>20140720维多利亚号</div>
+                </td>
+                <td>2014-07-28</td>
+                <td class="startPointCost">1584</td>
+                <td>
+                    <span class="stock">总</span>
+                    <span class="stockFont1">80</span>
+                </td>
+                <td class="create stopSale">已停售</td>
+                <td class="operate">
+                    <i>详情</i>
+                </td>
+            </tr>
+         </tbody>
+         </table>
+
+         <div class="grid-table-pagination">
+              <span class="grid-table-count">
+                  共 <em>132</em> 条记录
+              </span>
+              <span>
+                  <a href="#" class="prev">&nbsp;</a>
+                  <!--<a href="#" class="prev noIcon">&nbsp;</a>-->  <!--加 class="noIcon" 将隐藏小箭头-->
+              </span>
+              <span class="links">
+                  <a href="#">1</a>
+                  <a href="#">2</a>
+                  <a href="#" class="current">3</a>
+                  <a href="#">4</a>
+                  <a href="#">5</a>
+                  <a href="javascript:void(0);" class="ellipsis">...</a>
+                  <a href="#">50</a>
+              </span>
+              <span>
+                  <a href="#" class="next">&nbsp;</a>
+              </span>
+         </div>
+    </div>
+</div>
+
+    <div id="extFooter">
+        <div class="passengerLiner-footer">
+            <p>
+            <a href="javascript:void(0);">关于我们</a>&nbsp;|
+            <a href="javascript:void(0);">微博</a>&nbsp;|
+            <a href="javascript:void(0);">服务条款</a>&nbsp;|
+            <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+
+    <script type="text/x-kendo-template" id="ac-returnReasons-template">
+        <p class="causeContent">退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明
+            文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回
+            说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回
+            说明文字退回说明文字退回说明文字此处省略200字</p>
+        <div class="pullRightStyle">
+            <a class="supplierButton brightRedBig_btn">
+                <span class="left"></span>
+                <span class="center center_1">查 询</span>
+                <span class="right"></span>
+            </a>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-journal-template">
+        <table class="commonTab">
+            <colgroup>
+                <col width="350"/>
+                <col width="140"/>
+                <col width="70"/>
+            </colgroup>
+            <thead>
+            <th>操作记录</th>
+            <th>操作时间</th>
+            <th>操作人</th>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <div class="limitWidth">操作记录操作记录操作记录操作记录操操作作记录操作记录操作记录操作</div>
+                </td>
+                <td>2014-09-21  18:01</td>
+                <td>客服</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="limitWidth">操作记录操作记录操作记录操作记录操操作作记录操作记录操作记录操作</div>
+                </td>
+                <td>2014-09-21  18:01</td>
+                <td>admin</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="limitWidth">操作记录操作记录操作记录操作记录</div>
+                </td>
+                <td>2014-09-21  18:01</td>
+                <td>admin</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="limitWidth">操作记录操作记录操作记录操作记录</div>
+                </td>
+                <td>2014-09-21  18:01</td>
+                <td>admin</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="limitWidth">操作记录操作记录操作记录操作记录</div>
+                </td>
+                <td>2014-09-21  18:01</td>
+                <td>admin</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="grid-table-pagination">
+              <span class="grid-table-count">
+                  共 <em>132</em> 条记录
+              </span>
+              <span>
+                  <a href="javascript:void(0);" class="prev">&nbsp;</a>
+              </span>
+              <span class="links">
+                  <a href="javascript:void(0);">1</a>
+                  <a href="javascript:void(0);">2</a>
+                  <a href="javascript:void(0);" class="current">3</a>
+                  <a href="javascript:void(0);">4</a>
+                  <a href="javascript:void(0);">5</a>
+                  <a href="javascript:void(0);" class="ellipsis">...</a>
+                  <a href="javascript:void(0);">50</a>
+              </span>
+              <span>
+                  <a href="javascript:void(0);" class="next">&nbsp;</a>
+              </span>
+        </div>
+        <div class="pullRightStyle">
+            <a class="supplierButton brightRedBig_btn">
+                <span class="left"></span>
+                <span class="center center_1">关 闭</span>
+                <span class="right"></span>
+            </a>
+        </div>
+    </script>
+
+    <!-- <script type="text/x-kendo-template" id="city_popup">
+        <div class="tcy_tabstrip">
+            <span class="tcy_title">
+                可直接输入中文的城市/机场/三字码
+            </span>
+            <ul>
+            <li id="hot_city" class="k-state-active">热门</li>
+            # for (var i=0; i<data.group.length; i++ ) { #
+            <li>#= data.group[i] #</li>
+            # } #
+            </ul>
+            <div id="hot_city_tab">
+                <ul class="tcy_list clearfix">
+
+                # for(var j=0;j<hotcitylist.length;j++){ #
+                #   var citylist_item = hotcitylist[j] #
+                    <li class="item" title="#= citylist_item.code #" data-code="#= citylist_item.code #">#= citylist_item.name #</li>
+                # } #
+                </ul>
+            </div>
+
+            # for(var i=0;i<data.citylist.length;i++){ #
+                # var citylist_item = data.citylist[i] #
+                <div class="city_tab">
+                    <ul class="tcy_list clearfix">
+                      # for(var k=0;k<data.group[i].length;k++){ #
+                        <li class="tcy_list_sep">#= data.group[i].split('')[k] #</li>
+                        # for(var j=0;j<citylist_item.value.length;j++){ #
+                            # var citylist_value_item = citylist_item.value[j]; #
+                            # if(citylist_value_item.py.slice(0,1) == data.group[i].split('')[k]) {#
+                                <li class="item" title="#= citylist_value_item.code #" data-code="#= citylist_value_item.code #">#= citylist_value_item.name #</li>
+                            # } #
+                        # } #
+                      # } #
+                    </ul>
+                </div>
+            # } #
+        </div>
+    </script>
+
+    <script type="text/javascript">
+        CityAutocomplete({
+            template: "#city_popup",
+            input: "#depCity",
+            // 以@分割热门非热门，以;分割条目，以|分割三字码拼音和中文
+            url:'/static/js/data.txt',
+            group: ["热门", "ABCDEF", "GHJ", "KLMN", "PQRSTW", "XYZ"]
+        });
+
+        CityAutocomplete({
+            template: "#city_popup",
+            input: "#destCity",
+            // 以@分割热门非热门，以;分割条目，以|分割三字码拼音和中文
+            url:'/static/js/data.txt',
+            group: ["热门", "ABCDEF", "GHJ", "KLMN", "PQRSTW", "XYZ"]
+        });
+    </script> -->
+
+    <script type="text/x-kendo-template" id="pw-send-msg-success">
+        <div class="send-msg-success"><i class="large-success-icon"></i> 操作成功！</div>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-seeCause-template">
+        <div class="seeContent alertContent">
+            <span class="alert"></span>
+            <span class="alertFont">确认删除该团吗?</span>
+        </div>
+        <div class="centerStyleBtn">
+            <a class="supplierButton brightRedBig_btn">
+                <span class="left"></span>
+                <span class="center center_1">删 除</span>
+                <span class="right"></span>
+            </a>
+            <a href="javascript:void(0);" class="cancel">
+                取消
+            </a>
+        </div>
+    </script>
+    
+    <script type="text/javascript">
+        $(function(){
+
+
+
+    var sendMsgSuccessPw = new PopWindow(".brightBtn-blue", {
+        title: false,
+        width: 410,
+        template: "#pw-send-msg-success",
+        autoHide: 2*1000,
+        animation: {
+            open: {
+                effects: "fade:in",
+                duration: 300
+            },
+            close: {
+                effects: "fade:out",
+                duration: 300
+            }
+        }
+    }).init();
+
+    $(".send-msg-success").parents(".k-window").css("padding-top","8px");
+
+
+    var ac_window = new PopWindow('.ac-seeCause',{
+                title:'删除',
+                width:'450',
+                template:'#ac-seeCause-template'
+            }).init();
+
+    $(".alertContent").parent().parents(".k-window").css("border","8px solid #c5c5c5");
+
+            var ac_window = new PopWindow('.ac-returnReasons',{
+                title:'退回原因',
+                width:'550',
+                template:'#ac-returnReasons-template'
+            }).init();
+
+            var ac_window = new PopWindow('.ac-journal',{
+                title:'日志',
+                width:'600',
+                template:'#ac-journal-template'
+            }).init();
+
+            // 日期控件
+            $.datepicker.regional[ "zh-CN" ];
+            $(function(){
+                $( ".datepicker" ).datepicker({
+                    showDay:true,
+                    numberOfMonths:[1,2],
+                    minDate :new Date(),
+                    firstDay:0,
+                    showButtonPanel :true
+                });
+            });
+            
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function(){
+            
+            // 日期控件
+            $.datepicker.regional[ "zh-CN" ];
+            $(function(){
+                $( ".datepicker" ).datepicker({
+                    showDay:true,
+                    numberOfMonths:[1,2],
+                    minDate :new Date(),
+                    firstDay:0,
+                    showButtonPanel :true
+                });
+            });
+            
+        });
+    </script>
+
+
+</body>
+</html>
