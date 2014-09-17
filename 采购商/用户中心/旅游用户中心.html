@@ -5,24 +5,24 @@
     <title>天地行 采购商 用户中心 旅游订单列表</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
      
-    <link rel="stylesheet" href="../../static/css/smoothness/jquery-ui-1.10.3.custom.css" />     
-    <link rel="stylesheet" href="../../static/css/store_reset.css" media="all" />
-    <link rel="stylesheet" href="../../static/css/store.css" media="screen" />
-    <link rel="stylesheet" href="../../static/css/store_ucenter.css" media="screen" />
-    <link rel="stylesheet" href="../../static/css/kendo.common.min.css" />
-    <link rel="stylesheet" href="../../static/css/kendo.store.css" />
+    <link rel="stylesheet" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css" />     
+    <link rel="stylesheet" href="/static/css/store_reset.css" media="all" />
+    <link rel="stylesheet" href="/static/css/store.css" media="screen" />
+    <link rel="stylesheet" href="/static/css/store_ucenter.css" media="screen" />
+    <link rel="stylesheet" href="/static/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="/static/css/kendo.store.css" />
     
-    <script type="text/javascript" src="../../static/js/jquery.min.js"></script>    
-    <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
-    <script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
-    <script type="text/javascript" src="../../static/js/global.js"></script>    
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>    
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>    
 
     <!--[if IE]>
-    <script src="../../static/js/html5.js"></script>
+    <script src="/static/js/html5.js"></script>
     <![endif]-->
-    <script src="../../static/js/jquery-ui-1.10.3.custom.js"></script>
-	<script src="../../static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>    
-    <script type="text/javascript" src="../../static/js/store/store.js"></script>
+    <script src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+	<script src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>    
+    <script type="text/javascript" src="/static/js/store/store.js"></script>
 
     <script>
         $(function(){
@@ -134,11 +134,11 @@
             <aside>
                 <ul class="tab_change clearfix">
                     <li class="currentState"><em><a href="javascript:void(0);">订单查询</a></em></li>
-                    <li><em><a href="javascript:void(0);">未支付</a></em></li>           
-                    <li><em><a href="javascript:void(0);">待付款(8)</a></em></li>           
+                    <li><em><a href="javascript:void(0);">未支付（5）</a></em></li>           
+                    <li><em><a href="javascript:void(0);">待付余款(8)</a></em></li>           
                     <li><em><a href="javascript:void(0);">调价中(2)</a></em></li>           
-                    <li><em><a href="javascript:void(0);">退团中</a></em></li>           
-                    <li><em><a href="javascript:void(0);">已确认</a></em></li>           
+                    <li><em><a href="javascript:void(0);">退团中（2）</a></em></li>           
+                    <li><em><a href="javascript:void(0);">已确认（5）</a></em></li>           
                 </ul>
             </aside>
             <div class="tab_item">
@@ -168,7 +168,13 @@
                             <th>订单状态：</th>
                             <td>
                                 <select data-role="dropdownlist" style="width:126px" id="" name="">
-                                    <option value="">全部</option>
+                                    <option value="">请选择</option>
+                                    <option value="">询位</option>
+                                    <option value="">占位</option>
+                                    <option value="">定金支付中</option>
+                                    <option value="">已付定金</option>
+                                    <option value="">余额支付中</option>
+                                    <option value="">已取消</option>
                                 </select>
                             </td>
                             <th>线路名称：</th>
@@ -192,159 +198,705 @@
                         <colgroup>
                             <col width="140"/>
                             <col width="210"/>
-                            <col width="110"/>
-                            <col width="95"/>
                             <col width="90"/>
-                            <col width="100"/>
+                            <col width="90"/>
+                            <col width="90"/>
+                            <col width="130"/>
                         </colgroup>
                         <thead>
-                            <tr>
-                                <th>订单编号</th>
-                                <th>线路名称</th>
-                                <th>下单日期</th>
-                                <th>订单金额</th>
-                                <th>订单状态</th>
-                                <th style="width: 100px; text-align: center;">操作</th>
-                            </tr>
+                        <tr>
+                            <th>订单编号</th>
+                            <th>线路名称</th>
+                            <th>下单日期</th>
+                            <th>订单金额</th>
+                            <th>订单状态</th>
+                            <th class="textAlignCenter">操作</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <!-- <tr class="currentList"> -->
-                            <tr>
-                                <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
-                                <td>
-                                    <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
-                                    <div class="oper">出发日期：2014/07/25</div>
-                                </td>
-                                <td>2013-08-14</td>
-                                <td class="text2">￥510</td>
-                                <td>
-                                    <div>已支付</div>
-                                </td> 
-                                <!-- <td><a class="ac&#45;oper" href="">操作<i class="active"></i></a></td> -->
-                                <!--<td>
-                                    <span class="hyper-link"><u>操作</u>
-                                        <i class="arrow-down"></i>
-                                        <div class="hyper-text">
-                                            <a href="#">支付</a>
-                                            <a href="#">取消</a>
-                                        </div>
-                                    </span>
-                                </td>-->
-                                <td class="operationLink">
-                                    <div>
-                                        <a href="javascript:void(0);" class="minWidthLink">确认</a>
-                                        <a href="javascript:void(0);" class="ac_cancelBook">退团</a>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60">￥47000.00</td>
+                            <td>
+                                <div>已支付</div>
+                            </td>
+                            <!-- <td><a class="ac&#45;oper" href="">操作<i class="active"></i></a></td> -->
+                            <!--<td>
+                                <span class="hyper-link"><u>操作</u>
+                                    <i class="arrow-down"></i>
+                                    <div class="hyper-text">
+                                        <a href="#">支付</a>
+                                        <a href="#">取消</a>
                                     </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
-                                <td>
-                                    <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
-                                    <div class="oper">出发日期：2014/07/25</div>
-                                </td>
-                                <td>2013-08-14</td>
-                                <td class="text2">￥510</td>
-                                <td>
-                                    <div>创建</div>
-                                    <div class="timeContent" title="剩余支付时间">
-                                        <i class="timeIcon"></i>
-                                        <b class="blueFonts timerFonts">00:00:00</b>
-                                    </div>
-                                </td>
-                                <td class="operationLink">
-                                    <div>
-                                        <a href="javascript:void(0);" class="minWidthLink">定金支付</a>
-                                        <a href="javascript:void(0);" class="ac_modifyInformation">修改</a>
-                                    </div>
-                                    <div>
-                                        <a href="javascript:void(0);" class="minWidthLink">全额支付</a>
-                                        <a href="javascript:void(0);" class="ac_cancelBook">退团</a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
-                                <td>
-                                    <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
-                                    <div class="oper">出发日期：2014/07/25</div>
-                                </td>
-                                <td>2013-08-14</td>
-                                <td class="text2">￥510</td>
-                                <td>
-                                    <div>已取消</div>
-                                </td>
-                                <td class="operationLink">
-                                    <div> </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
-                                <td>
-                                    <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
-                                    <div class="oper">出发日期：2014/07/25</div>
-                                </td>
-                                <td>2013-08-14</td>
-                                <td class="text2">￥510</td>
-                                <td>
-                                    <div>已支付</div>
-                                </td>
-                                <td class="operationLink">
-                                    <div>
-                                        <a href="javascript:void(0);" class="minWidthLink">确认</a>
-                                        <a href="javascript:void(0);" class="ac_cancelBook">退团</a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
-                                <td>
-                                    <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
-                                    <div class="oper">出发日期：2014/07/25</div>
-                                </td>
-                                <td>2013-08-14</td>
-                                <td class="text2">￥510</td>
-                                <td>
-                                    <div>已取消</div>
-                                </td>
-                                <td class="operationLink">
-                                    <div> </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
-                                <td>
-                                    <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
-                                    <div class="oper">出发日期：2014/07/25</div>
-                                </td>
-                                <td>2013-08-14</td>
-                                <td class="text2">￥510</td>
-                                <td>
-                                    <div>已取消</div>
-                                </td>
-                                <td class="operationLink">
-                                    <div> </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
-                                <td>
-                                    <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
-                                    <div class="oper">出发日期：2014/07/25</div>
-                                </td>
-                                <td>2013-08-14</td>
-                                <td class="text2">￥510</td>
-                                <td>
-                                    <div>已取消</div>
-                                </td>
-                                <td class="operationLink">
-                                    <div> </div>
-                                </td>
-                            </tr>
+                                </span>
+                            </td>-->
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">订单处理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60">￥47000.00</td>
+                            <td>
+                                <div> </div>
+                                <div class="timeContent" title="剩余支付时间">
+                                    <i class="timeIcon"></i>
+                                    <b class="blueFonts timerFonts">00:00:00</b>
+                                </div>
+                            </td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">订单处理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60">￥47000.00</td>
+                            <td>
+                                <div>已取消</div>
+                            </td>
+                            <td class="textAlignCenter">
+                                <div> </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60">￥510</td>
+                            <td>
+                                <div>已支付</div>
+                            </td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">订单处理</a>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </section>
             </div>
+            <!--第二个开始-->
+            <div class="tab_item" style="display: none;">
+                <section class="us-query clearfix">
+                    <table class="us-query-table fixed-table">
+                        <colgroup>
+                            <col width="60">
+                            <col width="140">
+                            <col width="60">
+                            <col width="140">
+                            <col width="60">
+                            <col width="200">
+                        </colgroup>
+                        <tr>
+                            <th>订单编号：</th>
+                            <td><input id="" style="width:120px;" type="text" name=""></td>
+                            <th>旅客名称：</th>
+                            <td><input id="" style="width:120px;" type="text" name=""></td>
+                            <th>下单日期：</th>
+                            <td>
+                                <input id="" style="width:75px" class="datepicker dpShort" value="2013-08-08" type="text" name="">
+                                <s> - </s>
+                                <input id="" style="width:75px" class="datepicker dpShort" value="2013-08-08" type="text" name="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>线路名称：</th>
+                            <td>
+                                <select data-role="dropdownlist" style="width:126px" id="" name="">
+                                    <option value="">全部</option>
+                                </select>
+                            </td>
+                            <th>出发日期：</th>
+                            <td colspan="2">
+                                <input id="" class="datepicker dpShort" style="width:75px" value="2013-08-08" type="text" name="">
+                                <s> - </s>
+                                <input id="" class="datepicker dpShort" style="width:75px" value="2013-08-08" type="text" name="">
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <a class="adaptiveButton brightRed_btn">
+                        <span class="left"></span>
+                        <span class="center">搜&nbsp;索</span>
+                        <span class="right"></span>
+                    </a>
+                </section>
+                <section class="us-result">
+                    <table>
+                        <colgroup>
+                            <col width="130"/>
+                            <col width="200"/>
+                            <col width="80"/>
+                            <col width="95"/>
+                            <col width="110"/>
+                            <col width="130"/>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>订单编号</th>
+                            <th>线路名称</th>
+                            <th>下单日期</th>
+                            <th>订单金额</th>
+                            <th>
+                                <span class="sorttab">
+                                   待支付剩余时间
+                                   <i>&nbsp;</i>
+                               </span>
+                            </th>
+                            <th class="textAlignCenter">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney grayFonts63">￥47000.00</td>
+                            <td>
+                                <div> </div>
+                                <div class="timeContent" title="剩余支付时间">
+                                    <i class="timeIcon"></i>
+                                    <b class="blueFonts timerFonts">00:00:00</b>
+                                </div>
+                            </td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">定金支付</a>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">全额支付</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney grayFonts63">￥47000.00</td>
+                            <td>
+                                <div> </div>
+                                <div class="timeContent" title="剩余支付时间">
+                                    <i class="timeIcon"></i>
+                                    <b class="blueFonts timerFonts">00:00:00</b>
+                                </div>
+                            </td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">定金支付</a>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">全额支付</a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+            <!--第二个结束-->
+
+            <!--第3个开始-->
+            <div class="tab_item" style="display: none;">
+                <section class="us-query clearfix">
+                    <table class="us-query-table fixed-table">
+                        <colgroup>
+                            <col width="60">
+                            <col width="140">
+                            <col width="60">
+                            <col width="140">
+                            <col width="60">
+                            <col width="200">
+                        </colgroup>
+                        <tr>
+                            <th>订单编号：</th>
+                            <td><input id="" style="width:120px;" type="text" name=""></td>
+                            <th>旅客名称：</th>
+                            <td><input id="" style="width:120px;" type="text" name=""></td>
+                            <th>下单日期：</th>
+                            <td>
+                                <input id="" style="width:75px" class="datepicker dpShort" value="2013-08-08" type="text" name="">
+                                <s> - </s>
+                                <input id="" style="width:75px" class="datepicker dpShort" value="2013-08-08" type="text" name="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>线路名称：</th>
+                            <td>
+                                <select data-role="dropdownlist" style="width:126px" id="" name="">
+                                    <option value="">全部</option>
+                                </select>
+                            </td>
+                            <th>出发日期：</th>
+                            <td colspan="2">
+                                <input id="" class="datepicker dpShort" style="width:75px" value="2013-08-08" type="text" name="">
+                                <s> - </s>
+                                <input id="" class="datepicker dpShort" style="width:75px" value="2013-08-08" type="text" name="">
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <a class="adaptiveButton brightRed_btn">
+                        <span class="left"></span>
+                        <span class="center">搜&nbsp;索</span>
+                        <span class="right"></span>
+                    </a>
+                </section>
+                <section class="us-result">
+                    <table>
+                        <colgroup>
+                            <col width="130"/>
+                            <col width="210"/>
+                            <col width="90"/>
+                            <col width="95"/>
+                            <col width="90"/>
+                            <col width="130"/>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>订单编号</th>
+                            <th>
+                                <span class="sorttab">
+                                   线路名称/出发日期
+                                   <i>&nbsp;</i>
+                               </span>
+                            </th>
+                            <th>下单日期</th>
+                            <th>订单金额</th>
+                            <th>待付余款</th>
+                            <th class="textAlignCenter">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney grayFonts63">￥47000.00</td>
+                            <td class="orderMoney orangeFontsf60">￥47000.00</td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">全额支付</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney grayFonts63">￥47000.00</td>
+                            <td class="orderMoney orangeFontsf60">￥47000.00</td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">全额支付</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney grayFonts63">￥47000.00</td>
+                            <td class="orderMoney orangeFontsf60">￥47000.00</td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">全额支付</a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+            <!--第3个结束-->
+
+            <!--第4个开始-->
+            <div class="tab_item" style="display: none;">
+                <section class="us-query clearfix">
+                    <table class="us-query-table fixed-table">
+                        <colgroup>
+                            <col width="60">
+                            <col width="140">
+                            <col width="60">
+                            <col width="140">
+                            <col width="60">
+                            <col width="200">
+                        </colgroup>
+                        <tr>
+                            <th>订单编号：</th>
+                            <td><input id="" style="width:120px;" type="text" name=""></td>
+                            <th>旅客名称：</th>
+                            <td><input id="" style="width:120px;" type="text" name=""></td>
+                            <th>下单日期：</th>
+                            <td>
+                                <input id="" style="width:75px" class="datepicker dpShort" value="2013-08-08" type="text" name="">
+                                <s> - </s>
+                                <input id="" style="width:75px" class="datepicker dpShort" value="2013-08-08" type="text" name="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>线路名称：</th>
+                            <td>
+                                <select data-role="dropdownlist" style="width:126px" id="" name="">
+                                    <option value="">全部</option>
+                                </select>
+                            </td>
+                            <th>出发日期：</th>
+                            <td colspan="2">
+                                <input id="" class="datepicker dpShort" style="width:75px" value="2013-08-08" type="text" name="">
+                                <s> - </s>
+                                <input id="" class="datepicker dpShort" style="width:75px" value="2013-08-08" type="text" name="">
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <a class="adaptiveButton brightRed_btn">
+                        <span class="left"></span>
+                        <span class="center">搜&nbsp;索</span>
+                        <span class="right"></span>
+                    </a>
+                </section>
+                <section class="us-result">
+                    <table>
+                        <colgroup>
+                            <col width="130"/>
+                            <col width="210"/>
+                            <col width="90"/>
+                            <col width="95"/>
+                            <col width="90"/>
+                            <col width="130"/>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>订单编号</th>
+                            <th>线路名称</th>
+                            <th>下单日期</th>
+                            <th>订单金额</th>
+                            <th>订单状态</th>
+                            <th class="textAlignCenter">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60">￥47000.00</td>
+                            <td>占位</td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">订单处理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60">￥47000.00</td>
+                            <td>占位</td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">订单处理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60">￥47000.00</td>
+                            <td>占位</td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">订单处理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+            <!--第4个结束-->
+
+            <!--第5个开始-->
+            <div class="tab_item" style="display: none;">
+                <section class="us-query clearfix">
+                    <table class="us-query-table fixed-table">
+                        <colgroup>
+                            <col width="60">
+                            <col width="140">
+                            <col width="60">
+                            <col width="140">
+                            <col width="60">
+                            <col width="200">
+                        </colgroup>
+                        <tr>
+                            <th>订单编号：</th>
+                            <td><input id="" style="width:120px;" type="text" name=""></td>
+                            <th>旅客名称：</th>
+                            <td><input id="" style="width:120px;" type="text" name=""></td>
+                            <th>下单日期：</th>
+                            <td>
+                                <input id="" style="width:75px" class="datepicker dpShort" value="2013-08-08" type="text" name="">
+                                <s> - </s>
+                                <input id="" style="width:75px" class="datepicker dpShort" value="2013-08-08" type="text" name="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>线路名称：</th>
+                            <td>
+                                <select data-role="dropdownlist" style="width:126px" id="" name="">
+                                    <option value="">全部</option>
+                                </select>
+                            </td>
+                            <th>出发日期：</th>
+                            <td colspan="2">
+                                <input id="" class="datepicker dpShort" style="width:75px" value="2013-08-08" type="text" name="">
+                                <s> - </s>
+                                <input id="" class="datepicker dpShort" style="width:75px" value="2013-08-08" type="text" name="">
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <a class="adaptiveButton brightRed_btn">
+                        <span class="left"></span>
+                        <span class="center">搜&nbsp;索</span>
+                        <span class="right"></span>
+                    </a>
+                </section>
+                <section class="us-result">
+                    <table>
+                        <colgroup>
+                            <col width="130"/>
+                            <col width="210"/>
+                            <col width="90"/>
+                            <col width="95"/>
+                            <col width="90"/>
+                            <col width="130"/>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>订单编号</th>
+                            <th>线路名称</th>
+                            <th>下单日期</th>
+                            <th>订单金额</th>
+                            <th>退团费用</th>
+                            <th class="textAlignCenter">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney grayFonts63">￥47000.00</td>
+                            <td class="orderMoney orangeFontsf60">￥47000.00</td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">订单处理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney grayFonts63">￥47000.00</td>
+                            <td class="orderMoney orangeFontsf60">￥47000.00</td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">订单处理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney grayFonts63">￥47000.00</td>
+                            <td class="orderMoney orangeFontsf60">待定</td>
+                            <td class="textAlignCenter">
+                                <div> </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney grayFonts63">￥47000.00</td>
+                            <td class="orderMoney orangeFontsf60">待定</td>
+                            <td class="textAlignCenter">
+                                <div> </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+            <!--第5个结束-->
+
+            <!--第6个开始-->
+            <div class="tab_item" style="display: none;">
+                <section class="us-query clearfix">
+                    <table class="us-query-table fixed-table">
+                        <colgroup>
+                            <col width="60">
+                            <col width="140">
+                            <col width="60">
+                            <col width="140">
+                            <col width="60">
+                            <col width="200">
+                        </colgroup>
+                        <tr>
+                            <th>订单编号：</th>
+                            <td><input id="" style="width:120px;" type="text" name=""></td>
+                            <th>旅客名称：</th>
+                            <td><input id="" style="width:120px;" type="text" name=""></td>
+                            <th>下单日期：</th>
+                            <td>
+                                <input id="" style="width:75px" class="datepicker dpShort" value="2013-08-08" type="text" name="">
+                                <s> - </s>
+                                <input id="" style="width:75px" class="datepicker dpShort" value="2013-08-08" type="text" name="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>线路名称：</th>
+                            <td><input id="" style="width:120px;" type="text" name=""></td>
+                            <th>出发日期：</th>
+                            <td colspan="2">
+                                <input id="" class="datepicker dpShort" style="width:75px" value="2013-08-08" type="text" name="">
+                                <s> - </s>
+                                <input id="" class="datepicker dpShort" style="width:75px" value="2013-08-08" type="text" name="">
+                            </td>
+                            <td> </td>
+                        </tr>
+                    </table>
+                    <a class="adaptiveButton brightRed_btn">
+                        <span class="left"></span>
+                        <span class="center">搜&nbsp;索</span>
+                        <span class="right"></span>
+                    </a>
+                </section>
+                <section class="us-result">
+                    <table>
+                        <colgroup>
+                            <col width="130"/>
+                            <col width="210"/>
+                            <col width="130"/>
+                            <col width="130"/>
+                            <col width="100"/>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>订单编号</th>
+                            <th>线路名称</th>
+                            <th>下单日期</th>
+                            <th>订单金额</th>
+                            <th>订单状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60">￥47000.00</td>
+                            <td class="fontsGray14">待出团</td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60">￥47000.00</td>
+                            <td class="fontsGray14">待出团</td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60">￥47000.00</td>
+                            <td class="fontsGray14">待出团</td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国东西海岸夏威夷大瀑布14天</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60">￥47000.00</td>
+                            <td class="fontsGray14">待出团</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+            <!--第6个结束-->
+            
                 <div class="pagination clearfix">
                     <ul>
                          <li><a href="#">上一页</a></li>
@@ -383,7 +935,7 @@
 </footer>
 </div>
 
-<script type="text/x-kendo-template" id="ac_cancelBook_template">
+<!--<script type="text/x-kendo-template" id="ac_cancelBook_template">
     <div class="hintContent clearfix">
         <h3 class="hintTitle">【提示】</h3>
         <div class="hintFonts">
@@ -454,9 +1006,9 @@
         </a>
         <a href="javascript:void(0);" class="cancel">取消</a>
     </div>
-</script>
+</script>-->
 
-<script type="text/x-kendo-template" id="retreatDetails">
+<!--<script type="text/x-kendo-template" id="retreatDetails">
     <div class="layerGrayBlock">
         <div class="layerGrayContainer">
             <div class="layerGrayArrow"></div>
@@ -484,9 +1036,9 @@
             </table>
         </div>
     </div>   
-</script>
+</script>-->
 
-<script type="text/x-kendo-template" id="ac_modifyInformation_template">
+<!--<script type="text/x-kendo-template" id="ac_modifyInformation_template">
     <div class="tour_infoList">
         <div class="tour_infoListDiv">
             <p>李晓明</p>
@@ -596,7 +1148,7 @@
             </tbody>
         </table>
     </div>
-    <!--旅客2-->
+    &lt;!&ndash;旅客2&ndash;&gt;
     
     <div>
         <div class="dotted_topbor addGuest_02" style="height: 1px;"></div>
@@ -655,7 +1207,7 @@
         </a>
         <a href="javascript:void(0);" class="cancel">取消</a>
     </div>
-</script>
+</script>-->
 
 <script>
     function autoTimer(){
@@ -675,7 +1227,7 @@
     $(function(){        
         autoTimer();
 
-        var price_confirm_win = new PopWindow(".ac_cancelBook",{
+        /*var price_confirm_win = new PopWindow(".ac_cancelBook",{
             title:"取消预订",
             width:570,
             template:"#ac_cancelBook_template"
@@ -710,6 +1262,15 @@
             $(this).parents(".tour_guestInfo tr").children(".addIdentityCard").hide();
             $(this).parents(".tour_guestInfo tr").next().children(".addIdentityCard").hide();
             $(this).parents(".tour_guestInfo").find(".papersStyleTd .add_btn").show();
+        });*/
+
+        $(".tab_change li").each(function(index){
+            $(this).click(function(){
+                $(".us-body .tab_item").hide();
+                $(".us-body .tab_item:eq(" + index + ")").show();
+                $(".tab_change li").removeClass("currentState");
+                $(this).addClass("currentState");
+            });
         });
         
     });
