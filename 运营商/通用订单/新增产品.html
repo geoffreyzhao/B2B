@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>运营商 邮轮 新增港口</title>
+    <title>运营商 邮轮 新增产品</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
     <link href="/static/css/kendo.common.css" rel="stylesheet" type="text/css" />
@@ -24,13 +24,9 @@
     <script type="text/javascript" src="/static/js/public.js"></script>
     <script charset="utf-8" src="/static/js/kindeditor.js"></script>
     <script type="text/javascript" src="/static/js/flight.js"></script>
+    <script type="text/javascript" src="/static/js/store/addProduct.js"></script>
 
 
-    
-    
-    
-
-    
     <!--[if IE]>
     <script src="/static/js/html5.js"></script>
     <![endif]-->
@@ -73,22 +69,22 @@
                 <li class="">
                     <a href="javascript:void(0)">国内机票</a>
                     <ol class="subMenu">
-                        <li class="currentSubMenu"><a href="javascript:void(0)">基础模块维护</a></li>
-                        <li><a href="javascript:void(0)">航线审核</a></li>
-                        <li><a href="javascript:void(0)">航线售卖管理</a></li>
-                        <li><a href="javascript:void(0)">团管理</a></li>
+                        <li><a href="javascript:void(0)">订单管理</a></li>
+                        <li class="currentSubMenu"><a href="javascript:void(0)">产品管理</a></li>
                     </ol>
                 </li>
                 <li><a href="javascript:void(0)">国际机票</a></li>
                 <li><a href="javascript:void(0)">酒店</a></li>
                 <li><a href="javascript:void(0)">打包产品</a></li>
                 <li><a href="javascript:void(0)">旅游</a></li>
-                <li class="current"><a href="javascript:void(0)">邮轮</a></li>
+                <li><a href="javascript:void(0)">邮轮</a></li>
                 <li><a href="javascript:void(0)">签证</a></li>
                 <li><a href="javascript:void(0)">保险</a></li>
                 <li><a href="javascript:void(0)">短信</a></li>
+                <li class="current"><a href="javascript:void(0)">通用订单</a></li>
                 <li><a href="javascript:void(0)">票证</a></li>
                 <li><a href="javascript:void(0)">财务</a></li>
+                <li><a href="javascript:void(0)">数据</a></li>
                 <li><a href="javascript:void(0)">客户</a></li>
             </ul>
             <div id="info">
@@ -106,12 +102,12 @@
                     <a href="#">返回</a>
                 </div>
                 <div class="fixedMenu">
-                    <h3>新增港口</h3>
+                    <h3>新增产品</h3>
                 </div>
                 <div class="fixedButton">
                     <a href="javascript:;" class="button_important adaptiveButton small">
                         <span class="left"></span>
-                        <span class="center">保 存</span>
+                        <span class="center">提 交</span>
                         <span class="right"></span>
                     </a>
                 </div>
@@ -126,37 +122,47 @@
                     </colgroup>
                     <tbody>
                     <tr>
-                        <th>港口名称：</th>
+                        <th><em>*</em>业务类型：</th>
                         <td>
-                            <input class="path-name" type="text" name="" style="width: 232px;"  placeholder="上海"/>
-                            <span class="country">国家：中国</span>
+                                <select style="width:232px;" data-role="dropdownlist">
+                                    <option selected="" value="请选择">请选择</option>
+                                    <option value="提交我司改签">提交我司改签</option>
+                                </select>
+                                <div class="manageCls">
+                                    <span class="manageBussiness"></span><span class="manageBusinessSlide">管理业务类型</span>
+                                </div>
+                        </td>                        
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>
+                            <div class="businessSlide">
+                                <div class="businessArrow"></div>
+                                <div class="businessType">
+                                    <div class="cancel"></div>
+                                    <div class="businessName">
+                                        <span>机 票</span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <tr>
-                        <th>所属地区：</th>
+                        <th><em>*</em>产品名称：</th>
                         <td>
-                            <select style="width:232px;" data-role="dropdownlist">
-                                <option selected="" value="请选择">请选择</option>
-                                <option value="提交我司改签">提交我司改签</option>
-                            </select>
+                            <input class="path-name" type="text" name="" style="width: 226px;"  placeholder="请输入"/>
                         </td>
                     </tr>
                     <tr>
-                        <th>是否启用：</th>
-                        <td>
-                            <input type="radio" name="select" value="yes" checked="checked"> 是  
-                            <input type="radio" name="select" value="no"> 否
-                        </td>
-                    </tr>
-                    <tr>
-                        <th style="vertical-align: top;">介绍：</th>
+                        <th style="vertical-align: top;">产品注入：</th>
                         <td>
                             <div class="textareaDiv">
-                                <textarea class="textareaContent introduceText"></textarea>
+                                <textarea class="textareaContent introduceText2" placeholder="请输入"></textarea>
                                 <!-- <form>
                                         <textarea name="content"></textarea>
                                  </form> -->
-                                <em class="hintFontsNumber">1000字以内</em>
+                                <em class="hintFontsNumber limmitFont">不超过50字</em>
                             </div>
                         </td>
                     </tr>
