@@ -237,7 +237,9 @@
                         <td>116666.00</td>
                         <td>116666.00</td>
                         <td>预存余额</td>
-                        <td>李二</td>
+                        <td class="noWhiteSpace">
+                            <span class="namesTwoLinesEllipsis" title="李二，张三，王五，李二">李二，张三，王五，李二</span>
+                        </td>
                         <td>steve.apple</td>
                         <td>2014-09-09 &nbsp; 12:20</td>
                         <td class="noWhiteSpace">
@@ -266,7 +268,9 @@
                         <td>116666.00</td>
                         <td>116666.00</td>
                         <td>预存余额</td>
-                        <td>李二</td>
+                        <td class="noWhiteSpace">
+                            <span class="namesTwoLinesEllipsis" title="李二，李二，丁香花，李二">李二，李二，丁香花，李二</span>
+                        </td>
                         <td>steve.apple</td>
                         <td>2014-09-09 &nbsp; 12:20</td>
                         <td class="noWhiteSpace">
@@ -295,7 +299,9 @@
                         <td>116666.00</td>
                         <td>116666.00</td>
                         <td>预存余额</td>
-                        <td>李二</td>
+                        <td class="noWhiteSpace">
+                            <span class="namesTwoLinesEllipsis" title="李二，丁香花，李二">李二，丁香花，李二</span>
+                        </td>
                         <td>steve.apple</td>
                         <td>2014-09-09 &nbsp; 12:20</td>
                         <td class="noWhiteSpace">
@@ -324,7 +330,9 @@
                         <td>116666.00</td>
                         <td>116666.00</td>
                         <td>预存余额</td>
-                        <td>李二</td>
+                        <td class="noWhiteSpace">
+                            <span class="namesTwoLinesEllipsis" title="李二，李二，王五，丁香花">李二，李二，王五，丁香花</span>
+                        </td>
                         <td>steve.apple</td>
                         <td>2014-09-09 &nbsp; 12:20</td>
                         <td class="noWhiteSpace">
@@ -353,7 +361,9 @@
                         <td>116666.00</td>
                         <td>116666.00</td>
                         <td>预存余额</td>
-                        <td>李二</td>
+                        <td class="noWhiteSpace">
+                            <span class="namesTwoLinesEllipsis" title="李二，李二，小四，张三">李二，李二，小四，张三</span>
+                        </td>
                         <td>steve.apple</td>
                         <td>2014-09-09 &nbsp; 12:20</td>
                         <td class="noWhiteSpace">
@@ -414,6 +424,16 @@
                     $(this).html($(this).html()+"…");
                 }
             });
+
+            $(".noWhiteSpace .namesTwoLinesEllipsis").each(function(){
+                var characterWidth=10;
+                if($(this).text().length>characterWidth){
+                    //  $(this).attr("originalText",$(this).html()); //保存原文字
+                    $(this).text($(this).text().substring(0,characterWidth));
+                    $(this).html($(this).html()+"…");
+                }
+            });
+            
         });
     </script>
 
