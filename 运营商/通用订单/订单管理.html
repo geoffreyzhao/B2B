@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>运营商 通用订单 订单管理</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />    
+    <link href="/static/css/commonOrder.css" rel="stylesheet" type="text/css"/>
+    
+    <script src="/static/js/jquery.min.js" type="text/javascript"></script>    
+    <script src="/static/js/kendo.web.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/scrollFix.js"></script>
+    <script type="text/javascript" src="/static/js/public.js"></script>
+    
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+    
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/static/css/ie.css" />
+    <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/static/js/sync.js"></script>
+    <!-- @CLB@ -->
+
+    <script>
+        $(function(){
+            kendo.init('body');
+            lensf();
+        })
+    </script>
+    
+</head>
+<body>
+    <div id="extHeader">
+        <div></div>
+    </div>
+
+    <div id="container">
+        <div class="header">
+            <h1></h1>
+            <div>
+                <span>你好,${name}</span>
+                <a href="javascript:void(0);">退出</a>
+            </div>
+            <ul id="top_menu">
+                <li><a href="javascript:void(0);">国内机票</a></li>
+                <li><a href="javascript:void(0);">国际机票</a></li>
+                <li><a href="javascript:void(0);">酒店</a></li>
+                <li><a href="javascript:void(0);">票证中心</a></li>
+                <li><a href="javascript:void(0);">财务管理</a></li>
+                <li><a href="javascript:void(0);">客户管理</a></li>
+                <li class="current"><a href="javascript:void(0);">系统设置</a></li>
+            </ul>
+            <ol class="sub_menu">
+                <li class="current"><a href="javascript:void(0);">公告信息</a></li>
+                <li><a href="javascript:void(0);">公司信息</a></li>
+                <li><a href="javascript:void(0);">组织架构</a></li>
+                <li><a href="javascript:void(0);">角色维护</a></li>
+                <li><a href="javascript:void(0);">基础数据</a></li>
+            </ol>
+            <div id="message">
+            	<a href="javascript:void(0);">&nbsp;</a>
+                <span>&nbsp;</span>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="sub_menu_bar"></div>
+        <div id="mainContent" style="overflow:hidden;">
+			<!-- start content -->
+
+            <div class="topFixedToolsBar">
+                <div class="fixedMenu">
+                    <a href="#" class="current">订单查询</a>
+                </div>
+                <div class="fixedButton">
+                    <a class="button_secondary adaptiveButton small" href="新建订单.html">
+                        <span class="left"></span>
+                        <span class="center">新建订单</span>
+                        <span class="right"></span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="information_div">
+               <table cellpadding="0" cellspacing="0" class="information_tab">
+                  <colgroup>
+                       <col width="65" />  
+                       <col width="200" /> 
+                       <col width="65" />
+                       <col width="200" /> 
+                       <col width="85" />
+                       <col width="250" />
+                       <col width="95" />
+                  </colgroup>
+                  <tr>
+                     <th>订单号</th>
+                     <td>
+                         <input type="text" style="width: 145px;" />
+                     </td>
+                     <th>关联订单号</th>
+                     <td>
+                         <input type="text" style="width: 145px;" />
+                     </td>
+                     <th>客户名称</th>
+                     <td>
+                         <input type="text" style="width: 215px;" />
+                     </td>
+                     <td rowspan="3">
+                         <a href="javascript:;" class="button_important adaptiveButton medium">
+                            <span class="left"></span>
+                            <span class="center" style="padding:0 25px;">查 询</span>
+                            <span class="right"></span>
+                        </a>
+                     </td>
+                  </tr> 
+                  <tr>
+                      <th>建单人</th>
+                      <td>
+                          <input type="text" style="width: 145px;"/>
+                      </td>
+                      <th>收款方式</th>
+                      <td>
+                          <select data-role="dropdownlist" style="width:150px;">
+                              <option selected="">全部</option>
+                              <option>账户余额</option>
+                              <option>信用额度</option>
+                              <option>现金</option>
+                              <option>汇款</option>
+                              <option>支付宝</option>
+                              <option>电话支付（通联）</option>
+                              <option>电话支付（汇付）</option>
+                              <option>刷卡</option>
+                              <option>上门收款</option>
+                              <option>前台收款</option>
+                              <option>机场收款</option>
+                          </select>
+                      </td>
+                      <th>
+                          <select data-role="dropdownlist" style="width:80px;">
+                              <option selected="">建单日期</option>
+                              <option>收款日期</option>
+                          </select>
+                      </th>
+                      <td>
+                          <input type="text" class="datepicker" style="width:96px;" value="2013-09-30"/>
+                          <em> 至 </em>
+                          <input type="text" class="datepicker orange" style="width:96px;" value="2013-10-07"/>
+                      </td>
+                  </tr>
+                  <tr>
+                      <th>业务类型</th>
+                      <td>
+                          <select data-role="dropdownlist" style="width:150px;">
+                              <option selected="">全部</option>
+                          </select>
+                      </td>
+                      <th>产品名称</th>
+                      <td>
+                          <select data-role="dropdownlist" style="width:150px;">
+                              <option selected="">全部</option>
+                          </select>
+                      </td>
+                      <th></th>
+                      <td></td>
+                  </tr>
+               </table>              
+            </div>
+                         
+            <div class="scroll">
+                <table class="tgrid">
+                    <colgroup>
+                        <col width="40"/>
+                        <col width="110"/>
+                        <col width="55"/>
+                        <col width="90"/>
+                        <col width="60"/>
+                        <col width="90"/>
+                        <col width="120"/>
+                        <col width="40"/>
+                        <col width="70"/>
+                        <col width="70"/>
+                        <col width="70"/>
+                        <col width="70"/>
+                        <col width="70"/>
+                        <col width="80"/>
+                        <col width="80"/>
+                        <col width="115"/>
+                        <col width="110"/>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th class="line_left" style="text-align:center; width:140px;">操作</th>
+                        <th>订单号</th>
+                        <th>状态</th>
+                        <th>客户名称</th>
+                        <th>业务类型</th>
+                        <th>产品名称</th>
+                        <th>关联订单号</th>
+                        <th>数量</th>
+                        <th>面价</th>
+                        <th>底价</th>
+                        <th>应收合计</th>
+                        <th>利润合计</th>
+                        <th>收款方式</th>
+                        <th>旅客姓名</th>
+                        <th>建单人</th>
+                        <th>建单日期</th>
+                        <th class="line_right">内部备注</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="text-align:center;">
+                            <a href="javascript:void(0);">日志</a>
+                        </td>
+                        <td>
+                            <a href="javascript:void(0);">140912155703814</a>
+                        </td>
+                        <td>支付中</td>
+                        <td>
+                            <span class="nameEllipsis" title="苹果不喜欢谷歌苹果不喜欢谷歌">苹果不喜欢谷歌苹果不喜欢谷歌</span>
+                        </td>
+                        <td>国际机票</td>
+                        <td>快递费</td>
+                        <td>
+                            <a href="javascript:void(0);">202002202020666</a>
+                        </td>
+                        <td>12</td>
+                        <td>11666.00</td>
+                        <td>10000.00</td>
+                        <td>116666.00</td>
+                        <td>116666.00</td>
+                        <td>预存余额</td>
+                        <td>李二</td>
+                        <td>steve.apple</td>
+                        <td>2014-09-09 &nbsp; 12:20</td>
+                        <td class="noWhiteSpace">
+                            <span class="remarkContent" title="内部备注内部备注内部备注内部备注备注内部备注">内部备注内部备注内部备注内部备注备注内部备注</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center;">
+                            <a href="javascript:void(0);">日志</a>
+                        </td>
+                        <td>
+                            <a href="javascript:void(0);">140912155703814</a>
+                        </td>
+                        <td>支付中</td>
+                        <td>
+                            <span class="nameEllipsis" title="苹果不喜欢谷歌苹果不喜欢谷歌">苹果不喜欢谷歌苹果不喜欢谷歌</span>
+                        </td>
+                        <td>国际机票</td>
+                        <td>快递费</td>
+                        <td>
+                            <a href="javascript:void(0);">202002202020666</a>
+                        </td>
+                        <td>12</td>
+                        <td>11666.00</td>
+                        <td>10000.00</td>
+                        <td>116666.00</td>
+                        <td>116666.00</td>
+                        <td>预存余额</td>
+                        <td>李二</td>
+                        <td>steve.apple</td>
+                        <td>2014-09-09 &nbsp; 12:20</td>
+                        <td class="noWhiteSpace">
+                            <span class="remarkContent" title="内部备注内部备注内部备注内部备注备注内部备注">内部备注内部备注内部备注内部备注备注内部备注</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center;">
+                            <a href="javascript:void(0);">日志</a>
+                        </td>
+                        <td>
+                            <a href="javascript:void(0);">140912155703814</a>
+                        </td>
+                        <td>支付中</td>
+                        <td>
+                            <span class="nameEllipsis" title="苹果不喜欢谷歌苹果不喜欢谷歌">苹果不喜欢谷歌苹果不喜欢谷歌</span>
+                        </td>
+                        <td>国际机票</td>
+                        <td>快递费</td>
+                        <td>
+                            <a href="javascript:void(0);">202002202020666</a>
+                        </td>
+                        <td>12</td>
+                        <td>11666.00</td>
+                        <td>10000.00</td>
+                        <td>116666.00</td>
+                        <td>116666.00</td>
+                        <td>预存余额</td>
+                        <td>李二</td>
+                        <td>steve.apple</td>
+                        <td>2014-09-09 &nbsp; 12:20</td>
+                        <td class="noWhiteSpace">
+                            <span class="remarkContent" title="内部备注内部备注内部备注内部备注备注内部备注">内部备注内部备注内部备注内部备注备注内部备注</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center;">
+                            <a href="javascript:void(0);">日志</a>
+                        </td>
+                        <td>
+                            <a href="javascript:void(0);">140912155703814</a>
+                        </td>
+                        <td>支付中</td>
+                        <td>
+                            <span class="nameEllipsis" title="苹果不喜欢谷歌苹果不喜欢谷歌">苹果不喜欢谷歌苹果不喜欢谷歌</span>
+                        </td>
+                        <td>国际机票</td>
+                        <td>快递费</td>
+                        <td>
+                            <a href="javascript:void(0);">202002202020666</a>
+                        </td>
+                        <td>12</td>
+                        <td>11666.00</td>
+                        <td>10000.00</td>
+                        <td>116666.00</td>
+                        <td>116666.00</td>
+                        <td>预存余额</td>
+                        <td>李二</td>
+                        <td>steve.apple</td>
+                        <td>2014-09-09 &nbsp; 12:20</td>
+                        <td class="noWhiteSpace">
+                            <span class="remarkContent" title="内部备注内部备注内部备注内部备注备注内部备注">内部备注内部备注内部备注内部备注备注内部备注</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center;">
+                            <a href="javascript:void(0);">日志</a>
+                        </td>
+                        <td>
+                            <a href="javascript:void(0);">140912155703814</a>
+                        </td>
+                        <td>支付中</td>
+                        <td>
+                            <span class="nameEllipsis" title="苹果不喜欢谷歌苹果不喜欢谷歌">苹果不喜欢谷歌苹果不喜欢谷歌</span>
+                        </td>
+                        <td>国际机票</td>
+                        <td>快递费</td>
+                        <td>
+                            <a href="javascript:void(0);">202002202020666</a>
+                        </td>
+                        <td>12</td>
+                        <td>11666.00</td>
+                        <td>10000.00</td>
+                        <td>116666.00</td>
+                        <td>116666.00</td>
+                        <td>预存余额</td>
+                        <td>李二</td>
+                        <td>steve.apple</td>
+                        <td>2014-09-09 &nbsp; 12:20</td>
+                        <td class="noWhiteSpace">
+                            <span class="remarkContent" title="内部备注内部备注内部备注内部备注备注内部备注">内部备注内部备注内部备注内部备注备注内部备注</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>  
+          
+              <div class="grid-table-pagination page">
+                  <span class="grid-table-count">
+                      共 <em>132</em> 条记录
+                  </span>
+                  <span>
+                      <a href="#" class="prev">&nbsp;</a>
+                  </span>
+                  <span class="links">
+                      <a href="#">1</a>
+                      <a href="#">2</a>
+                      <a href="#" class="current">3</a>
+                      <a href="#">4</a>
+                      <a href="#">5</a>
+                      <a href="javascript:;">...</a>
+                      <a href="#">50</a>
+                  </span>
+                  <span>
+                      <a href="#" class="next">&nbsp;</a>
+                  </span>
+              </div>
+              
+            </div>
+          </div>
+ 
+    <!-- end of content -->
+    </div>
+    
+    <div id="extFooter">
+        <div>
+            <p>
+                <a href="javascript:void(0);">关于我们</a>&nbsp;|
+                <a href="javascript:void(0);">微博</a>&nbsp;|
+                <a href="javascript:void(0);">服务条款</a>&nbsp;|
+                <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+    
+    <script>
+        $(function(){
+            //限制字符个数
+            $(".noWhiteSpace .remarkContent").each(function(){
+                var characterWidth=15;
+                if($(this).text().length>characterWidth){
+                    //  $(this).attr("originalText",$(this).html()); //保存原文字
+                    $(this).text($(this).text().substring(0,characterWidth));
+                    $(this).html($(this).html()+"…");
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
