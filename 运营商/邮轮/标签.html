@@ -111,9 +111,9 @@
 
     <script type="text/javascript">
         $(function(){
-            $(".tagItem").hover(function(){
+            $(".tagList").delegate(".tagItem", "mouseover", function(){
                 $(this).children(".delTag").css("visibility", "visible");
-            }, function(){
+            }).delegate(".tagItem", "mouseout", function(){
                 $(this).children(".delTag").css("visibility", "hidden");
             });
 
@@ -129,11 +129,12 @@
 
                 $(".sureAddTag").click(function(){
                     // $(".newTag").css("visibility", "hidden");
+                    if (!!$.trim($(".newTag input").val())) {
+                        $(".newTag").prev("li.tagItem").after("<li class='tagItem'>" + $(".newTag input").val() + "<i class='delTag'></i></li>");
 
-                    $(".newTag").prev("li.tagItem").after("<li class='tagItem'>" + $(".newTag input").val() + "<i class='delTag'></i></li>");
-
-                    $(".newTag").remove();
-                    $(".addTag").css("visibility", "visible");
+                        $(".newTag").remove();
+                        $(".addTag").css("visibility", "visible");
+                    }
                 });
 
                 $(".cancelAddTag").click(function(){

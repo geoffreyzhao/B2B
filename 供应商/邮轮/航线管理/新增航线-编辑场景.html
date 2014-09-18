@@ -45,6 +45,15 @@
         .k-tooltip-content {
             padding: 0;
         }
+        .pw-nobg-top {
+            background: transparent;
+            border: none!important;
+            top: 200px!important;
+        }
+        .pw-nobg-top-focused {
+            box-shadow: none!important;
+            border: none!important;
+        }
     </style>
     </head>
 <body>
@@ -147,7 +156,7 @@
         <div class="mainContent travelModule">
             <div class="mainBodyHead">
                 <!--<span class="lineNum">线路编号：23569</span>-->
-                <span class="backToFonts">恢复到上次审核通过的版本</span>
+                <!-- <span class="backToFonts">恢复到上次审核通过的版本</span> -->
             <span class="mainBodyOper">
                 <span>
                     <a class="adaptiveButton brightBtn normalButton saveContentBtn">
@@ -167,7 +176,7 @@
             </div>
             <table class="basicInfoTable shipBasicInfo">
                 <colgroup>
-                    <col width="70">
+                    <col width="90">
                     <col width="">
                 </colgroup>
                 <tbody>
@@ -187,7 +196,7 @@
                 </tr>
                 <tr class="shipRouteType">
                     <th><em>*</em>类型</th>
-                    <td><span class="selected">单船票</span><span>团队游</span></td>
+                    <td><span class="selected">单船票</span></td>
                 </tr>
                 <tr>
                     <th><em>*</em>邮轮公司</th>
@@ -260,6 +269,7 @@
                     <th><em>*</em>行程天数</th>
                     <td>
                        <input type="text" style="width:110px;"/> 天
+                       <span class="prompt"><i></i>请输入阿拉伯数字</span>
                     </td>
                 </tr>
                 <tr>
@@ -443,7 +453,7 @@
     </script>
 
     <script type="text/html" id="saveContent-template">
-        <div class="popWindowBox">
+        <div class="popWindowBox save-complete">
             <div class="tipsBlock">
                 <i class="tipsSuccess"></i>内容已保存！
             </div>
@@ -451,7 +461,7 @@
     </script>
 
     <script type="text/html" id="BackToTheLast-template">
-        <div class="popWindowBox">
+        <div class="popWindowBox recover-version">
             <div class="tipsBlock">
                 <p>正在为您恢复到审核通过的版本</p>
                 <div class="checkedBar"></div>
@@ -585,8 +595,8 @@
     </script>
 
     <script type="text/x-kendo-template" id="viewRulesTemplate">
-        <div class="layerGrayBlock" >
-            <div class="abroadtooltipsCont" style="width:600px;">
+        <div class="layerGrayBlock">
+            <div class="abroadtooltipsCont" style="width:610px;">
                 <i class="close">&nbsp;</i>
                 <div class="abroadtoolclickArrow"></div>
                 <div class="viewRulesContent">
@@ -651,25 +661,7 @@
                 </div>
             </div>
         </div>
-    </script>
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-
-    
-
-    
+    </script>   
 
 
     <script>
@@ -702,6 +694,7 @@
                 template:'#saveContent-template',
                 title:false,
                 width:'290',
+                modal:false,
                 autoHide:2*1000,
                 animation:{
                     open:{
@@ -719,19 +712,12 @@
                 template:'#BackToTheLast-template',
                 title:false,
                 width:'800',
-                background:"none"
-//                width:'290'
-                /*autoHide:2*1000,
-                animation:{
-                    open:{
-                        effect:"fade:in",
-                        duration:300
-                    },
-                    close:{
-                        effect:"fade:out",
-                        duration:300
-                    }
-                }*/
+                wrapperClass: 'pw-nobg',
+                autoHide:2*1000,
+                open: function() {
+                    $(".recover-version").parents(".k-window-titleless").addClass("pw-nobg-top");
+                    $(".recover-version").parents(".k-window-titleless").addClass("pw-nobg-top-focused");
+                }
             }).init();
 
 
@@ -749,9 +735,8 @@
             FloatLayer({
                 trigger:'.viewRules',
                 template:'#viewRulesTemplate',
-                offsetY:20,
-                offsetX:-280,
-                width:600
+                offsetY:-30,
+                offsetX:65
             });
 
             $(".tab_change li").each(function(index){

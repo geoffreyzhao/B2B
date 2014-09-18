@@ -63,23 +63,18 @@
             <ul class="first-navi">
                 <li class="first-navi-li"><a href="javascript:void(0);">国内机票</a></li>
                 <li class="first-navi-li"><a href="javascript:void(0);">国际机票</a></li>
-                <li class="first-navi-li first-navi-active" style="width:80px;"><a href="javascript:void(0);">旅游</a>
+                <li class="first-navi-li" style="width:80px;"><a href="javascript:void(0);">旅游</a>
+                </li>
+                <li class="first-navi-li first-navi-active"><a href="javascript:void(0);">邮轮</a>
                     <ol class="second-navi">
-                        <li class="second-navi-li"><a href="javascript:void(0);">首页</a>
-                            <div class="navi-slide-hover"></div>
-                        </li>
-                        <li class="second-navi-li second-navi-active"><a href="javascript:void(0);">线路管理</a>
+                        <li class="second-navi-li second-navi-active"><a href="javascript:void(0);">航线管理</a>
                             <div class="navi-slide-hover" style="height:5px;"></div>
                         </li>
                         <li class="second-navi-li"><a href="javascript:void(0);">团管理</a>
                             <div class="navi-slide-hover"></div>
                         </li>
-                        <li class="second-navi-li"><a href="javascript:void(0);">订单管理</a>
-                            <div class="navi-slide-hover"></div>
-                        </li>
                     </ol>
                 </li>
-                <li class="first-navi-li"><a href="javascript:void(0);">邮轮</a></li>
                 <li class="first-navi-li"><a href="javascript:void(0);">财务管理</a></li>
                 <li class="user-setting-nav" style="display:none;">
                     <ol class="second-navi">
@@ -106,7 +101,7 @@
             </ul>
             <div class="head-right">
                 <ul class="feature">
-                     <li class="notice-icon-active"></li> 
+                    <!-- <li class="notice-icon-active"></li> --> 
                     <li class="split-line"></li>
                     <li class="person-info">
                         <span class="person-icon"></span>
@@ -121,6 +116,22 @@
         <div id="sub_menu_bar"></div>
 
         <div id="mainContent" class="mainContent travelModule">
+            <ul class="third-navi">
+                <li class="third-navi-li third-navi-active">
+                    <a class="blueFonts" href="javascript:void(0);"><i class="detailsIcon"></i>新增航线</a>
+                </li>
+                <li class="third-navi-li"><a href="javascript:void(0);">基本信息</a></li>
+                <li class="third-navi-li">
+                    <a href="javascript:void(0);">行程安排</a>
+                </li>
+                <li class="third-navi-li">
+                    <a href="javascript:void(0);">描述信息</a>                    
+                </li>
+                <li class="third-navi-li third-navi-active">
+                    <a href="javascript:void(0);">团期报价</a>                    
+                </li>
+            </ul>
+
             <div class="mainBodyHead">
                 <span class="lineNum">线路编号：23569</span>
             <span class="mainBodyOper">
@@ -144,7 +155,7 @@
             </div>
             <table class="basicInfoTable shipBasicInfo">
                 <colgroup>
-                    <col width="70">
+                    <col width="90">
                     <col width="">
                 </colgroup>
                 <tbody>
@@ -204,6 +215,9 @@
                                 <label class="shipVisaBox">美国签证<i></i></label>
                                 <label class="shipVisaBox">港澳台签证<i></i></label>
                             </li>
+                            <li class="visa-free-li" style="display:none;">
+                                <label class="visa-freeBox">免签证<i></i></label>
+                            </li>
                             <li class="selectvisa">
                                 <span  class="sel_visa selShipVisa">选择签证</span>
                             </li>
@@ -237,6 +251,7 @@
                     <th><em>*</em>行程天数</th>
                     <td>
                        <input type="text" style="width:110px;"/> 天
+                       <span class="prompt"><i></i>请输入阿拉伯数字</span>
                     </td>
                 </tr>
                 <tr>
@@ -341,7 +356,7 @@
                     <td><input type="text" name="" style="width: 455px;" class="salePlaceInput"/></td>
                 </tr>-->
                 <tr>
-                    <td colspan="2"><em>*</em>上传照片（轮播）</td>
+                    <td colspan="2"><em>*</em>上传照片</td>
                 </tr>
                 <tr>
                     <th></th>
@@ -425,74 +440,7 @@
             </div>
         </div>
     </script>
-
-    <script>
-        $(function(){
-            var visaData = [{
-                name:'日韩签证',
-                selected:false
-            },{
-                name:'日韩签证',
-                selected:false
-            },{
-                name:'港澳台签证',
-                selected:false
-            },{
-                name:'美国签证',
-                selected:false
-            },{
-                name:'美国签证',
-                selected:false
-            },{
-                name:'日韩签证',
-                selected:false
-            },{
-                name:'日韩签证',
-                selected:false
-            },{
-                name:'港澳台签证',
-                selected:false
-            },{
-                name:'美国签证',
-                selected:false
-            },{
-                name:'美国签证',
-                selected:false
-            },{
-                name:'港澳台签证',
-                selected:false
-            },{
-                name:'美国签证',
-                selected:false
-            },{
-                name:'美国签证',
-                selected:false
-            },{
-                name:'印尼签证',
-                selected:false
-            },{
-                name:'港澳台签证',
-                selected:false
-            },{
-                name:'日韩签证',
-                selected:false
-            },{
-                name:'港澳台签证',
-                selected:true
-            },{
-                name:'印尼签证',
-                selected:true
-            }];
-            var visaLayer = FloatLayer({
-                trigger:'.selShipVisa',
-                template:'#selShipVisa-template',
-                offsetY:65,
-                data:visaData
-            });
-
-        });
-    </script>
-
+    
     <script type="text/template" id="selShipVisa-template">
         <div class="selshipVisaTem">
             <div class="template-title">
@@ -512,7 +460,7 @@
                     #} #
                 </ul>
                 <div style="text-align:right">
-                    <button type="button" class="commonBtnBlue" style="font-size:14px;">免签证</button>
+                    <button type="button" class="commonBtnBlue visa-free-btn" style="font-size:14px;">免签证</button>
                     <button type="button" class="commonBtnBlue02" style="font-size:14px;">确 定</button>
                 </div>
             </div>
@@ -620,27 +568,70 @@
         </div>
     </script>
 
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-
-    
-
-    
-
-
     <script>
         $(function(){
+
+            var visaData = [{
+                name:'日韩签证',
+                selected:false
+            },{
+                name:'日韩签证',
+                selected:false
+            },{
+                name:'港澳台签证',
+                selected:false
+            },{
+                name:'美国签证',
+                selected:false
+            },{
+                name:'美国签证',
+                selected:false
+            },{
+                name:'日韩签证',
+                selected:false
+            },{
+                name:'日韩签证',
+                selected:false
+            },{
+                name:'港澳台签证',
+                selected:false
+            },{
+                name:'美国签证',
+                selected:false
+            },{
+                name:'美国签证',
+                selected:false
+            },{
+                name:'港澳台签证',
+                selected:false
+            },{
+                name:'美国签证',
+                selected:false
+            },{
+                name:'美国签证',
+                selected:false
+            },{
+                name:'印尼签证',
+                selected:false
+            },{
+                name:'港澳台签证',
+                selected:false
+            },{
+                name:'日韩签证',
+                selected:false
+            },{
+                name:'港澳台签证',
+                selected:true
+            },{
+                name:'印尼签证',
+                selected:true
+            }];
+            var visaLayer = FloatLayer({
+                trigger:'.selShipVisa',
+                template:'#selShipVisa-template',
+                offsetY:65,
+                data:visaData
+            });
             
             var ac_window = new PopWindow('.submitCheck',{
                 title:'您还需完成以下信息：',
@@ -663,11 +654,16 @@
 
             $('body').delegate('.routeSummary .delIcon','click',function(){
                 $(this).closest('tr').remove();
+
+                $(".dayNo").each(function(index){
+                    $(".dayNo").eq(index).html(index+1);
+                });
             });
 
             new PopWindow('.saveContentBtn',{
                 template:'#saveContent-template',
                 title:false,
+                modal:false,
                 width:'290',
                 autoHide:2*1000,
                 animation:{
@@ -697,9 +693,8 @@
             FloatLayer({
                 trigger:'.viewRules',
                 template:'#viewRulesTemplate',
-                offsetY:20,
-                offsetX:-280,
-                width:600
+                offsetY:-30,
+                offsetX:65
             });
 
             $(".tab_change li").each(function(index){
@@ -710,67 +705,15 @@
                     $(this).addClass("currentState");
                 });
             });
+
+            $("body").delegate(".visa-free-btn", "click", function(){
+                $(".selectedvisaList label").remove();
+                $(".visa-free-li").show();
+                visaLayer.close();
+            });
+
         })
-    </script>
-
-    <!-- <script type="text/x-kendo-template" id="city_popup">
-        <div class="tcy_tabstrip">
-            <span class="tcy_title">
-                可直接输入中文的城市/机场/三字码
-            </span>
-            <ul>
-            <li id="hot_city" class="k-state-active">热门</li>
-            # for (var i=0; i<data.group.length; i++ ) { #
-            <li>#= data.group[i] #</li>
-            # } #
-            </ul>
-            <div id="hot_city_tab">
-                <ul class="tcy_list clearfix">
-
-                # for(var j=0;j<hotcitylist.length;j++){ #
-                #   var citylist_item = hotcitylist[j] #
-                    <li class="item" title="#= citylist_item.code #" data-code="#= citylist_item.code #">#= citylist_item.name #</li>
-                # } #
-                </ul>
-            </div>
-
-            # for(var i=0;i<data.citylist.length;i++){ #
-                # var citylist_item = data.citylist[i] #
-                <div class="city_tab">
-                    <ul class="tcy_list clearfix">
-                      # for(var k=0;k<data.group[i].length;k++){ #
-                        <li class="tcy_list_sep">#= data.group[i].split('')[k] #</li>
-                        # for(var j=0;j<citylist_item.value.length;j++){ #
-                            # var citylist_value_item = citylist_item.value[j]; #
-                            # if(citylist_value_item.py.slice(0,1) == data.group[i].split('')[k]) {#
-                                <li class="item" title="#= citylist_value_item.code #" data-code="#= citylist_value_item.code #">#= citylist_value_item.name #</li>
-                            # } #
-                        # } #
-                      # } #
-                    </ul>
-                </div>
-            # } #
-        </div>
-    </script>
-
-    <script type="text/javascript">
-        CityAutocomplete({
-            template: "#city_popup",
-            input: "#depCity",
-            // 以@分割热门非热门，以;分割条目，以|分割三字码拼音和中文
-            url:'/static/js/data.txt',
-            group: ["热门", "ABCDEF", "GHJ", "KLMN", "PQRSTW", "XYZ"]
-        });
-
-        CityAutocomplete({
-            template: "#city_popup",
-            input: "#destCity",
-            // 以@分割热门非热门，以;分割条目，以|分割三字码拼音和中文
-            url:'/static/js/data.txt',
-            group: ["热门", "ABCDEF", "GHJ", "KLMN", "PQRSTW", "XYZ"]
-        });
-    </script> -->
-    
+    </script>   
     
 </body>
 </html>
