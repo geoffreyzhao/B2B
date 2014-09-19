@@ -124,9 +124,11 @@
                     <tr>
                         <th><em>*</em>业务类型：</th>
                         <td>
-                                <select style="width:232px;" data-role="dropdownlist">
+                                <!-- <select id="businessTypeSel" style="width:232px;" data-role="dropdownlist"> -->
+                                <select id="businessTypeSel" style="width:232px;">
                                     <option selected="" value="请选择">请选择</option>
-                                    <option value="提交我司改签">提交我司改签</option>
+                                    <option value="提交我司改签">机 票</option>
+                                    <!-- <option value="酒店">酒店</option> -->
                                 </select>
                                 <div class="manageCls">
                                     <span class="manageBussiness"></span><span class="manageBusinessSlide">管理业务类型</span>
@@ -141,9 +143,17 @@
                                 <div class="businessType">
                                     <div class="cancel"></div>
                                     <div class="businessName">
-                                        <span>机 票</span>
-                                        <span></span>
+                                        <span class="left">机 票</span>
+                                        <span class="right editBusiness"></span>
                                     </div>
+                                    <div class="inputBussinessType">
+                                        <input type="text" placeholder="请输入" class="writeBusinessType" />
+                                        <div class="writeBusinessType-inputImg">
+                                            <i class="add"></i>
+                                            <i class="cancelAdd"></i>
+                                        </div>
+                                    </div>
+                                    <div class="addBusinessTypeBtn">+ 新增业务类型</div>
                                 </div>
                             </div>
                         </td>
@@ -192,12 +202,13 @@
         </div>
     </div>
     
-    <script type="text/html" id="delShipCompanyTemplate">
-        <div>
-            <div class="templateTipsText">
-               <i class="tipsIcon"></i>确定要删除该船只吗?
+    <script type="text/x-kendo-template" id="editBusiness-Template">
+        <div id="editBusinessName">
+            <div class="note">
+               <span>修改名称后，该业务下属产品的业务名称也将一并修改</span>
             </div>
-            <div class="templateBtnBlock clearfix ">
+            <input type="text" class="editorContent" value=""/>
+            <div class="editorBtn clearfix ">
                 <div class="rightOperationA">
                     <a class="large_button button_2_1">
                         <span class="left"></span>
@@ -217,32 +228,6 @@
 
 <script>
     $(function(){
-        //多行文本格式化
-        /*$(".ship-reasonText").each(function(){
-            var characterWidth=100;
-            if($(this).text().length>characterWidth){
-                $(this).text($(this).text().substring(0,characterWidth));
-                $(this).html($(this).html()+"…");
-            }
-        });*/
-
-       /* $(".ship-reasonText").each(function(){
-            var divH = $(this).height();
-            var $p = $("p", $(this)).eq(0);
-            while ($p.outerHeight() > divH) {
-                $p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
-            };
-        });*/
-        
-        var ac_window = new PopWindow('.delShipCompany',{
-            title:'提示',
-            width:'380',
-            template:'#delShipCompanyTemplate'
-        }).init();
-
-       
-
-        $(".topFixedToolsBar").fixedBar();
     })
 </script>
 
