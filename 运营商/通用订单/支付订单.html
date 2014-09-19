@@ -1,7 +1,7 @@
 <!DOCTYPE html>
     <html>
         <head>
-        <title>运营商 通用订单 新建订单</title>
+        <title>运营商 通用订单 支付订单</title>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
         <link rel="stylesheet" href="/static/css/kendo.common.min.css" />
@@ -73,12 +73,22 @@
                         <a href="#"><i class="leftArrow"></i> 返回</a>
                     </div>
                     <div class="fixedMenu">
-                        <h3>新建订单</h3>
+                        <h3>支付订单</h3>
                     </div>
                     <div class="fixedButton">
-                        <a class="button_secondary adaptiveButton small" href="javascript:void(0);">
+                        <a class="button_secondary adaptiveButton small ac-cancelOrder" href="javascript:void(0);">
                             <span class="left"></span>
-                            <span class="center center_1">提交订单</span>
+                            <span class="center center_1">取消订单</span>
+                            <span class="right"></span>
+                        </a>
+                        <a href="javascript:;" class="button_important adaptiveButton small ac-modifiedAndPay">
+                            <span class="left"></span>
+                            <span class="center">支 付</span>
+                            <span class="right"></span>
+                        </a>
+                        <a href="javascript:;" class="button_important adaptiveButton small ac-payOrder">
+                            <span class="left"></span>
+                            <span class="center">支 付</span>
                             <span class="right"></span>
                         </a>
                     </div>
@@ -87,7 +97,7 @@
             <div class="block block0 clearfix">
                 <div class="col col-l">
                     <div class="row" style="height:50px;line-height:40px;">
-                        <span class="text1">订单号：<strong>未生成</strong></span>&nbsp;
+                        <span class="text1">订单号：<strong>202002202020666</strong></span>&nbsp;
                         <span class="text2">- 订单类型：通用订单</span>
                     </div>
                 </div>
@@ -96,8 +106,8 @@
                         <li>
                             <div class="instr clearfix">
                                 <span class="highlight-fl">创建</span>
-                                <span>审核</span>
-                                <span>支付</span>
+                                <span class="highlight-fl">审核</span>
+                                <span class="highlight-fl">支付</span>
                                 <span>完成</span>
                                 <span>取消</span>
                             </div> 
@@ -114,7 +124,7 @@
             
             <div class="block block1 block-module">
                 <div class="block-title">订单信息</div>
-                <table class="orderInfoTab">
+                <table class="orderInfoTab noInputBorder">
                     <colgroup>
                         <col width="80">
                         <col width="160">
@@ -127,42 +137,30 @@
                     <tr>
                         <th><em>*</em> 客户名称</th>
                         <td>
-                            <input type="text" style="width: 110px;">
-                            <button class="btns btn-search ac-search-user" role="window_trigger">查询</button>
+                            <input type="text" style="width: 110px;" value="我是客户">                            
                         </td>
-                        <th><em>*</em> 收款方式</th>
-                        <td>
-                            <select data-role="dropdownlist" style="width: 132px;">
-                                <option>全部</option>
-                            </select>
-                        </td>
+                        <th><em>*</em> 结算方式</th>
+                        <td>现金</td>
                         <th>操作员</th>
                         <td>小M</td>
                     </tr>
                     <tr>
                         <th><em>*</em> 联系人</th>
                         <td>
-                            <input type="text" style="width: 135px;">
+                            <input type="text" style="width: 135px;" value="我是客户">
                         </td>
                         <th><em>*</em> 联系电话</th>
                         <td>
-                            <input type="text" style="width: 130px;">
+                            <input type="text" style="width: 130px;" value="021-12341234">
                         </td>
                         <th><em>*</em> 手机号码</th>
                         <td>
-                            <input type="text" style="width: 130px;">
+                            <input type="text" style="width: 130px;" value="13764698580">
                         </td>
                     </tr>
                     <tr>
                         <th>关联订单号</th>
-                        <td colspan="3">
-                            <select data-role="dropdownlist" style="width: 132px;">
-                                <option>通用订单</option>
-                            </select>
-                            <select data-role="dropdownlist" style="width: 220px;">
-                                <option>关联订单号</option>
-                            </select>
-                        </td>
+                        <td colspan="3">无</td>
                         <th> </th>
                         <td> </td>
                     </tr>
@@ -225,15 +223,12 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <em class="redFonts">*</em>
                                     <input type="text" value="11213.00" style="width: 75px;">
                                 </td>
                                 <td>
-                                    <em class="redFonts">*</em>
                                     <input type="text" value="11213.00" style="width: 75px;">
                                 </td>
                                 <td>
-                                    <em class="redFonts">*</em>
                                     <input type="text" value="11213.00" style="width: 75px;">
                                 </td>
                                 <td>111450.21</td>
@@ -257,15 +252,12 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <em class="redFonts">*</em>
                                     <input type="text" value="11213.00" style="width: 75px;">
                                 </td>
                                 <td>
-                                    <em class="redFonts">*</em>
                                     <input type="text" value="11213.00" style="width: 75px;">
                                 </td>
                                 <td>
-                                    <em class="redFonts">*</em>
                                     <input type="text" value="11213.00" style="width: 75px;">
                                 </td>
                                 <td>111450.21</td>
@@ -286,25 +278,23 @@
             <div class="block block21 block-module">
                 <div class="block-title">
                     <span class="block-title-blue">旅客信息</span>
-                    <span class="block-module-action">
+                    <!--<span class="block-module-action">
                         <button class="btns btn-ac-blue"><b>+ 添加旅客</b></button>
-                    </span>
+                    </span>-->
                 </div>
             
                 <div class="row">
                     <table class="grid-table">
                         <colgroup>
                             <col width="90">
-                            <col width="60">
-                            <col width="70">
-                            <col width="105">
-                            <col width="160">
-                            <col width="100">
-                            <col width="105">
+                            <col width="90">
                             <col width="115">
-                            <col width="100">
-                        </colgroup>
-            
+                            <col width="110">
+                            <col width="175">
+                            <col width="110">
+                            <col width="110">
+                            <col width="115">
+                        </colgroup>            
                         <thead>
                         <tr class="thead">
                             <td>姓名</td>
@@ -315,87 +305,28 @@
                             <td>出生日期</td>
                             <td>国籍</td>
                             <td>联系电话</td>
-                            <td class="textAlignCenter">操作</td>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td>
-                                <input type="text" value="张三" style="width: 80px;">
-                            </td>
-                            <td>
-                                <select data-role="dropdownlist" style="width: 53px;">
-                                    <option>女</option>
-                                    <option>男</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select data-role="dropdownlist" style="width: 60px;">                                    
-                                    <option>成人</option>
-                                    <option>儿童</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select data-role="dropdownlist" style="width: 93px;">
-                                    <option selected="">身份证</option>
-                                    <option>护照</option>
-                                    <option>港澳通行证</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="text" value="321212200012121213" style="width: 150px;">
-                            </td>
-                            <td>
-                                <input type="text" class="datepicker" style="width: 95px;">
-                            </td>
-                            <td>
-                                <input type="text" value="张三" style="width: 100px;">
-                            </td>
-                            <td>
-                                <input type="text" value="136819966022" style="width: 110px;">
-                            </td>
-                            <td class="textAlignCenter">
-                                <a href="javascript:void(0);">删除</a>
-                            </td>
+                            <td>张三</td>
+                            <td>女</td>
+                            <td>成人</td>
+                            <td>身份证</td>
+                            <td>321212200012121213</td>
+                            <td>1220-12-12</td>
+                            <td>身份证</td>
+                            <td>13513541354</td>
                         </tr>
                         <tr>
-                            <td>
-                                <input type="text" value="张三" style="width: 80px;">
-                            </td>
-                            <td>
-                                <select data-role="dropdownlist" style="width: 53px;">
-                                    <option>女</option>
-                                    <option>男</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select data-role="dropdownlist" style="width: 60px;">
-                                    <option>成人</option>
-                                    <option>儿童</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select data-role="dropdownlist" style="width: 93px;">
-                                    <option>身份证</option>
-                                    <option>护照</option>
-                                    <option selected="">港澳通行证</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="text" value="321212200012121213" style="width: 150px;">
-                            </td>
-                            <td>
-                                <input type="text" class="datepicker" style="width: 95px;">
-                            </td>
-                            <td>
-                                <input type="text" value="张三" style="width: 100px;">
-                            </td>
-                            <td>
-                                <input type="text" value="136819966022" style="width: 110px;">
-                            </td>
-                            <td class="textAlignCenter">
-                                <a href="javascript:void(0);">删除</a>
-                            </td>
+                            <td>张三</td>
+                            <td>女</td>
+                            <td>成人</td>
+                            <td>港澳通行证</td>
+                            <td>321212200012121213</td>
+                            <td>1220-12-12</td>
+                            <td>港澳通行证</td>
+                            <td>13513541354</td>
                         </tr>
                         </tbody>
                     </table> 
@@ -438,6 +369,75 @@
                 <p>客户服务热线:400-720-6666</p>
             </div>
         </div>
+
+    <script type="text/x-kendo-template" id="ac-modifiedAndPay-template">
+        <h3 class="modifiedPayWinTitle">您对订单做出了修改, 确认修改并支付吗？</h3>
+        <div class="payOrderWinContent">
+            <div>
+                <em>客户名称：</em>
+                <span>某某某</span>
+            </div>
+            <div>
+                <em>应收合计：</em>
+                <span class="orangeFonts">￥160,000,000.00</span>
+            </div>
+        </div>
+        <div class="orderWinBtn">
+            <button class="large_button" type="button" name="a">确认并支付</button>
+            <button class="large_button disable" type="button" name="a">取 消</button>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-payOrder-template">
+        <h3 class="modifiedPayWinTitle">确认支付订单吗？</h3>
+        <div class="payOrderWinContent">
+            <div>
+                <em>客户名称：</em>
+                <span>某某某</span>
+            </div>
+            <div>
+                <em>应收合计：</em>
+                <span class="orangeFonts">￥160,000,000.00</span>
+            </div>
+        </div>
+        <div class="orderWinBtn">
+            <button class="large_button" type="button" name="a">确认并支付</button>
+            <button class="large_button disable" type="button" name="a">取 消</button>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-cancelOrder-template">
+        <h3 class="modifiedPayWinTitle">确认取消订单吗？</h3>
+        <div class="orderWinBtn">
+            <button class="large_button" type="button" name="a">确认并支付</button>
+            <button class="large_button disable" type="button" name="a">取 消</button>
+        </div>
+    </script>
+    
+    <script>
+        $(function(){
+            var new_window = new PopWindow('.ac-modifiedAndPay',{
+                title:'支付订单',
+                width:'470',
+                template:'#ac-modifiedAndPay-template'
+            }).init();
+
+            var new_window = new PopWindow('.ac-payOrder',{
+                title:'支付订单',
+                width:'470',
+                template:'#ac-payOrder-template'
+            }).init();
+
+            var new_window = new PopWindow('.ac-cancelOrder',{
+                title:'取消订单',
+                width:'470',
+                template:'#ac-cancelOrder-template'
+            }).init();
+            
+        });
+    </script>
+    
+    
     
         </body>
     </html>
