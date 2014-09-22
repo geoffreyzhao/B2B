@@ -9,6 +9,7 @@
     <link href="../../static/css/coin-slider-styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="../../static/css/store_reset.css" media="all" />
     <link rel="stylesheet" href="../../static/css/store.css" media="screen" />
+
     <link rel="stylesheet" href="../../static/css/store_v2/travelParticulars.css" media="screen" />    
     <link rel="stylesheet" href="../../static/css/kendo.common.min.css" />
 	<link rel="stylesheet" href="../../static/css/kendo.store.css" />
@@ -248,7 +249,7 @@
                         
                     </td>
                 </tr>
-                <tr class="dotted_top bgGray">
+                <tr class="dotted_top">
                     <td><span  class="boldFont16"><em class="peopleType">儿童</em><b>朱晓琳琳</b></span></td>
                     <td><em style="font-size: 14px;">xiaolinlin/zhu</em></td>
                     <td>
@@ -616,6 +617,11 @@
                         <span class="center center_1">退 团</span>
                         <span class="right"></span>
                     </a>
+                    <a class="adaptiveButton mediumOrange_btn ac-revocationPosition">
+                        <span class="left"></span>
+                        <span class="center center_1">取消询位</span>
+                        <span class="right"></span>
+                    </a>
                 </span>
                 <span class="accountCon pull-right">
                     成人<b>220</b>x2 + 儿童<b>100</b>x2 + 单房差<b>500</b>x1 + 签证<b>1100</b>= <em style="font-size: 16px;">应收合计</em>
@@ -730,9 +736,9 @@
 </div>
 
 <script type="text/x-kendo-template" id="exclamationMarkWindow">
-    <div class="layerGrayBlock">
+    <div class="layerGrayBlock layerGrayBlockAdd">
         <div class="layerGrayContainer">
-            <div class="layerGrayArrow"></div>
+            <div class="layerGrayArrow layerGrayArrowAdd"></div>
             <div class="floatLayer">
                 <p>美国个人旅游签证（用于团队,上海送签）</p>
                 <p>护照签发地：中国</p>
@@ -766,7 +772,7 @@
 
 <script type="text/x-kendo-template" id="ac_cancelBook_template">
     <div class="cancelBookWindow">
-            <div class="hintContent clearfix">
+            <div class="hintContent clearfix hintContentAdd">
                 <div class="hintWord">【提示】</div>
                 <div class="hintList">
                     <p>1、成团前，取消预订，不收取损失费用，双方互不承担违约责任；</p>
@@ -884,8 +890,9 @@
                 <th>英文姓名</th>
                 <td>
                     <div class="errorStyleHint">
-                        <input type="text" name="" placeholder="姓（拼音或英文）" class="redErrorBorder">
-                        <label class="errorHint">
+                        <input type="text" name="" placeholder="姓（拼音或英文）" >
+                        <input type="text" name="" placeholder="名（拼音或英文）" class="redErrorBorder nameArrange">
+                        <label class="errorHint errorHintAdd">
                             <div class="message_ct">
                                 <div class="arrow arrow_west"></div>
                                 <div class="message_text">格式错误</div>
@@ -997,13 +1004,8 @@
                     <th>英文姓名</th>
                     <td>
                         <div class="errorStyleHint">
-                            <input type="text" name="" placeholder="姓（拼音或英文）" class="redErrorBorder">
-                            <label class="errorHint">
-                                <div class="message_ct">
-                                    <div class="arrow arrow_west"></div>
-                                    <div class="message_text">格式错误</div>
-                                </div>
-                            </label>
+                            <input type="text" name="" placeholder="姓（拼音或英文）" >
+                            <input type="text" name="" placeholder="名（拼音或英文）" class="nameArrange">
                         </div>
                     </td>
                     <th> </th>
@@ -1079,6 +1081,20 @@
 <script type="text/x-kendo-template" id="ac-revocation_template">
     <div class="submitOrder">
         <h3 class="inventoryTitle inventoryTitleAdd">是否撤销？</h3>
+        <div class="submitOrderBtn submitOrderBtnAdd submitOrderBtnAdd2">
+            <a class="adaptiveButton brightOrange_btn">
+                <span class="left"></span>
+                <span class="center center_1">确定</span>
+                <span class="right"></span>
+            </a>
+            <a href="javascript:void(0);" >取消</a>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="ac-revocationPosition_template">
+    <div class="submitOrder">
+        <h3 class="inventoryTitle inventoryTitleAdd">是否取消询位？</h3>
         <div class="submitOrderBtn submitOrderBtnAdd submitOrderBtnAdd2">
             <a class="adaptiveButton brightOrange_btn">
                 <span class="left"></span>
@@ -1199,6 +1215,12 @@
             template:"#ac-revocation_template"
         }).init();
 
+        var new_win3 = new PopWindow(".ac-revocationPosition",{
+            title:"取消询位",
+            width:470,
+            template:"#ac-revocationPosition_template"
+        }).init();
+
     });
  </script>
 
@@ -1229,11 +1251,12 @@
             position:"bottom", //left right top
             wrapperClass:"lineWeight",
             width:260,
+
             content:function(){
                 return $("#passengerDetailWindow").html();
             },
             callout:false,
-            offsetY:0,
+            offsetY:8,
             offsetX:-2
         });
 
@@ -1242,9 +1265,9 @@
 
 
 <script type="text/x-kendo-template" id="passengerDetailWindow">
-    <div class="layerGrayBlock">
+    <div class="layerGrayBlock detailBlock">
         
-            
+            <div class="layerGrayArrow layerGrayArrowAdd"></div>
             <div class="passengerDetail-table">
 
                 <table>
