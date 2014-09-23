@@ -138,6 +138,56 @@
                     <th>操作</th>
                 </tr>
        </table>
+
+<script type="text/html" id="officeLayer">
+    <table class="officeTable">
+        <colgroup>
+            <col width="90" />
+            <col width="90" />
+            <col width="90" />
+            <col width="90" />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td><label><input type="checkbox" name="cb_office">SHA225</label></td>
+                <td><label><input type="checkbox" name="cb_office">SHA225</label></td>
+                <td><label><input type="checkbox" name="cb_office">SHA225</label></td>
+                <td><label><input type="checkbox" name="cb_office">SHA225</label></td>
+            </tr>
+            <tr>
+                <td><label><input type="checkbox" name="cb_office">SHA225</label></td>
+                <td><label><input type="checkbox" name="cb_office">SHA225</label></td>
+                <td><label><input type="checkbox" name="cb_office">SHA225</label></td>
+                <td><label><input type="checkbox" name="cb_office">SHA225</label></td>
+            </tr>
+            <tr>
+                <td><label><input type="checkbox" name="cb_office">SHA225</label></td>
+                <td><label><input type="checkbox" name="cb_office">SHA225</label></td>
+                <td><label><input type="checkbox" name="cb_office">SHA225</label></td>
+                <td><label><input type="checkbox" name="cb_office">SHA225</label></td>
+            </tr>
+            <tr>
+                <td><label><input type="checkbox" name="cb_office">SHA225</label></td>
+                <td><label><input type="checkbox" name="cb_office">SHA225</label></td>
+                <td><label><input type="checkbox" name="cb_office">SHA225</label></td>
+                <td><label><input type="checkbox" name="cb_office">SHA225</label></td>
+            </tr>
+            <tr>
+                <td><label><input type="checkbox" name="cb_office">SHA225</label></td>
+                <td><label><input type="checkbox" name="cb_office">SHA225</label></td>
+                <td><label><input type="checkbox" name="cb_office">SHA225</label></td>
+                <td><label><input type="checkbox" name="cb_office">SHA225</label></td>
+            </tr>
+            <tr>
+                <td colspan="4" class="officeOper">
+                    <input type="button" value="确定">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+
 <script type="text/javascript">
 
 $(function(){
@@ -171,6 +221,17 @@ $(function(){
         rowTemplate: kendo.template($("#block2-grid-row-template").html())
     }).init(); 
     kendo.init('body');
+
+    new FloatLayer({
+        trigger: ".selectBtn",
+        template:"#officeLayer",
+        type:'click',
+        offsetX:0,
+        offsetY:25,
+        css: {
+            "z-index": 10003
+        }
+    });
 });
 </script>
 
@@ -200,6 +261,14 @@ $(function(){
         <td><input id="" type="text" name=""></td>
         <th>固定电话：</th>
         <td><input id="" type="text" name=""></td>
+      </tr>
+      <tr>
+        <th><u>*</u>office号：</th>
+        <td colspan="3">
+            <span class="officeItem">SHA255<i></i></span>
+            <span class="officeItem">SHA255<i></i></span>
+            <span class="selectBtn">请选择</span>
+        </td>
       </tr>
       <tr>
         <th><u>*</u>角色选择：</th>
