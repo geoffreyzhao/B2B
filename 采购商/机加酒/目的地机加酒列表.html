@@ -2,15 +2,16 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>天地行 采购商 机加酒 目的地机加酒列表页</title>
+    <title>天地行 采购商 机加酒 目的地机加酒列表</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css">
     <link rel="stylesheet" href="/static/css/store_reset.css" media="all" />
     <link rel="stylesheet" href="/static/css/store.css" media="screen" />
     <link rel="stylesheet" href="/static/css/kendo.common.min.css" />
     <link rel="stylesheet" href="/static/css/kendo.store.css" />
-    <link rel="stylesheet" href="../../static/css/toolkit.css"/>
-    <link rel="stylesheet" href="../../static/css/store_v2/store_travelCreate.css"/>
+    <link rel="stylesheet" href="/static/css/toolkit.css"/>
+    <link rel="stylesheet" href="/static/css/store_v2/store_travelCreate.css"/>
+    <link rel="stylesheet" href="/static/css/store_ticketsAndhotel.css"/>
 
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/kendo.web.js"></script>
@@ -92,137 +93,99 @@
 <div class="searchWrapper">
     <div class="newSearch">
         <ul class="newSearchTab">
-            <li class="selected first"><span>出境游</span></li>
-            <li><span>国内游</span></li>
-            <li><span>自由行</span></li>
+            <li class="selected first"><span>目的地</span></li>
+            <li><span>周边游</span></li>
         </ul>
         <div class="newSearchContent">
-            <div class="searchForm tab">
-                <span class="inputWhiteBgRow">
-                    <span class="startOff-bg">
-                        <input id="startOff" style="width:90px;" type="text" class="startOff city_ac"/>
-                        <span class="startFont">出发</span>
+            <div class="searchFormBox tab">
+                <div class="searchForm">
+                    <span class="inputWhiteBgRow">
+                        <span class="placeBlock-bg">
+                            <b>出发地</b>
+                        </span>
+                        <input style="width:168px;" type="text" class="scenicPlace city_ac" placeholder="上海"/>
                     </span>
-                    <input style="width:310px;" type="text" class="scenicPlace" placeholder="请输入目的地、景点、游玩类型等关键词"/>
-                </span>
-               <span class="inputNoBgRow">
-                <input type="text" value="" name="departure_date" style="width:90px;"  class="datepicker newSearchDate"> <em>-</em>
-                <input type="text" value="" name="departure_date" style="width:90px;"  class="datepicker newSearchDate">
-                <button type="submit" class="btn">搜 索</button>
-               </span> 
+                    <span class="inputWhiteBgRow" style="margin-left: 10px;">
+                        <span class="placeBlock-bg">
+                            <b>目的地</b>
+                        </span>
+                        <input style="width:168px;" type="text" class="scenicPlace city_ac" placeholder="北京"/>
+                    </span>
+                   <span class="inputNoBgRow">
+                    <button type="submit" class="btn">搜 索</button>
+                   </span> 
+                </div>
             </div>
 
-            <div class="searchForm searchForm02 tab" style="display: none;">
-                <span class="inputWhiteBgRow">
-                    <span class="startOff-bg">
-                    <input id="startOff02" style="width:90px;" type="text" class="startOff"/>
+            <div class="searchFormBox02 tab" style="display: none;">
+                <div class="searchForm searchForm02">
+                    <span class="inputWhiteBgRow">
+                        <span class="placeBlock-bg">
+                            <b>出发地</b>
+                        </span>
+                        <input style="width:168px;" type="text" class="scenicPlace city_ac" placeholder="北京"/>
                     </span>
-                    <input style="width:310px;" type="text" class="scenicPlace" placeholder="请输入目的地、景点、游玩类型等关键词22"/>
-                </span>
-               <span class="inputNoBgRow">
-                <input type="text" value="" name="departure_date" style="width:90px;"  class="datepicker newSearchDate"> <em>-</em>
-                <input type="text" value="" name="departure_date" style="width:90px;"  class="datepicker newSearchDate">
-                <button type="submit" class="btn">搜 索</button>
-               </span>
+                   <span class="inputNoBgRow">
+                    <button type="submit" class="btn">搜 索</button>
+                   </span>
+                </div>
+                <div class="hotCity-place">
+                    <span><b>热门推荐：</b>
+                        <a href="javascript:void (0);">三亚</a>
+                        <a href="javascript:void (0);">北京</a>
+                        <a href="javascript:void (0);">上海</a>
+                        <a href="javascript:void (0);">常州</a>
+                        <a href="javascript:void (0);">徽州</a>
+                        <a href="javascript:void (0);">黄山</a>
+                        <a href="javascript:void (0);">厦门</a>
+                        <a href="javascript:void (0);">广州</a>
+                        <a href="javascript:void (0);">深圳</a>
+                        <a href="javascript:void (0);">重庆</a>
+                    </span>
+                </div>    
             </div>
         </div>
         
     </div>
 </div>
 <div class="travel-filter">
-    <div class="play_type travel-filter-nav">
-        <ul>
-            <li class="currentState"><a href="javascript:void(0);"><span>全部</span>（500）</a></li>
-            <li><a href="javascript:void(0);"><span><i class="ballTourIcon"></i>跟团游</span>（500）</a></li>
-            <li><a href="javascript:void(0);"><span><i class="halfselfIcon"></i>半自助</span>（500）</a></li>
-            <li><a href="javascript:void(0);"><span><i class="localTourIcon"></i>当地游</span>（500）</a></li>
-        </ul>
-    </div>
     <div class="travel-filter-list">
         <div class="play_all tab">
         <ul class="">
             <li>
-                <label class="filterTitle">出游天数：</label>
+                <label class="filterTitle">行程天数：</label>
                 <div class="filterCheck">
+                    <span>不限</span>
+                    <span class="selectedSpan">1天</span>
+                    <span>2天</span>
+                    <span>3天</span>
+                    <span>4天</span>
+                    <span>5天</span>
                     <span>6天</span>
-                    <span class="selectedSpan">8天</span>
-                    <span>10天</span>
-                    <span>14天</span>
-                    <span>18天</span>
                 </div>
             </li>
             <li>
-                <label class="filterTitle">钻级<i class="tipsIcon level-explain"></i> ：</label>
-                <div class="filterCheck">
-                    <span class="selectedSpan">2钻</span>
-                    <span>3钻</span>
-                    <span>4钻</span>
-                    <span>5钻</span>
-                    <span>6钻</span>
-                </div>
-            </li>
-            <li>
-                <label class="filterTitle">价&nbsp;&nbsp;&nbsp;&nbsp;格：</label>
+                <label class="filterTitle">产品价格：</label>
                 <div class="priceRow">
                     <em>￥</em><input type="text" placeholder="不退"/> <em>- ￥</em><input type="text" placeholder="不限"/><i class="sureBtn">确定</i>
                 </div>
             </li>
             <li class="selectedRow">
-                <label class="filterTitle">已选择：</label>
+                <label class="filterTitle">筛选条件：</label>
                 <div class="filterSelect">
                     <div class="item">
                         6天<a class="close" href="javascript:;">x</a>
                     </div>
                     <div class="item">
-                        3钻<a class="close" href="javascript:;">x</a>
+                        3天<a class="close" href="javascript:;">x</a>
                     </div>
-                    <span class="clearAll">全部清除</span>
+                    <div class="item">
+                        1000-2000<a class="close" href="javascript:;">x</a>
+                    </div>
+                    <span class="clearAll">清除全部条件</span>
                 </div>
             </li>
         </ul>
-        </div>
-
-        <div class="play_ballTour tab" style="display: none;">
-            <ul class="">
-                <li>
-                    <label class="filterTitle">出游天数2：</label>
-                    <div class="filterCheck">
-                        <span>6天</span>
-                        <span class="selectedSpan">8天</span>
-                        <span>10天</span>
-                        <span>14天</span>
-                        <span>18天</span>
-                    </div>
-                </li>
-                <li>
-                    <label class="filterTitle">钻级<i class="tipsIcon"></i> ：</label>
-                    <div class="filterCheck">
-                        <span class="selectedSpan">2钻</span>
-                        <span>3钻</span>
-                        <span>4钻</span>
-                        <span>5钻</span>
-                        <span>6钻</span>
-                    </div>
-                </li>
-                <li>
-                    <label class="filterTitle">价&nbsp;&nbsp;&nbsp;&nbsp;格：</label>
-                    <div class="priceRow">
-                        <em>￥</em><input type="text" placeholder="不限" /> <em>- ￥</em><input type="text" placeholder="不限"/><i class="sureBtn">确定</i>
-                    </div>
-                </li>
-                <li class="selectedRow">
-                    <label class="filterTitle">已选择：</label>
-                    <div class="filterSelect">
-                        <div class="item">
-                            6天<a class="close" href="javascript:;">x</a>
-                        </div>
-                        <div class="item">
-                            3钻<a class="close" href="javascript:;">x</a>
-                        </div>
-                        <span class="clearAll">全部清除</span>
-                    </div>
-                </li>
-            </ul>
         </div>
     </div>
     
@@ -235,25 +198,20 @@
         <table>
             <colgroup>
                 <col width="185"/>
-                <col width="510"/>
-                <col width="112"/>
+                <col width="655"/>
                 <col width=""/>
             </colgroup>
             <tr>
                 <td><span>共<span class="tour_resultNo">93</span>条线路满足条件</span></td>
                 <td class="rankType">
-                    <span class="currentSpan">默认</span>
-                    <span>最新</span>
-                    <span>最热</span>
-                    <!--<span>结算价</span>
-                    <span>结算价<i class="upIcon"></i></span>
-                    <span>结算价<i class="downIcon"></i></span>-->
-                    <span class="sorttab">结算价<i></i></span>
-                    <span class="sorttab ascend">结算价<i></i></span> <span class="sorttab descend">结算价<i></i></span>
+                    <!--<span class="sorttab">价格排序<i></i></span>-->
+                    <span class="sorttab ascend">价格排序<i></i></span> 
+                    <!--<span class="sorttab descend">价格排序<i></i></span>-->
+                    <span class="sorttab">出发日期<i></i></span>
+                    <!--<span class="sorttab ascend">出发日期<i></i></span> 
+                    <span class="sorttab descend">出发日期<i></i></span>-->
                 </td>
-                <td>市场价</td>
                 <td>
-                    <span>结算价</span>
                     <span><em class="pageColor">9</em>/25</span>
                     <span class="pageTurning">
                         <span class="pageUp"></span><span class="pageDown"></span>
@@ -289,9 +247,6 @@
                 </div>
             </div>
             <div class="tour_resultDiv_right">
-                <div class="marketPrice">
-                    <em>￥</em><span>18599</span>起
-                </div>
                 <div class="ClearingPrice">
                     <span class="tour_price_block"><span class="tour_price"><em>￥</em>185999</span>起</span>
                     <a class="adaptiveButton mediumOrange_btn">
