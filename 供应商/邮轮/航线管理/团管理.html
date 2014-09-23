@@ -6,14 +6,16 @@
     <link rel="stylesheet" type="text/css" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css">
     <link href="/static/css/kendo.common.css" rel="stylesheet" />
     <link href="/static/css/kendo.gray.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/kendo.store.css" />
     <link href="/static/css/common.css" rel="stylesheet" />
     <link href="/static/css/supplier.css" rel="stylesheet" />
     <link href="/static/css/kendo.reset.css" rel="stylesheet" />
     <link href="/static/css/supplierTravel.css" rel="stylesheet" />
     <link href="/static/css/supplier.css" rel="stylesheet" />
     <link href="/static/css/supplier_common.css" rel="stylesheet" />
-    <link href="/static/css/supplierShip.css" rel="stylesheet" />
     <link rel="stylesheet" href="/static/css/store_ucenter.css" media="screen" />
+    <link rel="stylesheet" href="/static/css/store_v2/store_travelCreate.css"/>
+    <link href="/static/css/supplierShip.css" rel="stylesheet" />
 
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/kendo.web.js"></script>
@@ -120,63 +122,33 @@
             </ul>
 
 
-        <table class="flightNum-table">
-             <colgroup>
-                 <col width="25"/>
-                 <col width="82"/>
-                 <col width="665"/>
-                 <col width="104"/>
-                 <col width="118"/>
-             </colgroup>
-             <tr>
-                <td></td>
-                 <th>航班编号:</th>
-                 <td>
-                    23569 【歌诗达邮轮-维多利亚号】 济州岛+福冈 5天
-                 </td>
-                 <td>
-                     <span class="preview"></span>
-                 </td>
-                 <td>
-                     <span>
-                        <a class="adaptiveButton brightBtn brightBtn-blue submitCheck">
-                        <span class="left"></span>
-                        <span class="center center_2">提交审核</span>
-                        <span class="right"></span>
-                        </a>
-                    </span>
-                 </td>
-             </tr>
-         </table>
-
          <table class="offSearchTab">
              <colgroup>
                  <col width="68"/>
                  <col width="224"/>
                  <col width="68"/>
-                 <col width="220"/>
-                 
-                 <col width="50"/>
+                 <col width="220"/> 
+                 <col width="57"/>
                  <col width="236"/>
                  <col width="108"/>
              </colgroup>
              <tr>
-                 <th>开始日期</th>
+                 <th>航线名称</th>
                  <td>
-                    <input type="text" class="dpUlt datepicker hideDateTag" placeholder=" yy-mm-dd" />
+                     <input type="text" class="groupManageInput" placeholder="请输入关键字"/>
                  </td>
-                 <th>结束日期</th>
+                 <th>航班号</th>
                  <td>
-                    <input type="text" class="dpUlt datepicker hideDateTag" placeholder=" yy-mm-dd"/>
+                     <input type="text" class="groupManageInput" placeholder="请输入关键字"/>
                  </td>
-                 <th>团状态</th>
+                 <th>邮轮公司</th>
                  <td>
                      <select data-role="dropdownlist" style="width: 186px;margin-left: 30px;vertical-align: top;">
-                         <option>请选择</option>
+                         <option>AROSA邮轮</option>
                          <option>全部</option>
                      </select>
                  </td>
-                 <td rowspan="2">
+                 <td>
                      <a class="supplierButton brightRedBig_btn">
                          <span class="left"></span>
                          <span class="center center_1">查 询</span>
@@ -184,186 +156,295 @@
                      </a>
                  </td>
              </tr>
+             <tr>
+                 <th>船只</th>
+                 <td>
+                    <!-- <input type="text" class="dpUlt datepicker hideDateTag" placeholder=" yy-mm-dd" /> -->
+                    <select data-role="dropdownlist" style="width: 186px;vertical-align: top;">
+                         <option>A-ROSA RIVA</option>
+                         <option>全部</option>
+                     </select>
+                 </td>
+                 <th>开始日期</th>
+                 <td>
+                    <input type="text" class="dpUlt datepicker hideDateTag groupManageInput" placeholder=" yy-mm-dd"/>
+                 </td>
+                 <th>结束日期</th>
+                 <td>
+                    <input type="text" class="dpUlt datepicker hideDateTag groupManageInput" style="width: 186px;margin-left: 30px;vertical-align: top;" placeholder=" yy-mm-dd"/>
+                 </td>
+                 <td>
+                     
+                 </td>
+             </tr>
+             <tr>
+                 <th>航线类型</th>
+                 <td class="shipLineType">
+                     <ul>
+                         <li class="current">全部</li>
+                         <li>单船票</li>
+                         <li>团队游</li>
+                     </ul>
+                 </td>
+                 <th>售卖状态</th>
+                 <td colspan="3" class="shipLineType">
+                     <ul>
+                         <li class="current">全部</li>
+                         <li>售卖中</li>
+                         <li>截止收客</li>
+                         <li>已发送出团通知</li>
+                         <li>已出团</li>
+                         <li>已停售</li>
+                     </ul>
+                 </td>
+
+             </tr>
          </table>
 
-         <table class="batchProcess">
-            <colgroup>
-                <col width="117"/>
-                <col width="104"/>
-            </colgroup>
-            <tr>
-                <td>
-                    <i class="batchDel"></i>
-                </td>
-                <td>
-                    <i class="addTeamTerm"></i>
-                </td>
-            </tr>
-         </table>
+         
 
-         <table class="offerContent-table">
+         <table class="offerContent-table groupManage-table">
          <colgroup>
-             <col width="10"/>
-             <col width="38"/>
-             <col width="128"/>
-             <col width="180"/>
-             <col width="128"/>
+             <col width="6"/>
+             <col width="86"/>
+             <col width="145"/>
+             <col width="50"/>
+             <col width="35"/>
+             <col width="139"/>
+             <col width="117"/>
              <col width="102"/>
-             <col width="96"/>
-             <col width="142"/>
-             <col width="142"/>             
+             <col width="62"/>    
+             <col width="50"/>
+             <col width="107"/>
+             <col width="93"/>      
          </colgroup>
          <thead>
          <tr>
             <th></th>
-            <th></th>
              <th>启航日期</th>
              <th>团号</th>
+             <th>航线<p>编号</p></th>
+             <th>航线<p>类型</p></th>
+             <th>航线名称</th>
+             <th>船只/邮轮公司</th>
              <th>截止收客时间</th>
              <th>起价</th>
              <th>库存</th>
-             <th>团状态</th>
+             <th>状态</th>
              <th class="operateHead">操作</th>
          </tr>
          </thead>
          <tbody>
-            <tr>
-                <td></td>
-                <td>
-                    <input type="checkbox"/>
-                </td>
-                <td>2014-07-28</td>
-                <td>
-                    <div class="buyShip"></div>
-                    <div>20140720维多利亚号</div>
-                </td>
-                <td>2014-07-28</td>
-                <td class="startPointCost">1584</td>
-                <td>
+         <tr>
+            <td></td>
+            <td>2014-07-28</td>
+            <td class="tableContentUp">
+                <div class="buyShip"></div>
+                <div>20140720维多利亚号</div>
+            </td>
+            <td>45671</td>
+            <td>单</td>
+            <td class="tableContentDown">
+                <i class="sellTicket"></i><em>天津-济州-天津</em><p>4晚5天</p>
+            </td>
+            <td class="tableContentDown2">
+                <a href="javascript:void(0);">处女星号</a>
+                <p><a href="javascript:void(0);">MSC地中海邮轮</a></p>
+            </td>
+            <td>2014-07-28</td>
+            <td class="startPointCost">1584</td>
+            <td>
+                <div>
                     <span class="stock">总</span>
-                    <span class="stockFont1">80</span>
-                </td>
-                <td class="create">新建</td>
-                <td class="operate">
-                    <i>编辑</i><i>详情</i><i class="ac-seeCause">删除</i>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <input type="checkbox"/>
-                </td>
-                <td>2014-07-28</td>
-                <td>
-                    <div class="buyShip"></div>
-                    <div>20140720维多利亚号</div>
-                </td>
-                <td>2014-07-28</td>
-                <td class="startPointCost">1584</td>
-                <td>
+                    <span class="stockFont1 stockFont2">80</span>
+                </div>
+                <div>
+                    <span class="stock">售</span>
+                    <span class="stockFont1 stockFont2">60</span>
+                </div>
+                <div>
+                    <span class="stock">余</span>
+                    <span class="stockFont1 stockFont2">20</span>
+                </div>
+            </td>
+            <td class="create saling">售卖中</td>
+            <td>----</td>
+         </tr>
+         <tr>
+            <td></td>
+            <td>2014-07-28</td>
+            <td class="tableContentUp">
+                <div class="buyShip"></div>
+                <div>20140720维多利亚号</div>
+            </td>
+            <td>45671</td>
+            <td>单</td>
+            <td class="tableContentDown">
+                <i class="sellTicket"></i><em>天津-济州-天津</em><p>4晚5天</p>
+            </td>
+            <td class="tableContentDown2">
+                <a href="javascript:void(0);">处女星号</a>
+                <p><a href="javascript:void(0);">MSC地中海邮轮</a></p>
+            </td>
+            <td>2014-07-28</td>
+            <td class="startPointCost">1584</td>
+            <td>
+                <div>
                     <span class="stock">总</span>
-                    <span class="stockFont1">80</span>
-                </td>
-                <td class="create saling">售卖中</td>
-                <td class="operate left">
-                    <i>编辑</i><i>详情</i>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <input type="checkbox"/>
-                </td>
-                <td>2014-07-28</td>
-                <td>
-                    <div class="buyShip"></div>
-                    <div>20140720维多利亚号</div>
-                </td>
-                <td>2014-07-28</td>
-                <td class="startPointCost">1584</td>
-                <td>
-                    <div>
-                        <span class="stock">总</span>
-                        <span class="stockFont1 stockFont2">80</span>
-                    </div>
-                    <div>
-                        <span class="stock">售</span>
-                        <span class="stockFont1 stockFont2">60</span>
-                    </div>
-                    <div>
-                        <span class="stock">余</span>
-                        <span class="stockFont1 stockFont2">20</span>
-                    </div>
-                    
-                </td>
-                <td class="create">变更</td>
-                <td class="operate">
-                    <i>详情</i>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <input type="checkbox"/>
-                </td>
-                <td>2014-07-28</td>
-                <td>
-                    <div class="buyShip"></div>
-                    <div>20140720维多利亚号</div>
-                </td>
-                <td>2014-07-28</td>
-                <td class="startPointCost">1584</td>
-                <td>
+                    <span class="stockFont1 stockFont2">80</span>
+                </div>
+                <div>
+                    <span class="stock">售</span>
+                    <span class="stockFont1 stockFont2">60</span>
+                </div>
+                <div>
+                    <span class="stock">余</span>
+                    <span class="stockFont1 stockFont2">20</span>
+                </div>
+            </td>
+            <td class="create shutdown">截止收客</td>
+            <td class="operater"><a class="ac-sendGroupInfo" href="javascript:void(0);">发出团通知书</a></td>
+         </tr>
+         <tr>
+            <td></td>
+            <td>2014-07-28</td>
+            <td class="tableContentUp">
+                <div class="buyShip"></div>
+                <div>20140720维多利亚号</div>
+            </td>
+            <td>45671</td>
+            <td>单</td>
+            <td class="tableContentDown">
+                <i class="stopSell"></i><em>天津-济州-天津</em><p>4晚5天</p>
+            </td>
+            <td class="tableContentDown2">
+                <a href="javascript:void(0);">处女星号</a>
+                <p><a href="javascript:void(0);">MSC地中海邮轮</a></p>
+            </td>
+            <td>2014-07-28</td>
+            <td class="startPointCost">1584</td>
+            <td>
+                <div>
                     <span class="stock">总</span>
-                    <span class="stockFont1">80</span>
-                </td>
-                <td class="create shutdown">截止收客</td>
-                <td class="operate left">
-                    <i>编辑</i><i>详情</i>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <input type="checkbox"/>
-                </td>
-                <td>2014-07-28</td>
-                <td>
-                    <div class="buyShip"></div>
-                    <div>20140720维多利亚号</div>
-                </td>
-                <td>2014-07-28</td>
-                <td class="startPointCost">1584</td>
-                <td>
+                    <span class="stockFont1 stockFont2">80</span>
+                </div>
+                <div>
+                    <span class="stock">售</span>
+                    <span class="stockFont1 stockFont2">60</span>
+                </div>
+                <div>
+                    <span class="stock">余</span>
+                    <span class="stockFont1 stockFont2">20</span>
+                </div>
+            </td>
+            <td class="create stopSale">已停售</td>
+            <td>----</td>
+         </tr>
+         <tr>
+            <td></td>
+            <td>2014-07-28</td>
+            <td class="tableContentUp">
+                <div class="buyShip"></div>
+                <div>20140720维多利亚号</div>
+            </td>
+            <td>45671</td>
+            <td>单</td>
+            <td class="tableContentDown">
+                <i class="sellTicket"></i><em>天津-济州-天津</em><p>4晚5天</p>
+            </td>
+            <td class="tableContentDown2">
+                <a href="javascript:void(0);">处女星号</a>
+                <p><a href="javascript:void(0);">MSC地中海邮轮</a></p>
+            </td>
+            <td>2014-07-28</td>
+            <td class="startPointCost">1584</td>
+            <td>
+                <div>
                     <span class="stock">总</span>
-                    <span class="stockFont1">80</span>
-                </td>
-                <td class="create">已发出团通知</td>
-                <td class="operate">
-                    <i>详情</i>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <input type="checkbox"/>
-                </td>
-                <td>2014-07-28</td>
-                <td>
-                    <div class="buyShip"></div>
-                    <div>20140720维多利亚号</div>
-                </td>
-                <td>2014-07-28</td>
-                <td class="startPointCost">1584</td>
-                <td>
+                    <span class="stockFont1 stockFont2">80</span>
+                </div>
+                <div>
+                    <span class="stock">售</span>
+                    <span class="stockFont1 stockFont2">60</span>
+                </div>
+                <div>
+                    <span class="stock">余</span>
+                    <span class="stockFont1 stockFont2">20</span>
+                </div>
+            </td>
+            <td class="create">已发出团通知</td>
+            <td class="operater"><a class="ac-sendGroupInfo" href="javascript:void(0);">发出团通知书</a></td>
+         </tr>
+         <tr>
+            <td></td>
+            <td>2014-07-28</td>
+            <td class="tableContentUp">
+                <div class="buyShip"></div>
+                <div>20140720维多利亚号</div>
+            </td>
+            <td>45671</td>
+            <td>单</td>
+            <td class="tableContentDown">
+                <i class="sellTicket"></i><em>天津-济州-天津</em><p>4晚5天</p>
+            </td>
+            <td class="tableContentDown2">
+                <a href="javascript:void(0);">处女星号</a>
+                <p><a href="javascript:void(0);">MSC地中海邮轮</a></p>
+            </td>
+            <td>2014-07-28</td>
+            <td class="startPointCost">1584</td>
+            <td>
+                <div>
                     <span class="stock">总</span>
-                    <span class="stockFont1">80</span>
-                </td>
-                <td class="create stopSale">已停售</td>
-                <td class="operate">
-                    <i>详情</i>
-                </td>
-            </tr>
+                    <span class="stockFont1 stockFont2">80</span>
+                </div>
+                <div>
+                    <span class="stock">售</span>
+                    <span class="stockFont1 stockFont2">60</span>
+                </div>
+                <div>
+                    <span class="stock">余</span>
+                    <span class="stockFont1 stockFont2">20</span>
+                </div>
+            </td>
+            <td class="create">已发出团通知</td>
+            <td class="operater ac-sendGroupInfo"><a class="ac-sendGroupInfo" href="javascript:void(0);">发出团通知书</a></td>
+         </tr>
+         <tr>
+            <td></td>
+            <td>2014-07-28</td>
+            <td class="tableContentUp">
+                <div class="buyShip"></div>
+                <div>20140720维多利亚号</div>
+            </td>
+            <td>45671</td>
+            <td>单</td>
+            <td class="tableContentDown">
+                <i class="sellTicket"></i><em>天津-济州-天津</em><p>4晚5天</p>
+            </td>
+            <td class="tableContentDown2">
+                <a href="javascript:void(0);">处女星号</a>
+                <p><a href="javascript:void(0);">MSC地中海邮轮</a></p>
+            </td>
+            <td>2014-07-28</td>
+            <td class="startPointCost">1584</td>
+            <td>
+                <div>
+                    <span class="stock">总</span>
+                    <span class="stockFont1 stockFont2">80</span>
+                </div>
+                <div>
+                    <span class="stock">售</span>
+                    <span class="stockFont1 stockFont2">60</span>
+                </div>
+                <div>
+                    <span class="stock">余</span>
+                    <span class="stockFont1 stockFont2">20</span>
+                </div>
+            </td>
+            <td class="create">已发出团通知</td>
+            <td class="operater"><div><a class="ac-sendGroupInfo" href="javascript:void(0);">重新发送</a></div><div><a class="ac-groupDown" href="javascript:void(0);">下载出团通知</a></div></td>
+         </tr>
          </tbody>
          </table>
 
@@ -391,6 +472,8 @@
     </div>
 </div>
 
+
+
     <div id="extFooter">
         <div class="passengerLiner-footer">
             <p>
@@ -402,6 +485,8 @@
             <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
+
+    <div class="triggerSecondWin ac-sendGroupConfirm"><div>
 
     <script type="text/x-kendo-template" id="ac-returnReasons-template">
         <p class="causeContent">退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明
@@ -555,7 +640,7 @@
     </script> -->
 
     <script type="text/x-kendo-template" id="pw-send-msg-success">
-        <div class="send-msg-success"><i class="large-success-icon"></i> 操作成功！</div>
+        <div class="send-msg-success"><i class="large-success-icon"></i> 发送成功！</div>
     </script>
 
     <script type="text/x-kendo-template" id="ac-seeCause-template">
@@ -574,28 +659,80 @@
             </a>
         </div>
     </script>
+
+
+<script type="text/x-kendo-template" id="ac-sendGroupInfo_template">
+    <div class="submitOrder sendGroupDlg">
+        <div class="sendGroupFile"><i class="file"></i>五湖四海到处游出团通知.doc</div>
+            <a href="javascript:void(0);" class="modify">修改</a>
+        <div class="submitOrderBtn submitOrderBtnAdd submitOrderBtnAdd3">
+            <a class="supplierButton brightRedBig_btn sendBtn">
+                <span class="left"></span>
+                <span class="center center_1">发 送</span>
+                <span class="right"></span>
+            </a>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="ac-sendGroupConfirm_template">
+    <div class="submitOrder sendGroupDlg">
+            <span class="note">发送出团通知后运营商会对出团通知书进行审核，并直接发送给客户。</span>
+        <div class="submitOrderBtn submitOrderBtnAdd submitOrderBtnAdd4">
+            <a class="supplierButton brightRedBig_btn">
+                <span class="left"></span>
+                <span class="center center_1 brightBtn-blue">确认发送</span>
+                <span class="right"></span>
+            </a>
+            <a class="returnModify">返回修改</a>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="ac-groupDown_template">
+    <div class="submitOrder sendGroupDlg groupDown">
+        <table class="downTable">
+            <colgroup>
+                <col width="70" />
+                <col width="400" />
+                <col width="40" />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <td>2014-9-10<p>12:33</p></td>
+                    <td>
+                        <div class="docName">
+                            <i class="file"></i>五湖四海到处游出团通知.doc
+                            <span>供应商</span>
+                        </div>
+                    </td>
+                    <td><a href="javascript:void(0)">下载</a></td>
+                </tr>
+                <tr>
+                    <td>2014-9-10<p>12:33</p></td>
+                    <td>
+                        <div class="docName">
+                            <i class="file"></i>五湖四海到处游出团通知.doc
+                            <span>供应商</span>
+                        </div>
+                    </td>
+                    <td><a href="javascript:void(0)">下载</a></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</script>
+
+
+
     
     <script type="text/javascript">
         $(function(){
 
 
 
-    var sendMsgSuccessPw = new PopWindow(".brightBtn-blue", {
-        title: false,
-        width: 410,
-        template: "#pw-send-msg-success",
-        autoHide: 2*1000,
-        animation: {
-            open: {
-                effects: "fade:in",
-                duration: 300
-            },
-            close: {
-                effects: "fade:out",
-                duration: 300
-            }
-        }
-    }).init();
+    
 
     $(".send-msg-success").parents(".k-window").css("padding-top","8px");
 
@@ -649,8 +786,62 @@
                     showButtonPanel :true
                 });
             });
-            
         });
+
+
+        var sendGroupInfo = new PopWindow(".ac-sendGroupInfo",{
+            title:"发送出团通知",
+            width:470,
+            template:"#ac-sendGroupInfo_template"
+        }).init();
+
+        var sendGroupConfirm = new PopWindow(".ac-sendGroupConfirm",{
+            title:"发送出团通知",
+            width:470,
+            
+            template:"#ac-sendGroupConfirm_template"
+        }).init();
+
+        var sendMsgSuccessPw = new PopWindow(".brightBtn-blue", {
+        title: false,
+        width: 410,
+        template: "#pw-send-msg-success",
+        autoHide: 2*1000,
+        open: function(){
+            sendGroupConfirm.close();
+        },
+
+        animation: {
+            open: {
+                effects: "fade:in",
+                duration: 300
+            },
+            close: {
+                effects: "fade:out",
+                duration: 300
+            }
+        }
+    }).init();
+
+
+    var groupDown = new PopWindow(".ac-groupDown",{
+        title:"下载出团通知",
+        width:536,
+        height:208,
+        template:"#ac-groupDown_template"
+    }).init();
+
+    $(".groupDown").parents(".k-window").css("padding-bottom","18px");
+
+
+
+    var sendGroup = $(".sendGroupDlg").find(".sendBtn");
+    sendGroup.on("click",function(){
+        sendGroupInfo.close();
+        $(".triggerSecondWin").trigger("click");
+    });
+
+    // $(".ac-groupDown").trigger("click");
     </script>
 
 
