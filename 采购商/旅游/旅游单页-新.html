@@ -91,20 +91,11 @@
             <div class="tripInfoAndBooking_left">
                 <ul style="position:relative;">
                     <li id="scrollImg" style="margin-bottom: 8px;">
+                        <img src="../../static/images/store/travl/noTravelImg.jpg"> <!-- 无图片 -->
+                        <!-- <img src="../../static/images/store/tripImg.jpg" alt=""/>
                         <img src="../../static/images/store/tripImg.jpg" alt=""/>
-                        <img src="../../static/images/store/tripImg.jpg" alt=""/>
-                        <img src="../../static/images/store/tripImg.jpg" alt=""/>
+                        <img src="../../static/images/store/tripImg.jpg" alt=""/> -->
                     </li>
-                    <!-- <li>
-                        <div class="calendarOperation">
-                            <div class="calendarMonthLeft"></div>
-                            <div class="calendarDate"></div>
-                            <div class="calendarMonthRight"></div>
-                        </div>
-                        <div id="calendar" class="calendarContainer">
-                            
-                        </div>
-                    </li> -->
                 </ul>
                 <div id="priceCalendar">
                     <ul class="tabSwitchMonth">
@@ -124,17 +115,25 @@
                 </div>
             </div>
             <div class="tripInfoAndBooking_right">
-                <ul>
+                <ul class="tripTopTitle">
                     <li class="tripName">
                         <p>[美国东西海岸夏威夷+加拿大18日游] 6月29日暑期特价游，韩亚航空<i class="starLevelOrange4"></i></p>
                         <span class="unimportantTxt87">产品编号：</span>60891
                         <span class="unimportantTxt87">出发地：</span>上海
-                        <span class="unimportantTxt87">团期：</span>6/29  7/8  7/21  7/29
-                        
+                        <span class="unimportantTxt87">团期：</span>
+                        <span class="tourDate">
+                            <em>6/29</em>
+                            <em>7/8</em>
+                            <em>7/21</em>
+                            <em>7/29</em>
+                        </span>
                     </li>
-                    <li style="border-color: #D2E2F3">
-                        <span class="importantTxt1" style="font-size:18px;font-weight: bold">￥<span style="font-size: 30px;">16500</span></span>起
-                        <span style="text-decoration:underline;margin-left:15px;">起价说明</span>
+                    <li style="border-color: #D2E2F3;padding:10px 10px 20px 10px;">
+                        <span class="importantTxt1" style="font-size:18px;">￥
+                            <span style="font-size: 30px;">16500</span>
+                            <span style="font-size:14px;color:#333;">起</span>
+                        </span>
+                        <span class="spExplain">起价说明</span>
                         <span class="largeBtnOrange orderNow">立即预订</span>
                     </li>
                 </ul>
@@ -255,6 +254,17 @@
                             <p class="tripName">上海-夏威夷</p>
                             <div>
                                 <strong>参考航班：</strong>UA858 18JUN PVGSFO 1210 0845 乘机飞往旧金山，抵达后参观富有意大利风情的【渔人码头】［不少于30分钟］，它是旧金山充满快乐气息的地方。参观【罗马艺术宫】［不少于15分钟］，参观素有“美国小国会”之称的【旧金山市政厅】［外观不少于15分钟］，这是经历1906年旧金山大地震后于1915年以华盛顿的议事堂为原型修建的。参观号称是“世界上最弯曲的街道”的【九曲花街】［不少于30分钟］，游览【金门大桥】［不少于30分钟］，此桥是旧金山最知名的景点，不仅成为旧金山的地标，在全美更是享有首屈一指的声誉。晚餐后入住酒店休息。<br/>
+                                <strong>景点游览：</strong>
+                                <ul class="viewPoint">
+                                    <li><span>盖士镇</span><i class="grayArrowRight"></i></li>
+                                    <li><span>盖士镇</span><i class="grayArrowRight"></i></li>
+                                    <li><span>盖士镇</span></li>
+                                </ul>
+                                <ul class="viewPointImg">
+                                    <li><img src="../../static/images/store/travl/travlContentImg_01.jpg"></li>
+                                    <li><img src="../../static/images/store/travl/travlContentImg_02.jpg"></li>
+                                    <li><img src="../../static/images/store/travl/travlContentImg_03.jpg"></li>
+                                </ul>
                                 <strong>用餐：</strong>中餐：包含；晚餐：包含；<br/>
                                 <strong>酒店：</strong>酒店标间
                             </div>
@@ -369,18 +379,19 @@
 
 <script type="text/html" id="bookingTemplate">
     <div class="bookingContainer2">
+        <div class="hideBorderBot"></div>
         <table>
             <colgroup>
-                <col width="40"/>
+                <col width="37"/>
             </colgroup>
             <tr>
                 <td><span class="unimportantTxt63">出发</span></td>
-                <td>#= data #</td>
+                <td class="numberFont14">#= data #</td>
             </tr>
             <tr>
                 <td><span class="unimportantTxt63">成人&nbsp;</span></td>
                 <td>
-                    <select name="" id="" data-role="dropdownlist" style="width: 59px;">
+                    <select name="adultNum" id="" data-role="dropdownlist" style="width: 59px;">
                         <option value="1">1</option>
                         <option value="2">2</option>
                     </select> 
@@ -390,7 +401,7 @@
             <tr class="trBorderBottom">
                 <td><span class="unimportantTxt63">儿童&nbsp;</span></td>
                 <td>
-                    <select name="" id="" data-role="dropdownlist" style="width: 59px;">
+                    <select name="childNum" id="" data-role="dropdownlist" style="width: 59px;">
                         <option value="1">1</option>
                         <option value="2">2</option>
                     </select>
@@ -399,12 +410,12 @@
             </tr>
             <tr>
                 <td colspan="2" class="priceTotal">
-                    合计<span class="importantTxt1">￥9865</span>
+                    合计<span class="importantTxt1 numberFont16">￥9865</span>
                 </td>
             </tr>
             <tr>
                 <td colspan="2" class="orderBtnOrange">
-                    <span class="btn_booking_clickable" style="position: static;margin:10px 0">立即预订</span>
+                    <span class="btn_booking_clickable" style="position: static;margin:0;">立即预订</span>
                 </td>
             </tr>
         </table>
@@ -413,13 +424,14 @@
 
 <script type="text/html" id="moreBookingTemplate">
     <div class="bookingContainer2 multiTem">
+        <div class="hideBorderBot"></div>
         <table>
             <colgroup>
                 <col width="40"/>
             </colgroup>
             <tr>
                 <td><span class="unimportantTxt63">出&nbsp;发</span></td>
-                <td>#= data #</td>
+                <td class="numberFont14">#= data #</td>
             </tr>
             <tr>
                 <td colspan="2">
@@ -452,7 +464,7 @@
             <tr>
                 <td><span class="unimportantTxt63">成&nbsp;人&nbsp;</span></td>
                 <td>
-                    <select name="" id="" data-role="dropdownlist" style="width: 123px;">
+                    <select name="adultNum" id="" data-role="dropdownlist" style="width: 123px;">
                         <option value="1">1</option>
                         <option value="2">2</option>
                     </select> 
@@ -462,7 +474,7 @@
             <tr class="trBorderBottom">
                 <td><span class="unimportantTxt63">儿&nbsp;童&nbsp;</span></td>
                 <td>
-                    <select name="" id="" data-role="dropdownlist" style="width: 123px;">
+                    <select name="childNum" id="" data-role="dropdownlist" style="width: 123px;">
                         <option value="1">1</option>
                         <option value="2">2</option>
                     </select>
@@ -471,12 +483,12 @@
             </tr>
             <tr>
                 <td colspan="2" class="priceTotal">
-                    合计<span class="importantTxt1">￥9865</span>
+                    合计<span class="importantTxt1 numberFont16">￥29865</span>
                 </td>
             </tr>
             <tr>
                 <td colspan="2" class="orderBtnOrange">
-                    <span class="btn_booking_clickable" style="position: static;margin:10px 0">立即预订</span>
+                    <span class="btn_booking_clickable" style="position: static;margin:0">立即预订</span>
                 </td>
             </tr>
         </table>
@@ -536,12 +548,12 @@
                 <tr class="trBorderBottom splitLineTr"><td></td><td></td></tr>
                 <tr>
                     <td colspan="2" class="priceTotal">
-                        合计<span class="importantTxt1">￥9865</span>
+                        合计<span class="importantTxt1 numberFont16">￥9865</span>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2" class="orderBtnOrange">
-                        <span class="btn_booking_clickable" style="position: static;">立即预订</span>
+                        <span class="largeBtnOrange orderNow" style="position: static;">立即预订</span>
                     </td>
                 </tr>
             </table>
@@ -587,8 +599,10 @@
                         <select name="" id="" data-role="dropdownlist" style="width: 65px;">
                             <option value="1">1</option>
                             <option value="2">2</option>
-                        </select> 
-                        <span class="importantTxt1">￥9865</span>/人
+                        </select>
+                        <span class="tdSpanPriceRight">
+                            <span class="importantTxt1">￥9865</span>/人
+                        </span>
                     </td>
                 </tr>
                 <tr>
@@ -598,18 +612,20 @@
                             <option value="1">1</option>
                             <option value="2">2</option>
                         </select>
-                        <span class="importantTxt1">￥9865</span>/人
+                        <span class="tdSpanPriceRight">
+                            <span class="importantTxt1">￥9865</span>/人
+                        </span>
                     </td>
                 </tr>
                 <tr class="trBorderBottom splitLineTr"><td></td><td></td></tr>
                 <tr>
                     <td colspan="2" class="priceTotal">
-                        合计<span class="importantTxt1">￥9865</span>
+                        合计<span class="importantTxt1 numberFont16">￥9865</span>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2" class="orderBtnOrange">
-                        <span class="btn_booking_clickable" style="position: static;">立即预订</span>
+                        <span class="largeBtnOrange orderNow" style="position: static;">立即预订</span>
                     </td>
                 </tr>
             </table>
@@ -769,14 +785,40 @@
             $(this).parents("#priceCalendar").find(".hasBorderTd").removeClass("hasBorderTdActive");
             $(this).addClass("hasBorderTdActive");
 
-            new FloatLayer({
+            var normalTourOrderFL = new FloatLayer({
                 trigger: "#priceCalendar .enableTd",
                 template:"#bookingTemplate",
                 type:'click',
                 data: showDate,
+                expectClose: false,
                 offsetX:0,
                 offsetY:56
             });
+
+            // 去除 select的点击事件对FloatLayer的影响
+            $(document).on('click',function(e){
+                 t = e.target;
+                 //判断下拉框
+                var isInFloatlayer=false;
+                 var parentPopup=$(e.target).parents(".k-popup")[0];
+                 if(typeof(parentPopup)!='undefined'){
+                        var targetTrigger=$("select[name='adultNum'],select[name='childNum']");
+                        targetTrigger.each(function(e){
+                            var element=$(this).data("kendoDropDownList").popup.element[0];
+                            if(parentPopup==element){
+                                isInFloatlayer=true;
+                            }
+                        })
+                 }
+                 
+                 var ele = $("#priceCalendar .enableTd");
+                 if ( !$(t).is(ele)
+                     && $(t).closest(ele).length===0
+                     && $(t).closest('.ac-floatlayer').length===0
+                     && !$(t).hasClass('k-placeholder') && !isInFloatlayer){
+                     normalTourOrderFL.close();
+                 }
+             });
         });
 
         $("#priceCalendar .calTable").delegate(".enableTdMt .hasBorderTd", "click", function(){
@@ -786,14 +828,41 @@
             $(this).parents("#priceCalendar").find(".hasBorderTd").removeClass("hasBorderTdActive");
             $(this).addClass("hasBorderTdActive");
 
-            new FloatLayer({
+            var multiTourOrderFL = new FloatLayer({
                 trigger: "#priceCalendar .enableTdMt",
                 template:"#moreBookingTemplate",
                 type:'click',
                 data: showDate,
+                expectClose: false,
                 offsetX:0,
                 offsetY:56
             });
+
+
+            // 去除 select的点击事件对FloatLayer的影响
+            $(document).on('click',function(e){
+                 t = e.target;
+                 //判断下拉框
+                var isInFloatlayer=false;
+                 var parentPopup=$(e.target).parents(".k-popup")[0];
+                 if(typeof(parentPopup)!='undefined'){
+                        var targetTrigger=$("select[name='adultNum'],select[name='childNum']");
+                        targetTrigger.each(function(e){
+                            var element=$(this).data("kendoDropDownList").popup.element[0];
+                            if(parentPopup==element){
+                                isInFloatlayer=true;
+                            }
+                        })
+                 }
+                 
+                 var ele = $("#priceCalendar .enableTdMt");
+                 if ( !$(t).is(ele)
+                     && $(t).closest(ele).length===0
+                     && $(t).closest('.ac-floatlayer').length===0
+                     && !$(t).hasClass('k-placeholder') && !isInFloatlayer){
+                     multiTourOrderFL.close();
+                 }
+             });
         });
 
         $("body").delegate(".bookingContainer2.multiTem .departureInfo", "click", function(){
@@ -835,12 +904,12 @@
 
                         $(this).parents(".priceCalendarPw").find(".hasBorderTd").removeClass("hasBorderTdActive");
                         $(this).find(".hasBorderTd").addClass("hasBorderTdActive");
-
-                    } else {        // 没有信息
-                        $(".notSelectDateBlock").show();
-                        $(".notSelectDateBlock").siblings("div").hide();
-                        $(this).parents(".priceCalendarPw").find(".hasBorderTd").removeClass("hasBorderTdActive");
                     }
+                    // } else {        // 没有信息
+                    //     $(".notSelectDateBlock").show();
+                    //     $(".notSelectDateBlock").siblings("div").hide();
+                    //     $(this).parents(".priceCalendarPw").find(".hasBorderTd").removeClass("hasBorderTdActive");
+                    // }
                 });
             });
 
@@ -913,7 +982,7 @@
             }
 
             for (; currentDay <= monthDays; currentDay++) {
-                if (currentDay % 7 == (7 - firstWeekDay)) {
+                if (currentDay % 7 == (7 - firstWeekDay) && currentDay != monthDays) {
                     calStr += "<td>" + geneTdContent(currentDay, monthInfo) + "</td></tr><tr>";
                 } else if (currentDay == monthDays) {
                     calStr += "<td>" + geneTdContent(currentDay, monthInfo) + "</td>";
