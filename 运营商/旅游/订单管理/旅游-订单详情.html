@@ -15,12 +15,12 @@
 <script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
 <script type="text/javascript" src="/static/js/global.js"></script>
 <script type="text/javascript" src="/static/js/flight.js"></script>
-    <!--<script>
+    <script>
         $(function(){
             kendo.init('body');
             lensf();
         })
-    </script>-->
+    </script>
 
     <!--[if IE]>
     <script src="/static/js/html5.js"></script>
@@ -73,8 +73,27 @@
                 <button class="btns btn-return">返回</button>
             </div>
             <div class="col col-r sep-l">
-                <button class="btns btn-blue">退回</button>
-                <a href="javascript:;" class="button_important adaptiveButton small">
+                <button class="btns btn-blue btn_modifyPriceReject">调价退回</button>
+                <a href="javascript:;" class="button_important adaptiveButton small btn_modifyPricePass">
+                    <span class="left"></span>
+                    <span class="center">调价审核通过</span>
+                    <span class="right"></span>
+                </a>
+                <button class="btns btn-blue btn_leaveGroupReject">退团退回</button>
+                <a href="javascript:;" class="button_important adaptiveButton small btn_leaveGroupPass">
+                    <span class="left"></span>
+                    <span class="center">退团审核通过</span>
+                    <span class="right"></span>
+                </a>
+                <button class="btns btn-blue btn_modify">修改</button>
+                <a href="javascript:;" class="button_important adaptiveButton small btn_save" style="display:none;">
+                    <span class="left"></span>
+                    <span class="center">保存</span>
+                    <span class="right"></span>
+                </a>
+
+                <button class="btns btn-blue btn_modify btn_askSeatReject">退回</button>
+                <a href="javascript:;" class="button_important adaptiveButton small btn_askSeatPass">
                     <span class="left"></span>
                     <span class="center">审核通过</span>
                     <span class="right"></span>
@@ -84,9 +103,10 @@
 
         <div class="block block0 clearfix">
             <div class="col col-l">
-                <div class="row">
+                <div class="row textPadding">
                     <span class="text1">订单号：<strong>12311321983921</strong></span>&nbsp;
                     <span class="text2"> - 订单类型：国内机票 </span>
+                    <span class="text2"> 供应商：不夜城国旅 </span>
                 </div>
                 <div class="row">
                     <span>最后更新：<em>航班号更改为CZ3609</em></span>&nbsp;&nbsp;<span>更新时间：<em>2013-06-15 11:23 </em></span>&nbsp;&nbsp;<span><a href="#">【更多操作日志】</a></span>
@@ -99,6 +119,7 @@
                         <span>创建</span>
                         <span class="highlight-fl">支付</span>
                         <span>确认</span>
+                        <span>完成</span>
                     </div>
                     </li>
                     <li>
@@ -116,14 +137,14 @@
         
         <!-- 订单信息 -->
         <div class="block block1 block-module orderBlock-m">
-            <div class="block-title">客户信息</div>
+            <div class="block-title">采购商信息</div>
             <ul class="flat-list" style="margin-right: -120px;">
                 <li>
-                <label class="vertical-head">客户名称</label>
+                <label class="vertical-head">采购商名称</label>
                 <span>苏宁</span>
                 </li>
                 <li>
-                <label class="vertical-head">结算方式</label>
+                <label class="vertical-head">支付方式</label>
                 <span>订单授信</span>
                 </li>
                 <li>
@@ -145,7 +166,7 @@
                 </li>
                 <li>&nbsp;</li>
                 <li>
-                <label class="vertical-head">采购备注</label>
+                <label class="vertical-head">采购需求</label>
                 <span> </span>
                 </li>
                 <li>&nbsp;</li>
@@ -193,31 +214,7 @@
                     </td>
                 </tr>
                 <tr class="dotted_top">
-                    <td>可 &nbsp;&nbsp; 选：</td>
-                    <td>
-                        <em class="circularBeadBorder">签证</em>
-                        <span>美国个人旅游签证（中信银行代传递免面试，用于团队，上海送签）</span>
-                    </td>
-                    <td>
-                        <em class="font14">签证:</em>
-                    </td>
-                    <td>
-                        <span style="font-size: 14px;"><em style="color: #ef4423;">￥9865</em> /人 x2 </span>
-                    </td>
-                </tr>
-                <tr class="moveTop">
-                    <td> </td>
-                    <td>
-                        <em class="circularBeadBorder noContent"> </em>
-                        <span>美国个人旅游签证（中信银行代传递免面试，用于团队，上海送签）</span>
-                    </td>
-                    <td> </td>
-                    <td>
-                        <span style="font-size: 14px;"><em style="color: #ef4423;">￥9865</em> /人 x2 </span>
-                    </td>
-                </tr>
-                <tr class="moveTop">
-                    <td> </td>
+                     <td>可 &nbsp;&nbsp; 选：</td>
                     <td>
                         <em class="circularBeadBorder">附加费用</em>
                         <span>单人房差</span>
@@ -263,84 +260,124 @@
         
         <div class="departure">
             <div class="chief"> <h3>旅客信息</h3> </div>
-            <table class="orderCommonTab">
-                <colgroup>
-                    <col width="40"/>
-                    <col width="60"/>
-                    <col width="110"/>
-                    <col width="57"/>
-                    <col width="130"/>
-                    <col width="72"/>
-                    <col width="55"/>
-                    <col width="35"/>
-                    <col width="75"/>
-                    <col width="57"/>
-                    <col width="65"/>
-                    <col width="165"/>
-                </colgroup>
-                <thead>
-                <tr>
-                    <th style="text-align: center;"></th>
-                    <th>姓名</th>
-                    <th>状态</th>
-                    <th>证件类型</th>
-                    <th>证件号码</th>
-                    <th>证件有效期</th>
-                    <th>国籍</th>
-                    <th>性别</th>
-                    <th>生日</th>
-                    <th>出生地</th>
-                    <th>手机号</th>
-                    <th>附加</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td style="text-align: center;">
-                        <span class="blueBgStyle">成人</span>
-                    </td>
-                    <td>张大国</td>
-                    <td>
-                        <em class="redFont minWidth">已确认</em>
-                        <em> </em>
-                    </td>
-                    <td>身份证</td>
-                    <td>420813198809131539</td>
-                    <td>18/09/18</td>
-                    <td>中国</td>
-                    <td>男</td>
-                    <td>1985-10-23</td>
-                    <td>上海</td>
-                    <td>13800138000</td>
-                    <td>
-                        <a href="javascript:void(0);">美国个人旅游签证</a>
-                        <em>材料已到</em>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;">
-                        <span class="blueBgStyle">儿童</span>
-                    </td>
-                    <td>张大国</td>
-                    <td>
-                        <em class="redFont minWidth">已确认</em>
-                        <em> </em>
-                    </td>
-                    <td>身份证</td>
-                    <td>420813198809131539</td>
-                    <td>18/09/18</td>
-                    <td>中国</td>
-                    <td>男</td>
-                    <td>1985-10-23</td>
-                    <td>上海</td>
-                    <td>13800138000</td>
-                    <td>
-                        <a href="javascript:void(0);">美国个人旅游签证</a>
-                        <em>材料已到</em>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <div style="overflow-x: auto;">
+                <table class="orderCommonTab travelerInfoTable">
+                    <colgroup>
+                        <col width="50"/>
+                        <col width="50"/>
+                        <col width="130"/>
+                        <col width="100"/>
+                        <col width="60"/>
+                        <col width="125"/>
+                        <col width="72"/>
+                        <col width="45"/>
+                        <col width="35"/>
+                        <col width="75"/>
+                        <col width="50"/>
+                        <col width="90"/>
+                        <col width="48"/>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th style="text-align: center;"></th>
+                        <th>姓名</th>
+                        <th>状态</th>
+                        <th>拼音</th>
+                        <th>证件类型</th>
+                        <th>证件号码</th>
+                        <th>证件有效期</th>
+                        <th>国籍</th>
+                        <th>性别</th>
+                        <th>生日</th>
+                        <th>出生地</th>
+                        <th>手机号</th>
+                        <th>单房差</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="text-align: center;">
+                            <span class="blueBgStyle">成人</span>
+                        </td>
+                        <td>
+                            <input type="text" readonly="readonly" value="张大国" class="editableText travelerNameText">
+                        </td>
+                        <td>
+                            <em class="minWidth">占位</em>
+                            <em> </em>
+                        </td>
+                        <td>
+                            <input type="text" readonly="readonly" value="DAGUO/ZHANG" class="editableText travelerPinyinText">
+                        </td>
+                        <td>身份证</td>
+                        <td>
+                            <input type="text" readonly="readonly" value="420813198809131539" class="editableText travelerCardIdText">
+                            <a href="javascript:void(0);" style="display:none;">删除</a>
+                        </td>
+                        <td>
+                            <input type="text" readonly="readonly" value="18/09/18" class="editableText travelerCardDateText">
+                        </td>
+                        <td>
+                            <input type="text" readonly="readonly" value="中国" class="editableText travelerCountryText">
+                        </td>
+                        <td>男</td>
+                        <td>
+                            <input type="text" readonly="readonly" value="1985-10-23" class="editableText travelerBirthDateText">
+                        </td>
+                        <td>
+                            <input type="text" readonly="readonly" value="上海" class="editableText travelerBirthPlaceText">
+                        </td>
+                        <td>
+                            <input type="text" readonly="readonly" value="13800138000" class="editableText travelerPhoneText">
+                        </td>
+                        <td>500元</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">
+                            <span class="greenBgStyle">儿童</span>
+                        </td>
+                        <td>张大国</td>
+                        <td>
+                            <em class="redFont minWidth">调价审核</em>
+                            <em>
+                                <em class="redFont">金额</em>
+                                <input class="tbPriceText" type="text" value="-500">
+                            </em>
+                        </td>
+                        <td>DAGUO/ZHANG</td>
+                        <td>身份证</td>
+                        <td>420813198809131539</td>
+                        <td>18/09/18</td>
+                        <td>中国</td>
+                        <td>男</td>
+                        <td>1985-10-23</td>
+                        <td>上海</td>
+                        <td>13800138000</td>
+                        <td>500元</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">
+                            <span class="blueBgStyle">成人</span>
+                        </td>
+                        <td>张大国</td>
+                        <td>
+                            <em class="minWidth">已调价</em>
+                            <em>金额 -500</em>
+                        </td>
+                        <td>DAGUO/ZHANG</td>
+                        <td>身份证</td>
+                        <td>420813198809131539</td>
+                        <td>18/09/18</td>
+                        <td>中国</td>
+                        <td>男</td>
+                        <td>1985-10-23</td>
+                        <td>上海</td>
+                        <td>13800138000</td>
+                        <td>500元</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="departure">
             <div class="chief"> <h3>退团旅客</h3> </div>
@@ -348,22 +385,24 @@
                 <colgroup>
                     <col width="40"/>
                     <col width="60"/>
-                    <col width="110"/>
-                    <col width="57"/>
+                    <col width="145"/>
+                    <col width="90"/>
+                    <col width="60"/>
                     <col width="130"/>
                     <col width="72"/>
                     <col width="55"/>
                     <col width="35"/>
                     <col width="75"/>
-                    <col width="57"/>
-                    <col width="65"/>
-                    <col width="165"/>
+                    <col width="55"/>
+                    <col width="75"/>
+                    <col width="50"/>
                 </colgroup>
                 <thead>
                 <tr>
                     <th style="text-align: center;"></th>
                     <th>姓名</th>
                     <th>状态</th>
+                    <th>拼音</th>
                     <th>证件类型</th>
                     <th>证件号码</th>
                     <th>证件有效期</th>
@@ -372,7 +411,7 @@
                     <th>生日</th>
                     <th>出生地</th>
                     <th>手机号</th>
-                    <th>附加</th>
+                    <th>单房差</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -382,9 +421,13 @@
                     </td>
                     <td>张大国</td>
                     <td>
-                        <em class="redFont minWidth">退团审核</em>
-                        <em>费用:500</em>
+                        <em class="minWidth">退团审核</em>
+                        <em>
+                            <em class="redFont" style="margin-left:5px;">费用 </em>
+                            <input class="tbPriceText" type="text" value="0">
+                        </em>
                     </td>
+                    <td>DAGUO/ZHANG</td>
                     <td>身份证</td>
                     <td>420813198809131539</td>
                     <td>18/09/18</td>
@@ -393,20 +436,20 @@
                     <td>1985-10-23</td>
                     <td>上海</td>
                     <td>13800138000</td>
-                    <td>
-                        <a href="javascript:void(0);">美国个人旅游签证</a>
-                        <em>已取消</em>
-                    </td>
+                    <td>500元</td>
                 </tr>
                 <tr>
                     <td style="text-align: center;">
-                        <span class="blueBgStyle">儿童</span>
+                        <span class="greenBgStyle">儿童</span>
                     </td>
                     <td>张大国</td>
                     <td>
-                        <em class="minWidth">已取消</em>
-                        <em>费用:500</em>
+                        <em class="minWidth">已退团</em>
+                        <em style="margin-left:5px;">
+                            费用 -500
+                        </em>
                     </td>
+                    <td>DAGUO/ZHANG</td>
                     <td>身份证</td>
                     <td>420813198809131539</td>
                     <td>18/09/18</td>
@@ -415,17 +458,30 @@
                     <td>1985-10-23</td>
                     <td>上海</td>
                     <td>13800138000</td>
-                    <td>
-                        <a href="javascript:void(0);">美国个人旅游签证</a>
-                        <em>已取消</em>
+                    <td>500元</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">
+                        <span class="blueBgStyle">成人</span>
                     </td>
+                    <td>张大国</td>
+                    <td>
+                        <em class="redFont minWidth">退团审核</em>
+                        <em style="margin-left:5px;"></em>
+                    </td>
+                    <td>DAGUO/ZHANG</td>
+                    <td>身份证</td>
+                    <td>420813198809131539</td>
+                    <td>18/09/18</td>
+                    <td>中国</td>
+                    <td>男</td>
+                    <td>1985-10-23</td>
+                    <td>上海</td>
+                    <td>13800138000</td>
+                    <td>500元</td>
                 </tr>
                 </tbody>
             </table>
-            <div class="remarkContent">
-                <label>退团原因： 客人要求退团</label>
-                <label>取消备注： 客人出行时间变化，需要对出发时间进行调整。</label>
-            </div>
         </div>
         <div class="departure">
             <div class="chief"> <h3>支付信息</h3> </div>
@@ -480,12 +536,25 @@
                     <td><em class="redFont">2000.00元</em></td>
                     <td><em class="redFont">退款成功</em></td>
                 </tr>
+                <tr>
+                    <td colspan="3" class="remarkContent">
+                        <label>退款原因： 客人退团，退出多交的费用</label>
+                        <label>退款备注： 客人要求10天内退款到账户。</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2014-03-01 &nbsp;  15 : 30 : 09</td>
+                    <td><em class="redFont">2000.00元</em></td>
+                    <td><em class="redFont">退款成功</em></td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="remarkContent">
+                        <label>退款原因： 客人退团，退出多交的费用</label>
+                        <label>退款备注： 客人要求10天内退款到账户。</label>
+                    </td>
+                </tr>
                 </tbody>
-            </table>
-            <div class="remarkContent">
-                <label>退款原因： 客人退团，退出多交的费用</label>
-                <label>退款备注： 客人要求10天内退款到账户。</label>
-            </div>
+            </table>            
         </div>
         
         <div class="block block5 block-calc">
@@ -517,7 +586,7 @@
                     </li>
                     <li>
                         <label>
-                            <span>+ &nbsp;签证费</span>
+                            <span>+ &nbsp;调价金额</span>
                             <input value="500.00">
                         </label>
                     </li>
@@ -530,6 +599,395 @@
                 </ul> 
             </div>
         </div>
+
+        <div class="block block5 block-calc">
+            <div id="order_calc">
+                <ul class="flat-list">
+                    <li class="first">
+                        <label>
+                            <span>应付合计</span> 
+                            <input value="2580.00" class="input-b"> 
+                        </label>
+                    </li> 
+                    <li>
+                        <label>
+                            <span>= &nbsp;成人合计</span>
+                            <input value="15000.00 × 1">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <span>+ &nbsp;儿童合计</span>
+                            <input value="10000.00 × 1">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <span>+ &nbsp;房差</span>
+                            <input value="500.00 × 1">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <span>+ &nbsp;调价金额</span>
+                            <input value="500.00">
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <span>+ &nbsp;退团费用</span>
+                            <input value="500.00">
+                        </label>
+                    </li>
+                </ul> 
+            </div>
+        </div>
+
+    <script type="text/x-kendo-template" id="modifyPriceRejectPw">
+        <div class="modifyPriceRejectBlock">  
+            <table class="pw-cols-table">
+                <colgroup>
+                    <col width="80"/>
+                    <col width="55"/>
+                    <col width="130"/>
+                    <col />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>旅客</th>
+                        <th>证件类型</th>
+                        <th>证件号</th>
+                        <th>退回原因</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     <tr>
+                        <td>旅客A</td>
+                        <td>身份证</td>
+                        <td>12345678910111213</td>
+                        <td>
+                            <textarea></textarea>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>旅客B</td>
+                        <td>护照</td>
+                        <td>78910111213</td>
+                        <td>
+                            <textarea></textarea>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="4">
+                            <a href="javascript:;" class="button_important adaptiveButton medium">
+                                <span class="left"></span>
+                                <span class="center">提 交</span>
+                                <span class="right"></span>
+                            </a>
+                        </td>
+                     </tr>
+                </tbody>
+            </table>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="leaveGroupRejectPw">
+        <div class="leaveGroupRejectBlock">  
+            <table class="pw-cols-table">
+                <colgroup>
+                    <col width="80"/>
+                    <col width="55"/>
+                    <col width="130"/>
+                    <col />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>旅客</th>
+                        <th>证件类型</th>
+                        <th>证件号</th>
+                        <th>退回原因</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     <tr>
+                        <td>旅客A</td>
+                        <td>身份证</td>
+                        <td>12345678910111213</td>
+                        <td>
+                            <textarea></textarea>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>旅客B</td>
+                        <td>护照</td>
+                        <td>5678910111213</td>
+                        <td>
+                            <textarea></textarea>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="4">
+                            <a href="javascript:;" class="button_important adaptiveButton medium">
+                                <span class="left"></span>
+                                <span class="center">提 交</span>
+                                <span class="right"></span>
+                            </a>
+                        </td>
+                     </tr>
+                </tbody>
+            </table>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="leaveGroupPassPw">
+        <div>
+            <table class="pw-cols-table">
+                <colgroup>
+                    <col width="80"/>
+                    <col width="55"/>
+                    <col width="130"/>
+                    <col width="160"/>
+                    <col width="300"/>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>旅客</th>
+                        <th>证件类型</th>
+                        <th>证件号</th>
+                        <th>退回原因</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     <tr>
+                        <td>旅客A</td>
+                        <td>身份证</td>
+                        <td>12345678910111213</td>
+                        <td>
+                            <select data-role="dropdownlist" style="width:156px;">
+                                <option>请选择</option>
+                                <option>不成团</option>
+                                <option>拒签</option>
+                                <option>未及时提供签证材料</option>
+                                <option>不可抗力原因</option>
+                                <option>资源问题</option>
+                                <option>其他</option>
+                            </select>
+                        </td>
+                        <td>
+                            <textarea>由于收客人数不足成团要求，此团被取消</textarea>
+                        </td>                        
+                     </tr>
+                     <tr>
+                        <td>旅客B</td>
+                        <td>护照</td>
+                        <td>021546865245658</td>
+                        <td>
+                            <select data-role="dropdownlist" style="width:156px;">
+                                <option>请选择</option>
+                                <option>不成团</option>
+                                <option>拒签</option>
+                                <option>未及时提供签证材料</option>
+                                <option>不可抗力原因</option>
+                                <option>资源问题</option>
+                                <option>其他</option>
+                            </select>
+                        </td>
+                        <td>
+                            <textarea>由于收客人数不足成团要求，此团被取消</textarea>
+                        </td>                        
+                     </tr>
+                     <tr>
+                        <td colspan="5">
+                            <a href="javascript:;" class="button_important adaptiveButton medium">
+                                <span class="left"></span>
+                                <span class="center">提 交</span>
+                                <span class="right"></span>
+                            </a>
+                        </td>
+                     </tr>
+                </tbody>
+            </table>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="modifyPricePassPw">
+        <div class="modifyPricePassBlock">
+            <table class="pw-cols-table">
+                <colgroup>
+                    <col width="80"/>
+                    <col width="55"/>
+                    <col width="130"/>
+                    <col width="120"/>
+                    <col width="300"/>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>旅客</th>
+                        <th>证件类型</th>
+                        <th>证件号</th>
+                        <th>退回原因</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     <tr>
+                        <td>旅客A</td>
+                        <td>身份证</td>
+                        <td>12345678910111213</td>
+                        <td>
+                            <select data-role="dropdownlist" style="width:120px;">
+                                <option>请选择</option>
+                                <option>降价</option>
+                                <option>服务项目变更</option>
+                                <option>其他</option>
+                            </select>
+                        </td>
+                        <td>
+                            <textarea>由于收客人数不足成团要求，此团被取消</textarea>
+                        </td>                        
+                     </tr>
+                     <tr>
+                        <td>旅客B</td>
+                        <td>护照</td>
+                        <td>021546865245658</td>
+                        <td>
+                            <select data-role="dropdownlist" style="width:120px;">
+                                <option>请选择</option>
+                                <option>降价</option>
+                                <option>服务项目变更</option>
+                                <option>其他</option>
+                            </select>
+                        </td>
+                        <td>
+                            <textarea>由于收客人数不足成团要求，此团被取消</textarea>
+                        </td>                        
+                     </tr>
+                     <tr>
+                        <td colspan="5">
+                            <a href="javascript:;" class="button_important adaptiveButton medium">
+                                <span class="left"></span>
+                                <span class="center">提 交</span>
+                                <span class="right"></span>
+                            </a>
+                        </td>
+                     </tr>
+                </tbody>
+            </table>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="askSeatRejectPw">
+        <div>  
+            <table class="pw-cols-table">
+                <colgroup>
+                    <col width="80"/>
+                    <col width="55"/>
+                    <col width="130"/>
+                    <col />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>旅客</th>
+                        <th>证件类型</th>
+                        <th>证件号</th>
+                        <th>退回原因</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     <tr>
+                        <td>旅客A</td>
+                        <td>身份证</td>
+                        <td>12345678910111213</td>
+                        <td>
+                            <textarea></textarea>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>旅客B</td>
+                        <td>护照</td>
+                        <td>5678910111213</td>
+                        <td>
+                            <textarea></textarea>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="4">
+                            <a href="javascript:;" class="button_important adaptiveButton medium">
+                                <span class="left"></span>
+                                <span class="center">提 交</span>
+                                <span class="right"></span>
+                            </a>
+                        </td>
+                     </tr>
+                </tbody>
+            </table>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="askSeatPassPw">
+        <div>  
+            <table class="pw-cols-table">
+                <colgroup>
+                    <col width="80"/>
+                    <col width="55"/>
+                    <col width="130"/>
+                    <col />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>旅客</th>
+                        <th>证件类型</th>
+                        <th>证件号</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     <tr>
+                        <td>旅客A</td>
+                        <td>身份证</td>
+                        <td>12345678910111213</td>
+                        <td>
+                            <textarea></textarea>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>旅客B</td>
+                        <td>护照</td>
+                        <td>5678910111213</td>
+                        <td>
+                            <textarea></textarea>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td colspan="4">
+                            <a href="javascript:;" class="button_important adaptiveButton medium askSeatCheckPass">
+                                <span class="left"></span>
+                                <span class="center">提 交</span>
+                                <span class="right"></span>
+                            </a>
+                        </td>
+                     </tr>
+                </tbody>
+            </table>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="closeTourPw">
+        <div class="closeTourPw">
+            <span class="content">是否关闭团？</span><br>
+            <a href="javascript:;" class="button_unimportant adaptiveButton medium">
+                <span class="left"></span>
+                <span class="center">不关闭</span>
+                <span class="right"></span>
+            </a>
+            <a href="javascript:;" class="button_important adaptiveButton medium">
+                <span class="left"></span>
+                <span class="center">关 闭</span>
+                <span class="right"></span>
+            </a>
+        </div>
+    </script>
 
 <script>
     $(function(){
@@ -557,6 +1015,73 @@
             });
         });
         
+        // 调价退回弹窗
+        var modifyPriceRejectPw = new PopWindow('.btn_modifyPriceReject', {
+            title: '调价退回',
+            width:'600',
+            template:'#modifyPriceRejectPw'
+        }).init();
+
+        // 退团退回弹窗
+        var leaveGroupRejectPw = new PopWindow('.btn_leaveGroupReject', {
+            title: '退团退回',
+            width:'600',
+            template:'#leaveGroupRejectPw'
+        }).init();
+
+        //  调价通过
+        var modifyPricePassPw = new PopWindow('.btn_modifyPricePass', {
+            title: '调价通过',
+            width:'750',
+            template:'#modifyPricePassPw'
+        }).init();
+
+        // 退团通过
+        var leaveGroupPassPw = new PopWindow('.btn_leaveGroupPass', {
+            title: '退团通过',
+            width:'800',
+            template:'#leaveGroupPassPw'
+        }).init();
+
+        // 询位退回
+        var askSeatRejectPw = new PopWindow('.btn_askSeatReject', {
+            title: '退回',
+            width:'600',
+            template:'#askSeatRejectPw'
+        }).init();
+
+        // 询位通过
+        var askSeatPassPw = new PopWindow('.btn_askSeatPass', {
+            title: '审核通过',
+            width:'600',
+            template:'#askSeatPassPw'
+        }).init();
+
+        // 是否关闭团
+        var closeTourPw = new PopWindow('.askSeatCheckPass', {
+            title: '提示',
+            width:'450',
+            template:'#closeTourPw',
+            open: function(){
+                askSeatPassPw.close();
+            }
+        }).init();
+
+
+        //  修改旅客信息
+        $("body").delegate('.btn_modify', 'click', function(){
+            $(this).hide();
+            $("a.btn_save").show();
+
+            $(".travelerInfoTable input[readonly='readonly']").removeAttr("readonly");
+        });
+
+        $("body").delegate('.btn_save', 'click', function(){
+            $(this).hide();
+            $("button.btn_modify").show();
+
+            $(".travelerInfoTable input.editableText").attr("readonly", "readonly");
+        });
 
     });
 </script>
