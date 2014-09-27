@@ -265,7 +265,7 @@
                     <colgroup>
                         <col width="50"/>
                         <col width="50"/>
-                        <col width="130"/>
+                        <col width="145"/>
                         <col width="100"/>
                         <col width="60"/>
                         <col width="125"/>
@@ -309,10 +309,12 @@
                         <td>
                             <input type="text" readonly="readonly" value="DAGUO/ZHANG" class="editableText travelerPinyinText">
                         </td>
-                        <td>身份证</td>
-                        <td>
+                        <td class="cardTypeTd">
+                            <span>身份证</span>
+                        </td>
+                        <td class="cardNumTd">
                             <input type="text" readonly="readonly" value="420813198809131539" class="editableText travelerCardIdText">
-                            <a href="javascript:void(0);" style="display:none;">删除</a>
+                            <a class="addPassport" href="javascript:void(0);" style="display:none;">添加护照</a>
                         </td>
                         <td>
                             <input type="text" readonly="readonly" value="18/09/18" class="editableText travelerCardDateText">
@@ -320,7 +322,13 @@
                         <td>
                             <input type="text" readonly="readonly" value="中国" class="editableText travelerCountryText">
                         </td>
-                        <td>男</td>
+                        <td class="travelerSexTd">
+                            <span>男</span>
+                            <select style="width:38px;display:none;">
+                                <option>男</option>
+                                <option>女</option>
+                            </select>
+                        </td>
                         <td>
                             <input type="text" readonly="readonly" value="1985-10-23" class="editableText travelerBirthDateText">
                         </td>
@@ -340,7 +348,7 @@
                         <td>
                             <em class="redFont minWidth">调价审核</em>
                             <em>
-                                <em class="redFont">金额</em>
+                                <em class="redFont" style="margin-left:5px;">金额</em>
                                 <input class="tbPriceText" type="text" value="-500">
                             </em>
                         </td>
@@ -362,7 +370,7 @@
                         <td>张大国</td>
                         <td>
                             <em class="minWidth">已调价</em>
-                            <em>金额 -500</em>
+                            <em style="margin-left:5px;">金额 -500</em>
                         </td>
                         <td>DAGUO/ZHANG</td>
                         <td>身份证</td>
@@ -1073,14 +1081,74 @@
             $(this).hide();
             $("a.btn_save").show();
 
+            // 输入框可编辑
             $(".travelerInfoTable input[readonly='readonly']").removeAttr("readonly");
+
+            // 显示性别下拉列表
+            $(".travelerInfoTable .travelerSexTd span").hide();
+            $(".travelerInfoTable .travelerSexTd select").show();
+
+            // 显示添加新证件类型操作
+            $(".addPassport").show();
+
+            // 修改时调整列宽，以适应其内容长度
+            $(".travelerInfoTable col").each(function(index){
+                var oldColWidth = $(this).attr("width");
+                $(this).attr("width", parseInt(oldColWidth) + 10);
+
+                //  证件类型  证件号码 根据需求多加宽
+                if (index == 4) {
+                    $(this).attr("width", 85);
+                } else if (index == 5) {
+                    $(this).attr("width", 200);
+                }
+
+            });
+        });
+
+        $(".travelerInfoTable").delegate('.addPassport', 'click', function(){
+            $(this).parents("tr").find(".cardTypeTd").append("<span style='display:block;padding-top:10px;'>护照</span>");
+            $(".addPassport").hide();
+
+            $(this).parents("tr").find(".cardNumTd input").after("<input type='text' value='' style='margin-top:5px;' class='editableText travelerCardIdText'><a href='javascript:void(0);' class='delCardNode'>删除</a>");             
+        });
+
+        $(".travelerInfoTable").delegate('.delCardNode', "click", function(){
+            $(this).parents("tr").find(".cardTypeTd span:last-child").remove();
+            $(this).parents("tr").find(".cardNumTd input").eq(1).remove();
+            $(this).parents("tr").find(".cardNumTd .delCardNode").remove();
+            $(this).hide();
+            $(".addPassport").show();
         });
 
         $("body").delegate('.btn_save', 'click', function(){
             $(this).hide();
             $("button.btn_modify").show();
 
+            //  输入框不可编辑
             $(".travelerInfoTable input.editableText").attr("readonly", "readonly");
+
+            // 隐藏性别下拉列表
+            $(".travelerInfoTable .travelerSexTd span").html($(".travelerInfoTable .travelerSexTd select").val());
+            $(".travelerInfoTable .travelerSexTd select").hide();
+            $(".travelerInfoTable .travelerSexTd span").show();
+
+            $(".travelerInfoTable").find(".cardNumTd .delCardNode").remove();
+            $(".travelerInfoTable").find(".addPassport").hide();
+
+            // 保存时 恢复至原来列宽
+            $(".travelerInfoTable col").each(function(index){
+                var oldColWidth = $(this).attr("width");
+                $(this).attr("width", parseInt(oldColWidth) - 10);
+
+                //  证件类型  证件号码 根据需求多加宽
+                if (index == 4) {
+                    $(this).attr("width", 60);
+                } else if (index == 5) {
+                    $(this).attr("width", 125);
+                }
+
+            });
         });
 
     });
