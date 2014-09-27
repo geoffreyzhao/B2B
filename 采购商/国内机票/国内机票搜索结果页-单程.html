@@ -159,8 +159,9 @@
         </ul>
         <div class="caption clearfix">
            <h3>上海→香港 &nbsp; &nbsp;出发日期：2013-07-29</h3>
+           <span class="search_record">当前共有<em>40</em>条航班记录，最低价<em> ￥809</em></span>
            <p>
-              <span>当前共有<em>40</em>条航班记录，最低价<em> ￥809</em></span>
+              <!-- <span>当前共有<em>40</em>条航班记录，最低价<em> ￥809</em></span> -->
               <i>9/25</i>
               <strong><a href="#">下一页</a></strong>
            </p>
@@ -430,7 +431,7 @@
            <table class="information_header">
                <colgroup>
                    <col width="40">
-                   <col width="110">
+                   <col width="130">
                    <col width="70">
                    <col width="80">
                    <col width="90">
@@ -445,9 +446,9 @@
                        <div class="pubFlights_EU fico">&nbsp;</div>
                    </td>
                    <td>
-                       <div>成都航空</div>
+                       <div>成都航空<span class="flightNumber"><em>*</em>EU6678</span></div>
 
-                       <div>EU6678</div>
+                       <div>大型机A380<span class="shareToolTip">共享</span></div>
 
                    </td>
                    <td>
@@ -474,7 +475,7 @@
            </table>
            <table class="information_detail">
                <colgroup>
-                   <col width="150">
+                   <col width="170">
                    <col width="70">
                    <col width="105">
                    <col width="65">
@@ -1968,6 +1969,12 @@
     </table>
 </script>
 
+<script type="text/x-kendo-template" id="flight_share_template">
+  <div class="floating">
+    实际乘坐东方航空MU5183
+  </div>
+</script>
+
 </section>
 <footer class="main-footer">
     <center>
@@ -2007,6 +2014,15 @@
                 width: 300,
                 wrapperClass:'shadow_box'
 			});
+
+      $(".information .shareToolTip").kendoTooltip({
+        position:"bottom",
+        content:function(){
+          return $("#flight_share_template").html();
+        },
+        // width: 200,
+        wrapperClass:'shadow_box'
+      });
 
 		});
 	</script>

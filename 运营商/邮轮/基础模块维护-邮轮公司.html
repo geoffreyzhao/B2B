@@ -146,7 +146,7 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td><img src="../../static/images/operator/companyImg01.jpg" alt=""/></td>
+                    <td><img src="../../static/images/operator/cangfang_02.jpg" onload="autoResizeImage(140, 80, this)" alt=""/></td>
                     <td><span class="fs14">丽晶七海邮轮</span></td>
                     <td>豪华游轮</td>
                     <td>
@@ -169,7 +169,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><img src="../../static/images/operator/companyImg02.jpg" alt=""/></td>
+                    <td>
+                        <div class="resizeImgContainer" style="width:140px;height:80px;overflow:hidden;">
+                            <img src="../../static/images/operator/cangfang_01.jpg" onload="autoResizeImage(140, 80, this)" alt=""/>
+                        </div>
+                    </td>
                     <td><span class="fs14">歌诗达邮轮</span></td>
                     <td>普通游轮</td>
                     <td>
@@ -192,7 +196,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><img src="../../static/images/operator/companyImg03.jpg" alt=""/></td>
+                    <td><img src="../../static/images/operator/test02.jpg" onload="autoResizeImage(140, 80, this)" alt=""/></td>
                     <td><span class="fs14">皇家加勒比邮轮</span></td>
                     <td>普通游轮</td>
                     <td>
@@ -215,7 +219,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><img src="../../static/images/operator/companyImg02.jpg" alt=""/></td>
+                    <td>
+                        <div class="resizeImgContainer" style="width:140px;height:80px;overflow:hidden;">
+                            <img src="../../static/images/operator/test02.jpg" onload="autoResizeImage2(140, 80, this)" alt=""/>
+                        </div>
+                    </td>
                     <td><span class="fs14">歌诗达邮轮</span></td>
                     <td>豪华游轮</td>
                     <td>
@@ -325,7 +333,7 @@
     </script>
  
 
-<script>
+<script type="text/javascript">
     $(function(){
         //多行文本格式化
         /*$(".ship-reasonText").each(function(){
@@ -348,12 +356,59 @@
             title:'提示',
             width:'380',
             template:'#delShipCompanyTemplate'
-        }).init();
+        }).init();       
 
-       
+        $(".topFixedToolsBar").fixedBar();        
+    });
 
-        $(".topFixedToolsBar").fixedBar();
-    })
+    //  按比例缩放图片大小
+        function autoResizeImage2(maxWidth, maxHeight, objImg){
+            var img = new Image();
+            img.src = objImg.src;
+            var hRatio;
+            var wRatio;
+            var Ratio = 1;
+            var w = img.width;
+            var h = img.height;
+            wRatio = maxWidth / w;
+            hRatio = maxHeight / h;
+
+            if (wRatio < 1 || hRatio < 1) {
+                Ratio = wRatio >= hRatio ? wRatio : hRatio;
+            }
+
+            if (Ratio<1){
+                w = w * Ratio;
+                h = h * Ratio;
+            }
+
+            objImg.height = h;
+            objImg.width = w;
+        };
+
+        function autoResizeImage(maxWidth, maxHeight, objImg){
+            var img = new Image();
+            img.src = objImg.src;
+            var hRatio;
+            var wRatio;
+            var Ratio = 1;
+            var w = img.width;
+            var h = img.height;
+            wRatio = maxWidth / w;
+            hRatio = maxHeight / h;
+            
+            if (wRatio < 1 || hRatio < 1) {
+                Ratio = wRatio <= hRatio ? wRatio : hRatio;
+            }
+
+            if (Ratio<1){
+                w = w * Ratio;
+                h = h * Ratio;
+            }
+
+            objImg.height = h;
+            objImg.width = w;
+        };
 </script>
 
  
