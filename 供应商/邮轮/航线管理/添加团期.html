@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>邮轮 航线管理 添加团期</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css">
+    <link href="/static/css/kendo.common.css" rel="stylesheet" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" />
+    <link href="/static/css/common.css" rel="stylesheet" />
+    <link href="/static/css/supplier.css" rel="stylesheet" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link href="/static/css/supplier_common.css" rel="stylesheet" />
+    <link href="/static/css/supplierShip.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/flight.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+    <script type="text/javascript" src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+    <script type="text/javascript" src="/static/js/supplier/supplier_travel.js"></script>
+        
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+        
+    <!--[if lt IE 8]> 
+    <link rel="stylesheet" href="/static/css/ie.css" /> 
+    <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
+    <![endif]-->
+    <script type="text/javascript" src="/static/js/supplier/supplier_sync.js"></script>
+    <!-- @CLB@ -->
+    <style type="text/css">
+        .lineWeight {
+            box-shadow:none;
+        }
+        .k-tooltip {
+            border: none;
+        }
+        .k-tooltip-closable .k-tooltip-content {
+            padding-right: 20px;
+        }
+        .k-tooltip-content {
+            padding: 0;
+        }
+    </style>
+    </head>
+<body>
+
+    <div class="bg-header-repeat">
+        <div class="bg-header-top"></div>
+        <div class="navi-split-line"></div>
+        <div class="main-header"></div>
+    </div>
+
+    <div id="container" class="new-container">
+        <div class="header-top-center">
+            <div class="head-left">
+                <div class="supplier-logo"></div>
+            </div>
+            <ul class="first-navi">
+                <li class="first-navi-li"><a href="javascript:void(0);">国内机票</a></li>
+                <li class="first-navi-li"><a href="javascript:void(0);">国际机票</a></li>
+                <li class="first-navi-li narrow-navi-word2"><a href="javascript:void(0);">旅游</a>
+                </li>
+                <li class="first-navi-li first-navi-active narrow-navi-word2"><a href="javascript:void(0);">邮轮</a>
+                    <ol class="second-navi">
+                        <li class="second-navi-li second-navi-active"><a href="javascript:void(0);">航线管理</a>
+                            <div class="navi-slide-hover" style="height:5px;"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">团管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                    </ol>
+                </li>
+                <li class="first-navi-li"><a href="javascript:void(0);">财务管理</a></li>
+                <li class="user-setting-nav" style="display:none;">
+                    <ol class="second-navi">
+                        <li class="second-navi-li"><a href="javascript:void(0);">我的账号</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">公司信息</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">员工管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">角色管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">账户设置</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);"><span style="font-size:14px;">OFFICE</span>管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                    </ol>
+                </li>
+            </ul>
+            <div class="head-right">
+                <ul class="feature">
+                    <li class="notice-icon-active"></li>
+                    <li class="split-line"></li>
+                    <li class="person-info">
+                        <span class="person-icon"></span>
+                        <span class="person-name" title="zhaoshuaigeng12312321">zhaoshuaigeng12312321</span>
+                        <a class="logout" href="javascript:void(0);">退出</a>
+                        <span class="user-setting">设置</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="sub_menu_bar"></div>
+
+        <div id="mainContent" class="mainContent travelModule">
+            <div class="top-pass-block">
+                <ul class="third-navi">
+                    <li class="third-navi-li third-navi-active">
+                        <a class="blueFonts" href="javascript:void(0);"><i class="detailsIcon"></i>新增航线</a>
+                    </li>
+                    <li class="third-navi-li"><a href="javascript:void(0);">基本信息</a></li>
+                    <li class="third-navi-li">
+                        <a href="javascript:void(0);">行程安排</a>
+                    </li>
+                    <li class="third-navi-li">
+                        <a href="javascript:void(0);">描述信息</a>                    
+                    </li>
+                    <li class="third-navi-li third-navi-active">
+                        <a href="javascript:void(0);">团期报价</a>                    
+                    </li>
+                </ul>
+            </div>
+
+            <div class="mainBodyHead">
+                <div class="lineNum">
+                    <em class="numberContent fonts16">航线编号：23569</em>
+                    <b>【歌诗达邮轮-维多利亚号】 济州岛+福冈 5天</b>
+                </div>
+                <span class="mainBodyOper">
+                    <span>
+                        <a class="adaptiveButton brightBtn normalButton saveContentBtn">
+                            <span class="left"></span>
+                            <span class="center center_2">保存信息</span>
+                            <span class="right"></span>
+                        </a>
+                    </span>
+                    <span class="cancelLink">
+                        <a href="">取消</a>
+                    </span>
+                </span>
+            </div>
+
+            
+        </div>
+
+    </div>
+
+    <div id="extFooter">
+        <div>
+            <p>
+            <a href="javascript:void(0);">关于我们</a>&nbsp;|
+            <a href="javascript:void(0);">微博</a>&nbsp;|
+            <a href="javascript:void(0);">服务条款</a>&nbsp;|
+            <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+
+    <script type="text/x-kendo-template" id="submitChecktemplate">
+        <ul class="unfinishedCon">
+            <li>形成展示</li>
+            <li>描述信息</li>
+            <li>时间价格</li>
+        </ul>
+
+        <div class="pullCenterStyle">
+            <a class="supplierButton brightRedBig_btn" style="font-size: 14px;">
+                <span class="left"></span>
+                <span class="center">确 定</span>
+                <span class="right"></span>
+            </a>
+        </div>
+    </script>
+
+    <script type="text/html" id="saveContent-template">
+        <div class="popWindowBox">
+            <div class="tipsBlock">
+                <i class="tipsSuccess"></i>内容已保存！
+            </div>
+        </div>
+    </script>
+    
+    <script type="text/template" id="selShipVisa-template">
+        <div class="selshipVisaTem">
+            <div class="template-title">
+                <span>选择签证</span>
+                <i class="close">&nbsp;</i>
+            </div>
+
+            <div class="template-content">
+                <ul class="clearfix">
+                    # for(var i=0;i<data.length;i++){#
+                    <li>
+                        <label>
+                            <input # if(data[i].selected){#  checked  #}# type="checkbox" name="">
+                            <span class="morehotel-item morehotel-item#=i#">#= data[i].name#</span>
+                        </label>
+                    </li>
+                    #} #
+                </ul>
+                <div style="text-align:right">
+                    <button type="button" class="commonBtnBlue visa-free-btn" style="font-size:14px;">免签证</button>
+                    <button type="button" class="commonBtnBlue02" style="font-size:14px;">确 定</button>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-add-thirdagreement-template">
+            <tr>
+                <td><span class="dayNo">1</span></td>
+                <td>
+                    <select style="width: 160px;">
+                        <option>输入或选择</option>
+                    </select>
+                </td>
+                <td>
+                    <select style="width: 50px;">
+                        <option>04</option>
+                        <option>05</option>
+                    </select> 时
+                    <select style="width: 50px;">
+                        <option>04</option>
+                        <option>05</option>
+                    </select> 分
+                </td>
+                <td>
+                    <select>
+                        <option>04</option>
+                        <option>05</option>
+                    </select> 时
+                    <select>
+                        <option>04</option>
+                        <option>05</option>
+                    </select> 分
+                </td>
+                <td><span class="delIcon"></span></td>
+            </tr>
+    </script>
+
+    <script type="text/x-kendo-template" id="viewRulesTemplate">
+        <div class="layerGrayBlock" >
+            <div class="abroadtooltipsCont" style="width:610px;">
+                <i class="close">&nbsp;</i>
+                <div class="abroadtoolclickArrow"></div>
+                <div class="viewRulesContent">
+                   <div class="asideBar">
+                       <ul class="tab_change">
+                           <li class="currentState">歌诗邮轮达欧美线订金规则</li>
+                           <li>丽星邮轮日韩线规则</li>
+                           <li>丽星邮轮欧美线规则</li>
+                       </ul>
+                   </div>
+                    <div class="textContent">
+                        <div class="part01Div tab">
+                            <div>
+                                <p>MSC散客预定支付全款</p>
+                            </div>
+                            <div>
+                                <p>h000321   sh000321   msc123</p>
+                                <p>EARLY PRICE   表格价格</p>
+                                <p>BEST PRICE   系统价格×6.9=含港务的一间房价格</p>
+                                <p>散客预定取消政策：</p>
+                                <p>A. 航次出发前50天及之前取消，不支付取消费；</p>
+                                <p>B. 航次出发前49-30天取消，取消费为船票费用的30%；</p>
+                                <p>C. 航次出发前29-15天取消，取消费为船票费用的50%；</p>
+                                <p>D. 航次出发前14天及以内取消，取消费为船票费用的100%</p>
+                                <p>E. 航次出发后，取消费为所有已支付费用，包括船票费用，港口税，船上增值产品。</p>
+                            </div>
+                            <div>
+                                <p>散客预定取消政策：</p>
+                                <p>A. 航次出发前50天及之前取消，不支付取消费；</p>
+                                <p>B. 航次出发前49-30天取消，取消费为船票费用的30%；</p>
+                                <p>C. 航次出发前29-15天取消，取消费为船票费用的50%；</p>
+                                <p>D. 航次出发前14天及以内取消，取消费为船票费用的100%</p>
+                                <p>E. 航次出发后，取消费为所有已支付费用，包括船票费用，港口税，船上增值产品。</p>
+                            </div>
+                        </div>
+
+                        <div class="part02Div tab" style="display: none;">
+                            <div>
+                                <p>MSC散客预定支付全款2</p>
+                            </div>
+                            <div>
+                                <p>h000321   sh000321   msc123</p>
+                                <p>EARLY PRICE   表格价格</p>
+                                <p>BEST PRICE   系统价格×6.9=含港务的一间房价格</p>
+                                <p>散客预定取消政策：</p>
+                                <p>A. 航次出发前50天及之前取消，不支付取消费；</p>
+                                <p>B. 航次出发前49-30天取消，取消费为船票费用的30%；</p>
+                                <p>C. 航次出发前29-15天取消，取消费为船票费用的50%；</p>
+                                <p>D. 航次出发前14天及以内取消，取消费为船票费用的100%</p>
+                                <p>E. 航次出发后，取消费为所有已支付费用，包括船票费用，港口税，船上增值产品。</p>
+                            </div>
+                            <div>
+                                <p>散客预定取消政策：</p>
+                                <p>A. 航次出发前50天及之前取消，不支付取消费；</p>
+                                <p>B. 航次出发前49-30天取消，取消费为船票费用的30%；</p>
+                                <p>C. 航次出发前29-15天取消，取消费为船票费用的50%；</p>
+                                <p>D. 航次出发前14天及以内取消，取消费为船票费用的100%</p>
+                                <p>E. 航次出发后，取消费为所有已支付费用，包括船票费用，港口税，船上增值产品。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script>
+        $(function(){
+
+            var visaData = [{
+                name:'日韩签证',
+                selected:false
+            },{
+                name:'日韩签证',
+                selected:false
+            },{
+                name:'港澳台签证',
+                selected:false
+            },{
+                name:'美国签证',
+                selected:false
+            },{
+                name:'美国签证',
+                selected:false
+            },{
+                name:'日韩签证',
+                selected:false
+            },{
+                name:'日韩签证',
+                selected:false
+            },{
+                name:'港澳台签证',
+                selected:false
+            },{
+                name:'美国签证',
+                selected:false
+            },{
+                name:'美国签证',
+                selected:false
+            },{
+                name:'港澳台签证',
+                selected:false
+            },{
+                name:'美国签证',
+                selected:false
+            },{
+                name:'美国签证',
+                selected:false
+            },{
+                name:'印尼签证',
+                selected:false
+            },{
+                name:'港澳台签证',
+                selected:false
+            },{
+                name:'日韩签证',
+                selected:false
+            },{
+                name:'港澳台签证',
+                selected:true
+            },{
+                name:'印尼签证',
+                selected:true
+            }];
+            var visaLayer = FloatLayer({
+                trigger:'.selShipVisa',
+                template:'#selShipVisa-template',
+                offsetY:65,
+                data:visaData
+            });
+            
+            var ac_window = new PopWindow('.submitCheck',{
+                title:'您还需完成以下信息：',
+                width:'390',
+                template:'#submitChecktemplate'
+            }).init();
+
+           /* $("#cityDropdownlist").kendoDropDownList({
+                height: '250'
+            });*/
+
+            $('.addRouteBlock').bind('click',function(){
+//              var container = $(this).closest('.routeSummaryDiv');
+                var container = $(".addRouteBlock").siblings(".routeSummary").children("tbody");
+                var html = kendo.template($('#ac-add-thirdagreement-template').html())({});
+                container.append(html);
+                kendo.init(container);
+                $(".dayNo").eq($(".dayNo").length - 1).html($(".dayNo").length);
+            });
+
+            $('body').delegate('.routeSummary .delIcon','click',function(){
+                $(this).closest('tr').remove();
+
+                $(".dayNo").each(function(index){
+                    $(".dayNo").eq(index).html(index+1);
+                });
+            });
+
+            new PopWindow('.saveContentBtn',{
+                template:'#saveContent-template',
+                title:false,
+                modal:false,
+                width:'290',
+                autoHide:2*1000,
+                animation:{
+                    open:{
+                        effect:"fade:in",
+                        duration:300
+                    },
+                    close:{
+                        effect:"fade:out",
+                        duration:300
+                    }
+                }
+            }).init();
+
+
+          /*  $(".viewRules").kendoTooltip({
+                position:"bottom", //left right top
+                content:function(){
+                    return $("#viewRulesTemplate").html();
+                },
+                callout:false,
+                autoHide:false,
+                offsetY:8,
+                width:600
+            });*/
+
+            FloatLayer({
+                trigger:'.viewRules',
+                template:'#viewRulesTemplate',
+                offsetY:-30,
+                offsetX:65
+            });
+
+            $(".tab_change li").each(function(index){
+                $(this).click(function(){
+                    $(".viewRulesContent .tab").hide();
+                    $(".viewRulesContent .tab:eq(" + index + ")").show();
+                    $(".tab_change li").removeClass("currentState");
+                    $(this).addClass("currentState");
+                });
+            });
+
+            $("body").delegate(".visa-free-btn", "click", function(){
+                $(".selectedvisaList label").remove();
+                $(".visa-free-li").show();
+                visaLayer.close();
+            });
+
+        })
+    </script>   
+    
+</body>
+</html>

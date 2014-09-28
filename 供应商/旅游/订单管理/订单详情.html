@@ -566,7 +566,7 @@
             </span>
         </div>-->
 
-       <!-- <div class="inner_accountInfoBlock">
+        <!-- <div class="inner_accountInfoBlock">
             <div class="operBtnRow" >
                 <a class="adaptiveButton grayOper_btn undoQuit">
                     <span class="left"></span>
@@ -596,7 +596,7 @@
                     <strong class="totlePrice"><em style="font-size: 20px;"> ¥</em><b style="font-family: Arial">566000.00</b></strong>
                 </p>
             </div>
-        </div>-->
+        </div> -->
 
        <!-- <div class="inner_accountInfoBlock">
             <div class="operBtnRow" >
@@ -630,19 +630,19 @@
             </div>
         </div>-->
 
-        <div class="inner_accountInfoBlock">
+        <!--<div class="inner_accountInfoBlock">
             <div class="operBtnRow" >
                 <a class="adaptiveButton brightRed_btn adjustPrice">
                     <span class="left"></span>
                     <span class="center">调 价</span>
                     <span class="right"></span>
-                </a>
+                </a>-->
                <!-- <a class="adaptiveButton brightRed_btn again-adjustPrice">
                     <span class="left"></span>
                     <span class="center">重新调价</span>
                     <span class="right"></span>
                 </a>-->
-                <a class="adaptiveButton brightRed_btn quitCluster">
+                <!--<a class="adaptiveButton brightRed_btn quitCluster">
                     <span class="left"></span>
                     <span class="center">退团</span>
                     <span class="right"></span>
@@ -652,6 +652,32 @@
                     <span class="center">重新受理退团</span>
                     <span class="right"></span>
                 </a>
+            </div>
+            <div class="accountCon">
+                <p>成人<b>15000</b> X 2 + 儿童 <b>15000</b> X 2 + 单房差 <b>500</b> X 1 + 退团费用<b>10000</b> + 调价金额 - <b>1100</b></p>
+                <p style="text-align: right">
+                    <em style="font-size: 16px;">合计</em>
+                    <strong class="totlePrice"><em style="font-size: 20px;"> ¥</em><b style="font-family: Arial">566000.00</b></strong>
+                </p>
+            </div>
+        </div>-->
+
+        <div class="moreOperBlock" style="display:none;">
+            <ul class="operBtnList">
+                <li class="again-accepted-quitCluster">重新受理退团</li>
+                <li>重新退团</li>
+                <li>取消退团</li>
+                <li>调价</li>
+                <li>取消调价</li>
+            </ul>
+        </div>
+        <div class="inner_accountInfoBlock">
+            <div class="operBtnRow" >
+                <a class="adaptiveButton brightRed_btn moreOperation">
+                    <span class="left"></span>
+                    <span class="center">操作<i class="whiteArrowDefaultUp"></i></span>
+                    <span class="right"></span>
+                </a>                
             </div>
             <div class="accountCon">
                 <p>成人<b>15000</b> X 2 + 儿童 <b>15000</b> X 2 + 单房差 <b>500</b> X 1 + 退团费用<b>10000</b> + 调价金额 - <b>1100</b></p>
@@ -1773,6 +1799,23 @@
             })
             $("#contactServiceCon").click(function(e){
                 e.stopPropagation();
+            });
+
+
+            //更多操作
+            $(".moreOperation").click(function(){
+                if ($(this).find("i.whiteArrowDefaultUp").hasClass("downSide")) {
+                    $(this).find("i.whiteArrowDefaultUp").removeClass("downSide");
+                    $(".moreOperBlock").hide();
+                } else {
+                    $(this).find("i.whiteArrowDefaultUp").addClass("downSide");
+                    $(".moreOperBlock").show();
+                }
+            });
+
+            $(".operBtnList li").click(function(){
+                $(".moreOperation i.whiteArrowDefaultUp").removeClass("downSide");
+                $(".moreOperBlock").hide();
             });
            
         });
