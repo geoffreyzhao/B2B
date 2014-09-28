@@ -146,7 +146,11 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td><img src="../../static/images/operator/cangfang_02.jpg" onload="autoResizeImage(140, 80, this)" alt=""/></td>
+                    <td>
+                        <div class="resizeImgContainer">
+                            <img src="../../static/images/operator/cangfang_02.jpg" onload="autoResizeCutImage(140, 80, this)" alt=""/>
+                        </div>
+                    </td>
                     <td><span class="fs14">丽晶七海邮轮</span></td>
                     <td>豪华游轮</td>
                     <td>
@@ -170,8 +174,8 @@
                 </tr>
                 <tr>
                     <td>
-                        <div class="resizeImgContainer" style="width:140px;height:80px;overflow:hidden;">
-                            <img src="../../static/images/operator/cangfang_01.jpg" onload="autoResizeImage(140, 80, this)" alt=""/>
+                        <div class="resizeImgContainer">
+                            <img src="../../static/images/operator/cangfang_01.jpg" onload="autoResizeCutImage(140, 80, this)" alt=""/>
                         </div>
                     </td>
                     <td><span class="fs14">歌诗达邮轮</span></td>
@@ -196,7 +200,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><img src="../../static/images/operator/test02.jpg" onload="autoResizeImage(140, 80, this)" alt=""/></td>
+                    <td>
+                        <div class="resizeImgContainer">
+                            <img src="../../static/images/operator/test02.jpg" onload="autoResizeCutImage(140, 80, this)" alt=""/>
+                        </div>
+                    </td>
                     <td><span class="fs14">皇家加勒比邮轮</span></td>
                     <td>普通游轮</td>
                     <td>
@@ -220,8 +228,8 @@
                 </tr>
                 <tr>
                     <td>
-                        <div class="resizeImgContainer" style="width:140px;height:80px;overflow:hidden;">
-                            <img src="../../static/images/operator/test02.jpg" onload="autoResizeImage2(140, 80, this)" alt=""/>
+                        <div class="resizeImgContainer">
+                            <img src="../../static/images/operator/test02.jpg" onload="autoResizeCutImage(140, 80, this)" alt=""/>
                         </div>
                     </td>
                     <td><span class="fs14">歌诗达邮轮</span></td>
@@ -246,7 +254,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><img src="../../static/images/operator/companyImg02.jpg" alt=""/></td>
+                    <td>
+                        <div class="resizeImgContainer">
+                            <img src="../../static/images/operator/companyImg02.jpg" onload="autoResizeCutImage(140, 80, this)" alt=""/>
+                        </div>
+                    </td>
                     <td><span class="fs14">歌诗达邮轮</span></td>
                     <td>豪华游轮</td>
                     <td>
@@ -362,7 +374,9 @@
     });
 
     //  按比例缩放图片大小
-        function autoResizeImage2(maxWidth, maxHeight, objImg){
+
+        // 缩放 裁剪图片
+        function autoResizeCutImage(maxWidth, maxHeight, objImg){
             var img = new Image();
             img.src = objImg.src;
             var hRatio;
@@ -386,6 +400,7 @@
             objImg.width = w;
         };
 
+        //  缩放图片
         function autoResizeImage(maxWidth, maxHeight, objImg){
             var img = new Image();
             img.src = objImg.src;
