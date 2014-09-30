@@ -515,6 +515,69 @@
         </div>
     </div>
 
+    <script type="text/x-kendo-template" id="roomDetailPw">
+        <div class="roomDetailPw">
+            <table class="roomDetailPwTb">
+                <colgroup>
+                    <col width="90"/>
+                    <col width="215"/>
+                    <col width="80"/>
+                    <col width="230"/>
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <th>邮轮船只</th>
+                        <td>双子星号</td>
+                        <th><i class="redStar">*</i>实景图</th>
+                        <td rowspan="4">
+                            <div class="roomImgDiv">
+                                <img src="../../../static/images/operator/cangfang_02.jpg" width="230" height="150">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><i class="redStar">*</i>房型名称</th>
+                        <td>海景露台房</td>
+                    </tr>
+                    <tr>
+                        <th><i class="redStar">*</i>舱型</th>
+                        <td>内舱房</td>
+                    </tr>
+                    <tr>
+                        <th><i class="redStar">*</i>代码</th>
+                        <td>BA</td>
+                    </tr>
+                    <tr>
+                        <th><i class="redStar">*</i>甲板</th>
+                        <td>楼层1，楼层6，楼层12，楼层16</td>
+                    </tr>
+                    <tr>
+                        <th><i class="redStar">*</i>面积</th>
+                        <td>14.5㎡</td>
+                    </tr>
+                    <tr>
+                        <th><i class="redStar">*</i>可入住人数</th>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <th class="verticalTop">介绍</th>
+                        <td colspan="3">
+                            私人露台、2张单人床及1张单人沙发床/1张双人大床及1张单人沙发床、电冰箱及DVD放映机。容纳人数：3人
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="operBtn">
+                <a class="supplierButton brightRedBig_btn" style="font-size: 14px;">
+                    <span class="left"></span>
+                    <span class="center">保 存</span>
+                    <span class="right"></span>
+                </a>
+                <a href="javascript:void(0);" class="cancelOper">取消</a>
+            </div>
+        </div>
+    </script>
+
     <script>
         $(function(){
 
@@ -541,8 +604,29 @@
 
             $(".addRoomPriceBtn").click(function(){
                 $(this).before("<div class='addRoomTypeBlock'>" + $(".addRoomTypeBlockTemplate").html() + "</div>");
+
+                $(".addRoomTypeBlock").each(function(index){
+                    $(this).find(".roomTypeNum").html((index + 1) + ".");
+                });
             });
 
+            $(".roomPriceMainBlock").delegate(".delRoomPriceIcon", "click", function(){
+                $(this).parents(".addRoomTypeBlock").remove();
+
+                $(".addRoomTypeBlock").each(function(index){
+                    $(this).find(".roomTypeNum").html((index + 1) + ".");
+                });
+            });
+
+            var roomDetailPw = new PopWindow('.roomDetail', {
+                title:'房型信息',
+                template:'#roomDetailPw',
+                width:760,
+                modal:false,
+                open: function(){
+                    console.log("准备数据");
+                }
+            }).init();
         })
     </script>   
     
