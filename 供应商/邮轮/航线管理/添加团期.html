@@ -170,7 +170,7 @@
                                 <div class="addTourDateBtn">请选择起航日期</div>
                                 <!-- <div id="calendar" class="tourDateCalendar"></div> -->
 
-                                <!-- <div class="tour_unfoldCon" id="unfoldCon">
+                                <div class="tour_unfoldCon" id="unfoldCon">
                                     <div style="width: 360px;float: left; margin-right:10px; height: auto; overflow: hidden;">
                                         <div class="calendarOperation">
                                             <div class="calendarMonthLeft"></div>
@@ -192,7 +192,7 @@
 
                                         </div>
                                     </div>
-                                </div> -->
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -579,28 +579,11 @@
     </script>
 
     <script>
-        $(function(){
+        var today = new Date(),
+            toDate=today;
+        var nextMonthDate=new Date(today.getFullYear(),toDate.getMonth()+1,toDate.getDate());
 
-
-            /*  双日历初始化  TODO
-            $("#calendar").kendoCalendar();
-
-             var calendar=$("#calendar01").kendoCalendar({
-                culture:"zh-CN",
-                // dates:spDate,
-                value:new Date(),
-                footer:false
-
-            }).data("kendoCalendar");
-
-            var calendar1=$("#calendar02").kendoCalendar({
-                culture:"zh-CN",
-                // dates:spDate,
-                value:new Date(),
-                footer:false
-
-            }).data("kendoCalendar");
-            */
+        $(function(){     
 
             $(".addRoomPriceBtn").click(function(){
                 $(this).before("<div class='addRoomTypeBlock'>" + $(".addRoomTypeBlockTemplate").html() + "</div>");
@@ -622,12 +605,58 @@
                 title:'房型信息',
                 template:'#roomDetailPw',
                 width:760,
-                modal:false,
+                modal:true,
                 open: function(){
-                    console.log("准备数据");
+                    console.log("在这里准备数据");
                 }
             }).init();
+
+            // 双日历初始化  TODO            
+
+             var calendar=$("#calendar01").kendoCalendar({
+                culture:"zh-CN",
+                // dates:spDate,
+                value:new Date(),
+                footer:false
+
+            }).data("kendoCalendar");
+
+            var calendar1=$("#calendar02").kendoCalendar({
+                culture:"zh-CN",
+                // dates:spDate,
+                value:new Date(),
+                footer:false
+
+            }).data("kendoCalendar");
+
+            changeCalendarDateInfo(new Date());
+
+            $(".calendarMonthRight").click(function(){
+                if(!$(this).hasClass("disabled"))
+                {
+                    toDate=toDate.DateAdd("m",+1);
+                    nextMonthDate=nextMonthDate.DateAdd("m",+1);
+                    calendar.navigate(toDate,"month");
+                    calendar1.navigate(nextMonthDate,"month");
+                    changeCalendarDateInfo(toDate);
+                }
+            });
+            $(".calendarMonthLeft").click(function(){
+                if(!$(this).hasClass("disabled")) {
+                    toDate=toDate.DateAdd("m",-1);
+                    nextMonthDate=nextMonthDate.DateAdd("m",-1);
+                    calendar.navigate(toDate,"month");
+                    calendar1.navigate(nextMonthDate,"month");
+                    changeCalendarDateInfo(toDate);
+                }
+            });
         })
+
+            function changeCalendarDateInfo(toDate){
+                $(".calendarDate.cd1").html(toDate.getFullYear()+"年"+(toDate.getMonth()+1)+"月");
+                $(".calendarDate.cd2").html(nextMonthDate.getFullYear()+"年"+(nextMonthDate.getMonth()+1)+"月");
+            }
+        // })
     </script>   
     
 </body>
