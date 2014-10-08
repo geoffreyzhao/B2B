@@ -21,7 +21,7 @@
     <script type="text/javascript" src="/static/js/jquery-ui-1.10.3.custom.js"></script>
     <script type="text/javascript" src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
     <script type="text/javascript" src="/static/js/supplier/supplier_travel.js"></script>
-        
+    <script type="text/javascript" src="/static/js/DateControl.js"></script>
     <!--[if IE]>
     <script src="/static/js/html5.js"></script>
     <![endif]-->
@@ -165,13 +165,12 @@
                             <td>维多利亚号</td>
                         </tr>
                         <tr>
-                            <th><em class="redStar">*</em>起航日期</th>
+                            <th class="verticalTop"><em class="redStar">*</em>启航日期</th>
                             <td style="position:relative;">
-                                <div class="addTourDateBtn">请选择起航日期</div>
-                                <!-- <div id="calendar" class="tourDateCalendar"></div> -->
+                                <div class="addTourDateBtn">请选择启航日期</div>
 
-                                <div class="tour_unfoldCon" id="unfoldCon">
-                                    <div style="width: 360px;float: left; margin-right:10px; height: auto; overflow: hidden;">
+                                <div class="tourDateBlock" style="display:none;">
+                                    <div class="leftDateBlock">
                                         <div class="calendarOperation">
                                             <div class="calendarMonthLeft"></div>
                                             <div class="calendarDate cd1"></div>
@@ -182,15 +181,18 @@
                                         </div>
                                     </div>
 
-                                    <div style="width: 360px; float: left">
+                                    <div class="rightDateBlock">
                                         <div class="calendarOperation">
-
                                             <div class="calendarDate cd2"></div>
                                             <div class="calendarMonthRight"></div>
                                         </div>
                                         <div class="calendar" class="calendarContainer" id="calendar02">
 
                                         </div>
+                                    </div>
+
+                                    <div class="tourDateOpeBtn">
+                                        
                                     </div>
                                 </div>
                             </td>
@@ -611,33 +613,37 @@
                 }
             }).init();
 
-            // 双日历初始化  TODO            
+            // 双日历初始化            
 
              var calendar=$("#calendar01").kendoCalendar({
                 culture:"zh-CN",
-                // dates:spDate,
                 value:new Date(),
-                footer:false
-
+                footer:false,
+                month: {
+                    // content:$("#calendarTemplate").html()
+                }
             }).data("kendoCalendar");
 
             var calendar1=$("#calendar02").kendoCalendar({
                 culture:"zh-CN",
-                // dates:spDate,
-                value:new Date(),
-                footer:false
-
+                value:nextMonthDate,
+                footer:false,
+                month:{
+                    // content:$("#calendarTemplate").html()
+                }
             }).data("kendoCalendar");
+
+            $(".k-other-month a").remove();
 
             changeCalendarDateInfo(new Date());
 
             $(".calendarMonthRight").click(function(){
-                if(!$(this).hasClass("disabled"))
-                {
+                if(!$(this).hasClass("disabled")){
                     toDate=toDate.DateAdd("m",+1);
                     nextMonthDate=nextMonthDate.DateAdd("m",+1);
                     calendar.navigate(toDate,"month");
                     calendar1.navigate(nextMonthDate,"month");
+                    $(".k-other-month a").remove();
                     changeCalendarDateInfo(toDate);
                 }
             });
@@ -647,16 +653,31 @@
                     nextMonthDate=nextMonthDate.DateAdd("m",-1);
                     calendar.navigate(toDate,"month");
                     calendar1.navigate(nextMonthDate,"month");
+                    $(".k-other-month a").remove();
                     changeCalendarDateInfo(toDate);
                 }
             });
+
+            $("body").delegate(".calendar td", "click", function(){                
+                if ($(this).hasClass("dateSelect")) {
+                    $(this).removeClass("dateSelect");
+                } else {
+                    $(this).addClass("dateSelect");
+                }
+            });
+
+            $("body").delegate(".addTourDateBtn", "click", function(){
+                $(this).hide();
+                $(".tourDateBlock").show();
+            });
+
+            // $("")
         })
 
-            function changeCalendarDateInfo(toDate){
-                $(".calendarDate.cd1").html(toDate.getFullYear()+"年"+(toDate.getMonth()+1)+"月");
-                $(".calendarDate.cd2").html(nextMonthDate.getFullYear()+"年"+(nextMonthDate.getMonth()+1)+"月");
-            }
-        // })
+        function changeCalendarDateInfo(toDate){
+            $(".calendarDate.cd1").html(toDate.getFullYear()+"年"+(toDate.getMonth()+1)+"月");
+            $(".calendarDate.cd2").html(nextMonthDate.getFullYear()+"年"+(nextMonthDate.getMonth()+1)+"月");
+        }
     </script>   
     
 </body>
