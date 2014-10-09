@@ -167,7 +167,7 @@
                         <tr>
                             <th class="verticalTop"><em class="redStar">*</em>启航日期</th>
                             <td style="position:relative;">
-                                <div class="addTourDateBtn">请选择启航日期</div>
+                                <div class="addTourDateBtn" style="display:none;">请选择启航日期</div>
 
                                 <div class="tourDateBlock" style="display:none;">
                                     <div class="leftDateBlock">
@@ -191,9 +191,31 @@
                                         </div>
                                     </div>
 
-                                    <div class="tourDateOpeBtn">
-                                        
+                                    <div class="tourDateOpeBtn clearfix">
+                                        <a class="adaptiveButton blueBtn sureSelectDate">
+                                            <span class="left"></span>
+                                            <span class="center">确 定</span>
+                                            <span class="right"></span>
+                                        </a>
+                                        <a href="javascript:void(0);" class="cancelLink cancelSelectDate">取消</a>
                                     </div>
+                                </div>
+
+                                <div class="selectedDateBlock">
+                                    <div class="selectedDateList">
+                                        <div class="selectedDateItem">
+                                            <div class="topPart">
+                                                <span>2014-09-04</span>
+                                                <i class="delItem"></i>
+                                            </div>
+                                            <div class="bottomPart">
+                                                <input type="text" value="20140904维多利亚号" readonly="readonly" class="noBorder"/>
+                                                <i class="editItemName"></i>
+                                                <i class="sureEditItemName" style="display:none;"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="editTourDateBtn">修改启航日期</div>
                                 </div>
                             </td>
                         </tr>
@@ -671,7 +693,27 @@
                 $(".tourDateBlock").show();
             });
 
-            // $("")
+            $("body").delegate(".sureSelectDate", "click", function(){
+                $(".tourDateBlock").hide();
+            });
+
+            // 选中日期的操作
+
+            /* 编辑文本框 */
+            $("body").delegate(".editItemName", "click", function(){
+                $(this).siblings("input").removeAttr("readonly");
+            });
+
+            // 确认编辑保存
+            $("body").delegate(".sureEditItemName", "click", function(){
+
+            });
+
+            // 删除日期
+            $("body").delegate(".delItem", "click", function(){
+
+            });
+
         })
 
         function changeCalendarDateInfo(toDate){
