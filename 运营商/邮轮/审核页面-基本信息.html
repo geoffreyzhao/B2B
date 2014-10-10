@@ -53,8 +53,7 @@
     <!--[if lt IE 8]>
     <link rel="stylesheet" href="/static/css/ie.css" />
     <script src="/static/js/vendor/IE7.min.js"></script>
-    <![endif]-->
-    <script type="text/javascript" src="/static/js/sync.js"></script>
+    <![endif]-->    
     <!-- @CLB@ -->
     <style type="text/css">
         .lineWeight {
@@ -134,43 +133,46 @@
         </div>
 
         <div id="mainContent" style="overflow:hidden;">
-            <!-- start content -->
-
-            <!-- <div class="topFixedToolsBar">
-                <div class="commonReturnBtn">
-                    <a href="#">返回</a>
-                </div>
-                <div class="fixedMenu">
-                    <h3>新增签证</h3>
-                </div>
-                <div class="fixedButton">
-                    <a href="javascript:;" class="button_important adaptiveButton small">
-                        <span class="left"></span>
-                        <span class="center">保 存</span>
-                        <span class="right"></span>
-                    </a>
-                </div>
-            </div> -->
             
-
-            <div class="actions newNavigate">
-                <ul>
+            <div class="commonModelStyle paddingSpace">
+                <div class="lineTitleContent">
+                    <label><b class="fonts333">航线编号</b> 14878</label>
+                    <b>上海-济州-仁川（首尔）-上海4晚5天</b>
+                    <em class="trickHint">单船票</em>
+                </div>
+                <ul class="passengerLinerInfo clearfix">
                     <li>
-                        基本信息<i class="redCircle"></i>
-                    </li>
-                    <li>行程安排</li>
-                    <li class="current">
-                        描述信息<i class="redCircle"></i>
+                        <em>邮轮公司：</em>
+                        <i>歌诗达邮轮</i>
                     </li>
                     <li>
-                        团期报价<i class="redCircle"></i>
+                        <em>船只：</em>
+                        <i>维多利亚号</i>
+                    </li>
+                    <li>
+                        <em>供应商：</em>
+                        <i>唯一邮轮</i>
                     </li>
                 </ul>
-                <span class="new"></span>
             </div>
 
 
-        <div class="information_div">    
+            <!-- <div class="actions newNavigate"> -->
+            <div class="commonModelStyle"> 
+
+                <div class="topFixedToolsBar">
+                    <div class="fixedMenu">
+                        <a href="#">基本信息<i class="menuIcon"></i></a>
+                        <a href="#">行程安排<i class=""></i></a>
+                        <a href="#" class="current">描述信息<i class="menuIcon"></i></a>
+                        <a href="#">团期报价<i class="menuIcon"></i></a>
+                    </div>
+                    <i class="newIcon"></i>
+                </div>
+            
+
+
+        <!--    <div class="information_div">     -->
             <div class="describeInfoCls" id="describeInfo">
 
             <div class="content2 clearfix">
@@ -421,9 +423,17 @@
     </div>
     </div>
 
-
+    <div class="accountInfoBlock baseInfo-accountInfoBlock-footAdd" id="ac">
+        <div class="inner_accountInfoBlock">
+            <span class="accountCon">
+                <a href="javascript:void(0);" class="commonBtnStyle orangeBtn">审核退回</a>
+                <a href="javascript:void(0);" class="commonBtnStyle greenBtn">审核通过</a>
+                <a href="javascript:void(0);" class="cancelBtn">取消</a>
+            </span>
+        </div>
+    </div>
     
-    <div id="extFooter">
+    <div id="extFooter" class="baseInfo-extFooter-footAdd">
         <div>
             <p>
                 <a href="javascript:void(0);">关于我们</a>&nbsp;|
@@ -460,22 +470,7 @@
 
 <script>
     $(function(){
-        //多行文本格式化
-        /*$(".ship-reasonText").each(function(){
-            var characterWidth=100;
-            if($(this).text().length>characterWidth){
-                $(this).text($(this).text().substring(0,characterWidth));
-                $(this).html($(this).html()+"…");
-            }
-        });*/
-
-       /* $(".ship-reasonText").each(function(){
-            var divH = $(this).height();
-            var $p = $("p", $(this)).eq(0);
-            while ($p.outerHeight() > divH) {
-                $p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
-            };
-        });*/
+       
         
         var ac_window = new PopWindow('.delShipCompany',{
             title:'提示',
@@ -484,8 +479,15 @@
         }).init();
 
        
+        $(function(){
+            $('#ac').fixedBar({
+                inverse:true
+            });
 
-        $(".topFixedToolsBar").fixedBar();
+            $(".commonModelStyle .topFixedToolsBar").fixedBar();
+
+        });
+        
     })
 </script>
 
