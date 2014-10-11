@@ -21,6 +21,7 @@
 	<script src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
 
 	<script type="text/javascript" src="/static/js/supplier/supplier_travel.js"></script>
+	<script src="/static/js/kendo.dataviz.min.js"></script>
 
 
     <!--[if IE]>
@@ -159,6 +160,7 @@
 			<div class="mainBodyContent clearfix">
 				<div class="leftContentBlock">
 					<div class="pathInfoBlock">
+						<img src='../../static/images/loading/loading.gif' class="loadingImg" style="display:none;"/>
 						<div class="blockMainTitle">线路信息</div>
 						<table class="pathInfoTable">
 							<colgroup>
@@ -198,7 +200,8 @@
 						</table>
 					</div>
 					<div class="noticeListBlock">
-						<div class="blockMainTitle">通知
+						<img src='../../static/images/loading/loading.gif' class="loadingImg" />
+						 <div class="blockMainTitle">通知
 							<a href="javascript:void(0);" class="more">更多</a>
 						</div>
 						<table class="noticeListTable">
@@ -276,7 +279,7 @@
 				              </span>
 				              <span>
 				                  <a href="#" class="prev">&nbsp;</a>
-				                  <!--<a href="#" class="prev noIcon">&nbsp;</a>-->  <!--加 class="noIcon" 将隐藏小箭头-->
+				                  <!--<a href="#" class="prev noIcon">&nbsp;</a>  <!--加 class="noIcon" 将隐藏小箭头-->
 				              </span>
 				              <span class="links">
 				                  <a href="#">1</a>
@@ -296,9 +299,11 @@
 
 				<div class="rightContentBlock">
 					<div class="passengerNumBlock">
-
+						<img src='../../static/images/loading/loading.gif' class="loadingImg" style="display:none;"/>
+						<div id="passengerNumChart" style="height:240px;"></div>
 					</div>
 					<div class="customerServiceBlock">
+						<img src='../../static/images/loading/loading.gif' class="loadingImg" style="display:none;"/>
 						<div class="blockMainTitle">客服</div>
 						<ul class="cusSerList">
 							<li>
@@ -451,11 +456,67 @@
 
 	<script type="text/javascript">
 
-		$(function(){
+		function createChart() {
+			$("#passengerNumChart").kendoChart({
+				title: {
+				    text: "近期出团信息",
+				    align: "left",
+				    margin: {
+				      left: -10,
+				      top: -5
+				    },
+				    font: "bold 16px microsoft yahei",
+				    color: "#666"
+				},
+				legend: {
+					position: "bottom",
+					labels: {
+						font: "12px microsoft yahei",
+						color: "#333"
+					},
+					margin: {
+						top: 15,
+						bottom: 5
+					}
+				},
+				series: [{
+				    name: "出团人数",
+				    data: [20, 30, 40, 30, 40],
+				    color: "#14b8d4"
+				}],
+				categoryAxis: {
+				    categories: ["今天", "7月10日", "7月25日", "8月1日", "9月1日"],
+				    majorGridLines: {
+				        visible: false
+				    },
+				    labels: {
+				    	color: "#666",
+				    	font: "12px microsoft yahei"
+				    }
+				},
+				valueAxis: {
+					min: 0,
+					max: 40,
+					majorUnit: 10,
+      				labels: {
+      					color: "#333",
+      					font: "12px Arial"
+      				},
+      				line: {
+      					visible: false
+      				}
+				},
+				tooltip: {
+				    visible: false,
+				    template: "#= series.name #: #= value #"
+				}
+			});
+		}
 
-			
-
+		$(function(){			
+	        $(document).ready(createChart);
 		});
+
 	</script>	
 </body>
 
