@@ -603,6 +603,23 @@
             </a>
         </div>
     </script>
+
+    <script type="text/x-kendo-template" id="ac-batchDel-template">
+        <div class="seeContent alertContent">
+            <span class="alert"></span>
+            <span class="alertFont">确认批量删除<em>5</em>条团信息吗?</span>
+        </div>
+        <div class="centerStyleBtn">
+            <a class="supplierButton brightRedBig_btn">
+                <span class="left"></span>
+                <span class="center center_1">删 除</span>
+                <span class="right"></span>
+            </a>
+            <a href="javascript:void(0);" class="cancel">
+                取消
+            </a>
+        </div>
+    </script>
     
     <script type="text/javascript">
         $(function(){
@@ -634,6 +651,12 @@
                 width:'450',
                 template:'#ac-seeCause-template'
             }).init();
+
+    var ac_batchDel_window = new PopWindow('.batchDel', {
+        title:'批量删除',
+        width:'450',
+        template:'#ac-batchDel-template'
+    }).init();
 
     $(".alertContent").parent().parents(".k-window").css("border","8px solid #c5c5c5");
 
