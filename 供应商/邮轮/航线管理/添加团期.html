@@ -612,12 +612,27 @@
         # } #
     </script>
 
+    <!--  编辑状态下的模板不允许删除 -->
+    <script type="text/x-kendo-template" id="selectedDateModifyTemplate">
+        # for (var i = 0; i < data.length; i++) { #
+            <div class="selectedDateItem">
+                <div class="topPart">
+                    <span>#= data[i].Format("YYYY-MM-DD") #</span>
+                </div>
+                <div class="bottomPart">
+                    <input type="text" value="#= data[i].Format('YYYYMMDD') #维多利亚号" readonly="readonly"/>
+                    <i class="editItemName"></i>
+                    <i class="sureEditItemName" style="display:none;"></i>
+                </div>
+            </div>
+        # } #
+    </script>
+
     <script>
         var today = new Date(),
             toDate=today;
         var nextMonthDate=new Date(today.getFullYear(),toDate.getMonth()+1,toDate.getDate());
         var template = kendo.template($("#selectedDateTemplate").html());
-        var dateArr = [];
 
         $(function(){     
 
@@ -653,10 +668,7 @@
              var calendar=$("#calendar01").kendoCalendar({
                 culture:"zh-CN",
                 value:new Date(),
-                footer:false,
-                month: {
-                    // content:$("#calendarTemplate").html()
-                }
+                footer:false
             }).data("kendoCalendar");
 
             var calendar1=$("#calendar02").kendoCalendar({
@@ -684,11 +696,7 @@
                     $(".k-other-month a").remove();
                     changeCalendarDateInfo(toDate);
 
-                    $(".calendar td").each(function(){
-                        if ($(this).children("a").length != 0 && $.inArray($(this).children("a").attr("title").replace('年', '-').replace('月', '-').replace('日', ''), array) != -1) {
-                            $(this).addClass("dateSelect");
-                        }
-                    });
+                    recoverCalendarSelected(array);
                 }
             });
 
@@ -703,18 +711,14 @@
                     $(".k-other-month a").remove();
                     changeCalendarDateInfo(toDate);
 
-                    $(".calendar td").each(function(){
-                        if ($(this).children("a").length != 0 && $.inArray($(this).children("a").attr("title").replace('年', '-').replace('月', '-').replace('日', ''), array) != -1) {
-                            $(this).addClass("dateSelect");
-                        }
-                    });
+                    recoverCalendarSelected(array);
                 }
             });
     
-            // 点击日期添加背景样式 & array数组记录所有选中日期
+            // 新增团期时，点击日期添加背景样式 & array数组记录所有选中日期
             $("body").delegate(".calendar td", "click", function(){
                 if ($(this).children("a").length != 0) {   //  空日期没有点击事件
-                    var s = $(this).children("a").attr("title").replace('年', '-').replace('月', '-').replace('日', '');
+                    var s = replaceChineseYMD($(this).children("a").attr("title"));
 
                     if ($(this).hasClass("dateSelect")) {
                         $(this).removeClass("dateSelect");
@@ -726,6 +730,23 @@
                 }
             });
 
+            // 编辑状态下，日历中日期只能单选
+            /*
+            $("body").delegate(".calendar td", "click", function(){
+                if ($(this).children("a").length != 0) {   //  空日期没有点击事件
+                    $(".calendar td").removeClass("dateSelect");
+                    array = [];
+                    $(this).addClass("dateSelect");
+
+                    $(".calendar td").each(function(){
+                        if ($(this).hasClass("dateSelect")) {
+                            array.push(replaceChineseYMD($(this).children("a").attr("title")));
+                        }
+                    });             
+                }
+            });
+            */
+
             // 添加团期
             $("body").delegate(".addTourDateBtn", "click", function(){
                 $(this).hide();
@@ -736,13 +757,16 @@
             $("body").delegate(".sureSelectDate", "click", function(){
                 $(".tourDateBlock").hide();
                 $(".selectedDateItem").remove();
-                dateArr = [];
+                var dateArr = [];
 
-                $(".calendar td.dateSelect").each(function(){
+                // $(".calendar td.dateSelect").each(function(){
 
-                    var d = new Date($(this).children("a").attr("title").replace('年', '-').replace('月', '-').replace('日', ''));
-                    dateArr.push(d);
-                });                
+                //     var d = new Date($(this).children("a").attr("title").replace('年', '-').replace('月', '-').replace('日', ''));
+                //     dateArr.push(d);
+                // });
+                for (var i = 0; i < array.length; i++) {
+                    dateArr.push(new Date(array[i]));
+                }
                 $(".selectedDateList").html(template(dateArr));
                 $(".selectedDateBlock").show();
             });
@@ -765,12 +789,10 @@
                     array = arr;
 
                     $(".calendar td").each(function(){
-                        if ($(this).hasClass("dateSelect")) {
-                            $(this).removeClass("dateSelect");
-                        } else {
-                            if ($(this).children("a").length != 0 && $.inArray($(this).children("a").attr("title").replace('年', '-').replace('月', '-').replace('日', ''), arr) != -1) {
-                                $(this).addClass("dateSelect");
-                            }
+                        $(this).removeClass("dateSelect");
+
+                        if ($(this).children("a").length != 0 && $.inArray(replaceChineseYMD($(this).children("a").attr("title")), arr) != -1) {
+                            $(this).addClass("dateSelect");
                         }
                     });
                     
@@ -800,7 +822,7 @@
                 
                 var dateStr = $(this).siblings("span").html();
                 $(".calendar td.dateSelect").each(function(){
-                    if (dateStr == $(this).children("a").attr("title").replace('年', '-').replace('月', '-').replace('日', '')) {
+                    if (dateStr == replaceChineseYMD($(this).children("a").attr("title"))) {
                         $(this).removeClass("dateSelect");
                     }
                 });
@@ -812,7 +834,7 @@
 
             });
 
-            // 修改团期
+            // 新增团期时，修改团期
             $("body").delegate(".editTourDateBtn", "click", function(){
                 $(".selectedDateBlock").hide();
                 $(".tourDateBlock").show();
@@ -820,7 +842,6 @@
                 today = new Date(array[0]);
                 toDate = today;
                 nextMonthDate = new Date(today.getFullYear(),toDate.getMonth()+1,toDate.getDate()); 
-
                 calendar.navigate(toDate,"month");
                 calendar1.navigate(nextMonthDate,"month");
 
@@ -828,17 +849,65 @@
                 changeCalendarDateInfo(toDate);
 
                 $(".calendar td").each(function(){
-                    if ($(this).children("a").length != 0 && $.inArray($(this).children("a").attr("title").replace('年', '-').replace('月', '-').replace('日', ''), array) != -1) {
+                    if ($(this).children("a").length != 0 && $.inArray(replaceChineseYMD($(this).children("a").attr("title")), array) != -1) {
                         $(this).addClass("dateSelect");
                     }
                 });
             });
+
+            //  编辑团期时，修改团期
+            /*
+            $("body").delegate(".editTourDateBtn", "click", function(){
+                $(".selectedDateBlock").hide();
+                $(".tourDateBlock").show();
+
+                array = [];
+                array.push("2015-01-02"); // 清除array,放进去后台的数据
+
+                today = new Date(array[0]);
+                toDate = today;
+                nextMonthDate = new Date(today.getFullYear(),toDate.getMonth()+1,toDate.getDate()); 
+                calendar.navigate(toDate,"month");
+                calendar1.navigate(nextMonthDate,"month");
+
+                $(".k-other-month a").remove();
+                changeCalendarDateInfo(toDate);
+
+                $(".calendar td").each(function(){
+                    if ($(this).children("a").length != 0 && $.inArray(replaceChineseYMD($(this).children("a").attr("title")), array) != -1) {
+                        $(this).addClass("dateSelect");
+                    }
+                });
+            });
+            */
 
         })
 
         function changeCalendarDateInfo(toDate){
             $(".calendarDate.cd1").html(toDate.getFullYear()+"年"+(toDate.getMonth()+1)+"月");
             $(".calendarDate.cd2").html(nextMonthDate.getFullYear()+"年"+(nextMonthDate.getMonth()+1)+"月");
+        }
+
+        function recoverCalendarSelected(array) {
+            $(".calendar td").each(function(){
+                if ($(this).hasClass("dateSelect")) {
+                    $(this).removeClass("dateSelect");
+                } else {
+                    if ($(this).children("a").length != 0 && $.inArray(replaceChineseYMD($(this).children("a").attr("title")), array) != -1) {
+                        $(this).addClass("dateSelect");
+                    }
+                }
+            });
+        }
+
+        function replaceChineseYMD(str) {
+            var dateStr = str.replace('年', '-').replace('月', '-').replace('日', '');
+            var tmpArr = dateStr.split('-');
+
+            var month = tmpArr[1] < 10 ? ("0" + tmpArr[1]) : tmpArr[1];
+            var day = tmpArr[2] < 10 ? ("0" + tmpArr[2]) : tmpArr[2];
+
+            return tmpArr[0] + "-" + month + "-" + day;
         }
     </script>   
     
