@@ -21,7 +21,7 @@
 	<script src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
 
 	<script type="text/javascript" src="/static/js/supplier/supplier_travel.js"></script>
-	<script src="/static/js/kendo.dataviz.min.js"></script>
+	<!-- // <script src="/static/js/kendo.dataviz.min.js"></script> -->
 
 
     <!--[if IE]>
@@ -300,7 +300,7 @@
 				<div class="rightContentBlock">
 					<div class="passengerNumBlock">
 						<img src='../../static/images/loading/loading.gif' class="loadingImg" style="display:none;"/>
-						<div id="passengerNumChart" style="height:240px;"></div>
+						<div id="passengerNumChart" style="height:250px;width:400px;position:relative;left:-55px;top:-15px;"></div>
 					</div>
 					<div class="customerServiceBlock">
 						<img src='../../static/images/loading/loading.gif' class="loadingImg" style="display:none;"/>
@@ -452,69 +452,151 @@
         </div>
     </div>
 
-	
+    <!--  如果你把引用echarts的script标签放置head内在IE8-的浏览器中会出现报错，解决的办法就是把标签移动到body内（后）  -->
+	<script src="/static/js/plugins/echarts/echarts-plain.js"></script>
 
 	<script type="text/javascript">
+		// kendo chart 依赖的js文件与 kendo.web.js 有冲突，现考虑使用 百度echart 来实现
 
-		function createChart() {
-			$("#passengerNumChart").kendoChart({
+		// function createChart() {
+		// 	$("#passengerNumChart").kendoChart({
+		// 		title: {
+		// 		    text: "近期出团信息",
+		// 		    align: "left",
+		// 		    margin: {
+		// 		      left: -10,
+		// 		      top: -5
+		// 		    },
+		// 		    font: "bold 16px microsoft yahei",
+		// 		    color: "#666"
+		// 		},
+		// 		legend: {
+		// 			position: "bottom",
+		// 			labels: {
+		// 				font: "12px microsoft yahei",
+		// 				color: "#333"
+		// 			},
+		// 			margin: {
+		// 				top: 15,
+		// 				bottom: 5
+		// 			}
+		// 		},
+		// 		series: [{
+		// 		    name: "出团人数",
+		// 		    data: [20, 30, 40, 30, 40],
+		// 		    color: "#14b8d4"
+		// 		}],
+		// 		categoryAxis: {
+		// 		    categories: ["今天", "7月10日", "7月25日", "8月1日", "9月1日"],
+		// 		    majorGridLines: {
+		// 		        visible: false
+		// 		    },
+		// 		    labels: {
+		// 		    	color: "#666",
+		// 		    	font: "12px microsoft yahei"
+		// 		    }
+		// 		},
+		// 		valueAxis: {
+		// 			min: 0,
+		// 			max: 40,
+		// 			majorUnit: 10,
+  //     				labels: {
+  //     					color: "#333",
+  //     					font: "12px Arial"
+  //     				},
+  //     				line: {
+  //     					visible: false
+  //     				}
+		// 		},
+		// 		tooltip: {
+		// 		    visible: false,
+		// 		    template: "#= series.name #: #= value #"
+		// 		}
+		// 	});
+		// }
+
+		var myChart = echarts.init(document.getElementById('passengerNumChart'));  
+		// 用jquery选择器不行
+
+		myChart.setOption({
 				title: {
 				    text: "近期出团信息",
-				    align: "left",
-				    margin: {
-				      left: -10,
-				      top: -5
+				    textStyle: {
+				    	fontSize: 16, 
+						fontWeight: 'bolder', 
+						color: '#666',
+						fontFamily: 'microsoft yahei'
 				    },
-				    font: "bold 16px microsoft yahei",
-				    color: "#666"
+				    x: 60,
+				    y: 20
 				},
 				legend: {
-					position: "bottom",
-					labels: {
-						font: "12px microsoft yahei",
-						color: "#333"
-					},
-					margin: {
-						top: 15,
-						bottom: 5
-					}
+					x: 'center',
+					y: 235,
+					padding: [15, 0, 5, 0],
+					data: [{
+						name: '出团人数',
+						textStyle: {
+							color: '#333',
+							fontSize: 12,
+							fontFamily: 'microsoft yahei'
+						}
+					}],
+					selectedMode: false
 				},
 				series: [{
-				    name: "出团人数",
-				    data: [20, 30, 40, 30, 40],
-				    color: "#14b8d4"
-				}],
-				categoryAxis: {
-				    categories: ["今天", "7月10日", "7月25日", "8月1日", "9月1日"],
-				    majorGridLines: {
-				        visible: false
-				    },
-				    labels: {
-				    	color: "#666",
-				    	font: "12px microsoft yahei"
-				    }
+		            name: '出团人数',
+		            type: 'bar',
+		            data: [20, 30, 40, 30, 40],
+		            barWidth: 20,
+		            itemStyle: {
+		            	normal: {
+		            		color: '#14b8d4'
+		            	},
+		            	emphasis : {
+		            		color: '#14b8d4'
+		            	}
+		            }
+		        }],
+				xAxis: {
+					type: 'category',
+					data: ["今天", "7月10日", "7月25日", "8月1日", "9月1日"],
+					axisLine: {
+						show: false
+					},
+					axisTick: {
+						show: false
+					},					
+					splitLine: {
+						show: false
+					},
+					axisLabel: {
+						textStyle: {
+							color: "#666",
+							fontSize: 12,
+							fontFamily: 'microsoft yahei'
+						}
+					}
 				},
-				valueAxis: {
+				yAxis: {
+					type: 'value',
 					min: 0,
 					max: 40,
-					majorUnit: 10,
-      				labels: {
-      					color: "#333",
-      					font: "12px Arial"
-      				},
-      				line: {
-      					visible: false
-      				}
+					splitNumber: 4,
+					axisLine: {
+						show: false
+					},
+					axisLabel: {
+						textStyle: {
+							color: '#333',
+							fontSize: 12,
+							fontFamily: 'Arial'
+						}
+					}
 				},
 				tooltip: {
-				    visible: false,
-				    template: "#= series.name #: #= value #"
+					show: true
 				}
-			});
-		}
-
-		$(function(){			
-	        $(document).ready(createChart);
 		});
 
 	</script>	
