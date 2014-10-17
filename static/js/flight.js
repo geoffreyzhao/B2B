@@ -95,79 +95,79 @@ function grid_manipulate(settings){
     });
 
     function createStruct(arr){
-        var item,result={}; 
-        if( arr && arr.length < 1) return;
+    //     var item,result={}; 
+    //     if( arr && arr.length < 1) return;
 
-        item = arr[0];
-        if(jQuery.type(item) == 'object'){
-            for (key in item){
-                result[key] = null; 
-            }
-        }
+    //     item = arr[0];
+    //     if(jQuery.type(item) == 'object'){
+    //         for (key in item){
+    //             result[key] = null; 
+    //         }
+    //     }
 
-        return result;
+    //     return result;
     }
 
     function init(){
-        if(jQuery.type(settings.init) == 'function'){
-            settings.init.apply(null,arguments);
-        }
+    //     if(jQuery.type(settings.init) == 'function'){
+    //         settings.init.apply(null,arguments);
+    //     }
 
-        wrap.find('tbody').attr('data-bind','source:data');
-        wrap.find('tbody').attr('data-template',settings.template);
-        kendo.bind(wrap,model);
-        kendo.init(wrap);
+    //     wrap.find('tbody').attr('data-bind','source:data');
+    //     wrap.find('tbody').attr('data-template',settings.template);
+    //     kendo.bind(wrap,model);
+    //     kendo.init(wrap);
     }
 
     init(model);
 
     return {
-        data:model.data,
-        appendRow:function(d){
-            if(d){
-                this.data.push(d);
-            }else if(struct){
-                this.data.push(struct);
-            }else{
-                throw Error('没有数据\nstruct:'+struct+'\nargument:'+d); 
-            }
-        },
-        copyRow:function(){
-            var data = $.map(this.data.toJSON(),function(ele,index){
-                if($(settings.container).find('tr:eq('+(index)+') input:checked').length) return ele;
-            });
+    //     data:model.data,
+    //     appendRow:function(d){
+    //         if(d){
+    //             this.data.push(d);
+    //         }else if(struct){
+    //             this.data.push(struct);
+    //         }else{
+    //             throw Error('没有数据\nstruct:'+struct+'\nargument:'+d); 
+    //         }
+    //     },
+    //     copyRow:function(){
+    //         var data = $.map(this.data.toJSON(),function(ele,index){
+    //             if($(settings.container).find('tr:eq('+(index)+') input:checked').length) return ele;
+    //         });
 
-            this.data.push.apply(this.data,data);
-        },
-        removeSelected:function(){
-            var data = this.data;
-            $.each($(settings.container).find('input:checked').closest('tr'),function(){
-                $(this).find('[data-role]').each(function(){
-                    $(this).data('kendoDropDownList').list.remove(); 
-                    $('.k-animation-container:empty').remove();
-                });
-                data.splice($(this).index(),1);
-            });
-        },
-        remove:function(){
-           var args = arguments;  
-           var len = args.length,i=0;
-           for (;i<len;i++){
-                if(typeof args[i]=='number'){
-                    this.data.splice(args[i],1);
-                } 
-           }
-        },
-        removeUnSelected:function(){
-            var data = this.data;
-            $.each($(settings.container).find('input:checkbox:not(:checked)').closest('tr'),function(index,ele){
-                $(this).find('[data-role]').each(function(){
-                    $(this).data('kendoDropDownList').list.remove(); 
-                    $('.k-animation-container:empty').remove();
-                });
-                data.splice($(this).index(),1);
-            });
-        }
+    //         this.data.push.apply(this.data,data);
+    //     },
+    //     removeSelected:function(){
+    //         var data = this.data;
+    //         $.each($(settings.container).find('input:checked').closest('tr'),function(){
+    //             $(this).find('[data-role]').each(function(){
+    //                 $(this).data('kendoDropDownList').list.remove(); 
+    //                 $('.k-animation-container:empty').remove();
+    //             });
+    //             data.splice($(this).index(),1);
+    //         });
+    //     },
+    //     remove:function(){
+    //        var args = arguments;  
+    //        var len = args.length,i=0;
+    //        for (;i<len;i++){
+    //             if(typeof args[i]=='number'){
+    //                 this.data.splice(args[i],1);
+    //             } 
+    //        }
+    //     },
+    //     removeUnSelected:function(){
+    //         var data = this.data;
+    //         $.each($(settings.container).find('input:checkbox:not(:checked)').closest('tr'),function(index,ele){
+    //             $(this).find('[data-role]').each(function(){
+    //                 $(this).data('kendoDropDownList').list.remove(); 
+    //                 $('.k-animation-container:empty').remove();
+    //             });
+    //             data.splice($(this).index(),1);
+    //         });
+    //     }
     }
 }
 
