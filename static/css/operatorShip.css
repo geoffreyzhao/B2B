@@ -2380,9 +2380,9 @@ div.addTitleStyle {
 }
 
 .detailsTab{
-    margin-top: 40px;
+    /*margin-top: 40px;*/
 }
-.detailsTab .noBorderInput input{
+.detailsTab .noBorderInput input[readonly='readonly']{
     border: 0;
     background: transparent;
 }
@@ -2411,7 +2411,7 @@ div.addTitleStyle {
     background: #fff6ee;
 }
 .detailsTab td:hover{
-    background: #e6f5ff;
+    /*background: #e6f5ff;*/
 }
 .detailsTab tr:hover{
     background: transparent !important;
@@ -2444,30 +2444,34 @@ div.addTitleStyle {
 }
 .multicolorTab{
     position: relative;
+    margin-top: 40px;
 }
 .multicolorTab .multipleBg{
     display: inline-block;
     min-height: 25px;
     line-height: 25px;
     position: absolute;
-    top: -25px;
     text-align: center;
     color: #FFFFFF;    
 }
 .multicolorTab .topStripBlueBg{
     background: #50aee4;
-    right: 480px;
+    right: 478px;
     width: 240px;
+    top: -15px;
+    right: 0;
 }
 .multicolorTab .topStripGreenBg{
     background: #69bf7f;
     right: 240px;
     width: 240px;
+    top: -25px;
 }
 .multicolorTab .topStripLightPinkBg{
     background: #f9aa76;
     right: 0px;
     width: 240px;
+    top: -25px;
 }
 .inventoryFloatingLayer{
     position: absolute;
@@ -2527,7 +2531,7 @@ div.addTitleStyle {
     width: 100%;
     font-size: 14px;
 }
-.commonTab tbody td:first-child,.commonTab thead th:first-child{
+.commonTab.leftTab tbody td:first-child,.commonTab.leftTab thead th:first-child{
     padding-left: 10px;
 }
 .commonTab thead th{
@@ -2541,6 +2545,7 @@ div.addTitleStyle {
     padding: 10px 3px;
     border-bottom: 1px solid #eaeaea;
     vertical-align: top;
+    position: relative;
 }
 .commonTab tbody tr:hover{
     background: #f8f8f8;
@@ -2557,10 +2562,67 @@ div.addTitleStyle {
     margin-right: 5px;
 }
 
-.detailsTab {
-    margin-top: 40px;
-}
-
 .multicolorTab .tdOrangeFont {
     color: #ff3300;
+}
+
+.commonTab.detailsTab.leftTab {
+    float: left;
+    width: 480px;
+}
+
+.rightTabContainer {
+    position: relative;
+}
+
+.commonTab.detailsTab.rightTab {
+    width: 480px;
+    margin-left: 10px;
+    margin-top: 30px;
+}
+
+.commonTab.detailsTab tbody tr{
+    height: 79px;
+}
+
+.leftColorTab {
+    float: left;
+}
+
+.rightColorTab {
+    float: left;
+    margin-top: 10px;
+    position: absolute;
+    z-index: 1;
+    left: 480px;
+    width: 490px;
+    top: 130px;
+}
+
+.showLayer {
+    background-color: #fff;
+    border: 1px solid #c0c0c0;
+    box-shadow: 1px 2px 2px 0px #e1e1e1;
+}
+
+.operaBtnBlock {
+    text-align: right;
+    margin-right: 20px;
+    margin-top: 10px;
+    visibility: hidden;
+}
+
+.operaBtnBlock a {
+    margin-right: 15px;
+}
+
+.operaBtnBlock a.cancelLink:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.oldPrice {
+    font-size: 12px;
+    position: absolute;
+    bottom: 10px;
 }
