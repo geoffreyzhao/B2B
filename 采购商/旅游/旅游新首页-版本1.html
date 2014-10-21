@@ -26,7 +26,7 @@
 
     <style type="text/css">
         .ac-floatlayer {
-            top: 265px !important;
+            top: 246px !important;
         }
     </style>
 
@@ -96,8 +96,8 @@
                     <div class="searchForm noWhiteBg tab clearfix" style="display: block;">
                         <span class="inputWhiteBgRow">
                             <span class="startOff-bg">
-                                <span tabindex="-1" role="presentation" class="startOff city_ac k-widget k-autocomplete k-header k-state-default" style="width: 125px;">
-                                    <input id="startOff" style="width: 100%;" type="text" class="startOff city_ac k-input" value="上海虹桥" data-role="autocomplete" autocomplete="off" role="textbox" aria-haspopup="true" aria-disabled="false" aria-readonly="false" aria-owns="startOff_listbox" aria-autocomplete="list">
+                                <span tabindex="-1" role="presentation" class="startOff city_ac k-widget k-autocomplete k-header k-state-default" style="width: 82px;">
+                                    <input id="startOff" style="width: 100%;text-align:center;" type="text" class="startOff city_ac k-input" value="上海虹桥" data-role="autocomplete" autocomplete="off" role="textbox" aria-haspopup="true" aria-disabled="false" aria-readonly="false" aria-owns="startOff_listbox" aria-autocomplete="list">
                                     <span class="k-icon k-loading" style="display:none"></span>
                                 </span>
                                 <input type="hidden" name="_code">
@@ -117,8 +117,8 @@
                     <div class="searchForm noWhiteBg tab clearfix" style="display: none;">
                         <span class="inputWhiteBgRow">
                             <span class="startOff-bg">
-                                <span tabindex="-1" role="presentation" class="startOff city_ac k-widget k-autocomplete k-header k-state-default" style="width: 125px;">
-                                    <input id="endOff" style="width: 100%;" type="text" class="startOff city_ac k-input" value="北京" data-role="autocomplete" autocomplete="off" role="textbox" aria-haspopup="true" aria-disabled="false" aria-readonly="false" aria-owns="startOff_listbox" aria-autocomplete="list">
+                                <span tabindex="-1" role="presentation" class="startOff city_ac k-widget k-autocomplete k-header k-state-default" style="width: 82px;">
+                                    <input id="endOff" style="width: 100%;text-align:center;" type="text" class="startOff city_ac k-input" value="北京" data-role="autocomplete" autocomplete="off" role="textbox" aria-haspopup="true" aria-disabled="false" aria-readonly="false" aria-owns="startOff_listbox" aria-autocomplete="list">
                                     <span class="k-icon k-loading" style="display:none"></span>
                                 </span>
                                 <input type="hidden" name="_code">
@@ -435,14 +435,20 @@
         createCityAc(".city_ac");
         
         $(".newSearchTab li:even").each(function(index){
+
+            if ($(this).hasClass("selected")) {
+              $(this).addClass("selected").prev(".addLine").css("visibility", "hidden");
+              $(this).addClass("selected").next(".addLine").css("visibility", "hidden");
+            }
+
             $(this).click(function(){
                 $(".newSearch .tab").hide();
                 $(".newSearch .tab:eq(" + index + ")").show();
                 $(".newSearchTab li").removeClass("selected");
                 $(this).addClass("selected");
-                $(".newSearchTab .addLine").show();
-                $(this).addClass("selected").prev(".addLine").hide();
-                $(this).addClass("selected").next(".addLine").hide();                  
+                $(".newSearchTab .addLine").css("visibility", "visible");
+                $(this).addClass("selected").prev(".addLine").css("visibility", "hidden");
+                $(this).addClass("selected").next(".addLine").css("visibility", "hidden");                  
             });
         });
         
