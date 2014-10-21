@@ -498,7 +498,9 @@
 </section>
 
     <div class="orderCountDown">
-        <span>订单将在 <em>00:53:23</em> 后关闭支付。如需预订请尽快完成支付</span>
+        <div class="inner_orderCountDown">
+            <span>订单将在 <em>01:00:00</em> 后关闭支付。如需预订请尽快完成支付</span>
+        </div>
     </div>
 
     <div class="accountInfoBlock">
@@ -521,6 +523,41 @@
             </span>
         </div>
     </div>
+
+    <!--  其余两种情况
+    
+    <div class="accountInfoBlock">
+        <div class="inner_accountInfoBlock clearfix">
+            <span class="pull-left orderSimpleInfo">
+                <b>出发</b>
+                <span>2014-09-25周日 套餐价￥2000/2成人；儿童￥800/人</span>
+            </span>
+            <span class="pull-right">                    
+                <a class="adaptiveButton mediumOrange_btn payClick">
+                    <span class="left"></span>
+                    <span class="center center_1">确认订单</span>
+                    <span class="right"></span>
+                </a>
+            </span>
+            <span class="accountCon pull-right">
+                <span>套餐价￥2000 X 1 + 儿童 X 0 =总价</span>
+                <em class="totalPrice">￥56200.00</em>
+            </span>
+        </div>
+    </div>
+    <div class="accountInfoBlock">
+        <div class="inner_accountInfoBlock clearfix">
+            <span class="pull-left orderSimpleInfo">
+                <b>出发</b>
+                <span>2014-09-25周日 套餐价￥2000/2成人；儿童￥800/人</span>
+            </span>
+            <span class="accountCon pull-right">
+                <span>套餐价￥2000 X 1 + 儿童 X 0 =总价</span>
+                <em class="totalPrice">￥56200.00</em>
+            </span>
+        </div>
+    </div>
+    -->
  <!--body end-->
 
 <!--footer start-->
@@ -560,13 +597,32 @@
         });
 
         $(".orderCountDown").fixedBar({
-            css: "bottom:70px;position:fixed",
+            css: "bottom:83px;position:fixed",
             inverse:true
         });
         $(".accountInfoBlock").fixedBar({
             inverse:true
         });
+
+        var date = new Date(1970,0,0,0,0,0); //  注意js初始化时间的兼容性 
+        date.setHours(1);
+
+        setInterval(function(){
+            var ts = date.getSeconds() - 1;
+            date.setSeconds(ts);
+            setHourCountDown(date);
+        }, 1000);
     });
+
+        
+    function setHourCountDown(date) {
+
+        var h = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+        var m = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+        var s = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+
+        $(".inner_orderCountDown em").html(h + ":" + m + ":" + s);
+    }
 
 </script>
 
