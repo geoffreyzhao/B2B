@@ -266,7 +266,7 @@
                     </tr>
                     <tr>
                         <th><i class="redStar">*</i>甲板：</th>
-                        <td><input type="text" class="pleaseSel" placeholder="请选择"></td>
+                        <td><input type="text" class="pleaseSel deckDisplayLayerInfo1" placeholder="请选择"></td>
                     </tr>
                     <tr>
                         <th><i class="redStar">*</i>面积：</th>
@@ -345,7 +345,7 @@
                     </tr>
                     <tr>
                         <th>甲板：</th>
-                        <td><input type="text" class="pleaseSel" value="1，6，12 "></td>
+                        <td><input type="text" class="pleaseSel deckDisplayLayerInfo2" ></td>
                     </tr>
                     <tr>
                         <th><i class="redStar">*</i>面积：</th>
@@ -473,6 +473,29 @@
                     "z-index":"20000"
                 }
             });
+
+            var layerInfo = $(".layerTable").find("input");
+            var layerArr = [];
+            $(".confirm").on("click",function(){
+                layerArr = [];
+                layerInfo.each(function(index){
+                    if(true == $(this).is(':checked'))
+                        layerArr.push($(this).parent().text());
+                });
+                
+                var tempVal = '';
+                for(var i=0; i<layerArr.length; i++)
+                {
+                    tempVal += layerArr[i] + ';';
+                }
+                $(".deckDisplayLayerInfo1").val(tempVal);
+                $(".deckDisplayLayerInfo2").val(tempVal);
+                layer.close();
+            });
+
+
+
+
             
         });
     </script>
