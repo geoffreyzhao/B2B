@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>运营商 邮轮 审核页面-团期报价</title>
+
+    <title>运营商 邮轮 航线售卖管理</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
     <link href="/static/css/kendo.common.css" rel="stylesheet" type="text/css" />
@@ -9,315 +10,342 @@
     <link href="/static/css/kendo.reset.css" rel="stylesheet" type="text/css" />
     <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
     <link href="/static/css/kendo.reset.css" rel="stylesheet" />    
+
+    <link href="/static/css/passengerLinerHead.css" rel="stylesheet">
     <link href="/static/css/operatorShip.css" rel="stylesheet" type="text/css"/>
-    
+ 
     <script src="/static/js/jquery.min.js" type="text/javascript"></script>    
     <script src="/static/js/kendo.web.js" type="text/javascript"></script>
     <script type="text/javascript" src="/static/js/scrollFix.js"></script>
-    <script type="text/javascript" src="/static/js/public.js"></script>
     <script type="text/javascript" src="/static/js/global.js"></script>
-    <script type="text/javascript" src="/static/js/flight.js"></script>
-    
+    <script type="text/javascript" src="/static/js/public.js"></script>
+
     <!--[if IE]>
     <script src="/static/js/html5.js"></script>
     <![endif]-->
-
-    <script>
-        $(function(){
-            kendo.init('body');
-            lensf();
-        })
-    </script>
     
     <!--[if lt IE 8]>
     <link rel="stylesheet" href="/static/css/ie.css" />
     <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script>
     <![endif]-->
     <script type="text/javascript" src="/static/js/sync.js"></script>
-    <!-- @CLB@ -->
+
+    <!-- @CLB@ -->    
+    <script>
+        $(function(){
+            kendo.init('body');
+        })
+    </script>
 </head>
 <body>
-    <div id="extHeader">
+    <div id="head">
         <div></div>
     </div>
+    <div id="catalogue"></div>
 
     <div id="container">
-        <div class="header">
-            <h1></h1>
-            <div>
-                <span>你好,${name}</span>
-                <a href="javascript:void(0);">退出</a>
+        <div class="logo">
+            <div class="clearfix">
+                <h1></h1>
+                <div class="profile">
+                    <a href="javascript:void(0)">你好,千颂伊</a>
+                    <a href="javascript:void(0)">退出</a>
+                </div>
             </div>
-            <ul id="top_menu">
-                <li><a href="javascript:void(0);">国内机票</a></li>
-                <li><a href="javascript:void(0);">国际机票</a></li>
-                <li><a href="javascript:void(0);">酒店</a></li>
-                <li><a href="javascript:void(0);">票证中心</a></li>
-                <li><a href="javascript:void(0);">财务管理</a></li>
-                <li><a href="javascript:void(0);">客户管理</a></li>
-                <li class="current"><a href="javascript:void(0);">系统设置</a></li>
+            <ul id="catalogue_menu" class="clearfix">
+                <li class="">
+                    <a href="javascript:void(0)">国内机票</a>
+                    <ol class="subMenu">
+                        <li><a href="javascript:void(0)">基础模块维护</a></li>
+                        <li><a href="javascript:void(0)">航线审核</a></li>
+                        <li class="currentSubMenu"><a href="javascript:void(0)">航线售卖管理</a></li>
+                        <li><a href="javascript:void(0)">团管理</a></li>
+                    </ol>
+                </li>
+                <li><a href="javascript:void(0)">国际机票</a></li>
+                <li><a href="javascript:void(0)">酒店</a></li>
+                <li><a href="javascript:void(0)">打包产品</a></li>
+                <li><a href="javascript:void(0)">旅游</a></li>
+                <li class="current"><a href="javascript:void(0)">邮轮</a></li>
+                <li><a href="javascript:void(0)">签证</a></li>
+                <li><a href="javascript:void(0)">保险</a></li>
+                <li><a href="javascript:void(0)">短信</a></li>
+                <li><a href="javascript:void(0)">票证</a></li>
+                <li><a href="javascript:void(0)">财务</a></li>
+                <li><a href="javascript:void(0)">客户</a></li>
             </ul>
-            <ol class="sub_menu">
-                <li class="current"><a href="javascript:void(0);">公告信息</a></li>
-                <li><a href="javascript:void(0);">公司信息</a></li>
-                <li><a href="javascript:void(0);">组织架构</a></li>
-                <li><a href="javascript:void(0);">角色维护</a></li>
-                <li><a href="javascript:void(0);">基础数据</a></li>
-            </ol>
-            <div id="message">
-            	<a href="javascript:void(0);">&nbsp;</a>
-                <span>&nbsp;</span>
+            <div id="info">
+                <h3>
+                    <span>消息<em>30</em></span>
+                    <span>设置</span>
+                </h3>
             </div>
         </div>
-        <div class="clear"></div>
-        <div id="sub_menu_bar"></div>
-        <div id="mainContent">
+        <div id="mainContent" style="overflow:hidden;">
 			<!-- start content -->
-            
-            <div class="commonModelStyle paddingSpace">
-                <div class="lineTitleContent">
-                    <label><b class="fonts333">航线编号</b> 14878</label>
-                    <b>上海-济州-仁川（首尔）-上海4晚5天</b>
-                    <em class="trickHint">单船票</em>
-                </div>
-                <ul class="passengerLinerInfo clearfix">
-                    <li>
-                        <em>邮轮公司：</em>
-                        <i>歌诗达邮轮</i>
-                    </li>
-                    <li>
-                        <em>船只：</em>
-                        <i>维多利亚号</i>
-                    </li>
-                    <li>
-                        <em>供应商：</em>
-                        <i>唯一邮轮</i>
-                    </li>
-                </ul>
+            <div class="mainContBody">
+                <div class="information_div">
+               <table cellpadding="0" cellspacing="0" class="groupManage-tab-advantage">
+                  <colgroup>
+                       <col width="60" />  
+                       <col width="220" /> 
+                       <col width="60" />
+                       <col width="220" /> 
+                       <col width="60" /> 
+                       <col width="240" />
+                       <col width="95" />
+                  </colgroup>
+                  <tr>
+                     <td class="groupManage-serch-adv">供应商:</td>
+                     <td>
+                         <select style="width:170px" data-role="dropdownlist">
+                              <option>请选择</option>
+                         </select>
+                     </td>
+                     <td class="groupManage-serch-adv">航线编号:</td>
+                     <td>
+                         <input type="text" style="width: 164px;" placeholder="请输入" />
+                     </td>
+                     <td class="groupManage-serch-adv">航线名称:</td>
+                     <td>
+                         <input type="text" style="width: 164px;" placeholder="请输入" />
+                     </td>                     
+                     <td rowspan="3">
+                         <a href="javascript:;" class="button_important adaptiveButton medium">
+                            <span class="left"></span>
+                            <span class="center" style="padding:0 25px;">查 询</span>
+                            <span class="right"></span>
+                        </a>
+                     </td>
+                  </tr> 
+                  <tr>
+                    <td class="groupManage-serch-adv">邮轮公司:</td>
+                    <td>
+                      <select style="width:170px;" data-role="dropdownlist">
+                          <option selected="">请选择</option>
+                      </select>
+                     </td>
+                      <td class="groupManage-serch-adv">船只:</td>
+                      <td>
+                          <select style="width:170px;" data-role="dropdownlist">
+                              <option selected="">请选择</option>
+                          </select>
+                      </td>
+                      <td class="groupManage-serch-adv">出发地:</td>
+                      <td>
+                          <select style="width:170px;" data-role="dropdownlist">
+                              <option selected="">全部</option>
+                          </select>
+                      </td>
+                                           
+                  </tr>
+                  <tr>
+                        <td class="groupManage-serch-adv">地区</td>
+                      <td>
+                          <select style="width:170px;" data-role="dropdownlist">
+                              <option selected="">全部</option>
+                          </select>
+                      </td> 
+                      <td class="groupManage-serch-adv">航线类型</td>
+                      <td>
+                          <select style="width:170px;" data-role="dropdownlist">
+                              <option selected="">全部</option>
+                          </select>
+                      </td> 
+                      <td class="groupManage-serch-adv">售卖状态:</td>
+                      <td>
+                          <select style="width:170px;" data-role="dropdownlist">
+                              <option selected="">全部</option>
+                          </select>
+                      </td>
+                  </tr>
+               </table>              
             </div>
-            
-            <div class="commonModelStyle"> <!--导航悬停模块开始-->
-                <div class="topFixedToolsBar">
-                    <div class="fixedMenu">
-                        <a href="#">基本信息</a>
-                        <a href="#">行程安排</a>
-                        <a href="#">描述信息</a>
-                        <a href="#" class="current">团期报价</a>
-                    </div>
-                    <i class="newIcon"></i>
-                </div>
-
-                <div class="searchBar">
-                    <div class="beginDate">
-                        <span>开始日期:&nbsp;</span>
-                        <input type="text" class="beginDateInput" />
-                    </div>
-                    <div class="endDate">
-                        <span>结束日期:&nbsp;</span>
-                        <input type="text" class="endDateInput">
-                    </div>
-
-                    <div class="groupNum">
-                        <span>团号:&nbsp;</span>
-                        <input type="text" class="endDateInput">
-                    </div>
-                    <div class="groupStatus">
-                        <span>团状态:&nbsp;</span>
-                        <select data-role="dropdownlist">
-                            <option>全部</option>
-                        </select>
-                    </div>
-                    <div class="queryBtn">
-                        <a class="query_a" href="#">查 询</a>
-                    </div>
-                        
-                    
-
-                </div>
-
-                <table class="grayTitleTab">
-                    <colgroup>
-                        <col width="34">
-                        <col width="120">
-                        <col width="184">
-                        <col width="140">
-                        <col width="118">
-                        <col width="120">
-                        <col width="112">
-                        <col width="138">
-                    </colgroup>
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th>启航日期</th>
-                        <th>团号</th>
-                        <th>截止收客时间</th>
-                        <th>起价</th>
-                        <th>库存</th>
-                        <th>团状态</th>
-                        <th>操作</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td></td>
-                        <td class="sailDate">2014-07-28</td>
-                        <td class="shipName">20140720维多利亚号</td>
-                        <td class="sailDate">2014-07-28</td>
-                        <td>
-                            <b class="orangeFonts">1584</b>
-                        </td>
-                        <td>
-                            <div>
-                                <i class="blueBgFonts">总</i>
-                                <em class="fontWeight">80</em>
-                            </div>
-                        </td>
-                        <td class="sellingFont">售卖中</td>
-                        <td>
-                            <a href="javascript:void(0);">详情</a>
-                            <a href="javascript:void(0);">售价维护</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td class="sailDate">2014-07-28</td>
-                        <td class="shipName">20140720维多利亚号</td>
-                        <td class="sailDate">2014-07-28</td>
-                        <td>
-                            <b class="orangeFonts">1584</b>
-                        </td>
-                        <td>
-                            <div>
-                                <i class="blueBgFonts">总</i>
-                                <em class="fonts14">80</em>
-                            </div>
-                            <div>
-                                <i class="blueBgFonts">售</i>
-                                <em class="fonts14">60</em>
-                            </div>
-                            <div>
-                                <i class="blueBgFonts">余</i>
-                                <em class="fonts14">20</em>
-                            </div>
-                        </td>
-                        <td class="stopAcquireGuest">截止收客</td>
-                        <td>
-                            <a href="javascript:void(0);">详情</a>
-                            <a href="javascript:void(0);">售价维护</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td class="sailDate">2014-07-28</td>
-                        <td class="shipName">20140720维多利亚号</td>
-                        <td class="sailDate">2014-07-28</td>
-                        <td>
-                            <b class="orangeFonts">1584</b>
-                        </td>
-                        <td>
-                            <div>
-                                <i class="blueBgFonts">总</i>
-                                <em class="fonts14">80</em>
-                            </div>
-                            <div>
-                                <i class="blueBgFonts">售</i>
-                                <em class="fonts14">60</em>
-                            </div>
-                            <div>
-                                <i class="blueBgFonts">余</i>
-                                <em class="fonts14">20</em>
-                            </div>
-                        </td>
-                        <td class="alreadyStopSell">已停售</td>
-                        <td>
-                            <a href="javascript:void(0);">详情</a>
-                            <a href="javascript:void(0);">售价维护</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td class="sailDate">2014-07-28</td>
-                        <td class="shipName">20140720维多利亚号</td>
-                        <td class="sailDate">2014-07-28</td>
-                        <td>
-                            <b class="orangeFonts">1584</b>
-                        </td>
-                        <td>
-                            <div>
-                                <i class="blueBgFonts">总</i>
-                                <em class="fontWeight">80</em>
-                            </div>
-                        </td>
-                        <td class="sellingFont">售卖中</td>
-                        <td>
-                            <a href="javascript:void(0);">详情</a>
-                            <a href="javascript:void(0);">售价维护</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td class="sailDate">2014-07-28</td>
-                        <td class="shipName">20140720维多利亚号</td>
-                        <td class="sailDate">2014-07-28</td>
-                        <td>
-                            <b class="orangeFonts">1584</b>
-                        </td>
-                        <td>
-                            <div>
-                                <i class="blueBgFonts">总</i>
-                                <em class="fontWeight">80</em>
-                            </div>
-                        </td>
-                        <td class="sellingFont">售卖中</td>
-                        <td>
-                            <a href="javascript:void(0);">详情</a>
-                            <a href="javascript:void(0);">售价维护</a>
-                        </td>
-                    </tr>
-                    
-
-                    
-                    </tbody>
-                </table>
-                <div class="grid-table-pagination page">
-                      <span class="grid-table-count">
-                          共 <em>132</em> 条记录
-                      </span>
-                      <span>
-                          <a href="#" class="prev">&nbsp;</a>
-                      </span>
-                      <span class="links">
-                          <a href="#">1</a>
-                          <a href="#">2</a>
-                          <a href="#" class="current">3</a>
-                          <a href="#">4</a>
-                          <a href="#">5</a>
-                          <a href="javascript:;">...</a>
-                          <a href="#">50</a>
-                      </span>
-                      <span>
-                          <a href="#" class="next">&nbsp;</a>
-                      </span>
-                </div>
-            </div> <!--导航悬停模块结束-->
+           
               
-            </div>
-          </div>
+              <table class="tgrid tdNoEllipsis">
+                  <colgroup>
+                      <col width="70"/>
+                      <col width="78"/>
+                      <col width="200"/>
+                      <col width="57"/>
+                      <col width="100"/>
+                      <col width="95"/>
+                      <col width="60"/>
+                      <col width="110"/>
+                      <col width="100"/>
+                      <col width="120"/>
+                  </colgroup>
+                  <thead>
+                      <tr>
+                          <th class="line_left">航线编号</th>
+                          <th>供应商</th>
+                          <th>航线名称</th>
+                          <th>航线类型</th>
+                          <th>船只/邮轮公司</th>
+                          <th>出发地</th>
+                          <th>地区</th>
+                          <th>受理时间/受理人</th>
+                          <th>售卖状态</th>
+                          <th class="line_right">操作</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td class="defaultBlue_blueLink">57845</td>
+                        <td>唯一邮轮</td>
+                        <td>上海-济州-仁川（首尔）-上海5晚5天</td>
+                        <td>单</td>
+                        <td class="defaultBlack_blueLink">大西洋号歌诗达邮轮</td>
+                        <td class="defaultBlack_blueLink">上海/中国</td>
+                        <td class="defaultBlack_blueLink">日韩</td>
+                        <td class="personInfo">
+                            <p>2014-11-15</p>
+                            <p>16:05:37</p>
+                            <p>小潘潘</p>
+                        </td>
+                        <td>
+                            <div class="saleStatusIcon"></div>
+                        </td>
+                        <td>
+                            <a class="operOffline" href="javascript:void(0);">下线</a>
+                            <a href="javascript:void(0);">编辑</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="defaultBlue_blueLink">57845</td>
+                        <td>唯一邮轮</td>
+                        <td>上海-济州-仁川（首尔）-上海5晚5天</td>
+                        <td>团</td>
+                        <td class="defaultBlack_blueLink">大西洋号歌诗达邮轮</td>
+                        <td class="defaultBlack_blueLink">上海/中国</td>
+                        <td class="defaultBlack_blueLink">日韩</td>
+                        <td class="personInfo">
+                            <p>2014-11-15</p>
+                            <p>16:05:37</p>
+                            <p>小潘潘</p>
+                        </td>
+                        <td>
+                            <div class="offlineStatusIcon"></div>
+                        </td>
+                        <td>
+                            <a class="operOnline" href="javascript:void(0);">上线</a>
+                            <a href="javascript:void(0);">编辑</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="defaultBlue_blueLink">57845</td>
+                        <td>唯一邮轮</td>
+                        <td>上海-济州-仁川（首尔）-上海5晚5天</td>
+                        <td>单</td>
+                        <td class="defaultBlack_blueLink">大西洋号歌诗达邮轮</td>
+                        <td class="defaultBlack_blueLink">上海/中国</td>
+                        <td class="defaultBlack_blueLink">日韩</td>
+                        <td class="personInfo">
+                            <p>2014-11-15</p>
+                            <p>16:05:37</p>
+                            <p>小潘潘</p>
+                        </td>
+                        <td>
+                            <div class="saleStatusIcon"></div>
+                        </td>
+                        <td>
+                            <a class="operOffline" href="javascript:void(0);">下线</a>
+                            <a href="javascript:void(0);">编辑</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="defaultBlue_blueLink">57845</td>
+                        <td>唯一邮轮</td>
+                        <td>上海-济州-仁川（首尔）-上海5晚5天</td>
+                        <td>团</td>
+                        <td class="defaultBlack_blueLink">大西洋号歌诗达邮轮</td>
+                        <td class="defaultBlack_blueLink">上海/中国</td>
+                        <td class="defaultBlack_blueLink">日韩</td>
+                        <td class="personInfo">
+                            <p>2014-11-15</p>
+                            <p>16:05:37</p>
+                            <p>小潘潘</p>
+                        </td>
+                        <td>
+                            <div class="offlineStatusIcon"></div>
+                        </td>
+                        <td>
+                            <a class="operOnline" href="javascript:void(0);">上线</a>
+                            <a href="javascript:void(0);">编辑</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="defaultBlue_blueLink">57845</td>
+                        <td>唯一邮轮</td>
+                        <td>上海-济州-仁川（首尔）-上海5晚5天</td>
+                        <td>单</td>
+                        <td class="defaultBlack_blueLink">大西洋号歌诗达邮轮</td>
+                        <td class="defaultBlack_blueLink">上海/中国</td>
+                        <td class="defaultBlack_blueLink">日韩</td>
+                        <td class="personInfo">
+                            <p>2014-11-15</p>
+                            <p>16:05:37</p>
+                            <p>小潘潘</p>
+                        </td>
+                        <td>
+                            <div class="saleStatusIcon"></div>
+                        </td>
+                        <td>
+                            <a class="operOffline" href="javascript:void(0);">下线</a>
+                            <a href="javascript:void(0);">编辑</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="defaultBlue_blueLink">57845</td>
+                        <td>唯一邮轮</td>
+                        <td>上海-济州-仁川（首尔）-上海5晚5天</td>
+                        <td>团</td>
+                        <td class="defaultBlack_blueLink">大西洋号歌诗达邮轮</td>
+                        <td class="defaultBlack_blueLink">上海/中国</td>
+                        <td class="defaultBlack_blueLink">日韩</td>
+                        <td class="personInfo">
+                            <p>2014-11-15</p>
+                            <p>16:05:37</p>
+                            <p>小潘潘</p>
+                        </td>
+                        <td>
+                            <div class="offlineStatusIcon"></div>
+                        </td>
+                        <td>
+                            <a class="operOnline" href="javascript:void(0);">上线</a>
+                            <a href="javascript:void(0);">编辑</a>
+                        </td>
+                    </tr>
+                  </tbody>
+            </table>
+          
+              <div class="grid-table-pagination page">
+                  <span class="grid-table-count">
+                      共 <em>132</em> 条记录
+                  </span>
+                  <span>
+                      <a href="#" class="prev">&nbsp;</a>
+                  </span>
+                  <span class="links">
+                      <a href="#">1</a>
+                      <a href="#">2</a>
+                      <a href="#" class="current">3</a>
+                      <a href="#">4</a>
+                      <a href="#">5</a>
+                      <a href="javascript:;">...</a>
+                      <a href="#">50</a>
+                  </span>
+                  <span>
+                      <a href="#" class="next">&nbsp;</a>
+                  </span>
+              </div>
+            </div>   
+        </div>
+    </div>
  
     <!-- end of content -->
-    </div>
-
-    <div class="accountInfoBlock" id="ac">
-        <div class="inner_accountInfoBlock">
-            <span class="accountCon">
-                <a href="javascript:void(0);" class="commonBtnStyle orangeBtn">审核退回</a>
-                <a href="javascript:void(0);" class="commonBtnStyle greenBtn">审核通过</a>
-                <a href="javascript:void(0);" class="cancelBtn">取消</a>
-            </span>
-        </div>
-    </div>
-
+    
     <div id="extFooter">
         <div>
             <p>
@@ -330,14 +358,60 @@
         </div>
     </div>
 
+<script type="text/x-kendo-template" id="onlineTemplate">
+    <div class="send-msg-success">
+        <i class="large-success-icon"></i> 上线成功！
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="offlineTemplate">
+    <div class="sailRouteOfflineWindow">
+        <i class="closeStopSaleWin"></i>
     
+        <div class="plaint-model clearfix">
+            <i class="plaint"></i>          
+            <div class="font1">是否下线这条航线？</div>
+            <div class="font2">航线编号14878  上海-济州-仁川（首尔）-上海4晚5天</div>
+        </div>
+        <div class="stopSaling-button"> 
+            <button name="a" type="button" class="large_button">下 线</button>
+            <a class="cancelLink" href="javascript:void(0);">取消</a>
+        </div>
+    </div>
+</script>
+
     <script type="text/javascript">
         $(function(){
-            $('#ac').fixedBar({
-                inverse:true
+            var onlineWin = new PopWindow('.operOnline', {
+              title: false,
+              width: 343,
+              template: "#onlineTemplate",
+              autoHide: 2*1000,
+              animation: {
+                  open: {
+                      effects: "fade:in",
+                      duration: 300
+                  },
+                  close: {
+                      effects: "fade:out",
+                      duration: 300
+                  }
+              }
+            }).init();
+
+            var offlineWin = new PopWindow('.operOffline', {
+                title: false,
+                width: 443,
+                template: "#offlineTemplate"
+            }).init();
+
+            $("body").delegate('.sailRouteOfflineWindow .closeStopSaleWin', 'click', function(){
+                offlineWin.close();
             });
 
-            $(".commonModelStyle .topFixedToolsBar").fixedBar();
+            $("body").delegate('.sailRouteOfflineWindow .cancelLink', 'click', function(){
+                offlineWin.close();
+            });
 
         });
     </script>
