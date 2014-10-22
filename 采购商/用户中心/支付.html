@@ -164,6 +164,12 @@
                            <div class="cftCont"></div>
                            <div class="hftxCont"></div>
                    </li>
+                   <li id="pos_pay">
+                      <div class="posPayment">
+                            <em class="payStyleTitle">POS支付</em> 
+                            <label><input type="radio" name="posPay" /><i class="ybzf"></i></label>
+                        </div>
+                   </li>
                    <li id="offline_pay">
                        <div>
                             <em class="payStyleTitle">线下转账</em> 
@@ -414,6 +420,19 @@
         $(".rightPayBlock label").removeClass("currentWay");
         $(this).addClass("currentWay");
       });
+    });
+
+    // POS 支付
+    $(".posPayment label").bind("click",function(e){
+
+      $(this).addClass("currentWay");
+      $(this).siblings('label').removeClass("currentWay");
+      
+      $(this).closest("ul").find("li").removeClass("current");
+      
+      var li = $(this).closest("li");
+      li.addClass("current");
+      e.stopPropagation();
     });
 		
 	});
