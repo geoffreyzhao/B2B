@@ -534,6 +534,20 @@
         </div>
     </main>
 </section>
+
+<div>
+    <a class="adaptiveButton mediumOrange_btn ac-btn_applyInvoice1">
+        <span class="left"></span>
+        <span class="center center_1">按钮1</span>
+        <span class="right"></span>
+    </a>
+    <a class="adaptiveButton mediumOrange_btn ac-btn_applyInvoice2">
+        <span class="left"></span>
+        <span class="center center_1">按钮2</span>
+        <span class="right"></span>
+    </a>
+</div>
+
 <footer class="main-footer">
     <center>
         <a href="#">隐私问题</a>
@@ -552,6 +566,28 @@
 </footer>
 </div>
 
+<script type="text/x-kendo-template" id="ac-myOrderNote1">
+    <div class="humanNote clearfix">
+        <i class="exclamatoryMark"></i>
+        <div class="font1">很抱歉您预定的产品可订人数不足</div>
+    </div>
+    <div class="modify-human-number">
+        <span class="second">5秒后</span>
+        <a href="javascript:void(0)">返回自由行首页</a>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="ac-myOrderNote2">
+    <div class="humanNote clearfix">
+        <i class="exclamatoryMark"></i>
+        <span class="font1">很抱歉！您的订单支付超时，已经自动取消。</span>
+    </div>
+    <div class="modify-human-number">
+        <span class="second">5秒后</span>
+        <a href="javascript:void(0)">返回自由行首页</a>
+    </div>
+</script>        
+
 <script>
     $(function(){
         //限制字符个数
@@ -562,8 +598,20 @@
                 $(this).html($(this).html()+"…");
             }
         });
-        
-        
+
+        new PopWindow('.ac-btn_applyInvoice1',{
+            template:'#ac-myOrderNote1',
+            title:'付款确认',
+            width:'400'
+        }).init();
+
+        new PopWindow('.ac-btn_applyInvoice2',{
+            template:'#ac-myOrderNote2',
+            title:'付款确认',
+            width:'400'
+        }).init();
+
+
     });
 </script>
 
