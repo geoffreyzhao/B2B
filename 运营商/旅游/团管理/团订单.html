@@ -474,24 +474,13 @@
             // });
 
             $(".team-order-table tbody tr").each(function(index){
-              if (index % 2 == 0) {
-                  $(this).hover(function(){
+                $(this).hover(function(){
                       $(this).addClass("trHoverYellowBg");
-                      $(".team-order-table tbody tr:eq(" + (index + 1) + ")").addClass("trHoverYellowBg");
+                      $(this).siblings("tr").addClass("trHoverYellowBg");
                   }, function(){
                       $(this).removeClass("trHoverYellowBg");
-                      $(".team-order-table tbody tr:eq(" + (index + 1) + ")").removeClass("trHoverYellowBg");
+                      $(this).siblings("tr").removeClass("trHoverYellowBg");
                   });
-
-              } else {
-                  $(this).hover(function(){
-                      $(this).addClass("trHoverYellowBg");
-                      $(".team-order-table tbody tr:eq(" + (index - 1) + ")").addClass("trHoverYellowBg");
-                  }, function(){
-                      $(this).removeClass("trHoverYellowBg");
-                      $(".team-order-table tbody tr:eq(" + (index - 1) + ")").removeClass("trHoverYellowBg");
-                  });
-              }
             });
 
             $(".team-order-table tbody").each(function(){
