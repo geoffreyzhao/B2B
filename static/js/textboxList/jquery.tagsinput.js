@@ -177,7 +177,7 @@
 	$.fn.tagsInput = function(options) { 
     var settings = jQuery.extend({
       interactive:true,
-      defaultText:'add a tag',
+      defaultText:'标签用空格或enter键分隔',
       minChars:0,
       width:'300px',
       height:'100px',
@@ -290,8 +290,28 @@
 				
 				}
 				// if user types a comma, create a new tag
+
+
+
+				$(data.fake_input).bind('keyup',data,function(event) {
+
+					var tempStr = $(this).val();
+					var myStr = '';
+					
+					if($(this).val().length >= event.data.maxChars)
+					// if($(this).val().length >= 6)
+					{
+						event.preventDefault;
+						// myStr = tempStr.substr(0,6);
+						myStr = tempStr.substr(0,event.data.maxChars);
+						$(this).val(myStr);
+					}
+
+				});
+
 				$(data.fake_input).bind('keypress',data,function(event) {
-					if (event.which==event.data.delimiter.charCodeAt(0) || event.which==13 ) {
+
+					if (event.which==event.data.delimiter.charCodeAt(0) || event.which==13 || event.which== 32) {
 					    event.preventDefault();
 						if( (event.data.minChars <= $(event.data.fake_input).val().length) && (!event.data.maxChars || (event.data.maxChars >= $(event.data.fake_input).val().length)) )
 							$(event.data.real_input).addTag($(event.data.fake_input).val(),{focus:true,unique:(settings.unique)});
@@ -305,6 +325,8 @@
 				//Delete last tag on backspace
 				data.removeWithBackspace && $(data.fake_input).bind('keydown', function(event)
 				{
+					
+
 					if(event.keyCode == 8 && $(this).val() == '')
 					{
 						 event.preventDefault();
@@ -314,6 +336,8 @@
 						 $('#' + id).removeTag(escape(last_tag));
 						 $(this).trigger('focus');
 					}
+
+					
 				});
 				$(data.fake_input).blur();
 				
