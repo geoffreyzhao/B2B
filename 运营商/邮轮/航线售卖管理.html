@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>运营商 邮轮 航线售卖管理</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />    
+
+    <link href="/static/css/passengerLinerHead.css" rel="stylesheet">
+    <link href="/static/css/operatorShip.css" rel="stylesheet" type="text/css"/>
+ 
+    <script src="/static/js/jquery.min.js" type="text/javascript"></script>    
+    <script src="/static/js/kendo.web.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/js/scrollFix.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/public.js"></script>
+
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+    
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/static/css/ie.css" />
+    <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/static/js/sync.js"></script>
+
+    <!-- @CLB@ -->    
+    <script>
+        $(function(){
+            kendo.init('body');
+        })
+    </script>
+</head>
+<body>
+    <div id="head">
+        <div></div>
+    </div>
+    <div id="catalogue"></div>
+
+    <div id="container">
+        <div class="logo">
+            <div class="clearfix">
+                <h1></h1>
+                <div class="profile">
+                    <a href="javascript:void(0)">你好,千颂伊</a>
+                    <a href="javascript:void(0)">退出</a>
+                </div>
+            </div>
+            <ul id="catalogue_menu" class="clearfix">
+                <li class="">
+                    <a href="javascript:void(0)">国内机票</a>
+                    <ol class="subMenu">
+                        <li><a href="javascript:void(0)">基础模块维护</a></li>
+                        <li><a href="javascript:void(0)">航线审核</a></li>
+                        <li class="currentSubMenu"><a href="javascript:void(0)">航线售卖管理</a></li>
+                        <li><a href="javascript:void(0)">团管理</a></li>
+                    </ol>
+                </li>
+                <li><a href="javascript:void(0)">国际机票</a></li>
+                <li><a href="javascript:void(0)">酒店</a></li>
+                <li><a href="javascript:void(0)">打包产品</a></li>
+                <li><a href="javascript:void(0)">旅游</a></li>
+                <li class="current"><a href="javascript:void(0)">邮轮</a></li>
+                <li><a href="javascript:void(0)">签证</a></li>
+                <li><a href="javascript:void(0)">保险</a></li>
+                <li><a href="javascript:void(0)">短信</a></li>
+                <li><a href="javascript:void(0)">票证</a></li>
+                <li><a href="javascript:void(0)">财务</a></li>
+                <li><a href="javascript:void(0)">客户</a></li>
+            </ul>
+            <div id="info">
+                <h3>
+                    <span>消息<em>30</em></span>
+                    <span>设置</span>
+                </h3>
+            </div>
+        </div>
+        <div id="mainContent" style="overflow:hidden;">
+			<!-- start content -->
+            <div class="mainContBody">
+                <div class="information_div">
+               <table cellpadding="0" cellspacing="0" class="groupManage-tab-advantage">
+                  <colgroup>
+                       <col width="60" />  
+                       <col width="220" /> 
+                       <col width="60" />
+                       <col width="220" /> 
+                       <col width="60" /> 
+                       <col width="240" />
+                       <col width="95" />
+                  </colgroup>
+                  <tr>
+                     <td class="groupManage-serch-adv">供应商:</td>
+                     <td>
+                         <select style="width:170px" data-role="dropdownlist">
+                              <option>请选择</option>
+                         </select>
+                     </td>
+                     <td class="groupManage-serch-adv">航线编号:</td>
+                     <td>
+                         <input type="text" style="width: 164px;" placeholder="请输入" />
+                     </td>
+                     <td class="groupManage-serch-adv">航线名称:</td>
+                     <td>
+                         <input type="text" style="width: 164px;" placeholder="请输入" />
+                     </td>                     
+                     <td rowspan="3">
+                         <a href="javascript:;" class="button_important adaptiveButton medium">
+                            <span class="left"></span>
+                            <span class="center" style="padding:0 25px;">查 询</span>
+                            <span class="right"></span>
+                        </a>
+                     </td>
+                  </tr> 
+                  <tr>
+                    <td class="groupManage-serch-adv">邮轮公司:</td>
+                    <td>
+                      <select style="width:170px;" data-role="dropdownlist">
+                          <option selected="">请选择</option>
+                      </select>
+                     </td>
+                      <td class="groupManage-serch-adv">船只:</td>
+                      <td>
+                          <select style="width:170px;" data-role="dropdownlist">
+                              <option selected="">请选择</option>
+                          </select>
+                      </td>
+                      <td class="groupManage-serch-adv">出发地:</td>
+                      <td>
+                          <select style="width:170px;" data-role="dropdownlist">
+                              <option selected="">全部</option>
+                          </select>
+                      </td>
+                                           
+                  </tr>
+                  <tr>
+                        <td class="groupManage-serch-adv">地区</td>
+                      <td>
+                          <select style="width:170px;" data-role="dropdownlist">
+                              <option selected="">全部</option>
+                          </select>
+                      </td> 
+                      <td class="groupManage-serch-adv">航线类型</td>
+                      <td>
+                          <select style="width:170px;" data-role="dropdownlist">
+                              <option selected="">全部</option>
+                          </select>
+                      </td> 
+                      <td class="groupManage-serch-adv">售卖状态:</td>
+                      <td>
+                          <select style="width:170px;" data-role="dropdownlist">
+                              <option selected="">全部</option>
+                          </select>
+                      </td>
+                  </tr>
+               </table>              
+            </div>
+           
+              
+              <table class="tgrid tdNoEllipsis">
+                  <colgroup>
+                      <col width="70"/>
+                      <col width="78"/>
+                      <col width="200"/>
+                      <col width="57"/>
+                      <col width="100"/>
+                      <col width="95"/>
+                      <col width="60"/>
+                      <col width="110"/>
+                      <col width="100"/>
+                      <col width="120"/>
+                  </colgroup>
+                  <thead>
+                      <tr>
+                          <th class="line_left">航线编号</th>
+                          <th>供应商</th>
+                          <th>航线名称</th>
+                          <th>航线类型</th>
+                          <th>船只/邮轮公司</th>
+                          <th>出发地</th>
+                          <th>地区</th>
+                          <th>受理时间/受理人</th>
+                          <th>售卖状态</th>
+                          <th class="line_right">操作</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td class="defaultBlue_blueLink">57845</td>
+                        <td>唯一邮轮</td>
+                        <td>上海-济州-仁川（首尔）-上海5晚5天</td>
+                        <td>单</td>
+                        <td class="defaultBlack_blueLink">大西洋号歌诗达邮轮</td>
+                        <td class="defaultBlack_blueLink">上海/中国</td>
+                        <td class="defaultBlack_blueLink">日韩</td>
+                        <td class="personInfo">
+                            <p>2014-11-15</p>
+                            <p>16:05:37</p>
+                            <p>小潘潘</p>
+                        </td>
+                        <td>
+                            <div class="saleStatusIcon"></div>
+                        </td>
+                        <td>
+                            <a class="operOffline" href="javascript:void(0);">下线</a>
+                            <a href="javascript:void(0);">编辑</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="defaultBlue_blueLink">57845</td>
+                        <td>唯一邮轮</td>
+                        <td>上海-济州-仁川（首尔）-上海5晚5天</td>
+                        <td>团</td>
+                        <td class="defaultBlack_blueLink">大西洋号歌诗达邮轮</td>
+                        <td class="defaultBlack_blueLink">上海/中国</td>
+                        <td class="defaultBlack_blueLink">日韩</td>
+                        <td class="personInfo">
+                            <p>2014-11-15</p>
+                            <p>16:05:37</p>
+                            <p>小潘潘</p>
+                        </td>
+                        <td>
+                            <div class="offlineStatusIcon"></div>
+                        </td>
+                        <td>
+                            <a class="operOnline" href="javascript:void(0);">上线</a>
+                            <a href="javascript:void(0);">编辑</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="defaultBlue_blueLink">57845</td>
+                        <td>唯一邮轮</td>
+                        <td>上海-济州-仁川（首尔）-上海5晚5天</td>
+                        <td>单</td>
+                        <td class="defaultBlack_blueLink">大西洋号歌诗达邮轮</td>
+                        <td class="defaultBlack_blueLink">上海/中国</td>
+                        <td class="defaultBlack_blueLink">日韩</td>
+                        <td class="personInfo">
+                            <p>2014-11-15</p>
+                            <p>16:05:37</p>
+                            <p>小潘潘</p>
+                        </td>
+                        <td>
+                            <div class="saleStatusIcon"></div>
+                        </td>
+                        <td>
+                            <a class="operOffline" href="javascript:void(0);">下线</a>
+                            <a href="javascript:void(0);">编辑</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="defaultBlue_blueLink">57845</td>
+                        <td>唯一邮轮</td>
+                        <td>上海-济州-仁川（首尔）-上海5晚5天</td>
+                        <td>团</td>
+                        <td class="defaultBlack_blueLink">大西洋号歌诗达邮轮</td>
+                        <td class="defaultBlack_blueLink">上海/中国</td>
+                        <td class="defaultBlack_blueLink">日韩</td>
+                        <td class="personInfo">
+                            <p>2014-11-15</p>
+                            <p>16:05:37</p>
+                            <p>小潘潘</p>
+                        </td>
+                        <td>
+                            <div class="offlineStatusIcon"></div>
+                        </td>
+                        <td>
+                            <a class="operOnline" href="javascript:void(0);">上线</a>
+                            <a href="javascript:void(0);">编辑</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="defaultBlue_blueLink">57845</td>
+                        <td>唯一邮轮</td>
+                        <td>上海-济州-仁川（首尔）-上海5晚5天</td>
+                        <td>单</td>
+                        <td class="defaultBlack_blueLink">大西洋号歌诗达邮轮</td>
+                        <td class="defaultBlack_blueLink">上海/中国</td>
+                        <td class="defaultBlack_blueLink">日韩</td>
+                        <td class="personInfo">
+                            <p>2014-11-15</p>
+                            <p>16:05:37</p>
+                            <p>小潘潘</p>
+                        </td>
+                        <td>
+                            <div class="saleStatusIcon"></div>
+                        </td>
+                        <td>
+                            <a class="operOffline" href="javascript:void(0);">下线</a>
+                            <a href="javascript:void(0);">编辑</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="defaultBlue_blueLink">57845</td>
+                        <td>唯一邮轮</td>
+                        <td>上海-济州-仁川（首尔）-上海5晚5天</td>
+                        <td>团</td>
+                        <td class="defaultBlack_blueLink">大西洋号歌诗达邮轮</td>
+                        <td class="defaultBlack_blueLink">上海/中国</td>
+                        <td class="defaultBlack_blueLink">日韩</td>
+                        <td class="personInfo">
+                            <p>2014-11-15</p>
+                            <p>16:05:37</p>
+                            <p>小潘潘</p>
+                        </td>
+                        <td>
+                            <div class="offlineStatusIcon"></div>
+                        </td>
+                        <td>
+                            <a class="operOnline" href="javascript:void(0);">上线</a>
+                            <a href="javascript:void(0);">编辑</a>
+                        </td>
+                    </tr>
+                  </tbody>
+            </table>
+          
+              <div class="grid-table-pagination page">
+                  <span class="grid-table-count">
+                      共 <em>132</em> 条记录
+                  </span>
+                  <span>
+                      <a href="#" class="prev">&nbsp;</a>
+                  </span>
+                  <span class="links">
+                      <a href="#">1</a>
+                      <a href="#">2</a>
+                      <a href="#" class="current">3</a>
+                      <a href="#">4</a>
+                      <a href="#">5</a>
+                      <a href="javascript:;">...</a>
+                      <a href="#">50</a>
+                  </span>
+                  <span>
+                      <a href="#" class="next">&nbsp;</a>
+                  </span>
+              </div>
+            </div>   
+        </div>
+    </div>
+ 
+    <!-- end of content -->
+    
+    <div id="extFooter">
+        <div>
+            <p>
+                <a href="javascript:void(0);">关于我们</a>&nbsp;|
+                <a href="javascript:void(0);">微博</a>&nbsp;|
+                <a href="javascript:void(0);">服务条款</a>&nbsp;|
+                <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+
+<script type="text/x-kendo-template" id="onlineTemplate">
+    <div class="send-msg-success">
+        <i class="large-success-icon"></i> 上线成功！
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="offlineTemplate">
+    <div class="sailRouteOfflineWindow">
+        <i class="closeStopSaleWin"></i>
+    
+        <div class="plaint-model clearfix">
+            <i class="plaint"></i>          
+            <div class="font1">是否下线这条航线？</div>
+            <div class="font2">航线编号14878  上海-济州-仁川（首尔）-上海4晚5天</div>
+        </div>
+        <div class="stopSaling-button"> 
+            <button name="a" type="button" class="large_button">下 线</button>
+            <a class="cancelLink" href="javascript:void(0);">取消</a>
+        </div>
+    </div>
+</script>
+
+    <script type="text/javascript">
+        $(function(){
+            var onlineWin = new PopWindow('.operOnline', {
+              title: false,
+              width: 343,
+              template: "#onlineTemplate",
+              autoHide: 2*1000,
+              animation: {
+                  open: {
+                      effects: "fade:in",
+                      duration: 300
+                  },
+                  close: {
+                      effects: "fade:out",
+                      duration: 300
+                  }
+              }
+            }).init();
+
+            var offlineWin = new PopWindow('.operOffline', {
+                title: false,
+                width: 443,
+                template: "#offlineTemplate"
+            }).init();
+
+            $("body").delegate('.sailRouteOfflineWindow .closeStopSaleWin', 'click', function(){
+                offlineWin.close();
+            });
+
+            $("body").delegate('.sailRouteOfflineWindow .cancelLink', 'click', function(){
+                offlineWin.close();
+            });
+
+        });
+    </script>
+
+</body>
+</html>
