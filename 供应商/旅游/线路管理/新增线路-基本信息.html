@@ -40,6 +40,16 @@
             .popup-window{
                
             }
+
+            .k-button.k-upload-button {
+                width: 188px;
+                height: 123px;
+                position: absolute;
+                left: -140px;
+                top: -70px;
+                opacity: 0;
+                background: none!important;                
+            }
         </style>
     </head>
 <body>
@@ -254,6 +264,7 @@
                          </li>
                          <li class="addImgBox">
                              <i></i>添加照片
+                             <input type="file">
                          </li>
                      </ul>
                      <ul class="uploadImgBlock">
@@ -706,6 +717,13 @@
         // 删除上传照片
         $(".del-spot-picture").click(function(){
             $(this).parents('li').remove();
+        });
+
+        $("input[type='file']").kendoUpload({
+            localization: {
+                select: ""
+            },
+            showFileList: false
         });
     })
 </script>
