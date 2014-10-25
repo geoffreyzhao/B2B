@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>运营商 财务 外部平台支付交易结算报表</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../../static/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="../../static/css/kendo.common.css" rel="stylesheet" type="text/css" />
+    <link href="../../static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
+    <link href="../../static/css/b2b.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link href="../../static/css/finance.css" rel="stylesheet" type="text/css"/>
+    <script src="../../static/js/jquery.min.js" type="text/javascript"></script>
+    <script src="../../static/js/kendo.web.js" type="text/javascript"></script>
+    <!-- // <script type="text/javascript" src="../../static/js/public.js"></script> -->
+
+    <script type="text/javascript" src="../../static/js/global.js"></script>
+
+<!--[if lt IE 8]> 
+<link rel="stylesheet" href="/static/css/ie.css" /> 
+<script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
+<![endif]-->
+<!-- @CLB@ -->
+<script type="text/javascript" src="/static/js/sync.js"></script>
+</head>
+<body>
+    <div id="extHeader">
+        <div></div>
+    </div>
+
+    <div id="container">
+        <div class="header">
+            <h1></h1>
+            <div>
+                <span>你好,${name}</span>
+                <a href="javascript:void(0);">退出</a>
+            </div>
+            <ul id="top_menu">
+                <li><a href="javascript:void(0);">国内机票</a></li>
+                <li><a href="javascript:void(0);">国际机票</a></li>
+                <li><a href="javascript:void(0);">酒店</a></li>
+                <li><a href="javascript:void(0);">票证中心</a></li>
+                <li><a href="javascript:void(0);">财务管理</a></li>
+                <li><a href="javascript:void(0);">客户管理</a></li>
+                <li class="current"><a href="javascript:void(0);">系统设置</a></li>
+            </ul>
+            <ol class="sub_menu">
+                <li class="current"><a href="javascript:void(0);">公告信息</a></li>
+                <li><a href="javascript:void(0);">公司信息</a></li>
+                <li><a href="javascript:void(0);">组织架构</a></li>
+                <li><a href="javascript:void(0);">角色维护</a></li>
+                <li><a href="javascript:void(0);">基础数据</a></li>
+            </ol>
+            <div id="message">
+            	<a href="javascript:void(0);">&nbsp;</a>
+                <span>&nbsp;</span>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="sub_menu_bar"></div>
+        <div id="mainContent">
+               
+               <div class="topFixedToolsBar">
+                    <div class="fixedMenu" style="width:auto; margin-left:0px; font-size:12px;">
+                        <a href="#">银行支付交易结算报表</a>
+                        <a href="#" class="currentPitchOn">外部平台支付交易结算报表</a>
+                    </div>
+              </div>
+              <div class="refer">
+                   <table cellpadding="0" cellspacing="0" class="refer_list">
+                        <colgroup>
+                             <col width="60"/>
+                             <col width="150"/>
+                             <col width="60"/>
+                             <col width="290"/>
+                             <col width=""/>
+                        </colgroup>
+                        <tr>
+                            <td>平台名称</td>
+                            <td>
+                              <select data-role='dropDownList' style="width:110px;">
+                                  <option>支付宝</option>
+                                  <option>财付通</option>
+                                  <option>汇付天下</option>
+                                </select>
+                            </td>
+                            <td>交易日期</td>
+                            <td>
+                                <input type="text" class="datepicker" value="2013-09-25" style="width:95px;" />
+                                <em>&nbsp; 至 &nbsp;</em>
+                                <input type="text" class="datepicker orange" value="2013-09-25" style="width:95px;" />
+                            </td>
+                            <td>
+                                <a href="javascript:;" class="button_important adaptiveButton medium">
+                                    <span class="left"></span>
+                                    <span class="center" style="padding:0 20px;">查 询</span>
+                                    <span class="right"></span>
+                                </a>
+                            </td>
+                        </tr>
+                   </table>                   
+              </div>
+ 
+              <div class="qx tabHead">
+                  <div style="float:right;">
+                      <button class="btns btn-ac-blue">导出Excel</button>
+                  </div>
+              </div>
+              
+            <div>
+                 <table cellpadding="0" cellspacing="0" class="tgrid settlementReportTb">
+                    <colgroup>
+                      <col width="128"/>
+                      <col width="85"/>
+                      <col width="115"/>
+                      <col width="115"/>
+                      <col width="100"/>
+                      <col width="78"/>
+                      <col width="78"/>
+                      <col width="78"/>
+                      <col width="100"/>
+                      <col width="68"/>
+                    </colgroup>
+                      <thead>
+                         <tr>
+                             <th class="line_left">平台名称</th>
+                             <th class="thRedFont">交易日期段</th>
+                             <th>交易金额</th>
+                             <th>退款金额</th>
+                             <th class="colImportantBg">交易净额</th>
+                             <th>交易<br>手续费</th>
+                             <th>返还<br>手续费</th>
+                             <th class="colImportantBg">手续费<br>净额</th>
+                             <th class="colImportantBg">结算金额</th>
+                             <th class="line_right">操作</th>
+                         </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                            <td>支付宝</td>
+                            <td>
+                              <p>2014-10-01</p>
+                              <p>2014-10-21</p>
+                            </td>
+                            <td class="tdAlignRight">1,456,456,456.00</td>
+                            <td class="tdAlignRight">6,456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">36,456,456.00</td>
+                            <td class="tdAlignRight">456,456.00</td>
+                            <td class="tdAlignRight">456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">156,456,456.00</td>
+                            <td><a href="#" class="view">查看</a></td>
+                          </tr>
+                          <tr>
+                            <td>汇付天下</td>
+                            <td>
+                              <p>2014-10-01</p>
+                              <p>2014-10-21</p>
+                            </td>
+                            <td class="tdAlignRight">1,456,456,456.00</td>
+                            <td class="tdAlignRight">6,456,456.00</td>
+                            <td class="tdAlignRight colImportantBg colImportantBg">36,456,456.00</td>
+                            <td class="tdAlignRight">456,456.00</td>
+                            <td class="tdAlignRight">456,456.00</td>
+                            <td class="tdAlignRight colImportantBg colImportantBg">456,456.00</td>
+                            <td class="tdAlignRight colImportantBg colImportantBg">156,456,456.00</td>
+                            <td><a href="#">查看</a></td>
+                          </tr>
+                          <tr>
+                            <td class="normalWhiteSpace">上海浦东发展银行</td>
+                            <td>
+                              <p>2014-10-01</p>
+                              <p>2014-10-21</p>
+                            </td>
+                            <td class="tdAlignRight">1,456,456,456.00</td>
+                            <td class="tdAlignRight">6,456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">36,456,456.00</td>
+                            <td class="tdAlignRight">456,456.00</td>
+                            <td class="tdAlignRight">456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">156,456,456.00</td>
+                            <td><a href="#">查看</a></td>
+                          </tr>
+                          <tr>
+                            <td class="normalWhiteSpace">农村信用合作联社可 能还长</td>
+                            <td>
+                              <p>2014-10-01</p>
+                              <p>2014-10-21</p>
+                            </td>
+                            <td class="tdAlignRight">1,456,456,456.00</td>
+                            <td class="tdAlignRight">6,456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">36,456,456.00</td>
+                            <td class="tdAlignRight">456,456.00</td>
+                            <td class="tdAlignRight">456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">156,456,456.00</td>
+                            <td><a href="#">查看</a></td>
+                          </tr>
+                          <tr>
+                            <td class="normalWhiteSpace">农村信用合作联社可 能还长</td>
+                            <td>
+                              <p>2014-10-01</p>
+                              <p>2014-10-21</p>
+                            </td>
+                            <td class="tdAlignRight">1,456,456,456.00</td>
+                            <td class="tdAlignRight">6,456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">36,456,456.00</td>
+                            <td class="tdAlignRight">456,456.00</td>
+                            <td class="tdAlignRight">456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">156,456,456.00</td>
+                            <td><a href="#">查看</a></td>
+                          </tr>
+                          <tr>
+                            <td class="normalWhiteSpace">农村信用合作联社可 能还长</td>
+                            <td>
+                              <p>2014-10-01</p>
+                              <p>2014-10-21</p>
+                            </td>
+                            <td class="tdAlignRight">1,456,456,456.00</td>
+                            <td class="tdAlignRight">6,456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">36,456,456.00</td>
+                            <td class="tdAlignRight">456,456.00</td>
+                            <td class="tdAlignRight">456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">156,456,456.00</td>
+                            <td><a href="#">查看</a></td>
+                          </tr>
+                          <tr>
+                            <td class="normalWhiteSpace">农村信用合作联社可 能还长</td>
+                            <td>
+                              <p>2014-10-01</p>
+                              <p>2014-10-21</p>
+                            </td>
+                            <td class="tdAlignRight">1,456,456,456.00</td>
+                            <td class="tdAlignRight">6,456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">36,456,456.00</td>
+                            <td class="tdAlignRight">456,456.00</td>
+                            <td class="tdAlignRight">456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">156,456,456.00</td>
+                            <td><a href="#">查看</a></td>
+                          </tr>
+                          <tr>
+                            <td class="normalWhiteSpace">农村信用合作联社可 能还长</td>
+                            <td>
+                              <p>2014-10-01</p>
+                              <p>2014-10-21</p>
+                            </td>
+                            <td class="tdAlignRight">1,456,456,456.00</td>
+                            <td class="tdAlignRight">6,456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">36,456,456.00</td>
+                            <td class="tdAlignRight">456,456.00</td>
+                            <td class="tdAlignRight">456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">156,456,456.00</td>
+                            <td><a href="#">查看</a></td>
+                          </tr>
+                          <tr>
+                            <td class="normalWhiteSpace">农村信用合作联社可 能还长</td>
+                            <td>
+                              <p>2014-10-01</p>
+                              <p>2014-10-21</p>
+                            </td>
+                            <td class="tdAlignRight">1,456,456,456.00</td>
+                            <td class="tdAlignRight">6,456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">36,456,456.00</td>
+                            <td class="tdAlignRight">456,456.00</td>
+                            <td class="tdAlignRight">456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">156,456,456.00</td>
+                            <td><a href="#">查看</a></td>
+                          </tr>
+                          <tr>
+                            <td class="normalWhiteSpace">农村信用合作联社可 能还长</td>
+                            <td>
+                              <p>2014-10-01</p>
+                              <p>2014-10-21</p>
+                            </td>
+                            <td class="tdAlignRight">1,456,456,456.00</td>
+                            <td class="tdAlignRight">6,456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">36,456,456.00</td>
+                            <td class="tdAlignRight">456,456.00</td>
+                            <td class="tdAlignRight">456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">456,456.00</td>
+                            <td class="tdAlignRight colImportantBg">156,456,456.00</td>
+                            <td><a href="#">查看</a></td>
+                          </tr>                        
+                      </tbody>
+                      <tbody class="currentPeriodTotal">
+                        <tr>
+                          <td class="line_left" colspan="2">当期合计</td>
+                          <td class="tdAlignRight">1,456,456,456.00</td>
+                          <td class="tdAlignRight">6,456,456.00</td>
+                          <td class="tdAlignRight">36,456,456.00</td>
+                          <td class="tdAlignRight">456,456.00</td>
+                          <td class="tdAlignRight">456,456.00</td>
+                          <td class="tdAlignRight">456,456.00</td>
+                          <td class="tdAlignRight">156,456,456.00</td>
+                          <td></td>
+                        </tr>
+                      </tbody>
+                 </table>
+            </div>
+              
+              <div class="grid-table-pagination page">
+                  <span class="grid-table-count">
+                      共 <em>132</em> 条记录
+                  </span>
+                  <span>
+                      <a href="#" class="prev">&nbsp;</a>
+                  </span>
+                  <span class="links">
+                      <a href="#">1</a>
+                      <a href="#">2</a>
+                      <a href="#" class="current">3</a>
+                      <a href="#">4</a>
+                      <a href="#">5</a>
+                      <a href="javascript:;">...</a>
+                      <a href="#">50</a>
+                  </span>
+                  <span>
+                      <a href="#" class="next">&nbsp;</a>
+                  </span>
+              </div>
+                          
+        </div>
+    </div>
+    
+ 
+    <div id="extFooter">
+        <div>
+            <p>
+                <a href="javascript:void(0);">关于我们</a>&nbsp;|
+                <a href="javascript:void(0);">微博</a>&nbsp;|
+                <a href="javascript:void(0);">服务条款</a>&nbsp;|
+                <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+
+    <script type="text/x-kendo-template" id="viewTemplate">
+      <div class="windowTitleContent">
+          <span>外部平台：<b>去哪儿网国际</b></span>
+          <span>交易日期段：<b>2014-10-01 至 2014-10-07</b></span>
+      </div>
+      <div class="viewWindow">
+        <div class="topInfo clearfix">
+          <div class="recordNum">共 <em>132</em> 条信息 （共包含 <em>3262</em> 笔交易记录）</div>
+          <div class="exportExcel"><a href="javascript:void(0);">导出Excel</a></div>
+        </div>
+        <table cellpadding="0" cellspacing="0" class="tgrid settlementReportTb">
+            <colgroup>
+              <col width="85"/>
+              <col width="115"/>
+              <col width="115"/>
+              <col width="100"/>
+              <col width="78"/>
+              <col width="78"/>
+              <col width="78"/>
+              <col width="100"/>
+              <col width="68"/>
+            </colgroup>
+            <thead>
+               <tr>                   
+                   <th class="line_left thRedFont">交易日期段</th>
+                   <th>交易金额</th>
+                   <th>退款金额</th>
+                   <th class="colImportantBg">交易净额</th>
+                   <th>交易<br>手续费</th>
+                   <th>返还<br>手续费</th>
+                   <th class="colImportantBg">手续费<br>净额</th>
+                   <th class="colImportantBg">结算金额</th>
+                   <th class="line_right">操作</th>
+               </tr>
+            </thead>
+            <tbody>
+              <tr>
+                  <td>
+                    <p>2014-10-01</p>
+                    <p>2014-10-21</p>
+                  </td>
+                  <td class="tdAlignRight">1,456,456,456.00</td>
+                  <td class="tdAlignRight">6,456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">36,456,456.00</td>
+                  <td class="tdAlignRight">456,456.00</td>
+                  <td class="tdAlignRight">456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">156,456,456.00</td>
+                  <td><a href="./外部平台支付结算报表-明细.html" target="_blank">查看</a></td>
+              </tr>
+              <tr>
+                  <td>
+                    <p>2014-10-01</p>
+                    <p>2014-10-21</p>
+                  </td>
+                  <td class="tdAlignRight">1,456,456,456.00</td>
+                  <td class="tdAlignRight">6,456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">36,456,456.00</td>
+                  <td class="tdAlignRight">456,456.00</td>
+                  <td class="tdAlignRight">456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">156,456,456.00</td>
+                  <td><a href="javascript:void(0);">查看</a></td>
+              </tr>
+              <tr>
+                  <td>
+                    <p>2014-10-01</p>
+                    <p>2014-10-21</p>
+                  </td>
+                  <td class="tdAlignRight">1,456,456,456.00</td>
+                  <td class="tdAlignRight">6,456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">36,456,456.00</td>
+                  <td class="tdAlignRight">456,456.00</td>
+                  <td class="tdAlignRight">456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">156,456,456.00</td>
+                  <td><a href="javascript:void(0);">查看</a></td>
+              </tr>
+              <tr>
+                  <td>
+                    <p>2014-10-01</p>
+                    <p>2014-10-21</p>
+                  </td>
+                  <td class="tdAlignRight">1,456,456,456.00</td>
+                  <td class="tdAlignRight">6,456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">36,456,456.00</td>
+                  <td class="tdAlignRight">456,456.00</td>
+                  <td class="tdAlignRight">456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">156,456,456.00</td>
+                  <td><a href="javascript:void(0);">查看</a></td>
+              </tr>
+              <tr>
+                  <td>
+                    <p>2014-10-01</p>
+                    <p>2014-10-21</p>
+                  </td>
+                  <td class="tdAlignRight">1,456,456,456.00</td>
+                  <td class="tdAlignRight">6,456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">36,456,456.00</td>
+                  <td class="tdAlignRight">456,456.00</td>
+                  <td class="tdAlignRight">456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">156,456,456.00</td>
+                  <td><a href="javascript:void(0);">查看</a></td>
+              </tr>
+              <tr>
+                  <td>
+                    <p>2014-10-01</p>
+                    <p>2014-10-21</p>
+                  </td>
+                  <td class="tdAlignRight">1,456,456,456.00</td>
+                  <td class="tdAlignRight">6,456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">36,456,456.00</td>
+                  <td class="tdAlignRight">456,456.00</td>
+                  <td class="tdAlignRight">456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">156,456,456.00</td>
+                  <td><a href="javascript:void(0);">查看</a></td>
+              </tr>
+              <tr>
+                  <td>
+                    <p>2014-10-01</p>
+                    <p>2014-10-21</p>
+                  </td>
+                  <td class="tdAlignRight">1,456,456,456.00</td>
+                  <td class="tdAlignRight">6,456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">36,456,456.00</td>
+                  <td class="tdAlignRight">456,456.00</td>
+                  <td class="tdAlignRight">456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">156,456,456.00</td>
+                  <td><a href="javascript:void(0);">查看</a></td>
+              </tr>
+              <tr>
+                  <td>
+                    <p>2014-10-01</p>
+                    <p>2014-10-21</p>
+                  </td>
+                  <td class="tdAlignRight">1,456,456,456.00</td>
+                  <td class="tdAlignRight">6,456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">36,456,456.00</td>
+                  <td class="tdAlignRight">456,456.00</td>
+                  <td class="tdAlignRight">456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">156,456,456.00</td>
+                  <td><a href="javascript:void(0);">查看</a></td>
+              </tr>
+              <tr>
+                  <td>
+                    <p>2014-10-01</p>
+                    <p>2014-10-21</p>
+                  </td>
+                  <td class="tdAlignRight">1,456,456,456.00</td>
+                  <td class="tdAlignRight">6,456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">36,456,456.00</td>
+                  <td class="tdAlignRight">456,456.00</td>
+                  <td class="tdAlignRight">456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">156,456,456.00</td>
+                  <td><a href="javascript:void(0);">查看</a></td>
+              </tr>
+              <tr>
+                  <td>
+                    <p>2014-10-01</p>
+                    <p>2014-10-21</p>
+                  </td>
+                  <td class="tdAlignRight">1,456,456,456.00</td>
+                  <td class="tdAlignRight">6,456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">36,456,456.00</td>
+                  <td class="tdAlignRight">456,456.00</td>
+                  <td class="tdAlignRight">456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">456,456.00</td>
+                  <td class="tdAlignRight colImportantBg">156,456,456.00</td>
+                  <td><a href="javascript:void(0);">查看</a></td>
+              </tr>              
+            </tbody>
+            <tbody class="currentPeriodTotal">
+              <tr>
+                <td class="line_left">当期合计</td>
+                <td class="tdAlignRight">1,456,456,456.00</td>
+                <td class="tdAlignRight">6,456,456.00</td>
+                <td class="tdAlignRight">36,456,456.00</td>
+                <td class="tdAlignRight">456,456.00</td>
+                <td class="tdAlignRight">456,456.00</td>
+                <td class="tdAlignRight">456,456.00</td>
+                <td class="tdAlignRight">156,456,456.00</td>
+                <td></td>
+              </tr>
+            </tbody>
+        </table>
+
+        <div class="grid-table-pagination page">
+            <span class="grid-table-count">
+                共 <em>132</em> 条记录
+            </span>
+            <span>
+                <a href="" class="prev">&nbsp;</a>
+            </span>
+            <span class="links">
+                <a href="">1</a>
+                <a href="">2</a>
+                <a href="" class="current">3</a>
+                <a href="">4</a>
+                <a href="">5</a>
+                <a href="">...</a>
+                <a href="">50</a>
+            </span>
+            <span>
+                <a href="" class="next">&nbsp;</a>
+            </span>
+        </div>
+      </div>
+    </script>
+
+<script type="text/javascript">
+  $(function(){
+    $("select").kendoDropDownList();
+
+    var viewWin = new PopWindow('.view',{
+        title:'',
+        width:'790',
+        template:'#viewTemplate'
+    }).init();
+
+  });
+</script>
+    
+  </body>
+</html>
