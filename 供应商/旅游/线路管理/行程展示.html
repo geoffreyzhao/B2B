@@ -332,6 +332,7 @@
 			<div class="pic-popup-body">
 				<span class="upload-pic-icon"></span>
 				<span class="upload-pic-title">添加图片</span>
+				<input type='file'>
 			</div>
 			<ul class="pic-popup-bottom">
 				<li style="margin-left:0;"><input type="text" placeholder="请输入对应景点" style="width:170px;"/></li>
@@ -368,7 +369,15 @@
 	            wrapperClass: "add-popup",
 	            showOn: "click",
 	            autoHide: false,
-	            callout: false
+	            callout: false,
+	            show: function(){
+	            	$(".k-tooltip-content input[type='file']").kendoUpload({
+			            localization: {
+			                select: ""
+			            },
+			            showFileList: false
+			        });
+	            }
 	        });
             
             $(".showClose i").click(function(){
@@ -392,7 +401,7 @@
                     $(this).text($(this).text().substring(0,characterWidth));
                     $(this).html($(this).html()+"…");
                 }
-            });
+            });            
 
 		});
 	</script>	
