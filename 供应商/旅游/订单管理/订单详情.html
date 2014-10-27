@@ -33,10 +33,7 @@
     <![endif]-->
     <script type="text/javascript" src="/static/js/supplier/supplier_sync.js"></script>
     <!-- @CLB@ -->
-        <style type="text/css">
-            .lineWeight {
-                box-shadow:none;
-            }
+        <style type="text/css">            
             .k-tooltip-content {
                 padding: 0;
             }
@@ -455,7 +452,20 @@
          
     </div>
 </div>
-
+    
+    <div class="moreOperLayer">
+        <div class="middleBody">
+            <div class="moreOperBlock" style="display:none;">
+                <ul class="operBtnList">
+                    <li class="again-accepted-quitCluster">重新受理退团</li>
+                    <li>重新退团</li>
+                    <li>取消退团</li>
+                    <li>调价</li>
+                    <li>取消调价</li>
+                </ul>
+            </div>        
+        </div>
+    </div>
     <div class="accountInfoBlock" id="ac">
 
         <!--<div class="inner_accountInfoBlock">
@@ -671,16 +681,7 @@
             </div>
         </div>-->
 
-        <div class="moreOperBlock" style="display:none;">
-            <ul class="operBtnList">
-                <li class="again-accepted-quitCluster">重新受理退团</li>
-                <li>重新退团</li>
-                <li>取消退团</li>
-                <li>调价</li>
-                <li>取消调价</li>
-            </ul>
-        </div>
-        <div class="inner_accountInfoBlock">
+        <div class="inner_accountInfoBlock">            
             <div class="operBtnRow" >
                 <a class="adaptiveButton brightRed_btn moreOperation">
                     <span class="left"></span>
@@ -1795,7 +1796,11 @@
             $('#ac').fixedBar({
                 inverse:true
             });
-            
+
+            $(".moreOperLayer").fixedBar({
+                inverse:true,
+                css: "bottom:64px;position:fixed;z-index:2;",
+            });
         });
     </script>
 
