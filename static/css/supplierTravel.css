@@ -50,7 +50,7 @@ html, body, div, p, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, form, input,
 
 /* 上传按钮  kendoUpload  样式重新定义
 （只适合供应商和运营商旅游上传图片）  By: shuaigeng.zhao;   start  */
-li.addImgBox .k-button.k-upload-button {
+li .k-button.k-upload-button {
     width: 188px;
     height: 123px;
     position: absolute;
@@ -1568,7 +1568,37 @@ div.k-grid-header, thead.k-grid-header .k-header{
 .popWindowBox {
 }
 
-/* 开发的table上(kendo grid生成的table)  没有加class  所以table下的样式大多都无效  By:shuaigeng.zhao; */
+/* 开发的table上(kendo grid生成的table)  没有加class  所以table下的样式大多都无效
+    table head 父层div  class='k-grid-header-wrap'
+    table content  父层div   class='k-grid-content'
+  By:shuaigeng.zhao; */
+
+/* 未完善 TODO   开始  */
+.popWindowBox .k-grid-header-wrap table th{
+    background: #f6f6f6;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #333;
+    font-weight: normal;
+    text-align: left;
+    border: 0;
+}
+
+.popWindowBox .k-grid-header-wrap table th:first-child,
+.popWindowBox .k-grid-content table td:first-child {
+    padding-left: 5px;
+}
+
+.popWindowBox .k-grid-content table td {
+    text-align: left;
+    font-size: 12px;  
+    color: #777;
+    padding: 8px 0;
+}
+
+/* 未完善 TODO   结束 */
+
 .orderPopWindowTable th {
     background: #f6f6f6;
     height: 40px;
