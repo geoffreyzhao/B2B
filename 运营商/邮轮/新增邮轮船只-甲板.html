@@ -256,7 +256,7 @@
         <div class="deckImg">
             <span class="deckImg-span"><i>*</i>甲板图:</span>
             <div class="shipImgLi">
-                <img src="../../static/images/passengerLiner/deck.png" width="25" height="120px"/>
+                <img src="../../static/images/passengerLiner/deck.png"  onload="autoResizeImage(188, 128, this)" >
                 <div class="memberFile">
                     <!--<span class="imgPrev"></span>-->
                     <span class="imgDel"></span>
@@ -281,8 +281,7 @@
     </div>
 </script>
 
-
-        <script>
+<script>
 $(function(){
     new PopWindow('.ac-refuse',{
         title:'甲板信息',
@@ -291,12 +290,61 @@ $(function(){
         height:534
     }).init();
 
-
-    // $(".addDeckBtn").trigger('click');
-
-
 })
-        </script>
+
+
+function autoResizeCutImage(maxWidth, maxHeight, objImg){
+            var img = new Image();
+            img.src = objImg.src;
+            var hRatio;
+            var wRatio;
+            var Ratio = 1;
+            var w = img.width;
+            var h = img.height;
+            wRatio = maxWidth / w;
+            hRatio = maxHeight / h;
+
+            if (wRatio < 1 || hRatio < 1) {
+                Ratio = wRatio >= hRatio ? wRatio : hRatio;
+            }
+
+            if (Ratio<1){
+                w = w * Ratio;
+                h = h * Ratio;
+            }
+
+            objImg.height = h;
+            objImg.width = w;
+        };
+
+
+function autoResizeImage(maxWidth, maxHeight, objImg){
+            var img = new Image();
+            img.src = objImg.src;
+            var hRatio;
+            var wRatio;
+            var Ratio = 1;
+            var w = img.width;
+            var h = img.height;
+            wRatio = maxWidth / w;
+            hRatio = maxHeight / h;
+            
+            if (wRatio < 1 || hRatio < 1) {
+                Ratio = wRatio <= hRatio ? wRatio : hRatio;
+            }
+
+
+            
+            if (Ratio<1){
+                w = w * Ratio;
+                h = h * Ratio;
+            }
+
+            objImg.height = h;
+            objImg.width = w;
+
+        };
+</script>
 
 
 
