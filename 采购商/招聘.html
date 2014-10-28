@@ -631,26 +631,15 @@
             }, 1);
         });
 
-        var boolFlag = false;
         $(".commonTypeStyle").click(function(){
-
-            boolFlag = true;
             setTimeout(function(){
                 var top = $("body").scrollTop();
                 $("body").scrollTop(top - 200);
-
-                setTimeout(function(){
-                    boolFlag = false;
-                }, 1000);
             }, 1);
         });
 
         $(window).scroll(function(){ 
-           if (boolFlag) {
-            return;
-           } else {
-            scrollAddLiClass();
-           }
+           scrollAddLiClass();
         });
         
     });
