@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/static/css/kendo.store.css" />
     <link rel="stylesheet" href="/static/css/toolkit.css"/>
     <link rel="stylesheet" href="/static/css/store_v3/store.css"/>
-    <link rel="stylesheet" href="/static/css/store_v2/home_tour.css"/>
+    <link rel="stylesheet" href="/static/css/store_cruise.css"/>
 
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/kendo.web.js"></script>
@@ -60,75 +60,30 @@
         </nav>
     </header>
 </div>
-<div class="travelNewIndexBannerBG clearfix"> </div>
+<div class="cruiseIndexBannerBG clearfix"> </div>
 
 <div class="main-wrapper">
         <div class="searchWrapper"> <!--searchWrapper start-->
-            <div class="newSearch">
-                <ul class="newSearchTab transparencyChange">
-                    <li class="first selected travelType">
-                        <span>出境游</span>
-                        <i class="listBg"></i>
-                    </li>
-                    <li class="addLine">|</li>
-                    <li class="travelType">
-                        <span>国内游</span>
-                        <i class="listBg"></i>
-                    </li>
-                    <li class="addLine">|</li>
-                    <li class="travelType">
-                        <span>周边游</span>
-                        <i class="listBg"></i>
-                    </li>
-                    <li class="addLine">|</li>
-                    <li class="travelType">
-                        <span>门票</span>
-                        <i class="listBg"></i>
-                    </li>
-                </ul>
-                <div class="newSearchContent">
-                    <div class="searchForm noWhiteBg tab clearfix" style="display: block;">
-                        <span class="inputWhiteBgRow">
-                            <span class="startOff-bg">
-                                <span tabindex="-1" role="presentation" class="startOff city_ac k-widget k-autocomplete k-header k-state-default" style="width: 82px;">
-                                    <input id="startOff" style="width: 100%;text-align:center;" type="text" class="startOff city_ac k-input" value="上海虹桥" data-role="autocomplete" autocomplete="off" role="textbox" aria-haspopup="true" aria-disabled="false" aria-readonly="false" aria-owns="startOff_listbox" aria-autocomplete="list">
-                                    <span class="k-icon k-loading" style="display:none"></span>
-                                </span>
-                                <input type="hidden" name="_code">
-                                <span class="startFont">出发</span>
-                            </span>
-                            <input style="width:310px;" type="text" class="scenicPlace" placeholder="请输入目的地、景点、游玩类型等关键词">
-                        </span>
-                       <span class="inputNoBgRow">
-                            <input type="text" value="" name="departure_date" style="width:90px;" class="datepicker newSearchDate" placeholder="yyyy-mm-dd"><b class="ui-datepicker-daywrapper"></b> 
-                           <em>-</em>
-                            <input type="text" value="" name="departure_date" style="width:90px;" class="datepicker newSearchDate" placeholder="yyyy-mm-dd"><b class="ui-datepicker-daywrapper"></b>
-                           <button type="submit" class="btn">搜 索</button>
-                       </span>
-                        <span class="transparencyBg"></span>
-                    </div>
-
-                    <div class="searchForm noWhiteBg tab clearfix" style="display: none;">
-                        <span class="inputWhiteBgRow">
-                            <span class="startOff-bg">
-                                <span tabindex="-1" role="presentation" class="startOff city_ac k-widget k-autocomplete k-header k-state-default" style="width: 82px;">
-                                    <input id="endOff" style="width: 100%;text-align:center;" type="text" class="startOff city_ac k-input" value="北京" data-role="autocomplete" autocomplete="off" role="textbox" aria-haspopup="true" aria-disabled="false" aria-readonly="false" aria-owns="startOff_listbox" aria-autocomplete="list">
-                                    <span class="k-icon k-loading" style="display:none"></span>
-                                </span>
-                                <input type="hidden" name="_code">
-                                <span class="startFont">出发</span>
-                            </span>
-                            <input style="width:310px;" type="text" class="scenicPlace" placeholder="请输入目的地、景点、游玩类型等关键词22">
-                        </span>
-                       <span class="inputNoBgRow">
-                            <input type="text" value="" name="departure_date" style="width:90px;" class="datepicker newSearchDate hasDatepicker" placeholder="yyyy-mm-dd" id="dp1413009218096"><b class="ui-datepicker-daywrapper"></b> 
-                           <em>-</em>
-                            <input type="text" value="" name="departure_date" style="width:90px;" class="datepicker newSearchDate hasDatepicker" placeholder="yyyy-mm-dd" id="dp1413009218097"><b class="ui-datepicker-daywrapper"></b>
-                            <button type="submit" class="btn">搜 索</button>
-                       </span>
-                        <span class="transparencyBg"></span>
-                    </div>                   
-                </div>
+            <div class="searchBar clearfix">
+              <div class="whiteBlock">
+                <span class="blockTitle">出发港口</span>
+                <input type="text" placeholder="全部港口"/>
+              </div>
+              <div class="whiteBlock">
+                <span class="blockTitle">邮轮航线</span>
+                <input type="text" placeholder="全部航线"/>
+              </div>
+              <div class="whiteBlock">
+                <span class="blockTitle">邮轮公司</span>
+                <input type="text" placeholder="不限"/>
+              </div>
+              <div class="whiteBlock">
+                <span class="blockTitle">出发日期</span>
+                <input type="text" placeholder="不限"/>
+              </div>
+              <div class="searchBtn">
+                <span>搜 索</span>
+              </div>
             </div>
             <div class="hotCity">
                 <b class="hotCityTitle">热门推荐：</b>
@@ -147,10 +102,33 @@
             </div>
         </div> <!--searchWrapper end-->        
 </div>
-<div class="main-wrapper main-top-pass" style="top:300px;">
+<div class="main-wrapper cruiseSearchTop">
 
         <section class="main-body clearfix"> <!--body start-->
-               
+            <div class="filterConditionBlock">
+              <ul class="filterList">
+                <li>
+                  <label class="filterTitle">邮轮船只：</label>
+                  <div class="filterCheck">
+                      <span>航海一号</span>
+                      <span class="selectedSpan">航海二号</span>
+                      <span>航海三号</span>
+                      <span>航海四号</span>
+                      <span>航海五号</span>
+                  </div>
+                </li>
+              </ul>
+              <div class="filterSelectedBlock">
+                <label class="filterTitle">邮轮船只：</label>
+                <ul>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+              </div>
+            </div>
 
         </section> <!--body end-->
         <footer class="main-footer">
