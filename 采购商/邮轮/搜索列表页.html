@@ -7,10 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css" />
-    <link rel="stylesheet" href="/static/css/store_reset.css" media="all" />
     <link rel="stylesheet" href="/static/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="/static/css/store_reset.css" media="all" />
     <link rel="stylesheet" href="/static/css/kendo.store.css" />
-    <link rel="stylesheet" href="/static/css/toolkit.css"/>
+    <link rel="stylesheet" href="/static/css/store_v2/store.css"/>
+    <link rel="stylesheet" href="/static/css/toolkit.css"/>    
+    <link rel="stylesheet" href="/static/css/store.css"/>
     <link rel="stylesheet" href="/static/css/store_v3/store.css"/>
     <link rel="stylesheet" href="/static/css/store_cruise.css"/>
 
@@ -67,19 +69,19 @@
             <div class="searchBar clearfix">
               <div class="whiteBlock">
                 <span class="blockTitle">出发港口</span>
-                <input type="text" placeholder="全部港口"/>
+                <input type="text" placeholder="全部港口" class="startPort"/>
               </div>
               <div class="whiteBlock">
                 <span class="blockTitle">邮轮航线</span>
-                <input type="text" placeholder="全部航线"/>
+                <input type="text" placeholder="全部航线" class="cruiseLine"/>
               </div>
               <div class="whiteBlock">
                 <span class="blockTitle">邮轮公司</span>
-                <input type="text" placeholder="不限"/>
+                <input type="text" placeholder="不限" class="cruiseCompany" />
               </div>
               <div class="whiteBlock">
                 <span class="blockTitle">出发日期</span>
-                <input type="text" placeholder="不限"/>
+                <input type="text" placeholder="不限" class="startDate"/>
               </div>
               <div class="searchBtn">
                 <span>搜 索</span>
@@ -211,26 +213,231 @@
                 </center>
             </div>
         </footer>
-<div class="partnerContainer clearfix">
-    <span style="float:right;">
-            <a href='https://search.szfw.org/cert/l/CX20140509008050008112' target='_blank'><i class="zxin partnerIcon"></i></a>
-	    <a href="http://www.zx110.org/" target="_blank"><i class="zxw partnerIcon"></i></a>
-    </span>
-    <span style="float:left;">
-	    合作伙伴：
-	    <i class="travelsky partnerIcon"></i>
-	    <i class="dovepay partnerIcon"></i>
-	    <i class="chinapnr partnerIcon"></i>
-	    <i class="alipay partnerIcon"></i>
-	    <i class="tenpay partnerIcon"></i>
-        </span>
-	</div>
+        <div class="partnerContainer clearfix">
+          <span style="float:right;">
+                  <a href='https://search.szfw.org/cert/l/CX20140509008050008112' target='_blank'><i class="zxin partnerIcon"></i></a>
+      	    <a href="http://www.zx110.org/" target="_blank"><i class="zxw partnerIcon"></i></a>
+          </span>
+          <span style="float:left;">
+      	    合作伙伴：
+      	    <i class="travelsky partnerIcon"></i>
+      	    <i class="dovepay partnerIcon"></i>
+      	    <i class="chinapnr partnerIcon"></i>
+      	    <i class="alipay partnerIcon"></i>
+      	    <i class="tenpay partnerIcon"></i>
+              </span>
+      	</div>
 </div>
+
+<script type="text/x-kendo-template" id="portListTemplate">
+  <div class="filterContentItemLayer">
+    <div class="layerTitle">
+      <span>请选择出发港口</span>
+      <i class="close"></i>
+    </div>
+    <div class="bodyContent">
+      <ul class="itemList clearfix startPortList">
+        <li><span>上海</span></li>
+        <li><span>天津</span></li>
+        <li><span>青岛</span></li>
+        <li><span>上海</span></li>
+        <li><span>杜布罗夫尼克</span></li>
+        <li><span>青岛</span></li>
+        <li class="current"><span>上海</span></li>
+        <li><span>天津</span></li>
+        <li><span>青岛</span></li>
+        <li><span>上海</span></li>
+        <li><span>天津</span></li>
+        <li><span>青岛</span></li>
+        <li><span>上海</span></li>
+        <li><span>天津</span></li>
+        <li><span>青岛</span></li>
+        <li><span>杜布罗夫尼克</span></li>
+        <li><span>杜布罗夫尼克</span></li>
+        <li><span>杜布罗夫尼克</span></li>
+        <li><span>杜布罗夫尼克</span></li>
+        <li><span>杜布罗夫尼克</span></li>
+        <li><span>杜布罗夫尼克</span></li>
+        <li><span>杜布罗夫尼克</span></li>
+        <li><span>杜布罗夫尼克</span></li>
+      </ul>
+    </div>
+  </div>
+</script>
+
+<script type="text/x-kendo-template" id="cruiseLineTemplate">
+  <div class="filterContentItemLayer">
+    <div class="layerTitle">
+      <span>请选择邮轮航线/目的地</span>
+      <i class="close"></i>
+    </div>
+    <div class="bodyContent">
+      <ul class="itemList clearfix cruiseLineList">
+        <li><span>日韩</span></li>
+        <li><span>东南亚</span></li>
+        <li><span>地中海</span></li>
+        <li><span>澳大利亚</span></li>
+        <li><span>环球</span></li>
+        <li><span>墨西哥</span></li>
+        <li class="current"><span>澳大利亚新西兰</span></li>
+        <li><span>夏威夷</span></li>
+        <li><span>普罗旺斯</span></li>
+        <li><span>夏威夷</span></li>
+        <li><span>澳大利亚新西兰</span></li>
+        <li><span>澳大利亚新西兰</span></li>
+        <li><span>澳大利亚新西兰</span></li>
+        <li><span>澳大利亚新西兰</span></li>
+        <li><span>澳大利亚新西兰</span></li>
+        <li><span>澳大利亚新西兰</span></li>
+        <li><span>澳大利亚新西兰</span></li>
+        <li><span>澳大利亚新西兰</span></li>
+        <li><span>澳大利亚新西兰</span></li>
+      </ul>
+    </div>
+  </div>
+</script>
+
+<script type="text/x-kendo-template" id="cruiseCompanyTemplate">
+  <div class="filterContentItemLayer">
+    <div class="layerTitle">
+      <span>请选择邮轮公司</span>
+      <i class="close"></i>
+    </div>
+    <div class="bodyContent">
+      <ul class="itemList clearfix cruiseCompanyList">
+        <li><span>丽星邮轮</span></li>
+        <li><span>银海邮轮</span></li>
+        <li><span>歌诗达邮轮</span></li>
+        <li><span>公主邮轮</span></li>
+        <li><span>皇家加勒比</span></li>
+        <li><span>小潘潘号</span></li>
+        <li class="current"><span>皇家加勒比</span></li>
+        <li><span>丽星邮轮</span></li>
+        <li><span>银海邮轮</span></li>
+        <li><span>歌诗达邮轮</span></li>
+        <li><span>公主邮轮</span></li>
+        <li><span>皇家加勒比</span></li>
+        <li><span>小潘潘号</span></li>
+        <li><span>丽星邮轮</span></li>
+        <li><span>银海邮轮</span></li>
+        <li><span>歌诗达邮轮</span></li>
+        <li><span>公主邮轮</span></li>
+        <li><span>皇家加勒比</span></li>
+        <li><span>小潘潘号</span></li>
+      </ul>
+    </div>
+  </div>
+</script>
+
+<script type="text/x-kendo-template" id="startDateTemplate">
+  <div class="filterContentItemLayer">
+    <div class="layerTitle">
+      <span>请选择出发日期</span>
+      <i class="close"></i>
+    </div>
+    <div class="bodyContent">
+      <div class="roundMonthDate clearfix">
+        <div class="yearTitle">2014</div>
+        <ul class="monthList">
+          <li class="disabled"><span>一月</span></li>
+          <li class="disabled"><span>二月</span></li>
+          <li class="disabled"><span>三月</span></li>
+          <li class="disabled"><span>四月</span></li>
+          <li class="disabled"><span>五月</span></li>
+          <li class="lastItem disabled"><span>六月</span></li>
+          <li class="disabled"><span>七月</span></li>
+          <li class="disabled"><span>八月</span></li>
+          <li class="disabled"><span>九月</span></li>
+          <li class="normal"><span>十月</span></li>
+          <li class="current"><span>十一月</span></li>
+          <li class="lastItem normal"><span>十二月</span></li>
+        </ul>
+      </div>
+      <div class="roundMonthDate clearfix">
+        <div class="yearTitle">2015</div>
+        <ul class="monthList">
+          <li class="normal"><span>一月</span></li>
+          <li class="normal"><span>二月</span></li>
+          <li class="normal"><span>三月</span></li>
+          <li class="normal"><span>四月</span></li>
+          <li class="normal"><span>五月</span></li>
+          <li class="lastItem normal"><span>六月</span></li>
+          <li class="normal"><span>七月</span></li>
+          <li class="normal"><span>八月</span></li>
+          <li class="normal"><span>九月</span></li>
+          <li class="normal"><span>十月</span></li>
+          <li class="normal"><span>十一月</span></li>
+          <li class="lastItem normal"><span>十二月</span></li>
+        </ul>
+      </div>
+      <div class="exactDateRange">
+        <div class="dateInputTitle">我要在精确时间段出发</div>
+        <div class="dateRangeInput">
+          <em>最早出发</em><input type="text" class="datepicker earlyDate">
+          <em class="earlyDateTitle">最晚出发</em><input type="text" class="datepicker laterDate">
+        </div>
+        <div class="dateRangeBtn">
+          <a class="adaptiveButton mediumOrange_btn selectDateRange">
+              <span class="left"></span>
+              <span class="center">确 定</span>
+              <span class="right"></span>
+          </a> 
+          <a class="noLimit">不限</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+
 </body>
 
 <script>
-    $(function(){    
-            
+    $(function(){          
+
+          // 出发港口弹框   
+          var startPortLayer = new FloatLayer({
+                trigger:'.startPort',
+                template:'#portListTemplate',
+                offsetY:38,
+                offsetX:-78
+                // data:dataList  (参数会传到template中使用)
+            });
+
+          //  航线弹窗
+          var cruiseLineLayer = new FloatLayer({
+            trigger:'.cruiseLine',
+            template:'#cruiseLineTemplate',
+            offsetY:38,
+            offsetX:-78
+          });
+
+          // 邮轮公司弹窗
+          var cruiseCompanyLayer = new FloatLayer({
+            trigger:'.cruiseCompany',
+            template:'#cruiseCompanyTemplate',
+            offsetY:38,
+            offsetX:-78
+          });
+
+          //  选择出发港口  航线和邮轮公司参照
+          $("body").delegate(".startPortList li", "click", function(){
+            $(this).addClass("current");
+            $(this).siblings("li").removeClass("current");
+            $("input.startPort").val($(this).children("span").html());
+            startPortLayer.close();
+          });
+
+          // 出发日期弹窗
+          var startDateLayer = new FloatLayer({
+            trigger:'.startDate',
+            template:'#startDateTemplate',
+            offsetY:38,
+            offsetX:-263,
+            open: function(){
+              $(".datepicker").datepicker();
+            }
+          });
+
     });
 </script>
 
