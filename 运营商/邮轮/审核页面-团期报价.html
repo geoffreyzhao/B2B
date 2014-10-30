@@ -312,8 +312,8 @@
     <div class="accountInfoBlock" id="ac">
         <div class="inner_accountInfoBlock">
             <span class="accountCon">
-                <a href="javascript:void(0);" class="commonBtnStyle orangeBtn">审核退回</a>
-                <a href="javascript:void(0);" class="commonBtnStyle greenBtn">审核通过</a>
+                <a href="javascript:void(0);" class="commonBtnStyle orangeBtn ac-commitReview">审核退回</a>
+                <a href="javascript:void(0);" class="commonBtnStyle greenBtn brightBtn-blue">审核通过</a>
                 <a href="javascript:void(0);" class="cancelBtn">取消</a>
             </span>
         </div>
@@ -331,6 +331,27 @@
         </div>
     </div>
 
+
+    <script type="text/x-kendo-template" id="ac-commitReview_template">
+      <div class="return-reason">
+        <span>退回原因</span>
+        <i class="review-turnback"></i>
+      </div>
+      <div class="return-content">
+        <span>请输入......</span>
+      </div>
+
+      <div class="return-confirmBtn"> 
+        <button name="a" type="button" class="large_button confirm">确 定</button>
+        <a href="javascript:void(0);">取 消</a>
+      </div>
+      
+    </script>
+
+    <script type="text/x-kendo-template" id="pw-send-msg-success">
+        <div class="send-msg-success"><i class="large-success-icon"></i> 已通过审核！</div>
+    </script>
+
     
     <script type="text/javascript">
         $(function(){
@@ -340,8 +361,43 @@
 
             $(".commonModelStyle .topFixedToolsBar").fixedBar();
 
+
+            var commitReviewWin = new PopWindow(".ac-commitReview",{
+                title: false,
+                width: 600,
+                height:305,
+                template: "#ac-commitReview_template",
+            }).init();
+            $(".commitReviewWin").parents(".k-window").css("padding-bottom","18px");
+
+            $(".review-turnback").on("click",function(){
+                commitReviewWin.close();
+            });
+
+            var sendMsgSuccessPw = new PopWindow(".brightBtn-blue", {
+              title: false,
+              width: 410,
+              template: "#pw-send-msg-success",
+              autoHide: 2*1000,
+              animation: {
+                  open: {
+                      effects: "fade:in",
+                      duration: 300
+                  },
+                  close: {
+                      effects: "fade:out",
+                      duration: 300
+                  }
+              }
+            }).init();
+
+            
+
         });
     </script>
+
+
+
 
 </body>
 </html>
