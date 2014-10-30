@@ -3589,7 +3589,7 @@ _extend(KEdit, KWidget, {
 		var self = this;
 		KEdit.parent.init.call(self, options);
 		self.srcElement = K(options.srcElement);
-		self.div.addClass('ke-edit');
+		self.div.addClass('ke-editor');
 		self.designMode = _undef(options.designMode, true);
 		self.beforeGetHtml = options.beforeGetHtml;
 		self.beforeSetHtml = options.beforeSetHtml;

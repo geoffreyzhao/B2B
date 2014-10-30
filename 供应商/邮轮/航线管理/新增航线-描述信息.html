@@ -11,12 +11,11 @@
     <link href="/static/css/common.css" rel="stylesheet" />
     <link href="/static/css/supplier.css" rel="stylesheet" />
     <link href="/static/css/kendo.reset.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/static/js/themes/default/default.css" />
+    
     <link href="/static/css/supplier_common.css" rel="stylesheet" />
     <link href="/static/css/supplierShip.css" rel="stylesheet" />
     <link rel="stylesheet" href="/static/css/textboxList/jquery.tagsinput.css" type="text/css" media="screen" charset="utf-8" />
-   
-
+    <link rel="stylesheet" href="/static/js/themes/default/default.css" />
 
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/kendo.web.js"></script>
@@ -32,7 +31,8 @@
     <script src="/static/js/supplier/textboxList.js" type="text/javascript" charset="utf-8"></script>
 
 
-
+    
+        
     <!--[if IE]>
     <script src="/static/js/html5.js"></script>
     <![endif]-->
@@ -261,7 +261,7 @@
             </div>
             <div class="content3 clearfix">
                 <div class="catalog3"><em>*</em>产品经理推荐</div>
-                <div class="textareaDiv">
+                <div class="">
                     <form>
                         <textarea name="content" class="editorText"></textarea>
                     </form>
@@ -427,27 +427,40 @@
     </script>
 
     <script>
+        // var editor;
+        //     KindEditor.ready(function(K) {
+        //         editor = K.create('textarea[name="content"]', {
+        //             height:"190px",
+        //             resizeType : 1,
+        //             allowPreviewEmoticons : false,
+        //             allowImageUpload : false,
+        //             items : [
+        //                 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+        //                 'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+        //                 'insertunorderedlist', '|', 'emoticons', 'image', 'link']
+        //         });
+        //     });
         var editor;
         KindEditor.ready(function(K) {
-            K.options.items = ['forecolor', 'insertorderedlist'];
+            K.options.items = ['fontsize', 'forecolor', 'insertorderedlist'];
             K.create('textarea[name="content"]', {
                 autoHeightMode : true,
                 width: "790",
-                height: "800",
+                height: "106",
                 uploadJson : "/upload_json.php",
                 afterCreate : function() {
                     
                 }
             });
         });
-
+        
         var editor;
         KindEditor.ready(function(K) {
             K.options.items = ['fontsize', 'forecolor', 'insertorderedlist'];
             K.create('textarea[name="content2"]', {
                 autoHeightMode : true,
                 width: "790",
-                height: "800",
+                height: "106",
                 uploadJson : "/upload_json.php",
                 afterCreate : function() {
                     
