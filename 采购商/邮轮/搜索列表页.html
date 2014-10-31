@@ -433,10 +433,37 @@
             template:'#startDateTemplate',
             offsetY:38,
             offsetX:-263,
+            expectClose: false,
             open: function(){
               $(".datepicker").datepicker();
             }
           });
+
+
+          // 解决日历按钮与弹层的事件冲突
+          $(document).on('click',function(e){
+              t = e.target;
+              var isInFloatlayer = false;
+               var parentDiv = $(t).parents(".ui-datepicker")[0];  //  日历全部
+               var parentHeaderDiv = $(t).parents(".ui-datepicker-header")[0];  //  日历header
+               if(typeof(parentDiv) != 'undefined' || typeof(parentHeaderDiv) != 'undefined'){
+                  var targetTrigger = $(".ui-corner-all");
+                  targetTrigger.each(function(i){
+                      if(parentDiv == targetTrigger[i] || typeof(parentHeaderDiv) != 'undefined'){
+                          isInFloatlayer=true;
+                          return;
+                      }
+                  })
+               }
+              var ele = $(".startDate");
+               if ( !$(t).is(ele)
+                   && $(t).closest(ele).length===0
+                   && $(t).closest('.ac-floatlayer').length===0
+                   && !$(t).hasClass('k-placeholder') && !isInFloatlayer){
+                   startDateLayer.close();
+               }
+           });         
+
 
     });
 </script>
