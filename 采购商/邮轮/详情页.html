@@ -26,6 +26,237 @@
     <script src="../../static/js/html5.js"></script>
     <script src="../../static/js/vendor/IE7.min.js"></script>
     <![endif]-->
+
+    <style type="text/css">
+    .tabSwitchMonth {
+        background-color: #fff;
+    }
+
+    .tabSwitchMonth li {
+        background-color: #e3e3e3;
+        margin-right: 2px;
+        height: 25px;
+        width: 85px;
+        float: left;
+        font-size: 14px;
+        color: #868686;
+        text-align: center;
+        line-height: 25px;
+    }
+
+    .tabSwitchMonth li:hover {
+        cursor: pointer;
+    }
+
+    .tabCurrentMonth {
+        background-color: #99c9f2!important;
+        color: #fff!important;
+        padding-bottom: 2px;
+    }
+
+    /* 日历部分  */
+
+    .grayFont {
+        color: #e3e3e3;
+    }
+
+    .calTable {
+        width: 464px;
+        /*border: 1px solid #e3e3e3;*/
+    }
+
+    .calTable th, .calTable td {
+        text-align: center;
+    }
+
+    .calTable th {
+        background-color: #99caf2;
+        color: #fff;
+    }
+
+    .calTable td {
+        border: 1px solid #e3e3e3;
+        color: #aeaeae;
+        width: 66px;
+        height: 56px;
+        position: relative;
+    }
+
+    .calTable .multiTour {
+        display: inline-block;
+        width: 19px;
+        height: 19px;
+        background: url(../../static/images/store/travl/calendar-price-icons.png) no-repeat 0 -32px;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .calTable .disa-multiTour {
+        background: url(../../static/images/store/travl/calendar-price-icons.png) no-repeat -21px -32px;
+    }
+
+    .calTable .tourFlag {
+        position: absolute;
+        bottom: 2px;
+        right: 2px;
+    }
+
+    .calTable .sureTour {
+        background: url(../../static/images/store/travl/calendar-price-icons.png) no-repeat 0 0;
+        display: inline-block;
+        width: 46px;
+        height: 14px;
+    }
+
+    .calTable .disa-sureTour {
+        background: url(../../static/images/store/travl/calendar-price-icons.png) no-repeat 0 -16px;
+        display: inline-block;
+        width: 46px;
+        height: 14px;
+    }
+
+    .calTable .tour {
+        background: url(../../static/images/store/travl/calendar-price-icons.png) no-repeat -48px 0;
+        display: inline-block;
+        width: 25px;
+        height: 14px;
+    }
+
+    .calTable .disa-tour {
+        background: url(../../static/images/store/travl/calendar-price-icons.png) no-repeat -48px -16px;
+        display: inline-block;
+        width: 25px;
+        height: 14px;
+    }
+
+    .leftNormal, .leftMore {
+        font-size: 12px;
+        color: #348332;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+    }
+
+    .leftNone {
+        font-size: 12px;
+        color: #aeaeae;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+    }
+
+    .price {
+        font-size: 12px;
+        color: #ff6500;
+        position: absolute;
+        top: 21px;
+        left: 0;
+    }
+
+    .disa-price {
+        color: #aeaeae;
+    }
+
+    .price b {
+        font-weight: bold;
+        padding: 0 1px;
+    }
+
+    .dateDay {
+        position: absolute;
+        top: 5px;
+        left: 10px;
+        color: #333;
+    }
+
+    .disa-dateDay {
+        color: #aeaeae;
+    }
+
+    .enableTd:hover,
+    .enableTdMt:hover {
+        background-color: #fffef4;
+        /*border: 1px solid #fe9149;*/
+        cursor: pointer;
+    }
+
+    .trBorderBottom {
+        border-bottom: 1px dashed #aeaeae;
+    }
+
+    .priceTotal {
+        font-size: 14px;
+        text-align: right;
+        padding-top: 10px;
+    }
+
+    .orderBtnOrange {
+        padding-left: 20px;
+    }
+
+    .multiTem {
+        width: 273px;
+        position: relative;
+    }
+
+    .multiTem table{
+        width: 100%;
+    }
+
+    .multiTem .departureInfo {
+        width: 215px;
+        height: 24px;
+        padding-left: 10px;
+    }
+
+    .multiTem .orderBtnOrange {
+        padding-left: 130px;
+    }
+
+    .multiTem span.importantTxt1 {
+        padding-left: 40px;
+    }
+
+    ul.mtSelectItems {
+        width: 227px;
+        margin-left: 40px;
+        /*border: 1px solid #cbcbcb;*/
+    }
+
+    ul.mtSelectItems li {
+        height: 24px;
+        line-height: 24px;
+        border-bottom: 1px solid #cbcbcb;
+        border-right: 1px solid #cbcbcb;
+        border-left: 1px solid #cbcbcb;
+        padding-left: 10px;
+        cursor: pointer;
+    }
+
+    .mtSelectItems span {
+        color: #909090;
+        padding-right: 10px;
+    }
+
+    .mtSelectItems .mtPrice em,
+    .mtSelectedItem .mtPrice em{
+        color: #ff6500;
+    }
+
+    .mtSelectItems .mtLeftNum em,
+    .mtSelectedItem .mtLeftNum em {
+        color: #348332;
+    }
+
+    .mtSelectedItem {
+        position: absolute;
+        top: 40px;
+        left: 70px;
+    }
+
+    </style>
+    
 </head>
 <body>
 
@@ -80,31 +311,314 @@
 <div class="main-wrapper">
        
 <section class="main-body clearfix"> <!--body start-->
-    <div class="mainContainer">
+    <div class="topDeepBlueBg">
         <div class="passengerLinerTrickInfo">
-            <b>歌诗达邮轮-大西洋号】上海-济州-仁川（首尔）-上海4晚 上海-济州-仁川（首尔）-上海4晚</b>
-            <label class="trickAndShip blueBg">
-                <i class="singleTrickIcon"></i>
-                <em>单船票</em>
-            </label>
-            <label class="trickAndShip greenBg">
-                <i class="charteredBoatIcon"></i>
-                <em>包船</em>
-            </label>
+            <div class="topShippingInfo">
+                <b class="shipTitle">歌诗达邮轮-大西洋号】上海-济州-仁川（首尔）-上海4晚 上海-济州-仁川（首尔）-上海4晚</b>
+                <label class="trickAndShip blueBg">
+                    <i class="singleTrickIcon"></i>
+                    <em>单船票</em>
+                </label>
+                <label class="trickAndShip greenBg">
+                    <i class="charteredBoatIcon"></i>
+                    <em>包船</em>
+                </label>
+            </div>
+            <div class="labelStyle">
+                <label>蜜月旅行</label>
+                <label>说走就走</label>
+                <label>老年休闲游</label>
+                <label>养生之旅</label>
+            </div>
+            <section class="clearfix" style="padding-bottom: 30px;">
+                <div class="leftBookImg">
+                    <div id="picarea">
+                        <div class="showGraph" id="bigpicarea">
+                            <p class="bigbtnPrev" style="display: none;"><span id="big_play_prev"></span></p>
+                            <div id="image_xixi-01" class="image">
+                                <a href="javascript:void(0);" target="_blank">
+                                    <img title="" src="../../static/images/store/cruise/shippingImg01.jpg">
+                                </a>
+                                <div class="word">
+                                    <h3>舞动青春</h3>
+                                </div>
+                            </div>
+                            <div id="image_xixi-02" class="image">
+                                <a href="javascript:void(0);" target="_blank">
+                                    <img title="" src="../../static/images/store/cruise/shippingImg02.jpg">
+                                </a>
+                                <div class="word">
+                                    <h3>台球厅的生活</h3>
+                                </div>
+                            </div>
+                            <div id="image_xixi-03" class="image">
+                                <a href="javascript:void(0);" target="_blank">
+                                    <img title="" src="../../static/images/store/cruise/shippingImg03.jpg">
+                                </a>
+                                <div class="word">
+                                    <h3>采访进行中</h3>
+                                </div>
+                            </div>
+                            <div id="image_xixi-04" class="image">
+                                <a href="javascript:void(0);" target="_blank">
+                                    <img title="" src="../../static/images/store/cruise/shippingImg01.jpg">
+                                </a>
+                                <div class="word">
+                                    <h3>美女代言人</h3>
+                                </div>
+                            </div>
+                            <div id="image_xixi-05" class="image">
+                                <a href="javascript:void(0);" target="_blank">
+                                    <img title="" src="../../static/images/store/cruise/shippingImg02.jpg">
+                                </a>
+                                <div class="word">
+                                    <h3>红色经典</h3>
+                                </div>
+                            </div>
+                            <p class="bigbtnNext" style="display: none;">
+                                <span id="big_play_next"></span>
+                            </p>
+                        </div>
+                        <div id="smallpicarea">
+                            <div id="thumbs">
+                                <ul class="clearfix">
+                                    <li class="first btnPrev">
+                                        <img id="play_prev" src="../../static/images/store/cruise/left.png">
+                                    </li>
+                                    <li class="slideshowItem">
+                                        <a id="thumb_xixi-01" href="javascript:void(0);">
+                                            <img src="../../static/images/store/cruise/shippingSmallImg01.jpg">
+                                        </a>
+                                    </li>
+                                    <li class="slideshowItem">
+                                        <a id="thumb_xixi-02" href="javascript:void(0);">
+                                            <img src="../../static/images/store/cruise/shippingSmallImg02.jpg">
+                                        </a>
+                                    </li>
+                                    <li class="slideshowItem">
+                                        <a id="thumb_xixi-03" href="javascript:void(0);">
+                                            <img src="../../static/images/store/cruise/shippingSmallImg03.jpg">
+                                        </a>
+                                    </li>
+                                    <li class="slideshowItem">
+                                        <a id="thumb_xixi-04" href="javascript:void(0);">
+                                            <img src="../../static/images/store/cruise/shippingSmallImg01.jpg">
+                                        </a>
+                                    </li>
+                                    <li class="slideshowItem">
+                                        <a id="thumb_xixi-05" href="javascript:void(0);">
+                                            <img src="../../static/images/store/cruise/shippingSmallImg02.jpg">
+                                        </a>
+                                    </li>
+                                    <li class="last btnNext">
+                                        <img id="play_next" src="../../static/images/store/cruise/right.png">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <script>
+                        var target = ["xixi-01","xixi-02","xixi-03","xixi-04","xixi-05"];
+                    </script>
+                </div>
+                <div class="rightFontsContent">
+                    <ul class="rightTopListFonts clearfix">
+                        <li>
+                            <i class="listFontsIcon listFontsIcon01"></i>
+                            <em class="deepBlueFonts">航线编号：</em>
+                            <em class="whiteFonts">12345</em>
+                        </li>
+                        <li>
+                            <i class="listFontsIcon listFontsIcon01"></i>
+                            <em class="deepBlueFonts">邮轮公司：</em>
+                            <em class="whiteFonts">
+                                <a href="javascript:void(0);">歌诗达邮轮</a>
+                            </em>
+                        </li>
+                        <li>
+                            <i class="listFontsIcon listFontsIcon02"></i>
+                            <em class="deepBlueFonts">所属航线：</em>
+                            <em class="whiteFonts">12345</em>
+                        </li>
+                        <li>
+                            <i class="listFontsIcon listFontsIcon03"></i>
+                            <em class="deepBlueFonts">邮轮船只：</em>
+                            <em class="whiteFonts">
+                                <a href="javascript:void(0);">维多利亚号</a>
+                            </em>
+                        </li>
+                        <li>
+                            <i class="listFontsIcon listFontsIcon04"></i>
+                            <em class="deepBlueFonts">出发港口：</em>
+                            <em class="whiteFonts">上海/中国</em>
+                        </li>
+                        <li>
+                            <i class="listFontsIcon listFontsIcon05"></i>
+                            <em class="deepBlueFonts">需要签证：</em>
+                            <em class="whiteFonts">新加坡签证</em>
+                        </li>
+                        <li>
+                            <i></i>
+                            <em>&nbsp;</em>
+                            <em></em>
+                        </li>
+                        <li>
+                            <i class="listFontsIcon listFontsIcon06"></i>
+                            <em class="deepBlueFonts">行程天数：</em>
+                            <em class="whiteFonts">10天</em>
+                        </li>
+                    </ul>
+                    <ul class="recommendList">
+                        <li class="deepBlueTitle">产品经理推荐：</li>
+                        <li>★ 预订家庭房，同舱第三人儿童免船票！</li>
+                        <li>★ 早定优惠！一间阳台双人房最高立减2000元！</li>
+                        <li>★ 预订套房即可获赠价值33.5美金/人的俱乐部用餐一次，每舱仅赠第1、2人！</li>
+                    </ul>
+                    <ul class="priceAndBook">
+                        <li>
+                            <div>
+                                <label>
+                                    <em class="RMBsymbol">￥</em>
+                                    <em class="priceFonts">165999</em>
+                                </label>
+                                <em>起</em>
+                            </div>
+                            <div>
+                                市场价 &nbsp; ￥185999 起
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="bookBtn">立即预订</a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>        
+    </div>
+
+    <div class="mainContainer">
+        <div class="calendarDay clearfix">
+            <div class="leftCalendar" id="priceCalendar">
+                <ul class="tabSwitchMonth">
+                </ul>
+                <table class="calTable clearfix">
+                    <tr style="height:28px;">
+                        <th>日</th>
+                        <th>一</th>
+                        <th>二</th>
+                        <th>三</th>
+                        <th>四</th>
+                        <th>五</th>
+                        <th>六</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="rightDayNumber">
+                <table class="grayBgTitle">
+                    <colgroup>
+                        <col width="65">
+                        <col width="210">
+                        <col width="80">
+                        <col width="95">
+                    </colgroup>
+                    <tr>
+                        <th class="textAlignCenter">天数</th>
+                        <th>停靠港口</th>
+                        <th>抵达时间</th>
+                        <th>启航时间</th>
+                    </tr>
+                </table>
+                <div class="rightDayList">
+                    <table>
+                        <colgroup>
+                            <col width="65">
+                            <col width="210">
+                            <col width="80">
+                            <col width="70">
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <td class="textAlignCenter">
+                                <i class="numberIcon">1</i>
+                            </td>
+                            <td>上海/中国</td>
+                            <td>14：00</td>
+                            <td>14：00</td>
+                        </tr>
+                        <tr>
+                            <td class="textAlignCenter">
+                                <i class="numberIcon">2</i>
+                            </td>
+                            <td>萨马纳岛 / 巴哈马群岛</td>
+                            <td>14：00</td>
+                            <td>14：00</td>
+                        </tr>
+                        <tr>
+                            <td class="textAlignCenter">
+                                <i class="numberIcon">3</i>
+                            </td>
+                            <td>葡萄牙岛 / 莫桑比克</td>
+                            <td>14：00</td>
+                            <td>14：00</td>
+                        </tr>
+                        <tr>
+                            <td class="textAlignCenter">
+                                <i class="numberIcon">4</i>
+                            </td>
+                            <td>萨马纳岛 / 巴哈马群岛</td>
+                            <td>14：00</td>
+                            <td>14：00</td>
+                        </tr>
+                        <tr>
+                            <td class="textAlignCenter">
+                                <i class="numberIcon">5</i>
+                            </td>
+                            <td>福冈/日本</td>
+                            <td>14：00</td>
+                            <td>14：00</td>
+                        </tr>
+                        <tr>
+                            <td class="textAlignCenter">
+                                <i class="numberIcon">6</i>
+                            </td>
+                            <td>萨马纳岛 / 巴哈马群岛</td>
+                            <td>14：00</td>
+                            <td>14：00</td>
+                        </tr>
+                        <tr>
+                            <td class="textAlignCenter">
+                                <i class="numberIcon">7</i>
+                            </td>
+                            <td>福冈/日本</td>
+                            <td>14：00</td>
+                            <td>14：00</td>
+                        </tr>
+                        <tr>
+                            <td class="textAlignCenter">
+                                <i class="numberIcon">8</i>
+                            </td>
+                            <td>萨马纳岛 / 巴哈马群岛</td>
+                            <td>14：00</td>
+                            <td>14：00</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        
         <div class="tripDetailInfo">
             <ul class="changeList clearfix">
-                <li><a href="#tripDetail" class="currentLi"><i></i>线路行程</a></li>
+                <li><a href="#tripDetail" class="currentLi"><i></i>行程安排</a></li>
+                <li class="liLine"></li>
+                <li><a href="#shipsToIntroduce"><i></i>船只介绍</a></li>
                 <li class="liLine"></li>
                 <li><a href="#priceExplain"><i></i>费用说明</a></li>
                 <li class="liLine"></li>
                 <li><a href="#bookingNote"><i></i>预订须知</a></li>
                 <li class="liLine"></li>
-                <li><a href="#visaInfo"><i></i>签证信息</a></li>
-                <li class="liLine"></li>
-                <li><a href="#otherInfo"><i></i>其他</a></li>
-                <li style="float:right">
+                <li><a href="#visaInfo"><i></i>签证/签注</a></li>
+                <!--<li style="float:right">
                     <span class="btn_booking">立即预订</span>
                     <div class="bookingContainer1">
                         <table>
@@ -142,7 +656,7 @@
                             </tr>
                         </table>
                     </div>
-                </li>
+                </li>-->
             </ul>
             <div>
                 <a href="#" name="tripDetail"></a>
@@ -353,18 +867,49 @@
             </div>
             <div class="tripDetailOtherInfo changeAnchorContent">
                 <div class="tdoi_title">
+                    <i class="tripDetailIcon01"></i>船只介绍
+                    <a href="#" name="shipsToIntroduce"></a>
+                </div>
+                <ul class="tdoi_priceExplain_contain">
+                    <li>海洋航行者号是世界十大邮轮之一，13.8万吨的规模足以满足任何一位游客的需求，提供了无与伦比的美食，娱乐，住宿，服务。海洋航行者号邮轮（Voyager of the Seas）隶属于皇家加勒比邮轮。海洋航行者号在建造之初，充分考虑到了那些热爱旅行的客人的需要。海洋航行者号采用了海军工程的技术，创造了一个邮轮历史上的奇迹。海洋航行者号配备有200英尺高的攀岩壁，九洞迷你高尔夫球场，独具特色的溜冰场，以及直排轮滑专用滑道等各种创新设施，让您体验到从未有过的刺激和新奇</li>
+                </ul>
+                <ul class="shippingContent clearfix">
+                    <li class="shippingImg">
+                        <a href="javascript:void(0);">
+                            <img src="../../static/images/store/cruise/shippingIntroduceImg.jpg" title="">
+                        </a>
+                    </li>
+                    <li class="shippingInfo">
+                        <h3 class="title">【歌诗达邮轮-大西洋号】</h3>
+                        <ul class="shippingFontsList">
+                            <li>英文：Costa Atlantica</li>
+                            <li>缩写：AT</li>
+                            <li>所属公司：歌诗达邮轮</li>
+                            <li>初航：2000年</li>
+                            <li>检修：2003年</li>
+                            <li>船员：920人</li>
+                            <li>载客：2114人</li>
+                            <li>甲板：12层</li>
+                            <li>吨位：85600吨</li>
+                            <li>长度：293米</li>
+                            <li class="seeDetails">
+                                <a href="javascript:void(0);">查看详情 <i class="lightBlueRightArrow"></i></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div class="tdoi_title">
                     <i class="tripDetailIcon02"></i>费用说明
                     <a href="#" name="priceExplain"></a>
                 </div>
                 <ul class="tdoi_priceExplain_contain">
                     <li class="tdoi_subTitle">费用包含</li>
-                    <li>机票：全程往返团队经济舱机票含税费（团队机票一经开出，不得更改、不得签转、不得退票）。</li>
-                    <li>当地用车：空调旅游车（参团人数决定车型大小）。</li>
-                    <li>酒店：行程中所列酒店或同类别酒店双人标间*美洲无统一的酒店星级评定标准）。</li>
-                    <li>用餐：行程中所列团队标准用餐。</li>
-                    <li>门票：行程中标明的景点普通参观门票。</li>
-                    <li>导服：专业领队以及当地导游。</li>
-                    <li>服务费：领队、当地司机、中英文双语导游服务费。</li>
+                    <li>新罗免税店隶属于韩国三星集团旗下的新罗酒店，自1986年开业以来，以时尚潮流的商品、合理的价格、高雅的购物环境以及热情优质的服务为海内外游客所青睐，是韩国最具代表性的免税店。</li>
+                    <li>航班: 由济洲搭乘班机前往上海（具体航班信息请在预订下一步中查看，航班出发时间为韩国时间）</li>
+                    <li>飞行时间: 约1小时40分钟；23：20</li>
+                    <li>抵达上海，结束愉快的韩国之旅(航班到达时间为中国时间)。 以上行程时间安排可能因天气、路况等原因相应调整，尽请谅解。</li>
+                    <li>以上行程时间安排可能会因天气、路况等原因做相应调整，敬请谅解。</li>
                 </ul>
                 <ul class="tdoi_priceExplain_notcontain">
                     <li class="tdoi_subTitle">费用不包含</li>
@@ -377,18 +922,6 @@
                     <li>其他费用：航空公司临时调整燃油附加税及相关费用。</li>
                     <li>其他行程中以及上述“报价包含”条款中未列明的一切额外费用。</li>
                 </ul>
-                <ul class="tdoi_priceExplain_needKnow">
-                    <li class="tdoi_subTitle">费用须知</li>
-                    <li>签证费：美国签证费1100元/人（中信银行代送签证费1400元/人）。</li>
-                    <li>单房差：单房差3000元/人。</li>
-                    <li>交通：出发地至上海机场交通费。</li>
-                    <li>个人消费：购物等个人消费以及因个人疏忽、违章或违法引起的经济损失或赔偿费用。</li>
-                    <li>行李费：全称额外行李托运及超重费用；境外内陆段行李托运及超重费用。</li>
-                    <li>保险费：建议购买旅游人身意外保险。</li>
-                    <li>其他费用：航空公司临时调整燃油附加税及相关费用。</li>
-                    <li>其他行程中以及上述“报价包含”条款中未列明的一切额外费用。</li>
-                </ul>
-                
                 <div class="tdoi_title">
                     <i class="tripDetailIcon03"></i>预订须知
                     <a href="#" name="bookingNote"></a>
@@ -404,6 +937,12 @@
                     <li>7.若由于航空公司航班取消、延误等原因导致原定行程有所变化，我社有权利根据实际情况调整行程，但尽力保证所有景点的游览。</li>
                     <li>8.孩童价为12周岁以下孩童，不占床，不含早餐的价格。</li>
                     <li>*附：<a href="javascript:;">出境旅游预订须知</a></li>
+                </ul>
+                <ul class="tdoi_bookingNote">
+                    <li class="tdoi_subTitle">预订条款</li>
+                    <li>1.为了确保您能够按时出行，产品确认后请在48小时内付款，同时请按要求尽快提供出游所需的材料并签订出境旅游合同。</li>
+                    <li>2.请在报名时缴纳团款，我方收到团款后保留机位，非拒签原因客人取消行程，机票定金以及产生的签证费用将不予退还；无论客人是否参加面试，领馆将不予退还签证费。签证出来后，由于客人的原因在出团前取消，根据情况，收取损失费用，另外客人参团期间离团不退还团费及景点门票。</li>
+                    <li>3.所有团队满10人成团，部门10人我社有权利调整出发日期或取消团期，提前1个月通知。</li>
                 </ul>
                 
                 <div class="tdoi_title">
@@ -444,289 +983,9 @@
 </footer>
 </div>
 
-<script type="text/html" id="bookingTemplate">
-    <div class="bookingContainer2">
-        <div class="hideBorderBot"></div>
-        <table>
-            <colgroup>
-                <col width="37"/>
-            </colgroup>
-            <tr>
-                <td><span class="unimportantTxt63">出发</span></td>
-                <td class="numberFont14">#= data #</td>
-            </tr>
-            <tr>
-                <td><span class="unimportantTxt63">成人&nbsp;</span></td>
-                <td>
-                    <select name="adultNum" id="" data-role="dropdownlist" style="width: 59px;">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select> 
-                    <span class="importantTxt1">￥9865</span>/人
-                </td>
-            </tr>
-            <tr class="trBorderBottom">
-                <td><span class="unimportantTxt63">儿童&nbsp;</span></td>
-                <td>
-                    <select name="childNum" id="" data-role="dropdownlist" style="width: 59px;">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select>
-                    <span class="importantTxt1">￥9865</span>/人
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" class="priceTotal">
-                    合计<span class="importantTxt1 numberFont16">￥9865</span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" class="orderBtnOrange">
-                    <span class="btn_booking_clickable" style="position: static;margin:0;">立即预订</span>
-                </td>
-            </tr>
-        </table>
-    </div>
-</script>
-
-<script type="text/html" id="moreBookingTemplate">
-    <div class="bookingContainer2 multiTem">
-        <div class="hideBorderBot"></div>
-        <table>
-            <colgroup>
-                <col width="40"/>
-                <col width="60" />
-                <col />
-            </colgroup>
-            <tr>
-                <td><span class="unimportantTxt63">出&nbsp;发</span></td>
-                <td colspan="2" class="numberFont14">#= data #</td>
-            </tr>
-            <tr>
-                <td class="tdTopAlign"><span class="unimportantTxt63">请选择</span></td>
-                <td colspan="2">
-                    <input type="text" style="" class="departureInfo" readonly="readonly"/>
-                    <span class="mtSelectedItem" style="display:none;">
-                        <span class="mtPrice">成人<em>￥9856</em></span>
-                        <span class="mtPrice">儿童<em>￥9856</em></span>
-                        <span class="mtLeftNum"><em>充足</em></span>
-                    </span>
-                    <ul class="mtSelectItems" style="display:none;">
-                        <li>
-                            <span class="mtPrice">成人<em>￥9856</em></span>
-                            <span class="mtPrice">儿童<em>￥9856</em></span>
-                            <span class="mtLeftNum"><em>充足</em></span>
-                        </li>
-                        <li>
-                            <span class="mtPrice">成人<em>￥9856</em></span>
-                            <span class="mtPrice">儿童<em>￥9856</em></span>
-                            <span class="mtLeftNum">余<em>9</em>位</span>
-                        </li>
-                        <li>
-                            <span class="mtPrice">成人<em>￥9856</em></span>
-                            <span class="mtPrice">儿童<em>￥9856</em></span>
-                            <span class="mtLeftNum">余<em>9</em>位</span>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <td><span class="unimportantTxt63">成&nbsp;人&nbsp;</span></td>
-                <td>
-                    <select name="adultNum" id="" data-role="dropdownlist" style="width: 123px;">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select> 
-                </td>
-                <td class="tdRightAlign orangePrice">
-                    <span class="importantTxt1">￥9865</span>/人
-                </td>
-            </tr>
-            <tr class="trBorderBottom">
-                <td><span class="unimportantTxt63">儿&nbsp;童&nbsp;</span></td>
-                <td>
-                    <select name="childNum" id="" data-role="dropdownlist" style="width: 123px;">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select>
-                </td>
-                <td class="tdRightAlign orangePrice">
-                    <span class="importantTxt1">￥9865</span>/人
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" class="priceTotal">
-                    合计<span class="importantTxt1 numberFont16">￥29865</span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" class="orderBtnOrange">
-                    <span class="btn_booking_clickable" style="position: static;margin:0">立即预订</span>
-                </td>
-            </tr>
-        </table>
-    </div>
-</script>
-
-<script type="x-kendo-template" id="calendarPopWindow">
-<div class="priceCalendarPw">
-    <div id="priceCalendarPw">
-        <ul class="tabSwitchMonth">
-        </ul>
-        <div class="calendarTitle clearfix">
-            <span>日</span>
-            <span>一</span>
-            <span>二</span>
-            <span>三</span>
-            <span>四</span>
-            <span>五</span>
-            <span>六</span>
-        </div>
-        <div class="clearfix"></div>
-        <div class="calendarTables"></div>
-    </div>
-    <div class="pwOrderContent">
-        <div class="notSelectDateBlock">
-            <i class="grayArrowLeft"></i>
-            <span>请选择出发日期</span>
-        </div>
-        <div class="normalTourBlock" style="display:none;">
-            <table>
-                <tr>
-                    <td colspan="2"><span class="unimportantTxt63">已选择出发日期</span></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><span class="boldDate"></span></td>
-                </tr>
-                <tr>
-                    <td><span class="unimportantTxt63">成人&nbsp;</span></td>
-                    <td>
-                        <select name="" id="" data-role="dropdownlist" style="width: 65px;">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                        </select> 
-                        <span class="importantTxt1">￥9865</span>/人
-                    </td>
-                </tr>
-                <tr>
-                    <td><span class="unimportantTxt63">儿童&nbsp;</span></td>
-                    <td>
-                        <select name="" id="" data-role="dropdownlist" style="width: 65px;">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                        </select>
-                        <span class="importantTxt1">￥9865</span>/人
-                    </td>
-                </tr>
-                <tr class="trBorderBottom splitLineTr"><td></td><td></td></tr>
-                <tr>
-                    <td colspan="2" class="priceTotal">
-                        合计<span class="importantTxt1 numberFont16">￥9865</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="orderBtnOrange">
-                        <span class="largeBtnOrange orderNow" style="position: static;">立即预订</span>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="multiTourBlock" style="display:none;">
-            <table>
-                <tr>
-                    <td colspan="2"><span class="unimportantTxt63">已选择出发日期</span></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><span class="boldDate"></span></td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="position:relative;">
-                        <input type="text" style="" class="departureInfo" readonly="readonly"/>
-                        <span class="mtSelectedItem" style="display:none;">
-                            <span class="mtPrice">成人<em>￥9856</em></span>
-                            <span class="mtPrice">儿童<em>￥9856</em></span>
-                            <span class="mtLeftNum"><em>充足</em></span>
-                            <span class="groupInfo"></span>
-                        </span>
-                        <ul class="mtSelectItems" style="display:none;">
-                            <li>
-                                <span class="mtPrice">成人<em>￥29856</em></span>
-                                <span class="mtPrice">儿童<em>￥19856</em></span>
-                                <span class="mtLeftNum"><em>充足</em></span>
-                                <span class="groupInfo"></span>
-                            </li>
-                            <li>
-                                <span class="mtPrice">成人<em>￥9856</em></span>
-                                <span class="mtPrice">儿童<em>￥9856</em></span>
-                                <span class="mtLeftNum">余<em>9</em>位</span>
-                                <span class="groupInfo"></span>
-                            </li>
-                            <li>
-                                <span class="mtPrice">成人<em>￥9856</em></span>
-                                <span class="mtPrice">儿童<em>￥9856</em></span>
-                                <span class="mtLeftNum">余<em>9</em>位</span>
-                                <span class="groupInfo"></span>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span class="unimportantTxt63">成人&nbsp;</span></td>
-                    <td>
-                        <select name="" id="" data-role="dropdownlist" style="width: 65px;">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                        </select>
-                        <span class="tdSpanPriceRight">
-                            <span class="importantTxt1">￥9865</span>/人
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span class="unimportantTxt63">儿童&nbsp;</span></td>
-                    <td>
-                        <select name="" id="" data-role="dropdownlist" style="width: 65px;">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                        </select>
-                        <span class="tdSpanPriceRight">
-                            <span class="importantTxt1">￥9865</span>/人
-                        </span>
-                    </td>
-                </tr>
-                <tr class="trBorderBottom splitLineTr"><td></td><td></td></tr>
-                <tr>
-                    <td colspan="2" class="priceTotal">
-                        合计<span class="importantTxt1 numberFont16">￥9865</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="orderBtnOrange">
-                        <span class="largeBtnOrange orderNow" style="position: static;">立即预订</span>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    <i class="close"></i>
-</div>
-</script>
 
 <script type="text/javascript">
     $(function(){
-
-        // 图片轮播
-        $(window).load(function(){     // 等待图片加载完成后再开始轮播效果
-            if ($('#scrollImg img').length > 1) {
-                $('#scrollImg').before('<div id="nav" class="slider_nav" style="left:47%;top:90%;">').cycle({fx:"fade",
-                    timeout: 2000,
-                    center:true,
-                    pause:true,
-                    pager:"#nav",
-                    pagerEvent: "click.cycle"
-                });
-            }
-        });
 
         var a_pos = [];
         var flag=true;
@@ -771,393 +1030,126 @@
 
         $(".changeList").fixedBar();
 
-        // 更多景点
-        $(".viewPointList").delegate(".expandMoreLink", "click", function(){
-            $(".viewPoint").css("height", "auto");
-            $(".viewPointList .expandMoreLink").hide();
-            $(".viewPointList .foldMoreLink").show();
-        });
-
-        $(".viewPointList").delegate(".foldMoreLink", "click", function(){
-            $(".viewPoint").css("height", "110px");
-            $(".viewPointList .expandMoreLink").show();
-            $(".viewPointList .foldMoreLink").hide();
-        });
-
-        //  更多产品推荐
-        $(".showRecommendedByPM").delegate(".expandMoreLink", "click", function(){
-            $(".recommendedByPM").css("height", "auto");
-            $(".showRecommendedByPM .expandMoreLink").hide();
-            $(".showRecommendedByPM .foldMoreLink").show();
-        });
-
-        $(".showRecommendedByPM").delegate(".foldMoreLink", "click", function(){
-            $(".recommendedByPM").css("height", "260px");
-            $(".showRecommendedByPM .expandMoreLink").show();
-            $(".showRecommendedByPM .foldMoreLink").hide();
-        });
-
-        /* 
-            按照json格式初始化data  即可生成对应的日历
-
-            dayDate: 当月几号
-            isMultiTour: true 多团   false 不是多团
-            leftNum: 资源余量， 为0售罄   大于20充足 其它显示数字
-            price: 价格
-            tourFlag: 0 不成团, 1 成团,  2 铁定成团 
-        */
-
-        var data = [
-            { month : "2015/02/01",   // 日期格式需要注意，不同浏览器下识别情况不同，写个通用的格式
-              info : [
-                { dayDate: 1, isMultiTour: true, leftNum: 10, price: 19950, tourFlag: '0' },
-                { dayDate: 2, isMultiTour: false, leftNum: 12, price: 16950, tourFlag: '1' },
-                { dayDate: 6, isMultiTour: true, leftNum: 25, price: 17850, tourFlag: '2' },
-                { dayDate: 12, isMultiTour: false, leftNum: 10, price: 19950, tourFlag: '1' },
-                { dayDate: 30, isMultiTour: false, leftNum: 9, price: 37850, tourFlag: '1' }
-              ]
-            },
-            { month : "2015/03/01",
-              info : [
-                { dayDate: 12, isMultiTour: true, leftNum: 10, price: 19950, tourFlag: '1' },
-                { dayDate: 13, isMultiTour: false, leftNum: 12, price: 16950, tourFlag: '1' },
-                { dayDate: 14, isMultiTour: true, leftNum: 0, price: 27850, tourFlag: '1' }
-              ]
-            },
-            { month : "2015/05/01",
-              info : [
-                { dayDate: 12, isMultiTour: true, leftNum: 10, price: 19950, tourFlag: '1' },
-                { dayDate: 13, isMultiTour: false, leftNum: 12, price: 16950, tourFlag: '1' },
-                { dayDate: 14, isMultiTour: true, leftNum: 0, price: 27850, tourFlag: '1' }
-              ]
-            }
-        ];
-
-        setTabSwitchMonth("#priceCalendar .tabSwitchMonth", data);
-
-        /*  切换月份 */      
-        $("body").delegate("#priceCalendar .tabSwitchMonth li", "click", function(){
-            $(this).addClass("tabCurrentMonth");
-            $(this).siblings("li").removeClass("tabCurrentMonth");
-
-            showCurrentCalendar("#priceCalendar");
-            addEnableTd();
-        });
-
-        $("body").delegate("#priceCalendarPw .tabSwitchMonth li", "click", function(){
-            $(this).addClass("tabCurrentMonth");
-            $(this).siblings("li").removeClass("tabCurrentMonth");
-
-            showCurrentCalendar("#priceCalendarPw");
-            addEnableTd();
-        });
-
-        // 生成日历
-        setCalendar(data, "#priceCalendar .calendarTables");        
-
-        // 显示当前月份日历
-        showCurrentCalendar("#priceCalendar");        
-
-        // 为日期 添加点击弹窗
-        addEnableTd();
-        
-
-        $("#priceCalendar .calTable").delegate(".enableTd .hasBorderTd", "click", function(){
-            var clickCurrentDay = $(this).children(".dateDay").html();
-            var $currentDate = $(".tabCurrentMonth").attr("name");
-            var showDate = $currentDate.split('/')[0] + "-" + $currentDate.split('/')[1] + "-" + clickCurrentDay;
-            $(this).parents("#priceCalendar").find(".hasBorderTd").removeClass("hasBorderTdActive");
-            $(this).addClass("hasBorderTdActive");
-
-            var normalTourOrderFL = new FloatLayer({
-                trigger: "#priceCalendar .enableTd",
-                template:"#bookingTemplate",
-                type:'click',
-                data: showDate,
-                expectClose: false,
-                offsetX:0,
-                offsetY:56
-            });
-
-            // 去除 select的点击事件对FloatLayer的影响
-            $(document).on('click',function(e){
-                 t = e.target;
-                 //判断下拉框
-                var isInFloatlayer=false;
-                 var parentPopup=$(e.target).parents(".k-popup")[0];
-                 if(typeof(parentPopup)!='undefined'){
-                        var targetTrigger=$("select[name='adultNum'],select[name='childNum']");
-                        targetTrigger.each(function(e){
-                            var element=$(this).data("kendoDropDownList").popup.element[0];
-                            if(parentPopup==element){
-                                isInFloatlayer=true;
-                            }
-                        })
-                 }
-                 
-                 var ele = $("#priceCalendar .enableTd");
-                 if ( !$(t).is(ele)
-                     && $(t).closest(ele).length===0
-                     && $(t).closest('.ac-floatlayer').length===0
-                     && !$(t).hasClass('k-placeholder') && !isInFloatlayer){
-                     normalTourOrderFL.close();
-                 }
-             });
-        });
-
-        $("#priceCalendar .calTable").delegate(".enableTdMt .hasBorderTd", "click", function(){
-            var clickCurrentDay = $(this).children(".dateDay").html();
-            var $currentDate = $(".tabCurrentMonth").attr("name");
-            var showDate = $currentDate.split('/')[0] + "-" + $currentDate.split('/')[1] + "-" + clickCurrentDay;
-            $(this).parents("#priceCalendar").find(".hasBorderTd").removeClass("hasBorderTdActive");
-            $(this).addClass("hasBorderTdActive");
-
-            var multiTourOrderFL = new FloatLayer({
-                trigger: "#priceCalendar .enableTdMt",
-                template:"#moreBookingTemplate",
-                type:'click',
-                data: showDate,
-                expectClose: false,
-                offsetX:0,
-                offsetY:56
-            });
-
-
-            // 去除 select的点击事件对FloatLayer的影响
-            $(document).on('click',function(e){
-                 t = e.target;
-                 //判断下拉框
-                var isInFloatlayer=false;
-                 var parentPopup=$(e.target).parents(".k-popup")[0];
-                 if(typeof(parentPopup)!='undefined'){
-                        var targetTrigger=$("select[name='adultNum'],select[name='childNum']");
-                        targetTrigger.each(function(e){
-                            var element=$(this).data("kendoDropDownList").popup.element[0];
-                            if(parentPopup==element){
-                                isInFloatlayer=true;
-                            }
-                        })
-                 }
-                 
-                 var ele = $("#priceCalendar .enableTdMt");
-                 if ( !$(t).is(ele)
-                     && $(t).closest(ele).length===0
-                     && $(t).closest('.ac-floatlayer').length===0
-                     && !$(t).hasClass('k-placeholder') && !isInFloatlayer){
-                     multiTourOrderFL.close();
-                 }
-             });
-        });
-
-        $("body").delegate(".bookingContainer2.multiTem .departureInfo", "click", function(){
-            $(this).siblings("ul.mtSelectItems").toggle();
-        });
-
-        $("body").delegate('.multiTem .mtSelectItems li', 'click', function() {
-            $(".mtSelectedItem").html($(this).html());
-            $(".mtSelectedItem").show();
-            $(".mtSelectItems").hide();
-        });
-
-        var geneCalendarFlag = false;
-        $(".largeBtnOrange.orderNow").click(function(){            
-            
-            if (!geneCalendarFlag) {
-                setTabSwitchMonth("#priceCalendarPw .tabSwitchMonth", data);
-                setCalendar(data, "#priceCalendarPw .calendarTables");
-                showCurrentCalendar("#priceCalendarPw");
-                addEnableTd();
-            }
-            geneCalendarFlag = true;
-
-            // 把弹窗上的事件放在 click事件外面  试试
-            $("#priceCalendarPw td").each(function(){
-                $(this).click(function(){
-                    if ($(this).hasClass("enableTd")) {  //  没有多团标志
-                        $(".normalTourBlock .boldDate").html(geneFormatDate($(this).find(".dateDay").html()));
-                        $(".normalTourBlock").show();                        
-                        $(".normalTourBlock").siblings("div").hide();
-
-                        $(this).parents(".priceCalendarPw").find(".hasBorderTd").removeClass("hasBorderTdActive");
-                        $(this).find(".hasBorderTd").addClass("hasBorderTdActive");
-
-                    } else if ($(this).hasClass("enableTdMt")) {   // 多团标志
-                        $(".multiTourBlock .boldDate").html(geneFormatDate($(this).find(".dateDay").html()));
-                        $(".multiTourBlock").show();
-                        $(".multiTourBlock").siblings("div").hide();
-
-                        $(this).parents(".priceCalendarPw").find(".hasBorderTd").removeClass("hasBorderTdActive");
-                        $(this).find(".hasBorderTd").addClass("hasBorderTdActive");
-                    }
-                    // } else {        // 没有信息
-                    //     $(".notSelectDateBlock").show();
-                    //     $(".notSelectDateBlock").siblings("div").hide();
-                    //     $(this).parents(".priceCalendarPw").find(".hasBorderTd").removeClass("hasBorderTdActive");
-                    // }
-                });
-            });
-
-            $(".priceCalendarPw").delegate(".departureInfo", "click", function(){
-                $(this).siblings("ul.mtSelectItems").toggle();
-            });
-
-            $(".priceCalendarPw").delegate('.mtSelectItems li', 'click', function() {
-                $(".priceCalendarPw .mtSelectedItem").html($(this).html());
-                $(".priceCalendarPw .mtSelectedItem").show();
-                $(".priceCalendarPw .mtSelectItems").hide();
-            });
-        });
-
-        var calendarPopWindow = new PopWindow('.largeBtnOrange.orderNow', {
-            title: false,
-            width:'780',
-            template:'#calendarPopWindow'
-        }).init();
-
-        $("body").delegate(".priceCalendarPw i.close", "click", function(){
-            calendarPopWindow.close();
-        });
-
-    });
-
-    function geneFormatDate(d) {
-        var tem = $(".priceCalendarPw .tabCurrentMonth").attr("name");
-        return tem.split('/')[0] + "-" + tem.split('/')[1] + "-" + d;
-    }
-
-    function geneTabSwitchMonth(data) {
-        var liStr = "";
-        for (var i = 0; i < data.length; i++) {
-            var temp = new Date(data[i].month);
-
-            if (temp.getFullYear() == new Date().getFullYear()) {
-                liStr += "<li name='" + data[i].month + "'>" + (temp.getMonth() + 1) + "月</li>";
-            } else {
-                liStr += "<li name='" + data[i].month + "'>" + temp.getFullYear() + "年" +
-                        (temp.getMonth() + 1) + "月</li>";
-            }
-        }
-        return liStr;
-    }
-
-    function setTabSwitchMonth(ele, data) {
-        $(ele).append(geneTabSwitchMonth(data));
-        $(ele).children("li").eq(0).addClass("tabCurrentMonth");
-    }
-
-    function setCalendar(data, ele) {
-        for (var i = 0; i < data.length; i++) {
-            var monthInfo = data[i];  // 获得当前月份的数据信息
-
-            var calStr = "<table class='calTable ct-" + data[i].month.split('/')[0] + "-" +
-                            data[i].month.split('/')[1] + "'><tr>";  // 拼接字符串生成表格日期内容
-
-            var curentMonthDate = new Date(monthInfo.month);
-            var nextMonthDate = new Date(curentMonthDate.getFullYear(), curentMonthDate.getMonth() + 1,
-                curentMonthDate.getDate());
-            var monthDays = (nextMonthDate - curentMonthDate)/(1000*60*60*24);  // 获得当前月天数
-
-            var firstWeekDay = curentMonthDate.getDay();  // 获得当前月1号是周几, 范围0-6
-            var lastWeekDay = nextMonthDate.getDay() - 1 < 0 ? 6 : nextMonthDate.getDay() - 1; 
-            // 计算当月最后一天是周几，填补日历最后的空格
-
-            var currentDay = 1;  // 从1号开始排列当月的日期
-
-            for (var j = 0; j < firstWeekDay; j++) {  // 当月1号之前td为空
-                calStr += "<td></td>";
-            }
-
-            for (; currentDay <= monthDays; currentDay++) {
-
-                var w1 = firstWeekDay == 0 ? 7 : firstWeekDay;
-
-                if (currentDay % 7 == (7 - w1) && currentDay != monthDays) {
-                    calStr += "<td>" + geneTdContent(currentDay, monthInfo) + "</td></tr><tr>";
-                } else if (currentDay == monthDays) {
-                    calStr += "<td>" + geneTdContent(currentDay, monthInfo) + "</td>";
-                    for (var t = 0; t < 6 - lastWeekDay; t++) {
-                        calStr += "<td></td>";
-                    }
-                    calStr += "</tr></table>";
-                } else {
-                    calStr += "<td>" + geneTdContent(currentDay, monthInfo) + "</td>";
-                }
-            }
-            $(ele).append(calStr);
-        }
-    }
-
-    function showCurrentCalendar(ele) {
-        $(ele).find(".calendarTables table").hide();
-        $(ele).find(".tabSwitchMonth li").each(function(index){
-            if ($(this).hasClass("tabCurrentMonth")) {
-                $(ele).find(".calendarTables table").eq(index).show();
-            }
-        });
-    }
-
-    function getDayInfo(currentDay, monthInfo) {
-        for (var i = 0; i < monthInfo.info.length; i++) {
-            if (monthInfo.info[i].dayDate == currentDay) {
-                return monthInfo.info[i];
-            }
-        }
-        return null;
-    }
-
-    function geneTdContent(currentDay, monthInfo) {
-        var dayInfo = getDayInfo(currentDay, monthInfo);
-        var tdCont = "";
-        
-        if (!!dayInfo) {            
-
-            // 售罄状态下 td内所有元素都是灰色
-            if (dayInfo.leftNum == 0) {
-                tdCont += "<span class='dateDay disa-dateDay'>" + dayInfo.dayDate + "</span>";
-                tdCont += "<i class='multiTour disa-multiTour'></i>";
-                tdCont += "<span class='leftNum leftNone'>售罄</span>";
-                tdCont += "<span class='price disa-price'>￥<b>" + dayInfo.price + "</b>起</span>";
-                tdCont += "<i class='tourFlag disa-sureTour'></i>";
-            } else {
-                tdCont += "<div class='hasBorderTd'><span class='dateDay'>" + dayInfo.dayDate + "</span>";
-
-                if (dayInfo.leftNum > 20) {
-                    tdCont += "<span class='leftNum leftMore'>充足</span>";
-                } else {               
-                    tdCont += "<span class='leftNum leftNormal'>余" + dayInfo.leftNum + "</span>";
-                }
-
-                tdCont += "<span class='price'>￥<b>" + dayInfo.price + "</b>起</span>";
-
-                // 是否有多团标志
-                if (dayInfo.isMultiTour) {
-                    tdCont += "<i class='multiTour'></i>";
-                }
-
-                // 判断成团类型  tourFlag: 0 不成团, 1 成团,  2 铁定成团
-                if (dayInfo.tourFlag == 1) {
-                    tdCont += "<i class='tourFlag tour'></i>";
-                } else if (dayInfo.tourFlag == 2) {
-                    tdCont += "<i class='tourFlag sureTour'></i></div>";
-                }
-                
-            }
-        } else {
-            tdCont += "<span class='dateDay disa-dateDay'>" + currentDay + "</span>";
-        }
-        return tdCont;
-    }
-
-    function addEnableTd() {
-        $(".leftNormal, .leftMore").parents("td").each(function(){
-            if ($(this).find(".multiTour").length == 0) {
-                $(this).addClass("enableTd");
-            } else {
-                $(this).addClass("enableTdMt");
-            }
-        });
-    }
+    })
 </script>
+
+
+<!--轮显图片JS-->
+<script>
+    var timer = null;
+    var offset = 5000;
+    var index = 0;
+
+    function slideImage(i){
+        var id = 'image_'+ target[i];
+        $('#'+ id)
+                .animate({opacity: 1}, 800, function(){
+                    $(this).find('.word').animate({height: 'show'}, 'slow');
+                }).show()
+                .siblings(':visible')
+                .find('.word').animate({height: 'hide'},'fast',function(){
+                    $(this).parent().animate({opacity: 0}, 800).hide();
+                });
+    }
+    //bind thumb a
+    function hookThumb(){
+        $('#thumbs li a')
+                .bind('click', function(){
+                    if (timer) {
+                        clearTimeout(timer);
+                    }
+                    var id = this.id;
+                    index = getIndex(id.substr(6));
+                    rechange(index);
+                    slideImage(index);
+                    timer = window.setTimeout(auto, offset);
+                    this.blur();
+                    return false;
+                });
+    }
+    //bind next/prev img
+    function hookBtn(){
+        $('#thumbs li img').filter('#play_prev,#play_next')
+                .bind('click', function(){
+                    if (timer){
+                        clearTimeout(timer);
+                    }
+                    var id = this.id;
+                    if (id == 'play_prev') {
+                        index--;
+                        if (index < 0) index = 4;
+                    }else{
+                        index++;
+                        if (index > 4) index = 0;
+                    }
+                    rechange(index);
+                    slideImage(index);
+                    timer = window.setTimeout(auto, offset);
+                });
+    }
+
+    function bighookBtn(){
+        $('#bigpicarea p span').filter('#big_play_prev,#big_play_next')
+                .bind('click', function(){
+                    if (timer){
+                        clearTimeout(timer);
+                    }
+                    var id = this.id;
+                    if (id == 'big_play_prev') {
+                        index--;
+                        if (index < 0) index = 4;
+                    }else{
+                        index++;
+                        if (index > 4) index = 0;
+                    }
+                    rechange(index);
+                    slideImage(index);
+                    timer = window.setTimeout(auto, offset);
+                });
+    }
+
+    //get index
+    function getIndex(v){
+        for(var i=0; i < target.length; i++){
+            if (target[i] == v) return i;
+        }
+    }
+    function rechange(loop){
+        var id = 'thumb_'+ target[loop];
+        $('#thumbs li a.current').removeClass('current');
+        $('#'+ id).addClass('current');
+    }
+    function auto(){
+        index++;
+        if (index > 4){
+            index = 0;
+        }
+        rechange(index);
+        slideImage(index);
+        timer = window.setTimeout(auto, offset);
+    }
+    $(function(){
+        //change opacity
+        $('div.word').css({opacity: 0.85});
+        auto();
+        hookThumb();
+        hookBtn();
+        bighookBtn()
+    });
+    $(function(){
+        $(".showGraph").hover(
+                function(){
+                    $(".bigbtnPrev,.bigbtnNext").show();
+                },
+                function(){
+                    $(".bigbtnPrev,.bigbtnNext").hide();
+                }
+        );
+    });
+</script>
+
+
+
 
 </body>
 </html>
