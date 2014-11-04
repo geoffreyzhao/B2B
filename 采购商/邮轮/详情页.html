@@ -61,7 +61,7 @@
     }
 
     .calTable {
-        width: 464px;
+        width: 520px;
         /*border: 1px solid #e3e3e3;*/
     }
 
@@ -77,8 +77,8 @@
     .calTable td {
         border: 1px solid #e3e3e3;
         color: #aeaeae;
-        width: 66px;
-        height: 56px;
+        width: 73px;
+        height: 62px;
         position: relative;
     }
 
@@ -129,8 +129,21 @@
         width: 25px;
         height: 14px;
     }
+    .leftNormal{
+        position: absolute;
+        top: -1px;
+        right: 0px;
+        padding: 0 3px;
+        min-width: 40px; 
+        text-align: center;
+        height: 23px;
+        line-height: 23px;
+        background-color: #2aba8f;
+        color: #FFFFFF;
+        display: inline-block;
+    }
 
-    .leftNormal, .leftMore {
+    .leftMore {
         font-size: 12px;
         color: #348332;
         position: absolute;
@@ -150,7 +163,7 @@
         font-size: 12px;
         color: #ff6500;
         position: absolute;
-        top: 21px;
+        bottom: 10px;
         left: 0;
     }
 
@@ -161,6 +174,10 @@
     .price b {
         font-weight: bold;
         padding: 0 1px;
+        margin-left: 5px;
+    }
+    .price .rise{
+        color: #666666;
     }
 
     .dateDay {
@@ -1149,6 +1166,220 @@
 </script>
 
 
+<script type="text/javascript">
+/* 
+ 按照json格式初始化data  即可生成对应的日历
+
+ dayDate: 当月几号
+ isMultiTour: true 多团   false 不是多团
+ leftNum: 资源余量， 为0售罄   大于20充足 其它显示数字
+ price: 价格
+ tourFlag: 0 不成团, 1 成团,  2 铁定成团 
+ */
+
+var data = [
+    { month : "2013/11",
+        info : [
+            { dayDate: 1, isMultiTour: false, leftNum: 10, price: 1995345, tourFlag: '0' },
+            { dayDate: 6, isMultiTour: false, leftNum: 25, price: 1785123, tourFlag: '0' }
+        ]
+    },
+    { month : "2014/1",
+        info : [
+            { dayDate: 1, isMultiTour: false, leftNum: 10, price: 1991525, tourFlag: '0' }
+        ]
+    },
+    { month : "2014/2",
+        info : [
+            { dayDate: 20, isMultiTour: false, leftNum: 10, price: 1991250, tourFlag: '0' }
+        ]
+    },
+    { month : "2014/3",
+        info : [
+            { dayDate: 10, isMultiTour: false, leftNum: 10, price: 1995465, tourFlag: '0' }
+        ]
+    },
+    { month : "2014/4",
+        info : [
+            { dayDate: 28, isMultiTour: false, leftNum: 10, price: 19950, tourFlag: '0' }
+        ]
+    }
+];
+
+var liStr = "";
+for (var i = 0; i < data.length; i++) {
+    var temp = new Date(data[i].month);
+
+    if (temp.getFullYear() == new Date().getFullYear()) {
+        liStr += "<li name='" + data[i].month + "'>" + (temp.getMonth() + 1) + "月</li>";
+    } else {
+        liStr += "<li name='" + data[i].month + "'>" + temp.getFullYear() + "年" +
+                (temp.getMonth() + 1) + "月</li>";
+    }
+}
+
+$(".tabSwitchMonth").append(liStr);
+$(".tabSwitchMonth li:first-child").addClass("tabCurrentMonth");
+
+/*  切换月份 */
+$(".tabSwitchMonth li").each(function(){
+    $(this).click(function(){
+        $(this).addClass("tabCurrentMonth");
+        $(this).siblings("li").removeClass("tabCurrentMonth");
+
+        setCalendar($(this).attr("name"));
+        addEnableTd();
+    });
+});
+
+setCalendar(data[0].month);
+
+/* 动态生成日历 */
+function setCalendar(monthDate) {
+
+    var monthInfo;  // 获得当前月份的数据信息
+    for (var i = 0; i < data.length; i++) {
+        if (monthDate == data[i].month) {
+            monthInfo = data[i];
+        }
+    }
+
+    $("table.calTable tr:gt(0)").remove();
+    var calStr = "<tr>";  // 拼接字符串生成表格日期内容
+
+    var curentMonthDate = new Date(monthInfo.month);
+    var nextMonthDate = new Date(curentMonthDate.getFullYear(), curentMonthDate.getMonth() + 1,
+            curentMonthDate.getDate());
+    var monthDays = (nextMonthDate - curentMonthDate)/(1000*60*60*24);  // 获得当前月天数
+
+    var firstWeekDay = curentMonthDate.getDay();  // 获得当前月1号是周几, 范围0-6
+
+    var currentDay = 1;  // 从1号开始排列当月的日期
+
+    for (var j = 0; j < firstWeekDay; j++) {  // 当月1号之前td为空
+        calStr += "<td></td>";
+    }
+
+    for (; currentDay <= monthDays; currentDay++) {
+        if (currentDay % 7 == (7 - firstWeekDay)) {
+            calStr += "<td>" + geneTdContent(currentDay, monthInfo) + "</td></tr><tr>";
+        } else if (currentDay == monthDays) {
+            calStr += "<td>" + geneTdContent(currentDay, monthInfo) + "</td>";
+            for (var t = 0; t < (7 - firstWeekDay) - monthDays % 7; t++) {
+                calStr += "<td></td>";
+            }
+            calStr += "</tr>";
+        } else {
+            calStr += "<td>" + geneTdContent(currentDay, monthInfo) + "</td>";
+        }
+    }
+    $("table.calTable").append(calStr);
+}
+
+function getDayInfo(currentDay, monthInfo) {
+    for (var i = 0; i < monthInfo.info.length; i++) {
+        if (monthInfo.info[i].dayDate == currentDay) {
+            return monthInfo.info[i];
+        }
+    }
+    return null;
+}
+
+function geneTdContent(currentDay, monthInfo) {
+    var dayInfo = getDayInfo(currentDay, monthInfo);
+    var tdCont = "";
+
+    if (!!dayInfo) {
+
+        // 售罄状态下 td内所有元素都是灰色
+        if (dayInfo.leftNum == 0) {
+            tdCont += "<span class='dateDay disa-dateDay'>" + dayInfo.dayDate + "</span>";
+            tdCont += "<i class='multiTour disa-multiTour'></i>";
+            tdCont += "<span class='leftNum leftNone'>售罄</span>";
+            tdCont += "<span class='price disa-price'><b>" + dayInfo.price + "</b><em class='rise'>起</em></span>";
+            tdCont += "<i class='tourFlag disa-sureTour'></i>";
+        } else {
+            tdCont += "<span class='dateDay'>" + dayInfo.dayDate + "</span>";
+
+            if (dayInfo.leftNum > 20) {
+                tdCont += "<span class='leftNum leftMore'>充足</span>";
+            } else {
+                tdCont += "<span class='leftNum leftNormal'>包船" + dayInfo.leftNum + "</span>";
+            }
+
+            tdCont += "<span class='price'> <b>" + dayInfo.price + "</b><em class='rise'>起</em></span>";
+
+            // 是否有多团标志
+            if (dayInfo.isMultiTour) {
+                tdCont += "<i class='multiTour'></i>";
+            }
+
+            // 判断成团类型  tourFlag: 0 不成团, 1 成团,  2 铁定成团
+            if (dayInfo.tourFlag == 1) {
+                tdCont += "<i class='tourFlag tour'></i>";
+            } else if (dayInfo.tourFlag == 2) {
+                tdCont += "<i class='tourFlag sureTour'></i>";
+            }
+
+        }
+    } else {
+        tdCont += "<span class='dateDay disa-dateDay'>" + currentDay + "</span>";
+    }
+    return tdCont;
+}
+
+addEnableTd();
+function addEnableTd() {
+    $(".leftNormal, .leftMore").parents("td").each(function(){
+        if ($(this).children(".multiTour").length == 0) {
+            $(this).addClass("enableTd");
+        } else {
+            $(this).addClass("enableTdMt");
+        }
+    });
+}
+
+$(".calTable").delegate(".enableTd", "click", function(){
+    var clickCurrentDay = $(this).children(".dateDay").html();
+    var $currentDate = $(".tabCurrentMonth").attr("name");
+    var showDate = $currentDate.split('/')[0] + "-" + $currentDate.split('/')[1] + "-" + clickCurrentDay;
+
+    new FloatLayer({
+        trigger: ".enableTd",
+        template:"#bookingTemplate",
+        type:'click',
+        data: showDate,
+        offsetX:0,
+        offsetY:57
+    });
+});
+
+$(".calTable").delegate(".enableTdMt", "click", function(){
+    var clickCurrentDay = $(this).children(".dateDay").html();
+    var $currentDate = $(".tabCurrentMonth").attr("name");
+    var showDate = $currentDate.split('/')[0] + "-" + $currentDate.split('/')[1] + "-" + clickCurrentDay;
+
+    new FloatLayer({
+        trigger: ".enableTdMt",
+        template:"#moreBookingTemplate",
+        type:'click',
+        data: showDate,
+        offsetX:0,
+        offsetY:57
+    });
+});
+
+$("body").delegate(".multiTem .departureInfo", "click", function(){
+    $(this).siblings("ul.mtSelectItems").toggle();
+});
+
+$("body").delegate('.mtSelectItems li', 'click', function() {
+    $(".mtSelectedItem").html($(this).html());
+    $(".mtSelectedItem").show();
+    $(".mtSelectItems").hide();
+});
+
+</script>
 
 
 </body>
