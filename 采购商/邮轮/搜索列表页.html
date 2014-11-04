@@ -462,7 +462,22 @@
                    && !$(t).hasClass('k-placeholder') && !isInFloatlayer){
                    startDateLayer.close();
                }
-           });         
+           });
+
+          //  选中日期  TODO
+          $("body").delegate(".monthList li", "click", function(){
+            if (!$(this).hasClass("disabled")) {
+              $("input.startDate").val($(this).children("span").html());
+              $(this).siblings("li").removeClass("current");
+              $(this).addClass("current");
+
+              startDateLayer.close();
+            }
+          });
+
+           $("body").delegate(".selectDateRange", "click", function(){
+
+           });   
 
 
     });
