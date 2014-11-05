@@ -40,6 +40,7 @@ body {
 	margin-right: 5px;
 	padding: 1px;
 	border-radius: 2px;
+	position: relative;
 }
 
 .searchBar .whiteBlock:first-child {
@@ -74,6 +75,34 @@ body {
 	font-size: 14px;
 }
 
+.whiteBlock .exactDateRangeView {
+	position: absolute;
+	top: 0;
+	left: 85px;
+	display: none;
+}
+
+.hideInputStartDate {
+	position: absolute;
+	z-index: 1;
+	opacity: 0;
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+}
+
+.whiteBlock .exactDateRangeView .dateValue {
+	float: left;
+}
+
+.whiteBlock .exactDateRangeView .dateSeparator {
+	float: left;
+	margin-left: 10px;
+	margin-top: 8px;
+}
+
+.errorOrangeInputBorder {
+	border: 1px solid #ef643c!important;
+}
+
 .searchWrapper .hotCity{
     margin: 15px 0 0 10px;
     color: #bababa;
@@ -90,8 +119,14 @@ body {
     color: #fff;
 }
 
+.filterConditionBlock {
+	border-left: 1px solid #dce6f0;
+	border-right: 1px solid #dce6f0;
+}
+
 .filterList {
 	color: #636363;
+	border-bottom: 1px solid #dce6f0;
 }
 
 .filterItem {
@@ -141,7 +176,6 @@ body {
 
 .filter_priceRange input[type='text'] {
 	width: 70px;
-	padding-left: 2px;
 	height: 22px;
 	line-height: 22px;
 }
@@ -150,6 +184,72 @@ body {
 	background-color: #f0fcff;
 	border: 1px solid #b1e0ff;
 	padding: 3px 15px;
+	cursor: pointer;
+}
+
+.filterSelectedBlock {
+	background-color: #f5faf9;
+	border-bottom: 1px solid #dce6f0;
+	padding: 5px 10px 0px 10px;
+}
+
+.filterSelectedList {	
+	display: inline-block;
+	margin: 0px 10px;
+	vertical-align: middle;
+	max-width: 785px;
+}
+
+.filterSelectedBlock .header {
+	vertical-align: top;
+	position: relative;
+	top: 10px;
+	margin: 0 5px;
+}
+
+.filterSelectedBlock .clearFilterText {
+	vertical-align: top;
+	position: relative;
+	top: 10px;
+}
+
+.filterSelectedList {
+	display: inline-block;
+	margin: 5px 10px;
+	vertical-align: middle;
+}
+
+.filterSelectedList li {
+	float: left;
+	margin-right: 10px;
+	border: 1px solid #abadb3;
+	color: #636363;
+	padding: 3px 25px 3px 8px;
+	position: relative;
+	margin-bottom: 5px;
+}
+
+.filterSelectedList li .clearFilterIcon {
+	background: url(../images/store/cruise/cruiseFlagIcon.png) no-repeat -53px 2px;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	cursor: pointer;
+}
+
+.clearSearchTextIcon {
+	background: url(../images/store/cruise/clearSearchTextIcon.png) no-repeat 0 0;
+	width: 17px;
+	height: 17px;
+	display: inline-block;
+	position: absolute;
+	top: 10px;
+	right: 5px;
+	display: none;
+	cursor: pointer;
 }
 
 /*  搜索条件  港口，航线，邮轮公司弹窗  */
@@ -322,6 +422,286 @@ body {
 	cursor: pointer;
 }
 
+/* 搜索列表 排序和列表部分 */
+.cruiseSearchList {
+	margin-top: 10px;
+}
+
+.cruiseSortBlock {
+	background: #edf3f8;
+	padding: 5px 15px;
+	border: 1px solid #d9e5f0;
+	width: 947px;
+}
+
+.cruiseSortBlock .searchResultInfo {
+	font-size: 14px;
+}
+
+.cruiseSortBlock .tour_resultNo {
+	color: #ff6500;
+	font-weight: bold;
+	padding: 0 5px;
+}
+
+.cruiseSortBlock .rankType span {
+	border: 1px solid #c1c1c1;
+	background: #f8f8f8;
+	padding: 4px 15px;
+	display: inline-block;
+	margin-right: 5px;
+	cursor: pointer;
+}
+
+.cruiseSortBlock .rankType span:hover {
+	border: 1px solid #fea468;
+}
+
+.cruiseSortBlock .rankType .currentSpan {
+	border: 1px solid #ff8533;
+	background: #fff8f4;
+}
+
+.cruiseSortBlock .rankType .currentSpan:hover {
+	border: 1px solid #ff8533;
+}
+
+.sorttab {
+	position: relative;
+}
+
+.sorttab i {
+	width: 9px;
+	height: 12px;
+	display: inline-block;
+	position: absolute;
+	top: 28%;
+	background: url(../images/store/travl/sort.png) no-repeat 0 0;
+	right: 3px;
+}
+
+.ascend i {
+	background-position: -14px 0;
+}
+
+.descend i {
+	background-position: -28px 0;
+}
+
+.onlyViewCharteredBoat {
+	padding: 9px 12px 10px 12px;
+	background-color: #29bb8f;
+	color: #fff;
+	cursor: pointer;
+	margin-left: 10px;
+	font-size: 14px;
+}
+
+.cruisePathItem {
+	padding: 20px 15px 15px 15px;
+}
+
+.cruiseImgContainer {
+	position: relative;
+}
+
+.cruiseImgContainer .cruiseTravType {
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: #fff;
+}
+
+.cruiseTravType.singleTicket {
+	background-color: #1865e5;
+	height: 25px;
+	line-height: 25px;
+	padding: 0 5px;
+}
+
+.singleTicket i {
+	background: url(../images/store/cruise/cruiseFlagIcon.png) no-repeat -18px 0;
+	width: 16px;
+	height: 9px;
+	display: inline-block;
+}
+
+.cruiseTravType.groupTrav {
+	background-color: #f85257;
+	height: 25px;
+	line-height: 25px;
+	padding: 0 5px;
+}
+
+.groupTrav i {
+	background: url(../images/store/cruise/cruiseFlagIcon.png) no-repeat -36px 0;
+	width: 16px;
+	height: 12px;
+	display: inline-block;
+}
+
+.cruiseImgContainer .cruiseImg {
+	width: 160px;
+	height: 120px;
+	overflow: hidden;
+}
+
+.cruisePathItem {
+	border: 1px solid #efefef;
+	margin-bottom: 10px;
+}
+
+.cruisePathItem:hover {
+	background-color: #f7fbff;
+}
+
+.cruisePathItem:first-child {
+	border-top: none;
+}
+
+.cruiseImgContainer {
+	float: left;
+}
+
+.cruiseInfo {
+	float: left;
+	width: 550px;
+	margin-left: 12px;
+}
+
+.cruiseInfo .cruiseTravTitle {
+	line-height: 28px;
+	margin-bottom: 10px;
+}
+
+.cruiseInfo .cruiseTravTitle .titleName {
+	color: #1673c4;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 24px;
+}
+
+.cruiseInfo .cruiseTravTitle .titleName:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.cruiseInfo .cruiseTravTitle .charteredBoat {
+	background-color: #29bb91;
+	color: #fff;
+	padding: 6px 10px;
+}
+
+.cruiseInfo .cruiseTravTitle .charteredBoat i {
+	background: url(../images/store/cruise/cruiseFlagIcon.png) no-repeat 0 0;
+	width: 15px;
+	height: 15px;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 5px;
+	position: relative;
+	top: -2px;
+}
+
+.cruiseInfo .cruiseTravTitle .titleTag {
+	background-color: #47c0da;
+	padding: 6px 10px;
+	color: #fff;
+}
+
+.cruiseInfo .port {
+	margin-bottom: 10px;
+}
+
+.cruiseInfo .port .travDate {
+	margin-left: 50px;
+}
+
+.cruiseInfo .price {
+	margin-bottom: 10px;
+}
+
+.cruiseInfo .price .priceTabTitle {
+	float: left;
+}
+
+.cruiseInfo .price .cruisePriceTab {
+	border: 1px solid #91e1e1;
+	text-align: center;
+	font-size: 14px;
+}
+
+.cruiseInfo .price .cruisePriceTab tr {
+	height: 32px;
+	line-height: 32px;
+}
+
+.cruiseInfo .price .cruisePriceTab th {
+	background-color: #e0f4f7;
+	color: #666;
+	text-align: center;
+}
+
+.cruiseInfo .price .cruisePriceTab tbody em {
+	font-size: 16px;
+	color: #333;
+	font-family: Arial;
+}
+
+.cruiseInfo .date .dateList{
+	font-size: 14px;
+	width: 480px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.cruisePrice {
+	float: left;
+	margin-left: 15px;
+	margin-top: 25px;
+}
+
+.cruisePrice em {
+	padding: 0 2px;
+}
+
+.cruiseViewDetail {
+	float: left;
+	text-align: center;
+	margin-left: 40px;
+	margin-top: 15px;
+}
+
+.cruiseViewDetail .realPrice em {
+	color: #ef4423;
+}
+
+.cruiseViewDetail .realPrice em b {
+	font-size: 26px;
+	font-family: Arial;
+}
+
+.cruiseViewDetail .viewDetailBtn {
+	margin-top: 6px;
+}
+
+.viewMoreBar {
+	height: 40px;
+	line-height: 40px;
+	color: #6278a3;
+	font-size: 14px;
+	background-color: #eaf2f8;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.viewMoreBar:hover {
+	cursor: pointer;
+	background-color: #d4e8f4;
+}
 
 
 /*  jenny.wang */
