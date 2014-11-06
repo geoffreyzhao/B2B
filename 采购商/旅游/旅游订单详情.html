@@ -591,7 +591,12 @@
             </span>
         </div>
     </div>-->
-<br>
+    <div class="orderCountDown">
+        <div class="inner_orderCountDown">
+            <span>订单将在 <em>01:00:00</em> 后关闭支付。如需预订请尽快完成支付</span>
+        </div>
+    </div>
+
     <div class="accountInfoBlock" id="ac">
         <div class="inner_accountInfoBlock clearfix" style=" padding: 8px 10px;">
                 <span class="pull-right" style="line-height: 50px;">                    
@@ -1259,7 +1264,30 @@
             offsetX:-2
         });
 
+        //  订单倒计时部分
+        $(".orderCountDown").fixedBar({
+            css: "bottom:60px;position:fixed",
+            inverse:true
+        });
+
+        var date = new Date(1970,0,0,0,0,0); //  注意js初始化时间的兼容性 
+        date.setHours(1);
+
+        setInterval(function(){
+            var ts = date.getSeconds() - 1;
+            date.setSeconds(ts);
+            setHourCountDown(date);
+        }, 1000);
     });
+
+    function setHourCountDown(date) {
+
+        var h = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+        var m = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+        var s = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+
+        $(".inner_orderCountDown em").html(h + ":" + m + ":" + s);
+    }
 </script>
 
 
