@@ -360,7 +360,7 @@
                                 <th>还款日</th>
                                 <th>已用金额 / 授信金额</th>
                                 <th>还款状态</th>
-                                <th>实际还款日</th>
+                                <th>还款明细</th>
                             </tr>
                             </thead>
                             <tr>
@@ -370,7 +370,53 @@
                                 <td>2014-06-27</td>
                                 <td><span class="text2"><b>8682.50</b></span> / <span class="text2">9000.00</span></td>
                                 <td>未还款</td>
-                                <td>2014-06-27</td>
+                                <td><span class="expandOper"><em>查看</em><i></i></span></td>
+                            </tr>
+                            <tr class="noTrBgColor">
+                                <td colspan="7">
+                                    <div class="repaymentDetailBlock">
+                                        <i class="upArrow"></i>
+                                        <div class="hideBorder"></div>
+                                        <ul class="repaymentDetailList">
+                                            <li>
+                                                <span class="repaymentTime">还款时间</span>
+                                                <span class="repaymentWay">还款方式</span>
+                                                <span class="repaymentMoney">还款金额</span>
+                                                <span class="operator">操作人员</span>
+                                            </li>
+                                            <li>
+                                                <span class="repaymentTime">2014-10-30 12:30</span>
+                                                <span class="repaymentWay">账户余额</span>
+                                                <span class="repaymentMoney">120.00</span>
+                                                <span class="operator">张晓明</span>
+                                            </li>
+                                            <li>
+                                                <span class="repaymentTime">2014-10-30 12:30</span>
+                                                <span class="repaymentWay">账户余额</span>
+                                                <span class="repaymentMoney">120.00</span>
+                                                <span class="operator">张晓明</span>
+                                            </li>
+                                            <li>
+                                                <span class="repaymentTime">2014-10-30 12:30</span>
+                                                <span class="repaymentWay">账户余额</span>
+                                                <span class="repaymentMoney">120.00</span>
+                                                <span class="operator">张晓明</span>
+                                            </li>
+                                            <li>
+                                                <span class="repaymentTime">2014-10-30 12:30</span>
+                                                <span class="repaymentWay">账户余额</span>
+                                                <span class="repaymentMoney">120.00</span>
+                                                <span class="operator">张晓明</span>
+                                            </li>
+                                            <li>
+                                                <span class="repaymentTime">2014-10-30 12:30</span>
+                                                <span class="repaymentWay">账户余额</span>
+                                                <span class="repaymentMoney">120.00</span>
+                                                <span class="operator">张晓明</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
                             </tr>
                             <tr class="currentList">
                                 <td>宝华国际广场</td>
@@ -379,7 +425,7 @@
                                 <td>2014-06-27</td>
                                 <td><span class="text2"><b>8682.50</b></span> / <span class="text2">9000.00</span></td>
                                 <td>未还款</td>
-                                <td>2014-06-27</td>
+                                <td><span class="foldOper"><em>收起</em><i></i></span></td>
                             </tr>
                             <tr>
                                 <td>宝华国际广场</td>
@@ -575,6 +621,21 @@
             width:'535'
         }).init();
 
+    });
+
+    $("body").delegate(".expandOper", "click", function(){
+        $(this).find("em").html("收起");
+        $(this).parents("tr").addClass("currentList");
+        $(this).parents("tr").siblings("tr").removeClass("currentList");
+        $(this).parents("tr").next(".noTrBgColor").show();
+        $(this).addClass("foldOper").removeClass("expandOper");
+    });
+
+    $("body").delegate(".foldOper", "click", function(){
+        $(this).find("em").html("查看");
+        $(this).parents("tr").removeClass("currentList");
+        $(this).parents("tr").next(".noTrBgColor").hide();
+        $(this).addClass("expandOper").removeClass("foldOper");
     });
 	
 </script>
