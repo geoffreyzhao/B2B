@@ -98,7 +98,7 @@
                         <td></td>
                         <td colspan="2">
                             <span class="fontStyle2">出发日期:</span>
-                            <input class="inputStyle" type="text" placeholder=" 请选择" />
+                            <input class="inputStyle startDate" type="text" placeholder="请选择"/>
                         </td>
                     </tr>
                 </tbody>
@@ -652,12 +652,30 @@
 </footer>
 </div>
 
+<script type="text/x-kendo-template" id="calendarTemplate">
+    <div id="priceCalendar" class="calendarLayer">
+        <ul class="tabSwitchMonth">
+        </ul>
+        <div class="calendarTitle clearfix">
+            <span>日</span>
+            <span>一</span>
+            <span>二</span>
+            <span>三</span>
+            <span>四</span>
+            <span>五</span>
+            <span>六</span>
+        </div>
+        <div class="clearfix"></div>
+        <div class="calendarTables">
+        </div>
+        <div class="closeLayerBtn"><span>关 闭</span></div>
+    </div>
+</script>
 
 <script type="text/x-kendo-template" id="viewRulesTemplate">
         <div class="layerGrayBlock" >
             <div class="splitLine"></div>
             <div class="abroadtooltipsCont" style="width:388px;">
-                <i class="close">&nbsp;</i>
                 <div class="abroadtoolclickArrow"></div>
 
                 <div class="viewRulesContent">
@@ -739,14 +757,14 @@
                 selectContent.text("您已选择"+tempContent);
             });
    
-            // $(".preventSelect").each(function(){
-            //     $(this).get(0).onselectstart = function () { 
-            //         return false; 
-            //     };
-            // });
-            document.body.onselectstart = function () { 
-                return false; 
-            };   
+            $(".preventSelect").each(function(){
+                $(this).get(0).onselectstart = function () { 
+                    return false; 
+                };
+            });
+            // document.body.onselectstart = function () { 
+            //     return false; 
+            // };   
 
             var hotelRoomTab = $(".hotelRoom-style-table tr");
             hotelRoomTab.hover(
@@ -831,24 +849,206 @@
                 smallOperatNumber.text(number);
                 if(smallReduce.hasClass("small-reduce-zero-font"))
                         smallReduce.removeClass("small-reduce-zero-font");
-            });
-
-            
-
-
+            });   
 
             FloatLayer({
                 trigger:'.viewRules',
                 template:'#viewRulesTemplate',
+                type: 'hover',
                 offsetY:-35,
                 offsetX:25
             });
 
-            
+            var calendarLayer = new FloatLayer({
+                trigger:'.startDate',
+                template:'#calendarTemplate',
+                offsetY:37,
+                offsetX:0
+            });
 
-           
+            
+            /* 
+ 按照json格式初始化data  即可生成对应的日历
+
+ dayDate: 当月几号
+ price: 价格
+ isCharteredBoat: false 不包船  true 包船 
+ */
+
+var data = [    
+    { month : "2013/12/01",  // 日期格式需要注意，不同浏览器下识别情况不同，写个通用的格式
+        info : [
+            { dayDate: 1, price: 123, isCharteredBoat: false },
+            { dayDate: 6, price: 345345, isCharteredBoat: true }
+        ]
+    }, { month : "2014/11/01",
+        info : [
+            { dayDate: 1, price: 4562, isCharteredBoat: false },
+            { dayDate: 6, price: 185123, isCharteredBoat: true }
+        ]
+    }, { month : "2015/01/01",
+        info : [
+            { dayDate: 12, price: 45620, isCharteredBoat: true },
+            { dayDate: 13, price: 85123, isCharteredBoat: true },
+            { dayDate: 14, price: 45620, isCharteredBoat: true },
+            { dayDate: 15, price: 85123, isCharteredBoat: true },
+            { dayDate: 16, price: 45620, isCharteredBoat: true }
+        ]
+    },{ month : "2015/02/01",
+        info : [
+            { dayDate: 5, price: 14562, isCharteredBoat: false },
+            { dayDate: 6, price: 1785, isCharteredBoat: true }
+        ]
+    },{ month : "2015/03/01",
+        info : [
+            { dayDate: 11, price: 14562, isCharteredBoat: false },
+            { dayDate: 16, price: 85123, isCharteredBoat: true }
+        ]
+    },{ month : "2015/04/01",
+        info : [
+            { dayDate: 21, price: 24562, isCharteredBoat: false },
+            { dayDate: 26, price: 1783, isCharteredBoat: true }
+        ]
+    }
+];
+
+    setTabSwitchMonth("#priceCalendar .tabSwitchMonth", data);
+
+    /*  切换月份 */      
+    $("body").delegate("#priceCalendar .tabSwitchMonth li", "click", function(){
+        $(this).addClass("tabCurrentMonth");
+        $(this).siblings("li").removeClass("tabCurrentMonth");
+
+        showCurrentCalendar("#priceCalendar");
+        addEnableTd();
+    });
+
+    $("body").delegate("#priceCalendarPw .tabSwitchMonth li", "click", function(){
+        $(this).addClass("tabCurrentMonth");
+        $(this).siblings("li").removeClass("tabCurrentMonth");
+
+        showCurrentCalendar("#priceCalendarPw");
+        addEnableTd();
+    });
+
+    // 生成日历
+    setCalendar(data, "#priceCalendar .calendarTables");        
+
+    // 显示当前月份日历
+    showCurrentCalendar("#priceCalendar");
+
+    addEnableTd();   
+
+    $("body").delegate(".closeLayerBtn span", "click", function(){
+        calendarLayer.close();
+    });        
 
     });
+
+
+function addEnableTd() {
+    $(".price").parents("td").each(function(){
+        $(this).addClass("enableTd");
+    });
+}
+
+function geneTabSwitchMonth(data) {
+    var liStr = "";
+    for (var i = 0; i < data.length; i++) {
+        var temp = new Date(data[i].month);
+
+        if (temp.getFullYear() == new Date().getFullYear()) {
+            liStr += "<li name='" + data[i].month + "'>" + (temp.getMonth() + 1) + "月</li>";
+        } else {
+            liStr += "<li name='" + data[i].month + "'>" + temp.getFullYear() + "年" +
+                    (temp.getMonth() + 1) + "月</li>";
+        }
+    }
+    return liStr;
+}
+
+function setTabSwitchMonth(ele, data) {
+    $(ele).append(geneTabSwitchMonth(data));
+    $(ele).children("li").eq(0).addClass("tabCurrentMonth");
+}
+
+function setCalendar(data, ele) {
+    for (var i = 0; i < data.length; i++) {
+        var monthInfo = data[i];  // 获得当前月份的数据信息
+
+        var calStr = "<table class='calTable ct-" + data[i].month.split('/')[0] + "-" +
+                        data[i].month.split('/')[1] + "'><tr>";  // 拼接字符串生成表格日期内容
+
+        var curentMonthDate = new Date(monthInfo.month);
+        var nextMonthDate = new Date(curentMonthDate.getFullYear(), curentMonthDate.getMonth() + 1,
+            curentMonthDate.getDate());
+        var monthDays = (nextMonthDate - curentMonthDate)/(1000*60*60*24);  // 获得当前月天数
+
+        var firstWeekDay = curentMonthDate.getDay();  // 获得当前月1号是周几, 范围0-6
+        var lastWeekDay = nextMonthDate.getDay() - 1 < 0 ? 6 : nextMonthDate.getDay() - 1; 
+        // 计算当月最后一天是周几，填补日历最后的空格
+
+        var currentDay = 1;  // 从1号开始排列当月的日期
+
+        for (var j = 0; j < firstWeekDay; j++) {  // 当月1号之前td为空
+            calStr += "<td></td>";
+        }
+
+        for (; currentDay <= monthDays; currentDay++) {
+
+            var w1 = firstWeekDay == 0 ? 7 : firstWeekDay;
+
+            if (currentDay % 7 == (7 - w1) && currentDay != monthDays) {
+                calStr += "<td>" + geneTdContent(currentDay, monthInfo) + "</td></tr><tr>";
+            } else if (currentDay == monthDays) {
+                calStr += "<td>" + geneTdContent(currentDay, monthInfo) + "</td>";
+                for (var t = 0; t < 6 - lastWeekDay; t++) {
+                    calStr += "<td></td>";
+                }
+                calStr += "</tr></table>";
+            } else {
+                calStr += "<td>" + geneTdContent(currentDay, monthInfo) + "</td>";
+            }
+        }
+        $(ele).append(calStr);
+    }
+}
+
+function showCurrentCalendar(ele) {
+    $(ele).find(".calendarTables table").hide();
+    $(ele).find(".tabSwitchMonth li").each(function(index){
+        if ($(this).hasClass("tabCurrentMonth")) {
+            $(ele).find(".calendarTables table").eq(index).show();
+        }
+    });
+}
+
+function getDayInfo(currentDay, monthInfo) {
+    for (var i = 0; i < monthInfo.info.length; i++) {
+        if (monthInfo.info[i].dayDate == currentDay) {
+            return monthInfo.info[i];
+        }
+    }
+    return null;
+}
+
+function geneTdContent(currentDay, monthInfo) {
+    var dayInfo = getDayInfo(currentDay, monthInfo);
+    var tdCont = "";
+
+    if (!!dayInfo) {       
+        tdCont += "<div class='hasBorderTd'><span class='dateDay'>" + dayInfo.dayDate + "</span>";
+        tdCont += "<span class='price'> <b>" + dayInfo.price + "</b><em class='rise'>起</em></span>";
+
+        // 是否有包船标志  false 不包船  true 包船
+        if (dayInfo.isCharteredBoat) {
+            tdCont += "<i class='charteredBoatFlag'>包船</i></div>";
+        }
+    } else {
+        tdCont += "<span class='dateDay disa-dateDay'>" + currentDay + "</span>";
+    }
+    return tdCont;
+}
 
 
 function autoResizeCutImage(maxWidth, maxHeight, objImg){
