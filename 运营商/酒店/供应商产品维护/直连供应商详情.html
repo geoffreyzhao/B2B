@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>酒店 供应商产品维护 直连供应商详情</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css" />
+    <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link href="/static/css/hotel.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/jiudianweihuzs.css" rel="stylesheet" type="text/css"/>
+    <script src="/static/js/jquery.min.js" type="text/javascript"></script>
+	<script src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+    <script src="/static/js/kendo.web.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/js/public.js"></script>
+    <script type="text/javascript" src="/static/js/sync.js"></script>
+    <script src="/static/js/global.js"></script>
+</head>
+<body>
+    <div id="extHeader">
+        <div></div>
+    </div>
+
+    <div id="container">
+        <div class="header">
+            <h1></h1>
+            <div>
+                <span>你好,${name}</span>
+                <a href="javascript:void(0);">退出</a>
+            </div>
+            <ul id="top_menu">
+                <li><a href="javascript:void(0);">国内机票</a></li>
+                <li><a href="javascript:void(0);">国际机票</a></li>
+                <li><a href="javascript:void(0);">酒店</a></li>
+                <li><a href="javascript:void(0);">票证中心</a></li>
+                <li><a href="javascript:void(0);">财务管理</a></li>
+                <li><a href="javascript:void(0);">客户管理</a></li>
+                <li class="current"><a href="javascript:void(0);">系统设置</a></li>
+            </ul>
+            <ol class="sub_menu">
+                <li class="current"><a href="javascript:void(0);">公告信息</a></li>
+                <li><a href="javascript:void(0);">公司信息</a></li>
+                <li><a href="javascript:void(0);">组织架构</a></li>
+                <li><a href="javascript:void(0);">角色维护</a></li>
+                <li><a href="javascript:void(0);">基础数据</a></li>
+            </ol>
+            <div id="message">
+            	<a href="javascript:void(0);">&nbsp;</a>
+                <span>&nbsp;</span>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="sub_menu_bar"></div>
+        <div id="mainContent">
+            <div class="topFixedToolsBar">
+                <div class="commonReturnBtn" style="padding-left: 10px;">
+                    <a href="#" class="btn-return btns">返回</a>
+                </div>
+                <div class="fixedMenu">
+                    <h3>添加直连供应商</h3>
+                </div>
+                <div class="fixedButton">
+                    <a href="javascript:;" class="button_important adaptiveButton small">
+                        <span class="left"></span>
+                        <span class="center">保 存</span>
+                        <span class="right"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panelTitle">合同信息</div>
+                <div class="operButtonDiv">
+                    <a href="javascript:void(0);" class="button_3_3">编辑</a>
+                </div>
+                <div class="panelCon">
+                   <table class="directSupplier">
+                       <colgroup>
+                           <col width="78"/>
+                           <col width="320"/>
+                           <col width="65"/>
+                           <col width=""/>
+                       </colgroup>
+                       <tbody>
+                       <tr>
+                           <th>供应商名称：</th>
+                           <td colspan="3">供应商简称</td>
+                       </tr>
+                       <tr>
+                           <th>供应商类型：</th>
+                           <td colspan="3">
+                               直连供应商
+                               <span class="mockTd paddingL40">
+                                   <b>签约经理：</b>
+                                   <span>
+                                       <em>刘伟</em>
+                                       <select class="editStatus" style="width:124px; height: 22px;border: 1px solid #cacaca; display: none;">
+                                           <option>请选择</option>
+                                           <option>刘伟</option>
+                                       </select>
+                                   </span>
+                               </span>
+                           </td>
+                       </tr>
+                       <tr>
+                           <th>合同有效期：</th>
+                           <td colspan="3">
+                               <span>
+                                   <em>2014-10-10</em>
+                                   <input type="text" class="" style="width:130px;display: none;"/>
+                               </span>
+                               <b> 至 </b> 
+                               <span>
+                                   <em>2014-11-10</em>
+                                   <input type="text" class="" style="width:130px;display: none;"/>
+                               </span>
+                               <i class="tipsMargin">到期提醒30天/当天</i>
+                               <span class="mockTd paddingL77">
+                                   <b>结算提醒：</b>
+                                   <span>
+                                       <em>月结</em>
+                                       <select class="editStatus" style="width:124px; height: 22px;border: 1px solid #cacaca; display: none;">
+                                           <option>请选择</option>
+                                           <option></option>
+                                       </select>
+                                   </span>
+                               </span>
+                           </td>
+                       </tr>
+                       <tr>
+                           <th>付款方式：</th>
+                           <td colspan="3" class="payforType">
+                               <span>
+                                   <em>统一付款</em>
+                                   <span style="display: none;">
+                                       <label><input type="radio" name="payFor"/> 统一付款</label>
+                                       <label style="margin-left: 15px;"><input type="radio" name="payFor" class="alonePayfor"/> 单独付款</label>
+                                       <i class="fc9f tipsMargin">*单独付款的直连供应商，上传的映射表需要包含酒店供应商信息</i>
+                                   </span>
+                               </span>
+                           </td>
+                       </tr>
+                       <tr class="disabledInput">
+                           <th>供应商名称：</th>
+                           <td>
+                               <span>
+                                   <em>锦江之星酒店集团</em>
+                                   <input type="text" style="width:286px;"/>
+                               </span>
+                           </td>
+                           <th>开户银行：</th>
+                           <td>
+                               <span>
+                                    <em>锦江之星酒店集团</em>   
+                                    <input type="text" style="width:286px;"/>
+                               </span>
+                           </td>
+                       </tr>
+                       <tr class="disabledInput">
+                           <th>开户名：</th>
+                           <td><input type="text" style="width:286px;"/></td>
+                           <th>银行账号：</th>
+                           <td><input type="text" style="width:286px;"/></td>
+                       </tr>
+                       </tbody>
+                   </table> 
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panelTitle">业务联系人</div>
+                <div class="operButtonDiv">
+                    <a href="javascript:void(0);" class="button_3_3">编辑</a>
+                </div>
+                <div class="panelCon">
+                    <table class="directSupplier">
+                        <colgroup>
+                            <col width="40"/>
+                            <col width="180"/>
+                            <col width="40"/>
+                            <col width="180"/>
+                            <col width="40"/>
+                            <col width=""/>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th>姓名：</th>
+                            <td><input type="text" class="" placeholder="张军" style="width:130px;"/></td>
+                            <th>手机：</th>
+                            <td><input type="text" class="" placeholder="13754845675" style="width:130px;"/></td>
+                            <th>传真：</th>
+                            <td><input type="text" class="" placeholder="021-51487784" style="width:130px;"/></td>
+                        </tr>
+                        <tr>
+                            <th>座机：</th>
+                            <td><input type="text" class="" placeholder="021-51284512" style="width:130px;"/></td>
+                            <th>邮箱：</th>
+                            <td><input type="text" class="" placeholder="aa@qq.com" style="width:130px;"/></td>
+                            <th>部门：</th>
+                            <td>
+                                <select class="editStatus" style="width:138px; height: 22px;border: 1px solid #cacaca">
+                                    <option>预订部</option>
+                                    <option>请选择</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>备注：</th>
+                            <td colspan="5"><input type="text" class="" placeholder="备注直连负责人" style="width:350px;"/></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panelTitle">上传文件</div>
+                <div class="panelCon">
+                    <div class="hotelTable">
+                        <div class="hotelTableDiv">
+                            <b>酒店映射表：</b>
+                            <a href="javascript:;" class="button_secondary adaptiveButton small" style="margin:0">
+                                <span class="left"></span>
+                                <span class="center">上传文件</span>
+                                <span class="right"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="uploadFiles">锦江之星酒店表.xlcs</a>
+                            <span class="uploadFilesStatus-success"><i></i>文件校验成功</span>
+                        </div>
+                        <p class="fc9f">*单独付款的直连供应商，上传的映射表需要包含酒店供应商信息</p>
+                    </div>
+                    <div class="hotelTable">
+                        <div class="hotelTableDiv">
+                            <b>酒店房型表：</b>
+                            <a href="javascript:;" class="button_secondary adaptiveButton small" style="margin:0">
+                                <span class="left"></span>
+                                <span class="center">上传文件</span>
+                                <span class="right"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="uploadFiles">锦江之星酒店表.xlcs</a>
+                            <span class="uploadFilesStatus-fail"><i></i>文件校验失败，请重新上传</span>
+                        </div>
+                        <div class="hotelTableFonts">
+                            <div class="hotelTableFonts-title">重要信息：</div>
+                            <div class="hotelTableFonts-con">
+                                <p>1.付款方式为“单独付款”时，酒店映射表中的供应商名称，开户银行，开户名，银行账号不能为空；</p>
+                                <p>2.新增供应商时，酒店映射表和酒店房型表都需要上传，且文件必须通过验证；</p>
+                                <p>3.新增的供应商数据会在添加操作的次日凌晨导入数据。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+            <!--<div class="panel" style="padding-bottom:0;height:auto;overflow:hidden;">
+            <div class="panelTitle" style="border: 0">
+                操作日志
+            </div>
+            <div class="panelContent clearfix">
+                <table class="operation_records mapping-oper">
+                    <thead>
+                    <tr>
+                        <th style="width:130px">日期</th>
+                        <th style="width:100px">操作人员</th>
+                        <th style="width:150px">操作项目</th>
+                        <th style="width:450px">操作内容</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>2013-06-06 14:55</td>
+                        <td>张三</td>
+                        <td>供应商名称</td>
+                        <td>上传映射表</td>
+                    </tr>
+                    <tr>
+                        <td>2013-06-06 14:55</td>
+                        <td>张三</td>
+                        <td>供应商名称</td>
+                        <td>上传映射表</td>
+                    </tr>
+                    <tr>
+                        <td>2013-06-06 14:55</td>
+                        <td>张三</td>
+                        <td>供应商名称</td>
+                        <td>删除大都市国旅供应商</td>
+                    </tr>
+                    <tr>
+                        <td>2013-06-06 14:55</td>
+                        <td>张三</td>
+                        <td>供应商名称</td>
+                        <td>上传映射表</td>
+                    </tr>
+                    <tr>
+                        <td>2013-06-06 14:55</td>
+                        <td>张三</td>
+                        <td>供应商名称</td>
+                        <td>上传映射表</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="grid-table-pagination">
+                                  <span class="grid-table-count">
+                                      共 <em>132</em> 条记录
+                                  </span>
+                                  <span>
+                                      <a href="#" class="prev">&nbsp;</a>
+                                  </span>
+                                  <span class="links">
+                                      <a href="#">1</a>
+                                      <a href="#">2</a>
+                                      <a href="#" class="current">3</a>
+                                      <a href="#">4</a>
+                                      <a href="#">5</a>
+                                      <a href="javascript:;">...</a>
+                                      <a href="#">50</a>
+                                  </span>
+                                  <span>
+                                      <a href="#" class="next">&nbsp;</a>
+                                  </span>
+            </div>
+        </div>-->
+          </div>
+        </div>
+    
+    
+    <div id="extFooter">
+        <div>
+            <p>
+                <a href="javascript:void(0);">关于我们</a>&nbsp;|
+                <a href="javascript:void(0);">微博</a>&nbsp;|
+                <a href="javascript:void(0);">服务条款</a>&nbsp;|
+                <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+
+<script type="text/javascript">
+   $(function(){
+       $('.payforType [type=radio]').on('change',function(){
+           var that = $(this);
+           if(that.hasClass('alonePayfor') && that.is(':checked')){
+               $('.disabledInput').addClass('disabled');
+               $('.disabledInput input').prop('disabled',true);
+           }else{
+               $('.disabledInput').removeClass('disabled');
+               $('.disabledInput input').prop('disabled',false);
+           }
+       });
+   })
+</script>  
+
+    
+    
+
+   
+
+    
+</body>
+</html>
