@@ -581,12 +581,8 @@
             <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
-
-    <script type="text/x-kendo-template" id="ac-emitInform-template">
-        <div class="upLoadingFile">
-            <em>选择文件：</em>
-            <input type="text" style="width: 300px;"/>
-            <label class="uploadBtn">
+    <!--
+        <label class="uploadBtn">
                 <form method="post" action="submit">
                     <div class="demo-section">
                         <div class="k-widget k-upload">
@@ -600,7 +596,13 @@
                         </div>
                     </div>
                 </form>
-            </label>    
+            </label> 
+    -->
+    <script type="text/x-kendo-template" id="ac-emitInform-template">
+        <div class="upLoadingFile">
+            <em>选择文件：</em>
+            <input type="text" style="width: 300px;"/>            
+            <i class="uploadFlieWhiteImg"></i>   
         </div>
         <div class="downLoadContent">
             出团通知书只能发送一次，请确保准确，如有调整，请联系运营商
@@ -660,6 +662,12 @@
 
                     $.prompt({content:messageTpl(data)}).center().open();
                 });
+            });
+
+            $("body").delegate('.uploadFlieWhiteImg', 'mouseenter', function(){
+                $(this).addClass("uploadFlieBlueImg");
+            }).delegate('.uploadFlieWhiteImg', 'mouseleave', function(){
+                $(this).removeClass("uploadFlieBlueImg");
             });
             
         });
