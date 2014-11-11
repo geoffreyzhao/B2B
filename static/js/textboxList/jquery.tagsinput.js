@@ -189,7 +189,10 @@
       placeholderColor:'#666666',
       autosize: true,
       comfortZone: 20,
-      inputPadding: 6*2
+      inputPadding: 6*2,
+      keyEnter:'enter',
+      keySpace:'',
+      keyTab:''
     },options);
 
 		this.each(function() { 
@@ -231,6 +234,7 @@
 			$(data.holder).css('width',settings.width);
 			$(data.holder).css('min-height',settings.height);
 			$(data.holder).css('height','100%');
+			// $(data.holder).css('height',settings.height);
 	
 			if ($(data.real_input).val()!='') { 
 				$.fn.tagsInput.importTags($(data.real_input),$(data.real_input).val());
@@ -311,10 +315,14 @@
 
 				$(data.fake_input).bind('keypress',data,function(event) {
 
-					if (event.which==event.data.delimiter.charCodeAt(0) || event.which==13 || event.which== 32) {
+					if (event.which==event.data.delimiter.charCodeAt(0) || event.which==13 || event.which== 32 || event.which == 9) {
 					    event.preventDefault();
 						if( (event.data.minChars <= $(event.data.fake_input).val().length) && (!event.data.maxChars || (event.data.maxChars >= $(event.data.fake_input).val().length)) )
-							$(event.data.real_input).addTag($(event.data.fake_input).val(),{focus:true,unique:(settings.unique)});
+						{
+							if(((settings.keyEnter == 'enter') && (event.which==13)) || ((settings.keySpace == 'space') && (event.which==32))
+								|| ((settings.keyTab == 'tab') && (event.which==9)))
+								$(event.data.real_input).addTag($(event.data.fake_input).val(),{focus:true,unique:(settings.unique)});
+						}
 					  	$(event.data.fake_input).resetAutosize(settings);
 						return false;
 					} else if (event.data.autosize) {

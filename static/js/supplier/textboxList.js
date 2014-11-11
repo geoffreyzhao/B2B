@@ -25,8 +25,9 @@ $(function(){
 
 	var tagsPlugin = $("#form_tags_input").tagsInput({
     					"width":"790px",
-    					"height":"26px",
+    					"height":"29px",
     					"maxChars":"6",
+    					"keySpace":"space"
     					});
 
 	// var hotTag = $(".hotTagTable .hotTagTableShow").find("div");
