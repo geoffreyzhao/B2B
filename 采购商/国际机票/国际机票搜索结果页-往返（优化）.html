@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天地行 采购商 国际机票搜索结果页-单程(优化)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../../static/css/smoothness/jquery-ui-1.10.3.custom.css" />
+
+    <link rel="stylesheet" href="../../static/css/store_reset.css" media="all" />
+    <link rel="stylesheet" href="../../static/css/store.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/store_v2/store.css" media="screen" />
+    <link rel="stylesheet" href="../../static/css/store_flight.css" media="screen" />
+    <link rel="stylesheet" href="http://static.travelzensh.com/css/flight_logo.css" type="text/css" media="screen" charset="utf-8">
+
+    <link rel="stylesheet" href="../../static/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="../../static/css/kendo.store.css" />
+
+    <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="../../static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="../../static/js/global.js"></script>
+
+    <!--[if IE]>
+    <script src="../../static/js/html5.js"></script>
+    <![endif]-->
+    <script src="../../static/js/jquery-ui-1.10.3.custom.js"></script>
+	<script src="../../static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+
+    <script type="text/javascript" src="../../static/js/store/store.js"></script>
+</head>
+<body>
+
+<div class="main-wrapper">
+<div class="headBG">
+    <header class="main-header">
+        <a class="logo" href="/"><h1>天地行</h1></a>
+        <nav class="main-nav">
+            <ul class="clearfix">
+                <li><a herf="#">国内机票</a></li>
+                <li class="active"><a herf="#">国际机票</a></li>
+                <li><a herf="#">保险</a></li>
+                <li><a herf="#">酒店</a></li>
+                <li><a herf="#">机 + 酒</a></li>
+                <li><a herf="#">旅游</a></li>
+                <li><a herf="#">订单<i class="orderNum">10</i> </a></li>
+            </ul>
+        </nav>
+    </header>
+</div>
+<section class="main-body clearfix">
+
+    <div class="flight_search separate10">
+       <ul class="clearfix condition">
+           <li class="condition_top">              
+               <table class="normal_condition">
+                  <colgroup>
+                    <col width="70" />
+                    <col width="136" />
+                    <col width="60" />
+                    <col width="142" />
+                    <col width="195" />
+                    <col width="195" />
+                    <col width="85" />
+                    <col width="70" />
+                  </colgroup>
+                  <tr>
+                    <td>
+                      <select data-role="dropdownlist" style="width:60px;" name="">
+                         <option>单程</option>
+                         <option>多程</option>
+                         <option>往返</option>
+                      </select>
+                    </td>
+                    <td>出发城市 <input type="text" style="width:80px;"></td>
+                    <td>
+                      <span class="exChangeCity">
+                        <i>←</i>
+                        <em>换</em>
+                        <b>→</b>
+                      </span>
+                    </td>
+                    <td>到达城市 <input type="text" style="width:80px;"></td>
+                    <td>出发日期 <input type="text" class="datepicker" style="width:132px;"></td>
+                    <td><span class="disabled_span">返程日期</span> <input type="text" class="datepicker disabled_input" disabled="disabled" style="width:132px;"></td>
+                    <td>
+                      <a class="adaptiveButton brightRed_btn medium">
+                         <span class="left"></span>
+                         <span class="center center_1">搜 索</span>
+                         <span class="right"></span>
+                      </a>
+                    </td>
+                    <td><span class="advanceSearch">高级搜索<i></i></span></td>
+                  </tr>
+               </table>
+           </li>
+           <li class="condition_bottom">
+              <table class="flight_dropdownlist_group">
+                   <tr>
+                       <td>
+                           <select data-role="dropdownlist" style="width:120px;" name="">
+                               <option value="舱位等级">舱位等级</option>
+                               <option value="经济舱">经济舱</option>
+                               <option value="超级经济舱">超级经济舱</option>
+                               <option value="商务舱">商务舱</option>
+                               <option value="头等舱">头等舱</option>
+                           </select>
+                       </td>
+                       <td>
+                           <input type="text" class="seatCode" placeholder="舱位代码"/>
+                       </td>
+                       <td>
+                           <select data-role="dropdownlist" style="width:120px;" name="">
+                               <option value="乘客类型">乘客类型</option>
+                               <option value="成人">成人</option>
+                               <option value="儿童">儿童</option>
+                               <option value="婴儿">婴儿</option>
+                           </select>
+                       </td>
+                       <td>
+                           <select style="width:120px;" name="" data-role="dropdownlist">
+                               <option selected="" value="起飞时间">起飞时间</option>
+                               <option value="上午(06:01-10:00）">上午(06:01-10:00）</option>
+                               <option value="中午(10:01-14:00）">中午(10:01-14:00）</option>
+                               <option value="下午(14:01-18:00）">下午(14:01-18:00）</option>
+                               <option value="晚上（18:01-22:00）">晚上（18:01-22:00）</option>
+                               <option value="午夜（22:01以后）">午夜（22:01以后）</option>
+                           </select>
+                       </td>
+                       <td>
+                           <select style="width:120px;" data-role="dropdownlist" >
+                               <option value="航空公司">航空公司</option>
+                               <option value="">全部</option>
+                               <option value="3u">3U （川航）</option>
+                               <option value="8L">8L （祥鹏）</option>
+                               <option value="BK">BK （奥凯）</option>
+                               <option value="CA">CA （国航）</option>
+                               <option value="CN">CN （大新华）</option>
+                               <option value="CZ">CZ （南航）</option>
+                               <option value="EU">EU （成都）</option>
+                               <option value="FM">FM （上航）</option>
+                               <option value="G5">G5 （华夏）</option>
+                               <option value="GS">GS （天津）</option>
+                               <option value="HO">HO （吉祥）</option>
+                               <option value="HU">HU （海航）</option>
+                               <option value="JD">JD （首都）</option>
+                               <option value="JR">JR （幸福）</option>
+                               <option value="KN">KN （中联）</option>
+                               <option value="KY">KY （昆明）</option>
+                               <option value="MF">MF （厦航）</option>
+                               <option value="MU">MU （东航）</option>
+                               <option value="NS">NS （河北）</option>
+                               <option value="OZ">OZ （韩亚华空）</option>
+                               <option value="PN">PN （西部）</option>
+                               <option value="SC">SC （山航）</option>
+                               <option value="TV">TV （西藏）</option>
+                               <option value="VD">VD （河南）</option>
+                               <option value="ZH">ZH （深航）</option>
+                           </select>
+                       </td>
+                   </tr>
+               </table>
+           </li>
+       </ul>
+
+    </div>
+    <div class="flight_filter_block">
+        <div class="flight_info_title">上海 → 阿姆斯特丹   10月25日 周三</div>
+        <div class="flight_filter_condition">
+           <table class="flight_dropdownlist_group">
+               <tr>
+                  <td class="filter_text">筛选：</td>
+                   <td>
+                       <select style="width:120px;" id="sel_airlines" class="sel_airlines">
+                           <option value="航空公司">航空公司</option>
+                           <option value="">全部</option>
+                           <option value="3u">3U （川航）</option>
+                           <option value="8L">8L （祥鹏）</option>
+                           <option value="BK">BK （奥凯）</option>
+                           <option value="CA">CA （国航）</option>
+                           <option value="CN">CN （大新华）</option>
+                           <option value="CZ">CZ （南航）</option>
+                           <option value="EU">EU （成都）</option>
+                           <option value="FM">FM （上航）</option>
+                           <option value="G5">G5 （华夏）</option>
+                           <option value="GS">GS （天津）</option>
+                           <option value="HO">HO （吉祥）</option>
+                           <option value="HU">HU （海航）</option>
+                           <option value="JD">JD （首都）</option>
+                           <option value="JR">JR （幸福）</option>
+                           <option value="KN">KN （中联）</option>
+                           <option value="KY">KY （昆明）</option>
+                           <option value="MF">MF （厦航）</option>
+                           <option value="MU">MU （东航）</option>
+                           <option value="NS">NS （河北）</option>
+                           <option value="OZ">OZ （韩亚华空）</option>
+                           <option value="PN">PN （西部）</option>
+                           <option value="SC">SC （山航）</option>
+                           <option value="TV">TV （西藏）</option>
+                           <option value="VD">VD （河南）</option>
+                           <option value="ZH">ZH （深航）</option>
+                       </select>
+                   </td>
+                   <td>
+                       <select style="width:120px;" name="" data-role="dropdownlist">
+                           <option selected="" value="起飞时间">起飞时间</option>
+                           <option value="上午(06:01-10:00）">上午(06:01-10:00）</option>
+                           <option value="中午(10:01-14:00）">中午(10:01-14:00）</option>
+                           <option value="下午(14:01-18:00）">下午(14:01-18:00）</option>
+                           <option value="晚上（18:01-22:00）">晚上（18:01-22:00）</option>
+                           <option value="午夜（22:01以后）">午夜（22:01以后）</option>
+                       </select>
+                   </td>
+                   <td>
+                      <select style="width:120px;" name="" data-role="dropdownlist">
+                        <option selected="" value="起飞时间">机型</option>
+                      </select>
+                   </td>
+                   <td>
+                       <select data-role="dropdownlist" style="width:120px;" name="">
+                           <option value="舱位等级">舱位</option>
+                           <option value="经济舱">经济舱</option>
+                           <option value="超级经济舱">超级经济舱</option>
+                           <option value="商务舱">商务舱</option>
+                           <option value="头等舱">头等舱</option>
+                       </select>
+                   </td>
+                   <td>
+                       <select data-role="dropdownlist" style="width:120px;" name="">
+                           <option value="">起飞机场</option>
+                       </select>
+                   </td>                  
+                  <td>
+                    <label><input type="checkbox">只看直飞</label>
+                  </td>
+               </tr>
+            </table>
+        </div>
+        <div class="condition_chosen_new clearfix">
+            <span class="chosen_text">已选：</span>
+            <span class="chosen_items">
+            <i class="chosen_item">经济舱<s class="chosen_delete">×</s></i>
+            <i class="chosen_item">东方航空<s class="chosen_delete">×</s></i>
+            </span>
+            <a class="chosen_empty" href="javascript:;">清空筛选条件</a>
+        </div>
+    </div>
+    <div class="flight_number clearfix">  <!--flight_number start-->
+       <div class="flight_sort clearfix">
+        <ul class="sort_items">
+          <li>
+            <div>默认排序</div>
+          </li>
+          <li>
+            <div class="sorttab_orange">
+                  <span>起飞时间</span>
+                  <i>&nbsp;</i>
+             </div>
+          </li>
+          <li>
+            <div class="sorttab_orange ascend">
+                  <span>到达时间</span>
+                  <i>&nbsp;</i>
+             </div>
+          </li>
+          <li>
+            <div class="sorttab_orange">
+                  <span>航程时长</span>
+                  <i>&nbsp;</i>
+             </div>
+          </li>
+          <li>
+            <div class="sorttab_orange descend">
+              <span>票面价</span>
+              <i>&nbsp;</i>
+            </div>
+          </li>
+        </ul>
+        <div class="tax_tag">
+          <span class="current">不含税价格</span>
+          <span>含税价格</span>
+        </div>
+       </div>
+       <div class="flight_result_list reset clearfix">
+         <div class="information international_flight_info">
+             <table class="info_header">
+                 <colgroup>
+                     <col width="58">
+                     <col width="182">
+                     <col width="95">
+                     <col width="87">
+                     <col width="158">
+                     <col width="98">
+                     <col width="">
+                 </colgroup>
+                  <tr>
+                      <td>
+                         <div class="pubFlights_MU fico">&nbsp;</div>
+                      </td>
+                     <td>
+                         <div>荷兰皇家航空KL896</div>
+                         <div class="blue_up_block">航班详情<i></i></div>                    
+                     </td>
+                     <td>
+                          <div class="flight_time">08:00</div>
+                          <div style="width:100px" title="浦东国际机场浦东国际机场">浦东国际机场浦东国际机场</div>
+                     </td>
+                     <td>
+                        <div class="flight_type_straightIcon"></div>
+                        <!-- <div class="flight_type_unStraightIcon"></div> -->
+                     </td>
+                     <td>
+                         <div class="reach_time"><span class="flight_time">09:10</span><i>+1天</i></div>
+                         <div style="width:120px;" title="暗牧斯特但卡发附近的卡">暗牧斯特但卡发附近的卡</div>
+                     </td>
+                     <td><div class="flight_flightTime"><i></i>18h40m</div></td>
+                     <td>
+                        <div class="flight_fly_type">直飞</div>
+                        <!-- <div class="flight_fly_type flight_fly_stopover"><i></i>经停</div>
+                        <div class="flight_fly_type flight_fly_transfer"><i></i>香港中转</div> -->
+                     </td>
+                  </tr>
+              </table>
+              <div class="information_detail_block">
+                <table class="information_detail new">
+                   <colgroup>
+                       <col width="170">
+                       <col width="105">
+                       <col width="80">
+                       <col width="120">
+                       <col width="110">
+                       <col width="150">
+                       <col width="120">
+                       <col width="80">
+                       <col width="55"/>
+                   </colgroup>
+                   <tbody>
+                   <tr id="flight_0_cabin_0">
+                       <td>&nbsp;</td>
+                       <td>折扣经济舱Q</td>
+                       <td>
+                           <span class="darkOrange tgq">退改签</span>
+                       </td>
+                       <td>
+                           <s class="cell_name">票面价：</s>
+                           <span class="money">￥8900</span>
+                       </td>
+                       <td>
+                          <s class="cell_name">代理费：</s>
+                          <span class="percent">1.03%</span>
+                       </td>
+                       <td>
+                        <span class="reward_icon"></span>
+                        <span class="reward_number">6.25% + ￥62</span>
+                      </td>
+                       <td>
+                        <span class="price"><u>￥</u>2145.00</span> 起
+                      </td>
+                       <td>
+                           <a class="adaptiveButton brightRed_btn medium">
+                               <span class="left"></span>
+                               <span class="center" style="padding:0 15px;">选择</span>
+                               <span class="right"></span>
+                           </a>
+                       </td>
+                       <td>
+                          <span class="warnText">仅1张</span>                       
+                       </td>
+                   </tr>
+                   <tr style="display: none" class="more_cabin_item">
+                       <td>&nbsp;</td>
+                       <td>折扣经济舱L</td>
+                       <td>
+                           <span class="darkOrange tgq">退改签</span>
+                       </td>
+                       <td>
+                           <s class="cell_name">票面价：</s>
+                           <span class="money">￥970</span>
+                       </td>
+                       <td>
+                          <s class="cell_name">代理费：</s>
+                          <span class="percent">1%</span>
+                       </td>
+                       <td>
+                          <span class="reward_icon"></span>
+                          <span class="reward_number">6.5% + ￥62</span>
+                       </td>
+                       <td>
+                        <span class="price"><u>￥</u>2145.00</span> 起
+                      </td>
+                       <td>
+                           <a class="adaptiveButton brightRed_btn medium">
+                               <span class="left"></span>
+                               <span class="center" style="padding:0 15px;">选择</span>
+                               <span class="right"></span>
+                           </a>
+                       </td>
+                       <td>
+                       </td>
+                   </tr>
+                   <tr style="display: none" class="more_cabin_item">
+                       <td>&nbsp;</td>
+                       <td>折扣经济舱L</td>
+                       <td>
+                           <span class="darkOrange tgq">退改签</span>
+                       </td>
+                       <td>
+                           <s class="cell_name">票面价：</s>
+                           <span class="money">￥970</span>
+                       </td>
+                       <td>
+                          <s class="cell_name">代理费：</s>
+                          <span class="percent">1%</span>
+                       </td>
+                       <td>
+                          <span class="reward_icon"></span>
+                          <span class="reward_number">6.5% + ￥62</span>
+                       </td>
+                       <td>
+                        <span class="price"><u>￥</u>2145.00</span> 起
+                      </td>
+                       <td>
+                           <a class="adaptiveButton brightRed_btn medium">
+                               <span class="left"></span>
+                               <span class="center" style="padding:0 15px;">选择</span>
+                               <span class="right"></span>
+                           </a>
+                       </td>
+                       <td>
+                       </td>
+                   </tr>
+                   </tbody>
+                </table>
+                <div class="bottomMore">
+                  <span class="taxText">税费：<em>￥1800.00</em>起</span>
+                  <!-- <span class="taxText">含税价</span> -->
+                  <a class="more-cabin" href="javascript:;"><b>展开舱位</b><i>&nbsp;</i></a>
+                </div>
+              </div>
+         </div>
+         <div class="information international_flight_info">
+             <table class="info_header">
+                 <colgroup>
+                     <col width="58">
+                     <col width="182">
+                     <col width="95">
+                     <col width="87">
+                     <col width="158">
+                     <col width="98">
+                     <col width="">
+                 </colgroup>
+                  <tr>
+                      <td>
+                         <div class="pubFlights_MU fico">&nbsp;</div>
+                      </td>
+                     <td>
+                         <div>多家航空公司 <b class="multiCompantText">共2个航班</b></div>
+                         <div class="blue_up_block">航班详情<i></i></div>                    
+                     </td>
+                     <td>
+                          <div class="flight_time">08:00</div>
+                          <div style="width:100px" title="浦东国际机场浦东国际机场">浦东国际机场浦东国际机场</div>
+                     </td>
+                     <td>
+                        <div class="flight_type_unStraightIcon"></div>
+                     </td>
+                     <td>
+                         <div class="reach_time"><span class="flight_time">09:10</span><i>+1天</i></div>
+                         <div style="width:120px;" title="暗牧斯特但卡发附近的卡">暗牧斯特但卡发附近的卡</div>
+                     </td>
+                     <td><div class="flight_flightTime"><i></i>18h40m</div></td>
+                     <td>
+                        <div class="flight_fly_type flight_fly_stopover"><i></i>经停</div>
+                     </td>
+                  </tr>
+              </table>
+              <div class="information_detail_block">
+                <table class="information_detail new">
+                   <colgroup>
+                       <col width="170">
+                       <col width="105">
+                       <col width="80">
+                       <col width="120">
+                       <col width="110">
+                       <col width="150">
+                       <col width="120">
+                       <col width="80">
+                       <col width="55"/>
+                   </colgroup>
+                   <tbody>
+                   <tr id="flight_0_cabin_0">
+                       <td>&nbsp;</td>
+                       <td>折扣经济舱Q</td>
+                       <td>
+                           <span class="darkOrange tgq">退改签</span>
+                       </td>
+                       <td>
+                           <s class="cell_name">票面价：</s>
+                           <span class="money">￥8900</span>
+                       </td>
+                       <td>
+                          <s class="cell_name">代理费：</s>
+                          <span class="percent">1.03%</span>
+                       </td>
+                       <td>
+                        <span class="reward_icon"></span>
+                        <span class="reward_number">6.25% + ￥62</span>
+                      </td>
+                       <td>
+                        <span class="price"><u>￥</u>2145.00</span> 起
+                      </td>
+                       <td>
+                           <a class="adaptiveButton brightRed_btn medium">
+                               <span class="left"></span>
+                               <span class="center" style="padding:0 15px;">选择</span>
+                               <span class="right"></span>
+                           </a>
+                       </td>
+                       <td>
+                          <span class="warnText">仅1张</span>                       
+                       </td>
+                   </tr>
+                   <tr style="display: none" class="more_cabin_item">
+                       <td>&nbsp;</td>
+                       <td>折扣经济舱L</td>
+                       <td>
+                           <span class="darkOrange tgq">退改签</span>
+                       </td>
+                       <td>
+                           <s class="cell_name">票面价：</s>
+                           <span class="money">￥970</span>
+                       </td>
+                       <td>
+                          <s class="cell_name">代理费：</s>
+                          <span class="percent">1%</span>
+                       </td>
+                       <td>
+                          <span class="reward_icon"></span>
+                          <span class="reward_number">6.5% + ￥62</span>
+                       </td>
+                       <td>
+                        <span class="price"><u>￥</u>2145.00</span> 起
+                      </td>
+                       <td>
+                           <a class="adaptiveButton brightRed_btn medium">
+                               <span class="left"></span>
+                               <span class="center" style="padding:0 15px;">选择</span>
+                               <span class="right"></span>
+                           </a>
+                       </td>
+                       <td>
+                       </td>
+                   </tr>
+                   <tr style="display: none" class="more_cabin_item">
+                       <td>&nbsp;</td>
+                       <td>折扣经济舱L</td>
+                       <td>
+                           <span class="darkOrange tgq">退改签</span>
+                       </td>
+                       <td>
+                           <s class="cell_name">票面价：</s>
+                           <span class="money">￥970</span>
+                       </td>
+                       <td>
+                          <s class="cell_name">代理费：</s>
+                          <span class="percent">1%</span>
+                       </td>
+                       <td>
+                          <span class="reward_icon"></span>
+                          <span class="reward_number">6.5% + ￥62</span>
+                       </td>
+                       <td>
+                        <span class="price"><u>￥</u>2145.00</span> 起
+                      </td>
+                       <td>
+                           <a class="adaptiveButton brightRed_btn medium">
+                               <span class="left"></span>
+                               <span class="center" style="padding:0 15px;">选择</span>
+                               <span class="right"></span>
+                           </a>
+                       </td>
+                       <td>
+                       </td>
+                   </tr>
+                   </tbody>
+                </table>
+                <div class="bottomMore">
+                  <span class="taxText">税费：<em>￥1800.00</em>起</span>
+                  <a class="more-cabin" href="javascript:;"><b>展开舱位</b><i>&nbsp;</i></a>
+                </div>
+              </div>
+         </div>
+         <div class="information international_flight_info">
+             <table class="info_header">
+                 <colgroup>
+                     <col width="58">
+                     <col width="182">
+                     <col width="95">
+                     <col width="87">
+                     <col width="158">
+                     <col width="98">
+                     <col width="">
+                 </colgroup>
+                  <tr>
+                      <td>
+                         <div class="pubFlights_MU fico">&nbsp;</div>
+                      </td>
+                     <td>
+                         <div>多家航空公司 <b class="multiCompantText">共2个航班</b></div>
+                         <div class="blue_up_block">航班详情<i></i></div>                    
+                     </td>
+                     <td>
+                          <div class="flight_time">08:00</div>
+                          <div style="width:100px" title="浦东国际机场浦东国际机场">浦东国际机场浦东国际机场</div>
+                     </td>
+                     <td>
+                        <div class="flight_type_unStraightIcon"></div>
+                     </td>
+                     <td>
+                         <div class="reach_time"><span class="flight_time">09:10</span><i>+1天</i></div>
+                         <div style="width:120px;" title="暗牧斯特但卡发附近的卡">暗牧斯特但卡发附近的卡</div>
+                     </td>
+                     <td><div class="flight_flightTime"><i></i>18h40m</div></td>
+                     <td>
+                        <div class="flight_fly_type flight_fly_transfer"><i></i>香港中转</div>
+                     </td>
+                  </tr>
+              </table>
+              <div class="info_flightBlock">
+                <table>
+                  <colgroup>
+                    <col width="26">
+                    <col width="170">
+                    <col width="265">
+                    <col width="">
+                  </colgroup>
+                  <tr>
+                    <td><div class="pubFlights_MU fico">&nbsp;</div></td>
+                    <td>
+                      <div>荷兰皇家航空  KL894</div>
+                      <div class="grayFont">机型：77W</div>
+                    </td>
+                    <td>
+                      <div class="blockFont">2014-11-19 12:20 PVG   上海浦东机场T2</div>
+                      <div class="grayFont">2014-11-19 16:20 DXB   迪拜机场</div>
+                    </td>
+                    <td>
+                      <div class="grayFont">飞行时长 4h30m （经停香港 停留2h10m）</div>
+                    </td>
+                  </tr>
+                </table>
+                <div class="splitBlock">
+                    <div class="splitBlockCont">迪拜中转 停留 2h10m</div>
+                </div>
+                <table>
+                  <colgroup>
+                    <col width="26">
+                    <col width="170">
+                    <col width="265">
+                    <col width="">
+                  </colgroup>
+                  <tr>
+                    <td><div class="pubFlights_MU fico">&nbsp;</div></td>
+                    <td>
+                      <div class="grayFont">荷兰皇家航空  KL894
+                        <span class="shareToolTip">共享</span>
+                      </div>
+                      <div class="grayFont">机型：77W</div>
+                    </td>
+                    <td>
+                      <div class="grayFont">2014-11-19 12:20 PVG   上海浦东机场T2</div>
+                      <div class="grayFont">2014-11-19 16:20 DXB   迪拜机场</div>
+                    </td>
+                    <td>
+                      <div class="grayFont">飞行时长 4h30m</div>
+                    </td>
+                  </tr>
+                </table>
+                 <div class="splitBlock">
+                    <div class="splitBlockCont">迪拜中转 停留 2h10m</div>
+                </div>
+                <table>
+                  <colgroup>
+                    <col width="26">
+                    <col width="170">
+                    <col width="265">
+                    <col width="">
+                  </colgroup>
+                  <tr>
+                    <td><div class="pubFlights_MU fico">&nbsp;</div></td>
+                    <td>
+                      <div class="blockFont">荷兰皇家航空  KL894 
+                        <span class="shareToolTip">共享</span>
+                      </div>
+                      <div class="grayFont">机型：77W</div>
+                    </td>
+                    <td>
+                      <div class="grayFont">2014-11-19 12:20 PVG   上海浦东机场T2</div>
+                      <div class="blockFont">2014-11-19 16:20 DXB   迪拜机场</div>
+                    </td>
+                    <td>
+                      <div class="grayFont">飞行时长 4h30m</div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="information_detail_block">
+                <table class="information_detail new">
+                   <colgroup>
+                       <col width="170">
+                       <col width="105">
+                       <col width="80">
+                       <col width="120">
+                       <col width="110">
+                       <col width="150">
+                       <col width="120">
+                       <col width="80">
+                       <col width="55"/>
+                   </colgroup>
+                   <tbody>
+                   <tr id="flight_0_cabin_0">
+                       <td>&nbsp;</td>
+                       <td>折扣经济舱Q</td>
+                       <td>
+                           <span class="darkOrange tgq">退改签</span>
+                       </td>
+                       <td>
+                           <s class="cell_name">票面价：</s>
+                           <span class="money">￥8900</span>
+                       </td>
+                       <td>
+                          <s class="cell_name">代理费：</s>
+                          <span class="percent">1.03%</span>
+                       </td>
+                       <td>
+                        <span class="reward_icon"></span>
+                        <span class="reward_number">6.25% + ￥62</span>
+                      </td>
+                       <td>
+                        <span class="price"><u>￥</u>2145.00</span> 起
+                      </td>
+                       <td>
+                           <a class="adaptiveButton brightRed_btn medium">
+                               <span class="left"></span>
+                               <span class="center" style="padding:0 15px;">选择</span>
+                               <span class="right"></span>
+                           </a>
+                       </td>
+                       <td>
+                          <span class="warnText">仅1张</span>                       
+                       </td>
+                   </tr>
+                   <tr style="display: none" class="more_cabin_item">
+                       <td>&nbsp;</td>
+                       <td>折扣经济舱L</td>
+                       <td>
+                           <span class="darkOrange tgq">退改签</span>
+                       </td>
+                       <td>
+                           <s class="cell_name">票面价：</s>
+                           <span class="money">￥970</span>
+                       </td>
+                       <td>
+                          <s class="cell_name">代理费：</s>
+                          <span class="percent">1%</span>
+                       </td>
+                       <td>
+                          <span class="reward_icon"></span>
+                          <span class="reward_number">6.5% + ￥62</span>
+                       </td>
+                       <td>
+                        <span class="price"><u>￥</u>2145.00</span> 起
+                      </td>
+                       <td>
+                           <a class="adaptiveButton brightRed_btn medium">
+                               <span class="left"></span>
+                               <span class="center" style="padding:0 15px;">选择</span>
+                               <span class="right"></span>
+                           </a>
+                       </td>
+                       <td>
+                       </td>
+                   </tr>
+                   <tr style="display: none" class="more_cabin_item">
+                       <td>&nbsp;</td>
+                       <td>折扣经济舱L</td>
+                       <td>
+                           <span class="darkOrange tgq">退改签</span>
+                       </td>
+                       <td>
+                           <s class="cell_name">票面价：</s>
+                           <span class="money">￥970</span>
+                       </td>
+                       <td>
+                          <s class="cell_name">代理费：</s>
+                          <span class="percent">1%</span>
+                       </td>
+                       <td>
+                          <span class="reward_icon"></span>
+                          <span class="reward_number">6.5% + ￥62</span>
+                       </td>
+                       <td>
+                        <span class="price"><u>￥</u>2145.00</span> 起
+                      </td>
+                       <td>
+                           <a class="adaptiveButton brightRed_btn medium">
+                               <span class="left"></span>
+                               <span class="center" style="padding:0 15px;">选择</span>
+                               <span class="right"></span>
+                           </a>
+                       </td>
+                       <td>
+                       </td>
+                   </tr>
+                   </tbody>
+                </table>
+                <div class="bottomMore">
+                  <span class="taxText">税费：<em>￥1800.00</em>起</span>
+                  <a class="more-cabin" href="javascript:;"><b>展开舱位</b><i>&nbsp;</i></a>
+                </div>
+              </div>
+         </div>
+       </div>
+       <!--当前选中开始-->
+       <!--<div class="paging clearfix">  
+            <ul>
+                 <li><a href="#">上一页</a></li>
+                 <li><a href="#">1</a></li>
+                 <li><a href="#">2</a></li>
+                 <li><a href="#">3</a></li>
+                 <li><a href="#">4</a></li>
+                 <li><a href="#">5</a></li>
+                 <li> <span>...</span> </li>
+                 <li><a href="#" class="present">58</a></li>
+                 <li><a href="#">59</a></li>
+                 <li><a href="#">60</a></li>
+                 <li><a href="#">下一页</a></li>
+            </ul>
+            <div>
+               <span>共<em>132</em>条记录 &nbsp;&nbsp;&nbsp;共14页</span>
+            </div>
+      </div>-->  <!--当前选中结束-->
+
+    </div>  <!--flight_number end-->
+
+    <div class="loadMoreBlock">
+        点击加载更多
+    </div>
+
+       <div class="location" style="display:none;left:400px;top:648px;"> <!--浮层开始-->
+          <div class="floating">
+              <!--<i>&nbsp;</i>-->
+              <table class="floating_title">
+                 <colgroup>
+                   <col width="58px"/>
+                   <col width="120px"/>
+                   <col width="113px"/>
+                   <col width="60px"/>
+                   <col width="47px"/>
+                 </colgroup>
+                   <tr>
+                      <td>航班号</td>
+                      <td>起降时间</td>
+                      <td>起降机场</td>
+                      <td>飞行时间</td>
+                      <td>机型</td>
+                      <td>舱位</td>
+                   </tr>
+              </table>
+              <div class="aviation">
+                  <table>
+                     <colgroup>
+                       <col width="58px"/>
+                       <col width="120px"/>
+                       <col width="113px"/>
+                       <col width="60px"/>
+                       <col width="47px"/>
+                     </colgroup>
+                       <tr>
+                          <td>东方航空</td>
+                          <td>2012-12-12  09：00</td>
+                          <td>上海浦东机场(PVG)</td>
+                          <td>2：30</td>
+                          <td>大型机</td>
+                          <td>G</td>
+                       </tr>
+                       <tr>
+                          <td>MU5183</td>
+                          <td>2012-12-12  12：00</td>
+                          <td>台北桃园机场(MMK)</td>
+                          <td> </td>
+                          <td>333</td>
+                          <td> </td>
+                       </tr>
+                  </table>
+               </div>
+               <div class="aviation" style="border:0">
+                  <table>
+                     <colgroup>
+                       <col width="58px"/>
+                       <col width="120px"/>
+                       <col width="113px"/>
+                       <col width="60px"/>
+                       <col width="47px"/>
+                     </colgroup>
+                       <tr>
+                          <td>东方航空</td>
+                          <td>2012-12-12  09：00</td>
+                          <td>上海浦东机场(PVG)</td>
+                          <td>2：30</td>
+                          <td>大型机</td>
+                          <td>G</td>
+                       </tr>
+                       <tr>
+                          <td>MU5183</td>
+                          <td>2012-12-12  12：00</td>
+                          <td>台北桃园机场(MMK)</td>
+                          <td> </td>
+                          <td>333</td>
+                          <td> </td>
+                       </tr>
+                  </table>
+               </div>
+          </div>
+      </div> <!--浮层结束-->
+
+      <div class="priceing" style="display:none;"> <!--核价中的弹窗 开始-->
+           <h3><em></em>核价中，请耐心等待…</h3>
+      </div> <!--核价中的弹窗 结束-->
+
+
+</section>
+<footer class="main-footer">
+    <center>
+        <a href="#">隐私问题</a>
+        <i class="bar">|</i>
+        <a href="#">常见问题</a>
+        <i class="bar">|</i>
+        <a href="#">关于我们</a>
+        <i class="bar">|</i>
+        <a href="#">媒体中心</a>
+        <i class="bar">|</i>
+        <a href="#">联系我们</a>
+    </center>
+    <center class="copyright">
+        Copyright &copy; 2012 天地行 All Rights Reserved.     沪ICP备08101503号
+    </center>
+</footer>
+</div>
+
+
+<script type="text/x-kendo-template" id="city_popup">
+<div id="gn-tabstrip" class="tcy_tabstrip">
+<span class="tcy_title">
+    热门城市/国家（支持中文名/拼音/英文名/三字码）
+</span>
+<ul>
+<li id="hot_city" class="k-state-active">热门</li>
+# for (var i=0; i<data.group.length; i++ ) { #
+<li>#= data.group[i] #</li>
+# } #
+</ul>
+<div id="hot_city_tab">
+<ul class="tcy_list clearfix">
+
+# for(var j=0;j<hotcitylist.length;j++){ #
+# var citylist_item = hotcitylist[j] #
+<li class="item" title="#= citylist_item.code #" data-code="#= citylist_item.code #">#= citylist_item.name #</li>
+# } #
+</ul>
+</div>
+
+# for(var i=0;i<data.citylist.length;i++){ #
+# var citylist_item = data.citylist[i] #
+<div class="city_tab">
+<ul class="tcy_list clearfix">
+  # for(var k=0;k<data.group[i].length;k++){ #
+    <li class="tcy_list_sep">#= data.group[i].split('')[k] #</li>
+    # for(var j=0;j<citylist_item.value.length;j++){ #
+        # var citylist_value_item = citylist_item.value[j]; #
+        # if(citylist_value_item.py.slice(0,1) == data.group[i].split('')[k]) {#
+            <li class="item" title="#= citylist_value_item.code #" data-code="#= citylist_value_item.code #">#= citylist_value_item.name #</li>
+        # } #
+    # } #
+  # } #
+</ul>
+</div>
+
+# } #
+</div>
+</script>
+
+<script type="text/x-kendo-template" id="price_confirm_template">
+<div class="win">  <!--win start-->
+    <h3><i>&nbsp;</i>验舱成功！</h3>
+	<table class="win_tab">
+	    <colgroup>
+		       <col width="170px"/>
+		</colgroup>
+		<tr>
+		    <td>改期： </td>
+			<td>不允许改期</td>
+		</tr>
+		<tr>
+		    <td>退票： </td>
+			<td>不允许退票</td>
+		</tr>
+		<tr>
+		    <td>出发日期： </td>
+			<td> 2013-08-08；2013-08-08；</td>
+		</tr>
+		<tr>
+		    <td>最短/最长停留期： </td>
+			<td>0-12个月</td>
+		</tr>
+		<tr>
+		    <td>销售时限： </td>
+			<td>2013-07-01 —— 2013-09-01</td>
+		</tr>
+		<tr>
+		    <td>提前出票天数： </td>
+			<td>20天</td>
+		</tr>
+		<tr>
+		    <td>票面价/税费： </td>
+			<td><em>￥800</em><span> / ￥200</span></td>
+		</tr>
+	</table>
+    <div class="win_btn">
+       <a class="adaptiveButton mediumOrange_btn">
+          <span class="left"></span>
+          <span class="center center_1">预订</span>
+          <span class="right"></span>
+       </a>
+       <a href="javascript:void(0);" class="cancel">取消</a>
+    </div>
+</div>  <!--win end-->
+</script>
+
+
+<script type="text/x-kendo-template" id="price_comfire_failed_template">
+<div class="fail">  <!--fail start-->
+    <h3><i>&nbsp;</i>验舱未成功！</h3>
+    <div class="fail_btn">
+       <a href="javascript:void(0);" class="cancel">查看其他航班记录</a>
+    </div>
+</div>  <!--fail end-->
+</script>
+
+<script type="text/x-kendo-template" id="seatCodeTemplate">
+  <div class="seatCodeBlock">
+    <div class="topTitle">支持指定舱位代码搜索：</div>
+    <ul class="seatCodeList clearfix">
+      <li><label><input type="checkbox" value="A">A</label></li>
+      <li><label><input type="checkbox" value="B">B</label></li>
+      <li><label><input type="checkbox" value="C">C</label></li>
+      <li><label><input type="checkbox" value="D">D</label></li>
+      <li><label><input type="checkbox" value="E">E</label></li>
+      <li><label><input type="checkbox" value="F">F</label></li>
+      <li><label><input type="checkbox" value="A">A</label></li>
+      <li><label><input type="checkbox" value="B">B</label></li>
+      <li><label><input type="checkbox" value="C">C</label></li>
+      <li><label><input type="checkbox" value="D">D</label></li>
+    </ul>
+  </div>
+</script>
+
+<script type="text/x-kendo-template" id="flight_share_template">
+  <div class="floating shareTipLayer">
+    <div class="grayFont">实际承运</div>
+    <div><span class="pubFlights_MU fico">&nbsp;</span>法国航空公司AF1</div>
+  </div>
+</script>
+
+<script type="text/x-kendo-template" id="floating_template">
+  <div class="floating">
+      <p><b>退票规则：</b>收取5%退票费</p>
+      <p><b>更改规则：</b>1、升舱换开以各代。 2、升舱补差建议联系国航客服用信用卡支付差价，或者提交升舱补差，以供应商审核后为准。</p>
+      <p>签转规则：免费变更</p>
+      <p><b>备注：</b>升舱： 代理人可办理。：此升舱客规仅供参考，以代理人权限为准，升舱换开前请咨询客服或者提交改签申请待审核后再做处理。
+      </p>
+  </div>
+</script>
+
+
+<script type="text/javascript" src="../../static/js/store/international_flight.js"></script>
+<script>
+$(function(){
+	var price_confirm_win = new PopWindow(".price_confirm",{
+		   title:"核价成功",
+		   width:420,
+		   template:"#price_confirm_template"
+	}).init();
+
+
+	var price_confirm_win = new PopWindow(".price_confirm_failed",{
+		   title:"核价失败",
+		   width:420,
+		   template:"#price_comfire_failed_template",
+		   open:function(){
+			   this.triggerEle.removeClass("mediumOrange_btn").addClass("mediumDisabled_btn");
+			   console.log(this.triggerEle);
+		   }
+	}).init();
+
+    $(".tool_tip").kendoTooltip({
+        filter: "strong",
+        position: "right",
+        content: function(e) {
+            return $(".location").html();
+            //return '内容';
+        }
+      });
+
+      $.loadingbar({
+          showClose: false,
+          text:'正在为您查询，请稍候…'
+      });
+
+      $("body").delegate(".condition_top .advanceSearch", "click", function(){
+        if ($(this).hasClass("expand")) {
+          $(this).removeClass("expand");
+          $('.condition_bottom').hide();
+        } else {
+          $(this).addClass("expand");
+          $('.condition_bottom').show();
+        }
+      });
+
+      var seatCodeLayer = new FloatLayer({
+        trigger:'input.seatCode',
+        template:'#seatCodeTemplate',
+        offsetX: 0,
+        offsetY: 25
+      });
+
+      $("body").delegate(".seatCodeList label", "click", function(){
+        var seatCodeCont = "";
+        $(".seatCodeList label").each(function(){
+          if ($(this).children("input").prop("checked")) {
+            seatCodeCont += $(this).children("input").val();
+          }
+          $("input.seatCode").val(seatCodeCont);
+        });
+      });
+
+      // 共享 toolTip
+      $(".information .shareToolTip").kendoTooltip({
+        position:"bottom",
+        content:function(){
+          return $("#flight_share_template").html();
+        },
+        wrapperClass:'shadow_box'
+      });
+
+      // 退改签
+      $(".information .tgq").kendoTooltip({
+        position:"bottom",
+        content:function(){
+          return $("#floating_template").html();
+        },
+        width: 300,
+        wrapperClass:'shadow_box'
+      });
+
+      $('body').on('click','.more-cabin',function(){
+          $(this).closest(".information_detail_block").find(".more_cabin_item").toggle();
+          $(this).toggleClass("expand");
+          if ($(this).hasClass("expand")) {
+            $(this).find("b").html("收起舱位");
+          } else {
+            $(this).find("b").html("展开舱位");
+          }
+      });
+
+      $(".loadMoreBlock").click(function(){
+        $(".lightbox").show();
+      });
+
+});
+
+
+</script>
+
+
+</body>
+</html>
