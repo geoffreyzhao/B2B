@@ -184,11 +184,11 @@
              <tr>
                  <th>开始日期</th>
                  <td>
-                    <input type="text" class="dpUlt datepicker hideDateTag" placeholder=" yy-mm-dd" />
+                    <input type="text" class="dpUlt datepicker hideDateTag startDate" placeholder=" yy-mm-dd" />
                  </td>
                  <th>结束日期</th>
                  <td>
-                    <input type="text" class="dpUlt datepicker hideDateTag" placeholder=" yy-mm-dd"/>
+                    <input type="text" class="dpUlt datepicker hideDateTag endDate" placeholder=" yy-mm-dd"/>
                  </td>
                  <th>团状态</th>
                  <td>
@@ -674,35 +674,26 @@
 
             // 日期控件
             $.datepicker.regional[ "zh-CN" ];
-            $(function(){
-                $( ".datepicker" ).datepicker({
-                    showDay:true,
-                    numberOfMonths:[1,2],
-                    minDate :new Date(),
-                    firstDay:0,
-                    showButtonPanel :true
-                });
-            });
-            
-        });
-    </script>
 
-    <script type="text/javascript">
-        $(function(){
-            
-            // 日期控件
-            $.datepicker.regional[ "zh-CN" ];
-            $(function(){
-                $( ".datepicker" ).datepicker({
-                    showDay:true,
-                    numberOfMonths:[1,2],
-                    minDate :new Date(),
-                    firstDay:0,
-                    showButtonPanel :true
-                });
+            // 开始日期初始化
+            $( ".startDate" ).datepicker({
+                showDay:true,
+                numberOfMonths:[1,2],
+                firstDay:0,
+                showButtonPanel :true,
+                defaultDate: "-1m"
             });
-            
+
+            // 结束日期初始化
+            $( ".endDate" ).datepicker({
+                showDay:true,
+                numberOfMonths:[1,2],
+                firstDay:0,
+                showButtonPanel :true,
+                defaultDate: "+1m"
+            });          
         });
+
     </script>
 
 
