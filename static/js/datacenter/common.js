@@ -36,6 +36,18 @@ $(function() {
             showButtonPanel: true
         };
 
+        //  Mcd:  current date is max date
+        var dpSettingMcd = {
+            css: {
+                "z-index": 20000
+            },
+            showTomorrow: true,
+            numberOfMonths: [1, 2],
+            maxDate: new Date(),
+            firstDay: 0,
+            showButtonPanel: true
+        }
+
 
         g.dpSetting = dpSetting;
         g.dpSettingUlt = dpSettingUlt;
@@ -51,6 +63,8 @@ $(function() {
                 item.datepicker(dpSettingUlt);
             } else if (item.hasClass("dpShort")) {
                 item.datepicker(dpSettingShort);
+            } else if (item.hasClass("dpMcd")) {
+                item.datepicker(dpSettingMcd);
             } else {
                 item.datepicker(dpSetting);
             }
