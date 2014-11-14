@@ -504,7 +504,7 @@
                     </td>
                     <td>
                         <span class="selectFonts">身份证</span>
-                        <select data-role="dropdownlist" style="width: 95px;" class="selectEdit">
+                        <select style="width: 95px;" class="selectEdit">
                             <option selected="">身份证</option>
                             <option>港澳通行证</option>
                         </select>                    
@@ -541,7 +541,7 @@
                     </td>
                     <td>
                         <span class="selectFonts">港澳通行证</span>
-                        <select data-role="dropdownlist" style="width: 95px;" class="selectEdit">
+                        <select style="width: 95px;" class="selectEdit">
                             <option>身份证</option>
                             <option selected="">港澳通行证</option>
                         </select>
@@ -578,7 +578,7 @@
                     </td>
                     <td>
                         <span class="selectFonts">港澳通行证</span>
-                        <select data-role="dropdownlist" style="width: 95px;" class="selectEdit">
+                        <select style="width: 95px;" class="selectEdit">
                             <option>身份证</option>
                             <option selected="">港澳通行证</option>
                         </select>
@@ -615,7 +615,7 @@
                     </td>
                     <td>
                         <span class="selectFonts">身份证</span>
-                        <select data-role="dropdownlist" style="width: 95px;" class="selectEdit">
+                        <select style="width: 95px;" class="selectEdit">
                             <option selected="">身份证</option>
                             <option>港澳通行证</option>
                         </select>
@@ -652,7 +652,7 @@
                     </td>
                     <td>
                         <span class="selectFonts">身份证</span>
-                        <select data-role="dropdownlist" style="width: 95px;" class="selectEdit">
+                        <select style="width: 95px;" class="selectEdit">
                             <option selected="">身份证</option>
                             <option>港澳通行证</option>
                         </select>
@@ -839,15 +839,15 @@
             offsetY:0,
             offsetX:-2
         });
+
+        $(".selectEdit").kendoDropDownList();
         
         $(".changeBtn .editBtn").click(function(){
             $(".changeBtn .sureAndCancel").show();
             $(this).hide();
             $(this).parents(".departure").find(".traveller td input").addClass("textBorder");
             $(this).parents(".departure").find(".traveller .selectFonts").hide();
-            $(this).parents(".departure").find(".traveller .selectEdit").show();
-            $(".selectEdit").kendoDropDownList();
-            /*kendo.init(".selectEdit");*/
+            $(this).parents(".departure").find(".traveller .k-dropdown.selectEdit").css("display","block");
         });
         $(".changeBtn .sureAndCancel").click(function(){
             $(".changeBtn .editBtn").show();
