@@ -783,7 +783,7 @@
 
                     var arr = [];
                     $(".selectedDateItem").each(function(){
-                        arr.push($(this).find(".topPart span").html());
+                        arr.push($(this).find(".topPart span input").val());
                     });
 
                     array = arr;
@@ -818,7 +818,7 @@
             // 删除日期
             $("body").delegate(".delItem", "click", function(){
                 $(this).parents(".selectedDateItem").remove();
-                array = _.without(array, $(this).parent().children("span").html());
+                array = _.without(array, $(this).parent().find("span input").val());
                 
                 var dateStr = $(this).siblings("span").html();
                 $(".calendar td.dateSelect").each(function(){
