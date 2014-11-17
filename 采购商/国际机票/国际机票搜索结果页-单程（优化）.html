@@ -67,10 +67,10 @@
                   </colgroup>
                   <tr>
                     <td>
-                      <select data-role="dropdownlist" style="width:60px;" name="">
-                         <option>单程</option>
-                         <option>多程</option>
-                         <option>往返</option>
+                      <select class="voyageType" style="width:60px;" name="">
+                         <option value="单程">单程</option>
+                         <option value="多程">多程</option>
+                         <option value="往返">往返</option>
                       </select>
                     </td>
                     <td>出发城市 <input type="text" style="width:80px;"></td>
@@ -83,7 +83,12 @@
                     </td>
                     <td>到达城市 <input type="text" style="width:80px;"></td>
                     <td>出发日期 <input type="text" class="datepicker" style="width:132px;"></td>
-                    <td><span class="disabled_span">返程日期</span> <input type="text" class="datepicker disabled_input" disabled="disabled" style="width:132px;"></td>
+                    <td>
+                      <!--<span class="disabled_span">返程日期</span>
+                      <input type="text" class="datepicker disabled_input" disabled="disabled" style="width:132px;">-->
+                      <span>返程日期</span>
+                      <input type="text" class="datepicker backDate" style="width:132px;">
+                    </td>
                     <td>
                       <a class="adaptiveButton brightRed_btn medium">
                          <span class="left"></span>
@@ -1179,6 +1184,26 @@ $(function(){
           } else {
             $(this).find("b").html("展开舱位");
           }
+      });
+
+      $(".voyageType").kendoDropDownList();
+      var dropdownlist = $("select.voyageType").data("kendoDropDownList");
+
+      // 返程时间不为空时，航线自动选择往返
+      $(".backDate").change(function(){
+        if ($(this).val() != "") {
+          dropdownlist.value("往返");
+        } else {
+          dropdownlist.value("单程");
+        }
+      });
+
+      // 单程选择清掉返程时间
+      $(".voyageType").change(function(){
+        if ($(this).val() == "单程") {
+          $(".backDate").val("");
+          $(".backDate").siblings(".ui-datepicker-daywrapper").html("");
+        }
       });
 
       $(".loadMoreBlock").click(function(){
