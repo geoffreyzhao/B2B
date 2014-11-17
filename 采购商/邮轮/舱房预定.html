@@ -370,7 +370,7 @@
                         <td class="zero-heightRow notBorderCls"></td>
                         <td colspan="11" class="zero-heightRow">
                             <div class="hotelRoom-detail-frame clearfix">
-                                <img class="article-picture" src="../../static/images/store/cruise/seaSightRoom.png"  onload="autoResizeImage(281, 186, this)" >
+                                <img class="article-picture" src="../../static/images/store/cruise/seaSightRoom.png"   >
                                 <div class="article-detail">
                                     <div>
                                         <span class="detail-font1">舱型：海景房-Oceanview Stateroom</span>
@@ -766,12 +766,34 @@
 
 
 <script type="text/javascript">
-    $(function(){
+
+
+    $(window).load(function() {
+        
+
+        var articlePic = $(".article-picture").get(0);
+        autoResizeImage(281, 186, articlePic);
+
         $(".select-hotelStyle-detailBanner-fix").fixedBar();
 
         $("#ac").fixedBar({
-            inverse:true
+                inverse:true
         });
+
+    });
+
+
+    $(function(){
+
+
+        
+
+
+
+
+        // $(".select-hotelStyle-detailBanner-fix").fixedBar();
+
+        
 
             var selectContent = $(".selectCabinStyle-detail");
             var checkbox = $("input[type=checkbox]");
@@ -1128,6 +1150,8 @@ function autoResizeCutImage(maxWidth, maxHeight, objImg){
 
 
 function autoResizeImage(maxWidth, maxHeight, objImg){
+        
+    
     var img = new Image();
     img.src = objImg.src;
     var hRatio;

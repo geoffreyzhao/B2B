@@ -1564,7 +1564,7 @@ $.fn.fixedBar = function(settings){
     }
 
     opts = $.extend(defaults, settings);
-
+    
     if (window.ActiveXObject) {
         window.isIE = window[window.XMLHttpRequest ? 'isIE7' : 'isIE6'] = true;
     }
