@@ -364,7 +364,7 @@
             </table>
         </div>
 
-        <div class="commonModuleStyle passengerInfo">
+        <div class="commonModuleStyle passengerInfo cp_0">
                 <div class="chief travelInfoTitle">
                     <h3>旅客信息</h3>
                     <em class="whiteHint">* 请按照舱房对应入住人填写</em>
@@ -732,7 +732,7 @@
                 </div>
         </div>
 
-        <div class="commonModuleStyle passengerInfo">
+        <div class="commonModuleStyle passengerInfo cp_1">
                 <div class="travelModel clearfix" style="margin-top: 15px;">
                         <div class="leftModel">
                             <div class="aside_orderTopBg"></div>
@@ -991,8 +991,6 @@
 <script>
     $(function(){
 
-        $(".commonModuleStyle .travelInfoTitle").fixedBar();
-        
         $(".gender i").click(function(){
             $(this).addClass("current");
             $(this).siblings().removeClass("current");
@@ -1017,7 +1015,13 @@
         });
 
         // 舱房图片悬停效果
-        // $(".commonModuleStyle.passengerInfo .leftModel").fixedBar();
+        $(".commonModuleStyle.passengerInfo .leftModel").each(function(index){
+            $(this).fixedBar({
+                endAt: ".commonModuleStyle.passengerInfo.cp_" + index,
+                offsetTop: 10,
+                createShadow: false
+            });
+        });
 
     });
 </script>
