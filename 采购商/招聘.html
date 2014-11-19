@@ -554,43 +554,54 @@
         $backToTopFun();
 
         $(".typeTitle").fixedBar();
+
+        var flag = true;
         
         $(".recruitList .list01").click(function(){
+            flag = false;
             $(".typeTitle .business").addClass("current");
             $(".typeTitle .business").siblings().removeClass("current");
         });
         $(".recruitList .list02").click(function(){
+            flag = false;
             $(".typeTitle .product").addClass("current");
             $(".typeTitle .product").siblings().removeClass("current");
         });
         $(".recruitList .list03").click(function(){
+            flag = false;
             $(".typeTitle .UED").addClass("current");
             $(".typeTitle .UED").siblings().removeClass("current");
         });
         $(".recruitList .list04").click(function(){
+            flag = false;
             $(".typeTitle .researchDevelopment").addClass("current");
             $(".typeTitle .researchDevelopment").siblings().removeClass("current");
         });
         
         $(".typeTitle .business").click(function(){
+            flag = false;
             $(this).addClass("current");
             $(this).siblings().removeClass("current");
         });
         $(".typeTitle .product").click(function(){
+            flag = false;
             $(this).addClass("current");
             $(this).siblings().removeClass("current");
         });
         $(".typeTitle .UED").click(function(){
+            flag = false;
             $(this).addClass("current");
             $(this).siblings().removeClass("current");
         });
         $(".typeTitle .researchDevelopment").click(function(){
+            flag = false;
             $(this).addClass("current");
             $(this).siblings().removeClass("current");
         });
 
         // 修正锚点偏移位置
         $(".positionList li").click(function(){
+            flag = false;
             setTimeout(function(){
                 var top = $("body").scrollTop();
                 $("body").scrollTop(top - 200);
@@ -598,40 +609,65 @@
         });
 
         $(".commonTypeStyle").click(function(){
+            flag = false;
             setTimeout(function(){
                 var top = $("body").scrollTop();
                 $("body").scrollTop(top - 200);
             }, 1);
         });
 
-        $(window).scroll(function(){ 
-           scrollAddLiClass();
+        // $(window).scroll(function(){ 
+        //    scrollAddLiClass();
+        // });
+        var a_pos = [];
+
+        $(".typeTitle a").each(function(index){
+            var href= $(this).attr("href");
+            a_pos.push($("a[name=" + href.substring(1) + "]").offset());
+        });
+
+        $(window).bind("scroll",function(e){
+            if(flag){
+                var that = $(".typeTitle");
+                var currentPos = that.offset();
+                var i = 0;
+                for(i = a_pos.length - 1; i >=0 ; i--){
+                    if(currentPos.top >= a_pos[i].top-168){
+                        that.find("li").removeClass('current');
+                        $("li:eq(" + (i) + ")" , that).addClass("current");
+                        return false;
+                    }
+                }
+                that.find("li").removeClass('current');
+                $("li:first" , that).addClass("current");
+            }
+            flag=true;
         });
         
     });
 
     function scrollAddLiClass() {
-        var top = $("body").scrollTop();
+        // var top = $("body").scrollTop();
             
-        if (top > 1505 && top < 2900){
-            $(".typeTitle .business").addClass("current");
-            $(".typeTitle .business").siblings().removeClass("current");
-        };
+        // if (top > 1505 && top < 2900){
+        //     $(".typeTitle .business").addClass("current");
+        //     $(".typeTitle .business").siblings().removeClass("current");
+        // };
 
-        if (top > 2900 && top < 4820){
-            $(".typeTitle .product").addClass("current");
-            $(".typeTitle .product").siblings().removeClass("current");
-        };
+        // if (top > 2900 && top < 4820){
+        //     $(".typeTitle .product").addClass("current");
+        //     $(".typeTitle .product").siblings().removeClass("current");
+        // };
         
-        if (top > 4820 && top < 6480){
-            $(".typeTitle .UED").addClass("current");
-            $(".typeTitle .UED").siblings().removeClass("current");
-        };
+        // if (top > 4820 && top < 6480){
+        //     $(".typeTitle .UED").addClass("current");
+        //     $(".typeTitle .UED").siblings().removeClass("current");
+        // };
         
-        if (top > 6480 && top < 7500){
-            $(".typeTitle .researchDevelopment").addClass("current");
-            $(".typeTitle .researchDevelopment").siblings().removeClass("current");
-        };
+        // if (top > 6480 && top < 7500){
+        //     $(".typeTitle .researchDevelopment").addClass("current");
+        //     $(".typeTitle .researchDevelopment").siblings().removeClass("current");
+        // };
     }
 </script>
 
