@@ -173,7 +173,7 @@
                                 <div class="tourDateBlock" style="display:none;">
                                     <div class="leftDateBlock">
                                         <div class="calendarOperation">
-                                            <div class="calendarMonthLeft"></div>
+                                            <div class="calendarMonthLeft disabled"></div>
                                             <div class="calendarDate cd1"></div>
 
                                         </div>
@@ -668,16 +668,17 @@
              var calendar=$("#calendar01").kendoCalendar({
                 culture:"zh-CN",
                 value:new Date(),
-                footer:false
+                footer:false,
+                min: new Date(),
+                month: {
+                    empty: "<a></a>"
+                }
             }).data("kendoCalendar");
 
             var calendar1=$("#calendar02").kendoCalendar({
                 culture:"zh-CN",
                 value:nextMonthDate,
-                footer:false,
-                month:{
-                    // content:$("#calendarTemplate").html()
-                }
+                footer:false
             }).data("kendoCalendar");
 
             $(".k-other-month a").remove();
@@ -686,6 +687,8 @@
 
             var array = [];
             $(".calendarMonthRight").click(function(){
+                $(".calendarMonthLeft").removeClass("disabled");
+
                 if(!$(this).hasClass("disabled")){
                     toDate=toDate.DateAdd("m",+1);
                     nextMonthDate=nextMonthDate.DateAdd("m",+1);
@@ -701,6 +704,9 @@
             });
 
             $(".calendarMonthLeft").click(function(){
+                if (toDate.toString() == today.toString() && !$(this).hasClass("disabled")) {
+                    $(this).addClass("disabled");
+                }
                 if(!$(this).hasClass("disabled")) {
                     toDate=toDate.DateAdd("m",-1);
                     nextMonthDate=nextMonthDate.DateAdd("m",-1);
