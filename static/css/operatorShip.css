@@ -1516,6 +1516,18 @@ div.addTitleStyle {
     min-width: 130px;
     text-align: center;
 }
+.accountCon .commonSmallBtnStyle{
+    color: #FFFFFF;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    font-size: 14px;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    min-width: 90px;
+    text-align: center;
+}
 .accountCon .orangeBtn{
     background: #ff5a2e;
 }
@@ -3017,3 +3029,837 @@ td.personInfo p {
 .groupManage-table-adjust td{
     white-space: normal;
 }
+
+
+/* 订单详情 start */
+.newOrder{
+    border: 0;
+    position: relative;
+}
+.endorsing{ font-size:17px; color:#f1634c; vertical-align: middle;}
+.order{ color:#636363; border:0; background:#fff;}
+.orderStatus{ padding-bottom: 10px; border: 1px solid #e1e1e1; border-bottom: 0; border-top: 0;}
+.order .newEndorseOrder{ border: 0; background: none; margin: 0;}
+.order .newEndorseOrder .orderNO{ font-size: 16px;}
+.newEndorseOrder .lightGray888{ color: #888888;}
+.newEndorseOrder .lightGray4040{ color: #404040;}
+.endorseOrder th{ font-weight:500; text-align:left; padding:20px 5px 10px;}
+.endorseOrder th:first-child{ padding-left:10px;}
+.endorseOrder td:first-child{ padding-left:12px;}
+.endorseOrder td{ padding:0px 5px 5px; vertical-align: top;}
+.orderNo {position:relative;z-index:2;}
+.orderNO strong{ font-weight:bold;}
+.orderNO .orangeFonts{ 
+    font-weight:bold;
+    color: #ff4200;
+    font-size: 16px;
+}
+
+.newEndorseOrder .relevanceOr_click {
+    padding: 5px 10px 11px 10px;
+    color: #636363;
+    background: #fff;
+    border: 1px solid #52a0e5;
+    border-bottom:none;
+    box-shadow: 1px 1px 10px #e0e3e7;
+    -webkit-box-shadow:1px 1px 10px #e0e3e7;
+    -moz-box-shadow:1px 1px 10px #e0e3e7;
+}
+.newEndorseOrder .relevanceOr_click i{
+    color: #636363;
+}
+.newEndorseOrder .relevanceOr_click em {
+    background: url("../images/store/blackArrowDown.png") no-repeat;
+}
+.relevanceOr_click.relevanceOr:hover{
+    background: #fff;
+}
+.newEndorseOrder .minWidthLabel label{ display: inline-block; min-width: 160px; margin-right: 10px; vertical-align: top;}
+.newReOrder{
+    border: 1px solid #52a0e5;
+    padding:12px;
+    width:375px;
+    color:#404040;
+    background:#ffffff;
+    box-shadow: 1px 1px 10px #e0e3e7;
+    -webkit-box-shadow:1px 1px 10px #e0e3e7;
+    -moz-box-shadow:1px 1px 10px #e0e3e7;
+}
+.minWidthLabel .remarkLabel{
+    width: 340px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.minWidthLabel .remarkFonts{
+    width: 40px;
+    float: left;
+}
+.minWidthLabel .remarkText{
+    width: 300px;
+    float: left;
+}
+.attention,.alreadyAttention{ padding:0 10px; height: 25px; line-height: 25px; display: inline-block; margin-left: 60px; cursor: pointer;}
+.attention{ color: #fff; background: #52a0e5;}
+.attention:hover {
+    background: #67b3f6;
+}
+.alreadyAttention{ background: #fff; border: 1px solid #52a0e5; height: 23px; line-height: 23px;}
+.alreadyAttention:hover {
+    background: #ebf6ff;
+}
+.attention i,.alreadyAttention i{ display: inline-block; vertical-align: middle; margin-right: 5px;}
+.alreadyAttention i{ background: url("../images/store/iconSprite.png") no-repeat -72px 0; width: 14px; height: 9px;}
+.attention i {
+    background: url("../images/store/iconSprite.png") no-repeat -52px 1px;
+    width: 16px;
+    height: 15px;
+    margin-bottom: 4px;
+}
+.newOrderTrace{ background: #f7fbff; border: 1px solid #d9e7f3; margin-top: 0; position: relative;}
+.newOrderTrace .orderArrowUp{
+    background: url("../images/store/iconSprite.png") no-repeat -52px -14px;
+    width: 15px;
+    height: 8px;
+    display: inline-block;
+    position: absolute;
+    top: -8px;
+    right: 7%;
+}
+.traceList{ float: left; width: 89.5%;}
+.traceList li{ float: left; margin-left: 30px; padding: 10px 5px 10px 0; position: relative; border-bottom: 1px dashed #d8e9f9; vertical-align: top;}
+.traceList .orderIcon{ position: absolute; top: 18px; left: -23px; background: url("../images/store/iconSprite.png") no-repeat -72px -14px; width: 7px; height: 7px;}
+.traceList li label{
+    display: inline-block;
+    width: 578px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    /*white-space:nowrap;*/
+    line-height: 22px;
+    vertical-align: top;
+    float: left;
+}
+.traceList .opUser {
+    float: right;
+    color: #888;
+    width: 260px;
+    text-align: right;
+}
+.traceList .orderLine{ display: inline-block; width: 1px; height: 103%; border-left: 1px solid #bed2e4; position: absolute; top: 0; left:-20px;}
+.traceList .orderNoLine{ border: 0; width: 100%;}
+.traceList .orderOrangeFont{ color: #f1634c; font-size: 14px;}
+.flexiBleContent{ display: none;}
+.orderFlexibleType {
+    width: 90px;
+    height: 28px;
+    margin: 0 auto -11px auto;
+    border: 1px solid #dbe8f3;
+    top: -1px;
+    z-index: 2;
+    line-height: 28px;
+    cursor: pointer;
+    background: url(../images/store/downArrowGray.png) no-repeat 75px center #fbfbfb;
+    text-align: center;
+    padding-right: 10px;
+}
+.orderFlexibleType.down {
+    background: url(../images/store/upArrowGray.png) no-repeat 75px center;
+}
+.trace{ width:7%; font-weight:bold; float:left; padding:10px 0 0 10px;}
+
+.departure{ font-family: "microsoft yahei"; height:auto; padding:10px 10px 0 10px; border: 1px solid #e1e1e1; margin:10px 0; color:#636363; background:#fff;}
+.departure .traveller td{ padding:10px 0;}
+.route{ width:100%; margin-top:10px;}
+.route th{ background:#f8f8f8; padding:13px 0; color:#404040;}
+.route th:first-child,
+.route td:first-child,
+.departure .traveller tr td:first-child{
+    padding-left:10px;
+}
+.route a{ text-decoration:none;}
+.route td{
+    border-bottom:1px dotted #e4e4e4;
+    padding: 8px 3px;
+}
+.departure .traveller th{ 
+    font-weight: normal;
+    text-align: left;
+}
+.grayBgTab .traveller .noborder{
+    border: 0;
+    background-color: transparent;
+}
+.grayBgTab{
+    background-color: #eeeeee;
+}
+.grayBgTab .traveller th{
+    background-color: #e2e2e2 !important;
+}
+.grayBgTab .dotted_top,.grayBgTab .dotted_top td{
+    border-top: 1px solid #e4e4e4 !important;
+}
+.noMarginTop {
+    margin-top: 0;
+}
+.route .peopleType{
+    display: inline-block;
+    min-width: 32px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    font-size: 12px;
+    color: #fff;
+    padding: 3px 5px;
+    margin-left: -7px;
+    text-align: center;
+    vertical-align: middle;
+}
+.traveller .blueBg{
+    background-color: #26abf7;
+}
+.traveller .greenBg{
+    background-color: #46ca68;
+}
+.traveller .greenFonts{
+    color: #01b52f;
+}
+.traveller td input[type="text"]{
+    display: inline-block;
+    height: 35px;
+    line-height: 35px;
+    padding-left: 3px;
+}
+.traveller .color333{
+    color: #333333;
+}
+.traveller .color333 input{
+    font-weight: bold;
+    font-size: 14px;
+}
+.traveller td input.textBorder{
+    border: 1px solid #cccccc;
+}
+.traveller .selectEdit{
+    display: none;
+}
+.route .boldFont16 {
+    font-size: 14px;
+    color: #404040;
+}
+.dashed_top,.dashed_top td{
+    border-top:1px dashed #e4e4e4;
+}
+.dotted_top,.dotted_top td{
+    border-top:1px dotted #e4e4e4;
+}
+
+.accountInfoBlock .totlePrice {
+    font-size: 26px;
+    color: #ff7b24;
+    vertical-align:sub;
+    margin-right: 10px;
+    font-family: "Microsoft YaHei";
+}
+.accountCon .typeNumber{
+    margin-right: 3px;
+}
+.accountCon .typeNumber i{
+    font-size: 22px;
+    vertical-align: middle;
+}
+.accountCon .typeNumber em{
+    font-size: 14px;
+}
+.accountCon .fonts12{
+    font-size: 12px;
+    font-family: "Arial";
+}
+.accountCon .whiteFonts{
+    color: #fff;
+    font-size: 12px;
+}
+.accountCon .moneyPosition{
+    position: relative;
+}
+.accountCon .moneyPosition .earnest{
+    position: absolute;
+    bottom: -18px;
+    left: 13%;
+}
+.payDifferentBtn a{
+    margin-right: 5px;
+    font-size: 14px;
+}
+.payDifferentBtn .cancelOrderBtn{
+    color: #FFFFFF;
+}
+.payDifferentBtn .hasBgBtn{
+    display: inline-block;
+    min-width: 75px;
+    padding: 7px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    color: #FFFFFF;
+    text-align: center;
+}
+.payDifferentBtn .blueBg{
+    background-color: #3794d0;
+}
+.payDifferentBtn .blueBg:hover{
+    text-decoration: none;
+    background-color: #36a2e8;
+}
+.payDifferentBtn .orangeBg{
+    background-color: #ff592c;
+}
+.payDifferentBtn .orangeBg:hover{
+    text-decoration: none;
+    background-color: #ff6e3b;
+}
+.topFlowContent{
+    margin: 10px 0;
+}
+.topFlowContent .returnFonts{
+    float: left;
+    font-size: 16px;
+    color: #797979;
+    font-weight: bold;
+    padding: 10px 0 10px 10px;
+    background: url(../images/store/leftarrows.png) no-repeat left center;
+}
+.topFlow{
+    float: right;
+}
+.topFlow li{
+    float: left;
+    min-width: 150px;
+    font-size: 18px;
+    text-align: center;
+    color: #616161;
+    line-height: 40px;
+    margin-left: -10px;
+}
+.topFlow li b{
+    font-weight: bold;
+    font-family: "Century Gothic";
+}
+.topFlow li label{
+    display: inline-block;
+    background: url("../images/store/cruise/smallSpiritPic.png") no-repeat;
+    width: 148px;
+    height: 40px;
+}
+.topFlow li .first{
+    background-position: 0 -46px;
+}
+.topFlow li .middle{
+    background-position: -162px 0;
+}
+.topFlow li .last{
+    background-position: -326px 0;
+}
+.topFlow .current,.topFlow .hasBeen{
+    color: #FFFFFF;
+}
+.topFlow .current .first{
+    background-position: 0 0;
+}
+.topFlow .current .middle{
+    background-position: -162px -46px;
+}
+.topFlow .current .last{
+    background-position: -326px -46px;
+}
+.topFlow .hasBeen .first{
+    background-position: 0 -136px;
+}
+.topFlow .hasBeen .middle{
+    background-position: -162px -136px;
+}
+.topFlow .hasBeen .last{
+    background-position: -326px -136px;
+}
+.traceCondition .color333{
+    float: left;
+    color: #333;
+    margin-right: 10px;
+    display: inline-block;
+}
+.traceCondition .color999{
+    float: left;
+    color: #999;
+    display: inline-block;
+    width: 87%;
+}
+.departure .airLineInfo,.departure .classifyTitle{
+    margin: 15px 0;
+}
+.departure .airLineInfo label{
+    margin-right: 20px;
+    color: #767676;
+    font-size: 14px;
+}
+.departure .airLineInfo .costExplain{
+    color: #2a9ce5;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 30px;
+}
+.departure .classifyTitle label{
+    margin-right: 50px;
+    color: #666666;
+}
+.classifyTitle .differenceColor{
+    color: #FFFFFF;
+    display: inline-block;
+    min-width: 35px;
+    text-align: center;
+    padding: 5px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    vertical-align: middle;
+}
+.classifyTitle .blueBg,.departure .dashedTab .thBlueBg{
+    background-color: #26abf7;
+}
+.classifyTitle .greenBg,.departure .dashedTab .thGreenBg{
+    background-color: #46ca68;
+}
+.classifyTitle .purpleBg{
+    background-color: #9680c7;
+}
+.classifyTitle label .numberFonts{
+    font-size: 26px;
+    vertical-align: middle;
+    margin: 0 5px;
+}
+.classifyTitle label em{
+    vertical-align: middle;
+}
+.departure .dashedTab{
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.dashedTab tbody td,.dashedTab thead th{
+    border: 1px dotted #d0d0d0;
+}
+.departure .dashedTab thead th{
+    padding: 5px 0;
+    text-align: center;
+    background-color: #ececec;
+    font-weight: normal;
+}
+.departure .dashedTab td{
+    padding: 10px 3px 10px 10px;
+}
+.dashedTab .fontWeight26{
+    font-size: 26px;
+}
+.dashedTab .lightGrayBg{
+    background-color: #f8f8f8;
+}
+.departure .dashedTab .thGrayBg{
+    background-color: #d7d7d7;
+}
+.departure .dashedTab .thBlueBg,.departure .dashedTab .thGreenBg{
+    color: #fff;
+}
+.dashedTab .fonts16{
+    font-size: 16px;
+}
+
+.costExplainWindow{
+    font-family: "microsoft yahei";
+}
+.costExplainWindow h3{
+    font-size: 16px;
+    color: #2a9ce5;
+    margin: 10px 0;
+}
+.costExplainWindow .costExplainP{
+    line-height: 22px;
+    margin-bottom: 15px;
+}
+.departure .statusTab{
+    margin-bottom: 10px;
+}
+.statusTab tbody td{
+    font-size: 14px;
+    padding: 5px 5px 2px 5px;
+    border: 0;
+}
+.statusTab td input[type="text"]{
+    padding-left: 3px;
+    height: 30px;
+    line-height: 30px;
+}
+.hasBorder .minWidth{
+    display: inline-block;
+    min-width: 110px;
+    text-align: left;
+}
+.hasBorder thead th{
+    font-size: 16px;
+    font-weight: normal;
+    color: #333333;
+    background-color: #ececec;
+    border: 1px solid #e2e3e5 !important;
+}
+.hasBorder tbody td{
+    text-align: center;
+    background-color: #f8f8f8;
+    border: 1px solid #e2e3e5;
+}
+.statusTab .orangeFonts{
+    color: #f7572c;
+    font-size: 18px;
+}
+.statusTab .orangeFonts b,.statusTab .greenFonts b{
+    font-weight: bold;
+}
+.statusTab .greenFonts{
+    color: #33cc33;
+    font-size: 18px;
+}
+.traveller .orangeFonts{
+    color: #ef4423;
+}
+.traveller .boldFont12{
+    font-size: 12px;
+    font-weight: bold;
+}
+.traveller .fonts14{
+    font-size: 14px;
+}
+.traveller .fonts18{
+     font-size: 18px;
+ }
+.traveller .color999{
+    color: #999999;
+}
+.statusTab .fonts16{
+    color: #333333;
+    font-size: 16px;
+}
+.chief .changeBtn{
+    position: absolute;
+    right: 0;
+    top: -3px;
+}
+.changeBtn .commonBtnBg{
+    display: inline-block;
+    min-width: 70px;
+    padding: 3px 5px;
+    border: 1px solid #2792d6;
+    cursor: pointer;
+}
+.changeBtn .blueBg{
+    background-color: #2792d6;
+    color: #fff;
+}
+.changeBtn .cancelBtn{
+    background-color: #fff;
+    color: #2792d6;
+}
+.changeBtn .blueBg:hover,.changeBtn .cancelBtn:hover{
+    background-color: #36a2e8;
+    border: 1px solid #36a2e8;
+    color: #FFFFFF;
+}
+.changeBtn .sureAndCancel{
+    display: none;
+}
+.chief {
+    border-bottom: 1px solid #e1e1e1;
+    position: relative;
+}
+.chief h3 {
+    width: 10%;
+    font-size: 16px;
+    font-weight: bold;
+    color: #f1634c;
+    border-bottom: 1px solid #f1634c;
+    padding: 0 0 5px 5px;
+    margin-bottom: -1px;
+}
+.productTitle{
+    margin: 15px 0;
+}
+.productTitle b{
+    color: #1673c4;
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+/*layer Gray*/
+.changeLayerGrayBlock {
+    border:3px solid #e2e2e2;
+    background:#fff;
+}
+.changeLayerGrayContainer {
+    border:1px solid #a8a8a8;
+    padding:5px 12px;
+    color:#636363;
+    position:relative;
+}
+.k-tooltip-dir-n .changeLayerGrayArrow,
+.shadow_box .k-callout-n{
+    /*TOP arrow*/
+    position:absolute;
+    top:-5px;
+    left:50%;
+    background:url(../images/store/layerGrayArrow.png) no-repeat 0 0;
+    width:9px;
+    height:5px;
+}
+.k-tooltip-dir-s .changeLayerGrayArrow,
+.shadow_box .k-callout-s{
+    /*BOTTOM arrow*/
+    position:absolute;
+    bottom:-5px;
+    left:50%;
+    background:url(../images/store/layerGrayArrow.png) no-repeat 0 -6px;
+    width:9px;
+    height:5px;
+}.shadow_box .k-callout-n{/*TOP arrow*/
+     margin-top:1px;
+ }
+.shadow_box .k-callout-s{/*BOTTOM arrow*/
+    margin-bottom:1px;
+}
+.shadow_box .k-loading-image{
+    height: 40px;
+    width: 40px;
+    left:50%;
+    margin-left:-20px;
+    background: url(../images/store/mini_loading.gif) no-repeat 50% 50%;
+}
+.shadow_box .k-loading-mask{
+    background:#fff;
+    border:1px solid #a8a8a8;
+}
+
+/* layer Gray 结束 */
+
+.recordList li{ margin-left: 30px; padding: 10px 5px 10px 0; position: relative; border-bottom: 1px dashed #d8e9f9; vertical-align: top;}
+.recordList .orderIcon{ position: absolute; top: 18px; left: -23px; background: url("../images/store/cruise/smallSpiritPic.png") no-repeat -87px -111px; width: 10px; height: 10px;}
+.recordList .orderLine{ display: inline-block; width: 1px; height: 103%; border-left: 1px solid #ade0f1; position: absolute; top: 0; left:-18.5px;}
+.recordList,.recordList li,.recordList li label{
+    float: none;
+}
+.recordList{
+    width: auto;
+    margin: 10px 0;
+    padding-bottom: 5px;
+}
+.recordList li{
+    border-bottom: 0;
+    padding: 10px 5px 5px 0;
+}
+.recordList li label{
+    width: auto;
+}
+.recordList .orderIcon{
+    top: 15px;
+}
+.recordList .fonts18{
+    font-size: 18px;
+}
+.recordList .greenFonts{
+    color: #33cc33;
+}
+.recordList .orangeFonts{
+    color: #f7572c;
+}
+.recordList .orderLine{
+    height: 88%;
+}
+.informText{
+    margin: 25px;
+    font-size: 14px;
+}
+.informText .textIcon{
+    width: 20px;
+    height: 24px;
+    display: inline-block;
+    background: url("../images/store/cruise/smallSpiritPic.png") no-repeat -111px -92px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+.informText .blueBigBtn{
+    width: 140px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    display: inline-block;
+    background-color: #3794d0;
+    color: #fff;
+    font-size: 16px;
+    margin-left: 20px;
+}
+.informText .blueBigBtn:hover{
+    background-color: #36a2e8;
+    color: #fff;
+    text-decoration: none;
+}
+.departure .tabTitle{
+    margin: 5px 10px 7px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #333333;
+}
+.departure .noBorderTab th{
+    color: #333;
+    padding: 5px;
+}
+.departure .noBorderTab{
+    margin-bottom: 10px;
+}
+.departure .noBorderTab td{
+    color: #666666;
+    padding: 5px;
+}
+.departure .noBorderTab .orangeFonts{
+    color: #ff6600;
+}
+.noBorderTab .textareaText{
+    display: inline-block;
+    width: 285px;
+    height: 65px;
+    padding: 5px;
+}
+.textAlignBtn{
+    text-align: center;
+    margin-top: 20px;
+}
+.textAlignBtn button{
+    font-size: 14px;
+    font-weight: bold;
+}
+.textAlignBtn .disable{
+    color: #505050;
+    margin-left: 5px;
+}
+.importText textarea{
+    display: inline-block;
+    width: 400px;
+    height: 110px;
+    padding: 5px;
+}
+.priceAdjustmentContent{
+    position: relative;
+}
+.priceAdjustmentContent .modelLine{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    display: inline-block;
+    width: 1px;
+    height: 97%;
+    border-left: 1px solid #e0e0e0;
+}
+.priceAdjustmentContent .priceAdjustmentTab{
+    float: left;
+    color: #666666;
+}
+.priceAdjustmentContent .priceAdjustmentTab td{
+    padding: 5px 3px;
+}
+.priceAdjustmentContent .priceAdjustmentTab th{
+    padding: 5px 3px;
+    text-align: right;
+    font-weight: normal;
+}
+.priceAdjustmentContent .priceAdjustmentTab input[type="text"]{
+    height: 25px;
+    line-height: 25px;
+    padding-left: 5px;
+}
+.priceAdjustmentTab .orangeFonts{
+    color: #ff6600;
+}
+.priceAdjustmentTab .boldFonts16{
+    font-size: 16px;
+    font-weight: bold;
+}
+.priceAdjustmentTab .textareaContent textarea{
+    width: 240px;
+    height: 90px;
+    padding: 5px;
+}
+
+/*  订单详情线型流程样式  */
+.flat-list{
+    float: right;
+}
+.leftSpaceLimit{
+    margin-left: 30px;
+}
+.leftSpaceLimit .instr{
+    overflow:hidden;
+}
+.leftSpaceLimit .instr span{
+    position:relative;
+    z-index:1;
+    padding-top:25px;
+    display:block;
+    float:left;
+    background:url(../images/operator/whiteDottedGrayBorder.png) 50% 6px no-repeat;
+    margin-right:10px;
+    color: #666;
+}
+.leftSpaceLimit .instr span.highlight {
+    background-position: 50% 6px;
+    background-image: url(../images/operator/grayDotted.png);
+    color: #666666;
+}
+.leftSpaceLimit .instr span.highlight-fl{
+    background-image:url(../images/operator/blueDotted.png);
+    background-position:50% 18%;
+    color:#37bbe3;
+}
+.leftSpaceLimit .instr{
+    position:relative;
+}
+.leftSpaceLimit .instr .line{
+    position:absolute;
+    display:block;
+    width:100%;
+    left:10px;
+    height:1px;
+    background: none;
+    border-top: 2px dotted #c2c2c2;
+    top:11px;
+    z-index:0;
+}
+.leftSpaceLimit .instr .line div{
+    position: absolute;
+    top: -2px;
+    width: 1px;
+    border-top: 2px solid #c2c2c2;
+    background: none;
+    height:1px;    
+}
+/*footer*/
+footer.main-footer {
+    color: #969696;
+    background-color: #EAEAEA;
+    border-top: 1px solid #CACACA;
+}
+.main-footer center {
+    margin-top: 20px;
+}
+.copyright {
+    padding-bottom: 20px;
+}
+.main-footer a {
+    color: inherit;
+}
+.main-footer .bar {
+    margin: 0 5px;
+}
+
+/* 订单详情  end */
