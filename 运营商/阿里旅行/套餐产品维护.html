@@ -76,7 +76,7 @@
           
             <div class="actions block">
                 <div class="col col-r sep-l">
-                    <a href="javascript:;" class="button_secondary adaptiveButton small bookSuccessOper">
+                    <a href="javascript:;" class="button_secondary adaptiveButton small addSetMenuOper">
                         <span class="left"></span>
                         <span class="center">新增套餐</span>
                         <span class="right"></span>
@@ -174,43 +174,49 @@
     
     <!-- 添加套餐模板 -->
     <script type="text/x-kendo-template" id="addSetMenuTemplate">
-        <div class="add-passenger-container">
-            <table class="add-passenger-table">
-                <tr>
-                    <th>套餐名称：</td>
-                    <td><input type="text" style="width:150px;"></td>
-                </tr>
-                <tr>
-                    <th>套餐金额：</td>
-                    <td><input type="text" style="width:230px;"></td>
-                </tr>
-                <tr>
-                    <th>类型：</td>
-                    <td>
-                        <label><input type="radio">国内</label>
-                        <label><input type="radio">国际</label>
-                    </td>
-                </tr>
-                <tr>
-                    <th>描述：</td>
-                    <td>
-                        <textarea></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="text-align:center;">
-                        <a class="large_button button_2_1">
-                            <span class="left"></span>
-                            <span class="center">确 定</span>
-                            <span class="right"></span>
-                        </a>
-                        <a class="large_button button_2_2">
-                            <span class="left"></span>
-                            <span class="center">取 消</span>
-                            <span class="right"></span>
-                        </a>
-                    </td>
-                </tr>
+        <div class="add-setMenu-container">
+            <table class="add-setMenu-table">
+                <colgroup>
+                    <col width="75"/>
+                    <col width="400"/>
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <th>套餐名称：</td>
+                        <td><input type="text" style="width:230px;"></td>
+                    </tr>
+                    <tr>
+                        <th>套餐金额：</td>
+                        <td><input type="text" style="width:230px;"></td>
+                    </tr>
+                    <tr>
+                        <th>类型：</td>
+                        <td class="setMenu-type">
+                            <label><input type="radio">国内</label>
+                            <label><input type="radio">国际</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="vertical-align: top;">描述：</td>
+                        <td>
+                            <textarea></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:center;">
+                            <a class="large_button button_2_1">
+                                <span class="left"></span>
+                                <span class="center">确 定</span>
+                                <span class="right"></span>
+                            </a>
+                            <a class="large_button button_2_2">
+                                <span class="left"></span>
+                                <span class="center">取 消</span>
+                                <span class="right"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </script>
@@ -220,10 +226,10 @@
         $(".actions block").fixedBar();
 
         // 添加出行人
-        var addPassengerWin = new PopWindow('.addPassengerOper', {
-            title:'添加出行人',
-            template:'#addPassengerTemplate',
-            width:450,
+        var addSetMenuWin = new PopWindow('.addSetMenuOper', {
+            title:'新增套餐',
+            template:'#addSetMenuTemplate',
+            width:650,
             modal:true
         }).init();
 
