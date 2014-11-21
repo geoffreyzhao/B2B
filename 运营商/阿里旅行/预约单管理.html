@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>运营商 阿里旅行 预约单管理</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />    
+    <link href="/static/css/operatorCommonHeader.css" rel="stylesheet">
+    <link href="/static/css/operatorShip.css" rel="stylesheet" type="text/css"/>
+
+    <script src="/static/js/jquery.min.js" type="text/javascript"></script>    
+    <script src="/static/js/kendo.web.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/scrollFix.js"></script>
+    <script type="text/javascript" src="/static/js/public.js"></script>
+    <script type="text/javascript" src="/static/js/flight.js"></script>
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+    
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/static/css/ie.css" />
+    <script src="/static/js/vendor/IE7.min.js"></script>
+    <![endif]-->
+    
+    <style type="text/css">
+        .lineWeight {
+            box-shadow:none;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div id="extHeader">
+        <div></div>
+    </div> -->
+
+
+    <div id="head">
+        <div></div>
+    </div>
+
+    <div id="catalogue"></div>
+
+    <div id="container" style="width: 980px;">
+        <div class="logo">
+            <div class="clearfix">
+                <h1></h1>
+                <div class="profile">
+                    <a href="javascript:void(0)">你好,千颂伊</a>
+                    <a href="javascript:void(0)">退出</a>
+                </div>
+            </div>
+            <ul id="catalogue_menu">
+                <li class="">
+                    <a href="javascript:void(0)">国内机票</a>                    
+                </li>
+                <li><a href="javascript:void(0)">国际机票</a></li>
+                <li><a href="javascript:void(0)">酒店</a></li>
+                <li><a href="javascript:void(0)">打包产品</a></li>
+                <li><a href="javascript:void(0)">旅游</a></li>
+                <li class="current">
+                    <a href="javascript:void(0)">邮轮</a>
+                    <ol class="subMenu">
+                        <li class="currentSubMenu"><a href="javascript:void(0)">基础模块维护</a></li>
+                        <li><a href="javascript:void(0)">航线审核</a></li>
+                        <li><a href="javascript:void(0)">航线售卖管理</a></li>
+                        <li><a href="javascript:void(0)">团管理</a></li>
+                    </ol>
+                </li>
+                <li><a href="javascript:void(0)">签证</a></li>
+                <li><a href="javascript:void(0)">保险</a></li>
+                <li><a href="javascript:void(0)">短信</a></li>
+                <li><a href="javascript:void(0)">通用订单</a></li>
+                <li><a href="javascript:void(0)">票证</a></li>
+                <li><a href="javascript:void(0)">财务</a></li>
+                <li><a href="javascript:void(0)">客户</a></li>
+                <li><a href="javascript:void(0)">设置</a></li>
+            </ul>
+            <div class="headerMessage clearfix">
+                <div id="msgNum">
+                    <span>消息</span>
+                    <em>30</em>
+                </div>
+            </div>
+        </div>
+        <div style="overflow:hidden;" id="mainContent">
+            <!-- start content -->
+            <div class="topFixedToolsBar">
+                <!--<div class="commonReturnBtn">
+                    <a href="#">返回</a>
+                </div>-->
+                <div class="fixedMenu">
+                    <a href="#">邮轮公司</a>
+                    <a href="#">邮轮船只</a>
+                    <a href="#">地区</a>
+                    <a href="#">港口</a>
+                    <a href="#">规则</a>
+                    <a class="current" href="#">签证</a>
+                    <a href="#">标签</a>
+                </div>
+                <div class="fixedButton">
+                    <a class="button_secondary adaptiveButton small" href="javascript:void(0);">
+                        <span class="left"></span>
+                        <span class="center">+ 新 增</span>
+                        <span class="right"></span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="basicBlockRule">
+                <table>
+                    <colgroup>
+                        <col width="80">
+                        <col width="238">
+                        <col width="640">
+                        
+                    </colgroup>
+                    <tbody><tr>
+                        <th>签证名称:</th>
+                        <td>
+                            <input type="text" placeholder="" class="ruleName">
+                        </td>
+                        <td>
+                            <a class="button_important adaptiveButton medium" href="javascript:;">
+                                <span class="left"></span>
+                                <span style="padding:0 25px;" class="center">查 询</span>
+                                <span class="right"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody></table>
+            </div>
+
+            <table class="tgrid tbFixed basicModel-shipCompanyList">
+                <colgroup>
+                    <col width="198">
+                    <col width="594">
+                    <col width="198">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th class="line_left">签证名称</th>
+                    <th>简介</th>
+                    <th class="line_right">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="left">美国签证</td>
+                    <td class="left">适用航线：北美及阿拉斯加，夏威夷航线，环球航线，北美及阿拉私家，适用航线：北美及阿拉斯加，夏威夷航线，环球航线，</td>
+                    <td style="text-align: left">
+                        <div>
+                            <p>
+                                <a href="javascript:void(0);">编辑</a>
+                                <a href="javascript:void(0);">详情</a>
+                                <a href="javascript:void(0);">删除</a>
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="left">美国签证</td>
+                    <td class="left">适用航线：北美及阿拉斯加，夏威夷航线，环球航线，北美及阿拉私家，夏……</td>
+                    <td style="text-align: left">
+                        <div>
+                            <p>
+                                <a href="javascript:void(0);">编辑</a>
+                                <a href="javascript:void(0);">详情</a>
+                                <a href="javascript:void(0);">删除</a>
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="left">美国签证</td>
+                    <td class="left">适用航线：北美及阿拉斯加，夏威夷航线，环球航线，北美及阿拉私家，夏……</td>
+                    <td style="text-align: left">
+                        <div>
+                            <p>
+                                <a href="javascript:void(0);">编辑</a>
+                                <a href="javascript:void(0);">详情</a>
+                                <a href="javascript:void(0);">删除</a>
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="left">美国签证</td>
+                    <td class="left">适用航线：北美及阿拉斯加，夏威夷航线，环球航线，北美及阿拉私家，夏……</td>
+                    <td style="text-align: left">
+                        <div>
+                            <p>
+                                <a href="javascript:void(0);">编辑</a>
+                                <a href="javascript:void(0);">详情</a>
+                                <a href="javascript:void(0);">删除</a>
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="left">美国签证</td>
+                    <td class="left">适用航线：北美及阿拉斯加，夏威夷航线，环球航线，北美及阿拉私家，夏……</td>
+                    <td style="text-align: left">
+                        <div>
+                            <p>
+                                <a href="javascript:void(0);">编辑</a>
+                                <a href="javascript:void(0);">详情</a>
+                                <a href="javascript:void(0);">删除</a>
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="grid-table-pagination page">
+                  <span class="grid-table-count">
+                      共 <em>132</em> 条记录
+                  </span>
+                  <span>
+                      <a class="prev" href="#">&nbsp;</a>
+                  </span>
+                  <span class="links">
+                      <a href="#">1</a>
+                      <a href="#">2</a>
+                      <a class="current" href="#">3</a>
+                      <a href="#">4</a>
+                      <a href="#">5</a>
+                      <a href="javascript:;">...</a>
+                      <a href="#">50</a>
+                  </span>
+                  <span>
+                      <a class="next" href="#">&nbsp;</a>
+                  </span>
+            </div>
+
+            <!-- end content-->
+        </div>
+    </div>
+
+
+    
+    <div id="extFooter">
+        <div>
+            <p>
+                <a href="javascript:void(0);">关于我们</a>&nbsp;|
+                <a href="javascript:void(0);">微博</a>&nbsp;|
+                <a href="javascript:void(0);">服务条款</a>&nbsp;|
+                <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+    
+    <script type="text/html" id="delShipCompanyTemplate">
+        <div>
+            <div class="templateTipsText">
+               <i class="tipsIcon"></i>确定要删除该船只吗?
+            </div>
+            <div class="templateBtnBlock clearfix ">
+                <div class="rightOperationA">
+                    <a class="large_button button_2_1">
+                        <span class="left"></span>
+                        <span class="center">确 定</span>
+                        <span class="right"></span>
+                    </a>
+                    <a class="large_button button_2_2">
+                        <span class="left"></span>
+                        <span class="center">取 消</span>
+                        <span class="right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </script>
+ 
+
+<script>
+    $(function(){
+        //多行文本格式化
+        /*$(".ship-reasonText").each(function(){
+            var characterWidth=100;
+            if($(this).text().length>characterWidth){
+                $(this).text($(this).text().substring(0,characterWidth));
+                $(this).html($(this).html()+"…");
+            }
+        });*/
+
+       /* $(".ship-reasonText").each(function(){
+            var divH = $(this).height();
+            var $p = $("p", $(this)).eq(0);
+            while ($p.outerHeight() > divH) {
+                $p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
+            };
+        });*/
+        
+        var ac_window = new PopWindow('.delShipCompany',{
+            title:'提示',
+            width:'380',
+            template:'#delShipCompanyTemplate'
+        }).init();
+
+       
+
+        $(".topFixedToolsBar").fixedBar();
+    })
+</script>
+
+ 
+</body>
+</html>
