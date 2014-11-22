@@ -263,7 +263,7 @@
                     <table class="trip-passenger-table">
                         <colgroup>
                             <col width="170"/>
-                            <col width="380"/>
+                            <col width="420"/>
                             <col width="180"/>
                             <col width="150"/>
                         </colgroup>
@@ -393,7 +393,7 @@
                     <th>姓名/拼音：</td>
                     <td>
                         <input type="text" style="width:230px;">
-                        <span>例：张三/SAN ZHANG</span>
+                        <span class="grayFont">例：张三/SAN ZHANG</span>
                     </td>
                 </tr>
                 <tr>
@@ -495,6 +495,21 @@
         </div>
      </script>
 
+     <!--  查看证件照模板  -->
+     <script type="text/x-kendo-template" id="passportImgTemplate">
+        <div class="passportImgContainer">
+            <i class="grayBorderUpArrow"></i>
+            <img src="../../static/images/operator/passportImg.jpg"/>
+        </div>
+     </script>
+
+     <!--  查看套餐详情模板  -->
+     <script type="text/x-kendo-template" id="setMenuDetailTemplate">
+        <div class="setMenuContainer">
+            <i class="grayBorderUpArrow"></i>
+            <div class="setMenuContent">这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情</div>
+        </div>
+     </script>
 
 <script>
     $(function(){
@@ -526,8 +541,31 @@
             modal:true
         }).init();
 
+        // 查看证件照弹框
+        $(".passport-detail").kendoTooltip({
+            position:"bottom",
+            wrapperClass:"resetGap",
+            content:function(){
+                return $("#passportImgTemplate").html();
+            },
+            callout:false,
+            offsetY:6,
+            offsetX:75,
+            width:350
+        });
 
-
+        //  套餐详情弹框
+        $(".set-menu-detail").kendoTooltip({
+            position:"bottom",
+            wrapperClass: "smdTipBorder",
+            content:function(){
+                return $("#setMenuDetailTemplate").html();
+            },
+            callout:false,
+            offsetY:6,
+            offsetX:80,
+            width:350
+        });
 
     })
 </script>

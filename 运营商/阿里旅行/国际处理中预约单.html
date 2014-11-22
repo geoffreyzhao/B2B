@@ -105,6 +105,7 @@
                 <div class="set-menu-info">
                     <span class="sm-name">套餐名称：<em>多地出发香港4天3晚自由行多地出发香港4天3晚自由行</em></span>
                     <span class="sm-price">套餐金额：<strong>￥1999</strong></span>
+                    <span class="set-menu-detail" style="vertical-align:top;">套餐详情</span>
                     <span class="sm-status">状态：<strong>处理中</strong></span>
                 </div>
                 <div class="book-remark">
@@ -221,22 +222,38 @@
                     </span> 
                 </div>
                 <div class="sub-info trip-info">
-                    <span>
-                        <b class="info-title">出行人数</b>
-                        <input value="3" readonly="readonly" style="width:30px;">人
-                    </span>
-                    <span>
-                        <b class="info-title">出发城市</b>
-                        <input type="text" value="上海" readonly="readonly" style="width:100px;">
-                    </span>
-                    <span>
-                        <b class="info-title">到达城市</b>
-                        <input type="text" value="深圳" readonly="readonly" style="width:100px;">
-                    </span>
-                    <span>
-                        <b class="info-title">出发日期</b>
-                        <input type="text" class="datepicker" value="2014-11-12" readonly="readonly" style="width:120px;">
-                    </span>
+                    <table class="trip-info-table">
+                        <colgroup>
+                            <col width="68">
+                            <col width="100">
+                            <col width="90">
+                            <col width="120">
+                            <col width="68">
+                            <col width="140">
+                            <col width="90">
+                            <col width="120">
+                        </colgroup>
+                        <tr>
+                            <th>出行人数：</th>
+                            <td><input type="text" value="4" readonly="readonly" style="width:60px;"></td>
+                            <th>国内出发城市：</th>
+                            <td><input type="text" value="上海" readonly="readonly" style="width:100px;"></td>
+                            <th>出发日期：</th>
+                            <td><input type="text" value="2014-12-20" readonly="readonly" class="datepicker" style="width:120px;"></td>
+                            <th>境外到达城市：</th>
+                            <td><input type="text" value="巴黎" readonly="readonly" style="width:100px;"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <th>境外出发城市：</th>
+                            <td><input type="text" value="巴黎" readonly="readonly" style="width:100px;"></td>
+                            <th>返回日期：</th>
+                            <td><input type="text" value="2014-12-28" readonly="readonly" class="datepicker" style="width:120px;"></td>
+                            <th>国内到达城市：</th>
+                            <td><input type="text" value="上海" readonly="readonly" style="width:100px;"></td>
+                        </tr>
+                    </table>
                 </div>
                 <div class="trip-passenger-info">
                     <div class="table-top-head">
@@ -250,40 +267,40 @@
                     <table class="trip-passenger-table">
                         <colgroup>
                             <col width="170"/>
-                            <col width="280"/>
-                            <col width="280"/>
-                            <col width="190"/>
+                            <col width="420"/>
+                            <col width="180"/>
+                            <col width="150"/>
                         </colgroup>
                         <thead>
                             <tr>
-                                <th>姓名</th>
-                                <th>身份证号</th>
+                                <th>姓名/拼音</th>
+                                <th>护照号</th>
                                 <th>乘机人手机号</th>
                                 <th>操作</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>马晓慧</td>
-                                <td>320121198804522587</td>
+                                <td>马晓慧/XIAOHUI MA</td>
+                                <td>320121198804522587
+                                    <span class="passport-detail">查看证件</span>
+                                </td>
                                 <td>1359864523</td>
                                 <td><a href="javascript:void(0);" class="delPsgOper">删除</a></td>
                             </tr>
                             <tr>
-                                <td>马晓慧</td>
-                                <td>320121198804522587</td>
+                                <td>马晓慧/XIAOHUI MA</td>
+                                <td>320121198804522587
+                                    <span class="passport-detail">查看证件</span>
+                                </td>
                                 <td>1359864523</td>
                                 <td><a href="javascript:void(0);" class="delPsgOper">删除</a></td>
                             </tr>
                             <tr>
-                                <td>马晓慧</td>
-                                <td>320121198804522587</td>
-                                <td>1359864523</td>
-                                <td><a href="javascript:void(0);" class="delPsgOper">删除</a></td>
-                            </tr>
-                            <tr>
-                                <td>马晓慧</td>
-                                <td>320121198804522587</td>
+                                <td>马晓慧/XIAOHUI MA</td>
+                                <td>320121198804522587
+                                    <span class="passport-detail">查看证件</span>
+                                </td>
                                 <td>1359864523</td>
                                 <td><a href="javascript:void(0);" class="delPsgOper">删除</a></td>
                             </tr>
@@ -537,16 +554,29 @@
         <div class="add-passenger-container">
             <table class="add-passenger-table">
                 <tr>
-                    <th>出行人姓名：</td>
-                    <td><input type="text" style="width:150px;"></td>
+                    <th>姓名/拼音：</td>
+                    <td>
+                        <input type="text" style="width:230px;">
+                        <span class="grayFont">例：张三/SAN ZHANG</span>
+                    </td>
                 </tr>
                 <tr>
-                    <th>身份证号码：</td>
+                    <th>护照：</td>
                     <td><input type="text" style="width:230px;"></td>
                 </tr>
                 <tr>
                     <th>手机号：</td>
                     <td><input type="text" style="width:230px;"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <span class="uploadPassportImgBtn">上传证件照片</span>
+                        <span class="uploadPassportImgBtn">重新上传</span>
+                        <div>
+                            <img style="width:200px;height:120px;"/>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2" style="text-align:center;">
@@ -853,6 +883,22 @@
         </div>
      </script>
 
+     <!--  查看证件照模板  -->
+     <script type="text/x-kendo-template" id="passportImgTemplate">
+        <div class="passportImgContainer">
+            <i class="grayBorderUpArrow"></i>
+            <img src="../../static/images/operator/passportImg.jpg"/>
+        </div>
+     </script>
+
+     <!--  查看套餐详情模板  -->
+     <script type="text/x-kendo-template" id="setMenuDetailTemplate">
+        <div class="setMenuContainer">
+            <i class="grayBorderUpArrow"></i>
+            <div class="setMenuContent">这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情这里是套餐详情</div>
+        </div>
+     </script>
+
 <script>
     $(function(){
         $(".actions.block").fixedBar();
@@ -861,7 +907,7 @@
         var addPassengerWin = new PopWindow('.addPassengerOper', {
             title:'添加出行人',
             template:'#addPassengerTemplate',
-            width:450,
+            width:550,
             modal:true
         }).init();
 
@@ -948,6 +994,32 @@
             $(".saveTripInfoOper").hide();
             $(".editTripInfoOper").show();
             $(".trip-info input").attr("readonly", "readonly");
+        });
+
+        // 查看证件照弹框
+        $(".passport-detail").kendoTooltip({
+            position:"bottom",
+            wrapperClass:"resetGap",
+            content:function(){
+                return $("#passportImgTemplate").html();
+            },
+            callout:false,
+            offsetY:6,
+            offsetX:75,
+            width:350
+        });
+
+        //  套餐详情弹框
+        $(".set-menu-detail").kendoTooltip({
+            position:"bottom",
+            wrapperClass: "smdTipBorder",
+            content:function(){
+                return $("#setMenuDetailTemplate").html();
+            },
+            callout:false,
+            offsetY:6,
+            offsetX:80,
+            width:350
         });
 
     })
