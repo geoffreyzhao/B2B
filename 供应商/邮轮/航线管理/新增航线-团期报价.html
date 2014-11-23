@@ -23,6 +23,7 @@
     <script type="text/javascript" src="/static/js/flight.js"></script>
     <script type="text/javascript" src="/static/js/jquery-ui-1.10.3.custom.js"></script>
     <script type="text/javascript" src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+    <script type="text/javascript" src="/static/js/DateControl.js"></script>
     <script type="text/javascript" src="/static/js/supplier/supplier_travel.js"></script>
    
     <!--[if IE]>
@@ -681,7 +682,7 @@
                 numberOfMonths:[1,2],
                 firstDay:0,
                 showButtonPanel :true,
-                defaultDate: "-1m"
+                defaultDate: getPrevDate()
             });
 
             // 结束日期初始化
@@ -690,50 +691,94 @@
                 numberOfMonths:[1,2],
                 firstDay:0,
                 showButtonPanel :true,
-                defaultDate: "+1m"
-            });          
+                defaultDate: getNextDate()
+            }); 
+
+            // 初始化日期，现实在文本框内
+            $(".startDate").val(getPrevDate().Format("yyyy-MM-dd"));
+            $(".startDate").siblings(".ui-datepicker-daywrapper").html(getWeekday(getPrevDate()));
+
+            $(".endDate").val(getNextDate().Format("yyyy-MM-dd"));         
+            $(".endDate").siblings(".ui-datepicker-daywrapper").html(getWeekday(getNextDate()));
+            
         });
 
-        function setPrevOrNextMonth() {
-            var currentDate = new Date(2015,0,31);
-            var temVar = currentDate;
-            var prevDate = new Date(temVar.setMonth(currentDate.getMonth() - 1));
-            console.log(temVar);
-            var nextDate = new Date(temVar.setMonth(currentDate.getMonth() + 1));
-            console.log(currentDate);
-            console.log(prevDate);
-            console.log(nextDate);
-            console.log(currentDate.getMonth() + 1);
-            console.log(prevDate.getMonth() + 1);
-            console.log(nextDate.getMonth() + 1);
-            console.log(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate());
-            console.log(new Date(prevDate.getFullYear(), prevDate.getMonth() + 1, 0).getDate());
-            console.log(new Date(nextDate.getFullYear(), nextDate.getMonth() + 1, 0).getDate());
+        // 当前日期比上月或下月总天数大，这样会导致跨月情况出现
+        // 如果是上述的情况，将日期置为上一月或下一月月末的日期
+        // 如果当前月份是1月或者是12月 还要考虑跨年的情况
 
-            var currentMonth = currentDate.getMonth() + 1;
-            var prevMonth = prevDate.getMonth() + 1;
-            var nextMonth = nextDate.getMonth() + 1;
+        function getPrevDate() {
+            var current = new Date();
 
-            var currentMonthDays = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
-            var prevMonthDays = new Date(prevDate.getFullYear(), prevDate.getMonth() + 1, 0).getDate();
-            var nextMonthDays = new Date(nextDate.getFullYear(), nextDate.getMonth() + 1, 0).getDate();
+            var currentYear = current.getFullYear();
+            var currentMonth = current.getMonth();
+            var currentDate = current.getDate();
 
-            var currentDay = currentDate.getDate();
+            var prevDate;
 
-            if (currentDay > prevMonthDays) {
-                prevDate.setDate(prevMonthDays);
+            if (currentMonth == 0) {
+                prevDate = new Date(currentYear - 1, 11, currentDate);
             } else {
-                prevDate.setDate(currentDay);
+                var prevMonthDays = new Date(currentYear, currentMonth, 0).getDate();
+
+                if (currentDate > prevMonthDays) {
+                    prevDate = new Date(currentYear, currentMonth - 1, prevMonthDays);
+                } else  {
+                    prevDate = new Date(currentYear, currentMonth - 1, currentDate);
+                }
             }
 
-            if (currentDay > nextMonthDays) {
-                nextDate.setDate(nextMonthDays);
-            } else {
-                nextDate.setDate(currentDay);
-            }
+            return prevDate;
+        }
 
-            console.log(prevDate);
-            console.log(nextDate);
+        function getNextDate() {
+            var current = new Date();
+
+            var currentYear = current.getFullYear();
+            var currentMonth = current.getMonth();
+            var currentDate = current.getDate();
+
+            var nextDate;
+
+            if (currentMonth == 11) {
+                nextDate =  new Date(currentYear + 1, 0, currentDate);
+            } else {
+                var nextMonthDays = new Date(currentYear, currentMonth + 2, 0).getDate();
+
+                if (currentDate > nextMonthDays) {
+                    nextDate = new Date(currentYear, currentMonth + 1, nextMonthDays);
+                } else {
+                    nextDate = new Date(currentYear, currentMonth + 1, currentDate);
+                }
+            }
+            return nextDate;
+        }
+
+        function getWeekday(date) {
+            var day = date.getDay();
+            switch (day) {
+                case 0:
+                  return "周日";
+                  break;
+                case 1:
+                  return "周一";
+                  break;
+                case 2:
+                  return "周二";
+                  break;
+                case 3:
+                  return "周三";
+                  break;
+                case 4:
+                  return "周四";
+                  break;
+                case 5:
+                  return "周五";
+                  break;
+                case 6:
+                  return "周六";
+                  break;
+            }
         }
 
     </script>
