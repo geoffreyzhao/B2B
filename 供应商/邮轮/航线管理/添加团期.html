@@ -790,8 +790,7 @@
 
                     var arr = [];
                     $(".selectedDateItem").each(function(){
-                        var tmp = $(this).find(".topPart span input").val();
-                        arr.push(tmp.replace("-", "/"));
+                        arr.push($(this).find(".topPart span input").val().replace(/-/g, "/"));
                     });
 
                     array = arr;
@@ -826,9 +825,9 @@
             // 删除日期
             $("body").delegate(".delItem", "click", function(){
                 $(this).parents(".selectedDateItem").remove();
-                array = _.without(array, $(this).parent().find("span input").val());
+                array = _.without(array, $(this).parent().find("span input").val().replace(/-/g, '/'));
                 
-                var dateStr = $(this).siblings("span").html();
+                var dateStr = $(this).siblings("span").find("input").val();
                 $(".calendar td.dateSelect").each(function(){
                     if (dateStr == replaceChineseYMD($(this).children("a").attr("title"))) {
                         $(this).removeClass("dateSelect");
