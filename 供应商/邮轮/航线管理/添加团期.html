@@ -740,7 +740,7 @@
             // 编辑状态下，日历中日期只能单选
             /*
             $("body").delegate(".calendar td", "click", function(){
-                if ($(this).children("a").length != 0) {   //  空日期没有点击事件
+                if ($(this).children("a").length != 0 && $(this).children("a").attr("title") != undefined) {   //  空日期没有点击事件
                     $(".calendar td").removeClass("dateSelect");
                     array = [];
                     $(this).addClass("dateSelect");
@@ -880,6 +880,14 @@
                 array.push("2015-01-02"); // 清除array,放进去后台的数据
 
                 today = new Date(array[0]);
+
+                if (today.getMonth() == new Date().getMonth()) {
+                    if ($(".calendarMonthLeft").hasClass("disabled")) {
+                        $(".calendarMonthLeft").addClass("disabled");
+                    }
+                } else {
+                    $(".calendarMonthLeft").removeClass("disabled");
+                }
                 toDate = today;
                 nextMonthDate = new Date(today.getFullYear(),toDate.getMonth()+1,toDate.getDate()); 
                 calendar.navigate(toDate,"month");
@@ -889,7 +897,7 @@
                 changeCalendarDateInfo(toDate);
 
                 $(".calendar td").each(function(){
-                    if ($(this).children("a").length != 0 && $.inArray(replaceChineseYMD($(this).children("a").attr("title")), array) != -1) {
+                    if ($(this).children("a").length != 0 && $(this).children("a").attr("title") != undefined && $.inArray(replaceChineseYMD($(this).children("a").attr("title")), array) != -1) {
                         $(this).addClass("dateSelect");
                     }
                 });

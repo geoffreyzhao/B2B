@@ -677,21 +677,29 @@
             $.datepicker.regional[ "zh-CN" ];
 
             // 开始日期初始化
-            $( ".startDate" ).datepicker({
+            $(".startDate").datepicker({
                 showDay:true,
-                numberOfMonths:[1,2],
+                numberOfMonths:1,
                 firstDay:0,
                 showButtonPanel :true,
-                defaultDate: getPrevDate()
+                defaultDate: getPrevDate(),
+                maxDate: getNextDate(),
+                onClose: function(selectedDate) {
+                    $(".endDate").datepicker("option", "minDate", selectedDate);
+                }
             });
 
             // 结束日期初始化
-            $( ".endDate" ).datepicker({
+            $(".endDate").datepicker({
                 showDay:true,
-                numberOfMonths:[1,2],
+                numberOfMonths:1,
                 firstDay:0,
                 showButtonPanel :true,
-                defaultDate: getNextDate()
+                defaultDate: getNextDate(),
+                minDate: getPrevDate(),
+                onClose: function(selectedDate) {
+                    $(".startDate").datepicker("option", "maxDate", selectedDate);
+                }
             }); 
 
             // 初始化日期，现实在文本框内
