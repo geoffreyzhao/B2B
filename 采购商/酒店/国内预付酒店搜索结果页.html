@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <link rel="stylesheet" href="../../static/css/store_reset.css" media="all" />
     <link rel="stylesheet" href="../../static/css/store.css" media="screen" />
-    <link rel="stylesheet" href="../../static/css/store_hotel.css" media="screen" />    
     <link rel="stylesheet" href="../../static/css/kendo.common.min.css" />
-	<link rel="stylesheet" href="../../static/css/kendo.store.css" />
+    <link rel="stylesheet" href="../../static/css/kendo.store.css" />
+    <link rel="stylesheet" href="../../static/css/store_hotel.css" media="screen" />  
     <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../static/js/global.js"></script>
     <script type="text/javascript" src="../../static/js/kendo.web.min.js"></script>
@@ -16,10 +16,12 @@
     <script src="../../static/js/html5.js"></script>
     <![endif]-->
     <style type="text/css">
-        .pagination{line-height:1}
+        .pagination{
+            line-height:1;
+        }        
         .lineWeight {
             box-shadow:none;
-        }
+        }        
     </style>
 </head>
 <body>
@@ -309,7 +311,7 @@
                             <td><span class="greenFont">立即确认</span></td>
                             <td><span class="hotelRoomPrice floatLayer"><em class="changeFont">￥</em>650</span></td>
                             <td>
-                                <a class="adaptiveButton mediumOrange_btn">
+                                <a class="adaptiveButton mediumOrange_btn ac-loading">
                                     <span class="left"></span>
                                     <span class="center center_1">预订</span>
                                     <span class="right"></span>
@@ -344,7 +346,7 @@
                             <td><span class="greenFont">立即确认</span></td>
                             <td><span class="hotelRoomPrice floatLayer"><em class="changeFont">￥</em>650</span></td>
                             <td>
-                                <a class="adaptiveButton mediumOrange_btn">
+                                <a class="adaptiveButton mediumOrange_btn ac-failWindow">
                                     <span class="left"></span>
                                     <span class="center center_1">预订</span>
                                     <span class="right"></span>
@@ -384,7 +386,7 @@
                             <td><span class="greenFont">立即确认</span></td>
                             <td><span class="hotelRoomPrice floatLayer"><em class="changeFont">￥</em>650</span></td>
                             <td>
-                                <a class="adaptiveButton mediumOrange_btn">
+                                <a class="adaptiveButton mediumOrange_btn ac-bookWindow">
                                     <span class="left"></span>
                                     <span class="center center_1">预订</span>
                                     <span class="right"></span>
@@ -1084,6 +1086,158 @@
  </div>  
 </script>
 
+<script type="text/x-kendo-template" id="ac-loading-template">
+    <div class="loadingHint">
+        <i class="gifLoadingIcon"></i> <em class="loadingHintFonts">正在验价，请稍候...</em>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="ac-failWindow-template">
+    <div class="failWindow clearfix">
+        <i class="failWindowIcon"></i>
+        <div class="failWindowFonts">
+            <p>很抱歉，验价失败！</p>
+            <p>请重新选择价格预订。</p>
+        </div>
+    </div>
+    <div class="windowBtn">
+        <a href="javascript:void(0);">关闭</a>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="ac-bookWindow-template">
+    <i class="close">X</i>
+    <div class="bookContent">
+        <h3 class="redFonts">您预订的产品价格发生变化，是否需要继续预订？</h3>
+        <div class="enterOut">入住2014-11-23 &nbsp; 离店2014-11-30</div>
+        <div class="bookInfoList">
+            <a href="javascript:void(0);" class="leftBigArrow"></a>
+            <table class="bookTabList">
+                <colgroup>
+                    <col width="80">
+                    <col width="80">
+                    <col width="80">
+                    <col width="80">
+                    <col width="80">
+                    <col width="80">
+                    <col width="80">
+                    <col width="80">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>11-23</th>
+                    <th>11-24</th>
+                    <th>11-25</th>
+                    <th>11-26</th>
+                    <th>11-27</th>
+                    <th>11-28</th>
+                    <th>11-29</th>
+                    <th>11-30</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <div>
+                            <b class="boldOrangeFonts">¥600</b>
+                        </div>
+                        <div>
+                            <del class="delFonts">¥580</del>
+                        </div>
+                        <div>含早</div>
+                        <div>宽带免费</div>
+                    </td>
+                    <td>
+                        <div>
+                            <b class="boldOrangeFonts">¥600</b>
+                        </div>
+                        <div>
+                            <del class="delFonts">¥580</del>
+                        </div>
+                        <div>含早</div>
+                        <div>宽带免费</div>
+                    </td>
+                    <td>
+                        <div>
+                            <b class="boldOrangeFonts">¥600</b>
+                        </div>
+                        <div>
+                            <del class="delFonts">¥580</del>
+                        </div>
+                        <div>含早</div>
+                        <div>宽带免费</div>
+                    </td>
+                    <td>
+                        <div>
+                            <b class="boldOrangeFonts">¥600</b>
+                        </div>
+                        <div>
+                            <del class="delFonts">¥580</del>
+                        </div>
+                        <div>含早</div>
+                        <div>宽带免费</div>
+                    </td>
+                    <td>
+                        <div>
+                            <b class="boldOrangeFonts">¥600</b>
+                        </div>
+                        <div>
+                            <del class="delFonts">¥580</del>
+                        </div>
+                        <div>含早</div>
+                        <div>宽带免费</div>
+                    </td>
+                    <td>
+                        <div>
+                            <b class="boldOrangeFonts">¥600</b>
+                        </div>
+                        <div>
+                            <del class="delFonts">¥580</del>
+                        </div>
+                        <div>含早</div>
+                        <div>宽带免费</div>
+                    </td>
+                    <td>
+                        <div>
+                            <b class="boldOrangeFonts">¥600</b>
+                        </div>
+                        <div>
+                            <del class="delFonts">¥580</del>
+                        </div>
+                        <div>含早</div>
+                        <div>宽带免费</div>
+                    </td>
+                    <td>
+                        <div>
+                            <b class="boldOrangeFonts">¥600</b>
+                        </div>
+                        <div>
+                            <del class="delFonts">¥580</del>
+                        </div>
+                        <div>含早</div>
+                        <div>宽带免费</div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <a href="javascript:void(0);" class="rightBigArrow"></a>
+        </div>
+        <div class="bookHint">
+            <p>入住：08:00之后</p>
+            <p>离店：12:00之前</p>
+            <p>变更取消：预订成功，不得变更取消，否则扣除全部费用。</p>
+        </div>
+    </div>
+    <div class="windowBtn">
+        <a class="adaptiveButton brightRed_btn">
+            <span class="left"></span>
+            <span class="center">继续预订</span>
+            <span class="right"></span>
+        </a>
+        <a href="javascript:void(0);">看看别的</a>
+    </div>
+</script>
+
 <script type="text/x-kendo-template" id="filter_item_tpl">
     <li><span class="filter-item #=type_name#" # if(id) {# id="#=id#" #}#  data-filter-type="#=type_name#" value="#=value#"><strong>#=value#</strong><i></i></span></li>
 </script>
@@ -1152,7 +1306,7 @@
                 $(this).addClass("down");
                 $(this).text("展开");
             }
-        })
+        });
 
        
 		FloatLayer({
@@ -1252,7 +1406,26 @@
 			offsetY:10,
 			width:300
 		});
-		
+
+        new PopWindow('.ac-loading',{
+            template:'#ac-loading-template',
+            title:'验价中',
+            width:'420'
+        }).init();
+
+        new PopWindow('.ac-failWindow',{
+            template:'#ac-failWindow-template',
+            title:'核价',
+            width:'420'
+        }).init();
+        
+
+        new PopWindow('.ac-bookWindow',{
+            template:'#ac-bookWindow-template',
+            title:false,
+            width:'830'
+        }).init();
+        
     })
 </script>
 
