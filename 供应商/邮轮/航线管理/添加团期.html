@@ -704,7 +704,7 @@
             });
 
             $(".calendarMonthLeft").click(function(){
-                if (toDate.toString() == today.toString() && !$(this).hasClass("disabled")) {
+                if (toDate.getMonth() == new Date().getMonth() && !$(this).hasClass("disabled")) {
                     $(this).addClass("disabled");
                 }
                 if(!$(this).hasClass("disabled")) {
@@ -723,7 +723,8 @@
     
             // 新增团期时，点击日期添加背景样式 & array数组记录所有选中日期
             $("body").delegate(".calendar td", "click", function(){
-                if ($(this).children("a").length != 0) {   //  空日期没有点击事件
+                if ($(this).children("a").length != 0 && $(this).children("a").attr("title") != undefined) {
+                   //  空日期没有点击事件
                     var s = replaceChineseYMD($(this).children("a").attr("title"));
 
                     if ($(this).hasClass("dateSelect")) {
@@ -789,7 +790,8 @@
 
                     var arr = [];
                     $(".selectedDateItem").each(function(){
-                        arr.push($(this).find(".topPart span input").val());
+                        var tmp = $(this).find(".topPart span input").val();
+                        arr.push(tmp.replace("-", "/"));
                     });
 
                     array = arr;
@@ -797,7 +799,7 @@
                     $(".calendar td").each(function(){
                         $(this).removeClass("dateSelect");
 
-                        if ($(this).children("a").length != 0 && $.inArray(replaceChineseYMD($(this).children("a").attr("title")), arr) != -1) {
+                        if ($(this).children("a").length != 0 && $(this).children("a").attr("title") != undefined && $.inArray(replaceChineseYMD($(this).children("a").attr("title")), arr) != -1) {
                             $(this).addClass("dateSelect");
                         }
                     });
@@ -846,6 +848,14 @@
                 $(".tourDateBlock").show();
 
                 today = new Date(array[0]);
+
+                if (today.getMonth() == new Date().getMonth()) {
+                    if ($(".calendarMonthLeft").hasClass("disabled")) {
+                        $(".calendarMonthLeft").addClass("disabled");
+                    }
+                } else {
+                    $(".calendarMonthLeft").removeClass("disabled");
+                }
                 toDate = today;
                 nextMonthDate = new Date(today.getFullYear(),toDate.getMonth()+1,toDate.getDate()); 
                 calendar.navigate(toDate,"month");
@@ -855,7 +865,7 @@
                 changeCalendarDateInfo(toDate);
 
                 $(".calendar td").each(function(){
-                    if ($(this).children("a").length != 0 && $.inArray(replaceChineseYMD($(this).children("a").attr("title")), array) != -1) {
+                    if ($(this).children("a").length != 0 && $(this).children("a").attr("title") != undefined && $.inArray(replaceChineseYMD($(this).children("a").attr("title")), array) != -1) {
                         $(this).addClass("dateSelect");
                     }
                 });
@@ -899,7 +909,7 @@
                 if ($(this).hasClass("dateSelect")) {
                     $(this).removeClass("dateSelect");
                 } else {
-                    if ($(this).children("a").length != 0 && $.inArray(replaceChineseYMD($(this).children("a").attr("title")), array) != -1) {
+                    if ($(this).children("a").length != 0 && $(this).children("a").attr("title") != undefined && $.inArray(replaceChineseYMD($(this).children("a").attr("title")), array) != -1) {
                         $(this).addClass("dateSelect");
                     }
                 }
