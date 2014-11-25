@@ -295,12 +295,74 @@
                   <span class="right"></span>
               </a>-->
               <a class="printOrdBtn hotelOrder_cancel" href="javascript:void(0);">取消订单</a>
+              <a class="printOrdBtn hotelOrder_cancel_fail" href="javascript:void(0);">取消失败</a>
+              <a class="printOrdBtn hotelOrder_cancel_success" href="javascript:void(0);">取消成功</a>
         </span>
     </div>
 
   
 </div>
 </div>
+
+<!--  订单取消备注弹窗模板  -->
+<script type="text/x-kendo-template" id="orderCancelRemarkTemplate">
+    <div class="order-cancel-remark-win">
+        <p class="tip">取消规定：订单在2014年12月20日之前可免费取消</p>
+        <textarea></textarea>
+        <p class="win-oper-btn">
+            <a class="adaptiveButton brightOrange_btn sure-cancel-order">
+                 <span class="left"></span>
+                 <span class="center center_1">取消预订(点我)</span>
+                 <span class="right"></span>
+             </a>
+            <a href="javascript:void(0);" class="not-cancel-order">暂不取消</a>
+        </p>
+    </div>
+</script>
+
+<!--  订单取消中弹窗模板  -->
+<script type="text/x-kendo-template" id="orderCancelProgressTemplate">
+    <div class="loadingHint">
+        <i class="gifLoadingIcon"></i> <em class="loadingHintFonts">订单取消中，请稍候...</em>
+    </div>
+</script>
+
+<!--  订单取消成功弹窗模板  -->
+<script type="text/x-kendo-template" id="orderCancelSuccessTemplate">
+    <div class="order-cancel-win">
+        <p class="tip-msg">
+            <i class="large-success-icon"></i>
+            <span>订单取消成功！</span>
+        </p>
+        <p class="win-oper-btn">
+            <a class="adaptiveButton brightOrange_btn">
+                 <span class="left"></span>
+                 <span class="center center_1">确 定</span>
+                 <span class="right"></span>
+             </a>
+        </p>
+    </div>
+</script>
+
+<!--  订单取消失败弹窗模板  -->
+<script type="text/x-kendo-template" id="orderCancelFailTemplate">
+    <div class="order-cancel-win">
+        <div class="tip-msg">
+            <i class="large-fail-icon"></i>
+            <p class="tip-cont">
+                <span>订单取消失败，已超过订单取消时间！</span><br>
+                <span class="gray-tip">取消规定：订单在2014年12月23日前可免费取消</span>
+            </p>
+        </div>
+        <p class="win-oper-btn">
+            <a class="adaptiveButton brightOrange_btn">
+                <span class="left"></span>
+                <span class="center center_1">确 定</span>
+                <span class="right"></span>
+            </a>
+        </p>
+    </div>
+</script>
 
 <script type="text/x-kendo-template" id="advanceHotelName">
         <div class="layerGrayContainer_noArrow">
@@ -571,10 +633,37 @@
             offsetX:135
         });
 
-        new PopWindow('.hotelOrder_cancel',{
-            template:'#hotelOrder_cancel-template',
-            title:'取消订单标题',
-            width:'400'
+        // new PopWindow('.hotelOrder_cancel',{
+        //     template:'#hotelOrder_cancel-template',
+        //     title:'取消订单标题',
+        //     width:'400'
+        // }).init();
+
+        var orderCancelRemarkWin = new PopWindow('.hotelOrder_cancel', {
+            template:'#orderCancelRemarkTemplate',
+            title:'请输入取消原因',
+            width:'540'
+        }).init();
+
+        var orderCancelProgressWin = new PopWindow('.sure-cancel-order', {
+            template:'#orderCancelProgressTemplate',
+            title:'提示',
+            width:'450',
+            open: function(){
+                orderCancelRemarkWin.close();
+            }
+        }).init();
+
+        var orderCancelSuccessWin = new PopWindow('.hotelOrder_cancel_success', {
+            template:'#orderCancelSuccessTemplate',
+            title:'提示',
+            width:'450'
+        }).init();
+
+        var orderCancelSuccessWin = new PopWindow('.hotelOrder_cancel_fail', {
+            template:'#orderCancelFailTemplate',
+            title:'提示',
+            width:'450'
         }).init();
 
     });

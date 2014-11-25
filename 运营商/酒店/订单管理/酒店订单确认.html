@@ -10,6 +10,7 @@
     <link href="../../../static/css/kendo.reset.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../../../static/css/hotel.css">
     <link rel="stylesheet" href="../../../static/css/hotel_order_create.css">
+    <>
     <style type="text/css">
         .fieldName{background:#f5f5f5;color:#333}
         #bookingProduct td{border:1px solid #e0e0e0;border-top-color:#eaeef0;border-bottom-color:#eaeef0;color:#666}
@@ -53,9 +54,19 @@
             <span class="center">确认预订</span>
             <span class="right"></span>
         </a>
-        <a href="javascript:;" class="button_secondary adaptiveButton small" style="margin:0">
+        <a href="javascript:;" class="button_secondary adaptiveButton small cancelOrder" style="margin:0">
             <span class="left"></span>
             <span class="center">取消预订</span>
+            <span class="right"></span>
+        </a>
+        <a href="javascript:;" class="button_secondary adaptiveButton small cancelOrderSuccess" style="margin:0">
+            <span class="left"></span>
+            <span class="center">取消成功</span>
+            <span class="right"></span>
+        </a>
+        <a href="javascript:;" class="button_secondary adaptiveButton small cancelOrderFail" style="margin:0">
+            <span class="left"></span>
+            <span class="center">取消失败</span>
             <span class="right"></span>
         </a>
     </div>
@@ -1123,11 +1134,76 @@
     </div>
 </script>
 
+<!--  订单取消备注弹窗模板  -->
+<script type="text/x-kendo-template" id="orderCancelRemarkTemplate">
+    <div class="order-cancel-remark-win">
+        <p class="tip">取消规定：订单在2014年12月20日之前可免费取消</p>
+        <textarea></textarea>
+        <p class="win-oper-btn">
+            <a class="button_important adaptiveButton medium sure-cancel-order">
+                 <span class="left"></span>
+                 <span class="center">取消预订(点我)</span>
+                 <span class="right"></span>
+             </a>
+            <a class="button_unimportant adaptiveButton medium">
+                 <span class="left"></span>
+                 <span class="center">暂不取消</span>
+                 <span class="right"></span>
+             </a>
+        </p>
+    </div>
+</script>
+
+<!--  订单取消中弹窗模板  -->
+<script type="text/x-kendo-template" id="orderCancelProgressTemplate">
+    <div class="loadingHint">
+        <i class="gifLoadingIcon"></i> <em class="loadingHintFonts">订单取消中，请稍候...</em>
+    </div>
+</script>
+
+<!--  订单取消成功弹窗模板  -->
+<script type="text/x-kendo-template" id="orderCancelSuccessTemplate">
+    <div class="order-cancel-win" style="padding:20px 10px;">
+        <p class="tip-msg">
+            <i class="large-success-icon"></i>
+            <span>订单取消成功！</span>
+        </p>
+        <p class="win-oper-btn">
+            <a class="button_important adaptiveButton medium">
+                 <span class="left"></span>
+                 <span class="center">确 定</span>
+                 <span class="right"></span>
+             </a>
+        </p>
+    </div>
+</script>
+
+<!--  订单取消失败弹窗模板  -->
+<script type="text/x-kendo-template" id="orderCancelFailTemplate">
+    <div class="order-cancel-win" style="padding:20px 10px;">
+        <div class="tip-msg">
+            <i class="large-fail-icon"></i>
+            <p class="tip-cont">
+                <span>订单取消失败，已超过订单取消时间！</span><br>
+                <span class="gray-tip">取消规定：订单在2014年12月23日前可免费取消</span>
+            </p>
+        </div>
+        <p class="win-oper-btn">
+            <a class="button_important adaptiveButton medium">
+                <span class="left"></span>
+                <span class="center">确 定</span>
+                <span class="right"></span>
+            </a>
+        </p>
+    </div>
+</script>
+
 <script type="text/javascript" src="../../../static/js/jquery.min.js"></script>
 <script type="text/javascript" src="../../../static/js/kendo.web.js"></script>
 <script type="text/javascript" src="../../../static/js/scrollFix.js"></script>
 <script type="text/javascript" src="../../../static/js/jquery.nicescroll.min.js"></script>
 <script type="text/javascript" src="../../../static/js/hotel.js"></script>
+<script type="text/javascript" src="../../../static/js/global.js"></script>
 
 
 <script type="text/javascript">
@@ -1242,6 +1318,33 @@
         $("body").delegate(".k-overlay","click",function(){
             lzxqPopWin.close();
         })
+
+        var orderCancelRemarkWin = new PopWindow('.cancelOrder', {
+            template:'#orderCancelRemarkTemplate',
+            title:'请输入取消原因',
+            width:'540'
+        }).init();
+
+        var orderCancelProgressWin = new PopWindow('.sure-cancel-order', {
+            template:'#orderCancelProgressTemplate',
+            title:'提示',
+            width:'450',
+            open: function(){
+                orderCancelRemarkWin.close();
+            }
+        }).init();
+
+        var orderCancelSuccessWin = new PopWindow('.cancelOrderSuccess', {
+            template:'#orderCancelSuccessTemplate',
+            title:'提示',
+            width:'450'
+        }).init();
+
+        var orderCancelSuccessWin = new PopWindow('.cancelOrderFail', {
+            template:'#orderCancelFailTemplate',
+            title:'提示',
+            width:'450'
+        }).init();
     })
 
     function changeCheckoutTypeContainerInputstate(flag)
