@@ -1111,18 +1111,8 @@
         <h3 class="redFonts">您预订的产品价格发生变化，是否需要继续预订？</h3>
         <div class="enterOut">入住2014-11-23 &nbsp; 离店2014-11-30</div>
         <div class="bookInfoList">
-            <a href="javascript:void(0);" class="leftBigArrow"></a>
+            <a href="javascript:void(0);" class="leftBigArrow disabled"></a>
             <table class="bookTabList">
-                <colgroup>
-                    <col width="80">
-                    <col width="80">
-                    <col width="80">
-                    <col width="80">
-                    <col width="80">
-                    <col width="80">
-                    <col width="80">
-                    <col width="80">
-                </colgroup>
                 <thead>
                 <tr>
                     <th>11-23</th>
@@ -1132,7 +1122,9 @@
                     <th>11-27</th>
                     <th>11-28</th>
                     <th>11-29</th>
-                    <th>11-30</th>
+                    <th class="hideColumn">11-30</th>
+                    <th class="hideColumn">12-01</th>
+                    <th class="hideColumn">12-02</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -1207,7 +1199,27 @@
                         <div>含早</div>
                         <div>宽带免费</div>
                     </td>
-                    <td>
+                    <td class="hideColumn">
+                        <div>
+                            <b class="boldOrangeFonts">¥600</b>
+                        </div>
+                        <div>
+                            <del class="delFonts">¥580</del>
+                        </div>
+                        <div>含早</div>
+                        <div>宽带免费</div>
+                    </td>
+                    <td class="hideColumn">
+                        <div>
+                            <b class="boldOrangeFonts">¥600</b>
+                        </div>
+                        <div>
+                            <del class="delFonts">¥580</del>
+                        </div>
+                        <div>含早</div>
+                        <div>宽带免费</div>
+                    </td>
+                    <td class="hideColumn">
                         <div>
                             <b class="boldOrangeFonts">¥600</b>
                         </div>
@@ -1423,8 +1435,62 @@
         new PopWindow('.ac-bookWindow',{
             template:'#ac-bookWindow-template',
             title:false,
-            width:'830'
+            width:'770'
         }).init();
+        
+        var count = 0;
+        var colNum = $(".bookTabList th").length;      
+        
+        $(".bookInfoList .leftBigArrow").click(function(){
+            if (count > 0) {
+                $(".bookInfoList .leftBigArrow").removeClass("disabled");
+                $(".bookInfoList .rightBigArrow").removeClass("disabled");
+                count --;
+                
+                $(".bookTabList th").each(function(index){
+                    $(this).hide();
+                    if (index >= count && index < 7 + count) {
+                        $(this).show();
+                    }
+                });
+
+                $(".bookTabList td").each(function(index){
+                    $(this).hide();
+                    if (index >= count && index < 7 + count) {
+                        $(this).show();
+                    }
+                });
+            }            
+            if (count == 0) {
+                $(".bookInfoList .leftBigArrow").addClass("disabled");
+            }
+        });
+        
+        
+        $(".bookInfoList .rightBigArrow").click(function(){
+            if (count < colNum - 7) {
+                $(".bookInfoList .rightBigArrow").removeClass("disabled");
+                $(".bookInfoList .leftBigArrow").removeClass("disabled");
+                count ++;
+                
+                $(".bookTabList th").each(function(index){
+                    $(this).hide();
+                    if (index >= count && index < 7 + count) {
+                        $(this).show();
+                    }                
+                });
+    
+                $(".bookTabList td").each(function(index){
+                    $(this).hide();
+                    if (index >= count && index < 7 + count) {
+                        $(this).show();
+                    }
+                });
+            }             
+            if (count == colNum - 7) {
+                $(".bookInfoList .rightBigArrow").addClass("disabled");
+            }
+        });
         
     })
 </script>
