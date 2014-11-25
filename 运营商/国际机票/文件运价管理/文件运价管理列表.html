@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>运营商 国际机票 文件运价管理列表</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/kendo.common.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/kendo.gray.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/kendo.reset.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/b2b.css"  />
+    <link rel="stylesheet" type="text/css" href="/static/css/order.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/operatorFileFreight.css"/>
+
+    <script type="text/javascript" src="/static/js/vendor/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/flight.js"></script>
+    <script type="text/javascript" src="/static/js/uploadify/jquery.uploadify.min.js"></script>
+</head>
+<body>
+    <div id="extHeader">
+        <div></div>
+    </div>
+
+    <div id="container">
+        <div class="header">
+            <h1></h1>
+            <div>
+                <span>你好,${name}</span>
+                <a href="javascript:void(0);">退出</a>
+            </div>
+            <ul id="top_menu">
+                <li><a href="javascript:void(0);">国内机票</a></li>
+                <li><a href="javascript:void(0);">国际机票</a></li>
+                <li><a href="javascript:void(0);">酒店</a></li>
+                <li><a href="javascript:void(0);">票证中心</a></li>
+                <li><a href="javascript:void(0);">财务管理</a></li>
+                <li><a href="javascript:void(0);">客户管理</a></li>
+                <li class="current"><a href="javascript:void(0);">系统设置</a></li>
+            </ul>
+            <ol class="sub_menu">
+                <li class="current"><a href="javascript:void(0);">公告信息</a></li>
+                <li><a href="javascript:void(0);">公司信息</a></li>
+                <li><a href="javascript:void(0);">组织架构</a></li>
+                <li><a href="javascript:void(0);">角色维护</a></li>
+                <li><a href="javascript:void(0);">基础数据</a></li>
+            </ol>
+            <div id="message">
+            	<a href="javascript:void(0);">&nbsp;</a>
+                <span>&nbsp;</span>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="sub_menu_bar"></div>
+        <div id="mainContent" style="overflow:hidden;">
+			<!-- start content -->
+            
+            <div class="topFixedToolsBar">
+                <div class="fixedMenu unhover">
+                    <h3>文件运价管理</h3>
+                </div>
+            </div> 
+            
+            
+            <div class="information_div">
+               <table cellpadding="0" cellspacing="0" class="information-file-tab">
+                  <colgroup>
+                      <col width="65"/>
+                      <col width="170"/>
+                      <col width="95"/>
+                      <col width="180"/>
+                      <col width="85"/>
+                      <col width="235"/>
+                  </colgroup>
+                  <tr>
+                     <th>ID</th>
+                     <td>
+                         <input type="text" style="width:133px;"/>
+                     </td>
+                     <th>协议名称</th>
+                     <td>
+                         <input type="text" style="width:133px;"/>
+                     </td>
+                     <th>文件价状态</th>
+                     <td>
+                         <select style="width:137px;height: 22px;">
+                             <option selected="">未审核</option>
+                             <option>已发布</option>
+                             <option>已停用</option>
+                             <option>已删除</option>
+                         </select>
+                     </td>
+                  </tr>
+               </table>
+               <table cellpadding="0" cellspacing="0" class="information-file-tab table-borderTop">
+                    <colgroup>
+                        <col width="65"/>
+                        <col width="170"/>
+                        <col width="95"/>
+                        <col width="180"/>
+                        <col width="85"/>
+                        <col width="235"/>
+                    </colgroup>
+                    <tr>
+                        <th>航空公司</th>
+                        <td>
+                            <select style="width:137px;height: 22px;">
+                                <option selected="">全部</option>
+                                <option>MU 东航</option>
+                                <option>3U 川航</option>
+                                <option>CZ 南航</option>
+                                <option>MF 厦航</option>
+                            </select>
+                        </td>
+                        <th>舱位</th>
+                        <td>
+                            <input type="text" style="width:133px;"/>
+                        </td>
+                        <th>销售开始时间</th>
+                        <td>
+                            <input type="text" class="datepicker" style="width:100px;" value="2013-09-30"/>
+                            <em> 至 </em>
+                            <input type="text" class="datepicker orange" style="width:100px;" value="2013-10-07"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Tour Code</th>
+                        <td>
+                            <input type="text" style="width:133px;"/>
+                        </td>
+                        <th>Fare Basis Code</th>
+                        <td>
+                            <input type="text" style="width:133px;"/>
+                        </td>
+                        <th>销售结束时间</th>
+                        <td>
+                            <input type="text" class="datepicker" style="width:100px;" placeholder="yyyy-mm-dd"/>
+                            <em> 至 </em>
+                            <input type="text" class="datepicker orange" style="width:100px;" placeholder="yyyy-mm-dd"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>出发城市</th>
+                        <td>
+                            <input type="text" style="width:133px;"/>
+                        </td>
+                        <th>到达城市</th>
+                        <td>
+                            <input type="text" style="width:133px;"/>
+                        </td>
+                        <th>出发时间</th>
+                        <td>
+                            <input type="text" class="datepicker" style="width:100px;" placeholder="yyyy-mm-dd"/>
+                            <em> 至 </em>
+                            <input type="text" class="datepicker orange" style="width:100px;" placeholder="yyyy-mm-dd"/>
+                        </td>
+                    </tr>
+               </table>
+                <table cellpadding="0" cellspacing="0" class="information-file-tab table-borderTop">
+                    <colgroup>
+                        <col width="65"/>
+                        <col width="170"/>
+                        <col width="95"/>
+                        <col width="180"/>
+                        <col width="85"/>
+                        <col width="235"/>
+                    </colgroup>
+                    <tr>
+                        <th>供应商</th>
+                        <td>
+                            <select style="width:137px;height: 22px;">
+                                <option selected="">BSE/HK</option>
+                                <option>BTG/CN</option>
+                                <option>CAH/HK</option>
+                                <option>COLA/TW</option>
+                                <option>COLAWD/TW</option>
+                            </select>
+                        </td>
+                        <th>最近修改用户</th>
+                        <td>
+                            <input type="text" style="width:133px;"/>
+                        </td>
+                        <th>最近修改时间</th>
+                        <td>
+                            <input type="text" style="width:133px;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>创建用户</th>
+                        <td>
+                            <input type="text" style="width:133px;"/>
+                        </td>
+                        <th>创建时间</th>
+                        <td>
+                            <input type="text" style="width:133px;"/>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                  <div class="searchDiv">
+                      <a href="javascript:;" class="button_important adaptiveButton medium">
+                            <span class="left"></span>
+                            <span class="center" style="padding:0 25px;">查 询</span>
+                            <span class="right"></span>
+                        </a>
+                  </div>            
+            </div>
+           
+            <div class="qx" style="background:#f6f6f6;">
+                <div class="xuanze">
+                    <input type="checkbox" style="margin-left: 4px;"/>
+                    <button class="btns btn-ac-blue issueBtn">发布</button>
+                    <button class="btns btn-ac-blue">挂起</button>
+                    <button class="btns btn-ac-blue">删除</button>
+                    <button class="btns btn-ac-blue">复制</button>
+                </div>
+                <div class="qx_right">
+                    <button class="btns btn-ac-blue">导出Excel</button>
+                </div>
+            </div>
+
+            <div class="scroll">
+                <table class="tgrid" style="width:110%;">
+                    <thead>
+                    <tr>
+                        <th class="line_left"><input type="checkbox"/></th>
+                        <th>操作</th>
+                        <th>ID</th>
+                        <th>状态</th>
+                        <th>文件价状态</th>
+                        <th>协议名称</th>
+                        <th>航司</th>
+                        <th>适用舱位</th>
+                        <th>TourCode</th>
+                        <th>Fare Basis Code</th>
+                        <th>销售时间</th>
+                        <th>航线</th>
+                        <th>供应商代号</th>
+                        <th>创建用户</th>
+                        <th>创建时间</th>
+                        <th>最近修改用户</th>
+                        <th class="line_right">最近修改时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><input type="checkbox" /></td>
+                        <td>
+                            <a href="javascript:void(0);">查看</a>
+                            <a href="javascript:void(0);">修改</a>
+                            <a href="javascript:void(0);">复制</a>
+                            <a href="javascript:void(0);">删除</a>
+                        </td>
+                        <td>1027</td>
+                        <td>运行</td>
+                        <td>未审核</td>
+                        <td>国庆跳楼大促销</td>
+                        <td>MU</td>
+                        <td>FCYWEOWJIG
+                            JOFEOH</td>
+                        <td>15652156</td>
+                        <td>成人：FCYWE01
+                            儿童：JOFE57</td>
+                        <td>2010-09-02
+                            至2012-10-01</td>
+                        <td>PVG/SHA-
+                            BJS</td>
+                        <td>BES/HK</td>
+                        <td>zhangjiang</td>
+                        <td>2010-09-02
+                            10 :10 :12</td>
+                        <td>zhangjiang</td>
+                        <td>2010-09-02
+                            10 :10 :12</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" /></td>
+                        <td>
+                            <a href="javascript:void(0);">查看</a>
+                            <a href="javascript:void(0);">修改</a>
+                            <a href="javascript:void(0);">复制</a>
+                            <a href="javascript:void(0);">删除</a>
+                        </td>
+                        <td>1027</td>
+                        <td>运行</td>
+                        <td>未审核</td>
+                        <td>国庆跳楼大促销</td>
+                        <td>MU</td>
+                        <td>FCYWEOWJIG
+                            JOFEOH</td>
+                        <td>15652156</td>
+                        <td>成人：FCYWE01
+                            儿童：JOFE57</td>
+                        <td>2010-09-02
+                            至2012-10-01</td>
+                        <td>PVG/SHA-
+                            BJS</td>
+                        <td>BES/HK</td>
+                        <td>zhangjiang</td>
+                        <td>2010-09-02
+                            10 :10 :12</td>
+                        <td>zhangjiang</td>
+                        <td>2010-09-02
+                            10 :10 :12</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" /></td>
+                        <td>
+                            <a href="javascript:void(0);">查看</a>
+                            <a href="javascript:void(0);">修改</a>
+                            <a href="javascript:void(0);">复制</a>
+                            <a href="javascript:void(0);">删除</a>
+                        </td>
+                        <td>1027</td>
+                        <td>运行</td>
+                        <td>未审核</td>
+                        <td>国庆跳楼大促销</td>
+                        <td>MU</td>
+                        <td>FCYWEOWJIG
+                            JOFEOH</td>
+                        <td>15652156</td>
+                        <td>成人：FCYWE01
+                            儿童：JOFE57</td>
+                        <td>2010-09-02
+                            至2012-10-01</td>
+                        <td>PVG/SHA-
+                            BJS</td>
+                        <td>BES/HK</td>
+                        <td>zhangjiang</td>
+                        <td>2010-09-02
+                            10 :10 :12</td>
+                        <td>zhangjiang</td>
+                        <td>2010-09-02
+                            10 :10 :12</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" /></td>
+                        <td>
+                            <a href="javascript:void(0);">查看</a>
+                            <a href="javascript:void(0);">修改</a>
+                            <a href="javascript:void(0);">复制</a>
+                            <a href="javascript:void(0);">删除</a>
+                        </td>
+                        <td>1027</td>
+                        <td>运行</td>
+                        <td>未审核</td>
+                        <td>国庆跳楼大促销</td>
+                        <td>MU</td>
+                        <td>FCYWEOWJIG
+                            JOFEOH</td>
+                        <td>15652156</td>
+                        <td>成人：FCYWE01
+                            儿童：JOFE57</td>
+                        <td>2010-09-02
+                            至2012-10-01</td>
+                        <td>PVG/SHA-
+                            BJS</td>
+                        <td>BES/HK</td>
+                        <td>zhangjiang</td>
+                        <td>2010-09-02
+                            10 :10 :12</td>
+                        <td>zhangjiang</td>
+                        <td>2010-09-02
+                            10 :10 :12</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" /></td>
+                        <td>
+                            <a href="javascript:void(0);">查看</a>
+                            <a href="javascript:void(0);">修改</a>
+                            <a href="javascript:void(0);">复制</a>
+                            <a href="javascript:void(0);">删除</a>
+                        </td>
+                        <td>1027</td>
+                        <td>运行</td>
+                        <td>未审核</td>
+                        <td>国庆跳楼大促销</td>
+                        <td>MU</td>
+                        <td>FCYWEOWJIG
+                            JOFEOH</td>
+                        <td>15652156</td>
+                        <td>成人：FCYWE01
+                            儿童：JOFE57</td>
+                        <td>2010-09-02
+                            至2012-10-01</td>
+                        <td>PVG/SHA-
+                            BJS</td>
+                        <td>BES/HK</td>
+                        <td>zhangjiang</td>
+                        <td>2010-09-02
+                            10 :10 :12</td>
+                        <td>zhangjiang</td>
+                        <td>2010-09-02
+                            10 :10 :12</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+          <div class="grid-table-pagination page">
+              <span class="grid-table-count">
+                  共 <em>132</em> 条记录
+              </span>
+              <span>
+                  <a href="#" class="prev">&nbsp;</a>
+              </span>
+              <span class="links">
+                  <a href="#">1</a>
+                  <a href="#">2</a>
+                  <a href="#" class="current">3</a>
+                  <a href="#">4</a>
+                  <a href="#">5</a>
+                  <a href="javascript:;">...</a>
+                  <a href="#">50</a>
+              </span>
+              <span>
+                  <a href="#" class="next">&nbsp;</a>
+              </span>
+          </div>
+              
+            </div>
+          </div>
+ 
+    <!-- end of content -->
+    </div>
+    
+    <div id="extFooter">
+        <div>
+            <p>
+                <a href="javascript:void(0);">关于我们</a>&nbsp;|
+                <a href="javascript:void(0);">微博</a>&nbsp;|
+                <a href="javascript:void(0);">服务条款</a>&nbsp;|
+                <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+
+    <script type="text/html" id="issueBtnTemplate">
+        <div>
+            <div class="window-issueDiv">
+                <p>发布的同时，航司文件价状态也将自动更新为发布，是否继续？</p>
+            </div>
+            <div class="cityBtn clearfix " style="text-align: center">
+                <div class="rightOperationA">
+                    <a class="large_button button_2_1">
+                        <span class="left"></span>
+                        <span class="center">发 布</span>
+                        <span class="right"></span>
+                    </a>
+                    <a class="large_button button_2_2">
+                        <span class="left"></span>
+                        <span class="center">取 消</span>
+                        <span class="right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </script>
+
+<script>
+    $(function(){
+        var ac_window = new PopWindow('.issueBtn',{
+            title:'发布',
+            width:'470',
+            template:'#issueBtnTemplate'
+        }).init();
+    })
+</script>
+    
+</body>
+</html>
