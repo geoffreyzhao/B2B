@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>国际机票 文件运价管理 添加-多程</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/kendo.common.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/kendo.reset.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+        <link rel="stylesheet" href="/static/css/operatorCommonHeader.css" />
+        <link rel="stylesheet" href="/static/css/operatorFileFreight.css" />
+
+        <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+        <script type="text/javascript" src="/static/js/global.js"></script>
+        <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+        <script src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+        <!--[if IE]>
+        <script src="/static/js/html5.js"></script>
+        <![endif]-->
+    </head>
+
+    <script>
+        $(function(){
+            kendo.init('body');
+            lensf();
+        })
+    </script>
+    
+<body>
+    <div id="head">
+        <div></div>
+    </div>
+    
+    <div id="catalogue"></div>
+
+
+<div id="container" class="new-container">
+
+    <div class="logo">
+        <div class="clearfix">
+            <h1></h1>
+            <div class="profile">
+                <a href="javascript:void(0)">你好,千颂伊</a>
+                <a href="javascript:void(0)">退出</a>
+            </div>
+        </div>
+        <ul id="catalogue_menu">
+            <li class="">
+                <a href="javascript:void(0)">国内机票</a>
+            </li>
+            <li><a href="javascript:void(0)">国际机票</a></li>
+            <li><a href="javascript:void(0)">酒店</a></li>
+            <li><a href="javascript:void(0)">打包产品</a></li>
+            <li><a href="javascript:void(0)">旅游</a></li>
+            <li class="current">
+                <a href="javascript:void(0)">邮轮</a>
+                <ol class="subMenu">
+                    <li class="currentSubMenu"><a href="javascript:void(0)">基础模块维护</a></li>
+                    <li><a href="javascript:void(0)">航线审核</a></li>
+                    <li><a href="javascript:void(0)">航线售卖管理</a></li>
+                    <li><a href="javascript:void(0)">团管理</a></li>
+                </ol>
+            </li>
+            <li><a href="javascript:void(0)">签证</a></li>
+            <li><a href="javascript:void(0)">保险</a></li>
+            <li><a href="javascript:void(0)">短信</a></li>
+            <li><a href="javascript:void(0)">通用订单</a></li>
+            <li><a href="javascript:void(0)">票证</a></li>
+            <li><a href="javascript:void(0)">财务</a></li>
+            <li><a href="javascript:void(0)">客户</a></li>
+            <li><a href="javascript:void(0)">设置</a></li>
+        </ul>
+        <div class="headerMessage clearfix">
+            <div id="msgNum">
+                <span>消息</span>
+                <em>30</em>
+            </div>
+        </div>
+    </div>
+    
+    <div> <!--内容开始-->
+        <div class="topFixedToolsBar actions">
+            <label class="releaseBox">
+                <input type="checkbox">立刻发布
+            </label>
+            <div class="commonReturnBtn">
+                <a href="#"><i class="leftArrow"></i> 返回</a>
+            </div>
+            <div class="fixedMenu">
+                <h3>添加文件运价</h3>
+            </div>
+            
+            <div class="fixedButton">
+                <a class="button_secondary adaptiveButton small" href="javascript:void(0);">
+                    <span class="left"></span>
+                    <span class="center">关 闭</span>
+                    <span class="right"></span>
+                </a>
+                <a class="button_secondary adaptiveButton small" href="javascript:void(0);">
+                    <span class="left"></span>
+                    <span class="center">清 除</span>
+                    <span class="right"></span>
+                </a>
+                <a href="javascript:;" class="button_important adaptiveButton small">
+                    <span class="left"></span>
+                    <span class="center">保 存</span>
+                    <span class="right"></span>
+                </a>
+                <a href="javascript:;" class="button_important adaptiveButton small">
+                    <span class="left"></span>
+                    <span class="center center_1">保存并继续</span>
+                    <span class="right"></span>
+                </a>
+            </div>
+        </div>
+        <div class="commonFileContent"> <!--commonFileContent start-->
+            <div class="commonModuleClassify">
+                <div class="fileModuleTitle">
+                    <b class="titleBoldFonts">基本信息</b>
+                    <span class="idNumber">ID:<em class="color999">--</em></span>
+                </div>
+                <table class="commonTabFreight">
+                    <colgroup>
+                        <col width="120">
+                        <col width="340">
+                        <col width="120">
+                        <col width="365">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th>协议名称：</th>
+                        <td colspan="3">
+                            <input type="text" style="width: 350px;">
+                            <em class="colorAfafaf">*输入说明</em>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>文件运价编号：</th>
+                        <td>
+                            <input type="text" style="width: 215px;">
+                        </td>
+                        <th>文件价状态：</th>
+                        <td>
+                            <label>
+                                <input type="radio" name="fileStatus" checked="checked">未审核
+                            </label>
+                            <label>
+                                <input type="radio" name="fileStatus">已经发布
+                            </label>
+                            <label>
+                                <input type="radio" name="fileStatus">停用状态
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>航空公司：</th>
+                        <td>
+                            <input type="text" style="width: 215px;">
+                            <em class="colorAfafaf">*如：MU</em>
+                        </td>
+                        <th>供应商：</th>
+                        <td>
+                            <select data-role="dropdownlist" style="width: 218px;">
+                                <option>请选择</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>TourCode：</th>
+                        <td>
+                            <input type="text" style="width: 215px;">
+                        </td>
+                        <th>Fare Basis Code：</th>
+                        <td>
+                            <input type="text" style="width: 215px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>提前购买时间：</th>
+                        <td>
+                            <input type="text" style="width: 215px;">
+                            <em class="colorAfafaf">*如：3D 或 3M</em>
+                        </td>
+                        <th>最晚出票日期：</th>
+                        <td>
+                            <input type="text" style="width: 215px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>销售日期：</th>
+                        <td>
+                            <input type="text" value="2013-06-01" class="datepicker" style="width: 95px;">
+                            <em>至</em>
+                            <input type="text" value="2013-06-02" class="datepicker orange" style="width: 95px;">
+                        </td>
+                        <th>销售时间：</th>
+                        <td>
+                            <select data-role="dropdownlist" style="width: 104px;">
+                                <option>8:00</option>
+                            </select>
+                            <em> - </em>
+                            <select data-role="dropdownlist" style="width: 104px;">
+                                <option>8:00</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>货币：</th>
+                        <td>
+                            <select data-role="dropdownlist" style="width: 215px;">
+                                <option>CNY</option>
+                            </select>
+                        </td>
+                        <th>OFFICE号：</th>
+                        <td>
+                            <input type="text" style="width: 215px;">
+                            <em class="colorAfafaf">*如：SHA225/SHA480</em>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>类型：</th>
+                        <td>
+                            <label>
+                                <input type="radio" name="type" checked="checked">单程
+                            </label>
+                            <label>
+                                <input type="radio" name="type">往返
+                            </label>
+                            <label>
+                                <input type="radio" name="type">多程
+                            </label>
+                        </td>
+                        <th> </th>
+                        <td> </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="commonModuleClassify">
+                <div class="fileModuleTitle">
+                    <b class="titleBoldFonts">航程信息</b>
+                    <span class="EnglishFonts">PEK/PVG - HKG - DOH - ABC - BCD ；</span>
+                    <span class="EnglishFonts">EFG - HIZ</span>
+                </div>
+                <table class="commonTabFreight addLegTab addNumberOfPassesTab first">
+                    <colgroup>
+                        <col width="110">
+                        <col width="230">
+                        <col width="65">
+                        <col width="260">
+                    </colgroup>
+                    <tbody>
+                    <tr class="firstTr">
+                        <th><span class="numberOfPasses greenBg">第1程</span> 出发：</th>
+                        <td>
+                            <input type="text" value="PEK/PVG" style="width: 175px;">
+                        </td>
+                        <th>目的地：</th>
+                        <td>
+                            <input type="text" value="PEK/PVG" style="width: 175px;">
+                            <a href="javascript:void(0);" class="blueSmallBtn addLeg">添加航段</a>
+                            <em class="colorAfafaf numberOfPassesHint">*可输入多个机场三字码，用半角/分隔。如PEK/SHA/PVG。</em>
+                        </td>
+                    </tr>
+                    <tr class="addLegContent">
+                        <th>出发：</th>
+                        <td><input type="text" value="PEK/PVG" style="width: 175px;"></td>
+                        <th>目的地：</th>
+                        <td><input type="text" value="PEK/PVG" style="width: 175px;"><a href="javascript:void(0);" class="legDelete">删除</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="commonTabFreight addLegTab addNumberOfPassesTab">
+                    <colgroup>
+                        <col width="110">
+                        <col width="230">
+                        <col width="65">
+                        <col width="260">
+                    </colgroup>
+                    <tbody>
+                    <tr class="firstTr">
+                        <th><span class="numberOfPasses deepPurpleBg">第2程</span> 出发：</th>
+                        <td>
+                            <input type="text" value="PEK/PVG" style="width: 175px;">
+                        </td>
+                        <th>目的地：</th>
+                        <td>
+                            <input type="text" value="PEK/PVG" style="width: 175px;">
+                            <a href="javascript:void(0);" class="blueSmallBtn addLeg">添加航段</a>
+                        </td>
+                    </tr>
+                    <tr class="addLegContent">
+                        <th>出发：</th>
+                        <td><input type="text" value="PEK/PVG" style="width: 175px;"></td>
+                        <th>目的地：</th>
+                        <td>
+                            <input type="text" value="PEK/PVG" style="width: 175px;">
+                            <a href="javascript:void(0);" class="blueSmallBtn addLeg">添加航段</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="commonTabFreight addLegTab addNumberOfPassesTab">
+                    <colgroup>
+                        <col width="110">
+                        <col width="230">
+                        <col width="65">
+                        <col width="260">
+                    </colgroup>
+                    <tbody>
+                    <tr class="firstTr">
+                        <th><span class="numberOfPasses orangeRedBg">第3程</span> 出发：</th>
+                        <td>
+                            <input type="text" value="PEK/PVG" style="width: 175px;">
+                        </td>
+                        <th>目的地：</th>
+                        <td>
+                            <input type="text" value="PEK/PVG" style="width: 175px;">
+                            <a href="javascript:void(0);" class="blueSmallBtn addLeg">添加航段</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="commonTabFreight addLegTab addNumberOfPassesTab">
+                    <colgroup>
+                        <col width="110">
+                        <col width="230">
+                        <col width="65">
+                        <col width="260">
+                    </colgroup>
+                    <tbody>
+                    <tr class="firstTr">
+                        <th><span class="numberOfPasses orangeYellowBg">第4程</span> 出发：</th>
+                        <td>
+                            <input type="text" value="PEK/PVG" style="width: 175px;">
+                        </td>
+                        <th>目的地：</th>
+                        <td>
+                            <input type="text" value="PEK/PVG" style="width: 175px;">
+                            <a href="javascript:void(0);" class="blueSmallBtn addLeg">添加航段</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="commonTabFreight addLegTab addNumberOfPassesTab">
+                    <colgroup>
+                        <col width="110">
+                        <col width="230">
+                        <col width="65">
+                        <col width="260">
+                    </colgroup>
+                    <tbody>
+                    <tr class="firstTr">
+                        <th><span class="numberOfPasses deepPinkBg">第5程</span> 出发：</th>
+                        <td>
+                            <input type="text" value="PEK/PVG" style="width: 175px;">
+                        </td>
+                        <th>目的地：</th>
+                        <td>
+                            <input type="text" value="PEK/PVG" style="width: 175px;">
+                            <a href="javascript:void(0);" class="blueSmallBtn addLeg">添加航段</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="commonTabFreight addLegTab addNumberOfPassesTab">
+                    <colgroup>
+                        <col width="110">
+                        <col width="230">
+                        <col width="65">
+                        <col width="260">
+                    </colgroup>
+                    <tbody>
+                    <tr class="firstTr">
+                        <th><span class="numberOfPasses lightPurpleBg">第6程</span> 出发：</th>
+                        <td>
+                            <input type="text" value="PEK/PVG" style="width: 175px;">
+                        </td>
+                        <th>目的地：</th>
+                        <td>
+                            <input type="text" value="PEK/PVG" style="width: 175px;">
+                            <a href="javascript:void(0);" class="blueSmallBtn addLeg">添加航段</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="commonModuleClassify">
+                <div class="fileModuleTitle">
+                    <b class="titleBoldFonts">航班信息</b>
+                </div>
+                <table class="commonTabFreight airInformation airNumberOfPassesTab first">
+                    <colgroup>
+                        <col width="370">
+                        <col width="520">
+                    </colgroup>
+                    <tbody>
+                    <tr class="paddingBottom firstTr">
+                        <td>
+                            <span class="numberOfPasses greenBg">第1程</span>
+                            <div><b>航班号：</b>允许航班</div>
+                            <div>
+                                <textarea class="textareaInfo">2701~2999/3000~3199/4100/4200</textarea>
+                            </div>
+                        </td>
+                        <td>
+                            <div>禁止航班</div>
+                            <div class="clearfix">
+                                <textarea class="textareaInfo pull-left">2701~2999/3000~3199/4100/4200</textarea>
+                                <em class="colorAfafaf airHint">*无需输入航空公司代码，如CA1234，请输入1234，可输入多个航班号，用半角/分隔，支持号段，如：2701~2999/3000~3199。</em>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="paddingBottom">
+                        <td>
+                            <div><b>航班限制：</b>出发日期</div>
+                            <div>
+                                <input type="text" style="width: 97px;" class="datepicker">
+                                <em> 至 </em>
+                                <input type="text" style="width: 97px;" class="datepicker orange">
+                                <a href="javascript:void(0);" class="blueSmallBtn">添加</a>
+                            </div>
+                            <div class="colorAfafaf">*选择日期范围后，点击添加，可添加多个日期段。</div>
+                        </td>
+                        <td>
+                            <div>禁止日期</div>
+                            <div>
+                                <input type="text" style="width: 97px;" class="datepicker">
+                                <em> 至 </em>
+                                <input type="text" style="width: 97px;" class="datepicker orange">
+                                <a href="javascript:void(0);" class="blueSmallBtn">添加</a>
+                            </div>
+                            <div class="colorAfafaf">*选择日期范围后，点击添加，可添加多个日期段。</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div>
+                                <b>星期限制：</b>
+                                <label>
+                                    <input type="checkbox">星期一
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期二
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期三
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期四
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期五
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期六
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期日
+                                </label>
+                            </div>
+                            <div>
+                                <b>时间限制：</b>
+                                <select data-role="dropdownlist" style="width: 100px;">
+                                    <option>0:00</option>
+                                </select>
+                                <em> - </em>
+                                <select data-role="dropdownlist" style="width: 100px;">
+                                    <option>23:59</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="commonTabFreight airInformation airNumberOfPassesTab">
+                    <colgroup>
+                        <col width="370">
+                        <col width="520">
+                    </colgroup>
+                    <tbody>
+                    <tr class="paddingBottom firstTr">
+                        <td>
+                            <span class="numberOfPasses deepPurpleBg">第2程</span>
+                            <div><b>航班号：</b>允许航班</div>
+                            <div>
+                                <textarea class="textareaInfo">2701~2999/3000~3199/4100/4200</textarea>
+                            </div>
+                        </td>
+                        <td>
+                            <div>禁止航班</div>
+                            <div class="clearfix">
+                                <textarea class="textareaInfo pull-left">2701~2999/3000~3199/4100/4200</textarea>
+                                <em class="colorAfafaf airHint">*无需输入航空公司代码，如CA1234，请输入1234，可输入多个航班号，用半角/分隔，支持号段，如：2701~2999/3000~3199。</em>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="paddingBottom">
+                        <td>
+                            <div><b>航班限制：</b>出发日期</div>
+                            <div>
+                                <input type="text" style="width: 97px;" class="datepicker">
+                                <em> 至 </em>
+                                <input type="text" style="width: 97px;" class="datepicker orange">
+                                <a href="javascript:void(0);" class="blueSmallBtn">添加</a>
+                            </div>
+                            <div class="colorAfafaf">*选择日期范围后，点击添加，可添加多个日期段。</div>
+                        </td>
+                        <td>
+                            <div>禁止日期</div>
+                            <div>
+                                <input type="text" style="width: 97px;" class="datepicker">
+                                <em> 至 </em>
+                                <input type="text" style="width: 97px;" class="datepicker orange">
+                                <a href="javascript:void(0);" class="blueSmallBtn">添加</a>
+                            </div>
+                            <div class="colorAfafaf">*选择日期范围后，点击添加，可添加多个日期段。</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div>
+                                <b>星期限制：</b>
+                                <label>
+                                    <input type="checkbox">星期一
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期二
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期三
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期四
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期五
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期六
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期日
+                                </label>
+                            </div>
+                            <div>
+                                <b>时间限制：</b>
+                                <select data-role="dropdownlist" style="width: 100px;">
+                                    <option>0:00</option>
+                                </select>
+                                <em> - </em>
+                                <select data-role="dropdownlist" style="width: 100px;">
+                                    <option>23:59</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="commonTabFreight airInformation airNumberOfPassesTab">
+                    <colgroup>
+                        <col width="370">
+                        <col width="520">
+                    </colgroup>
+                    <tbody>
+                    <tr class="paddingBottom firstTr">
+                        <td>
+                            <span class="numberOfPasses orangeRedBg">第3程</span>
+                            <div><b>航班号：</b>允许航班</div>
+                            <div>
+                                <textarea class="textareaInfo">2701~2999/3000~3199/4100/4200</textarea>
+                            </div>
+                        </td>
+                        <td>
+                            <div>禁止航班</div>
+                            <div class="clearfix">
+                                <textarea class="textareaInfo pull-left">2701~2999/3000~3199/4100/4200</textarea>
+                                <em class="colorAfafaf airHint">*无需输入航空公司代码，如CA1234，请输入1234，可输入多个航班号，用半角/分隔，支持号段，如：2701~2999/3000~3199。</em>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="paddingBottom">
+                        <td>
+                            <div><b>航班限制：</b>出发日期</div>
+                            <div>
+                                <input type="text" style="width: 97px;" class="datepicker">
+                                <em> 至 </em>
+                                <input type="text" style="width: 97px;" class="datepicker orange">
+                                <a href="javascript:void(0);" class="blueSmallBtn">添加</a>
+                            </div>
+                            <div class="colorAfafaf">*选择日期范围后，点击添加，可添加多个日期段。</div>
+                        </td>
+                        <td>
+                            <div>禁止日期</div>
+                            <div>
+                                <input type="text" style="width: 97px;" class="datepicker">
+                                <em> 至 </em>
+                                <input type="text" style="width: 97px;" class="datepicker orange">
+                                <a href="javascript:void(0);" class="blueSmallBtn">添加</a>
+                            </div>
+                            <div class="colorAfafaf">*选择日期范围后，点击添加，可添加多个日期段。</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div>
+                                <b>星期限制：</b>
+                                <label>
+                                    <input type="checkbox">星期一
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期二
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期三
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期四
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期五
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期六
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期日
+                                </label>
+                            </div>
+                            <div>
+                                <b>时间限制：</b>
+                                <select data-role="dropdownlist" style="width: 100px;">
+                                    <option>0:00</option>
+                                </select>
+                                <em> - </em>
+                                <select data-role="dropdownlist" style="width: 100px;">
+                                    <option>23:59</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="commonModuleClassify">
+                <div class="fileModuleTitle">
+                    <b class="titleBoldFonts">价格信息</b>
+                </div>
+                <table class="commonTabFreight marginLeft20">
+                    <colgroup>
+                        <col width="100%">
+                    </colgroup>
+                    <tbody>
+                    <tr class="paddingBottom">
+                        <td>
+                            <div>
+                                <b>价格：</b>
+                                <input type="text" value="舱位" class="marginRight10" style="width: 80px;">
+                                <select data-role="dropdownlist" class="marginRight10" style="width: 100px;">
+                                    <option>乘客类型</option>
+                                </select>
+                                <input type="text" value="金额" class="marginRight10" style="width: 80px;">
+                                <em class="colorAfafaf">*输入舱位，如：Q <i class="marginLeft20">输入金额，如：5600</i></em>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="commonModuleClassify">
+                <div class="fileModuleTitle">
+                    <b class="titleBoldFonts">共享航班</b>
+                </div>
+                <table class="commonTabFreight marginLeft20 shareAirTab">
+                    <colgroup>
+                        <col width="90">
+                        <col width="830">
+                    </colgroup>
+                    <tbody>
+                    <tr class="trPaddingTop">
+                        <th class="verticalAlignTop paddingTop10">共享情况1：</th>
+                        <td>
+                            <div class="marginBottom0">
+                                <input type="text" value="请选择" class="marginRight10 ac-selectVoyage" style="width: 180px;">
+                                <input type="text" value="航司" class="marginRight10" style="width: 100px;">
+                                <input type="text" value="舱位" style="width: 80px;">
+                                <a href="javascript:void(0);" class="blueSmallBtn">添加</a>
+                                <em class="colorAfafaf">*输入航司，如：MU <i class="marginLeft20">输入舱位，如：Q</i></em>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="borderTopSolid paddingBottom0" id="addSharePartContent">
+                        <th class="verticalAlignTop paddingTop20">共享情况2：</th>
+                        <td>
+                            <div>
+                                <input type="text" value="请选择" class="marginRight10 ac-selectVoyage" style="width: 180px;">
+                                <input type="text" value="航司" class="marginRight10" style="width: 100px;">
+                                <input type="text" value="舱位" style="width: 80px;">
+                                <a href="javascript:void(0);" class="blueSmallBtn" id="addSharePartFonts">添加</a>
+                                <em class="colorAfafaf">*输入航司，如：MU <i class="marginLeft20">输入舱位，如：Q</i></em>
+                                <label class="shareDeleteAll">
+                                    <i class="deleteIcon"></i>
+                                    <em>删除情况</em>
+                                </label>
+                            </div>
+                            <div class="addSharePartModel"><input type="text" value="请选择" class="marginRight10 ac-selectVoyage" style="width: 180px;"><input type="text" value="航司" class="marginRight10" style="width: 100px;"><input type="text" value="舱位" style="width: 80px;"><a href="javascript:void(0);" class="shareDelFonts">删除</a></div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="addShareCondition">
+                    <i class="addShareConditionIcon"></i>
+                    <em>新增情况</em>
+                </div>
+            </div>
+            <div class="commonModuleClassify">
+                <div class="fileModuleTitle">
+                    <b class="titleBoldFonts">退改签信息</b>
+                </div>
+                <table class="commonTabFreight marginLeft20 endorseTicketTab tabBottomBorderSolid">
+                    <colgroup>
+                        <col width="60">
+                        <col width="70">
+                        <col width="210">
+                        <col width="120">
+                        <col width="470">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th>退票：</th>
+                        <td class="textAlignRight">退票类型</td>
+                        <td>
+                            <select data-role="dropdownlist" style="width: 140px;margin-left: 3px;">
+                                <option>正常退票</option>
+                            </select>
+                        </td>
+                        <td> </td>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td class="textAlignRight">惩罚条件</td>
+                        <td>
+                            <label>
+                                <input type="radio" name="condition" checked="checked">无限制
+                            </label>
+                            <label>
+                                <input type="radio" name="condition">有限制
+                            </label>
+                        </td>
+                        <td class="borderBottomSolid">起飞前</td>
+                        <td class="borderBottomSolid"> 
+                            <select data-role="dropdownlist" style="width: 100px;">
+                                <option>费用组合</option>
+                            </select>
+                            <span class="lightBlueBg">
+                                <label>
+                                    <input type="checkbox" checked>票面价
+                                    <input type="text" value="1" class="FareNumber">
+                                </label>
+                            </span>
+                            <span class="lightBlueBg">
+                                <label>
+                                    <input type="checkbox">票面价
+                                    <input type="text" value="1" class="FareNumber">
+                                </label>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td class="textAlignRight"> </td>
+                        <td> </td>
+                        <td class="borderBottomSolid">起飞后</td>
+                        <td class="borderBottomSolid">
+                            <select data-role="dropdownlist" style="width: 100px;">
+                                <option>禁止</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td class="textAlignRight"> </td>
+                        <td> </td>
+                        <td> 起飞后 &nbsp;<input type="text" value="1" style="width: 30px;">&nbsp;小时</td>
+                        <td>
+                            <select data-role="dropdownlist" style="width: 100px;">
+                                <option>禁止</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="paddingBottom20">
+                        <th></th>
+                        <td class="textAlignRight verticalAlignTop">备注</td>
+                        <td colspan="3">
+                            <textarea class="endorseTicketTtextarea"></textarea>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="commonTabFreight marginLeft20 endorseTicketTab">
+                    <colgroup>
+                        <col width="60">
+                        <col width="70">
+                        <col width="210">
+                        <col width="120">
+                        <col width="470">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th>退票：</th>
+                        <td class="textAlignRight">改期类型</td>
+                        <td>
+                            <select data-role="dropdownlist" style="width: 140px;margin-left: 3px;">
+                                <option>正常改签</option>
+                            </select>
+                        </td>
+                        <td> </td>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td class="textAlignRight">惩罚条件</td>
+                        <td>
+                            <label>
+                                <input type="radio" name="condition" checked="checked">无限制
+                            </label>
+                            <label>
+                                <input type="radio" name="condition">有限制
+                            </label>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td class="textAlignRight verticalAlignTop">附加条件</td>
+                        <td>
+                            <div>
+                                <label>
+                                    <input type="checkbox" checked="checked">同舱位换乘
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="checkbox">始发日不得提前
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="checkbox">更改后不得超过原有效期
+                                </label>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td class="textAlignRight verticalAlignTop">备注</td>
+                        <td colspan="3">
+                            <textarea class="endorseTicketTtextarea"></textarea>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="commonModuleClassify">
+                <div class="fileModuleTitle">
+                    <b class="titleBoldFonts">其他信息</b>
+                </div>
+                <table class="commonTabFreight otherInfoTab">
+                    <colgroup>
+                        <col width="120">
+                        <col width="230">
+                        <col width="120">
+                        <col width="480">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th>最大乘客数：</th>
+                        <td>
+                            <input type="text" style="width: 70px;">
+                            <em class="minWidth40">人</em>
+                            <em class="colorAfafaf">*如：20</em>
+                        </td>
+                        <th>最小乘客数：</th>
+                        <td>
+                            <input type="text" style="width: 70px;">
+                            <em class="minWidth40">人</em>
+                            <em class="colorAfafaf">*如：20</em>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>最大停留时间：</th>
+                        <td>
+                            <input type="text" style="width: 70px;">
+                            <em class="minWidth40">小时</em>
+                            <em class="colorAfafaf">*如：20</em>
+                        </td>
+                        <th>最小停留时间：</th>
+                        <td>
+                            <input type="text" style="width: 70px;">
+                            <em class="minWidth40">小时</em>
+                            <em class="colorAfafaf">*如：20</em>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>行李重量：</th>
+                        <td>
+                            <input type="text" style="width: 70px;">
+                            <em class="minWidth40">kg</em>
+                            <em class="colorAfafaf">*如：15</em>
+                        </td>
+                        <th>EI项：</th>
+                        <td>
+                            <input type="text" style="width: 340px;">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        
+        </div> <!--commonFileContent end-->
+
+    
+    </div> <!--内容结束-->
+</div>
+
+    <footer class="main-footer">
+        <center>
+            <a href="#">隐私问题</a>
+            <i class="bar">|</i>
+            <a href="#">常见问题</a>
+            <i class="bar">|</i>
+            <a href="#">关于我们</a>
+            <i class="bar">|</i>
+            <a href="#">媒体中心</a>
+            <i class="bar">|</i>
+            <a href="#">联系我们</a>
+        </center>
+        <center class="copyright">
+            Copyright &copy; 2012 天地行 All Rights Reserved.     沪ICP备08101503号
+        </center>
+    </footer>
+    
+    <script type="text/x-kendo-template" id="ac-selectVoyage-template">
+        <div class="searchTabWindow">
+            <table>
+                <colgroup>
+                    <col width="50">
+                    <col width="160">
+                    <col width="60">
+                    <col width="140">
+                    <col width="90">
+                </colgroup>
+                <tr>
+                    <th>出发地</th>
+                    <td>
+                        <input type="text" style="width: 130px;">
+                    </td>
+                    <th>目的地</th>
+                    <td>
+                        <input type="text" style="width: 135px;">
+                    </td>
+                    <td>
+                        <a class="button_secondary adaptiveButton small" href="javascript:void(0);">
+                            <span class="left"></span>
+                            <span class="center">搜 索</span>
+                            <span class="right"></span>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <ul class="voyageList clearfix">
+            <li>
+                <label>
+                    <input type="checkbox">BSP-HKG
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">BSP-HKG
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">BSP-HKG
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">BSP-HKG
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">BSP-HKG
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">BSP-HKG
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">BSP-HKG
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">BSP-HKG
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">BSP-HKG
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">BSP-HKG
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">BSP-HKG
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">BSP-HKG
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">BSP-HKG
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">BSP-HKG
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">BSP-HKG
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">BSP-HKG
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">BSP-HKG
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">BSP-HKG
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">BSP-HKG
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="checkbox">BSP-HKG
+                </label>
+            </li>
+        </ul>
+        <div class="selectVoyageHint clearfix">
+            <label class="leftSelect">
+                <input type="checkbox"> 任意航段
+            </label>
+            <span class="pull-right selectVoyageBtn">
+                <label>已选择<em class="orangeFonts"> 1 </em>个</label>
+                <button class="large_button" type="button">确 定</button>
+                <button class="large_button disable" type="button">取 消</button>
+            </span>
+        </div>
+    </script>
+    
+    <script>
+        $(function(){
+                        
+            //添加航段
+            $(".addLeg").click(function(){
+                var template = $(".addLegContent").html();
+                $(".addLegTab tbody").append("<tr class='addNewTr'>" + template + "</tr>");
+            });            
+            $(".commonModuleClassify").delegate(".legDelete","click",function(){
+                $(this).closest('.addNewTr').remove();
+            });
+
+            // 共享航班
+            $("#addSharePartFonts").click(function(){
+                var template = $(".addSharePartModel").html();
+                $(".shareAirTab #addSharePartContent td").append("<div class='addNewDiv'>" + template + "</div>");
+            });
+            $(".commonModuleClassify").delegate(".shareDelFonts","click",function(){
+                $(this).closest('.addNewDiv').remove();
+            });
+            $(".shareDeleteAll").click(function(){
+                $(this).parents("#addSharePartContent").remove();
+            });
+            
+            $(".addShareCondition").click(function(){
+                var template = $("#addSharePartContent").html();
+                $(".shareAirTab tbody").append("<tr class='borderTopSolid addNewShareCondition'>" + template + "</tr>");
+            });
+            $(".commonModuleClassify").delegate(".shareDeleteAll","click",function(){
+                $(this).closest('.addNewShareCondition').remove();
+            });
+
+            new PopWindow('.ac-selectVoyage',{
+                width: 600,
+                title:'选择航程',
+                template:'#ac-selectVoyage-template'
+            }).init();
+    
+        });
+    </script>
+</body>
+</html>
