@@ -1549,14 +1549,17 @@ a.progressCancel {
 .write_note{ margin:15px 0; line-height:22px;}
 .trace_list a{ text-decoration:underline;}
 
-.newOrderTrace{ background: #f2fdff; border: 1px solid #b9ddfb; margin-top: 0; position: relative;}
+.newOrderTrace{ background: #f2fdff; border: 1px solid #b9ddfb; margin-top: 0; position: relative;overflow: hidden;}
 .newOrderTrace .orderArrowUp{ background: url("../images/store/iconSprite.png") no-repeat -52px -14px; width: 15px; height: 8px; display: inline-block; position: absolute; top: -8px; right: 7%;}
 .traceList{ float: left; width: 89.5%;}
-.traceList li{ float: left; margin-left: 30px; padding: 10px 5px 10px 0; position: relative; border-bottom: 1px dashed #d8e9f9; vertical-align: top;}
+.traceList li{ float: left; margin-left: 30px; padding: 10px 5px 10px 0; position: relative; border-bottom: 1px dashed #d8e9f9; vertical-align: top; position: relative;}
+.traceList li:last-child {
+    border-bottom: none;
+}
 .traceList .orderIcon{ position: absolute; top: 18px; left: -23px; background: url("../images/store/iconSprite.png") no-repeat -72px -14px; width: 7px; height: 7px;}
 .traceList li label{
     display: inline-block;
-    width: 578px;
+    width: 300px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space:nowrap;
@@ -1574,41 +1577,85 @@ a.progressCancel {
 }
 
 .traceList .opUser {
-    float: right;
+    float: left;
     color: #888;
-    width: 260px;
+    width: 540px;
 }
-.traceList .orderLine{ display: inline-block; width: 1px; height: 103%; border-left: 1px solid #bed2e4; position: absolute; top: 0; left:-20px;}
+.traceList .orderLine{ display: inline-block; width: 1px; height: 100%; border-left: 1px solid #bed2e4; position: absolute; top: 0; left:-20px;}
 .traceList .orderNoLine{ border: 0; width: 100%;}
 .traceList .orderOrangeFont{ color: #f1634c; font-size: 14px;}
 .flexiBleContent{ display: none;}
 .orderFlexibleType {
-    width: 90px;
-    height: 28px;
-    margin: 0 auto;
-    border: 1px solid #dbe8f3;
-    top: -1px;
-    z-index: 2;
-    line-height: 28px;
+    color: #2499d0;
     cursor: pointer;
-    background: url(../images/store/downArrowGray.png) no-repeat 75px center #fbfbfb;
-    margin-bottom: -11px;
-    text-align: center;
-    padding-right: 10px;
-    
+    background: url(../images/store/downlightBlueArrow.png) no-repeat 55px 6px;
+    width: 100px;
+    display: inline-block;
 }
 
 .orderFlexibleTypeAdd{
     position: relative;
-    left: -52px;
+    /*left: -52px;*/
 }
 
 .orderFlexibleType.down {
-    background: url(../images/store/upArrowGray.png) no-repeat 75px center;
+    background: url(../images/store/uplightBlueArrow.png) no-repeat 55px 6px;
 }
 .newOrder{
     border: 0;
     position: relative;
 }
+.traceList .viewMoreLabel {
+   /* float:right;
+    width:80px;*/
+    position: absolute;
+    top:5px;
+    right: 10px;
+    top: 9px;
+    right: -234px;
+}
+.traceList .fc999 {
+    color: #999;
+}
 
 /* 订单追踪日志  结束  */
+.accountTopBar {
+    padding:6px 20px;
+    background: #40638b;
+    color: #fffdfd;
+    font-size: 12px;
+    overflow: hidden;
+    margin: -10px 0 10px 0;
+    z-index: 10;
+    width: 940px;
+}
+.accountTopBar .accountDetailCost {
+    float: left;
+}
+.accountTopBar .accountDetailCost span {
+    font-size: 16px;
+    font-family: "Arial";
+    margin: 0 5px;
+}
+.accountTopBar .accountDetailCost em {
+    font-size: 12px;
+    font-family: "microsoft yahei";
+}
+.accountTopBar .accountDetailCost i {
+    font-size: 14px;
+    font-family: "microsoft yahei";
+    margin-right: 5px;
+}
+.accountTopBar .accountTotalCost {
+    float: right;
+    font-size: 14px;
+}
+.accountTopBar .accountTotalCost span {
+    color: #fe8f46;
+    font-size: 24px;
+    font-family: "Arial";
+}
+.accountTopBar .accountTotalCost em {
+    font-size: 16px;
+    font-family: "microsoft yahei";
+}

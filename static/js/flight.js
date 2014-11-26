@@ -2,6 +2,9 @@ $(function(){
     kendo.culture('zh-CN');
     kendo.init($('body'));
     $('.actions').fixedBar();
+    $(".accountTopBar").fixedBar({
+        css: "top:46px;position:fixed"
+    });
 
     var t = /proto|dev\.b2b\.com/i;
     if(t.test(location.href)){
