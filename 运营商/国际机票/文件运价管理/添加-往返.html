@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>国际机票 文件运价管理 添加-单程</title>
+        <title>国际机票 文件运价管理 添加-往返</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
         <link href="/static/css/kendo.common.css" rel="stylesheet" type="text/css" />
@@ -224,11 +224,11 @@
                     <tr>
                         <th>类型：</th>
                         <td>
-                            <label>
-                                <input type="radio" name="type" checked="checked">单程
-                            </label>
                             <label class="ac-changeHint">
-                                <input type="radio" name="type">往返
+                                <input type="radio" name="type">单程
+                            </label>
+                            <label>
+                                <input type="radio" name="type" checked="checked">往返
                             </label>
                             <label class="ac-changeHint">
                                 <input type="radio" name="type">多程
@@ -245,27 +245,24 @@
                     <b class="titleBoldFonts">航程信息</b>
                     <span class="EnglishFonts">PEK/PVG - HKG - DOH</span>
                 </div>
-                <table class="commonTabFreight addLegTab">
+                <table class="commonTabFreight addLegTab addNumberOfPassesTab first">
                     <colgroup>
-                        <col width="60">
-                        <col width="250">
+                        <col width="110">
+                        <col width="230">
                         <col width="65">
                         <col width="260">
-                        <col width="300">
                     </colgroup>
                     <tbody>
-                    <tr>
-                        <th>出发：</th>
+                    <tr class="firstTr">
+                        <th><span class="numberOfPasses greenBg">去程</span> 出发：</th>
                         <td>
                             <input type="text" value="PEK/PVG" style="width: 175px;">
                         </td>
                         <th>目的地：</th>
                         <td>
                             <input type="text" value="PEK/PVG" style="width: 175px;">
-                            <a href="javascript:void(0);" class="blueSmallBtn addLeg">添加航段</a>
-                        </td>
-                        <td>
-                            <em class="colorAfafaf">*可输入多个机场三字码，用半角/分隔。如PEK/SHA/PVG。</em>
+                            <a href="javascript:void(0);" class="blueSmallBtn" id="addLeg">添加航段</a>
+                            <em class="colorAfafaf numberOfPassesHint" style="right: -240px;">*可输入多个机场三字码，用半角/分隔。如PEK/SHA/PVG。</em>
                         </td>
                     </tr>
                     <tr class="addLegContent">
@@ -277,19 +274,41 @@
                     </tr>
                     </tbody>
                 </table>
+                <table class="commonTabFreight addNumberOfPassesTab">
+                    <colgroup>
+                        <col width="110">
+                        <col width="230">
+                        <col width="65">
+                        <col width="260">
+                    </colgroup>
+                    <tbody>
+                    <tr class="firstTr">
+                        <th><span class="numberOfPasses deepPurpleBg">返程</span> 出发：</th>
+                        <td>
+                            <input type="text" value="PEK/PVG" style="width: 175px;">
+                        </td>
+                        <th>目的地：</th>
+                        <td>
+                            <input type="text" value="PEK/PVG" style="width: 175px;">
+                            <a href="javascript:void(0);" class="blueSmallBtn">添加航段</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="commonModuleClassify">
                 <div class="fileModuleTitle">
                     <b class="titleBoldFonts">航班信息</b>
                 </div>
-                <table class="commonTabFreight airInformation">
+                <table class="commonTabFreight airInformation airNumberOfPassesTab first">
                     <colgroup>
-                        <col width="380">
-                        <col width="540">
+                        <col width="370">
+                        <col width="520">
                     </colgroup>
                     <tbody>
-                    <tr class="paddingBottom">
+                    <tr class="paddingBottom firstTr">
                         <td>
+                            <span class="numberOfPasses greenBg">去程</span>
                             <div><b>航班号：</b>允许航班</div>
                             <div>
                                 <textarea class="textareaInfo">2701~2999/3000~3199/4100/4200</textarea>
@@ -317,6 +336,90 @@
                                     <em class="dateContent">2014-11-01至2014-12-20</em>
                                     <i class="closeIcon"></i>
                                 </label>
+                            </div>
+                            <div class="colorAfafaf">*选择日期范围后，点击添加，可添加多个日期段。</div>
+                        </td>
+                        <td>
+                            <div>禁止日期</div>
+                            <div>
+                                <input type="text" style="width: 97px;" class="datepicker">
+                                <em> 至 </em>
+                                <input type="text" style="width: 97px;" class="datepicker orange">
+                                <a href="javascript:void(0);" class="blueSmallBtn">添加</a>
+                            </div>
+                            <div class="colorAfafaf">*选择日期范围后，点击添加，可添加多个日期段。</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div>
+                                <b>星期限制：</b>
+                                <label>
+                                    <input type="checkbox">星期一
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期二
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期三
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期四
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期五
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期六
+                                </label>
+                                <label>
+                                    <input type="checkbox">星期日
+                                </label>
+                            </div>
+                            <div>
+                                <b>时间限制：</b>
+                                <select data-role="dropdownlist" style="width: 100px;">
+                                    <option>0:00</option>
+                                </select>
+                                <em> - </em>
+                                <select data-role="dropdownlist" style="width: 100px;">
+                                    <option>23:59</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="commonTabFreight airInformation airNumberOfPassesTab">
+                    <colgroup>
+                        <col width="370">
+                        <col width="520">
+                    </colgroup>
+                    <tbody>
+                    <tr class="paddingBottom firstTr">
+                        <td>
+                            <span class="numberOfPasses deepPurpleBg">返程</span>
+                            <div><b>航班号：</b>允许航班</div>
+                            <div>
+                                <textarea class="textareaInfo">2701~2999/3000~3199/4100/4200</textarea>
+                            </div>
+                        </td>
+                        <td>
+                            <div>禁止航班</div>
+                            <div class="clearfix">
+                                <textarea class="textareaInfo pull-left">2701~2999/3000~3199/4100/4200</textarea>
+                                <em class="colorAfafaf airHint">*无需输入航空公司代码，如CA1234，请输入1234，可输入多个航班号，用半角/分隔，支持号段，如：2701~2999/3000~3199。</em>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="paddingBottom">
+                        <td>
+                            <div><b>航班限制：</b>出发日期</div>
+                            <div>
+                                <input type="text" style="width: 97px;" class="datepicker">
+                                <em> 至 </em>
+                                <input type="text" style="width: 97px;" class="datepicker orange">
+                                <a href="javascript:void(0);" class="blueSmallBtn">添加</a>
                             </div>
                             <div class="colorAfafaf">*选择日期范围后，点击添加，可添加多个日期段。</div>
                         </td>
@@ -438,7 +541,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <div class="addModelStyle addShareCondition">
+                <div class="addModelStyle addShareCondition" id="addVoyageModel">
                     <i class="addModelStyleIcon"></i>
                     <em>新增情况</em>
                 </div>
@@ -505,25 +608,25 @@
                                             </span>
                                 </div>
                                 <div class="changeDivPadding borderBottomSolid">
-                                    <span class="takeOffContent">
-                                        <em>起飞后</em>
-                                    </span>
-                                    <span>
-                                        <select data-role="dropdownlist" style="width: 100px;">
-                                            <option>禁止</option>
-                                        </select>
-                                    </span>
+                                            <span class="takeOffContent">
+                                                <em>起飞后</em>
+                                            </span>
+                                            <span>
+                                                <select data-role="dropdownlist" style="width: 100px;">
+                                                    <option>禁止</option>
+                                                </select>
+                                            </span>
                                 </div>
                                 <div class="changeDivPadding">
-                                    <span class="takeOffContent">
-                                        <em>起飞后</em>&nbsp;
-                                        <input type="text" value="1" style="width: 30px;">&nbsp;小时
-                                    </span>
-                                    <span>
-                                        <select data-role="dropdownlist" style="width: 100px;">
-                                            <option>禁止</option>
-                                        </select>
-                                    </span>
+                                            <span class="takeOffContent">
+                                                <em>起飞后</em>&nbsp;
+                                                <input type="text" value="1" style="width: 30px;">&nbsp;小时
+                                            </span>
+                                            <span>
+                                                <select data-role="dropdownlist" style="width: 100px;">
+                                                    <option>禁止</option>
+                                                </select>
+                                            </span>
                                 </div>
                             </div>
                             <div class="noneConditionRetreat"></div>
@@ -890,12 +993,12 @@
             </div>
         </div>
     </script>
-    
+
     <script>
         $(function(){
                         
             //添加航段
-            $(".addLeg").click(function(){
+            $("#addLeg").click(function(){
                 var template = $(".addLegContent").html();
                 $(".addLegTab tbody").append("<tr class='addNewTr'>" + template + "</tr>");
             });            
@@ -924,12 +1027,12 @@
             $(".commonModuleClassify").delegate(".shareDeleteAll","click",function(){
                 $(this).closest('.addNewShareCondition').remove();
             });
-
+            
             //删除日期
             $(".closeIcon").click(function(){
                 $(this).parents(".lightBlueBgDateModel").remove();
             });
-
+            
             new PopWindow('.ac-selectVoyage',{
                 width: 600,
                 title:'选择航程',
@@ -965,7 +1068,7 @@
                     }
                 });
             });
-    
+            
         });
     </script>
 </body>
