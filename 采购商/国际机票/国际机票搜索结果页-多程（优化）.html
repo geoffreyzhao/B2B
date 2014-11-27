@@ -52,29 +52,27 @@
 
     <div class="flight_search separate10">
        <ul class="clearfix condition">
-           <li class="condition_top">              
-               <table class="normal_condition multi_legs_condition">
+           <li class="condition_top"> 
+              <div style="float:left; margin-right:10px;">
+                  <select class="voyageType" style="width:60px;" name="">
+                     <option value="单程">单程</option>
+                     <option value="多程">多程</option>
+                     <option value="往返">往返</option>
+                  </select>
+              </div>               
+               <table class="normal_condition multi_legs_condition" style="float:left;">
                   <colgroup>
-                    <col width="85" />
                     <col width="62" />
-                    <col width="175" />
+                    <col width="165" />
                     <col width="65" />
-                    <col width="175" />
-                    <col width="195" />
+                    <col width="165" />
+                    <col width="185" />
                     <col width="75" />
-                    <col width="85" />
-                    <col width="70" />
+                    <col width="90" />
                   </colgroup>
                   <tr>
-                    <td>
-                      <select data-role="dropdownlist" style="width:60px;" name="">
-                         <option>单程</option>
-                         <option>多程</option>
-                         <option>往返</option>
-                      </select>
-                    </td>
                     <td><span class="legNum">第<b>1</b>程</span></td>
-                    <td>出发城市 <input type="text" style="width:112px;"></td>
+                    <td>出发城市 <input type="text" style="width:102px;"></td>
                     <td>
                       <span class="exChangeCity">
                         <i>←</i>
@@ -82,8 +80,8 @@
                         <b>→</b>
                       </span>
                     </td>
-                    <td>到达城市 <input type="text" style="width:112px;"></td>
-                    <td>出发日期 <input type="text" class="datepicker" style="width:132px;"></td>
+                    <td>到达城市 <input type="text" style="width:102px;"></td>
+                    <td>出发日期 <input type="text" class="datepicker" style="width:122px;"></td>
                     <td></td>
                     <td>
                       <a class="adaptiveButton brightRed_btn medium">
@@ -92,12 +90,10 @@
                          <span class="right"></span>
                       </a>
                     </td>
-                    <td><span class="advanceSearch">高级搜索<i></i></span></td>
                   </tr>
                   <tr>
-                    <td></td>
                     <td><span class="legNum">第<b>2</b>程</span></td>
-                    <td>出发城市 <input type="text" style="width:112px;"></td>
+                    <td>出发城市 <input type="text" style="width:102px;"></td>
                     <td>
                       <span class="exChangeCity">
                         <i>←</i>
@@ -105,16 +101,14 @@
                         <b>→</b>
                       </span>
                     </td>
-                    <td>到达城市 <input type="text" style="width:112px;"></td>
-                    <td>出发日期 <input type="text" class="datepicker" style="width:132px;"></td>
+                    <td>到达城市 <input type="text" style="width:102px;"></td>
+                    <td>出发日期 <input type="text" class="datepicker" style="width:122px;"></td>
                     <td><span class="addLeg"><em>+</em>添加航段</span></td>
-                    <td></td>
                     <td></td>
                   </tr>
                   <tr class="copyLegContent" style="display:none;">
-                    <td></td>
                     <td><span class="legNum">第<b>3</b>程</span></td>
-                    <td>出发城市 <input type="text" style="width:112px;"></td>
+                    <td>出发城市 <input type="text" style="width:102px;"></td>
                     <td>
                       <span class="exChangeCity">
                         <i>←</i>
@@ -122,13 +116,14 @@
                         <b>→</b>
                       </span>
                     </td>
-                    <td>到达城市 <input type="text" style="width:112px;"></td>
-                    <td>出发日期 <input type="text" class="datepicker" style="width:132px;"></td>
+                    <td>到达城市 <input type="text" style="width:102px;"></td>
+                    <td>出发日期 <input type="text" class="datepicker" style="width:122px;"></td>
                     <td><span class="delLeg"><em>-</em>删除</span></td>
-                    <td></td>
-                    <td></td>
                   </tr>
                </table>
+               <div style="float: right; margin-top: 8px;">
+                <span class="advanceSearch">高级搜索<i></i></span>
+               </div>
            </li>
            <li class="condition_bottom">
               <table class="flight_dropdownlist_group">
@@ -1290,6 +1285,9 @@ $(function(){
           $(this).closest("tr").remove();
           changeLegNum();
       });
+
+      $(".voyageType").kendoDropDownList();
+      var dropdownlist = $("select.voyageType").data("kendoDropDownList");
 
 });
 
