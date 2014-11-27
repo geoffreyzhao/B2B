@@ -113,11 +113,11 @@
                             </p>
                             <div id="slideshow" class="pics">
                                 <img src="../../static/images/store/cruise/shippingImg01.jpg"/>
-                                <img src="../../static/images/store/cruise/shippingImg02.jpg"/>
-                                <img src="../../static/images/store/cruise/shippingImg03.jpg"/>
-                                <img src="../../static/images/store/cruise/shippingImg01.jpg"/>
-                                <img src="../../static/images/store/cruise/shippingImg02.jpg"/>
-                                <img src="../../static/images/store/cruise/shippingImg03.jpg"/>
+                                <!-- <img src="../../static/images/store/cruise/shippingImg02.jpg"/> -->
+                                <!-- <img src="../../static/images/store/cruise/shippingImg03.jpg"/> -->
+                                <!-- <img src="../../static/images/store/cruise/shippingImg01.jpg"/> -->
+                                <!-- <img src="../../static/images/store/cruise/shippingImg02.jpg"/> -->
+                                <!-- <img src="../../static/images/store/cruise/shippingImg03.jpg"/> -->
                             </div>
                             <p class="bigbtnNext" style="display:none;">
                                 <span id="big_play_next"></span>
@@ -891,41 +891,50 @@ function addEnableTd() {
             }
         );
 
-        // 图片轮播效果  
-        $('#slideshow').cycle({
-            fx:     'scrollHorz',
-            speed:  'fast',
-            timeout: 2000,
-            prev: ".bigbtnPrev, .smallBtnPrev",
-            next: ".bigbtnNext, .smallBtnNext",
-            pager:  '#smallSlideShow',
-            pagerAnchorBuilder: function(idx, slide) {
-                return '<span class="slideshowItem" style="left:' + (97 * idx) + 'px"><a href="#"><img src="' + slide.src + '" width="90" height="56" /></a></span>';
-            },
-            before: function(currSlideElement, nextSlideElement, options, forwardFlag){
-                // before 方法用来处理小图片轮播效果
-                if (options.currSlide > 3) {      //  当前小图片slide超过第五张图片时              
-                    $(".slideshowItem").each(function(){
-                        var currLeftValStr = $(this).css("left");
-                        var changeLeftValStr = currLeftValStr.substring(0, currLeftValStr.length - 2);
-                        var changeLeftValNum = parseInt(changeLeftValStr - 97 * 5);
+        // 图片轮播效果,当多于1张照片时，调用轮播效果，否则只展示一张图片
 
-                        if (changeLeftValNum < 0) {
-                            changeLeftValNum = parseInt($(".slideshowItem:last-child").css("left").substring(0, currLeftValStr.length - 2)) - 97 * 5;
-                        }
-                        $(this).css("left", changeLeftValNum + "px");
-                    });
+        if ($("#slideshow").find("img").length > 1) {
 
-                    if (options.currSlide == options.slideCount - 1) {  
-                    //  当前小图片slide为最后一张图片时
-                        options.currSlide = 0;
-                        $(".slideshowItem").each(function(index){
-                            $(this).css("left", (index * 97) + "px");
+            $('#slideshow').cycle({
+                fx:     'scrollHorz',
+                speed:  'fast',
+                timeout: 2000,
+                prev: ".bigbtnPrev, .smallBtnPrev",
+                next: ".bigbtnNext, .smallBtnNext",
+                pager:  '#smallSlideShow',
+                pagerAnchorBuilder: function(idx, slide) {
+                    console.log(idx);
+                    return '<span class="slideshowItem" style="left:' + (97 * idx) + 'px"><a href="#"><img src="' + slide.src + '" width="90" height="56" /></a></span>';
+                },
+                before: function(currSlideElement, nextSlideElement, options, forwardFlag){
+                    // before 方法用来处理小图片轮播效果
+                    if (options.currSlide > 3) {      //  当前小图片slide超过第五张图片时              
+                        $(".slideshowItem").each(function(){
+                            var currLeftValStr = $(this).css("left");
+                            var changeLeftValStr = currLeftValStr.substring(0, currLeftValStr.length - 2);
+                            var changeLeftValNum = parseInt(changeLeftValStr - 97 * 5);
+
+                            if (changeLeftValNum < 0) {
+                                changeLeftValNum = parseInt($(".slideshowItem:last-child").css("left").substring(0, currLeftValStr.length - 2)) - 97 * 5;
+                            }
+                            $(this).css("left", changeLeftValNum + "px");
                         });
+
+                        if (options.currSlide == options.slideCount - 1) {  
+                        //  当前小图片slide为最后一张图片时
+                            options.currSlide = 0;
+                            $(".slideshowItem").each(function(index){
+                                $(this).css("left", (index * 97) + "px");
+                            });
+                        }
                     }
                 }
-            }
-        });
+            });
+        } else {
+            var imgSrc = $("#slideshow").find("img").attr('src');
+            $("#smallSlideShow").append("<span class='slideshowItem activeSlide' style='left:0;'>" +
+             "<a href='#'><img src='" + imgSrc + "' width='90' height='56'></a></span>");
+        }
     });
 </script>
 
