@@ -171,7 +171,7 @@
          <div class="orderArrowUp"></div>
  </div>
 
-<div id="child_orders" class="child_order" style="display:block;position:absolute;z-index:2;">
+<div id="child_orders" class="child_order" style="display:none;position:absolute;z-index:2;">
     <ul class="clearfix title">
         <li class="first">
             <span>原订单号: 123456789 <strong style="margin-left:20px;">2580</strong></span>
@@ -180,7 +180,7 @@
             <div class="relatedText">关联订单</div>
             <div>
                 <strong>3</strong>
-                <i class="downBigBlueArrow"></i>
+                <i class="upBigBlueArrow"></i>
             </div>
         </li>
     </ul>
@@ -276,9 +276,9 @@
             </li>
         </ul>
     </div>
-    <div class="totalPrice">
+    <!--<div class="totalPrice">
         合计金额： <strong>￥2830.00</strong>
-    </div>
+    </div>-->
 </div>
 
 <!-- 订单信息 -->
@@ -730,14 +730,16 @@ $(function(){
     $(".relatedOrder").mouseenter(function(){
         var that=$(this);
         that.find("i").addClass("upBigBlueArrow");
-        // $("#child_orders").css({
-        //     top:that.offset().top-1,
-        //     left:that.position().left+that.outerWidth()-$("#child_orders").outerWidth()+8,
-        //     display:"block"
-        // });
+        
+        $("#child_orders").css({
+             top:that.offset().top-1,
+             left:that.position().left+that.outerWidth()-$("#child_orders").outerWidth()+8,
+             display:"block"
+         });
+        
         $("#child_orders").one("mouseleave",function(){
-            // $(this).hide();
-            // that.find("i").removeClass("upBigBlueArrow");
+             $(this).hide();
+             that.find("i").removeClass("upBigBlueArrow");
         })
     })
 
@@ -758,8 +760,6 @@ $(function(){
     });
 
     $(".traceList li").eq(0).css("border-bottom","none");
-
-   
 
 }); 
         </script>
