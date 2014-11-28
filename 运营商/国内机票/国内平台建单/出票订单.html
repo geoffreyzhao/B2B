@@ -20,6 +20,11 @@
 <![endif]-->
 <script type="text/javascript" src="/static/js/sync.js"></script>
 <!-- @CLB@ -->
+    <script>
+        $(function(){
+            lensf();
+        })
+    </script>
 </head>
 <body>  <div id="extHeader">
         <div></div>
@@ -80,14 +85,16 @@
 <!--结算条 结束-->
 
 <div class="block block0 clearfix" style="margin-bottom: -2px;">
-    <div class="col col-l">
-        <div class="row">
+    <div class="col col-l2">
+        <!--<div class="row">
             <span class="text1">订单号：<strong>12311321983921</strong></span>&nbsp;
             <span class="text2"> - 订单类型：国内机票 </span>
         </div>
         <div class="row">
             <span>最后更新：<em>航班号更改为CZ3609</em></span>&nbsp;&nbsp;<span>更新时间：<em>2013-06-15 11:23 </em></span>&nbsp;&nbsp;<span><a href="#">【更多操作日志】</a></span>
-        </div>
+        </div>-->
+        <span><b>订单号：</b><em>131113144946304</em></span>
+        <span><b>订单类型：</b>国内机票   <b>状态：</b><em class="orange16">出票成功</em></span>
     </div>
     <div class="col col-r">
         <ul class="flat-list">
@@ -726,8 +733,15 @@ $(function(){
         width:470,
         template: '#ac-refuse-template'
     }).init();
+    
 
-    $(".relatedOrder").mouseenter(function(){
+    $("body").click(function(){
+      $("#child_orders").hide();
+      $(".relatedOrder").find("i").removeClass("upBigBlueArrow");
+    });
+
+    $(".relatedOrder").click(function(e){
+
         var that=$(this);
         that.find("i").addClass("upBigBlueArrow");
         
@@ -736,12 +750,33 @@ $(function(){
              left:that.position().left+that.outerWidth()-$("#child_orders").outerWidth()+8,
              display:"block"
          });
-        
-        $("#child_orders").one("mouseleave",function(){
+
+     /*   $("#child_orders").one("click",function(){
              $(this).hide();
              that.find("i").removeClass("upBigBlueArrow");
-        })
-    })
+        });*/
+
+        /*$("#child_orders").one("click",function(){
+            $(this).hide();
+            that.find("i").removeClass("upBigBlueArrow");
+        });*/
+        $("#child_orders").click(function(){
+            //$(this).hide();
+            that.find("i").removeClass("upBigBlueArrow");
+        });
+        
+        e.stopPropagation();
+
+    });
+
+    $(".relatedChildOrder").click(function(){
+        $("#child_orders").hide();
+    });
+    
+    $("#child_orders").click(function(e){
+        e.stopPropagation();
+    });
+
 
     $(".orderFlexibleType").click(function(){
         $(".traceList .flexiBleContent").slideToggle();
@@ -762,7 +797,7 @@ $(function(){
     $(".traceList li").eq(0).css("border-bottom","none");
 
 }); 
-        </script>
+</script>
 
 
         </div>
