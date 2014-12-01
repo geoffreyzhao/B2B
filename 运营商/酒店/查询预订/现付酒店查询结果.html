@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/static/css/kendo.common.css">
     <link rel="stylesheet" href="/static/css/kendo.gray.css">
     <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/operatorCommonHeader.css" />
     <link rel="stylesheet" href="/static/css/hotel.css">
     <link rel="stylesheet" href="/static/css/hotel_booking_searching.css">
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
@@ -27,7 +28,56 @@
     
 </head>
 <body>
-<div class="main" style="background:none">
+    <div id="head">
+        <div></div>
+    </div>
+    
+    <div id="catalogue"></div>
+
+<div class="main" id="container" style="background:none">
+
+    <div class="logo">
+        <div class="clearfix">
+            <h1></h1>
+            <div class="profile">
+                <a href="javascript:void(0)">你好,千颂伊</a>
+                <a href="javascript:void(0)">退出</a>
+            </div>
+        </div>
+        <ul id="catalogue_menu">
+            <li class="">
+                <a href="javascript:void(0)">国内机票</a>
+            </li>
+            <li><a href="javascript:void(0)">国际机票</a></li>
+            <li><a href="javascript:void(0)">酒店</a></li>
+            <li><a href="javascript:void(0)">打包产品</a></li>
+            <li><a href="javascript:void(0)">旅游</a></li>
+            <li class="current">
+                <a href="javascript:void(0)">邮轮</a>
+                <ol class="subMenu">
+                    <li class="currentSubMenu"><a href="javascript:void(0)">基础模块维护</a></li>
+                    <li><a href="javascript:void(0)">航线审核</a></li>
+                    <li><a href="javascript:void(0)">航线售卖管理</a></li>
+                    <li><a href="javascript:void(0)">团管理</a></li>
+                </ol>
+            </li>
+            <li><a href="javascript:void(0)">签证</a></li>
+            <li><a href="javascript:void(0)">保险</a></li>
+            <li><a href="javascript:void(0)">短信</a></li>
+            <li><a href="javascript:void(0)">通用订单</a></li>
+            <li><a href="javascript:void(0)">票证</a></li>
+            <li><a href="javascript:void(0)">财务</a></li>
+            <li><a href="javascript:void(0)">客户</a></li>
+            <li><a href="javascript:void(0)">设置</a></li>
+        </ul>
+        <div class="headerMessage clearfix">
+            <div id="msgNum">
+                <span>消息</span>
+                <em>30</em>
+            </div>
+        </div>
+    </div>
+
     <div class="actions block">
         <div class="col col-l sep-r">
             <button class="btns btn-return">返回</button>
@@ -75,120 +125,151 @@
         </table>
     </div>
 
-    <div class="panel" style="border:1px solid #FCE485">
-        <form action="www.baidu.com" method="post" id="myform">
-        <div class="searchPanel">
-            城市 <input id="city" name="city" class="city" type="text" required data-required-msg="请选择酒店所在城市" placeholder="请参考碎片内的城市选择-国内.html">
-            入住 <input id="checkinDate" name="checkinDate" class="datePicker" type="text" required data-required-msg="请选择入住日期">
-            离店 <input id="checkoutDate" name="checkoutDate" class="datePicker second" type="text" required data-required-msg="请选择离店日期">
-            位置 <input id="location" name="location" class="city" type="text" style="width:90px" required data-required-msg="请选择酒店所在位置">
-            名称 <input id="hotelname" name="hotelname" class="city" type="text" required data-required-msg="请选择酒店名称">
-            间数 <select style="width:60px;" size="10" name="room_no" data-role="dropdownlist">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                </select>
-            <a href="javascript:;" id="btn_search" class="button_important adaptiveButton medium" style="vertical-align: middle">
-                <span class="left"></span>
-                <span class="center">查 询</span>
-                <span class="right"></span>
-            </a>
-        </div>
-
-        </form>
-        <div class="filterPanel">
-            <div style="border-bottom:1px dashed #cccccc;padding:15px 5px">
-                <div class="filterListItem" style="border-right:1px dashed #cccccc;width:155px;float:left">
-                    <div class="filterTitle">酒店星级：</div>
-                    <div class="filterAny"><a class="button_6_select" href="javascript:;" onclick="delModelAllItems('hotelLevel')" data-bind="attr:{class:hotelLevel.length?'button_6':'button_6_select'}">不限</a></div>
-                    <ul class="ul_filterList">
-                        <li><label><input type="checkbox" name="checkbox_hotelLevel" id="" value="二星级及以下 / 经济" onclick="addFilterItem(this,'hotelLevel')">二星级及以下 / 经济</label></li>
-                        <li style="width: 150px"><label><input type="checkbox" name="checkbox_hotelLevel" id="" value="三星级 / 舒适" onclick="addFilterItem(this,'hotelLevel')">三星级 / 舒适</label></li>
-                        <li style="width: 150px"><label><input type="checkbox" name="checkbox_hotelLevel" id="" value="四星级 / 高档" onclick="addFilterItem(this,'hotelLevel')">四星级 / 高档</label></li>
-                        <li><label><input type="checkbox" name="checkbox_hotelLevel" id="" value="五星级 / 豪华" onclick="addFilterItem(this,'hotelLevel')">五星级 / 豪华</label></li>
-                    </ul>
-                </div>
-                <div class="filterListItem" style="border-right:1px dashed #cccccc;width:156px;float:left;padding:0 22px">
-                    <div class="filterTitle">酒店类型：</div>
-                    <div class="filterAny"><a class="button_6_select" href="javascript:;" onclick="delModelAllItems('hotelStyle')" data-bind="attr:{class:hotelStyle.length?'button_6':'button_6_select'}">不限</a></div>
-                    <ul class="ul_filterList filterHotelStyle">
-                        <li><label><input type="checkbox" name="checkbox_hotelStyle" id="" value="精品酒店" onclick="addFilterItem(this,'hotelStyle')">精品酒店</label></li>
-                        <li><label><input type="checkbox" name="checkbox_hotelStyle" id="" value="招待所" onclick="addFilterItem(this,'hotelStyle')">招待所</label></li>
-                        <li><label><input type="checkbox" name="checkbox_hotelStyle" id="" value="商务酒店" onclick="addFilterItem(this,'hotelStyle')">商务酒店</label></li>
-                        <li><label><input type="checkbox" name="checkbox_hotelStyle" id="" value="旅社" onclick="addFilterItem(this,'hotelStyle')">旅社</label></li>
-                        <li><label><input type="checkbox" name="checkbox_hotelStyle" id="" value="汽车旅馆" onclick="addFilterItem(this,'hotelStyle')">汽车旅馆</label></li>
-                        <li><label><input type="checkbox" name="checkbox_hotelStyle" id="" value="别墅" onclick="addFilterItem(this,'hotelStyle')">别墅</label></li>
-                        <li><label><input type="checkbox" name="checkbox_hotelStyle" id="" value="度假村" onclick="addFilterItem(this,'hotelStyle')">度假村</label></li>
-                    </ul>
-                </div>
-                <div class="filterListItem" style="border-right:1px dashed #cccccc;width:156px;float:left;padding:0 22px">
-                    <div class="filterTitle">位置：</div>
-                    <div class="filterAny"><a class="button_6_select" href="javascript:;" onclick="delModelAllItems('hotelLocation')" data-bind="attr:{class:hotelLocation.length?'button_6':'button_6_select'}">不限</a></div>
-                    <ul class="ul_filterList filterHotelStyle">
-                        <li><label><input type="radio" name="radio_hotelLocation" id="" value="精品酒店" onclick="addFilterItem(this,'hotelLocation',true)">精品酒店</label></li>
-                        <li><label><input type="radio" name="radio_hotelLocation" id="" value="招待所" onclick="addFilterItem(this,'hotelLocation',true)">招待所</label></li>
-                        <li><label><input type="radio" name="radio_hotelLocation" id="" value="商务酒店" onclick="addFilterItem(this,'hotelLocation',true)">商务酒店</label></li>
-                        <li><label><input type="radio" name="radio_hotelLocation" id="" value="旅社" onclick="addFilterItem(this,'hotelLocation',true)">旅社</label></li>
-                        <li><label><input type="radio" name="radio_hotelLocation" id="" value="汽车旅馆" onclick="addFilterItem(this,'hotelLocation',true)">汽车旅馆</label></li>
-                        <li><label><input type="radio" name="radio_hotelLocation" id="" value="别墅" onclick="addFilterItem(this,'hotelLocation',true)">别墅</label></li>
-                        <li><label><input type="radio" name="radio_hotelLocation" id="" value="度假村" onclick="addFilterItem(this,'hotelLocation',true)">度假村</label></li>
-                    </ul>
-                    <div style="float:right;clear:left"><a href="javascript:;" style="color:#0065CB;background:url('/static/images/arrow_blue.gif') no-repeat center right;padding-right:14px">更多</a></div>
-                </div>
-                <div class="filterListItem" style="border-right:1px dashed #cccccc;width:156px;float:left;padding:0 22px">
-                    <div class="filterTitle">连锁品牌：</div>
-                    <div class="filterAny"><a class="button_6_select" href="javascript:;" onclick="delModelAllItems('hotelBrand')" data-bind="attr:{class:hotelBrand.length?'button_6':'button_6_select'}">不限</a></div>
-                    <ul class="ul_filterList filterHotelStyle">
-                        <li><label><input type="checkbox" name="checkbox_hotelBrand" id="" value="希尔顿" onclick="addFilterItem(this,'hotelBrand')">希尔顿</label></li>
-                        <li><label><input type="checkbox" name="checkbox_hotelBrand" id="" value="格林豪泰" onclick="addFilterItem(this,'hotelBrand')">格林豪泰</label></li>
-                        <li><label><input type="checkbox" name="checkbox_hotelBrand" id="" value="喜来登" onclick="addFilterItem(this,'hotelBrand')">喜来登</label></li>
-                        <li><label><input type="checkbox" name="checkbox_hotelBrand" id="" value="锦江之星" onclick="addFilterItem(this,'hotelBrand')">锦江之星</label></li>
-                        <li><label><input type="checkbox" name="checkbox_hotelBrand" id="" value="万豪" onclick="addFilterItem(this,'hotelBrand')">万豪</label></li>
-                        <li><label><input type="checkbox" name="checkbox_hotelBrand" id="" value="7天" onclick="addFilterItem(this,'hotelBrand')">7天</label></li>
-                        <li><label><input type="checkbox" name="checkbox_hotelBrand" id="" value="汉庭" onclick="addFilterItem(this,'hotelBrand')">汉庭</label></li>
-                        <li><label><input type="checkbox" name="checkbox_hotelBrand" id="" value="如家" onclick="addFilterItem(this,'hotelBrand')">如家</label></li>
-                    </ul>
-                    <div style="float:right;clear:left"><a href="javascript:;" style="color:#0065CB;background:url('/static/images/arrow_blue.gif') no-repeat center right;padding-right:14px">更多</a></div>
-                </div>
-                <div class="filterListItem" style="width:169px;float:left;padding-left:22px">
-                    <div class="filterTitle">卖价区间：</div>
-                    <div class="filterAny"><a class="button_6_select" href="javascript:;" onclick="delModelAllItems('hotelPriceRange')" data-bind="attr:{class:hotelPriceRange.length?'button_6':'button_6_select'}">不限</a></div>
-                    <ul class="ul_filterList">
-                        <li style="width:150px"><label><input type="radio" name="radio_hotelPriceRange" id="" value="200以下" onclick="addFilterItem(this,'hotelPriceRange',true)">200以下</label></li>
-                        <li style="width:150px"><label><input type="radio" name="radio_hotelPriceRange" id="" value="200-600" onclick="addFilterItem(this,'hotelPriceRange',true)">200-600</label></li>
-                        <li style="width:150px"><label><input type="radio" name="radio_hotelPriceRange" id="" value="600以上" onclick="addFilterItem(this,'hotelPriceRange',true)">600以上</label></li>
-                    </ul>
-                    <div>
-                        <input type="text" name="" id="lowerPrice" style="width:30px">-<input type="text" name="" id="higherPrice" style="width:30px">
-                        <a href="javascript:;" data-bind="click:setHotelPriceRange" class="button_unimportant adaptiveButton small" style="vertical-align: middle">
+    <div class="panel" style="border:1px solid #FCE485;">
+        <div class="checkTab">
+            <table>
+                <colgroup>
+                    <col width="40">
+                    <col width="105">
+                    <col width="40">
+                    <col width="105">
+                    <col width="40">
+                    <col width="105">
+                    <col width="40">
+                    <col width="200">
+                    <col width="40">
+                    <col width="165">
+                    <col width="80">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <th>城市</th>
+                    <td>
+                        <input type="text" placeholder="城市名称" style="width: 98px;">
+                    </td>
+                    <th>入住</th>
+                    <td>
+                        <input type="text" class="datepicker" style="width: 98px;" value="2013-07-18">
+                    </td>
+                    <th>离店</th>
+                    <td>
+                        <input type="text" class="datepicker orange" style="width: 98px;" value="2013-07-18">
+                    </td>
+                    <th>位置</th>
+                    <td>
+                        <input type="text" style="width: 185px;" placeholder="行政区、商业区关键字">
+                    </td>
+                    <th>名称</th>
+                    <td>
+                        <input type="text" style="width: 135px;" placeholder="酒店名称关键字">
+                    </td>
+                    <td>
+                        <a href="javascript:;" class="button_important adaptiveButton small">
                             <span class="left"></span>
-                            <span class="center">确定</span>
+                            <span class="center">查 询</span>
                             <span class="right"></span>
                         </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="inlandHilter">
+            <div class="searchRowUl">
+                <b>行政区：</b>
+                <span class="sel">不限</span>
+                <ul>
+                    <li><label><input type="radio" name="">昌平区</label></li>
+                    <li><label><input type="radio" name="">朝阳区</label></li>
+                    <li><label><input type="radio" name="">崇文区</label></li>
+                    <li><label><input type="radio" name="">大兴区</label></li>
+                    <li><label><input type="radio" name="">东城区</label></li>
+                    <li><label><input type="radio" name="">房山区</label></li>
+                    <li class="last"><span class="moreBtnblock" id="moreSelect_trigger">更多<i class="ico_down"></i></span></li>
+                </ul>
+            </div>
+            <!--hide area more-->
+
+            <div style="display:none;" class="newEndorseOrder moreAreaList" >
+                <div class="moreArea_search">
+                    <div class="inner_moreArea">
+                        <ul>
+                            <li><label>浦东新区</label></li>
+                            <li><label>闵行区</label></li>
+                            <li><label>黄浦区</label></li>
+                            <li><label>徐汇区</label></li>
+                            <li><label>松江区</label></li>
+                            <li><label>杨浦区</label></li>
+                            <li><label>长宁区</label></li>
+                            <li><label>虹口区</label></li>
+                            <li><label>普陀区</label></li>
+                            <li><label>宝山区嘉定区</label></li>
+                            <li><label class="sel">闸北区</label></li>
+                            <li><label>嘉定区</label></li>
+                            <li><label>静安区</label></li>
+                            <li><label>奉贤区</label></li>
+                            <li><label>卢湾区</label></li>
+                            <li><label>崇明区</label></li>
+                            <li><label>金山区</label></li>
+                            <li><label>卢湾区</label></li>
+                            <li><label>崇明区</label></li>
+                        </ul>
+                        <span class="search_close"></span>
                     </div>
                 </div>
-
-                <div class="clear"></div>
             </div>
-            <div class="filterParamsPanel">
-                <div style="float:left;width:70px">筛选酒店：</div>
-                <div class="filterParamsList">
-                    <ul data-bind="source:hotelLevel" data-template="filterParamTemplate"></ul>
-                    <ul data-bind="source:hotelStyle" data-template="filterParamTemplate"></ul>
-                    <ul data-bind="source:hotelLocation" data-template="filterParamTemplate"></ul>
-                    <ul data-bind="source:hotelBrand" data-template="filterParamTemplate"></ul>
-                    <ul data-bind="source:hotelPriceRange" data-template="filterParamTemplate"></ul>
+            <div class="searchRowUl">
+                <b>酒店星级：</b>
+                <span class="sel">不限</span>
+                <ul>
+                    <li><label><input type="checkbox" name="">二星级及以下</label></li>
+                    <li><label><input type="checkbox" name="">三星级/舒适</label></li>
+                    <li><label><input type="checkbox" name="">四星级/高档</label></li>
+                    <li><label><input type="checkbox" name="">五星级/豪华</label></li>
+                </ul>
+            </div>
+            <div class="searchRowUl">
+                <b>价格范围：</b>
+                <span class="sel">不限</span>
+                <ul>
+                    <li><label><input type="radio" name="">￥300以下</label></li>
+                    <li><label><input type="radio" name="">￥300-500</label></li>
+                    <li><label><input type="radio" name="">￥500-800</label></li>
+                    <li><label><input type="radio" name="">￥800-1200</label></li>
+                    <li style="width:300px;">从<input type="text" value="￥">到<input type="text" value="￥">
+                        <a href="javascript:;" class="button_unimportant adaptiveButton small">
+                            <span class="left"></span>
+                            <span class="center">确 定</span>
+                            <span class="right"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="searchResult">
+                <div class="fitCondition">
+                    <div class="fitConditionTit">筛选酒店：</div>
+                    <div class="fitContent">
+                        <ul>
+                           <li><span><strong>二星级及以下/经济</strong><i></i></span></li>
+                           <li><span><strong>三星级舒适</strong><i></i></span></li>
+                           <li><span><strong>汽车旅馆</strong><i></i></span></li>
+                           <li><span><strong>798</strong><i></i></span></li>
+                           <li><span><strong>希尔顿</strong><i></i></span></li>
+                           <li><span><strong>600以上</strong><i></i></span></li>
+                           <li><span><strong>汽车旅馆</strong><i></i></span></li>
+                           <li><span><strong>798</strong><i></i></span></li>
+                            <li><span><strong>希尔顿</strong><i></i></span></li>
+                            <li><span><strong>600以上</strong><i></i></span></li>
+                            <li><span><strong>汽车旅馆</strong><i></i></span></li>
+                            <li><span><strong>798</strong><i></i></span></li>
+                            <li><span><strong>希尔顿</strong><i></i></span></li>
+                        </ul>
+                    </div>
                 </div>
-                <div style="position:absolute;top:10px;right:10px"><a href="javascript:;">[清空]</a></div>
+                <div class="clearCondition"><a href="javascript:void(0);" class="clearFonts">[清空]</a></div>
             </div>
+            
         </div>
-        <div class="clear"></div>
     </div>
 
     <div class="panel" style="padding:0">
@@ -610,7 +691,25 @@
     </div>
 </div>
 
-<!--  取消规则 内容模板 -->
+    <footer class="main-footer">
+        <center>
+            <a href="#">隐私问题</a>
+            <i class="bar">|</i>
+            <a href="#">常见问题</a>
+            <i class="bar">|</i>
+            <a href="#">关于我们</a>
+            <i class="bar">|</i>
+            <a href="#">媒体中心</a>
+            <i class="bar">|</i>
+            <a href="#">联系我们</a>
+        </center>
+        <center class="copyright">
+            Copyright &copy; 2012 天地行 All Rights Reserved.     沪ICP备08101503号
+        </center>
+    </footer>
+
+
+    <!--  取消规则 内容模板 -->
 <script type="text/x-kendo-template" id="cancelRuleTemplate">
     <div class="ruleContent">
         <p>2014-11-21 18:00 前可以免费变更/取消订单，之后无法变更取消。</p>
@@ -729,6 +828,20 @@
             content:kendo.template($("#priceTemplate").html()),
             width: 550
         });
+
+        // 行政区 点更多展开
+        $(".search_close").click(function(e){
+            $(".moreAreaList").hide();
+        });
+        $("#moreSelect_trigger").click(function(e){
+            var pos = $(this).offset();
+            $(".moreAreaList").toggle();
+            e.stopPropagation();
+            $(".moreBtnblock").toggleClass("relevanceOr_click");
+        });
+        $(".search_close").click(function(){
+            $(".moreBtnblock").removeClass("relevanceOr_click");
+        })
 
     });
 
