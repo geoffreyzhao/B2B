@@ -337,12 +337,13 @@ function autoResizeImage(maxWidth, maxHeight, objImg){
                 Ratio = wRatio <= hRatio ? wRatio : hRatio;
             }
 
-
-            
             if (Ratio<1){
                 w = w * Ratio;
                 h = h * Ratio;
             }
+
+            if(h < maxHeight)
+                h = maxHeight;
 
             objImg.height = h;
             objImg.width = w;
