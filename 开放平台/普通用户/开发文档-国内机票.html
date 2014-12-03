@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>开放平台 开发文档-国内机票</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />    
+    <link rel="stylesheet" href="/static/css/openPlatform/common.css"/>
+    <link rel="stylesheet" href="/static/css/openPlatform/openPlatform.css"/>
+
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/openPlatform/common.js"></script>
+    
+    <!--[if lte IE 9]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <header class="main-header">
+        <div class="stairMenuContent">
+            <div class="wrap clearfix">
+                <a class="logo" href="/"></a>
+                <ul class="stairMenu">
+                    <li>
+                        <a href="javascript:void(0);">首页</a>
+                    </li>
+                    <li class="currentStairMenu">
+                        <a href="javascript:void(0);">开发文档 <i class="topArrowIcon"></i></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">测试工具</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">常见问题</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">公告通知</a>
+                    </li>
+                </ul>
+                <div class="headRightOperate">
+                    <label class="userContent">
+                        <i class="userIcon"></i> 开发者
+                    </label>
+                    <a href="javascript:void(0);" class="exitFonts">退出</a>
+                </div>
+            </div>
+        </div>
+        <div class="headSecondLevel">
+            <ul class="secondLevelList clearfix">
+                <li>
+                    <a href="javascript:void(0);">平台概述</a>
+                </li>
+                <li class="currentSecondLevelMenu">
+                    <a href="javascript:void(0);">国内机票</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">国际机票</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">酒店</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">文档下载</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <section class="main-body clearfix"> <!--main-body 开始-->        
+        <aside class="leftMenu">  <!--leftMenu 开始-->
+            <div class="formatContent">
+                <div class="formatHint">请选择数据格式</div>
+                <div class="formatBtn">
+                    <button class="xml">XML</button>
+                    <button class="json">JSON</button>
+                </div>
+            </div>
+             <ul class="menuChange clearfix">
+                 <li class="firstLevel">
+                     <em><i class="bitTitle">国内机票概述</i><span class="sideTopArrowIcon"></span></em>
+                      <ul class="secondLevel">
+                          <li>使用说明</li>
+                          <li>环境参数</li>
+                          <li>变更历史</li>
+                          <li>最佳实践</li>
+                      </ul>
+                 </li>
+                 <li class="firstLevel">
+                     <em><i class="bitTitle">查询</i><span class="sideTopArrowIcon"></span></em>
+                      <ul class="secondLevel">
+                          <li class="currentStatus">航班价格查询</li>
+                          <li>获取经停信息</li>
+                          <li>政策返点查询-PNRTXT方式</li>
+                          <li>政策详情查询</li>
+                      </ul>
+                 </li>
+                 <li class="firstLevel">
+                     <em><i class="bitTitle">查询</i><span class="sideTopArrowIcon"></span></em>
+                     <ul class="secondLevel">
+                         <li>航班价格查询</li>
+                         <li>获取经停信息</li>
+                         <li>政策返点查询-PNRTXT方式</li>
+                         <li>政策详情查询</li>
+                     </ul>
+                 </li>
+             </ul>
+        </aside> <!--leftMenu 结束-->
+
+        <div class="rightCont"> <!-- 右边内容开始 -->
+            <div class="commonTitle">
+                <h3 class="titleFonts">航班价格查询</h3>
+            </div>
+            <div class="articleHover clearfix">
+                <ul class="articleHoverList">
+                    <li>
+                        <a href="#explain" class="currentArticleHover"><i class="anchorCommonIcon anchor01"></i>说 明</a>
+                    </li>
+                    <li>
+                        <a href="#inputParameter"><i class="anchorCommonIcon anchor02"></i>输入参数</a>
+                    </li>
+                    <li>
+                        <a href="#returnResult"><i class="anchorCommonIcon anchor03"></i>返回结果</a>
+                    </li>
+                    <li>
+                        <a href="#errorCode"><i class="anchorCommonIcon anchor04"></i>错误代码</a>
+                    </li>
+                </ul>
+                <a href="javascript:void(0);" class="articleHoverBtn"><em>测试工具</em></a>
+            </div>
+            <div class="hoverContent">
+                <a name="explain"></a>
+                <div class="commonStyle first">
+                    <h3 class="titleFonts16">说 明</h3>
+                    <div class="commonP">
+                        <p>当订单提交成功后返回的结果中CancelTime属性，当时间在CancelTime的时间之前，可以通过本接口取消该订单；如果是担保订单，请遵循担保规则中关于取消的条款。</p>
+                        <p>须使用https访问本接口。</p>
+                    </div>
+                </div>
+                
+                <a name="inputParameter"></a>
+                <div class="commonStyle">
+                    <h3 class="titleFonts16">输入参数</h3>
+                    <textarea class="htmlContent">
+                    [
+                    {
+                        "created_at" : "Mon Nov 29 16:08:43 +0800 2010",
+                        "text" : "各位开发者，我们的论坛上线啦~http://www.travelzen.com欢迎大家的参与~另外，关于技术相关的问题，可以在论坛上提出，也可以@天地行API 这个官方技术支持账号哦~感谢大家对开放平台的支持~[呵呵]",
+                        "truncated" : false,
+                        "in_reply_to_status_id" : "",
+                        "in_reply_to_screen_name" : "",
+                        "geo" : null,
+                        "user" :
+                        {
+                            "name" : "天地行开放平台",
+                            "domain" : "openapi",
+                            "geo_enabled" : true,
+                            "followers_count" : 13034,
+                            "statuses_count" : 157,
+                            "favourites_count" : 0,
+                            "city" : "8",
+                            "description" : "真旅网天地行开放平台市场推广官方账号，如有技术问题，请@天地行API或者发私信给天地行API",
+                            "verified" : true,
+                            "id" : 11051,
+                            "gender" : "m",
+                    </textarea>
+                </div>
+
+                <a name="returnResult"></a>
+                <div class="commonStyle">
+                    <h3 class="titleFonts16">返回结果</h3>
+                    <textarea class="htmlContent">
+                    [
+                        {
+                            "created_at" : "Mon Nov 29 16:08:43 +0800 2010",
+                            "text" : "各位开发者，我们的论坛上线啦~http://www.travelzen.com欢迎大家的参与~另外，关于技术相关的问题，可以在论坛上提出，也可以@天地行API 这个官方技术支持账号哦~感谢大家对开放平台的支持~[呵呵]",
+                            "truncated" : false,
+                            "in_reply_to_status_id" : "",
+                            "in_reply_to_screen_name" : "",
+                            "geo" : null,
+                            "user" :
+                            {
+                                "name" : "天地行开放平台",
+                                "domain" : "openapi",
+                                "geo_enabled" : true,
+                                "followers_count" : 13034,
+                                "statuses_count" : 157,
+                                "favourites_count" : 0,
+                                "city" : "8",
+                                "description" : "真旅网天地行开放平台市场推广官方账号，如有技术问题，请@天地行API或者发私信给天地行API",
+                                "verified" : true,
+                                "id" : 11051,
+                                "gender" : "m",
+                    </textarea>
+                </div>
+
+                <a name="errorCode"></a>
+                <div class="commonStyle">
+                    <h3 class="titleFonts16">错误代码</h3>
+                    <table class="blueHeadTab">
+                        <colgroup>
+                            <col width="100">
+                            <col width="240">
+                            <col width="420">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>错误代码</th>
+                            <th>返回结果</th>
+                            <th>结果说明</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>100001</td>
+                            <td>Format XML DeSerialize Fail</td>
+                            <td>
+                                <em class="oneLineEllipsis">无效SID或者AllianceID，客户端未传入参数或者参数值不正确</em>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>100002</td>
+                            <td>Format XML DeSerialize Fail</td>
+                            <td>
+                                <em class="oneLineEllipsis">请求XML未正确包含业务请求XML，或业务请求XML同请求类型同请求类型</em>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>100003</td>
+                            <td>Format XML DeSerialize Fail</td>
+                            <td>
+                                <em class="oneLineEllipsis">请求被拒绝，联盟站点已被列入黑名单</em>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </div>  <!-- 右边内容结束 -->
+        
+    </section> <!--main-body 结束-->
+    
+    <a href="javascript:void(0);" class="informIcon"></a>
+    <!--<a class="returnTop" href="javascript:void(0);">返回顶部</a>-->
+    
+    <footer class="main-footer">
+        <center class="copyright">
+            Copyright &copy; 2013 天地行 All Rights Reserved. &nbsp; 沪ICP备08101503号
+        </center>
+        <div class="differentLink">
+            <a href="javascript:void(0);">关于开放平台</a> | <a href="javascript:void(0);">联系我们</a>
+        </div>
+    </footer>
+    
+    <script>
+        $(function(){
+            $(".formatBtn .xml").click(function(){
+                $(this).css({ color:"#fff", background:"#0695e1"});
+                $(this).siblings(".formatBtn .json").css({ color:"#636363", background:"#fff"});
+            });
+            $(".formatBtn .json").click(function(){
+                $(this).css({ color:"#fff", background:"#0695e1"});
+                $(this).siblings(".formatBtn .xml").css({ color:"#636363", background:"#fff"});
+            });
+
+            
+            //为悬停添加锚点效果
+            var a_pos = [];
+            var flag=true;
+            $(".articleHoverList a:gt(0)").each(function(index){
+                var href= $(this).attr("href");
+                a_pos.push($("a[name=" + href.substring(1) + "]").offset());
+            });
+            $(".articleHoverList a").click(function(e){
+                flag=false;
+                e.preventDefault();
+                var href= $(this).attr("href");
+                $(this).closest("li").siblings().find("a").removeClass('currentArticleHover');
+                $(this).addClass("currentArticleHover");
+                setTimeout(function(){
+                    location.href=href;
+                },100);
+            });
+            $(window).bind("scroll",function(e){
+                if(flag){
+                    var that = $(".articleHoverList");
+                    var currentPos = that.offset();
+                    var i = 0;
+                    //console.dir(a_pos);
+                    for(i = a_pos.length - 1; i >=0 ; i--){
+                        if(currentPos.top >= a_pos[i].top){
+                            that.find("a").removeClass('currentArticleHover');
+                            $("a:eq(" + (i+1) + ")" , that).addClass("currentArticleHover");
+                            return false;
+                        }
+                    }
+                    that.find("a").removeClass('currentArticleHover');
+                    $("a:first" , that).addClass("currentArticleHover");
+                }
+                flag=true;
+            });
+            
+            $(".articleHover").fixedBar();
+                        
+            
+        });
+    </script>
+
+</body>
+</html>
