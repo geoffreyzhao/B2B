@@ -175,7 +175,7 @@
                     <textarea>中国大陆因私护照证明中国大陆因私护照证明中国大陆因私护照证明中国大陆因私护照证明中国大陆因私护照证明中国大陆因私护照证明中国大陆因私护照证明</textarea>
                     <div style="margin-top:10px;">
                       <span style="font-weight:bold;">附件：</span>
-                      <a class="adaptiveButton brightBtn normalButton">
+                      <a class="adaptiveButton brightBtn normalButton uploadOper">
                           <span class="left"></span>
                           <span class="center center_2">上 传</span>
                           <span class="right"></span>
@@ -386,6 +386,105 @@
 
     <!-- 材料预览弹窗模板 -->
     <script type="text/x-kendo-template" id="previewMaterialTemplate">
+      <div class="previewMaterialContainer">
+        <div class="tab-block">
+          <ul class="tab-list clearfix">
+            <li class="current">在职人员</li>
+            <li>自由职业者</li>
+            <li>退休人员</li>
+            <li>学生</li>
+            <li>学龄前儿童</li>
+          </ul>
+        </div>
+        <div class="prev-material-cont">
+          <div class="tab-1-cont">
+            <ul class="material-list">
+              <li class="clearfix">
+                <div class="left-material-type">★中国大陆因私护照复印件</div>
+                <div class="right-material-detail">
+                  <pre>1.中国大陆因私护照证明中国大陆因私护照证明;
+2.中国大陆因私护照证明中国大陆因私护照证明中国大陆因私护照证明中国大陆因私护照证明中国大陆因私护照证明;
+3.照片照片照片照片照片照片照片照片照片照片照片照片照片照片照片照片照片;
+4.Take a trip with your best friend. Take a trip with your best friend. Take a trip with your best friend;
+5.个人材料信息如上材料信息如上</pre>
+                  <div class="attachment-block clearfix">
+                    <div class="attachment-title">附件：</div>
+                    <div class="attachment-file-list">
+                      <p>个人信息表 <a href="javascript:void(0);">1dasd234asda.pdf</a></p>
+                      <p>个人信息表 <a href="javascript:void(0);">签证复印件.doc</a></p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="even clearfix">
+                <div class="left-material-type">★自拍照</div>
+                <div class="right-material-detail">
+                  <pre>1.中国大陆因私护照证明中国大陆因私护照证明
+2.中国大陆因私护照证明中国大陆因私护照证
+3.照片照片</pre>
+                  <div class="attachment-block clearfix">
+                    <div class="attachment-title">附件：</div>
+                    <div class="attachment-file-list">
+                      <p>个人免冠照片 <a href="javascript:void(0);">1654845.jpg</a></p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="clearfix">
+                <div class="left-material-type">★自拍照</div>
+                <div class="right-material-detail">
+                  <pre>1.中国大陆因私护照证明中国大陆因私护照证明
+2.中国大陆因私护照证明中国大陆因私护照证
+3.照片照片</pre>
+                  <div class="attachment-block clearfix">
+                    <div class="attachment-title">附件：</div>
+                    <div class="attachment-file-list">
+                      <p>个人免冠照片 <a href="javascript:void(0);">1654845.jpg</a></p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="even clearfix">
+                <div class="left-material-type">★个人信息</div>
+                <div class="right-material-detail">
+                  <pre>1.中国大陆因私护照证明中国大陆因私护照证明
+2.中国大陆因私护照证明中国大陆因私护照证
+3.照片照片</pre>
+                </div>
+              </li>
+              <li class="clearfix">
+                <div class="left-material-type">其他资料</div>
+                <div class="right-material-detail">
+                  <pre>1.旅游用车空座率不低于或专用商务车配行李车，保证空间宽敞（景区特别要求用车除外）;
+2.中国大陆因私护照证明中国大陆因私护照证中国大陆因私护照证明中国大陆因私护照证中国大陆因私护照证明中国大陆因私护照证中国大陆因私护照证明中国大陆因私护照证中国大陆因私护照证明中国大陆因私护照证中国大陆因私护照证明中国大陆因私护照证中国大陆因私护照证明中国大陆因私护照证</pre>
+                  <div class="attachment-block clearfix">
+                    <div class="attachment-title">附件：</div>
+                    <div class="attachment-file-list">
+                      <p>个人免冠照片 <a href="javascript:void(0);">1654845.jpg</a></p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            </div>
+        </div>
+      </div>
+    </script>
+
+    <!--  上传附件弹窗模板  上传部分的样式以实际开发为准 -->
+    <script type="text/x-kendo-template" id="uploadFileTemplate">
+      <div class="uploadFileWin">
+        <p class="select-file">选择附件 <input type='file'></p>
+        <p class="out-name">外线名称 <input type="text" style="width:350px;" value="上传按钮部分的样式以实际开发为准"></p>
+        <p class="operBtn">
+          <a class="supplierButton brightRedBig_btn">
+             <span class="left"></span>
+             <span class="center center_1" style="font-size:14px;">确 定</span>
+             <span class="right"></span>
+          </a>
+          <a href="javascript:void(0);" class="cancelLink">取消</a>
+        </p>
+      </div>
     </script>
 
 <script type="text/javascript">
@@ -435,16 +534,16 @@
         /* 材料预览弹窗 */
         var previewMaterialWin = new PopWindow('.previewMaterial', {
           title:'材料预览',
-          width:'750',
+          width:'930',
           template: "#previewMaterialTemplate"
         }).init();
 
         /*  上传文件弹窗 TODO */
-        // var uploadFileWin = new PopWindow('.previewMaterial', {
-        //   title:'上传附件',
-        //   width:'750',
-        //   template: "#previewMaterialTemplate"
-        // }).init();
+        var uploadFileWin = new PopWindow('.uploadOper', {
+          title:'上传附件',
+          width:'480',
+          template: "#uploadFileTemplate"
+        }).init();
 
     })
 
