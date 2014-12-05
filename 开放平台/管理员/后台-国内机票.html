@@ -389,11 +389,10 @@
                 
             </div>
         </div>  <!-- 右边内容结束 -->
-        
-    </section> <!--main-body 结束-->
     
-    <a href="javascript:void(0);" class="informIcon"></a>
     <!--<a class="returnTop" href="javascript:void(0);">返回顶部</a>-->
+    
+    </section> <!--main-body 结束-->    
     
     <footer class="main-footer">
         <center class="copyright">
@@ -411,7 +410,7 @@
                 <p>确认要全部删除吗？</p>
             </div>
             <div class="hintBtn">
-                <button class="commonBigOrangeBtn" type="button">继 续</button>
+                <button class="commonBigOrangeBtn" type="button">确 定</button>
                 <a href="javascript:void(0);" class="commonBtnFonts cancelClose">取 消</a>
             </div>
         </div>
@@ -423,7 +422,7 @@
                 <p>确定删除该条目吗？</p>
             </div>
             <div class="hintBtn">
-                <button class="commonBigOrangeBtn" type="button">继 续</button>
+                <button class="commonBigOrangeBtn" type="button">确 定</button>
                 <a href="javascript:void(0);" class="commonBtnFonts cancelClose">取 消</a>
             </div>
         </div>
@@ -464,6 +463,8 @@
             $(".secondLevel .smallAddContent").click(function(){
                 var template = $(".addSecondLevelList").html();
                 $(this).parents(".secondLevel").append("<li class='newSecondLevelList'>" + template + "</li>");
+                $(this).hide();
+                $(this).parents(".secondLevel").css("margin-bottom","0");
             });
             
             //点删除则删除二级菜单中新添加的
@@ -482,6 +483,7 @@
             $(".addBigTitleContent").click(function(){
                 var addBigTitleStyle = $(".bigTitleEdit").html();
                 $(this).parents(".menuChange").append("<li class='firstLevel'><span class='bigTitleEdit'>" + addBigTitleStyle + "</span></li>");
+                $(this).hide();
             });
 
             //添加tab列表
@@ -502,8 +504,9 @@
                 $(".commonStyle.first").find("textarea").addClass("hasTextareaBor").removeAttr("readonly");
                 $(".formatTransform .transformHint").show();
                 $(".errorCodeContent").find("table").addClass("hasInputBorder");
-                $(".commonModel").find("textarea").removeAttr("readonly")
-            });
+                $(".commonModel").find("textarea").addClass("addFocusBorder").removeAttr("readonly");
+                $(".addTabTr").show();
+            }); 
 
             var ac_window = new PopWindow('.ac-bigDelHint',{
                 title:'提示',

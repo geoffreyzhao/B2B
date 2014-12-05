@@ -25,7 +25,7 @@ $(function() {
     });
 
     //返回顶部
-    var $backToTopEle = $('<a class="returnTop"></a>').appendTo($("body")).attr("title", "返回顶部").click(function() {
+    var $backToTopEle = $('<a class="returnTop"></a>').appendTo($("section.main-body")).attr("title", "返回顶部").click(function() {
             $("html, body").animate({
                     scrollTop: 0
                 },
