@@ -92,12 +92,12 @@
 	                <button class="btns btn-return">返回</button>
 	            </div>
 			    <div class="col col-r sep-l">
-			        <a class="button_secondary adaptiveButton small bookFailOper" href="javascript:void(0);">
+			        <a class="button_secondary adaptiveButton small backOper" href="javascript:void(0);">
 	                    <span class="left"></span>
 	                    <span class="center">退回</span>
 	                    <span class="right"></span>
 	                </a>
-	                <a class="button_secondary adaptiveButton small bookFailOper" href="javascript:void(0);">
+	                <a class="button_secondary adaptiveButton small passOnlineOper" href="javascript:void(0);">
 	                    <span class="left"></span>
 	                    <span class="center">通过并上线</span>
 	                    <span class="right"></span>
@@ -427,6 +427,41 @@
     </div>
 </div>
 
+<script type="text/x-kendo-template" id="back-remark-template">
+	<div class="back-remark-win">
+		<span style="vertical-align:top;">退回说明：</span>
+		<textarea></textarea>
+		<p class="winOperBtn">
+          <a class="button_important adaptiveButton medium sureOper" href="javascript:;">
+              <span class="left"></span>
+              <span style="padding:0 25px;" class="center">确定</span>
+              <span class="right"></span>
+          </a>
+          <a class="button_unimportant adaptiveButton medium cancelOper" href="javascript:;">
+              <span class="left"></span>
+              <span style="padding:0 25px;" class="center">取消</span>
+              <span class="right"></span>
+          </a>
+        </p>
+	</div>
+</script>
+
+<script type="text/x-kendo-template" id="online-fail-template">
+	<div class="online-fail-win">
+		<p class="tipMsg">
+			<i class="large-warn-icon"></i>产品已审核通过，但是上线失败，售卖日期全部被关闭
+		</p>
+		<p class="winOperBtn">
+          <a class="button_important adaptiveButton medium sureOper" href="javascript:;">
+              <span class="left"></span>
+              <span style="padding:0 25px;" class="center">确定</span>
+              <span class="right"></span>
+          </a>
+        </p>
+	</div>
+</script>
+
+
 <script type="text/javascript">
     $(function(){
         $(".fixedBar").fixedBar();
@@ -434,6 +469,18 @@
         $(".changeList").fixedBar({
         	css: "top:35px;position:fixed"
         });
+
+        var backRemarkWin = new PopWindow('.backOper', {
+        	title: "退回说明",
+        	width: 550,
+        	template: "#back-remark-template"
+        }).init();
+
+        var onlineFailWin = new PopWindow('.passOnlineOper', {
+        	title: "上线失败",
+        	width: 500,
+        	template: "#online-fail-template"
+        }).init();
 
         var a_pos = [];
         var flag=true;
