@@ -5,6 +5,22 @@ html, body, div, p, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, form, input,
     font-family: microsoft yahei,Arial,Helvetica,sans-serif;
 }
 
+table.layoutFixed {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.tdEllipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: break-word;
+}
+
+.tdNoEllipsis {
+    word-wrap: break-word;
+    white-space: normal;
+}
 
 .tgrid tbody td div.visa-name {
   	color: #666666;
@@ -72,44 +88,69 @@ html, body, div, p, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, form, input,
 .sale-rule-remind-button a{
 	margin-right: 10px;
 }
-/*价格信息*/
-.priceInfo-div {
+
+/*价格信息  By:shuaigeng.zhao */
+
+.block-module {
+    height: auto;
+    padding: 20px;
+    border-bottom: 2px solid #bfc2c4;
+    border-left: 1px solid #dfe3e5;
+    border-right: 1px solid #dfe3e5;
+    margin: 10px 0;
+    color: #636363;
+    background: #fff;
+}
+
+.supplier-modify-place {
     color: #666;
     font-size: 14px;
 }
-.priceInfo-div h3 {
+
+.supplier-modify-place h4 {
     font-weight: normal;
+    margin-bottom: 10px;
+    font-size: 14px;
 }
-.priceInfo-div ul {
-    height: 100%;
-    overflow: hidden;
-}
-.priceInfo-div li {
-    float: left;
-    padding: 0 0 0 20px;
-}
-.priceInfo-div li span {
+
+.supplier-modify-place .modify-title {
     font-size: 16px;
     color: #333;
 }
-.priceInfoSummary {
+
+.supplier-modify-place li {
+    float: left;
+    margin-right: 30px;
+    margin-bottom: 5px;
+}
+
+.basic-info-container {
+
+}
+
+.visa-info-table {
     font-size: 12px;
-    margin: 0 0 0 15px;
 }
-.priceInfoSummary .fc06c {
-    color: #0066cc;
+
+.visa-info-table tr {
+    height: 30px;
+    line-height: 30px;
 }
-.priceInfoSummary .status {
+
+.visa-info-table .status {
     color: #ff3300;
     font-size: 16px;
 }
-.priceInfoSummary td {
-    padding: 6px 0;
+
+.visa-info-table a:hover {
+    color: #0066cc;
+    text-decoration: underline;
 }
+
 .tabwidgetUl {
     height: 100%;
     overflow: hidden;
-    padding: 0 0 0 15px;
+    margin-bottom: 15px;
 }
 .tabwidgetUl li {
     float: left;
@@ -127,11 +168,139 @@ html, body, div, p, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, form, input,
     background: #2cb7f1;
     cursor: pointer;
 }
-.priceCon-div .searchRow {
-    margin: 15px 0 10px 15px;
+.search-price .searchRow {
+    font-size: 14px;
+    margin-bottom: 35px;
+    color: #333;
+}
+.search-price .searchRow b {
+    font-size: 16px;
+    margin-right: 20px;}
+
+.search-price input[type='text'] {
+    text-indent: 3px;
+}
+
+.visaPriceInfo {
+    position: relative;
+}
+.visaPriceInfo input {
+    width:36px;
+    border: 1px solid #d8d8d8;
+    padding: 0 0 0 0px;
+    height: 24px;
+    display: inline-block;
+}
+.visaPriceInfo label {
+    padding:3px;
+    display: inline-block;
+}
+.priceInfoTab{
+    margin:20px 0 10px 0;
+    color: #555;
+    width: 100%;
     font-size: 14px;
 }
-.priceCon-div .searchRow b {
+.priceInfoTab th{
+    background: #eeeeee;
+    padding: 3px 0 3px 8px;
+    color: #555555;
+    text-align: left;
+}
+.priceInfoTab td{
+    padding: 10px 0 10px 8px;
+    border-bottom: 1px solid #eaeaea;
+}
+.priceInfoTab tr:hover{
+    background: #f8f8f8;
+    cursor: pointer;
+}
+.priceInfoTab .cf1 {
+    color: #0393d3;
+}
+.priceInfoTab .cf2 {
+    color: #fc3333;
+}
+.editFontLink, .saveFontLink {
+    cursor: pointer;
+}
+.adultBorderL {
+    border-left:2px solid #50aee4;
+}
+.kidsBorderL {
+    border-left: 2px solid #69bf7f;
+}
+.kidsBorderR {
+    border-right:2px solid #69bf7f;
+}
+.adultBorderB {
+    border-bottom: 2px solid #50aee4!important;
+}
+.kidsBorderB {
+    border-bottom: 2px solid #69bf7f!important;
+}
+.personTypeBox {
+    position: absolute;
+    top:-20px;
+}
+.adultBox, .kidsBox, .big-kidsBox {
+    background: #50aee4;
+    width:197px;
+    position: absolute;
+    top:1px;
+    color: #fff;
+    text-align: center;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+}
+.adultBox i, .kidsBox i, .big-kidsBox i {
+    font-family: "sans serif";
+    font-size: 12px;
+}
+
+.adultBox {
+    left: 126px;
+}
+
+.kidsBox {
+    left: 322px;
+}
+
+.big-kidsBox {
+    left: 518px;
+}
+
+.kidsBox, .big-kidsBox {
+    background: #69bf7f;
+}
+
+.policy-price-container {
+
+}
+
+.policy-price-container h3 {
     font-size: 16px;
-    margin-right: 20px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.policy-price-table tr {
+    height: 50px;
+    /*line-height: 50px;*/
+}
+
+.policy-price-table th {
+    background-color: #eee;
+}
+
+.policy-price-table th,
+.policy-price-table td {
+    border-right: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    color: #616161;
+    font-size: 14px;
+    padding-left: 10px;
+    word-wrap: break-word;
 }
