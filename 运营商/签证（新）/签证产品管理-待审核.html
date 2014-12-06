@@ -8,8 +8,8 @@
     <link href="/static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
     <link href="/static/css/kendo.reset.css" rel="stylesheet" type="text/css" />
     <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
-    <link href="/static/css/kendo.reset.css" rel="stylesheet" />    
-    <link href="/static/css/travel.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/static/css/operatorCommonHeader.css">
     <link href="/static/css/operator_visa.css" rel="stylesheet" type="text/css"/>
     
     <script src="/static/js/jquery.min.js" type="text/javascript"></script>    
@@ -17,15 +17,8 @@
     <script type="text/javascript" src="/static/js/scrollFix.js"></script>
     <script type="text/javascript" src="/static/js/public.js"></script>
 
-   <!-- <script type="text/javascript" src="../../static/js/global.js"></script>
-    <script type="text/javascript">
-        $(function(){
-            new Collpase({
-                limitHeight:140,
-                container:'.xyzc_div' 
-            }).init();
-        }) 
-    </script>-->
+   <script type="text/javascript" src="/static/js/global.js"></script>
+
     
     <!--[if IE]>
     <script src="/static/js/html5.js"></script>
@@ -41,46 +34,61 @@
     <script>
         $(function(){
             kendo.init('body');
-            lensf();
         })
     </script>
     
 </head>
 <body>
-    <div id="extHeader">
+    <div id="head">
         <div></div>
     </div>
 
+    <div id="catalogue"></div>
+
     <div id="container">
-        <div class="header">
-            <h1></h1>
-            <div>
-                <span>你好,${name}</span>
-                <a href="javascript:void(0);">退出</a>
+        <div class="logo">
+            <div class="clearfix">
+                <h1></h1>
+                <div class="profile">
+                    <a href="javascript:void(0)">你好,千颂伊</a>
+                    <a href="javascript:void(0)">退出</a>
+                </div>
             </div>
-            <ul id="top_menu">
-                <li><a href="javascript:void(0);">国内机票</a></li>
-                <li><a href="javascript:void(0);">国际机票</a></li>
-                <li><a href="javascript:void(0);">酒店</a></li>
-                <li><a href="javascript:void(0);">票证中心</a></li>
-                <li><a href="javascript:void(0);">财务管理</a></li>
-                <li><a href="javascript:void(0);">客户管理</a></li>
-                <li class="current"><a href="javascript:void(0);">系统设置</a></li>
+            <ul id="catalogue_menu">
+                <li class="">
+                    <a href="javascript:void(0)">国内机票</a>                    
+                </li>
+                <li><a href="javascript:void(0)">国际机票</a></li>
+                <li><a href="javascript:void(0)">酒店</a></li>
+                <li>
+                    <a href="javascript:void(0)">阿里旅行</a>                    
+                </li>
+                <li><a href="javascript:void(0)">打包产品</a></li>
+                <li><a href="javascript:void(0)">旅游</a></li>
+                <li><a href="javascript:void(0)">邮轮</a></li>
+                <li class="current">
+                  <a href="javascript:void(0)">签证</a>
+                  <ol class="subMenu">
+                        <li class="currentSubMenu"><a href="javascript:void(0)">签证产品管理</a></li>
+                        <li><a href="javascript:void(0)">签证批次管理</a></li>
+                        <li><a href="javascript:void(0)">订单管理</a></li>
+                    </ol>
+                </li>
+                <li><a href="javascript:void(0)">保险</a></li>
+                <li><a href="javascript:void(0)">短信</a></li>
+                <li><a href="javascript:void(0)">通用订单</a></li>
+                <li><a href="javascript:void(0)">票证</a></li>
+                <li><a href="javascript:void(0)">财务</a></li>
+                <li><a href="javascript:void(0)">客户</a></li>
+                <li><a href="javascript:void(0)">设置</a></li>
             </ul>
-            <ol class="sub_menu">
-                <li class="current"><a href="javascript:void(0);">公告信息</a></li>
-                <li><a href="javascript:void(0);">公司信息</a></li>
-                <li><a href="javascript:void(0);">组织架构</a></li>
-                <li><a href="javascript:void(0);">角色维护</a></li>
-                <li><a href="javascript:void(0);">基础数据</a></li>
-            </ol>
-            <div id="message">
-            	<a href="javascript:void(0);">&nbsp;</a>
-                <span>&nbsp;</span>
+            <div class="headerMessage clearfix">
+                <div id="msgNum">
+                    <span>消息</span>
+                    <em>30</em>
+                </div>
             </div>
         </div>
-        <div class="clear"></div>
-        <div id="sub_menu_bar"></div>
         <div id="mainContent" style="overflow:hidden;">
 			<!-- start content -->
             
@@ -119,39 +127,24 @@
                       <td>
                           <select data-role="dropdownlist" style="width:100px;">
                              <option selected="">全部</option>
-                             <option>新建</option>
-                             <option>支付</option>
-                             <option>确认</option>
-                             <option>取消</option>
-                             <option>收款</option>
-                             <option>结算</option>
-                             <option>完成</option>
+                             <option>个人旅游签证</option>
+                             <option>团队旅游签证</option>
+                             <option>商务签证</option>
+                             <option>探亲签证</option>
+                             <option>留学签证</option>
+                             <option>其他</option>
                          </select>
                       </td>
                       <td>审核状态：</td>
                       <td>
-                          <select data-role="dropdownlist" style="width:100px;">
-                             <option selected="">全部</option>
-                             <option>新建</option>
-                             <option>支付</option>
-                             <option>确认</option>
-                             <option>取消</option>
-                             <option>收款</option>
-                             <option>结算</option>
-                             <option>完成</option>
-                         </select>
+                          <input type="text" value="待审核" readonly="readonly" style="width:100px;">
                       </td>
                       <td>售卖状态：</td>
                       <td>
                           <select data-role="dropdownlist" style="width:100px;">
                              <option selected="">全部</option>
-                             <option>新建</option>
-                             <option>支付</option>
-                             <option>确认</option>
-                             <option>取消</option>
-                             <option>收款</option>
-                             <option>结算</option>
-                             <option>完成</option>
+                             <option>售卖中</option>
+                             <option>已下线</option>
                          </select>
                       </td>
                       <td rowspan="3">
@@ -169,16 +162,7 @@
                       </td>
                       <td>签证编号：</td>
                       <td>
-                          <select data-role="dropdownlist" style="width:100px;">
-                             <option selected="">全部</option>
-                             <option>新建</option>
-                             <option>支付</option>
-                             <option>确认</option>
-                             <option>取消</option>
-                             <option>收款</option>
-                             <option>结算</option>
-                             <option>完成</option>
-                         </select>
+                          <input type="text" style="width:100px;">
                       </td>
                       <td >签证名称：</td>
                       <td colspan="3">
@@ -232,7 +216,7 @@
                           <td style="text-align:center;">
                               <a href="javascript:void(0);">受理</a>
                           </td>
-                          <td style="text-align:center;">
+                          <td>
                               待审核
                           </td>
                           <td>美国</td>
@@ -254,7 +238,7 @@
                           <td style="text-align:center;">
                               <a href="javascript:void(0);">受理</a>
                           </td>
-                          <td style="text-align:center;">
+                          <td>
                               待审核
                           </td>
                           <td>加拿大</td>
@@ -276,7 +260,7 @@
                           <td style="text-align:center;">
                               <a href="javascript:void(0);">受理</a>
                           </td>
-                          <td style="text-align:center;">
+                          <td>
                               待审核
                           </td>
                           <td>美国</td>
@@ -298,7 +282,7 @@
                           <td style="text-align:center;">
                               <a href="javascript:void(0);">受理</a>
                           </td>
-                          <td style="text-align:center;">
+                          <td>
                               待审核
                           </td>
                           <td>美国</td>
@@ -320,7 +304,7 @@
                           <td style="text-align:center;">
                               <a href="javascript:void(0);">受理</a>
                           </td>
-                          <td style="text-align:center;">
+                          <td>
                               待审核
                           </td>
                           <td>美国</td>
@@ -342,7 +326,7 @@
                           <td style="text-align:center;">
                               <a href="javascript:void(0);">受理</a>
                           </td>
-                          <td style="text-align:center;">
+                          <td>
                               待审核
                           </td>
                           <td>美国</td>
