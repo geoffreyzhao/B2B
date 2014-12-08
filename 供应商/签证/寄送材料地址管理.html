@@ -20,6 +20,11 @@
 
     <script type="text/javascript" src="/static/js/supplier/supplier_travel.js"></script>
 
+
+
+    
+    
+
     <!--[if IE]>
     <script src="/static/js/html5.js"></script>
     <![endif]-->
@@ -123,6 +128,29 @@
         <a href="javascript:void(0);" class="new-address"><i></i>新增地址</a>
     </div>
 </div>
+    <div class="delAddressBtn">
+        <span class="saveSpan">
+                <a class="adaptiveButton brightBtn normalButton">
+                    <span class="left"></span>
+                    <span class="center center_2">保存</span>
+                    <span class="right"></span>
+                </a>
+        </span>
+        <span class="editSpan" style="display: none">
+            <a class="adaptiveButton brightBtn normalButton">
+                <span class="left"></span>
+                <span class="center center_2">编 辑</span>
+                <span class="right"></span>
+            </a>
+        </span>
+        <span class="cancelSpan" style="display: none">
+            <a class="adaptiveButton brightBtn normalButton">
+                <span class="left"></span>
+                <span class="center center_2">取 消</span>
+                <span class="right"></span>
+            </a>
+        </span>
+    </div>
     <table class="searchTab sendMeterialTab">
         <colgroup>
             <col width="110"/>
@@ -132,17 +160,19 @@
             <th>签证国家/地区：</th>
             <td>
                 <input type="text" name="visa-country" style="width:108px;" class="visa-country"/>
+                <em style="display: none;">美国</em>
                 <label><input type="checkbox" class="allSelInput"/>所有国家/地区</label>
             </td>
         </tr>
         <tr>
             <th>送签类型：</th>
             <td>
-                <select data-role="dropdownlist" style="width: 114px;" class="visa-type"/>
+                <select data-role="dropdownlist" style="width: 114px;" class="visaType" id="visaType"/>
                     <option>请选择</option>
-                    <option></option>
-                    <option></option>
+                    <option>个人旅游签证</option>
+                    <option>团队旅游签证</option>
                 </select>
+                <em style="display: none;">欧洲签证</em>
                 <label><input type="checkbox" class="allSelType"/>所有签证类型</label>
             </td>
         </tr>
@@ -150,6 +180,7 @@
             <th>办理领区：</th>
             <td>
                 <input type="text" style="width:108px;"/>
+                <em style="display: none;">华盛顿</em>
             </td>
         </tr>
         <tr>
@@ -157,16 +188,16 @@
             <td>
                 <ul class="receiverInfoRow">
                     <li>
-                        <div>收件人</div><input type="text" style="width:60px;"/>
+                        <div>收件人</div><input type="text" style="width:60px;"/><em style="display: none;">张三</em>
                     </li>
                     <li>
-                        <div>收件城市</div><input type="text" style="width:90px;"/>
+                        <div>收件城市</div><input type="text" style="width:90px;"/><em style="display: none;">北京</em>
                     </li>
                     <li>
-                        <div>详细地址 </div><input type="text" style="width:456px;"/>
+                        <div>详细地址 </div><input type="text" style="width:456px;"/><em style="display: none;">昌平区豆各庄18号501室</em>
                     </li>
                     <li>
-                        <div>手机号</div><input type="text" style="width:178px;"/>
+                        <div>手机号</div><input type="text" style="width:178px;"/><em style="display: none;">18956231478</em>
                     </li>
                 </ul>
             </td>
@@ -191,7 +222,32 @@
 
 
     <div id="addAddress_template" style="display: none;">
-        <div class="delAddressBtn"><i></i>删除</div>
+        <div class="delAddressBtn">
+            <span class="saveSpan">
+                <a class="adaptiveButton brightBtn normalButton">
+                    <span class="left"></span>
+                    <span class="center center_2">保存</span>
+                    <span class="right"></span>
+                </a>
+            </span>
+            <span class="editSpan" style="display: none">
+                <a class="adaptiveButton brightBtn normalButton">
+                    <span class="left"></span>
+                    <span class="center center_2">编 辑</span>
+                    <span class="right"></span>
+                </a>
+            </span>
+            <span class="cancelSpan" style="display: none">
+                <a class="adaptiveButton brightBtn normalButton">
+                    <span class="left"></span>
+                    <span class="center center_2">取 消</span>
+                    <span class="right"></span>
+                </a>
+            </span>
+            <span class="delSpan">
+                <i></i>删除
+            </span>
+        </div>
         <table class="searchTab sendMeterialTab">
             <colgroup>
                 <col width="110"/>
@@ -201,17 +257,19 @@
                 <th>签证国家/地区：</th>
                 <td>
                     <input type="text" name="visa-country" style="width:108px;" class="visa-country"/>
+                    <em style="display: none;">美国</em>
                     <label><input type="checkbox" class="allSelInput"/>所有国家/地区</label>
                 </td>
             </tr>
             <tr>
                 <th>送签类型：</th>
                 <td>
-                    <select data-role="dropdownlist" style="width: 114px;" class="visa-type"/>
-                    <option>请选择</option>
-                    <option></option>
-                    <option></option>
+                    <select  style="width: 114px;" class="visaType">
+                        <option>请选择</option>
+                        <option>请选择A</option>
+                        <option>请选择B</option>
                     </select>
+                    <em style="display: none;">欧洲签证</em>
                     <label><input type="checkbox" class="allSelType"/>所有签证类型</label>
                 </td>
             </tr>
@@ -219,6 +277,7 @@
                 <th>办理领区：</th>
                 <td>
                     <input type="text" style="width:108px;"/>
+                    <em style="display: none;">华盛顿</em>
                 </td>
             </tr>
             <tr>
@@ -226,16 +285,16 @@
                 <td>
                     <ul class="receiverInfoRow">
                         <li>
-                            <div>收件人</div><input type="text" style="width:60px;"/>
+                            <div>收件人</div><input type="text" style="width:60px;"/><em style="display: none;">张三</em>
                         </li>
                         <li>
-                            <div>收件城市</div><input type="text" style="width:90px;"/>
+                            <div>收件城市</div><input type="text" style="width:90px;"/><em style="display: none;">北京</em>
                         </li>
                         <li>
-                            <div>详细地址 </div><input type="text" style="width:456px;"/>
+                            <div>详细地址 </div><input type="text" style="width:456px;"/><em style="display: none;">昌平区豆各庄18号501室</em>
                         </li>
                         <li>
-                            <div>手机号</div><input type="text" style="width:178px;"/>
+                            <div>手机号</div><input type="text" style="width:178px;"/><em style="display: none;">18956231478</em>
                         </li>
                     </ul>
                 </td>
@@ -259,6 +318,10 @@
                 showButtonPanel :true
             });
         });
+
+
+        $("select.visaType").kendoDropDownList();
+        var visaDropDownList = $("select.visaType").data("kendoDropDownList");
         
         //表单不可选
         $('.sendMeterialTab .allSelInput').on('change',function(){
@@ -274,13 +337,9 @@
         $('.sendMeterialTab .allSelType').on('change',function(){
             var that = $(this);
             if(that.is(':checked')){
-                $(".visa-type").kendoDropDownList({
-                    enable: false
-                });
+                visaDropDownList.enable(false);
             }else{
-                $(".visa-type").kendoDropDownList({
-                    enable: true
-                });
+                visaDropDownList.enable(true);
             }
         });
         
@@ -289,12 +348,72 @@
             $("#mainContent").after("<div class='add-mainContent'>" + $("#addAddress_template").html() + "</div>");
         });
         
+        //保存(checkbox没选中时)
+        $(".delAddressBtn .saveSpan").click(function(){
+            if ($(".allSelInput").prop("checked")) {
+                // 选中
+            } else {
+                // 未选中
+            }
+            $(this).parent().siblings(".sendMeterialTab").find("input").hide();
+            $(this).parent().siblings(".sendMeterialTab").find("label").hide();
+            $(this).parent().siblings(".sendMeterialTab").find("span.visaType").hide();
+            
+            $(this).parent().siblings(".sendMeterialTab").find("em").show();
+            //按钮切换
+            $(this).siblings(".editSpan").show();
+            $(this).siblings(".cancelSpan").hide();
+            $(this).hide();
+        });
+        //编辑(checkbox没选中时)
+        $(".delAddressBtn .editSpan").click(function(){
+            if ($(".allSelInput").prop("checked")) {
+                // 选中
+            } else {
+                // 未选中
+            }
+            
+            $(this).parent().siblings(".sendMeterialTab").find("input").show();
+            $(this).parent().siblings(".sendMeterialTab").find("label").show();
+            $(this).parent().siblings(".sendMeterialTab").find("span.visaType").show();
+
+            $(this).parent().siblings(".sendMeterialTab").find("em").hide();
+            //按钮切换
+            $(this).siblings(".saveSpan").show();
+            $(this).siblings(".cancelSpan").show();
+            $(this).hide();
+        });
+        
         //删除地址
-        $("body").delegate(".delAddressBtn","click",function(){
+        $("body").delegate(".delAddressBtn .delSpan","click",function(){
             $(this).parents(".add-mainContent").remove();
         });
+        
+        //新增中的保存
+        $("body").delegate(".delAddressBtn .saveSpan","click",function(){
+            $(this).parent().siblings(".sendMeterialTab").find("input").hide();
+            $(this).parent().siblings(".sendMeterialTab").find("label").hide();
+            $(this).parent().siblings(".sendMeterialTab").find("span.visaType").hide();
 
-        $("select").kendoDropDownList();
+            $(this).parent().siblings(".sendMeterialTab").find("em").show();
+            //按钮切换
+            $(this).siblings(".editSpan").show();
+            $(this).siblings(".cancelSpan").hide();
+            $(this).hide();
+        });
+        //新增中的编辑
+        $("body").delegate(".delAddressBtn .editSpan","click",function(){
+            $(this).parent().siblings(".sendMeterialTab").find("input").show();
+            $(this).parent().siblings(".sendMeterialTab").find("label").show();
+            $(this).parent().siblings(".sendMeterialTab").find("span.visaType").show();
+
+            $(this).parent().siblings(".sendMeterialTab").find("em").hide();
+            //按钮切换
+            $(this).siblings(".saveSpan").show();
+            $(this).siblings(".cancelSpan").show();
+            $(this).hide();
+        })
+
 
     });
 </script>
