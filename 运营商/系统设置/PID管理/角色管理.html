@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>运营商 系统设置 PID管理 角色管理</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/operatorCommonHeader.css" rel="stylesheet">
+    <link href="/static/css/systemSet.css" rel="stylesheet" type="text/css"/>
+    
+    <script src="/static/js/jquery.min.js" type="text/javascript"></script>    
+    <script src="/static/js/kendo.web.js" type="text/javascript"></script>
+    <script src="/static/js/global.js" type="text/javascript"></script>
+    
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+    
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/static/css/ie.css" />
+    <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/static/js/sync.js"></script>
+    <!-- @CLB@ -->
+
+    <script>
+        $(function(){
+            kendo.init('body');
+            lensf();
+        })
+    </script>
+    
+</head>
+<body>
+    <div id="head">
+        <div></div>
+    </div>
+    
+    <div id="catalogue"></div>
+
+    <div class="main-wrapper" id="container">
+        <div class="logo">
+            <div class="clearfix">
+                <h1></h1>
+                <div class="profile">
+                    <a href="javascript:void(0)">你好,千颂伊</a>
+                    <a href="javascript:void(0)">退出</a>
+                </div>
+            </div>
+            <ul id="catalogue_menu">
+                <li class="">
+                    <a href="javascript:void(0)">国内机票</a>
+                </li>
+                <li><a href="javascript:void(0)">国际机票</a></li>
+                <li><a href="javascript:void(0)">酒店</a></li>
+                <li><a href="javascript:void(0)">打包产品</a></li>
+                <li><a href="javascript:void(0)">旅游</a></li>
+                <li class="current">
+                    <a href="javascript:void(0)">邮轮</a>
+                    <ol class="subMenu">
+                        <li class="currentSubMenu"><a href="javascript:void(0)">基础模块维护</a></li>
+                        <li><a href="javascript:void(0)">航线审核</a></li>
+                        <li><a href="javascript:void(0)">航线售卖管理</a></li>
+                        <li><a href="javascript:void(0)">团管理</a></li>
+                    </ol>
+                </li>
+                <li><a href="javascript:void(0)">签证</a></li>
+                <li><a href="javascript:void(0)">保险</a></li>
+                <li><a href="javascript:void(0)">短信</a></li>
+                <li><a href="javascript:void(0)">通用订单</a></li>
+                <li><a href="javascript:void(0)">票证</a></li>
+                <li><a href="javascript:void(0)">财务</a></li>
+                <li><a href="javascript:void(0)">客户</a></li>
+                <li><a href="javascript:void(0)">设置</a></li>
+            </ul>
+            <div class="headerMessage clearfix">
+                <div id="msgNum">
+                    <span>消息</span>
+                    <em>30</em>
+                </div>
+            </div>
+        </div>
+        
+        <div id="mainContent">
+			<!-- start content -->
+            <div class="topFixedToolsBar">
+                <div class="fixedMenu">
+                    <a href="#">实时监控</a>
+                    <a href="#">PID账号管理</a>
+                    <a href="#">用户账号管理</a>
+                    <a href="#">分组管理</a>
+                    <a href="#" class="current">角色管理</a>
+                    <a href="#">指令管理</a>
+                </div>
+                <div class="fixedButton">
+                    <a href="javascript:void(0);" class="button_secondary adaptiveButton small ac-addRoleWindow">
+                        <span class="left"></span>
+                        <span class="center">+ 新增</span>
+                        <span class="right"></span>
+                    </a>
+                </div>
+            </div>
+           
+           <table class="tgrid" style="table-layout:fixed;">
+                  <colgroup>
+                      <col width="200"/>
+                      <col width="85"/>
+                      <col width="185"/>
+                      <col width="120"/>
+                      <col width="370"/>
+                  </colgroup>
+                  <thead>
+                      <tr>
+                          <th class="line_left" style="text-align:center; width:200px;">操作</th>
+                          <th>序号</th>
+                          <th>角色名称</th>
+                          <th>指令数</th>
+                          <th class="line_right">角色描述</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td style="text-align:center;">
+                              <a href="javascript:void(0);" class="ac-modifiedRoleWindow">修改</a>
+                              <a href="javascript:void(0);" class="ac-delGroup">删除</a>
+                          </td>
+                          <td>1</td>
+                          <td>超级管理员</td>
+                          <td><a href="javascript:void(0);" class="ac-roleNumber">20</a></td>
+                          <td>我是超级管理员</td>
+                      </tr>
+                      <tr>
+                          <td style="text-align:center;">
+                              <a href="javascript:void(0);" class="ac-modifiedRoleWindow">修改</a>
+                              <a href="javascript:void(0);" class="ac-delGroup">删除</a>
+                          </td>
+                          <td>2</td>
+                          <td>出票员</td>
+                          <td><a href="javascript:void(0);" class="ac-roleNumber">10</a></td>
+                          <td>我是出票员</td>
+                      </tr>
+                   </tbody>
+           </table>
+          
+              <div class="grid-table-pagination page">
+                  <span class="grid-table-count">
+                      共 <em>132</em> 条记录
+                  </span>
+                  <span>
+                      <a href="#" class="prev">&nbsp;</a>
+                  </span>
+                  <span class="links">
+                      <a href="#">1</a>
+                      <a href="#">2</a>
+                      <a href="#" class="current">3</a>
+                      <a href="#">4</a>
+                      <a href="#">5</a>
+                      <a href="javascript:;">...</a>
+                      <a href="#">50</a>
+                  </span>
+                  <span>
+                      <a href="#" class="next">&nbsp;</a>
+                  </span>
+              </div>
+              
+    </div>
+</div> 
+    <!-- end of content -->
+    
+    <footer class="main-footer">
+        <center>
+            <a href="#">隐私问题</a>
+            <i class="bar">|</i>
+            <a href="#">常见问题</a>
+            <i class="bar">|</i>
+            <a href="#">关于我们</a>
+            <i class="bar">|</i>
+            <a href="#">媒体中心</a>
+            <i class="bar">|</i>
+            <a href="#">联系我们</a>
+        </center>
+        <center class="copyright">
+            Copyright &copy; 2012 天地行 All Rights Reserved.     沪ICP备08101503号
+        </center>
+    </footer>
+
+    <script type="text/x-kendo-template" id="ac-addRoleWindow-template">
+        <table class="commonTabWindow">
+            <colgroup>
+                <col width="100">
+                <col width="490">
+            </colgroup>
+            <tbody>
+            <tr>
+                <th>角色名称</th>
+                <td>
+                    <input type="text" style="width: 250px;">
+                </td>
+            </tr>
+            <tr>
+                <th style="vertical-align: top;">角色描述</th>
+                <td>
+                    <textarea class="commonTextarea">不共享其它组，只允许无PID的组共享组</textarea>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="instructContent">
+            <h3 class="titleFonts">设置指令</h3>
+            <div class="setInstruct">
+                <div>
+                    <em>指令名称</em>
+                    <input type="text" style="width: 145px;" value="指令111111111111">
+                    <a href="javascript:void(0);" class="button_secondary adaptiveButton small">
+                        <span class="left"></span>
+                        <span class="center">搜索</span>
+                        <span class="right"></span>
+                    </a>
+                    <a href="javascript:void(0);" class="clearBtn">清空搜索</a>
+                </div>
+                <div class="setContent">
+                    <ul id="rolemenu" class="clearfix">
+                        <li class="current">
+                            <div class="mtab">
+                                <a href="javascript:void(0);" for="fid1">指令名称</a>
+                                <span class="rightCover"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="mtab gray">
+                                <a href="javascript:void(0);" for="fid2">已选择（3）</a>
+                                <span class="rightCover"></span>
+                            </div>
+                        </li>
+                    </ul>
+                    <section class="tab">
+                        <table class="groupNameNumberTab">
+                            <colgroup>
+                                <col width="90">
+                                <col width="175">
+                                <col width="245">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th>
+                                   <label>
+                                       <input type="checkbox"> 全选
+                                   </label>
+                                </th>
+                                <th>指令名称</th>
+                                <th>指令描述</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" checked>
+                                </td>
+                                <td>指令1</td>
+                                <td>我是超级管理员</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" checked>
+                                </td>
+                                <td>指令1</td>
+                                <td>我是超级超级超级管理员</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox">
+                                </td>
+                                <td>指令1</td>
+                                <td>我是超级管理员</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox">
+                                </td>
+                                <td>指令1</td>
+                                <td>我是超级超级超级管理员</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="grid-table-pagination">
+                              <span class="grid-table-count">
+                                  共 <em>132</em> 条记录
+                              </span>
+                              <span>
+                                  <a href="javascript:void(0);" class="prev">&nbsp;</a>
+                              </span>
+                              <span class="links">
+                                  <a href="javascript:void(0);">1</a>
+                                  <a href="javascript:void(0);">2</a>
+                                  <a href="javascript:void(0);" class="current">3</a>
+                                  <a href="javascript:void(0);">4</a>
+                                  <a href="javascript:void(0);">5</a>
+                                  <a href="javascript:void(0);">...</a>
+                                  <a href="javascript:void(0);">50</a>
+                              </span>
+                              <span>
+                                  <a href="javascript:void(0);" class="next">&nbsp;</a>
+                              </span>
+                        </div>
+                    </section>
+                    <section class="tab" style="display: none;">
+                        <table class="groupNameNumberTab">
+                            <colgroup>
+                                <col width="90">
+                                <col width="175">
+                                <col width="245">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th>
+                                    <label>
+                                        <input type="checkbox"> 全选
+                                    </label>
+                                </th>
+                                <th>指令名称</th>
+                                <th>指令描述</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" checked>
+                                </td>
+                                <td>指令1</td>
+                                <td>我是超级管理员</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" checked>
+                                </td>
+                                <td>指令1</td>
+                                <td>我是超级超级超级管理员</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="grid-table-pagination">
+                              <span class="grid-table-count">
+                                  共 <em>132</em> 条记录
+                              </span>
+                              <span>
+                                  <a href="javascript:void(0);" class="prev">&nbsp;</a>
+                              </span>
+                              <span class="links">
+                                  <a href="javascript:void(0);">1</a>
+                                  <a href="javascript:void(0);">2</a>
+                                  <a href="javascript:void(0);" class="current">3</a>
+                                  <a href="javascript:void(0);">4</a>
+                                  <a href="javascript:void(0);">5</a>
+                                  <a href="javascript:void(0);">...</a>
+                                  <a href="javascript:void(0);">50</a>
+                              </span>
+                              <span>
+                                  <a href="javascript:void(0);" class="next">&nbsp;</a>
+                              </span>
+                        </div>
+                    </section>
+                </div>                
+            </div>
+        </div>
+        <div class="textAlignRightBtn">
+            <button class="large_button" type="button">确 定</button>
+            <button class="large_button disable" type="button">取 消</button>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-modifiedRoleWindow-template">
+        <table class="commonTabWindow">
+            <colgroup>
+                <col width="100">
+                <col width="490">
+            </colgroup>
+            <tbody>
+            <tr>
+                <th>角色名称</th>
+                <td>
+                    <input type="text" style="width: 250px;">
+                </td>
+            </tr>
+            <tr>
+                <th style="vertical-align: top;">角色描述</th>
+                <td>
+                    <textarea class="commonTextarea">不共享其它组，只允许无PID的组共享组</textarea>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="instructContent">
+            <h3 class="titleFonts">设置指令</h3>
+            <div class="setInstruct">
+                <div>
+                    <em>指令名称</em>
+                    <input type="text" style="width: 145px;" value="指令111111111111">
+                    <a href="javascript:void(0);" class="button_secondary adaptiveButton small">
+                        <span class="left"></span>
+                        <span class="center">搜索</span>
+                        <span class="right"></span>
+                    </a>
+                    <a href="javascript:void(0);" class="clearBtn">清空搜索</a>
+                </div>
+                <div class="setContent">
+                    <ul id="rolemenu" class="clearfix">
+                        <li class="current">
+                            <div class="mtab">
+                                <a href="javascript:void(0);" for="fid1">指令名称</a>
+                                <span class="rightCover"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="mtab gray">
+                                <a href="javascript:void(0);" for="fid2">已选择（3）</a>
+                                <span class="rightCover"></span>
+                            </div>
+                        </li>
+                    </ul>
+                    <section class="tab">
+                        <table class="groupNameNumberTab">
+                            <colgroup>
+                                <col width="90">
+                                <col width="175">
+                                <col width="245">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th>
+                                    <label>
+                                        <input type="checkbox"> 全选
+                                    </label>
+                                </th>
+                                <th>指令名称</th>
+                                <th>指令描述</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" checked>
+                                </td>
+                                <td>指令1</td>
+                                <td>我是超级管理员</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" checked>
+                                </td>
+                                <td>指令1</td>
+                                <td>我是超级超级超级管理员</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox">
+                                </td>
+                                <td>指令1</td>
+                                <td>我是超级管理员</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox">
+                                </td>
+                                <td>指令1</td>
+                                <td>我是超级超级超级管理员</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="grid-table-pagination">
+                              <span class="grid-table-count">
+                                  共 <em>132</em> 条记录
+                              </span>
+                              <span>
+                                  <a href="javascript:void(0);" class="prev">&nbsp;</a>
+                              </span>
+                              <span class="links">
+                                  <a href="javascript:void(0);">1</a>
+                                  <a href="javascript:void(0);">2</a>
+                                  <a href="javascript:void(0);" class="current">3</a>
+                                  <a href="javascript:void(0);">4</a>
+                                  <a href="javascript:void(0);">5</a>
+                                  <a href="javascript:void(0);">...</a>
+                                  <a href="javascript:void(0);">50</a>
+                              </span>
+                              <span>
+                                  <a href="javascript:void(0);" class="next">&nbsp;</a>
+                              </span>
+                        </div>
+                    </section>
+                    <section class="tab" style="display: none;">
+                        <table class="groupNameNumberTab">
+                            <colgroup>
+                                <col width="90">
+                                <col width="175">
+                                <col width="245">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th>
+                                    <label>
+                                        <input type="checkbox"> 全选
+                                    </label>
+                                </th>
+                                <th>指令名称</th>
+                                <th>指令描述</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" checked>
+                                </td>
+                                <td>指令1</td>
+                                <td>我是超级管理员</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" checked>
+                                </td>
+                                <td>指令1</td>
+                                <td>我是超级超级超级管理员</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="grid-table-pagination">
+                              <span class="grid-table-count">
+                                  共 <em>132</em> 条记录
+                              </span>
+                              <span>
+                                  <a href="javascript:void(0);" class="prev">&nbsp;</a>
+                              </span>
+                              <span class="links">
+                                  <a href="javascript:void(0);">1</a>
+                                  <a href="javascript:void(0);">2</a>
+                                  <a href="javascript:void(0);" class="current">3</a>
+                                  <a href="javascript:void(0);">4</a>
+                                  <a href="javascript:void(0);">5</a>
+                                  <a href="javascript:void(0);">...</a>
+                                  <a href="javascript:void(0);">50</a>
+                              </span>
+                              <span>
+                                  <a href="javascript:void(0);" class="next">&nbsp;</a>
+                              </span>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="textAlignRightBtn">
+            <button class="large_button" type="button">确 定</button>
+            <button class="large_button disable" type="button">取 消</button>
+        </div>
+    </script>
+    
+    <script type="text/x-kendo-template" id="ac-roleNumber-template">
+        <div>
+            <a href="javascript:void(0);" class="button_secondary adaptiveButton small">
+                <span class="left"></span>
+                <span class="center center_1">管理角色指令</span>
+                <span class="right"></span>
+            </a>
+        </div>
+        <table class="groupNameNumberTab">
+            <colgroup>
+                <col width="100">
+                <col width="420">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>指令名称</th>
+                <th>指令描述</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>指令1</td>
+                <td>我是超级超级管理员 我是超级超级管理员</td>
+            </tr>
+            <tr>
+                <td>指令1</td>
+                <td>我是出品员</td>
+            </tr>
+            <tr>
+                <td>指令1</td>
+                <td>我是超级超级管理员</td>
+            </tr>
+            <tr>
+                <td>指令1</td>
+                <td>我是超级超级管理员 我是超级超级管理员</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="grid-table-pagination">
+              <span class="grid-table-count">
+                  共 <em>132</em> 条记录
+              </span>
+              <span>
+                  <a href="javascript:void(0);" class="prev">&nbsp;</a>
+              </span>
+              <span class="links">
+                  <a href="javascript:void(0);">1</a>
+                  <a href="javascript:void(0);">2</a>
+                  <a href="javascript:void(0);" class="current">3</a>
+                  <a href="javascript:void(0);">4</a>
+                  <a href="javascript:void(0);">5</a>
+                  <a href="javascript:void(0);">...</a>
+                  <a href="javascript:void(0);">50</a>
+              </span>
+              <span>
+                  <a href="javascript:void(0);" class="next">&nbsp;</a>
+              </span>
+        </div>
+        <div class="textAlignRightBtn topLine">
+            <button class="large_button" type="button">关闭</button>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-delGroup-template">
+        <div class="delHintContent"><i class="delHintIcon"></i>是否删除角色？</div>
+        <div class="textAlignRightBtn" style="text-align: center;">
+            <button class="large_button" type="button">确 定</button>
+            <button class="large_button disable" type="button">取 消</button>
+        </div>
+    </script>
+    
+    <script>
+        $(function(){
+            var ac_window = new PopWindow('.ac-addRoleWindow',{
+                title:'新增角色',
+                width:'630',
+                template:'#ac-addRoleWindow-template'
+            }).init();
+            
+            var ac_window = new PopWindow('.ac-modifiedRoleWindow',{
+                title:'修改角色',
+                width:'630',
+                template:'#ac-modifiedRoleWindow-template'
+            }).init();
+
+            var ac_window = new PopWindow('.ac-roleNumber',{
+                title:'超级管理员角色名称  指令数',
+                width:'580',
+                template:'#ac-roleNumber-template'
+            }).init();
+
+            var ac_window = new PopWindow('.ac-delGroup',{
+                title:'删除角色',
+                width:'470',
+                template:'#ac-delGroup-template'
+            }).init();
+
+            $("#rolemenu li").each(function(index){
+                $(this).click(function(){
+                    $(".setContent .tab").hide();
+                    $(".setContent .tab:eq(" + index + ")").show();
+                    $(this).siblings().removeClass("current")
+
+                    $(this).closest("ul").find(".mtab").addClass("gray");
+                    $(this).addClass("current").find(".mtab").removeClass("gray");
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
