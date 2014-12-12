@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>国内机票 PID管理 新增PID</title>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+<link rel="stylesheet" href="/static/css/kendo.common.min.css" />
+<link rel="stylesheet" href="/static/css/kendo.gray.css" />
+<link rel="stylesheet" href="/static/css/kendo.reset.css" />
+<link rel="stylesheet" href="/static/css/common.css" />
+<link rel="stylesheet" href="/static/css/b2b.css" />
+<link href="/static/css/systemSet.css" rel="stylesheet"/>
+<style>
+.table-wrapper{
+    border:1px solid #ddd;
+}
+.simple-table {
+    width:100%; 
+	border-style: hidden;
+	border-collapse:collapse;
+}
+.simple-table a{
+    padding:2px;
+    color:#06c;
+}
+.simple-table a:hover{
+    background-color:#D8F4FB;
+}
+.simple-table td{
+    word-wrap:break-word;
+    word-break:break-all;
+    white-space:normal;
+    padding:5px 0; 
+    border:1px solid #ddd;
+}
+.simple-table th{
+    border:1px solid #fff;
+    font-weight:normal;
+    padding:5px 0; 
+    background-color:#eee; 
+}
+.block-header .adaptiveButton{
+    vertical-align:middle; 
+}
+.block-header strong{
+    font-size:14px; 
+    margin-right:10px;
+}
+.block-header{
+    margin-bottom:20px; 
+}
+.vertical-head{
+    font-weight:bold;
+    display:inline-block;
+    width:65px; 
+}
+</style>
+
+<script type="text/javascript" src="/static/js/vendor/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
+<script type="text/javascript" src="/static/js/kendo.web.js"></script>
+<script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+<script type="text/javascript" src="/static/js/global.js"></script>
+<script>
+$(function(){
+    $('.filter').bind('change',function(){
+        var that = $(this); 
+        var index = that.data('index');
+        if(this.checked){
+            $('.filter-type').hide();
+            $('.type'+index).show();
+        }
+    });
+})
+</script>
+<!--[if lt IE 8]>
+    <link rel="stylesheet" href="/static/css/ie.css" />
+    <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script>
+<![endif]-->
+
+<script type="text/javascript" src="/static/js/sync.js"></script>
+</head><body>  <div id="extHeader">
+    <div></div>
+</div>
+
+<div id="container">
+    <div class="header">
+        <h1></h1>
+        <div>
+            <span>你好,${name}</span>
+            <a href="javascript:void(0);">退出</a>
+        </div>
+        <ul id="top_menu">
+            <li><a href="javascript:void(0);">国内机票</a></li>
+            <li><a href="javascript:void(0);">国际机票</a></li>
+            <li><a href="javascript:void(0);">酒店</a></li>
+            <li><a href="javascript:void(0);">票证中心</a></li>
+            <li><a href="javascript:void(0);">财务管理</a></li>
+            <li><a href="javascript:void(0);">客户管理</a></li>
+            <li class="current"><a href="javascript:void(0);">系统设置</a></li>
+        </ul>
+        <ol class="sub_menu">
+            <li class="current"><a href="javascript:void(0);">公告信息</a></li>
+            <li><a href="javascript:void(0);">公司信息</a></li>
+            <li><a href="javascript:void(0);">组织架构</a></li>
+            <li><a href="javascript:void(0);">角色维护</a></li>
+            <li><a href="javascript:void(0);">基础数据</a></li>
+        </ol>
+        <div id="message">
+            <a href="javascript:void(0);">消息</a>
+            <span>New</span>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="sub_menu_bar"></div>
+    <div id="mainContent">
+        <div class="actions block">
+    <div class="col col-l sep-r">
+        <button class="btns btn-return">返回</button>
+    </div>
+    <div class="col col-l">
+        <span class="page-title">
+            新增PID账号 
+        </span>
+    </div>
+    
+    
+    <div class="col col-r sep-l">
+        <a href="javascript:;" class="button_secondary adaptiveButton small">
+            <span class="left"></span>
+            <span class="center">保 存</span>
+            <span class="right"></span>
+        </a>
+        <a href="javascript:;" class="button_important adaptiveButton small">
+            <span class="left"></span>
+            <span class="center">提 交</span>
+            <span class="right"></span>
+        </a>
+    </div>
+
+    <div class="col launch">
+        <input type="checkbox">
+        <span >
+            开启(未勾选，信息仅做保存)
+        </span>
+    </div>
+</div>
+
+
+<div class="block">
+    
+    <div class="type1 filter-type">
+        <div class="PIDmanage-frame">
+            <div class="block-header">
+                <strong>基本信息</strong>
+            </div>
+            <div class="row basic-info">
+                <span>PID名称</span>&nbsp;<input type="text" placeholder="即配置的别名">
+                <span>类型</span>
+                <select style="border: 1px solid #d3d3d3;height: 25px;width:149px;">
+                    <option>机票</option>
+                    <option>酒店</option>
+                </select>
+                <span>分组</span>
+                <select style="border: 1px solid #d3d3d3;height: 25px;width:149px;">
+                    <option>123</option>
+                    <option>酒店</option>
+                </select>
+            </div>
+        </div>
+        <div class="PIDmanage-frame">
+            <div class="block-header">
+                <strong>接入信息</strong>
+            </div>
+            <div class="row basic-info">
+                <span><em class="star">*</em>PID账号</span>&nbsp;<input type="text">
+                <span><em class="star">*</em>密码</span>&nbsp;<input type="text">
+                <span><em class="star">*</em>Office</span>&nbsp;<input type="text">
+                <span><em class="star">*</em>SI</span>&nbsp;<input type="text">
+            </div>
+        </div>
+        <div class="PIDmanage-frame">
+            <div class="block-header">
+                <strong>服务器信息</strong>
+            </div>
+            <div class="row server-info">
+                <span class="detail">服务器地址</span>&nbsp;
+                <select style="border: 1px solid #d3d3d3;height: 25px;width:180px;">
+                    <option>192.163.120.123</option>
+                </select>
+               <a href="javascript:;" class="button_secondary adaptiveButton small ac-addBSPPay ac-addserver-address">
+                    <span class="left"></span>
+                    <span class="center">添加服务器地址</span>
+                    <span class="right"></span>
+               </a>    
+               <a href="javascript:;" class="del-current-server">删除当前服务器</a>                   
+            </div>
+            <div class="row server-info port-number-frame">
+                <span class="detail2">端口号</span>
+                <input type="text" placeholder="即配置的别名">
+                <input type="checkbox">
+                <span>安全传输</span>
+            </div>
+        </div>
+        <div class="PIDmanage-frame">
+            <div class="block-header">
+                <strong>控制信息</strong>
+            </div>
+            <div class="row basic-info">
+                <span><input type="checkbox">&nbsp;该PID为进控配置</span>&nbsp;<input type="text">
+                <span>打票机</span>&nbsp;<input type="text">
+            </div>
+            <div class="row basic-info auto-build-control-frame">
+                <span><input type="checkbox">&nbsp;自动建立控制</span></span>
+            </div>
+        </div>
+
+        <div class="block-field">
+            <div class="block-header">
+                <strong>流量控制</strong>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <label><input type="radio" name="launch" checked="checked"> 启用</label>
+                <label><input type="radio" name="launch" class="ban"> 禁用</label>
+            </div>
+            <div class="row flowLimited">
+                <span>限制指令条数</span>
+                <input type="text">
+                <span class="flow-control">剩余指令条数</span>
+                <input type="text">
+                <span class="reset-btn">复位</span>
+            </div>
+            
+        </div>
+
+        
+
+        <div class="block-field">
+            
+            <div class="row">
+                
+                <span>扩展参数</span>
+            </div>
+            <div class="row">
+                <textarea oninput="getMsgTextareaLength()" onpropertychange="getMsgTextareaLength()" class="messageConTextarea" style="width:926px;height:86px;"></textarea>
+            </div>
+            <div class="row">
+                
+                <span>备注</span>
+            </div>
+            <div class="row">
+                <textarea oninput="getMsgTextareaLength()" onpropertychange="getMsgTextareaLength()" class="messageConTextarea" style="width:926px;height:86px;"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="type2 filter-type" style="display:none;">
+
+        <div class="block-field">
+            <div class="block-header">
+                <strong>设置政策</strong>
+                <span>关联<span style="color:#39f;">33</span>条</span> 
+                <a href="javascript:;" class="button_secondary adaptiveButton small">
+                    <span class="left"></span>
+                    <span class="center">编 辑</span>
+                    <span class="right"></span>
+                </a>
+            </div>
+            <div class="row table-wrapper" style="width:920px;">
+                <table class='simple-table'>
+                    <tr>
+                        <th width="30">航司</th>
+                        <th width="50">出发机场</th>
+                        <th width="50">到达机场</th>
+                        <th width="30">航程</th>
+                        <th width="50">航班限制</th>
+                        <th width="50">适用舱位</th>
+                        <th width="30">出票</th>
+                        <th width="30">票证</th>
+                        <th width="50">排除航段</th>
+                        <th width="30">返点</th>
+                        <th width="30">后返</th>
+                        <th width="50">乘客类型</th>
+                        <th width="75">出票日期</th>
+                        <th width="75">乘机日期</th>
+                        <th width="75">发布时间</th>
+                        <th width="50">发布人</th>
+                        <th width="40">状态</th>
+                        <th width="30">操作</th>
+                    </tr>
+                    <tr>
+                        <td>MU</td>
+                        <td>SHA/PVG/SZX/WUH</td>
+                        <td>PEK</td>
+                        <td>单程</td>
+                        <td>自动</td>
+                        <td>所有</td>
+                        <td>BSP</td>
+                        <td></td>
+                        <td>FCYBMHKLQGV</td>
+                        <td>6.0</td>
+                        <td>2.0</td>
+                        <td>成人</td>
+                        <td>2010-09-01 <br>至2012-10-01</td>
+                        <td>2010-09-01 <br>至2012-10-01</td>
+                        <td>2010-09-01 <br>至2012-10-01</td>
+                        <td>zhangjian</td>
+                        <td>已发布</td>
+                        <td><a href="#">移除</a></td>
+                    </tr>
+                    <tr>
+                        <td>MU</td>
+                        <td>SHA/PVG/SZX/WUH</td>
+                        <td>PEK</td>
+                        <td>单程</td>
+                        <td>自动</td>
+                        <td>所有</td>
+                        <td>BSP</td>
+                        <td></td>
+                        <td>FCYBMHKLQGV</td>
+                        <td>6.0</td>
+                        <td>2.0</td>
+                        <td>成人</td>
+                        <td>2010-09-01 <br>至2012-10-01</td>
+                        <td>2010-09-01 <br>至2012-10-01</td>
+                        <td>2010-09-01 <br>至2012-10-01</td>
+                        <td>zhangjian</td>
+                        <td>已发布</td>
+                        <td><a href="#">移除</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="block-field">
+            <div class="block-header">
+                <strong>设置规则</strong>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="javascript:;" class="button_secondary adaptiveButton small">
+                    <span class="left"></span>
+                    <span class="center">编 辑</span>
+                    <span class="right"></span>
+                </a>
+            </div>
+            <div class="row">
+                <label class="vertical-head">留点：</label>  
+                1.5
+            </div>
+            <div class="row">
+                <label class="vertical-head">固定返点：</label>  
+                1.5
+            </div>
+            <div class="row">
+                <label class="vertical-head">留钱：</label>  
+                1.5
+            </div>
+            <div class="row">
+                <label class="vertical-head">促销：</label>  
+                1.5
+            </div>
+        </div>
+        <div class="block-field">
+            <div class="block-header">
+                <strong>设置客户</strong>
+                <a href="javascript:;" style="vertical-align:middle;" class="button_secondary adaptiveButton small">
+                    <span class="left"></span>
+                    <span class="center">编 辑</span>
+                    <span class="right"></span>
+                </a>
+            </div>
+            <div class="row table-wrapper">
+              <table class="simple-table">
+                    <tr>
+                        <th>客户名称</th>
+                        <th>创建日期</th>
+                        <th>可用余额</th>
+                        <th>联系人</th>
+                        <th>操作</th>
+                    </tr> 
+                    <tr>
+                      <td>苏宁</td>
+                      <td>2010/09/01</td>
+                      <td>23,000.00</td>
+                      <td>李三</td>
+                      <td><a href="#">移除</a></td>
+                    </tr>
+                    <tr>
+                      <td>苏宁</td>
+                      <td>2010/09/01</td>
+                      <td>23,000.00</td>
+                      <td>李三</td>
+                      <td><a href="#">移除</a></td>
+                    </tr>
+              </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+            </div>
+</div>
+
+<div id="extFooter">
+    <div>
+        <p>
+        <a href="javascript:void(0);">关于我们</a>&nbsp;|
+        <a href="javascript:void(0);">微博</a>&nbsp;|
+        <a href="javascript:void(0);">服务条款</a>&nbsp;|
+        <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+        </p>
+        <p>客户服务热线:400-720-6666</p>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+<script type="text/x-kendo-template" id="ac-addserver-address-template">
+                <table class="cv-table">
+                    <colgroup>
+                         <col width="100"/>
+                         <col width="300"/>
+                    </colgroup>
+                    <tr>
+                        <th>服务器地址：</th>
+                        <td>
+                            <input type="text" style="width:320px" />
+                        </td>
+                    </tr>
+                    
+                </table>
+                <div class="row addserver-address-template">
+                    <button class="btns button_1_2">确 定</button>
+                    <button class="btns button_2_2">取 消</button>
+                </div>
+</script>
+
+<script type="text/javascript">
+
+                $(function () {
+                    new PopWindow('.ac-addserver-address', {
+                        width: 476,
+                        height: 142,
+                        title: '添加服务器地址',
+                        template: '#ac-addserver-address-template'
+                    }).init();
+                    
+
+                    var ban = $("input[name='launch']").eq(1);
+                    ban.on("click",function(){
+                        var temp = $('.flowLimited').find("input")
+                        temp.each(function(){
+                            $(this).attr("readonly","true");
+                        });
+                    });
+                    var launch = $("input[name='launch']").eq(0);
+                    launch.on("click",function(){
+                        var temp = $('.flowLimited').find("input")
+                        temp.each(function(){
+                            $(this).removeAttr("readonly");
+                        });
+                    });
+                    // launch.on("click",function{
+                    //     console.log($(".ban").val());
+                    // });
+
+                    // $("input[name='launch']").on("click",function(){
+                        
+                    // });
+                     
+                    
+                });
+</script>
