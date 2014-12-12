@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>运营商 系统设置 PID管理 用户账号管理</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/operatorCommonHeader.css" rel="stylesheet">
+    <link href="/static/css/systemSet.css" rel="stylesheet" type="text/css"/>
+    
+    <script src="/static/js/jquery.min.js" type="text/javascript"></script>    
+    <script src="/static/js/kendo.web.js" type="text/javascript"></script>
+    <script src="/static/js/global.js" type="text/javascript"></script>
+    
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+    
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/static/css/ie.css" />
+    <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/static/js/sync.js"></script>
+    <!-- @CLB@ -->
+
+    <script>
+        $(function(){
+            kendo.init('body');
+            lensf();
+        })
+    </script>
+    
+</head>
+<body>
+    <div id="head">
+        <div></div>
+    </div>
+    
+    <div id="catalogue"></div>
+
+    <div class="main-wrapper" id="container">
+        <div class="logo">
+            <div class="clearfix">
+                <h1></h1>
+                <div class="profile">
+                    <a href="javascript:void(0)">你好,千颂伊</a>
+                    <a href="javascript:void(0)">退出</a>
+                </div>
+            </div>
+            <ul id="catalogue_menu">
+                <li class="">
+                    <a href="javascript:void(0)">国内机票</a>
+                </li>
+                <li><a href="javascript:void(0)">国际机票</a></li>
+                <li><a href="javascript:void(0)">酒店</a></li>
+                <li><a href="javascript:void(0)">打包产品</a></li>
+                <li><a href="javascript:void(0)">旅游</a></li>
+                <li class="current">
+                    <a href="javascript:void(0)">邮轮</a>
+                    <ol class="subMenu">
+                        <li class="currentSubMenu"><a href="javascript:void(0)">基础模块维护</a></li>
+                        <li><a href="javascript:void(0)">航线审核</a></li>
+                        <li><a href="javascript:void(0)">航线售卖管理</a></li>
+                        <li><a href="javascript:void(0)">团管理</a></li>
+                    </ol>
+                </li>
+                <li><a href="javascript:void(0)">签证</a></li>
+                <li><a href="javascript:void(0)">保险</a></li>
+                <li><a href="javascript:void(0)">短信</a></li>
+                <li><a href="javascript:void(0)">通用订单</a></li>
+                <li><a href="javascript:void(0)">票证</a></li>
+                <li><a href="javascript:void(0)">财务</a></li>
+                <li><a href="javascript:void(0)">客户</a></li>
+                <li><a href="javascript:void(0)">设置</a></li>
+            </ul>
+            <div class="headerMessage clearfix">
+                <div id="msgNum">
+                    <span>消息</span>
+                    <em>30</em>
+                </div>
+            </div>
+        </div>
+        
+        <div id="mainContent">
+			<!-- start content -->
+            <div class="topFixedToolsBar">
+                <div class="fixedMenu">
+                    <a href="#">实时监控</a>
+                    <a href="#">PID账号管理</a>
+                    <a href="#" class="current">用户账号管理</a>
+                    <a href="#">分组管理</a>
+                    <a href="#">角色管理</a>
+                    <a href="#">指令管理</a>
+                </div>
+                <div class="fixedButton">
+                    <a href="javascript:void(0);" class="button_secondary adaptiveButton small ac-addGrouping">
+                        <span class="left"></span>
+                        <span class="center">+ 新增</span>
+                        <span class="right"></span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="information_div">
+               <table cellpadding="0" cellspacing="0" class="information_tab">
+                  <colgroup>
+                       <col width="75" />  
+                       <col width="130" /> 
+                       <col width="75" />
+                       <col width="130" /> 
+                       <col width="65" /> 
+                       <col width="130" />
+                       <col width="200" />
+                       <col width="100" />
+                  </colgroup>                  
+                  <tr>
+                      <th>名称</th>
+                      <td>
+                          <input type="text" style="width: 90px;"/>
+                      </td>
+                      <th>用户账号</th>
+                      <td>
+                          <input type="text" style="width: 90px;"/>
+                      </td>
+                      <th>组名称</th>
+                     <td>
+                         <select style="width: 95px;" data-role="dropdownlist">
+                             <option>请选择</option>
+                         </select>
+                     </td>
+                      <td>
+                          <label>
+                              <input type="checkbox" checked> 隐藏禁用的分组
+                          </label>
+                      </td>
+                      <td rowspan="2">
+                          <a href="javascript:;" class="button_important adaptiveButton medium">
+                              <span class="left"></span>
+                              <span class="center" style="padding:0 25px;">查 询</span>
+                              <span class="right"></span>
+                          </a>
+                      </td>
+                  </tr>
+                  <tr>
+                     <th>采购商</th>
+                     <td>
+                          <input type="text" style="width: 90px;"/>
+                     </td>
+                     <th>采购商</th>
+                     <td>
+                         <select style="width: 95px;" data-role="dropdownlist">
+                             <option>请选择</option>
+                         </select>
+                     </td>
+                     <th></th>
+                     <td></td>
+                     <td></td>
+                  </tr> 
+               </table>              
+            </div>
+           
+            <div class="block-query-result">
+                <div class="block-header">
+                    <button class="btns btn-ac-blue">导出Excel</button>
+                </div>
+            <div class="xScroll">
+              <table class="tgrid" style="table-layout:fixed;">
+                  <colgroup>
+                      <col width="120"/>
+                      <col width="50"/>
+                      <col width="60"/>
+                      <col width="110"/>
+                      <col width="85"/>
+                      <col width="110"/>
+                      <col width="90"/>
+                      <col width="90"/>
+                      <col width="100"/>
+                      <col width="75"/>
+                      <col width="75"/>
+                      <col width="100"/>
+                      <col width="100"/>
+                      <col width="100"/>
+                      <col width="100"/>
+                  </colgroup>
+                  <thead>
+                      <tr>
+                          <th class="line_left" style="text-align:center; width:120px;">操作</th>
+                          <th>序号</th>
+                          <th>状态</th>
+                          <th>用户账号</th>
+                          <th>密码</th>
+                          <th>姓名</th>
+                          <th>角色</th>
+                          <th>组名称</th>
+                          <th>流量监控</th>
+                          <th>剩余流量</th>
+                          <th>永久有效</th>
+                          <th>到期时间</th>
+                          <th>最后登录</th>
+                          <th>采购商</th>
+                          <th class="line_right">统计组名</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td style="text-align:center;">
+                              <a href="javascript:void(0);">修改</a>
+                              <a href="javascript:void(0);" class="ac-delGroup">删除</a>
+                              <a href="javascript:void(0);">禁用</a>
+                          </td>
+                          <td>1</td>
+                          <td>启用</td>
+                          <td>放大配置</td>
+                          <td>123</td>
+                          <td>姓名</td>
+                          <td>出票员</td>
+                          <td>SHA255</td>
+                          <td>启用</td>
+                          <td>111</td>
+                          <td>是</td>
+                          <td>2014-11-11</td>
+                          <td>2014-11-11</td>
+                          <td>XXX</td>
+                          <td></td>
+                      </tr>
+                      <tr>
+                          <td style="text-align:center;">
+                              <a href="javascript:void(0);">修改</a>
+                              <a href="javascript:void(0);" class="ac-delGroup">删除</a>
+                              <a href="javascript:void(0);">禁用</a>
+                          </td>
+                          <td>2</td>
+                          <td>禁用</td>
+                          <td>放大配置</td>
+                          <td>123</td>
+                          <td>姓名</td>
+                          <td>超级管理员</td>
+                          <td>SHA836</td>
+                          <td>启用</td>
+                          <td>111</td>
+                          <td>是</td>
+                          <td>2014-11-11</td>
+                          <td>2014-11-11</td>
+                          <td>XX</td>
+                          <td></td>
+                      </tr>
+                      <tr>
+                          <td style="text-align:center;">
+                              <a href="javascript:void(0);">修改</a>
+                              <a href="javascript:void(0);" class="ac-delGroup">删除</a>
+                              <a href="javascript:void(0);">禁用</a>
+                          </td>
+                          <td>3</td>
+                          <td>启用</td>
+                          <td>放大配置</td>
+                          <td>123</td>
+                          <td>姓名</td>
+                          <td>超级管理员</td>
+                          <td>BJS407</td>
+                          <td>启用</td>
+                          <td>111</td>
+                          <td>是</td>
+                          <td>2014-11-11</td>
+                          <td>2014-11-11</td>
+                          <td>——</td>
+                          <td></td>
+                      </tr>
+              </tbody>
+          </table>
+        </div>
+        </div>
+          
+              <div class="grid-table-pagination page">
+                  <span class="grid-table-count">
+                      共 <em>132</em> 条记录
+                  </span>
+                  <span>
+                      <a href="#" class="prev">&nbsp;</a>
+                  </span>
+                  <span class="links">
+                      <a href="#">1</a>
+                      <a href="#">2</a>
+                      <a href="#" class="current">3</a>
+                      <a href="#">4</a>
+                      <a href="#">5</a>
+                      <a href="javascript:;">...</a>
+                      <a href="#">50</a>
+                  </span>
+                  <span>
+                      <a href="#" class="next">&nbsp;</a>
+                  </span>
+              </div>
+              
+    </div>
+</div> 
+    <!-- end of content -->
+    
+    <footer class="main-footer">
+        <center>
+            <a href="#">隐私问题</a>
+            <i class="bar">|</i>
+            <a href="#">常见问题</a>
+            <i class="bar">|</i>
+            <a href="#">关于我们</a>
+            <i class="bar">|</i>
+            <a href="#">媒体中心</a>
+            <i class="bar">|</i>
+            <a href="#">联系我们</a>
+        </center>
+        <center class="copyright">
+            Copyright &copy; 2012 天地行 All Rights Reserved.     沪ICP备08101503号
+        </center>
+    </footer>
+
+    <script type="text/x-kendo-template" id="ac-addGrouping-template">
+        <table class="addGroupingTab">
+            <colgroup>
+                <col width="75">
+                <col width="460">
+            </colgroup>
+            <tbody>
+            <tr class="paddingBottom">
+                <td>
+                    <b class="color333">分组信息</b>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label class="marginRight25">
+                        <em>*名称</em>
+                        <input type="text" style="width: 245px;">
+                    </label>
+                    <label>
+                        <em>默认office</em>
+                        <input type="text" style="width: 120px;">
+                    </label>
+                </td>
+            </tr>
+            <tr class="paddingBottom">
+                <td>
+                    <b class="color333">控制信息</b>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>AV共享方式</td>
+                <td>
+                    <select style="width: 245px;" data-role="dropdownlist">
+                        <option>不共享其它组，只允许无PID的组共享组</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>到期时间</td>
+                <td>
+                    <input type="text" style="width: 120px;" value="2014-12-09" class="marginRight25">
+                    <label>
+                        <em>共享级别</em>
+                        <input type="text" style="width: 35px;" value="1">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;">
+                    <b class="color333">扩展参数</b>
+                </td>
+                <td>
+                    <textarea class="textareaText"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;">
+                    <b class="color333">备注</b>
+                </td>
+                <td>
+                    <textarea class="textareaText" style="height: 50px;"></textarea>
+                    <label>
+                        <input type="checkbox" checked> 开启（未勾选，信息仅做保存）
+                    </label>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="textAlignRightBtn">
+            <button class="large_button" type="button">确 定</button>
+            <button class="large_button disable" type="button">取 消</button>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-PIDNumber-template">
+        <div>
+            <a href="javascript:void(0);" class="button_secondary adaptiveButton small">
+                <span class="left"></span>
+                <span class="center center_1">管理组PID</span>
+                <span class="right"></span>
+            </a>
+        </div>
+        <table class="groupNameNumberTab">
+            <colgroup>
+                <col width="520">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>PID</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>PID的名称名称名称名称名称名称名称</td>
+            </tr>
+            <tr>
+                <td>PID的名称名称名称名称名称名称名称PID的名称名称名称名称名称名称名称</td>
+            </tr>
+            <tr>
+                <td>PID的名称名称名称名称名称名称名称</td>
+            </tr>
+            <tr>
+                <td>PID的名称名称名称名称名称名称名称</td>
+            </tr>
+            <tr>
+                <td>PID的名称名称名称名称名称名称名称</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="grid-table-pagination">
+              <span class="grid-table-count">
+                  共 <em>132</em> 条记录
+              </span>
+              <span>
+                  <a href="javascript:void(0);" class="prev">&nbsp;</a>
+              </span>
+              <span class="links">
+                  <a href="javascript:void(0);">1</a>
+                  <a href="javascript:void(0);">2</a>
+                  <a href="javascript:void(0);" class="current">3</a>
+                  <a href="javascript:void(0);">4</a>
+                  <a href="javascript:void(0);">5</a>
+                  <a href="javascript:void(0);">...</a>
+                  <a href="javascript:void(0);">50</a>
+              </span>
+              <span>
+                  <a href="javascript:void(0);" class="next">&nbsp;</a>
+              </span>
+        </div>
+        <div class="textAlignRightBtn topLine">
+            <button class="large_button" type="button">关闭</button>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-userNumber-template">
+        <div>
+            <a href="javascript:void(0);" class="button_secondary adaptiveButton small">
+                <span class="left"></span>
+                <span class="center center_1">管理组用户</span>
+                <span class="right"></span>
+            </a>
+        </div>
+        <table class="groupNameNumberTab">
+            <colgroup>
+                <col width="520">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>用户名称</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>用户名称名称名称名称名称名称名称名称名称</td>
+            </tr>
+            <tr>
+                <td>用户名称名称名称名称名称名称名称名称名称</td>
+            </tr>
+            <tr>
+                <td>用户名称名称名称名称名称名称名称名称名称</td>
+            </tr>
+            <tr>
+                <td>用户名称名称名称名称名称名称名称名称名称</td>
+            </tr>
+            <tr>
+                <td>用户名称名称名称名称名称名称名称名称名称</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="grid-table-pagination">
+              <span class="grid-table-count">
+                  共 <em>132</em> 条记录
+              </span>
+              <span>
+                  <a href="javascript:void(0);" class="prev">&nbsp;</a>
+              </span>
+              <span class="links">
+                  <a href="javascript:void(0);">1</a>
+                  <a href="javascript:void(0);">2</a>
+                  <a href="javascript:void(0);" class="current">3</a>
+                  <a href="javascript:void(0);">4</a>
+                  <a href="javascript:void(0);">5</a>
+                  <a href="javascript:void(0);">...</a>
+                  <a href="javascript:void(0);">50</a>
+              </span>
+              <span>
+                  <a href="javascript:void(0);" class="next">&nbsp;</a>
+              </span>
+        </div>
+        <div class="textAlignRightBtn topLine">
+            <button class="large_button" type="button">关闭</button>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-delGroup-template">
+        <div class="delHintContent"><i class="delHintIcon"></i>是否删除组？</div>
+        <div class="textAlignRightBtn" style="text-align: center;">
+            <button class="large_button" type="button">确 定</button>
+            <button class="large_button disable" type="button">取 消</button>
+        </div>
+    </script>
+    
+    <script>
+        $(function(){
+            var ac_window = new PopWindow('.ac-addGrouping',{
+                title:'新增分组',
+                width:'630',
+                template:'#ac-addGrouping-template'
+            }).init();
+
+            var ac_window = new PopWindow('.ac-PIDNumber',{
+                title:'SHA255组名称  PID数',
+                width:'580',
+                template:'#ac-PIDNumber-template'
+            }).init();
+
+            var ac_window = new PopWindow('.ac-userNumber',{
+                title:'SHA255组名称  用户数',
+                width:'580',
+                template:'#ac-userNumber-template'
+            }).init();
+
+            var ac_window = new PopWindow('.ac-delGroup',{
+                title:'删除组',
+                width:'470',
+                template:'#ac-delGroup-template'
+            }).init();
+
+        });
+    </script>
+
+</body>
+</html>
