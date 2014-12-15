@@ -289,17 +289,24 @@
       # if($.inArray(dateStr, tmpArr) != -1){ #
         # for (var i = 0; i < dates.length; i++) { #
           # if (dates[i].date == dateStr && dates[i].status) { #
-            <div class="cal-cell-container open">
-              <p class="cal-date">#= data.value #</p>
-              <p class="cal-price"><em>1500</em>起</p>
-              <p class="cal-oper">开启</p>
-            </div>
+              <div class="cal-cell-container open">
+                <p class="cal-date">#= data.value #</p>
+                <p class="cal-price"><em>1500</em>起</p>
+                <p class="cal-oper">开启</p>
+              </div>
           # } else if (dates[i].date == dateStr && !dates[i].status) { #
-            <div class="cal-cell-container close">
-              <p class="cal-date">#= data.value #</p>
-              <p class="cal-price"><em>1500</em>起</p>
-              <p class="cal-oper">关闭</p>
-            </div>
+            # if (!dates[i].expired) { #
+                <div class="cal-cell-container close">
+                  <p class="cal-date">#= data.value #</p>
+                  <p class="cal-price"><em>1500</em>起</p>
+                  <p class="cal-oper">关闭</p>
+                </div>
+            # } else { #
+                <div class="cal-cell-container close">
+                  <p class="cal-date">#= data.value #</p>
+                  <p class="cal-price"><em>1500</em>起</p>
+                </div>
+            # } #
           # } #
         # } #      
       # } else { #
@@ -390,22 +397,28 @@
 
         var dataArr = [{
           date: "2014/12/04",
-          status: false  // true 当前为开启状态， false 当前为关闭状态
+          status: false,  // true 当前为开启状态， false 当前为关闭状态
+          expired: false  //  false 当前时间未过期，true 当前时间已过期，过期的时间状态一定是关闭状态
         }, {
           date: "2014/12/23",
-          status: true
+          status: true,
+          expired: false
         }, {
           date: "2014/12/24",
-          status: true
+          status: true,
+          expired: false
         },{
           date: "2014/12/25",
-          status: false
+          status: false,
+          expired: true
         }, {
           date: "2015/01/13",
-          status: true
+          status: true,
+          expired: false
         }, {
           date: "2015/02/10",
-          status: false
+          status: false,
+          expired: false
         }];
         
         // 双日历初始化
