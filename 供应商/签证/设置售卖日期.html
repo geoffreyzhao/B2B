@@ -288,25 +288,25 @@
         var dateStr = data.date.Format("yyyy/MM/dd"); #
       # if($.inArray(dateStr, tmpArr) != -1){ #
         # for (var i = 0; i < dates.length; i++) { #
-          # if (dates[i].date == dateStr && dates[i].status) { #
-              <div class="cal-cell-container open">
-                <p class="cal-date">#= data.value #</p>
-                <p class="cal-price"><em>1500</em>起</p>
-                <p class="cal-oper">开启</p>
-              </div>
-          # } else if (dates[i].date == dateStr && !dates[i].status) { #
-            # if (!dates[i].expired) { #
-                <div class="cal-cell-container close">
+          # if (dates[i].date == dateStr && !dates[i].status) { #
+              # if (!dates[i].expired) { #
+                <div class="cal-cell-container open">
                   <p class="cal-date">#= data.value #</p>
                   <p class="cal-price"><em>1500</em>起</p>
-                  <p class="cal-oper">关闭</p>
+                  <p class="cal-oper">开启</p>
                 </div>
             # } else { #
-                <div class="cal-cell-container close">
+                <div class="cal-cell-container open">
                   <p class="cal-date">#= data.value #</p>
                   <p class="cal-price"><em>1500</em>起</p>
                 </div>
             # } #
+          # } else if (dates[i].date == dateStr && dates[i].status) { #
+            <div class="cal-cell-container close">
+              <p class="cal-date">#= data.value #</p>
+              <p class="cal-price"><em>1500</em>起</p>
+              <p class="cal-oper">关闭</p>
+            </div>
           # } #
         # } #      
       # } else { #
