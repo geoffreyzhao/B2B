@@ -23,15 +23,13 @@ $(function() {
     //         $arrow.addClass("bottomArrowIcon");
     //     }
     // });
+
     $(".currentStairMenu").mouseenter(function(){
         $(".headSecondLevel").slideDown();
     });
 
     $(".currentStairMenu").mouseleave(function(){
-        var timer = setInterval();
-        setTimeout(function(){
-            $(".headSecondLevel").slideUp();
-        }, 300);
+        // $(".headSecondLevel").slideUp();
     });
 
     //返回顶部
