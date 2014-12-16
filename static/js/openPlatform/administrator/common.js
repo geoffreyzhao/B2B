@@ -28,7 +28,10 @@ $(function() {
     });
 
     $(".currentStairMenu").mouseleave(function(){
-        $(".headSecondLevel").slideUp();
+        var timer = setInterval();
+        setTimeout(function(){
+            $(".headSecondLevel").slideUp();
+        }, 300);
     });
 
     //返回顶部
