@@ -14,14 +14,21 @@ $(function() {
     });
     
     //head 菜单点击效果
-    $(".currentStairMenu").click(function(){
-        $(".headSecondLevel").toggle();
-        var $arrow = $(this).find("i");
-        if ($arrow.hasClass("bottomArrowIcon")) {
-            $arrow.removeClass("bottomArrowIcon");
-        } else {
-            $arrow.addClass("bottomArrowIcon");
-        }
+    // $(".currentStairMenu").click(function(){
+    //     $(".headSecondLevel").toggle();
+    //     var $arrow = $(this).find("i");
+    //     if ($arrow.hasClass("bottomArrowIcon")) {
+    //         $arrow.removeClass("bottomArrowIcon");
+    //     } else {
+    //         $arrow.addClass("bottomArrowIcon");
+    //     }
+    // });
+    $(".currentStairMenu").mouseenter(function(){
+        $(".headSecondLevel").slideDown();
+    });
+
+    $(".currentStairMenu").mouseleave(function(){
+        $(".headSecondLevel").slideUp();
     });
 
     //返回顶部
