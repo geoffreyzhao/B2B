@@ -13,23 +13,19 @@ $(function() {
         }
     });
     
-    //head 菜单点击效果
-    // $(".currentStairMenu").click(function(){
-    //     $(".headSecondLevel").toggle();
-    //     var $arrow = $(this).find("i");
-    //     if ($arrow.hasClass("bottomArrowIcon")) {
-    //         $arrow.removeClass("bottomArrowIcon");
-    //     } else {
-    //         $arrow.addClass("bottomArrowIcon");
-    //     }
-    // });
+    //head 菜单hove效果
 
-    $(".currentStairMenu").mouseenter(function(){
-        $(".headSecondLevel").slideDown();
+    recoverCurrentNav();
+
+    $(".first-level-nav").mouseenter(function(){
+        $(".second-level-nav").hide();
+        $(this).find(".second-level-nav").show();
     });
 
-    $(".currentStairMenu").mouseleave(function(){
-        // $(".headSecondLevel").slideUp();
+    $(".first-level-nav").mouseleave(function(){
+        $(this).find(".second-level-nav").hide();
+        
+        recoverCurrentNav();
     });
 
     //返回顶部
@@ -49,3 +45,12 @@ $(function() {
     
 
 });
+
+function recoverCurrentNav() {
+    $(".second-level-nav").hide();
+    $(".first-level-nav").each(function(){
+        if ($(this).hasClass("currentStairMenu")) {
+            $(this).find(".second-level-nav").show();
+        }
+    });
+}
