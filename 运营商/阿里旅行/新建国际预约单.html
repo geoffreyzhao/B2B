@@ -537,7 +537,14 @@
         <div class="passportImgContainer">
             <!--<i class="grayBorderUpArrow"></i>-->
             <img src="../../static/images/operator/passportImg.jpg"/>
-            <div style="padding:5px;float:right;cursor:pointer;color:\#0066cc">点击查看大图</div>
+            <div class="viewBigImage">点击查看大图</div>
+        </div>
+     </script>
+
+     <!--  查看证件照大图模板  -->
+     <script type="text/x-kendo-template" id="passportBigImgTemplate">
+        <div class="passportBigImgContainer">
+            <img src="../../static/images/operator/testBigImage.jpg" style="width:730px;"/>
         </div>
      </script>
 
@@ -603,6 +610,19 @@
             offsetY:6,
             offsetX:80,
             width:350
+        });
+
+        //  查看证件照 大图
+        var addOrderDiffPriceWin = new PopWindow('noTrigger', {
+            title:'证件照大图',
+            template:'#passportBigImgTemplate',
+            width:780,
+            modal:true
+        }).init();
+
+        $("body").delegate(".viewBigImage", "click", function(){
+            addOrderDiffPriceWin.show();
+            $(".passport-detail").mouseleave();
         });
 
     })
