@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>饼图报表例子</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/smoothness/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../static/css/date.css" media="all" />
+    <link href="../static/css/kendo.common.min.css" rel="stylesheet" />
+    <!-- <link rel="stylesheet" href="../static/css/kendo.store.css" /> -->
+    <link rel="stylesheet" href="../static/css/kendo.default.css" />
+    <link rel="stylesheet" href="../static/css/dateCenter.css"/>
+
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/jquery-ui-1.10.3.custom.js"></script>    
+    <script src="../static/js/kendo.web.min.js"></script>
+    <script src="../static/js/datacenter/common.js"></script>
+    
+    <!--[if lte IE 9]>
+    <script src="../static/js/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="main-wrapper">
+    <header class="main-header">
+        <div class="wrap clearfix">
+            <a class="logo" href="/"><h1>真率数据中心</h1></a>
+            <a class="exit" href="javascript:void(0);"></a>
+        </div>
+    </header>
+    <section class="main-body clearfix">
+
+        <div class="topContentTitle">
+             <div class="clearfix">
+                 <ul class="classify clearfix">
+                     <li class="firstModel currentModel">机票</li>
+                     <li class="secondModel">酒店</li>
+                     <li class="thirdModel">保险</li>
+                 </ul>
+             </div>
+        </div>
+        
+        <div class="mainContent clearfix"> <!--mainContent 开始-->
+                
+                <div class="leftMenu">  <!--leftMenu 开始-->
+                         <ul class="menuChange">
+                             <li class="firstLevel"><em>用户量<span class="menuTreeIcon menuFold"></span></em>
+                                  <ul class="secondLevel">
+                                      <li>用户量同比</li>
+                                      <li>用户量统计</li>
+                                  </ul>
+                             </li>
+                             <li class="firstLevel"><em>交易量<span class="menuTreeIcon menuFold"></span></em>
+                                  <ul class="secondLevel">
+                                      <li>交易量同比</li>
+                                      <li class="currentStatus">交易量统计</li>
+                                  </ul>
+                             </li>                             
+                         </ul>
+                </div> <!--leftMenu 结束-->
+
+                <div class="rightCont"> <!-- 右边内容开始 -->
+                  <div class="rightContTop">
+                    <div class="dateSearch">
+                       <span class="searchTitle">完成日期：</span>
+                       <input type="text" placeholder="YY-MM-DD" class="datepicker dpMcd"/>
+                       <em class="interval">—</em>
+                       <input type="text" placeholder="YY-MM-DD" class="datepicker dpMcd"/>
+                    </div>
+                    <div class="areaSearch">
+                      <span class="searchTitle">区域：</span>
+                      <select id="area">
+                        <option>全部</option>
+                        <option>华北</option>
+                        <option>华南</option>
+                        <option>华东</option>
+                      </select>
+                    </div>
+                    <div class="busiType">
+                      <span class="searchTitle">业务类型：</span>
+                      <select id="busiType">
+                        <option>全部</option>
+                      </select>
+                    </div>
+                    <div class="searchIcon">
+                      <em class="searchImg"></em>
+                    </div>
+                  </div>
+                  <div class="rightContChartSale">
+                    <div class="chartOper">
+                      <span class="switchDateAxis">
+                        <span>日</span>
+                        <span>周</span>
+                        <span>月</span>
+                      </span>
+                      <span class="export-excel"><i></i>导出EXCEL</span>
+                    </div>
+                    <div class="gray-line"><i class="gray-arrow"></i></div>
+                    <div class="ticketChart"> <!-- 机票报表 -->
+                      <div id="ticketChartRate" style="height:500px;width:100%;min-width:1030px;"></div> <!-- 销售量同比 -->
+                    </div>
+
+                    <div id="hotelChart"></div>
+                    <div id="insuranceChart"></div>
+                  </div>
+                  <div class="rightContBottom">
+                    <label>本期累计订单数：<em>123,465,789</em> 张</label>
+                    <label>本期累计销售额：<em>987,654,321.00</em> 元</label>
+                  </div>
+                    <div class="rightContSecondModel">
+                        <div class="modelTop">
+                            <span class="modelTopTitle detailTitle">数据明细 <i class="greenIcon"></i></span>
+                            <!--<span class="modelTopDownload"></span>-->
+                        </div>
+                        <table class="dateCenterCommonTab">
+                            <colgroup>
+                                <col width="20%"/>
+                                <col width="40%"/>
+                                <col width="40%"/>
+                            </colgroup>
+                            <tr>
+                                <th>日期</th>
+                                <th>销售额</th>
+                                <th>订单数</th>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">2014-05-04</td>
+                                <td>
+                                    <span class="textAlignRight orangeFont">0.00</span>
+                                </td>
+                                <td>
+                                    <span class="textAlignRight">1718979</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">2014-05-03</td>
+                                <td>
+                                    <span class="textAlignRight orangeFont">2，210，246.00</span>
+                                </td>
+                                <td>
+                                    <span class="textAlignRight">1718979</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">2014-05-01</td>
+                                <td>
+                                    <span class="textAlignRight orangeFont">2，2684.00</span>
+                                </td>
+                                <td>
+                                    <span class="textAlignRight">1718979</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div> 
+                </div>  <!-- 右边内容结束 -->
+        
+        </div> <!--mainContent 结束-->
+    </section>
+        <footer class="main-footer">
+            <center class="copyright">
+                Copyright &copy; 2013 天地行 All Rights Reserved.      沪ICP备08101503号
+            </center>
+        </footer>
+  </div>
+
+<script type="text/x-kendo-template" id="detailTemplate">
+    <div class="tooltipsContent">
+        <div class="tooltipsArrow"></div>
+        <div class="detailsP">
+            <p><em class="greenFonts">新增用户数：</em>每日新增的用户人数，以在平台注册为准。</p>
+            <p><em class="greenFonts">新增有效用户数：</em>每日新增的用户人数，以在平台注册为准为准为准为准为准的第三方都是法国法国法国法国梵蒂冈梵蒂冈电饭锅梵蒂冈梵蒂冈梵蒂冈。</p>
+            <p><em class="greenFonts">用户总量：</em>每日新增的用户人数，以在平台注册为准地方水电费地方的的。</p>
+            <p><em class="greenFonts">有效用户总量：</em>每日新增的用户人数，以在平台注册为准都是缩放第三方擦的地方第三方第三方第三方地方地方的地方第三方地方的。</p>
+        </div>
+    </div>
+</script>
+
+
+  <!-- 对echarts 标签引入时，最好放在body体结尾 -->
+  <script src="../static/js/plugins/echarts/echarts-plain.js"></script>
+
+  <script>
+
+	$(function(){
+
+        $(".modelTop .detailTitle").kendoTooltip({
+            position:"left", //bottom right top 
+            content:function(){
+                return $("#detailTemplate").html();
+            },
+            callout:false,
+            offsetX:18,
+            offsetY:5,
+            width:450,
+            autoHide: false
+        });
+        
+        
+    $("#area").kendoDropDownList();
+    $("#busiType").kendoDropDownList();
+
+    /* 用echarts(Enterprise Charts 商业级数据图表)生成统计报表，示例为机票统计报表，酒店统计报表、保险统计报表 类似  */
+    // 生成报表开始
+
+    // 初始化echart对象
+    var ticketChartRate = echarts.init(document.getElementById("ticketChartRate"));
+
+    var ticketOptionRate = {
+        title : {
+          text: '成本中心差旅汇总',
+          x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient : 'vertical',
+            x : 'left',
+            data:['成本中心A','成本中心B','成本中心C','成本中心D','成本中心E']
+        },
+        calculable : false,
+        series : [
+            {
+                type:'pie',
+                radius : '55%',
+                center: ['50%', '60%'],
+                data:[
+                    {value:335, name:'成本中心A'},
+                    {value:310, name:'成本中心B'},
+                    {value:234, name:'成本中心C'},
+                    {value:135, name:'成本中心D'},
+                    {value:1548, name:'成本中心E'}
+                ],
+                legendHoverLink: true
+            }
+        ]
+    };
+
+    // 为chart对象赋值option
+    ticketChartRate.setOption(ticketOptionRate);
+
+    // 生成报表结束
+  });
+  </script> 
+    
+</body>
+</html>
