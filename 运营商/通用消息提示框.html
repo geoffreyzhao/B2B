@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>通用消息提示弹窗</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../../static/css/common.css" rel="stylesheet" />
+    <link href="../../static/css/kendo.common.css" rel="stylesheet" />
+    <link href="../../static/css/kendo.gray.css" rel="stylesheet" />
+    <link href="../../static/css/b2b.css" rel="stylesheet" />
+    <link href="../../static/css/kendo.reset.css" rel="stylesheet" />
+    <link href="../../static/css/operatorCommonHeader.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="../../static/js/global.js"></script>
+
+    <!--[if lt IE 8]> 
+    <link rel="stylesheet" href="../static/css/ie.css" /> 
+    <script type="text/javascript" src="../static/js/vendor/IE7.min.js"></script> 
+    <![endif]-->
+    <style type="text/css" media="screen">
+        button {
+            margin-bottom: 20px;
+            font-size: 14px;
+            padding: 10px;
+        }
+
+        p {
+            font-size:16px;
+            width:650px;
+            margin:50px;
+            line-height:22px;
+        }
+    </style>
+</head>
+<body> <!--  头部的文件引入不用管，这些都是运营商平台公共的，默认已经引入  -->
+    <p>弹窗的实现还是利用PopWindow。<br>
+        主动触发需利用触发器，即trigger属性是某一个触发元素的class；<br>
+        手动触发则将trigger值设为"noTrigger",然后调用对象的show与close方法。<br>
+        这里有三种弹窗，分别是 操作成功，操作失败，正在操作。<br>
+        文本内容可自行更换，只要保证模板内部结构基本一致即可，提示的图标可正常显示。   <br>
+    </p>
+
+   <button class="btn1">手动触发弹出弹窗，操作成功</button>  <button class="btn11">关闭左边的弹窗</button><br>
+   <button class="btn2">手动触发弹出弹窗，操作失败</button>  <button class="btn22">关闭左边的弹窗</button><br>
+   <button class="btn3">触发器触发弹出弹窗，2秒后自动消失，操作成功</button><br>
+   <button class="btn4">触发器触发弹出弹窗，2秒后自动消失，操作失败</button></br>
+   <button class="btn5">手动触发，正在操作</button></br>
+
+
+   <script type="text/x-kendo-template" id="operSuccessTemplate">
+        <div class="common-tip-container">
+            <i class="large-success-icon"></i>
+            <span class="tip-msg-content">操作成功！</span>
+        </div>
+   </script>
+
+
+   <script type="text/x-kendo-template" id="operFailTemplate">
+        <div class="common-tip-container">
+            <i class="large-warn-icon"></i>
+            <span class="tip-msg-content">操作失败！</span>
+        </div>
+   </script>
+
+
+   <script type="text/x-kendo-template" id="operatingTemplate">
+        <div class="common-tip-container">
+            <i class="operating-icon"></i>
+            <span class="tip-msg-content">操作进行中，请稍后...</span>
+        </div>
+   </script>
+<script type="text/javascript">
+
+    // 弹窗初始化开始
+
+    var win1 = new PopWindow('noTrigger', {
+        modal: false,
+        title: false,
+        template: "#operSuccessTemplate",
+        width: 300
+    }).init();
+
+    var win2 = new PopWindow('noTrigger', {
+        modal: false,
+        title: false,
+        template: "#operFailTemplate",
+        width: 300
+    }).init();
+
+    var win3 = new PopWindow('.btn3', {
+        modal: false,
+        title: false,
+        template: "#operSuccessTemplate",
+        width: 300,
+        autoHide: 2000,
+        animation: {
+          open: {
+              effects: "fade:in",
+              duration: 300
+          },
+          close: {
+              effects: "fade:out",
+              duration: 300
+          }
+        }
+    }).init();
+
+    var win4 = new PopWindow('.btn4', {
+        modal: false,
+        title: false,
+        template: "#operFailTemplate",
+        width: 300,
+        autoHide: 2000,
+        animation: {
+          open: {
+              effects: "fade:in",
+              duration: 300
+          },
+          close: {
+              effects: "fade:out",
+              duration: 300
+          }
+        }
+    }).init();
+
+    var win5 = new PopWindow('.btn5', {
+        modal: true,
+        title: false,
+        template: "#operatingTemplate",
+        width: 300
+    }).init();
+
+   //  弹窗初始化结束
+
+   // 弹窗操作开始
+    
+    $(".btn1").click(function(){
+        win1.show();
+    });
+
+    $(".btn11").click(function(){
+        win1.close();
+    });
+
+    $(".btn2").click(function(){
+        win2.show();
+    });
+
+    $(".btn22").click(function(){
+        win2.close();
+    });
+
+
+    // 弹窗操作结束
+
+
+</script>
+
+</body>
+</html>
