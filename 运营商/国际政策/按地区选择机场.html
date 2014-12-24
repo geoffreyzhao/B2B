@@ -13,7 +13,7 @@
 			<div class="ap-left-container">
 				<p class="ap-area-title">选择地区范围：</p>
 				<div class="ap-area-block">
-					<ul class="ap-first-level-container">
+					<!-- <ul class="ap-first-level-container">
 						<li class="ap-first-level-item">
 							<label class="ap-wrap-tree-title">
 								<i class="ap-tree-arrow-fold"></i>
@@ -76,7 +76,7 @@
 								<li>大洋洲</li>
 							</ul>
 						</li>
-					</ul>
+					</ul> -->
 				</div>
 			</div>
 			<div class="ap-right-container">
@@ -84,34 +84,38 @@
 			</div>
 		</div>
 
-	<script type="text/javascript">
-		var data = [{
-			name: "中国大陆",
-			value: 1,
-			root: 3,
-			child: [{
-			name: "华北",
-			value: 11,
-			child: [{
-			name: "北京",
-			value: 111,
-			child: [{
-				name: "北京国际机场",
-				value: "ABC"
-				},{
-				name: "北京南苑机场",
-				value: "NAY"
-				}] 
-			},{
-			name: "上海",
-			value: 112,
-			child:[{name: "上海浦东国际机场",value:"SPD"},{name:"上海虹桥机场",value:"SHQ"}]
-			}]
-			}
-			]
-			}
-		];
+	<script type="text/x-kendo-template" id="apAreaTreeTemplate">
+		<div class="apAreaTreeContainer">
+			<ul class="ap-first-level-container">
+				# for (var i = 0; i < data.length; i++) { #
+					<li class="ap-first-level-item">
+						<label class="ap-wrap-tree-title">
+							<i class="ap-tree-arrow-fold"></i>
+							<i class="ap-checkbox-unchecked"></i>
+							<i class="ap-flag-icon icon1"></i>
+							<span class="orange-font-color">#=data[i].name #</span>
+						</label>
+						# if (data[i].child !== undefined && data[i].child.length > 0) { #
+							<ul class="ap-second-level-container">
+								# for (var j = 0; j < data[i].child.length; j++) { #
+									<li class="ap-second-level-item">
+										<label class="ap-wrap-tree-title">
+											<i class="ap-tree-arrow-fold ap-expand"></i>
+											<i class="ap-checkbox-unchecked ap-checked"></i>
+											<i class="ap-flag-icon icon2"></i>
+											<span class="orange-font-color">#data[i].child[j].name #</span>
+										</label>
+									</li>
+								# } #
+							</ul>
+						# } #
+					</li>
+				# } #
+			</ul>
+		</div>
+	</script>
 
+	<script type="text/javascript">
 		var data = [{
 			name: "全球",
 			value: 1,
@@ -119,13 +123,133 @@
 			child: [{
 				name: "中国大陆",
 				value: 11,
+				level: 2,
 				child: [{
-					
+					name: "华北",
+					value: 111,
+					level: 3,
+					child: [{
+						name: "北京",
+						value: 1111,
+						level: 4,
+						child: [{
+							name: "北京国际机场",
+							value: "ABC",
+							level: 5
+						}, {
+							name: "北京南苑机场",
+							value: "NAY",
+							level: 5
+						}]
+					}, {
+						name: "天津",
+						value: 1112,
+						level: 4,
+						child: [{
+							name: "天津国际机场",
+							value: "TAC",
+							level: 5
+						}, {
+							name: "天津机场",
+							value: "TIP",
+							level: 5
+						}]
+					}]
 				}, {
-					
+					name: "华东",
+					value: 112,
+					level: 3,
+					child: [{
+						name: "上海",
+						value: 1121,
+						level: 4,
+						child: [{
+							name: "上海浦东国际机场",
+							value: "SPD",
+							level: 5
+						}, {
+
+							name: "上海虹桥机场",
+							value: "SHQ",
+							level: 5
+						}]
+					}, {
+						name: "杭州",
+						value: 1122,
+						level: 4,
+						child: [{
+							name: "杭州国际机场",
+							value: "HGP",
+							level: 5
+						}, {
+							name: "杭州西湖机场",
+							value: "HXH",
+							level: 5
+						}]
+					}]
+				}]
+			}, {
+				name: "亚洲（不含大陆）",
+				value: 12,
+				level: 2,
+				child: [{
+					name: "东亚",
+					value: 111,
+					level: 3,
+					child: [{
+						name: "日本东京国际机场",
+						value: "JDP"
+					}, {
+						name: "韩国首尔国际机场",
+						value: "HSA"
+					}]
+				}, {
+					name: "西亚",
+					value: 112,
+					level: 3,
+					child: [{
+						name: "尼泊尔",
+						value: 1121,
+						child: [{
+							name: "尼泊尔国际机场",
+							value: "NBR"
+						}]
+					}, {
+						name: "哈萨克斯坦",
+						value: 1122,
+						child: [{
+							name: "机场",
+							value: "GAP"
+						}]
+					}]
+				}, {
+					name: "欧洲",
+					value: 13,
+					level: 2
+				}, {
+					name: "非洲",
+					value: 14,
+					level: 2
+				}, {
+					name: "南美洲",
+					value: 15,
+					level: 2
+				}, {
+					name: "北美洲",
+					value: 16,
+					level: 2
+				}, {
+					name: "大洋洲",
+					value: 17,
+					level: 2
 				}]
 			}]
 		}];
+
+		$(function(){
+
+			$(".ap-area-block").append(kendo.template($("#apAreaTreeTemplate").html())(data));
+		})
 	</script>
 
 	</body>
