@@ -22,6 +22,7 @@ ul,li{ list-style-type:none;}
 
 .ap-outer-container {
 	padding: 0;
+	font-family: microsoft yahei;
 }
 
 /*  左侧地区范围   开始 */
@@ -78,19 +79,26 @@ ul,li{ list-style-type:none;}
 }
 
 .ap-tree-arrow-fold {
-	background: url(../images/select_airport.png) no-repeat 0 -14px;
+	background: url(../images/select_airport.png) no-repeat -10px -14px;
 	display: inline-block;
 	vertical-align: middle;
 	position: relative;
 	bottom: 2px;
 	width: 8px;
-	height: 4px;
+	height: 8px;
+	left: 4px;
 }
 
 .ap-tree-arrow-fold.ap-expand {
-	background: url(../images/select_airport.png) no-repeat -10px -14px;
-	width: 4px;
+	background: url(../images/select_airport.png) no-repeat 0px -14px;
+	width: 8px;
 	height: 8px;
+	left: 2px;
+	bottom: 0;
+}
+
+.ap-tree-arrow-fold.ap-arrow-none {
+	background: none;
 }
 
 .ap-checkbox-unchecked {
@@ -117,6 +125,11 @@ ul,li{ list-style-type:none;}
 .ap-area-block ul:first-child {
 	padding-left: 0;
 	margin-bottom: 0;
+	margin-top: 5px;
+}
+
+.ap-first-level-item ul {
+	display: none;
 }
 
 .ap-first-level-container .ap-wrap-tree-title {
@@ -141,12 +154,13 @@ ul,li{ list-style-type:none;}
 	text-indent: 60px;
 }
 
-.ap-area-block li {
-
+.ap-area-block i.ap-tree-arrow-fold,
+.ap-area-block i.ap-checkbox-unchecked {
+	-moz-user-select: none;  /* 屏蔽连击图标出现的蓝色选中区域, 针对firefox */
 }
 
 .ap-area-block .ap-wrap-tree-title {
-	padding: 2px 0;
+	padding: 3px 0;
 	display: inline-block;
 }
 
@@ -165,6 +179,23 @@ ul,li{ list-style-type:none;}
 	background-color: #ecf7fb;	
 }
 
+.ap-view-airport {
+	text-decoration: underline;
+	color: #454545;
+	float: right;
+	margin-right: 3px;
+	display: none;
+	text-indent: 0;
+}
+
+.ap-view-airport:hover {
+	color: #3399cc;
+}
+
+.ap-area-block .ap-wrap-tree-title:hover .ap-view-airport.ap-view-show {
+	display: inline-block;
+}
+
 /*  左侧地区范围   结束 */
 
 /*==========================================================*/
@@ -173,12 +204,12 @@ ul,li{ list-style-type:none;}
 
 .ap-right-container {
 	float: left;
-	width: 527px;
-	height: 280px;
+	width: 506px;
+	height: 285px;
 	overflow: auto;
 	border: 1px solid #ccc;
 	border-left: none;
-	padding: 10px 6px;
+	padding: 10px 25px 5px 10px;
 }
 
 .ap-empty-text {
@@ -186,6 +217,86 @@ ul,li{ list-style-type:none;}
 	margin-top: 120px;
 	color: #9f9f9f;
 	font-size: 20px;
+}
+
+.ap-right-content-top {
+	height: 25px;
+	line-height: 25px;
+	margin: 5px 0;
+}
+
+.ap-search-bar {
+	float: left;
+}
+
+.ap-search-bar-title {
+	font-size: 14px;
+	color: #9f9f9f;
+}
+
+.ap-search-bar-input {
+	text-indent: 3px;
+	width: 150px;
+	border: 1px solid #d3d3d3;
+	height: 20px;
+	line-height: 20px;
+	font-size: 14px;
+}
+
+.ap-search-bar-icon {
+	background: url(../images/select_airport.png) no-repeat -66px 0;
+	width: 19px;
+	height: 19px;
+	display: inline-block;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.ap-check-btn {
+	float: right;
+	font-size: 12px;
+	margin-right: 15px;
+}
+
+.ap-check-all-btn,
+.ap-check-inverse-btn {
+	width: 55px;
+	height: 25px;
+	background-color: #e2e2e2;
+	text-align: center;
+	line-height: 25px;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.ap-check-all-btn.current,
+.ap-check-inverse-btn.current {
+	color: #fff;
+	background-color: #13bee4;
+}
+
+.ap-airport-list {
+	padding-left: 0;
+}
+
+.ap-airport-item {
+	font-size: 12px;
+	color: #454545;
+	float: left;
+	margin-right: 45px;
+	margin-bottom: 15px;
+}
+
+.ap-airport-item.ap-airport-item-adjust {
+	margin-right: 0;
+}
+
+.ap-airport-item span {
+	display: inline-block;
+	width: 115px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 /*  右侧机场列表   结束 */

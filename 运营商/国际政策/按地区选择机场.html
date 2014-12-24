@@ -9,113 +9,230 @@
 	    <script type="text/javascript" src="../../static/js/global.js"></script>
 	</head>
 	<body><!-- 为避免样式冲突  所有class均加前缀ap-  -->
-		<div class="ap-outer-container clearfix">
+		<!--<div class="ap-outer-container clearfix">
 			<div class="ap-left-container">
 				<p class="ap-area-title">选择地区范围：</p>
-				<div class="ap-area-block">
-					<!-- <ul class="ap-first-level-container">
-						<li class="ap-first-level-item">
-							<label class="ap-wrap-tree-title">
-								<i class="ap-tree-arrow-fold"></i>
-								<i class="ap-checkbox-unchecked"></i>
-								<i class="ap-flag-icon icon1"></i>
-								<span class="orange-font-color">全球</span>
-							</label>
-							<ul class="ap-second-level-container">
-								<li class="ap-second-level-item">
-								<label class="ap-wrap-tree-title">
-									<i class="ap-tree-arrow-fold ap-expand"></i>
-									<i class="ap-checkbox-unchecked ap-checked"></i>
-									<i class="ap-flag-icon icon2"></i>
-									<span class="orange-font-color">中国大陆</span>
-								</label>									
-									<ul class="ap-third-level-container">
-										<li class="ap-third-level-item">
-											<label class="ap-wrap-tree-title">
-												<i class="ap-tree-arrow-fold ap-expand"></i>
-												<i class="ap-checkbox-unchecked ap-checked"></i>
-												<span>华北</span>
-											</label>
-											<ul class="ap-forth-level-container">
-												<li class="ap-forth-level-item">
-													<label class="ap-wrap-tree-title">
-														<i class="ap-checkbox-unchecked ap-checked"></i>
-														<span>北京</span>
-													</label>
-												</li>
-												<li class="ap-forth-level-item">	
-													<label class="ap-wrap-tree-title">
-														<i class="ap-checkbox-unchecked ap-checked"></i>
-														<span>天津</span>
-													</label class="ap-wrap-tree-title">
-												</li>
-												<li class="ap-forth-level-item">
-													<label class="ap-wrap-tree-title">
-														<i class="ap-checkbox-unchecked ap-checked"></i>
-														<span>石家庄</span>
-													</label>
-												</li>
-											</ul>
-										</li>
-										<li>华东</li>
-										<li>东北</li>
-									</ul>
-								</li>
-								<li>
-									<label class="ap-wrap-tree-title">
-										<i class="ap-tree-arrow-fold ap-expand"></i>
-										<i class="ap-checkbox-unchecked ap-checked"></i>
-										<i class="ap-flag-icon icon3"></i>
-										<span>亚洲（不含大陆）</span>
-									</label>
-								</li>
-								<li>欧洲</li>
-								<li>非洲</li>
-								<li>北美洲</li>
-								<li>南美洲</li>
-								<li>大洋洲</li>
-							</ul>
-						</li>
-					</ul> -->
-				</div>
+				<div class="ap-area-block"></div>
 			</div>
 			<div class="ap-right-container">
 				<div class="ap-empty-text">请先选择地区范围</div>
 			</div>
-		</div>
+		</div>-->
 
-	<script type="text/x-kendo-template" id="apAreaTreeTemplate">
-		<div class="apAreaTreeContainer">
-			<ul class="ap-first-level-container">
-				# for (var i = 0; i < data.length; i++) { #
-					<li class="ap-first-level-item">
-						<label class="ap-wrap-tree-title">
-							<i class="ap-tree-arrow-fold"></i>
-							<i class="ap-checkbox-unchecked"></i>
-							<i class="ap-flag-icon icon1"></i>
-							<span class="orange-font-color">#=data[i].name #</span>
-						</label>
-						# if (data[i].child !== undefined && data[i].child.length > 0) { #
-							<ul class="ap-second-level-container">
-								# for (var j = 0; j < data[i].child.length; j++) { #
-									<li class="ap-second-level-item">
-										<label class="ap-wrap-tree-title">
-											<i class="ap-tree-arrow-fold ap-expand"></i>
-											<i class="ap-checkbox-unchecked ap-checked"></i>
-											<i class="ap-flag-icon icon2"></i>
-											<span class="orange-font-color">#data[i].child[j].name #</span>
-										</label>
-									</li>
+<script type="text/x-kendo-template" id="apAreaTreeTemplate">
+<div class="ap-outer-container clearfix">
+	<div class="ap-left-container">
+		<p class="ap-area-title">选择地区范围：</p>
+<!-- 生成树开始 -->
+<div class="ap-area-block">
+	<ul class="ap-first-level-container">
+		# for (var i = 0; i < data.length; i++) { #
+			<li class="ap-first-level-item">
+				<label class="ap-wrap-tree-title">
+					<i class="ap-tree-arrow-fold"></i>
+					<i class="ap-checkbox-unchecked"></i>
+					<i class="ap-flag-icon icon1"></i>
+					<span class="ap-tree-title">#=data[i].name #</span>
+					<a href="javascript:void(0);" class="ap-view-airport">查看机场</a>
+				</label>
+				# if (data[i].child !== undefined && data[i].child.length > 0) { #
+					<ul class="ap-second-level-container">
+						# for (var j = 0; j < data[i].child.length; j++) { #
+							<li class="ap-second-level-item">
+								<label class="ap-wrap-tree-title">
+									<i class="ap-tree-arrow-fold"></i>
+									<i class="ap-checkbox-unchecked"></i>
+									# if (data[i].child[j].value == 11) { #
+										<i class="ap-flag-icon icon2"></i>
+									# } else { #
+										<i class="ap-flag-icon icon3"></i>
+									# } #
+									<span class="ap-tree-title">#=data[i].child[j].name #</span>
+									<a href="javascript:void(0);" class="ap-view-airport">查看机场</a>
+								</label>
+								# var l2TmpChildren = data[i].child[j].child; #
+								# if (l2TmpChildren !== undefined && l2TmpChildren.length > 0) { #
+									<ul class="ap-third-level-container">
+										# for (var k = 0; k < l2TmpChildren.length; k++) { #
+											<li class="ap-third-level-item">
+												<label class="ap-wrap-tree-title">
+													<i class="ap-tree-arrow-fold"></i>
+													<i class="ap-checkbox-unchecked"></i>
+													<span class="ap-tree-title">#=l2TmpChildren[k].name #</span>
+													<a href="javascript:void(0);" class="ap-view-airport">查看机场</a>
+												</label>
+												# var l3TmpChildren = l2TmpChildren[k].child; #
+												# if (l3TmpChildren !== undefined && l3TmpChildren.length > 0) { #
+													<ul class="ap-forth-level-container">
+														# for (var l = 0; l < l3TmpChildren.length; l++) { #			
+															<li class="ap-forth-level-item">
+																<label class="ap-wrap-tree-title">
+																	<i class="ap-checkbox-unchecked"></i>
+																	<span class="ap-tree-title">#=l3TmpChildren[l].name #</span>
+																	<a href="javascript:void(0);" class="ap-view-airport">查看机场</a>
+																</label>
+															</li>
+														# } #
+													</ul>
+												# } #
+											</li>
+										# } #
+									</ul>
 								# } #
-							</ul>
+							</li>
 						# } #
-					</li>
+					</ul>
 				# } #
-			</ul>
+			</li>
+		# } #
+	</ul>
+</div>
+<!-- 生成树结束 -->
+</div>
+
+<div class="ap-right-container">
+	<!-- <div class="ap-empty-text">请先选择地区范围</div> -->
+	<div class="ap-right-content-top">
+		<div class="ap-search-bar clearfix">
+			<span class="ap-search-bar-title">中国大陆机场</span>
+			<input class="ap-search-bar-input" type="text" />
+			<i class="ap-search-bar-icon"></i>
 		</div>
-	</script>
+		<div class="ap-check-btn">
+			<span class="ap-check-all-btn current">全选</span>
+			<span class="ap-check-inverse-btn">反选</span>
+		</div>
+	</div>
+	<div class="ap-right-main-content">
+		<ul class="ap-airport-list clearfix">
+			<li class="ap-airport-item">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-机场</span>
+			</li>
+			<li class="ap-airport-item ap-airport-item-adjust">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item ap-airport-item-adjust">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item ap-airport-item-adjust">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item ap-airport-item-adjust">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item ap-airport-item-adjust">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item ap-airport-item-adjust">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item ap-airport-item-adjust">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item ap-airport-item-adjust">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item ap-airport-item-adjust">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场</span>
+			</li>
+			<li class="ap-airport-item">
+				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<span>NAY-北京南苑机场</span>
+			</li>
+		</ul>
+	</div>
+</div>
+</div>
+</script>
 
 	<script type="text/javascript">
+
+		//  level属性 目前没有用到，可以不写
+		//  json层级最多为4级，例：全球-亚洲-西亚-阿斯塔纳， 全球-中国-华北-北京
+		//  层级过多 或者 名字太长 会使左侧的树产生横向滚动条（应该是要避免的）
+
 		var data = [{
 			name: "全球",
 			value: 1,
@@ -130,30 +247,10 @@
 					level: 3,
 					child: [{
 						name: "北京",
-						value: 1111,
-						level: 4,
-						child: [{
-							name: "北京国际机场",
-							value: "ABC",
-							level: 5
-						}, {
-							name: "北京南苑机场",
-							value: "NAY",
-							level: 5
-						}]
+						value: 1111
 					}, {
 						name: "天津",
-						value: 1112,
-						level: 4,
-						child: [{
-							name: "天津国际机场",
-							value: "TAC",
-							level: 5
-						}, {
-							name: "天津机场",
-							value: "TIP",
-							level: 5
-						}]
+						value: 1112
 					}]
 				}, {
 					name: "华东",
@@ -161,31 +258,10 @@
 					level: 3,
 					child: [{
 						name: "上海",
-						value: 1121,
-						level: 4,
-						child: [{
-							name: "上海浦东国际机场",
-							value: "SPD",
-							level: 5
-						}, {
-
-							name: "上海虹桥机场",
-							value: "SHQ",
-							level: 5
-						}]
+						value: 1121
 					}, {
 						name: "杭州",
-						value: 1122,
-						level: 4,
-						child: [{
-							name: "杭州国际机场",
-							value: "HGP",
-							level: 5
-						}, {
-							name: "杭州西湖机场",
-							value: "HXH",
-							level: 5
-						}]
+						value: 1122
 					}]
 				}]
 			}, {
@@ -194,61 +270,138 @@
 				level: 2,
 				child: [{
 					name: "东亚",
-					value: 111,
+					value: 121,
 					level: 3,
 					child: [{
-						name: "日本东京国际机场",
+						name: "东京",
 						value: "JDP"
 					}, {
-						name: "韩国首尔国际机场",
+						name: "首尔",
 						value: "HSA"
 					}]
 				}, {
 					name: "西亚",
-					value: 112,
+					value: 122,
 					level: 3,
 					child: [{
 						name: "尼泊尔",
-						value: 1121,
-						child: [{
-							name: "尼泊尔国际机场",
-							value: "NBR"
-						}]
+						value: 1221
 					}, {
-						name: "哈萨克斯坦",
-						value: 1122,
-						child: [{
-							name: "机场",
-							value: "GAP"
-						}]
+						name: "阿斯塔纳",
+						value: 1222
 					}]
-				}, {
-					name: "欧洲",
-					value: 13,
-					level: 2
-				}, {
-					name: "非洲",
-					value: 14,
-					level: 2
-				}, {
-					name: "南美洲",
-					value: 15,
-					level: 2
-				}, {
-					name: "北美洲",
-					value: 16,
-					level: 2
-				}, {
-					name: "大洋洲",
-					value: 17,
-					level: 2
 				}]
+			}, {
+				name: "欧洲",
+				value: 13,
+				level: 2,
+				child: [{
+					name: "伦敦",
+					value: "london"
+				}, {
+					name: "巴黎",
+					value: "paris"
+				}, {
+					name: "罗马",
+					value: "loma"
+				}, {
+					name: "意大利",
+					value: "italy"
+				}]
+			}, {
+				name: "非洲",
+				value: 14,
+				level: 2
+			}, {
+				name: "南美洲",
+				value: 15,
+				level: 2
+			}, {
+				name: "北美洲",
+				value: 16,
+				level: 2
+			}, {
+				name: "大洋洲",
+				value: 17,
+				level: 2
 			}]
 		}];
 
 		$(function(){
+			$("body").append(kendo.template($("#apAreaTreeTemplate").html())(data));
 
-			$(".ap-area-block").append(kendo.template($("#apAreaTreeTemplate").html())(data));
+			//  屏蔽连击图标出现的蓝色选中区域
+			$(".ap-area-block i.ap-tree-arrow-fold, .ap-area-block i.ap-checkbox-unchecked").attr("onselectstart", "return false;")
+
+			// 如果没有下级元素，本级元素的展开按钮位置空缺
+			$(".ap-area-block li").each(function(){
+				if ($(this).find("ul").length == 0) {
+					$(this).children(".ap-wrap-tree-title").find(".ap-tree-arrow-fold").addClass("ap-arrow-none");
+				}
+			});
+
+			// 展开 收起
+			$("body").delegate(".ap-wrap-tree-title .ap-tree-arrow-fold", "click", function(){
+				if ($(this).hasClass("ap-expand")) {
+					$(this).removeClass("ap-expand");
+					$(this).parent("label").siblings("ul").slideUp();
+				} else {
+					$(this).addClass("ap-expand");
+					$(this).parent("label").siblings("ul").slideDown();
+				}
+			});
+			// 点击文字 展开 收起
+			$("body").delegate(".ap-wrap-tree-title span", "click", function(){
+				if ($(this).siblings(".ap-tree-arrow-fold").hasClass("ap-expand")) {
+					$(this).siblings(".ap-tree-arrow-fold").removeClass("ap-expand");
+					$(this).parent("label").siblings("ul").slideUp();
+				} else {
+					$(this).siblings(".ap-tree-arrow-fold").addClass("ap-expand");
+					$(this).parent("label").siblings("ul").slideDown();
+				}
+			});
+
+			// 选中  未选中
+			$("body").delegate(".ap-wrap-tree-title .ap-checkbox-unchecked", "click", function(){
+				if ($(this).hasClass("ap-checked")) {
+					$(this).removeClass("ap-checked");
+					$(this).siblings('.ap-view-airport').removeClass("ap-view-show");
+					$(this).siblings('.ap-tree-title').removeClass("orange-font-color");
+				} else {
+					$(this).addClass("ap-checked");
+					$(this).siblings('.ap-view-airport').addClass("ap-view-show");
+					$(this).siblings('.ap-tree-title').addClass("orange-font-color");
+				}
+			});
+
+			// 全选  反选
+			$("body").delegate(".ap-check-btn span", "click", function(){
+				$(this).siblings('span').removeClass("current");
+				$(this).addClass("current");
+			});
+
+			$("body").delegate(".ap-airport-item .ap-checkbox-unchecked", "click", function(){
+				if ($(this).hasClass("ap-checked")) {
+					$(this).removeClass("ap-checked");
+				} else {
+					$(this).addClass("ap-checked");
+				}
+			});
+
+			$("body").delegate(".ap-check-all-btn", "click", function(){
+				$(".ap-airport-item").find("i.ap-checkbox-unchecked").addClass("ap-checked");
+			});
+
+			$("body").delegate(".ap-check-inverse-btn", "click", function(){
+				$(".ap-airport-item").find("i.ap-checkbox-unchecked").each(function(){
+					if ($(this).hasClass("ap-checked")) {
+						$(this).removeClass("ap-checked");
+					} else {
+						$(this).addClass("ap-checked");
+					}
+				});
+			});
+
 		})
 	</script>
 
