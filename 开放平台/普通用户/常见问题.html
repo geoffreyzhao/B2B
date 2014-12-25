@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>开放平台 常见问题</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href="/static/css/kendo.common.css" rel="stylesheet" />
     <link rel="stylesheet" href="/static/css/openPlatform/commonUser/common.css"/>
     <link rel="stylesheet" href="/static/css/openPlatform/commonUser/openPlatform.css"/>
-
+    
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/kendo.web.js"></script>
     <script type="text/javascript" src="/static/js/global.js"></script>
@@ -15,6 +17,19 @@
     <!--[if lte IE 9]>
     <script src="/static/js/html5.js"></script>
     <![endif]-->
+    <style type="text/css">
+        .k-window {
+            border-color: #40aee8!important;
+        }
+        .k-header {
+            background: #40aee8;
+            color: #fff;
+            font-size: 16px;
+        }
+        .k-block > .k-header, .k-window-titlebar {
+            padding: 10px 0;
+        }
+    </style>
 </head>
 <body>
     <header class="main-header">
@@ -193,8 +208,58 @@
         </div>
     </footer>
     
+    <script type="text/x-kendo-template"  id="questionBtn-template">
+        <div class="">
+            <table class="questionTemplateTab">
+                <colgroup>
+                    <col width="80"/>
+                    <col width=""/>
+                </colgroup>
+                <tbody>
+                <tr>
+                    <th>类别：</th>
+                    <td>
+                        <label><input type="radio" name="questionType"/>国内机票</label>
+                        <label><input type="radio" name="questionType"/>国际机票</label>
+                        <label><input type="radio" name="questionType"/>酒店</label>
+                        <label><input type="radio" name="questionType"/>其他</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>问题：</th>
+                    <td>
+                        <input type="text" style="width:620px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>描述：</th>
+                    <td>
+                        <textarea style="width:625px;height: 120px;"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>邮箱：</th>
+                    <td>
+                        <input type="text" style="width:620px;"/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="popWindowBtn">
+                <a href="javascript:void(0);" class="commonBigBlueBtn submitBtn">提交</a>
+                <a href="javascript:void(0);" class="cancelFonts marginLeft">取消</a>
+            </div>
+        </div>
+    </script>
+    
     <script>
-        
+        $(function() {
+            new PopWindow('.questionBtn', {
+                width:760,
+                title:'我要提问',
+                template:'#questionBtn-template'
+            }).init();
+        });
     </script>
 
 </body>
