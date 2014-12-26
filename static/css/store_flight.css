@@ -2603,6 +2603,9 @@ i.babyTypeIcon {
     color: #3088df;
     cursor: pointer;
 }
+.advanceSearch:hover {
+    text-decoration: underline;
+}
 
 .advanceSearch i {
     display: inline-block;
@@ -2614,12 +2617,13 @@ i.babyTypeIcon {
 }
 
 .advanceSearch.expand {
-    color: #f1634c;
+    color: #3088df;
 }
 
 .advanceSearch.expand i {
     display: inline-block;
-    background: url(../images/store/international_flight_sr.png) no-repeat -82px 0;
+    /*background: url(../images/store/international_flight_sr.png) no-repeat -82px 0;*/
+    background: url(../images/store/international_flight_sr.png) no-repeat -94px 0;
     width: 9px;
     height: 5px;
     vertical-align: middle; 
@@ -2668,11 +2672,16 @@ i.babyTypeIcon {
 
 .flight_filter_block .flight_info_title {
     font-size: 16px;
-    color: #636363;    
-    margin-bottom: 15px;
+    color: #494949;    
+    /*margin-bottom: 15px;*/
     font-weight: bold;
 }
-
+.flight_filter_block .flight_info_title  span {
+    color: #9d9d9d;
+    margin: 0 0 0 10px;
+    font-size: 12px;
+    font-weight: normal;
+}
 .flight_filter_condition .filter_text {
     color: #636363;
     font-size: 12px;
@@ -2684,7 +2693,7 @@ i.babyTypeIcon {
 }
 
 .condition_chosen_new {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .condition_chosen_new .chosen_items {
@@ -2693,6 +2702,7 @@ i.babyTypeIcon {
 
 .condition_chosen_new .chosen_item {
     padding: 0 0 0 6px;
+    position: relative;
 }
 
 .condition_chosen_new .chosen_text {
@@ -2701,8 +2711,10 @@ i.babyTypeIcon {
 }
 
 .flight_sort {
-    background-color: #6d8fa5;
-    color: #fff;
+    background: #fff;
+    margin: 0 0 8px 0;
+    border-top:1px solid #edeced;
+    border-bottom:2px solid #edeced;
 }
 
 .flight_sort .sort_items {
@@ -2718,24 +2730,45 @@ i.babyTypeIcon {
 
 .flight_sort .tax_tag {
     float: right;
-    border: 1px solid #1f3a4b;
     margin-right: 10px;
-    margin-top: 6px;
+    margin-top: 5px;
+    color: #a2a2a2;
 }
 
-.flight_sort .tax_tag span {
-    padding: 3px 8px;
+.flight_sort .taxTag-excluding, .flight_sort .taxTag-including {
+    padding: 5px 0;
+    width:75px;
+    text-align: center;
     display: inline-block;
     cursor: pointer;
+    -webkit-border-radius: 3px 0 0 3px;
+    -moz-border-radius: 3px 0 0 3px;
+    border-radius: 3px 0 0 3px;
+    border: 1px solid #b5b5b5;
+    border-right: none;
+}
+.flight_sort .taxTag-including {
+    -webkit-border-radius: 0 3px 3px 0;
+    -moz-border-radius: 0 3px 3px 0;
+    border-radius: 0 3px 3px 0;
+    border-right: 1px solid #b5b5b5;
+    border-left: none;
 }
 
-.flight_sort .tax_tag span.current {    
-    background-color: #246994;
+.flight_sort .tax_tag .current {    
+    border:1px solid #ff6c00;
+    color: #ff6c00;
 }
+.flight_sort .tax_tag span:hover {
+    color: #ff6c00;
+}
+.infoResulting i {
+    vertical-align: middle;
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    background: url(../images/store/mini_loading.gif) no-repeat 50% 26%; }
 
-.flight_sort .tax_tag span:first-child{
-    border-right: 1px solid #1f3a4b;
-}
 
 /* 橙色 排序标志 */
 
@@ -2752,32 +2785,45 @@ i.babyTypeIcon {
     position:relative; 
     left: 1px;
     bottom: 2px;
-    background:url(../images/store/sort_orange.png) no-repeat 0 0;
+    background:url(../images/store/sort-new.png) no-repeat 0 0;
 }
 
 .sorttab_orange.ascend i {
-    background-position: -11px 0;
+    background-position: -10px 0;
 }
 
 .sorttab_orange.descend i {
-    background-position: -22px 0;
+    background-position: -20px 0;
 }
 
 /*  flight number  */
+.flight_result_list .information.reset:hover{
+   background: #fff;
+}
+.flight_number.reset {
+    background: none;
+    border: none;
+}
 
 .flight_result_list.reset {
     padding: 0;
+    border: none;
+    background: none;
+    color: #747474;
 }
 
 /* 头部 */
 .flight_number .international_flight_info {
-    margin: 0!important;
+    margin: 0 0 8px 0!important;
+    background: #fff;
+    border: 1px solid #e2e2e2;
+    height: 100%;
+    overflow: hidden;
 }
 
 .international_flight_info .info_header {    
-    background-color: #fafafa;
-    box-shadow: 0 5px 5px #e8e8e8;
-    padding: 0 10px;
+    background-color: #f5f5f5;
+    /*padding: 0 10px;*/
 }
 
 .international_flight_info .info_header .flight_logo_header {
@@ -2799,7 +2845,7 @@ i.babyTypeIcon {
 }
 
 .international_flight_info .info_header .flight_flightTime {
-    color: #adadad;
+    color: #898989;
 }
 
 .international_flight_info .info_header .flight_flightTime i {
@@ -2813,7 +2859,7 @@ i.babyTypeIcon {
 }
 
 .international_flight_info .info_header .flight_fly_type {
-    color: #adadad;
+    color: #898989;
 }
 
 .international_flight_info .info_header .flight_fly_stopover i,
@@ -2831,6 +2877,7 @@ i.babyTypeIcon {
     background: url(../images/store/international_flight_sr.png) 0 -21px;
     width: 63px;
     height: 12px;
+    margin-top: 5px;
 }
 
 .international_flight_info .info_header .flight_type_unStraightIcon {
@@ -2860,17 +2907,40 @@ i.babyTypeIcon {
 .international_flight_info .info_header .reach_time i {
     color: #e94749;
 }
+.international_flight_info .info_header .airlineName {
+    padding-top: 7px;
+}
+.information_detail_block.resultList-reset {
+    padding: 0;
+}
 
 /* 多航班信息 */
 .info_flightBlock {
-    width: 720px;
-    margin-left: 35px;
-    border-bottom: 1px solid #eaeaea;
+    /*width: 720px;
+    margin-left: 169px;*/
+    border-bottom: 1px solid #d3d3d3;
+    border-top: 1px solid #d3d3d3;
+    background: #f9f9f9;
     display: none;
+    position: relative;
+}
+.info_flightBlock-arrow {
+    background: url(../images/store/international_flight_sr.png) no-repeat 0 -146px;
+    width: 15px;
+    height: 8px;
+    display: inline-block;
+    position: absolute;
+    top:-8px;
+    right: 100px;
+ 
+}
+.info_flightBlock table {
+    margin: 0 auto;
+    width:720px;
 }
 
 .info_flightBlock .grayFont {
-    color: #9c9b9b;
+    color: #939393;
 }
 
 .info_flightBlock .blockFont {
@@ -2882,22 +2952,31 @@ i.babyTypeIcon {
 }
 
 .splitBlock {
-    border-top: 1px solid #e4e1e1;
+    border-top: 1px solid #c8e1ec;
     position: relative;
-    margin: 6px 0;
+    margin: 6px auto;
+    width: 720px;    
 }
 
 .splitBlock .splitBlockCont {
     position: absolute;
-    background-color: #def8ff;
+    background-color: #fff;
     color: #636363;
-    border: 1px solid #d4d4d4;
-    height: 24px;
-    line-height: 24px;
+    border: 1px solid #cbe6f3;
+    height: 22px;
+    line-height: 22px;
     border-radius: 12px;
-    padding: 0 32px;
+    padding: 0 15px;
     left: 215px;
     top: -12px;
+}
+.splitBlock .splitBlockCont i {
+    background: url(../images/store/international_flight_sr.png) no-repeat 0 -128px;
+    width:18px;
+    height: 14px;
+    display: inline-block;
+    vertical-align: sub;
+    margin-right: 8px;
 }
 
 .shareTipLayer {
@@ -2906,6 +2985,25 @@ i.babyTypeIcon {
 
 .shareTipLayer .grayFont {
     color: #969696;
+}
+.flight_result_list .information.reset td {
+    border-bottom: 1px solid #f1f1f1;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.flight_result_list .information.reset .flight_time {
+    font-size: 20px;
+    color: #444;
+}
+.fcblue12 {
+    color: #01a2ca;
+    border-bottom: 1px dashed #01a2ca;
+}
+.fc9c9b9b {
+    color: #9c9b9b;
+}
+.fc636363 {
+    color: #636363;
 }
 
 /* 详情 */
@@ -2938,7 +3036,7 @@ i.babyTypeIcon {
 .information_detail.new .reward_number {
     font-size: 14px;
     font-weight: bold;
-    color: #646464;
+    color: #555;
     font-family: Arial;
 }
 
@@ -2969,16 +3067,15 @@ i.babyTypeIcon {
 
 .information_detail_block .bottomMore {
     float: right;
-    margin: 10px 70px 10px 0;
+    margin: 10px 77px 10px 0;
 }
 
 .information_detail_block .bottomMore .taxText {
-    color: #9c9b9b;    
+    color: #909090;    
     vertical-align: middle;
 }
 
 .information_detail_block .bottomMore .taxText em {
-    color: #636363;
     padding: 0 3px;
 }
 
