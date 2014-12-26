@@ -6,9 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css"  href="/static/css/kendo.common.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/kendo.gray.css" />
-    <link rel="stylesheet" type="text/css" href="/static/css/kendo.reset.css" />    
+    <link rel="stylesheet" type="text/css" href="/static/css/kendo.reset.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/openPlatform/kendo.reset.css" />    
     <link rel="stylesheet" href="/static/css/openPlatform/administrator/common.css"/>
     <link rel="stylesheet" href="/static/css/openPlatform/administrator/openPlatform.css"/>
+
+
+    
+    
+    
 
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/kendo.web.js"></script>
@@ -185,7 +191,7 @@
         <div class="question-title clearfix">
             <span class="title-font1">网站接入认证 </span>
             <em class="title-font2">共 </em><span class="title-font3">6</span><em class="title-font2"> 条</em>
-            <div class="create-question-btn">
+            <div class="create-question-btn ac-createQuestionAPI">
                 <i class="icon"></i>
                 新增常用问题
             </div>
@@ -381,28 +387,38 @@
         </div>
     </footer>
 
-    <script type="text/html" id="ac-bigDelHint-template">
-        <div class="delHintContent">
-            <div class="deleteHintFonts">
-                <p>删除该条目会将其包含的12个问题一起删除。</p>
-                <p>确认要全部删除吗？</p>
-            </div>
-            <div class="hintBtn">
-                <button class="commonBigOrangeBtn" type="button">确 定</button>
-                <a href="javascript:void(0);" class="commonBtnFonts cancelClose">取 消</a>
-            </div>
-        </div>
-    </script>
-
-    <script type="text/html" id="ac-smallDelHint-template">
-        <div class="delHintContent">
-            <div class="deleteHintFonts">
-                <p>确定删除该条目吗？</p>
-            </div>
-            <div class="hintBtn">
-                <button class="commonBigOrangeBtn" type="button">确 定</button>
-                <a href="javascript:void(0);" class="commonBtnFonts cancelClose">取 消</a>
-            </div>
+    <script type="text/html" id="ac-createQuestionAPI-template">
+        <div class="windowContent">
+            <table class="windowCreateQuesAPITab">
+                <colgroup>
+                    <col width="80">
+                    <col width="600">
+                </colgroup>
+                <tr>
+                    <th>
+                      <span class="letterQ2">Q:&nbsp;&nbsp;</span>
+                    </th>
+                    <td>
+                        <textarea class="window-question"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                      <span class="letterA2">A:&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    </th>
+                    <td>
+                        <textarea class="window-answer"></textarea>
+                    </td>
+                </tr>
+                
+                <tr>
+                    
+                    <td colspan="2" style="text-align:center; padding-top:32px;">
+                        <a href="javascript:void(0);" class="commonBigBlueBtn">保存</a>
+                        <a href="javascript:void(0);" class="cancelBtn">取消</a>
+                    </td>
+                </tr>
+            </table>
         </div>
     </script>
     
@@ -455,6 +471,17 @@
               $(this).parent().parent().hide();
               $(this).parent().parent().prev().show();
             });
+
+
+            var ac_window01 = new PopWindow('.ac-createQuestionAPI',{
+                title:'新增问题',
+                width:'762',
+                height:'370',
+                template:'#ac-createQuestionAPI-template'
+            }).init();
+
+            ac_window01.show();
+
         });
     </script>
 
