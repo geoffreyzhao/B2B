@@ -631,7 +631,8 @@
     <script>
         var today = new Date(),
             toDate=today;
-        var nextMonthDate=new Date(today.getFullYear(),toDate.getMonth()+1,toDate.getDate());
+        // var nextMonthDate=new Date(today.getFullYear(),toDate.getMonth()+1,toDate.getDate());
+        var nextMonthDate = getNextDate(toDate);
         var template = kendo.template($("#selectedDateTemplate").html());
 
         $(function(){     
@@ -690,8 +691,10 @@
                 $(".calendarMonthLeft").removeClass("disabled");
 
                 if(!$(this).hasClass("disabled")){
-                    toDate=toDate.DateAdd("m",+1);
-                    nextMonthDate=nextMonthDate.DateAdd("m",+1);
+                    // toDate=toDate.DateAdd("m",+1);
+                    // nextMonthDate=nextMonthDate.DateAdd("m",+1);
+                    toDate = getNextDate(toDate);
+                    nextMonthDate = getNextDate(nextMonthDate);
 
                     calendar.navigate(toDate,"month");
                     calendar1.navigate(nextMonthDate,"month");
@@ -708,8 +711,10 @@
                     $(this).addClass("disabled");
                 }
                 if(!$(this).hasClass("disabled")) {
-                    toDate=toDate.DateAdd("m",-1);
-                    nextMonthDate=nextMonthDate.DateAdd("m",-1);
+                    // toDate=toDate.DateAdd("m",-1);
+                    // nextMonthDate=nextMonthDate.DateAdd("m",-1);
+                    toDate = getPrevDate(toDate);
+                    nextMonthDate = getPrevDate(nextMonthDate);
 
                     calendar.navigate(toDate,"month");
                     calendar1.navigate(nextMonthDate,"month");
@@ -856,7 +861,8 @@
                     $(".calendarMonthLeft").removeClass("disabled");
                 }
                 toDate = today;
-                nextMonthDate = new Date(today.getFullYear(),toDate.getMonth()+1,toDate.getDate()); 
+                // nextMonthDate = new Date(today.getFullYear(),toDate.getMonth()+1,toDate.getDate()); 
+                nextMonthDate = getNextDate(toDate);
                 calendar.navigate(toDate,"month");
                 calendar1.navigate(nextMonthDate,"month");
 
@@ -907,8 +913,8 @@
         })
 
         function changeCalendarDateInfo(toDate){
-            $(".calendarDate.cd1").html(toDate.getFullYear()+"年"+(toDate.getMonth()+1)+"月");
-            $(".calendarDate.cd2").html(nextMonthDate.getFullYear()+"年"+(nextMonthDate.getMonth()+1)+"月");
+            $(".calendarDate.cd1").html(toDate.getFullYear()+"年"+(getNextDate(toDate).getMonth())+"月");
+            $(".calendarDate.cd2").html(nextMonthDate.getFullYear()+"年"+(getNextDate(nextMonthDate).getMonth())+"月");
         }
 
         function recoverCalendarSelected(array) {
@@ -931,6 +937,53 @@
             var day = tmpArr[2] < 10 ? ("0" + tmpArr[2]) : tmpArr[2];
 
             return tmpArr[0] + "/" + month + "/" + day;
+        }
+
+        function getPrevDate(current) {
+            // var current = new Date();
+
+            var currentYear = current.getFullYear();
+            var currentMonth = current.getMonth();
+            var currentDate = current.getDate();
+
+            var prevDate;
+
+            if (currentMonth == 0) {
+                prevDate = new Date(currentYear - 1, 11, currentDate);
+            } else {
+                var prevMonthDays = new Date(currentYear, currentMonth, 0).getDate();
+
+                if (currentDate > prevMonthDays) {
+                    prevDate = new Date(currentYear, currentMonth - 1, prevMonthDays);
+                } else  {
+                    prevDate = new Date(currentYear, currentMonth - 1, currentDate);
+                }
+            }
+
+            return prevDate;
+        }
+
+        function getNextDate(current) {
+            // var current = new Date();
+
+            var currentYear = current.getFullYear();
+            var currentMonth = current.getMonth();
+            var currentDate = current.getDate();
+
+            var nextDate;
+
+            if (currentMonth == 11) {
+                nextDate =  new Date(currentYear + 1, 0, currentDate);
+            } else {
+                var nextMonthDays = new Date(currentYear, currentMonth + 2, 0).getDate();
+
+                if (currentDate > nextMonthDays) {
+                    nextDate = new Date(currentYear, currentMonth + 1, nextMonthDays);
+                } else {
+                    nextDate = new Date(currentYear, currentMonth + 1, currentDate);
+                }
+            }
+            return nextDate;
         }
     </script>   
     
