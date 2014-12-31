@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天地行 采购商 签证 签证订单管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     
+    <link rel="stylesheet" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css" />     
+    <link rel="stylesheet" href="/static/css/store_reset.css" media="all" />
+    <link rel="stylesheet" href="/static/css/store.css" media="screen" />
+    <link rel="stylesheet" href="/static/css/store_ucenter.css" media="screen" />
+    <link rel="stylesheet" href="/static/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="/static/css/kendo.store.css" />
+    
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>    
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>    
+
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+    <script src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+	<script src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>    
+    <script type="text/javascript" src="/static/js/store/store.js"></script>
+
+    <script>
+        $(function(){
+            kendo.init('body');
+            lensf();
+        })
+    </script>
+
+</head>
+<body>
+
+<div class="main-wrapper">
+<header class="main-header">
+    <a class="logo" href="/"><h1>天地行</h1></a>
+    <nav class="main-nav">
+        <ul class="clearfix">
+            <li class="first active"><a href="#">首页</a></li>
+            <li><a href="#">国内机票</a></li>
+            <li><a href="#">国际机票</a></li>
+            <li><a href="#">酒店</a></li>
+        </ul> 
+    </nav>
+    <nav class="main-links">
+        <ul class="clearfix">
+            <li class="first"><a href="#">订单管理</a></li>
+            <li><a href="#">分销管理</a></li>
+            <li><a href="#">电子钱包</a></li>
+            <li><a href="#">统计报表</a></li>
+            <li><a href="#">客服服务</a></li>
+            <li>
+                <span class="hyper-link">
+                    <u>lfdak</u>
+                    <i class="arrow-down"></i>
+                    <div class="hyper-text">
+                        <a href="#">提交审核</a>
+                        <a href="#">申请出票</a>
+                        <a href="#">提交审核</a>
+                        <a href="#">提交审核</a>
+                    </div>
+                </span>
+            </li>
+            <li><a class="link-message" href="#"><i class="icon-message"></i>消息<i class="message-count">5</i></a></li>
+            </ul>
+        </nav>
+        <span class="phone">客服电话：400-720-6666</span>
+</header>
+<section class="main-body clearfix">
+    <aside class="us-nav">
+        <nav>
+            <h3>用户中心</h3>
+            <div class="us-bind"><a href="#">手机已绑定</a>&#12288;<a class="text1" href="#"><i class="ucnav_03"></i>邮箱未绑定</a></div>
+            <dl>
+                <dt><i class="ucnav_07"></i>订单管理</dt>
+                <dd><a href="#">国内机票订单</a></dd>
+                <dd><a href="#">国际机票订单</a></dd>
+                <dd><a href="#">预付酒店订单</a></dd>
+                <dd><a href="#">现付酒店订单</a></dd>
+                <dd><a href="#">保险订单</a></dd>
+                <dd><a class="current" href="#">签证订单</a></dd>
+            </dl>
+            <dl>
+                <dt><i class="ucnav_10"></i>询价单管理</dt>
+                <dd><a href="#">国内机票询价单</a></dd>
+                <dd><a href="#">国际机票询价单</a></dd>
+                <dd><a href="#">酒店询价单</a></dd>
+            </dl>
+
+            <dl>
+                <dt><i class="ucnav_12"></i>电子钱包</dt>
+                <dd><a href="#">账户信息</a></dd>
+                <dd><a href="#">账户充值</a></dd>
+            </dl>
+
+            <dl>
+                <dt><i class="ucnav_15"></i>票据管理</dt>
+                <dd><a href="#">行程单</a></dd>
+                <dd><a href="#">发票</a></dd>
+            </dl>
+
+            <dl>
+                <dt><i class="ucnav_17"></i>统计报表</dt>
+                <dd><a href="#">财务报表</a></dd>
+                <dd><a href="#">机票业务</a></dd>
+                <dd><a href="#">酒店业务</a></dd>
+                <dd><a href="#">分销业务</a></dd>
+            </dl>
+
+            <dl>
+                <dt><i class="ucnav_19"></i>分销商管理</dt>
+                <dd><a href="#">分销商管理</a></dd>
+            </dl>
+
+            <dl>
+                <dt><i class="ucnav_22"></i>账户资料</dt>
+                <dd><a href="#">信息维护</a></dd>
+                <dd><a href="#">消息设置</a></dd>
+            </dl>
+
+            <dl>
+                <dt><i class="ucnav_26"></i>我的工具</dt>
+                <dd><a class="ic-j" href="#"><i class="ucnav_32"></i>发送短信</a></dd>
+                <dd><a class="ic-j" href="#"><i class="ucnav_29"></i>常旅客管理</a></dd>
+                <dd><a class="ic-j" href="#"><i class="ico_tuifeipiaoguiding"></i>退废票规定</a></dd>
+                <dd><a class="ic-j" href="#"><i class="ico_shengcangguidign"></i>升舱规定</a></dd>
+            </dl>
+        </nav>
+    </aside>
+    <main class="us-content">
+        <h1 class="us-title">签证订单</h1>
+        <div class="us-body">
+            <aside>
+                <ul class="tab_change clearfix">
+                    <li class="currentState"><em><a href="javascript:void(0);">全部订单</a></em></li>
+                    <li><em><a href="javascript:void(0);">待支付（5）</a></em></li>           
+                    <li><em><a href="javascript:void(0);">变更中</a></em></li>           
+                    <li><em><a href="javascript:void(0);">已确认</a></em></li>           
+                </ul>
+            </aside>
+            <div class="tab_item">
+                <section class="us-query clearfix">
+                    <table class="us-query-table fixed-table">
+                        <colgroup>
+                            <col width="60">
+                            <col width="140">
+                            <col width="60">
+                            <col width="200">
+                            <col width="60">
+                            <col width="140">
+                        </colgroup>
+                        <tr>
+                            <th>订单编号：</th>
+                            <td><input style="width:120px;" type="text" name=""></td>
+                            <th>下单日期：</th>
+                            <td>
+                                <input style="width:75px" class="datepicker dpShort" value="2013-08-08" type="text" name=""/>
+                                <s> - </s>
+                                <input style="width:75px" class="datepicker dpShort" value="今天" type="text" name=""/>
+                            </td>
+                            <th>旅客名称：</th>
+                            <td><input style="width:120px;" type="text" name=""/></td>
+                        </tr>
+                        <tr>
+                            <th>国家/地区：</th>
+                            <td>
+                                <select class="visa-us-querySelect">
+                                    <option>请选择</option>
+                                </select>
+                            </td>
+                            <th>出发日期：</th>
+                            <td>
+                                <input class="datepicker dpShort" style="width:75px" value="2013-08-08" type="text" name=""/>
+                                <s> - </s>
+                                <input class="datepicker dpShort" style="width:75px" value="今天" type="text" name=""/>
+                            </td>
+                            <th>订单状态：</th>
+                            <td>
+                                <select class="visa-us-querySelect">
+                                    <option>请选择</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <a class="adaptiveButton brightRed_btn">
+                        <span class="left"></span>
+                        <span class="center">搜&nbsp;索</span>
+                        <span class="right"></span>
+                    </a>
+                </section>
+                <section class="us-result">
+                    <table>
+                        <colgroup>
+                            <col width="140"/>
+                            <col width="190"/>
+                            <col width="90"/>
+                            <col width="105"/>
+                            <col width="140"/>
+                            <col width=""/>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>订单编号</th>
+                            <th>签证名称/出发时间</th>
+                            <th>下单日期</th>
+                            <th>订单金额</th>
+                            <th>订单状态</th>
+                            <th class="textAlignCenter">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="tdGrayFont">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国个人旅游签证（上海送签）</div>
+                                <div class="tdGrayFont">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60 orderMoneyAdd">￥47000.00</td>
+                            <td>
+                                <div><b>已支付</b></div>
+                            </td>
+                            <!-- <td><a class="ac&#45;oper" href="">操作<i class="active"></i></a></td> -->
+                            <!--<td>
+                                <span class="hyper-link"><u>操作</u>
+                                    <i class="arrow-down"></i>
+                                    <div class="hyper-text">
+                                        <a href="#">支付</a>
+                                        <a href="#">取消</a>
+                                    </div>
+                                </span>
+                            </td>-->
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">受理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国个人旅游签证（上海送签）</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60 orderMoneyAdd">￥47000.00</td>
+                            <td>
+                                <div><b>已创建</b></div>
+                                <div class="fc999">取消待确定</div>
+                                <!--<div class="timeContent" title="剩余支付时间">
+                                    <i class="timeIcon"></i>
+                                    <b class="blueFonts timerFonts">00:00:00</b>
+                                </div>-->
+                            </td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">受理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国个人旅游签证（上海送签）</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60 orderMoneyAdd">￥47000.00</td>
+                            <td>
+                                <div><b>已取消</b></div>
+                                <div class="fc999">取消待确定 | 退订待确定</div>
+                            </td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">受理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国个人旅游签证（上海送签）</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60 orderMoneyAdd">￥510</td>
+                            <td>
+                                <div><b>已支付</b></div>
+                            </td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">受理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国个人旅游签证（上海送签）美国个人旅游签证</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60 orderMoneyAdd">￥510</td>
+                            <td>
+                                <div><b>已取消</b></div>
+                            </td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">受理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+            <!--第二个开始-->
+            <div class="tab_item" style="display: none;">
+                <section class="us-query clearfix">
+                    <table class="us-query-table fixed-table">
+                        <colgroup>
+                            <col width="60">
+                            <col width="140">
+                            <col width="60">
+                            <col width="200">
+                            <col width="60">
+                            <col width="140">
+                        </colgroup>
+                        <tr>
+                            <th>订单编号：</th>
+                            <td><input style="width:120px;" type="text" name=""></td>
+                            <th>下单日期：</th>
+                            <td>
+                                <input style="width:75px" class="datepicker dpShort" value="2013-08-08" type="text" name=""/>
+                                <s> - </s>
+                                <input style="width:75px" class="datepicker dpShort" value="今天" type="text" name=""/>
+                            </td>
+                            <th>旅客名称：</th>
+                            <td><input style="width:120px;" type="text" name=""/></td>
+                        </tr>
+                        <tr>
+                            <th>国家/地区：</th>
+                            <td>
+                                <select class="visa-us-querySelect">
+                                    <option>请选择</option>
+                                </select>
+                            </td>
+                            <th>出发日期：</th>
+                            <td>
+                                <input class="datepicker dpShort" style="width:75px" value="2013-08-08" type="text" name=""/>
+                                <s> - </s>
+                                <input class="datepicker dpShort" style="width:75px" value="今天" type="text" name=""/>
+                            </td>
+                            <th></th>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <a class="adaptiveButton brightRed_btn">
+                        <span class="left"></span>
+                        <span class="center">搜&nbsp;索</span>
+                        <span class="right"></span>
+                    </a>
+                </section>
+                <section class="us-result">
+                    <table>
+                        <colgroup>
+                            <col width="140"/>
+                            <col width="190"/>
+                            <col width="90"/>
+                            <col width="105"/>
+                            <col width="140"/>
+                            <col width=""/>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>订单编号</th>
+                            <th>签证名称/出发时间</th>
+                            <th>下单日期</th>
+                            <th>订单金额</th>
+                            <th>订单状态</th>
+                            <th class="textAlignCenter">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="tdGrayFont">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国个人旅游签证（上海送签）</div>
+                                <div class="tdGrayFont">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60 orderMoneyAdd">￥47000.00</td>
+                            <td>
+                                <div><b>已支付</b></div>
+                            </td>
+                            <!-- <td><a class="ac&#45;oper" href="">操作<i class="active"></i></a></td> -->
+                            <!--<td>
+                                <span class="hyper-link"><u>操作</u>
+                                    <i class="arrow-down"></i>
+                                    <div class="hyper-text">
+                                        <a href="#">支付</a>
+                                        <a href="#">取消</a>
+                                    </div>
+                                </span>
+                            </td>-->
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">受理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国个人旅游签证（上海送签）</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60 orderMoneyAdd">￥47000.00</td>
+                            <td>
+                                <div><b>已创建</b></div>
+                                <div class="fc999">取消待确定</div>
+                                <!--<div class="timeContent" title="剩余支付时间">
+                                    <i class="timeIcon"></i>
+                                    <b class="blueFonts timerFonts">00:00:00</b>
+                                </div>-->
+                            </td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">受理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国个人旅游签证（上海送签）</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60 orderMoneyAdd">￥47000.00</td>
+                            <td>
+                                <div><b>已取消</b></div>
+                                <div class="fc999">取消待确定 | 退订待确定</div>
+                            </td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">受理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国个人旅游签证（上海送签）</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60 orderMoneyAdd">￥510</td>
+                            <td>
+                                <div><b>已支付</b></div>
+                            </td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">受理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国个人旅游签证（上海送签）美国个人旅游签证</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60 orderMoneyAdd">￥510</td>
+                            <td>
+                                <div><b>已取消</b></div>
+                            </td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">受理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+            <!--第二个结束-->
+
+            <!--第3个开始-->
+            <div class="tab_item" style="display: none;">
+                <section class="us-query clearfix">
+                    <table class="us-query-table fixed-table">
+                        <colgroup>
+                            <col width="60">
+                            <col width="140">
+                            <col width="60">
+                            <col width="200">
+                            <col width="60">
+                            <col width="140">
+                        </colgroup>
+                        <tr>
+                            <th>订单编号：</th>
+                            <td><input style="width:120px;" type="text" name=""></td>
+                            <th>下单日期：</th>
+                            <td>
+                                <input style="width:75px" class="datepicker dpShort" value="2013-08-08" type="text" name=""/>
+                                <s> - </s>
+                                <input style="width:75px" class="datepicker dpShort" value="今天" type="text" name=""/>
+                            </td>
+                            <th>旅客名称：</th>
+                            <td><input style="width:120px;" type="text" name=""/></td>
+                        </tr>
+                        <tr>
+                            <th>国家/地区：</th>
+                            <td>
+                                <select class="visa-us-querySelect">
+                                    <option>请选择</option>
+                                </select>
+                            </td>
+                            <th>出发日期：</th>
+                            <td>
+                                <input class="datepicker dpShort" style="width:75px" value="2013-08-08" type="text" name=""/>
+                                <s> - </s>
+                                <input class="datepicker dpShort" style="width:75px" value="今天" type="text" name=""/>
+                            </td>
+                            <th>订单状态：</th>
+                            <td>
+                                <select class="visa-us-querySelect">
+                                    <option>请选择</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <a class="adaptiveButton brightRed_btn">
+                        <span class="left"></span>
+                        <span class="center">搜&nbsp;索</span>
+                        <span class="right"></span>
+                    </a>
+                </section>
+                <section class="us-result">
+                    <table>
+                        <colgroup>
+                            <col width="140"/>
+                            <col width="190"/>
+                            <col width="90"/>
+                            <col width="105"/>
+                            <col width="140"/>
+                            <col width=""/>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>订单编号</th>
+                            <th>签证名称/出发时间</th>
+                            <th>下单日期</th>
+                            <th>订单金额</th>
+                            <th>订单状态</th>
+                            <th class="textAlignCenter">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="tdGrayFont">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国个人旅游签证（上海送签）</div>
+                                <div class="tdGrayFont">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60 orderMoneyAdd">￥47000.00</td>
+                            <td>
+                                <div><b>已支付</b></div>
+                            </td>
+                            <!-- <td><a class="ac&#45;oper" href="">操作<i class="active"></i></a></td> -->
+                            <!--<td>
+                                <span class="hyper-link"><u>操作</u>
+                                    <i class="arrow-down"></i>
+                                    <div class="hyper-text">
+                                        <a href="#">支付</a>
+                                        <a href="#">取消</a>
+                                    </div>
+                                </span>
+                            </td>-->
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">受理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国个人旅游签证（上海送签）</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60 orderMoneyAdd">￥47000.00</td>
+                            <td>
+                                <div><b>已创建</b></div>
+                                <div class="fc999">取消待确定</div>
+                                <!--<div class="timeContent" title="剩余支付时间">
+                                    <i class="timeIcon"></i>
+                                    <b class="blueFonts timerFonts">00:00:00</b>
+                                </div>-->
+                            </td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">受理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国个人旅游签证（上海送签）</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60 orderMoneyAdd">￥47000.00</td>
+                            <td>
+                                <div><b>已取消</b></div>
+                                <div class="fc999">取消待确定 | 退订待确定</div>
+                            </td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">受理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国个人旅游签证（上海送签）</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60 orderMoneyAdd">￥510</td>
+                            <td>
+                                <div><b>已支付</b></div>
+                            </td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">受理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国个人旅游签证（上海送签）美国个人旅游签证</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60 orderMoneyAdd">￥510</td>
+                            <td>
+                                <div><b>已取消</b></div>
+                            </td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">受理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+            <!--第3个结束-->
+
+            <!--第4个开始-->
+            <div class="tab_item" style="display: none;">
+                <section class="us-query clearfix">
+                    <table class="us-query-table fixed-table">
+                        <colgroup>
+                            <col width="60">
+                            <col width="140">
+                            <col width="60">
+                            <col width="200">
+                            <col width="60">
+                            <col width="140">
+                        </colgroup>
+                        <tr>
+                            <th>订单编号：</th>
+                            <td><input style="width:120px;" type="text" name=""></td>
+                            <th>下单日期：</th>
+                            <td>
+                                <input style="width:75px" class="datepicker dpShort" value="2013-08-08" type="text" name=""/>
+                                <s> - </s>
+                                <input style="width:75px" class="datepicker dpShort" value="今天" type="text" name=""/>
+                            </td>
+                            <th>旅客名称：</th>
+                            <td><input style="width:120px;" type="text" name=""/></td>
+                        </tr>
+                        <tr>
+                            <th>国家/地区：</th>
+                            <td>
+                                <select class="visa-us-querySelect">
+                                    <option>请选择</option>
+                                </select>
+                            </td>
+                            <th>出发日期：</th>
+                            <td>
+                                <input class="datepicker dpShort" style="width:75px" value="2013-08-08" type="text" name=""/>
+                                <s> - </s>
+                                <input class="datepicker dpShort" style="width:75px" value="今天" type="text" name=""/>
+                            </td>
+                            <th></th>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <a class="adaptiveButton brightRed_btn">
+                        <span class="left"></span>
+                        <span class="center">搜&nbsp;索</span>
+                        <span class="right"></span>
+                    </a>
+                </section>
+                <section class="us-result">
+                    <table>
+                        <colgroup>
+                            <col width="140"/>
+                            <col width="190"/>
+                            <col width="90"/>
+                            <col width="105"/>
+                            <col width="140"/>
+                            <col width=""/>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>订单编号</th>
+                            <th>签证名称/出发时间</th>
+                            <th>下单日期</th>
+                            <th>订单金额</th>
+                            <th>订单状态</th>
+                            <th class="textAlignCenter">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="tdGrayFont">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国个人旅游签证（上海送签）</div>
+                                <div class="tdGrayFont">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60 orderMoneyAdd">￥47000.00</td>
+                            <td>
+                                <div><b>已支付</b></div>
+                            </td>
+                            <!-- <td><a class="ac&#45;oper" href="">操作<i class="active"></i></a></td> -->
+                            <!--<td>
+                                <span class="hyper-link"><u>操作</u>
+                                    <i class="arrow-down"></i>
+                                    <div class="hyper-text">
+                                        <a href="#">支付</a>
+                                        <a href="#">取消</a>
+                                    </div>
+                                </span>
+                            </td>-->
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">受理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国个人旅游签证（上海送签）</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60 orderMoneyAdd">￥47000.00</td>
+                            <td>
+                                <div><b>已创建</b></div>
+                                <div class="fc999">取消待确定</div>
+                                <!--<div class="timeContent" title="剩余支付时间">
+                                    <i class="timeIcon"></i>
+                                    <b class="blueFonts timerFonts">00:00:00</b>
+                                </div>-->
+                            </td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">受理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国个人旅游签证（上海送签）</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60 orderMoneyAdd">￥47000.00</td>
+                            <td>
+                                <div><b>已取消</b></div>
+                                <div class="fc999">取消待确定 | 退订待确定</div>
+                            </td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">受理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国个人旅游签证（上海送签）</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60 orderMoneyAdd">￥510</td>
+                            <td>
+                                <div><b>已支付</b></div>
+                            </td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">受理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a class="text1" href="#">030312103112261</a><div class="oper">操作员：百福美</div></td>
+                            <td>
+                                <div class="nameOverflowEllipsis">美国个人旅游签证（上海送签）美国个人旅游签证</div>
+                                <div class="oper">出发日期：2014/07/25</div>
+                            </td>
+                            <td>2013-08-14</td>
+                            <td class="orderMoney orangeFontsf60 orderMoneyAdd">￥510</td>
+                            <td>
+                                <div><b>已取消</b></div>
+                            </td>
+                            <td class="textAlignCenter">
+                                <div>
+                                    <a href="javascript:void(0);" class="blueBorderBtn">受理</a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+                       
+                <div class="pagination clearfix">
+                    <ul>
+                         <li><a href="#">上一页</a></li>
+                         <li><a href="#">1</a></li>
+                         <li><a href="#">2</a></li>
+                         <li><a href="#" class="present">3</a></li>
+                         <li><a href="#">4</a></li>
+                         <li><a href="#">5</a></li>
+                         <li> <span>...</span> </li>
+                         <li><a href="#">60</a></li>
+                         <li><a href="#">下一页</a></li>
+                    </ul>
+                    <div>
+                       <span>共<em>132</em>条记录 &nbsp;&nbsp;&nbsp;共14页</span> 
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+        </div>
+    </main>
+</section>
+<footer class="main-footer">
+    <center>
+        <a href="#">隐私问题</a>
+        <i class="bar">|</i>
+        <a href="#">常见问题</a>
+        <i class="bar">|</i>
+        <a href="#">关于我们</a>
+        <i class="bar">|</i>
+        <a href="#">媒体中心</a>
+        <i class="bar">|</i>
+        <a href="#">联系我们</a>
+    </center>
+    <center class="copyright">
+        Copyright &copy; 2012 天地行 All Rights Reserved.     沪ICP备08101503号 
+    </center>
+</footer>
+</div>
+
+
+<script>
+    function autoTimer(){
+        var d = new Date("2014-01-01 00:00:00");
+        setInterval(function(){
+            d.setSeconds(d.getSeconds() + 1);
+            var h = d.getHours();
+            var m = d.getMinutes();
+            var s = d.getSeconds();
+            if (h<10) {h = "0" + h;}
+            if (m<10) {m = "0" + m;}
+            if (s<10) {s = "0" + s;}
+            $(".timerFonts").html(h +":" + m + ":" + s);
+        }, 1000);
+    }
+    
+    $(function(){        
+        autoTimer();
+
+        /*var price_confirm_win = new PopWindow(".ac_cancelBook",{
+            title:"取消预订",
+            width:570,
+            template:"#ac_cancelBook_template"
+        }).init();
+
+        var price_confirm_win = new PopWindow(".ac_modifyInformation",{
+            title:"修改旅客信息",
+            width:720,
+            template:"#ac_modifyInformation_template"
+        }).init();
+
+
+        $(".commonWinTab .retreatDetails").kendoTooltip({
+            position:"bottom", //left right top
+            wrapperClass:"lineWeight",
+            width:270,
+            content:function(){
+                return $("#retreatDetails").html();
+            },
+            callout:false,
+            offsetY:0,
+            offsetX:-2
+        });
+
+        $(".add_btn").click(function(){
+            $(this).parents(".tour_guestInfo td").siblings(".addIdentityCard").show();
+            $(this).parents(".tour_guestInfo tr").next().children(".addIdentityCard").show();
+            $(this).hide();
+        });
+        
+        $(".delAddContent").click(function(){
+            $(this).parents(".tour_guestInfo tr").children(".addIdentityCard").hide();
+            $(this).parents(".tour_guestInfo tr").next().children(".addIdentityCard").hide();
+            $(this).parents(".tour_guestInfo").find(".papersStyleTd .add_btn").show();
+        });*/
+
+        $(".tab_change li").each(function(index){
+            $(this).click(function(){
+                $(".us-body .tab_item").hide();
+                $(".us-body .tab_item:eq(" + index + ")").show();
+                $(".tab_change li").removeClass("currentState");
+                $(this).addClass("currentState");
+            });
+        });
+        
+    });
+</script>
+
+</body>
+</html>
+
