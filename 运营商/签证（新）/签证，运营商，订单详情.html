@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>签证，运营商，订单详情</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../../../static/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="../../../static/css/kendo.common.css" rel="stylesheet" type="text/css" />
+    <link href="../../../static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
+    <link href="../../../static/css/b2b.css" rel="stylesheet" type="text/css" />
+    <link href="../../../static/css/kendo.reset.css" rel="stylesheet" />
+    <link href="../../../static/css/visa.css" rel="stylesheet" type="text/css"/>
+    <script src="../../../static/js/jquery.min.js" type="text/javascript"></script>
+    <script src="../../../static/js/kendo.web.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <!--[if lt IE 8]> 
+    <link rel="stylesheet" href="/static/css/ie.css" /> 
+    <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
+    <![endif]-->
+    <!-- @CLB@ -->
+    <script  src="../../../static/js/sync.js" type="text/javascript"></script>
+
+    
+    
+    
+
+</head>
+<body>
+    <div id="extHeader">
+        <div></div>
+    </div>
+    <div id="container">
+        <div class="header">
+            <h1></h1>
+            <div>
+                <span>你好,${name}</span>
+                <a href="javascript:void(0);">退出</a>
+            </div>
+            <ul id="top_menu">
+                <li><a href="javascript:void(0);">国内机票</a></li>
+                <li><a href="javascript:void(0);">国际机票</a></li>
+                <li><a href="javascript:void(0);">酒店</a></li>
+				<li><a href="javascript:void(0);">旅游</a></li>
+				<li><a href="javascript:void(0);">签证</a></li>
+                <li><a href="javascript:void(0);">票证中心</a></li>
+                <li><a href="javascript:void(0);">财务管理</a></li>
+                <li><a href="javascript:void(0);">客户管理</a></li>
+                <li class="current"><a href="javascript:void(0);">系统设置</a></li>
+            </ul>
+            <ol class="sub_menu">
+                <li class="current"><a href="javascript:void(0);">公告信息</a></li>
+                <li><a href="javascript:void(0);">公司信息</a></li>
+                <li><a href="javascript:void(0);">组织架构</a></li>
+                <li><a href="javascript:void(0);">角色维护</a></li>
+                <li><a href="javascript:void(0);">基础数据</a></li>
+            </ol>
+            <div id="message">
+            	<a href="javascript:void(0);">&nbsp;</a>
+                <span>&nbsp;</span>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="sub_menu_bar"></div>
+        <div id="mainContent" style="overflow:hidden;">
+			<!-- start content -->
+            
+            <div class="actions block">
+                    <div class="col col-l sep-r">
+                        <button class="btns btn-return">返回</button>
+                    </div>
+                 <!--  <div class="col col-l">
+				   		<span class="page-title">新建订单</span>
+                     </div>-->
+                     <div class="col col-r sep-l">
+                           <button class="btns btn-blue ac-new ac-refuse" style="vertical-align:middle">取消预订</button>
+                           <a class="button_important adaptiveButton small ac-sendbackReview">
+                                    <span class="left"></span>
+                                    <span class="center">退订审核</span>
+                                    <span class="right"></span>
+                           </a>
+						   <button class="btns btn-blue ac-new ac-cancelReview" style="vertical-align:middle">取消审核</button>
+						   <a class="button_important adaptiveButton small"  href="加签-护照/材料已到.html">
+                                    <span class="left"></span>
+                                    <span class="center">修改</span>
+                                    <span class="right"></span>
+                           </a>
+                     </div>
+            </div>
+            <div class="panel" style="padding:0;width:100%">
+				<div class="panelLeftborder"></div>
+				<!-- <div class="panelRightborder"></div> -->
+				<!-- <div class="panelRelOrder" id="associatedOrder">
+				     <span style="float:left;padding:12px 5px 12px 15px">关联<br/>订单</span><span style="font-weight:bold;font-size:40px">0</span>
+				</div> -->
+				<div class="alreadyCreate">
+					状态：<span>已创建</span>
+				</div>
+				<div style="margin:0 7px;height:63px">
+					<div class="visaFlowLeft">
+						<div style="margin:3px 0 5px 0">
+							<span class="head visaOrderNun">订单号:</span>
+							<span class="visaFlowfont2">131112192536774</span>
+							<span class="visaFlowfont3">-订单类型：签证订单</span>
+							<span class="visaFlowfont3">供应商：不夜城国旅</span>
+						</div>
+						<div>
+						  <span>最后更新：<em class="visaFlowfont">创建订单</em>  更新时间：<em class="visaFlowfont">2013-06-15 11:23</em> 【更多操作日志】</span>
+						</div>
+					</div>
+					<div class="visaFlowRight">
+						<div class="hotelOrderStatusContainer" style="margin-left:20px">
+							<div class="status_create statusContainer first">
+								<div class="statusDot"></div>
+								<div class="statusLineLeft statusLine"></div>
+								<div class="statusLineRight statusLine"></div>
+								创建
+							</div>
+							<div class="status_payfor statusContainer">
+								<div class="statusDot"></div>
+								<div class="statusLineLeft statusLine"></div>
+								<div class="statusLineRight statusLine"></div>
+								支付
+							</div>
+							<div class="status_confirm statusContainer">
+								<div class="statusDot"></div>
+								<div class="statusLineLeft statusLine"></div>
+								<div class="statusLineRight statusLine"></div>
+								确认
+							</div>
+							<div class="status_setout statusContainer last">
+								<div class="statusDot"></div>
+								<div class="statusLineLeft statusLine"></div>
+								<div class="statusLineRight statusLine"></div>
+								出行
+							</div>
+						</div>
+						
+						<div class="hotelOrderStatusContainer">
+							
+							<div class="status_uncomplete statusContainer last">
+								<div class="statusDot"></div>
+								<div class="statusLineRight statusLine"></div>
+								结算
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="panel">
+				<div class="panelTit">
+					采购商信息
+				</div>
+				<div class="panelOrder clearfix purchaser-info">
+					<table>
+						<tr>
+							<th style="width:70px">采购商名称</th>
+							<td style="width:170px">途牛</td>
+							<th style="width:60px">支付方式</th>
+							<td style="width:180px">汇付天下</td>
+							<th style="width:60px">可用余额</th>
+							<td style="width:180px"><span style="color:#FF6700;font-size:14px">6870.00</span>元</td>
+						</tr>
+						<tr>
+						    <th style="width:60px">联系人</th>
+							<td>张大中</td>
+							<th>联系电话</th>
+							<td>13800138000</td>
+							<th>手机号码</th>
+							<td colspan="3">52800886</td>
+						</tr>
+						<tr>
+							<th>
+								<span class="inner-note">采购需求</span>
+							</th>
+							<td colspan="3"></td>
+							<th>
+								<span class="inner-note">内部备注</span>
+							</th>
+							<td colspan="3">
+								<textarea class="inner-note-textarea"></textarea>
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+			</div>
+
+
+			<div class="panel">
+				
+				
+				<div class="panelTit">
+					产品信息
+				</div>
+				<div class="productInfo-table clearfix">
+					<table>
+						<tbody>
+						<tr>
+							<td style="width:805px;" class="font1">美国个人旅游签证(上海送签)免面试</th>
+							<td style="width:128px;">
+								<span class="font2">成人</span>
+								<span class="font3">￥9865</span>
+								<span class="font2">/人</span>
+								<span class="font2">×2</span>
+							</td>
+						</tr>
+						<tr>
+						    <td>产品编号：60891&nbsp; 出发地：上海&nbsp;&nbsp;&nbsp;2014-06-08&nbsp;&nbsp;天数：15天</td>
+							<td><span class="font2">儿童</span>
+								<span class="font3">￥7526</span>
+								<span class="font2">/人</span>
+								<span class="font2">×1</span>
+							</td>
+						</tr>
+					</tbody></table>
+				</div>
+			</div>
+
+			<div class="enroll panel">  <!--enroll start-->
+				<div class="panelTit">取件方式</div>
+					<div class="ballNum">
+	                 <label><span>快递(收件人承担到付)</span></label>
+	             	</div>
+				    <div class="panelTable touristTable clearfix">
+					<table>
+						<tr>
+							<th style="width:73px;">收件人</th>
+							<th style="width:78px;">收件城市</th>
+							<th style="width:590px;">详细地址</th>
+							<th style="width:190px;">手机号</th>
+						</tr>
+						<tr>
+							<td>张大国</td>
+							<td>上海</td>
+							<td>上海市闸北区广中西路555号宝华国际广场16楼宝华国际广场是溜溜</td>
+							<td>13334567894</td>
+						</tr>
+						
+					</table>
+				</div>        
+          	</div>
+
+          	<div class="enroll panel">  <!--enroll start-->
+				<div class="panelTit">旅客信息</div>
+					<div class="ballNum">
+	                 <label><span>快递(收件人承担到付)</span></label>
+	             	</div>
+				    <div class="panelTable touristTable clearfix">
+					<table>
+						<tr>
+							<th style="width:46px;"></th>
+							<th style="width:80px;">姓名</th>
+							<th style="width:180px;">状态</th>
+							<th style="width:120px;">证件类型</th>
+							<th style="width:210px;">证件号码</th>
+							<th style="width:294px;">手机号</th>
+						</tr>
+						<tr>
+							<td>
+								<div class="passenger-info-table-font1">成人</div>
+							</td>
+							<td>
+								<input type="text" value="张大国" style="width:68px;height:18px;text-indent:4px;">
+							</td>
+							<td>
+								已确认
+							</td>
+							<td>
+								<select style="width:96px;">
+									 <option>身份证</option>
+									 <option>其他</option>
+								 </select>
+							</td>
+							<td>
+								<input type="text" value="420725198808252538" style="width:170px;height:18px;text-indent:4px;">
+							</td>
+							<td>
+								<input type="text" value="13800138000" style="width:170px;height:18px;text-indent:4px;">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="passenger-info-table-font2">儿童</div>
+							</td>
+							<td>
+								<input type="text" value="张大国" style="width:68px;height:18px;text-indent:4px;">
+							</td>
+							<td>
+								已确认
+							</td>
+							<td>
+								<select style="width:96px;">
+									 <option>港澳通行证</option>
+									 <option>其他</option>
+								 </select>
+							</td>
+							<td>
+								<input type="text" value="420725198808252538" style="width:170px;height:18px;text-indent:4px;">
+							</td>
+							<td>
+								<input type="text" value="13800138000" style="width:170px;height:18px;text-indent:4px;">
+							</td>
+						</tr>
+					</table>
+				</div>        
+          	</div>
+
+          	<div class="enroll panel">  <!--enroll start-->
+				<div class="panelTit">取消旅客</div>
+					<div class="ballNum">
+	                 <label><span>快递(收件人承担到付)</span></label>
+	             	</div>
+				    <div class="panelTable touristTable clearfix">
+					<table>
+						<tr>
+							<th style="width:46px;"></th>
+							<th style="width:80px;">姓名</th>
+							<th style="width:180px;">状态</th>
+							<th style="width:120px;">证件类型</th>
+							<th style="width:210px;">证件号码</th>
+							<th style="width:294px;">手机号</th>
+						</tr>
+						<tr>
+							<td>
+								<div class="passenger-info-table-font1">成人</div>
+							</td>
+							<td>
+								<input type="text" value="张大国" style="width:68px;height:18px;text-indent:4px;">
+							</td>
+							<td>
+								<div class="cancel-passenger clearfix">
+									<span class="font1">已确认</span>
+									<span class="font2">费用：200</span>
+								</div>
+							</td>
+							<td>
+								<select style="width:96px;">
+									 <option>身份证</option>
+									 <option>其他</option>
+								 </select>
+							</td>
+							<td>
+								<input type="text" value="420725198808252538" style="width:170px;height:18px;text-indent:4px;">
+							</td>
+							<td>
+								<input type="text" value="13800138000" style="width:170px;height:18px;text-indent:4px;">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="passenger-info-table-font2">儿童</div>
+							</td>
+							<td>
+								<input type="text" value="张大国" style="width:68px;height:18px;text-indent:4px;">
+							</td>
+							<td>
+								<div class="cancel-passenger clearfix">
+									<span class="font1">已确认</span>
+									<span class="font2">费用：200</span>
+								</div>
+							</td>
+							<td>
+								<select style="width:96px;">
+									 <option>港澳通行证</option>
+									 <option>其他</option>
+								 </select>
+							</td>
+							<td>
+								<input type="text" value="420725198808252538" style="width:170px;height:18px;text-indent:4px;">
+							</td>
+							<td>
+								<input type="text" value="13800138000" style="width:170px;height:18px;text-indent:4px;">
+							</td>
+						</tr>
+					</table>
+				</div>        
+          	</div>
+
+          	<div class="enroll panel">  <!--enroll start-->
+				<div class="panelTit">支付信息</div>
+					
+				    <div class="panelTable touristTable clearfix">
+					<table>
+						<tr>
+							<th style="width:275px;">支付时间</th>
+							<th style="width:243px;">支付金额</th>
+							<th style="width:415px;">支付 / 收款状态</th>
+						</tr>
+						<tr>
+							<td>2014-03-01&nbsp;&nbsp;&nbsp;&nbsp;15 ：30 ：09</td>
+							<td style="color:#ff4200">2000.00元</td>
+							<td>定金支付成功</td>
+						</tr>
+						<tr>
+							<td>2014-03-01&nbsp;&nbsp;&nbsp;&nbsp;15 ：30 ：09</td>
+							<td style="color:#ff4200">10000.00元</td>
+							<td>尾款支付成功</td>
+						</tr>
+					</table>
+				</div>        
+          	</div>
+
+          	<div class="enroll panel">  <!--enroll start-->
+				<div class="panelTit">退款信息</div>
+					
+				    <div class="panelTable touristTable clearfix">
+					<table>
+						<tr>
+							<th style="width:275px;">退款时间</th>
+							<th style="width:243px;">退款金额</th>
+							<th style="width:415px;">退款状态</th>
+						</tr>
+						<tr>
+							<td>2014-03-01&nbsp;&nbsp;&nbsp;&nbsp;15 ：30 ：09</td>
+							<td style="color:#ff4200">2000.00元</td>
+							<td style="color:#ff4200">退款成功</td>
+						</tr>
+					</table>
+				</div>        
+          	</div>
+
+
+
+			
+              <!--应收合计-->
+				 <div class="block block5 block-calc">
+				  <div id="order_calc">
+					<ul class="flat-list">
+					  <li class="first">
+						<label> <span>应收合计</span>
+						  <input class="input-c" value="2580.00">
+						</label>
+					  </li>
+					  <li>
+						
+					  </li>
+					  <li>
+						<label> <span style="text-align:left">= 成人合计</span>
+						  <input value="15000.00 × 1" style="color:#ff6600">
+						</label>
+					  </li>
+					  <li>
+						
+					  </li>
+					  <li>
+						<label> <span style="text-align:left">+ 儿童合计</span>
+						  <input value="10000.00 × 1" style="color:#ff6600">
+						 </label>
+					  </li>
+					</ul>
+				  </div>
+				</div>
+
+				<!--应收合计-->
+				 <div class="block block5 block-calc">
+				  <div id="order_calc">
+					<ul class="flat-list">
+					  <li class="first">
+						<label> <span>应收合计</span>
+						  <input class="input-c" value="2580.00">
+						</label>
+					  </li>
+					  <li>
+						
+					  </li>
+					  <li>
+						<label> <span style="text-align:left">= 成人合计</span>
+						  <input value="15000.00 × 1" style="color:#ff6600">
+						</label>
+					  </li>
+					  <li>
+						
+					  </li>
+					  <li>
+						<label> <span style="text-align:left">+ 儿童合计</span>
+						  <input value="10000.00 × 1" style="color:#ff6600">
+						 </label>
+					  </li>
+					</ul>
+				  </div>
+				</div>
+           
+            
+          
+              <!--<div class="grid-table-pagination page">
+                  <span class="grid-table-count">
+                      共 <em>132</em> 条记录
+                  </span>
+                  <span>
+                      <a href="#" class="prev">&nbsp;</a>
+                  </span>
+                  <span class="links">
+                      <a href="#">1</a>
+                      <a href="#">2</a>
+                      <a href="#" class="current">3</a>
+                      <a href="#">4</a>
+                      <a href="#">5</a>
+                      <a href="javascript:;">...</a>
+                      <a href="#">50</a>
+                  </span>
+                  <span>
+                      <a href="#" class="next">&nbsp;</a>
+                  </span>
+              </div>-->
+              
+            </div>
+          </div>
+ 
+    <!-- end of content -->
+    </div>
+    
+    <div id="extFooter">
+        <div>
+            <p>
+                <a href="javascript:void(0);">关于我们</a>&nbsp;|
+                <a href="javascript:void(0);">微博</a>&nbsp;|
+                <a href="javascript:void(0);">服务条款</a>&nbsp;|
+                <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+    
+</body>
+</html>
+
+
+ <script type="text/x-kendo-template" id="ac-refuse-template">
+            
+            <div class="order-cancel-alert">
+            	<i class="exclamation"></i>
+            	<span>是否确定要将此订单取消</span>
+            </div>
+            <div class="row" style="text-align:center;">
+                <button class="btns button_1_2">确 定</button> 
+                <button class="btns button_2_2">取 消</button> 
+            </div>
+</script>
+
+<script type="text/x-kendo-template" id="ac-sendbackReview-template">	
+				<div class="panelTable touristTable clearfix" style="margin-bottom:10px;">
+					<table>
+						<tr>
+							<th style="width:92px;">姓名</th>
+							<th style="width:68px;">取消费用</th>
+							<th style="width:78px;">证件类型</th>
+							<th style="width:138px;">证件号码</th>
+							<th style="width:112px;">手机号</th>
+							<th style="width:94px;">取消原因</th>
+							<th style="width:312px;">备注</th>
+						</tr>
+						<tr>
+							<td>
+								<span>张大国(成人)</span>
+							</td>
+							<td>
+								<input type="text" value="200" style="width:44px;height:18px;text-indent:4px;">
+							</td>
+							<td>
+								<span>护照</span>
+							</td>
+							<td>
+								<span>3711025831568054</span>
+							</td>
+							<td>
+								<span>13801381007</span>
+							</td>
+							<td>
+								<span>材料不齐</span>
+							</td>
+							<td>
+								<textarea class="cancel-review-textarea">由于收客人数不足成团要求，此团被取消取消了此团被取消取消了</textarea>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>张大国(儿童)</span>
+							</td>
+							<td>
+								<input type="text" value="200" style="width:44px;height:18px;text-indent:4px;">
+							</td>
+							<td>
+								<span>港澳通行证</span>
+							</td>
+							<td>
+								<span>3711025831568054</span>
+							</td>
+							<td>
+								<span>13801381007</span>
+							</td>
+							<td>
+								<span>材料不齐</span>
+							</td>
+							<td>
+								<textarea class="cancel-review-textarea">由于收客人数不足成团要求，此团被取消取消了此团被取消取消了</textarea>
+							</td>
+						</tr>
+					</table>
+				</div>        
+          	
+            <div class="row" style="text-align:right;">
+                <button class="btns button_1_2">审核通过</button> 
+                <button class="btns button_2_2 sendback-review-return-btn">审核退回</button> 
+            </div>
+</script>
+
+<script type="text/x-kendo-template" id="ac-cancelReview-template">	
+				<div class="panelTable touristTable clearfix" style="margin-bottom:10px;">
+					<table>
+						<tr>
+							<th style="width:92px;">姓名</th>
+							<th style="width:68px;">取消费用</th>
+							<th style="width:78px;">证件类型</th>
+							<th style="width:138px;">证件号码</th>
+							<th style="width:112px;">手机号</th>
+							<th style="width:94px;">取消原因</th>
+							<th style="width:312px;">备注</th>
+						</tr>
+						<tr>
+							<td>
+								<span>张大国(成人)</span>
+							</td>
+							<td>
+								<input type="text" value="200" style="width:44px;height:18px;text-indent:4px;">
+							</td>
+							<td>
+								<span>护照</span>
+							</td>
+							<td>
+								<span>3711025831568054</span>
+							</td>
+							<td>
+								<span>13801381007</span>
+							</td>
+							<td>
+								<span>材料不齐</span>
+							</td>
+							<td>
+								<textarea class="cancel-review-textarea">由于收客人数不足成团要求，此团被取消取消了此团被取消取消了</textarea>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>张大国(儿童)</span>
+							</td>
+							<td>
+								<input type="text" value="200" style="width:44px;height:18px;text-indent:4px;">
+							</td>
+							<td>
+								<span>港澳通行证</span>
+							</td>
+							<td>
+								<span>3711025831568054</span>
+							</td>
+							<td>
+								<span>13801381007</span>
+							</td>
+							<td>
+								<span>材料不齐</span>
+							</td>
+							<td>
+								<textarea class="cancel-review-textarea">由于收客人数不足成团要求，此团被取消取消了此团被取消取消了</textarea>
+							</td>
+						</tr>
+					</table>
+				</div>        
+          	
+            <div class="row" style="text-align:right;">
+                <button class="btns button_1_2">审核通过</button> 
+                <button class="btns button_2_2 cancel-review-return-btn">审核退回</button> 
+            </div>
+</script>
+
+
+<script type="text/x-kendo-template" id="ac-reject-reason-template">
+            
+            <div class="rejectReason">
+            	<div class="rejectReason-title">退回原因：</div>
+            	<textarea class="rejectReasonTextarea"></textarea>
+            </div>
+            <div class="row" style="text-align:right;">
+                <button class="btns button_1_2">提 交</button> 
+                
+            </div>
+</script>
+
+
+<script>
+	$(function(){
+	    var refuse = new PopWindow('.ac-refuse',{
+				        title:'取消预订',
+				        width:470,
+				        height:188,
+				        template: '#ac-refuse-template'
+				    }).init();
+
+	    var sendbackReview = new PopWindow('.ac-sendbackReview',{
+				        title:'退订审核',
+				        width:910,
+				        height:218,
+				        template: '#ac-sendbackReview-template'
+				    }).init();
+
+	    var cancelReview = new PopWindow('.ac-cancelReview',{
+				        title:'取消审核',
+				        width:910,
+				        height:218,
+				        template: '#ac-cancelReview-template'
+				    }).init();
+
+	    var rejectReason = new PopWindow('.ac-reject-reason',{
+				        title:'退回原因',
+				        width:468,
+				        height:188,
+				        template: '#ac-reject-reason-template'
+				    }).init();
+
+	    $(".cancel-review-return-btn").on("click",function(){
+
+	    	cancelReview.close();
+	    	rejectReason.show();
+
+	    });
+
+
+	    $(".sendback-review-return-btn").on("click",function(){
+	    	sendbackReview.close();
+	    	rejectReason.show();
+	    })
+	    
+
+	    
+	});
+</script>
