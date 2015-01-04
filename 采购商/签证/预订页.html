@@ -31,24 +31,14 @@
             lensf();
         })
     </script>
-    <!--<style>
-        ::-webkit-input-placeholder, ::-webkit-select-placeholder { /* WebKit browsers */
-            color:#636363;
-            font-size: 14px;
+
+    <style type="text/css">
+        .lineWeight {
+            padding: 10px;
+            border: 1px solid #cfcece!important;
+            color: #333;
         }
-        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-            color:#636363;
-            font-size: 14px;
-        }
-        ::-moz-placeholder { /* Mozilla Firefox 19+ */
-            color:#636363;
-            font-size: 14px;
-        }
-        :-ms-input-placeholder, :-ms-select-placeholder { /* Internet Explorer 10+ */
-            color:#636363;
-            font-size: 14px;
-        }
-    </style>-->
+    </style>
    
 </head>
 <body>
@@ -136,7 +126,7 @@
                                     <th>姓名</th>
                                     <td>
                                         <input type="text" name="" placeholder="中文姓名（如张三）" style="width:150px;">
-                                        <span class="name_tip_text">填写说明</span>
+                                        <span class="name_tip_text" data-role="toolTip">填写说明</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -164,6 +154,7 @@
                     <div class="tour_infoList clearfix">
                         <div class="tour_infoListDiv"><p>旅客2</p><span class="peopleType">儿童</span>
                         </div>
+                        <div class="person_del_icon"></div>
                         <table class="tour_guestInfo" >
                             <colgroup>
                                 <col width="90"/>
@@ -206,17 +197,65 @@
                     
                 </div>
 
-                <div class="tour_createOrder" style="text-align: right;">
-                    <span style="font-size: 14px;">总价<span class="tour_totalPrice"><em>￥</em>16500</span> </span>
-                    <span>
-                        <a class="adaptiveButton brightOrange_btn" style="margin-right: 10px;">
-                            <span class="left"></span>
-                            <span class="center center_1">提交订单</span>
-                            <span class="right"></span>
-                        </a>
-                    </span>
+                <!--  取件方式 -->
+                <div class="tour_createOrder">
+                    <div class="chief">
+                        <h3>取件方式</h3>
+                    </div>
+                    <div class="take_way_container">
+                        <div class="take_way_radio">
+                            <label><input type='radio'>快递（您承担费用，到付）</label>
+                            <label><input type='radio'>自取</label>
+                        </div>
+                        <table class="take_way_info_table">
+                            <colgroup>
+                                <col width="110">
+                                <col width="90">
+                                <col width="300">
+                                <col width="100">
+                                <col width="">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th style="padding-left:10px;">收件人</th>
+                                    <th>收件城市</th>
+                                    <th>详细地址</th>
+                                    <th>手机号</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding-left:10px;"><input type="radio">大大副</td>
+                                    <td>上海</td>
+                                    <td>
+                                        <span>上海宝华国际广场16层上海宝华国际广场16层上海宝华国际广场16层上海宝华国际广场16层</span>
+                                    </td>
+                                    <td>1659855653</td>
+                                    <td>默认地址</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left:10px;">
+                                        <input type="radio">
+                                        <input type="text" style="width:65px">
+                                    </td>
+                                    <td><input type="text" style="width:80px"></td>
+                                    <td><input type="text" style="width:275px"></td>
+                                    <td><input type="text" style="width:85px"></td>
+                                    <td><span class="set_default_address">设为默认地址</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                
+
+                <!-- 订单备注  -->
+                <div class="tour_createOrder">
+                    <div class="chief">
+                        <h3>订单备注</h3>
+                    </div>
+                    <textarea class="visa_order_remark" placeholder="如有特殊要求，您可以在这里进行备注说明。"></textarea>
+                </div>
             </div>
         
             <!--right start-->
@@ -232,14 +271,8 @@
                             <p>成人：<span class="price"><em>￥</em>9865</span>/人 x2 </p>
                             <p>儿童：<span class="price"><em>￥</em>7523</span>/人 x1 </p>
                         </div>
-                        <div class="orderTotalInfo dotted_topbor">
-                            <h5>签证</h5>
-                            <p style="font-size: 12px;">美国个人旅游签证（中信银行代传递免面
-                                试，用于团队，上海送签）</p>
-                            <p><span class="price"><em>￥</em>9865</span>/人 x2 </p>
-                        </div>
                         <div class="orderTotalInfo dotted_topbor" style="text-align: center;">
-                            <a class="adaptiveButton brightOrange_btn">
+                            <a class="adaptiveButton brightOrange_btn submit_order_btn">
                                 <span class="left"></span>
                                 <span class="center center_1">提交订单</span>
                                 <span class="right"></span>
@@ -273,106 +306,56 @@
         </center>
     </footer>
 
-<script>
-    $(function(){
-       
-        $(".customerCenterButton").hover(
-                function(){
-                    $(this).animate(
-                            {width:"100%"},
-                            200,
-                            function(){$(".customerCenterContainer").addClass("expanded");}
-                    )},
-                function(){
-                    if($(".customerCenterContainer").hasClass("off")){
-                        $(this).animate(
-                                {width:"90px"},
-                                200,
-                                function(){
-                                    $(".customerCenterContainer").removeClass("expanded");
-                                }
-                        )
-                    }
-                }
-        )
-        $(".customerCenterButton").click(function(){
-            if(!$(".customerCenterContainer").hasClass("off"))
-            {
-                $(".customerCenterContainer").addClass("off");
-                $(".customerCenterItemsPanel").hide();
-                $(this).animate({width:"90px"},200,function(){$(".customerCenterContainer").removeClass("expanded");})
-                return false;
-            }
-            $(".customerCenterButton").animate({width:"100%"},"fast");
-            $(".customerCenterItemsPanel").slideDown("fast");
-            $(".customerCenterContainer").removeClass("off");
-
-        })
-    });
-</script>
-
-<script>
-    $(function(){
-        $(".tour_tab_change li").each(function(index){
-            $(this).click(function(){
-                $(".us-body .tab").hide();
-                $(".us-body .tab:eq(" + index + ")").show();
-                $(".tour_tab_change li").removeClass("currentState");
-                $(this).addClass("currentState");
-            });
-
-        });
-
-
-        $(".tour_rightFillIn").fixedBar();
-
-        $(".add_guestBlock").click(function(){
-            $("#addGuest_03").show(1000);
-        });
-    });
-</script>
-
-
-
-
-
-
-<script type="text/html" id="departureInfoTemplate">
-    <div class="departureInfoContainer">
-        <ul>
-            # for(var i=0;i<data.length;i++){ #
-            <li>
-                <span>#=data[i].type#</span>
-                <span>#=data[i].typetips#</span>
-                <span class="departureMoney">¥#=data[i].Price#起</span>
-            </li>
-            #}#
+<script type="text/html" id="nameTipTemplate">
+    <div class="nameTipWinContainer">
+        <div class="layerGrayArrow"></div>
+        <ul class="nameTipContList">
+            <li>【填写说明】</li>
+            <li>1. 旅客姓名必须与所持证件一致。</li>
+            <li>2. 名字中含生僻字可直接输入拼音代替。例：”王巗“可输入为”王yan“或者”王-yan“。</li>
+            <li>3. 姓名中不可含有称谓等词语，如：小姐、先生、太太、夫人等。</li>
+            <li>4. 中文姓名不可少于2个汉字，英文姓名不可少于2个英文单词。</li>
+            <li>【登机特别提示】</li>
+            <li>1. 持护照登机，如使用中文姓名，请确保护照上有相应的中文姓名。</li>
+            <li>2. 持护照登机的外宾，请以姓在前名在后的方式填写，例：Zhang（姓）/San（名），不区分大小写。</li>
         </ul>
     </div>
 </script>
 
+<script type="text/x-kendo-template" id="tipTemplate">
+    <div class="tip_win_container">
+        <p class="tip_content_text">
+            <i class="large-warn-icon"></i>当前日期已不可预订，请选择其他日期重新预订！
+        </p>
+        <p>
+            <a class="adaptiveButton brightOrange_btn">
+                <span class="left"></span>
+                <span class="center center_1">确 定</span>
+                <span class="right"></span>
+            </a>
+        </p>
+    </div>
+</script>
 
 
 <script>
     $(function(){
-        var data=[{type:"美国个人旅游签证",typetips:"（中信银行代传递免面试，用于团队，上海送签）", Price:9865},
-                  {type:"加拿大个人旅游签证",typetips:"（中信银行代传递免面试，用于团队，上海送签）", Price:9865}];
-        
-        var departureFL=new FloatLayer({
-            trigger:".departureInfo",
-            template:"#departureInfoTemplate",
-            data:data
+
+       var win1 = new PopWindow(".submit_order_btn", {
+            template: "#tipTemplate",
+            width: 450
+       }).init();
+
+        $(".name_tip_text").kendoTooltip({
+            position:"bottom", //left right top
+            width:370,
+            wrapperClass:"lineWeight",
+            content:function(){
+                return $("#nameTipTemplate").html();
+            },
+            callout:false,
+            offsetY:5
         });
-
-
-        $(".departureInfoContainer li").click(function(){
-            var i=$(this).index();
-            departureFL.input.val(data[i].type);
-            departureFL.close();
-        })
-
-       
-
         
     });
 </script>
