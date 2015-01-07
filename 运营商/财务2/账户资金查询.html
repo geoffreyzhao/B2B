@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>运营商 财务 账户资金查询</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/static/css/operatorCommonHeader.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/finance.css" />
+   
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/scrollFix.js"></script>
+    <script type="text/javascript" src="/static/js/public.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+
+
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/static/css/ie.css" />
+    <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/static/js/sync.js"></script>
+    <!-- @CLB@ -->
+
+
+</head>
+<body>
+	<div id="head">
+        <div></div>
+    </div>
+
+    <div id="catalogue"></div>
+
+<div id="container">
+	<div class="logo">
+            <div class="clearfix">
+                <h1></h1>
+                <div class="profile">
+                    <a href="javascript:void(0)">你好,千颂伊</a>
+                    <a href="javascript:void(0)">退出</a>
+                </div>
+            </div>
+            <ul id="catalogue_menu">
+                <li class="">
+                    <a href="javascript:void(0)">国内机票</a>                    
+                </li>
+                <li><a href="javascript:void(0)">国际机票</a></li>
+                <li><a href="javascript:void(0)">酒店</a></li>
+                <li>
+                    <a href="javascript:void(0)">阿里旅行</a>                    
+                </li>
+                <li><a href="javascript:void(0)">打包产品</a></li>
+                <li><a href="javascript:void(0)">旅游</a></li>
+                <li><a href="javascript:void(0)">邮轮</a></li>
+                <li>
+                	<a href="javascript:void(0)">签证</a>
+                </li>
+                <li><a href="javascript:void(0)">保险</a></li>
+                <li><a href="javascript:void(0)">短信</a></li>
+                <li><a href="javascript:void(0)">通用订单</a></li>
+                <li><a href="javascript:void(0)">票证</a></li>
+                <li class="current">
+                    <a href="javascript:void(0)">财务</a>
+                    <ol class="subMenu">
+                        <li><a href="javascript:void(0)">资金明细</a></li>
+                        <li><a href="javascript:void(0)">充值管理</a></li>
+                        <li><a href="javascript:void(0)">授信管理</a></li>
+                        <li><a href="javascript:void(0)">收银管理</a></li>
+                        <li><a href="javascript:void(0)">对账管理</a></li>
+                        <li><a href="javascript:void(0)">对账核销</a></li>
+                        <li><a href="javascript:void(0)">付款管理</a></li>
+                        <li class="currentSubMenu"><a href="javascript:void(0)">账户管理</a></li>
+                        <li><a href="javascript:void(0)">数据报表</a></li>
+                    </ol>
+                </li>
+                <li><a href="javascript:void(0)">客户</a></li>
+                <li><a href="javascript:void(0)">设置</a></li>
+            </ul>
+            <div class="headerMessage clearfix">
+                <div id="msgNum">
+                    <span>消息</span>
+                    <em>30</em>
+                </div>
+            </div>
+        </div>
+
+		<div id="mainContent">
+		<!-- start content -->
+            <!-- sub nav start -->
+            <div class="secondSubNav">
+                <dl class="currentDl">
+                    <dt>账户资金查询</dt>
+                    <dd><a href="#" class="currentDd">账户资金查询</a></dd>
+                </dl>
+                <div class="secondSubNav-line"></div>
+                <dl>
+                    <dt>资金操作</dt>
+                    <dd><a href="#">充值管理</a></dd>
+                    <dd><a href="#">押金管理</a></dd>
+                    <dd class="moreDd"><a href="#">扣款管理</a></dd>
+                    <dd class="moreDd"><a href="#">冻结管理</a></dd>
+                    <dd class="moreDd"><a href="#">提现管理</a></dd>
+                </dl>
+                <div class="secondSubNav-line"></div>
+                <dl>
+                    <dt>收支明细</dt>
+                    <dd><a href="#">可用账户收支明细</a></dd>
+                </dl>
+                <div class="secondSubNav-line"></div>
+                <dl>
+                    <dt>对账单管理</dt>
+                    <dd><a href="#">欠款查询</a></dd>
+                    <dd><a href="#">还款</a></dd>
+                </dl>
+                <div class="secondSubNav-line"></div>
+                <dl>
+                    <dt>账户管理</dt>
+                    <dd><a href="#">账户类型管理</a></dd>
+                </dl>
+            </div>
+            <!-- sub nav end -->
+        
+            <div class="topFixedToolsBar fixedBar">
+                <!--<div class="commonReturnBtn">
+                    <a href="#">返回</a>
+                </div>-->
+                <div class="fixedMenu">
+                    <h3 class="fixedMenuTitle">账户资金查询</h3>
+                    <!--<a href="#" class="current">充值管理</a>
+                    <a href="#">押金管理</a>-->
+                </div>
+                <!--<div class="fixedButton">
+                    <a class="button_secondary adaptiveButton small ac-new" href="javascript:void(0);">
+                        <span class="left"></span>
+                        <span class="center">新增押金</span>
+                        <span class="right"></span>
+                    </a>
+                     <a class="button_secondary adaptiveButton small" href="javascript:void(0);">
+                         <span class="left"></span>
+                         <span class="center">发 布</span>
+                         <span class="right"></span>
+                     </a>
+                </div>-->
+            </div>
+
+		    <div class="block searchAccountDiv">
+                <table class="searchAccountTab">
+                    <colgroup>
+                        <col width="70"/>
+                        <col width="220"/>
+                        <col width="70"/>
+                        <col width="180"/>
+                        <col width="70"/>
+                        <col width="150"/>
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th>客户名称</th>
+                        <td><input type="text" style="width: 200px;"/></td>
+                        <th>冻结状态</th>
+                        <td>
+                            <select data-role="dropdownlist" style="width:150px;">
+                                <option value="全部">全部</option>
+                                <option value="全部">全部</option>
+                            </select>
+                        </td>
+                        <th>截止日期</th>
+                        <td><input type="text" class="datepicker" style="width: 113px;"/></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="btnDiv">
+                    <button class="btns btn-orange-s">查询</button>
+                </div>
+            </div>
+            
+            <!-- search result start -->
+        <div class="block block2">
+            <div class="block-header">
+                <button class="btns btn-ac-blue">导出Excel</button>
+            </div>
+            <div class="k-grid-content">
+                <table cellpadding="0" cellspacing="0" class="tgrid accountSearchTable">
+                <colgroup>
+                    <col width="110"/>
+                    <col width="78"/>
+                    <col width="100"/>
+                    <col width="100"/>
+                    <col width="100"/>
+                    <col width="100"/>
+                    <col width="100"/>
+                    <col width="100"/>
+                    <col width="100"/>
+                    <col width="100"/>
+                    <col width="100"/>
+                    <col width="100"/>
+                    <col width="100"/>
+                    <col width="100"/>
+                    <col width="100"/>
+                    <col width="100"/>
+                    <col width="100"/>
+                    <col width="100"/>
+                    <col width="100"/>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th class="line_left" rowspan="3">客户名称</th>
+                    <th rowspan="3" class="borderRightColor">冻结状态</th>
+                    <th colspan="3" class="tgridThNoBorder tgridThBackground borderRightColor tgridThBlodFonts">账户总览</th>
+                    <th colspan="5" class="tgridThNoBorder borderRightColor tgridThBlodFonts">预存账户</th>
+                    <th colspan="9" class="tgridThNoBorder line_right tgridThBlodFonts">信用账户</th>
+                </tr>
+                <tr>
+                    <th rowspan="2" class="tgridThBackground">账户余额</th>
+                    <th rowspan="2" class="tgridThBackground">欠款总额</th>
+                    <th rowspan="2" class="tgridThBackground borderRightColor">不可用金额</th>
+                    <th rowspan="2">当前余额</th>
+                    <th rowspan="2">授信欠款</th>
+                    <th colspan="3" class="tgridThNoBorder borderRightColor tgridThCenterFonts">不可用金额</th>
+                    <th rowspan="2">当前余额</th>
+                    <th rowspan="2">当前可用余额</th>
+                    <th rowspan="2">信用额度</th>
+                    <th rowspan="2">临时额度</th>
+                    <th rowspan="2">当期欠款</th>
+                    <th rowspan="2">历史欠款</th>
+                    <th colspan="3" class="tgridThNoBorder line_right tgridThCenterFonts">不可用金额</th>
+                </tr>
+                <tr>
+                    <th>提现金额</th>
+                    <th>押金金额</th>
+                    <th>冻结金额</th>
+                    <th>提现金额</th>
+                    <th>押金金额</th>
+                    <th class="line_right">冻结金额</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>我是大客户</td>
+                    <td class="borderRightColor">冻结</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td class="borderRightColor">-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td class="borderRightColor">-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                </tr>
+                <tr>
+                    <td>华东大区总代理的客户的名字</td>
+                    <td class="borderRightColor">支出</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td class="borderRightColor">-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td class="borderRightColor">-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                </tr>
+                <tr>
+                    <td>亚太区总部</td>
+                    <td class="borderRightColor">冻结</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td class="borderRightColor">-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td class="borderRightColor">-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                </tr>
+                <tr>
+                    <td>亚太区总部</td>
+                    <td class="borderRightColor">支出</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td class="borderRightColor">-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td class="borderRightColor">-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                </tr>
+                <tr>
+                    <td>亚太区总部</td>
+                    <td class="borderRightColor">冻结</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td class="borderRightColor">-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td class="borderRightColor">-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                </tr>
+                <tr>
+                    <td>我是大客户</td>
+                    <td class="borderRightColor">支出</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td class="borderRightColor">-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td class="borderRightColor">-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                    <td>-123,456.00</td>
+                </tr>
+                </tbody>
+                </table>
+            </div>
+                <div class="grid-table-pagination page" style="border-bottom: none;">
+                          <span class="grid-table-count">
+                              共 <em>132</em> 条记录
+                          </span>
+                          <span>
+                              <a href="#" class="prev">&nbsp;</a>
+                          </span>
+                          <span class="links">
+                              <a href="#">1</a>
+                              <a href="#">2</a>
+                              <a href="#" class="current">3</a>
+                              <a href="#">4</a>
+                              <a href="#">5</a>
+                              <a href="javascript:;">...</a>
+                              <a href="#">50</a>
+                          </span>
+                          <span>
+                              <a href="#" class="next">&nbsp;</a>
+                          </span>
+                </div>
+            </div>
+                <!-- search result end -->
+</div>
+</div>
+
+<!-- end of content -->
+
+<div id="extFooter">
+    <div>
+        <p>
+            <a href="javascript:void(0);">关于我们</a>&nbsp;|
+            <a href="javascript:void(0);">微博</a>&nbsp;|
+            <a href="javascript:void(0);">服务条款</a>&nbsp;|
+            <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+        </p>
+        <p>客户服务热线:400-720-6666</p>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        $("select").kendoDropDownList();
+        $(".secondSubNav .currentDl").next(".secondSubNav-line").css("display","none");
+        $(".secondSubNav .currentDl").prev(".secondSubNav-line").css("display","none");
+        $(".fixedBar").fixedBar();
+        
+        //次导航效果
+        $(".secondSubNav").mouseenter(function(){
+            $(".secondSubNav .currentDl").css("height","99px");
+            $(".secondSubNav .moreDd").css("display","block");
+        });
+        $(".secondSubNav").mouseleave(function(){
+            $(".secondSubNav .currentDl").css("height","49px");
+            $(".secondSubNav .moreDd").css("display","none");
+            
+        });
+
+    });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+

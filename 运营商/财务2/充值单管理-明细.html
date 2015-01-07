@@ -58,23 +58,39 @@
     <div id="sub_menu_bar"></div>
     <div id="mainContent">
         
-        <div class="actions block">
+       <!-- <div class="actions block">
             <div class="col col-l">
-                <a class="item" href="#">资金汇总</a> 
-                <a class="item highlight" href="#">充值管理</a> 
-                <a class="item" href="#">提现管理</a> 
-                <a class="item" href="#">授信管理</a> 
-                <a class="item" href="#">押金管理</a> 
-                <a class="item" href="#">冻结管理</a> 
-                <a class="item" href="#">收支明细</a> 
-                <a class="item" href="#">支票管理</a> 
-                <a class="item" href="#">交易明细</a> 
+                <a class="item highlight" href="#">充值明细</a> 
+                <a class="item" href="#">充值审核</a> 
+                <a class="item" href="#">支票审核</a> 
             </div>
             <div class="col col-r sep-l">
                 <button class="btns btn-blue ac-new">新增充值</button>
                 <button class="btns btn-blue ac-new2">新增扣款</button>
-                <a href="充值单管理.html"><button class="btns btn-blue">充值单管理</button></a>
+            </div>
+        </div>-->
 
+        <div class="topFixedToolsBar fixedBar">
+            <!--<div class="commonReturnBtn">
+                <a href="#">返回</a>
+            </div>-->
+            <div class="fixedMenu">
+                <!--<h3 class="fixedMenuTitle">账户资金查询</h3>-->
+                <a href="#" class="current">充值明细</a>
+                <a href="#">充值审核</a>
+                <a href="#">支票审核</a>
+            </div>
+            <div class="fixedButton">
+                <a class="button_secondary adaptiveButton small ac-new" href="javascript:void(0);">
+                    <span class="left"></span>
+                    <span class="center center_1">新增充值</span>
+                    <span class="right"></span>
+                </a>
+                 <a class="button_secondary adaptiveButton small ac-new2" href="javascript:void(0);">
+                     <span class="left"></span>
+                     <span class="center center_1">新增扣款</span>
+                     <span class="right"></span>
+                 </a>
             </div>
         </div>
 
@@ -122,20 +138,24 @@
             </div> 
             <table class="grid-table">
                 <tr class="thead">
-                    <th>客户</th>
-                    <th>充值金额</th>
+                    <th><input type="checkbox"/></th>
+                    <th>操作</th>
+                    <th>客户名称</th>
+                    <th>冻结金额</th>
                     <th>扣款金额</th>
                     <th>账户余额</th>
-                    <th>充值/扣款方式</th>
-                    <th>到帐时间</th>
-                    <th>摘要</th>
-                    <th>操作人</th>
+                    <th>充值渠道</th>
+                    <th>充值时间</th>
+                    <th>入账时间</th>
+                    <th>申请备注</th>
+                    <th>解冻时间</th>
                 </tr>
             </table>
-            <div style="height:0px;position:relative;" class="extra">
-                <div style="position:absolute;top:-30px;left:20px;">
-                充值总金额：
-               <span class="text1">231321321321321</span> &nbsp; 
+            <div style="height:0px;position:relative;" class="aggregateBar">
+                <div style="position:absolute;top:-24px;left:6px;">
+                    <span><b>收支总额：</b><b class="text1">60,000,000.00</b></span>
+                    <span><b>充值总计：</b><b class="text1">60,000,000.00</b></span>
+                    <span><b>扣款总计：</b><b class="text1">60,000,000.00</b></span>
                 </div>
             </div>
         </div>
@@ -144,15 +164,16 @@
 $(function(){
     new GridTable('.block2 .grid-table',{
          dataSource: [{
-            c1:222,
-            c2:333,
-            c3:"11,321,321.00",
-            c4:"xxx",
-            c5:"xxx",
-            c6:"2013-12-12",
-            c7:"张三",
-            c8:"2013-12-12",
-            c9:"张三"
+            c2:"扣款",
+            c3:"国内携程",
+            c4:"160,000,000",
+            c5:"——",
+            c6:"12,334,00",
+            c7:"网上支付（网银充值）",
+            c8:"2013-12-12 17:02:36",
+            c9:"2013-12-12",
+            c10:"工行卡",
+            c11:"2013-12-12 17:02:36"
         }], 
         rowTemplate: kendo.template($("#block2-grid-row-template").html())
     }).init(); 
@@ -160,149 +181,247 @@ $(function(){
 </script>
 <script type="text/x-kendo-template" id="block2-grid-row-template">
                 <tr>
-                    <td>xxx</td>
-                  <td class="text1">#= data.c3 #</td>
-                  <td class="text1">#= data.c3 #</td>
-                  <td class="text1">#= data.c3 #</td>
-                  <td>xxx</td>
-                  <td>2013-04-01 15:30</td>
-                  <td>xxx</td>
-                  <td>2012-04-23<br>#= data.c9 #</td>
+                  <td><input type="checkbox"/></td>
+                  <td class="ac-cutPayment"><a href="javascript:void(0);">#= data.c2 #</a></td>
+                  <td>#= data.c3 #</td>
+                  <td class="text1">#= data.c4 #</td>
+                  <td class="text1">#= data.c5 #</td>
+                  <td>#= data.c6 #</td>
+                  <td>#= data.c7 #</td>
+                  <td>#= data.c8 #<br>ATUO_WZ</td>
+                  <td>#= data.c9 #</td>
+                  <td>#= data.c10 #</td>
+                  <td>#= data.c11 #<br>ATUO_WZ</td>
                 </tr>
 </script>
 
 <!-- 新增充值模板 -->
 <script type="text/x-kendo-template" id="ac-new-template">
-<div class="ac-new-window-container">
-<ul class="flat-list">
-<li>
-<label class="vertical-head">选择客户：</label>
-<input style="width:100px">
-<button class="btns btn-search ac-search-customer">查询</button>
-</li>
-<li>
-<label class="vertical-head">可用余额：</label>
-<span>231321</span>
-</li>
-<li style="width:510px;">
-<label class="vertical-head">充值方式</label>
-<input data-role="dropdownlist" data-index="0" data-value-field="value" data-text-field="text" data-source="[{value:1,text:'现金'}, {value:2,text:'刷卡'}, {value:3,text:'支票'}, {value:4,text:'汇款'}, {value:5,text:'网上支付'}, {value:6,text:'电话支付'}, {value:6,text:'其它'}]" style="width:80px;">
-<input style="width:120px">
-添加：
-<button class="btns btn-ac-blue ac-add-row" data-index="0">现金</button>
-<button class="btns btn-ac-blue ac-add-row" data-index="1">刷卡</button>
-<button class="btns btn-ac-blue ac-add-row" data-index="2">支票</button>
-<button class="btns btn-ac-blue ac-add-row" data-index="3">汇款</button>
-</li>
-<li style="width:400px;">
-<label style="vertical-align:top;" class="vertical-head">摘要：</label>
-<textarea></textarea>
-</li>
-</ul>
-</div>
-        <div style="text-align:right;">
-            <button class="btns button_1_2 ac-submit">提 交</button> 
+        <div class="ac-new-window-container">
+            <ul class="flat-list">
+                <li>
+                    <label class="vertical-head">选择客户：</label>
+                    <form class="selectBlockForm">
+                        <input type="text" class="selectInput"/>
+                        <button class="btns btn-search ac-search-customer">查询</button>
+                    </form>
+                </li>
+                <li>
+                    <label class="vertical-head">可用余额：</label>
+                    <span class="fcf60">123,123.00</span>
+                </li>
+                <li>
+                    <div class="window_line"></div>
+                </li>
+                <li>
+                    <label class="vertical-head">充值渠道：</label>
+                    <select data-role="dropdownlist" style="width:75px;">
+                        <option>现金</option>
+                        <option>刷卡</option>
+                        <option>支票</option>
+                        <option>汇款</option>
+                        <option>网上支付</option>
+                        <option>电话支付</option>
+                        <option>其他</option>
+                    </select>
+                    <select data-role="dropdownlist" style="width:75px;">
+                        <option>现金</option>
+                        <option>刷卡</option>
+                        <option>支票</option>
+                        <option>汇款</option>
+                        <option>网上支付</option>
+                        <option>电话支付</option>
+                        <option>其他</option>
+                    </select>
+                    <input type="text" style="width:70px; margin-right: 5px;"/>
+                    <span>添加：</span>
+                    <button class="btns btn-ac-blue ac-add-row" data-index="0">现金</button>
+                    <button class="btns btn-ac-blue ac-add-row" data-index="1">刷卡</button>
+                    <button class="btns btn-ac-blue ac-add-row" data-index="2">支票</button>
+                    <button class="btns btn-ac-blue ac-add-row" data-index="3">汇款</button>
+                </li>
+                <li>
+                    <label class="vertical-head">付款人/单位：</label>
+                    <input type="text" style="width:167px;"/> 
+                </li>
+                <li>
+                    <div class="window_line"></div>
+                </li>
+                <li>
+                    <label class="vertical-head">入账时间：</label>
+                    <select data-role="dropdownlist" style="width:132px;">
+                        <option>本月</option>
+                    </select>
+                </li>
+                <li>
+                    <label style="vertical-align:top;" class="vertical-head">申请备注：</label>
+                    <textarea style="width:428px;height: 75px;"></textarea>
+                </li>
+            </ul>
+        </div>
+        <div style="text-align:right;margin-right: 15px;">
+            <button class="btns button_1_2 ac-submit">提交申请</button> 
             <button class="btns button_2_2">取 消</button> 
         </div>
 </script>
 
 <!-- 新增扣款模板 -->
 <script type="text/x-kendo-template" id="ac-new2-template">
-<div class="ac-new-window-container">
-<ul class="flat-list">
-<li>
-<label class="vertical-head">选择客户：</label>
-<input style="width:100px">
-<button class="btns btn-search ac-search-customer">查询</button>
-</li>
-<li>
-<label class="vertical-head">可用余额：</label>
-<input style="width:100px">
-</li>
-<li>
-<label class="vertical-head">扣款金额：</label>
-<input style="width:100px">
-</li>
-<li>
-<label class="vertical-head">确认金额：</label>
-<input style="width:100px">
-</li>
-<li style="width:400px;">
-<label style="vertical-align:top;" class="vertical-head">备注：</label>
-<textarea></textarea>
-</li>
-</ul>
-</div>
-        <div style="text-align:right;">
+        <div class="ac-new-window-container">
+        <ul class="flat-list">
+        <li>
+            <label class="vertical-head">客户名称：</label>
+            <form class="selectBlockForm">
+                <input type="text" class="selectInput"/>
+                <button class="btns btn-search ac-search-customer">查询</button>
+            </form>
+        </li>
+        <li>
+            <label class="vertical-head">可用余额：</label>
+            <span class="fcf60">123,123.00</span>
+        </li>
+        <li>
+            <label class="vertical-head">扣款金额：</label>
+            <input type="text" style="width:100px"/>
+        </li>
+        <li>
+            <label class="vertical-head">确认金额：</label>
+            <input type="text" style="width:100px"/>
+        </li>
+        <li>
+            <label style="vertical-align:top;" class="vertical-head">摘要：</label>
+            <textarea style="width:428px;height: 75px;"></textarea>
+        </li>
+        </ul>
+        </div>
+        <div style="text-align:right;margin-right: 15px;">
             <button class="btns button_1_2 ac-submit2">提 交</button> 
             <button class="btns button_2_2">取 消</button> 
         </div>
 </script>
 
+<!-- 充值扣款模板 -->
+<script type="text/x-kendo-template" id="ac-cutPayment-template">
+    <div class="ac-new-window-container">
+        <ul class="flat-list">
+            <li>
+                <label class="vertical-head">客户名称：</label>
+                <span>我是大客户</span>
+            </li>
+            <li>
+                <label class="vertical-head">预存余额：</label>
+                <span>123,123.00</span>
+            </li>
+            <li>
+                <label class="vertical-head">原充值余额：</label>
+                <span>123,123.00</span>
+            </li>
+            <li>
+                <div class="window_line"></div>
+            </li>
+            <li>
+                <label class="vertical-head">扣款金额：</label>
+                <input type="text" style="width:100px"/>
+            </li>
+            <li>
+                <label class="vertical-head">确认扣款金额：</label>
+                <input type="text" style="width:100px"/>
+            </li>
+            <li>
+                <div class="window_line"></div>
+            </li>
+            <li>
+                <label class="vertical-head fwbold" style="width:100px;">调整后充值金额：</label>
+                <span class="fcf60">123,123.00</span>
+            </li>
+            <li>
+                <label class="vertical-head">入账日期：</label>
+                <select data-role="dropdownlist" style="width:132px;">
+                    <option>本月</option>
+                </select>
+            </li>
+            <li>
+                <label style="vertical-align:top;" class="vertical-head">申请备注：</label>
+                <textarea style="width:428px;height: 75px;"></textarea>
+            </li>
+        </ul>
+    </div>
+    <div style="text-align:right;margin-right: 15px;">
+        <button class="btns button_1_2 ac-submit3">提 交</button>
+        <button class="btns button_2_2">取 消</button>
+    </div>
+</script>
+
 <!-- 新增充值确认模板 -->
 <script type="text/x-kendo-template" id="ac-submit-template">
-<div class="ac-new-window-container">
-<ul class="flat-list">
-                    <li>
-                    <label class="vertical-head">用户：</label>
-                    <span>fdsa</span>
-                    </li>
-                    <li style="width:300px">
-                    <label class="vertical-head">充值方式：</label>
-                    <span>fdafds</span>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <label style="width:40px;" class="vertical-head">金额：</label>
-                    <strong class="text1">12,313,213</strong>
-                    </li>
-                    <li style="width:300px">
-                    <label class="vertical-head">充值方式：</label>
-                    <span>fdafds</span>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <label style="width:40px;" class="vertical-head">金额：</label>
-                    <strong class="text1">12,313,213</strong>
-                    </li>
-                    <li style="width:300px">
-                    <label class="vertical-head">充值方式：</label>
-                    <span>fdafds</span>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <label style="width:40px;" class="vertical-head">金额：</label>
-                    <strong class="text1">12,313,213</strong>
-                    </li>
-                    <li style="width:300px">
-                    <label class="vertical-head">充值方式：</label>
-                    <span>fdafds</span>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <label style="width:40px;" class="vertical-head">金额：</label>
-                    <strong class="text1">12,313,213</strong>
-                    </li>
-    </div>
+    <div class="ac-new-window-container">
+        <ul class="flat-list affirmUl">
+                <li>
+                    <label class="vertical-head fwbold">用户：</label>
+                    <span>suning12435</span>
+                </li>
+                <li>
+                    <label class="vertical-head fwbold">充值方式：</label>
+                    <span>中国银行（刷卡）</span>
+                </li>
+                <li>
+                    <label class="vertical-head fwbold">金额：</label>
+                    <span class="text1">160,000,000.00</span>
+                </li>
+            </ul>
+        </div>
+        <div style="text-align:right;">
+            <button class="btns button_1_2">提 交</button> 
+            <button class="btns button_2_2">取 消</button> 
+        </div>
+</script>
+
+<!-- 新增扣款确认 -->
+<script type="text/x-kendo-template" id="ac-submit2-template">
+    <div class="ac-new-window-container">
+        <ul class="flat-list affirmUl">
+            <li>
+                <label class="vertical-head fwbold">用户：</label>
+                <span>suning12435</span>
+            </li>
+            <li>
+                <label class="vertical-head fwbold">扣款金额：</label>
+                <span class="text1">160,000,000.00</span>
+            </li>
+            </ul>
+        </div>
         <div style="text-align:right;">
             <button class="btns button_1_2">确 认</button> 
             <button class="btns button_2_2">取 消</button> 
         </div>
 </script>
 
-<!-- 新增扣款 -->
-<script type="text/x-kendo-template" id="ac-submit2-template">
-<div class="ac-new-window-container">
-<ul class="flat-list">
-                    <li>
-                    <label class="vertical-head">用户：</label>
-                    <span>fdsa</span>
-                    </li>
-                    <li>
-                    <label class="vertical-head">扣款金额：</label>
-                    <strong class="text1">12,313,213</strong>
-                    </li>
+<!-- 扣款确认 -->
+<script type="text/x-kendo-template" id="ac-submit3-template">
+    <div class="ac-new-window-container">
+        <ul class="flat-list affirmUl">
+            <li>
+                <label class="vertical-head fwbold">客户名称：</label>
+                <span>我是大客户</span>
+            </li>
+            <li>
+                <label class="vertical-head fwbold">原充值金额：</label>
+                <span>123,123,00</span>
+            </li>
+            <li>
+                <label class="vertical-head fwbold">扣款金额：</label>
+                <span class="text1">160,000,000.00</span>
+            </li>
+            <li>
+                <label class="vertical-head fwbold">调整后扣款金额：</label>
+                <span class="text1">160,000,000.00</span>
+            </li>
+        </ul>
     </div>
-        <div style="text-align:right;">
-            <button class="btns button_1_2">确 认</button> 
-            <button class="btns button_2_2">取 消</button> 
-        </div>
+    <div style="text-align:right;">
+        <button class="btns button_1_2">确认提交</button>
+        <button class="btns button_2_2">取 消</button>
+    </div>
 </script>
 
 <script type="text/x-kendo-template" id="ac-add-row-template">
@@ -320,12 +439,20 @@ $(function(){
 
     var ac_new = new PopWindow('.ac-new',{
         template:"#ac-new-template", 
-        title:'新增充值' 
+        title:'新增充值' ,
+        width:550
     }).init();
 
     var ac_new2 = new PopWindow('.ac-new2',{
         template:"#ac-new2-template", 
-        title:'新增扣款' 
+        title:'新增扣款' ,
+        width:550
+    }).init();
+
+    new PopWindow('.ac-cutPayment', {
+        template:'#ac-cutPayment-template',
+        title:'充值扣款',
+        width:'550'
     }).init();
 
 
@@ -338,13 +465,19 @@ $(function(){
     new PopWindow('.ac-submit', {
         template:'#ac-submit-template',
         title:'确认充值',
-        width:'470'
+        width:'500'
     }).init();
 
     new PopWindow('.ac-submit2', {
         template:'#ac-submit2-template',
         title:'确认扣款',
-        width:'470'
+        width:'500'
+    }).init();
+
+    new PopWindow('.ac-submit3', {
+        template:'#ac-submit3-template',
+        title:'确认扣款',
+        width:'500'
     }).init();
 
     $('body').delegate('.ac-add-row', 'click', function(){

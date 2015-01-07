@@ -57,7 +57,7 @@
     <div class="clear"></div>
     <div id="sub_menu_bar"></div>
     <div id="mainContent">
-                <div class="actions block">
+        <!-- <div class="actions block">
             <div class="col col-l">
                 <a class="item" href="#">资金汇总</a> 
                 <a class="item" href="#">充值管理</a> 
@@ -71,6 +71,30 @@
             </div>
             <div class="col col-r sep-l">
                 <button class="btns btn-blue ac-new">新增押金</button>
+            </div>
+        </div>-->
+
+        
+        <div class="topFixedToolsBar fixedBar">
+            <!--<div class="commonReturnBtn">
+                <a href="#">返回</a>
+            </div>-->
+            <div class="fixedMenu">
+                <h3 class="fixedMenuTitle">押金管理</h3>
+                <!--<a href="#">充值管理</a>
+                <a href="#" class="current">押金管理</a>-->
+            </div>
+            <div class="fixedButton">
+                <a class="button_secondary adaptiveButton small ac-new" href="javascript:void(0);">
+                    <span class="left"></span>
+                    <span class="center center_1">新增押金</span>
+                    <span class="right"></span>
+                </a>
+                <!-- <a class="button_secondary adaptiveButton small" href="javascript:void(0);">
+                     <span class="left"></span>
+                     <span class="center">发 布</span>
+                     <span class="right"></span>
+                 </a>-->
             </div>
         </div>
 
@@ -177,147 +201,192 @@ $(function(){
         </td>
     </tr>
 </script>
+<!-- 新增押金弹窗内容 -->
 <script type="text/x-kendo-template" id="ac-new-template">
-<div style="width:510px;">
-<div class="ac-new-window-container">
-<ul class="flat-list">
-<li style="width:400px">
-                    <label class="vertical-head">客户方式：</label>
-        <span>
-            <label> <input class="ctype" data-type="choice1" name="xxx" type="radio" checked> 押金充值</label>
-            <label> <input class="ctype" data-type="choice2" name="xxx" type="radio"> 账户抵扣</label>
-        </span>
-</li>
-<li style="width:400px">
-                    <label class="vertical-head">选择客户：</label>
-                    <input style="width:80px">
+    <div class="ac-new-window-container">
+    <ul class="flat-list">
+        <li>
+            <label class="vertical-head">客户方式：</label>
+            <span class="customerModeSpan">
+                <label> <input data-type="choice1" value="cashPledge" name="customerMode" type="radio" checked> 押金充值</label>
+                <label> <input data-type="choice2" value="accountDeduction" name="customerMode" type="radio"> 账户抵扣</label>
+            </span>
+        </li>
+    </ul>
+        <div class="cashPledgeBlock">
+            <ul class="flat-list">
+            <li>
+                <label class="vertical-head">选择客户：</label>
+                <form class="selectBlockForm">
+                    <input type="text" class="selectInput"/>
                     <button class="btns btn-search ac-search-customer">查询</button>
-                    </li>
-<li style="width:400px;display:none;" class="choice2">
-                    <label class="vertical-head">可用现金：</label>
-    <span>3211421</span>
-</li>
-<li style="width:400px;display:none;" class="choice2">
-                    <label class="vertical-head">押金金额：</label>
-                    <input style="width:120px">
-</li>
-<li style="width:510px" class="choice1">
-                    <label class="vertical-head">押金金额：</label>
-<input data-role="dropdownlist" data-index="0" data-value-field="value" data-text-field="text" data-source="[{value:1,text:'现金'}, {value:2,text:'刷卡'}, {value:3,text:'支票'}, {value:4,text:'汇款'}, {value:5,text:'网上支付'}, {value:6,text:'电话支付'}, {value:6,text:'其它'}]" style="width:80px;">
-                    <input style="width:120px">
-添加：
-<button class="btns btn-ac-blue ac-add-row" data-index="0">现金</button>
-<button class="btns btn-ac-blue ac-add-row" data-index="1">刷卡</button>
-<button class="btns btn-ac-blue ac-add-row" data-index="2">支票</button>
-<button class="btns btn-ac-blue ac-add-row" data-index="3">汇款</button>
-                    </li>
-                    <li style="width:400px;">
-                    <label class="vertical-head">押金类型：</label>
-<select style="width:120px" data-role="dropdownlist">
-<option selected value="选择">选择</option>
-<option value="行程单">行程单</option>
-<option value="pos机">pos机</option>
-<option value="国内机票押金">国内机票押金</option>
-<option value="国际机票押金">国际机票押金</option>
-</select>
-                    </li>
-                    <li style="width:400px;">
-                    <label style="vertical-align:top;" class="vertical-head">备注：</label>
-                    <textarea></textarea>
-                    </li>
+                </form>
+            </li>
+            <li>
+                <label class="vertical-head">押金：</label>
+                <select data-role="dropdownlist" style="width:100px;">
+                    <option>现金</option>
+                    <option>刷卡</option>
+                    <option>支票</option>
+                    <option>汇款</option>
+                    <option>网上支付</option>
+                    <option>电话支付</option>
+                    <option>其他</option>
+                </select>
+                <input type="text" style="width:100px; margin-right: 5px;"/>
+                <span class="addFonts"><a href="javascript:void(0);">添加</a></span>
+                <!--<button class="btns btn-ac-blue ac-add-row" data-index="0">现金</button>
+                <button class="btns btn-ac-blue ac-add-row" data-index="1">刷卡</button>
+                <button class="btns btn-ac-blue ac-add-row" data-index="2">支票</button>
+                <button class="btns btn-ac-blue ac-add-row" data-index="3">汇款</button>-->
+            </li>
+            <li>
+                <label class="vertical-head">押金类型：</label>
+                <select data-role="dropdownlist" style="width:100px;">
+                    <option selected value="黑屏配置">黑屏配置</option>
+                    <option value="行程单">行程单</option>
+                    <option value="支票">支票</option>
+                </select>
+            </li>
+            <li>
+                <label style="vertical-align:top;" class="vertical-head">摘要：</label>
+                <textarea style="width:428px;height: 75px;"></textarea>
+            </li>
+            <li>
+                <label style="vertical-align:top;" class="vertical-head">总计：</label>
+                <span class="fcf60">佰陆拾捌万柒仟玖佰贰</span>
+            </li>
+            </ul>
+        </div>
 
-                    <li style="width:400px;">
-                    <label style="vertical-align:top;">总计：</label>
-                    佰陆拾捌万柒仟玖佰贰
-                    </li>
-                </ul>
-</div>
-        <div style="text-align:right;">
+        <div class="accountDeductionBlock" style="display: none;">
+            <ul class="flat-list">
+                <li>
+                    <label class="vertical-head">客户名称：</label>
+                    <form class="selectBlockForm">
+                        <input type="text" class="selectInput"/>
+                        <button class="btns btn-search ac-search-customer">查询</button>
+                    </form>
+                </li>
+                <li>
+                    <label class="vertical-head">账户类型：</label>
+                    <span>
+                        <label style="margin-right: 10px;"><input type="radio" value="" name="accountType"/>预存金额 132,445,00</label>
+                        <label><input type="radio" value="" name="accountType" checked/>信用金额 132,445,00</label>
+                    </span>
+                </li>
+                <li>
+                    <label class="vertical-head">押金金额：</label>
+                    <input type="text" style="width:93px;"/>
+                </li>
+                <li>
+                    <label class="vertical-head">押金类型：</label>
+                    <select data-role="dropdownlist" style="width:100px;">
+                        <option selected value="黑屏配置">黑屏配置</option>
+                        <option value="行程单">行程单</option>
+                        <option value="支票">支票</option>
+                    </select>
+                </li>
+                <li>
+                    <label style="vertical-align:top;" class="vertical-head">备注：</label>
+                    <textarea style="width:428px;height: 75px;"></textarea>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div style="text-align:right;margin-right: 15px;">
             <button class="btns button_1_2 ac-submit">提 交</button> 
             <button class="btns button_2_2">取 消</button> 
-        </div>
-</div>
+    </div>
 </script>
-
+<!-- 退押金弹窗内容 -->
 <script type="text/x-kendo-template" id="ac-return-template">
-<div style="width:510px;">
-<div class="ac-new-window-container">
-<ul class="flat-list">
-<li style="width:400px">
-                    <label class="vertical-head">选择客户：</label>
-                    <input style="width:80px">
-                    <button class="btns btn-search ac-search-customer">查询</button>
-                    </li>
-<li style="width:400px">
-                    <label class="vertical-head">退送方式：</label>
-        <span>
-            <label> <input class="ctype" data-type="choice1" name="xxx" type="radio" checked> 押金提现</label>
-            <label> <input class="ctype" data-type="choice2" name="xxx" type="radio"> 退回账户</label>
-        </span>
-</li>
-<li style="width:400px">
-                    <label class="vertical-head">金额：</label>
-                    <span>231321</span>
-</li>
-                    <li class="choice2" style="width:500px;display:none;">
+    <div class="ac-new-window-container">
+        <ul class="flat-list">
+            <li>
+                <label class="vertical-head">客户方式：</label>
+                <span>苏宁</span>
+            </li>
+            <li>
+                <label class="vertical-head">退款方式：</label>
+                <span class="refundModeSpan">
+                <label> <input data-type="choice1" value="cashAdvance" name="refundMode" type="radio" checked> 押金提现</label>
+                <label> <input data-type="choice2" value="returnAccount" name="refundMode" type="radio"> 退回账户</label>
+            </span>
+            </li>
+            <li>
+                <label class="vertical-head">金额：</label>
+                <span>1500</span>
+            </li>
+        </ul>
+        <div class="cashAdvanceBlock">
+            <ul class="flat-list">
+                <li>
                     <label class="vertical-head">渠道：</label>
-                    <span><select id="" name="" data-role="dropdownlist" style="width:100px;">
-                    <option value="">中国银行</option>
-                    <option value="">支付宝</option>
-                    </select></span>
-                    <span>
-                   <strong>姓名： </strong>
-                   <input style="width:100px;" />
-                    </span>
-                    <span>
-                   <strong>帐号： </strong>
-                   <input style="width:100px;" />
-                    </span>
-                    </li>
-                    <li style="width:400px;">
+                    <select data-role="dropdownlist" style="width:100px;">
+                        <option>现金渠道</option>
+                        <option>请选择</option>
+                        <option>中国银行</option>
+                        <option>中国农业银行</option>
+                    </select>
+                    <span class="titleSpan">姓名：</span>
+                    <input type="text" style="width:80px;"/>
+                    <span class="titleSpan">账户：</span>
+                    <input type="text" style="width:120px;"/>
+                    <span class="tipSpan">*注“现金渠道”，不需要填写姓名和账号</span>
+                </li>
+                <li>
                     <label style="vertical-align:top;" class="vertical-head">备注：</label>
-                    <textarea></textarea>
-                    </li>
-
-                    <li style="width:400px;">
-                    <label style="vertical-align:top;">总计：</label>
-                    <span class="text1">佰陆拾捌万柒仟玖佰贰</span>
-                    </li>
-                </ul>
-</div>
-        <div style="text-align:right;">
-            <button class="btns button_1_2 ac-submit-return">提 交</button> 
-            <button class="btns button_2_2">取 消</button> 
+                    <textarea style="width:428px;height: 75px;"></textarea>
+                </li>
+                <li>
+                    <label style="vertical-align:top;" class="vertical-head">总计：</label>
+                    <span class="fcf60">佰陆拾捌万柒仟玖佰贰</span>
+                </li>
+            </ul>
         </div>
-</div>
+
+        <div class="returnAccountBlock" style="display: none;">
+            <ul class="flat-list">
+                <li>
+                    <label style="vertical-align:top;" class="vertical-head">备注：</label>
+                    <textarea style="width:428px;height: 75px;"></textarea>
+                </li>
+                <li>
+                    <label style="vertical-align:top;" class="vertical-head">总计：</label>
+                    <span class="fcf60">佰陆拾捌万柒仟玖佰贰</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div style="text-align:right; margin-right: 15px;">
+        <button class="btns button_1_2 ac-submit-return">提 交</button> 
+        <button class="btns button_2_2">取 消</button> 
+    </div>
+   
 </script>
-
+<!-- 确认押金提现弹窗内容 -->
 <script type="text/x-kendo-template" id="ac-submit-return-template">
-<div class="row">
-<ul style="font-size:14px;line-height:30px;">
-                    <li>
-                    <strong>客户：</strong>
-                    <span>fdsa</span>
-                    </li>
-                    <li>
-                    <strong>金额：</strong>
-                    <strong class="text1">12,313,213</strong>
-                    </li>
-                    <li>
-                    <strong>退送方式：</strong>
+        <div class="ac-new-window-container">
+            <ul class="flat-list affirmUl">
+                <li>
+                    <label class="vertical-head fwbold">客户：</label>
+                    <span>suning12435</span>
+                </li>
+                <li>
+                    <label class="vertical-head fwbold">金额：</label>
+                    <span class="text1">160,000,000.00</span>
+                </li>
+                <li>
+                    <label class="vertical-head fwbold">退送方式：</label>
                     <span>押金提现</span>
-                    </li>
-                    <li>
-                    <strong>渠道：</strong>
-                    <span>中国银行（李小三 513421 231 32131）</span>
-                    </li>
-                    <li>
-                    <strong>备注：</strong>
-                    <span>123132</span>
-                    </li>
-                    </ul>
-</div>
-
+                </li>
+                <li>
+                    <label class="vertical-head fwbold">备注：</label>
+                    <span>确认押金提现</span>
+                </li>
+            </ul>
+        </div>
         <div class="row" style="text-align:right;">
             <button class="btns button_1_2">确 认</button> 
             <button class="btns button_2_2">取 消</button> 
@@ -325,26 +394,25 @@ $(function(){
 </script>
 
 <script type="text/x-kendo-template" id="ac-submit-template">
-<div class="row">
-<ul style="font-size:14px;line-height:30px;">
-                    <li style="display:inline-block;width:190px">
-                    <strong>用户：</strong>
-                    <span>fdsa</span>
-                    </li>
-                    <li style="display:inline-block;width:190px">
-                    <strong>押金金额：</strong>
-                    <strong class="text1">12,313,213</strong>
-                    </li>
-                    <li style="display:inline-block;width:190px">
-                    <strong>用于：</strong>
-                    <span>123132</span>
-                    </li>
-                    </ul>
-</div>
-
-        <div class="row" style="text-align:right;">
-            <button class="btns button_1_2">确 认</button> 
-            <button class="btns button_2_2">取 消</button> 
+        <div class="ac-new-window-container">
+            <ul class="flat-list affirmUl">
+                <li>
+                    <label class="vertical-head fwbold">用户：</label>
+                    <span>suning12435</span>
+                </li>
+                <li>
+                    <label class="vertical-head fwbold">押金金额：</label>
+                    <span class="text1">160,000,000.00</span>
+                </li>
+                <li>
+                    <label class="vertical-head fwbold">用于：</label>
+                    <span class="text1"></span>
+                </li>
+            </ul>
+        </div>
+        <div style="text-align:right;">
+            <button class="btns button_1_2">提 交</button>
+            <button class="btns button_2_2">取 消</button>
         </div>
 </script>
 
@@ -361,53 +429,52 @@ $(function(){
 $(function(){
     var ac_return_window = new PopWindow('.ac-return',{
         title:'退押金',
-        template:'#ac-return-template'
+        template:'#ac-return-template',
+        width:550
     }).init();
 
     new PopWindow('.ac-submit-return', {
         template:'#ac-submit-return-template',
         title:'确认押金提现',
-        width:'470'
+        width:'500'
     }).init();
 
 
 
 var ac_new = new PopWindow('.ac-new',{
     title:'新增押金',
-    template:'#ac-new-template'
+    template:'#ac-new-template',
+    width:550
 }).init();
 
     new PopWindow('.ac-submit', {
         template:'#ac-submit-template',
         title:'确认押金',
-        width:'470'
+        width:'500'
     }).init();
 });
 
-    $('body').delegate('.ac-add-row', 'click', function(){
-        var that = $(this);
-        var html = kendo.template($('#ac-add-row-template').html())({index:that.data('index')}); 
-        that.closest('li').after(html);
-           kendo.init(that.closest('ul')); 
+    $("body").delegate("input[name='customerMode']", "click", function(){
+        if ($(this).val() == "accountDeduction") {
+            $(".cashPledgeBlock").hide();
+            $(".accountDeductionBlock").show();
+        } else if ($(this).val() == "cashPledge") {
+            $(".accountDeductionBlock").hide();
+                $(".cashPledgeBlock").show();
+        }
     });
 
-    $('body').delegate('.ac-del-row', 'click', function(){
-        var that = $(this);
-        that.closest('li').remove();
+    $("body").delegate("input[name='refundMode']", "click", function(){
+        if ($(this).val() == "cashAdvance") {
+            $(".cashAdvanceBlock").show();
+            $(".returnAccountBlock").hide();
+        } else if ($(this).val() == "returnAccount") {
+            $(".returnAccountBlock").show();
+            $(".cashAdvanceBlock").hide();
+        }
     });
 
-    $('body').delegate('.ctype', 'change', function(){
-        var type = $(this).data('type');
-        if (this.checked && type == 'choice1') {
-            $('.choice1').show(); 
-            $('.choice2').hide(); 
-        } 
 
-        if (this.checked && type == 'choice2') {
-            $('.choice2').show(); 
-            $('.choice1').hide(); 
-        } 
-    })
 
 </script>
 <script type="text/x-kendo-template" id="ac-search-user-template">

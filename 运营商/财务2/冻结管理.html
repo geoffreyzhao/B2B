@@ -58,7 +58,7 @@
     <div id="sub_menu_bar"></div>
     <div id="mainContent">
         
-        <div class="actions block">
+        <!--<div class="actions block">
             <div class="col col-l">
                 <a class="item" href="#">资金汇总</a> 
                 <a class="item" href="#">充值管理</a> 
@@ -72,6 +72,29 @@
             </div>
             <div class="col col-r sep-l">
                 <button class="btns btn-blue ac-new">新增冻结</button>
+            </div>
+        </div>-->
+
+        <div class="topFixedToolsBar fixedBar">
+            <!--<div class="commonReturnBtn">
+                <a href="#">返回</a>
+            </div>-->
+            <div class="fixedMenu">
+                <h3 class="fixedMenuTitle">冻结管理</h3>
+                <!--<a href="#">充值管理</a>
+                <a href="#" class="current">押金管理</a>-->
+            </div>
+            <div class="fixedButton">
+                <a class="button_secondary adaptiveButton small ac-new" href="javascript:void(0);">
+                    <span class="left"></span>
+                    <span class="center center_1">新增冻结</span>
+                    <span class="right"></span>
+                </a>
+                <!-- <a class="button_secondary adaptiveButton small" href="javascript:void(0);">
+                     <span class="left"></span>
+                     <span class="center">发 布</span>
+                     <span class="right"></span>
+                 </a>-->
             </div>
         </div>
 
@@ -178,68 +201,74 @@ $(function(){
         </td>
     </tr>
 </script>
-
+<!-- 新增冻结弹窗内容-->
 <script type="text/x-kendo-template" id="ac-new-template">
-<div class="ac-new-window-container">
-<ul class="flat-list">
-<li>
-<label class="vertical-head">选择客户：</label>
-<input style="width:100px">
-<button class="btns btn-search ac-search-customer">查询</button>
-</li>
-<li>
-<label class="vertical-head">可用余额：</label>
-<input style="width:100px">
-</li>
-<li>
-<label class="vertical-head">冻结余额：</label>
-<input style="width:100px">
-</li>
-<li>
-<label class="vertical-head">确认金额：</label>
-<input style="width:100px">
-</li>
-<li>
-<label class="vertical-head">冻结类型：</label>
-<input style="width:100px" data-role="dropdownlist" data-source="['选择']">
-</li>
-<li>&nbsp;</li>
-<li>
-<label class="vertical-head">操作人：</label>
-<span>xxx</span>
-</li>
-<li style="width:400px;">
-<label style="vertical-align:top;" class="vertical-head">摘要：</label>
-<textarea></textarea>
-</li>
-</ul>
-</div>
-        <div style="text-align:right;">
+        <div class="ac-new-window-container">
+            <ul class="flat-list">
+                <li>
+                    <label class="vertical-head">客户名称：</label>
+                    <form class="selectBlockForm">
+                        <input type="text" class="selectInput"/>
+                        <button class="btns btn-search ac-search-customer">查询</button>
+                    </form>
+                </li>
+                <li>
+                    <label class="vertical-head">冻结类型：</label>
+                    <select data-role="dropdownlist" style="width:134px;">
+                        <option selected value="金额冻结">金额冻结</option>
+                        <option value="选择">选择</option>
+                        <option value="正常订单冻结">正常订单冻结</option>
+                        <option value="国际团队冻结">国际团队冻结</option>
+                        <option value="国内团队冻结">国内团队冻结</option>
+                        <option value="订单押金冻结">订单押金冻结</option>
+                    </select>
+                </li>
+                <li>
+                    <label class="vertical-head">账户类型：</label>
+                    <span>
+                        <label style="margin-right: 10px;"><input type="radio" value="" name="accountType"/>预存金额 132,445,00</label>
+                        <label><input type="radio" value="" name="accountType" checked/>信用金额 132,445,00</label>
+                    </span>
+                </li>
+                <li>
+                    <label class="vertical-head">冻结金额：</label>
+                    <input type="text" style="width:126px;"/>
+                </li>
+                <li>
+                    <label class="vertical-head">确认金额：</label>
+                    <input type="text" style="width:126px;"/>
+                </li>
+                <li>
+                    <label style="vertical-align:top;" class="vertical-head">备注：</label>
+                    <textarea style="width:428px;height: 75px;"></textarea>
+                </li>
+            </ul>
+        </div>
+        <div style="text-align:right;margin-right: 15px;">
             <button class="btns button_1_2 ac-submit">提 交</button> 
             <button class="btns button_2_2">取 消</button> 
         </div>
 </script>
 
 
-
+<!-- 确认冻结弹窗内容 -->
 <script type="text/x-kendo-template" id="ac-submit-template">
-<div class="row">
-<ul style="font-size:14px;line-height:30px;">
-                    <li style="display:inline-block;width:190px">
-                    <strong>用户：</strong>
-                    <span>fdsa</span>
-                    </li>
-                    <li style="display:inline-block;width:190px">
-                    <strong>冻结金额：</strong>
-                    <strong class="text1">12,313,213</strong>
-                    </li>
-                    <li style="display:inline-block;width:190px">
-                    <strong>用于：</strong>
-                    <span>123132</span>
-                    </li>
-                    </ul>
-</div>
-
+        <div class="ac-new-window-container">
+            <ul class="flat-list affirmUl">
+                <li>
+                    <label class="vertical-head fwbold">用户：</label>
+                    <span>suning12435</span>
+                </li>
+                <li>
+                    <label class="vertical-head fwbold">冻结金额：</label>
+                    <span class="text1">160,000,000.00</span>
+                </li>
+                <li>
+                    <label class="vertical-head fwbold">摘要：</label>
+                    <span></span>
+                </li>
+            </ul>
+        </div>
         <div class="row" style="text-align:right;">
             <button class="btns button_1_2">确 认</button> 
             <button class="btns button_2_2">取 消</button> 
@@ -252,13 +281,14 @@ $(function(){
 $(function(){
     new PopWindow('.ac-new',{
         template:"#ac-new-template",
-        title:'新增冻结' 
+        title:'新增冻结' ,
+        width:550
     }).init();
 
     new PopWindow('.ac-submit', {
         template:'#ac-submit-template',
         title:'确认冻结',
-        width:'470'
+        width:'500'
     }).init();
 });
 
