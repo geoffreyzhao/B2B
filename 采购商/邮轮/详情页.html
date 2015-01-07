@@ -114,11 +114,16 @@
                             </p>
                             <div id="slideshow" class="pics">
                                 <img src="../../static/images/store/cruise/shippingImg01.jpg"/>
-                                <!-- <img src="../../static/images/store/cruise/shippingImg02.jpg"/> -->
-                                <!-- <img src="../../static/images/store/cruise/shippingImg03.jpg"/> -->
-                                <!-- <img src="../../static/images/store/cruise/shippingImg01.jpg"/> -->
-                                <!-- <img src="../../static/images/store/cruise/shippingImg02.jpg"/> -->
-                                <!-- <img src="../../static/images/store/cruise/shippingImg03.jpg"/> -->
+                                <img src="../../static/images/store/cruise/shippingImg02.jpg"/>
+                                <img src="../../static/images/store/cruise/shippingImg03.jpg"/>
+                                <img src="../../static/images/store/cruise/shippingImg01.jpg"/>
+                                <img src="../../static/images/store/cruise/shippingImg02.jpg"/>
+                                <img src="../../static/images/store/cruise/shippingImg03.jpg"/>
+                                <img src="../../static/images/store/cruise/shippingImg01.jpg"/>
+                                <img src="../../static/images/store/cruise/shippingImg02.jpg"/>
+                                <img src="../../static/images/store/cruise/shippingImg03.jpg"/>
+                                <img src="../../static/images/store/cruise/shippingImg01.jpg"/>
+                                <img src="../../static/images/store/cruise/shippingImg02.jpg"/>
                             </div>
                             <p class="bigbtnNext" style="display:none;">
                                 <span id="big_play_next"></span>
@@ -904,20 +909,20 @@ function addEnableTd() {
                 next: ".bigbtnNext, .smallBtnNext",
                 pager:  '#smallSlideShow',
                 pagerAnchorBuilder: function(idx, slide) {
-                    console.log(idx);
                     return '<span class="slideshowItem" style="left:' + (97 * idx) + 'px"><a href="#"><img src="' + slide.src + '" width="90" height="56" /></a></span>';
                 },
                 before: function(currSlideElement, nextSlideElement, options, forwardFlag){
                     // before 方法用来处理小图片轮播效果
                     if (options.currSlide > 3) {      //  当前小图片slide超过第五张图片时              
-                        $(".slideshowItem").each(function(){
+                        $(".slideshowItem").each(function(i){
                             var currLeftValStr = $(this).css("left");
                             var changeLeftValStr = currLeftValStr.substring(0, currLeftValStr.length - 2);
-                            var changeLeftValNum = parseInt(changeLeftValStr - 97 * 5);
+                            // var changeLeftValNum = parseInt(changeLeftValStr - 97 * 5);
+                            var changeLeftValNum = parseInt(changeLeftValStr - 97);
 
-                            if (changeLeftValNum < 0) {
-                                changeLeftValNum = parseInt($(".slideshowItem:last-child").css("left").substring(0, currLeftValStr.length - 2)) - 97 * 5;
-                            }
+                            // if (changeLeftValNum < 0) {
+                            //     changeLeftValNum = parseInt($(".slideshowItem:last-child").css("left").substring(0, currLeftValStr.length - 2)) - 97 * 5;
+                            // }
                             $(this).css("left", changeLeftValNum + "px");
                         });
 
