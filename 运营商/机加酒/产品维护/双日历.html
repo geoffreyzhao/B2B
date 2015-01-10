@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>运营商 机加酒 产品详情 产品详情</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link href="/static/js/themes/default/default.css" rel="stylesheet" />
+    <link href="/static/css/operatorCommonHeader.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/ticketsAndhotel.css" rel="stylesheet" type="text/css"/>
+
+    <script src="/static/js/jquery.min.js" type="text/javascript"></script>    
+    <script src="/static/js/kendo.web.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="/static/js/scrollFix.js"></script>
+    <script type="text/javascript" src="/static/js/public.js"></script>
+    <script charset="utf-8" src="/static/js/kindeditor.js"></script>
+    <script type="text/javascript" src="/static/js/sync.js"></script>
+</head>
+<body>
+    <div class="double-calendar-container">
+        <div class="calendar-change-top-block">
+            <span class="change-calendar-icon prev">LEFT</span>
+            <span class="left-calendar-title">左标题</span>
+            <span class="right-calendar-title">右标题</span>
+            <span class="change-calendar-icon next">RIGHT</span>
+        </div>
+        <div class="calendar-block clearfix">
+            <div class="left-calendar-block" id="cal-1"></div>
+            <div class="right-calendar-block" id="cal-2"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function(){
+
+            var currentDate = new Date();
+            var nextMonthDate = getNextMonth(currentDate);
+
+            //  双日历初始化
+            var calendar1 = $("#cal-1").kendoCalendar({
+                culture: "zh-CN",
+                value: currentDate,
+                footer: false
+                // month: 日期内容显示模板
+            }).data("kendoCalendar");
+
+            var calendar2 = $("#cal-2").kendoCalendar({
+                culture: "zh-CN",
+                value: nextMonthDate,
+                footer: false
+                //  month  日期内容显示模板
+            }).data("kendoCalendar");
+            
+            // 日历翻动
+            $(".change-calendar-icon").click(function(){
+                if (!$(this).hasClass("disabled")) {
+                    var leftDate = calendar1.value();
+                    var calendar1_result, calendar2_result;
+
+                    if ($(this).hasClass("prev")) {   //  向左翻动
+                        calendar1_result = getPreMonth(leftDate);
+                    } else if ($(this).hasClass("next")) {  //  向右翻动
+                        calendar1_result = getNextMonth(leftDate);
+                    }
+
+                    calendar1.navigate(calendar1_result, "month");
+                    calendar1.value(calendar1_result);
+
+                    calendar2_result = getNextMonth(calendar1_result);
+                    calendar2.navigate(calendar2_result, "month");
+                    calendar2.value(calendar2_result);
+                }
+            });
+
+        });
+
+        function getNextMonth(date) {  //  返回日期类型：下一月1号
+            var dateYear = date.getFullYear();
+            var dateMonth = date.getMonth();
+
+            if (dateMonth == 11) {  //  当年最后一个月，下月跨年
+                dateYear = dateYear + 1;
+                dateMonth = 0;
+            } else {
+                dateMonth ++;
+            }
+
+            return new Date(dateYear, dateMonth, 1);
+        }
+
+        function getPreMonth(date) {  //  返回日期类型：上一月1号
+            var dateYear = date.getFullYear();
+            var dateMonth = date.getMonth();
+
+            if (dateMonth == 0) {  //  当年第一个月，上月跨年
+                dateYear = dateYear - 1;
+                dateMonth = 11;
+            } else {
+                dateMonth --;
+            }
+
+            return new Date(dateYear, dateMonth, 1);
+        }
+
+        function setCalendarTitle() {
+            
+        }
+    </script>
+</body>
+</html>
