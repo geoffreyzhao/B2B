@@ -14,17 +14,22 @@
     
     <script src="/static/js/jquery.min.js" type="text/javascript"></script>    
     <script src="/static/js/kendo.web.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
     <script type="text/javascript" src="/static/js/scrollFix.js"></script>
     <script type="text/javascript" src="/static/js/public.js"></script>
     <script charset="utf-8" src="/static/js/kindeditor.js"></script>
     <script type="text/javascript" src="/static/js/sync.js"></script>
-
     <!--[if IE]>
     <script src="/static/js/html5.js"></script>
     <![endif]-->
-        
-    </head>
-    <body>
+    <style type="text/css">
+        div.k-window-content {
+            padding: 0 0 0 0;
+        }
+    </style>
+</head>
+<body>
+    
         <div id="extHeader">
             <div></div>
         </div>
@@ -205,6 +210,12 @@
                         <tr>
                             <th><b>内部备注</b></th>
                             <td colspan="8">无</td>
+                            <th>线路名称：</th>
+                            <td>ABCDEABCDEABCDEABCDEABCDEABCDEABCDEABCDE &nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="flightDetail"><a href="#">详情</a></span>
+                                <span class="flightEdit"><a href="#">航班编辑</a></span>
+                                <span class="hotelEdit"><a href="#">酒店编辑</a></span>
+                            </td>
                         </tr>
                         <tr>
                             <th><b>内部联系人</b></th>
@@ -304,12 +315,10 @@
             
         </div>
               
-        </div>
-    </div>
+  </div>
  
     <!-- end of content -->
-    </div>
-    
+  
     <div id="extFooter">
         <div>
             <p>
@@ -321,6 +330,557 @@
             <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
+    
+    <!-- 航班信息编辑弹窗内容 -->
+    <script type="text/x-kendo-template" id="flightEditTemplate">
+        <div class="flightHotelInfoWindowCon">
+            <div class="mainContentAllPart">
+                <div class="mainContentPart">
+                    <table class="mainContentPartTab">
+                        <colgroup>
+                            <col width="70"/>
+                            <col width="70"/>
+                            <col width="130"/>
+                            <col width="70"/>
+                            <col width="130"/>
+                            <col width="70"/>
+                            <col width="130"/>
+                            <col width="70"/>
+                            <col width=""/>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <td></td>
+                            <th><em>*</em>第几天：</th>
+                            <td><input type="text" value="1" readonly="readonly"/></td>
+                            <th><em>*</em>航司名称：</th>
+                            <td><input type="text" value="东方航空"/></td>
+                            <th><em>*</em>航班号：</th>
+                            <td><input type="text" value="MU1234"/></td>
+                            <th><em>*</em>舱位：</th>
+                            <td><input type="text" value="Y" readonly="readonly"/></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <th><em>*</em>起飞机场：</th>
+                            <td><input type="text" value="北京国际机场T2"/></td>
+                            <th><em>*</em>起飞时间：</th>
+                            <td><input type="text" value="12:20" readonly="readonly"/></td>
+                            <th><em>*</em>到达机场：</th>
+                            <td><input type="text" value="" /></td>
+                            <th><em>*</em>到达时间：</th>
+                            <td>
+                                <input type="text" value="13:20" style="width:42px;"/>
+                                <form class="tdSelectForm">
+                                    <select data-role="dropdownlist" style="width:62px;">
+                                        <option value="0日">+0日</option>
+                                        <option value="1日">+1日</option>
+                                        <option value="2日">+12日</option>
+                                    </select>
+                                    <span style="display: none">+1日</span>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="window_line"></div>
+                    <table class="mainContentPartTab">
+                        <colgroup>
+                            <col width="70"/>
+                            <col width="70"/>
+                            <col width="130"/>
+                            <col width="70"/>
+                            <col width="130"/>
+                            <col width="70"/>
+                            <col width="130"/>
+                            <col width="70"/>
+                            <col width=""/>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <td></td>
+                            <th><em>*</em>第几天：</th>
+                            <td><input type="text" value="1" readonly="readonly"/></td>
+                            <th><em>*</em>航司名称：</th>
+                            <td><input type="text" value="东方航空"/></td>
+                            <th><em>*</em>航班号：</th>
+                            <td><input type="text" value="MU1234"/></td>
+                            <th><em>*</em>舱位：</th>
+                            <td><input type="text" value="Y" readonly="readonly"/></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <th><em>*</em>起飞机场：</th>
+                            <td><input type="text" value="北京国际机场T2"/></td>
+                            <th><em>*</em>起飞时间：</th>
+                            <td><input type="text" value="12:20" readonly="readonly"/></td>
+                            <th><em>*</em>到达机场：</th>
+                            <td><input type="text" value="" /></td>
+                            <th><em>*</em>到达时间：</th>
+                            <td>
+                                <input type="text" value="13:20" style="width:42px;"/>
+                                <form class="tdSelectForm">
+                                    <select data-role="dropdownlist" style="width:62px;">
+                                        <option value="0日">+0日</option>
+                                        <option value="1日">+1日</option>
+                                        <option value="2日">+12日</option>
+                                    </select>
+                                    <span style="display: none">+1日</span>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="window_line"></div>
+                </div>
+    
+                <div class="mainContentPart">
+                    <ul class="partTwoUl">
+                        <li>
+                            <b>机票成本</b>
+                            <span class="calendaSpan">
+                                <input type="text" data-role="datepicker" style="width:113px;"/> 至 <input type="text" data-role="datepicker" style="width:113px;"/>
+                            </span>
+                            <span class="weekSpan">
+                                <label><input type="checkbox"/>一</label>
+                                <label><input type="checkbox"/>二</label>
+                                <label><input type="checkbox"/>三</label>
+                                <label><input type="checkbox"/>四</label>
+                                <label><input type="checkbox"/>五</label>
+                                <label><input type="checkbox"/>六</label>
+                                <label><input type="checkbox"/>日</label>
+                            </span>
+                            <span class="buttonSpan">
+                                <a class="button_secondary adaptiveButton small" href="javascript:void(0);">
+                                    <span class="left"></span>
+                                    <span class="center center_1">修改成本</span>
+                                    <span class="right"></span>
+                                </a>
+                                <a class="button_secondary adaptiveButton small" href="javascript:void(0);">
+                                    <span class="left"></span>
+                                    <span class="center center_1">清除成本</span>
+                                    <span class="right"></span>
+                                </a>
+                            </span>
+                            <p class="ticketPrice">
+                               <b class="fcf60">成人票价</b><input type="text" value="" style="width:63px;"/>
+                               <b class="fc01993e">儿童票价</b><input type="text" value="" style="width:63px;"/>
+                            </p>
+                            <!-- 双日历 开始 -->
+                            <p style="height: 80px;">
+    
+                            </p>
+                            <!-- 双日历 结束 -->
+                        </li>
+                        <li>
+                            <b>航程备注</b>
+                            <span style="margin-left: 15px;">采购商页面展示</span>
+                            <p class="textareaPara">
+                                <textarea ></textarea>
+                            </p>
+                        </li>
+                        <li>
+                            <b style="vertical-align: top;">内部备注</b>
+                            <textarea style="margin-left: 15px;"></textarea>
+                        </li>
+                    </ul>
+                    <div class="window_line"></div>
+                </div>
+    
+                <div class="mainContentPart">
+                    <table class="mainContentPartTab table02">
+                        <colgroup>
+                            <col width="75"/>
+                            <col width="360"/>
+                            <col width="75"/>
+                            <col width=""/>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th>供应商名称</th>
+                            <td><input type="text" value=""/></td>
+                            <th>业务联系人</th>
+                            <td><input type="text" value=""/></td>
+                        </tr>
+                        <tr>
+                            <th>开户银行</th>
+                            <td><input type="text" value=""/></td>
+                            <th>电话</th>
+                            <td><input type="text" value=""/></td>
+                        </tr>
+                        <tr>
+                            <th>开户名</th>
+                            <td><input type="text" value=""/></td>
+                            <th>传真</th>
+                            <td><input type="text" value=""/></td>
+                        </tr>
+                        <tr>
+                            <th>账号</th>
+                            <td><input type="text" value=""/></td>
+                            <th>电邮</th>
+                            <td><input type="text" value=""/></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="window_line"></div>
+                </div>
+    
+                <div class="mainContentPart">
+                    <table class="mainContentPartTab table02">
+                        <colgroup>
+                            <col width="75"/>
+                            <col width="360"/>
+                            <col width="75"/>
+                            <col width=""/>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th>结算周期</th>
+                            <td>
+                                <form class="tdSelectForm">
+                                    <select data-role="dropdownlist">
+                                        <option value="一单一结">一单一结</option>
+                                        <option value="周结">周结</option>
+                                        <option value="半月结">半月结</option>
+                                        <option value="月结">月结</option>
+                                    </select>
+                                    <span style="display: none">一单一结</span>
+                                </form>
+                            </td>
+                            <th><em>*</em>内部联系人</th>
+                            <td><input type="text" value="" style="width:123px;"/></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="operBtn">
+                <span>
+                    <a class="large_button button_2_1">
+                        <span class="left"></span>
+                        <span class="center">确 定</span>
+                        <span class="right"></span>
+                    </a>
+                    <a class="large_button button_2_2">
+                        <span class="left"></span>
+                        <span class="center">取 消</span>
+                        <span class="right"></span>
+                    </a>
+                </span>
+                <span>
+                    <a class="large_button button_2_1">
+                        <span class="left"></span>
+                        <span class="center">编 辑</span>
+                        <span class="right"></span>
+                    </a>
+                    <a class="large_button button_2_2">
+                        <span class="left"></span>
+                        <span class="center">关 闭</span>
+                        <span class="right"></span>
+                    </a>
+                </span>
+            </div> 
+        </div>
+    </script>
+
+    <!-- 酒店信息编辑弹窗内容 -->
+    <script type="text/x-kendo-template" id="hotelEditTemplate">
+    <div class="flightHotelInfoWindowCon">
+    <div class="mainContentAllPart">
+    <div class="mainContentPart">
+        <table class="mainContentPartTab hotelInfoTab">
+            <colgroup>
+                <col width="75"/>
+                <col width="130"/>
+                <col width="75"/>
+                <col width="270"/>
+                <col width="75"/>
+                <col width=""/>
+            </colgroup>
+            <tbody>
+            <tr>
+                <td colspan="6" style="padding-left: 44px;">
+                    <em>*</em>第<input type="text" value="" style="width:50px;margin: 0 10px 0 12px;"/>天入住，第<input type="text" value="" style="width:50px;margin: 0 10px 0 12px;"/>天离店，共<span class="totelNight">0</span>晚
+                </td>
+            </tr>
+            <tr>
+                <th><em>*</em>城市</th>
+                <td><input type="text" value="北京"/></td>
+                <th><em>*</em>酒店名称</th>
+                <td><input type="text" value="北京大饭店" style="width:240px;"/></td>
+                <th>酒店星级</th>
+                <td>
+                    <form class="tdSelectForm">
+                        <select data-role="dropdownlist">
+                            <option value="">二星级及以下</option>
+                            <option value="">准三星</option>
+                            <option value="">三星级</option>
+                            <option value="">准四星</option>
+                            <option value="">四星级</option>
+                            <option value="">准五星</option>
+                            <option value="">五星级</option>
+                            <option value="">准六星</option>
+                            <option value="">六星级</option>
+                            <option value="">准七星</option>
+                            <option value="">七星级</option>
+                        </select>
+                        <span style="display: none">二星级及以下</span>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <th><em>*</em>酒店地址</th>
+                <td colspan="3"><input type="text" value="1" style="width:445px;"/></td>
+                <th><em>*</em>酒店电话</th>
+                <td><input type="text" value="" style="width:208px;"/></td>
+            </tr>
+            <tr>
+                <th>纬度</th>
+                <td><input type="text" value="1"/></td>
+                <th>经度</th>
+                <td colspan="3"><input type="text" value="20.13" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <th>酒店设施</th>
+                <td colspan="5" class="hotelFacility">
+                    <label><input type="checkbox" value="无线宽带"/>无线宽带</label>
+                    <label><input type="checkbox" value="健身房"/>健身房</label>
+                    <label><input type="checkbox" value="游泳池"/>游泳池</label>
+                    <label><input type="checkbox" value="停车场"/>停车场</label>
+                    <label><input type="checkbox" value="停车场2"/>停车场</label>
+                </td>
+            </tr>
+            <tr>
+                <th style="vertical-align: top;padding-top: 11px;">酒店图片</th>
+                <td colspan="5">
+                    <p class="fc4ca3d4" style="padding-top: 8px;">请上传800像素宽，600像素高的图片，最多 5 张</p>
+                    <ul class="uploadImgUl">
+                        <li>
+                            <img src="../../../../static/images/operator/pack-hotelImg01.jpg"/>
+                            <p>删除</p>
+                        </li>
+                        <li>
+                            <img src="../../../../static/images/operator/pack-hotelImg01.jpg"/>
+                            <p>删除</p>
+                        </li>
+                        <li>
+                            <img src="../../../../static/images/operator/pack-hotelImg01.jpg"/>
+                            <p>删除</p>
+                        </li>
+                        <li>
+                            <div class="addHotelImg">
+                               <i></i>添加照片 
+                            </div>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr style="padding-top:10px;">
+                <th style="vertical-align: top;"><em>*</em>酒店描述</th>
+                <td colspan="5">
+                    <p style="padding-bottom: 5px;">采购商页面展示</p>
+                    <textarea></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th style="vertical-align: top;">内部备注</th>
+                <td colspan="5">
+                    <textarea></textarea>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="window_line"></div>
+    </div>
+
+    <div class="mainContentPart">
+        <ul class="partTwoUl hotelPartTwoUl">
+            <li>
+                <b><em>*</em>房型名称</b>
+                <span class="roomTypeSpan">
+                    <input type="text" value="" style="width:240px;"/>
+                </span>
+                <b>床型</b>
+                <from class="bedTypeFrom tdSelectForm">
+                    <select data-role="dropdownlist">
+                        <option value="大床/双床（不定）">大床/双床（不定）</option>
+                        <option value="大床">大床</option>
+                        <option value="双床">双床</option>
+                        <option value="其他床型">其他床型</option>
+                    </select>
+                    <span style="display: none;">大床/双床（不定）</span>
+                </from>
+                <b>早餐</b>
+                <from class="tdSelectForm">
+                    <select data-role="dropdownlist">
+                        <option value="无早">无早</option>
+                        <option value="单早">单早</option>
+                        <option value="双早">双早</option>
+                        <option value="3份">3份</option>
+                        <option value="4份">4份</option>
+                        <option value="5份">5份</option>
+                        <option value="6份">6份</option>
+                    </select>
+                    <span style="display: none;">双早</span>
+                </from>
+            </li>
+            <li>
+                <b><em>*</em>酒店成本</b>
+                            <span class="calendaSpan">
+                                <input type="text" data-role="datepicker" style="width:113px;"/> 至 <input type="text" data-role="datepicker" style="width:113px;"/>
+                            </span>
+                            <span class="weekSpan">
+                                <label><input type="checkbox"/>一</label>
+                                <label><input type="checkbox"/>二</label>
+                                <label><input type="checkbox"/>三</label>
+                                <label><input type="checkbox"/>四</label>
+                                <label><input type="checkbox"/>五</label>
+                                <label><input type="checkbox"/>六</label>
+                                <label><input type="checkbox"/>日</label>
+                            </span>
+                            <span class="buttonSpan">
+                                <a class="button_secondary adaptiveButton small" href="javascript:void(0);">
+                                    <span class="left"></span>
+                                    <span class="center center_1">修改成本</span>
+                                    <span class="right"></span>
+                                </a>
+                                <a class="button_secondary adaptiveButton small" href="javascript:void(0);">
+                                    <span class="left"></span>
+                                    <span class="center center_1">清除成本</span>
+                                    <span class="right"></span>
+                                </a>
+                            </span>
+                <p class="roomPrice">
+                    <b class="fcf60">房价</b><input type="text" value="" style="width:81px;"/>
+                </p>
+                <!-- 双日历 开始 -->
+                <p style="height: 80px;">
+
+                </p>
+                <!-- 双日历 结束 -->
+            </li>
+            
+            
+        </ul>
+        <div class="window_line"></div>
+    </div>
+
+    <div class="mainContentPart">
+        <table class="mainContentPartTab table02">
+            <colgroup>
+                <col width="75"/>
+                <col width="360"/>
+                <col width="75"/>
+                <col width=""/>
+            </colgroup>
+            <tbody>
+            <tr>
+                <th>供应商名称</th>
+                <td><input type="text" value=""/></td>
+                <th>业务联系人</th>
+                <td><input type="text" value=""/></td>
+            </tr>
+            <tr>
+                <th>开户银行</th>
+                <td><input type="text" value=""/></td>
+                <th>电话</th>
+                <td><input type="text" value=""/></td>
+            </tr>
+            <tr>
+                <th>开户名</th>
+                <td><input type="text" value=""/></td>
+                <th>传真</th>
+                <td><input type="text" value=""/></td>
+            </tr>
+            <tr>
+                <th>账号</th>
+                <td><input type="text" value=""/></td>
+                <th>电邮</th>
+                <td><input type="text" value=""/></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="window_line"></div>
+    </div>
+
+    <div class="mainContentPart">
+        <table class="mainContentPartTab table02">
+            <colgroup>
+                <col width="75"/>
+                <col width="360"/>
+                <col width="75"/>
+                <col width=""/>
+            </colgroup>
+            <tbody>
+            <tr>
+                <th>结算周期</th>
+                <td>
+                    <form class="tdSelectForm">
+                        <select data-role="dropdownlist">
+                            <option value="一单一结">一单一结</option>
+                            <option value="周结">周结</option>
+                            <option value="半月结">半月结</option>
+                            <option value="月结">月结</option>
+                        </select>
+                        <span style="display: none">一单一结</span>
+                    </form>
+                </td>
+                <th><em>*</em>内部联系人</th>
+                <td><input type="text" value="" style="width:123px;"/></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+
+    <div class="operBtn">
+                <span>
+                    <a class="large_button button_2_1">
+                        <span class="left"></span>
+                        <span class="center">确 定</span>
+                        <span class="right"></span>
+                    </a>
+                    <a class="large_button button_2_2">
+                        <span class="left"></span>
+                        <span class="center">取 消</span>
+                        <span class="right"></span>
+                    </a>
+                </span>
+                <span>
+                    <a class="large_button button_2_1">
+                        <span class="left"></span>
+                        <span class="center">编 辑</span>
+                        <span class="right"></span>
+                    </a>
+                    <a class="large_button button_2_2">
+                        <span class="left"></span>
+                        <span class="center">关 闭</span>
+                        <span class="right"></span>
+                    </a>
+                </span>
+    </div>
+    </div>
+    </script>
+    
+<script>
+    $(function(){
+        // 航班信息编辑弹窗
+        new PopWindow('.flightEdit', {
+            template:'#flightEditTemplate',
+            title:'航班信息',
+            width:'920'
+        }).init();
+
+        // 酒店信息编辑弹窗
+        new PopWindow('.hotelEdit', {
+            template:'#hotelEditTemplate',
+            title:'酒店信息',
+            width:'920'
+        }).init();
+    });
+    
+</script>
 
 </body>
 </html>
