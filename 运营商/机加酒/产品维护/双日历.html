@@ -20,14 +20,162 @@
     <script type="text/javascript" src="/static/js/public.js"></script>
     <script charset="utf-8" src="/static/js/kindeditor.js"></script>
     <script type="text/javascript" src="/static/js/sync.js"></script>
+
+    <style type="text/css">
+    /* 双日历样式 */
+    .k-calendar .k-header {
+        display: none;
+    }
+
+    .k-calendar .k-content .k-link {
+        overflow: visible;
+        line-height: normal;
+        padding: 0px;
+    }
+
+    .k-calendar td {
+        padding: 0px;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .date-cont-container {
+        width: 47px;
+        height: 45px;
+        border-left: 1px solid #e0e0e0;
+        border-top: 1px solid #e0e0e0;
+        position: relative;
+        padding: 3px 5px;
+    }
+
+    .left-calendar-block {
+        float: left;
+        width: 405px;
+        background-color: #fff;
+        border: 1px solid #1986c5;
+    }
+
+    .right-calendar-block {
+        float: left;
+        width: 405px;
+        background-color: #fff;
+        border: 1px solid #1986c5;
+        border-left: 0;
+    }
+
+    .k-calendar td .date-text {
+        color: #434343;
+        font-weight: bold;
+    }
+
+    .k-calendar td.k-weekend .date-text {
+        color: #1986c5;
+        font-weight: bold;
+    }
+
+    .k-calendar .date-text {
+        position: absolute;
+    }
+
+    .k-calendar .price-cont {
+        position: absolute;
+        bottom: 3px;
+        right: 5px;
+    }
+
+    .k-calendar .price-cont .adult-price {
+        color: #ff4200;
+        font-family: Arial;
+    }
+
+    .k-calendar .price-cont .child-price {
+        color: #008736;
+        font-family: Arial;
+    }
+
+    .k-calendar .k-content thead th {
+        height: 32px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: bold;
+        background-color: #e5f3fb;
+        border-bottom: none;
+    }
+
+    .k-calendar .k-content thead th:first-child,
+    .k-calendar .k-content thead th:last-child {
+        color: #1986c5;
+    }
+
+    .k-calendar .k-content tbody tr:first-child .date-cont-container {
+        border-top: none;
+    }
+
+    .k-calendar .k-content .k-state-selected {
+        background-color: #fff;
+    }
+
+    .k-calendar .k-content .k-other-month {
+        cursor: default;
+    }
+
+    .change-calendar-icon {
+        background: url(../../../static/images/operator/calendar-turn-icon.png);
+        background-repeat: no-repeat;
+        width: 22px;
+        height: 22px;
+        display: inline-block;
+        vertical-align: middle;
+        cursor: pointer;
+    }
+
+    .change-calendar-icon.prev {
+        background-position: -48px 0;
+    }
+
+    .change-calendar-icon.next {
+        background-position: -72px 0;
+    }
+
+    .change-calendar-icon.prev.disabled {
+        background-position: -1px 0;
+        cursor: default;
+    }
+
+    .change-calendar-icon.next.disabled {
+        background-position: -24px 0;
+        cursor: default;
+    }
+
+    .calendar-change-top-block {
+        padding: 0 5px;
+        height: 40px;
+        line-height: 40px;
+    }
+
+    .calendar-change-top-block .left-calendar-title,
+    .calendar-change-top-block .right-calendar-title {
+        width: 360px;
+        display: inline-block;
+        text-align: center;
+        font-size: 14px;
+        font-weight: bold;
+        color: #666;
+    }
+
+    .calendar-change-top-block .right-calendar-title {
+        padding-left: 30px;
+    }
+
+    </style>
 </head>
 <body>
-    <div class="double-calendar-container">
+    <div class="double-calendar-container" style="margin-left:100px;">
         <div class="calendar-change-top-block">
-            <span class="change-calendar-icon prev">LEFT</span>
+            <span class="change-calendar-icon prev"></span>
             <span class="left-calendar-title"></span>
             <span class="right-calendar-title"></span>
-            <span class="change-calendar-icon next">RIGHT</span>
+            <span class="change-calendar-icon next"></span>
         </div>
         <div class="calendar-block clearfix">
             <div class="left-calendar-block" id="cal-1"></div>
@@ -75,6 +223,8 @@
 
             // 设置标题月份
             setCalendarTitle(calendar1.value(), calendar2.value());
+            // 清除其他月份内容
+            clearOtherMonthCont();
             
             // 日历翻动
             $(".change-calendar-icon").click(function(){
@@ -97,6 +247,8 @@
 
                     // 设置标题月份
                     setCalendarTitle(calendar1.value(), calendar2.value());
+                    // 清除其他月份内容
+                    clearOtherMonthCont();
                 }
             });
 
@@ -133,6 +285,10 @@
         function setCalendarTitle(date1, date2) {
             $(".left-calendar-title").html(date1.getFullYear() + "年" + (date1.getMonth() + 1) + "月");
             $(".right-calendar-title").html(date2.getFullYear() + "年" + (date2.getMonth() + 1) + "月");
+        }
+
+        function clearOtherMonthCont() {
+            $(".k-calendar .k-other-month").html("<div class='date-cont-container'></div>");
         }
 
         /*  双日历代码    结束  */
