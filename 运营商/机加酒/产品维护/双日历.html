@@ -176,6 +176,43 @@
         background-color: #dcfbe4;
     }
 
+    .modify-price-layer {
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #cacaca;
+    }
+
+    .modify-price-layer p {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .modify-price-layer p:last-child {
+        margin-bottom: 0;
+    }
+
+    .modify-price-layer .adult-price-title {
+        color: #ff6000;
+        font-weight: bold;
+        padding-right: 5px;
+    }
+
+    .modify-price-layer .child-price-title {
+        color: #3dc661;
+        font-weight: bold;
+        padding-right: 5px;
+    }
+
+    .modify-price-layer input[type='text'] {
+        text-indent: 5px;
+    }
+
+    .modify-price-layer .hotel-price-title {
+        color: #424242;
+        font-weight: bold;
+        padding-right: 5px;
+    }
+
     </style>
 </head>
 <body>
@@ -203,14 +240,43 @@
         </div>
     </script>
 
-    <!--  日历价格修改弹层模板   机票价格  -->
+    <!--  日历价格修改弹层模板  机票价格  -->
     <script type="text/x-kendo-template" id="modify-fp-layer-template">
-        <div>日历价格修改弹层模板   机票价格</div>
+        <div class="modify-price-layer">
+            <p><span class="adult-price-title">成人价格</span><input type="text" style="width:90px;"></p>
+            <p><span class="child-price-title">儿童价格</span><input type="text" style="width:90px;"></p>
+            <p>
+                <a href="javascript:;" class="button_important adaptiveButton small">
+                    <span class="left"></span>
+                    <span class="center">保 存</span>
+                    <span class="right"></span>
+                </a>
+                <a href="javascript:;" class="button_unimportant adaptiveButton small">
+                    <span class="left"></span>
+                    <span class="center">取 消</span>
+                    <span class="right"></span>
+                </a>
+            </p>
+        </div>
     </script>
 
-    <!--  日历价格修改弹层模板   酒店价格  -->
+    <!--  日历价格修改弹层模板  房价-->
     <script type="text/x-kendo-template" id="modify-hp-layer-template">
-        <div>日历价格修改弹层模板   机票价格</div>
+        <div class="modify-price-layer">
+            <p><span class="hotel-price-title">房价</span><input type="text" style="width:90px;"></p>
+            <p>
+                <a href="javascript:;" class="button_important adaptiveButton small">
+                    <span class="left"></span>
+                    <span class="center">保 存</span>
+                    <span class="right"></span>
+                </a>
+                <a href="javascript:;" class="button_unimportant adaptiveButton small">
+                    <span class="left"></span>
+                    <span class="center">取 消</span>
+                    <span class="right"></span>
+                </a>
+            </p>
+        </div>
     </script>
 
     <script type="text/javascript">
@@ -269,13 +335,18 @@
                 }
             });
 
-            new FloatLayer({
-                trigger:'.k-content td',
+            //  点击修改机票价格，房价类似
+            var layer = new FloatLayer({
+                trigger:'.k-content td.enableClick',
                 template:'#modify-fp-layer-template',
                 type:'click',
                 expectClose: false,
                 offsetX:0,
-                offsetY:56
+                offsetY:52
+            });
+
+            $(".button_unimportant").click(function(){
+                layer.close();
             });
 
         });
@@ -315,6 +386,11 @@
 
         function clearOtherMonthCont() {
             $(".k-calendar .k-other-month").html("<div class='date-cont-container'></div>");
+            $(".k-calendar .k-content td").each(function(){
+                if (!$(this).hasClass("k-other-month")) {
+                    $(this).addClass("enableClick");
+                }
+            });
         }
 
     </script>
