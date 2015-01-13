@@ -102,10 +102,27 @@
             </div>
 
             <div class="store-messagesBlock">
+                <div class="patch-loading" >
+                    <a href="javascript:void(0)">从Excel批量导入手机号</a>
+                    <i class="hint"></i>
+                    <a href="javascript:void(0)" class="viewRules">提示</span>
+            </div>
+
+            <div class="loading-file clearfix">
+                <i class="fileIcon"></i>
+                <div class="fileName">
+                    <span>我是很长很长的文件名.xlsx</span>
+                </div>
+                <div class="phone-number">
+                    共<span>2102</span>条电话号
+                    <a href="javascript:void(0)" class="phone-cancel"></a>
+                </div>
+            </div>
+
+
                 <label>
                     <span class="labelTitle"><em>*</em>发送至手机号：</span>
                     <input id="form_tags_input" class="tagInput" type="text" >
-                    
                     <i class="fc-tips">按回车或Tab键添加</i>
                 </label>
                 <div class="messagesDivBlock">
@@ -158,6 +175,8 @@
                 <div class="operButtonRow">
                     <button class="large_button status_button" type="button" name="" style="margin-right: 8px;" id="pass">确认发送</button>
                     <button class="large_button disable" type="button" name="">清空全部</button>
+
+                    
                 </div>
             </div>
 
@@ -182,6 +201,39 @@
             <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
+
+
+
+
+<script type="text/x-kendo-template" id="viewRulesTemplate">
+        <div class="opteration-layerGrayBlock" >
+            
+            <div class="opteration-abroadtooltipsCont" style="width:342px;">
+                
+                <div class="abroadtoolclickArrow"></div>
+                <div class="opteration-viewRulesContent clearfix">
+                   <div class="hint-content">
+                       <div style="margin: 12px auto">
+                            提示：
+                       </div>
+                       <div style="margin-bottom:20px;">
+                            请将Excel 表格按照右图格式编辑。
+                            <p>
+                            文件中不符合要求（位数不对，格式不对）的手机号码不会包含在短信发送的名单内。
+                            </p>
+                       </div>
+                   </div>  
+                   <div class="mobile-list">
+                   </div>
+                </div>
+            </div>
+        </div>
+</script>
+
+
+
+
+
     
     <script type="text/x-kendo-template" id="message_template">
         <div class="#=statusClass#">
@@ -267,6 +319,17 @@
                         "keyTab":"tab"
                         });
             //$.prompt({content:$("#create_failed_template").html()}).center().open(); 
+
+
+
+
+            var temp = FloatLayer({
+                trigger:'.viewRules',
+                template:'#viewRulesTemplate',
+                offsetY:-34,
+                offsetX:30
+                });
+                temp.show();
         });
     </script>   
 
