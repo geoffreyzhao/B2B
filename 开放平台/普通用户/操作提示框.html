@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>开放平台 操作提示框</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css"  href="/static/css/kendo.common.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/kendo.gray.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/openPlatform/kendo.reset.css" />
+    <link rel="stylesheet" href="/static/css/openPlatform/commonUser/common.css"/>
+    <link rel="stylesheet" href="/static/css/openPlatform/commonUser/openPlatform.css"/>
+
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/public.js"></script>
+    <script type="text/javascript" src="/static/js/openPlatform/administrator/common.js"></script>
+    <!--[if lte IE 9]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+
+    <script>
+        $(function(){
+            kendo.init('body');
+            lensf();
+        })
+    </script>
+    
+</head>
+<body>
+    <header class="main-header">
+        <div class="stairMenuContent">
+            <div class="wrap clearfix">
+                <a class="logo" href="/"></a>
+                <ul class="stairMenu">
+                    <li>
+                        <a href="javascript:void(0);">首页</a>
+                    </li>
+                    <li class="currentStairMenu">
+                        <a href="javascript:void(0);">开发文档 <i class="topArrowIcon"></i></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">测试工具</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">常见问题</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">公告通知</a>
+                    </li>
+                </ul>
+                <div class="headRightOperate">
+                    <label class="userContent">
+                        <i class="userIcon"></i> 开发者
+                    </label>
+                    <a href="javascript:void(0);" class="exitFonts">退出</a>
+                </div>
+            </div>
+        </div>
+        <div class="headSecondLevel">
+            <ul class="secondLevelList clearfix">
+                <li>
+                    <a href="javascript:void(0);">平台概述</a>
+                </li>
+                <li class="currentSecondLevelMenu">
+                    <a href="javascript:void(0);">国内机票</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">国际机票</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">酒店</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">文档下载</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    
+    <section class="main-body">
+        
+        <button type="button" class="successHint">成功提示窗</button>
+        <br><br>   
+        <button type="button" class="failHint">失败提示窗</button>
+        <br><br>   
+        <button type="button" class="loadingHint">加载提示窗</button>
+        <br><br>        
+        
+    </section> <!--main-body 结束-->
+    
+    <footer class="main-footer">
+        <center class="copyright">
+            Copyright &copy; 2013 天地行 All Rights Reserved. &nbsp; 沪ICP备08101503号
+        </center>
+        <div class="differentLink">
+            <a href="javascript:void(0);">关于开放平台</a> | <a href="javascript:void(0);">联系我们</a>
+        </div>
+    </footer>
+
+    <script type="text/x-kendo-template" id="successHintTemplate">
+        <div class="commonHint">
+            <i class="commonHintIcon successIcon"></i>
+            <span class="tip-msg-content">操作失败！</span>
+        </div>
+    </script>
+
+<script>
+    $(function(){
+        
+        var win = new PopWindow('.successHint', {
+            title: '提示',
+            template: "#successHintTemplate",
+            width: 370,
+            wrapperClass:'blueWindow',
+            open:function(){
+                $(".blueWindow").closest(".k-widget.k-window").addClass("changeBlueWindow");
+            }
+        }).init();
+        
+        
+    });
+</script>
+
+
+</body>
+</html>

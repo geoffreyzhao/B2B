@@ -36,8 +36,6 @@ $(function(){
     
 
     /*  公共弹窗添加class  开始  */
-    
-
 
     /*  公共弹窗添加class  结束  */
 });
@@ -50,3 +48,5 @@ function recoverCurrentNav() {
         }
     });
 }
+
+
