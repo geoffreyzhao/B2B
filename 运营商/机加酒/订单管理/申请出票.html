@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>运营商 机加酒 订单管理 申请出票</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link href="/static/css/operatorCommonHeader.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/ticketsAndhotel.css" rel="stylesheet" type="text/css"/>
+    <script src="/static/js/jquery.min.js" type="text/javascript"></script>    
+    <script src="/static/js/kendo.web.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/js/scrollFix.js"></script>
+   <script type="text/javascript" src="/static/js/global.js"></script>
+    
+    <!-- <script type="text/javascript">
+        $(function(){
+            new Collpase({
+                limitHeight:140,
+                container:'.xyzc_div' 
+            }).init();
+        })
+    </script>-->
+<script type="text/javascript" src="/static/js/sync.js"></script>
+</head>
+<body>
+    <div id="extHeader">
+        <div></div>
+    </div>
+
+    <div id="container">
+        <div class="header">
+            <h1></h1>
+            <div>
+                <span>你好,${name}</span>
+                <a href="javascript:void(0);">退出</a>
+            </div>
+            <ul id="top_menu">
+                <li><a href="javascript:void(0);">国内机票</a></li>
+                <li><a href="javascript:void(0);">国际机票</a></li>
+                <li><a href="javascript:void(0);">酒店</a></li>
+                <li><a href="javascript:void(0);">票证中心</a></li>
+                <li><a href="javascript:void(0);">财务管理</a></li>
+                <li><a href="javascript:void(0);">客户管理</a></li>
+                <li class="current"><a href="javascript:void(0);">系统设置</a></li>
+            </ul>
+            <ol class="sub_menu">
+                <li class="current"><a href="javascript:void(0);">公告信息</a></li>
+                <li><a href="javascript:void(0);">公司信息</a></li>
+                <li><a href="javascript:void(0);">组织架构</a></li>
+                <li><a href="javascript:void(0);">角色维护</a></li>
+                <li><a href="javascript:void(0);">基础数据</a></li>
+            </ol>
+            <div id="message">
+            	<a href="javascript:void(0);">&nbsp;</a>
+                <span>&nbsp;</span>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="sub_menu_bar"></div>
+        <div id="mainContent">
+			<!-- start content -->
+
+            <div class="topFixedToolsBar">
+                <div class="commonReturnBtn">
+                    <a href="#"><i class="leftArrow"></i> 返回</a>
+                </div>
+                <div class="fixedMenu">
+                    <a href="#">未完成<em class="orangeBg">12</em></a>
+                    <a href="#">机票未出票<em class="orangeBg">12</em></a>
+                    <a href="#">酒店未确认<em class="orangeBg">12</em></a>
+                    <a href="#" class="current">申请出票<em class="orangeBg">12</em></a>
+                </div>
+            </div>
+            
+            <div class="information_div">
+               <table cellpadding="0" cellspacing="0" class="information_tab">
+                  <colgroup>
+                       <col width="80" />  
+                       <col width="240" /> 
+                       <col width="100" />
+                       <col width="240" /> 
+                       <col width="60" /> 
+                       <col width="140" />
+                       <col width="95" />
+                  </colgroup>
+                  <tr>
+                      <th>出票订单号</th>
+                      <td><input type="text" placeholder="输入文本..." style="width:212px;" /></td>
+                      <th>自由行订单号</th>
+                      <td><input type="text" placeholder="输入文本..." style="width:212px;" /></td>
+                      <th></th>
+                      <td></td>
+                      <td rowspan="3">
+                         <a href="javascript:;" class="button_important adaptiveButton medium">
+                            <span class="left"></span>
+                            <span class="center" style="padding:0 25px;">查 询</span>
+                            <span class="right"></span>
+                        </a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <th>申请出票日期</th>
+                      <td>
+                          <input type="text" class="datepicker" style="width:95px;" value="2013-09-30"/>
+                          <em> 至 </em>
+                          <input type="text" class="datepicker orange" style="width:95px;" value="2013-10-07"/>
+                      </td>
+                      <th>自由行出发日期</th>
+                      <td>
+                          <input type="text" class="datepicker" style="width:95px;" value="2013-09-30"/>
+                          <em> 至 </em>
+                          <input type="text" class="datepicker orange" style="width:95px;" value="2013-10-07"/>
+                      </td>
+                      <th></th>
+                      <td></td>
+                  </tr>
+                   <tr>
+                       <th>旅客姓名</th>
+                       <td>
+                           <input type="text" style="width:212px;" placeholder="输入文本..." />
+                       </td>
+                       <th>建单员</th>
+                       <td>
+                           <input type="text" style="width:212px;" placeholder="输入文本..." />
+                       </td>
+                       <th>申请状态</th>
+                       <td>
+                           <select style="width: 75px;" data-role="dropdownlist">
+                               <option>全部</option>
+                           </select>
+                       </td>
+                   </tr>
+               </table>
+            </div>
+              
+              <table class="tgrid orderTab">
+                  <colgroup>
+                      <col width="100">
+                      <col width="80">
+                      <col width="130">
+                      <col width="130">
+                      <col width="70">
+                      <col width="130">
+                      <col width="120">  
+                      <col width="130"> 
+                      <col width="80">
+                  </colgroup>
+                  <thead>
+                      <tr>
+                          <th class="line_left">类型</th>
+                          <th>状态</th>
+                          <th>出票订单号</th>
+                          <th>去程出发时间</th>
+                          <th>行程</th>
+                          <th>出发地，目的地</th>
+                          <th>旅客姓名</th>
+                          <th>建单时间</th>
+                          <th class="line_right">建单员</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>申请出票</td>
+                          <td>未出票</td>
+                          <td>
+                              <a href="javascript:void(0);" class="ac-ticketApplyFor">123456789012345</a>
+                          </td>
+                          <td>2014-08-01 12:12</td>
+                          <td>单程</td>
+                          <td>上海<em class="hollowArrow"> → </em>北京</td>
+                          <td>
+                              <div class="ellipsisName" title="刘德华，刘若英，刘德华">刘德华，刘若英，刘德华</div>
+                          </td>
+                          <td>2014-08-01 12:12</td>
+                          <td>刘伟</td>
+                      </tr>
+                      <tr>
+                          <td>申请出票</td>
+                          <td>未出票</td>
+                          <td>
+                              <a href="javascript:void(0);" class="ac-ticketApplyFor">123456789012345</a>
+                          </td>
+                          <td>2014-08-01 12:12</td>
+                          <td>往返</td>
+                          <td>上海<em class="hollowArrow"> ↔ </em>北京</td>
+                          <td>
+                              <div class="ellipsisName" title="刘德华，刘若英，刘德华">刘德华，刘若英，刘德华</div>
+                          </td>
+                          <td>2014-08-01 12:12</td>
+                          <td>刘伟</td>
+                      </tr>
+                      <tr>
+                          <td>申请出票</td>
+                          <td>未出票</td>
+                          <td>
+                              <a href="javascript:void(0);" class="ac-ticketApplyFor">123456789012345</a>
+                          </td>
+                          <td>2014-08-01 12:12</td>
+                          <td>单程</td>
+                          <td>上海<em class="hollowArrow"> → </em>北京</td>
+                          <td>
+                              <div class="ellipsisName" title="刘德华，刘若英，刘德华">刘德华，刘若英，刘德华</div>
+                          </td>
+                          <td>2014-08-01 12:12</td>
+                          <td>刘伟</td>
+                      </tr>
+                      <tr>
+                          <td>申请出票</td>
+                          <td>未出票</td>
+                          <td>
+                              <a href="javascript:void(0);" class="ac-ticketApplyFor">123456789012345</a>
+                          </td>
+                          <td>2014-08-01 12:12</td>
+                          <td>往返</td>
+                          <td>上海<em class="hollowArrow"> ↔ </em>北京</td>
+                          <td>
+                              <div class="ellipsisName" title="刘德华，刘若英，刘德华">刘德华，刘若英，刘德华</div>
+                          </td>
+                          <td>2014-08-01 12:12</td>
+                          <td>刘伟</td>
+                      </tr>
+                      <tr>
+                          <td>申请出票</td>
+                          <td>未出票</td>
+                          <td>
+                              <a href="javascript:void(0);" class="ac-ticketApplyFor">123456789012345</a>
+                          </td>
+                          <td>2014-08-01 12:12</td>
+                          <td>单程</td>
+                          <td>上海<em class="hollowArrow"> → </em>北京</td>
+                          <td>
+                              <div class="ellipsisName" title="刘德华，刘若英，刘德华">刘德华，刘若英，刘德华</div>
+                          </td>
+                          <td>2014-08-01 12:12</td>
+                          <td>刘伟</td>
+                      </tr>
+                      <tr>
+                          <td>申请出票</td>
+                          <td>未出票</td>
+                          <td>
+                              <a href="javascript:void(0);" class="ac-ticketApplyFor">123456789012345</a>
+                          </td>
+                          <td>2014-08-01 12:12</td>
+                          <td>往返</td>
+                          <td>上海<em class="hollowArrow"> ↔ </em>北京</td>
+                          <td>
+                              <div class="ellipsisName" title="刘德华，刘若英，刘德华">刘德华，刘若英，刘德华</div>
+                          </td>
+                          <td>2014-08-01 12:12</td>
+                          <td>刘伟</td>
+                      </tr>
+              </tbody>
+          </table>
+          
+              <div class="grid-table-pagination page">
+                  <span class="grid-table-count">
+                      共 <em>132</em> 条记录
+                  </span>
+                  <span>
+                      <a href="#" class="prev">&nbsp;</a>
+                  </span>
+                  <span class="links">
+                      <a href="#">1</a>
+                      <a href="#">2</a>
+                      <a href="#" class="current">3</a>
+                      <a href="#">4</a>
+                      <a href="#">5</a>
+                      <a href="javascript:;">...</a>
+                      <a href="#">50</a>
+                  </span>
+                  <span>
+                      <a href="#" class="next">&nbsp;</a>
+                  </span>
+              </div>
+              
+            </div>
+          </div>
+ 
+    <button class="synchronizationSuccessHint">同步成功</button>
+    <button class="synchronizationFailHint">同步到订单  同步异常</button>
+    <button class="tickeFailHint">提取票号  PNG信息不正确</button>
+    
+    <!-- end of content -->
+    </div>
+    
+    <div id="extFooter">
+        <div>
+            <p>
+                <a href="javascript:void(0);">关于我们</a>&nbsp;|
+                <a href="javascript:void(0);">微博</a>&nbsp;|
+                <a href="javascript:void(0);">服务条款</a>&nbsp;|
+                <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+    
+    
+    <script type="text/x-kendo-template" id="ac-ticketApplyFor-template">
+        <table class="tgrid ticketApplyForTab">
+            <colgroup>
+                <col width="130">
+                <col width="130">
+                <col width="70">
+                <col width="290">
+                <col width="90">
+            </colgroup>
+            <thead>
+            <tr>
+                <th class="line_left">客户名称</th>
+                <th>申请单号</th>
+                <th>创建人</th>
+                <th>PNR
+                    <div class="positionBtn">
+                        <a href="javascript:void(0);" class="modifiedPnr">修改</a>
+                        <label class="saveOrCancelPnr">
+                            <a href="javascript:void(0);" class="savePnr">保存</a>
+                            <em class="whiteFonts"> | </em>
+                            <a href="javascript:void(0);" class="cancelPnr">取消</a>
+                        </label>
+                    </div>
+                </th>
+                <th class="line_right">申请状态</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="alignTop">自由行出票部</td>
+                <td class="alignTop">R123456789789</td>
+                <td class="alignTop">张三</td>
+                <td class="alignTop">
+                    <input type="text" class="inputValue changePNR" readonly value="ABCDEFG，HIJKLMN，ABCDEFG，ABCDEFG" placeholder="多个请用“，”隔开" style="width: 270px;">
+                </td>
+                <td>
+                    <div>
+                        <a href="javascript:;" class="button_secondary adaptiveButton small">
+                            <span class="left"></span>
+                            <span class="center">未出票</span>
+                            <span class="right"></span>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="javascript:;" class="button_secondary adaptiveButton small">
+                            <span class="left"></span>
+                            <span class="center">已出票</span>
+                            <span class="right"></span>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="javascript:;" class="button_secondary adaptiveButton small">
+                            <span class="left"></span>
+                            <span class="center">作废</span>
+                            <span class="right"></span>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="orderTabList">
+            <div class="topGrayBg clearfix">
+                <a href="javascript:void(0);" class="leftContent copySuccessHint">复制信息</a>
+                <i class="dashed"></i>
+                <label class="rightContent">
+                    <a href="javascript:void(0);" class="extractionOfBanks">提取票号</a>
+                    <em> | </em>
+                    <a href="javascript:void(0);" class="synchronizationOrder">同步到订单</a>
+                </label>
+            </div>
+            <table class="tgrid ticketApplyForTab">
+                <colgroup>
+                    <col width="45">
+                    <col width="110">
+                    <col width="100">
+                    <col width="110">
+                    <col width="100">
+                    <col width="110">
+                    <col width="60">
+                    <col width="55">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th class="line_left">航程</th>
+                    <th>出发时间</th>
+                    <th>出发机场</th>
+                    <th>出发日期</th>
+                    <th>到达机场</th>
+                    <th>航司-航班</th>
+                    <th>舱位</th>
+                    <th class="line_right">票价</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>去程</td>
+                    <td>2014-12-12 12:12</td>
+                    <td>上海浦东机场</td>
+                    <td>2014-12-12 12:12</td>
+                    <td>上海浦东机场</td>
+                    <td>东航-MU1234</td>
+                    <td>Y</td>
+                    <td>550</td>
+                </tr>
+                <tr>
+                    <td>返程</td>
+                    <td>2014-12-12 12:12</td>
+                    <td>上海浦东机场</td>
+                    <td>2014-12-12 12:12</td>
+                    <td>上海浦东机场</td>
+                    <td>东航-MU1234</td>
+                    <td>Y</td>
+                    <td>550</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="orderTabList noTopValue">
+            <div class="topGrayBg clearfix">
+                <label class="leftContent"><b>订单信息：</b>PKG1412241192123456</label>
+            </div>
+            <table class="tgrid ticketApplyForTab">
+                <colgroup>
+                    <col width="55">
+                    <col width="75">
+                    <col width="65">
+                    <col width="70">
+                    <col width="145">
+                    <col width="85">
+                    <col width="85">
+                    <col width="125">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th class="line_left">国籍</th>
+                    <th>旅客姓名</th>
+                    <th>类型/性别</th>
+                    <th>证件类型</th>
+                    <th>证件号</th>
+                    <th>证件截止期</th>
+                    <th>出生日期</th>
+                    <th class="line_right">乘客票号
+                        <div class="positionBtn changeRightValue">
+                            <a href="javascript:void(0);" class="modifiedPassengersTicket">修改</a>
+                            <label class="saveOrCancelPassengersTicket">
+                                <a href="javascript:void(0);" class="savePassengersTicket">保存</a>
+                                <em class="whiteFonts"> | </em>
+                                <a href="javascript:void(0);" class="cancelPassengersTicket">取消</a>
+                            </label>
+                        </div>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>中国</td>
+                    <td>张三李四</td>
+                    <td>成人/男</td>
+                    <td>身份证</td>
+                    <td>371102188889898747</td>
+                    <td>0000-00-00</td>
+                    <td>0000-00-00</td>
+                    <td>
+                        <input type="text" class="passengersTicketValue passengersTicket" readonly value="ABCDEFG123" style="width: 105px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>中国</td>
+                    <td>张三李四</td>
+                    <td>成人/男</td>
+                    <td>身份证</td>
+                    <td>371102188889898747</td>
+                    <td>0000-00-00</td>
+                    <td>0000-00-00</td>
+                    <td>
+                        <input type="text" class="passengersTicketValue passengersTicket" readonly value="ABCDEFG123" style="width: 105px;">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="orderTabList noTopValue">
+            <div class="topGrayBg clearfix">
+                <label class="leftContent"><b>订单号：</b>PKG1412241192123456</label>
+            </div>
+            <table class="tgrid ticketApplyForTab">
+                <colgroup>
+                    <col width="55">
+                    <col width="75">
+                    <col width="65">
+                    <col width="70">
+                    <col width="145">
+                    <col width="85">
+                    <col width="85">
+                    <col width="125">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th class="line_left">国籍</th>
+                    <th>旅客姓名</th>
+                    <th>类型/性别</th>
+                    <th>证件类型</th>
+                    <th>证件号</th>
+                    <th>证件截止期</th>
+                    <th>出生日期</th>
+                    <th class="line_right">乘客票号
+                        <div class="positionBtn changeRightValue">
+                            <a href="javascript:void(0);" class="modifiedPassengersTicket">修改</a>
+                            <label class="saveOrCancelPassengersTicket">
+                                <a href="javascript:void(0);" class="savePassengersTicket">保存</a>
+                                <em class="whiteFonts"> | </em>
+                                <a href="javascript:void(0);" class="cancelPassengersTicket">取消</a>
+                            </label>
+                        </div>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>中国</td>
+                    <td>张三李四</td>
+                    <td>成人/男</td>
+                    <td>身份证</td>
+                    <td>371102188889898747</td>
+                    <td>0000-00-00</td>
+                    <td>0000-00-00</td>
+                    <td>
+                        <input type="text" class="passengersTicketValue passengersTicket" readonly value="ABCDEFG123" style="width: 105px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>中国</td>
+                    <td>张三李四</td>
+                    <td>成人/男</td>
+                    <td>身份证</td>
+                    <td>371102188889898747</td>
+                    <td>0000-00-00</td>
+                    <td>0000-00-00</td>
+                    <td>
+                        <input type="text" class="passengersTicketValue passengersTicket" readonly value="ABCDEFG123" style="width: 105px;">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>        
+    </script>
+
+    <script type="text/x-kendo-template" id="synchronizationSuccessHintTemplate">
+        <div class="common-tip-container">
+            <i class="large-success-icon"></i>
+            <span class="tip-msg-content">票号已同步到订单！</span>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="synchronizationFailHintTemplate">
+        <div class="common-tip-container">
+            <i class="large-warn-icon"></i>
+            <span class="tip-msg-content">有订单无票号，请检查票号后重试！</span>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="copySuccessHintTemplate">
+        <div class="common-tip-container">
+            <i class="large-success-icon"></i>
+            <span class="tip-msg-content">乘客信息已复制成功！</span>
+        </div>
+    </script>
+
+
+    <script type="text/x-kendo-template" id="tickeFailHintTemplate">
+        <div class="common-tip-container">
+            <i class="large-warn-icon"></i>
+            <span class="tip-msg-content">未填写PNR,或者PNR有误，<br>请更新PNR后重试！</span>
+        </div>
+    </script>
+
+    <script>
+        $(function(){
+            
+            new PopWindow('.ac-ticketApplyFor', {
+                title: '出票申请单',
+                width:'770',
+                template:'#ac-ticketApplyFor-template'
+            }).init();
+
+            $(".modifiedPnr").click(function(){
+                $(this).siblings(".saveOrCancelPnr").show();
+                $(this).hide();
+                $(this).parents("thead").siblings("tbody").find("input").removeClass("changePNR").removeAttr("readonly");
+            });
+            
+            $(".saveOrCancelPnr .cancelPnr").click(function(){
+                $(this).parents(".saveOrCancelPnr").siblings(".modifiedPnr").show();
+                $(this).parents(".saveOrCancelPnr").hide();
+                $(this).parents("thead").siblings("tbody").find("input").addClass("changePNR").attr("readonly");
+            });
+            
+            $(".saveOrCancelPnr .savePnr").click(function(){
+                $(this).parents(".saveOrCancelPnr").hide();
+                $(this).parents(".saveOrCancelPnr").siblings(".modifiedPnr").show();
+                var savePnrValue = $(".ticketApplyForTab .inputValue").val();
+                $(this).parents("thead").siblings("tbody").find(".inputValue").val(savePnrValue).addClass("changePNR").attr("readonly");
+            });
+
+            
+            $(".modifiedPassengersTicket").click(function(){
+                $(this).siblings(".saveOrCancelPassengersTicket").show();
+                $(this).hide();
+                $(this).parents("thead").siblings("tbody").find("input").removeClass("passengersTicket").removeAttr("readonly");
+            });
+            
+            $(".saveOrCancelPassengersTicket .cancelPassengersTicket").click(function(){
+                $(this).parents(".saveOrCancelPassengersTicket").siblings(".modifiedPassengersTicket").show();
+                $(this).parents(".saveOrCancelPassengersTicket").hide();
+                $(this).parents("thead").siblings("tbody").find("input").addClass("passengersTicket").attr("readonly");
+            });
+            
+            $(".saveOrCancelPassengersTicket .savePassengersTicket").click(function(){
+                $(this).parents(".saveOrCancelPassengersTicket").hide();
+                $(this).parents(".saveOrCancelPassengersTicket").siblings(".modifiedPassengersTicket").show();
+                var savePassengersTicketValue = $(".ticketApplyForTab .passengersTicketValue").val();
+                $(this).parents("thead").siblings("tbody").find(".passengersTicketValue").val(savePassengersTicketValue).addClass("passengersTicket").attr("readonly");
+            });
+
+
+            var win3 = new PopWindow('.synchronizationSuccessHint', {
+                modal: false,
+                title: false,
+                template: "#synchronizationSuccessHintTemplate",
+                width: 300,
+                autoHide: 2000,
+                animation: {
+                    open: {
+                        effects: "fade:in",
+                        duration: 300
+                    },
+                    close: {
+                        effects: "fade:out",
+                        duration: 300
+                    }
+                }
+            }).init();
+
+            var win3 = new PopWindow('.synchronizationFailHint', {
+                modal: false,
+                title: false,
+                template: "#synchronizationFailHintTemplate",
+                width: 400,
+                autoHide: 2000,
+                animation: {
+                    open: {
+                        effects: "fade:in",
+                        duration: 300
+                    },
+                    close: {
+                        effects: "fade:out",
+                        duration: 300
+                    }
+                }
+            }).init();
+            
+            var win3 = new PopWindow('.copySuccessHint', {
+                modal: false,
+                title: false,
+                template: "#copySuccessHintTemplate",
+                width: 300,
+                autoHide: 2000,
+                animation: {
+                    open: {
+                        effects: "fade:in",
+                        duration: 300
+                    },
+                    close: {
+                        effects: "fade:out",
+                        duration: 300
+                    }
+                }
+            }).init();
+
+            var win4 = new PopWindow('.tickeFailHint', {
+                modal: false,
+                title: false,
+                template: "#tickeFailHintTemplate",
+                width: 350,
+                autoHide: 2000,
+                animation: {
+                    open: {
+                        effects: "fade:in",
+                        duration: 300
+                    },
+                    close: {
+                        effects: "fade:out",
+                        duration: 300
+                    }
+                }
+            }).init();
+            
+            
+        });
+    </script>
+
+</body>
+</html>
