@@ -106,31 +106,31 @@
 	<div class="ap-right-main-content">
 		<ul class="ap-airport-list clearfix">
 			<li class="ap-airport-item">
-				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<i class="ap-checkbox-unchecked"></i>
 				<span>NAY-北京南苑机场北京南苑机场</span>
 			</li>
 			<li class="ap-airport-item">
-				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<i class="ap-checkbox-unchecked"></i>
 				<span>NAY-机场</span>
 			</li>
 			<li class="ap-airport-item ap-airport-item-adjust">
-				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<i class="ap-checkbox-unchecked"></i>
 				<span>NAY-北京南苑机场</span>
 			</li>
 			<li class="ap-airport-item">
-				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<i class="ap-checkbox-unchecked"></i>
 				<span>NAY-北京南苑机场</span>
 			</li>
 			<li class="ap-airport-item">
-				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<i class="ap-checkbox-unchecked"></i>
 				<span>NAY-北京南苑机场</span>
 			</li>
 			<li class="ap-airport-item ap-airport-item-adjust">
-				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<i class="ap-checkbox-unchecked"></i>
 				<span>NAY-北京南苑机场</span>
 			</li>
 			<li class="ap-airport-item">
-				<i class="ap-checkbox-unchecked ap-checked"></i>
+				<i class="ap-checkbox-unchecked"></i>
 				<span>NAY-北京南苑机场</span>
 			</li>
 			<li class="ap-airport-item">
@@ -400,6 +400,16 @@
 						$(this).addClass("ap-checked");
 					}
 				});
+			});
+
+			$("body").delegate(".ap-airport-item", "click", function(){
+				if (!$(this).hasClass("actived")) {
+					$(this).addClass("actived");
+					$(this).children("i").addClass("ap-checked");
+				} else {
+					$(this).removeClass("actived");
+					$(this).children("i").removeClass("ap-checked");
+				}
 			});
 
 		})
