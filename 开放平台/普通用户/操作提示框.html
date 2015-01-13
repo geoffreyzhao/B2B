@@ -100,8 +100,25 @@
 
     <script type="text/x-kendo-template" id="successHintTemplate">
         <div class="commonHint">
-            <i class="commonHintIcon successIcon"></i>
-            <span class="tip-msg-content">操作失败！</span>
+            <span class="hintContent">
+                <i class="commonHintIcon successIcon"></i>操作失败！
+            </span>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="failHintTemplate">
+        <div class="commonHint">
+            <span class="hintContent">
+                <i class="commonHintIcon failIcon"></i>操作失败！
+            </span>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="loadingHintTemplate">
+        <div class="commonHint">
+            <span class="hintContent">
+                <i class="commonHintIcon loadingIcon"></i>操作进行中，请稍后
+            </span>
         </div>
     </script>
 
@@ -112,6 +129,59 @@
             title: '提示',
             template: "#successHintTemplate",
             width: 370,
+            autoHide: 2000,
+            animation: {
+                open: {
+                    effects: "fade:in",
+                    duration: 300
+                },
+                close: {
+                    effects: "fade:out",
+                    duration: 300
+                }
+            },
+            wrapperClass:'blueWindow',
+            open:function(){
+                $(".blueWindow").closest(".k-widget.k-window").addClass("changeBlueWindow");
+            }
+        }).init();
+        
+        var win = new PopWindow('.failHint', {
+            title: '提示',
+            template: "#failHintTemplate",
+            width: 370,
+            autoHide: 2000,
+            animation: {
+                open: {
+                    effects: "fade:in",
+                    duration: 300
+                },
+                close: {
+                    effects: "fade:out",
+                    duration: 300
+                }
+            },
+            wrapperClass:'orangeWindow',
+            open:function(){
+                $(".orangeWindow").closest(".k-widget.k-window").addClass("changeOrangeWindow");
+            }
+        }).init();
+        
+        var win = new PopWindow('.loadingHint', {
+            title: '提示',
+            template: "#loadingHintTemplate",
+            width: 370,
+            autoHide: 2000,
+            animation: {
+                open: {
+                    effects: "fade:in",
+                    duration: 300
+                },
+                close: {
+                    effects: "fade:out",
+                    duration: 300
+                }
+            },
             wrapperClass:'blueWindow',
             open:function(){
                 $(".blueWindow").closest(".k-widget.k-window").addClass("changeBlueWindow");
