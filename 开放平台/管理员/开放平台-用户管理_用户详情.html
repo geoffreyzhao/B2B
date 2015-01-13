@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>开放平台 开放平台-用户管理_用户详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css"  href="/static/css/kendo.common.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/kendo.gray.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/openPlatform/kendo.reset.css" />
+    <link rel="stylesheet" href="/static/css/openPlatform/administrator/common.css"/>
+    <link rel="stylesheet" href="/static/css/openPlatform/administrator/openPlatform.css"/>
+
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/openPlatform/administrator/common.js"></script>
+    <!--[if lte IE 9]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+
+    <script>
+        $(function(){
+            kendo.init('body');
+            lensf();
+        })
+    </script>
+    <style type="text/css">
+        .k-window-titlebar .k-window-actions {
+             display: none; 
+        }
+    </style>
+    
+</head>
+<body>
+    <header class="main-header">
+        <div class="stairMenuContent">
+            <div class="wrap clearfix">
+                <a class="logo" href="/"></a>
+                <ul class="stairMenu">
+                    <li class="first-level-nav">
+                        <a href="javascript:void(0);">首页</a>
+                    </li>
+                    <li class="first-level-nav currentStairMenu">
+                        <a href="javascript:void(0);">用户管理 <i class="arrowIcon topArrowIcon"></i></a>
+                        <div class="second-level-nav">
+                            <ul class="secondLevelList clearfix">
+                                <li class="currentSecondLevelMenu">
+                                    <a href="javascript:void(0);">用户中心</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">测试密钥分配</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">正式密钥分配</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">接入IP审核</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="first-level-nav">
+                        <a href="javascript:void(0);">开发文档管理 <i class="arrowIcon"></i></a>
+                        <div class="second-level-nav">
+                            <ul class="secondLevelList clearfix">
+                                <li class="currentSecondLevelMenu">
+                                    <a href="javascript:void(0);">国内机票</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">国际机票</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">酒店</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">文档下载</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="first-level-nav">
+                        <a href="javascript:void(0);">FAQ管理 <i class="arrowIcon"></i></a>
+                        <div class="second-level-nav">
+                            <ul class="secondLevelList clearfix">
+                                <li class="currentSecondLevelMenu">
+                                    <a href="javascript:void(0);">二级导航11</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">二级导航22</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">二级导航33</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">二级导航44</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="first-level-nav">
+                        <a href="javascript:void(0);">公告通知管理 <i class="arrowIcon"></i></a>
+                        <div class="second-level-nav">
+                            <ul class="secondLevelList clearfix">
+                                <li class="currentSecondLevelMenu">
+                                    <a href="javascript:void(0);">二级导航111</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">二级导航222</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">二级导航333</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">二级导航444</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <div class="headRightOperate">
+                    <label class="userContent">
+                        <i class="userIcon"></i> 开发者
+                    </label>
+                    <a href="javascript:void(0);" class="exitFonts">退出</a>
+                </div>
+            </div>
+        </div>
+        <div class="headSecondLevel"></div>
+    </header>
+    <section class="main-body clearfix"> <!--main-body 开始-->        
+        <aside class="leftMenu">  <!--leftMenu 开始-->
+             <ul class="noMenuChange clearfix">
+                 <li class="firstLevel">
+                     <em><i class="bitTitle">用户详情</i></em>
+                      <ul class="secondLevel">
+                          <li class="currentStatus">账号信息</li>
+                          <li class="last">密钥和接口IP</li>
+                      </ul>
+                 </li>
+             </ul>
+        </aside> <!--leftMenu 结束-->
+
+        <div class="rightCont rightContMarginTop"> <!-- 右边内容开始 -->
+            <!--<div class="commonTitle noBottomLine clearfix">
+                <h3 class="titleFonts pull-left">API  XML格式下载</h3>
+                <a class="commonBigBlueBtn pull-right ac-uploadingAPI" href="javascript:void(0);"><i class="commonIcon addWhiteIcon"></i>上传新的API 文档</a>
+            </div>-->
+            <div class="hoverContent">
+                <div class="commonStyle first">
+                    <h3 class="currentTitleFonts18">账号信息</h3>
+                    <table class="userInfoTable">
+                        <colgroup>
+                            <col width="90"/>
+                            <col width=""/>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th>用户名：</th>
+                            <td>小灰灰</td>
+                        </tr>
+                        <tr>
+                            <th>电子邮箱：</th>
+                            <td>amEmail@126.com</td>
+                        </tr>
+                        <tr>
+                            <th>用户类型：</th>
+                            <td>个人</td>
+                        </tr>
+                        <tr>
+                            <th>登录密码：</th>
+                            <td><input type="password" value=""/></td>
+                        </tr>
+                        <tr>
+                            <th>确认密码：</th>
+                            <td><input type="password" value=""/></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="operBtnDiv">
+                        <a class="commonBigBlueBtn save-successBtn" href="javascript:void(0);">保存更改</a>
+                        <a class="cancelFonts marginLeft30" href="javascript:void(0);">取消</a>
+                    </div>
+                </div>
+                
+                <div class="commonStyle">
+                    <h3 class="currentTitleFonts18">联系人信息</h3>
+                    <table class="userInfoTable">
+                        <colgroup>
+                            <col width="90"/>
+                            <col width=""/>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th><em>*</em>姓名：</th>
+                            <td>小灰灰</td>
+                        </tr>
+                        <tr>
+                            <th><em>*</em>个人简称：</th>
+                            <td>小灰灰</td>
+                        </tr>
+                        <tr>
+                            <th>电子邮箱：</th>
+                            <td>amEmail@126.com</td>
+                        </tr>
+                        <tr>
+                            <th><em>*</em>手机号码：</th>
+                            <td>13856465598</td>
+                        </tr>
+                        <tr>
+                            <th>QQ：</th>
+                            <td>285633534</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </div>  <!-- 右边内容结束 -->
+    
+        <!--<a class="returnTop" href="javascript:void(0);">返回顶部</a>-->
+        
+    </section> <!--main-body 结束-->
+    
+    <footer class="main-footer">
+        <center class="copyright">
+            Copyright &copy; 2013 天地行 All Rights Reserved. &nbsp; 沪ICP备08101503号
+        </center>
+        <div class="differentLink">
+            <a href="javascript:void(0);">关于开放平台</a> | <a href="javascript:void(0);">联系我们</a>
+        </div>
+    </footer>
+
+    
+<!-- 保存成功弹窗 -->
+    <script type="text/html" id="save-successTemplate">
+        <div class="windowContent">
+            <div class="tipsContent"><i class="successIcon"></i>保存成功</div>
+        </div>
+    </script>
+    
+    <script>
+        $(function(){
+            //保存成功
+            new PopWindow('.save-successBtn', {
+                template:'#save-successTemplate',
+                title:'提示',
+                width:'470',
+                autoHide:2*1000,
+                animation:{
+                    open:{
+                        effect:"fade:in",
+                        duration:300
+                    },
+                    close:{
+                        effect:"fade:out",
+                        duration:300
+                    }
+                }
+            }).init();
+
+        });
+    </script>
+
+</body>
+</html>
