@@ -181,9 +181,11 @@
                     </ul>
                     <ul class="recommendList">
                         <li class="deepBlueTitle">产品经理推荐：</li>
-                        <li>★ 预订家庭房，同舱第三人儿童免船票！</li>
-                        <li>★ 早定优惠！一间阳台双人房最高立减2000元！</li>
-                        <li>★ 预订套房即可获赠价值33.5美金/人的俱乐部用餐一次，每舱仅赠第1、2人！</li>
+                        <li style="">
+                            <pre class="containCharge cruisePreContainer" style="width: 420px;height:80px;line-height:20px;overflow:hidden;">海洋量子号游轮是全球游轮史上的又一次重大飞跃，更多“海上初体验”的娱乐革新被引入其中，例如跳伞体验将让游客在300英尺的高度体验惊险刺激的空中之旅；海上最大的室内运动及娱乐综合性场馆则配备了碰碰车和旱冰场等设施；还有迄今为止最大且最先进的游轮客房。本房型提供两张单人床（可拼成大号双人床），配有虚拟阳台，由落地大型LED屏幕直播实时海景。海洋量子号给你带来皇家加勒比又一创举：甲板跳伞，让您体验在邮轮上空飞翔的豪情，游轮上“飞翔”业内首创通过垂直风洞，产生空气流，是一个安全、可控的体验平台；适合3岁及以上年龄层次的乘客，包括花甲长者也可享到此结束。
+                            </pre>
+                        </li>
+                        <li class="view-more-text"><span>查看更多</span><i class="icon-arrow-double-down"></i></li>
                     </ul>
                     <ul class="priceAndBook">
                         <li>
@@ -551,7 +553,7 @@
                 <ul class="shippingContent clearfix">
                     <li class="shippingImg">
                         <a href="javascript:void(0);">
-                            <img src="../../static/images/store/cruise/shippingIntroduceImg.jpg" title="">
+                            <img src="../../static/images/store/cruise/shippingIntroduceImga.jpg" title="">
                         </a>
                     </li>
                     <li class="shippingInfo">
@@ -950,6 +952,26 @@ function addEnableTd() {
             "margin-left": -resetLeft + "px"
         });
         */
+        $("body").delegate(".view-more-text", "click", function(){
+            if ($(this).find("i").hasClass("icon-arrow-double-down")) { // 当前为收起状态
+                $(this).find("i").removeClass("icon-arrow-double-down");
+                $(this).find("i").addClass("icon-arrow-double-up");
+                $(this).find("span").html("收起");
+                $(this).siblings("li").find("pre").css({
+                    height: "auto",
+                    overflow: "visible"
+                });
+            } else if ($(this).find("i").hasClass("icon-arrow-double-up")) {
+                $(this).find("i").removeClass("icon-arrow-double-up");
+                $(this).find("i").addClass("icon-arrow-double-down");
+                $(this).find("span").html("查看更多");
+                $(this).siblings("li").find("pre").css({
+                    height: "80",
+                    overflow: "hidden"
+                });
+            }
+        });
+        
     });
 </script>
 
