@@ -182,8 +182,7 @@
                     <ul class="recommendList">
                         <li class="deepBlueTitle">产品经理推荐：</li>
                         <li style="">
-                            <pre class="containCharge cruisePreContainer" style="width: 420px;height:80px;line-height:20px;overflow:hidden;">海洋量子号游轮是全球游轮史上的又一次重大飞跃，更多“海上初体验”的娱乐革新被引入其中，例如跳伞体验将让游客在300英尺的高度体验惊险刺激的空中之旅；海上最大的室内运动及娱乐综合性场馆则配备了碰碰车和旱冰场等设施；还有迄今为止最大且最先进的游轮客房。本房型提供两张单人床（可拼成大号双人床），配有虚拟阳台，由落地大型LED屏幕直播实时海景。海洋量子号给你带来皇家加勒比又一创举：甲板跳伞，让您体验在邮轮上空飞翔的豪情，游轮上“飞翔”业内首创通过垂直风洞，产生空气流，是一个安全、可控的体验平台；适合3岁及以上年龄层次的乘客，包括花甲长者也可享到此结束。
-                            </pre>
+                            <pre class="containCharge cruisePreContainer" style="width:420px;line-height:20px;overflow:hidden;">海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经海洋产品经海洋产品经经海洋产品经经海洋产品经经海洋产品经经海洋产品经品</pre>
                         </li>
                         <li class="view-more-text"><span>查看更多</span><i class="icon-arrow-double-down"></i></li>
                     </ul>
@@ -952,6 +951,14 @@ function addEnableTd() {
             "margin-left": -resetLeft + "px"
         });
         */
+        var h = $(".containCharge.cruisePreContainer").outerHeight();
+        if (h < 81) {
+            $(".containCharge.cruisePreContainer").css("height","96px");
+            $(".view-more-text").hide();
+        } else if (h > 81) {
+            $(".containCharge.cruisePreContainer").css("height","80px");
+        }
+
         $("body").delegate(".view-more-text", "click", function(){
             if ($(this).find("i").hasClass("icon-arrow-double-down")) { // 当前为收起状态
                 $(this).find("i").removeClass("icon-arrow-double-down");
@@ -966,7 +973,7 @@ function addEnableTd() {
                 $(this).find("i").addClass("icon-arrow-double-down");
                 $(this).find("span").html("查看更多");
                 $(this).siblings("li").find("pre").css({
-                    height: "80",
+                    height: "80px",
                     overflow: "hidden"
                 });
             }
