@@ -2,7 +2,7 @@
 <html>
 	<head>
         <meta charset="utf-8" />
-        <title>国际机票 文件运价管理 添加-多程</title>
+        <title>国内机票 售价维护 添加售价规则</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
         <link href="/static/css/kendo.common.css" rel="stylesheet" type="text/css" />
@@ -11,7 +11,7 @@
         <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
         <link href="/static/css/kendo.reset.css" rel="stylesheet" />
         <link rel="stylesheet" href="/static/css/operatorCommonHeader.css" />
-        <link rel="stylesheet" href="/static/css/operatorFileFreight.css" />
+        <link rel="stylesheet" href="/static/css/operatorPriceMaintenance.css" />
 
         <script type="text/javascript" src="/static/js/jquery.min.js"></script>
         <script type="text/javascript" src="/static/js/kendo.web.js"></script>
@@ -80,8 +80,637 @@
         	</div>
 
         	<section class="main-body">
-        		
+        		<div class="topFixedToolsBar actions">		            
+		            <div class="commonReturnBtn">
+		                <a href="#"><i class="leftArrow"></i> 返回</a>
+		            </div>
+		            <div class="fixedMenu">
+		                <h3>添加销售规则</h3>
+		            </div>
+		            <label class="releaseBox">
+		                <input type="checkbox">立刻发布
+		            </label>
+		            <div class="fixedButton">
+		                <a href="javascript:;" class="button_important adaptiveButton small">
+		                    <span class="left"></span>
+		                    <span class="center">提 交</span>
+		                    <span class="right"></span>
+		                </a>
+		            </div>		            
+		        </div>
+
+		        <div class="commonFileContent">
+		        	<div class="commonModuleClassify">
+    	                <div class="fileModuleTitle">
+    	                    <b class="titleBoldFonts">销售基本信息</b>
+    	                </div>
+    	                <table class="commonTabFreight">
+    	                    <colgroup>
+    	                        <col width="70">
+    	                        <col width="315">
+    	                        <col width="60">
+    	                        <col width="">
+    	                    </colgroup>
+    	                    <tbody>
+    	                        <tr>
+    	                            <th><em class="redStar">*</em>规则名称：</th>
+    	                            <td>
+    	                                <input type="text" style="width:218px;">
+    	                            </td>
+    	                            <th>有效期：</th>
+    	                            <td>
+    	                            	<input type="text" style="width:95px;" class="datepicker"> 至 
+    	                            	<input type="text" style="width:95px;" class="datepicker orange">
+    	                            	<label style="margin-left:25px;"><input type="checkbox">永久</label>
+    	                            </td>
+    	                        </tr>
+    	                        <tr>
+    	                            <th style="vertical-align:top;padding-top:8px;">规则备注：</th>
+    	                            <td colspan="3">
+    	                            	<textarea style="width:560px;height:50px;"></textarea>
+    	                            </td>
+    	                        </tr>
+    	                    </tbody>
+    	                </table>
+    	            </div>
+
+    	            <div class="commonModuleClassify">
+    	            	<div class="fileModuleTitle">
+    	                    <b class="titleBoldFonts">政策规则信息</b>
+    	                    <span class="numberOfPasses greenBg">规则一</span>
+    	                    <span class="numberOfPasses deepPurpleBg">规则二</span>
+    	                    <span class="numberOfPasses orangeRedBg">规则三</span>
+    	                    <span class="numberOfPasses orangeYellowBg">规则四</span>
+    	                    <span class="numberOfPasses deepPinkBg">规则五</span>
+    	                    <span class="numberOfPasses lightPurpleBg">规则六</span>
+    	                </div>
+    	                <table class="commonTabFreight policyRuleInfoTab">
+    	                	<colgroup>
+    	                		<col width="70"/>
+    	                		<col width="68"/>
+    	                		<col width="195"/>
+    	                		<col width="195"/>
+    	                		<col width="195"/>
+    	                		<col width="195"/>
+    	                		<col width="65"/>
+    	                	</colgroup>
+    	                	<tbody>
+    	                		<tr>
+    	                			<td><span class="numberOfPasses greenBg">规则一</span></td>
+    	                			<td>
+    	                				<div class="hasRightBorder">
+	    	                				<select data-role="dropdownlist" style="width:55px;">
+	    	                					<option>包含</option>
+	    	                					<option>排除</option>
+	    	                				</select>
+    	                				</div>
+    	                			</td>
+    	                			<td>
+    	                				<b>航司</b>
+    	                				<select data-role="dropdownlist" style="width:55px;">
+    	                					<option>包含</option>
+    	                					<option>排除</option>
+    	                				</select>
+    	                				<input type="text" style="width:85px;">
+    	                			</td>
+    	                			<td>
+    	                				<b>出发</b>
+    	                				<select data-role="dropdownlist" style="width:55px;">
+    	                					<option>包含</option>
+    	                					<option>排除</option>
+    	                				</select>
+    	                				<input type="text" style="width:85px;">
+    	                			</td>
+    	                			<td>
+    	                				<b>到达</b>
+    	                				<select data-role="dropdownlist" style="width:55px;">
+    	                					<option>包含</option>
+    	                					<option>排除</option>
+    	                				</select>
+    	                				<input type="text" style="width:85px;">
+    	                			</td>
+    	                			<td>
+    	                				<b>舱位</b>
+    	                				<select data-role="dropdownlist" style="width:55px;">
+    	                					<option>包含</option>
+    	                					<option>排除</option>
+    	                				</select>
+    	                				<input type="text" style="width:85px;">
+    	                			</td>
+    	                			<td>
+    	                				<label class="hoverDeleteFonts" style="margin-right:0;">
+			                                <i class="hoverDeleteIcon"></i>
+			                                <em>删除</em>
+			                            </label>
+    	                			</td>
+    	                		</tr>
+    	                		<tr>
+    	                			<td><span class="numberOfPasses deepPurpleBg">规则二</span></td>
+    	                			<td>
+    	                				<div class="hasRightBorder">
+	    	                				<select data-role="dropdownlist" style="width:55px;">
+	    	                					<option>包含</option>
+	    	                					<option>排除</option>
+	    	                				</select>
+    	                				</div>
+    	                			</td>
+    	                			<td>
+    	                				<b>航司</b>
+    	                				<select data-role="dropdownlist" style="width:55px;">
+    	                					<option>包含</option>
+    	                					<option>排除</option>
+    	                				</select>
+    	                				<input type="text" style="width:85px;">
+    	                			</td>
+    	                			<td>
+    	                				<b>出发</b>
+    	                				<select data-role="dropdownlist" style="width:55px;">
+    	                					<option>包含</option>
+    	                					<option>排除</option>
+    	                				</select>
+    	                				<input type="text" style="width:85px;">
+    	                			</td>
+    	                			<td>
+    	                				<b>到达</b>
+    	                				<select data-role="dropdownlist" style="width:55px;">
+    	                					<option>包含</option>
+    	                					<option>排除</option>
+    	                				</select>
+    	                				<input type="text" style="width:85px;">
+    	                			</td>
+    	                			<td>
+    	                				<b>舱位</b>
+    	                				<select data-role="dropdownlist" style="width:55px;">
+    	                					<option>包含</option>
+    	                					<option>排除</option>
+    	                				</select>
+    	                				<input type="text" style="width:85px;">
+    	                			</td>
+    	                			<td>
+    	                				<label class="hoverDeleteFonts" style="margin-right:0;">
+			                                <i class="hoverDeleteIcon"></i>
+			                                <em>删除</em>
+			                            </label>
+    	                			</td>
+    	                		</tr>
+    	                		<tr>
+    	                			<td><span class="numberOfPasses orangeRedBg">规则三</span></td>
+    	                			<td>
+    	                				<div class="hasRightBorder">
+	    	                				<select data-role="dropdownlist" style="width:55px;">
+	    	                					<option>包含</option>
+	    	                					<option>排除</option>
+	    	                				</select>
+    	                				</div>
+    	                			</td>
+    	                			<td>
+    	                				<b>航司</b>
+    	                				<select data-role="dropdownlist" style="width:55px;">
+    	                					<option>包含</option>
+    	                					<option>排除</option>
+    	                				</select>
+    	                				<input type="text" style="width:85px;">
+    	                			</td>
+    	                			<td>
+    	                				<b>出发</b>
+    	                				<select data-role="dropdownlist" style="width:55px;">
+    	                					<option>包含</option>
+    	                					<option>排除</option>
+    	                				</select>
+    	                				<input type="text" style="width:85px;">
+    	                			</td>
+    	                			<td>
+    	                				<b>到达</b>
+    	                				<select data-role="dropdownlist" style="width:55px;">
+    	                					<option>包含</option>
+    	                					<option>排除</option>
+    	                				</select>
+    	                				<input type="text" style="width:85px;">
+    	                			</td>
+    	                			<td>
+    	                				<b>舱位</b>
+    	                				<select data-role="dropdownlist" style="width:55px;">
+    	                					<option>包含</option>
+    	                					<option>排除</option>
+    	                				</select>
+    	                				<input type="text" style="width:85px;">
+    	                			</td>
+    	                			<td>
+    	                				<label class="hoverDeleteFonts" style="margin-right:0;">
+			                                <i class="hoverDeleteIcon"></i>
+			                                <em>删除</em>
+			                            </label>
+    	                			</td>
+    	                		</tr>
+    	                	</tbody>
+    	                </table>
+
+    	                <div class="addModelStyle">
+		                    <i class="addModelStyleIcon"></i>
+		                    <em>新增规则</em>
+		                </div>
+    	            </div>
+
+			        <div class="commonModuleClassify">
+			        	<div class="fileModuleTitle">
+    	                    <b class="titleBoldFonts">政策附属信息</b>
+    	                </div>
+    	                <table class="commonTabFreight policyAttachInfoTab">
+    	                	<colgroup>
+    	                		<col width="70">
+    	                		<col width="380">
+    	                		<col width="66">
+    	                		<col width="">
+    	                	</colgroup>
+    	                	<tbody>
+    	                		<tr>
+    	                			<th>OFFICE号：</th>
+    	                			<td>
+    	                				<select data-role="dropdownlist" style="width:55px;">
+    	                					<option>包含</option>
+    	                					<option>排除</option>
+    	                				</select>
+    	                				<input type="text" style="width:100px;">
+    	                				<em class="colorAfafaf">支持多个，如SHA555/SHA111</em>
+    	                			</td>
+    	                			<th>标签名称：</th>
+    	                			<td>
+    	                				<input type="text" style="width:130px;">
+    	                				<button class="btns btn-search">查询</button>
+    	                			</td>
+    	                		</tr>
+    	                		<tr>
+    	                			<th>政策类型：</th>
+    	                			<td>
+    	                				<select data-role="dropdownlist" style="width:55px;">
+    	                					<option>包含</option>
+    	                					<option>排除</option>
+    	                				</select>
+    	                				<select data-role="dropdownlist" style="width:90px;">
+    	                					<option>请选择</option>
+    	                				</select>
+    	                			</td>
+    	                			<th>乘客类型：</th>
+    	                			<td>
+    	                				<select data-role="dropdownlist" style="width:150px;">
+    	                					<option>请选择</option>
+    	                				</select>
+    	                			</td>
+    	                		</tr>
+    	                		<tr>
+    	                			<th>票证类型：</th>
+    	                			<td class="ticketTypes">
+    	                				<label><input type="checkbox">BSP</label>
+    	                				<label><input type="checkbox">B2B</label>
+    	                				<label><input type="checkbox">CRS</label>
+    	                			</td>
+    	                			<th>航程类型：</th>
+    	                			<td>
+    	                				<select data-role="dropdownlist" style="width:150px;">
+    	                					<option>请选择</option>
+    	                				</select>
+    	                			</td>
+    	                		</tr>
+    	                		<tr>
+    	                			<th class="topAlign">乘机日期：</th>
+    	                			<td style="vertical-align:top;">
+    	                				<div>
+			                                <input type="text" style="width: 97px;" class="datepicker">
+			                                <em> 至 </em>
+			                                <input type="text" style="width: 97px;" class="datepicker orange">
+			                                <a href="javascript:void(0);" class="blueSmallBtn">添加</a>
+			                            </div>
+			                            <div class="lightBlueBgDateModel">
+			                                <label class="lightBlueBgDateInfo">
+			                                    <em class="dateContent">2014-11-01至2014-12-20</em>
+			                                    <i class="closeIcon"></i>
+			                                </label>
+			                                <label class="lightBlueBgDateInfo">
+			                                    <em class="dateContent">2014-11-01至2014-12-20</em>
+			                                    <i class="closeIcon"></i>
+			                                </label>
+			                            </div>
+    	                			</td>
+    	                			<th class="topAlign">出票日期：</th>
+    	                			<td style="vertical-align:top;">
+    	                				<div>
+			                                <input type="text" style="width: 97px;" class="datepicker">
+			                                <em> 至 </em>
+			                                <input type="text" style="width: 97px;" class="datepicker orange">
+			                                <a href="javascript:void(0);" class="blueSmallBtn">添加</a>
+			                            </div>
+			                            <div class="lightBlueBgDateModel">
+			                            </div>
+    	                			</td>
+    	                		</tr>
+    	                		<tr>
+    	                			<th class="topAlign">供应商：</th>
+    	                			<td colspan="3">
+    	                				<div>
+    	                					<select data-role="dropdownlist" style="width:55px;">
+    	                						<option>包含</option>
+    	                						<option>排除</option>
+    	                					</select>
+    	                					<input type="text" style="width:140px;">
+    	                					<button class="btns btn-search">查询</button>
+    	                					<a href="javascript:void(0);" class="blueSmallBtn">添加</a>
+    	                				</div>
+    	                				<div class="lightBlueBgDateModel">
+			                            	<label class="lightBlueBgDateInfo">
+			                                    <em class="dateContent">2014-11-01至2014-12-20</em>
+			                                    <i class="closeIcon"></i>
+			                                </label>
+			                                <label class="lightBlueBgDateInfo">
+			                                    <em class="dateContent">2014-11-01至2014-12-20</em>
+			                                    <i class="closeIcon"></i>
+			                                </label>
+			                                <label class="lightBlueBgDateInfo">
+			                                    <em class="dateContent">2014-11-01至2014-12-20</em>
+			                                    <i class="closeIcon"></i>
+			                                </label>
+			                                <label class="lightBlueBgDateInfo">
+			                                    <em class="dateContent">2014-11-01至2014-12-20</em>
+			                                    <i class="closeIcon"></i>
+			                                </label>
+			                            </div>
+    	                			</td>
+    	                		</tr>
+    	                	</tbody>
+    	                </table>
+			        </div>
+
+			        <div class="commonModuleClassify">
+			        	<div class="fileModuleTitle">
+    	                    <b class="titleBoldFonts">规则扣点信息</b>
+    	                </div>
+    	                <table class="commonTabFreight">
+    	                	<colgroup>
+    	                		<col width="">
+    	                		<col width="">
+    	                	</colgroup>
+    	                	<tbody>
+    	                		<tr>
+    	                			<th>扣率：</th>
+    	                			<td>
+    	                				<select data-role="dropdownlist" style="width:65px;">
+    	                					<option>留点</option>
+    	                				</select>
+    	                				<input type="text" style="width:85px;"> %
+    	                				<em class="colorAfafaf">促销用负值，统一按照低价全返佣0</em>
+    	                			</td>
+    	                		</tr>
+    	                		<tr>
+    	                			<th>金额：</th>
+    	                			<td>
+    	                				<select data-role="dropdownlist" style="width:65px;">
+    	                					<option>留钱</option>
+    	                				</select>
+    	                				<input type="text" style="width:85px;"> 元
+    	                			</td>
+    	                		</tr>
+    	                	</tbody>
+    	                </table>
+			        </div>
+
+			        <div class="commonModuleClassify">
+			        	<div class="fileModuleTitle">
+    	                    <b class="titleBoldFonts">客户</b>
+    	                </div>
+    	                <table class="commonTabFreight customerGroupTab">
+    	                	<colgroup>
+    	                		<col width="210"/>
+    	                		<col width="580"/>
+    	                		<col width=""/>
+    	                	</colgroup>
+    	                	<thead>
+    	                		<tr>
+    	                			<th>客户组名称</th>
+    	                			<th>已排除客户</th>
+    	                			<th></th>
+    	                		</tr>
+    	                	</thead>
+    	                	<tbody>
+    	                		<tr>
+    	                			<td>默认客户组</td>
+    	                			<td>无</td>
+    	                			<td>
+    	                				<div class="operCont">
+	    	                				<label class="editOper">
+	    	                					<i class="editIcon"></i>
+	    	                					<em>编辑</em>
+	    	                				</label>
+	    	                				<label class="delOper">
+	    	                					<i class="delIcon"></i>
+	    	                					<em>删除</em>
+	    	                				</label>
+    	                				</div>
+    	                			</td>
+    	                		</tr>
+    	                		<tr>
+    	                			<td>客户组A</td>
+    	                			<td>客户A、客户A、客户A、客户A、客户A</td>
+    	                			<td>
+    	                				<div class="operCont">
+	    	                				<label class="editOper">
+	    	                					<i class="editIcon"></i>
+	    	                					<em>编辑</em>
+	    	                				</label>
+	    	                				<label class="delOper">
+	    	                					<i class="delIcon"></i>
+	    	                					<em>删除</em>
+	    	                				</label>
+	    	                			</div>
+    	                			</td>
+    	                		</tr>
+    	                		<tr>
+    	                			<td>客户组B</td>
+    	                			<td>客户A、客户B、客户B、客户B、客户B</td>
+    	                			<td>
+    	                				<div class="operCont">
+	    	                				<label class="editOper">
+	    	                					<i class="editIcon"></i>
+	    	                					<em>编辑</em>
+	    	                				</label>
+	    	                				<label class="delOper">
+	    	                					<i class="delIcon"></i>
+	    	                					<em>删除</em>
+	    	                				</label>
+	    	                			</div>
+    	                			</td>
+    	                		</tr>
+    	                	</tbody>
+    	                </table>
+    	                <div class="addModelStyle addCustomerGroup">
+		                    <i class="addModelStyleIcon"></i>
+		                    <em>新增客户组</em>
+		                </div>
+			        </div>
+		        </div>
+
         	</section>
 		</div>
+
+		<script type="text/x-kendo-template" id="select-customer-group-template">
+			<div class="scg-win-container">
+				<div class="scg-body clearfix">
+					<div class="left-list">
+						<div class="search-cg-bar">客户组名称
+							<input type="text" style="width:140px;">
+							<i class="search-icon"></i>
+						</div>
+						<div class="cg-list-cont">
+							<div class="cg-title">请选择客户组</div>
+							<ul class="cg-list">
+								<li class="cg-item">
+									<label class="cg-name"><input type="checkbox">客户组A</label>
+									<a class="oper-link" href="javascript:void(0);">排除客户</a>
+								</li>
+								<li class="cg-item">
+									<label class="cg-name"><input type="checkbox">客户组A</label>
+									<a class="oper-link" href="javascript:void(0);">排除客户</a>
+								</li>
+								<li class="cg-item">
+									<label class="cg-name"><input type="checkbox">客户组A</label>
+									<a class="oper-link" href="javascript:void(0);">排除客户</a>
+								</li>
+								<li class="cg-item">
+									<label class="cg-name"><input type="checkbox">客户组A</label>
+									<a class="oper-link" href="javascript:void(0);">排除客户</a>
+								</li>
+								<li class="cg-item">
+									<label class="cg-name"><input type="checkbox">客户组A</label>
+									<a class="oper-link" href="javascript:void(0);">排除客户</a>
+								</li>
+								<li class="cg-item">
+									<label class="cg-name"><input type="checkbox">客户组A</label>
+									<a class="oper-link" href="javascript:void(0);">排除客户</a>
+								</li>
+								<li class="cg-item">
+									<label class="cg-name"><input type="checkbox">客户组A</label>
+									<a class="oper-link" href="javascript:void(0);">排除客户</a>
+								</li>
+								<li class="cg-item">
+									<label class="cg-name"><input type="checkbox">客户组A</label>
+									<a class="oper-link" href="javascript:void(0);">排除客户</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="right-content">
+						<div class="cg-cont-top">
+							<span class="exclude-text" style="padding-left:20px;">排除客户：已排除<em class="exclude-num">10</em>位客户</span>
+							<span class="search-cg-bar" style="padding-left:120px;">客户组名称
+								<input type="text" style="width:140px;">
+								<i class="search-icon"></i>
+							</span>
+						</div>
+						<table class="tgrid customerListTab">
+							<colgroup>
+								<col width="315"/>
+								<col width="155"/>
+								<col width="140"/>
+							</colgroup>
+                            <thead>
+                                <tr>
+                                    <th style="padding-left:20px;">客户名称</th>
+                                    <th>金额</th>
+                                    <th>客户类型</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                    	<label><input type="checkbox">客户甲乙丙</label>
+                                    </td>
+                                    <td>2000.00</td>
+                                    <td>现结</td>
+                                </tr>
+                                <tr>
+                                    <td><label><input type="checkbox">客户A</label></td>
+                                    <td>2000.00</td>
+                                    <td>现结</td>
+                                </tr>
+                                <tr>
+                                    <td><label><input type="checkbox">客户B</label></td>
+                                    <td>2000.00</td>
+                                    <td>现结</td>
+                                </tr>
+                                <tr>
+                                    <td><label><input type="checkbox">客户C</label></td>
+                                    <td>2000.00</td>
+                                    <td>现结</td>
+                                </tr>
+                                <tr>
+                                    <td><label><input type="checkbox">客户D</label></td>
+                                    <td>2000.00</td>
+                                    <td>现结</td>
+                                </tr>
+                                <tr>
+                                    <td><label><input type="checkbox">客户E</label></td>
+                                    <td>2000.00</td>
+                                    <td>现结</td>
+                                </tr>
+                                <tr>
+                                    <td><label><input type="checkbox">客户E</label></td>
+                                    <td>2000.00</td>
+                                    <td>现结</td>
+                                </tr>
+                            </tbody>
+                        </table>
+						<div class="grid-table-pagination">
+                            <span class="grid-table-count">
+                                共 <em>132</em> 条记录
+                            </span>
+                            <span>
+                                <a class="prev" href="javascript:void(0);">&nbsp;</a>
+                            </span>
+                            <span class="links">
+                                <a href="javascript:void(0);">1</a>
+                                <a href="javascript:void(0);">2</a>
+                                <a class="current" href="javascript:void(0);">3</a>
+                                <a href="javascript:void(0);">4</a>
+                                <a href="javascript:void(0);">5</a>
+                                <a href="javascript:void(0);">...</a>
+                                <a href="javascript:void(0);">50</a>
+                            </span>
+                            <span>
+                                <a class="next" href="javascript:void(0);">&nbsp;</a>
+                            </span>
+                        </div>
+					</div>
+				</div>
+				<div class="oper-btn">
+					<a href="javascript:;" class="button_important adaptiveButton medium">
+                        <span class="left"></span>
+                        <span class="center" style="padding:0 25px;">确 定</span>
+                        <span class="right"></span>
+                    </a>
+                    <a href="javascript:;" class="button_unimportant adaptiveButton medium">
+                        <span class="left"></span>
+                        <span class="center" style="padding:0 25px;">取 消</span>
+                        <span class="right"></span>
+                    </a>
+				</div>
+			</div>
+		</script>
+
+		<script type="text/javascript">
+			$(".topFixedToolsBar").fixedBar();
+
+			var win1 = new PopWindow(".addCustomerGroup", {
+				width: 900,
+				template: "#select-customer-group-template",
+				title: "选择客户组",
+				wrapperClass: "noPadding"
+			}).init();
+
+			$(".cg-item .cg-name").click(function(){
+				if ($(this).children("input[type='checkbox']").prop("checked")) {
+					$(this).parent(".cg-item").addClass("actived");
+				} else {
+					$(this).parent(".cg-item").removeClass("actived");
+				}
+			});
+		</script>
 	</body>
 </html>
