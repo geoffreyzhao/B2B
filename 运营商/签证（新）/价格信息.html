@@ -19,6 +19,8 @@
     <script type="text/javascript" src="/static/js/global.js"></script>
 
 
+
+
     <!--[if IE]>
     <script src="/static/js/html5.js"></script>
     <![endif]-->
@@ -374,7 +376,10 @@
 	        				<td>+100</td>
 	        			</tr>
 	        			<tr>
-	        				<td>所有</td>
+	        				<td>
+	        					<a class="reviewRule costExplain" style="color:#0066cc" data-role="tooltip" href="javascript:void(0)">默认销售规则客户组</a>
+	        					<!-- <label class="costExplain" data-role="tooltip">费用说明</label> -->
+	        				</td>
 	        				<td>1009</td>
 	        				<td>默认规则</td>
 	        				<td>已发布</td>
@@ -389,6 +394,8 @@
 <!-- end of content -->
 
 
+
+
 <div id="extFooter">
     <div>
         <p>
@@ -401,9 +408,62 @@
     </div>
 </div>
 
+<script type="text/x-kendo-template" id="costExplain">
+    <div class="changeLayerGrayBlock">
+        <div class="changeLayerGrayContainer">
+            <div class="changeLayerGrayArrow"></div>
+            <div class="costExplainWindow">
+                <table class="guest-group-table">
+                	<colgroup>
+                		<col width="214"></col>
+                		<col width="214"></col>
+                	</colgroup>
+                	<tr>
+                		<td>客户组ABABABABABAB</td>
+                		<td>客户组ABABABABABAB</td>
+                	</tr>
+                	<tr>
+                		<td>客户组ABABABABABAB</td>
+                		<td>客户组ABABABABABAB</td>
+                	</tr>
+                	<tr>
+                		<td>客户组ABABABABABAB</td>
+                		<td>客户组ABABABABABAB</td>
+                	</tr>
+                	<tr>
+                		<td>客户组ABABABABABAB</td>
+                		<td>客户组ABABABABABAB</td>
+                	</tr>
+                	<tr>
+                		<td>客户组ABABABABABAB</td>
+                		<td>客户组ABABABABABAB</td>
+                	</tr>
+                	<tr>
+                		<td>客户组ABABABABABAB</td>
+                		<td>客户组ABABABABABAB</td>
+                	</tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</script>
+
 <script type="text/javascript">
     $(function(){
         $(".fixedBar").fixedBar();
+
+        $(".costExplain").kendoTooltip({
+            position:"bottom", //left right top
+            wrapperClass:"lineWeight",
+            width:400,
+            content:function(){
+                return $("#costExplain").html();
+            },
+            callout:false,
+            offsetY: 0,
+            offsetX: -2
+        });
+
 
     });
 </script>
