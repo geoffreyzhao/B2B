@@ -539,9 +539,18 @@
         }
 
         // 只显示当前月份的日期，不跨月显示
+        // function clearOtherMonthCont() {
+        //   $(".k-other-month a").html("");
+        //   $(".k-other-month a").css("height","51px");
+        // }
+
         function clearOtherMonthCont() {
-          $(".k-other-month a").html("");
-          $(".k-other-month a").css("height","51px");
+            $(".k-calendar .k-other-month").html("<div class='cal-cell-container'></div>");
+            $(".k-calendar .k-content td").each(function(){
+                if (!$(this).hasClass("k-other-month")) {
+                    $(this).addClass("enableClick");
+                }
+            });
         }
 </script>
 
