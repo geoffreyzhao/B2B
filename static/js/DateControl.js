@@ -232,7 +232,102 @@ Date.prototype.WeekNumOfYear = function()
     document.write(' \n');  
     return result;  
 }  
-  
+
+//+---------------------------------------------------  
+//| 取得当前日期的下一个月1号（侧重点：下一个月的月份） 
+//+--------------------------------------------------- 
+Date.prototype.getNextMonth = function() {
+    var myDate = this;
+    var dateYear = myDate.getFullYear();
+    var dateMonth = myDate.getMonth();
+
+    if (dateMonth == 11) {  //  当年最后一个月，下月跨年
+        dateYear = dateYear + 1;
+        dateMonth = 0;
+    } else {
+        dateMonth ++;
+    }
+
+    return new Date(dateYear, dateMonth, 1);
+}
+
+//+---------------------------------------------------  
+//| 取得当前日期的上一个月1号（侧重点：上一个月的月份） 
+//+--------------------------------------------------- 
+Date.prototype.getPrevMonth = function() {
+    var myDate = this;
+    var dateYear = myDate.getFullYear();
+    var dateMonth = myDate.getMonth();
+
+    if (dateMonth == 0) {  //  当年第一个月，上月跨年
+        dateYear = dateYear - 1;
+        dateMonth = 11;
+    } else {
+        dateMonth --;
+    }
+
+    return new Date(dateYear, dateMonth, 1);
+}
+
+//+---------------------------------------------------  
+//| 取得当前日期的上一个月日期
+//| 当前日期比上月或下月总天数大，这样会导致跨月情况出现
+//| 如果是上述的情况，将日期置为上一月或下一月月末的日期
+//| 例子：当前日期：2015/03/30   上月日期是：2015/02/28
+//+--------------------------------------------------- 
+Date.prototype.getPrevMonthDate = function(){
+    var myDate = this;
+    var dateYear = myDate.getFullYear();
+    var dateMonth = myDate.getMonth();
+    var dateDay = myDate.getDate();
+
+    var prevMonthDate;
+
+    if (dateMonth == 0) {
+        prevMonthDate = new Date(dateYear - 1, 11, dateDay);
+    } else {
+        var prevMonthDays = new Date(dateYear, dateMonth, 0).getDate();
+
+        if (dateDay > prevMonthDays) {
+            prevMonthDate = new Date(dateYear, dateMonth - 1, prevMonthDays);
+        } else  {
+            prevMonthDate = new Date(dateYear, dateMonth - 1, dateDay);
+        }
+    }
+
+    return prevMonthDate;
+}
+
+
+//+---------------------------------------------------  
+//| 取得当前日期的下一个月日期
+//| 当前日期比上月或下月总天数大，这样会导致跨月情况出现
+//| 如果是上述的情况，将日期置为上一月或下一月月末的日期
+//| 例子：当前日期：2015/01/30   下月日期是：2015/02/28
+//+--------------------------------------------------- 
+Date.prototype.getNextMonthDate = function(){
+    var myDate = this;
+    var dateYear = myDate.getFullYear();
+    var dateMonth = myDate.getMonth();
+    var dateDay = myDate.getDate();
+
+    var nextMonthDate;
+
+    if (dateMonth == 11) {
+        nextMonthDate =  new Date(dateYear + 1, 0, dateDay);
+    } else {
+        var nextMonthDays = new Date(dateYear, dateMonth + 2, 0).getDate();
+
+        if (dateDay > nextMonthDays) {
+            nextMonthDate = new Date(dateYear, dateMonth + 1, nextMonthDays);
+        } else {
+            nextMonthDate = new Date(dateYear, dateMonth + 1, dateDay);
+        }
+    }
+
+    return nextMonthDate;
+}
+
 //+---------------------------------------------------  
 //| 字符串转成日期类型   
 //| 格式 MM/dd/YYYY MM-dd-YYYY YYYY/MM/dd YYYY-MM-dd  
