@@ -384,6 +384,30 @@
             template:'#batch-close-template'
         }).init();
 
+        var closeTipWin = new PopWindow('.cal-cell-container.close .cal-oper', {
+          title: false,
+          width: 200,
+          template: "#close-tip-template",
+          autoHide: 1000,
+          wrapperClass: "pw-nobg",
+          open: function() {
+              $(".closeTipBlock").parents(".k-window-titleless").addClass("pw-nobg-top");
+              $(".closeTipBlock").parents(".k-window-titleless").addClass("pw-nobg-top-focused");
+          }
+        }).init();
+
+        var openTipWin = new PopWindow('.cal-cell-container.open .cal-oper', {
+          title: false,
+          width: 200,
+          template: "#open-tip-template",
+          autoHide: 1000,
+          wrapperClass: "pw-nobg",
+          open: function() {
+              $(".openTipBlock").parents(".k-window-titleless").addClass("pw-nobg-top");
+              $(".openTipBlock").parents(".k-window-titleless").addClass("pw-nobg-top-focused");
+          }
+        }).init();
+
         $("select").kendoDropDownList();
 
         $(".datepicker").datepicker({
@@ -484,49 +508,53 @@
         //  开启 关闭 操作
         $("body").delegate(".cal-cell-container.open .cal-oper", "click", function(){
           var that = $(this);
+          that.parent(".cal-cell-container").removeClass("open").addClass("close");
+          that.html("关闭");
 
-          openTipLayer.open();
+          // openTipLayer.open();
 
-          setTimeout(function(){
-            openTipLayer.close();
-            that.parent(".cal-cell-container").removeClass("open").addClass("close");
-            that.html("关闭");
-          }, 1500);
+          // setTimeout(function(){
+          //   openTipLayer.close();
+          //   that.parent(".cal-cell-container").removeClass("open").addClass("close");
+          //   that.html("关闭");
+          // }, 1500);
         });
 
         $("body").delegate(".cal-cell-container.close .cal-oper", "click", function(){
           var that = $(this);
+          that.parent(".cal-cell-container").removeClass("close").addClass("open");
+          that.html("开启");
 
-          closeTipLayer.open();
+          // closeTipLayer.open();
 
-          setTimeout(function(){
-            closeTipLayer.close();
-            that.parent(".cal-cell-container").removeClass("close").addClass("open");
-            that.html("开启");
-          }, 1500);
+          // setTimeout(function(){
+          //   closeTipLayer.close();
+          //   that.parent(".cal-cell-container").removeClass("close").addClass("open");
+          //   that.html("开启");
+          // }, 1500);
 
         });
 
         // 开启 关闭 操作后提示框
-        var closeTipLayer = new FloatLayer({
-            trigger: ".cal-cell-container.close .cal-oper",
-            template: "#close-tip-template",
-            type: 'click',
-            openEffect: "fadeIn",
-            closeEffect: "fadeOut",
-            offsetX: -50,
-            offsetY: 18
-        });
+        // var closeTipLayer = new FloatLayer({
+        //     trigger: ".cal-cell-container.close .cal-oper",
+        //     template: "#close-tip-template",
+        //     type: 'click',
+        //     openEffect: "fadeIn",
+        //     closeEffect: "fadeOut",
+        //     offsetX: -50,
+        //     offsetY: 18
+        // });
 
-        var openTipLayer = new FloatLayer({
-            trigger: ".cal-cell-container.open .cal-oper",
-            template: "#open-tip-template",
-            type: 'click',
-            openEffect: "fadeIn",
-            closeEffect: "fadeOut",
-            offsetX: -50,
-            offsetY: 18
-        });
+        // var openTipLayer = new FloatLayer({
+        //     trigger: ".cal-cell-container.open .cal-oper",
+        //     template: "#open-tip-template",
+        //     type: 'click',
+        //     openEffect: "fadeIn",
+        //     closeEffect: "fadeOut",
+        //     offsetX: -50,
+        //     offsetY: 18
+        // });
 
         //  双日历初始化及相关操作  --结束
 
