@@ -195,6 +195,10 @@
                </table>              
             </div>
            
+
+            <div class="default-rule-price">
+              <a class="btn_modifyDefaultPriceRule" href="javascript:void(0);">查看/修改默认规则价格</a>
+            </div>
             <table class="tgrid">
                   <colgroup>
                       <col width="124"/>
@@ -425,7 +429,46 @@
           </a>
           <a href="javascript:void(0)">取消</a>
         </div>
-    </script>
+</script>
+
+<script type="text/x-kendo-template" id="modifyDefaultPriceRule">
+        
+            <table class="modify-default-price-table">
+              <colgroup>
+                <col width="100px" />
+                <col width="400px" />
+              </colgroup>
+              <tr>
+                <td>
+                  加价：
+                </td>
+                <td>
+                  <input type="radio" name="price">
+                  <input type="text">
+                  元
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  
+                </td>
+                <td>
+                  <input type="radio" name="price">
+                  <input type="text">
+                  %
+                </td>
+              </tr>
+            </table>
+        
+        <div class="sale-rule-remind-button">
+          <a href="javascript:;" class="button_important adaptiveButton medium">
+            <span class="left"></span>
+            <span class="center">确 定</span>
+            <span class="right"></span>
+          </a>
+          <a href="javascript:void(0)">取消</a>
+        </div>
+</script>
 
 
 <script type="text/javascript">
@@ -443,6 +486,15 @@
             width:'600',
             template:'#modifyPriceRejectPw'
         }).init();
+
+    var modifyDefaultPriceRule = new PopWindow('.btn_modifyDefaultPriceRule', {
+            title: '查看/修改默认规则价格',
+            width:'500',
+            height:'200',
+            template:'#modifyDefaultPriceRule'
+        }).init();
+
+    modifyDefaultPriceRule.show();
    
   });
 </script>
