@@ -3,23 +3,22 @@
 <head>
     <title>通用消息提示弹窗</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="../../static/css/common.css" rel="stylesheet" />
-    <link href="../../static/css/kendo.common.css" rel="stylesheet" />
-    <link href="../../static/css/kendo.gray.css" rel="stylesheet" />
-    <link href="../../static/css/b2b.css" rel="stylesheet" />
-    <link href="../../static/css/kendo.reset.css" rel="stylesheet" />
-    <link href="../../static/css/operatorCommonHeader.css" rel="stylesheet" />
-    <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
-    <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
-    <script type="text/javascript" src="../../static/js/global.js"></script>
+    <link href="/static/css/common.css" rel="stylesheet" />
+    <link href="/static/css/kendo.common.css" rel="stylesheet" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" />
+    <link href="/static/css/b2b.css" rel="stylesheet" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link href="/static/css/operatorCommonHeader.css" rel="stylesheet" />
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
 
     <!--[if lt IE 8]> 
-    <link rel="stylesheet" href="../static/css/ie.css" /> 
-    <script type="text/javascript" src="../static/js/vendor/IE7.min.js"></script> 
+    <link rel="stylesheet" href="/static/css/ie.css" /> 
+    <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
     <![endif]-->
     <style type="text/css" media="screen">
         button {
-            margin-bottom: 20px;
             font-size: 14px;
             padding: 10px;
         }
@@ -40,11 +39,13 @@
         文本内容可自行更换，只要保证模板内部结构基本一致即可，提示的图标可正常显示。   <br>
     </p>
 
-   <button class="btn1">手动触发弹出弹窗，操作成功</button>  <button class="btn11">关闭左边的弹窗</button><br>
-   <button class="btn2">手动触发弹出弹窗，操作失败</button>  <button class="btn22">关闭左边的弹窗</button><br>
-   <button class="btn3">触发器触发弹出弹窗，2秒后自动消失，操作成功</button><br>
-   <button class="btn4">触发器触发弹出弹窗，2秒后自动消失，操作失败</button></br>
-   <button class="btn5">手动触发，正在操作</button></br>
+   <button class="btn1">手动触发弹出弹窗，操作成功</button>  <button class="btn11">关闭左边的弹窗</button><br><br>
+   <button class="btn2">手动触发弹出弹窗，操作失败</button>  <button class="btn22">关闭左边的弹窗</button><br><br>
+   <button class="btn3">触发器触发弹出弹窗，2秒后自动消失，操作成功</button><br><br>
+   <button class="btn4">触发器触发弹出弹窗，2秒后自动消失，操作失败</button></br><br>
+   <button class="btn5">手动触发，正在操作</button></br><br>
+   <button class="btn6">有Button的操作成功</button></br><br>
+   <button class="btn7">有Button的操作失败</button></br><br>
 
 
    <script type="text/x-kendo-template" id="operSuccessTemplate">
@@ -69,6 +70,30 @@
             <span class="tip-msg-content">操作进行中，请稍后...</span>
         </div>
    </script>
+
+   <script type="text/x-kendo-template" id="operSuccessBtnTemplate">
+       <div class="common-tip-container">
+           <i class="large-success-icon"></i>
+           <span class="tip-msg-content">有Button的操作成功提示！有Button的操作成功提示！有Button的操作成功提示！</span>
+       </div>
+       <div class="operBtnStyle">
+           <button class="large_button" type="button" name="a">确 定</button>
+           <button class="large_button disable" type="button" name="a">取消</button>
+       </div>
+   </script>
+    
+    <script type="text/x-kendo-template" id="operFailBtnTemplate">
+        <div class="common-tip-container">
+            <i class="large-warn-icon"></i>
+            <span class="tip-msg-content">有Button的操作失败！有Button的操作失败！有Button的操作失败！</span>
+        </div>
+        <div class="operBtnStyle">
+            <button class="large_button" type="button" name="a">确 定</button>
+            <button class="large_button disable" type="button" name="a">取消</button>
+        </div>
+    </script>
+
+
 <script type="text/javascript">
 
     // 弹窗初始化开始
@@ -128,6 +153,18 @@
         title: false,
         template: "#operatingTemplate",
         width: 300
+    }).init();
+
+    var win6 = new PopWindow('.btn6', {
+        title: '提示',
+        template: "#operSuccessBtnTemplate",
+        width: 470
+    }).init();
+
+    var win7 = new PopWindow('.btn7', {
+        title: '提示',
+        template: "#operFailBtnTemplate",
+        width: 470
     }).init();
 
    //  弹窗初始化结束
