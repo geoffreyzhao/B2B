@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>天地行 采购商 签证 签证列表页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css">
+    <link rel="stylesheet" href="/static/css/store_reset.css" media="all" />
+    <link rel="stylesheet" href="/static/css/store.css" media="screen" />
+    <link rel="stylesheet" href="/static/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="/static/css/kendo.store.css" />
+    <link rel="stylesheet" href="/static/css/toolkit.css"/>
+    <!--<link rel="stylesheet" href="/static/css/store_v2/store_travelCreate.css"/>-->
+    <link rel="stylesheet" href="/static/css/store_visa.css"/>
+
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/store/store.js"></script>
+    <script type="text/javascript" src="/static/js/DateControl.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+
+
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <script src="/static/js/vendor/IE7.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .datepicker {
+            background-image: none;
+        }
+        .ui-datepicker-daywrapper {
+            display: none;;
+        }
+        input[type="text"]:focus {
+            border: none;
+        }
+        input[name=departure_date]:focus {
+            border:1px solid #76cbe8;
+        }
+        .travel-filter-list input[type=text]:focus {
+            border:1px solid #76cbe8;
+        }
+    </style>
+    
+</head>
+<body>
+
+<div class="main-wrapper">
+<header class="main-header">
+    <a class="logo" href="/"><h1>天地行</h1></a>
+    <nav class="main-nav">
+        <ul class="clearfix">
+            <li class="first"><a href="#">国内机票</a></li>
+            <li><a href="#">国际机票</a></li>
+            <li><a href="#">保险</a></li>
+            <li><a href="#">酒店</a></li>
+            <li><a href="#">机 + 酒</a></li>
+            <li class="active"><a href="#">旅游</a></li>
+        </ul>
+    </nav>
+    <nav class="main-userInfo">
+        <span>你好，</span>
+        <span>Angle@66454</span>
+        <a href="#">退出</a>
+    </nav>
+    <nav class="main-links">
+        <ul class="clearfix">
+            <li class="first"><a href="#">订单管理</a></li>
+            <li><a href="#">分销管理</a></li>
+            <li><a href="#">电子钱包</a></li>
+            <li><a href="#">票据管理</a></li>
+            <li class="special"><a href="#">统计报表</a></li>
+            <li><i class="tellphone">400-720-6666</i></li>
+            <li><a href="#"> <i class="qq">QQ客服</i></a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="tour_main-body clearfix"> 
+
+<!--<div class="tour_searchBar">
+    <span><i class="sign"></i><span class="font16">上海</span>出发</span>
+         <span class="font14">出发日期段
+         <label><input type="text" value="2013-09-11" name="departure_date" style="width:195px;"  class="datepicker"> 至
+             <input type="text" value="2013-09-11" name="departure_date" style="width:195px;"  class="datepicker">
+         </label>
+         <button class="adaptiveButton tour_blue_btn">搜&nbsp;&nbsp;索</button>
+         </span>
+</div>-->
+
+<div class="searchWrapper">
+    <div class="newSearch">
+        <ul class="newSearchTab">
+            <li class="first"><span>出境游</span></li>
+            <li><span>国内游</span></li>
+            <li class="selected"><span>签证</span></li>
+        </ul>
+        <div class="newSearchContent">
+            <div class="searchForm tab" style="display: none;">
+                <span class="inputWhiteBgRow">
+                    <span class="startOff-bg">
+                        <input id="startOff" style="width:125px;" type="text" class="startOff city_ac"/>
+                        <span class="startFont">出发</span>
+                    </span>
+                    <input style="width:310px;" type="text" class="scenicPlace" placeholder="请输入目的地、景点、游玩类型等关键词"/>
+                </span>
+               <span class="inputNoBgRow">
+                <input type="text" value="" name="departure_date" style="width:90px;"  class="datepicker newSearchDate" placeholder="yyyy-mm-dd" /> <em>-</em>
+                <input type="text" value="" name="departure_date" style="width:90px;"  class="datepicker newSearchDate" placeholder="yyyy-mm-dd" />
+                <button type="submit" class="btn">搜 索</button>
+               </span> 
+            </div>
+
+            <div class="searchForm searchForm02 tab" style="display: none;">
+                <span class="inputWhiteBgRow">
+                    <span class="startOff-bg">
+                    <input id="startOff02" style="width:90px;" type="text" class="startOff"/>
+                    </span>
+                    <input style="width:310px;" type="text" class="scenicPlace" placeholder="请输入目的地、景点、游玩类型等关键词22"/>
+                </span>
+               <span class="inputNoBgRow">
+                <input type="text" value="" name="departure_date" style="width:90px;"  class="datepicker newSearchDate" placeholder="yyyy-mm-dd" /> <em>-</em>
+                <input type="text" value="" name="departure_date" style="width:90px;"  class="datepicker newSearchDate" placeholder="yyyy-mm-dd" />
+                <button type="submit" class="btn">搜 索</button>
+               </span>
+            </div>
+
+            <div class="searchForm searchForm03 tab">
+                <span class="inputWhiteBgRow">
+                    <input style="width:310px;" type="text" class="scenicPlace visaCountry" placeholder="美国"/>
+                </span>
+               <span class="inputNoBgRow">
+                <input type="text" value="" name="departure_date" style="width:90px;"  class="datepicker newSearchDate" placeholder="yyyy-mm-dd" /> <em>-</em>
+                <input type="text" value="" name="departure_date" style="width:90px;"  class="datepicker newSearchDate" placeholder="yyyy-mm-dd" />
+                <button type="submit" class="btn">搜 索</button>
+               </span>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<div class="travel-filter">
+    <div class="play_type travel-filter-nav">
+        <ul>
+            <li class="currentState"><a href="javascript:void(0);"><span>全部</span>（500）</a></li>
+            <!--<li><a href="javascript:void(0);"><span><i class="ballTourIcon"></i>跟团游</span>（500）</a></li>
+            <li><a href="javascript:void(0);"><span><i class="halfselfIcon"></i>半自助</span>（500）</a></li>
+            <li><a href="javascript:void(0);"><span><i class="localTourIcon"></i>当地游</span>（500）</a></li>-->
+        </ul>
+    </div>
+    <div class="travel-filter-list">
+        <div class="play_all tab">
+        <ul class="">
+            <li>
+                <label class="filterTitle">签证类型：</label>
+                <div class="filterCheck">
+                    <span>个人旅游签证</span>
+                    <span class="selectedSpan">商务签证</span>
+                    <span>探亲访友签证</span>
+                    <span>留学签证</span>
+                </div>
+            </li>
+            <li>
+                <label class="filterTitle">是否面试：</label>
+                <div class="filterCheck">
+                    <span class="selectedSpan">无需</span>
+                    <span>抽签</span>
+                    <span>需要</span>
+                </div>
+            </li>
+            <li>
+                <label class="filterTitle">办理领域：</label>
+                <div class="filterCheck">
+                    <span class="selectedSpan">上海</span>
+                    <span>北京</span>
+                    <span>广州</span>
+                    <span>成都</span>
+                    <span>沈阳</span>
+                    <span>重庆</span>
+                </div>
+            </li>
+            <li>
+                <label class="filterTitle">长期居住地：</label>
+                <div class="filterCheck">
+                    <span class="selectedSpan">上海</span>
+                    <span>北京</span>
+                    <span>广州</span>
+                    <span>成都</span>
+                    <span>沈阳</span>
+                    <span>重庆</span>
+                    <span>浙江</span>
+                    <span>南京</span>
+                    <span>哈尔滨</span>
+                    <span>内蒙古</span>
+                    <span>乌鲁木齐</span>
+                    <span>河南</span>
+                    <span>山西</span>
+                    <span>甘肃</span>
+                    <span>山东</span>
+                    <span>辽宁</span>
+                    <span>青岛</span>
+                    <span>武汉</span>
+                    <span>云南</span>
+                    <span>福建</span>
+                    <span>宁夏</span>
+                    <span>青海</span>
+                    <span>山东</span>
+                    <span>海南</span>
+                    <span>西藏</span>
+                    <span>合肥</span>
+                    <span>贵州</span>
+                    <span>吉林</span>
+                    <span>新疆</span>
+                    <span>其他</span>
+                </div>
+            </li>
+            <li class="selectedRow">
+                <label class="filterTitle">已选择：</label>
+                <div class="filterSelect">
+                    <div class="item">
+                        个人旅游签证<a class="close" href="javascript:;">x</a>
+                    </div>
+                    <div class="item">
+                        商务签证<a class="close" href="javascript:;">x</a>
+                    </div>
+                    <span class="clearAll">全部清除</span>
+                </div>
+            </li>
+        </ul>
+        </div>
+
+        <!--<div class="play_ballTour tab" style="display: none;">
+            <ul class="">
+                <li>
+                    <label class="filterTitle">出游天数2：</label>
+                    <div class="filterCheck">
+                        <span>6天</span>
+                        <span class="selectedSpan">8天</span>
+                        <span>10天</span>
+                        <span>14天</span>
+                        <span>18天</span>
+                    </div>
+                </li>
+                <li>
+                    <label class="filterTitle">钻级<i class="tipsIcon"></i> ：</label>
+                    <div class="filterCheck">
+                        <span class="selectedSpan">2钻</span>
+                        <span>3钻</span>
+                        <span>4钻</span>
+                        <span>5钻</span>
+                        <span>6钻</span>
+                    </div>
+                </li>
+                <li>
+                    <label class="filterTitle">价&nbsp;&nbsp;&nbsp;&nbsp;格：</label>
+                    <div class="priceRow">
+                        <em>￥</em><input type="text" placeholder="不限" /> <em>- ￥</em><input type="text" placeholder="不限"/><i class="sureBtn">确定</i>
+                    </div>
+                </li>
+                <li class="selectedRow">
+                    <label class="filterTitle">已选择：</label>
+                    <div class="filterSelect">
+                        <div class="item">
+                            6天<a class="close" href="javascript:;">x</a>
+                        </div>
+                        <div class="item">
+                            3钻<a class="close" href="javascript:;">x</a>
+                        </div>
+                        <span class="clearAll">全部清除</span>
+                    </div>
+                </li>
+            </ul>
+        </div>-->
+    </div>
+    
+</div>
+
+
+
+<div class="tour_main_listNew">
+    <div class="tour_resultInfoNew clearfix">
+        <table>
+            <colgroup>
+                <col width="185"/>
+                <col width="510"/>
+                <col width="112"/>
+                <col width=""/>
+            </colgroup>
+            <tr>
+                <td><span>共<span class="tour_resultNo">93</span>条线路满足条件</span></td>
+                <td class="rankType">
+                    <span class="currentSpan">默认</span>
+                    <span>最新</span>
+                    <span>最热</span>
+                    <span class="sorttab">价格<i></i></span>
+                    <span class="sorttab ascend">价格<i></i></span> <span class="sorttab descend">价格<i></i></span>
+                </td>
+                <td>建议售卖价</td>
+                <td>
+                    <span>售卖价</span>
+                    <span style="vertical-align: middle;"><em class="pageColor">9</em>/25</span>
+                    <span class="pageTurning">
+                        <span class="pageUp"></span><span class="pageDown"></span>
+                    </span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="tour_resultListNew">
+        <div class="tour_resultDiv">
+            <div class="tour_resultDiv_left">
+                <div class="countryImgBox">
+                    <img src="../../static/images/store/visaImg01.jpg" alt=""/>
+                </div>
+                <div class="textContent">
+                    <div class="contentTopBlock">
+                        <p class="fontTitleP">
+                            <span class="fontBigTitle">美国个人旅游签证（上海送签）免面试免面试免面试免面试免面试免面试面免签美国东西海岸夏威夷</span>
+                        </p>
+                        <div class="fontConDiv">
+                            <div class="left">受理范围：</div>
+                            <div class="right">
+                                <p>1、暂不受理签发地为福建、黑龙江、吉林、辽宁并且没有出行记录的护照；</p>
+                                <p>2、未满20岁的申请人须与父母或父母一方一同申请并一同出行。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="earlyBooking">
+                        提前预定：25个工作日
+                       <!-- <span class="viewGroup toggle_trigger"
+                              data-toggle='{"target":"#unfoldCon","textFilter":"i","toggleClass":["viewGroup","fewerGroup"],"toggleText":["价格日历","价格日历"]}'><i>价格日历</i><em></em></span>
+                        <span class="fewerGroup" style="display:none;"><i>价格日历</i> <em></em></span>-->
+                    </p>
+                </div>
+            </div>
+            <div class="tour_resultDiv_right">
+                <div class="marketPrice">
+                    <em>￥</em><span>859</span>起
+                </div>
+                <div class="ClearingPrice">
+                    <span class="tour_price_block"><span class="tour_price"><em>￥</em>859</span>起</span>
+                    <a class="adaptiveButton mediumOrange_btn">
+                        <span class="left"></span>
+                        <span class="center center_2">查看详情</span>
+                        <span class="right"></span>
+                    </a>
+                </div>
+            </div>
+
+            <!--<div class="tour_unfoldCon" id="unfoldCon" style="display: none;">
+                &lt;!&ndash;日历&ndash;&gt;
+                <div style="width: 360px;float: left; margin-right:10px; height: auto; overflow: hidden;">
+                    <div class="calendarOperation">
+                        <div class="calendarMonthLeft"></div>
+                        <div class="calendarDate cd1"></div>
+
+                    </div>
+                    <div class="calendar" class="calendarContainer" id="calendar01" >
+
+                    </div>
+                </div>
+
+                <div style="width: 360px; float: left">
+                    <div class="calendarOperation">
+
+                        <div class="calendarDate cd2"></div>
+                        <div class="calendarMonthRight"></div>
+                    </div>
+                    <div class="calendar" class="calendarContainer" id="calendar02">
+
+                    </div>
+                </div>
+            </div>-->
+
+        </div>
+
+        <div class="tour_resultDiv dotted_topbor">
+            <div class="tour_resultDiv_left">
+                <div class="countryImgBox">
+                    <img src="../../static/images/store/visaImg01.jpg" alt=""/>
+                </div>
+                <div class="textContent">
+                    <div class="contentTopBlock">
+                        <p class="fontTitleP">
+                            <span class="fontBigTitle">美国个人旅游签证（上海送签）免面试免面试免面试免面试</span>
+                        </p>
+                        <div class="fontConDiv">
+                            <div class="left">受理范围：</div>
+                            <div class="right">
+                                <p>1、暂不受理签发地为福建、黑龙江、吉林、辽宁并且没有出行记录的护照；</p>
+                                <p>2、未满20岁的申请人须与父母或父母一方一同申请并一同出行。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="earlyBooking">
+                        提前预定：25个工作日
+                    </p>
+                </div>
+            </div>
+            <div class="tour_resultDiv_right">
+                <div class="marketPrice">
+                    <em>￥</em><span>859</span>起
+                </div>
+                <div class="ClearingPrice">
+                    <span class="tour_price_block"><span class="tour_price"><em>￥</em>859</span>起</span>
+                    <a class="adaptiveButton mediumOrange_btn">
+                        <span class="left"></span>
+                        <span class="center center_2">查看详情</span>
+                        <span class="right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="tour_resultDiv dotted_topbor">
+            <div class="tour_resultDiv_left">
+                <div class="countryImgBox">
+                    <img src="../../static/images/store/visaImg01.jpg" alt=""/>
+                </div>
+                <div class="textContent">
+                    <div class="contentTopBlock">
+                        <p class="fontTitleP">
+                            <span class="fontBigTitle">美国个人旅游签证（上海送签）免面试免面试免面试免面试免面试免面试面免签美国东西海岸夏威夷</span>
+                        </p>
+                        <div class="fontConDiv">
+                            <div class="left">受理范围：</div>
+                            <div class="right">
+                                <p>1、暂不受理签发地为福建、黑龙江、吉林、辽宁并且没有出行记录的护照；</p>
+                                <p>2、未满20岁的申请人须与父母或父母一方一同申请并一同出行。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="earlyBooking">
+                        提前预定：25个工作日
+                    </p>
+                </div>
+            </div>
+            <div class="tour_resultDiv_right">
+                <div class="marketPrice">
+                    <em>￥</em><span>859</span>起
+                </div>
+                <div class="ClearingPrice">
+                    <span class="tour_price_block"><span class="tour_price"><em>￥</em>859</span>起</span>
+                    <a class="adaptiveButton mediumOrange_btn">
+                        <span class="left"></span>
+                        <span class="center center_2">查看详情</span>
+                        <span class="right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="tour_resultDiv dotted_topbor">
+            <div class="tour_resultDiv_left">
+                <div class="countryImgBox">
+                    <img src="../../static/images/store/visaImg01.jpg" alt=""/>
+                </div>
+                <div class="textContent">
+                    <div class="contentTopBlock">
+                        <p class="fontTitleP">
+                            <span class="fontBigTitle">美国个人旅游签证（上海送签）免面试免面试免面试免面试免面试免面试面免签美国东西海岸夏威夷</span>
+                        </p>
+                        <div class="fontConDiv">
+                            <div class="left">受理范围：</div>
+                            <div class="right">
+                                <p>1、暂不受理签发地为福建、黑龙江、吉林、辽宁并且没有出行记录的护照；</p>
+                                <p>2、未满20岁的申请人须与父母或父母一方一同申请并一同出行。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="earlyBooking">
+                        提前预定：25个工作日
+                    </p>
+                </div>
+            </div>
+            <div class="tour_resultDiv_right">
+                <div class="marketPrice">
+                    <em>￥</em><span>859</span>起
+                </div>
+                <div class="ClearingPrice">
+                    <span class="tour_price_block"><span class="tour_price"><em>￥</em>859</span>起</span>
+                    <a class="adaptiveButton mediumOrange_btn">
+                        <span class="left"></span>
+                        <span class="center center_2">查看详情</span>
+                        <span class="right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="tour_resultDiv dotted_topbor">
+            <div class="tour_resultDiv_left">
+                <div class="countryImgBox">
+                    <img src="../../static/images/store/visaImg01.jpg" alt=""/>
+                </div>
+                <div class="textContent">
+                    <div class="contentTopBlock">
+                        <p class="fontTitleP">
+                            <span class="fontBigTitle">美国个人旅游签证（上海送签）免面试免面试免面试免面试</span>
+                        </p>
+                        <div class="fontConDiv">
+                            <div class="left">受理范围：</div>
+                            <div class="right">
+                                <p>1、暂不受理签发地为福建、黑龙江、吉林、辽宁并且没有出行记录的护照；</p>
+                                <p>2、未满20岁的申请人须与父母或父母一方一同申请并一同出行。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="earlyBooking">
+                        提前预定：25个工作日
+                    </p>
+                </div>
+            </div>
+            <div class="tour_resultDiv_right">
+                <div class="marketPrice">
+                    <em>￥</em><span>859</span>起
+                </div>
+                <div class="ClearingPrice">
+                    <span class="tour_price_block"><span class="tour_price"><em>￥</em>859</span>起</span>
+                    <a class="adaptiveButton mediumOrange_btn">
+                        <span class="left"></span>
+                        <span class="center center_2">查看详情</span>
+                        <span class="right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="tour_resultDiv dotted_topbor">
+            <div class="tour_resultDiv_left">
+                <div class="countryImgBox">
+                    <img src="../../static/images/store/visaImg01.jpg" alt=""/>
+                </div>
+                <div class="textContent">
+                    <div class="contentTopBlock">
+                        <p class="fontTitleP">
+                            <span class="fontBigTitle">美国个人旅游签证（上海送签）免面试免面试免面试免面试</span>
+                        </p>
+                        <div class="fontConDiv">
+                            <div class="left">受理范围：</div>
+                            <div class="right">
+                                <p>1、暂不受理签发地为福建、黑龙江、吉林、辽宁并且没有出行记录的护照；</p>
+                                <p>2、未满20岁的申请人须与父母或父母一方一同申请并一同出行。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="earlyBooking">
+                        提前预定：25个工作日
+                    </p>
+                </div>
+            </div>
+            <div class="tour_resultDiv_right">
+                <div class="marketPrice">
+                    <em>￥</em><span>859</span>起
+                </div>
+                <div class="ClearingPrice">
+                    <span class="tour_price_block"><span class="tour_price"><em>￥</em>859</span>起</span>
+                    <a class="adaptiveButton mediumOrange_btn">
+                        <span class="left"></span>
+                        <span class="center center_2">查看详情</span>
+                        <span class="right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination dotted_topbor clearfix" style="margin: 0;padding-bottom: 10px;padding-top: 10px;">
+            <ul>
+                <li><a href="#">上一页</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#" class="present">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li> <span>...</span> </li>
+                <li><a href="#">60</a></li>
+                <li><a href="#">下一页</a></li>
+            </ul>
+            <div>
+                <span>共<em>132</em>条记录 &nbsp;&nbsp;&nbsp;共14页</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</section>    
+
+
+<footer class="main-footer">
+    <center class="copyright">
+        Copyright &copy; 2014 天地行 All Rights Reserved.     沪ICP备08101503号
+    </center>
+</footer>
+</div>
+
+<script type="text/x-kendo-template" id="city_popup">
+    <div id="gn-tabstrip" class="tcy_tabstrip">
+<span class="tcy_title">
+    热门城市/国家（支持中文名/拼音/英文名/三字码）
+</span>
+        <ul>
+            <li id="hot_city" class="k-state-active">热门</li>
+            # for (var i=0; i<data.group.length; i++ ) { #
+            <li>#= data.group[i] #</li>
+            # } #
+        </ul>
+        <div id="hot_city_tab">
+            <ul class="tcy_list clearfix">
+
+                # for(var j=0;j<hotcitylist.length;j++){ #
+                # var citylist_item = hotcitylist[j] #
+                <li class="item" title="#= citylist_item.code #" data-code="#= citylist_item.code #">#= citylist_item.name #</li>
+                # } #
+            </ul>
+        </div>
+
+        # for(var i=0;i<data.citylist.length;i++){ #
+        # var citylist_item = data.citylist[i] #
+        <div class="city_tab">
+            <ul class="tcy_list clearfix">
+                # for(var k=0;k<data.group[i].length;k++){ #
+                <li class="tcy_list_sep">#= data.group[i].split('')[k] #</li>
+                # for(var j=0;j<citylist_item.value.length;j++){ #
+                # var citylist_value_item = citylist_item.value[j]; #
+                # if(citylist_value_item.py.slice(0,1) == data.group[i].split('')[k]) {#
+                <li class="item" title="#= citylist_value_item.code #" data-code="#= citylist_value_item.code #">#= citylist_value_item.name #</li>
+                # } #
+                # } #
+                # } #
+            </ul>
+        </div>
+
+        # } #
+    </div>
+</script>
+
+
+
+
+<script>
+    $(function(){
+
+        function createCityAc(ele){
+            CityAutocomplete({
+                template: "#city_popup",
+                input: ele,
+                width: 200,
+                autocomplete:{
+                     placeholder:''
+                },
+//                以@分割热门非热门，以;分割条目，以|分割三字码拼音和中文
+                url:'/static/js/data.txt',
+                group: ["热门","ABCDEF", "GHJ", "KLMN", "PQSTW", "XYZ"]
+            });
+        }
+
+        createCityAc(".city_ac");
+
+
+        $(".newSearchTab li").each(function(index){
+            $(this).click(function(){
+                $(".newSearch .tab").hide();
+                $(".newSearch .tab:eq(" + index + ")").show();
+                $(".newSearchTab li").removeClass("selected");
+                $(this).addClass("selected");
+            });
+        });
+
+        $(".play_type li").each(function(index){
+            $(this).click(function(){
+                $(".travel-filter .tab").hide();
+                $(".travel-filter .tab:eq(" + index + ")").show();
+                $(".play_type li").removeClass("currentState");
+                $(this).addClass("currentState");
+            });
+        });
+    });
+</script>
+</body>
+</html>
+
