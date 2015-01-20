@@ -11,7 +11,7 @@
     <link href="/static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
     <link href="/static/css/kendo.reset.css" rel="stylesheet" type="text/css" />
     <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
-    <link href="/static/css/kendo.reset.css" rel="stylesheet" /> 
+    <link rel="stylesheet" href="/static/css/toolkit.css"/>
     <link href="/static/css/operatorCommonHeader.css" rel="stylesheet">
     <link href="/static/css/operatorShip.css" rel="stylesheet" type="text/css"/>
 
@@ -78,7 +78,7 @@
             </div>
         </div>
 
-        <div id="mainContent" class="mainContent travelModule">
+        <div id="mainContent" class="mainContent noBodyWhiteBg">
             <div class="topDeepBlueBg">
         <div class="passengerLinerTrickInfo">
             <div class="topShippingInfo">
@@ -179,7 +179,7 @@
                     <ul class="recommendList">
                         <li class="deepBlueTitle">产品经理推荐：</li>
                         <li style="">
-                            <pre class="containCharge cruisePreContainer" style="width:420px;line-height:20px;overflow:hidden;">海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经海洋产品经海洋产品经经海洋产品经经海洋产品经经海洋产品经经海洋产品经品</pre>
+                            <pre class="containCharge cruisePreContainer" style="width:420px;line-height:20px;overflow:hidden;">海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经海洋产品经海洋产品经经海洋产品经经海洋产品经经海洋产品经经海洋产品经品多一个字</pre>
                         </li>
                         <li class="view-more-text"><span>查看更多</span><i class="icon-arrow-double-down"></i></li>
                     </ul>
@@ -196,9 +196,6 @@
                                 市场价 &nbsp; ￥185999 起
                             </div>
                         </li>
-                        <li>
-                            <a href="javascript:void(0);" class="bookBtn">立即预订</a>
-                        </li>
                     </ul>
                 </div>
             </section>
@@ -208,7 +205,7 @@
     <div class="mainContainer">
         <div class="calendarDay clearfix">
             <div id="priceCalendar" style="float:left;">
-                <ul class="tabSwitchMonth">
+                <ul class="tabSwitchMonth clearfix">
                 </ul>
                 <div class="calendarTitle clearfix">
                     <span>日</span>
@@ -327,9 +324,6 @@
                 <li><a href="#bookingNote"><i></i>预订须知</a></li>
                 <li class="liLine"></li>
                 <li><a href="#visaInfo"><i></i>签证/签注</a></li>
-                <li style="float:right">
-                    <span class="btn_booking floatCruiseBookBtn">立即预订</span>
-                </li>
             </ul>
             <div>
                 <a href="#" name="tripDetail"></a>
@@ -546,7 +540,7 @@
                 <ul class="tdoi_priceExplain_contain">
                     <li>海洋航行者号是世界十大邮轮之一，13.8万吨的规模足以满足任何一位游客的需求，提供了无与伦比的美食，娱乐，住宿，服务。海洋航行者号邮轮（Voyager of the Seas）隶属于皇家加勒比邮轮。海洋航行者号在建造之初，充分考虑到了那些热爱旅行的客人的需要。海洋航行者号采用了海军工程的技术，创造了一个邮轮历史上的奇迹。海洋航行者号配备有200英尺高的攀岩壁，九洞迷你高尔夫球场，独具特色的溜冰场，以及直排轮滑专用滑道等各种创新设施，让您体验到从未有过的刺激和新奇</li>
                 </ul>
-                <ul class="shippingContent clearfix">
+                <ul class="shippingContent clearfix" style="margin:0;padding:0;">
                     <li class="shippingImg">
                         <a href="javascript:void(0);">
                             <img src="../../static/images/store/cruise/shippingIntroduceImg.jpg" title="">
@@ -890,6 +884,8 @@ function addEnableTd() {
             }
         );
 
+        $(".changeList").fixedBar();
+
         // 图片轮播效果,当多于1张照片时，调用轮播效果，否则只展示一张图片
 
         if ($("#slideshow").find("img").length > 1) {
@@ -935,15 +931,15 @@ function addEnableTd() {
              "<a href='#'><img src='" + imgSrc + "' width='90' height='56'></a></span>");
         }
 
-        /*  设置延伸背景色宽度
+        /*  设置延伸背景色宽度  */
         var windowWidth = $(window).outerWidth();
         var resetLeft = (windowWidth - 980)/2;
         $(".topDeepBlueBg").css({
             "width": windowWidth + "px",
             "margin-left": -resetLeft + "px"
         });
-        */
-        var h = $(".containCharge.cruisePreContainer").outerHeight();
+        
+        var h = $(".recommendList .cruisePreContainer").outerHeight();
         if (h < 81) {
             $(".containCharge.cruisePreContainer").css("height","96px");
             $(".view-more-text").hide();
