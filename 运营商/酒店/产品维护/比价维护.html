@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>酒店 比价维护</title>
+    <meta content="text/html" charset="utf-8">
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/b2b.css">
+    <link rel="stylesheet" href="/static/css/kendo.common.css">
+    <link rel="stylesheet" href="/static/css/kendo.gray.css">
+    <link rel="stylesheet" href="/static/css/kendo.reset.css"/>
+    <link rel="stylesheet" href="/static/css/operatorCommonHeader.css" />
+    <link rel="stylesheet" href="/static/css/hotel.css">
+    <link rel="stylesheet" href="/static/css/hotel_booking_searching.css">
+    <link type="text/css" rel="stylesheet" href="/static/css/cabinseat.css">
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+    
+    <style type="text/css">
+        .k-animation-container {
+            margin-top: 6px;
+        }
+    </style>
+    
+</head>
+<body>
+    <div id="head">
+        <div></div>
+    </div>
+    
+    <div id="catalogue"></div>
+
+<div class="main" id="container" style="background:none">
+
+    <div class="logo">
+        <div class="clearfix">
+            <h1></h1>
+            <div class="profile">
+                <a href="javascript:void(0)">你好,千颂伊</a>
+                <a href="javascript:void(0)">退出</a>
+            </div>
+        </div>
+        <ul id="catalogue_menu">
+            <li class="">
+                <a href="javascript:void(0)">国内机票</a>
+            </li>
+            <li><a href="javascript:void(0)">国际机票</a></li>
+            <li class="current">
+                <a href="javascript:void(0)">酒店</a>
+                <ol class="subMenu">
+                    <li><a href="javascript:void(0)">查询预订</a></li>
+                    <li><a href="javascript:void(0)">订单管理</a></li>
+                    <li><a href="javascript:void(0)">酒店维护</a></li>
+                    <li><a href="javascript:void(0)">售价维护</a></li>
+                    <li><a href="javascript:void(0)">数据报表</a></li>
+                    <li class="currentSubMenu"><a href="javascript:void(0)">产品维护</a></li>
+                </ol>
+            </li>
+            <li><a href="javascript:void(0)">打包产品</a></li>
+            <li><a href="javascript:void(0)">旅游</a></li>
+            <li><a href="javascript:void(0)">邮轮</a></li>
+            <li><a href="javascript:void(0)">签证</a></li>
+            <li><a href="javascript:void(0)">保险</a></li>
+            <li><a href="javascript:void(0)">短信</a></li>
+            <li><a href="javascript:void(0)">通用订单</a></li>
+            <li><a href="javascript:void(0)">票证</a></li>
+            <li><a href="javascript:void(0)">财务</a></li>
+            <li><a href="javascript:void(0)">客户</a></li>
+            <li><a href="javascript:void(0)">设置</a></li>
+        </ul>
+        <div class="headerMessage clearfix">
+            <div id="msgNum">
+                <span>消息</span>
+                <em>30</em>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="topFixedToolsBar">
+        <div class="fixedMenu">
+            <a href="#">汇率维护</a>
+            <a href="#">现付酒店返佣</a>
+            <a href="#">直连酒店映射维护</a>
+            <a href="#" class="current">基础数据</a>
+        </div>
+        <!--<div class="fixedButton">
+            <a href="javascript:void(0);">按钮</a>
+        </div>-->
+    </div>
+
+
+
+
+
+
+
+    <div class="leftandright clearfix mainContent" style="height:auto; width:auto; background:#f6f6f6;"> <!--leftAndRight start-->
+               
+               <div class="testbox">  <!--left start-->
+                    <ul>
+                         <li><a class="MenuItem" href="">服务费用</a></li>
+                         <li><a class="MenuItem" href="">服务设施</a></li>
+                         <li><a class="MenuItem" href="">房间设施</a></li>
+                         <li><a class="MenuItem" href="">酒店类型</a></li>
+                         <li><a class="MenuItem" href="">连锁品牌</a></li>
+                         <li><a class="MenuItem" href="">大区/城市</a></li>
+                         <li><a class="MenuItem" href="">线下酒店</a></li>
+                         <li><a class="MenuItem" href="">线下供应商</a></li>
+                         <li class="lastBorder current"><a class="MenuItem" href="公共-行政区划.html">比价维护</a></li>
+                    </ul>
+               </div>  <!--left end-->
+               
+               <div class="pull-right rightCommonStyle"> <!--pull-right 开始-->
+                     <div class="boxshow">  
+                        <div class="right_side">  <!--right_side start-->  
+
+                            <div class="compare-price-frame">
+                                <div>
+                                    <span class="font1">比价网站</span>
+                                    <span class="font1">大都市</span>
+                                    <a href="javascript:void(0)" class="font2">修改</a>
+                                </div>
+                                <div class="website">
+                                    网址：http://dds.com
+                                </div>
+
+                                <table class="website-userInfo-table">
+                                    <colgroup>
+                                        <col width="12"></col>
+                                        <col width="162"></col>
+                                        <col width="208"></col>
+                                        <col width="180"></col>
+                                        <col width="252"></col>
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <td></td>
+                                            <td>天地行登陆名</td>
+                                            <td>公司编号或企业编号</td>
+                                            <td>登录名</td>
+                                            <td>密码</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td>lusifer</td>
+                                            <td>SH123</td>
+                                            <td>lusifer</td>
+                                            <td>******</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>lusifer</td>
+                                            <td>SH123</td>
+                                            <td>lusifer</td>
+                                            <td>******</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="compare-price-frame">
+                                <div>
+                                    <span class="font1">比价网站</span>
+                                    <span class="font1">深捷旅</span>
+                                    <a href="javascript:void(0)" class="font2">修改</a>
+                                </div>
+                                <div class="website">
+                                    网址：http://dds.com
+                                </div>
+
+                                <table class="website-userInfo-table">
+                                    <colgroup>
+                                        <col width="12"></col>
+                                        <col width="162"></col>
+                                        <col width="208"></col>
+                                        <col width="180"></col>
+                                        <col width="252"></col>
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <td></td>
+                                            <td>天地行登陆名</td>
+                                            <td>公司编号或企业编号</td>
+                                            <td>登录名</td>
+                                            <td>密码</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td>lusifer</td>
+                                            <td>SH123</td>
+                                            <td>lusifer</td>
+                                            <td>******</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>lusifer</td>
+                                            <td>SH123</td>
+                                            <td>lusifer</td>
+                                            <td>******</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="compare-price-frame" style="margin-bottom:60px">
+                                <div class="clearfix" style="height:30px;line-height:30px;">
+                                    <span style="float:left;vertical-align:middle">
+                                        <span class="font1">网站名称</span>
+                                        <span class="font1">龙腾</span>
+                                    </span>
+                                    <span class="compare-price-btn">
+                                        <a style="color:#ffffff;margin-top:4px;" href="javascipt:void(0);" class="button_4_3">保存</a>
+                                        <a href="javascipt:void(0);" class="button_3_3">取消</a>
+                                    </span>
+                                </div>
+                                <div class="website">
+                                    网址：<input type="text" value="http://dds.com" class="website-input">
+                                </div>
+
+                                <table class="website-userInfo-table">
+                                    <colgroup>
+                                        <col width="12"></col>
+                                        <col width="162"></col>
+                                        <col width="208"></col>
+                                        <col width="180"></col>
+                                        <col width="252"></col>
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <td></td>
+                                            <td>天地行登陆名</td>
+                                            <td>公司编号或企业编号</td>
+                                            <td>登录名</td>
+                                            <td>密码</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="2">
+                                                <input type="text" class="website-table-input" value="lusifer">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="website-table-input" value="SH123">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="website-table-input" value="lusifer">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="website-table-input" value="123456">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <input type="text" class="website-table-input" value="lusifer">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="website-table-input" value="SH123">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="website-table-input" value="lusifer">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="website-table-input" value="123456">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+
+
+
+
+
+
+
+                          
+                               
+                              
+                            </div> <!--right_side end-->
+                        </div>   
+                     </div> <!--pull-right 结束-->
+               </div> <!--leftAndRight end-->
+
+
+           
+          </div> <!-- 内容结束 -->
+
+
+
+
+
+
+
+
+
+   
+
+    
+
+    
+</div>
+
+    <footer class="main-footer">
+        <center>
+            <a href="#">隐私问题</a>
+            <i class="bar">|</i>
+            <a href="#">常见问题</a>
+            <i class="bar">|</i>
+            <a href="#">关于我们</a>
+            <i class="bar">|</i>
+            <a href="#">媒体中心</a>
+            <i class="bar">|</i>
+            <a href="#">联系我们</a>
+        </center>
+        <center class="copyright">
+            Copyright &copy; 2012 天地行 All Rights Reserved.     沪ICP备08101503号
+        </center>
+    </footer>
+
+
+    <!--  其他 内容模板 -->
+    <script type="text/x-kendo-template" id="otherTemplate">
+        <div class="otherContent">
+            <p><b>其他包含服务：</b></p>
+            <p>包含1间司陪房；包含机场接送。</p>
+        </div>
+    </script>
+
+    <!-- 礼物Icon 内容模板 -->
+    <script type="text/x-kendo-template" id="hotel-giftTemplate">
+        <div class="ruleContent">
+            <p><b>价格说明：</b></p>
+            <p>2013-04-11~2013-04-16，此期间预订入住，每房每晚可获赠10元房费抵扣。</p>
+        </div>
+    </script>
+
+<!-- 价格说明  内容模板   -->
+<script type="text/x-kendo-template" id="priceTemplate">
+    <div class="priceWinHead">
+            <span>
+                <em>2014/05/01  周六</em>
+                <b>至</b>
+                <em>2014/05/04  周二</em>
+            </span>
+            <span class="liveNum">
+                <em>3</em>晚  <em>1</em>间
+            </span>
+    </div>
+    <table class="priceTable">
+        <colgroup>
+            <col width="65" />
+            <col width="65" />
+            <col width="65" />
+            <col width="65" />
+            <col width="65" />
+            <col width="65" />
+            <col width="65" />
+            <col width="65" />
+        </colgroup>
+        <thead>
+        <tr>
+            <th>第一周</th>
+            <th class="redFont">周六</th>
+            <th class="redFont">周日</th>
+            <th>周一</th>
+            <th>周二</th>
+            <th>周三</th>
+            <th>周四</th>
+            <th>周五</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>价格</td>
+            <td class="redFont">280.00</td>
+            <td class="redFont">380.00</td>
+            <td class="redFont">400.00</td>
+            <td class="redFont">680.00</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>早餐</td>
+            <td>2份</td>
+            <td>2份</td>
+            <td>2份</td>
+            <td>2份</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>宽带</td>
+            <td>包含</td>
+            <td>-</td>
+            <td>包含</td>
+            <td>包含</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="winTotalPrice">总价：<span>650.10</span>元</p>
+    <div class="priceWinFoot">
+        <p><b>早餐</b>含早餐2份。加早每份早餐￥120.00元（中心自助）；</p>
+        <p><b>加床</b>提供加床。加床每张￥150.00元；</p>
+        <p><b>支付方式</b>预订免费，入住酒店前台付款。</p>
+    </div>
+</script>
+
+    <!-- 规定 内容模板 -->
+    <script type="text/x-kendo-template" id="stipulateTemplate">
+        <div class="ruleContent">
+            <p><span class="toolTipField">入住时间：</span>14:00以后<span class="toolTipField">退房时间：</span>12:00以前
+            酒店预订确认后，不能变更或取消</p>
+        </div>
+    </script>
+
+<script type="application/javascript">
+    $(function () {
+
+        $("#checkin_date").datepicker({
+            css:{"z-index":20000},
+            numberOfMonths:[1, 2],
+            minDate:new Date(),
+            showButtonPanel:true,
+            onSelect:function (dateText, inst) {
+                var date = new Date();
+                date.setFullYear(inst.selectedYear);
+                date.setMonth(inst.selectedMonth);
+                date.setDate(inst.selectedDay);
+
+                $("#checkout_date").datepicker("option", "minDate", date);
+                $("#checkout_date").datepicker("setDate", dateText);
+            }
+        });
+        
+        $("#checkout_date").datepicker({
+            css:{"z-index":20000},
+            numberOfMonths:[1, 2],
+            minDate:new Date(),
+            showButtonPanel:true
+        });
+
+        $(".hotel-gift-icon").kendoTooltip({
+            content:kendo.template($("#hotel-giftTemplate").html()),
+            width: 230
+        });
+        
+        $(".other").kendoTooltip({
+            content:kendo.template($("#otherTemplate").html()),
+            width: 230
+        });
+
+        $(".basePrice,.sellPrice").kendoTooltip({
+            content:kendo.template($("#priceTemplate").html()),
+            width: 550
+        });
+
+        $(".stipulate").kendoTooltip({
+            content:kendo.template($("#stipulateTemplate").html()),
+            width:230            
+        });
+
+        // 行政区 点更多展开
+        $(".search_close").click(function(e){
+            $(".moreAreaList").hide();
+        });
+        $("#moreSelect_trigger").click(function(e){
+            var pos = $(this).offset();
+            $(".moreAreaList").toggle();
+            e.stopPropagation();
+            $(".moreBtnblock").toggleClass("relevanceOr_click");
+        });
+        $(".search_close").click(function(){
+            $(".moreBtnblock").removeClass("relevanceOr_click");
+        }); 
+        
+        $(".hotelPriceTitle .current").prev("li").css("border-right","none");
+
+    });
+
+</script>
+
+</body>
+</html>
+
