@@ -33,7 +33,9 @@ $(function(){
 <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
 <![endif]-->
 <script type="text/javascript" src="/static/js/sync.js"></script>
-<!-- @CLB@ --></head><body>  <div id="extHeader">
+<!-- @CLB@ -->
+</head>
+<body>  <div id="extHeader">
         <div></div>
     </div>
 
@@ -338,6 +340,45 @@ $(function(){
     </div>
 </div>
 
+<div class="block block-module gp-pay-module">
+    <div class="block-title">
+        <span class="block-title-blue"><em style="color:#f1634c;">GP</em>支付方式</span>
+        <span class="gp-tip-container">
+          <i></i>
+          <span class="gp-tip-text">GP支付方式帮助</span>
+        </span>
+    </div>
+    <div class="gcWay-info disabled-type">
+        <div class="radio-block" style="margin-bottom:10px;">
+          <label><input type="radio" disabled>公务卡支付信息</label>
+        </div>
+        <div class="gcWay-info-content">
+          <span style="width:170px;">持卡人姓名：诸葛小妹</span>
+          <span style="width:220px;">卡号：<input type="text" style="width:140px;" readonly="readonly" value="12312312"></span>
+          <span style="width:250px;">有效期至：
+            <select data-role="dropdownlist" disabled="disabled" style="width:45px;">
+              <option>10</option>
+              <option>2</option>
+            </select>
+            <em> / </em>
+            <select data-role="dropdownlist" disabled="disabled" style="width:60px;">
+              <option>2014</option>
+              <option>2015</option>
+            </select>
+          </span>
+          <span>CVV2：<input type="text" style="width:140px;" placeholder="卡背后的末三位数字"></span>
+        </div>
+      </div>
+      <div class="pcWay-info">
+        <div class="radio-block">
+          <label><input type="radio">采购卡支付信息</label>
+        </div>
+        <div class="pcWay-info-content">
+          采购单位：<input type="text" style="width:290px;" placeholder="请输入旅客所在单位名称">
+        </div>
+      </div>
+</div>
+
 <div class="block block16 block-module">
     <div class="block-title">
         <span>配送信息</span>
@@ -498,4 +539,23 @@ $(function(){
             <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
+
+    <script type="text/html" id="gp-tip-template">
+      <div class="tooltipsContent">
+        <div class="tooltipsArrow"></div>
+        <div class="gp-tip-win-content">GP支付帮助： 由于决定将决定将大家的决定将大家的决定将大家的决定将大家都觉得。</div>
+      </div>
+    </script>
+
+    <script type="text/javascript">
+        $(".gp-tip-container").kendoTooltip({
+          position:"bottom", //left right top
+          content:function(){
+            return $("#gp-tip-template").html();
+          },
+          callout:false,
+          offsetY:-10,
+          width:220
+        });
+    </script>
 </body></html>
