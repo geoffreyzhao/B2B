@@ -6,22 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="renderer" content="webkit" />
 
-    <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
-    <link href="/static/css/kendo.common.css" rel="stylesheet" type="text/css" />
-    <link href="/static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
-    <link href="/static/css/kendo.reset.css" rel="stylesheet" type="text/css" />
-    <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="/static/css/toolkit.css"/>
-    <link href="/static/css/operatorCommonHeader.css" rel="stylesheet">
-    <link href="/static/css/operatorShip.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css">
+    <link href="/static/css/kendo.common.css" rel="stylesheet" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" />
+    <link href="/static/css/common.css" rel="stylesheet" />
+    <link href="/static/css/toolkit.css" rel="stylesheet" />
+    <link href="/static/css/supplier.css" rel="stylesheet" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link href="/static/css/supplier_common.css" rel="stylesheet" />
+    <link href="/static/css/supplierShip.css" rel="stylesheet" />
 
-    <script src="/static/js/jquery.min.js" type="text/javascript"></script>
-    <script src="/static/js/kendo.web.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
     <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
     <script type="text/javascript" src="/static/js/global.js"></script>
-    <script type="text/javascript" src="/static/js/scrollFix.js"></script>
-    <script type="text/javascript" src="/static/js/public.js"></script>
+    <script type="text/javascript" src="/static/js/flight.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+    <script type="text/javascript" src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+    <script type="text/javascript" src="/static/js/supplier/supplier_travel.js"></script>
     <script type="text/javascript" src="/static/js/DateControl.js"></script>
+    <script type="text/javascript" src="/static/js/vendor/underscore.js"></script>
     <script type="text/javascript" src="/static/js/jquery.cycle.all.js"></script>
 
     <!--[if IE]>
@@ -32,620 +37,653 @@
 </head>
 <body>
 
-    <div id="head">
-        <div></div>
+    <div class="bg-header-repeat">
+        <div class="bg-header-top"></div>
+        <div class="navi-split-line"></div>
+        <div class="main-header"></div>
     </div>
-    
-    <div id="catalogue"></div>
 
-    <div id="container">
-        <div class="logo">
-            <div class="clearfix">
-                <h1></h1>
-                <div class="profile">
-                    <a href="javascript:void(0)">你好,千颂伊</a>
-                    <a href="javascript:void(0)">退出</a>
-                </div>
+    <div id="container" class="new-container">
+        <div class="header-top-center">
+            <div class="head-left">
+                <div class="supplier-logo"></div>
             </div>
-            <ul class="clearfix" id="catalogue_menu">
-                <li class="">
-                    <a href="javascript:void(0)">国内机票</a>                    
+            <ul class="first-navi">
+                <li class="first-navi-li"><a href="javascript:void(0);">国内机票</a></li>
+                <li class="first-navi-li"><a href="javascript:void(0);">国际机票</a></li>
+                <li class="first-navi-li narrow-navi-word2"><a href="javascript:void(0);">旅游</a>
                 </li>
-                <li><a href="javascript:void(0)">国际机票</a></li>
-                <li><a href="javascript:void(0)">酒店</a></li>
-                <li><a href="javascript:void(0)">打包产品</a></li>
-                <li><a href="javascript:void(0)">旅游</a></li>
-                <li><a href="javascript:void(0)">邮轮</a></li>
-                <li class="current"><a href="javascript:void(0)">签证</a>
-                    <ol class="subMenu">
-                        <li><a href="javascript:void(0)">基础模块维护</a></li>
-                        <li><a href="javascript:void(0)">航线审核</a></li>
-                        <li class="currentSubMenu"><a href="javascript:void(0)">航线售卖管理</a></li>
-                        <li><a href="javascript:void(0)">团管理</a></li>
+                <li class="first-navi-li first-navi-active narrow-navi-word2"><a href="javascript:void(0);">邮轮</a>
+                    <ol class="second-navi">
+                        <li class="second-navi-li second-navi-active"><a href="javascript:void(0);">航线管理</a>
+                            <div class="navi-slide-hover" style="height:5px;"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">团管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
                     </ol>
                 </li>
-                <li><a href="javascript:void(0)">保险</a></li>
-                <li><a href="javascript:void(0)">短信</a></li>
-                <li><a href="javascript:void(0)">票证</a></li>
-                <li><a href="javascript:void(0)">财务</a></li>
-                <li><a href="javascript:void(0)">客户</a></li>
+                <li class="first-navi-li"><a href="javascript:void(0);">财务管理</a></li>
+                <li class="user-setting-nav" style="display:none;">
+                    <ol class="second-navi">
+                        <li class="second-navi-li"><a href="javascript:void(0);">我的账号</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">公司信息</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">员工管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">角色管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">账户设置</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);"><span style="font-size:14px;">OFFICE</span>管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                    </ol>
+                </li>
             </ul>
-            <div class="headerMessage clearfix">
-                <div id="msgNum">
-                    <span>消息</span>
-                    <em>30</em>
-                </div>
+            <div class="head-right">
+                <ul class="feature">
+                    <li class="notice-icon-active"></li>
+                    <li class="split-line"></li>
+                    <li class="person-info">
+                        <span class="person-icon"></span>
+                        <span class="person-name" title="zhaoshuaigeng12312321">zhaoshuaigeng12312321</span>
+                        <a class="logout" href="javascript:void(0);">退出</a>
+                        <span class="user-setting">设置</span>
+                    </li>
+                </ul>
             </div>
         </div>
+        <div class="clear"></div>
+        <div id="sub_menu_bar"></div>
 
         <div id="mainContent" class="mainContent noBodyWhiteBg">
+            <div class="top-pass-block" style="top:-41px;">
+                <ul class="third-navi">
+                    <li class="third-navi-li third-navi-active">
+                        <a class="blueFonts" href="javascript:void(0);"><i class="detailsIcon"></i>新增航线</a>
+                    </li>
+                    <li class="third-navi-li"><a href="javascript:void(0);">基本信息</a></li>
+                    <li class="third-navi-li">
+                        <a href="javascript:void(0);">行程安排</a>
+                    </li>
+                    <li class="third-navi-li">
+                        <a href="javascript:void(0);">描述信息</a>                    
+                    </li>
+                    <li class="third-navi-li third-navi-active">
+                        <a href="javascript:void(0);">团期报价</a>                    
+                    </li>
+                </ul>
+            </div>       
+
             <div class="topDeepBlueBg">
-        <div class="passengerLinerTrickInfo">
-            <div class="topShippingInfo">
-                <b class="shipTitle">歌诗达邮轮-大西洋号】上海-济州-仁川（首尔）-上海4晚 上海-济州-仁川（首尔）-上海4晚</b>
-                <label class="trickAndShip blueBg">
-                    <i class="singleTrickIcon"></i>
-                    <em>单船票</em>
-                </label>
-                <label class="trickAndShip cruiseTravType groupTrav">
-                    <i></i>
-                    <em>团队游</em>
-                </label>
-                <label class="trickAndShip greenBg">
-                    <i class="charteredBoatIcon"></i>
-                    <em>包船</em>
-                </label>
-            </div>
-            <div class="labelStyle">
-                <label>蜜月旅行</label>
-                <label>说走就走</label>
-                <label>老年休闲游</label>
-                <label>养生之旅</label>
-            </div>
-            <section class="clearfix" style="padding-bottom: 30px;">
-                <div class="leftBookImg">
-                    <div id="picarea">
-                        <div class="showGraph" id="bigpicarea">
-                            <p class="bigbtnPrev" style="display:none;">
-                                <span id="big_play_prev"></span>
-                            </p>
-                            <div id="slideshow" class="pics">
-                                <img src="../../static/images/store/cruise/shippingImg01.jpg"/>
-                                <img src="../../static/images/store/cruise/shippingImg02.jpg"/>
-                                <img src="../../static/images/store/cruise/shippingImg03.jpg"/>
-                                <img src="../../static/images/store/cruise/shippingImg01.jpg"/>
-                                <img src="../../static/images/store/cruise/shippingImg02.jpg"/>
-                                <img src="../../static/images/store/cruise/shippingImg03.jpg"/>
-                                <img src="../../static/images/store/cruise/shippingImg01.jpg"/>
-                                <img src="../../static/images/store/cruise/shippingImg02.jpg"/>
-                                <img src="../../static/images/store/cruise/shippingImg03.jpg"/>
-                                <img src="../../static/images/store/cruise/shippingImg01.jpg"/>
-                                <img src="../../static/images/store/cruise/shippingImg02.jpg"/>
+                <div class="passengerLinerTrickInfo">
+                    <div class="topShippingInfo">
+                        <b class="shipTitle">歌诗达邮轮-大西洋号】上海-济州-仁川（首尔）-上海4晚 上海-济州-仁川（首尔）-上海4晚</b>
+                        <label class="trickAndShip blueBg">
+                            <i class="singleTrickIcon"></i>
+                            <em>单船票</em>
+                        </label>
+                        <label class="trickAndShip cruiseTravType groupTrav">
+                            <i></i>
+                            <em>团队游</em>
+                        </label>
+                        <label class="trickAndShip greenBg">
+                            <i class="charteredBoatIcon"></i>
+                            <em>包船</em>
+                        </label>
+                    </div>
+                    <div class="labelStyle">
+                        <label>蜜月旅行</label>
+                        <label>说走就走</label>
+                        <label>老年休闲游</label>
+                        <label>养生之旅</label>
+                    </div>
+                    <section class="clearfix" style="padding-bottom: 30px;">
+                        <div class="leftBookImg">
+                            <div id="picarea">
+                                <div class="showGraph" id="bigpicarea">
+                                    <p class="bigbtnPrev" style="display:none;">
+                                        <span id="big_play_prev"></span>
+                                    </p>
+                                    <div id="slideshow" class="pics">
+                                        <img src="/static/images/store/cruise/shippingImg01.jpg"/>
+                                        <img src="/static/images/store/cruise/shippingImg02.jpg"/>
+                                        <img src="/static/images/store/cruise/shippingImg03.jpg"/>
+                                        <img src="/static/images/store/cruise/shippingImg01.jpg"/>
+                                        <img src="/static/images/store/cruise/shippingImg02.jpg"/>
+                                        <img src="/static/images/store/cruise/shippingImg03.jpg"/>
+                                        <img src="/static/images/store/cruise/shippingImg01.jpg"/>
+                                        <img src="/static/images/store/cruise/shippingImg02.jpg"/>
+                                        <img src="/static/images/store/cruise/shippingImg03.jpg"/>
+                                        <img src="/static/images/store/cruise/shippingImg01.jpg"/>
+                                        <img src="/static/images/store/cruise/shippingImg02.jpg"/>
+                                    </div>
+                                    <p class="bigbtnNext" style="display:none;">
+                                        <span id="big_play_next"></span>
+                                    </p>
+                                </div>
+                                <div class="smallpicarea">
+                                    <div class="smallBtnPrev"></div>
+                                    <div id="smallSlideShow" class="smallSlideShow">
+                                    </div>
+                                    <div class="smallBtnNext"></div>
+                                </div>
                             </div>
-                            <p class="bigbtnNext" style="display:none;">
-                                <span id="big_play_next"></span>
-                            </p>
                         </div>
-                        <div class="smallpicarea">
-                            <div class="smallBtnPrev"></div>
-                            <div id="smallSlideShow" class="smallSlideShow">
-                            </div>
-                            <div class="smallBtnNext"></div>
+                        <div class="rightFontsContent">
+                            <ul class="rightTopListFonts clearfix">
+                                <li>
+                                    <i class="listFontsIcon listFontsIcon01"></i>
+                                    <em class="deepBlueFonts">航线编号：</em>
+                                    <em class="whiteFonts">12345</em>
+                                </li>
+                                <li>
+                                    <i class="listFontsIcon listFontsIcon01"></i>
+                                    <em class="deepBlueFonts">邮轮公司：</em>
+                                    <em class="whiteFonts">
+                                        <a href="javascript:void(0);">歌诗达邮轮</a>
+                                    </em>
+                                </li>
+                                <li>
+                                    <i class="listFontsIcon listFontsIcon02"></i>
+                                    <em class="deepBlueFonts">所属航线：</em>
+                                    <em class="whiteFonts">12345</em>
+                                </li>
+                                <li>
+                                    <i class="listFontsIcon listFontsIcon03"></i>
+                                    <em class="deepBlueFonts">邮轮船只：</em>
+                                    <em class="whiteFonts">
+                                        <a href="javascript:void(0);">维多利亚号</a>
+                                    </em>
+                                </li>
+                                <li>
+                                    <i class="listFontsIcon listFontsIcon04"></i>
+                                    <em class="deepBlueFonts">出发港口：</em>
+                                    <em class="whiteFonts">上海/中国</em>
+                                </li>
+                                <li>
+                                    <i class="listFontsIcon listFontsIcon06"></i>
+                                    <em class="deepBlueFonts">行程天数：</em>
+                                    <em class="whiteFonts">10天</em>
+                                </li>
+                                <li>
+                                    <i class="listFontsIcon listFontsIcon05"></i>
+                                    <em class="deepBlueFonts">需要签证：</em>
+                                    <em class="whiteFonts">新加坡签证、日本签证、美国签证、新加坡签证、日本签证、美国签证</em>
+                                </li>
+                            </ul>
+                            <ul class="recommendList">
+                                <li class="deepBlueTitle">产品经理推荐：</li>
+                                <li style="">
+                                    <pre class="containCharge cruisePreContainer" style="width:420px;line-height:20px;overflow:hidden;">海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经海洋产品经海洋产品经经海洋产品经经海洋产品经经海洋产品经经海洋产品经品多一个字</pre>
+                                </li>
+                                <li class="view-more-text"><span>查看更多</span><i class="icon-arrow-double-down"></i></li>
+                            </ul>
+                            <ul class="priceAndBook">
+                                <li>
+                                    <div>
+                                        <label>
+                                            <em class="RMBsymbol">￥</em>
+                                            <em class="priceFonts">165999</em>
+                                        </label>
+                                        <em>起</em>
+                                    </div>
+                                    <div>
+                                        市场价 &nbsp; ￥185999 起
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
+                    </section>
+                </div>        
+            </div>
+
+        <div class="mainContainer">
+            <div class="calendarDay clearfix">
+                <div id="priceCalendar" style="float:left;">
+                    <ul class="tabSwitchMonth clearfix">
+                    </ul>
+                    <div class="calendarTitle clearfix">
+                        <span>日</span>
+                        <span>一</span>
+                        <span>二</span>
+                        <span>三</span>
+                        <span>四</span>
+                        <span>五</span>
+                        <span>六</span>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="calendarTables">
                     </div>
                 </div>
-                <div class="rightFontsContent">
-                    <ul class="rightTopListFonts clearfix">
-                        <li>
-                            <i class="listFontsIcon listFontsIcon01"></i>
-                            <em class="deepBlueFonts">航线编号：</em>
-                            <em class="whiteFonts">12345</em>
-                        </li>
-                        <li>
-                            <i class="listFontsIcon listFontsIcon01"></i>
-                            <em class="deepBlueFonts">邮轮公司：</em>
-                            <em class="whiteFonts">
-                                <a href="javascript:void(0);">歌诗达邮轮</a>
-                            </em>
-                        </li>
-                        <li>
-                            <i class="listFontsIcon listFontsIcon02"></i>
-                            <em class="deepBlueFonts">所属航线：</em>
-                            <em class="whiteFonts">12345</em>
-                        </li>
-                        <li>
-                            <i class="listFontsIcon listFontsIcon03"></i>
-                            <em class="deepBlueFonts">邮轮船只：</em>
-                            <em class="whiteFonts">
-                                <a href="javascript:void(0);">维多利亚号</a>
-                            </em>
-                        </li>
-                        <li>
-                            <i class="listFontsIcon listFontsIcon04"></i>
-                            <em class="deepBlueFonts">出发港口：</em>
-                            <em class="whiteFonts">上海/中国</em>
-                        </li>
-                        <li>
-                            <i class="listFontsIcon listFontsIcon06"></i>
-                            <em class="deepBlueFonts">行程天数：</em>
-                            <em class="whiteFonts">10天</em>
-                        </li>
-                        <li>
-                            <i class="listFontsIcon listFontsIcon05"></i>
-                            <em class="deepBlueFonts">需要签证：</em>
-                            <em class="whiteFonts">新加坡签证、日本签证、美国签证、新加坡签证、日本签证、美国签证</em>
-                        </li>
-                    </ul>
-                    <ul class="recommendList">
-                        <li class="deepBlueTitle">产品经理推荐：</li>
-                        <li style="">
-                            <pre class="containCharge cruisePreContainer" style="width:420px;line-height:20px;overflow:hidden;">海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经理推荐海洋产品经海洋产品经海洋产品经经海洋产品经经海洋产品经经海洋产品经经海洋产品经品多一个字</pre>
-                        </li>
-                        <li class="view-more-text"><span>查看更多</span><i class="icon-arrow-double-down"></i></li>
-                    </ul>
-                    <ul class="priceAndBook">
-                        <li>
-                            <div>
-                                <label>
-                                    <em class="RMBsymbol">￥</em>
-                                    <em class="priceFonts">165999</em>
-                                </label>
-                                <em>起</em>
-                            </div>
-                            <div>
-                                市场价 &nbsp; ￥185999 起
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-        </div>        
-    </div>
-
-    <div class="mainContainer">
-        <div class="calendarDay clearfix">
-            <div id="priceCalendar" style="float:left;">
-                <ul class="tabSwitchMonth clearfix">
-                </ul>
-                <div class="calendarTitle clearfix">
-                    <span>日</span>
-                    <span>一</span>
-                    <span>二</span>
-                    <span>三</span>
-                    <span>四</span>
-                    <span>五</span>
-                    <span>六</span>
-                </div>
-                <div class="clearfix"></div>
-                <div class="calendarTables">
-                </div>
-            </div>
-            <div class="rightDayNumber">
-                <table class="grayBgTitle">
-                    <colgroup>
-                        <col width="65">
-                        <col width="210">
-                        <col width="80">
-                        <col width="95">
-                    </colgroup>
-                    <tr>
-                        <th class="textAlignCenter">天数</th>
-                        <th>停靠港口</th>
-                        <th>抵达时间</th>
-                        <th>启航时间</th>
-                    </tr>
-                </table>
-                <div class="rightDayList">
-                    <table>
+                <div class="rightDayNumber">
+                    <table class="grayBgTitle">
                         <colgroup>
                             <col width="65">
                             <col width="210">
                             <col width="80">
-                            <col width="70">
+                            <col width="95">
                         </colgroup>
-                        <tbody>
                         <tr>
-                            <td class="textAlignCenter">
-                                <i class="numberIcon">1</i>
-                            </td>
-                            <td>上海/中国</td>
-                            <td>14：00</td>
-                            <td>14：00</td>
+                            <th class="textAlignCenter">天数</th>
+                            <th>停靠港口</th>
+                            <th>抵达时间</th>
+                            <th>启航时间</th>
                         </tr>
-                        <tr>
-                            <td class="textAlignCenter">
-                                <i class="numberIcon">2</i>
-                            </td>
-                            <td>萨马纳岛 / 巴哈马群岛</td>
-                            <td>14：00</td>
-                            <td>14：00</td>
-                        </tr>
-                        <tr>
-                            <td class="textAlignCenter">
-                                <i class="numberIcon">3</i>
-                            </td>
-                            <td>葡萄牙岛 / 莫桑比克</td>
-                            <td>14：00</td>
-                            <td>14：00</td>
-                        </tr>
-                        <tr>
-                            <td class="textAlignCenter">
-                                <i class="numberIcon">4</i>
-                            </td>
-                            <td>萨马纳岛 / 巴哈马群岛</td>
-                            <td>14：00</td>
-                            <td>14：00</td>
-                        </tr>
-                        <tr>
-                            <td class="textAlignCenter">
-                                <i class="numberIcon">5</i>
-                            </td>
-                            <td>福冈/日本</td>
-                            <td>14：00</td>
-                            <td>14：00</td>
-                        </tr>
-                        <tr>
-                            <td class="textAlignCenter">
-                                <i class="numberIcon">6</i>
-                            </td>
-                            <td>萨马纳岛 / 巴哈马群岛</td>
-                            <td>14：00</td>
-                            <td>14：00</td>
-                        </tr>
-                        <tr>
-                            <td class="textAlignCenter">
-                                <i class="numberIcon">7</i>
-                            </td>
-                            <td>福冈/日本</td>
-                            <td>14：00</td>
-                            <td>14：00</td>
-                        </tr>
-                        <tr>
-                            <td class="textAlignCenter">
-                                <i class="numberIcon">8</i>
-                            </td>
-                            <td>萨马纳岛 / 巴哈马群岛</td>
-                            <td>14：00</td>
-                            <td>14：00</td>
-                        </tr>
-                        </tbody>
                     </table>
+                    <div class="rightDayList">
+                        <table>
+                            <colgroup>
+                                <col width="65">
+                                <col width="210">
+                                <col width="80">
+                                <col width="70">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <td class="textAlignCenter">
+                                    <i class="numberIcon">1</i>
+                                </td>
+                                <td>上海/中国</td>
+                                <td>14：00</td>
+                                <td>14：00</td>
+                            </tr>
+                            <tr>
+                                <td class="textAlignCenter">
+                                    <i class="numberIcon">2</i>
+                                </td>
+                                <td>萨马纳岛 / 巴哈马群岛</td>
+                                <td>14：00</td>
+                                <td>14：00</td>
+                            </tr>
+                            <tr>
+                                <td class="textAlignCenter">
+                                    <i class="numberIcon">3</i>
+                                </td>
+                                <td>葡萄牙岛 / 莫桑比克</td>
+                                <td>14：00</td>
+                                <td>14：00</td>
+                            </tr>
+                            <tr>
+                                <td class="textAlignCenter">
+                                    <i class="numberIcon">4</i>
+                                </td>
+                                <td>萨马纳岛 / 巴哈马群岛</td>
+                                <td>14：00</td>
+                                <td>14：00</td>
+                            </tr>
+                            <tr>
+                                <td class="textAlignCenter">
+                                    <i class="numberIcon">5</i>
+                                </td>
+                                <td>福冈/日本</td>
+                                <td>14：00</td>
+                                <td>14：00</td>
+                            </tr>
+                            <tr>
+                                <td class="textAlignCenter">
+                                    <i class="numberIcon">6</i>
+                                </td>
+                                <td>萨马纳岛 / 巴哈马群岛</td>
+                                <td>14：00</td>
+                                <td>14：00</td>
+                            </tr>
+                            <tr>
+                                <td class="textAlignCenter">
+                                    <i class="numberIcon">7</i>
+                                </td>
+                                <td>福冈/日本</td>
+                                <td>14：00</td>
+                                <td>14：00</td>
+                            </tr>
+                            <tr>
+                                <td class="textAlignCenter">
+                                    <i class="numberIcon">8</i>
+                                </td>
+                                <td>萨马纳岛 / 巴哈马群岛</td>
+                                <td>14：00</td>
+                                <td>14：00</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="tripDetailInfo">
-            <ul class="changeList clearfix">
-                <li><a href="#tripDetail" class="currentLi"><i></i>行程安排</a></li>
-                <li class="liLine"></li>
-                <li><a href="#shipsToIntroduce"><i></i>船只介绍</a></li>
-                <li class="liLine"></li>
-                <li><a href="#priceExplain"><i></i>费用说明</a></li>
-                <li class="liLine"></li>
-                <li><a href="#bookingNote"><i></i>预订须知</a></li>
-                <li class="liLine"></li>
-                <li><a href="#visaInfo"><i></i>签证/签注</a></li>
-            </ul>
-            <div>
-                <a href="#" name="tripDetail"></a>
-                <ul class="dayListInfo">
-                <li>
-                    <i class="leftLine"></i>
-                    <i class="dayNumberIcon">D1</i>
-                    <div class="clearfix">
-                        <div class="dayNumberPlace">
-                            <b class="twoLine">上海中国中国/中国中国</b>
-                        </div>
-                        <table class="dayTabList">
-                            <colgroup>
-                                <col width="140">
-                                <col width="115">
-                                <col width="100">
-                                <col width="100">
-                                <col width="100">
-                                <col width="100">
-                            </colgroup>
-                            <thead>
-                            <tr>
-                                <th>抵港时间</th>
-                                <th>离港时间</th>
-                                <th>住宿</th>
-                                <th>早餐</th>
-                                <th>中餐</th>
-                                <th>晚餐</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>14:00</td>
-                                <td>14:00</td>
-                                <td>邮轮</td>
-                                <td>邮轮</td>
-                                <td>邮轮</td>
-                                <td>邮轮</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="dayPInfo">
-                        <p>【城山日出峰】（停留约60分钟）城山日出峰海拔182米，系10万年前海底火山爆发而形成，位于济州岛东端，是一块高耸的巨岩， 其顶部有巨大的火山口。东
-                            南面及北面是悬崖，只有西北面是草坪山脊，与城山村相连。在日出峰顶观看日出，令人叹为观止的美丽和庄严，仿佛带你进入一个美妙的境地；峰顶上可看到
-                            海岸线辽阔的大海和草原上壮丽的田园风光。
-                        </p>
-                        <p>【城邑民俗村】（停留约30分钟）位于汉拿山麓，是完全保存了韩国传统的一处民俗村。这里有许多文化遗产，很好地保留了古代村庄的原貌，因而被指定为民
-                            俗村并受到保护。
-                        </p>
-                        <p>【晚餐】：人参鸡（停留约40分钟）</p>
-                        <p>【新罗免税店】：（停留约90分钟）您可以在此自由活动。赠送半日游</p>
-                        <p>A人文之旅（约4小时 不含餐）</p>
-                        <p>【汉拿树木园】:（停留约40分钟）：这里有约900多种济州岛自生树种和亚热带植物，一年四季都可与美丽的大自然相遇，浸泡在清新的植物氧吧里。</p>
-                        <p>【济州自然史博物馆】:（停留约30分钟）：这是一家将散落在济州道内的传统民俗遗物、自然史迹等，收集、研究并展示的博物馆，以生态学的角度展示济州居
-                            民一生的生长过程、食衣住行、和生产产业等，让人轻易地了解到济州的自然和文化。
-                        </p>
-                        <p>【新罗免税店】：（停留约60分钟）您可以在此自由活动。</p>
-                    </div>
-                    <div class="journeyImg clearfix">
-                        <dl>
-                            <dt>
-                                <img src="../../static/images/store/journey01.jpg">
-                            </dt>
-                            <dd>
-                                <span class="imgDescribe">城山日出峰城山日出峰城山日出峰城山城山日出峰城山日出峰城山日出峰城山</span>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt>
-                                <img src="../../static/images/store/journey02.jpg">
-                            </dt>
-                            <dd>
-                                <span class="imgDescribe">城山日出峰城山日出峰城山日出峰城山城山日出峰城山日出峰城山日出峰城山</span>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt>
-                                <img src="../../static/images/store/journey03.jpg">
-                            </dt>
-                            <dd>
-                                <span class="imgDescribe">城山日出峰城山日出峰城山日出峰城山城山日出峰城山日出峰城山日出峰城山</span>
-                            </dd>
-                        </dl>
-                    </div>
-                </li>
-                <li>
-                    <i class="leftLine"></i>
-                    <i class="dayNumberIcon">D2</i>
-                    <div class="clearfix">
-                        <div class="dayNumberPlace">
-                            <b>韩国济州/韩国</b>
-                        </div>
-                        <table class="dayTabList">
-                            <colgroup>
-                                <col width="140">
-                                <col width="115">
-                                <col width="100">
-                                <col width="100">
-                                <col width="100">
-                                <col width="100">
-                            </colgroup>
-                            <thead>
-                            <tr>
-                                <th>抵港时间</th>
-                                <th>离港时间</th>
-                                <th>住宿</th>
-                                <th>早餐</th>
-                                <th>中餐</th>
-                                <th>晚餐</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>14:00</td>
-                                <td>14:00</td>
-                                <td>邮轮</td>
-                                <td>邮轮</td>
-                                <td>邮轮</td>
-                                <td>邮轮</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="dayPInfo">
-                        <p>【城山日出峰】（停留约60分钟）城山日出峰海拔182米，系10万年前海底火山爆发而形成，位于济州岛东端，是一块高耸的巨岩， 其顶部有巨大的火山口。东
-                            南面及北面是悬崖，只有西北面是草坪山脊，与城山村相连。在日出峰顶观看日出，令人叹为观止的美丽和庄严，仿佛带你进入一个美妙的境地；峰顶上可看到
-                            海岸线辽阔的大海和草原上壮丽的田园风光。
-                        </p>
-                        <p>【城邑民俗村】（停留约30分钟）位于汉拿山麓，是完全保存了韩国传统的一处民俗村。这里有许多文化遗产，很好地保留了古代村庄的原貌，因而被指定为民
-                            俗村并受到保护。
-                        </p>
-                    </div>
-                    <div class="journeyImg clearfix">
-                        <dl>
-                            <dt>
-                                <img src="../../static/images/store/journey01.jpg">
-                            </dt>
-                            <dd>
-                                <span class="imgDescribe">城山日出峰城山日出峰城山日出峰城山城山日出峰城山日出峰城山日出峰城山</span>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt>
-                                <img src="../../static/images/store/journey02.jpg">
-                            </dt>
-                            <dd>
-                                <span class="imgDescribe">城山日出峰城山日出峰城山日出峰城山城山日出峰城山日出峰城山日出峰城山</span>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt>
-                                <img src="../../static/images/store/journey03.jpg">
-                            </dt>
-                            <dd>
-                                <span class="imgDescribe">城山日出峰城山日出峰城山日出峰城山城山日出峰城山日出峰城山日出峰城山</span>
-                            </dd>
-                        </dl>
-                    </div>
-                </li>
-                <li class="last">
-                    <i class=""></i>
-                    <i class="dayNumberIcon">D3</i>
-                    <div class="clearfix">
-                        <div class="dayNumberPlace">
-                            <b>济州/韩国</b>
-                        </div>
-                        <table class="dayTabList">
-                            <colgroup>
-                                <col width="140">
-                                <col width="115">
-                                <col width="100">
-                                <col width="100">
-                                <col width="100">
-                                <col width="100">
-                            </colgroup>
-                            <thead>
-                            <tr>
-                                <th>抵港时间</th>
-                                <th>离港时间</th>
-                                <th>住宿</th>
-                                <th>早餐</th>
-                                <th>中餐</th>
-                                <th>晚餐</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>14:00</td>
-                                <td>14:00</td>
-                                <td>邮轮</td>
-                                <td>邮轮</td>
-                                <td>邮轮</td>
-                                <td>邮轮</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="dayPInfo">
-                        <p>新罗免税店隶属于韩国三星集团旗下的新罗酒店，自1986年开业以来，以时尚潮流的商品、合理的价格、高雅的购物环境以及热情优质的服务为海内外游客所青睐，是韩国最具代表性的免税店。</p>
-                        <p>航班: 由济洲搭乘班机前往上海（具体航班信息请在预订下一步中查看，航班出发时间为韩国时间）</p>
-                        <p>飞行时间: 约1小时40分钟；23：20</p>
-                        <p>抵达上海，结束愉快的韩国之旅(航班到达时间为中国时间)。 以上行程时间安排可能因天气、路况等原因相应调整，尽请谅解。</p>
-                        <p>以上行程时间安排可能会因天气、路况等原因做相应调整，敬请谅解。</p>
-                    </div>
-                </li>
+            <div class="tripDetailInfo">
+                <ul class="changeList clearfix">
+                    <li><a href="#tripDetail" class="currentLi"><i></i>行程安排</a></li>
+                    <li class="liLine"></li>
+                    <li><a href="#shipsToIntroduce"><i></i>船只介绍</a></li>
+                    <li class="liLine"></li>
+                    <li><a href="#priceExplain"><i></i>费用说明</a></li>
+                    <li class="liLine"></li>
+                    <li><a href="#bookingNote"><i></i>预订须知</a></li>
+                    <li class="liLine"></li>
+                    <li><a href="#visaInfo"><i></i>签证/签注</a></li>
                 </ul>
-            </div>
-            <div class="tripDetailOtherInfo changeAnchorContent">
-                <div class="tdoi_title">
-                    <i class="tripDetailIcon01"></i>船只介绍
-                    <a href="#" name="shipsToIntroduce"></a>
-                </div>
-                <ul class="tdoi_priceExplain_contain">
-                    <li>海洋航行者号是世界十大邮轮之一，13.8万吨的规模足以满足任何一位游客的需求，提供了无与伦比的美食，娱乐，住宿，服务。海洋航行者号邮轮（Voyager of the Seas）隶属于皇家加勒比邮轮。海洋航行者号在建造之初，充分考虑到了那些热爱旅行的客人的需要。海洋航行者号采用了海军工程的技术，创造了一个邮轮历史上的奇迹。海洋航行者号配备有200英尺高的攀岩壁，九洞迷你高尔夫球场，独具特色的溜冰场，以及直排轮滑专用滑道等各种创新设施，让您体验到从未有过的刺激和新奇</li>
-                </ul>
-                <ul class="shippingContent clearfix" style="margin:0;padding:0;">
-                    <li class="shippingImg">
-                        <a href="javascript:void(0);">
-                            <img src="../../static/images/store/cruise/shippingIntroduceImg.jpg" title="">
-                        </a>
+                <div>
+                    <a href="#" name="tripDetail"></a>
+                    <ul class="dayListInfo">
+                    <li>
+                        <i class="leftLine"></i>
+                        <i class="dayNumberIcon">D1</i>
+                        <div class="clearfix">
+                            <div class="dayNumberPlace">
+                                <b class="twoLine">上海中国中国/中国中国</b>
+                            </div>
+                            <table class="dayTabList">
+                                <colgroup>
+                                    <col width="140">
+                                    <col width="115">
+                                    <col width="100">
+                                    <col width="100">
+                                    <col width="100">
+                                    <col width="100">
+                                </colgroup>
+                                <thead>
+                                <tr>
+                                    <th>抵港时间</th>
+                                    <th>离港时间</th>
+                                    <th>住宿</th>
+                                    <th>早餐</th>
+                                    <th>中餐</th>
+                                    <th>晚餐</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>14:00</td>
+                                    <td>14:00</td>
+                                    <td>邮轮</td>
+                                    <td>邮轮</td>
+                                    <td>邮轮</td>
+                                    <td>邮轮</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="dayPInfo">
+                            <p>【城山日出峰】（停留约60分钟）城山日出峰海拔182米，系10万年前海底火山爆发而形成，位于济州岛东端，是一块高耸的巨岩， 其顶部有巨大的火山口。东
+                                南面及北面是悬崖，只有西北面是草坪山脊，与城山村相连。在日出峰顶观看日出，令人叹为观止的美丽和庄严，仿佛带你进入一个美妙的境地；峰顶上可看到
+                                海岸线辽阔的大海和草原上壮丽的田园风光。
+                            </p>
+                            <p>【城邑民俗村】（停留约30分钟）位于汉拿山麓，是完全保存了韩国传统的一处民俗村。这里有许多文化遗产，很好地保留了古代村庄的原貌，因而被指定为民
+                                俗村并受到保护。
+                            </p>
+                            <p>【晚餐】：人参鸡（停留约40分钟）</p>
+                            <p>【新罗免税店】：（停留约90分钟）您可以在此自由活动。赠送半日游</p>
+                            <p>A人文之旅（约4小时 不含餐）</p>
+                            <p>【汉拿树木园】:（停留约40分钟）：这里有约900多种济州岛自生树种和亚热带植物，一年四季都可与美丽的大自然相遇，浸泡在清新的植物氧吧里。</p>
+                            <p>【济州自然史博物馆】:（停留约30分钟）：这是一家将散落在济州道内的传统民俗遗物、自然史迹等，收集、研究并展示的博物馆，以生态学的角度展示济州居
+                                民一生的生长过程、食衣住行、和生产产业等，让人轻易地了解到济州的自然和文化。
+                            </p>
+                            <p>【新罗免税店】：（停留约60分钟）您可以在此自由活动。</p>
+                        </div>
+                        <div class="journeyImg clearfix">
+                            <dl>
+                                <dt>
+                                    <img src="/static/images/store/journey01.jpg">
+                                </dt>
+                                <dd>
+                                    <span class="imgDescribe">城山日出峰城山日出峰城山日出峰城山城山日出峰城山日出峰城山日出峰城山</span>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    <img src="/static/images/store/journey02.jpg">
+                                </dt>
+                                <dd>
+                                    <span class="imgDescribe">城山日出峰城山日出峰城山日出峰城山城山日出峰城山日出峰城山日出峰城山</span>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    <img src="/static/images/store/journey03.jpg">
+                                </dt>
+                                <dd>
+                                    <span class="imgDescribe">城山日出峰城山日出峰城山日出峰城山城山日出峰城山日出峰城山日出峰城山</span>
+                                </dd>
+                            </dl>
+                        </div>
                     </li>
-                    <li class="shippingInfo">
-                        <h3 class="ship_info_title">【歌诗达邮轮-大西洋号】</h3>
-                        <ul class="shippingFontsList">
-                            <li>英文：Costa Atlantica</li>
-                            <li>缩写：AT</li>
-                            <li>所属公司：歌诗达邮轮</li>
-                            <li>初航：2000年</li>
-                            <li>检修：2003年</li>
-                            <li>船员：920人</li>
-                            <li>载客：2114人</li>
-                            <li>甲板：12层</li>
-                            <li>吨位：85600吨</li>
-                            <li>长度：293米</li>
-                            <li>高度：33米</li>
-                            <li class="seeDetails">
-                                <a href="javascript:void(0);">查看详情 <i class="lightBlueRightArrow"></i></a>
-                            </li>
-                        </ul>
+                    <li>
+                        <i class="leftLine"></i>
+                        <i class="dayNumberIcon">D2</i>
+                        <div class="clearfix">
+                            <div class="dayNumberPlace">
+                                <b>韩国济州/韩国</b>
+                            </div>
+                            <table class="dayTabList">
+                                <colgroup>
+                                    <col width="140">
+                                    <col width="115">
+                                    <col width="100">
+                                    <col width="100">
+                                    <col width="100">
+                                    <col width="100">
+                                </colgroup>
+                                <thead>
+                                <tr>
+                                    <th>抵港时间</th>
+                                    <th>离港时间</th>
+                                    <th>住宿</th>
+                                    <th>早餐</th>
+                                    <th>中餐</th>
+                                    <th>晚餐</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>14:00</td>
+                                    <td>14:00</td>
+                                    <td>邮轮</td>
+                                    <td>邮轮</td>
+                                    <td>邮轮</td>
+                                    <td>邮轮</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="dayPInfo">
+                            <p>【城山日出峰】（停留约60分钟）城山日出峰海拔182米，系10万年前海底火山爆发而形成，位于济州岛东端，是一块高耸的巨岩， 其顶部有巨大的火山口。东
+                                南面及北面是悬崖，只有西北面是草坪山脊，与城山村相连。在日出峰顶观看日出，令人叹为观止的美丽和庄严，仿佛带你进入一个美妙的境地；峰顶上可看到
+                                海岸线辽阔的大海和草原上壮丽的田园风光。
+                            </p>
+                            <p>【城邑民俗村】（停留约30分钟）位于汉拿山麓，是完全保存了韩国传统的一处民俗村。这里有许多文化遗产，很好地保留了古代村庄的原貌，因而被指定为民
+                                俗村并受到保护。
+                            </p>
+                        </div>
+                        <div class="journeyImg clearfix">
+                            <dl>
+                                <dt>
+                                    <img src="/static/images/store/journey01.jpg">
+                                </dt>
+                                <dd>
+                                    <span class="imgDescribe">城山日出峰城山日出峰城山日出峰城山城山日出峰城山日出峰城山日出峰城山</span>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    <img src="/static/images/store/journey02.jpg">
+                                </dt>
+                                <dd>
+                                    <span class="imgDescribe">城山日出峰城山日出峰城山日出峰城山城山日出峰城山日出峰城山日出峰城山</span>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    <img src="/static/images/store/journey03.jpg">
+                                </dt>
+                                <dd>
+                                    <span class="imgDescribe">城山日出峰城山日出峰城山日出峰城山城山日出峰城山日出峰城山日出峰城山</span>
+                                </dd>
+                            </dl>
+                        </div>
                     </li>
-                </ul>
-                
-                <div class="tdoi_title">
-                    <i class="tripDetailIcon02"></i>费用说明
-                    <a href="#" name="priceExplain"></a>
+                    <li class="last">
+                        <i class=""></i>
+                        <i class="dayNumberIcon">D3</i>
+                        <div class="clearfix">
+                            <div class="dayNumberPlace">
+                                <b>济州/韩国</b>
+                            </div>
+                            <table class="dayTabList">
+                                <colgroup>
+                                    <col width="140">
+                                    <col width="115">
+                                    <col width="100">
+                                    <col width="100">
+                                    <col width="100">
+                                    <col width="100">
+                                </colgroup>
+                                <thead>
+                                <tr>
+                                    <th>抵港时间</th>
+                                    <th>离港时间</th>
+                                    <th>住宿</th>
+                                    <th>早餐</th>
+                                    <th>中餐</th>
+                                    <th>晚餐</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>14:00</td>
+                                    <td>14:00</td>
+                                    <td>邮轮</td>
+                                    <td>邮轮</td>
+                                    <td>邮轮</td>
+                                    <td>邮轮</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="dayPInfo">
+                            <p>新罗免税店隶属于韩国三星集团旗下的新罗酒店，自1986年开业以来，以时尚潮流的商品、合理的价格、高雅的购物环境以及热情优质的服务为海内外游客所青睐，是韩国最具代表性的免税店。</p>
+                            <p>航班: 由济洲搭乘班机前往上海（具体航班信息请在预订下一步中查看，航班出发时间为韩国时间）</p>
+                            <p>飞行时间: 约1小时40分钟；23：20</p>
+                            <p>抵达上海，结束愉快的韩国之旅(航班到达时间为中国时间)。 以上行程时间安排可能因天气、路况等原因相应调整，尽请谅解。</p>
+                            <p>以上行程时间安排可能会因天气、路况等原因做相应调整，敬请谅解。</p>
+                        </div>
+                    </li>
+                    </ul>
                 </div>
-                <ul class="tdoi_priceExplain_contain">
-                    <li class="tdoi_subTitle">费用包含</li>
-                    <li>新罗免税店隶属于韩国三星集团旗下的新罗酒店，自1986年开业以来，以时尚潮流的商品、合理的价格、高雅的购物环境以及热情优质的服务为海内外游客所青睐，是韩国最具代表性的免税店。</li>
-                    <li>航班: 由济洲搭乘班机前往上海（具体航班信息请在预订下一步中查看，航班出发时间为韩国时间）</li>
-                    <li>飞行时间: 约1小时40分钟；23：20</li>
-                    <li>抵达上海，结束愉快的韩国之旅(航班到达时间为中国时间)。 以上行程时间安排可能因天气、路况等原因相应调整，尽请谅解。</li>
-                    <li>以上行程时间安排可能会因天气、路况等原因做相应调整，敬请谅解。</li>
-                </ul>
-                <ul class="tdoi_priceExplain_notcontain">
-                    <li class="tdoi_subTitle">费用不包含</li>
-                    <li>签证费：美国签证费1100元/人（中信银行代送签证费1400元/人）。</li>
-                    <li>单房差：单房差3000元/人。</li>
-                    <li>交通：出发地至上海机场交通费。</li>
-                    <li>个人消费：购物等个人消费以及因个人疏忽、违章或违法引起的经济损失或赔偿费用。</li>
-                    <li>行李费：全称额外行李托运及超重费用；境外内陆段行李托运及超重费用。</li>
-                    <li>保险费：建议购买旅游人身意外保险。</li>
-                    <li>其他费用：航空公司临时调整燃油附加税及相关费用。</li>
-                    <li>其他行程中以及上述“报价包含”条款中未列明的一切额外费用。</li>
-                </ul>
-                <div class="tdoi_title">
-                    <i class="tripDetailIcon03"></i>预订须知
-                    <a href="#" name="bookingNote"></a>
-                </div>
-                <ul class="tdoi_bookingNote">
-                    <li class="tdoi_subTitle">预订须知</li>
-                    <li>1.为了确保您能够按时出行，产品确认后请在48小时内付款，同时请按要求尽快提供出游所需的材料并签订出境旅游合同。</li>
-                    <li>2.请在报名时缴纳团款，我方收到团款后保留机位，非拒签原因客人取消行程，机票定金以及产生的签证费用将不予退还；无论客人是否参加面试，领馆将不予退还签证费。签证出来后，由于客人的原因在出团前取消，根据情况，收取损失费用，另外客人参团期间离团不退还团费及景点门票。</li>
-                    <li>3.所有团队满10人成团，部门10人我社有权利调整出发日期或取消团期，提前1个月通知。</li>
-                    <li>4.我公司保留因签证、机票、税金、汇率涨价等因素，对行程、出发日期及价格进行调整的权利。</li>
-                    <li>5.不保证夫妻、亲戚同房。如指定同房，需额外不足单房差费用。</li>
-                    <li>6.关于押金，我社将视客人资料以及领事馆的要求而定，一旦收取后客人凭回国后护照当场返还。</li>
-                    <li>7.若由于航空公司航班取消、延误等原因导致原定行程有所变化，我社有权利根据实际情况调整行程，但尽力保证所有景点的游览。</li>
-                    <li>8.孩童价为12周岁以下孩童，不占床，不含早餐的价格。</li>
-                    <li>*附：<a href="javascript:;">出境旅游预订须知</a></li>
-                </ul>
-                <ul class="tdoi_bookingNote">
-                    <li class="tdoi_subTitle">预订条款</li>
-                    <li>1.为了确保您能够按时出行，产品确认后请在48小时内付款，同时请按要求尽快提供出游所需的材料并签订出境旅游合同。</li>
-                    <li>2.请在报名时缴纳团款，我方收到团款后保留机位，非拒签原因客人取消行程，机票定金以及产生的签证费用将不予退还；无论客人是否参加面试，领馆将不予退还签证费。签证出来后，由于客人的原因在出团前取消，根据情况，收取损失费用，另外客人参团期间离团不退还团费及景点门票。</li>
-                    <li>3.所有团队满10人成团，部门10人我社有权利调整出发日期或取消团期，提前1个月通知。</li>
-                </ul>
-                
-                <div class="tdoi_title">
-                    <i class="tripDetailIcon04"></i>签证信息
-                    <a href="#" name="visaInfo"></a>
-                </div>
-                <ul class="tdoi_visaInfo">
-                    <li class="tdoi_subTitle">美国旅游签证</li>
-                    <li>请根据自身情况选择所需签证材料：<a href="javascript:;">在职人员、自由职业、退休人员、学生、学龄前儿童</a></li>
-                    <li>（请确保因私护照有效：本次旅游归国后至少还有6个月以上有效期，且尚有签证所需空白签证页。）</li>
-                    <li>建议购买旅游人身意外保险：<a href="javascript:;">华泰境外旅行保险</a></li>
-                </ul>
+                <div class="tripDetailOtherInfo changeAnchorContent">
+                    <div class="tdoi_title">
+                        <i class="tripDetailIcon01"></i>船只介绍
+                        <a href="#" name="shipsToIntroduce"></a>
+                    </div>
+                    <ul class="tdoi_priceExplain_contain">
+                        <li>海洋航行者号是世界十大邮轮之一，13.8万吨的规模足以满足任何一位游客的需求，提供了无与伦比的美食，娱乐，住宿，服务。海洋航行者号邮轮（Voyager of the Seas）隶属于皇家加勒比邮轮。海洋航行者号在建造之初，充分考虑到了那些热爱旅行的客人的需要。海洋航行者号采用了海军工程的技术，创造了一个邮轮历史上的奇迹。海洋航行者号配备有200英尺高的攀岩壁，九洞迷你高尔夫球场，独具特色的溜冰场，以及直排轮滑专用滑道等各种创新设施，让您体验到从未有过的刺激和新奇</li>
+                    </ul>
+                    <ul class="shippingContent clearfix" style="margin:0;padding:0;">
+                        <li class="shippingImg">
+                            <a href="javascript:void(0);">
+                                <img src="/static/images/store/cruise/shippingIntroduceImg.jpg" title="">
+                            </a>
+                        </li>
+                        <li class="shippingInfo">
+                            <h3 class="ship_info_title">【歌诗达邮轮-大西洋号】</h3>
+                            <ul class="shippingFontsList">
+                                <li>英文：Costa Atlantica</li>
+                                <li>缩写：AT</li>
+                                <li>所属公司：歌诗达邮轮</li>
+                                <li>初航：2000年</li>
+                                <li>检修：2003年</li>
+                                <li>船员：920人</li>
+                                <li>载客：2114人</li>
+                                <li>甲板：12层</li>
+                                <li>吨位：85600吨</li>
+                                <li>长度：293米</li>
+                                <li>高度：33米</li>
+                                <li class="seeDetails">
+                                    <a href="javascript:void(0);">查看详情 <i class="lightBlueRightArrow"></i></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <div class="tdoi_title">
+                        <i class="tripDetailIcon02"></i>费用说明
+                        <a href="#" name="priceExplain"></a>
+                    </div>
+                    <ul class="tdoi_priceExplain_contain">
+                        <li class="tdoi_subTitle">费用包含</li>
+                        <li>新罗免税店隶属于韩国三星集团旗下的新罗酒店，自1986年开业以来，以时尚潮流的商品、合理的价格、高雅的购物环境以及热情优质的服务为海内外游客所青睐，是韩国最具代表性的免税店。</li>
+                        <li>航班: 由济洲搭乘班机前往上海（具体航班信息请在预订下一步中查看，航班出发时间为韩国时间）</li>
+                        <li>飞行时间: 约1小时40分钟；23：20</li>
+                        <li>抵达上海，结束愉快的韩国之旅(航班到达时间为中国时间)。 以上行程时间安排可能因天气、路况等原因相应调整，尽请谅解。</li>
+                        <li>以上行程时间安排可能会因天气、路况等原因做相应调整，敬请谅解。</li>
+                    </ul>
+                    <ul class="tdoi_priceExplain_notcontain">
+                        <li class="tdoi_subTitle">费用不包含</li>
+                        <li>签证费：美国签证费1100元/人（中信银行代送签证费1400元/人）。</li>
+                        <li>单房差：单房差3000元/人。</li>
+                        <li>交通：出发地至上海机场交通费。</li>
+                        <li>个人消费：购物等个人消费以及因个人疏忽、违章或违法引起的经济损失或赔偿费用。</li>
+                        <li>行李费：全称额外行李托运及超重费用；境外内陆段行李托运及超重费用。</li>
+                        <li>保险费：建议购买旅游人身意外保险。</li>
+                        <li>其他费用：航空公司临时调整燃油附加税及相关费用。</li>
+                        <li>其他行程中以及上述“报价包含”条款中未列明的一切额外费用。</li>
+                    </ul>
+                    <div class="tdoi_title">
+                        <i class="tripDetailIcon03"></i>预订须知
+                        <a href="#" name="bookingNote"></a>
+                    </div>
+                    <ul class="tdoi_bookingNote">
+                        <li class="tdoi_subTitle">预订须知</li>
+                        <li>1.为了确保您能够按时出行，产品确认后请在48小时内付款，同时请按要求尽快提供出游所需的材料并签订出境旅游合同。</li>
+                        <li>2.请在报名时缴纳团款，我方收到团款后保留机位，非拒签原因客人取消行程，机票定金以及产生的签证费用将不予退还；无论客人是否参加面试，领馆将不予退还签证费。签证出来后，由于客人的原因在出团前取消，根据情况，收取损失费用，另外客人参团期间离团不退还团费及景点门票。</li>
+                        <li>3.所有团队满10人成团，部门10人我社有权利调整出发日期或取消团期，提前1个月通知。</li>
+                        <li>4.我公司保留因签证、机票、税金、汇率涨价等因素，对行程、出发日期及价格进行调整的权利。</li>
+                        <li>5.不保证夫妻、亲戚同房。如指定同房，需额外不足单房差费用。</li>
+                        <li>6.关于押金，我社将视客人资料以及领事馆的要求而定，一旦收取后客人凭回国后护照当场返还。</li>
+                        <li>7.若由于航空公司航班取消、延误等原因导致原定行程有所变化，我社有权利根据实际情况调整行程，但尽力保证所有景点的游览。</li>
+                        <li>8.孩童价为12周岁以下孩童，不占床，不含早餐的价格。</li>
+                        <li>*附：<a href="javascript:;">出境旅游预订须知</a></li>
+                    </ul>
+                    <ul class="tdoi_bookingNote">
+                        <li class="tdoi_subTitle">预订条款</li>
+                        <li>1.为了确保您能够按时出行，产品确认后请在48小时内付款，同时请按要求尽快提供出游所需的材料并签订出境旅游合同。</li>
+                        <li>2.请在报名时缴纳团款，我方收到团款后保留机位，非拒签原因客人取消行程，机票定金以及产生的签证费用将不予退还；无论客人是否参加面试，领馆将不予退还签证费。签证出来后，由于客人的原因在出团前取消，根据情况，收取损失费用，另外客人参团期间离团不退还团费及景点门票。</li>
+                        <li>3.所有团队满10人成团，部门10人我社有权利调整出发日期或取消团期，提前1个月通知。</li>
+                    </ul>
+                    
+                    <div class="tdoi_title">
+                        <i class="tripDetailIcon04"></i>签证信息
+                        <a href="#" name="visaInfo"></a>
+                    </div>
+                    <ul class="tdoi_visaInfo">
+                        <li class="tdoi_subTitle">美国旅游签证</li>
+                        <li>请根据自身情况选择所需签证材料：<a href="javascript:;">在职人员、自由职业、退休人员、学生、学龄前儿童</a></li>
+                        <li>（请确保因私护照有效：本次旅游归国后至少还有6个月以上有效期，且尚有签证所需空白签证页。）</li>
+                        <li>建议购买旅游人身意外保险：<a href="javascript:;">华泰境外旅行保险</a></li>
+                    </ul>
 
+                </div>
             </div>
         </div>
     </div>
+</div>
+
+    <div id="extFooter">
+        <div>
+            <p>
+            <a href="javascript:void(0);">关于我们</a>&nbsp;|
+            <a href="javascript:void(0);">微博</a>&nbsp;|
+            <a href="javascript:void(0);">服务条款</a>&nbsp;|
+            <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
-
-    <footer class="main-footer">
-        <center>
-            <a href="#">隐私问题</a>
-            <i class="bar">|</i>
-            <a href="#">常见问题</a>
-            <i class="bar">|</i>
-            <a href="#">关于我们</a>
-            <i class="bar">|</i>
-            <a href="#">媒体中心</a>
-            <i class="bar">|</i>
-            <a href="#">联系我们</a>
-        </center>
-        <center class="copyright">
-            Copyright &copy; 2012 天地行 All Rights Reserved.     沪ICP备08101503号
-        </center>
-    </footer>
 
 <script type="text/javascript">
     $(function(){
