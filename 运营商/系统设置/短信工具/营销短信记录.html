@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>运营商 系统设置 短信工具 营销短信记录</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css" />
+    <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link href="/static/css/systemSet.css" rel="stylesheet" type="text/css"/>
+    
+    <script src="/static/js/jquery.min.js" type="text/javascript"></script>
+	<script src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+    <script src="/static/js/kendo.web.js" type="text/javascript"></script>
+    <script src="/static/js/global.js"></script>
+
+    <script>
+        $(function(){
+            kendo.init('body');
+            lensf();
+        })
+    </script>
+    
+</head>
+<body>
+    <div id="extHeader">
+        <div></div>
+    </div>
+
+    <div id="container">
+        <div class="header">
+            <h1></h1>
+            <div>
+                <span>你好,${name}</span>
+                <a href="javascript:void(0);">退出</a>
+            </div>
+            <ul id="top_menu">
+                <li><a href="javascript:void(0);">国内机票</a></li>
+                <li><a href="javascript:void(0);">国际机票</a></li>
+                <li><a href="javascript:void(0);">酒店</a></li>
+                <li><a href="javascript:void(0);">票证中心</a></li>
+                <li><a href="javascript:void(0);">财务管理</a></li>
+                <li><a href="javascript:void(0);">客户管理</a></li>
+                <li class="current"><a href="javascript:void(0);">系统设置</a></li>
+            </ul>
+            <ol class="sub_menu">
+                <li class="current"><a href="javascript:void(0);">公告信息</a></li>
+                <li><a href="javascript:void(0);">公司信息</a></li>
+                <li><a href="javascript:void(0);">组织架构</a></li>
+                <li><a href="javascript:void(0);">角色维护</a></li>
+                <li><a href="javascript:void(0);">基础数据</a></li>
+            </ol>
+            <div id="message">
+            	<a href="javascript:void(0);">&nbsp;</a>
+                <span>&nbsp;</span>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="sub_menu_bar"></div>
+        <div id="mainContent">
+            <div class="topFixedToolsBar">
+                <div class="fixedMenu">
+                    <label class="modelClassify">
+                        <a href="javascript:void(0);">发送短信</a>
+                        <a href="javascript:void(0);">发送记录</a>
+                    </label>
+                    <label class="modelClassify">
+                        <a href="javascript:void(0);">营销短信</a>
+                        <a href="javascript:void(0);" class="current">营销短信记录</a>
+                    </label>
+                    <label class="modelClassify last">
+                        <a href="javascript:void(0);">短信模板</a>
+                    </label>
+                </div>
+            </div>
+            <div class="information_div">
+                <table class="information_tab">
+                    <colgroup>
+                        <col width="90">
+                        <col width="185">
+                        <col width="75">
+                        <col width="240">
+                        <col width="75">
+                        <col width="195">
+                        <col width="95">
+                    </colgroup>
+                    <tr>
+                        <th>手机号Excel：</th>
+                        <td>
+                            <input type="text" style="width: 160px;" placeholder="输入文本...">
+                        </td>
+                        <th>业务类型：</th>
+                        <td>
+                            <select style="width: 215px;" data-role="dropdownlist">
+                                <option>全部</option>
+                            </select>
+                        </td>
+                        <th>短信模板：</th>
+                        <td>
+                            <select style="width: 160px;" data-role="dropdownlist">
+                                <option>全部</option>
+                            </select>
+                        </td>
+                        <td rowspan="3">
+                            <a href="javascript:;" class="button_important adaptiveButton medium">
+                                <span class="left"></span>
+                                <span class="center" style="padding:0 20px;">查 询</span>
+                                <span class="right"></span>
+                            </a>
+                        </td>
+                     </tr>
+                    <tr>
+                        <th>短信内容：</th>
+                        <td colspan="3">
+                            <input type="text" style="width: 475px;" placeholder="可输入短信中的任意内容">
+                        </td>
+                        <th>发送状态：</th>
+                        <td>
+                            <select style="width: 160px;" data-role="dropdownlist">
+                                <option>全部</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>发送人账号：</th>
+                        <td>
+                            <input type="text" style="width: 160px;" placeholder="输入文本...">
+                        </td>
+                        <th>发送日期：</th>
+                        <td>
+                            <input type="text" style="width: 93px;" class="datepicker">
+                            <em> - </em>
+                            <input type="text" style="width: 93px;" class="datepicker orange">
+                        </td>
+                        <th></th>
+                        <td> </td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="panel modificationStyle">
+                <div class="grayBgPiece">
+                    共 <em class="orangeFonts">3212</em> 条
+                </div>
+                <table class="tgrid">
+                    <colgroup>
+                        <col width="80">
+                        <col width="80">
+                        <col width="110">
+                        <col width="380">
+                        <col width="85">
+                        <col width="75">
+                        <col width="75">
+                        <col width="75">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th class="line_left">业务类型</th>
+                        <th>模板名称</th>
+                        <th>手机号Excel</th>
+                        <th class="textAlignCenter">短信内容</th>
+                        <th>创建时间</th>
+                        <th>发送人</th>
+                        <th class="textAlignCenter">状态</th>
+                        <th class="line_right textAlignCenter">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>机票</td>
+                        <td>出票成功</td>
+                        <td>
+                            <div>我是一个名字.xls</div>
+                            <div><em class="orangeFonts">1021</em>条手机号</div>
+                        </td>
+                        <td>
+                            <div class="thirdEllipsisStyle">
+                                <p>您好，行程已改签成[出发机场][TS]至[到达机场][TA],[航班],起飞时间[起飞时间],请提前2个小时去机场办理登机,祝您旅途愉快! 您好，行程已改签成[出发机场][TS]至[到达机场][TA],[航班],起飞时间[起飞时间],请提前2个小时去机场办理登机,祝您旅途</p>
+                            </div>
+                        </td>
+                        <td class="fonts666">
+                            <div>2013/10/02</div>
+                            <div>13:00</div>
+                        </td>
+                        <td>张晓明</td>
+                        <td class="textAlignCenter">
+                            <a href="javascript:void(0);" class="redFonts">待审核</a>
+                        </td>
+                        <td class="textAlignCenter">
+                            <a href="javascript:void(0);" class="ac-passHint">通过</a>
+                            <a href="javascript:void(0);" class="ac-modifyHint">修改</a>
+                            <a href="javascript:void(0);" class="ac-returnHint">退回</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>酒店</td>
+                        <td>无</td>
+                        <td>
+                            <div>我是一个名字.xls</div>
+                            <div><em class="orangeFonts">1021</em>条手机号</div>
+                        </td>
+                        <td>
+                            <div class="thirdEllipsisStyle">
+                                <p>您好，行程已改签成[出发机场][TS]至[到达机场][TA],[航班],起飞时间[起飞时间],请提前2个小时去机场办理登机,祝您旅途愉快!</p>
+                            </div>
+                        </td>
+                        <td class="fonts666">
+                            <div>2013/10/02</div>
+                            <div>13:00</div>
+                        </td>
+                        <td>张晓明</td>
+                        <td class="textAlignCenter">
+                            <a href="javascript:void(0);" class="redFonts">待审核</a>
+                        </td>
+                        <td class="textAlignCenter">
+                            <a href="javascript:void(0);" class="ac-passHint">通过</a>
+                            <a href="javascript:void(0);" class="ac-modifyHint">修改</a>
+                            <a href="javascript:void(0);" class="ac-returnHint">退回</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>旅游</td>
+                        <td>改签成功</td>
+                        <td>
+                            <div>我是一个名字.xls</div>
+                            <div><em class="orangeFonts">1021</em>条手机号</div>
+                        </td>
+                        <td>
+                            <div class="thirdEllipsisStyle">
+                                <p>您好，行程已改签成[出发机场][TS]至[到达机场][TA],[航班],起飞时间[起飞时间],请提前2个小时去机场办理登机,祝您旅途愉快! 您好，行程已改签成[出发机场][TS]至[到达机场][TA],[航班],起飞时间[起飞时间],请提前2个小时去机场办理登机,祝您旅途</p>
+                            </div>
+                        </td>
+                        <td class="fonts666">
+                            <div>2013/10/02</div>
+                            <div>13:00</div>
+                        </td>
+                        <td>张晓明</td>
+                        <td class="textAlignCenter">
+                            <a href="javascript:void(0);" class="greenFonts">修改并发送成功</a>
+                        </td>
+                        <td class="textAlignCenter">
+                            <a href="javascript:void(0);" class="ac-modifySendSuccessful">状态详情</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>保险</td>
+                        <td>无</td>
+                        <td>
+                            <div>我是一个名字.xls</div>
+                            <div><em class="orangeFonts">1021</em>条手机号</div>
+                        </td>
+                        <td>
+                            <div class="thirdEllipsisStyle">
+                                <p><em class="orangeFonts">修改后：</em>您好，行程已改签成[出发机场][TS]至[到达机场][TA],[航班],起飞时间[起飞时间]，祝您旅途愉快!</p>
+                            </div>
+                        </td>
+                        <td class="fonts666">
+                            <div>2013/10/02</div>
+                            <div>13:00</div>
+                        </td>
+                        <td>张晓明</td>
+                        <td class="textAlignCenter">
+                            <a href="javascript:void(0);" class="blackFonts">退回</a>
+                        </td>
+                        <td class="textAlignCenter">
+                            <a href="javascript:void(0);" class="ac-returnDetails">状态详情</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>机票</td>
+                        <td>无</td>
+                        <td>
+                            <div>我是一个名字.xls</div>
+                            <div><em class="orangeFonts">1021</em>条手机号</div>
+                        </td>
+                        <td>
+                            <div class="thirdEllipsisStyle">
+                                <p>Franco was born in Palo Alto, California. His mother, Betsy Lou (née Verne), is a writer and occasional actress, and his father,Swedish descent. Franco's mother is Jewish.</p>
+                            </div>
+                        </td>
+                        <td class="fonts666">
+                            <div>2013/10/02</div>
+                            <div>13:00</div>
+                        </td>
+                        <td>张晓明</td>
+                        <td class="textAlignCenter">
+                            <a href="javascript:void(0);" class="greenFonts">发送成功</a>
+                        </td>
+                        <td class="textAlignCenter">
+                            <a href="javascript:void(0);" class="ac-sendSuccessful">状态详情</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>机票</td>
+                        <td>无</td>
+                        <td>
+                            <div>我是一个名字.xls</div>
+                            <div><em class="orangeFonts">1021</em>条手机号</div>
+                        </td>
+                        <td>
+                            <div class="thirdEllipsisStyle">
+                                <p>您好，行程已改签成[出发机场][TS]至[到达机场][TA],[航班],起飞时间[起飞时间],请提前2个小时去机场办理登机,祝您旅途愉快!</p>
+                            </div>
+                        </td>
+                        <td class="fonts666">
+                            <div>2013/10/02</div>
+                            <div>13:00</div>
+                        </td>
+                        <td>张晓明</td>
+                        <td class="textAlignCenter">
+                            <a href="javascript:void(0);" class="greenFonts">发送成功</a>
+                        </td>
+                        <td class="textAlignCenter">
+                            <a href="javascript:void(0);" class="ac-sendSuccessful">状态详情</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="grid-table-pagination page" style="border-bottom:0">
+                      <span class="grid-table-count">
+                          共 <em>132</em> 条记录
+                      </span>
+                      <span>
+                          <a href="#" class="prev">&nbsp;</a>
+                      </span>
+                      <span class="links">
+                          <a href="#">1</a>
+                          <a href="#">2</a>
+                          <a href="#" class="current">3</a>
+                          <a href="#">4</a>
+                          <a href="#">5</a>
+                          <a href="javascript:;">...</a>
+                          <a href="#">50</a>
+                      </span>
+                      <span>
+                          <a href="#" class="next">&nbsp;</a>
+                      </span>
+                </div>
+			</div>
+        
+          </div>
+    </div>
+    
+    <div id="extFooter">
+        <div>
+            <p>
+                <a href="javascript:void(0);">关于我们</a>&nbsp;|
+                <a href="javascript:void(0);">微博</a>&nbsp;|
+                <a href="javascript:void(0);">服务条款</a>&nbsp;|
+                <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+
+    <script type="text/x-kendo-template" id="ac-modifySendSuccessful-template"> 
+        <table class="seeDetailsTab">
+            <colgroup>
+                <col width="90">
+                <col width="390">
+            </colgroup>
+            <tbody>
+            <tr>
+                <th>手机号Excel：</th>
+                <td>我是一个文件名.xls</td>
+            </tr>
+            <tr>
+                <th>审核人：</th>
+                <td>肖大宝</td>
+            </tr>
+            <tr class="bottomLine">
+                <th>审核时间：</th>
+                <td>2015-01-01 12:01:01</td>
+            </tr>
+            <tr>
+                <th style="vertical-align: top;">原短信：</th>
+                <td>您好，行程已改签成[出发机场][TS]至[到达机场][TA],[航班],起飞时间[起飞时间],请提前2个小时去机场办理登机,祝您旅途愉快! 您好，行程已改签成[出发机场][TS]至[到达机场][TA]</td>
+            </tr>
+            <tr>
+                <th style="vertical-align: top;">修改后短信：</th>
+                <td>您好，行程已改签成[出发机场][TS]至[到达机场][TA],[航班],起飞时间[起飞时间],请提前2个小时去机场办理登机,祝您旅途愉快! 您好，行程已改签成[出发机场][TS]至[到达机场][TA]</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="textAlignRightBtn">
+            <button class="large_button" type="button" name="a">关 闭</button>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-returnDetails-template"> 
+        <table class="seeDetailsTab">
+            <colgroup>
+                <col width="90">
+                <col width="390">
+            </colgroup>
+            <tbody>
+            <tr>
+                <th>手机号Excel：</th>
+                <td>我是一个文件名.xls</td>
+            </tr>
+            <tr>
+                <th>审核人：</th>
+                <td>肖大宝</td>
+            </tr>
+            <tr class="bottomLine">
+                <th>审核时间：</th>
+                <td>2015-01-01 12:01:01</td>
+            </tr>
+            <tr>
+                <th style="vertical-align: top;">退回原因：</th>
+                <td>额外收取票面价的5%，额外收取票面价额外收取票面价额外收取票面价的额外收取票面价的。没有别的原因，就是不给你通过</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="textAlignRightBtn">
+            <button class="large_button" type="button" name="a">关 闭</button>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-sendSuccessful-template"> 
+        <table class="seeDetailsTab">
+            <colgroup>
+                <col width="90">
+                <col width="390">
+            </colgroup>
+            <tbody>
+            <tr>
+                <th>手机号Excel：</th>
+                <td>我是一个文件名.xls</td>
+            </tr>
+            <tr>
+                <th>审核人：</th>
+                <td>肖大宝</td>
+            </tr>
+            <tr>
+                <th>审核时间：</th>
+                <td>2015-01-01 12:01:01</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="textAlignRightBtn">
+            <button class="large_button" type="button" name="a">关 闭</button>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-passHint-template">         
+        <h3 class="hintFontsContent"><i class="passHintsIcon"></i>确定通过并发送短信吗？</h3>
+        <div class="textAlignRightBtn">
+            <button class="large_button" type="button" name="a">确 定</button>
+            <button class="large_button disable" type="button" name="a">取 消</button>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-modifyHint-template">         
+        <div class="hintNumberOfWords">
+            <h3 class="hintFontsContent">原短信：</h3>
+            <p class="htmlText01">您好，行程已改签成[出发机场][TS]至[到达机场][TA],[航班],起飞时间[起飞时间],请提前2个小时去机场办理登机,祝您旅途愉快! 您好，行程已改签成[出发机场</p>
+            <em class="numberOfWords">字数：<i class="numberLength01">82</i></em>
+        </div>   
+        <div class="hintNumberOfWords">
+            <h3 class="hintFontsContent">修改为：</h3>
+            <textarea class="htmlText02" style="height: 140px;" onpropertychange="getMsgTextareaLength(this, '.numberLength02')" oninput="getMsgTextareaLength(this, '.numberLength02')">您好，行程已改签成[出发机场][TS]至[到达机场][TA],[航班],起飞时间[起飞时间],请提前2个小时去机场办理登机,祝您旅途愉快! 您好，行程已改签成[出发机场][TS]至[到达机场][TA]</textarea>
+            <em class="numberOfWords">字数：<i class="numberLength02">82</i></em>
+        </div>
+        <div class="textAlignRightBtn">
+            <button class="large_button" type="button" name="a">确定修改并发送</button>
+            <button class="large_button disable" type="button" name="a">取 消</button>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-returnHint-template">
+        <div class="hintNumberOfWords">
+            <h3 class="hintFontsContent">退回原因：（可不填写）：</h3>
+            <textarea class="htmlText03" style="height: 80px;" onpropertychange="getMsgTextareaLength(this, '.numberLength03')" oninput="getMsgTextareaLength(this, '.numberLength03')"></textarea>
+            <em class="numberOfWords">字数：<i class="numberLength03">0</i></em>
+        </div>
+        <div class="textAlignRightBtn">
+            <button class="large_button" type="button" name="a">确定退回</button>
+            <button class="large_button disable" type="button" name="a">取 消</button>
+        </div>
+    </script>
+    
+    
+    <script>
+        $(function(){
+            $(".thirdEllipsisStyle").each(function(){
+                var divH = $(this).height();
+                var $p = $("p", $(this)).eq(0);
+                while ($p.outerHeight() > divH) {
+                    $p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
+                }
+            });
+
+            new PopWindow('.ac-modifySendSuccessful',{
+                template:'#ac-modifySendSuccessful-template',
+                title:'查看详情',
+                width:'530'
+            }).init();
+
+            new PopWindow('.ac-returnDetails',{
+                template:'#ac-returnDetails-template',
+                title:'查看详情',
+                width:'530'
+            }).init();
+
+            new PopWindow('.ac-sendSuccessful',{
+                template:'#ac-sendSuccessful-template',
+                title:'查看详情',
+                width:'530'
+            }).init();
+
+            new PopWindow('.ac-passHint',{
+                template:'#ac-passHint-template',
+                title:'通过提示',
+                width:'470'
+            }).init();
+
+            new PopWindow('.ac-modifyHint',{
+                template:'#ac-modifyHint-template',
+                title:'修改提示',
+                width:'530'
+            }).init();
+
+            new PopWindow('.ac-returnHint',{
+                template:'#ac-returnHint-template',
+                title:'退回提示',
+                width:'530'
+            }).init();
+
+            $(".bottomLine").next("tr").addClass("paddingTop");
+
+            var textLength01 = $(".htmlText01").html().length;
+            $(".numberLength01").html(textLength01);  
+            
+            getMsgTextareaLength('.htmlText02', '.numberLength02');
+            getMsgTextareaLength('.htmlText03', '.numberLength03');
+        });
+
+        function getMsgTextareaLength(ele1, ele2) {
+            $(ele2).text($(ele1).val().length);
+        };
+
+        
+               
+    </script>
+
+</body>
+</html>
