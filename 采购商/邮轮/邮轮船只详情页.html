@@ -254,7 +254,6 @@
     <div class="thirdItemConTitle">
         <a href="#" name="deckDistribution"></a>
         <div class="shipItemsContainer">
-        <h1>甲板分布图</h1>
         <ul class="tab_change">
             <li>第1层</li><li class="currentState">第2层</li><li>第3层</li><li>第4层</li><li>第5层</li><li>第6层</li><li>第7层</li><li>第8层</li>
             <li>第9层</li><li>第10层</li><li>第11层</li><li>第12层</li><li>第13层</li><li>第14层</li><li>第15层</li><li>第16层</li>
@@ -349,7 +348,7 @@
             $(this).closest("li").siblings().find("a").removeClass('currentLi');
             $(this).addClass("currentLi");
             var i=$(this).closest("li").index();
-            $("html,body").animate({"scrollTop":a_pos[i].top-163},500);
+            $("html,body").animate({"scrollTop":a_pos[i].top-53},500);
 //            $("body").scrollTop(a_pos[i].top-163);
         });
 
@@ -380,10 +379,12 @@
             });
         });
 
-        $(".shipIntroduceNav").fixedBar();
+        $(".shipIntroduceNav").fixedBar({
+            css: "top:-95px;position:fixed;"
+        });
         
         $(".thirdItemConTitle").fixedBar({
-            css: "top:149px;position:fixed"
+            css: "top:54px;position:fixed;"
         });
 
         $('#coin-slider').after('<div id="nav_homepage_shipImg" class="slider_nav_homepage" style="top:300px">').cycle({
