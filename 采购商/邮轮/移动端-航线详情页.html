@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="/static/css/mobile/store/cruiseDetail.css">
+	<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/js/global.js"></script>
+	<title>邮轮航线详情</title>
+</head>
+<body>
+	<header>
+		<div class="header-img-container">
+			<img src="" alt="">
+		</div>
+		<div class="img-above-text">4晚5日【上海歌诗达邮轮-维多利亚号】上海-济州-福冈-上海</div>
+	</header>
+
+	<section>
+		<ul class="changeList clearfix">
+            <li><a href="#tripDetail" class="currentLi"><i></i>产品介绍</a></li>
+            <li class="liLine"></li>
+            <li><a href="#tripIntroduce"><i></i>行程介绍</a></li>
+            <li class="liLine"></li>
+            <li><a href="#bookingNotes"><i></i>预订须知</a></li>
+        </ul>
+		
+		<div>
+			<a href="#" name="tripDetail"></a>
+		</div>
+
+		<div>
+			<a href="#" name="tripIntroduce"></a>
+		</div>
+
+		<div>
+			<a href="#" name="bookingNotes"></a>
+		</div>
+
+
+	</section>
+
+	<footer>
+		
+	</footer>
+
+	<script type="text/javascript">
+		$(function(){
+
+			//  导航悬停 & 类别切换
+			var a_pos = [];
+	        var flag=true;
+	        $(".changeList a").each(function(index){
+	            var href= $(this).attr("href");
+	            a_pos.push($("a[name=" + href.substring(1) + "]").offset());
+
+	        });
+
+	        $(".changeList a").click(function(e){
+	            flag=false;
+	            e.preventDefault();
+	            $(this).closest("li").siblings().find("a").removeClass('currentLi');
+	            $(this).addClass("currentLi");
+	            var i=$(this).closest("li").index();
+	            i-=Math.round(i/2);
+	            $("html,body").animate({"scrollTop":a_pos[i].top-42},1);
+	        });
+
+	        $(window).bind("scroll",function(e){
+	            if(flag){
+	                var that = $(".changeList");
+	                var currentPos = that.offset();
+	                var i = 0;
+	                for(i = a_pos.length - 1; i >=0 ; i--){
+	                    if(currentPos.top >= a_pos[i].top-45){
+	                        that.find("a").removeClass('currentLi');
+	                        $("a:eq(" + (i) + ")" , that).addClass("currentLi");
+	                        return false;
+	                    }
+	                }
+	                that.find("a").removeClass('currentLi');
+	                $("a:first" , that).addClass("currentLi");
+	            }
+	            flag=true;
+	        });
+
+	        $(".changeList").fixedBar();
+
+		});
+	</script>
+</body>
+</html>
