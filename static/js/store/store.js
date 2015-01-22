@@ -14,7 +14,7 @@ $(function() {
     var offset = $(".main-body").eq(0).offset();
     var w = $(".main-body").eq(0).width();
     */
-
+/*
     var $backToTopTxt = "返回顶部", $backToTopEle = $('<a class="backToTop"></a>').appendTo($(".main-body"))
     .text($backToTopTxt).attr("title", $backToTopTxt).click(function() {
             $("html, body").animate({ scrollTop: 0 }, 120);
@@ -27,6 +27,19 @@ $(function() {
 //            $advice.css("top", st + winh - 166);
         }
     };//$advice=$('<a class="advice"></a>').appendTo($("body"));
+*/
+    var $backToTopEle = $("<li class='rs_backToTop'></li>").appendTo($("ul.rightSlider"));
+
+    $("body").delegate(".rs_backToTop", "click", function(){
+        $("html, body").animate({
+            scrollTop: 0 
+        }, 120);
+    });
+
+    var $backToTopFun = function() {
+        var st = $(document).scrollTop();
+        (st > 800)? $backToTopEle.show(): $backToTopEle.hide();
+    }
 
     $(window).bind("scroll", $backToTopFun);
     /*

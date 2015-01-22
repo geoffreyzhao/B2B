@@ -63,3 +63,26 @@ function init_header(){
     });
 	
 }
+
+$(function(){
+
+    /** 返回顶部 */
+    var $backToTopTxt = "返回顶部",
+    $backToTopEle = $('<a class="backToTop"></a>').appendTo($("#container")).text($backToTopTxt).attr("title", $backToTopTxt).click(function() {
+        $("html, body").animate({
+            scrollTop: 0
+        },
+        120);
+    }),
+    $backToTopFun = function() {
+        var st = $(document).scrollTop(),
+        winh = $(window).height();
+        (st > 800) ? $backToTopEle.show() : $backToTopEle.hide();
+    };
+    $(window).bind("scroll", $backToTopFun);
+    $(function() {
+        $backToTopFun();
+    });
+
+    /** 返回顶部结束 */
+});
