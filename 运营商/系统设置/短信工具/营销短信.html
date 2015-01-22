@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>运营商 系统设置 短信工具 短信发送</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link href="/static/css/systemSet.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="/static/css/textboxList/jquery.tagsinput.css" type="text/css" media="screen" charset="utf-8" />
+    
+    <script src="/static/js/jquery.min.js" type="text/javascript"></script>    
+    <script src="/static/js/kendo.web.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/scrollFix.js"></script>
+    <script type="text/javascript" src="/static/js/public.js"></script>
+
+    <script type="text/javascript" src="/static/js/textboxList/jquery.tagsinput.js"></script>
+    <!-- // <script src="/static/js/supplier/textboxList.js" type="text/javascript" charset="utf-8"></script> -->
+    
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+    
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/static/css/ie.css" />
+    <script src="/static/js/vendor/IE7.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/static/js/sync.js"></script>
+    <!-- @CLB@ -->
+    <style type="text/css">
+        .lineWeight {
+            box-shadow:none;
+        }
+    </style>
+</head>
+<body>
+    <div id="extHeader">
+        <div></div>
+    </div>
+
+    <div id="container">
+        <div class="header">
+            <h1></h1>
+            <div>
+                <span>你好,${name}</span>
+                <a href="javascript:void(0);">退出</a>
+            </div>
+            <ul id="top_menu">
+                <li><a href="javascript:void(0);">国内机票</a></li>
+                <li><a href="javascript:void(0);">国际机票</a></li>
+                <li><a href="javascript:void(0);">酒店</a></li>
+                <li><a href="javascript:void(0);">打包产品</a></li>
+                <li><a href="javascript:void(0);">票证中心</a></li>
+                <li><a href="javascript:void(0);">财务管理</a></li>
+                <li><a href="javascript:void(0);">客户管理</a></li>
+                <li class="current"><a href="javascript:void(0);">系统设置</a></li>
+            </ul>
+            <ol class="sub_menu">
+                <li class="current"><a href="javascript:void(0);">公告信息</a></li>
+                <li><a href="javascript:void(0);">公司信息</a></li>
+                <li><a href="javascript:void(0);">组织架构</a></li>
+                <li><a href="javascript:void(0);">角色维护</a></li>
+                <li><a href="javascript:void(0);">基础数据</a></li>
+            </ol>
+            <div id="message">
+                <a href="javascript:void(0);">&nbsp;</a>
+                <span>&nbsp;</span>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="sub_menu_bar"></div>
+        <div id="mainContent" style="overflow:hidden;">
+            <!-- start content -->
+            
+            <div class="topFixedToolsBar">
+                <!--<div class="commonReturnBtn">
+                    <a href="#">返回</a>
+                </div>-->
+                <div class="fixedMenu">
+                    <a href="#">发送短信</a>
+                    <a href="#" class="sep-r">发送记录</a>
+                    <a href="#" class="current">营销短信</a>
+                    <a href="#" class="sep-r">营销短信记录</a>
+                    <a href="#">短信模板</a>
+                </div>
+                <!--<div class="fixedButton">
+                    <a class="button_secondary adaptiveButton small" href="javascript:void(0);">
+                        <span class="left"></span>
+                        <span class="center">+ 新 增</span>
+                        <span class="right"></span>
+                    </a>
+                    <a class="button_secondary adaptiveButton small" href="javascript:void(0);">
+                        <span class="left"></span>
+                        <span class="center">发 布</span>
+                        <span class="right"></span>
+                    </a>
+                </div>-->
+            </div>
+
+            <div class="store-messagesBlock">
+                <div class="patch-loading" >
+                    
+                    <i class="hint" style="margin-left:0px;"></i>
+                    <a href="javascript:void(0)" class="viewRules">提示</a>
+                </div>
+                <div class="patch-loading-phonenum clearfix">
+                    <span class="title">
+                        <i style="color:#ff0000">*</i>
+                        <span style="color:#333333">发送至手机号：</span>
+                    </span>
+                    <div class="excel-loading">从Excel批量导入手机号</div>
+                    <div class="loading-file loading-file-second clearfix">
+
+                        <i class="fileIcon"></i>
+                        <div class="fileName">
+                            <span>我是很长很长的文件名.xlsx</span>
+                        </div>
+                        <div class="phone-number">
+                            共<span>2102</span>条电话号
+                            <a href="javascript:void(0)" class="phone-cancel"></a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- <label>
+                    <span class="labelTitle"><em>*</em>发送至手机号：</span>
+                    <input id="form_tags_input" class="tagInput" type="text" >
+                    <i class="fc-tips">按回车或Tab键添加</i>
+                </label> -->
+                <div class="messagesDivBlock">
+                    <table>
+                        <colgroup>
+                            <col width="70"/>
+                            <col width="144"/>
+                            <col width="70"/>
+                            <col width="144"/>
+                            <col width="70"/>
+                            <col width="144"/>
+                        </colgroup>
+                        <tr>
+                            <th>业务类型：</th>
+                            <td>
+                                <select style="border: 1px solid #d3d3d3;height: 25px;width:149px;">
+                                    <option>机票</option>
+                                    <option>酒店</option>
+                                </select>
+                            </td>
+                            <th>短信模板：</th>
+                            <td>
+                                <select style="border: 1px solid #d3d3d3;height: 25px;width:149px;">
+                                    <option>英文-出票成功</option>
+                                    <option>英文-取消</option>
+                                </select>
+                            </td>
+                            <th>短信签名：</th>
+                            <td>
+                                <select style="border: 1px solid #d3d3d3;height: 25px;width:149px;">
+                                    <option>真旅网</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>PNR：</th>
+                            <td>
+                                <input type="text" placeholder="关联PNR" style="width:140px;"/>
+                            </td>
+                            <th>Office：</th>
+                            <td class="officeTypeTd" colspan="3">
+                                <label><input type="radio" name="officeType"/> SHA255</label>
+                                <label><input type="radio" name="officeType"/> SHA254</label>
+                                <label><input type="radio" name="officeType"/> SHA254</label>
+                                <span class="previewMsg">预览短信</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <label>
+                    <span class="labelTitle" style="vertical-align: top;"><em>*</em>短信内容：</span>
+                    <textarea style="width:687px;height: 150px;" class="messageConTextarea" onpropertychange="getMsgTextareaLength()" oninput="getMsgTextareaLength()"></textarea>
+                </label>
+                <div class="textareaTips">
+                    
+                    <span class="totalNumber">总字数：<em class="word-num">0</em></span>
+                </div>
+                <div class="operButtonRow">
+                    <button class="large_button status_button" type="button" name="" style="margin-right: 8px;" id="pass">提交审核</button>
+                    <button class="large_button disable" type="button" name="">清空全部</button>
+
+                    
+                </div>
+            </div>
+
+            
+
+            
+           
+            </div>
+          </div>
+ 
+    <!-- end of content -->
+    </div>
+    
+    <div id="extFooter">
+        <div>
+            <p>
+                <a href="javascript:void(0);">关于我们</a>&nbsp;|
+                <a href="javascript:void(0);">微博</a>&nbsp;|
+                <a href="javascript:void(0);">服务条款</a>&nbsp;|
+                <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+
+
+
+
+<script type="text/x-kendo-template" id="viewRulesTemplate">
+        <div class="opteration-layerGrayBlock" >
+            
+            <div class="opteration-abroadtooltipsCont" style="width:342px;">
+                
+                <div class="abroadtoolclickArrow"></div>
+                <div class="opteration-viewRulesContent clearfix">
+                   <div class="hint-content">
+                       <div style="margin: 12px auto">
+                            提示：
+                       </div>
+                       <div style="margin-bottom:20px;">
+                            请将Excel 表格按照右图格式编辑。
+                            <p>
+                            文件中不符合要求（位数不对，格式不对）的手机号码不会包含在短信发送的名单内。
+                            </p>
+                       </div>
+                   </div>  
+                   <div class="mobile-list">
+                   </div>
+                </div>
+            </div>
+        </div>
+</script>
+
+
+       
+    <script type="text/x-kendo-template" id="message_template">
+        <div class="#=statusClass#">
+            <p>#=message#</p>
+        </div>
+    </script>
+
+    
+
+    <script>
+        function popMessage(data){
+            var id = "message_" + (new Date()).getTime();
+            var message = kendo.template($("#new_message_template").html());
+            var html = message(data);
+
+            var margin_left = ($(window).width() - 980)/2;
+            var messageObj = $('<div class="message_wrap" id="' + id + '" style="display:none;"></div>').html(html).css({"margin-left":margin_left});
+            messageObj.find(".know").click(function(e){
+                $(this).closest(".message_wrap").fadeOut("slow",function(){
+                    $(this).remove();
+                });
+            });
+
+            var i_message = $(".message_wrap").size();
+            if( i_message < 3){
+                var offset = $(".message_wrap:last").offset();
+                messageObj.css({bottom:-20 }).appendTo('body');
+
+                messageObj.animate({
+                    bottom:20 + 40 * i_message,
+                    duration:100
+                }).show();
+
+                setTimeout(function(){
+                    messageObj.fadeOut(function(){
+                        $(this).remove();
+                    });
+                },10000);
+            }else{
+                return ;
+            }
+
+
+        }
+
+        $(function(){
+
+            $(".status_button").each(function(){
+                $(this).click(function(){
+                    var id = $(this).prop("id");
+                    var messageTpl = kendo.template($("#message_template").html());
+                    var message = '';
+
+                    switch(id){
+                        case 'pass':
+                            message = '已发送成功！';
+                            break;
+                        case 'warn':
+                            message = '没有查询到符合条件的酒店，请检查查询条件，重新查询！';
+                            break;
+                        case 'error':
+                            message = '出错啦，亲，请重新提交！或者操作失败一类的提示！';
+                            break;
+                        case 'unrecognize':
+                            message = '系统无法识别！';
+                            break;
+                        default:
+                            break;
+                    }
+
+                    var data = {statusClass:id,message:message};
+                    messageTpl(data);
+
+                    $.prompt({content:messageTpl(data)}).center().open();
+                });
+            });
+            
+            var tagsPlugin = $("#form_tags_input").tagsInput({
+                        "width":"683px",
+                        "height":"29px",
+                        "maxChars":"6",
+                        "defaultText":"输入完成后按回车或Tab键添加", //默认文字"
+                        "keyTab":"tab"
+                        });
+            //$.prompt({content:$("#create_failed_template").html()}).center().open(); 
+
+
+
+
+            FloatLayer({
+                trigger:'.viewRules',
+                template:'#viewRulesTemplate',
+                offsetY:-34,
+                offsetX:30
+                });
+                
+        });
+    </script>   
+
+<script>
+    function getMsgTextareaLength() {
+        wordNum = $(".messageConTextarea").val().length;
+        setWordNumInfoText(wordNum);
+    };
+    function setWordNumInfoText(wordNum) {
+        $(".word-num").text(wordNum);
+    };
+</script>
+
+
+
+
+
+ 
+</body>
+</html>
