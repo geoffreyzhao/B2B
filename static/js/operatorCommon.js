@@ -1,4 +1,8 @@
 $(function(){
+	/*
+	** 返回顶部的操作在 init.js中(是开发在维护,这里先注释)  By:shuaigeng.zhao 
+	*/
+	/*
 	var $backToTopTxt = "返回顶部",
 	$backToTopEle = $('<a class="backToTop"></a>').appendTo($("#container")).text($backToTopTxt).attr("title", $backToTopTxt).click(function() {
 		$("html, body").animate({
@@ -14,6 +18,7 @@ $(function(){
 	$(window).bind("scroll", $backToTopFun);
 
 	$backToTopFun();
+	*/
 });
 
 function adjustBodyBg(param) {
