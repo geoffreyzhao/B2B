@@ -20,6 +20,7 @@
     <script type="text/javascript" src="/static/js/store/store.js"></script>
     <script type="text/javascript" src="/static/js/DateControl.js"></script>
     <script type="text/javascript" src="/static/js/jquery.cycle.all.js"></script>
+    <script type="text/javascript" src="/static/js/operatorCommon.js"></script>
     
 
     <!--[if IE]>
@@ -35,8 +36,9 @@
     </div>
     <div id="catalogue">
     </div>
-    <div id="contain">
-        <div class="logo">
+
+<div id="container">
+       <div class="logo">
             <div class="clearfix">
                 <h1></h1>
                 <div class="profile">
@@ -103,11 +105,8 @@
                 </div>
             </div>
         </div>
-    </div>
-
-<div id="mainContent">
-       
-    <section class="main-body clearfix"> <!--body start-->
+        <div id="mainContent">
+    <section class="main-body clearfix adjustShipBodyBg"> <!--body start-->
         <div class="shipTopBg">
             <div class="shipSummary">
     
@@ -328,10 +327,11 @@
         </div>
         
     </section>
-
+</div>
     <!--body end-->
 
     <!--footer start-->
+</div>
     <div id="extFooter">
         <div>
             <p>
@@ -343,7 +343,6 @@
             <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
-</div>
 
 
 <script type="text/javascript">
@@ -410,6 +409,12 @@
             pause:true,
             pager:"#nav_homepage_shipImg",
             pagerEvent: "click.cycle"
+        });
+
+        adjustBodyBg(".adjustShipBodyBg");
+
+        $(window).resize(function(){
+            adjustBodyBg(".adjustShipBodyBg");
         });
 
 
