@@ -86,3 +86,27 @@ $(function(){
 
     /** 返回顶部结束 */
 });
+
+function adjustBodyBg(param) {
+    if (param !== undefined) {
+        var windowWidth = $(window).outerWidth();
+        windowWidth = (windowWidth < 980) ? 980 : windowWidth;
+        var resetLeft = (windowWidth - 980)/2;
+
+        if (typeof(param) == "string") {
+            $(param).css({
+                "width": windowWidth + "px",
+                "margin-left": -resetLeft + "px"
+            });
+        } else if (param instanceof Array) {
+            for (var i = 0; i < param.length; i++) {
+                $(param[i]).css({
+                    "width": windowWidth + "px",
+                    "margin-left": -resetLeft + "px"
+                });
+            }
+        }
+    } else {
+        console.log("adjust window width no params");
+    }
+}
