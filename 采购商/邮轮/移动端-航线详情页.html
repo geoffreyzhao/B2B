@@ -20,14 +20,13 @@
 	<section>
 		
         <ul class="changeList clearfix">
-        	<li class="current">
-        		<a href="#tripDetail">产品介绍</a>
-        		<i></i>
-        	</li>
-        	<li><a href="#tripIntroduce">行程介绍</a><i></i></li>
+        	<li class="current"><a href="#tripIntroduce">产品介绍</a><i></i></li>
+        	<li><a href="#tripDetail">行程介绍</a><i></i></li>
         	<li><a href="#bookingNotes">预订须知</a><i></i></li>
         </ul>
 
+		<div>
+			<a href="#" name="tripIntroduce"></a>
         <div class="simpleInfo">
         	<div class="startDate clearfix">
         		<div class="dateBlock">
@@ -68,7 +67,7 @@
         	<div class="cabinRoomTitle">双人海景内舱房</div>
         	<div class="clearfix">
 	        	<div class="cabinImgContainer">
-	        		<img src="/static/images/store/cruise/shipDetailsImg03.jpg" alt="">
+	        		<img src="/static/images/store/cruise/shipDetailsImg03.jpg" alt="" onload="setCabinHeight();">
 	        	</div>
 	        	<div class="cabinContInfo">
 	        		<table>
@@ -78,25 +77,22 @@
 	        			</colgroup>
 	        			<tbody>
 	        				<tr>
-	        					<th>房间面积</th>
-	        					<td>11㎡</td>
+	        					<th style="vertical-align:top;">房间面积</th>
+	        					<td style="vertical-align:top;">11㎡</td>
 	        				</tr>
 	        				<tr>
-	        					<th class="addHeight verticalTop">位于甲板</th>
-	        					<td class="addHeight" style="line-height:16px;">3,4,5,6,7,8,12</td>
+	        					<th>位于甲板</th>
+	        					<td style="word-break:break-all;">3,4,5,6,7</td>
 	        				</tr>
 	        				<tr>
-	        					<th>可入住人数</th>
-	        					<td>2</td>
+	        					<th style="vertical-align:bottom;">可入住人数</th>
+	        					<td style="vertical-align:bottom;">2</td>
 	        				</tr>
 	        			</tbody>
 	        		</table>
 	        	</div>
 	        </div>
         </div>
-
-        <div>
-			<a href="#" name="tripIntroduce"></a>
 		</div>
 		
 		<div class="blockModule">
@@ -110,6 +106,7 @@
 				</div>				
 				<div class="rightTripCont">
 					<div class="eachDayCont">
+						<a href="#" name="day-1" class="day-link"></a>
 						<div class="dayHeader">
 							<table class="dayHeaderTable">
 								<tr>
@@ -141,6 +138,7 @@
 						</div>
 					</div>
 					<div class="eachDayCont">
+						<a href="#" name="day-2" class="day-link"></a>
 						<div class="dayHeader">
 							<table class="dayHeaderTable">
 								<tr>
@@ -173,6 +171,7 @@
 						</div>
 					</div>
 					<div class="eachDayCont">
+						<a href="#" name="day-3" class="day-link"></a>
 						<div class="dayHeader">
 							<table class="dayHeaderTable">
 								<tr>
@@ -245,29 +244,27 @@
 
 	</section>
 
-	<footer>
-		
-	</footer>
-
 	<script type="text/javascript">
 		$(function(){
 
 			//  导航悬停 & 类别切换
 			var a_pos = [];
 	        var flag=true;
-	        $(".changeList a").each(function(index){
-	            var href= $(this).attr("href");
-	            a_pos.push($("a[name=" + href.substring(1) + "]").offset());
 
+	        $(window).load(function(){
+	        	$(".changeList li").each(function(index){
+		            var href= $(this).find("a").attr("href");
+		            console.log(href + ':' + $("a[name=" + href.substring(1) + "]").offset().top);
+		            a_pos.push($("a[name=" + href.substring(1) + "]").offset());
+		        });
 	        });
 
-	        $(".changeList a").click(function(e){
+	        $(".changeList li").click(function(e){
 	            flag=false;
 	            e.preventDefault();
-	            $(this).closest("li").siblings().find("a").removeClass('currentLi');
-	            $(this).addClass("currentLi");
-	            var i=$(this).closest("li").index();
-	            i-=Math.round(i/2);
+	            $(this).siblings().removeClass('current');
+	            $(this).addClass("current");
+	            var i=$(this).index();
 	            $("html,body").animate({"scrollTop":a_pos[i].top-42},1);
 	        });
 
@@ -278,13 +275,13 @@
 	                var i = 0;
 	                for(i = a_pos.length - 1; i >=0 ; i--){
 	                    if(currentPos.top >= a_pos[i].top-45){
-	                        that.find("a").removeClass('currentLi');
-	                        $("a:eq(" + (i) + ")" , that).addClass("currentLi");
+	                        that.find("li").removeClass('current');
+	                        $("li:eq(" + (i) + ")" , that).addClass("current");
 	                        return false;
 	                    }
 	                }
-	                that.find("a").removeClass('currentLi');
-	                $("a:first" , that).addClass("currentLi");
+	                that.removeClass('current');
+	                $("li:first" , that).addClass("current");
 	            }
 	            flag=true;
 	        });
@@ -298,7 +295,7 @@
 
 	        $(".telBlock").fixedBar({
 	        	inverse: true,
-	        	css: "width:96%;position:fixed;bottom:10px;"
+	        	css: "width:95%;position:fixed;bottom:10px;"
 	        });
 
 	        var showFlag = false;
@@ -306,16 +303,22 @@
 	        	if (!showFlag) {
 		        	$(".telCont").animate({
 		        		left: "32px"
-		        	}, 1000);
+		        	}, 500);
 	        	} else {
 	        		$(".telCont").animate({
 		        		left: "-100%"
-		        	}, 1000);
+		        	}, 500);
 	        	}
 		        showFlag = !showFlag;
 	        });
-
 		});
+		
+		function setCabinHeight() {
+        	var h = $(".cabinImgContainer img").height();
+        	$(".cabinContInfo table").css({
+        		height: h + "px"
+        	});
+        }
 	</script>
 </body>
 </html>
