@@ -3,10 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/mobile/common.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/mobile/store/cruiseDetail.css">
 	<script type="text/javascript" src="/static/js/jquery.min.js"></script>
 	<script type="text/javascript" src="/static/js/global.js"></script>
+	<script type="text/javascript" src="/static/js/vendor/bootstrap.js"></script>
 	<title>邮轮航线详情</title>
 </head>
 <body>
@@ -24,9 +26,10 @@
         	<li><a href="#tripDetail">行程介绍</a><i></i></li>
         	<li><a href="#bookingNotes">预订须知</a><i></i></li>
         </ul>
+		<div data-spy="scroll" data-target=".changeList" data-offset="-35">
 
 		<div>
-			<a href="#" name="tripIntroduce"></a>
+			<div id="tripIntroduce"></div>
         <div class="simpleInfo">
         	<div class="startDate clearfix">
         		<div class="dateBlock">
@@ -96,8 +99,8 @@
 		</div>
 		
 		<div class="blockModule">
-			<a href="#" name="tripDetail"></a>
-			<div class="mainTitle">行程介绍</div>
+			<div id="tripDetail"></div>
+			<div class="mainTitle introduceTitle">行程介绍</div>
 			<div class="tripDetailBody clearfix">
 				<div class="leftNavDays">
 					<div class="dayContainer current">D1</div>
@@ -206,9 +209,9 @@
 			</div>
 		</div>
 
-		<div class="blockModule">
-			<a href="#" name="bookingNotes"></a>
-			<div class="mainTitle">预订须知</div>
+		<div class="blockModule bookingModule">
+			<div id="bookingNotes"></div>
+			<div class="mainTitle orderTitle">预订须知</div>
 			<div class="priceInclude">
 				<div class="subTitle">费用包含</div>
 				<pre>1.邮轮船票-行程中所标明的“维多利亚号2.邮轮上船舱4晚住宿（根据客人所购舱型3.邮轮上的用餐（包括主餐厅、自助餐厅）4.邮轮港务费、出入境名单、领队小费、签</pre>
@@ -218,7 +221,7 @@
 				<pre>1.邮轮船票-行程中所标明的“维多利亚号2.邮轮上船舱4晚住宿（根据客人所购舱型3.邮轮上的用餐（包括主餐厅、自助餐厅）4.邮轮港务费、出入境名单、领队小费、签</pre>
 			</div>
 		</div>
-		
+		</div>
 		<div class="footer">
 			<div class="topTitle">
 				<i class="cruiseIcon"></i>
@@ -228,14 +231,16 @@
 				<div>出发日期：</div>
 				<div class="startDate">02月16日，02月17日，02月18日，02月19日，02月20日，02月21日</div>
 				<div class="tip">*出发日期不同，房型不同价格会发生变化，请咨询产品联系人。</div>
+				<div style="width:100%;height:100px;"></div>
 				<div class="telBlock">
-					<div class="telPhoneIcon"></div>
-					<!-- <div class="hideDiv"></div> -->
-					<div class="telCont">
-						<div class="telNum"><a href="tel:18551788100">18551788100</a></div>
-						<div class="contact">
-							<span>联系人：潘小美</span>
-							<span style="color:#ffff6a;padding-left:10px;">拨打电话，立即预定</span>
+					<div style="position:relative;">
+						<div class="telPhoneIcon"></div>
+						<div class="telCont">
+							<div class="telNum"><a href="tel:18551788100">18551788100</a></div>
+							<div class="contact">
+								<span>联系人：潘小美</span>
+								<span style="color:#ffff6a;padding-left:10px;">拨打电话，立即预定</span>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -247,7 +252,47 @@
 	<script type="text/javascript">
 		$(function(){
 
+			$('.changeList').affix({
+			  offset: {
+			    top: function(){
+			    	return $("header").outerHeight(true);
+			    }
+			  }
+			});
+
+			$(".leftNavDays").affix({
+				offset: {
+					top: function(){
+						return $(".mainTitle.introduceTitle").offset().top + 15;
+					},
+					bottom: function(){
+						return $(".footer").outerHeight(true)
+						 + $(".bookingModule").outerHeight(true)
+						 + $(".leftNavDays").outerHeight(true);
+					}
+				}
+			});
+
+			// 修正天数悬停时 affix-bottom 的 bug
+			$(window).scroll(function(){
+				var heightValue = $(".tripDetailBody").offset().top
+					 + $(".tripDetailBody").outerHeight(true)
+					 - $(".leftNavDays").outerHeight(true) - 30;
+
+				if ($("body").scrollTop() > heightValue) {
+					$(".leftNavDays").removeClass("affix").removeClass("affix-bottom");
+				} else if ($("body").scrollTop() < heightValue
+							 && $("body").scrollTop() > $(".tripDetailBody").offset().top) {
+					$(".leftNavDays").addClass("affix");
+				}
+			});
+
+			// var bottom = $(".footer").outerHeight(true) + $(".bookingModule").outerHeight(true)
+
+			// $(".leftNavDays.affix-bottom").css("bottom", bottom + "px");
+
 			//  导航悬停 & 类别切换
+			/*
 			var a_pos = [];
 	        var flag=true;
 
@@ -285,18 +330,7 @@
 	            }
 	            flag=true;
 	        });
-
-	        $(".changeList").fixedBar();
-
-	        $(".leftNavDays").fixedBar({
-	        	css: "top:45px;position:fixed;",
-	        	endAt: ".tripDetailBody"
-	        });
-
-	        $(".telBlock").fixedBar({
-	        	inverse: true,
-	        	css: "width:95%;position:fixed;bottom:10px;"
-	        });
+			*/
 
 	        var showFlag = false;
 	        $(".telPhoneIcon").click(function(){
@@ -311,6 +345,7 @@
 	        	}
 		        showFlag = !showFlag;
 	        });
+			
 		});
 		
 		function setCabinHeight() {
