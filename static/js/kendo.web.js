@@ -10069,7 +10069,7 @@ kendo_module({
         },
         hasAttribute = function(input, name) {
             if (input.length)  {
-                // @todo fix ie8 下 input[0].attributes[name] 返回 null 的问题 
+                // @todo fix ie8 下 input[0].attributes[name] 返回 null 的问题
                 // return input[0].attributes[name] !== undefined;
                 return $(input[0]).attr(name) !== undefined;
             }
@@ -10153,7 +10153,7 @@ kendo_module({
                     //    value = input.val();
                     if(hasAttribute(input, "required")){
                         if(ischeckbox){
-                            return true && input.prop("checked"); 
+                            return true && input.prop("checked");
                         }else{
                             return true && input.val();
                         }
@@ -10224,7 +10224,7 @@ kendo_module({
             defaultErrorMsgPosition:"right",
             errorMsgPosition:["right","bottom"],
             /* 必须明确给定规则名称,没有给出规则名称的规则将略过 */
-            needRuleAttrbute:true, 
+            needRuleAttrbute:true,
             errorLabelPadding:6
 
         },
@@ -10315,7 +10315,7 @@ kendo_module({
                         }
                     }
                 }
-                
+
                 /**
                  * @todo add by clb
                  * for auto jump the error elemt
@@ -10329,7 +10329,7 @@ kendo_module({
                     shadow = $('<s/>');
 
                     if (invis){
-                        inputs[errIndex].before(shadow); 
+                        inputs[errIndex].before(shadow);
                         offset = shadow.offset();
                         shadow.remove();
                     }else{
@@ -10379,13 +10379,35 @@ kendo_module({
 
                 var p =  input.attr("k-msg-position") || input.attr("data-k-msg-position");
                 var pcss = input.attr("k-msg-css") || input.attr("data-k-msg-css");
-
+                var p_default={
+                		icon_css:{
+                			right:"arrow_west",
+                			left:"arrow_east",
+                			bottom:"arrow_north",
+                			top:"arrow_south"
+                		},
+                		position_css:{
+                			def:"relative",
+                			right:"absolute",
+                			bottom:"absolute"
+                		}
+                };
                 try {
                     var pcssObj = pcss != undefined ? eval("(" + pcss + ")") : {top: 0, left:0, equalInput:false};
                 } catch(err){
                     pcssObj = {top:0,left:0,equalInput:false};
                 }
+                if(pcssObj.icon_css){
+                	for(var key in pcssObj.icon_css){
+                		p_default.icon_css[key]=pcssObj.icon_css[key];
+                	}
+                }
 
+                if(pcssObj.position_css){
+                	for(var key in pcssObj.position_css){
+                		p_default.position_css[key]=pcssObj.position_css[key];
+                	}
+                }
                 if(!pcssObj.equalInput){
                     pcssObj.equalInput = false;
                 }
@@ -10399,7 +10421,7 @@ kendo_module({
                 }
 
                 if(p){
-                    var validVal = false; 
+                    var validVal = false;
                     for(var a in that.options.errorMsgPosition){
                         if(p == that.options.errorMsgPosition[a]){
                             validVal = true;
@@ -10419,7 +10441,7 @@ kendo_module({
                     var shadow = $('<s/>');
 
                     if (invis){
-                        input.before(shadow); 
+                        input.before(shadow);
                         inputOffset = shadow.position();
                         shadow.remove();
                     }else{
@@ -10429,10 +10451,10 @@ kendo_module({
                     var labelSetting = {};
                     var checkPer = /%/;
 
-                    $(".message_ct > .arrow", messageLabel).addClass("arrow_west");
+                    $(".message_ct > .arrow", messageLabel).addClass(p_default.icon_css.right);
 
                     if(p != "right" && p != "bottom"){
-                        labelSetting.position = "relative";
+                        labelSetting.position = p_default.position_css.def;
                         labelSetting.top = pcssObj.top;
                         labelSetting.left = pcssObj.left;
                         if(pcssObj.equalInput){
@@ -10441,7 +10463,7 @@ kendo_module({
                     }
 
                     if(p == "right"){
-                        labelSetting.position = "absolute";
+                        labelSetting.position = p_default.position_css.right;
 
                         if(checkPer.test(pcssObj.top)){
                             labelSetting.top = pcssObj.top;
@@ -10457,13 +10479,14 @@ kendo_module({
                     }
 
                     if(p == "bottom"){
-                        $(".message_ct > .arrow", messageLabel).removeClass("arrow_west arrow_east arrow_south").addClass("arrow_north");
+                    	var remove_css=p_default.icon_css.left+" "+p_default.icon_css.right+" "+p_default.icon_css.top;
+                        $(".message_ct > .arrow", messageLabel).removeClass(remove_css).addClass(p_default.icon_css.bottom);
 
                         if(pcssObj.equalInput){
                             labelSetting.width = input.width() - that.options.errorLabelPadding;
                         }
 
-                        labelSetting.position = "absolute";
+                        labelSetting.position = p_default.position_css.bottom;
 
                         if(checkPer.test(pcssObj.top)){
                             labelSetting.top = pcssObj.top;
@@ -10565,7 +10588,7 @@ kendo_module({
             }
 
             for (rule in rules) {
-                /** @todo fix bug 定义过的规则才进行验证 */ 
+                /** @todo fix bug 定义过的规则才进行验证 */
                 if(that.options.needRuleAttrbute){
                     if (hasAttribute(input, rule) && !rules[rule](input)) {
                         return { valid: false, key: rule };
@@ -18298,9 +18321,9 @@ kendo_module({
                 setTimeout(function(){
                     var val = e.target.value;
                     if(val === ''){
-                        that.element.placeholderEle.show(); 
+                        that.element.placeholderEle.show();
                     }else{
-                        that.element.placeholderEle.hide(); 
+                        that.element.placeholderEle.hide();
                     }
                 },0);
             }
@@ -18328,7 +18351,7 @@ kendo_module({
                 }
                 that.close();
             } else {
-                that._search(); 
+                that._search();
             }
 
         },
@@ -18466,7 +18489,7 @@ kendo_module({
             wrapper.attr("role", "presentation");
 
             //end
-            
+
             if (!wrapper.is("span.k-widget")) {
                 wrapper[0].style.cssText = DOMelement.style.cssText;
                 element.css({
@@ -26575,7 +26598,7 @@ kendo_module({
 
 
 /**
- * @todo comment 
+ * @todo comment
 (function($, undefined) {
     var kendo = window.kendo,
         Widget = kendo.ui.Widget,
@@ -39328,7 +39351,7 @@ kendo_module({
                 windowContent,
                 id;
 
-            
+
             Widget.fn.init.call(that, element, extend(defaultOption,options));
             options = that.options;
             element = that.element;

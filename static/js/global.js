@@ -1062,9 +1062,9 @@ $.prompt=function(options){
         close:function(){
             switch(opts.effect)
             {
-                case "fade":$("#promptWindow").fadeOut(opts.openSpeed,opts.openEvent);break;
-                case "slide":$("#promptWindow").slideUp(opts.openSpeed,opts.openEvent);break;
-                default :$("#promptWindow").hide(opts.openSpeed,opts.openEvent);break;
+                case "fade":$("#promptWindow").fadeOut(opts.openSpeed,opts.closeEvent);break;
+                case "slide":$("#promptWindow").slideUp(opts.openSpeed,opts.closeEvent);break;
+                default :$("#promptWindow").hide(opts.openSpeed,opts.closeEvent);break;
             }
             return this;
         },
