@@ -2,9 +2,119 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/idangerous.swiper.min.js"></script>
+	<link rel=stylesheet type="text/css" href="css/idangerous.swiper.css">
+	<link rel=stylesheet type="text/css" href="css/common.css">
 	<title>首页</title>
+
+	<style type="text/css">
+	.swiper-container {
+		width: 100%;
+		text-align: center;
+	}
+.pagination {
+  position: absolute;
+  z-index: 20;
+  top: 45%;
+  right: 20px;
+}
+.swiper-pagination-switch {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  background: green;
+  margin: 0 5px;
+  opacity: 0.8;
+  border: 1px solid red;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.swiper-active-switch {
+  background: red;
+}
+</style>
 </head>
 <body>
-	
+	<div class="swiper-container">
+	  <div class="swiper-wrapper">
+	    <div class="swiper-slide">
+	    	<div class="">
+	    		<!-- <img src="image/homepage_bg.gif" alt=""> -->
+	    		第一张
+	    	</div>
+	    </div>
+	    <div class="swiper-slide">
+	    	<div class="companyProfile">
+	    		<div class="titile"><i></i>公司概况</div>
+	    		<div class="brief">
+	    			<div class="companyImg">
+	    				<img src="" alt="">
+	    			</div>
+	    			<div class="briefCont">
+	    				<p>真旅网Travelzen.com于2007年在香港创立。目前，总部设立在上海，员工千余人，在北京 、广州 、成都  、杭州、苏州、香港、美国等地区设有分支机构。</p>
+	    				<p>创立初期，凭借对旅游优势资源的掌控和成熟超前的网络实时交易技术, 真旅网成为全球领先的国际化旅游产品预订平台，服务涵盖机票、酒店，会务、度假、娱乐等全供应链, 提供全球多地出发、多种产品自由组合。</p>
+	    				<p>随后，相继推出 “天地行”一站式综合旅游服务平台和“真旅网”企业差旅平台，满足不同客群的需求。2014年，天地行APP为提供移动人士提供无缝的旅游服务体验。
+未来，真旅网将部署更大规模的整合，为打造中国最强大的在线旅游产品分销平台不断前行。</p>
+	    			</div>
+	    			<div class="briefBottom clearfix">
+	    				<div class="manageTeam">管理团队在资源合作、管理技能、研发能力、业务管理方面上的资深经验，以及团队间紧密无缝的合作奠定了公司稳健发展的基础。</div>
+	    				<div class="advanceManageTeam">高层管理团队成员集合IT业、旅游业及金融业等具有多年业务运作与管理的精英；中层管理团队汇集了IT业、酒店业、航空代理业及旅游业的专业人士。</div>
+	    			</div>
+	    		</div>
+	    	</div>
+	    </div>
+	    <div class="swiper-slide">
+	    	<div class="superiority">核心优势</div>
+	    </div>
+	    <div class="swiper-slide">
+	    	<div class="businessStructure">业务构成</div>
+	    </div>
+	  </div>
+	    <div class="pagination"></div>
+	</div>
+
+	<script type="text/javascript"> 
+		$(function(){
+
+			$(".swiper-container").css({
+				height: window.screen.availHeight + "px"
+			});
+
+			// $(window).resize(function(){
+			// 	$(".swiper-container").css({
+			// 		height: $(window).height() + "px"
+			// 	});
+			// });
+
+		});
+
+		function autoResizeImage(maxWidth, maxHeight, objImg){
+            var img = new Image();
+            img.src = objImg.src;
+            var hRatio;
+            var wRatio;
+            var Ratio = 1;
+            var w = img.width;
+            var h = img.height;
+            wRatio = maxWidth / w;
+            hRatio = maxHeight / h;
+
+            objImg.height = h;
+            objImg.width = w;
+        };
+
+		var mySwiper = new Swiper('.swiper-container',{
+			// autoplay: 2000,
+			loop: false,
+			speed: 500,
+			mode: 'vertical',
+			mousewheelControl: true,
+			mousewheelControlForceToAxis: true,
+			pagination: '.pagination',
+			paginationClickable: true
+		})
+	</script>
 </body>
 </html>
