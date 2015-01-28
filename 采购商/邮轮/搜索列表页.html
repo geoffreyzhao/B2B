@@ -704,7 +704,7 @@
           <li class="lastItem normal"><span>十二月</span></li>
         </ul>
       </div>
-      <div class="exactDateRange">
+      <!--<div class="exactDateRange">
         <div class="dateInputTitle">我要在精确时间段出发</div>
         <div class="dateRangeInput">
           <em>最早出发</em><input type="text" class="datepicker earlyDate">
@@ -719,6 +719,7 @@
           <a class="noLimit">不限</a>
         </div>
       </div>
+      -->
     </div>
   </div>
 </script>
@@ -796,28 +797,28 @@
           });
 
           // 解决日历按钮与弹层的事件冲突
-          $(document).on('click',function(e){
-              t = e.target;
-              var isInFloatlayer = false;
-               var parentDiv = $(t).parents(".ui-datepicker")[0];  //  日历全部
-               var parentHeaderDiv = $(t).parents(".ui-datepicker-header")[0];  //  日历header
-               if(typeof(parentDiv) != 'undefined' || typeof(parentHeaderDiv) != 'undefined'){
-                  var targetTrigger = $(".ui-corner-all");
-                  targetTrigger.each(function(i){
-                      if(parentDiv == targetTrigger[i] || typeof(parentHeaderDiv) != 'undefined'){
-                          isInFloatlayer=true;
-                          return;
-                      }
-                  })
-               }
-              var ele = $(".startDate");
-               if ( !$(t).is(ele)
-                   && $(t).closest(ele).length===0
-                   && $(t).closest('.ac-floatlayer').length===0
-                   && !$(t).hasClass('k-placeholder') && !isInFloatlayer){
-                   startDateLayer.close();
-               }
-           });
+          // $(document).on('click',function(e){
+          //     t = e.target;
+          //     var isInFloatlayer = false;
+          //      var parentDiv = $(t).parents(".ui-datepicker")[0];  //  日历全部
+          //      var parentHeaderDiv = $(t).parents(".ui-datepicker-header")[0];  //  日历header
+          //      if(typeof(parentDiv) != 'undefined' || typeof(parentHeaderDiv) != 'undefined'){
+          //         var targetTrigger = $(".ui-corner-all");
+          //         targetTrigger.each(function(i){
+          //             if(parentDiv == targetTrigger[i] || typeof(parentHeaderDiv) != 'undefined'){
+          //                 isInFloatlayer=true;
+          //                 return;
+          //             }
+          //         })
+          //      }
+          //     var ele = $(".startDate");
+          //      if ( !$(t).is(ele)
+          //          && $(t).closest(ele).length===0
+          //          && $(t).closest('.ac-floatlayer').length===0
+          //          && !$(t).hasClass('k-placeholder') && !isInFloatlayer){
+          //          startDateLayer.close();
+          //      }
+          //  });
 
           //  选中日期  选中月份
           $("body").delegate(".monthList li", "click", function(){
@@ -833,44 +834,44 @@
           });
 
           // 选择精确时间段
-           $("body").delegate(".selectDateRange", "click", function(){
-            $(".roundMonthDate").find("li").removeClass("current");
-            var earlyDateValue = $("input.earlyDate").val();
-            var laterDateValue = $("input.laterDate").val();
+           // $("body").delegate(".selectDateRange", "click", function(){
+           //  $(".roundMonthDate").find("li").removeClass("current");
+           //  var earlyDateValue = $("input.earlyDate").val();
+           //  var laterDateValue = $("input.laterDate").val();
 
-            if (earlyDateValue != "" && laterDateValue != "") {
-              $("input.earlyDate").removeClass("errorOrangeInputBorder");
-              $("input.laterDate").removeClass("errorOrangeInputBorder");
+           //  if (earlyDateValue != "" && laterDateValue != "") {
+           //    $("input.earlyDate").removeClass("errorOrangeInputBorder");
+           //    $("input.laterDate").removeClass("errorOrangeInputBorder");
 
-              $(".exactDateRangeView").find("p.earlyDate").html(earlyDateValue);
-              $(".exactDateRangeView").find("p.laterDate").html(laterDateValue);
-              $(".exactDateRangeView").show();
+           //    $(".exactDateRangeView").find("p.earlyDate").html(earlyDateValue);
+           //    $(".exactDateRangeView").find("p.laterDate").html(laterDateValue);
+           //    $(".exactDateRangeView").show();
 
-              startDateLayer.close();
-              $("input.startDate").siblings(".clearSearchTextIcon").show();
-              $("input.startDate").addClass("hideInputStartDate");
-            } 
+           //    startDateLayer.close();
+           //    $("input.startDate").siblings(".clearSearchTextIcon").show();
+           //    $("input.startDate").addClass("hideInputStartDate");
+           //  } 
 
-            if (earlyDateValue == "") {
-              $("input.earlyDate").addClass("errorOrangeInputBorder");
-            } else {
-              $("input.earlyDate").removeClass("errorOrangeInputBorder");
-            }
+           //  if (earlyDateValue == "") {
+           //    $("input.earlyDate").addClass("errorOrangeInputBorder");
+           //  } else {
+           //    $("input.earlyDate").removeClass("errorOrangeInputBorder");
+           //  }
 
-            if (laterDateValue == "") {
-              $("input.laterDate").addClass("errorOrangeInputBorder");
-            } else {
-              $("input.laterDate").removeClass("errorOrangeInputBorder");
-            }
-           });
+           //  if (laterDateValue == "") {
+           //    $("input.laterDate").addClass("errorOrangeInputBorder");
+           //  } else {
+           //    $("input.laterDate").removeClass("errorOrangeInputBorder");
+           //  }
+           // });
 
            // 时间区间不限
-           $("body").delegate(".dateRangeBtn .noLimit", "click", function(){
-            $("input.startDate").val("");
-            $("input.startDate").siblings(".clearSearchTextIcon").hide();
-            clearExactDateRange();
-            startDateLayer.close();
-           });
+           // $("body").delegate(".dateRangeBtn .noLimit", "click", function(){
+           //  $("input.startDate").val("");
+           //  $("input.startDate").siblings(".clearSearchTextIcon").hide();
+           //  clearExactDateRange();
+           //  startDateLayer.close();
+           // });
 
            $(".cruiseSortBlock").fixedBar();
     });
