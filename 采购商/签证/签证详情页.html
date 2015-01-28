@@ -135,7 +135,11 @@
                     </li>
                     <li>
                         <b class="listLeftTitle">领区覆盖地：</b>
-                        <span class="listRightContent consularContent">上海、浙江、江苏、山东、安徽、江西、上海、浙江、江苏、山东、安徽、江西、上海、浙江、江苏、山东、安徽、江西、上海、浙江、江苏、山东、浙江、江苏、山东、安徽、江西</span>
+                        <span class="listRightContent consularContent">
+                            <div class="thirdEllipsis areaContent">
+                                <p>上海、北京、上海、北京、上海、北京上海、北京上海、北京上海、北京上海、北京上海、北京上海、北京上海、北京上海、北京上海、北京上海、北京上海、北京、上海、北京、上海、北京、上海、北京、上海、北京、上海、北京</p>
+                            </div>
+                        </span>
                         <label class="consularClick">
                             <span class="expandMoreLink">更多</span>
                             <span class="foldMoreLink" style="display:none;">收起</span>
@@ -445,7 +449,14 @@
 
             // 更多受理范围
             var tmpCont = $(".scopeContent p").html();
-            scopeEllipsis();
+            // scopeEllipsis();  不要加省略号，判断是否需要‘更多’操作
+            var scHeight = $(".scopeContent").find("p").outerHeight();
+            if (scHeight > 75) {
+                $(".scopeClick .expandMoreLink").show();
+            } else {
+                $(".scopeClick .expandMoreLink").hide();
+            }
+
             $(".visaInfoList").delegate(".scopeClick .expandMoreLink", "click", function(){
                 $(".scopeContent").css({"height":"auto","max-height":"none"});
                 $(".scopeClick .expandMoreLink").hide();
@@ -457,8 +468,15 @@
                 $(".scopeContent").css("height", "75px");
                 $(".scopeClick .expandMoreLink").show();
                 $(".scopeClick .foldMoreLink").hide();
-                scopeEllipsis();
+                // scopeEllipsis();
             });
+
+            var acHeight = $(".areaContent").find("p").outerHeight();
+            if (acHeight > 25) {
+                $(".consularClick .expandMoreLink").show();
+            } else {
+                $(".consularClick .expandMoreLink").hide();
+            }
             
             // 更多领区覆盖地
             $(".visaInfoList").delegate(".consularClick .expandMoreLink", "click", function(){
@@ -466,7 +484,10 @@
                 $(".consularContent").removeClass("fold");
                 $(".consularClick .expandMoreLink").hide();
                 $(".consularClick .foldMoreLink").show();
-                $(".consularContent p").html(tmpCont);
+                $(this).parent().siblings(".consularContent").find(".areaContent").css({
+                    height: "auto",
+                    "max-height":"none"
+                });
             });
 
             $(".visaInfoList").delegate(".consularClick .foldMoreLink", "click", function(){
@@ -474,6 +495,9 @@
                 $(".consularContent").removeClass("expand");
                 $(".consularClick .expandMoreLink").show();
                 $(".consularClick .foldMoreLink").hide();
+                $(this).parent().siblings(".consularContent").find(".areaContent").css({
+                    "max-height":"25px"
+                });
             });
 
         });
