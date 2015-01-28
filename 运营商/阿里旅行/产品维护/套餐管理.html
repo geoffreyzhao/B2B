@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>运营商 阿里旅行 产品维护 套餐管理</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />    
+    <link href="/static/css/operatorCommonHeader.css" rel="stylesheet">
+    <link href="/static/css/operatorAliTravel.css" rel="stylesheet" type="text/css"/>
+
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>    
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/scrollFix.js"></script>
+
+    
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+    
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/static/css/ie.css" />
+    <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        div.k-window-content {
+            padding:0;
+        }
+    </style>
+    
+</head>
+<body>
+  <div id="head">
+        <div></div>
+    </div>
+
+    <div id="catalogue"></div>
+    <div id="container">
+          <div class="logo">
+            <div class="clearfix">
+                <h1></h1>
+                <div class="profile">
+                    <a href="javascript:void(0)">你好,千颂伊</a>
+                    <a href="javascript:void(0)">退出</a>
+                </div>
+            </div>
+            <ul id="catalogue_menu">
+                <li class="">
+                    <a href="javascript:void(0)">国内机票</a>                    
+                </li>
+                <li><a href="javascript:void(0)">国际机票</a></li>
+                <li><a href="javascript:void(0)">酒店</a></li>
+                <li class="current">
+                    <a href="javascript:void(0)">阿里旅行</a>
+                    <ol class="subMenu">
+                        <li><a href="javascript:void(0)">预约单管理</a></li>
+                        <li class="currentSubMenu"><a href="javascript:void(0)">产品维护</a></li>
+                        <li><a href="javascript:void(0)">用户管理</a></li>
+                        <li><a href="javascript:void(0)">天猫订单管理</a></li>
+                    </ol>
+                </li>
+                <li><a href="javascript:void(0)">打包产品</a></li>
+                <li><a href="javascript:void(0)">旅游</a></li>
+                <li><a href="javascript:void(0)">邮轮</a></li>
+                <li><a href="javascript:void(0)">签证</a></li>
+                <li><a href="javascript:void(0)">保险</a></li>
+                <li><a href="javascript:void(0)">短信</a></li>
+                <li><a href="javascript:void(0)">通用订单</a></li>
+                <li><a href="javascript:void(0)">票证</a></li>
+                <li><a href="javascript:void(0)">财务</a></li>
+                <li><a href="javascript:void(0)">客户</a></li>
+                <li><a href="javascript:void(0)">设置</a></li>
+            </ul>
+            <div class="headerMessage clearfix">
+                <div id="msgNum">
+                    <span>消息</span>
+                    <em>30</em>
+                </div>
+            </div>
+        </div>
+        <div id="mainContent">
+			<!-- start content -->
+            <div class="topFixedToolsBar">
+                <div class="commonReturnBtn">
+                    <a href="#"><i class="leftArrow"></i> 返回</a>
+                </div>
+                <div class="fixedMenu">
+                    <a href="#">商品管理</a>
+                    <a href="#" class="current">套餐管理</a>
+                    <a href="#">单品管理</a>
+                </div>
+                <div class="fixedButton">
+                    <a class="button_secondary adaptiveButton small addPackage" href="javascript:void(0);">
+                        <span class="left"></span>
+                        <span class="center">新增套餐</span>
+                        <span class="right"></span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="information_div">              
+               <table class="information_tab package_tab">
+                  <colgroup>
+                       <col width="65" />  
+                       <col width="260" /> 
+                       <col width="65" />
+                       <col width="470" /> 
+                       <col width=""/>
+                  </colgroup>                  
+                  <tr>
+                      <th>套餐名称：</th>
+                      <td>
+                          <input type="text" style="width: 215px;" placeholder="可输入名称的关键字"/>
+                      </td>
+                      <th>地区：</th>
+                      <td>
+                          <label><input type="radio" name="area" checked/>全部</label>
+                          <label><input type="radio" name="area"/>国内</label>
+                          <label><input type="radio" name="area"/>国际</label>
+                      </td>
+                     <td rowspan="2">
+                       <a href="javascript:;" class="button_important adaptiveButton medium">
+                            <span class="left"></span>
+                            <span class="center" style="padding:0 25px;">查 询</span>
+                            <span class="right"></span>
+                        </a>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>类型：</th>
+                     <td>
+                         <label><input type="checkbox" name="tourType" checked/>全部</label>
+                         <label><input type="checkbox" name="tourType"/>机票</label>
+                         <label><input type="checkbox" name="tourType"/>酒店</label>
+                         <label><input type="checkbox" name="tourType"/>邮轮</label>
+                     </td>
+                     <th>启用：</th>
+                     <td>
+                         <label><input type="radio" name="startUse" checked/>全部</label>
+                         <label><input type="radio" name="startUse"/>是</label>
+                         <label><input type="radio" name="startUse"/>否</label>
+                     </td>
+                  </tr>
+               </table>             
+            </div>
+           
+            <table class="tgrid">
+                  <colgroup>
+                      <col width="60"/>
+                      <col width="280"/>
+                      <col width="70"/>
+                      <col width="60"/>
+                      <col width="100"/>
+                      <col width="60"/>
+                      <col width="90"/>
+                      <col width="120"/>
+                      <col width=""/>
+                  </colgroup>
+                  <thead>
+                      <tr>
+                          <th class="line_left" style="text-align:center;">是否启用</th>
+                          <th>套餐名称</th>
+                          <th>价格</th>
+                          <th>地区</th>
+                          <th>类型</th>
+                          <th>需要淘码</th>
+                          <th style="text-align:center;">有效预约时段</th>
+                          <th>更新时间/操作人</th>
+                          <th class="line_right">操作</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td class="tdCenterAlign"><i class="startUsing"></i></td>
+                          <td class="noEllipsis">多地出发-香港往返4天3晚自由行 5星航空机票+第一晚星级酒店套餐</td>
+                          <td><span class="orangeFont">¥18999</span></td>
+                          <td>国内</td>
+                          <td>机票+酒店+邮轮</td>
+                          <td>是</td>
+                          <td class="tdCenterAlign">
+                              <div>2014-12-12</div>
+                              <div>至</div>
+                              <div>2015-01-01</div>
+                          </td>
+                          <td>
+                              <div>2013-10-26 张小明</div>
+                              <div>15:23:23</div>
+                          </td>
+                          <td>
+                                <div>
+                                    <a href="javascript:void(0);" class="viewDetail">查看详情</a>
+                                    <a href="javascript:void(0);" class="oper-edit">编辑</a>
+                                </div>
+                                <div>
+                                    <a href="javascript:void(0);" class="relate-singlePro">关联单品</a>
+                                    <a href="javascript:void(0);" class="oper-del">删除</a>
+                                </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="tdCenterAlign"><i class=""></i></td>
+                          <td class="noEllipsis">多地出发-香港往返4天3晚自由行 5星航空机票+第一晚星级酒店套餐</td>
+                          <td><span class="orangeFont">¥18999</span></td>
+                          <td>国内</td>
+                          <td>机票+酒店+邮轮</td>
+                          <td>是</td>
+                          <td class="tdCenterAlign">
+                              <div>2014-12-12</div>
+                              <div>至</div>
+                              <div>2015-01-01</div>
+                          </td>
+                          <td>
+                              <div>2013-10-26 张小明</div>
+                              <div>15:23:23</div>
+                          </td>
+                          <td>
+                              <div>
+                                  <a href="javascript:void(0);" class="viewDetail">查看详情</a>
+                                  <a href="javascript:void(0);" class="oper-edit">编辑</a>
+                              </div>
+                              <div>
+                                  <a href="javascript:void(0);" class="relate-singlePro">关联单品</a>
+                                  <a href="javascript:void(0);" class="oper-del">删除</a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="tdCenterAlign"><i class="startUsing"></i></td>
+                          <td class="noEllipsis">多地出发-香港往返4天3晚自由行 5星航空机票+第一晚星级酒店套餐</td>
+                          <td><span class="orangeFont">¥18999</span></td>
+                          <td>国内</td>
+                          <td>机票+酒店+邮轮</td>
+                          <td>是</td>
+                          <td class="tdCenterAlign">
+                              <div>2014-12-12</div>
+                              <div>至</div>
+                              <div>2015-01-01</div>
+                          </td>
+                          <td>
+                              <div>2013-10-26 张小明</div>
+                              <div>15:23:23</div>
+                          </td>
+                          <td>
+                              <div>
+                                  <a href="javascript:void(0);" class="viewDetail">查看详情</a>
+                                  <a href="javascript:void(0);" class="oper-edit">编辑</a>
+                              </div>
+                              <div>
+                                  <a href="javascript:void(0);" class="relate-singlePro">关联单品</a>
+                                  <a href="javascript:void(0);" class="oper-del">删除</a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="tdCenterAlign"><i class=""></i></td>
+                          <td class="noEllipsis">多地出发-香港往返4天3晚自由行 5星航空机票+第一晚星级酒店套餐</td>
+                          <td><span class="orangeFont">¥18999</span></td>
+                          <td>国内</td>
+                          <td>机票+酒店+邮轮</td>
+                          <td>是</td>
+                          <td class="tdCenterAlign">
+                              <div>2014-12-12</div>
+                              <div>至</div>
+                              <div>2015-01-01</div>
+                          </td>
+                          <td>
+                              <div>2013-10-26 张小明</div>
+                              <div>15:23:23</div>
+                          </td>
+                          <td>
+                              <div>
+                                  <a href="javascript:void(0);" class="viewDetail">查看详情</a>
+                                  <a href="javascript:void(0);" class="oper-edit">编辑</a>
+                              </div>
+                              <div>
+                                  <a href="javascript:void(0);" class="relate-singlePro">关联单品</a>
+                                  <a href="javascript:void(0);" class="oper-del">删除</a>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="tdCenterAlign"><i class=""></i></td>
+                          <td class="noEllipsis">多地出发-香港往返4天3晚自由行 5星航空机票+第一晚星级酒店套餐</td>
+                          <td><span class="orangeFont">¥18999</span></td>
+                          <td>国内</td>
+                          <td>机票+酒店+邮轮</td>
+                          <td>是</td>
+                          <td class="tdCenterAlign">
+                              <div>2014-12-12</div>
+                              <div>至</div>
+                              <div>2015-01-01</div>
+                          </td>
+                          <td>
+                              <div>2013-10-26 张小明</div>
+                              <div>15:23:23</div>
+                          </td>
+                          <td>
+                              <div>
+                                  <a href="javascript:void(0);" class="viewDetail">查看详情</a>
+                                  <a href="javascript:void(0);" class="oper-edit">编辑</a>
+                              </div>
+                              <div>
+                                  <a href="javascript:void(0);" class="relate-singlePro">关联单品</a>
+                                  <a href="javascript:void(0);" class="oper-del">删除</a>
+                              </div>
+                          </td>
+                      </tr>
+                      
+                      
+                  </tbody>
+              </table>
+            
+              <div class="grid-table-pagination page">
+                  <span class="grid-table-count">
+                      共 <em>132</em> 条记录
+                  </span>
+                  <span>
+                      <a href="#" class="prev">&nbsp;</a>
+                  </span>
+                  <span class="links">
+                      <a href="#">1</a>
+                      <a href="#">2</a>
+                      <a href="#" class="current">3</a>
+                      <a href="#">4</a>
+                      <a href="#">5</a>
+                      <a href="javascript:;">...</a>
+                      <a href="#">50</a>
+                  </span>
+                  <span>
+                      <a href="#" class="next">&nbsp;</a>
+                  </span>
+              </div>
+          </div>
+ 
+    <!-- end of content -->
+   </div>
+    
+    <div id="extFooter">
+        <div>
+            <p>
+                <a href="javascript:void(0);">关于我们</a>&nbsp;|
+                <a href="javascript:void(0);">微博</a>&nbsp;|
+                <a href="javascript:void(0);">服务条款</a>&nbsp;|
+                <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+  
+<!-- 新增套餐 编辑套餐 弹窗 -->
+  <script type="text/x-kendo-template" id="addPackageTemplate">
+      <div class="packageWinContainer noScrollCon">
+          <table class="packageWinTab package_tab">
+              <colgroup>
+                  <col width="100"/>
+                  <col width=""/>
+              </colgroup>
+              <tbody>
+              <tr>
+                  <th><em>*</em>套餐名称：</th>
+                  <td>
+                      <textarea style="width:470px; height: 40px"></textarea>
+                  </td>
+              </tr>
+              <tr>
+                  <th><em>*</em>价格：</th>
+                  <td><input type="text" style="width:150px;"/></td>
+              </tr>
+              <tr>
+                  <th>地区：</th>
+                  <td>
+                     <label><input type="radio" name="" checked/>国内</label>
+                     <label><input type="radio" name=""/>国际</label>
+                  </td>
+              </tr>
+              <tr>
+                  <th>类型：</th>
+                  <td>
+                      <label><input type="checkbox" name="" checked/>机票</label>
+                      <label><input type="checkbox" name=""/>酒店</label>
+                      <label><input type="checkbox" name=""/>邮轮</label>
+                  </td>
+              </tr>
+              </tbody>
+          </table>
+          <div class="windowConLine"></div>
+          <table class="packageWinTab package_tab verticalMiddle">
+              <colgroup>
+                  <col width="100"/>
+                  <col width=""/>
+              </colgroup>
+              <tbody>
+              <tr>
+                  <th><em>*</em>是否需要淘码：</th>
+                  <td>
+                      <label><input type="radio" name="taoCode"/>是</label>
+                      <label><input type="radio" name="taoCode" checked/>否</label>
+                  </td>
+              </tr>
+              <tr>
+                  <th><em>*</em>可使用人数：</th>
+                  <td>
+                      <span class="peopleNumberSpan"><i class="minus">-</i><input type="text" style="width:50px;"/><i class="plus">+</i></span>人/份
+                      <span>（每份套餐可供多少人使用）</span></td>
+              </tr>
+              <tr>
+                  <th><em>*</em>有效预约时段：</th>
+                  <td>
+                      从&nbsp;<input type="text" class="datepicker" style="width:100px;" value=""/>
+                      &nbsp;至&nbsp;<input type="text" class="datepicker orange" style="width:100px;" value=""/>
+                  </td>
+              </tr>
+              <tr>
+                  <th><em>*</em>是否启用：</th>
+                  <td>
+                      <label><input type="radio" name="startUsing"/>是</label>
+                      <label><input type="radio" name="startUsing" checked/>否</label>
+                  </td>
+              </tr>
+              </tbody>
+          </table>
+          <div class="windowConLine"></div>
+          <table class="packageWinTab">
+              <colgroup>
+                  <col width="100"/>
+                  <col width=""/>
+              </colgroup>
+              <tbody>
+              <tr>
+                  <th>补差链接：</th>
+                  <td><input type="text" style="width: 300px;"/></td>
+              </tr>
+              <tr>
+                  <th>补差说明 ：</th>
+                  <td><textarea style="width:470px; height: 40px"></textarea></td>
+              </tr>
+              <tr>
+                  <th>套餐说明：</th>
+                  <td>
+                      
+                  </td>
+              </tr>
+              </tbody>
+          </table>
+          <div class="operBtnDiv noTopBorderDiv">
+              <a class="large_button button_2_1">
+                  <span class="left"></span>
+                  <span class="center">确 定</span>
+                  <span class="right"></span>
+              </a>
+              <a class="large_button button_2_2">
+                  <span class="left"></span>
+                  <span class="center">取 消</span>
+                  <span class="right"></span>
+              </a>
+          </div>
+      </div>
+  </script>
+
+  <!-- 查看详情 弹窗 -->
+  <script type="text/x-kendo-template" id="viewDetailTemplate">
+      <div class="packageWinContainer">
+        <div class="packageListCon">
+          <table class="packageWinTab">
+              <colgroup>
+                  <col width="100"/>
+                  <col width=""/>
+              </colgroup>
+              <tbody>
+              <tr>
+                  <th><em>*</em>套餐名称：</th>
+                  <td>多地-北京往返4天3晚自由行5星航空机票+1晚星级酒店+5星豪华邮轮+1天湖区度假+抽奖套餐</td>
+              </tr>
+              <tr>
+                  <th><em>*</em>价格：</th>
+                  <td>13026.00</td>
+              </tr>
+              <tr>
+                  <th>地区：</th>
+                  <td>国内</td>
+              </tr>
+              <tr>
+                  <th>类型：</th>
+                  <td>机票+酒店</td>
+              </tr>
+              </tbody>
+          </table>
+          <div class="windowConLine"></div>
+          <table class="packageWinTab package_tab verticalMiddle">
+              <colgroup>
+                  <col width="100"/>
+                  <col width=""/>
+              </colgroup>
+              <tbody>
+              <tr>
+                  <th><em>*</em>是否需要淘码：</th>
+                  <td>否</td>
+              </tr>
+              <tr>
+                  <th><em>*</em>可使用人数：</th>
+                  <td>2 人/份<span>（每份套餐可供多少人使用）</span></td>
+              </tr>
+              <tr>
+                  <th><em>*</em>有效预约时段：</th>
+                  <td>
+                      从&nbsp;2013-10-10&nbsp;至&nbsp;2014-10-10
+                  </td>
+              </tr>
+              <tr>
+                  <th><em>*</em>是否启用：</th>
+                  <td>是</td>
+              </tr>
+              </tbody>
+          </table>
+          <div class="windowConLine"></div>
+          <table class="packageWinTab">
+              <colgroup>
+                  <col width="100"/>
+                  <col width=""/>
+              </colgroup>
+              <tbody>
+              <tr>
+                  <th>补差链接：</th>
+                  <td></td>
+              </tr>
+              <tr>
+                  <th>补差说明 ：</th>
+                  <td>多地-北京往返4天3晚自由行5星航空机票+1晚星级酒店+5星豪华邮轮+1天湖区度假+抽奖套餐</td>
+              </tr>
+              <tr>
+                  <th>套餐说明：</th>
+                  <td>多地-北京往返4天3晚自由行5星航空机票+1晚星级酒店+5星豪华邮轮+1天湖区度假+抽奖套餐 
+                      多地-北京往返4天3晚自由行5星航空机票+1晚星级酒店+5星豪华邮轮+1天湖区度假+抽奖套餐 多地-北京往返4天3晚自由行5星航空机票+1晚星级酒店+5星豪华邮轮
+                      +1天湖区度假+抽奖套餐 多地-北京往返4天3晚自由行5星航空机票+1晚星级酒店+5星豪华邮轮+1天湖区度假+抽奖套餐 多地-北京往返4天3晚自由行5星航空机票+1晚星级酒店
+                      +5星豪华邮轮+1天湖区度假+抽奖套餐 多地-北京往返
+                  </td>
+              </tr>
+              </tbody>
+          </table>
+        </div>
+          <div class="operBtnDiv">
+              <a class="large_button button_2_1">
+                  <span class="left"></span>
+                  <span class="center">关 闭</span>
+                  <span class="right"></span>
+              </a>
+          </div>
+      </div>
+  </script>
+
+    <script type="text/x-kendo-template" id="oper-delTemplate">
+        <div class="bookWinContainer packageWinContainer noScrollCon">
+            <div class="delConDiv">
+                多地-北京往返4天3晚自由行5星航空机票+1晚星级酒店+5星豪华邮轮+1天湖区
+                度假+抽奖套餐
+            </div>
+            <p class="tipMsg">
+                <i class="failIcon"></i>
+                <span>确定要删除吗？</span>
+            </p>
+            <p class="operBtn">
+                <a class="large_button button_2_1">
+                    <span class="left"></span>
+                    <span class="center">确 定</span>
+                    <span class="right"></span>
+                </a>
+                <a class="large_button button_2_2">
+                    <span class="left"></span>
+                    <span class="center">取 消</span>
+                    <span class="right"></span>
+                </a>
+            </p>
+        </div>
+     </script>
+
+
+     <script type="text/x-kendo-template" id="relate-singleProTemplate">
+         <div class="packageWinContainer">
+             <div class="packageListCon">
+             <table class="packageWinTab">
+                 <colgroup>
+                     <col width="60"/>
+                     <col width="455"/>
+                     <col width=""/>
+                 </colgroup>
+                 <tbody>
+                 <tr>
+                     <th>套餐名称：</th>
+                     <td>多地-北京往返4天3晚自由行5星航空机票+1晚星级酒店+5星豪华邮轮+1天湖区度假还长还长还要长哦</td>
+                     <td><span class="priceFonts">¥1200.00</span></td>
+                 </tr>
+                 </tbody>
+             </table>
+             <div class="windowConLine"></div>
+             <div class="selectSingleProDiv">
+                 <h4>选择单品</h4>
+                 <table class="packageWinTab verticalMiddle">
+                     <colgroup>
+                         <col width="40"/>
+                         <col width="150"/>
+                         <col width="60"/>
+                         <col width="250"/>
+                         <col width=""/>
+                     </colgroup>
+                     <tbody>
+                     <tr>
+                         <th>类型：</th>
+                         <td>
+                             <select data-role="dropdownlist" style="width:120px;">
+                                 <option value="全部">全部</option>
+                                 <option value="酒店">酒店</option>
+                                 <option value="机票">机票</option>
+                             </select>
+                         </td>
+                         <th>单品名称：</th>
+                         <td><input type="text" placeholder="可输入关键字查询" style="width:200px;"/></td>
+                         <td>
+                             <a class="button_secondary adaptiveButton small" href="javascript:;">
+                                 <span class="left"></span>
+                                 <span class="center">查 询</span>
+                                 <span class="right"></span>
+                             </a>
+                         </td>
+                     </tr>
+                     </tbody>
+                 </table>
+                 <table class="packageWinTab packageListWinTab">
+                     <colgroup>
+                         <col width="20"/>
+                         <col width=""/>
+                     </colgroup>
+                     <tbody>
+                     <tr>
+                         <td><input type="checkbox" checked/></td>
+                         <td>多地-北京往返4天3晚自由行5星航空机票+1晚星级酒店+5星豪华邮轮+1天湖区度假+抽奖+1天湖区度假套餐还长还长还要长哦</td>
+                     </tr>
+                     <tr>
+                         <td><input type="checkbox"/></td>
+                         <td>多地-北京往返4天3晚自由行5星航空机票+1晚星级酒店+5星豪华邮轮+1天湖区度假+抽奖+1天湖区度假套餐还长还长还要长哦</td>
+                     </tr>
+                     <tr>
+                         <td><input type="checkbox"/></td>
+                         <td>多地-北京往返4天3晚自由行5星航空机票+1晚星级酒店+5星豪华邮轮+1天湖区度假+抽奖+1天湖区度假</td>
+                     </tr>
+                     <tr>
+                         <td><input type="checkbox"/></td>
+                         <td>多地-北京往返4天3晚自由行5星航空机票+1晚星级酒店+5星豪华邮轮+1天湖区度假+抽奖+1天湖区度假</td>
+                     </tr>
+                     <tr>
+                         <td><input type="checkbox"/></td>
+                         <td>多地-北京往返4天3晚自由行5星航空机票+1晚星级酒店+5星豪华邮轮+1天湖区度假+抽奖+1天湖区度假</td>
+                     </tr>
+                     <tr>
+                         <td><input type="checkbox"/></td>
+                         <td>多地-北京往返4天3晚自由行5星航空机票+1晚星级酒店+5星豪华邮轮+1天湖区度假+抽奖+1天湖区度假</td>
+                     </tr>
+                     <tr>
+                         <td><input type="checkbox"/></td>
+                         <td>多地-北京往返4天3晚自由行5星航空机票+1晚星级酒店+5星豪华邮轮+1天湖区度假+抽奖+1天湖区度假</td>
+                     </tr>
+                     <tr>
+                         <td><input type="checkbox"/></td>
+                         <td>多地-北京往返4天3晚自由行5星航空机票+1晚星级酒店+5星豪华邮轮+1天湖区度假+抽奖+1天湖区度假</td>
+                     </tr>
+                     </tbody>
+                 </table>
+             </div>
+             </div>
+             <div class="operBtnDiv">
+                 <a class="large_button button_2_1 relate-singlePro-affirm">
+                     <span class="left"></span>
+                     <span class="center">确 定</span>
+                     <span class="right"></span>
+                 </a>
+                 <a class="large_button button_2_2">
+                     <span class="left"></span>
+                     <span class="center">取 消</span>
+                     <span class="right"></span>
+                 </a>
+            </div>
+     </script>
+
+  <script type="text/x-kendo-template" id="relate-singlePro-affirmTemplate">
+      <div class="packageWinContainer noScrollCon">
+          <table class="packageWinTab packageWinConTab">
+              <colgroup>
+                  <col width="65"/>
+                  <col width=""/>
+              </colgroup>
+              <tbody>
+              <tr>
+                  <th><b>套餐名称：</b></th>
+                  <td>多地-北京往返4天3晚自由行5星航空机票+1晚星级酒店+5星豪华邮轮+1天湖区度假还长还长还要长哦</td>
+              </tr>
+              </tbody>
+          </table>
+          <div class="windowConLine"></div>
+          <div class="selectSingleProDiv">
+              <h4>关联单品：</h4>
+              <table class="packageWinTab packagelistConWinTab">
+                  <colgroup>
+                      <col width="50"/>
+                      <col width=""/>
+                  </colgroup>
+                  <tbody>
+                  <tr>
+                      <th>机票：</th>
+                      <td>
+                          <p>上海浦东-新加坡 SQ833 1635-2215/新加坡-上海浦东 SQ830 0920-1435 5天4晚</p>
+                          <p>上海浦东-新加坡 SQ833 1635-2215/新加坡-上海浦东 SQ830 0920-1435 5天4晚</p>
+                          <p>上海浦东-新加坡 SQ833 1635-2215/新加坡-上海浦东 SQ830 0920-1435 5天4晚</p>
+                      </td>
+                  </tr>
+                  <tr>
+                      <th>酒店：</th>
+                      <td>
+                          <p>上海浦东-新加坡 SQ833 1635-2215/新加坡-上海浦东 SQ830 0920-1435 5天4晚</p>
+                          <p>上海浦东-新加坡 SQ833 1635-2215/新加坡-上海浦东 SQ830 0920-1435 5天4晚</p>
+                      </td>
+                  </tr>
+                  <tr>
+                      <th>邮轮：</th>
+                      <td>
+                          <p>上海浦东-新加坡 SQ833 1635-2215/新加坡-上海浦东 SQ830 0920-1435 5天4晚</p>
+                      </td>
+                  </tr>
+                  </tbody>
+              </table>
+          </div>
+          <div class="operBtnDiv noTopBorderDiv">
+              <a class="large_button button_2_1">
+                  <span class="left"></span>
+                  <span class="center">确 定</span>
+                  <span class="right"></span>
+              </a>
+              <a class="large_button button_2_2">
+                  <span class="left"></span>
+                  <span class="center">取 消</span>
+                  <span class="right"></span>
+              </a>
+          </div>
+      </div>   
+  </script>
+    <script type="text/javascript">
+      // 注册 alt+enter 事件，切换表格全屏显示，表格产生滚动条的页面都可以用
+      // 该方法非必需
+      $("body").keydown(function(e){
+        if(e.altKey && e.keyCode == 13){
+            if(/980/.test($("#container").css("width"))){
+                $("#container").css("width", "100%");
+            }else{
+                $("#container").css("width", "980px");
+            }
+        }
+      });
+
+
+      
+      var temp = new PopWindow('.addPackage', {
+          title:'新增套餐',
+          template:'#addPackageTemplate',
+          width:630,
+          modal:true
+      }).init();
+      temp.show();
+
+      var temp = new PopWindow('.oper-edit', {
+          title:'编辑套餐',
+          template:'#addPackageTemplate',
+          width:630,
+          modal:true
+      }).init();
+
+      var temp = new PopWindow('.viewDetail', {
+          title:'查看详情',
+          template:'#viewDetailTemplate',
+          width:630,
+          modal:true
+      }).init();
+      
+
+      var temp = new PopWindow('.oper-del', {
+          title:'删除提示',
+          template:'#oper-delTemplate',
+          width:450,
+          modal:true
+      }).init();
+
+      var temp = new PopWindow('.relate-singlePro', {
+            title:'关联单品',
+            template:'#relate-singleProTemplate',
+            width:630,
+            modal:true
+        }).init();
+
+      var temp = new PopWindow('.relate-singlePro-affirm', {
+          title:'关联单品确认',
+          template:'#relate-singlePro-affirmTemplate',
+          width:540,
+          modal:true
+      }).init();
+      
+    </script>
+    
+</body>
+</html>
