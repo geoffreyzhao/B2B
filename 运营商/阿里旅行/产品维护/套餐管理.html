@@ -16,6 +16,7 @@
     <script type="text/javascript" src="/static/js/kendo.web.js"></script>
     <script type="text/javascript" src="/static/js/global.js"></script>
     <script type="text/javascript" src="/static/js/scrollFix.js"></script>
+    <script type="text/javascript" src="/static/js/kindeditor.js"></script>
 
     
     <!--[if IE]>
@@ -404,7 +405,7 @@
               <tr>
                   <th><em>*</em>可使用人数：</th>
                   <td>
-                      <span class="peopleNumberSpan"><i class="minus">-</i><input type="text" style="width:50px;"/><i class="plus">+</i></span>人/份
+                      <span class="peopleNumberSpan"><i class="minus">-</i><input type="text" style="width:35px;"/><i class="plus">+</i></span>人/份
                       <span>（每份套餐可供多少人使用）</span></td>
               </tr>
               <tr>
@@ -441,7 +442,11 @@
               <tr>
                   <th>套餐说明：</th>
                   <td>
-                      
+                      <div class="richEditDiv">
+                          <form>
+                              <textarea name="content" class="editorText"></textarea>
+                          </form>
+                      </div>
                   </td>
               </tr>
               </tbody>
@@ -525,7 +530,11 @@
               <tbody>
               <tr>
                   <th>补差链接：</th>
-                  <td></td>
+                  <td>
+                      <p style="table-layout:fixed; word-break: break-all; overflow:hidden;">
+                          http://http://pan.baidu.com/s/1i3kU9It?spm=a1z09.4.0.0.uRUq1bpath=%252FAdobe%2520CC%25202014%2520%25E6%259C%2580%25E6%2596%25B0%25E5%25A4%25A7%25E5% 
+                      </p>
+                  </td>
               </tr>
               <tr>
                   <th>补差说明 ：</th>
@@ -766,7 +775,7 @@
           width:630,
           modal:true
       }).init();
-      temp.show();
+      //temp.show();
 
       var temp = new PopWindow('.oper-edit', {
           title:'编辑套餐',
@@ -805,6 +814,26 @@
       }).init();
       
     </script>
+
+  <script>
+      var editor;
+      KindEditor.ready(function(K) {
+          K.options.items = ['fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'removeformat', '|', 
+              'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist', 'insertunorderedlist', '|',
+          'emoticons', 'image', 'link'];
+          K.create('textarea[name="content"]', {
+              //autoHeightMode : true,
+              width: "475",
+              height: "180",
+              uploadJson : "/upload_json.php",
+              afterCreate : function() {
+
+              }
+          });
+      });
+
+  </script>
+
     
 </body>
 </html>
