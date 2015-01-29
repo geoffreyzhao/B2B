@@ -10,8 +10,8 @@
     <link href="/static/css/kendo.reset.css" rel="stylesheet" />
     <link href="/static/css/operator_visa.css" rel="stylesheet" type="text/css"/>
     
-    <script src="/static/js/jquery.min.js" type="text/javascript"></script>
-    <script src="/static/js/kendo.web.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
     <script type="text/javascript" src="/static/js/global.js"></script>
     <script type="text/javascript" src="/static/js/flight.js"></script>
     <!--[if lt IE 8]> 
@@ -82,12 +82,22 @@
                                     <span class="center">退订审核</span>
                                     <span class="right"></span>
                            </a>
-						   <button class="btns btn-blue ac-new ac-cancelReview" style="vertical-align:middle">取消审核</button>
-						   <a class="button_important adaptiveButton small">
+                           <button class="btns btn-blue ac-new ac-cancelReview" style="vertical-align:middle">取消审核</button>
+                           <a class="button_important adaptiveButton small modifyButton">
                                     <span class="left"></span>
                                     <span class="center">修改</span>
                                     <span class="right"></span>
                            </a>
+                         <a class="button_secondary adaptiveButton small saveButton" style="display: none;">
+                             <span class="left"></span>
+                             <span class="center">保存</span>
+                             <span class="right"></span>
+                         </a>
+                         <a class="button_important adaptiveButton small cancelButton" style="display: none;">
+                             <span class="left"></span>
+                             <span class="center">取消</span>
+                             <span class="right"></span>
+                         </a>
                      </div>
             </div>
 
@@ -525,10 +535,9 @@
 
 
  <script type="text/x-kendo-template" id="ac-refuse-template">
-            
             <div class="order-cancel-alert">
             	<i class="exclamation"></i>
-            	<span>是否确定要将此订单取消</span>
+            	<span>是否确定要将此订单取消？</span>
             </div>
             <div class="row" style="text-align:center;">
                 <button class="btns button_1_2">确 定</button> 
@@ -689,28 +698,24 @@
 	    var refuse = new PopWindow('.ac-refuse',{
 				        title:'取消预订',
 				        width:470,
-				        height:188,
 				        template: '#ac-refuse-template'
 				    }).init();
 
 	    var sendbackReview = new PopWindow('.ac-sendbackReview',{
 				        title:'退订审核',
 				        width:910,
-				        height:218,
 				        template: '#ac-sendbackReview-template'
 				    }).init();
 
 	    var cancelReview = new PopWindow('.ac-cancelReview',{
 				        title:'取消审核',
 				        width:910,
-				        height:218,
 				        template: '#ac-cancelReview-template'
 				    }).init();
 
 	    var rejectReason = new PopWindow('.ac-reject-reason',{
 				        title:'退回原因',
 				        width:468,
-				        height:188,
 				        template: '#ac-reject-reason-template'
 				    }).init();
 
@@ -721,13 +726,19 @@
 
 	    });
 
-
 	    $(".sendback-review-return-btn").on("click",function(){
 	    	sendbackReview.close();
 	    	rejectReason.show();
-	    })
+	    });
 	    
-
+        $(".modifyButton").click(function(){
+            $(this).hide();
+            $(".ac-refuse").hide();
+            $(".ac-sendbackReview").hide();
+            $(".ac-cancelReview").hide();
+            $(".saveButton").show();
+            $(".cancelButton").show();
+        });
 	    
 	});
 </script>
