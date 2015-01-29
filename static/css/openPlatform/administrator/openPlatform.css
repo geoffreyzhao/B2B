@@ -933,6 +933,7 @@
     float: right;
     background-color: #fefefe;
     border: 1px solid #e6e5e5;
+    position: relative;
 }
 
 .question-frame1{
@@ -942,38 +943,64 @@
 }
 
 .question-frame2{
-    width: 745px;
-    height: 170px;
+    width: 725px;
+    margin: 0 20px;
+    /*height: 170px;*/
+    height: 100%;
     float: left;
 }
 
 .question-frame3{
     width: 5px;
-    height: 170px;
+    /*height: 170px;*/
+    height: 100%;
     float: left;
 }
 
 .question-frame4{
     width: 65px;
-    height: 170px;
+    height: 100%;
     float: left;
+    position: absolute;
+    top: 0px;
+    right: 0px;
 }
 
 .question-content1{
-    height: 72px;
-    
+    /*height: 72px;*/
+    height: 100%;
+    padding: 20px 0px;
+}
+
+.question-edit-frame{
+    height: 100%;
+    padding: 20px 0px;
+}
+
+.answer-edit-frame{
+    height: 100%;
+    padding: 20px 0px;
+    border-top: 1px dashed #f0efef;
 }
 
 .question-content2{
-    height: 98px;
+    height: 100%;
     border-top: 1px dashed #f0efef;
+    padding: 20px 0;
 }
 
 .letterQ{
     font-size: 16px;
     color: #0695e1;
+    float: left;
+}
+
+.letterQ-edit{
+    font-size: 16px;
+    color: #0695e1;
+    float: left;
     position: relative;
-    top: 25px;
+    top:12px;
 }
 
 .letterQ2{
@@ -984,12 +1011,17 @@
 }
 
 .letterA{
+    display: inline-block;
     float: left;
     color: #ff8d42;
     font-size: 14px;
-    display: block;
-    position: relative;
-    top:20px;
+}
+
+.letterA-edit{
+    display: inline-block;
+    float: left;
+    color: #ff8d42;
+    font-size: 14px;
 }
 
 .letterA2{
@@ -1004,31 +1036,66 @@
 .question{
     font-size: 16px;
     color: #333333;
-    position: relative;
-    top: 25px;
+    float: left;
+    display: inline-block;
+    width: 690px;
 }
 
 .answer{
-    position: relative;
-    top:20px;
-    float: left;
     font-size: 14px;
     color: #666666;
-    display: block;
-    width: 710px;
+    width: 690px;
+    display: inline-block;
+    float: left;
 }
 
 
 .question-frame4 .edit,.question-frame4 .save{
-    height: 85px;
+    height: 50%;
     text-align: center;
     border-bottom: 1px solid #f0efef;
     border-left: 1px solid #f0efef;
     cursor: pointer;
+    display: table;
+    width: 100%;
+}
+
+.question-frame4 .cancel{
+    height: 50%;
+    text-align: center;
+    border-bottom: 1px solid #f0efef;
+    border-left: 1px solid #f0efef;
+    cursor: pointer;
+    display: table;
+    width: 100%;
+}
+
+.edit-frame{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.delete-frame{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.save-frame{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.cancel-frame{
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .question-frame4 .edit:hover,.question-frame4 .save:hover{
     background-color: #f9f9f9;
+}
+
+.question-frame4 .cancel:hover{
+     background-color: #f9f9f9;
 }
 
 .question-frame4 .delete:hover{
@@ -1054,18 +1121,20 @@
 }
 
 .question-frame4 .delete{
-    height: 83px;
+    width: 100%;
+    height: 50%;
     text-align: center;
     border-left: 1px solid #f0efef;
     cursor: pointer;
+    display: table;
 }
 
-.question-frame4 .cancel{
+/*.question-frame4 .cancel{
     height: 83px;
     text-align: center;
     border-left: 1px solid #f0efef;
     cursor: pointer;
-}
+}*/
 
 .question-frame4 .delete:hover .delete-icon{
     background-position: -32px -89px;
@@ -1076,8 +1145,6 @@
     width: 20px;
     height: 20px;
     display: inline-block;
-    position: relative;
-    top: 20px;
 }
 
 .question-frame4 .saveIcon{
@@ -1085,8 +1152,6 @@
     width: 20px;
     height: 20px;
     display: inline-block;
-    position: relative;
-    top: 20px;
 }
 
 .question-frame4 .save:hover .saveIcon{
@@ -1098,8 +1163,7 @@
     width: 20px;
     height: 20px;
     display: inline-block;
-    position: relative;
-    top: 20px;
+    
 }
 
 .question-frame4 .cancel:hover .cancelIcon{
@@ -1110,8 +1174,6 @@
     font-size: 14px;
     color: #666666;
     display: block;
-    position: relative;
-    top: 20px;
 }
 
 .delete .delete-icon{
@@ -1119,8 +1181,6 @@
     width: 19px;
     height: 19px;
     display: inline-block;
-    position: relative;
-    top: 20px;
 }
 
 .question-rightCont-edit{
@@ -1132,24 +1192,45 @@
 }
 
 .question-edit{
-    width: 700px;
+
+    border: 1px solid #cecece;
+color: #333333;
+float: left;
+font-size: 16px;
+height: 40px;
+padding: 12px 0 0 8px;
+text-indent: 4px;
+width: 682px;
+
+
+
+    /*width: 690px;
     height: 40px;
     border: 1px solid #cecece;
     vertical-align: middle;
     font-size: 16px;
     color: #333333;
-    position: relative;
-    top: 22px;
     text-indent: 4px;
+    float: left;
+    position: relative;
+    top: 10px;
+
+
+    padding: 8px 0 0 8px;*/
+
+
+
 }
 
 .answer-edit{
-    width: 700px;
+    width: 680px;
     height: 72px;
     font-size: 14px;
     color: #666666;
     border: 1px solid #cecece;
-    margin-top: 10px;
+    float: left;
+    line-height: 20px;
+    padding: 8px 0px 0px 8px;
 }
 
 .blue-border{
@@ -1276,4 +1357,19 @@
     left: -1px;
     opacity: 0;
     filter: alpha(opacity=0);
+}
+
+.edit-questionandanswer-frame{
+    background-color: #fefefe;
+    border: 1px solid #42adce;
+    float: right;
+    width: 835px;
+    position: relative;
+}
+
+.edit-questionandanswer-content{
+    float: left;
+    height: 100%;
+    margin: 0 20px;
+    width: 725px;
 }
