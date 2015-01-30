@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="js/idangerous.swiper.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
 	<link rel=stylesheet type="text/css" href="css/idangerous.swiper.css">
 	<link rel=stylesheet type="text/css" href="css/common.css">
 	<link rel=stylesheet type="text/css" href="css/travelzen.css">
@@ -15,7 +16,7 @@
 	    <div class="headerCon">
 	        <a href="index.html" class="logo"></a>
 	        <ul class="mainNavBar">
-	            <li  class="currentPage"><a href="index.html">首页</a></li>
+	            <li  class="currentPage"><a href="home.html">首页</a></li>
 	            <li><a href="milestone.html">公司里程</a></li>
 	            <li><a href="news.html">公司新闻</a></li>
 	            <li><a href="about.html">关于我们</a></li>
@@ -25,7 +26,7 @@
 	        </ul>
 	        <div class="websiteList">
 	        	<div class="shield"></div>
-        		<div>天地行采购平台</div>
+        		<div style="margin-top:-15px;">天地行采购平台</div>
         		<div>真旅网差旅平台</div>
         	</div>
 	    </div>
@@ -34,12 +35,12 @@
 	<div class="swiper-container">
 		  <div class="swiper-wrapper">
 		    <div class="swiper-slide">
-		    	<div class="fullpage">
+		    	<div class="fullpage slide-container">
 		    		<img id="fullpageImg" src="image/homepage_bg.jpg" alt="" onload="resizeImg();">
 		    	</div>
 		    </div>
 		    <div class="swiper-slide">
-		    	<div class="companyProfile">
+		    	<div class="companyProfile slide-container">
 		    		<div class="title"><i></i>公司概况</div>
 		    		<div class="brief clearfix">
 		    			<div class="companyImg">
@@ -64,7 +65,7 @@
 		    	</div>
 		    </div>
 		    <div class="swiper-slide">
-		    	<div class="superiority">
+		    	<div class="superiority slide-container">
 		    		<div class="mainContent">
 			    		<div class="title"><i></i>核心优势</div>
 			    		<div class="subDescribe">伴随中国旅游业共同成长，在不断的探索中，凭借自主研发的交易系统、各类资源的整合、 优质便捷的服务等优势，成为在线旅游业的领跑者。</div>
@@ -98,7 +99,7 @@
 		    	</div>
 		    </div>
 		    <div class="swiper-slide">
-		    	<div class="businessStructure">
+		    	<div class="businessStructure slide-container">
 		    		<div class="mainContent">
 			    		<div class="title"><i></i>业务构成</div>
 			    		<div class="subDescribe">真旅网凭借多年积累的资源优势，依托自主研发的交易平台，向客户提供机票预订、酒店预订、
@@ -153,70 +154,35 @@
 				height: ($(window).height() - 90) + "px"
 			});
 
-			$(".fullpage").css({
+			$(".swiper-slide .slide-container").css({
 				height: ($(window).height() - 90) + "px"
 			});
 
-			$(".companyProfile").css({
-				height: ($(window).height() - 90) + "px"
-			});
-
-			$(".superiority").css({
-				height: ($(window).height() - 90) + "px"
-			});
-			
-			$(".businessStructure").css({
-				height: ($(window).height() - 90) + "px"
-			});
-
-			$(".swiper-pagination-switch").each(function(index){
-				if (index == 0) {
-					$(this).append("<span>公司宗旨</span>");
-				} else if (index == 1) {
-					$(this).append("<span>公司概况</span>");
-				} else if (index == 2) {
-					$(this).append("<span>核心优势</span>");
-				} else if (index == 3) {
-					$(this).append("<span>业务构成</span>");
-				}
-			});
-
-			$(".website").hover(function(){
-				$(".websiteList").show();
-			}, function(event){
-				var websiteX1 = $(".websiteList").offset().left,
-				    websiteY1 = $(".websiteList").offset().top,
-				    websiteX2 = websiteX1 + $(".websiteList").outerWidth(),
-				    websiteY2 = websiteY1 + $(".websiteList").outerHeight();
-
-				if (event.clientX > websiteX2 || event.clientX < (websiteX1 - 5)
-					|| event.clientY > websiteY2 || event.clientY < (websiteY1 - 5)) {
-					$(".websiteList").hide();
-				}
-			});
-
-			$(".websiteList").mouseout(function(){
-				var websiteX1 = $(".websiteList").offset().left,
-				    websiteY1 = $(".websiteList").offset().top,
-				    websiteX2 = websiteX1 + $(".websiteList").outerWidth(),
-				    websiteY2 = websiteY1 + $(".websiteList").outerHeight();
-
-
-				if (event.clientX > (websiteX2 - 5) || event.clientX < websiteX1
-					|| event.clientY > (websiteY2 - 5) || event.clientY < websiteY1) {
-					$(".websiteList").hide();
-				}
-				
-			});
+			$(window).load(function(){
+				resizeImg();
+				$(".swiper-pagination-switch").each(function(index){
+					if (index == 0) {
+						$(this).append("<span>公司宗旨</span>");
+					} else if (index == 1) {
+						$(this).append("<span>公司概况</span>");
+					} else if (index == 2) {
+						$(this).append("<span>核心优势</span>");
+					} else if (index == 3) {
+						$(this).append("<span>业务构成</span>");
+					}
+				});
+			});			
 
 			var mySwiper = new Swiper('.swiper-container',{
 				speed: 1000,
 				mode: 'vertical',
-				mousewheelControl: true,
-				mousewheelControlForceToAxis: true,
 				pagination: '.pagination',
 				paginationClickable: true,
-				keyboardControl: true
+				mousewheelControl: true,
+				simulateTouch: false,
+				keyboardControl: true,
+				updateOnImagesReady : true
+				// mousewheelControlForceToAxis: true,
 			});
 
 		});
