@@ -15,6 +15,7 @@ $(function(){
 
     /* 返回顶部  结束  */
 
+    /*  旗下网站 hover事件，不需要
     $(".website").hover(function(){
         $(".websiteList").show();
     }, function(event){
@@ -42,7 +43,8 @@ $(function(){
         }
         
     });
-
+    */
+    /* 旗下网站链接
     $("#b2b-website").click(function(){
         window.open("http://www.tdxinfo.com");
     });
@@ -50,4 +52,5 @@ $(function(){
     $("#b2g-website").click(function(){
         window.open("http://vipcorp.travelzen.com");
     });
+    */
 });
