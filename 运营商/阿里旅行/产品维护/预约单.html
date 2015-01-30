@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>运营商 阿里旅行 预约单</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />    
+    <link href="/static/css/operatorCommonHeader.css" rel="stylesheet">
+    <link href="/static/css/operatorAliTravel.css" rel="stylesheet" type="text/css"/>
+
+    <script src="/static/js/jquery.min.js" type="text/javascript"></script>    
+    <script src="/static/js/kendo.web.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/scrollFix.js"></script>
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+    
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/static/css/ie.css" />
+    <script src="/static/js/vendor/IE7.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div id="head">
+        <div></div>
+    </div>
+
+    <div id="catalogue"></div>
+
+    <div id="container">
+        <div class="logo">
+            <div class="clearfix">
+                <h1></h1>
+                <div class="profile">
+                    <a href="javascript:void(0)">你好,千颂伊</a>
+                    <a href="javascript:void(0)">退出</a>
+                </div>
+            </div>
+            <ul id="catalogue_menu">
+                <li class="">
+                    <a href="javascript:void(0)">国内机票</a>                    
+                </li>
+                <li><a href="javascript:void(0)">国际机票</a></li>
+                <li><a href="javascript:void(0)">酒店</a></li>
+                <li class="current">
+                    <a href="javascript:void(0)">阿里旅行</a>
+                    <ol class="subMenu">
+                        <li class="currentSubMenu"><a href="javascript:void(0)">预约单管理</a></li>
+                        <li><a href="javascript:void(0)">套餐产品维护</a></li>
+                        <li><a href="javascript:void(0)">增值产品维护</a></li>
+                    </ol>
+                </li>
+                <li><a href="javascript:void(0)">打包产品</a></li>
+                <li><a href="javascript:void(0)">旅游</a></li>
+                <li><a href="javascript:void(0)">邮轮</a></li>
+                <li><a href="javascript:void(0)">签证</a></li>
+                <li><a href="javascript:void(0)">保险</a></li>
+                <li><a href="javascript:void(0)">短信</a></li>
+                <li><a href="javascript:void(0)">通用订单</a></li>
+                <li><a href="javascript:void(0)">票证</a></li>
+                <li><a href="javascript:void(0)">财务</a></li>
+                <li><a href="javascript:void(0)">客户</a></li>
+                <li><a href="javascript:void(0)">设置</a></li>
+            </ul>
+            <div class="headerMessage clearfix">
+                <div id="msgNum">
+                    <span>消息</span>
+                    <em>30</em>
+                </div>
+            </div>
+        </div>
+        <div id="mainContent">
+          
+            <div class="actions block">
+                <div class="col col-l sep-r">
+                    <button class="btns btn-return">返回</button>
+                </div>
+                <span class="page-name">新建国内预约单</span>
+                <div class="col col-r sep-l">
+                    <a href="javascript:;" class="button_secondary adaptiveButton small bookSuccessOper">
+                        <span class="left"></span>
+                        <span class="center">提交</span>
+                        <span class="right"></span>
+                    </a>
+                    <a href="javascript:;" class="button_secondary adaptiveButton small bookSuccessOper">
+                        <span class="left"></span>
+                        <span class="center">保存草稿</span>
+                        <span class="right"></span>
+                    </a>
+                    <a class="button_unimportant adaptiveButton small bookFailOper" href="javascript:void(0);">
+                        <span class="left"></span>
+                        <span class="center">取消</span>
+                        <span class="right"></span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="block block-module book-info">
+                <div class="main-title">
+                    <h3>预约信息</h3>
+                </div>
+                <div class="set-menu-info">
+                    <span class="sm-name" style="vertical-align:middle;">套餐名称：
+                        <select data-role="dropdownlist" style="width:350px;">
+                            <option>【国内】多地出发-深圳自由行  套餐金额：999元</option>
+                            <option>【国内】多地出发-深圳自由行  套餐金额：999元</option>
+                            <option>【国内】多地出发-深圳自由行  套餐金额：999元</option>
+                        </select>
+                    </span>
+                    <span class="set-menu-detail">套餐详情</span>
+                </div>
+                <div class="book-remark">
+                    <span>预约备注：</span>
+                    <textarea></textarea>
+                </div>
+            </div>
+
+            <div class="block block-module tb-info-block">
+                <div class="main-title"> 
+                    <h3>淘宝信息</h3> 
+                </div>
+                <div class="tb-order-info-block">
+                    <div class="table-top-head">
+                        <b>订单信息</b>
+                        <a class="button_secondary adaptiveButton small addOrderSearch" href="javascript:void(0);">
+                            <span class="left"></span>
+                            <span class="center center_1">+ 添加订单号</span>
+                            <span class="right"></span>
+                        </a>
+                        <a class="button_secondary adaptiveButton small addOrderResult" href="javascript:void(0);">
+                            <span class="left"></span>
+                            <span class="center center_1">+ 添加订单号</span>
+                            <span class="right"></span>
+                        </a>
+                        <em class="orangeFonts">（注：不可重复添加订单）</em>
+                    </div>
+                    <table class="commonTabStyle">
+                        <colgroup>
+                            <col width="120">
+                            <col width="70">
+                            <col width="120">
+                            <col width="80">
+                            <col width="70">
+                            <col width="90">
+                            <col width="80">
+                            <col width="80">
+                            <col width="65">
+                            <col width="65">
+                            <col width="80">
+                            <col width="70">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>淘宝订单号</th>
+                                <th>淘宝ID</th>
+                                <th>支付宝账号</th>
+                                <th>订单状态</th>
+                                <th>退款状态</th>
+                                <th>商家名称</th>
+                                <th>下单时间</th>
+                                <th>购买份数</th>
+                                <th>已预约<br>份数</th>
+                                <th>预约份数</th>
+                                <th class="textAlignCenter">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>824914938787677</td>
+                                <td>millioncc</td>
+                                <td>jys8824@163.com</td>
+                                <td>卖家已发货</td>
+                                <td>无退款</td>
+                                <td>不夜城国旅</td>
+                                <td>
+                                    <div>2014-09-11</div>
+                                    <div>12:11:00</div>
+                                </td>
+                                <td class="textAlignCenter">3</td>
+                                <td class="textAlignCenter">3</td>
+                                <td class="textAlignCenter">
+                                    <input type="text" style="width: 60px;" value="3">
+                                </td>
+                                <td class="textAlignCenter">
+                                    <a href="javascript:void(0);" class="ac-deleteHintWindow">删除</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>824914938787677</td>
+                                <td>millioncc</td>
+                                <td>jys8824@163.com</td>
+                                <td>卖家已发货</td>
+                                <td>无退款</td>
+                                <td>不夜城国旅</td>
+                                <td>
+                                    <div>2014-09-11</div>
+                                    <div>12:11:00</div>
+                                </td>
+                                <td class="textAlignCenter">2</td>
+                                <td class="textAlignCenter">2</td>
+                                <td class="textAlignCenter">
+                                    <input type="text" style="width: 60px;" value="2">
+                                </td>
+                                <td class="textAlignCenter">
+                                    <a href="javascript:;" class="button_secondary adaptiveButton small">
+                                        <span class="left"></span>
+                                        <span class="center center_1">确定</span>
+                                        <span class="right"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>824914938787677</td>
+                                <td>millioncc</td>
+                                <td>jys8824@163.com</td>
+                                <td>卖家已发货</td>
+                                <td>无退款</td>
+                                <td>不夜城国旅</td>
+                                <td>
+                                    <div>2014-09-11</div>
+                                    <div>12:11:00</div>
+                                </td>
+                                <td class="textAlignCenter">3</td>
+                                <td class="textAlignCenter">3</td>
+                                <td class="textAlignCenter">
+                                    <input type="text" style="width: 60px;" value="3">
+                                </td>
+                                <td class="textAlignCenter">
+                                    <a href="javascript:void(0);" class="ac-deleteHintWindow">删除</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="order-diff-price-block">
+                    <div class="table-top-head">
+                        <b>补差订单</b>
+                        <a class="button_secondary adaptiveButton small addOrderDiffPriceOper" href="javascript:void(0);">
+                            <span class="left"></span>
+                            <span class="center center_1">+ 添加补差订单</span>
+                            <span class="right"></span>
+                        </a>
+                        <span class="set-menu-detail sendersInstructions">补差说明</span>
+                    </div>
+                    <table class="commonTabStyle">
+                        <colgroup>
+                            <col width="120">
+                            <col width="70">
+                            <col width="70">
+                            <col width="120">
+                            <col width="80">
+                            <col width="70">
+                            <col width="240">
+                            <col width="90">
+                            <col width="70">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>补差订单号</th>
+                            <th>金额</th>
+                            <th>淘宝ID</th>
+                            <th>支付宝账号</th>
+                            <th>订单状态</th>
+                            <th>退款状态</th>
+                            <th>宝贝标题</th>
+                            <th>下单时间</th>
+                            <th class="textAlignCenter">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>824914938787677</td>
+                            <td>
+                                <span class="orangeFonts">240</span>
+                            </td>
+                            <td>millioncc</td>
+                            <td>jys8824@163.com</td>
+                            <td>卖家已发货</td>
+                            <td>无退款</td>
+                            <td>邮费补差</td>
+                            <td>
+                                <div>2014-09-11</div>
+                                <div>12:11:00</div>
+                            </td>
+                            <td class="textAlignCenter">
+                                <a href="javascript:void(0);">删除</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>824914938787677</td>
+                            <td>
+                                <span class="orangeFonts">19999</span>
+                            </td>
+                            <td>millioncc</td>
+                            <td>jys8824@163.com</td>
+                            <td>卖家已发货</td>
+                            <td>已退款</td>
+                            <td>多地三亚，五天四晚自由行，字多回行</td>
+                            <td>
+                                <div>2014-09-11</div>
+                                <div>12:11:00</div>
+                            </td>
+                            <td class="textAlignCenter">
+                                <a href="javascript:void(0);">删除</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>824914938787677</td>
+                            <td>
+                                <span class="orangeFonts">320</span>
+                            </td>
+                            <td>millioncc</td>
+                            <td>jys8824@163.com</td>
+                            <td>卖家已发货</td>
+                            <td>已退款</td>
+                            <td>邮费补差</td>
+                            <td>
+                                <div>2014-09-11</div>
+                                <div>12:11:00</div>
+                            </td>
+                            <td class="textAlignCenter">
+                                <a href="javascript:void(0);">删除</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="block block-module trip-info-block">
+                <div class="sub-info trip-info">
+                    <span>
+                        <b class="info-title">出行日期</b>
+                        <input type="text" class="datepicker" value="2014-11-12" style="width:120px;">
+                    </span>
+                    <span>
+                        <b class="info-title">出发城市</b>
+                        <input type="text" value="上海" style="width:100px;">
+                    </span>
+                    <span>
+                        <b class="info-title">到达城市</b>
+                        <input type="text" value="深圳" style="width:100px;">
+                    </span>
+                </div>
+                <div class="sub-info trip-info">
+                    <span>
+                        <b class="info-title">返程日期</b>
+                        <input type="text" class="datepicker" value="2014-11-12" style="width:120px;">
+                    </span>
+                    <span>
+                        <b class="info-title">出发城市</b>
+                        <input type="text" value="上海" style="width:100px;">
+                    </span>
+                    <span>
+                        <b class="info-title">到达城市</b>
+                        <input type="text" value="深圳" style="width:100px;">
+                    </span>
+                </div>
+                <div class="table-top-head">
+                    <b style="margin-right: 0;">出行人数：</b>
+                    <b class="orangeFonts">3</b>
+                    <a class="button_secondary adaptiveButton small" href="javascript:void(0);">
+                        <span class="left"></span>
+                        <span class="center center_1">+ 添加出行人</span>
+                        <span class="right"></span>
+                    </a>
+                </div>
+                <div class="trip-passenger-info">
+                    <div class="table-top-head">
+                        <b>出行人信息</b>
+                    </div>
+                    <table class="commonTabStyle">
+                        <colgroup>
+                            <col width="55">
+                            <col width="70">
+                            <col width="110">
+                            <col width="75">
+                            <col width="105">
+                            <col width="105">
+                            <col width="180">
+                            <col width="130">
+                            <col width="100">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th class="textAlignCenter">编号</th>
+                            <th>类型</th>
+                            <th>姓名</th>
+                            <th>性别</th>
+                            <th>出生日期</th>
+                            <th>证件类型</th>
+                            <th>证件号码</th>
+                            <th>手机号</th>
+                            <th class="textAlignCenter">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="textAlignCenter">1</td>
+                            <td>成人</td>
+                            <td>李民</td>
+                            <td>男</td>
+                            <td>1980-02-06</td>
+                            <td>身份证</td>
+                            <td>102569887451233695</td>
+                            <td>13685852346</td>
+                            <td class="textAlignCenter">
+                                <a href="javascript:void(0);">修改</a>
+                                <a href="javascript:void(0);">删除</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="textAlignCenter">2</td>
+                            <td>成人</td>
+                            <td>李民</td>
+                            <td>男</td>
+                            <td>1980-02-06</td>
+                            <td>护照</td>
+                            <td>102569887451233695</td>
+                            <td>13685852346</td>
+                            <td class="textAlignCenter">
+                                <a href="javascript:void(0);">修改</a>
+                                <a href="javascript:void(0);">删除</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="textAlignCenter">3</td>
+                            <td>儿童</td>
+                            <td>
+                                <input type="text" style="width: 90px;" value="陈宁">
+                            </td>
+                            <td>
+                                <select style="width: 55px;" data-role="dropdownlist">
+                                    <option>男</option>
+                                    <option selected>女</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" style="width: 85px;" value="1980-02-06">
+                            </td>
+                            <td>
+                                <select style="width: 90px;" data-role="dropdownlist">
+                                    <option selected>身份证</option>
+                                    <option>护照</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" style="width: 155px;" value="102569887451233695">
+                            </td>
+                            <td>
+                                <input type="text" style="width: 110px;" value="13685852346">
+                            </td>
+                            <td class="textAlignCenter">
+                                <a href="javascript:void(0);">保存</a>
+                                <a href="javascript:void(0);">删除</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="block block-module">
+                <div class="main-title"> 
+                    <h3>增值产品</h3>
+                </div>
+
+                <table class="editAvpTable addModule">
+                    <colgroup>
+                        <col width="30" />
+                        <col width="84" />
+                        <col width="200" />
+                        <col width="" />
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>酒店</td>
+                            <td>金额 <input type="text" style="width:150px;"></td>
+                            <td>备注 <input type="text" style="width:480px;"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>签证</td>
+                            <td>金额 <input type="text" style="width:150px;"></td>
+                            <td>备注 <input type="text" style="width:480px;"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>保险</td>
+                            <td>金额 <input type="text" style="width:150px;"></td>
+                            <td>备注 <input type="text" style="width:480px;"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>租车</td>
+                            <td>金额 <input type="text" style="width:150px;"></td>
+                            <td>备注 <input type="text" style="width:480px;"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>接送机</td>
+                            <td>金额 <input type="text" style="width:150px;"></td>
+                            <td>备注 <input type="text" style="width:480px;"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>当地跟团</td>
+                            <td>金额 <input type="text" style="width:150px;"></td>
+                            <td>备注 <input type="text" style="width:480px;"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>景点门票</td>
+                            <td>金额 <input type="text" style="width:150px;"></td>
+                            <td>备注 <input type="text" style="width:480px;"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>邮轮</td>
+                            <td>金额 <input type="text" style="width:150px;"></td>
+                            <td>备注 <input type="text" style="width:480px;"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>境外wifi</td>
+                            <td>金额 <input type="text" style="width:150px;"></td>
+                            <td>备注 <input type="text" style="width:480px;"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>境外电话卡</td>
+                            <td>金额 <input type="text" style="width:150px;"></td>
+                            <td>备注 <input type="text" style="width:480px;"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>其他服务</td>
+                            <td>金额 <input type="text" style="width:150px;"></td>
+                            <td>备注 <input type="text" style="width:480px;"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        <button class="ac-exceedBookingHintWindow">提示01</button>
+        <button class="ac-leastBookingHintWindow">提示02</button>
+        
+        </div>
+    </div>
+    
+    <div id="extFooter">
+        <div>
+            <p>
+                <a href="javascript:void(0);">关于我们</a>&nbsp;|
+                <a href="javascript:void(0);">微博</a>&nbsp;|
+                <a href="javascript:void(0);">服务条款</a>&nbsp;|
+                <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+    
+    <!-- 添加淘宝订单模板 01 -->
+    <script type="text/x-kendo-template" id="addOrderSearchTemplate">
+        <div class="searchWindowContent">
+            <table class="searchTab">
+                <colgroup>
+                    <col width="85">
+                    <col width="300">
+                    <col width="130">
+                </colgroup>
+                <tr>
+                    <th>淘宝订单号：</td>
+                        <td><input type="text" style="width:280px;"></td>
+                        <td>
+                            <a href="javascript:;" class="button_secondary adaptiveButton small">
+                                <span class="left"></span>
+                                <span class="center">查 询</span>
+                                <span class="right"></span>
+                            </a>
+                        </td>
+                </tr>
+            </table>
+        </div>
+        <div class="orangeHintFonts">请先输入淘宝订单号查询订单</div>
+        <div class="textAlignCenterBtn">
+            <button class="large_button" type="button" name="a">关 闭</button>
+        </div>
+    </script>
+    
+    <!--  添加淘宝订单模板 02 -->
+     <script type="text/x-kendo-template" id="addOrderResultTemplate">
+         <section class="orderWindowContent">
+             <div class="searchWindowContent">
+                 <table class="searchTab">
+                     <colgroup>
+                         <col width="85">
+                         <col width="300">
+                         <col width="130">
+                     </colgroup>
+                     <tr>
+                         <th>淘宝订单号：</td>
+                             <td><input type="text" style="width:280px;"></td>
+                             <td>
+                                 <a href="javascript:;" class="button_secondary adaptiveButton small">
+                                     <span class="left"></span>
+                                     <span class="center">查 询</span>
+                                     <span class="right"></span>
+                                 </a>
+                             </td>
+                     </tr>
+                 </table>
+             </div>
+             <div class="blockModuleWindow">
+                 <h3 class="titleFonts">订单交易详情</h3>
+                 <table class="tradingParticulars">
+                     <colgroup>
+                         <col width="255">
+                         <col width="235">
+                     </colgroup>
+                     <tbody>
+                     <tr>
+                         <td>
+                             <b>淘宝订单号：</b>
+                             <em>13202115566788662</em>
+                         </td>
+                         <td>
+                             <b>商家名称：</b>
+                             <em>不夜城国际旅行社</em>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <b>订单状态：</b>
+                             <em>卖家已发货</em>
+                         </td>
+                         <td>
+                             <b>退款状态：</b>
+                             <em class="orangeFonts">无退款</em>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <b>淘宝ID：</b>
+                             <em>abdgregre</em>
+                         </td>
+                         <td>
+                             <b>支付宝账号：</b>
+                             <em>abdgregre</em>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>
+                             <b>应付金额：</b>
+                             <em>3999</em>
+                         </td>
+                         <td>
+                             <b>实付金额：</b>
+                             <em>3999</em>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td class="clearfix">
+                             <b class="pullLeft">下单时间：</b>
+                             <em class="pullLeft">2013-12-03<br>12:23:19</em>
+                         </td>
+                         <td class="clearfix">
+                             <b class="pullLeft">付款时间：</b>
+                             <em class="pullLeft">2013-12-03<br>12:23:19</em>
+                         </td>
+                     </tr>
+                     </tbody>
+                 </table>
+             </div>
+             <div class="blockModuleWindow">
+                 <h3 class="titleFonts">请选择要预约的商品</h3>
+                 <table class="bookingGoodsList currentList">
+                     <colgroup>
+                         <col width="30">
+                         <col width="80">
+                         <col width="150">
+                         <col width="80">
+                         <col width="180">
+                     </colgroup>
+                     <tbody>
+                     <tr>
+                         <td rowspan="3" class="textAlignCenter">
+                             <input type="radio" checked name="bookingGoods">
+                         </td>
+                         <th class="verticalAlignTop">商品标题：</th>
+                         <td colspan="3">多地-三亚4天3晚+五星级大酒店+双飞+赠送埃及、索马里、马达加斯加智利企鹅游  自由行  随心玩</td>
+                     </tr>
+                     <tr>
+                         <th>商品套餐：</th>
+                         <td colspan="3">套餐1海口出发</td>
+                     </tr>
+                     <tr>
+                         <th>购买份数：</th>
+                         <td>2</td>
+                         <th>已预约份数：</th>
+                         <td>1</td>
+                     </tr>
+                     </tbody>
+                 </table>
+                 <table class="bookingGoodsList">
+                     <colgroup>
+                         <col width="30">
+                         <col width="80">
+                         <col width="150">
+                         <col width="80">
+                         <col width="180">
+                     </colgroup>
+                     <tbody>
+                     <tr>
+                         <td rowspan="3" class="textAlignCenter">
+                             <input type="radio" name="bookingGoods">
+                         </td>
+                         <th class="verticalAlignTop">商品标题：</th>
+                         <td colspan="3">多地-三亚4天3晚+五星级大酒店+双飞+赠送埃及、索马里、马达加斯加智利企鹅游  自由行  随心玩</td>
+                     </tr>
+                     <tr>
+                         <th>商品套餐：</th>
+                         <td colspan="3">套餐1海口出发</td>
+                     </tr>
+                     <tr>
+                         <th>购买份数：</th>
+                         <td>2</td>
+                         <th>已预约份数：</th>
+                         <td>1</td>
+                     </tr>
+                     </tbody>
+                 </table>
+                 <table class="bookingGoodsList">
+                     <colgroup>
+                         <col width="30">
+                         <col width="80">
+                         <col width="150">
+                         <col width="80">
+                         <col width="180">
+                     </colgroup>
+                     <tbody>
+                     <tr>
+                         <td rowspan="3" class="textAlignCenter">
+                             <input type="radio" name="bookingGoods">
+                         </td>
+                         <th class="verticalAlignTop">商品标题：</th>
+                         <td colspan="3">多地-三亚4天3晚+五星级大酒店+双飞+赠送埃及、索马里、马达加斯加智利企鹅游  自由行  随心玩</td>
+                     </tr>
+                     <tr>
+                         <th>商品套餐：</th>
+                         <td colspan="3">套餐1海口出发</td>
+                     </tr>
+                     <tr>
+                         <th>购买份数：</th>
+                         <td>2</td>
+                         <th>已预约份数：</th>
+                         <td>1</td>
+                     </tr>
+                     </tbody>
+                 </table>
+                 <table class="bookingGoodsList irreducibleList">
+                     <colgroup>
+                         <col width="30">
+                         <col width="80">
+                         <col width="150">
+                         <col width="80">
+                         <col width="180">
+                     </colgroup>
+                     <tbody>
+                     <tr>
+                         <td rowspan="3" class="textAlignCenter">
+                             <input type="radio" disabled name="bookingGoods">
+                         </td>
+                         <th class="verticalAlignTop">商品标题：</th>
+                         <td colspan="3">多地-三亚4天3晚+五星级大酒店+双飞+赠送埃及、索马里、马达加斯加智利企鹅游  自由行  随心玩</td>
+                     </tr>
+                     <tr>
+                         <th>商品套餐：</th>
+                         <td colspan="3">套餐1海口出发</td>
+                     </tr>
+                     <tr>
+                         <th>购买份数：</th>
+                         <td>2</td>
+                         <th>已预约份数：</th>
+                         <td>1</td>
+                     </tr>
+                     </tbody>
+                 </table>
+             </div>
+             <div class="textAlignCenterBtn">
+                 <button class="large_button" type="button" name="a">确 定</button>
+                 <button class="large_button disable" type="button" name="a">取 消</button>
+             </div>
+         </section>
+     </script>
+
+    <script type="text/x-kendo-template" id="ac-deleteHintWindow-template">
+        <div class="searchWindowContent">
+            <table class="searchTab">
+                <colgroup>
+                    <col width="85">
+                    <col width="340">
+                </colgroup>
+                <tr>
+                    <th>淘宝订单号：</td>
+                    <td>1234567890</td>
+                </tr>
+                <tr>
+                    <th>淘宝ID：</td>
+                    <td>millioncc</td>
+                </tr>
+            </table>
+        </div>
+        <div class="delHintFonts">
+            <i class="delHintIcon"></i>
+            <b>确定要删除吗？</b>
+        </div>
+        <div class="textAlignCenterBtn">
+            <button class="large_button" type="button" name="a">确 定</button>
+            <button class="large_button disable" type="button" name="a">取 消</button>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-exceedBookingHintWindow-template">
+        <div class="bookingHintFonts">
+            <h3 class="titleFonts">您输入的份数超过可预约份数！</h3>
+            <div>请重新填写预约份数</div>
+        </div>
+        <div class="textAlignCenterBtn">
+            <button class="large_button" type="button" name="a">确 定</button>
+            <button class="large_button disable" type="button" name="a">取 消</button>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-leastBookingHintWindow-template">
+        <div class="bookingHintFonts">
+            <h3 class="titleFonts">您输入的份数超过可预约份数！</h3>
+            <div>请重新填写预约份数</div>
+        </div>
+        <div class="textAlignCenterBtn">
+            <button class="large_button" type="button" name="a">确 定</button>
+            <button class="large_button disable" type="button" name="a">取 消</button>
+        </div>
+    </script>
+    
+    <script type="text/x-kendo-template" id="sendersInstructionsTemplate">
+        <div class="setGrayBorderContent">
+            <i class="grayBorderUpArrow"></i>
+            <table class="floatWindow">
+                <colgroup>
+                    <col width="75">
+                    <col width="380">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <th class="verticalAlignTop">补差链接：</th>
+                    <td>
+                        <a href="http://proto.b2b.com/psd/%E8%BF%90%E8%90%A5%E5%95%86/%E9%98%BF%E9%87%8C%E6%97%85%E8%A1%8C/%E4%BA%A7%E5%93%81%E7%BB%B4%E6%8A%A4/">http://proto.b2b.com/psd/%E8%BF%90%E8%90%A5%E5%95%86/%E9%98%BF%E9%87%8C%E6%97%85%E8%A1%8C/%E4%BA%A7%E5%93%81%E7%BB%B4%E6%8A%A4/</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>补差说明：</th>
+                    <td>节假日需补差价300</td>
+                </tr>
+                </tbody>
+            </table> 
+        </div>
+    </script>
+
+    <script>
+        $(function(){
+            $(".actions.block").fixedBar();
+    
+            $("select").kendoDropDownList();
+    
+            // 添加订单号
+            new PopWindow('.addOrderSearch', {
+                title:'添加淘宝订单',
+                template:'#addOrderSearchTemplate',
+                width:600,
+                modal:true
+            }).init();
+            
+            // 添加订单号
+            new PopWindow('.addOrderResult', {
+                title:'添加淘宝订单',
+                template:'#addOrderResultTemplate',
+                width:600,
+                modal:true
+            }).init();
+
+            new PopWindow('.ac-deleteHintWindow', {
+                title: "删除提示",
+                width: 470,
+                template: "#ac-deleteHintWindow-template"
+            }).init();
+
+            new PopWindow('.ac-exceedBookingHintWindow', {
+                title: "提示",
+                width: 470,
+                template: "#ac-exceedBookingHintWindow-template"
+            }).init();
+
+            new PopWindow('.ac-leastBookingHintWindow', {
+                title: "提示",
+                width: 470,
+                template: "#ac-leastBookingHintWindow-template"
+            }).init();
+            
+            $(".sendersInstructions").kendoTooltip({
+                showOn:"click",
+                autoHide:false,
+                position:"bottom",
+                wrapperClass: "smdTipBorder",
+                content:function(){
+                    return $("#sendersInstructionsTemplate").html();
+                },
+                callout:false,
+                offsetY:6,
+                offsetX:100,
+                width:460
+            });
+    
+    
+        })
+    </script>
+
+ 
+</body>
+</html>
