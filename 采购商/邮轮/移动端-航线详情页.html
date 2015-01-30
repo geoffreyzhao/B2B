@@ -20,13 +20,26 @@
 	</header>
 
 	<section>
-		
-        <ul class="nav changeList clearfix">
-        	<li class="current"><a href="#tripIntroduce">产品介绍</a><i></i></li>
-        	<li><a href="#tripDetail">行程介绍</a><i></i></li>
-        	<li><a href="#bookingNotes">预订须知</a><i></i></li>
-        </ul>
-		<div data-spy="scroll" data-target=".changeList" data-offset="45">
+		<div class="bs-docs-sidebar">
+	        <ul class="nav navbar-nav changeList clearfix affix-top">
+	        	<li class="slideList">
+	        		<a href="#tripIntroduce">产品介绍</a>
+	        		<em></em>
+	        		<i></i>
+	        	</li>
+	        	<li class="slideList active">
+	        		<a href="#tripDetail">行程介绍</a>
+	        		<em></em>
+	        		<i></i>
+	        	</li>
+	        	<li class="slideList">
+		        	<a href="#bookingNotes">预订须知</a>
+		        	<em></em>
+		        	<i></i>
+	        	</li>
+	        </ul>
+        </div>
+        
 
 		<div id="tripIntroduce">
         <div class="simpleInfo">
@@ -248,6 +261,9 @@
 
 	<script type="text/javascript">
 		$(function(){
+
+			$('body').scrollspy({ target: '.bs-docs-sidebar' });
+			// $('body').scrollspy({ target: '.bs-docs-day' });
 
 			$('.changeList').affix({
 			  offset: {
