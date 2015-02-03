@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <title>开放平台 开放平台-用户管理_用户中心</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css"  href="/static/css/kendo.common.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/kendo.common.css"/>
     <link rel="stylesheet" type="text/css" href="/static/css/kendo.gray.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css" />
     <link rel="stylesheet" type="text/css" href="/static/css/openPlatform/kendo.reset.css" />
     <link rel="stylesheet" href="/static/css/openPlatform/administrator/common.css"/>
     <link rel="stylesheet" href="/static/css/openPlatform/administrator/openPlatform.css"/>
@@ -13,6 +14,7 @@
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/kendo.web.js"></script>
     <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui-1.10.3.custom.js"></script>
     <script type="text/javascript" src="/static/js/openPlatform/public.js"></script>
     <script type="text/javascript" src="/static/js/openPlatform/administrator/common.js"></script>
 
@@ -123,208 +125,320 @@
     </header>
     <section class="main-body clearfix"> <!--main-body 开始-->        
       <div class="mainContentBody">
-          <table>
+      <div class="userSearchTabDiv clearfix">
+          <table class="userSearchTab">
               <colgroup>
-                  <col width="60"/>
-                  <col width="120"/>
-                  <col width="60"/>
-                  <col width="120"/>
-                  <col width="60"/>
-                  <col width="120"/>
-                  <col width="60"/>
-                  <col width="120"/>
+                  <col width="70"/>
+                  <col width="130"/>
+                  <col width="70"/>
+                  <col width="130"/>
+                  <col width="70"/>
+                  <col width="130"/>
+                  <col width="70"/>
+                  <col width="140"/>
                   <col width=""/>
               </colgroup>
               <tbody>
               <tr>
                   <th>用户名</th>
-                  <td><input type="text"/></td>
+                  <td><input type="text"  style="width: 120px;" value="guiyipaul"/></td>
                   <th>用户类型</th>
                   <td>
-                      <select data-role="dorpdownlist">
+                      <select data-role="dorpdownlist" style="width:110px;">
                           <option value="全部">全部</option>
                       </select>
                   </td>
                   <th>用户状态</th>
                   <td>
-                      <select data-role="dorpdownlist">
+                      <select data-role="dorpdownlist" style="width:110px;">
                           <option value="全部">全部</option>
                       </select>
                   </td>
                   <th>注册日期</th>
                   <td colspan="2">
-                      
+                      <input type="text" value="2013-10-25" style="width: 140px;" class="datepicker"/>
+                      <em> 至 </em>
+                      <input type="text" value="2013-11-28" style="width: 140px;" class="datepicker"/>
                   </td>
+              </tr>
+              <tr>
+                  <th>测试密钥</th>
+                  <td>
+                      <select data-role="dorpdownlist" style="width:110px;">
+                          <option value="酒店搜索">酒店搜索</option>
+                      </select>
+                  </td>
+                  <th>正式密钥</th>
+                  <td>
+                      <select data-role="dorpdownlist" style="width:110px;">
+                          <option value="全部">全部</option>
+                      </select>
+                  </td>
+                  <th>接入IP</th>
+                  <td>
+                      <select data-role="dorpdownlist" style="width:110px;">
+                          <option value="全部">全部</option>
+                      </select>
+                  </td>
+                  <th>手机号码</th>
+                  <td><input type="text"  style="width: 140px;" value="13856955546"/></td>
+                  <td style="text-align: right;"><a href="javascript:void(0);" class="commonBigBlueBtn">搜索</a></td>
               </tr>
               </tbody>
           </table>
+          </div>
           <div class="operationBtnDiv">
               <a href="javascript:void(0);">批量挂起</a>
               <a href="javascript:void(0);">批量解挂</a>
           </div>
           <div class="totalPagesDiv">
-              共<span>132</span>条
+              共<span>132</span>条 <div class="totalPagesDivTips">（开通正式密钥<span>102</span>条;挂起<b class="fcf00">32</b>条;注销<b class="fc333">2</b>条）</div>
           </div>
           <div class="clearfix"></div>
           <table class="lightBlueTab noticeManageTab">
               <colgroup>
                   <col width="40">
-                  <col width="500">
-                  <col width="150">
-                  <col width="70">
+                  <col width="160">
+                  <col width="130">
+                  <col width="130">
+                  <col width="130">
+                  <col width="130">
+                  <col width="130">
                   <col width="">
               </colgroup>
               <thead>
               <tr>
                   <th><input type="checkbox"/></th>
-                  <th>标题</th>
-                  <th>最后编辑日期</th>
-                  <th>操作人</th>
-                  <th>操作</th>
+                  <th>用户名</th>
+                  <th>用户类型</th>
+                  <th>注册日期</th>
+                  <th>测试密钥</th>
+                  <th>正式密钥</th>
+                  <th>接入IP</th>
+                  <th><div>操作</div></th>
               </tr>
               </thead>
               <tbody>
               <tr>
                   <td><input type="checkbox"/></td>
-                  <td class="leftAlignTd">平台公告的标题，平台公告的标题，平台公告的标题</td>
-                  <td>2015-01-25</td>
-                  <td>彼得潘</td>
+                  <td class="leftAlignTd">guiyipaul</td>
+                  <td>个人</td>
+                  <td>2011-11-06</td>
+                  <td>V03XGH01</td>
+                  <td>V03XGH01</td>
+                  <td><span>有效</span></td>
                   <td>
                       <div>
-                          <a href="javascript:void(0);">编辑</a>
-                          <a href="javascript:void(0);" class="unlockHang">解挂</a>
-                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">删除</a>
+                          <a href="javascript:void(0);">查看</a>
+                          <a href="javascript:void(0);" class="">挂起</a>
+                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">注销</a>
                       </div>
                   </td>
               </tr>
               <tr>
                   <td><input type="checkbox"/></td>
-                  <td class="leftAlignTd">平台公告的标题，平台公告的标题，平台公告的标题平台公告的标题</td>
-                  <td>2015-01-25</td>
-                  <td>彼得潘</td>
+                  <td class="leftAlignTd">多拉格尼尔</td>
+                  <td>公司</td>
+                  <td>2011-11-06</td>
+                  <td>V03XGH01</td>
+                  <td>V03XGH01</td>
+                  <td><span class="fcf60">待审核</span></td>
                   <td>
                       <div>
-                          <a href="javascript:void(0);">编辑</a>
+                          <a href="javascript:void(0);">查看</a>
+                          <a href="javascript:void(0);" class="">挂起</a>
+                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">注销</a>
+                      </div>
+                  </td>
+              </tr>
+              <tr>
+                  <td><input type="checkbox"/></td>
+                  <td class="leftAlignTd">USERNAME</td>
+                  <td>公司</td>
+                  <td>2011-11-06</td>
+                  <td>V03XGH01</td>
+                  <td>V03XGH01</td>
+                  <td><span class="fcababab">审核退回</span></td>
+                  <td>
+                      <div>
+                          <a href="javascript:void(0);">查看</a>
+                          <a href="javascript:void(0);" class="">挂起</a>
+                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">注销</a>
+                      </div>
+                  </td>
+              </tr>
+              <tr>
+                  <td><input type="checkbox"/></td>
+                  <td class="leftAlignTd">多拉格尼尔</td>
+                  <td>公司</td>
+                  <td>2011-11-06</td>
+                  <td>V03XGH01</td>
+                  <td>V03XGH01</td>
+                  <td><span>有效</span></td>
+                  <td>
+                      <div>
+                          <a href="javascript:void(0);">查看</a>
+                          <a href="javascript:void(0);" class="">挂起</a>
+                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">注销</a>
+                      </div>
+                  </td>
+              </tr>
+              <tr>
+                  <td><input type="checkbox"/></td>
+                  <td class="leftAlignTd">guiyipaul</td>
+                  <td>个人</td>
+                  <td>2011-11-06</td>
+                  <td><span class="fcababab">未开通</span></td>
+                  <td><span class="fcababab">未开通</span></td>
+                  <td><span class="fcababab">未开通</span></td>
+                  <td>
+                      <div>
+                          <a href="javascript:void(0);">查看</a>
+                          <a href="javascript:void(0);" class="cancelled">已注销</a>
+                      </div>
+                  </td>
+              </tr>
+              <tr>
+                  <td><input type="checkbox"/></td>
+                  <td class="leftAlignTd">guiyipaul</td>
+                  <td>个人</td>
+                  <td>2011-11-06</td>
+                  <td>V03XGH01</td>
+                  <td>V03XGH01</td>
+                  <td><span>有效</span></td>
+                  <td>
+                      <div>
+                          <a href="javascript:void(0);">查看</a>
+                          <a href="javascript:void(0);" class="">挂起</a>
+                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">注销</a>
+                      </div>
+                  </td>
+              </tr>
+              <tr>
+                  <td><input type="checkbox"/></td>
+                  <td class="leftAlignTd">USERNAME</td>
+                  <td>公司</td>
+                  <td>2011-11-06</td>
+                  <td>V03XGH01</td>
+                  <td>V03XGH01</td>
+                  <td><span class="fcf00">已挂起</span></td>
+                  <td>
+                      <div>
+                          <a href="javascript:void(0);">查看</a>
+                          <a href="javascript:void(0);" class="">挂起</a>
+                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">注销</a>
+                      </div>
+                  </td>
+              </tr>
+              <tr>
+                  <td><input type="checkbox"/></td>
+                  <td class="leftAlignTd">USERNAME</td>
+                  <td>公司</td>
+                  <td>2011-11-06</td>
+                  <td><span class="fcf60">待审核</span></td>
+                  <td><span class="fcf60">待审核</span></td>
+                  <td><span class="fcf60">待审核</span></td>
+                  <td>
+                      <div>
+                          <a href="javascript:void(0);">查看</a>
+                          <a href="javascript:void(0);" class="">挂起</a>
+                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">注销</a>
+                      </div>
+                  </td>
+              </tr>
+              <tr>
+                  <td><input type="checkbox"/></td>
+                  <td class="leftAlignTd">guiyipaul</td>
+                  <td>个人</td>
+                  <td>2011-11-06</td>
+                  <td>V03XGH01</td>
+                  <td>V03XGH01</td>
+                  <td><span>有效</span></td>
+                  <td>
+                      <div>
+                          <a href="javascript:void(0);">查看</a>
+                          <a href="javascript:void(0);" class="">挂起</a>
+                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">注销</a>
+                      </div>
+                  </td>
+              </tr>
+              <tr>
+                  <td><input type="checkbox"/></td>
+                  <td class="leftAlignTd">guiyipaul</td>
+                  <td>个人</td>
+                  <td>2011-11-06</td>
+                  <td>V03XGH01</td>
+                  <td>V03XGH01</td>
+                  <td><span class="fcf00">部分挂起</span></td>
+                  <td>
+                      <div>
+                          <a href="javascript:void(0);">查看</a>
+                          <a href="javascript:void(0);" class="">挂起</a>
+                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">注销</a>
+                      </div>
+                  </td>
+              </tr>
+              <tr>
+                  <td><input type="checkbox"/></td>
+                  <td class="leftAlignTd">guiyipaul</td>
+                  <td>个人</td>
+                  <td>2011-11-06</td>
+                  <td><span class="fcf00">已挂起</span></td>
+                  <td><span class="fcf00">已挂起</span></td>
+                  <td><span class="fcf00">全部挂起</span></td>
+                  <td>
+                      <div>
+                          <a href="javascript:void(0);">查看</a>
+                          <a href="javascript:void(0);" class="">解挂</a>
+                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">注销</a>
+                      </div>
+                  </td>
+              </tr>
+              <tr>
+                  <td><input type="checkbox"/></td>
+                  <td class="leftAlignTd">guiyipaul</td>
+                  <td>个人</td>
+                  <td>2011-11-06</td>
+                  <td><span class="fcababab">审核退回</span></td>
+                  <td><span class="fcababab">审核退回</span></td>
+                  <td><span class="fcababab">审核退回</span></td>
+                  <td>
+                      <div>
+                          <a href="javascript:void(0);">查看</a>
+                          <a href="javascript:void(0);" class="">挂起</a>
+                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">注销</a>
+                      </div>
+                  </td>
+              </tr>
+              <tr>
+                  <td><input type="checkbox"/></td>
+                  <td class="leftAlignTd">guiyipaul</td>
+                  <td>个人</td>
+                  <td>2011-11-06</td>
+                  <td>V03XGH01</td>
+                  <td>V03XGH01</td>
+                  <td><span>有效</span></td>
+                  <td>
+                      <div>
+                          <a href="javascript:void(0);">查看</a>
+                          <a href="javascript:void(0);" class="">挂起</a>
+                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">注销</a>
+                      </div>
+                  </td>
+              </tr>
+              <tr>
+                  <td><input type="checkbox"/></td>
+                  <td class="leftAlignTd">guiyipaul</td>
+                  <td>个人</td>
+                  <td>2011-11-06</td>
+                  <td>V03XGH01</td>
+                  <td>V03XGH01</td>
+                  <td><span>有效</span></td>
+                  <td>
+                      <div>
+                          <a href="javascript:void(0);">查看</a>
                           <a href="javascript:void(0);" class="orangeHoverLink">挂起</a>
-                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">删除</a>
-                      </div>
-                  </td>
-              </tr>
-              <tr>
-                  <td><input type="checkbox"/></td>
-                  <td class="leftAlignTd">平台公告的标题，平台公告的标题，平台公告的标题平台公告的标题</td>
-                  <td>2015-01-25</td>
-                  <td>彼得潘</td>
-                  <td>
-                      <div>
-                          <a href="javascript:void(0);">编辑</a>
-                          <a href="javascript:void(0);" class="unlockHang">解挂</a>
-                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">删除</a>
-                      </div>
-                  </td>
-              </tr>
-              <tr>
-                  <td><input type="checkbox"/></td>
-                  <td class="leftAlignTd">平台公告的标题，平台公告的标题，平台公告的标题平台公告的标题</td>
-                  <td>2015-01-25</td>
-                  <td>彼得潘</td>
-                  <td>
-                      <div>
-                          <a href="javascript:void(0);">编辑</a>
-                          <a href="javascript:void(0);" class="unlockHang">解挂</a>
-                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">删除</a>
-                      </div>
-                  </td>
-              </tr>
-              <tr>
-                  <td><input type="checkbox"/></td>
-                  <td class="leftAlignTd">平台公告的标题，平台公告的标题，平台公告的标题平台公告的标题</td>
-                  <td>2015-01-25</td>
-                  <td>彼得潘</td>
-                  <td>
-                      <div>
-                          <a href="javascript:void(0);">编辑</a>
-                          <a href="javascript:void(0);" class="unlockHang">解挂</a>
-                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">删除</a>
-                      </div>
-                  </td>
-              </tr>
-              <tr>
-                  <td><input type="checkbox"/></td>
-                  <td class="leftAlignTd">平台公告的标题，平台公告的标题，平台公告的标题</td>
-                  <td>2015-01-25</td>
-                  <td>彼得潘</td>
-                  <td>
-                      <div>
-                          <a href="javascript:void(0);">编辑</a>
-                          <a href="javascript:void(0);" class="unlockHang">解挂</a>
-                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">删除</a>
-                      </div>
-                  </td>
-              </tr>
-              <tr>
-                  <td><input type="checkbox"/></td>
-                  <td class="leftAlignTd">平台公告的标题，平台公告的标题，平台公告的标题平台公告的标题</td>
-                  <td>2015-01-25</td>
-                  <td>彼得潘</td>
-                  <td>
-                      <div>
-                          <a href="javascript:void(0);">编辑</a>
-                          <a href="javascript:void(0);" class="unlockHang">解挂</a>
-                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">删除</a>
-                      </div>
-                  </td>
-              </tr>
-              <tr>
-                  <td><input type="checkbox"/></td>
-                  <td class="leftAlignTd">平台公告的标题，平台公告的标题，平台公告的标题</td>
-                  <td>2015-01-25</td>
-                  <td>彼得潘</td>
-                  <td>
-                      <div>
-                          <a href="javascript:void(0);">编辑</a>
-                          <a href="javascript:void(0);" class="orangeHoverLink">挂起</a>
-                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">删除</a>
-                      </div>
-                  </td>
-              </tr>
-              <tr>
-              <tr>
-                  <td><input type="checkbox"/></td>
-                  <td class="leftAlignTd">平台公告的标题，平台公告的标题，平台公告的标题平台公告的标题</td>
-                  <td>2015-01-25</td>
-                  <td>彼得潘</td>
-                  <td>
-                      <div>
-                          <a href="javascript:void(0);">编辑</a>
-                          <a href="javascript:void(0);" class="orangeHoverLink">挂起</a>
-                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">删除</a>
-                      </div>
-                  </td>
-              </tr>
-              <tr>
-                  <td><input type="checkbox"/></td>
-                  <td class="leftAlignTd">平台公告的标题，平台公告的标题，平台公告的标题</td>
-                  <td>2015-01-25</td>
-                  <td>彼得潘</td>
-                  <td>
-                      <div>
-                          <a href="javascript:void(0);">编辑</a>
-                          <a href="javascript:void(0);" class="unlockHang">解挂</a>
-                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">删除</a>
-                      </div>
-                  </td>
-              </tr>
-              <tr>
-                  <td><input type="checkbox"/></td>
-                  <td class="leftAlignTd">平台公告的标题，平台公告的标题，平台公告的标题平台公告的标题</td>
-                  <td>2015-01-25</td>
-                  <td>彼得潘</td>
-                  <td>
-                      <div>
-                          <a href="javascript:void(0);">编辑</a>
-                          <a href="javascript:void(0);" class="orangeHoverLink">挂起</a>
-                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">删除</a>
+                          <a href="javascript:void(0);" class="orangeHoverLink ac-delHintContent">注销</a>
                       </div>
                   </td>
               </tr>
@@ -368,59 +482,21 @@
     </footer>
 
     
-<!-- 新增升级通知 弹窗 -->
-    <script type="text/html" id="ac-addUpgradeNotice-template">
-        <div class="windowContent">
-            <table class="windowNoticeTab">
-                <colgroup>
-                    <col width="60">
-                    <col width="">
-                </colgroup>
-                <tr>
-                    <th>类型:</th>
-                    <td>
-                        <select data-role="dropdownlist" style="width: 124px;">
-                            <option>请选择</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th>标题:</th>
-                    <td>
-                        <input type="text" style="width: 660px;">
-                    </td>
-                </tr>
-                <tr>
-                    <th>内容:</th>
-                    <td>
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <th> </th>
-                    <td style="text-align: center">
-                        <a href="javascript:void(0);" class="commonBigBlueBtn">发布</a>
-                        <a href="javascript:void(0);" class="cancelBtn">取消</a>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </script>   
-
     <script>
         $(function(){
             $(".lightBlueTab tbody tr:odd").css("background-color","#f2f9fc");
             $(".pagination .ellipsisLi").prev("li").css("border-right","1px solid #ccd5de");
 
-            var ac_window01 = new PopWindow('.ac-addUpgradeNotice',{
-                title:'新增平台公告',
-                width:'785',
-                template:'#ac-addUpgradeNotice-template'
-            }).init();
-
-
-            $(".cancelBtn").click(function(){
-                ac_window01.close();
+            // 日期控件
+            $.datepicker.regional[ "zh-CN" ];
+            $(function(){
+                $( ".datepicker" ).datepicker({
+                    showDay:true,
+                    numberOfMonths:[1,2],
+                    minDate :new Date(),
+                    firstDay:0,
+                    showButtonPanel :true
+                });
             });
 
         });

@@ -15,6 +15,7 @@
     <script type="text/javascript" src="/static/js/global.js"></script>
     <script type="text/javascript" src="/static/js/openPlatform/public.js"></script>
     <script type="text/javascript" src="/static/js/openPlatform/administrator/common.js"></script>
+    <script type="text/javascript" src="/static/js/kindeditor.js"></script>
     <!--[if lte IE 9]>
     <script src="/static/js/html5.js"></script>
     <![endif]-->
@@ -346,23 +347,19 @@
                     <col width="">
                 </colgroup>
                 <tr>
-                    <th>类型:</th>
-                    <td>
-                        <select data-role="dropdownlist" style="width: 124px;">
-                            <option>请选择</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
                     <th>标题:</th>
                     <td>
                         <input type="text" style="width: 660px;">
                     </td>
                 </tr>
                 <tr>
-                    <th>内容:</th>
+                    <th style="vertical-align: top;">内容:</th>
                     <td>
-                        
+                        <div class="richEditDiv">
+                            <form>
+                                <textarea name="content" class="editorText"></textarea>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -392,6 +389,27 @@
                 ac_window01.close();
             });
 
+        });
+    </script>
+    <script>
+        var editor;
+        KindEditor.ready(function(K) {
+            K.options.items = ['source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste','plainpaste', 'wordpaste', '|', 'justifyleft',
+                'justifycenter', 'justifyright',
+                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript','superscript', 'clearhtml', 'quickformat', 'selectall', '|',
+                'fullscreen', 'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+                'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
+                'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+                'anchor', 'link', 'unlink', '|', 'about'];
+            K.create('textarea[name="content"]', {
+                //autoHeightMode : true,
+                width: "666",
+                height: "280",
+                uploadJson : "/upload_json.php",
+                afterCreate : function() {
+
+                }
+            });
         });
     </script>
 
