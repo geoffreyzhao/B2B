@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>开放平台 用户管理_接入IP审核</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css"  href="/static/css/kendo.common.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/kendo.gray.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/openPlatform/kendo.reset.css" />
+    <link rel="stylesheet" href="/static/css/openPlatform/commonUser/common.css"/>
+    <link rel="stylesheet" href="/static/css/openPlatform/commonUser/openPlatform.css"/>
+
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+    <script type="text/javascript" src="/static/js/openPlatform/administrator/common.js"></script>
+    <!--[if lte IE 9]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+
+    <script>
+        $(function(){
+            kendo.init('body');
+            lensf();
+        })
+    </script>
+    
+</head>
+<body>
+    <header class="main-header">
+        <div class="stairMenuContent">
+            <div class="wrap clearfix">
+                <a class="logo" href="/"></a>
+                <ul class="stairMenu">
+                    <li>
+                        <a href="javascript:void(0);">首页</a>
+                    </li>
+                    <li class="currentStairMenu">
+                        <a href="javascript:void(0);">开发文档 <i class="topArrowIcon"></i></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">测试工具</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">常见问题</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">公告通知</a>
+                    </li>
+                </ul>
+                <div class="headRightOperate">
+                    <label class="userContent">
+                        <i class="userIcon"></i> 开发者
+                    </label>
+                    <a href="javascript:void(0);" class="exitFonts">退出</a>
+                </div>
+            </div>
+        </div>
+        <div class="headSecondLevel">
+            <ul class="secondLevelList clearfix">
+                <li>
+                    <a href="javascript:void(0);">平台概述</a>
+                </li>
+                <li class="currentSecondLevelMenu">
+                    <a href="javascript:void(0);">国内机票</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">国际机票</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">酒店</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">文档下载</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <section class="main-body clearfix"> <!--main-body 开始-->   
+        <div class="documentContent">
+            <table class="searchTab">
+                <colgroup>
+                    <col width="80">
+                    <col width="130">
+                    <col width="60">
+                    <col width="120">
+                    <col width="80">
+                    <col width="120">
+                    <col width="105">
+                    <col width="320">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <th>用户名</th>
+                    <td>
+                        <input type="text" style="width: 120px;" value="guiyipaul">
+                    </td>
+                    <th>状态</th>
+                    <td>
+                        <select style="width: 110px;" data-role="dropdownlist">
+                            <option>全部</option>
+                        </select>
+                    </td>
+                    <th>用户类型</th>
+                    <td>
+                        <select style="width: 110px;" data-role="dropdownlist">
+                            <option>全部</option>
+                        </select>
+                    </td>
+                    <th>提交审核日期</th>
+                    <td>
+                        <input type="text" value="2013-10-25" style="width: 140px;" class="datepicker">
+                        <em> 至 </em>
+                        <input type="text" value="2013-11-28" style="width: 140px;" class="datepicker">
+                    </td>
+                </tr>
+                <tr>
+                    <th>接口类型</th>
+                    <td>
+                        <select style="width: 120px;" data-role="dropdownlist">
+                            <option>全部</option>
+                        </select>                        
+                    </td>
+                    <th></th>
+                    <td></td>
+                    <th></th>
+                    <td></td>
+                    <th></th>
+                    <td style="text-align: right;">
+                        <a href="javascript:void(0);" class="commonBigBlueBtn">搜索</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="tabTitleContent clearfix">
+                <label class="rightTabTitleFonts">共<em class="blueFonts">132</em>条 （<em class="orangeFonts">32</em>条待审核）</label>
+            </div>
+            <table class="blueHeadTab">
+                <colgroup>
+                    <col width="155">
+                    <col width="95">
+                    <col width="120">
+                    <col width="85">
+                    <col width="260">
+                    <col width="95">
+                    <col width="120">
+                    <col width="85">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>用户名</th>
+                    <th>用户类型</th>
+                    <th>提交审核日期</th>
+                    <th>接口类型</th>
+                    <th>接入IP</th>
+                    <th>状态</th>
+                    <th>受理时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>guiyipaul</td>
+                    <td>个人</td>
+                    <td>2011-11-06</td>
+                    <td>机票</td>
+                    <td>192.168.2.88</td>
+                    <td>
+                        <span class="orangeFonts">待审核</span>
+                    </td>
+                    <td>2011-11-06</td>
+                    <td>
+                        <a href="javascript:void(0);">受理</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>多拉格尼尔</td>
+                    <td>公司</td>
+                    <td>2011-11-06</td>
+                    <td>机票</td>
+                    <td>192.168.2.88</td>
+                    <td>
+                        <span class="orangeFonts">待审核</span>
+                    </td>
+                    <td>2011-11-06</td>
+                    <td>
+                        <a href="javascript:void(0);">受理</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>USERNAME</td>
+                    <td>公司</td>
+                    <td>2011-11-06</td>
+                    <td>机票</td>
+                    <td>192.168.2.88; 192.168.3.56</td>
+                    <td>
+                        <span class="orangeFonts">待审核</span>
+                    </td>
+                    <td>2011-11-06</td>
+                    <td>
+                        <a href="javascript:void(0);">受理</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>多拉格尼尔</td>
+                    <td>公司</td>
+                    <td>2011-11-06</td>
+                    <td>机票</td>
+                    <td>192.168.2.88; 192.168.3.56</td>
+                    <td>
+                        <span class="orangeFonts">待审核</span>
+                    </td>
+                    <td>2011-11-06</td>
+                    <td>
+                        <a href="javascript:void(0);">受理</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>USERNAME</td>
+                    <td>酒店</td>
+                    <td>2011-11-06</td>
+                    <td>机票</td>
+                    <td>192.168.2.88</td>
+                    <td>
+                        <span class="commonIcon statusPassIcon"></span>
+                    </td>
+                    <td>2011-11-06</td>
+                    <td>
+                        <a href="javascript:void(0);">查看</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>USERNAME</td>
+                    <td>酒店</td>
+                    <td>2011-11-06</td>
+                    <td>机票</td>
+                    <td>192.168.2.88</td>
+                    <td>
+                        <span class="commonIcon statusPassIcon"></span>
+                    </td>
+                    <td>2011-11-06</td>
+                    <td>
+                        <a href="javascript:void(0);">查看</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>guiyipaul</td>
+                    <td>酒店</td>
+                    <td>2011-11-06</td>
+                    <td>机票</td>
+                    <td>192.168.2.88</td>
+                    <td>
+                        <span class="commonIcon statusForbiddenIcon"></span>
+                    </td>
+                    <td>2011-11-06</td>
+                    <td>
+                        <a href="javascript:void(0);">查看</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>guiyipaul</td>
+                    <td>酒店</td>
+                    <td>2011-11-06</td>
+                    <td>机票</td>
+                    <td>192.168.2.88; 192.168.3.56<br>192.168.2.88; 192.168.3.56</td>
+                    <td>
+                        <span class="commonIcon statusForbiddenIcon"></span>
+                    </td>
+                    <td>2011-11-06</td>
+                    <td>
+                        <a href="javascript:void(0);">查看</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>guiyipaul</td>
+                    <td>酒店</td>
+                    <td>2011-11-06</td>
+                    <td>机票</td>
+                    <td>192.168.2.88; 192.168.3.56</td>
+                    <td>
+                        <span class="commonIcon statusForbiddenIcon"></span>
+                    </td>
+                    <td>2011-11-06</td>
+                    <td>
+                        <a href="javascript:void(0);">查看</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="pagination clearfix">
+                <div>
+                    <span>共19页</span>去第<input type="text"/>页
+                </div>
+                <ul>
+                    <li><a href="#">&lt; 上一页</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#" class="present">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">6</a></li>
+                    <li  class="ellipsisLi"><span>...</span></li>
+                    <li><a href="#">下一页 &gt;</a></li>
+                </ul>
+            </div>
+        
+        </div>
+        <!--<a class="returnTop" href="javascript:void(0);">返回顶部</a>-->
+        
+    </section> <!--main-body 结束-->
+    
+    <footer class="main-footer">
+        <center class="copyright">
+            Copyright &copy; 2013 天地行 All Rights Reserved. &nbsp; 沪ICP备08101503号
+        </center>
+        <div class="differentLink">
+            <a href="javascript:void(0);">关于开放平台</a> | <a href="javascript:void(0);">联系我们</a>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+        $(function(){
+            // 日期控件
+            $.datepicker.regional[ "zh-CN" ];
+            $(function(){
+                $( ".datepicker" ).datepicker({
+                    showDay:true,
+                    numberOfMonths:[1,2],
+                    minDate :new Date(),
+                    firstDay:0,
+                    showButtonPanel :true
+                });
+            });
+
+        });
+    </script>
+
+</body>
+</html>
