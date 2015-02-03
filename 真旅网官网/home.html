@@ -177,7 +177,9 @@
 						$(this).append("<span>业务构成</span>");
 					}
 				});
-			});			
+			});
+
+			adjustNarrowScreen();
 
 			var mySwiper = new Swiper('.swiper-container',{
 				speed: 1000,
@@ -197,6 +199,18 @@
 			$("#fullpageImg").css({
 				height: ($(window).height() - 90) + "px"
 			});
+		}
+
+		// 显示器高度 < 768, 800px时，调整空白间距使整屏可以完成显示内容
+		function adjustNarrowScreen() {
+			if (window.screen.availHeight < 740) {
+				// slider 2
+				$(".companyProfile").addClass("adjustHeight");
+
+				// slider 3
+
+				// slider 4
+			}
 		}
 
 		
