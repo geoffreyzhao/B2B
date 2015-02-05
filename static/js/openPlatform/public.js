@@ -34,10 +34,12 @@ $(function(){
     $(window).bind("scroll", $backToTopFun);
     /* 返回顶部  结束  */
     
+    /* 翻页和tab隔行换色 start */
+    $(".lightBlueTab tbody tr:odd,.blueHeadTab tbody tr:odd").css("background-color","#f2f9fc");
+    $(".pagination .ellipsisLi").prev("li").css("border-right","1px solid #ccd5de");
+    /* 翻页和tab隔行换色 end */
+    
 
-    /*  公共弹窗添加class  开始  */
-
-    /*  公共弹窗添加class  结束  */
 });
 
 function recoverCurrentNav() {
