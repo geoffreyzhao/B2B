@@ -3,6 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-touch-fullscreen" content="yes">
 	<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/mobile/common.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/mobile/store/cruiseDetail.css">
@@ -13,14 +15,12 @@
 <body>
 	<header>
 		<div class="header-img-container">
-			<img src="/static/images/store/cruise/shippingIntroduceImg.jpg" alt="">
+			<img src="/static/images/store/cruise/shippingIntroduceImg.jpg" alt="" 
+			onload="setHeaderHeight(this);">
 			<div class="img-above-shadow">
 				<div class="img-above-text">上海歌诗达邮轮-维多利亚号</div>
 			</div>
 		</div>
-	</header>
-
-	<section>
 		<div class="bs-docs-sidebar">
 	        <ul class="nav navbar-nav changeList clearfix affix-top">
 	        	<li class="slideList active">
@@ -40,6 +40,28 @@
 	        	</li>
 	        </ul>
         </div>
+	</header>
+
+	<section>
+		<!-- <div class="bs-docs-sidebar">
+	        <ul class="nav navbar-nav changeList clearfix affix-top">
+	        	<li class="slideList active">
+	        		<a href="#tripIntroduce">产品介绍</a>
+	        		<em></em>
+	        		<i></i>
+	        	</li>
+	        	<li class="slideList">
+	        		<a href="#tripDetail">行程介绍</a>
+	        		<em></em>
+	        		<i></i>
+	        	</li>
+	        	<li class="slideList">
+		        	<a href="#bookingNotes">预订须知</a>
+		        	<em></em>
+		        	<i></i>
+	        	</li>
+	        </ul>
+        </div> -->
         
 
 		<div id="tripIntroduce">
@@ -98,12 +120,12 @@
 	        					<td style="vertical-align:top;">11㎡</td>
 	        				</tr>
 	        				<tr>
-	        					<th class="middleTd">位于甲板</th>
-	        					<td class="middleTd" style="word-break:break-all;">3,4,5,6,7</td>
+	        					<th class="middleTd">可入住人数</th>
+	        					<td class="middleTd" style="word-break:break-all;">2</td>
 	        				</tr>
 	        				<tr>
-	        					<th style="vertical-align:bottom;">可入住人数</th>
-	        					<td style="vertical-align:bottom;">2</td>
+	        					<th style="vertical-align:bottom;">位于甲板</th>
+	        					<td style="vertical-align:bottom;">3,4,5,6,7</td>
 	        				</tr>
 	        			</tbody>
 	        		</table>
@@ -224,7 +246,7 @@
 									<th>离港</th>
 								</tr>
 								<tr>
-									<td>马达加斯加</td>
+									<td>马达加斯加加</td>
 									<td>18:30</td>
 									<td>--</td>
 								</tr>
@@ -296,13 +318,24 @@
 			});
 			// $('body').scrollspy({ target: '.bs-docs-day' });
 
-			$('.changeList').affix({
-			  offset: {
-			    top: function(){
-			    	return $("header").outerHeight(true);
-			    }
-			  }
+			// $('.changeList').affix({
+			//   offset: {
+			//     top: function(){
+			//     	return $("header").outerHeight(true);
+			//     }
+			//   }
+			// });
+			$(window).load(function(){
+				$(window).scroll(function(){
+					if ($(window).scrollTop() > $(".header-img-container").height()) {
+						$(".changeList").addClass("fixed-header");
+					} else {
+						$(".changeList").removeClass("fixed-header");
+					}
+				});
 			});
+
+
 
 			// $(".leftNavDays").affix({
 			// 	offset: {
@@ -391,6 +424,13 @@
 	        });
 			
 		});
+
+		function setHeaderHeight(img) {
+			var h = $(".bs-docs-sidebar").height() + img.height;
+			$("header").css({
+				"height": h + "px"
+			});
+		}
 		
 		// function setCabinHeight() {
   //       	var h = $(".cabinImgContainer img").height();
