@@ -22,19 +22,19 @@
 			</div>
 		</div>
 		<div class="bs-docs-sidebar">
-	        <ul class="nav navbar-nav changeList clearfix affix-top">
+	        <ul class="nav navbar-nav changeList clearfix">
 	        	<li class="slideList active">
-	        		<a href="#tripIntroduce">产品介绍</a>
+	        		<a href="javascript:;">产品介绍</a>
 	        		<em></em>
 	        		<i></i>
 	        	</li>
 	        	<li class="slideList">
-	        		<a href="#tripDetail">行程介绍</a>
+	        		<a href="javascript:;">行程介绍</a>
 	        		<em></em>
 	        		<i></i>
 	        	</li>
 	        	<li class="slideList">
-		        	<a href="#bookingNotes">预订须知</a>
+		        	<a href="javascript:;">预订须知</a>
 		        	<em></em>
 		        	<i></i>
 	        	</li>
@@ -42,46 +42,11 @@
         </div>
 	</header>
 
-	<section>
-		<!-- <div class="bs-docs-sidebar">
-	        <ul class="nav navbar-nav changeList clearfix affix-top">
-	        	<li class="slideList active">
-	        		<a href="#tripIntroduce">产品介绍</a>
-	        		<em></em>
-	        		<i></i>
-	        	</li>
-	        	<li class="slideList">
-	        		<a href="#tripDetail">行程介绍</a>
-	        		<em></em>
-	        		<i></i>
-	        	</li>
-	        	<li class="slideList">
-		        	<a href="#bookingNotes">预订须知</a>
-		        	<em></em>
-		        	<i></i>
-	        	</li>
-	        </ul>
-        </div> -->
-        
+	<section>       
 
 		<div id="tripIntroduce">
         <div class="simpleInfo">
         	<div class="startDate clearfix">
-        		<!-- <div class="dateBlock">
-        			<div class="chief">
-        				<i class="dateIcon"></i>
-        				<span class="title">起航日期</span>
-        			</div>
-    				<ul class="dateList clearfix">
-    					<li class="dateItem">02月16日</li>
-    					<li class="dateItem">02月16日</li>
-    					<li class="dateItem">02月16日</li>
-    					<li class="dateItem">02月16日</li>
-    					<li class="dateItem">02月16日</li>
-    					<li class="dateItem">02月16日</li>
-    					<li class="dateItem">02月16日</li>
-    				</ul>
-        		</div> -->
         		<div class="pathNameBlock">上海-济州-仁川(过夜)-上海5晚6天</div>
         		<div class="priceBlock">
         			<div class="priceCont">
@@ -95,7 +60,7 @@
         	<div class="cheapContText clearfix">
         		<div class="chief">
     				<i class="penIcon"></i>
-    				<span class="title">优惠</span>
+    				<span class="title">推荐</span>
     			</div>
     			<div class="cont">部分房型有“早定”优惠，详情咨询客服。预订家庭内舱四人均价：35999元/人，同
 行返佣500元/间 (包含岸上观光费用)</div>
@@ -134,9 +99,9 @@
         </div>
 		</div>
 		
-		<div class="blockModule" id="tripDetail">
-			<div class="mainTitle introduceTitle">行程介绍</div>
-			<div class="tripDetailBody clearfix">
+		<div class="blockModule" >
+			<div class="mainTitle introduceTitle" >行程介绍</div>
+			<div class="tripDetailBody clearfix" id="tripDetail">
 				<!-- <div class="leftNavDays">
 					<div class="dayContainer current">D1</div>
 					<div class="dayContainer">D2</div>
@@ -178,7 +143,7 @@
 							<div class="activeItems">
 								<div class="activeItem clearfix">
 									<i class="dinnerIcon"></i>
-									<div class="activeCont">餐食：早餐：邮轮，午餐：邮轮，晚餐：邮轮</div>
+									<div class="activeCont">早餐：邮轮，午餐：邮轮，晚餐：邮轮</div>
 								</div>
 								<div class="activeItem clearfix">
 									<i class="liveIcon"></i>
@@ -222,11 +187,11 @@
 							<div class="activeItems">
 								<div class="activeItem clearfix">
 									<i class="dinnerIcon"></i>
-									<div class="activeCont">餐食：早餐：邮轮，午餐：邮轮，晚餐：自理</div>
+									<div class="activeCont">早餐：邮轮，午餐：邮轮，晚餐：自理</div>
 								</div>
-								<div class="activeItem">
+								<div class="activeItem clearfix">
 									<i class="liveIcon"></i>
-									<div class="activeItem">入住：维多利亚号</div>
+									<div class="activeCont">入住：维多利亚号</div>
 								</div>
 							</div>
 						</div>
@@ -258,11 +223,11 @@
 							<div class="activeItems">
 								<div class="activeItem clearfix">
 									<i class="dinnerIcon"></i>
-									<div class="activeCont">餐食：早餐：邮轮，午餐：邮轮，晚餐：自理</div>
+									<div class="activeCont">早餐：邮轮，午餐：邮轮，晚餐：自理</div>
 								</div>
-								<div class="activeItem">
+								<div class="activeItem clearfix">
 									<i class="liveIcon"></i>
-									<div class="activeItem">入住：维多利亚号</div>
+									<div class="activeCont">入住：维多利亚号</div>
 								</div>
 							</div>
 						</div>
@@ -312,104 +277,111 @@
 	<script type="text/javascript">
 		$(function(){
 
-			$('body').scrollspy({ 
-				target: '.bs-docs-sidebar',
-				offset: 10
-			});
-			// $('body').scrollspy({ target: '.bs-docs-day' });
+			$(".pathNameBlock").css('width', ($(".pathNameBlock").parent(".startDate").width() - 105) + "px");
 
-			// $('.changeList').affix({
-			//   offset: {
-			//     top: function(){
-			//     	return $("header").outerHeight(true);
-			//     }
-			//   }
-			// });
-			$(window).load(function(){
-				$(window).scroll(function(){
-					if ($(window).scrollTop() > $(".header-img-container").height()) {
-						$(".changeList").addClass("fixed-header");
+			var showFlag = false;
+
+			var clickFlag = false;
+
+			$(window).load(function(){   // 视情况可以考虑去掉，看效果如何
+
+				$("header").css("height", 
+							($(".header-img-container").height() + $(".bs-docs-sidebar").height()) + "px");
+
+				$(window).scroll(function(){  
+					if ($(window).scrollTop() >= $(".header-img-container").height()) {
+						$(".changeList").addClass("fixed-header");						
 					} else {
 						$(".changeList").removeClass("fixed-header");
 					}
+
+					showFlag = hideTelphone(showFlag);
+
+					if (!clickFlag) {
+
+						var h, h1, h2, h3;
+						h = $(window).scrollTop();
+						h1 = $(".header-img-container").height();
+						h2 = $(".introduceTitle").offset().top - $(".bs-docs-sidebar").height();
+						h3 = $(".orderTitle").offset().top - $(".bs-docs-sidebar").height();
+
+						var lastHeight = $("#bookingNotes").height() + $(".footer").height() - $(".bs-docs-sidebar").height();
+
+						if (h <= h2) {
+							$(".changeList li").removeClass("active");
+							$(".changeList li").eq(0).addClass("active");
+						} 
+						
+						if (lastHeight > $(window).height()) { // 可以滚动至最后一个条目
+							if (h > h2 && h < h3) {
+								$(".changeList li").removeClass("active");
+								$(".changeList li").eq(1).addClass("active");
+							} else if (h >= h3) {
+								$(".changeList li").removeClass("active");
+								$(".changeList li").eq(2).addClass("active");
+							}
+						} else {  //  滚动至屏幕底部时，才会触发第三个导航为当前导航
+
+							if (h > h2 && h < ($("body").height() - $(window).height())) {
+								$(".changeList li").removeClass("active");
+								$(".changeList li").eq(1).addClass("active");
+							} else if (h == ($("body").height() - $(window).height())) {
+								$(".changeList li").removeClass("active");
+								$(".changeList li").eq(2).addClass("active");
+							}
+						}
+					}
 				});
+
+				$(".changeList li").each(function(index){
+					if (index == 0) {
+						$(this).click(function(){
+							clickFlag = true;
+							$(this).siblings("li").removeClass("active");
+							$(this).addClass("active");
+							$("body").animate({
+								scrollTop: $(".header-img-container").height() - 1
+							}, 500, "swing");
+							setTimeout(function(){
+								clickFlag = false;
+							}, 500);
+						});
+					} else if (index == 1) {
+						$(this).click(function(){
+							clickFlag = true;
+							$(this).siblings("li").removeClass("active");
+							$(this).addClass("active");
+							$("body").animate({
+								scrollTop: $(".introduceTitle").offset().top - ($(".bs-docs-sidebar").height() -1)
+							}, 500, "swing");
+							setTimeout(function(){
+								clickFlag = false;
+							}, 500);
+						});
+					} else if (index == 2) {
+						$(this).click(function(){
+							clickFlag = true;
+							$(this).siblings("li").removeClass("active");
+							$(this).addClass("active");
+							var lastHeight = $("#bookingNotes").height() + $(".footer").height()
+							if (lastHeight > $(window).height()) { // 可以滚动至最后一个条目
+								$("body").animate({
+									scrollTop: $(".orderTitle").offset().top - $(".bs-docs-sidebar").height()
+								}, 500, "swing");
+							} else {  //  滚动至屏幕底部
+								$("body").animate({
+									scrollTop: $("body").height()
+								}, 500, "swing");
+							}
+							setTimeout(function(){
+								clickFlag = false;
+							}, 500);
+						});
+					}
+				});
+				
 			});
 
-
-
-			// $(".leftNavDays").affix({
-			// 	offset: {
-			// 		top: function(){
-			// 			return $(".mainTitle.introduceTitle").offset().top + 15;
-			// 		},
-			// 		bottom: function(){
-			// 			return $(".footer").outerHeight(true)
-			// 			 + $(".bookingModule").outerHeight(true)
-			// 			 + $(".leftNavDays").outerHeight(true);
-			// 		}
-			// 	}
-			// });
-
-			// 修正天数悬停时 affix-bottom 的 bug
-			// $(window).scroll(function(){
-			// 	var heightValue = $(".tripDetailBody").offset().top
-			// 		 + $(".tripDetailBody").outerHeight(true)
-			// 		 - $(".leftNavDays").outerHeight(true) - 30;
-
-			// 	if ($("body").scrollTop() > heightValue) {
-			// 		$(".leftNavDays").removeClass("affix").removeClass("affix-bottom");
-			// 	} else if ($("body").scrollTop() < heightValue
-			// 				 && $("body").scrollTop() > $(".tripDetailBody").offset().top) {
-			// 		$(".leftNavDays").addClass("affix");
-			// 	}
-			// });
-
-			// var bottom = $(".footer").outerHeight(true) + $(".bookingModule").outerHeight(true)
-
-			// $(".leftNavDays.affix-bottom").css("bottom", bottom + "px");
-
-			//  导航悬停 & 类别切换
-			/*
-			var a_pos = [];
-	        var flag=true;
-
-	        $(window).load(function(){
-	        	$(".changeList li").each(function(index){
-		            var href= $(this).find("a").attr("href");
-		            console.log(href + ':' + $("a[name=" + href.substring(1) + "]").offset().top);
-		            a_pos.push($("a[name=" + href.substring(1) + "]").offset());
-		        });
-	        });
-
-	        $(".changeList li").click(function(e){
-	            flag=false;
-	            e.preventDefault();
-	            $(this).siblings().removeClass('current');
-	            $(this).addClass("current");
-	            var i=$(this).index();
-	            $("html,body").animate({"scrollTop":a_pos[i].top-42},1);
-	        });
-
-	        $(window).bind("scroll",function(e){
-	            if(flag){
-	                var that = $(".changeList");
-	                var currentPos = that.offset();
-	                var i = 0;
-	                for(i = a_pos.length - 1; i >=0 ; i--){
-	                    if(currentPos.top >= a_pos[i].top-45){
-	                        that.find("li").removeClass('current');
-	                        $("li:eq(" + (i) + ")" , that).addClass("current");
-	                        return false;
-	                    }
-	                }
-	                that.removeClass('current');
-	                $("li:first" , that).addClass("current");
-	            }
-	            flag=true;
-	        });
-			*/
-
-	        var showFlag = false;
 	        $(".telPhoneIcon").click(function(){
 	        	if (!showFlag) {
 		        	$(".telCont").animate({
@@ -425,19 +397,21 @@
 			
 		});
 
+		function hideTelphone(flag) {
+			if (flag) {
+				$(".telCont").animate({
+	        		left: "-100%"
+	        	}, 300);
+			}
+			return false;
+		}
+
 		function setHeaderHeight(img) {
-			var h = $(".bs-docs-sidebar").height() + img.height;
+			var h = $(".changeList").height() + img.height;
 			$("header").css({
-				"height": h + "px"
+				"height": h + "px!important"
 			});
 		}
-		
-		// function setCabinHeight() {
-  //       	var h = $(".cabinImgContainer img").height();
-  //       	$(".cabinContInfo table").css({
-  //       		height: h + "px"
-  //       	});
-  //       }
 	</script>
 </body>
 </html>
