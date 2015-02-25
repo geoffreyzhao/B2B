@@ -14,6 +14,12 @@
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/kendo.web.js"></script>
     <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/static/css/ie.css" />
+    <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script>
+    <![endif]-->
 
     <style type="text/css">
         .fieldName{background:#f5f5f5;color:#333}
@@ -41,7 +47,7 @@
                 <h3>北京上海5天4晚自由行 &nbsp;&nbsp; 出发日期 2013-12-12</h3>
             </div>
             <div class="fixedButton">
-                <a class="button_secondary adaptiveButton small" href="javascript:void(0);">
+                <a class="button_secondary adaptiveButton small affirmBooking" href="javascript:void(0);">
                     <span class="left"></span>
                     <span class="center">确定预订</span>
                     <span class="right"></span>
@@ -430,7 +436,7 @@
                     <col width="10%"/>
                     <col width="23%"/>
                     <col width="17%"/>
-                    <col width="17%"/>
+                    <col width="10%"/>
                     <col width="8%"/>
                     <col width=""/>
                 </colgroup>
@@ -484,7 +490,7 @@
                     <col width="10%"/>
                     <col width="23%"/>
                     <col width="17%"/>
-                    <col width="17%"/>
+                    <col width="10%"/>
                     <col width="8%"/>
                     <col width=""/>
                 </colgroup>
@@ -517,18 +523,20 @@
                     <td>4间</td>
                     <td>待确认</td>
                     <td>酒店确认号</td>
-                    <td>12345678-现结 2015-03-25 上午</td>
+                    <td class="oper-leftAlign">12345678-现结 2015-03-25 上午<span class="hotelModify">修改</span></td>
                 </tr>
                 <tr>
                     <td>
                         <i class="productTickets"></i>
                     </td>
                     <td>
-                        <a href="javascript:void(0);">创建订单</a>
+                        <a href="javascript:void(0);" class="createOrederFonts">创建订单</a>
                     </td>
                     <td>4间</td>
                     <td>待出票</td>
-                    <td colspan="2"></td>
+                    <td colspan="2" class="oper-leftAlign">
+                        <span class="ticketsModify">修改</span>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -538,7 +546,7 @@
                     <col width="10%"/>
                     <col width="23%"/>
                     <col width="17%"/>
-                    <col width="17%"/>
+                    <col width="10%"/>
                     <col width="8%"/>
                     <col width=""/>
                 </colgroup>
@@ -755,7 +763,21 @@
         </div>
 
         <div class="panel">
-            <div class="panelTitle">发送文件 </div>
+            <div class="panelTitle sentFileDiv">
+                <b>发送文件</b>
+                <select data-role="dropdownlist" class="sentFileSelect" style="width:170px;">
+                    <option>确认短信</option>
+                    <option>客户确认单-电邮</option>
+                    <option>客户确认单-传真</option>
+                    <option>酒店预订单</option>
+                    <option>酒店退订单</option>
+                </select>
+                <a class="button_secondary adaptiveButton small sentFileA" href="javascript:void(0);">
+                    <span class="left"></span>
+                    <span class="center center_1">预览发送</span>
+                    <span class="right"></span>
+                </a>
+            </div>
             <table class="tbl_common tabCenterStyle">
                 <thead>
                 <tr>
@@ -836,6 +858,125 @@
         </table>
     </div>
 </div>
+<!-- 门票创建中 -->
+<script type="text/x-kendo-template" id="operatingTemplate">
+    <div class="common-tip-container createOrederWin">
+        <i class="operating-icon"></i>
+        <div class="tip-msg-content">
+            <p>门票单创建中...</p>
+            <p class="fs12">正在创建子订单，请不要关闭页面</p>
+        </div>
+    </div>
+</script>
+<!-- 门票订单创建成功 -->
+<script type="text/x-kendo-template" id="operSuccessTemplate">
+    <div class="common-tip-container">
+        <i class="large-success-icon"></i>
+        <span class="tip-msg-content" style="font-weight: normal;">门票订单创建成功！</span>
+    </div>
+</script>
+<!-- 酒店确认号修改 -->
+<script type="text/x-kendo-template" id="hotelModifyTemplate">
+    <div class="WindowOrderDetail-container">
+        <div class="innerOrderContainer">
+            <h3>酒店确认号：</h3>
+            <p><label><input type="radio" name="hotelAffirm"/>酒店确认号</label><input type="text" style="width:138px;"/></p>
+            <p><label><input type="radio" name="hotelAffirm"/>酒店无确认号</label></p>
+        </div>
+        <div class="lineDiv"></div>
+        <div class="innerOrderContainer">
+            <h3>结算提醒：</h3>
+            <p>
+                <label><input type="radio" name="checkoutType"/>现结</label>
+                <input type="text" style="width:138px;"/>
+                <select data-role="dropdownlist" style="width:60px;">
+                    <option>上午</option>
+                    <option>下午</option>
+                </select>
+            </p>
+            <p><label><input type="radio" name="checkoutType"/>周结</label></p>
+            <p><label><input type="radio" name="checkoutType"/>半月结</label></p>
+            <p><label><input type="radio" name="checkoutType"/>月结</label></p>
+        </div>
+
+    </div>
+    <div class="operBtnStyle">
+        <button class="large_button" type="button" name="a">确 定</button>
+        <button class="large_button disable" type="button" name="a">取消</button>
+    </div>
+</script>
+
+<!-- 门票修改 -->
+<script type="text/x-kendo-template" id="ticketsModifyTemplate">
+    <div class="WindowOrderDetail-container">
+        <div class="innerOrderContainer">
+            <p>
+                <span class="spanTitle">门票出票</span>
+                <select data-role="dropdownlist" style="width:138px;">
+                    <option>待出票</option>
+                    <option>已出票</option>
+                </select> 
+            </p>
+        </div>
+    </div>
+    <div class="operBtnStyle">
+        <button class="large_button" type="button" name="a">确 定</button>
+        <button class="large_button disable" type="button" name="a">取消</button>
+    </div>
+</script>
+<!-- 预览发送 -->
+<script type="text/x-kendo-template" id="sentFileATemplate">
+    <div class="WindowOrderDetail-container">
+        <div class="innerOrderContainer">
+            <p>
+                <span class="spanTitle">手机号码：</span>
+                <input type="text" style="width:170px;margin-left: 0;"/>
+                <a class="button_secondary adaptiveButton small" href="javascript:void(0);">
+                    <span class="left"></span>
+                    <span class="center center_1">发 送</span>
+                    <span class="right"></span>
+                </a>
+            </p>
+            <p>
+                <textarea style="width:440px;height:130px;" class="sendMessagesTextarea">亲爱的用户，您预订的上海北京5天4晚自由行，2014年12月1日出发，刘伟，刘小伟，已经确认预订。去程上海虹桥T2-北京T2，航班MU1234， 12月1日08:00起飞，12月1日11:00到达；返程北京T2-上海虹桥T2，航班MU2234，12月5日16:00起飞，12月5日19:00到达。请提前2小时到航站楼候机。全程入住北京，北京天佑德大酒店，豪华双床房1间，12月1日入住，12月5日离店。请在酒店前台报刘小伟查询预订，酒店地址：北京海淀区新安东路678号（车管所对面），电话：0571-64867777。</textarea>
+            </p>
+        </div>
+    </div>
+    <div class="operBtnStyle">
+        <button class="large_button" type="button" name="a">确 定</button>
+        <button class="large_button disable" type="button" name="a">取消</button>
+    </div>
+</script>
+<!--确定预订-->
+<script type="text/x-kendo-template" id="affirmBookingTemplate">
+    <div class="common-tip-container createOrederWin">
+        <i class="large-warn-icon"></i>
+        <div class="tip-msg-content">
+            <p><b>订单已确认</b></p>
+            <p class="fs12">正在创建子订单，请不要关闭页面…</p>
+        </div>
+    </div>
+    <div class="lineDiv" style="margin:15px 0 0 0;"></div>
+    <div class="common-tip-container createOrederWin" style="margin:25px 0 0 0;">
+        <i class="operating-icon"></i>
+        <div class="tip-msg-content">
+            <p>机票订单创建中…</p>
+        </div>
+    </div>
+    <div class="common-tip-container createOrederWin" style="margin:25px 0 0 0;">
+        <i class="large-success-icon"></i>
+        <div class="tip-msg-content">
+            <p>酒店订单创建成功！</p>
+        </div>
+    </div>
+    <div class="common-tip-container createOrederWin" style="margin:25px 0 0 0;">
+        <i class="large-abnormal-icon"></i>
+        <div class="tip-msg-content">
+            <p class="fcf05030">门票订单创建异常，请稍后手动建单。</p>
+        </div>
+    </div>
+</script>
+
 
 <script type="text/javascript">
     $(function () {
@@ -848,6 +989,64 @@
             }
         },"#journalDetailTemplate").init();
         
+        //子订单信息创建状态
+        var winCreateOrder = new PopWindow('.createOrederFonts', {
+            modal: true,
+            title: false,
+            template: "#operatingTemplate",
+            width: 320
+        }).init();
+        
+        //门票订单创建成功
+        var winSuccess = new PopWindow('.createOrederWin', {
+            modal: false,
+            title: false,
+            template: "#operSuccessTemplate",
+            width: 300,
+            autoHide: 2000,
+            animation: {
+                open: {
+                    effects: "fade:in",
+                    duration: 300
+                },
+                close: {
+                    effects: "fade:out",
+                    duration: 300
+                }
+            }
+        }).init();
+        
+        //酒店确认号修改
+        var winModifyHotel = new PopWindow('.tbl_common .hotelModify', {
+            modal: true,
+            title: "修改",
+            template: "#hotelModifyTemplate",
+            width: 400
+        }).init();
+
+        //门票修改
+        var winModifyTictets = new PopWindow('.tbl_common .ticketsModify', {
+            modal: true,
+            title: "修改",
+            template: "#ticketsModifyTemplate",
+            width: 400
+        }).init();
+
+        //预览发送
+        var winSendFile = new PopWindow('.sentFileA', {
+            modal: true,
+            title: "确认短信",
+            template: "#sentFileATemplate",
+            width: 510
+        }).init();
+
+        //确定预订
+        var winAffirmBooking = new PopWindow('.affirmBooking', {
+            modal: true,
+            title: false,
+            template: "#affirmBookingTemplate",
+            width: 440
+        }).init();
        
         $(".changeBtnFonts .modifiedFonts").click(function(){
             $(".tabCenterStyle .disable").css({border:"1px solid #d3d3d3",display:"inline-block"}).show();
