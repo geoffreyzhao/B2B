@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>运营商 机加酒 订单管理 门票子订单</title>
+    <meta content="text/html" charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/b2b.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/kendo.common.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/kendo.gray.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/kendo.reset.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/hotel.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/hotel_order_create.css">
+
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/static/css/ie.css" />
+    <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        .fieldName{background:#f5f5f5;color:#333}
+        #bookingProduct td{border:1px solid #e0e0e0;border-top-color:#eaeef0;border-bottom-color:#eaeef0;color:#666}
+        .editable.disable{border:none;cursor:default;}
+        .ac-floatlayer{z-index:999}
+    </style>
+
+    <script>
+        $(function(){
+            kendo.init('body');
+            lensf();
+        })
+    </script>
+
+</head>
+<body>
+<div id="container" style="margin-top:0">
+    <div id="mainContent">
+        <div class="topFixedToolsBar">
+            <!--<div class="commonReturnBtn">
+                <a href="#"><i class="leftArrow"></i> 返回</a>
+            </div>-->
+            <div class="fixedMenu" style="width: auto;">
+                <h3>上海宝山智力公园门票</h3>
+            </div>
+            <!--<div class="fixedButton">
+                <a class="button_secondary adaptiveButton small affirmBooking" href="javascript:void(0);">
+                    <span class="left"></span>
+                    <span class="center">确定预订</span>
+                    <span class="right"></span>
+                </a>
+                <a class="button_secondary adaptiveButton small" href="javascript:void(0);">
+                    <span class="left"></span>
+                    <span class="center">取消预订</span>
+                    <span class="right"></span>
+                </a>
+            </div>-->
+        </div>
+        <div class="panel" style="padding:0;width:100%">
+            <div class="trimStripLeft"></div>
+            <div class="trimStripRight"></div>
+            <div class="relatedOrderContainer">
+                <span class="relatedOrderType">关联<br/>订单</span><span class="relatedOrderNum">0</span>
+            </div>
+            <div class="orderStatusInfoContainer">
+                <div class="orderStatusInfoLeftPanel">
+                    <div class="orderStatusBasicInfo orderTypeStyle">
+                        <span class="head" style="font-size:14px">订单号:</span>
+                        <span class="orderNo">P-140814102123123</span>
+                        <div class="orderType">订单类型：采购正常单 &nbsp;&nbsp; 产品类型：国内自由行</div>
+                    </div>
+                </div>
+                <div class="orderStatusInfoRightPanel">
+                    <div class="hotelOrderStatusContainer" style="margin-left:20px">
+                        <div class="status_complete statusContainer first">
+                            <div class="statusDot"></div>
+                            <div class="statusLineLeft statusLine"></div>
+                            <div class="statusLineRight statusLine"></div>
+                            创建
+                        </div>
+                        <div class="status_complete statusContainer">
+                            <div class="statusDot"></div>
+                            <div class="statusLineLeft statusLine"></div>
+                            <div class="statusLineRight statusLine"></div>
+                            支付
+                        </div>
+                        <div class="status_ing statusContainer">
+                            <div class="statusDot"></div>
+                            <div class="statusLineLeft statusLine"></div>
+                            <div class="statusLineRight statusLine"></div>
+                            审核
+                        </div>
+                        <div class="status_uncomplete statusContainer last">
+                            <div class="statusDot"></div>
+                            <div class="statusLineLeft statusLine"></div>
+                            <div class="statusLineRight statusLine"></div>
+                            完成
+                        </div>
+                    </div>
+                    <div class="hotelOrderStatusContainer">
+                        <div class="status_uncomplete statusContainer first">  <!--选中状态添加class="exception"-->
+                            <div class="statusDot"></div>
+                            <div class="statusLineLeft statusLine"></div>
+                            <div class="statusLineRight statusLine"></div>
+                            收银
+                        </div>
+                        <div class="status_uncomplete statusContainer last">
+                            <div class="statusDot"></div>
+                            <div class="statusLineLeft statusLine"></div>
+                            <div class="statusLineRight statusLine"></div>
+                            出账
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="panel">
+            <div class="panelTitle" style="border: 0">
+                最后更新日志
+            </div>
+            <span style="float:right">共&nbsp;<span class="journalTotalNum">5</span>&nbsp;条 <a class="button_5" id="btn_checkJournalDetail" href="javascript:;">查看日志详情</a></span>
+            <div class="panelContent clearfix">
+                <table class="operation_records">
+                    <thead>
+                    <tr>
+                        <td style="width:100px">日期</td>
+                        <td style="width:70px">操作人员</td>
+                        <td style="width:100px">类型</td>
+                        <td>操作内容</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>2013-06-06 10:50</td>
+                        <td>刘伟</td>
+                        <td>客服说明</td>
+                        <td class="leftAligning">鹰潭阳光假日酒店占地面积10.268亩，全楼高十一层，建筑面积16800平方米。酒店共有150间各类客房（包括豪华套房及行政套房）。
+                            客房装饰高雅，实施齐全，配有中央空调、程控电话、卫星电视、VOD。酒店配套机构阳光酒楼餐饮营业
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
+        <div class="panel">
+            <div class="panelTitle">
+                订单信息
+            </div>
+            <div style="float:right">
+                <span class="unimportantText">订单创建时间：</span>
+                <span>2013/7/12 10：40</span>
+                <span class="unimportantText" style="margin-left: 15px;">建单员：</span>
+                <span>刘伟</span>
+                <span class="unimportantText" style="margin-left: 15px;">跟单员：</span>
+                <span>刘伟</span>
+            </div>
+            <div class="clearfix orderListDiv">
+                <table class="orderListTable">
+                    <colgroup>
+                        <col width="80"/>
+                        <col width="130"/>
+                        <col width="80"/>
+                        <col width="130"/>
+                        <col width="80"/>
+                        <col width="130"/>
+                        <col width="80"/>
+                        <col width=""/>
+                    </colgroup>
+                    <tr>
+                        <th>订单状态：</th>
+                        <td><span class="fc999">审核中</span></td>
+                        <th>确认状态：</th>
+                        <td><span class="fc999">审核中</span></td>
+                        <th></th>
+                        <td></td>
+                        <th></th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>客户名称：</th>
+                        <td>青空旅行社</td>
+                        <th>收款方式：</th>
+                        <td>账户余额</td>
+                        <th>余额：</th>
+                        <td><span style="color:#FF6700;font-size:14px">120000.00</span>元</td>
+                        <th>联系人：</th>
+                        <td>张三</td>
+                    </tr>
+                    <tr>
+                        <th>电话：</th>
+                        <td>123456789</td>
+                        <th>手机：</th>
+                        <td>123456789</td>
+                        <th>传真：</th>
+                        <td>123456789</td>
+                        <th>E-Mail：</th>
+                        <td>2136542@21.165</td>
+                    </tr>
+                    <tr>
+                        <th>机票备注：</th>
+                        <td colspan="3">无</td>
+                        <th>内部备注：</th>
+                        <td colspan="3">
+                            <textarea style="width:322px; height:57px;" readonly="readonly">无</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>酒店备注：</th>
+                        <td colspan="7">无</td>
+                    </tr>
+                </table>
+                <div class="orderInfoOperDiv">
+                    <span class="modifiedFonts">修 改</span>
+                    <label class="saveAndCancel">
+                        <span class="saveFonts">保 存</span>
+                        <span class="cancelFonts">取 消</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panelTitle">预订产品明细</div>
+            <div class="subPanelTitle">
+                <span><b>城市：</b>上海</span>
+                <span><b>门票名称：</b>上海宝山智力公园</span>
+            </div>
+            <table class="tbl_common tb2_common tabCenterStyle">
+                <thead>
+                <tr>
+                    <td>旅客信息</td>
+                    <td>联系电话</td>
+                    <td>使用日期</td>
+                    <td>数量</td>
+                    <td>底价</td>
+                    <td>加价</td>
+                    <td>卖价</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>LIU/WEI，LIU/WEI-成人/男-身份证-0000000000000</td>
+                    <td>18625452222</td>
+                    <td>0000-00-00</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="panel">
+            <div class="panelTitle">联系信息</div>
+            <div class="changeBtnFonts">
+                <span class="modifiedFonts">修改信息</span>
+                <label class="saveAndCancel">
+                    <span class="saveFonts">保 存</span>
+                    <span class="cancelFonts">取 消</span>
+                </label>
+            </div>
+            <table class="tbl_common tb2_common tabCenterStyle">
+                <thead>
+                <tr>
+                    <td>姓名</td>
+                    <td>手机</td>
+                    <td>传真</td>
+                    <td>电邮</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input type="text" class="editable disable" value="刘伟"></td>
+                    <td><input type="text" class="editable disable" value="12345678910"></td>
+                    <td><input type="text" class="editable disable" value="021-1245125452"></td>
+                    <td><input type="text" class="editable disable" value="163546@5456.com" style="width: 160px;"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--<div class="block block-calc">
+            <div id="order_calc">
+                <ul class="flat-list">
+                    <li class="first">
+                        <label>
+                            <span>应收合计</span>
+                            <input value="2580.00" class="input-b">
+                        </label>
+                    </li>
+                    <li>
+                        <span>成人合计</span>
+                        <em>=</em>
+                        <input value="2260.00">
+                        <em>X</em>
+                        <input value="2" class="numberInput">
+                    </li>
+                    <li>
+                        <span>儿童合计</span>
+                        <em>+</em>
+                        <input value="2000.00">
+                        <em>X</em>
+                        <input value="0" class="numberInput">
+                    </li>
+                    <li>
+                        <span>外宾补差</span>
+                        <em>+</em>
+                        <input value="2000.00">
+                        <em>X</em>
+                        <input value="0" class="numberInput">
+                    </li>
+                    <li>
+                        <span>外宾单房差</span>
+                        <em>+</em>
+                        <input value="2000.00">
+                        <em>X</em>
+                        <input value="0" class="numberInput">
+                    </li>
+                </ul>
+            </div>
+        </div>-->
+    
+        <div class="block block-calc">
+            <div id="order_calc01">
+                <ul class="flat-list">
+                    <li class="first">
+                        <label>
+                            <span>应收合计</span>
+                            <input value="2580.00" class="input-b">
+                        </label>
+                    </li>
+                    <li>
+                        <span>底价</span>
+                        <em>=</em>
+                        <input type="text" value="2260.00">
+                    </li>
+                    <li>
+                        <span>加价</span>
+                        <em>+</em>
+                        <input value="2000.00">
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panelTitle">
+                供应商信息
+            </div>
+            <div class="clearfix orderListDiv">
+                <table class="orderListTable">
+                    <colgroup>
+                        <col width="90"/>
+                        <col width="130"/>
+                        <col width="80"/>
+                        <col width="130"/>
+                        <col width="60"/>
+                        <col width="130"/>
+                        <col width="60"/>
+                        <col width="150"/>
+                        <col width="50"/>
+                        <col width=""/>
+                    </colgroup>
+                    <tr>
+                        <th>供应商名称：</th>
+                        <td>票管家</td>
+                        <th>开户银行：</th>
+                        <td>上海银行</td>
+                        <th>开户名：</th>
+                        <td>真旅网</td>
+                        <th>账号：</th>
+                        <td>123456789123456789</td>
+                        <td colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <th>内部联系人：</th>
+                        <td>刘伟</td>
+                        <th>业务联系人：</th>
+                        <td>刘伟</td>
+                        <th>电话：</th>
+                        <td>13764695806</td>
+                        <th>传真：</th>
+                        <td>13764695806</td>
+                        <th>电邮：</th>
+                        <td>13764695806</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        
+    </div>
+</div>
+
+
+
+<div id="journalDetailTemplate" style="display: none">
+    <div style="position:absolute;top:-29px;right:40px">
+        <span style="vertical-align: middle"><span class="journalCurrentNo">1</span>/<span class="journalTotalPageNo">3</span></span>
+        <a class="pagesLeft enable" href="javascript:;"></a>
+        <a class="pagesRight enable" href="javascript:;"></a>
+    </div>
+
+    <div style="padding:10px">
+        <table class="operation_records">
+            <thead>
+            <tr>
+                <td style="width:110px">日期</td>
+                <td style="width:80px">操作人员</td>
+                <td style="width:90px">类型</td>
+                <td style="width:380px">操作内容</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>2013-06-06 14:55</td>
+                <td>系统</td>
+                <td>支付成功</td>
+                <td class="leftAligning">支付金额00.00</td>
+            </tr>
+            <tr>
+                <td>2013-06-06 14:55</td>
+                <td>刘伟</td>
+                <td>客服说明</td>
+                <td class="leftAligning">此订单需要尽快处理</td>
+            </tr>
+            <tr>
+                <td>2013-06-06 14:55</td>
+                <td>刘伟</td>
+                <td>客服说明</td>
+                <td class="leftAligning">此订单需要尽快处理</td>
+            </tr>
+            <tr>
+                <td>2013-06-06 14:55</td>
+                <td>刘伟</td>
+                <td>客服说明</td>
+                <td class="leftAligning">此订单需要尽快处理</td>
+            </tr>
+            <tr>
+                <td>2013-06-06 14:55</td>
+                <td>刘伟</td>
+                <td>客服说明</td>
+                <td class="leftAligning">鹰潭阳光假日酒店占地面积10.268亩，全楼高十一层，建筑面积16800平方米。酒店共有150间各类客房（包括豪华套房及行政套房）。
+                    客房装饰高雅，实施齐全，配有中央空调、程控电话、卫星电视、VOD。酒店配套机构阳光酒楼餐饮营业
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(function () {
+        new PopWindow("#btn_checkJournalDetail",{
+            title:"订单日志",
+            width:730,
+            open:function(){
+                var x = $(this)[0].wrapper;
+                setTimeout(function(){$(x.find(".k-window-content")).css({"overflow":"visible","z-index":"1"})},0);
+            }
+        },"#journalDetailTemplate").init();
+        
+       
+        $(".changeBtnFonts .modifiedFonts").click(function(){
+            $(".tabCenterStyle .disable").css({border:"1px solid #d3d3d3",display:"inline-block"}).show();
+            $(".changeBtnFonts .saveAndCancel").show();
+            $(this).hide();
+        });
+        $(".changeBtnFonts .cancelFonts").click(function(){
+            $(".tabCenterStyle .disable").css({border:"0px",display:"none"}).show();
+            $(".changeBtnFonts .modifiedFonts").show();
+            $(".changeBtnFonts .saveAndCancel").hide();
+        });
+        
+        $(".orderInfoOperDiv .modifiedFonts").click(function(){
+            $(".orderListTable textarea").removeAttr("readonly");
+            $(".orderInfoOperDiv .saveAndCancel").show();
+            $(this).hide();
+        });
+        $(".orderInfoOperDiv .cancelFonts").click(function(){
+            $(".orderListTable textarea").attr("readonly",true);
+            $(".orderInfoOperDiv .modifiedFonts").show();
+            $(".orderInfoOperDiv .saveAndCancel").hide();
+        });
+
+        $(".productClassify li").each(function(index){
+            $(this).click(function(){
+                $(".panel .changeModelCommonStyle").hide();
+                $(".panel .changeModelCommonStyle:eq(" + index + ")").show();
+                $(".productClassify li").removeClass("current");
+                $(this).addClass("current");
+            });
+        });
+        
+    });
+</script>
+
+</body>
+</html>
