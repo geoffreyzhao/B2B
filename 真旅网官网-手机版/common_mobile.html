@@ -3,7 +3,7 @@
 <head>
     <title>移动端-头尾部分</title>
 	<meta charset="UTF-8">
-    <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="format-detection" content="telphone=no, email=no" />
@@ -33,7 +33,15 @@
 <header class="mainHeader">
     <div class="headerCon">
         <a href="index.html" class="logo"></a>
-        
+        <span class="subNavSpan"><i></i></span>
+        <div class="subNavDiv" style="display:none;">
+           <ul>
+               <li><a href="#"><i class="tenet"></i>公司宗旨</a></li>
+               <li><a href="#"><i class="milestone"></i>公司里程</a></li>
+               <li><a href="#"><i class="news"></i>公司新闻</a></li>
+               <li><a href="#"><i class="aboutUs"></i>关于我们</a></li>
+           </ul> 
+        </div>
     </div>
 </header>
 <!-- head E -->
@@ -57,7 +65,7 @@
 </footer>
 <!-- foot S -->
 </body>
-<script type="text/javascript">
+<!--<script type="text/javascript">
     window.onload=htmlSize;
     window.onresize =htmlSize;
     function htmlSize(){
@@ -68,5 +76,22 @@
         if(cw>30){cw=30} //最大宽度
         document.getElementById('html').style.fontSize=cw+'px';
     }
+</script>-->
+<script type="text/javascript">
+    $(function(){
+        /*$(".subNavSpan").tap(function(){
+            $(".subNavDiv").show();
+        });*/
+
+        $("body").tap(function(e){
+            $(".subNavDiv").hide();
+        });
+
+        $(".subNavSpan").tap(function(e){
+            $(".subNavDiv").show();
+            e.stopPropagation();
+        });
+
+    });
 </script>
 </html>

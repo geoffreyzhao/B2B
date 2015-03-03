@@ -1,42 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-	<title>关于我们</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>移动端-关于我们</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telphone=no, email=no" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="320">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="msapplication-tap-highlight" content="no">
+
     <link rel="stylesheet" type="text/css" href="css/common.css"/>
     <link rel="stylesheet" type="text/css" href="css/travelzen.css"/>
-    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/idangerous.swiper.css"/>
+    <script type="text/javascript" src="js/zepto.min.js"></script>
+    <script type="text/javascript" src="js/touch.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/idangerous.swiper.min.js"></script>
 
-    <!--[if lte IE 9]>
-    <script src="/js/html5.js"></script>
-    <![endif]-->
 </head>
 <body>
 <!-- head S -->
 <header class="mainHeader">
     <div class="headerCon">
         <a href="index.html" class="logo"></a>
-        <ul class="mainNavBar">
-            <li><a href="home.html">首页</a></li>
-            <li><a href="milestone.html">公司里程</a></li>
-            <li><a href="news.html">公司新闻</a></li>
-            <li class="currentPage"><a href="about.html">关于我们</a></li>
-            <li class="website">
-                <a href="#">旗下网站</a>
-                <div class="websiteList">
-                    <div class="shield"></div>
-                    <div id="b2b-website" style="margin-top:-15px;">
-                        <a href="http://www.tdxinfo.com" target="_blank">天地行采购平台</a>
-                    </div>
-                    <div id="b2g-website">
-                        <a href="http://vipcorp.travelzen.com" target="_blank">真旅网差旅平台</a>
-                    </div>
-                </div>
-            </li>
-        </ul>
+        <span class="subNavSpan"><i></i></span>
+        <div class="subNavDiv" style="display:none;">
+            <ul>
+                <li><a href="#"><i class="tenet"></i>公司宗旨</a></li>
+                <li><a href="#"><i class="milestone"></i>公司里程</a></li>
+                <li><a href="#"><i class="news"></i>公司新闻</a></li>
+                <li><a href="#"><i class="aboutUs"></i>关于我们</a></li>
+            </ul>
+        </div>
     </div>
 </header>
 <!-- head E -->
@@ -51,64 +56,91 @@
     </div>
     <!-- banner E-->
     <div class="mainContent">
-    <div class="aboutUsCon">
-        <div class="aboutUs-item">
-            <h2><i class="aptitude"></i>旅游资质</h2>
-            <p class="companyName">上海长寿国际旅行社有限公司</p>
-            <div class="lineBorder"></div>
-            <ul class="subItem">
-                <li>
-                    <h4>企业类型：</h4>
-                    <p class="fonts01">有限责任公司</p>
-                </li>
-                <li>
-                    <h4>旅行社业务经营许可证编号：</h4>
-                    <p class="fonts01">L-SH-00305</p>
-                </li>
-            </ul>
-            <div class="lineBorder"></div>
-            <div class="scope">
-                <h4>经营范围：</h4>
-                <ul>
-                    <li><i class="one"></i>国内旅游、入境旅游业务会务、会展服务</li>
-                    <li><i class="two"></i>国内航线除香港、澳门、台湾地区航线外的航空<br/>客运销售代理业务</li>
-                    <li style="width: 218px;margin: 0 0 0 35px;"><i class="three"></i>国际航线或者香港、澳门、台湾地区航线的航空客运<br/>销售代理业务</li>
-                    <li><i class="four"></i>广告设计<br/>制作</li>
+        <div class="aboutUsCon">
+            <div class="aboutUs-item">
+                <h2><i class="aptitude"></i>旅游资质</h2>
+                <p class="companyName">上海长寿国际旅行社有限公司</p>
+                <div class="lineBorder"></div>
+                <ul class="subItem">
+                    <li>
+                        <h4>企业类型：</h4>
+                        <p class="fonts01">有限责任公司</p>
+                    </li>
+                    <li>
+                        <h4>旅行社业务经营许可证编号：</h4>
+                        <p class="fonts01">L-SH-00305</p>
+                    </li>
+                </ul>
+                <div class="lineBorder"></div>
+                <div class="scope">
+                    <h4>经营范围：</h4>
+                    <ul>
+                        <li><i class="one"></i>国内旅游、入境旅游业务会务、会展服务</li>
+                        <li><i class="two"></i>国内航线除香港、澳门、台湾地区航线外的航空</li>
+                        <li><i class="three"></i>国际航线或者香港、澳门、台湾地区航线的航空客运</li>
+                        <li><i class="four"></i>广告设计，制作</li>
+                    </ul>
+                </div>
+                <!--<div class="lineBorder"></div>-->
+            </div>
+            <div class="aboutUs-item" style="margin-bottom: 0;">
+                <h2><i class="contact" style="bottom:3px;"></i>联系我们</h2>
+                <div class="lineBorder"></div>
+                <ul class="contactUl">
+                    <li>
+                        <h5><i class="address"></i>总部地址：</h5>
+                        <p style="margin-top:-2px;">上海市宝山区呼兰西路123号4号楼</p>
+                    </li>
+                    <li>
+                        <h5><i class="tel"></i>客服电话：</h5>
+                        <p>400-620-6266</p>
+                        <p>service@travelzen.com</p>
+                    </li>
+                    <li>
+                        <h5><i class="cooperate"></i>市场合作：</h5>
+                        <p>021-31087500 转 市场部</p>
+                        <p>marketing@travelzen.com</p>
+                    </li>
                 </ul>
             </div>
-            <div class="lineBorder"></div>
         </div>
-        <div class="aboutUs-item">
-            <h2><i class="contact" style="bottom:3px;"></i>联系我们</h2>
-            <div class="lineBorder"></div>
-            <ul class="contactUl">
-                <li>
-                    <h5><i class="address"></i>总部地址：</h5>
-                    <p style="margin-top:-2px;">上海市宝山区呼兰西路123号4号楼</p>
-                </li>
-                <li>
-                    <h5><i class="tel"></i>客服电话：</h5>
-                    <p>400-620-6266</p>
-                    <p>service@travelzen.com</p>
-                </li>
-                <li>
-                    <h5><i class="cooperate"></i>市场合作：</h5>
-                    <p style="padding-left:36px;">021-31087500 转 市场部</p>
-                    <p style="padding-left:36px;">marketing@travelzen.com</p>
-                </li>
-            </ul>
-        </div>
-    </div>
     </div>
 </section>
 <!-- mainContent E -->
 
 <!-- foot S -->
 <footer class="foot">
-    <div class="mainFoot">Copyright © 2015 真旅网 All Rights Reserved. 沪ICP备08004120号
-    </div>
+    <div class="mainFoot">Copyright © 2015 真旅网 All Rights Reserved. 沪ICP备08004120号</div>
 </footer>
 <!-- foot S -->
-	
 </body>
+<!--<script type="text/javascript">
+    window.onload=htmlSize;
+    window.onresize =htmlSize;
+    function htmlSize(){
+        var cw=document.body.clientWidth;
+        cw=cw/75;
+        //计算倍数，数值可变。
+        if(cw<20){cw=20} //最小宽度
+        if(cw>30){cw=30} //最大宽度
+        document.getElementById('html').style.fontSize=cw+'px';
+    }
+</script>-->
+<script type="text/javascript">
+    $(function(){
+        /*$(".subNavSpan").tap(function(){
+         $(".subNavDiv").show();
+         });*/
+
+        $("body").tap(function(e){
+            $(".subNavDiv").hide();
+        });
+
+        $(".subNavSpan").tap(function(e){
+            $(".subNavDiv").show();
+            e.stopPropagation();
+        });
+
+    });
+</script>
 </html>
