@@ -8,8 +8,12 @@
 	<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/mobile/common.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/mobile/store/cruiseDetail.css">
-	<script type="text/javascript" src="/static/js/jquery.min.js"></script>
-	<script type="text/javascript" src="/static/js/vendor/bootstrap.js"></script>
+	<!-- <script type="text/javascript" src="/static/js/vendor/bootstrap.js"></script> -->
+	<script type="text/javascript" src="/static/js/zepto.js"></script>
+	<script type="text/javascript" src="/static/js/touch.js"></script>
+	<script type="text/javascript" src="/static/js/fx.js"></script>
+	<script type="text/javascript" src="/static/js/fx_methods.js"></script>
+	<!-- <script type="text/javascript" src="/static/js/jquery.min.js"></script> -->
 	<title>邮轮航线详情</title>
 </head>
 <body>
@@ -282,7 +286,7 @@
 			var showFlag = false;
 			var clickFlag = false;
 
-			$(window).load(function(){   // 视情况可以考虑去掉，看效果如何
+			// $(window).load(function(){   // 视情况可以考虑去掉，看效果如何
 
 				$("header").css("height", 
 							($(".header-img-container").height() + $(".bs-docs-sidebar").height()) + "px");
@@ -379,17 +383,19 @@
 					}
 				});
 				
-			});
+			// });
 
-	        $(".telPhoneIcon").click(function(){
+	        $(".telPhoneIcon").tap(function(){
 	        	if (!showFlag) {
 		        	$(".telCont").animate({
 		        		left: "32px"
 		        	}, 300);
+	        		// $(".telCont").addClass("telContShow");
 	        	} else {
 	        		$(".telCont").animate({
 		        		left: "-100%"
 		        	}, 300);
+	        		// $(".telCont").removeClass("telContShow");
 	        	}
 		        showFlag = !showFlag;
 	        });
@@ -401,6 +407,7 @@
 				$(".telCont").animate({
 	        		left: "-100%"
 	        	}, 300);
+				// $(".telCont").removeClass("telContShow");
 			}
 			return false;
 		}
