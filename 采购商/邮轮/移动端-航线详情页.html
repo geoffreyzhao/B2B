@@ -12,7 +12,7 @@
 	<script type="text/javascript" src="/static/js/zepto.js"></script>
 	<script type="text/javascript" src="/static/js/touch.js"></script>
 	<script type="text/javascript" src="/static/js/fx.js"></script>
-	<script type="text/javascript" src="/static/js/fx_methods.js"></script>
+	<!-- <script type="text/javascript" src="/static/js/fx_methods.js"></script> -->
 	<!-- <script type="text/javascript" src="/static/js/jquery.min.js"></script> -->
 	<title>邮轮航线详情</title>
 </head>
@@ -338,47 +338,54 @@
 
 				$(".changeList li").each(function(index){
 					if (index == 0) {
-						$(this).click(function(){
+						$(this).tap(function(){
 							clickFlag = true;
 							$(this).siblings("li").removeClass("active");
 							$(this).addClass("active");
-							$("body").animate({
-								scrollTop: $(".header-img-container").height() - 1
-							}, 500, "swing");
+							// $("body").animate({
+							// 	scrollTop: $(".header-img-container").height() - 1
+							// }, 500, "swing");
+							$("body").scrollTop($(".header-img-container").height());
+							// clickFlag = false;
 							setTimeout(function(){
 								clickFlag = false;
-							}, 500);
+							}, 50);
 						});
 					} else if (index == 1) {
-						$(this).click(function(){
+						$(this).tap(function(){
 							clickFlag = true;
 							$(this).siblings("li").removeClass("active");
 							$(this).addClass("active");
-							$("body").animate({
-								scrollTop: $(".introduceTitle").offset().top - ($(".bs-docs-sidebar").height() -1)
-							}, 500, "swing");
+							// $("body").animate({
+							// 	scrollTop: $(".introduceTitle").offset().top - ($(".bs-docs-sidebar").height() -1)
+							// }, 500, "swing");
+							$("body").scrollTop($(".introduceTitle").offset().top - ($(".bs-docs-sidebar").height() - 1));
+							// clickFlag = false;
 							setTimeout(function(){
 								clickFlag = false;
-							}, 500);
+							}, 50);
 						});
 					} else if (index == 2) {
-						$(this).click(function(){
+						$(this).tap(function(){
 							clickFlag = true;
 							$(this).siblings("li").removeClass("active");
 							$(this).addClass("active");
 							var lastHeight = $("#bookingNotes").height() + $(".footer").height()
 							if (lastHeight > $(window).height()) { // 可以滚动至最后一个条目
-								$("body").animate({
-									scrollTop: $(".orderTitle").offset().top - $(".bs-docs-sidebar").height()
-								}, 500, "swing");
+								// $("body").animate({
+								// 	scrollTop: $(".orderTitle").offset().top - $(".bs-docs-sidebar").height()
+								// }, 500, "swing");
+								$("body").scrollTop($(".orderTitle").offset().top - $(".bs-docs-sidebar").height());
 							} else {  //  滚动至屏幕底部
-								$("body").animate({
-									scrollTop: $("body").height()
-								}, 500, "swing");
+								// $("body").animate({
+								// 	scrollTop: $("body").height()
+								// }, 500, "swing");
+								$("body").scrollTop($("body").height());
 							}
+							// clickFlag = false;
 							setTimeout(function(){
 								clickFlag = false;
-							}, 500);
+							}, 50);
 						});
 					}
 				});
@@ -387,17 +394,19 @@
 
 	        $(".telPhoneIcon").tap(function(){
 	        	if (!showFlag) {
-		        	$(".telCont").animate({
-		        		left: "32px"
-		        	}, 300);
-	        		// $(".telCont").addClass("telContShow");
+		        	// $(".telCont").animate({
+		        	// 	"left": "32px"
+		        	// }, 300, "ease");
+	        		$(".telCont").addClass("telContShow");
 	        	} else {
-	        		$(".telCont").animate({
-		        		left: "-100%"
-		        	}, 300);
-	        		// $(".telCont").removeClass("telContShow");
+	        		// $(".telCont").animate({
+		        	// 	"left": "-500px"
+		        	// }, 300, "ease");
+	        		$(".telCont").removeClass("telContShow");
 	        	}
 		        showFlag = !showFlag;
+
+		        
 	        });
 			
 		});
@@ -405,8 +414,8 @@
 		function hideTelphone(flag) {
 			if (flag) {
 				$(".telCont").animate({
-	        		left: "-100%"
-	        	}, 300);
+	        		"left": "-100%"
+	        	}, 300, "ease");
 				// $(".telCont").removeClass("telContShow");
 			}
 			return false;
