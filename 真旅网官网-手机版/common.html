@@ -6,8 +6,8 @@
     <!--  meta部分每个页面都加一下，用的时候记得把注释删掉，注释就是看看-->
 
 	<meta charset="UTF-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" /> -->
-    <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <!-- <meta name="viewport" content="initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no" /> -->
     
     <!-- 删除苹果默认的工具栏和菜单栏 -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -28,7 +28,7 @@
     <!-- QQ强制竖屏 -->
     <meta name="x5-orientation" content="portrait">
     <!-- UC强制全屏 -->
-    <meta name="full-screen" content="yes">
+    <!-- <meta name="full-screen" content="yes"> -->
     <!-- QQ强制全屏 -->
     <meta name="x5-fullscreen" content="true">
     <!-- UC应用模式 -->
@@ -60,6 +60,32 @@
     <!--  首页滑屏操作需要引入，可单独使用，无其他js依赖  需与swiper.css配合使用 -->
     <script type="text/javascript" src="js/idangerous.swiper.min.js"></script>  
 
+    <script type="text/javascript">
+        $(function(){
+            var isRetina = (document.documentElement.clientWidth == window.screen.width && window.devicePixelRatio >= 2 && navigator.userAgent.match(/iphone|ipad/i) != null) ? true : false;
+            var scale = isRetina ? 1 / window.devicePixelRatio : 1;
+            var fs = 20 * (document.documentElement.clientWidth / 320 );
+            
+            alert(document.documentElement.clientWidth + "||"
+                     + window.screen.width + "||" + window.devicePixelRatio + "||" + isRetina + "||" + scale + "||" + fs + "||" + navigator.userAgent);
+
+            alert('<meta name="viewport" content="width=device-width, initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no" />');
+            // $('<meta name="viewport" content="width=device-width, initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no" />').prependTo("head");
+
+
+            $("html").css({
+                "font-size": fs + "px"
+            });
+
+        });
+    </script>
+
+    <style type="text/css">
+        .test {
+            font-size: 0.5rem;
+        }
+    </style>
+
 </head>
 <body>
 <!-- head S -->
@@ -83,7 +109,7 @@
 
 <!-- foot S -->
 <footer class="foot">
-    <div class="mainFoot">Copyright © 2015 真旅网 All Rights Reserved. 沪ICP备08004120号</div>
+    <div class="test">Copyright © 2015 真旅网 All Rights Reserved. 沪ICP备08004120号Copyright © 2015 真旅网 All Rights Reserved. 沪ICP备08004120号Copyright © 2015 真旅网 All Rights Reserved. 沪ICP备08004120号Copyright © 2015 真旅网 All Rights Reserved. 沪ICP备08004120号</div>
 </footer>
 <!-- foot S -->
 	
