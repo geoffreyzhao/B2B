@@ -209,25 +209,25 @@
 
 
 
-            var root = document.getElementsByTagName('html')[0];
-                    NATIVE_W = 375;
-                    NATIVE_H = 667;
+            var root = document.getElementsByTagName('html')[0],
+                NATIVE_W = 750,
+                NATIVE_H = 1334;
 
             function htmlSize() {
-                var cw = 10;
-                var rate = 1;
-                        w = window.innerWidth;
-                        h = window.innerHeight;
+                var cw = 10,
+                    w = window.innerWidth,
+                    h = window.innerHeight;  
                 if ((w / h) > (NATIVE_W / NATIVE_H)) {
-                    rate = h / (NATIVE_H / 100);
-                    rate /= 100;
+                    cw = h / (NATIVE_H / 20);
                 } else {
-                    rate = w / (NATIVE_W / 100);
-                    rate /= 100;
-                }              
-                root.style.fontSize = cw*rate + 'px';
+                    cw = w / (NATIVE_W / 20);
+                }
+                root.style.fontSize = cw + 'px';
             }
+
             htmlSize();
+
+
 		});
         
 
