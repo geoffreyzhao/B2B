@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>系统设置 信息发布 采购商运营位 编辑登录页</title>
+    <title>信息发布 APP运营位 首页专题多图轮播</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="../../../static/css/common.css" rel="stylesheet" type="text/css" />
-    <link href="../../../static/css/kendo.common.css" rel="stylesheet" type="text/css" />
-    <link href="../../../static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
-    <link href="../../../static/css/kendo.reset.css" rel="stylesheet" type="text/css" />
-    <link href="../../../static/css/b2b.css" rel="stylesheet" type="text/css" />
-    <link href="../../../static/css/kendo.reset.css" rel="stylesheet" />
-    <link href="../../../static/css/information_publish.css" rel="stylesheet" type="text/css"/>
-    <script src="../../../static/js/jquery.min.js" type="text/javascript"></script>    
-    <script src="../../../static/js/kendo.web.js" type="text/javascript"></script> 
-    <script type="text/javascript" src="../../../static/js/global.js"></script>
+    <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link href="/static/css/information_publish.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>    
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script> 
+    <script type="text/javascript" src="/static/js/global.js"></script>
     
     <style type="text/css">
         div.k-window-content{ padding: 15px;}
@@ -68,7 +68,7 @@
                      <a href="#" style="display:inline-block;line-height:33px;font-size: 14px;font-weight: bold;border-right: 1px solid #CDCECE;padding: 0 8px;">返回</a>
                  </div>
                  <div class="fixedMenu">
-                     <strong style="display:inline-block; font-size:14px; font-weight:bold; margin-left:10px;">登录页幻灯片</strong>
+                     <strong style="display:inline-block; font-size:14px; font-weight:bold; margin-left:10px;">首页专题多图轮播</strong>
                  </div>
                 <div class="fixedButton">
                     <a class="button_secondary adaptiveButton small ac-addAd">
@@ -83,12 +83,14 @@
                <table cellpadding="0" cellspacing="0" class="inquireTab">
                   <colgroup>
                        <col width="55" /> 
-                       <col width="310" /> 
+                       <col width="230" /> 
+                       <col width="30" /> 
+                       <col width="100" /> 
                        <col width="55" /> 
-                       <col width="150" /> 
-                       <col width="55" /> 
-                       <col width="260" />
-                       <col width="80" />  
+                       <col width="230" />
+                       <col width="55" />
+                       <col width="120" />
+                       <col width="" />
                   </colgroup>
                   <tr>
                      <td>广告名称</td>
@@ -97,16 +99,24 @@
                      </td>
                      <td>状态</td>
                      <td>
-                         <select style="width:90px;" data-role="dropdownlist">
+                         <select style="width:60px;" data-role="dropdownlist">
                              <option>正常</option>
                          </select>
                      </td>
-                     <td>显示大区</td>
+                     <td>有效日期</td>
                      <td>
-                         <select style="width:90px;" data-role="dropdownlist">
-                             <option>全部</option>
-                         </select>
+                         <input type="text" class="datepicker" value="2012-03-04" style="width:93px;" />
+                         <span class="cjrq_span">至</span>
+                         <input type="text" class="datepicker orange" value="2012-03-04" style="width:93px;" />
                      </td>
+                      <td>投放位置</td>
+                      <td>
+                          <select style="width:60px;" data-role="dropdownlist">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                          </select>
+                      </td>
                      <td rowspan="2">
                          <a href="javascript:;" class="button_important adaptiveButton medium">
                             <span class="left"></span>
@@ -115,31 +125,13 @@
                         </a>
                      </td>
                   </tr>
-                   <tr class="last">
-                       <td>有效日期</td>
-                       <td>
-                           <input type="text" class="datepicker" value="2012-03-04" style="width:93px;" />
-                           <span class="cjrq_span">至</span>
-                           <input type="text" class="datepicker orange" value="2012-03-04" style="width:93px;" />
-                       </td>
-                       <td>投放位置</td>
-                       <td>
-                           <select style="width:90px;" data-role="dropdownlist">
-                               <option>1</option>
-                           </select>
-                       </td>
-                       <td> </td>
-                       <td> </td>
-                   </tr>
                </table>
-              
             </div>
                          
               <table class="tgrid" style="table-layout:fixed;">
                   <colgroup>
                       <col width="95"/>
                       <col width="180"/>
-                      <col width="105"/>
                       <col width="70"/>
                       <col width="70"/>
                       <col width="180"/>
@@ -151,7 +143,6 @@
                       <tr>
                           <th class="line_left">操作</th>
                           <th>广告名称</th>
-                          <th>区域</th>
                           <th>状态</th>
                           <th>投放位置</th>
                           <th>有效日期</th>
@@ -166,98 +157,39 @@
                               <a href="javascript:void(0);" class="ac-modifiedAd">修改</a>
                               <a href="javascript:void(0);">挂起</a>
                           </td>
-                          <td>新平台新气象</td>
-                          <td>华东</td>
+                          <td>南航黄金周物价机票</td>
+                          <td>有效</td>
+                          <td>1</td>
+                          <td>2013/09/01 至 2013/09/31</td>
+                          <td>2013/08/31</td>
+                          <td>王大锤</td>
+                          <td>2013/08/31</td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <a href="javascript:void(0);" class="ac-modifiedAd">修改</a>
+                              <a href="javascript:void(0);">挂起</a>
+                          </td>
+                          <td>南航黄金周物价机票</td>
                           <td>有效</td>
                           <td>2</td>
-                          <td>2014/04/23 至 2014/04/23</td>
-                          <td>2014/04/23</td>
-                          <td>张三</td>
-                          <td>2014/04/23</td>
+                          <td>2013/09/01 至 2013/09/31</td>
+                          <td>2013/08/31</td>
+                          <td>王大锤</td>
+                          <td>2013/08/31</td>
                       </tr>
                       <tr>
                           <td>
                               <a href="javascript:void(0);" class="ac-modifiedAd">修改</a>
                               <a href="javascript:void(0);">挂起</a>
                           </td>
-                          <td>十一黄金周特惠酒店</td>
-                          <td>华东、华南</td>
-                          <td>有效</td>
+                          <td>南航黄金周物价机票</td>
+                          <td>过期</td>
                           <td>3</td>
-                          <td>2014/04/23 至 2014/04/23</td>
-                          <td>2014/04/23</td>
-                          <td>张三</td>
-                          <td>2014/04/23</td>
-                      </tr>
-                      <tr>
-                          <td>
-                              <a href="javascript:void(0);" class="ac-modifiedAd">修改</a>
-                              <a href="javascript:void(0);">挂起</a>
-                          </td>
-                          <td>东航特惠游四川</td>
-                          <td>全部</td>
-                          <td>过期</td>
-                          <td>4</td>
-                          <td>2014/04/23 至 2014/04/23</td>
-                          <td>2014/04/23</td>
-                          <td>张三</td>
-                          <td>2014/04/23</td>
-                      </tr>
-                      <tr>
-                          <td>
-                              <a href="javascript:void(0);" class="ac-modifiedAd">修改</a>
-                              <a href="javascript:void(0);">挂起</a>
-                          </td>
-                          <td>新平台新气象</td>
-                          <td>华东</td>
-                          <td>过期</td>
-                          <td>5</td>
-                          <td>2014/04/23 至 2014/04/23</td>
-                          <td>2014/04/23</td>
-                          <td>张三</td>
-                          <td>2014/04/23</td>
-                      </tr>
-                      <tr>
-                          <td>
-                              <a href="javascript:void(0);" class="ac-modifiedAd">修改</a>
-                              <a href="javascript:void(0);">挂起</a>
-                          </td>
-                          <td>十一黄金周特惠酒店</td>
-                          <td>华东、华南</td>
-                          <td>过期</td>
-                          <td>6</td>
-                          <td>2014/04/23 至 2014/04/23</td>
-                          <td>2014/04/23</td>
-                          <td>张三</td>
-                          <td>2014/04/23</td>
-                      </tr>
-                      <tr>
-                          <td>
-                              <a href="javascript:void(0);" class="ac-modifiedAd">修改</a>
-                              <a href="javascript:void(0);">挂起</a>
-                          </td>
-                          <td>新平台新气象</td>
-                          <td>全部</td>
-                          <td>过期</td>
-                          <td>7</td>
-                          <td>2014/04/23 至 2014/04/23</td>
-                          <td>2014/04/23</td>
-                          <td>张三</td>
-                          <td>2014/04/23</td>
-                      </tr>
-                      <tr>
-                          <td>
-                              <a href="javascript:void(0);" class="ac-modifiedAd">修改</a>
-                              <a href="javascript:void(0);">挂起</a>
-                          </td>
-                          <td>十一黄金周特惠酒店</td>
-                          <td>华东</td>
-                          <td>过期</td>
-                          <td>8</td>
-                          <td>2014/04/23 至 2014/04/23</td>
-                          <td>2014/04/23</td>
-                          <td>张三</td>
-                          <td>2014/04/23</td>
+                          <td>2013/09/01 至 2013/09/31</td>
+                          <td>2013/08/31</td>
+                          <td>王大锤</td>
+                          <td>2013/08/31</td>
                       </tr>
               </tbody>
           </table>
@@ -360,15 +292,11 @@
                         </td>
                     </tr>-->
                     <tr>
-                        <th>背景代码 \\\#</th>
+                        <th>路径</th>
                         <td>
-                            <input type="text" style="width: 100px;"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>URL</th>
-                        <td>
-                            <input type="text" value="http://" style="width: 450px;" />
+                            <label><input type="radio" name="pathType" checked/>URL</label>
+                            <label><input type="radio" name="pathType"/>ID</label>
+                            <input type="text" value="http://" style="width: 338px;" />
                         </td>
                     </tr>
                     <tr>
@@ -398,32 +326,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>显示大区</th>
-                        <td>
-                            <label>
-                                <input type="checkbox"/>全部
-                            </label>
-                            <label>
-                                <input type="checkbox"/>华东
-                            </label>
-                            <label>
-                                <input type="checkbox"/>华南
-                            </label>
-                            <label>
-                                <input type="checkbox"/>华北
-                            </label>
-                            <label>
-                                <input type="checkbox"/>西南
-                            </label>
-                            <label>
-                                <input type="checkbox"/>港澳
-                            </label>
-                            <label>
-                                <input type="checkbox"/>海外
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
                         <th></th>
                         <td style="text-align: center; padding-top: 25px;">
                             <button class="large_button" type="button" name="a">修改完成</button>
@@ -433,7 +335,7 @@
             </div>
         </div>        
     </script>
-
+<!-- 添加广告 -->
     <script type="text/x-kendo-template" id="ac-addAd-template">
         <div class="adContent">
             <div class="loadBanner"><img src="../../../static/images/loadImg.jpg" style="width: 720px; height: 172px;"></div>
@@ -458,7 +360,7 @@
                                 <span class="center">上传中...</span>
                                 <span class="right"></span>
                             </a>
-                            <em class="adImgSize">（580*220px jpg）</em>
+                            <em class="adImgSize">（1680*470px jpg）</em>
                         </td>
                     </tr>
                     <tr>
@@ -474,15 +376,11 @@
                         </td>
                     </tr>-->
                     <tr>
-                        <th>背景代码 \\\#</th>
+                        <th>路径</th>
                         <td>
-                            <input type="text" style="width: 100px;"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>URL</th>
-                        <td>
-                            <input type="text" value="http://" style="width: 450px;" />
+                            <label><input type="radio" name="pathType" checked/>URL</label>
+                            <label><input type="radio" name="pathType"/>ID</label>
+                            <input type="text" value="http://" style="width: 338px;" />
                         </td>
                     </tr>
                     <tr>
@@ -509,32 +407,6 @@
                             <input type="text" style="width: 100px;" class="datepicker" value="2012-03-04" />
                             <em>&nbsp;至&nbsp;</em>
                             <input type="text" style="width: 100px;" class="datepicker orange" value="2012-03-04" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>显示大区</th>
-                        <td>
-                            <label>
-                                <input type="checkbox"/>全部
-                            </label>
-                            <label>
-                                <input type="checkbox"/>华东
-                            </label>
-                            <label>
-                                <input type="checkbox"/>华南
-                            </label>
-                            <label>
-                                <input type="checkbox"/>华北
-                            </label>
-                            <label>
-                                <input type="checkbox"/>西南
-                            </label>
-                            <label>
-                                <input type="checkbox"/>港澳
-                            </label>
-                            <label>
-                                <input type="checkbox"/>海外
-                            </label>
                         </td>
                     </tr>
                     <tr>
