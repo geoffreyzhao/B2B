@@ -213,6 +213,7 @@
         <div class="chief passengerInfo clearfix"> 
             <h3 style="float:left;">退订旅客</h3>
             <div class="operBtn">
+                <em class="countDownText">您还有<em class="countDown">02:00:00</em>的时间确认是否退订</em>
                 <span class="confirmUnsubscribeBtn">确定退订</span>
                 <span class="cancelUnsubscribeBtn">取消退订</span>
             </div>
@@ -303,7 +304,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <h2 class="productTitle">美国个人旅游签证（上海送签）</h2>
+                        <h2 class="productTitle"><a href="#">美国个人旅游签证（上海送签）</a></h2>
                     </td>
                     <td>
                         <em class="font14">成人:</em>
@@ -839,7 +840,27 @@
             template: "#payTipTemplate",
             width: 480
         }).init();
+
+        countDown(".countDown", 0, 70, 0);
     });
+
+    function countDown(container, hours, minutes, seconds) {
+        var curDate = new Date();
+        curDate.setHours(hours);
+        curDate.setMinutes(minutes);
+        curDate.setSeconds(seconds);
+
+        setInterval(function(){
+            var sec = curDate.getSeconds() - 1;
+            curDate.setSeconds(sec);
+
+            var h = curDate.getHours() < 10 ? '0' + curDate.getHours() : curDate.getHours();
+            var m = curDate.getMinutes() < 10 ? '0' + curDate.getMinutes() : curDate.getMinutes();
+            var s = curDate.getSeconds() < 10 ? '0' + curDate.getSeconds() : curDate.getSeconds();
+
+            $(container).html(h + ":" + m + ":" + s);
+        }, 1000);
+    }
 
 </script>
     
