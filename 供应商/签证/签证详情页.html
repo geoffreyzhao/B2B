@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>供应商 签证 签证详情页</title>
+    <meta charset="utf-8" />
+    <link type="text/css" rel="stylesheet" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/kendo.common.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/kendo.gray.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/common.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/supplier.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/kendo.reset.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/supplier_common.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/supplier_visa.css"/>
+
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+    <script type="text/javascript" src="/static/js/supplier/supplier_travel.js"></script>
+    
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/static/css/ie.css" />
+    <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script>
+    <![endif]-->
+    <!-- @CLB@ -->
+    <style type="text/css">
+        .k-tooltip-content {
+            padding: 0;
+        }
+    </style>
+    <script>
+        $(function(){
+            kendo.init('body');
+            lensf();
+        })
+    </script>
+</head>
+<body>
+
+<div class="bg-header-repeat">
+    <div class="bg-header-top"></div>
+    <div class="navi-split-line"></div>
+    <div class="main-header"></div>
+</div>
+
+<div id="container" class="new-container">
+    <div class="header-top-center">
+        <div class="head-left">
+            <div class="supplier-logo"></div>
+        </div>
+        <ul class="first-navi">
+            <li class="first-navi-li"><a href="javascript:void(0);">国内机票</a></li>
+            <li class="first-navi-li"><a href="javascript:void(0);">国际机票</a></li>
+            <li class="first-navi-li" style="width:70px;"><a href="javascript:void(0);">旅游</a></li>
+            <li class="first-navi-li first-navi-active"><a href="javascript:void(0);" style="width:70px;">签证</a>
+                <ol class="second-navi">
+                    <li class="second-navi-li"><a href="javascript:void(0);">签证产品管理</a>
+                        <div class="navi-slide-hover"></div>
+                    </li>
+                    <li class="second-navi-li"><a href="javascript:void(0);">签证进度管理</a>
+                        <div class="navi-slide-hover"></div>
+                    </li>
+                    <li class="second-navi-li second-navi-active"><a href="javascript:void(0);">订单管理</a>
+                        <div class="navi-slide-hover" style="height:5px;"></div>
+                    </li>
+                </ol>
+            </li>
+            <li class="first-navi-li"><a href="javascript:void(0);">财务管理</a></li>
+            <li class="user-setting-nav" style="display:none;">
+                <ol class="second-navi">
+                    <li class="second-navi-li"><a href="javascript:void(0);">我的账号</a>
+                        <div class="navi-slide-hover"></div>
+                    </li>
+                    <li class="second-navi-li"><a href="javascript:void(0);">公司信息</a>
+                        <div class="navi-slide-hover"></div>
+                    </li>
+                    <li class="second-navi-li"><a href="javascript:void(0);">员工管理</a>
+                        <div class="navi-slide-hover"></div>
+                    </li>
+                    <li class="second-navi-li"><a href="javascript:void(0);">角色管理</a>
+                        <div class="navi-slide-hover"></div>
+                    </li>
+                    <li class="second-navi-li"><a href="javascript:void(0);">账户设置</a>
+                        <div class="navi-slide-hover"></div>
+                    </li>
+                    <li class="second-navi-li"><a href="javascript:void(0);"><span style="font-size:14px;">OFFICE</span>管理</a>
+                        <div class="navi-slide-hover"></div>
+                    </li>
+                </ol>
+            </li>
+        </ul>
+        <div class="head-right">
+            <ul class="feature">
+                <li class="notice-icon-active"></li>
+                <li class="split-line"></li>
+                <li class="person-info">
+                    <span class="person-icon"></span>
+                    <span class="person-name" title="zhaoshuaigeng12312321">zhaoshuaigeng12312321</span>
+                    <a class="logout" href="javascript:void(0);">退出</a>
+                    <span class="user-setting user-setting-active">设置</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="sub_menu_bar"></div>
+
+    <div class="mainOrderContent">
+        <!-- 主体内容 开始 -->
+        <div class="travel_birthland_destination">
+            <!--<span class="birthland">上海</span>-->
+            旅游频道<i class="icon-right-open-1"></i>签证<i class="icon-right-open-1"></i>美国<i class="icon-right-open-1"></i>
+            <span class="destination">美国个人旅游签证（上海送签）免面试</span>
+        </div>
+        <section class="visaFistModelInfo">
+            <div class="visaBookModel clearfix">
+                <div class="visaFistModelLeft">
+                    <img src="../../static/images/store/visaLeftImg.jpg" style="height: 150px;">
+                </div>
+                <div class="visaFistModelRight">
+                    <h3 class="titleFonts">美国个人旅游签证（上海送签）免面试</h3>
+                    <div class="visaFistNumber">
+                        <label class="marginRight15">
+                            <em class="color888">编号：</em>
+                            <em class="color333">60891</em>
+                        </label>
+                        <span class="color666">本产品由上海长寿国际旅行社有限公司及具有资质的合作旅行社提供相关服务</span>
+                    </div>
+                    <div class="priceInfo color666">
+                            <span class="fonts14">
+                                结算价：
+                                <label class="orangeFonts">
+                                    <em class="fonts18">￥</em>
+                                    <em class="fonts36">850</em>
+                                </label>起
+                            </span>
+                        <del class="marginLeft25">市场价：￥1050元</del>
+                    </div>
+                </div>
+            </div>
+            <ul class="visaInfoList clearfix">
+                <li>
+                    <b class="listLeftTitle">面试：</b>
+                    <span class="listRightContent">不需要</span>
+                </li>
+                <li>
+                    <b class="listLeftTitle">提前预定：</b>
+                    <span class="listRightContent">16个工作日（异地请根据办签时间提早预定）</span>
+                </li>
+                <li>
+                    <b class="listLeftTitle">办签时间：</b>
+                    <span class="listRightContent">上海收齐材料后15个工作日，异地收齐材料后18个工作日，如遇节假日可能会有适当延长</span>
+                </li>
+                <li>
+                    <b class="listLeftTitle">入境次数：</b>
+                    <span class="listRightContent">多次（以领馆签发为准）</span>
+                </li>
+                <li>
+                    <b class="listLeftTitle">可停留天数：</b>
+                    <span class="listRightContent">一般3-6个月（由移民局官员决定）</span>
+                </li>
+                <li>
+                    <b class="listLeftTitle">签证有效期：</b>
+                    <span class="listRightContent">一般1-10年（以领馆签发为准）</span>
+                </li>
+                <li>
+                    <b class="listLeftTitle">受理范围：</b>
+                        <span class="listRightContent">
+                            <div class="thirdEllipsis scopeContent">
+                                <p>1.申请人上一次赴美签证过期时间不超过48个月，此次申请签证类型与上次相同，有过期的美国签证页所在的护照（如护照为因公护照，需包含清晰的出入境四个章），您必须在之前的签证面试时提供过十指指纹，未被美领馆行政审核过且签证页上无“clearance received”注释，同时未被美领馆拒签过以上条件必须同时满足。此次申请签证类型与上次相同，有过期的美国签证页所在的护照（如护照为因公护照，需包含清晰的出入境四个章）此次申请签证类型。<br>
+                                    2.申请人上一次赴美签证过期时间不超过48个月，此次申请签证类型与上次相同，有过期的美国签证页所在的护照如护照为因公护照，需包含清晰的出入境四个章），您必须在之前的签证面试时提供过十指指纹。
+                                </p>
+                            </div>
+                       </span>
+                    <label class="scopeClick">
+                        <span class="expandMoreLink">更多</span>
+                        <span class="foldMoreLink" style="display:none;">收起</span>
+                    </label>
+                </li>
+                <li>
+                    <b class="listLeftTitle">领区覆盖地：</b>
+                        <span class="listRightContent consularContent">
+                            <div class="thirdEllipsis areaContent">
+                                <p>上海、北京、上海、北京、上海、北京上海、北京上海、北京上海、北京上海、北京上海、北京上海、北京上海、北京上海、北京上海、北京上海、北京上海、北京、上海、北京、上海、北京、上海、北京、上海、北京、上海、北京</p>
+                            </div>
+                        </span>
+                    <label class="consularClick">
+                        <span class="expandMoreLink">更多</span>
+                        <span class="foldMoreLink" style="display:none;">收起</span>
+                    </label>
+                </li>
+            </ul>
+        </section>
+        <div class="tripDetailInfo">
+            <ul class="changeList clearfix">
+                <li><a href="#noticeContent" class="currentLi"><i></i>预定须知</a></li>
+                <li class="liLine"></li>
+                <li><a href="#materialContent"><i></i>所需材料</a></li>
+                <li class="liLine"></li>
+                <li><a href="#addressContent"><i></i>材料寄送地址</a></li>
+                <li class="liLine"></li>
+                <li><a href="#otherContent"><i></i>其他</a></li>
+            </ul>
+            <div class="commonStyle noticeList">
+                <a href="#" name="noticeContent"></a>
+                <ul class="tdoi_bookingNote">
+                    <li class="tdoi_subTitle">预订须知</li>
+                    <li>1、本产品适用于网上及手机客户端预订。</li>
+                    <li>2、美国商务及旅游签证（B1/B2签证）有效期通常为一年，有效期内可多次进出美国。持有此类签证，您可以自由制定您的旅行计划，单独或者跟随任意团队前往。</li>
+                    <li>3、80周岁以上（含80周岁）老人或14周岁（含14周岁）以下儿童，如从未被拒签过，本人无需前往领馆面试，可以通过中信银行的签证“代传递”程序申请签证。或者，如有直系亲属需申请同一类型的签证并需要前往领馆面谈，老人或儿童的材料可由直系亲属带去领馆。</li>
+                    <li>4、如申请人上一次赴美签证到期日距此次申请日期不超过48个月、此次申请的签证类型与上次相同，有过期的美国签证页所在的旧护照，您必须在之前的签证面试时提供过十指指纹，未被美领馆行政审核过，且未被拒签过，符合以上条件，您则无需前往领馆面试，可以通过中信银行的签证“代传递”程序申请签证。</li>
+                    <li>5、本产品适用于网上及手机客户端预订。</li>
+                    <li>6、美国商务及旅游签证（B1/B2签证）有效期通常为一年，有效期内可多次进出美国。持有此类签证，您可以自由制定您的旅行计划，单独或者跟随任意团队前往。</li>
+                    <li>7、80周岁以上（含80周岁）老人或14周岁（含14周岁）以下儿童，如从未被拒签过，本人无需前往领馆面试，可以通过中信银行的签证“代传递”程序申请签证。或者，如有直系亲属需申请同一类型的签证并需要前往领馆面谈，老人或儿童的材料可由直系亲属带去领馆。</li>
+                </ul>
+            </div>
+            <div class="commonStyle materialContent">
+                <div class="tdoi_supTitle">
+                    <i class="commonIconStyle materialIcon"></i>所需材料
+                    <a href="#" name="materialContent"></a>
+                    <label class="printBtn">
+                        <i class="printIcon"></i>
+                        <a href="javascript:void(0);">打印材料</a>
+                    </label>
+                </div>
+                <ul class="tabChangeList clearfix">
+                    <li class="current">
+                        <a href="javascript:void(0);">在职人员</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">自由职业</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">退休人员</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">学生</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">学龄前儿童</a>
+                    </li>
+                </ul>
+                <section class="changeListContent">
+                    <div class="changeListInfo">
+                        <div><em class="redFonts">*</em>代表必备材料</div>
+                        <table class="grayTabContent">
+                            <colgroup>
+                                <col width="220">
+                                <col width="630">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th>材料名称</th>
+                                <th>材料描述</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="alignTop">
+                                    <em class="redFonts">*</em>
+                                    <b>中国大陆因私护照复印件</b>
+                                </td>
+                                <td>
+                                    <ul class="tdListContent">
+                                        <li>1、护照首页复印件；</li>
+                                        <li>2、行程结束后至少还有6个月有效期；</li>
+                                        <li>3、至少留有1页空白签证页，不含备注页；</li>
+                                        <li>4、须有中文签名（不可用铅笔）；</li>
+                                        <li>5、不接收6个月内有美国拒签记录的护照。</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="alignTop">
+                                    <em class="redFonts">*</em>
+                                    <b>照片1张</b>
+                                </td>
+                                <td>
+                                    <ul class="tdListContent">
+                                        <li>1、近6个月内的（5.1cmx5.1cm）白底彩照1张（照片背后用铅笔写姓名）；</li>
+                                        <li>2、须包含整个面部，颈部和肩膀；如佩戴眼镜，不得出现反光；</li>
+                                        <li>3、不得经过数码处理，增强效应，修版，颗粒化，压缩引起的任何可视效果。 照片规格参考</li>
+                                        <li>备注：可用符合以上要求的照片电子版（高x宽：最小为600x600像素，最大尺寸为1200x1200像素，JPG格式）代替。</li>
+                                        <li>附：<a href="javascript:void(0);">照片规格参考</a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="alignTop">
+                                    <em class="redFonts">*</em>
+                                    <b>个人信息表</b>
+                                </td>
+                                <td>
+                                    <ul class="tdListContent">
+                                        <li>填写完整并中文签名，填写的联系电话需保持畅通。</li>
+                                        <li>备注：可递交此材料电子版（JPG格式）代替。个人信息表 个人信息表填写样图。附：
+                                            <a href="javascript:void(0);">个人信息表</a>、
+                                            <a href="javascript:void(0);">个人信息表样图</a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="alignTop">
+                                    <b>其他注意事项</b>
+                                </td>
+                                <td>
+                                    <ul class="tdListContent">
+                                        <li>1、面谈当天必须携带护照原件、护照复印件、照片原件、DS160确认页（DS160确认页样本）、预约信（预约信样本），以及其他支持性文件（如支持性文件不能提供，不会影响您的送签，但如果领馆抽查时您无法提供，则可能会影响您的签证结果）按时前往领馆进行面谈。请不要折叠、涂改打印出来的DS-160确认页；</li>
+                                        <li>2、面谈当天请按时到达领馆并按照领馆要求排队（具体情况以领馆当天要求为准，具体请咨询领馆工作人员，我司不设面试陪同人员）；</li>
+                                        <li>3、80周岁（含）以上或14周岁以下申请者，如从未被拒签过，本人无需前往领馆面试，可以通过中信银行的签证“代传递”程序申请签证。或者，14周岁以下儿童，如果父母一方或双方需申请同一类型的签证并需要前往领馆面谈，父母需要以儿童的名义预约面谈，儿童的材料可由其带去领馆一并递交，儿童需要同时提供父/母的身份证复印件和儿童的出生证明原件（一名成年申请人面谈时可携带不多于五份未成年人申请，如果有超过五名未成年人，则申请必须通过代传递服务进行提交）；</li>
+                                        <li>4、14周岁以下儿童如与父母除外的其他亲属同行，儿童的签证必须通过中信银行办理。附：
+                                            <a href="javascript:void(0);">DS-160确认页样本</a>、
+                                            <a href="javascript:void(0);">预约性样本</a>、
+                                            <a href="javascript:void(0);">支持性文件</a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </section>
+            </div>
+            <div class="commonStyle materialContent">
+                <div class="tdoi_supTitle">
+                    <i class="commonIconStyle addressIcon"></i>材料寄送地址
+                    <a href="#" name="addressContent"></a>
+                </div>
+                <section class="changeListContent">
+                    <div class="changeListInfo">
+                        <table class="grayTabContent fonts14">
+                            <colgroup>
+                                <col width="110">
+                                <col width="130">
+                                <col width="500">
+                                <col width="110">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th>收件人</th>
+                                <th>收件城市</th>
+                                <th>详细地址</th>
+                                <th>手机号</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>王帅</td>
+                                <td>上海</td>
+                                <td>闸北区广中西路555号宝华国际广场16楼楼楼楼楼楼楼楼楼楼楼楼楼楼楼</td>
+                                <td>13888888888</td>
+                            </tr>
+                            <tr>
+                                <td>李雷</td>
+                                <td>上海</td>
+                                <td>闸北区广中西路555号宝华国际广场16楼楼楼楼楼楼楼楼楼楼楼楼楼楼楼</td>
+                                <td>13888888888</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+            <div class="commonStyle materialContent">
+                <div class="tdoi_supTitle">
+                    <i class="commonIconStyle otherIcon"></i>其他
+                    <a href="#" name="otherContent"></a>
+                </div>
+                <section class="changeListContent">
+                    <ul class="commonLiStyle">
+                        <li>1、本产品适用于网上及手机客户端预订。</li>
+                        <li>2、美国商务及旅游签证（B1/B2签证）有效期通常为一年，有效期内可多次进出美国。持有此类签证，您可以自由制定您的旅行计划，单独或者跟随任意团队前往。</li>
+                        <li>3、80周岁以上（含80周岁）老人或14周岁（含14周岁）以下儿童，如从未被拒签过，本人无需前往领馆面试，可以通过中信银行的签证“代传递”程序申请签证。或者，如有直系亲属需申请同一类型的签证并需要前往领馆面谈，老人或儿童的材料可由直系亲属带去领馆。</li>
+                        <li>4、如申请人上一次赴美签证到期日距此次申请日期不超过48个月、此次申请的签证类型与上次相同，有过期的美国签证页所在的旧护照，您必须在之前的签证面试时提供过十指指纹，未被美领馆行政审核过，且未被拒签过，符合以上条件，您则无需前往领馆面试，可以通过中信银行的签证“代传递”程序申请签证。</li>
+                    </ul>
+                </section>
+            </div>
+
+        </div>
+        <!-- 主体内容 结束 -->
+    </div>
+</div>
+
+
+
+
+<div id="extFooter">
+    <div>
+        <p>
+            <a href="javascript:void(0);">关于我们</a>&nbsp;|
+            <a href="javascript:void(0);">微博</a>&nbsp;|
+            <a href="javascript:void(0);">服务条款</a>&nbsp;|
+            <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+        </p>
+        <p>客户服务热线:400-720-6666</p>
+    </div>
+</div>
+
+<script>
+    $.datepicker.regional[ "zh-CN" ];
+    $(function(){
+
+        var a_pos = [];
+        var flag=true;
+        $(".changeList a").each(function(index){
+            var href= $(this).attr("href");
+            a_pos.push($("a[name=" + href.substring(1) + "]").offset());
+        });
+
+        $(".changeList a").click(function(e){
+            flag=false;
+            e.preventDefault();
+            $(this).closest("li").siblings().find("a").removeClass('currentLi');
+            $(this).addClass("currentLi");
+            var i=$(this).closest("li").index();
+            i-=Math.round(i/2);
+            $("html,body").animate({"scrollTop":a_pos[i].top-42},1);
+        });
+
+        $(window).bind("scroll",function(e){
+            if(flag){
+                var that = $(".changeList");
+                var currentPos = that.offset();
+                var i = 0;
+                //                console.dir(a_pos);
+                for(i = a_pos.length - 1; i >=0 ; i--){
+                    if(currentPos.top >= a_pos[i].top-45){
+                        that.find("a").removeClass('currentLi');
+                        $("a:eq(" + (i) + ")" , that).addClass("currentLi");
+                        return false;
+                    }
+                }
+                that.find("a").removeClass('currentLi');
+                $("a:first" , that).addClass("currentLi");
+            }
+            flag=true;
+        });
+
+        $(".changeList").fixedBar();
+
+
+
+        // 更多受理范围
+        var tmpCont = $(".scopeContent p").html();
+        // scopeEllipsis();  不要加省略号，判断是否需要‘更多’操作
+        var scHeight = $(".scopeContent").find("p").outerHeight();
+        if (scHeight > 75) {
+            $(".scopeClick .expandMoreLink").show();
+        } else {
+            $(".scopeClick .expandMoreLink").hide();
+        }
+
+        $(".visaInfoList").delegate(".scopeClick .expandMoreLink", "click", function(){
+            $(".scopeContent").css({"height":"auto","max-height":"none"});
+            $(".scopeClick .expandMoreLink").hide();
+            $(".scopeClick .foldMoreLink").show();
+            $(".scopeContent p").html(tmpCont);
+        });
+
+        $(".visaInfoList").delegate(".scopeClick .foldMoreLink", "click", function(){
+            $(".scopeContent").css("height", "75px");
+            $(".scopeClick .expandMoreLink").show();
+            $(".scopeClick .foldMoreLink").hide();
+            // scopeEllipsis();
+        });
+
+        var acHeight = $(".areaContent").find("p").outerHeight();
+        if (acHeight > 25) {
+            $(".consularClick .expandMoreLink").show();
+        } else {
+            $(".consularClick .expandMoreLink").hide();
+        }
+
+        // 更多领区覆盖地
+        $(".visaInfoList").delegate(".consularClick .expandMoreLink", "click", function(){
+            $(".consularContent").addClass("expand");
+            $(".consularContent").removeClass("fold");
+            $(".consularClick .expandMoreLink").hide();
+            $(".consularClick .foldMoreLink").show();
+            $(this).parent().siblings(".consularContent").find(".areaContent").css({
+                height: "auto",
+                "max-height":"none"
+            });
+        });
+
+        $(".visaInfoList").delegate(".consularClick .foldMoreLink", "click", function(){
+            $(".consularContent").addClass("fold");
+            $(".consularContent").removeClass("expand");
+            $(".consularClick .expandMoreLink").show();
+            $(".consularClick .foldMoreLink").hide();
+            $(this).parent().siblings(".consularContent").find(".areaContent").css({
+                "max-height":"25px"
+            });
+        });
+
+    });
+
+    function scopeEllipsis(){
+        $(".thirdEllipsis").each(function(){
+            var divH = $(this).height();
+            var $p = $("p", $(this)).eq(0);
+            while ($p.outerHeight() > divH) {
+                $p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
+            }
+        });
+    };
+
+</script>
+
+
+</body>
+</html>
