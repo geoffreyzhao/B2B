@@ -62,9 +62,8 @@
                     </div>
                 </div>
             </div>
-            <div class="swiper-slide">
+            <div class="swiper-slide changeSwiperSlide">
                 <div class="swiper-container content02">
-                    <div class="pagination"></div>
                     <div class="swiper-wrapper">
                         <div class="swiper-slide wrapperContent">                            
                             <div class="backGauge">
@@ -116,6 +115,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="changePagination">
+                    <div class="swiperPaginationSwitch swiperActiveSwitch"></div>
+                    <div class="swiperPaginationSwitch"></div>
+                    <div class="swiperPaginationSwitch"></div>
+                </div>
             </div>
             <div class="swiper-slide businessConstitute">
                 <div class="backGauge">
@@ -165,7 +169,8 @@
     </div>
     
     
-	<script type="text/javascript"> 
+	<script type="text/javascript">
+        
 		$(function(){            
             $(".swiper-container").css({
                 height: ($(window).height() - $("header").height()) + "px"
@@ -173,17 +178,22 @@
             $(".swiper-slide .slide-container").css({
                 height: ($(window).height() - $("header").height()) + "px"
             });
-            
+
             var mySwiper01 = new Swiper('.swiper-container.content01',{
                 mode : 'vertical'
             });
-            
             var mySwiper02 = new Swiper('.swiper-container.content02',{
                 mode : 'horizontal',
-                pagination : '.pagination'
-            });
+                onSlideChangeEnd: function(mySwiper02){
+                    $(".changePagination .swiperPaginationSwitch").each(function(index){
+                        
+                    });
+                }
+            });           
+            
+            
 		});
-        
+
         function resizeSliderImg() {
             $(".firstSliderImg").css({
                 height: ($(window).height() - $("header").height() - 1) + "px"
