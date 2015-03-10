@@ -184,14 +184,11 @@
             });
             var mySwiper02 = new Swiper('.swiper-container.content02',{
                 mode : 'horizontal',
-                onSlideChangeEnd: function(mySwiper02){
-                    $(".changePagination .swiperPaginationSwitch").each(function(index){
-                        
-                    });
+                onSlideChangeEnd: function(swiper){
+                    $(".swiperPaginationSwitch").removeClass("swiperActiveSwitch");
+                    $(".swiperPaginationSwitch").eq(swiper.activeIndex).addClass("swiperActiveSwitch");
                 }
-            });           
-            
-            
+            });
 		});
 
         function resizeSliderImg() {
