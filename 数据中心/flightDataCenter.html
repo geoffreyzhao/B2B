@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/plusDataCenter/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/plusDataCenter/kendo.common.min.css">
+    <link rel="stylesheet" href="../static/css/plusDataCenter/kendo.dataviz.mobile.min.css">
+    <link rel="stylesheet" href="../static/css/plusDataCenter/kendo.default.min.css">
+    <link rel="stylesheet" href="../static/css/plusDataCenter/kendo.rtl.min.css">
+    <link rel="stylesheet" href="../static/css/plusDataCenter/data.center.css">
+    <link rel="shortcut icon" href="../static/images/datacenter/plusImg/favicon.ico"/>
+
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/jquery-ui-1.10.3.custom.js"></script>
+    <script src="../static/js/global.js"></script>
+    <script src="../static/js/plusDataCenter/bootstrap.min.js"></script>
+    <script src="../static/js/plusDataCenter/kendo.core.min.js"></script>
+    <script src="../static/js/plusDataCenter/theme.js"></script>
+    <script src="../static/js/plusDataCenter/kendo.ui.core.min.js"></script>
+
+    <!--[if lte IE 9]>
+    <script src="../static/js/html5.js"></script>
+    <![endif]-->
+
+</head>
+<body class='contrast-red '>
+<header>
+    <nav class='navbar navbar-default'>
+        <a class='navbar-brand logo head-logo' href='#'>
+            <!--<i class="logo"></i>-->
+            <!--<img src="../images/dc_313.png" alt="logo" class="head-logo"/>-->
+        </a>
+
+        <a class='toggle-nav btn pull-left snav' href='#'>
+            <i class="listPanel ztbar"></i>
+            <!--<img src="../images/stock_line_spacing_2.png" class="ztbar" alt="title"/>-->
+        </a>
+
+        <ul class='nav'>
+            <li class='dropdown dark user-menu'>
+                <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+                    <span class='user-name '>
+                        <i class="userP person"></i>
+                        Mila Kunis</span>
+                    <b class='caret'></b>
+                </a>
+                <ul class='dropdown-menu'>
+                    <li>
+                        <a href='#'>
+                            设置用户密码
+                        </a>
+                    </li>
+                    <li class='divider'></li>
+                    <li>
+                        <a href='#'>
+                            退出
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div id='wrapper'>
+    <div id='main-nav-bg'></div>
+    <nav id='main-nav'>
+        <div class='navigation'>
+            <ul class='nav nav-stacked'>
+                <li class='active'>
+                    <a class="dropdown-collapse" href="#">
+                        <i class='plane'></i>
+                        <span class="nav-letter">机票</span>
+                        <i class='icon-angle-down angle-down'></i>
+                    </a>
+
+                    <ul class='nav nav-stacked act'>
+                        <li class=''>
+                            <a href='flightDataCenter.html'>
+                                <img src="../static/images/datacenter/plusImg/caret-right.png" class='icon-caret-right'>
+                                <span>交易量统计</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class='dropdown-collapse ' href='#'>
+                        <i class='hotel'></i>
+                        <span class="nav-letter">酒店</span>
+                        <i class='icon-angle-down angle-down'></i>
+                    </a>
+                </li>
+
+                <li>
+                    <a class='dropdown-collapse ' href='#'>
+                        <i class='insurance'></i>
+                        <span class="nav-letter">保险</span>
+                        <i class='icon-angle-down angle-down'></i>
+                    </a>
+                </li>
+                <li>
+                    <a class='dropdown-collapse ' href='#'>
+                        <i class='ship'></i>
+                        <span class="nav-letter">邮轮</span>
+                        <i class='icon-angle-down angle-down'></i>
+                    </a>
+                </li>
+                <li>
+                    <a class='dropdown-collapse ' href='#'>
+                        <i class='travel'></i>
+                        <span class="nav-letter">旅游</span>
+                        <i class='icon-angle-down angle-down'></i>
+                    </a>
+                </li>
+
+                <li>
+                    <a class='dropdown-collapse' href='#'>
+                        <i class='user'></i>
+                        <span class="nav-letter">用户</span>
+                        <i class='icon-angle-down angle-down'></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <section id='content'>
+        <div class='container-fluid'>
+            <div class='row' id='content-wrapper'>
+                <div class='col-sm-12 sul col-xs-12'>
+
+                    <div id="choice-id" class='page-header page-header-with-buttons spage-header mpage-header'>
+                        <div class="row">
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 cd-3 eachSearch">
+                                <div class='pull-right pull-left sdatewidth' onResize="reSizeDiv()">
+                                    <span class="date-letter letterWidth" >开始日期</span>
+                                    <input class="datepicker date-box searchLength" value="10/10/2011" style="width:120px;"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 cd-3">
+                                <div class='pull-right pull-left sdatewidth'>
+                                    <span class="date-letter letterWidth" >结束日期</span>
+                                    <input class="datepicker date-box searchLength" value="10/10/2011" style="width:120px;"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 cd-3">
+                                <div class=" pull-right pull-left swidth">
+                                    <span class="searchTitle searchfirst letterWidth">业务类型</span>
+                                    <select id="busiType" name="isDomestic" class="searchLength" style="width:120px;">
+                                        <option value="all">全部</option>
+                                        <option value="domestic" selected="true">国内</option>
+                                        <option value="international">国际</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 cd-3">
+                                <div class=" pull-right pull-left  swidth">
+                                    <span class="searchTitle searchLast searchSpace letterWidth">区        域</span>
+                                    <select id="area" name="regionCode" class="searchLength searchLeft" style="width:120px;">
+                                        <option value="all">全部</option>
+
+                                        <option th:each="eregion:${regionmap}"
+                                                th:value="${eregion.regionCode}"
+                                                th:text="${eregion.regionName}">华北</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="searchPosition pull-right pull-left">
+                                    <div class="searchImg" id="searchButton" ></div>
+                                    <!--<img src="../images/toolbar_find.png" style="cursor:hand" href="#">-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div class='box' >
+                    <div class='row'>
+                        <div class='col-sm-12 col-md-6 salse_orders'>
+                            <div class='box'>
+                                <div class='box-header'>
+                                    <div class='title'>
+                                        <div class='icon-inbox'></div>
+                                        订单量
+                                    </div>
+                                    <div class='actions'>
+                                    </div>
+                                </div>
+                                <div class='row'>
+                                    <div class='col-sm-6'>
+                                        <div class='box-content box-statistic'>
+                                            <h3 class='title text-error'>191</h3>
+                                            <small>总订单量</small>
+                                            <div class='text-error icon-new align-right all'>
+                                                <!--<div class="all"></div>-->
+                                                <!--<img src="../images/shopping_cartn.png" alt=""/>-->
+                                            </div>
+                                        </div>
+                                        <div class='box-content box-statistic'>
+                                            <h3 class='title text-warning'>311</h3>
+                                            <small>昨日订单量</small>
+                                            <div class='text-warning icon-new align-right allLast'>
+                                                <!--<img src="../images/color_line.png" alt=""/>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-6'>
+                                        <div class='box-content box-statistic'>
+                                            <h3 class='title text-primary'>3</h3>
+                                            <small>近一周订单量</small>
+                                            <div class='text-primary icon-new align-right allWeek'>
+                                                <!--<img src="../images/emblem_library.png" alt=""/>-->
+                                            </div>
+                                        </div>
+                                        <div class='box-content box-statistic'>
+                                            <h3 class='title text-success'>981</h3>
+                                            <small>近一个月订单量</small>
+                                            <div class='text-success icon-new align-right allMonth'>
+                                                <!--<img src="../images/statistics.png" alt=""/>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-sm-12 col-md-6'>
+                            <div class='box'>
+                                <div class='box-header'>
+                                    <div class='title'>
+                                        <div class='icon-inbox'></div>
+                                        销售额
+                                    </div>
+                                    <div class='actions'>
+                                    </div>
+                                </div>
+                                <div class='row'>
+                                    <div class='col-sm-6'>
+                                        <div class='box-content box-statistic'>
+                                            <h3 class='title text-error'>191</h3>
+                                            <small>总销售额</small>
+                                            <div class='text-error icon-new align-right salesAll'>
+                                                <!--<img src="../images/currency_yuan_yellow.png" alt=""/>-->
+                                            </div>
+                                        </div>
+                                        <div class='box-content box-statistic'>
+                                            <h3 class='title text-warning'>311</h3>
+                                            <small>昨日销售额</small>
+                                            <div class='text-warning icon-new align-right salesLast'>
+                                                <!--<img src="../images/fusion_tables.png" alt=""/>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-6'>
+                                        <div class='box-content box-statistic'>
+                                            <h3 class='title text-primary'>3</h3>
+                                            <small>近一周销售额</small>
+                                            <div class='text-primary icon-new align-right salesWeek'>
+                                                <!--<img src="../images/star_full.png" alt=""/>-->
+                                            </div>
+                                        </div>
+                                        <div class='box-content box-statistic'>
+                                            <h3 class='title text-success'>981</h3>
+                                            <small>近一个月销售额</small>
+                                            <div class='text-success icon-new align-right salesMonth'>
+                                                <!--<img src="../images/flag_yellow.png" alt=""/>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <hr>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12 box'>
+                <div class='box-header'>
+                    <div class='title chartsAll'>
+                        <!--<img src="../images/chart_graph.png"/>-->
+                        <span style="margin-left: 50px;">Charts</span>
+                        <!--<div class="chartsAll"></div>-->
+                    </div>
+                    <div class='actions'>
+                        <!--<a id="users-more-activity" class="btn icon-circle-arrow-down btn-xs btn-link" href="#">-->
+                        <!--</a>-->
+                        <!--<img src="../images/down.png" alt="down"/>-->
+                        <a href="#">
+                        <div class='text-success icon-down align-right downLoad'>
+                            <!--<img src="../images/down.png" alt=""/>-->
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class='box-content sbox-content charts'>
+                    <div id='stats-chart2'>
+                        <div class="choice">
+                            <div class="btn-group" data-toggle="buttons" style="float: right;">
+                            <!--<div class='btn-group'>-->
+                                <!--<a class="btn btn-default " href="#">Day</a>-->
+                                <!--<a class="btn btn-default" href="#">Week</a>-->
+                                <!--<a class="btn btn-default " href="#">Month</a>-->
+                            <!--</div>-->
+
+                                <label class="btn btn-dm btn-default">
+                                    <input type="radio" name="options" id="option1"/> Day
+                                </label>
+                                <label class="btn btn-dm btn-default">
+                                    <input type="radio" name="options" id="option2"/> Week
+                                </label>
+                                <label class="btn btn-dm btn-default">
+                                    <input type="radio" name="options" id="option3"/> Month
+                                </label>
+                            </div>
+                        </div>
+                        <div id="ChartRate" class="chartFirst"></div> <!-- 销售量同比 -->
+                        <div id="ticketChartRate" class="chartsNext"></div> <!-- 销售量同比 -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer id='footer'>
+            <div class='footer-wrapper'>
+                <div class='row'>
+                    <div class='col-sm-6 text'>
+                        Copyright &copy; 2013 天地行 All Rights Reserved.      沪ICP备08101503号
+                    </div>
+                </div>
+            </div>
+        </footer>
+        </div>
+    </section>
+</div>
+</body>
+
+<script>
+    $(document).ready(function() {
+        $(".datepicker").kendoDatePicker();
+    });
+</script>
+
+<script src="../static/js/plugins/echarts/echarts-plain.js"></script>
+<script>
+    $(function() {
+//        $('#choice-id').fixedBar();
+        $("#area").kendoDropDownList();
+        $("#busiType").kendoDropDownList();
+
+//        $('#choice-id').fixedBar();
+
+        var ticketChartRate = echarts.init(document.getElementById("ticketChartRate"));
+
+
+        var textStyle = {
+            normal: {
+                label: {show:false},
+                labelLine: {show:false},
+                color: '#000000'         // 阳线填充颜色
+            }
+        };
+        var placeHolderStyle = {
+            normal : {
+                color: 'rgba(0,0,0,0)',
+                label: {show:false},
+                labelLine: {show:false}
+            },
+            emphasis : {
+                color: 'rgba(0,0,0,0)'
+            }
+        };
+        var ticketOptionRate = {
+            title : {
+                text: '销售额',
+                textStyle:{
+                    color:'#49bf67',
+                    fontSize: 18,
+                    fontWeight:'bold'
+                }
+//                subtext: '纯属虚构'
+            },
+            tooltip : {
+                trigger: 'axis',
+                textStyle:{
+                    color:'#49bf67',
+                    fontSize: 14,
+                    fontWeight:'bold'
+                }
+            },
+            legend: {
+                data:['销售额']
+            },
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: false},
+                    dataView : {show: false, readOnly: false},
+                    magicType : {show: false, type: ['line', 'bar']},
+                    restore : {show: false},
+                    saveAsImage : {show: false}
+                }
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    name:'销售额',
+                    type:'line',
+                    data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 635.6, 162.2, 32.6, 20.0, 6.4, 3.3],
+                    itemStyle: {
+                        normal: {
+                            color:'#49bf67'
+                        }
+                    },
+                    markPoint : {
+                        data : [
+                            {type : 'max', name: '最大值'},
+                            {type : 'min', name: '最小值'}
+                        ],
+                        itemStyle : { normal: {label : {
+                            show: true,
+                            textStyle : {
+                                color:'#000000'
+                            }
+                        }}}
+                    }
+
+                }
+            ]
+        };
+
+
+        // 为chart对象赋值option
+        ticketChartRate.setOption(ticketOptionRate);
+        $(window).resize(function(){
+            ticketChartRate.resize();
+        });
+
+        var ChartRate = echarts.init(document.getElementById("ChartRate"));
+        var idx = 1;
+        OptionRate = {
+            title : {
+                text: '订单量',
+                textStyle:{
+                    color:'#12A3DC',
+                    fontSize: 18,
+                    fontWeight:'bold'
+                }
+//                subtext: '纯属虚构'
+            },
+            tooltip : {
+                trigger: 'axis',
+                textStyle:{
+                    color:'#12A3DC',
+                    fontSize: 14,
+                    fontWeight:'bold'
+                }
+            },
+            legend: {
+                data:['订单量']
+            },
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: false},
+                    dataView : {show: false, readOnly: false},
+                    magicType : {show: false, type: ['line', 'line']},
+                    restore : {show: false},
+                    saveAsImage : {show: false}
+                }
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    name:'订单量',
+                    type:'line',
+                    data:[200, 49, 70, 232, 256, 767, 635, 462, 326, 200, 64, 33],
+                    itemStyle: {
+                        normal: {
+                            color:'#12A3DC'
+                        }
+                    },
+                    markPoint : {
+                        data : [
+                            {type : 'max', name: '最大值'},
+                            {type : 'min', name: '最小值'}
+                        ],
+                        itemStyle : { normal: {label : {
+                            show: true,
+                            textStyle : {
+                                color:'#000000'
+                            }
+                        }}}
+                    }
+                }
+            ]
+        };
+        // 为chart对象赋值option
+        ChartRate.setOption(OptionRate);
+        $(window).resize(function(){
+            ChartRate.resize();
+        });
+
+    });
+</script>
+
+</html>
+
