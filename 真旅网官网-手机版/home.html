@@ -34,7 +34,7 @@
         <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <div class="indexImg">
-                    <img src="image/indexImg.jpg" class="firstSliderImg" onload="resizeSliderImg()">
+                    <img src="image/homepage_bg.gif" class="firstSliderImg" onload="resizeSliderImg(this)">
                     <!--<div class="bigImg"></div>-->
                 </div>
             </div>
@@ -191,10 +191,36 @@
             });
 		});
 
-        function resizeSliderImg() {
+        function resizeSliderImg(objImg) {
+            var maxWidth = 0;
+            var maxHeight = $(window).height() - $("header").height() - 1;
+            var img = new Image();
+            img.src = objImg.src;
+            var hRatio;
+            var wRatio;
+            var Ratio = 1;
+            var w = img.width;
+            var h = img.height;
+            wRatio = maxWidth / w;
+            hRatio = maxHeight / h;
+
+            if (wRatio < 1 || hRatio < 1) {
+                Ratio = wRatio >= hRatio ? wRatio : hRatio;
+            }
+
+            if (Ratio < 1){
+                w = w * Ratio;
+                h = h * Ratio;
+            }
+
+            objImg.height = h;
+            objImg.width = w;
+
+            var offsetX = (w - $(window).width()) / 2;
             $(".firstSliderImg").css({
-                height: ($(window).height() - $("header").height() - 1) + "px"
+                "margin-left": -offsetX + "px"
             });
+
         }
         
 
