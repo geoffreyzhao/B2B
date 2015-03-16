@@ -166,6 +166,12 @@
                         <div class="right">
                             挂起测试环境
                         </div>
+                        <!--  替换right部分
+                        <div class="rightBlock">
+                            <a class="commonBigBlueBtn pass-audit-btn" href="javascript:void(0);">通过审核</a>
+                            <a class="commonBigOrangeBtn reject-audit-btn" href="javascript:void(0);">拒绝审核</a>
+                        </div>
+                        -->
                     </div>
                 </div>
                 
@@ -358,6 +364,38 @@
             <a href="javascript:void(0)" class="cancel">点错了</a>
         </div>
     </script>
+
+    <script type="text/x-kendo-template" id="passAuditTemplate">
+        <div class="passAuditWindow">
+            <div class="hangHint">
+                <div>
+                    确认通过审核并分配测试密钥？
+                </div>
+            </div>
+            <div class="confirm-hang-btn">
+                <a href="javascript:void(0)" class="commonBigBlueBtn">确认通过</a>
+                <a href="javascript:void(0)" class="cancel">点错了</a>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="rejectAuditTemplate">
+        <div class="rejectAuditWindow">
+            <div class="hangHint">
+                <div class="cont-sub-title">
+                    拒绝原因：
+                    <span class="gray-font">(可不填)</span>
+                    <span class="gray-font" style="float:right;">限30字以内</span>
+                </div>
+                <textarea></textarea>
+                <div class="cont-bottom gray-font">字数：<em>0</em></div>
+            </div>
+            <div class="confirm-hang-btn">
+                <a href="javascript:void(0)" class="certain">确认拒绝</a>
+                <a href="javascript:void(0)" class="cancel">点错了</a>
+            </div>
+        </div>
+    </script>
     
     <script>
         $(function(){
@@ -399,6 +437,42 @@
                 $(".orangeWindow").closest(".k-widget.k-window").addClass("orangeHint");
             }
         }).init();
+
+            var win1 = new PopWindow('.pass-audit-btn', {
+                title: "通过测试密钥审核",
+                template: "#passAuditTemplate",
+                width: 466,
+                animation: {
+                    open: {
+                        effects: "fade:in",
+                        duration: 300
+                    },
+                    close: {
+                        effects: "fade:out",
+                        duration: 300
+                    }
+                }
+            }).init();
+
+            var win2 = new PopWindow('.reject-audit-btn', {
+                title: "拒绝测试密钥审核",
+                template: "#rejectAuditTemplate",
+                width: 466,
+                animation: {
+                    open: {
+                        effects: "fade:in",
+                        duration: 300
+                    },
+                    close: {
+                        effects: "fade:out",
+                        duration: 300
+                    }
+                },
+                wrapperClass:'orangeWindow',
+                open:function(){
+                    $(".orangeWindow").closest(".k-widget.k-window").addClass("orangeHint");
+                }
+            }).init();
 
 
         // new PopWindow('.failHint', {
