@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no, email=no">
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/tm_order.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<title>手机验证</title>
+
+	<style type="text/css">
+	</style>
+</head>
+<body>
+	<div class="viewport">
+		<div class="set-order-title">
+			
+				<div class="order-detail">
+					<span>
+						上海出发-香港4天3晚自由行 往返机票+活力巴士 限G签
+					</span>
+				</div>
+				<div class="order-number clearfix">
+					<span class="left">
+						预约份数：<i>3</i>份
+					</span>
+					<span class="right">
+						可出行人数：<i>6</i>人
+					</span>
+				</div>
+		</div>
+
+			<div class="confirm-route">
+				
+			</div>
+		
+		<!-- <div class="signin-container">
+			<div class="login-input">
+				<div class="login-top">
+					<span class="phone-icon"></span>
+					<input type="tel" placeholder="请输入手机号" data-role="none" />
+					<span class="get-check-code">验证码</span>
+				</div>
+				<div class="login-bottom">
+					<span class="safe-icon"></span>
+					<input type="password" placeholder="请输入验证码" data-role="none" />
+				</div>
+			</div>
+			<div class="login-btn-container">
+				<div class="login-btn">登录</div>
+				<div class="login-btn enabled">登录</div>
+			</div>
+			<div data-role="popup" id="popupBasic">
+				<p>This is a completely basic popup, no options set.</p>
+			</div>
+		</div> -->
+	</div>
+
+	<script type="text/javascript">
+		$(function(){
+			
+			$("#popupBasic").popup({
+				theme: "b",
+				transition: "flip",
+				overlayTheme: "b",
+				positionTo: "window",
+				tolerance: "0,0"
+			});
+
+			$(".enabled").bind("tap", function(){
+				$("#popupBasic").popup("open");
+				//  tap 事件在 windows8 触控设备和 android 设备上测试，均有一次点击多次触发的现象
+				// return false 阻止事件冒泡
+				return false; 
+			});
+		});
+	</script>
+</body>
+</html>
