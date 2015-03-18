@@ -15,4 +15,8 @@ $(function(){
 		}
 		root.style.fontSize = cw + 'px';
 	});
+
+	$(".viewport").css({
+		"min-height": $(window).height() + "px"
+	});
 });
