@@ -1,15 +1,12 @@
-$(function(){
-	var root = document.getElementsByTagName('html')[0],
-		    NATIVE_W = 320;
+/*  设置全局 html font-size  */
+var root = document.getElementsByTagName("html")[0];
+root.style.fontSize = (window.innerWidth / 320) * 20 + "px";
 
-	$(window).load(function(){
-		var w = window.innerWidth;
-        var cw = (w / NATIVE_W) * 20;
-		root.style.fontSize = cw + 'px';
-	});
+$(function(){
 
 	$(".viewport").css({
 		"min-height": $(window).height() + "px"
 	});
     
 });
+
