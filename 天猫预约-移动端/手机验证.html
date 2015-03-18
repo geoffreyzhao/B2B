@@ -4,11 +4,16 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta name="format-detection" content="telephone=no, email=no">
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/tm_order.css">
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
 	<title>手机验证</title>
+
+	<style type="text/css">
+	</style>
 </head>
 <body>
 	<div class="viewport">
@@ -28,6 +33,9 @@
 				<div class="login-btn">登录</div>
 				<div class="login-btn enabled">登录</div>
 			</div>
+			<div data-role="popup" id="popupBasic">
+				<p>This is a completely basic popup, no options set.</p>
+			</div>
 		</div>
 	</div>
 
@@ -37,8 +45,19 @@
 				height: $(window).height() + "px"
 			});
 
-			$(".login-btn").tap(function(){
-				alert();
+			$("#popupBasic").popup({
+				theme: "b",
+				transition: "flip",
+				overlayTheme: "b",
+				positionTo: "window",
+				tolerance: "0,0"
+			});
+
+			$(".enabled").bind("tap", function(){
+				$("#popupBasic").popup("open");
+				//  tap 事件在 windows8 触控设备和 android 设备上测试，均有一次点击多次触发的现象
+				// return false 阻止事件冒泡
+				return false; 
 			});
 		});
 	</script>
