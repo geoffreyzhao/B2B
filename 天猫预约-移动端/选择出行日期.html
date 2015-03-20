@@ -29,10 +29,19 @@
 			</tr>
 		</table>
 		<div id="datepicker"></div>
+		<div class="window-container"></div>
+		<div data-role="popup" id="pickDateTip">请选择出行日期</div>
 	</div>	
 
 	<script type="text/javascript">
 		$(function(){
+
+			$("#pickDateTip").popup({
+				theme: "b",
+				transition: "slideup",
+				positionTo: ".window-container",
+				dismissible: false
+			});
 
 			var data = [{
 				"year": 2015,   // 年份
@@ -127,8 +136,13 @@
 				}
 				
 				$(this).find(".top-day-cont").html("出行");
-
+				$("#pickDateTip").popup("close");
 			});
+
+			setTimeout(function(){
+				$("#pickDateTip").popup("open");
+			}, 300);
+
 		});
 	</script>
 </body>
