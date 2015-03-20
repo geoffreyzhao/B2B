@@ -10,24 +10,107 @@
 	<link rel="stylesheet" type="text/css" href="css/tm_order.css">
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+	<script type="text/javascript" src="js/underscore.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/customDatepicker.js"></script>
 	<title>选择出行日期</title>
 </head>
 <body>
 	<div class="viewport">
-		<table class="calendarTable">
-			<tbody>
-				<tr>
-					<td>1</td>
-					<td>2</td>
-					<td>3</td>
-					<td>4</td>
-					<td>5</td>
-					<td>6</td>
-					<td>7</td>
-				</tr>
-			</tbody>
+		<table class="weekBanner">
+			<tr>
+				<td>日</td>
+				<td>一</td>
+				<td>二</td>
+				<td>三</td>
+				<td>四</td>
+				<td>五</td>
+				<td>六</td>
+			</tr>
 		</table>
+		<div id="datepicker"></div>
 	</div>	
+
+	<script type="text/javascript">
+		$(function(){
+
+			var data = [{
+				"year": 2015,   // 年份
+				"month": [{
+					"monthIndex": 1,  //  月份
+					"monthData": [{
+						"day": 1,   //  需要自定义的日期
+						"holiday": "元旦",  // 假期，若无则该属性可省略
+						"enable": true,  // 是否可点击，即是否可以选择该日期
+						"price": 200   // 加价
+					}, {
+						"day": 2,
+						"holiday": "休假"
+					}, {
+						"day": 11,
+						"enable": true
+					}, {
+						"day": 15,
+						"holiday": "调休",
+						"enable": true,
+						"price": 150
+					}, {
+						"day": 20,
+						"holiday": "调休",
+						"price": 150
+					}]
+				}, {
+					"monthIndex": 2,
+					"monthData": [{
+						"day": 4,
+						"holiday": "清明节",
+						"enable": true,
+					}, {
+						"day": 5,
+						"holiday": "休假",
+						"enable": true,
+					}, {
+						"day": 11,
+						"enable": true
+					}, {
+						"day": 14,
+						"holiday": "情人节",
+						"enable": true,
+						"price": 1500
+					}, {
+						"day": 19,
+						"price": 150,
+						"enable": true,
+					}, {
+						"day": 6,
+						"enable": true
+					}, {
+						"day": 7,
+						"enable": true
+					}, {
+						"day": 8,
+						"enable": true
+					}, {
+						"day": 9,
+						"holiday": "各种节",
+						"enable": true
+					}]
+				}, {
+					"monthIndex": 3,
+					"monthData": []
+				},{
+					"monthIndex": 4,
+					"monthData": []
+				}]
+			}];
+
+			$("#datepicker").customDatepicker(data);
+
+			$(".calTable .enable").tap(function(){
+				$(".calTable .enable").parent("td").removeClass("active");
+				$(this).parent("td").addClass("active");
+			});
+		});
+	</script>
 </body>
 </html>
