@@ -17,54 +17,42 @@
 </head>
 <body>
 	<div class="viewport">
-		<div class="set-order-title">
-				<div class="order-detail">
-					<span>
-						上海出发-香港4天3晚自由行 往返机票+活力巴士 限G签
-					</span>
+		<div class="setPassword">
+			<div class="title">
+				设置密码后登陆更方便
+			</div>
+			<div class="wave">
+			</div>
+			<div class="password-block clearfix">
+				<div class="lock-block">
+					<i class="lock-img"></i>
 				</div>
-				<div class="order-number clearfix">
-					<span class="left">
-						预约份数：<i>3</i>份
-					</span>
-					<span class="right">
-						可出行人数：<i>6</i>人
-					</span>
+				<div class="password-input">
+					<form method="POST" name="forms">
+						<div class="input-character">
+							<input type="password" class="password" name="password" placeholder="请输入6-16位字符" data-role="none">
+							<i class="deleteInput-img"></i>
+						</div>
+						<div class="review-password">
+
+							<input type="password" class="confirmPassword" name="confirmPassword" placeholder="再次输入您的密码" data-role="none">
+							<i class="deleteInput-img"></i>
+						</div>
+					</form>
 				</div>
-		</div>
-		<div class="confirm-route">
-			<div class="select-schedule">
-				请选择出行日期
+				<div class="closeEye">
+					<a href="javascript:displayPassword()" class="closeEye-img"></a>
+					<!-- <a href="javascript:displayPassword()" class="openEye-img"></a> -->
+				</div>
 			</div>
-			<div class="iphone-order">
-				电话预约 400-895-4780
+			<div class="error-hint" data-role="none">
+				密码输入不一致
 			</div>
-			<div class="order-notice">
-				*如没有您满意的出行日期，您可以选择拨打客服电话预约
-			</div>
+			<a href="javascript:void(0)" class="confirm-button" data-role="none">
+				确	定
+			</a>
 		</div>
 		
-		
-		<!-- <div class="signin-container">
-			<div class="login-input">
-				<div class="login-top">
-					<span class="phone-icon"></span>
-					<input type="tel" placeholder="请输入手机号" data-role="none" />
-					<span class="get-check-code">验证码</span>
-				</div>
-				<div class="login-bottom">
-					<span class="safe-icon"></span>
-					<input type="password" placeholder="请输入验证码" data-role="none" />
-				</div>
-			</div>
-			<div class="login-btn-container">
-				<div class="login-btn">登录</div>
-				<div class="login-btn enabled">登录</div>
-			</div>
-			<div data-role="popup" id="popupBasic">
-				<p>This is a completely basic popup, no options set.</p>
-			</div>
-		</div> -->
 	</div>
 
 	<script type="text/javascript">
@@ -73,23 +61,88 @@
 			$(".viewport").css({
 				"height": $(window).height() + "px"
 			});
-    
-			
-			// $("#popupBasic").popup({
-			// 	theme: "b",
-			// 	transition: "flip",
-			// 	overlayTheme: "b",
-			// 	positionTo: "window",
-			// 	tolerance: "0,0"
-			// });
 
-			// $(".enabled").bind("tap", function(){
-			// 	$("#popupBasic").popup("open");
-			// 	//  tap 事件在 windows8 触控设备和 android 设备上测试，均有一次点击多次触发的现象
-			// 	// return false 阻止事件冒泡
-			// 	return false; 
-			// });
+
+
+
+
+			var password = $('.password');
+			var confirmPassword = $('.confirmPassword');
+			var confirmButton = $('.confirm-button');
+
+			$(".deleteInput-img").on("click",function(){
+				$(this).prev().val('');
+				$(this).prev().focus();
+
+				if((password.val() == '') && (confirmPassword.val() == ''))
+				{
+					if(confirmButton.hasClass('confirm-button-red'))
+						confirmButton.removeClass('confirm-button-red');
+				}
+			});
+
+
+			password.on('input',function(){
+				if(!confirmButton.hasClass('confirm-button-red'))
+					confirmButton.addClass('confirm-button-red');
+				if((password.val() == '') && (confirmPassword.val() == ''))
+				{
+					if(confirmButton.hasClass('confirm-button-red'))
+						confirmButton.removeClass('confirm-button-red');
+				}
+			});
+
+			confirmPassword.on('input',function(){
+				if(!confirmButton.hasClass('confirm-button-red'))
+					confirmButton.addClass('confirm-button-red');
+				if((password.val() == '') && (confirmPassword.val() == ''))
+				{
+					if(confirmButton.hasClass('confirm-button-red'))
+						confirmButton.removeClass('confirm-button-red');
+				}
+			});
+
+		
+			$('.confirm-button').on('click',function(){
+				if(password.val() == confirmPassword.val())
+				{
+					$('.error-hint').css('color','#E7EBEF');
+				}
+				else{
+					$('.error-hint').css('color','#f1595d');
+				}
+			});
+			
+
 		});
+
+		function displayPassword(){
+			if(this.forms.password.type == "password")
+			{
+				var password = $('.password');
+				password.attr("type","text");
+
+				var confirmPassword = $('.confirmPassword');
+				confirmPassword.attr("type","text");
+				
+				var closeEye = $('.closeEye');
+				closeEye.html("<a href='javascript:displayPassword()' class='openEye-img'></a>");
+			}
+			else if(this.forms.password.type == "text"){
+
+				var password = $('.password');
+				password.attr("type","password");
+
+				var confirmPassword = $('.confirmPassword');
+				confirmPassword.attr("type","password");
+
+				var closeEye = $('.closeEye');
+				closeEye.html("<a href='javascript:displayPassword()' class='closeEye-img'></a>");
+			}
+		}
 	</script>
+
+
+
 </body>
 </html>
