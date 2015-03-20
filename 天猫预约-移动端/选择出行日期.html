@@ -97,7 +97,10 @@
 					}]
 				}, {
 					"monthIndex": 3,
-					"monthData": []
+					"monthData": [{
+						"day":20,
+						"enable": true
+					}]
 				},{
 					"monthIndex": 4,
 					"monthData": []
@@ -106,9 +109,25 @@
 
 			$("#datepicker").customDatepicker(data);
 
+			var j_today;
+			$(".calTable .enable").each(function(){
+				if ($(this).find(".top-day-cont").html() == "今天") {
+					j_today = $(this).find(".top-day-cont");
+				}
+			});
+
 			$(".calTable .enable").tap(function(){
+
 				$(".calTable .enable").parent("td").removeClass("active");
 				$(this).parent("td").addClass("active");
+
+				$(".calTable .enable").find(".top-day-cont").html("");				
+				if (j_today.html() == "") {
+					j_today.html("今天");
+				}
+				
+				$(this).find(".top-day-cont").html("出行");
+
 			});
 		});
 	</script>

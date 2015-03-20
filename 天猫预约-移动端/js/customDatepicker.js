@@ -58,6 +58,7 @@
         function geneTdContent(currentDay) {   //  生成日期内容模板
 
         	var dayStr = "";
+
         	if ($.inArray(currentDay, dayArr) != -1) {  // 需要自定义日期
 
         		// 获取需要自定义日期的数据
@@ -69,7 +70,7 @@
         			dayStr += "<div class='dayCont'>";
         		}
 
-        		if (dayInfo.day == currentDate) {  //  如果是当天，头部内容显示今天
+        		if (ifToday(year, monthArr[i].monthIndex, currentDay)) {  //  如果是当天，头部内容显示今天
         			dayStr += "<div class='top-day-cont current-date'>今天</div>";
         		} else {  //  头部不显示内容
         			dayStr += "<div class='top-day-cont'></div>";
@@ -77,6 +78,7 @@
 
         		if (!!dayInfo.holiday) {  //  有假期参数
         			dayStr += "<div class='middle-day-cont' data-daynum='" 
+        					+ year + "-" + monthArr[i].monthIndex + "-" 
         					+ dayInfo.day + "'>" + dayInfo.holiday + "</div>";
         		} else {  // 无假期参数时只显示日期数字
         			dayStr += "<div class='middle-day-cont' data-daynum='" 
@@ -91,11 +93,25 @@
         		}
 
         	} else {   //  只显示日期数字
-        		dayStr += "<div class='dayCont'><div class='top-day-cont'></div>" 
-        				+ "<div class='middle-day-cont'>" + currentDay + "</div> " 
+        		dayStr += "<div class='dayCont'>";
+
+        		if (ifToday(year, monthArr[i].monthIndex, currentDay)) {
+        			dayStr += "<div class='top-day-cont current-date'>今天</div>";
+        		} else {
+        			dayStr += "<div class='top-day-cont'></div>";
+        		}
+
+        		dayStr += "<div class='middle-day-cont' data-daynum='" + year + "-" 
+        				+ monthArr[i].monthIndex + "-" + currentDay
+        				+ "'>" + currentDay + "</div>" 
         				+ "<div class='bottom-day-cont'></div></div>";
         	}
         	return dayStr;
+        }
+
+        function ifToday(y, m, d) {
+        	var dt = new Date();
+        	return (y == dt.getFullYear() && m == (dt.getMonth() + 1) && d == dt.getDate()) ? true : false;
         }
 
         this.append(template);
