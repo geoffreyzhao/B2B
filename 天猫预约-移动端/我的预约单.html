@@ -52,9 +52,6 @@
                     <label>出行人数:<span>6</span></label>
                     <label>出行日期:<span>2015-05-16</span></label>
                 </div>
-                <div class="operateBtnDiv">
-                    <a href="javascript:void(0);" class="blueButton">取消预约</a>
-                </div>
             </div>
         </section>
         <section class="reservationListBox">
@@ -72,9 +69,6 @@
                     <label>预约份数:<span>3</span></label>
                     <label>出行人数:<span>6</span></label>
                     <label>出行日期:<span>2015-05-16</span></label>
-                </div>
-                <div class="operateBtnDiv">
-                    <a href="javascript:void(0);" class="blueButton">取消预约</a>
                 </div>
             </div>
         </section>
@@ -112,6 +106,36 @@
                 </li>
             </ul>
         </section>
-	</div>   
+	</div>
+
+    <div data-role="popup" class="popWindowBox" id="cancelReason">
+        <h4>请输入取消原因：</h4>
+        <textarea class="cancelReasonTextarea"></textarea>
+        <div class="bigBlueButton">确定</div>
+    </div>
+
+    <script type="text/javascript">
+        $(function(){
+            $("#cancelReason").popup({
+                theme: "b",
+                dismissible: false,
+                transition: "flip"
+            });
+
+            $(".operateBtnDiv").tap(function(){
+                $("#cancelReason").popup("open");
+                $(document).bind("touchmove", function(){  //  弹窗弹出时，禁止页面滚动
+                    return false;
+                });
+
+            });
+
+            $(".bigBlueButton").click(function(){   // 使用tap方法有穿透现象
+                $("#cancelReason").popup("close");
+
+                $(document).unbind("touchmove");   // 解除禁止滚动绑定
+            });
+        });
+    </script>
 </body>
 </html>
