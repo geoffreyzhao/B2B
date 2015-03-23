@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="css/tm_order.css">
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="js/fastclick.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
 	<title>填写出行人信息</title>
 </head>
@@ -31,20 +32,22 @@
                 <li class="clearfix">
                     <span class="leftNumber">手机号码</span>
                     <span class="chuXingInfo">
-                        <input type="text" placeholder="请输入手机号码" data-role="none">
+                        <input type="tel" placeholder="请输入手机号码" data-role="none">
                     </span>
                 </li>
                 <li class="clearfix">
                     <span class="leftNumber">证件类型</span>
-                    <span class="chuXingInfo">
-                        <input type="text" value="护照" data-role="none" readonly>
+                    <span class="idTypes">
+                        <span class="chuXingInfo">
+                            <span class="idTypeCont">护照</span>
+                        </span>
+                        <span class="rightGrayArrow idTypeWindow"></span>
                     </span>
-                    <span class="rightGrayArrow idTypeWindow"></span>
                 </li>
                 <li class="clearfix">
                     <span class="leftNumber">证件号码</span>
                     <span class="chuXingInfo">
-                        <input type="text" placeholder="请输入" data-role="none">
+                        <input type="tel" placeholder="请输入" data-role="none">
                     </span>
                 </li>
                 <li class="clearfix">
@@ -60,17 +63,71 @@
                 </li>
             </ul>
         </section>
+
         <div class="bottomBlueBtn">
             <a href="javascript:void(0);" class="bigBlueBtn">确 定</a>
+        </div>
+
+        <div class="select-pop-container"></div>
+
+        <div data-role="popup" class="select-pop">
+            <div class="title">证件类型</div>
+            <ul class="item-list">
+                <li>
+                    <span class="item-cont">身份证</span>
+                    <span class="item-selected-icon"></span>
+                </li>
+                <li>
+                    <span class="item-cont">护照</span>
+                    <span class="item-selected-icon"></span>
+                </li>
+                <li>
+                    <span class="item-cont">港澳通行证</span>
+                    <span class="item-selected-icon"></span>
+                </li>
+                <li>
+                    <span class="item-cont">台湾通行证</span>
+                    <span class="item-selected-icon"></span>
+                </li>
+                <li>
+                    <span class="item-cont">其他</span>
+                    <span class="item-selected-icon"></span>
+                </li>
+            </ul>
         </div>
     
 	</div>
     
 <script>
     $(function(){
+        FastClick.attach(document.body);
+
         $(".chuXingRenList .noSaveBtn").tap(function(){
             $(this).toggleClass("saveBtn");
-        });        
+        });
+
+        $(".select-pop").popup({
+            theme: 'a',
+            overlayTheme: 'b',
+            shadow: false,
+            transition: "slideup",
+            wrapperClass: 'select-pop-wrapper',
+            positionTo: '.select-pop-container',
+            tolerance: "0,0",
+            corners: false
+        });
+
+        $(".idTypes").click(function(){
+            $(".select-pop").popup("open");
+        });
+
+        $(".select-pop .item-list li").click(function(){
+            $(this).siblings("li").find("span").removeClass("actived");
+            $(this).find("span").addClass("actived");
+
+            $(".idTypeCont").html($(this).find(".item-cont").html());
+            $(".select-pop").popup("close");
+        });
     });
 </script>
 
