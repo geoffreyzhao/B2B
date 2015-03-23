@@ -261,7 +261,7 @@
             <h3>* 补差说明</h3>
             <p>由于您预订的酒店和机票产生了差额，需补差价。请至天猫店联系客服补差，或直接拨打客服电话与我们联系。</p>
         </div>
-        <div class="serviceTelBlock">客服电话 400-895-4780</div>
+        <div class="serviceTelBlock">客服电话 <a href="tel:400-895-4780">400-895-4780</a></div>
         <section class="bottomFixContent">
             <div class="statisticsContent">
                 <label>
@@ -284,6 +284,27 @@
                 <a href="javascript:void(0);" class="orangeBtn">提交预约单</a>
             </div>
         </section>
-	</div>   
+	</div>
+
+    <div data-role="popup" id="submitTip">提交成功！</div>
+
+    <script type="text/javascript">
+        $(function(){
+            $("#submitTip").popup({
+                theme: "b",
+                transition: "flip"
+            });
+
+            $(".btnContent").tap(function(){
+                $("#submitTip").popup("open");
+
+                setTimeout(function(){
+                    $("#submitTip").popup("close");                    
+                }, 1000);
+                return false;
+            });
+
+        });
+    </script>
 </body>
 </html>
