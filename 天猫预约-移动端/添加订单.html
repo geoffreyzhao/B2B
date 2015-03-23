@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no, email=no">
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" type="text/css" href="css/jqm.reset.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/tm_order.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<title>添加订单</title>
+</head>
+<body>
+	<div class="viewport">
+		<div class="signin-container">
+			<div class="login-input add-order">
+				<div class="login-top">
+					<span class="file-icon"></span>
+					<input type="password" placeholder="请输入验证码" data-role="none" />
+					<span class="input-end-icon default"></span>
+				</div>
+				<div class="login-top ">
+					<span class="phone-icon"></span>
+					<input type="tel" placeholder="请输入手机号" data-role="none" 
+					/>
+					<span class="input-end-icon default"></span>
+					<!-- 默认叉号，add class: default -->
+					<!-- 红色叉号，add class: error -->
+					<span class="get-check-code-full2">获取验证码</span>
+					<!-- 验证码可用状态，add class: enabled  -->
+					<!-- <span class="get-check-code-30s disabled">30s后重发</span> -->
+				</div>
+				<div class="addOrder-bottom">
+					<span class="safe-icon"></span>
+					<input type="password" placeholder="请输入验证码" data-role="none" />
+					<span class="input-end-icon default error"></span>
+				</div>
+				<div class="error-tip"><!-- 没有错误提示时，其内容为空，但div的结构要保存 -->
+					<span>验证码错误</span>
+				</div>
+			</div>
+			<div class="login-btn-container">
+				<div class="login-btn">添加</div>
+				<!-- <div class="login-btn addOrder-redBtn">添加</div> -->
+				<!--  可用登陆按钮，add class: enabled -->
+			</div>
+			<div data-role="popup" id="popupBasic">
+				<p>This is a completely basic popup, no options set.</p>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$(function(){
+			
+			$("#popupBasic").popup({
+				theme: "b",
+				transition: "flip",
+				overlayTheme: "b",
+				positionTo: "window",
+				tolerance: "0,0"
+			});
+
+			$(".enabled").bind("tap", function(){
+				$("#popupBasic").popup("open");
+				//  tap 事件在 windows8 触控设备和 android 设备上测试，均有一次点击多次触发的现象
+				// return false 阻止事件冒泡
+				return false; 
+			});
+		});
+	</script>
+</body>
+</html>
