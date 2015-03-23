@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="css/tm_order.css">
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="js/fastclick.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
 	<title>我的订单</title>
 </head>
@@ -235,7 +236,7 @@
         <section class="orderFixContent">
             <section class="bottomBtn">
                 <a href="javascript:void(0);" class="commonBtn grayBgBtn">添加订单</a>
-                <a href="javascript:void(0);" class="commonBtn greenBgBtn">我要预约</a>
+                <a href="javascript:void(0);" class="commonBtn greenBgBtn" id="order">我要预约</a>
             </section>
             <ul class="orderClassifyList clearfix">
                 <li>
@@ -263,11 +264,23 @@
                 <a href="javascript:void(0);" class="whiteBgBtn">添加订单</a>
             </div>
         </section>-->
+
+        <div data-role="popup" id="confirmWindow">
+            <div class="cont">您有一条未完成的预约单，是否继续？</div>
+            <div class="confirmBtn">
+                <div class="leftBtn">放 弃</div>
+                <div class="rightBtn">继 续</div>
+            </div>
+        </div>
     
 	</div>
     
 <script>
     $(function(){
+        //  jqm 中 tap事件有bug, 存在多次触发或点击穿透现象
+        //  fastclick 可以解决这个问题，使用click方法即可
+        FastClick.attach(document.body);
+
         $(".bookCopies .subtractFonts").tap(function(){
             var newSubtract =  $(this).siblings(".copiesInput").val() - 1;
             if (newSubtract == -1) {                
@@ -285,6 +298,28 @@
             $(this).find(".grayDotIcon").addClass("selectGreenDotIcon");
             $(this).parents(".myOrderModel").siblings().find(".grayDotIcon").removeClass("selectGreenDotIcon");
         });
+
+        $("#confirmWindow").popup({
+            theme: 'a',
+            dismissible: false,
+            shadow: false
+
+        });
+
+        $("#order").click(function(){
+            $("#confirmWindow").popup("open");
+
+            $(document).bind("touchmove", function(){  //  弹窗弹出时，禁止页面滚动
+                return false;
+            });
+        });
+
+        $(".leftBtn, .rightBtn").click(function(){   // 使用tap方法有穿透现象
+           $("#confirmWindow").popup("close"); 
+
+           $(document).unbind("touchmove");   // 解除禁止滚动绑定
+        });
+
         
     });
 </script>
