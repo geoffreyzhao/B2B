@@ -29,7 +29,7 @@
 			</tr>
 		</table>
 		<div id="datepicker"></div>
-		<div class="window-container"></div>
+		<div class="window-container"></div>  <!--  生成弹窗时，依附此结构来定位弹窗位置  -->
 		<div data-role="popup" id="pickDateTip">请选择出行日期</div>
 	</div>	
 
@@ -131,7 +131,7 @@
 				$(this).parent("td").addClass("active");
 
 				$(".calTable .enable").find(".top-day-cont").html("");				
-				if (j_today.html() == "") {
+				if (j_today !==undefined && j_today.html() == "") {
 					j_today.html("今天");
 				}
 				
@@ -139,7 +139,7 @@
 				$("#pickDateTip").popup("close");
 			});
 
-			setTimeout(function(){
+			setTimeout(function(){  //  页面加载完毕，延时弹出提示框
 				$("#pickDateTip").popup("open");
 			}, 300);
 
