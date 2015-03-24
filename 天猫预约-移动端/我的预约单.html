@@ -10,11 +10,12 @@
 	<link rel="stylesheet" type="text/css" href="css/tm_order.css">
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="js/fastclick.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
 	<title>我的预约单</title>
 </head>
 <body>
-	<div class="viewport" style="height: 100%;">
+	<div class="viewport" style="padding-top:0.625rem;">
         <section class="reservationListBox">
             <span class="left-semicircle"><i class="left-coverUpLine"></i></span>
             <span class="right-semicircle"><i class="right-coverUpLine"></i></span>
@@ -116,24 +117,29 @@
 
     <script type="text/javascript">
         $(function(){
+
+            FastClick.attach(document.body);
+
             $("#cancelReason").popup({
                 theme: "b",
-                dismissible: false,
-                transition: "flip"
+                overlayTheme: "b",
+                transition: "flip",
+                afteropen: function(){
+                    $(document).bind("touchmove", function(){  //  弹窗弹出时，禁止页面滚动
+                        return false;
+                    });
+                },
+                afterclose: function(){
+                    $(document).unbind("touchmove");   // 解除禁止滚动绑定
+                }
             });
 
-            $(".operateBtnDiv").tap(function(){
+            $(".operateBtnDiv").click(function(){
                 $("#cancelReason").popup("open");
-                $(document).bind("touchmove", function(){  //  弹窗弹出时，禁止页面滚动
-                    return false;
-                });
-
             });
 
-            $(".bigBlueButton").click(function(){   // 使用tap方法有穿透现象
+            $(".bigBlueButton").click(function(){ 
                 $("#cancelReason").popup("close");
-
-                $(document).unbind("touchmove");   // 解除禁止滚动绑定
             });
         });
     </script>
