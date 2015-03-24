@@ -279,6 +279,9 @@
     $(function(){
         //  jqm 中 tap事件有bug, 存在多次触发或点击穿透现象
         //  fastclick 可以解决这个问题，使用click方法即可
+        //  注册全局click事件为fastclick, 依赖js文件： fastclick.js
+        //  Github地址： https://github.com/ftlabs/fastclick
+
         FastClick.attach(document.body);
 
         $(".bookCopies .subtractFonts").tap(function(){
@@ -302,21 +305,23 @@
         $("#confirmWindow").popup({
             theme: 'a',
             dismissible: false,
-            shadow: false
+            shadow: false,
+            afteropen: function(){
+                $(document).bind("touchmove", function(){  //  弹窗弹出时，禁止页面滚动
+                    return false;
+                });
+            },
+            afterclose: function(){
+                $(document).unbind("touchmove");   // 解除禁止滚动绑定
+            }
         });
 
         $("#order").click(function(){
             $("#confirmWindow").popup("open");
-
-            $(document).bind("touchmove", function(){  //  弹窗弹出时，禁止页面滚动
-                return false;
-            });
         });
 
         $(".leftBtn, .rightBtn").click(function(){   // 使用tap方法有穿透现象
            $("#confirmWindow").popup("close"); 
-
-           $(document).unbind("touchmove");   // 解除禁止滚动绑定
         });
 
         

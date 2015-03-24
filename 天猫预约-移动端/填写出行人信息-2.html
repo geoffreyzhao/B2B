@@ -3,6 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 因为有证件照片，可能会允许用户缩放页面, 暂设最大放大比例为2倍  -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0"> -->
 	<meta name="format-detection" content="telephone=no, email=no">
 	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
 	<link rel="stylesheet" type="text/css" href="css/common.css">
@@ -37,10 +39,8 @@
                 </li>
                 <li class="clearfix">
                     <span class="leftNumber">证件类型</span>
-                    <span class="idTypes">
-                        <span class="chuXingInfo">
-                            <span class="idTypeCont">护照</span>
-                        </span>
+                    <span class="chuXingInfo idTypes">
+                        <span class="idTypeCont">护照</span>
                         <span class="rightGrayArrow idTypeWindow"></span>
                     </span>
                 </li>
@@ -53,7 +53,18 @@
                 <li class="clearfix">
                     <span class="leftNumber">证件照片</span>
                     <span class="chuXingInfo">
-                        <span class="photoIcon"></span>
+                        <!-- <span class="photoIcon"></span> -->
+
+                        <!--  上传图片后，显示图片缩略图  -->
+                        <img class="idPhoto" src="images/emptyPhoto.png" alt="">
+
+                        <!--  上传图片页面结构 仅供外部浏览器使用，微信中请调用微信相关JS接口
+                        <span class="upload-input">                            
+                            <span class="photoIcon"></span>
+                            <input type="file" accept="image/gif,image/jpeg,image/png" data-role="none" />
+                        </span>
+                        -->
+                        <img id="photoExample" src="images/photo-example.jpg" alt="" style="display:none;">
                     </span>
                     <span class="seeExample">查看示例</span>
                 </li>
@@ -69,7 +80,8 @@
         </div>
 
         <div class="select-pop-container"></div>
-
+        
+        <!--  选择证件类型弹窗  -->
         <div data-role="popup" class="select-pop">
             <div class="title">证件类型</div>
             <ul class="item-list">
@@ -94,6 +106,11 @@
                     <span class="item-selected-icon"></span>
                 </li>
             </ul>
+        </div>
+
+        <!--  查看大图弹窗  -->
+        <div data-role="popup" class="view-bigImg-pop">
+            <img src="" alt="" width="100%;">
         </div>
     
 	</div>
@@ -128,6 +145,43 @@
             $(".idTypeCont").html($(this).find(".item-cont").html());
             $(".select-pop").popup("close");
         });
+
+
+        $(".view-bigImg-pop").popup({
+            theme: 'a',
+            overlayTheme: 'b',
+            shadow: false,
+            transition: "flip",
+            wrapperClass: '',
+            tolerance: "0,0",
+            corners: false,
+            afteropen: function(){
+                $(document).bind("touchmove", function(){  //  弹窗弹出时，禁止页面滚动
+                    return false;
+                });
+            },
+            afterclose: function(){
+                $(document).unbind("touchmove");   // 解除禁止滚动绑定
+            }
+        });
+
+        $(".seeExample").click(function(){
+            $(".view-bigImg-pop").on("popupbeforeposition", function(event){
+                $(event.target).find("img").attr("src", "images/photo-example.jpg");
+            });
+
+            $(".view-bigImg-pop").popup("open");
+        });
+
+        $(".idPhoto").click(function(){
+            $(".view-bigImg-pop").on("popupbeforeposition", function(event){
+                $(event.target).find("img").attr("src", "images/photo-example.jpg");
+            });
+
+            $(".view-bigImg-pop").popup("open");
+        });
+
+
     });
 </script>
 

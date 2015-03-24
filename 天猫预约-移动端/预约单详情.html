@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="css/tm_order.css">
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="js/fastclick.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
 	<title>预约单详情</title>
 </head>
@@ -290,18 +291,21 @@
 
     <script type="text/javascript">
         $(function(){
+
+            FastClick.attach(document.body);
+
             $("#submitTip").popup({
                 theme: "b",
-                transition: "flip"
+                transition: "flip",
+                afteropen: function(){
+                    setTimeout(function(){
+                        $("#submitTip").popup("close");                    
+                    }, 1000);
+                }
             });
 
-            $(".btnContent").tap(function(){
+            $(".btnContent").click(function(){
                 $("#submitTip").popup("open");
-
-                setTimeout(function(){
-                    $("#submitTip").popup("close");                    
-                }, 1000);
-                return false;
             });
 
         });
