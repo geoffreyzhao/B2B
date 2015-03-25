@@ -88,9 +88,19 @@
                     <a href="#" class="current">单品管理</a>
                 </div>
                 <div class="fixedButton">
+                    <a class="button_secondary adaptiveButton small ac-addFlightSingleItem" href="javascript:void(0);">
+                        <span class="left"></span>
+                        <span class="center">新增机票单品</span>
+                        <span class="right"></span>
+                    </a>
+                    <a class="button_secondary adaptiveButton small ac-addHotelSingleItem" href="javascript:void(0);">
+                        <span class="left"></span>
+                        <span class="center">新增酒店单品</span>
+                        <span class="right"></span>
+                    </a>
                     <a class="button_secondary adaptiveButton small ac-addSingleItem" href="javascript:void(0);">
                         <span class="left"></span>
-                        <span class="center">新增单品</span>
+                        <span class="center">新增其他单品</span>
                         <span class="right"></span>
                     </a>
                 </div>
@@ -290,7 +300,169 @@
         </div>
     </div>
 
-    
+    <script type="text/x-kendo-template" id="ac-addFlightSingleItem-template">
+        <table class="productCommonTabWindow">
+            <colgroup>
+                <col width="95">
+                <col width="135">
+                <col width="95">
+                <col width="">
+            </colgroup>
+            <tbody>
+            <tr>
+                <th class="verticalAlignTop"><em class="redFonts">*</em>出发地：</th>
+                <td>
+                    <input type="text" />
+                </td>
+                <th class="verticalAlignTop"><em class="redFonts">*</em>起飞时间：</th>
+                <td>
+                    <input type="text" />
+                </td>
+            </tr>
+            <tr>
+                <th class="verticalAlignTop"><em class="redFonts">*</em>到达地：</th>
+                <td>
+                    <input type="text" />
+                </td>
+                <th class="verticalAlignTop"><em class="redFonts">*</em>落地时间：</th>
+                <td>
+                    <input type="text" />
+                </td>
+            </tr>
+            <tr>
+                <th class="verticalAlignTop"><em class="redFonts">*</em>航班号：</th>
+                <td>
+                    <input type="text" />
+                </td>
+                <th class="verticalAlignTop"><em class="redFonts">*</em>舱型：</th>
+                <td>
+                    <select data-role="dropdownlist">
+                      <option>经济舱</option>
+                      <option>商务舱</option>
+                      <option>头等舱</option>
+                    </select>
+                </td>
+            </tr>
+            <tr class="trEdge">
+                <th class="verticalAlignTop">经停：</th>
+                <td>
+                    <input type="text" />
+                </td>
+                <th></th>
+                <td></td>
+            </tr>
+            <tr>
+              <td colspan="4">
+                <a class="button_secondary adaptiveButton small addBackFlight" href="javascript:void(0);">
+                    <span class="left"></span>
+                    <span class="center">添加返程</span>
+                    <span class="right"></span>
+                </a>
+              </td>
+            </tr>
+            <tr class="backFlightTr hide">
+                <th class="verticalAlignTop"><em class="redFonts">*</em>出发地：</th>
+                <td>
+                    <input type="text" />
+                </td>
+                <th class="verticalAlignTop"><em class="redFonts">*</em>起飞时间：</th>
+                <td>
+                    <input type="text" />
+                </td>
+            </tr>
+            <tr class="backFlightTr hide">
+                <th class="verticalAlignTop"><em class="redFonts">*</em>到达地：</th>
+                <td>
+                    <input type="text" />
+                </td>
+                <th class="verticalAlignTop"><em class="redFonts">*</em>落地时间：</th>
+                <td>
+                    <input type="text" />
+                </td>
+            </tr>
+            <tr class="backFlightTr hide">
+                <th class="verticalAlignTop"><em class="redFonts">*</em>航班号：</th>
+                <td>
+                    <input type="text" />
+                </td>
+                <th class="verticalAlignTop"><em class="redFonts">*</em>舱型：</th>
+                <td>
+                    <select data-role="dropdownlist">
+                      <option>经济舱</option>
+                      <option>商务舱</option>
+                      <option>头等舱</option>
+                    </select>
+                </td>
+            </tr>
+            <tr class="backFlightTr hide trBottomLine">
+                <th class="verticalAlignTop">经停：</th>
+                <td>
+                    <input type="text" />
+                </td>
+                <th></th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>单品补差金额：</th>
+                <td colspan="3"><input type="text" /> 元</td>
+            </tr>
+            <tr>
+                <th class="verticalAlignTop">备注：</th>
+                <td colspan="3">
+                  <textarea placeholder="限300字"></textarea>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="textAlignCenterBtn">
+            <button class="large_button" type="button" name="a">确 定</button>
+            <button class="large_button disable" type="button" name="a">取 消</button>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-addHotelSingleItem-template">
+        <table class="productCommonTabWindow">
+            <colgroup>
+                <col width="95">
+                <col width="">
+            </colgroup>
+            <tbody>
+            <tr>
+                <th class="verticalAlignTop"><em class="redFonts">*</em>酒店名称：</th>
+                <td>
+                    <input type="text" />
+                </td>
+            </tr>
+            <tr>
+                <th class="verticalAlignTop"><em class="redFonts">*</em>房型：</th>
+                <td>
+                    <input type="text" />
+                </td>
+            </tr>
+            <tr>
+                <th class="verticalAlignTop"><em class="redFonts">*</em>房晚：</th>
+                <td>
+                    <input type="text" />
+                </td>
+            </tr>
+            <tr>
+                <th>单品补差金额：</th>
+                <td><input type="text" /> 元</td>
+            </tr>
+            <tr>
+                <th class="verticalAlignTop">备注：</th>
+                <td>
+                    <textarea placeholder="限300字"></textarea>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="textAlignCenterBtn">
+            <button class="large_button" type="button" name="a">确 定</button>
+            <button class="large_button disable" type="button" name="a">取 消</button>
+        </div>
+    </script>
+
     <script type="text/x-kendo-template" id="ac-addSingleItem-template">
         <table class="productCommonTabWindow">
             <colgroup>
@@ -301,31 +473,17 @@
             <tr>
                 <th class="verticalAlignTop"><em class="redFonts">*</em>单品名称：</th>
                 <td>
-                    <span class="color999">名称不能超过50个字</span>
-                </td>
-            </tr>
-            <tr>
-                <th><em class="redFonts">*</em>类型：</th>
-                <td>
-                    <label>
-                        <input type="radio"> 机票
-                    </label>
-                    <label>
-                        <input type="radio"> 酒店
-                    </label>
-                    <label>
-                        <input type="radio"> 邮轮
-                    </label>
+                    <input type="text" placeholder="单品名称不超过100字" style="width:360px;"/>
                 </td>
             </tr>
             <tr>
                 <th>单品补差金额：</th>
-                <td></td>
+                <td><input type="text" /> 元</td>
             </tr>
             <tr>
                 <th class="verticalAlignTop">备注：</th>
-                <td>
-                    <span class="color999">限300字</span>
+                <td>                   
+                    <textarea placeholder="限300字"></textarea>
                 </td>
             </tr>
             </tbody>
@@ -431,8 +589,20 @@
       $(function(){
           $("select").kendoDropDownList();
 
+          new PopWindow('.ac-addFlightSingleItem', {
+              title: "新增机票单品",
+              width: 570,
+              template: "#ac-addFlightSingleItem-template"
+          }).init();
+
+          new PopWindow('.ac-addHotelSingleItem', {
+              title: "新增酒店单品",
+              width: 520,
+              template: "#ac-addHotelSingleItem-template"
+          }).init();
+
           new PopWindow('.ac-addSingleItem', {
-              title: "新增单品",
+              title: "新增其他单品",
               width: 570,
               template: "#ac-addSingleItem-template"
           }).init();
@@ -454,6 +624,22 @@
               width: 470,
               template: "#ac-deleteHintWindow-template"
           }).init();
+
+          $(".addBackFlight").click(function(){
+            if ($(this).hasClass("button_secondary")) {  // 添加返程
+
+              $(this).addClass("button_important").removeClass("button_secondary").find(".center").html("删除返程");
+              $(this).parents(".productCommonTabWindow").find(".trEdge").addClass("trBottomLine");
+              $(this).parents(".productCommonTabWindow").find(".backFlightTr").removeClass("hide");
+
+            } else if ($(this).hasClass("button_important")) {  //  删除返程
+
+              $(this).addClass("button_secondary").removeClass("button_important").find(".center").html("添加返程");
+              $(this).parents(".productCommonTabWindow").find(".trEdge").removeClass("trBottomLine");
+              $(this).parents(".productCommonTabWindow").find(".backFlightTr").addClass("hide");
+            }
+            
+          });
 
       });
     </script>
