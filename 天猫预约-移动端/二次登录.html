@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no, email=no">
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" type="text/css" href="css/jqm.reset.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/tm_order.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+	<script type="text/javascript" src="js/fastclick.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<title>二次登录</title>
+</head>
+<body>
+	<div class="viewport">
+		<div class="signin-container">
+			<div class="login-input">
+				<div class="login-top">
+					<span class="phone-icon"></span>
+					<input type="tel" placeholder="请输入手机号" data-role="none" />
+					<span class="input-end-icon"></span>
+					<!-- 默认叉号，add class: default -->
+					<!-- 红色叉号，add class: error -->
+					<!-- 绿色对号，add class: success -->
+				</div>
+				<div class="login-bottom">
+					<span class="gray-lock-icon"></span>
+					<input type="password" placeholder="请输入密码" data-role="none" />
+					<span class="input-end-icon default"></span>
+				</div>
+				<div class="error-tip"><!-- 没有错误提示时，其内容为空，但div的结构要保存 -->
+					<span>手机号或密码错误</span>
+				</div>
+			</div>
+			<div class="remember-block">
+				<span class="remember-me-container">
+					<span class="checkbox"></span><!--  选中状态，add class: actived  -->
+					<span class="rem-text">记住我</span>
+				</span>
+				<a href="javascript:;" class="forget-pw-link">忘记密码</a>
+			</div>
+			<div class="login-btn-container">
+				<div class="login-btn">登录</div>
+				<!--  可用登陆按钮，add class: enabled -->
+			</div>
+			<div class="register-block"><a href="javascript:;">注册</a></div>
+			<div data-role="popup" id="popupBasic">
+				<p>This is a completely basic popup, no options set.</p>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$(function(){
+
+			FastClick.attach(document.body);
+			
+			$("#popupBasic").popup({
+				theme: "b",
+				transition: "flip",
+				overlayTheme: "b",
+				positionTo: "window",
+				tolerance: "0,0"
+			});
+
+			$(".enabled").bind("tap", function(){
+				$("#popupBasic").popup("open");
+				// tap 事件在 windows8 触控设备和 android 设备上测试，均有一次点击多次触发的现象
+				// return false 阻止事件冒泡
+				// 此处 tap 可换成 click(fastclick, 点击事件会变正常)
+				return false; 
+			});
+
+			$(".remember-me-container").click(function(){
+				$(this).find(".checkbox").toggleClass("actived");
+			});
+		});
+	</script>
+</body>
+</html>
