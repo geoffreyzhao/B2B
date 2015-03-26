@@ -24,6 +24,7 @@
                     <span class="chuXingInfo">
                         <input type="text" placeholder="请输入姓名" data-role="none">
                     </span>
+                    <a href="javascript:void(0);" class="selectTraveler">选择常旅客</a>
                 </li>
                 <li class="clearfix">
                     <span class="leftNumber">英文名</span>
@@ -114,6 +115,32 @@
             <img src="" alt="" width="100%;">
         </div>
     
+        <!--  没有常旅客  -->
+        <div data-role="popup" id="noTraveler">还没有常旅客！</div>
+
+        <!--  选择常旅客弹窗  -->
+        <div data-role="popup" class="selectTraveler-pop">
+            <div class="title">常旅客</div>
+            <ul class="item-list">
+                <li>
+                    <span class="item-cont">张梓琳</span>
+                    <span class="item-selected-icon"></span>
+                </li>
+                <li>
+                    <span class="item-cont">张柏芝</span>
+                    <span class="item-selected-icon"></span>
+                </li>
+                <li>
+                    <span class="item-cont">张铁林</span>
+                    <span class="item-selected-icon"></span>
+                </li>
+                <li>
+                    <span class="item-cont">张年</span>
+                    <span class="item-selected-icon"></span>
+                </li>
+            </ul>
+        </div>
+        
 	</div>
     
 <script>
@@ -124,6 +151,42 @@
             $(this).toggleClass("saveBtn");
         });
 
+        
+        // 没有常旅客的情况 start
+        /*$("#noTraveler").popup({
+            theme: "b",
+            transition: "flip",
+            afteropen: function(){
+                setTimeout(function(){
+                    $("#noTraveler").popup("close");
+                }, 1000);
+            }
+        });
+
+        $(".selectTraveler").click(function(){
+            $("#noTraveler").popup("open");
+        });*/
+        // 没有常旅客的情况 end
+
+
+        // 有常旅客的情况 start
+        $(".selectTraveler-pop").popup({
+            theme: 'a',
+            overlayTheme: 'b',
+            shadow: false,
+            transition: "slideup",
+            wrapperClass: 'select-pop-wrapper',
+            positionTo: '.select-pop-container',
+            tolerance: "0,0",
+            corners: false
+        });
+
+        $(".selectTraveler").click(function(){
+            $(".selectTraveler-pop").popup("open");
+        });
+        // 有常旅客的情况 end
+        
+        
         $(".select-pop").popup({
             theme: 'a',
             overlayTheme: 'b',
@@ -139,12 +202,12 @@
             $(".select-pop").popup("open");
         });
 
-        $(".select-pop .item-list li").click(function(){
+        $(".select-pop .item-list li,.selectTraveler-pop .item-list li").click(function(){
             $(this).siblings("li").find("span").removeClass("actived");
             $(this).find("span").addClass("actived");
 
-            $(".idTypeCont").html($(this).find(".item-cont").html());
-            $(".select-pop").popup("close");
+            $(".idTypeCont,.selectTraveler").html($(this).find(".item-cont").html());
+            $(".select-pop,.selectTraveler-pop").popup("close");
         });
 
 
