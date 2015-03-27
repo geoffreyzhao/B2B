@@ -47,9 +47,6 @@
 				<!--  可用登陆按钮，add class: enabled -->
 			</div>
 			<div class="register-block"><a href="javascript:;">注册</a></div>
-			<div data-role="popup" id="popupBasic">
-				<p>This is a completely basic popup, no options set.</p>
-			</div>
 		</div>
 	</div>
 
@@ -58,22 +55,6 @@
 
 			FastClick.attach(document.body);
 			
-			$("#popupBasic").popup({
-				theme: "b",
-				transition: "flip",
-				overlayTheme: "b",
-				positionTo: "window",
-				tolerance: "0,0"
-			});
-
-			$(".enabled").bind("tap", function(){
-				$("#popupBasic").popup("open");
-				// tap 事件在 windows8 触控设备和 android 设备上测试，均有一次点击多次触发的现象
-				// return false 阻止事件冒泡
-				// 此处 tap 可换成 click(fastclick, 点击事件会变正常)
-				return false; 
-			});
-
 			$(".remember-me-container").click(function(){
 				$(this).find(".checkbox").toggleClass("actived");
 			});
