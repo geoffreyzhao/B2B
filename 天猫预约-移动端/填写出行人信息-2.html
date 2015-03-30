@@ -202,12 +202,18 @@
             $(".select-pop").popup("open");
         });
 
-        $(".select-pop .item-list li,.selectTraveler-pop .item-list li").click(function(){
+        $(".select-pop .item-list li").click(function(){
             $(this).siblings("li").find("span").removeClass("actived");
             $(this).find("span").addClass("actived");
 
-            $(".idTypeCont,.selectTraveler").html($(this).find(".item-cont").html());
-            $(".select-pop,.selectTraveler-pop").popup("close");
+            $(".idTypeCont").html($(this).find(".item-cont").html());
+            $(".select-pop").popup("close");
+        });
+
+        $(".selectTraveler-pop .item-list li").click(function(){
+            $(this).siblings("li").find("span").removeClass("actived");
+            $(this).find("span").addClass("actived");
+            $(".selectTraveler-pop").popup("close");
         });
 
 
