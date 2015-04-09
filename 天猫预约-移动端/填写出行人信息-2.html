@@ -138,6 +138,30 @@
                     <span class="item-cont">张年</span>
                     <span class="item-selected-icon"></span>
                 </li>
+                <li>
+                    <span class="item-cont">梁千名</span>
+                    <span class="item-selected-icon"></span>
+                </li>
+                <li>
+                    <span class="item-cont">张梓琳</span>
+                    <span class="item-selected-icon"></span>
+                </li>
+                <li>
+                    <span class="item-cont">张柏芝</span>
+                    <span class="item-selected-icon"></span>
+                </li>
+                <li>
+                    <span class="item-cont">张铁林</span>
+                    <span class="item-selected-icon"></span>
+                </li>
+                <li>
+                    <span class="item-cont">张年</span>
+                    <span class="item-selected-icon"></span>
+                </li>
+                <li>
+                    <span class="item-cont">梁千名</span>
+                    <span class="item-selected-icon"></span>
+                </li>
             </ul>
         </div>
         
@@ -178,7 +202,15 @@
             wrapperClass: 'select-pop-wrapper',
             positionTo: '.select-pop-container',
             tolerance: "0,0",
-            corners: false
+            corners: false,
+            afteropen: function(){
+                $(".viewport").bind("touchmove", function(){  //  弹窗弹出时，禁止页面滚动
+                    return false;
+                });
+            },
+            afterclose: function(){
+                $(".viewport").unbind("touchmove");   // 解除禁止滚动绑定
+            }
         });
 
         $(".selectTraveler").click(function(){
