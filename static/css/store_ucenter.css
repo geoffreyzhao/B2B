@@ -3346,18 +3346,31 @@ ul.role_tab_change li.current_role {
 }
 
 .privatePay label,
-.businessPay label {
+ .businessPay label {
+    margin-right: 20px;
+    margin-bottom: 25px;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
+.privatePay label .bankTypes,
+.businessPay label .bankTypes {
     min-height: 40px;
     min-width: 190px;
-    border: 1px solid #c1bfbf;
-    background: #fff;
-    margin-right: 20px;
     display: inline-block;
     line-height: 40px;
     padding-left: 10px;
-    cursor: pointer;
-    margin-bottom: 20px;
+    border: 1px solid #c1bfbf;
+    background: #fff;
 }
+.privatePay label .bankTypes.currentWay,
+.businessPay label .bankTypes.currentWay {
+    border: 1px solid #f1634c;
+}
+/*.rightPayBlock label:hover,
+.rightPayBlock .currentWay {
+    border: 1px solid #f1634c;
+}*/
 
 .businessPay i,
 .privatePay i {
@@ -3469,10 +3482,31 @@ i.bohai_bank {
     position: relative;
     top: 6px;
 }
-
-.rightPayBlock label:hover,
-.rightPayBlock .currentWay {
-    border: 1px solid #f1634c; 
+.rightPayBlock .limitAmount {
+    position: absolute;
+    bottom:-22px;
+    left:0px;
+}
+.rightPayBlock label:hover .bankTypes {
+    border-bottom: none;
+}
+.rightPayBlock label:hover .limitAmount,
+.rightPayBlock .businessPayBlock label:hover .limitAmount {
+    display: block;
+}
+.rightPayBlock label .limitAmount,
+.rightPayBlock .businessPayBlock label .limitAmount {
+    display: none;
+    border: 1px solid #dcc791;
+    background: #fafadb;
+    text-align: center;
+    width:200px;
+    min-width: 200px;
+    padding:3px 0;
+}
+.rightPayBlock .businessPayBlock label .limitAmount {
+    width:203px;
+    min-width: 203px;
 }
 
 /* 设置签名tip提示   By: shuaigeng.zhao;  */
