@@ -12,6 +12,7 @@
 	<script type="text/javascript" src="../scmstatic/js/jquery.min.js"></script>
 	<script type="text/javascript" src="../scmstatic/js/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript" src="../scmstatic/js/fastclick.js"></script>
+    <script type="text/javascript" src="../scmstatic/js/iscroll.js"></script>
 	<script type="text/javascript" src="../scmstatic/js/common.js"></script>
 	<title>填写出行人信息</title>
 </head>
@@ -121,54 +122,73 @@
         <!--  选择常旅客弹窗  -->
         <div data-role="popup" class="selectTraveler-pop">
             <div class="title">常旅客</div>
-            <ul class="item-list">
-                <li>
-                    <span class="item-cont">张梓琳</span>
-                    <span class="item-selected-icon"></span>
-                </li>
-                <li>
-                    <span class="item-cont">张柏芝</span>
-                    <span class="item-selected-icon"></span>
-                </li>
-                <li>
-                    <span class="item-cont">张铁林</span>
-                    <span class="item-selected-icon"></span>
-                </li>
-                <li>
-                    <span class="item-cont">张年</span>
-                    <span class="item-selected-icon"></span>
-                </li>
-                <li>
-                    <span class="item-cont">梁千名</span>
-                    <span class="item-selected-icon"></span>
-                </li>
-                <li>
-                    <span class="item-cont">张梓琳</span>
-                    <span class="item-selected-icon"></span>
-                </li>
-                <li>
-                    <span class="item-cont">张柏芝</span>
-                    <span class="item-selected-icon"></span>
-                </li>
-                <li>
-                    <span class="item-cont">张铁林</span>
-                    <span class="item-selected-icon"></span>
-                </li>
-                <li>
-                    <span class="item-cont">张年</span>
-                    <span class="item-selected-icon"></span>
-                </li>
-                <li>
-                    <span class="item-cont">梁千名</span>
-                    <span class="item-selected-icon"></span>
-                </li>
-            </ul>
+            <div id="wrapper">
+                <div id="scroller">
+                    <ul class="item-list">
+                        <li>
+                            <span class="item-cont">张梓琳</span>
+                            <span class="item-selected-icon"></span>
+                        </li>
+                        <li>
+                            <span class="item-cont">张柏芝</span>
+                            <span class="item-selected-icon"></span>
+                        </li>
+                        <li>
+                            <span class="item-cont">张铁林</span>
+                            <span class="item-selected-icon"></span>
+                        </li>
+                        <li>
+                            <span class="item-cont">张年</span>
+                            <span class="item-selected-icon"></span>
+                        </li>
+                        <li>
+                            <span class="item-cont">梁千名</span>
+                            <span class="item-selected-icon"></span>
+                        </li>
+                        <li>
+                            <span class="item-cont">张梓琳</span>
+                            <span class="item-selected-icon"></span>
+                        </li>
+                        <li>
+                            <span class="item-cont">张柏芝</span>
+                            <span class="item-selected-icon"></span>
+                        </li>
+                        <li>
+                            <span class="item-cont">张铁林</span>
+                            <span class="item-selected-icon"></span>
+                        </li>
+                        <li>
+                            <span class="item-cont">张年</span>
+                            <span class="item-selected-icon"></span>
+                        </li>
+                        <li>
+                            <span class="item-cont">梁千名</span>
+                            <span class="item-selected-icon"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
         
 	</div>
     
 <script>
     $(function(){
+
+        //  常旅客 iscroll 初始化  start
+        var myScroll; 
+        function loaded() {
+            myScroll = new IScroll('#wrapper', {
+                mouseWheel: true,
+                scrollbars: false
+            }); 
+        } 
+        // document.addEventListener('DOMContentLoaded', loaded, false); 
+
+        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+        //  常旅客 iscroll 初始化  end
+
         FastClick.attach(document.body);
 
         $(".chuXingRenList .noSaveBtn").tap(function(){
@@ -203,13 +223,8 @@
             positionTo: '.select-pop-container',
             tolerance: "0,0",
             corners: false,
-            afteropen: function(){
-                $(".viewport").bind("touchmove", function(){  //  弹窗弹出时，禁止页面滚动
-                    return false;
-                });
-            },
-            afterclose: function(){
-                $(".viewport").unbind("touchmove");   // 解除禁止滚动绑定
+            beforeposition: function() {
+                loaded();
             }
         });
 
