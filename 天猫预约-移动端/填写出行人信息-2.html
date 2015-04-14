@@ -169,6 +169,8 @@
                 </div>
             </div>
         </div>
+
+        <div data-role="popup" id="loadingTip"><div class="loading-icon"></div>图片上传中</div>
         
 	</div>
     
@@ -193,6 +195,13 @@
 
         $(".chuXingRenList .noSaveBtn").tap(function(){
             $(this).toggleClass("saveBtn");
+        });
+
+        $("#loadingTip").popup({
+            theme: "b",
+            transition: "flip",
+            positionTo: "window",
+            dismissible: false
         });
 
         
@@ -284,11 +293,12 @@
         });
 
         $(".seeExample").click(function(){
-            $(".view-bigImg-pop").on("popupbeforeposition", function(event){
-                $(event.target).find("img").attr("src", "../scmstatic/images/photo-example.jpg");
-            });
+            // $(".view-bigImg-pop").on("popupbeforeposition", function(event){
+            //     $(event.target).find("img").attr("src", "../scmstatic/images/photo-example.jpg");
+            // });
 
-            $(".view-bigImg-pop").popup("open");
+            // $(".view-bigImg-pop").popup("open");
+            $("#loadingTip").popup("open");
         });
 
         $(".idPhoto").click(function(){
