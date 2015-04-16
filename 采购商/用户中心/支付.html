@@ -400,7 +400,7 @@
                             <em class="payStyleTitle">线下转账</em> 
                             <label class="offLineTransfer"><input type="radio" checked="checked" />填写银行转账信息</label>
                        </div>
-                       <div class="offline item-content" style="display:none;"> <!--offline start-->
+                       <div class="offline item-content"> <!--offline start-->
                             <div style="float:left"><i class="important">*</i>转账银行账号：</div>
                             <table cellpadding="0" cellspacing="0" class="bank" style="margin:-14px 0 0 100px">
                                 <colgroup>
@@ -462,6 +462,19 @@
                                     <td>施纪军</td>
                                     <td>6228480030923771510</td>
                                     <td>浦发银行</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label><input type="radio" name="bank" style="vertical-align:baseline"/><em class="cmb">招商银行</em></label>
+                                    </td>
+                                    <td>上海不夜城国际旅行社有限公司</td>
+                                    <td>021900563310502</td>
+                                    <td>招商银行曹家渡支行</td>
+                                </tr>
+                                <tr class="bankTipsTr">
+                                    <td colspan="4">
+                                        <p>重要提示：汇款摘要必须填写“公务机票购票款”，否则资金将无法到账。</p>
+                                    </td>
                                 </tr>
                             </table>
                             <table id="offline_payerInfo">
@@ -638,6 +651,8 @@
 			  }
 			  $(this).find(".item-content").show();
 		});
+        //线下转账 提示信息
+        $(".bank .bankTipsTr").prev("tr").children("td").css("border-bottom","none");
 
     // 网上银行
     $(".rightPayBlock .bankTypes").each(function(){
@@ -662,7 +677,6 @@
 		
 	});
 </script>
-
 
 </body>
 </html>
