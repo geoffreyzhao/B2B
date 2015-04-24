@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="../scmstatic/css/tm_order.css">
 	<script type="text/javascript" src="../scmstatic/js/jquery.min.js"></script>
 	<script type="text/javascript" src="../scmstatic/js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="../scmstatic/js/fastclick.js"></script>
 	<script type="text/javascript" src="../scmstatic/js/common.js"></script>
 	<title>填写出行人信息</title>
 </head>
@@ -93,17 +94,39 @@
                 <a href="javascript:void(0);" class="orangeBtn">下一步</a>
             </div>
         </section>
+
+        <div class="window-container"></div>  <!--  生成弹窗时，依附此结构来定位弹窗位置  -->
+        <div data-role="popup" id="pickDateTip" class="tipPopStyle">请填写完成信息</div>
     
 	</div>
     
 <script>
     $(function(){
+
+        FastClick.attach(document.body);
+
+        $("#pickDateTip").popup({
+                theme: "b",
+                transition: "flip",
+                positionTo: ".window-container",
+                dismissible: false,
+                afteropen: function(){
+                    setTimeout(function(){
+                        $("#pickDateTip").popup("close");
+                    }, 1000);
+                }
+            });
+
         $(".chuXingRen").css({
             "max-height": (window.innerHeight - $("#topContent").height() - $(".bottomFixContent").height()) + "px"
         });
         if($(".chuXingRen ul").height() > $(".chuXingRen").height()){
             $(".chuXingRen").addClass("scroll");
         }
+
+        $(".btnContent").click(function(){
+            $("#pickDateTip").popup("open");
+        });
         
     });
 </script>
