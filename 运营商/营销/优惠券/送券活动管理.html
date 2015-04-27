@@ -107,27 +107,34 @@
         <div class="information_div">
             <table class="information_tab">
                 <colgroup>
-                    <col width="40">
-                    <col width="220">
                     <col width="60">
-                    <col width="200">
-                    <col width="50">
-                    <col width="290">
+                    <col width="260">
+                    <col width="60">
+                    <col width="180">
+                    <col width="40">
+                    <col width="260">
                     <col width="95">
                 </colgroup>
                 <tbody>
                 <tr>
+                    <td>活动名称</td>
+                    <td>
+                        <input type="text" style="width: 222px;">
+                    </td>
                     <td>券名</td>
                     <td>
-                        <input type="text" style="width: 175px;">
+                        <input type="text" style="width: 145px;" placeholder="关键字">
                     </td>
-                    <td>所属活动</td>
+                    <td>状态</td>
                     <td>
-                        <input type="text" style="width: 140px;" placeholder="关键字">
-                    </td>
-                    <td>券面额</td>
-                    <td>
-                        <input type="text" style="width: 95px;">
+                        <select style="width: 150px;" data-role="dropdownlist">
+                            <option>请选择</option>
+                            <option>草稿</option>
+                            <option>未开始</option>
+                            <option>进行中</option>
+                            <option>已挂起</option>
+                            <option>已结束</option>
+                        </select>
                     </td>
                     <td rowspan="2">
                         <a href="javascript:;" class="button_important adaptiveButton medium">
@@ -138,24 +145,23 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>状态</td>
-                    <td>
-                        <select style="width: 180px;" data-role="dropdownlist">
-                            <option>请选择</option>
-                        </select>
-                    </td>
-                    <td>发放方式</td>
-                    <td>
-                        <select style="width: 145px;" data-role="dropdownlist">
-                            <option>请选择</option>
-                        </select>
-                    </td>
-                    <td>有效期</td>
+                    <td>活动时间</td>
                     <td>
                         <input type="text" style="width:95px;" class="datepicker dateStart" dateStart name="departureDateStart">
                         <em>&nbsp;至&nbsp;</em>
                         <input type="text" style="width:95px;" class="datepicker dateEnd orange" dateEnd name="departureDateEnd">
                     </td>
+                    <td>发放方式</td>
+                    <td>
+                        <select style="width: 145px;" data-role="dropdownlist">
+                            <option>请选择</option>
+                            <option>购买送券</option>
+                            <option>用户领券</option>
+                            <option>系统关券</option>
+                        </select>
+                    </td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 </tbody>
             </table>
@@ -163,150 +169,159 @@
         <div class="scroll">
             <table class="tgrid tbFixed">
                 <colgroup>
-                    <col width="90">
-                    <col width="195">
-                    <col width="65">
-                    <col width="85">
-                    <col width="85">
+                    <col width="140">
+                    <col width="100">
+                    <col width="115">
+                    <col width="200">
+                    <col width="125">
                     <col width="160">
                     <col width="95">
-                    <col width="65">
-                    <col width="70">
-                    <col width="70">
-                    <col width="90">
-                    <col width="100">
                 </colgroup>
                 <thead>
                 <tr>
-                    <th class="line_left">操作</th>
-                    <th>券名</th>
-                    <th>面额<br>（元）</th>
-                    <th>使用条件<br>（满多少元）</th>
-                    <th>所属活动</th>
-                    <th>使用范围</th>
-                    <th>有效期</th>
-                    <th>总发行量<br>（张）</th>
-                    <th>已发送<br>（张）</th>
-                    <th>已使用<br>（张）</th>
-                    <th>状态</th>
-                    <th class="line_right">首次发放时间</th>
+                    <th class="line_left textAlginCenter" style="width: 140px;">操作</th>
+                    <th>发放方式</th>
+                    <th>送券</th>
+                    <th>活动对象</th>
+                    <th>活动时间</th>
+                    <th>更新时间/操作人</th>
+                    <th class="line_right">状态</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>
-                        <a href="券使用明细.html">使用明细</a>
-                    </td>
-                    <td>买满多少送多少券名称啊主题啊有可能会比较长</td>
-                    <td>10</td>
-                    <td>10</td>
-                    <td>
+                    <td class="textAlginCenter">
                         <div>
-                            <a href="javascript:void(0);" class="ac-MayDayBreaks">五一优惠</a>
-                        </div>
-                        <div>
-                            <span class="commonTagBg blueBgFonts">购买送券</span>
+                            <a href="javascript:void(0);" class="ac-buySee">查看</a>
+                            <a href="编辑购买送券.html">编辑</a>
+                            <a href="javascript:void(0);">删除</a>
                         </div>
                     </td>
-                    <td>国内机票、酒店、国际机票、自由行、邮轮、旅游</td>
-                    <td>2015-04-01至<br>2015-04-05</td>
-                    <td>不限</td>
-                    <td>820</td>
-                    <td>820</td>
-                    <td>未到有效期</td>
-                    <td>2015-04-01<br>14:21:42</td>
+                    <td>购买送券</td>
+                    <td>
+                        <div>
+                            <a href="javascript:void(0);" class="full100">满100减10元</a>
+                        </div>
+                        <div>
+                            <a href="javascript:void(0);" class="full200">满200减30元</a>
+                        </div>
+                    </td>
+                    <td>所有客户</td>
+                    <td>
+                        <div>2015-04-01至</div>
+                        <div>2015-04-05</div>
+                    </td>
+                    <td>
+                        <div>2015-04-01 &nbsp; 14:21:42</div>
+                        <div>张三</div>
+                    </td>
+                    <td>草稿</td>
                 </tr>
                 <tr>
-                    <td>
-                        <a href="券使用明细.html">使用明细</a>
-                    </td>
-                    <td>买满多少送多少券名称啊主题啊有可能会比较长</td>
-                    <td>20</td>
-                    <td>20</td>
-                    <td>
+                    <td class="textAlginCenter">
                         <div>
-                            <a href="javascript:void(0);">国庆优惠</a>
-                        </div>
-                        <div>
-                            <span class="commonTagBg purpleBgFonts">系统送券</span>
+                            <a href="javascript:void(0);" class="ac-systemSee">查看</a>
+                            <a href="编辑系统送券.html">编辑</a>
+                            <a href="javascript:void(0);">删除</a>
                         </div>
                     </td>
-                    <td>国内机票、酒店、国际机票、自由行、邮轮、旅游</td>
-                    <td>2015-04-01至<br>2015-04-05</td>
-                    <td>1000</td>
-                    <td>20</td>
-                    <td>0</td>
-                    <td class="redFonts">已过期</td>
-                    <td>2015-04-01<br>14:21:42</td>
+                    <td>系统送券</td>
+                    <td>
+                        <div>
+                            <a href="javascript:void(0);" class="full100">满100减10元</a>
+                        </div>
+                    </td>
+                    <td>去哪儿</td>
+                    <td>
+                        <div>2015-04-01至</div>
+                        <div>2015-04-05</div>
+                    </td>
+                    <td>
+                        <div>2015-04-01 &nbsp; 14:21:42</div>
+                        <div>张三</div>
+                    </td>
+                    <td>未开始</td>
                 </tr>
                 <tr>
-                    <td>
-                        <a href="券使用明细.html">使用明细</a>
-                    </td>
-                    <td>买满多少送多少券名称</td>
-                    <td>20</td>
-                    <td>20</td>
-                    <td>
+                    <td class="textAlginCenter">
                         <div>
-                            <a href="javascript:void(0);">刺激消费</a>
+                            <a href="javascript:void(0);" class="ac-userSee">查看</a>
+                            <a href="javascript:void(0);">挂起</a>
                         </div>
                         <div>
-                            <span class="commonTagBg greenBgFonts">用户领券</span>
+                            <a href="券发放情况.html">券发放情况</a>                            
                         </div>
                     </td>
-                    <td>国内机票、酒店、旅游</td>
-                    <td>2015-04-01至<br>2015-04-05</td>
-                    <td>3000</td>
-                    <td>200</td>
-                    <td>100</td>
-                    <td class="greenFonts">可使用</td>
-                    <td>2015-04-01<br>14:21:42</td>
+                    <td>用户领券</td>
+                    <td>
+                        <div>
+                            <a href="javascript:void(0);" class="full200">满200减30元</a>
+                        </div>
+                    </td>
+                    <td>去哪儿</td>
+                    <td>
+                        <div>2015-04-01至</div>
+                        <div>2015-04-05</div>
+                    </td>
+                    <td>
+                        <div>2015-04-01 &nbsp; 14:21:42</div>
+                        <div>张三</div>
+                    </td>
+                    <td>进行中</td>
                 </tr>
                 <tr>
-                    <td>
-                        <a href="券使用明细.html">使用明细</a>
-                    </td>
-                    <td>买满多少送多少券名称</td>
-                    <td>10</td>
-                    <td>10</td>
-                    <td>
+                    <td class="textAlginCenter">
                         <div>
-                            <a href="javascript:void(0);" class="ac-MayDayBreaks">五一优惠</a>
+                            <a href="javascript:void(0);" class="ac-systemSee">查看</a>
+                            <a href="编辑系统送券.html">编辑</a>
+                            <a href="javascript:void(0);">启用</a>
                         </div>
                         <div>
-                            <span class="commonTagBg blueBgFonts">购买送券</span>
+                            <a href="券发放情况.html">券发放情况</a>
                         </div>
                     </td>
-                    <td>国内机票、酒店、国际机票</td>
-                    <td>2015-04-01至<br>2015-04-05</td>
-                    <td>不限</td>
-                    <td>820</td>
-                    <td>820</td>
-                    <td>未到有效期</td>
-                    <td>2015-04-01<br>14:21:42</td>
+                    <td>系统送券</td>
+                    <td>
+                        <div>
+                            <a href="javascript:void(0);" class="full100">满100减10元</a>
+                        </div>
+                    </td>
+                    <td>20元客户组、携程</td>
+                    <td>
+                        <div>2015-04-01至</div>
+                        <div>2015-04-05</div>
+                    </td>
+                    <td>
+                        <div>2015-04-01 &nbsp; 14:21:42</div>
+                        <div>张三</div>
+                    </td>
+                    <td>已挂起</td>
                 </tr>
                 <tr>
-                    <td>
-                        <a href="券使用明细.html">使用明细</a>
-                    </td>
-                    <td>买满多少送多少券名称</td>
-                    <td>10</td>
-                    <td>10</td>
-                    <td>
+                    <td class="textAlginCenter">
                         <div>
-                            <a href="javascript:void(0);" class="ac-MayDayBreaks">五一优惠</a>
+                            <a href="javascript:void(0);" class="ac-systemSee">查看</a>
                         </div>
                         <div>
-                            <span class="commonTagBg greenBgFonts">用户领券</span>
+                            <a href="券发放情况.html">券发放情况</a>
                         </div>
                     </td>
-                    <td>国内机票、酒店、国际机票</td>
-                    <td>2015-04-01至<br>2015-04-05</td>
-                    <td>不限</td>
-                    <td>820</td>
-                    <td>820</td>
-                    <td>未到有效期</td>
-                    <td>2015-04-01<br>14:21:42</td>
+                    <td>系统送券</td>
+                    <td>
+                        <div>
+                            <a href="javascript:void(0);" class="full200">满200减30元</a>
+                        </div>
+                    </td>
+                    <td>20元客户组、50元客户组、携程</td>
+                    <td>
+                        <div>2015-04-01至</div>
+                        <div>2015-04-05</div>
+                    </td>
+                    <td>
+                        <div>2015-04-01 &nbsp; 14:21:42</div>
+                        <div>张三</div>
+                    </td>
+                    <td>已结束</td>
                 </tr>
                 </tbody>
             </table>            
@@ -336,7 +351,7 @@
     </div>
 </div>
 
-    <script type="text/x-kendo-template" id="ac-MayDayBreaks-template">
+    <script type="text/x-kendo-template" id="ac-buySee-template">
         <div>
             <table class="commonModelWindow">
                 <colgroup>
@@ -355,6 +370,10 @@
                         <div>天地行北京发布会现场刮奖，一等奖2000元！</div>
                         <div>天地行北京发布会现场刮奖，一等奖2000元！</div>
                     </td>
+                </tr>
+                <tr>
+                    <th>活动商品：</th>
+                    <td>国内机票、国际机票、邮轮</td>
                 </tr>
                 <tr>
                     <th>活动时间：</th>
@@ -386,7 +405,114 @@
                                 <label>"携程"、</label>
                                 <label>“20元客户组”</label>
                             </span>
-                            <span class="foldType">展开</span>
+                            <span class="groupClick">
+                                <span class="foldType expandMoreLink">展开</span>
+                                <span class="foldType foldMoreLink" style="display:none;">收起</span>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="verticalAlignTop">活动送券：</th>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+            <table class="grayCommonTab">
+                <colgroup>
+                    <col width="140">
+                    <col width="120">
+                    <col width="120">
+                    <col width="120">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>券名</th>
+                    <th>发放条件<br><em class="fonts888">(满多少元发放)</em></th>
+                    <th>发放数量<br><em class="fonts888">(一次几张)</em></th>
+                    <th>封顶数量<br><em class="fonts888">(张)</em></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="blueFonts">满100减10元</td>
+                    <td>100</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td class="blueFonts">满200减30元</td>
+                    <td>100</td>
+                    <td>1</td>
+                    <td>6</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="btnCenterModel">
+                <button class="large_button" type="button" name="a">确 定</button>
+                <button class="large_button disable" type="button" name="a">取 消</button>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-userSee-template">
+        <div>
+            <table class="commonModelWindow">
+                <colgroup>
+                    <col width="75">
+                    <col width="415">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <th>活动名称：</th>
+                    <td>五一特惠</td>
+                </tr>
+                <tr>
+                    <th class="verticalAlignTop">活动说明：</th>
+                    <td>
+                        <div>天地行北京发布会现场刮奖，一等奖2000元！</div>
+                        <div>天地行北京发布会现场刮奖，一等奖2000元！</div>
+                        <div>天地行北京发布会现场刮奖，一等奖2000元！</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>活动商品：</th>
+                    <td>国内机票、国际机票、邮轮</td>
+                </tr>
+                <tr>
+                    <th>活动时间：</th>
+                    <td>2015-12-31至2016-01-01</td>
+                </tr>
+                <tr>
+                    <th class="verticalAlignTop">活动对象：</th>
+                    <td>
+                        <div>共<em class="orangeFonts">132</em>个客户组</div>
+                        <div class="foldContent">
+                            <span class="foldFonts">
+                                <label>“机票全部”、</label>
+                                <label>“去哪儿”、</label>
+                                <label>"携程"、</label>
+                                <label>“20元客户组”、</label>
+                                <label>“20元客户组”、</label>
+                                <label>“机票全部”、</label>
+                                <label>“去哪儿”、</label>
+                                <label>"携程"、</label>
+                                <label>“20元客户组”、</label>
+                                <label>“20元客户组”、</label>
+                                <label>“机票全部”、</label>
+                                <label>“去哪儿”、</label>
+                                <label>"携程"、</label>
+                                <label>“20元客户组”、</label>
+                                <label>“20元客户组”、</label>
+                                <label>“机票全部”、</label>
+                                <label>“去哪儿”、</label>
+                                <label>"携程"、</label>
+                                <label>“20元客户组”</label>
+                            </span>
+                            <span class="groupClick">
+                                <span class="foldType expandMoreLink">展开</span>
+                                <span class="foldType foldMoreLink" style="display:none;">收起</span>
+                            </span>
                         </div>
                     </td>
                 </tr>
@@ -406,25 +532,149 @@
                 <tr>
                     <th>券名</th>
                     <th>限领<br><em class="fonts888">(张/人)</em></th>
-                    <th>发放数量<br><em class="fonts888">(一次几张)</em></th>
+                    <th>发放数量<br><em class="fonts888">(张)</em></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td class="blueFonts">满100减10元</td>
-                    <td>2</td>
+                    <td>1</td>
                     <td>2000</td>
                 </tr>
                 <tr>
-                    <td class="blueFonts">满100减10元</td>
+                    <td class="blueFonts">满200减30元</td>
                     <td>2</td>
-                    <td>2000</td>
+                    <td>1200</td>
                 </tr>
                 </tbody>
             </table>
             <div class="btnCenterModel">
                 <button class="large_button" type="button" name="a">确 定</button>
                 <button class="large_button disable" type="button" name="a">取 消</button>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-systemSee-template">
+        <div>
+            <table class="commonModelWindow">
+                <colgroup>
+                    <col width="75">
+                    <col width="415">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <th>活动名称：</th>
+                    <td>五一特惠</td>
+                </tr>
+                <tr>
+                    <th class="verticalAlignTop">活动说明：</th>
+                    <td>
+                        <div>天地行北京发布会现场刮奖，一等奖2000元！</div>
+                        <div>天地行北京发布会现场刮奖，一等奖2000元！</div>
+                        <div>天地行北京发布会现场刮奖，一等奖2000元！</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>活动商品：</th>
+                    <td>国内机票、国际机票、邮轮</td>
+                </tr>
+                <tr>
+                    <th>活动时间：</th>
+                    <td>2015-12-31至2016-01-01</td>
+                </tr>
+                <tr>
+                    <th class="verticalAlignTop">活动对象：</th>
+                    <td>
+                        <div>共<em class="orangeFonts">132</em>个客户组</div>
+                        <div class="foldContent">
+                            <span class="foldFonts">
+                                <label>“机票全部”、</label>
+                                <label>“去哪儿”、</label>
+                                <label>"携程"、</label>
+                                <label>“20元客户组”、</label>
+                                <label>“20元客户组”、</label>
+                                <label>“机票全部”、</label>
+                                <label>“去哪儿”、</label>
+                                <label>"携程"、</label>
+                                <label>“20元客户组”、</label>
+                                <label>“20元客户组”、</label>
+                                <label>“机票全部”、</label>
+                                <label>“去哪儿”、</label>
+                                <label>"携程"、</label>
+                                <label>“20元客户组”、</label>
+                                <label>“20元客户组”、</label>
+                                <label>“机票全部”、</label>
+                                <label>“去哪儿”、</label>
+                                <label>"携程"、</label>
+                                <label>“20元客户组”</label>
+                            </span>
+                            <span class="groupClick">
+                                <span class="foldType expandMoreLink">展开</span>
+                                <span class="foldType foldMoreLink" style="display:none;">收起</span>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="verticalAlignTop">活动送券：</th>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+            <table class="grayCommonTab">
+                <colgroup>
+                    <col width="250">
+                    <col width="250">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>券名</th>
+                    <th>发放数量<br><em class="fonts888">(张)</em></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="blueFonts">满100减10元</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td class="blueFonts">满200减30元</td>
+                    <td>2</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="btnCenterModel">
+                <button class="large_button" type="button" name="a">确 定</button>
+                <button class="large_button disable" type="button" name="a">取 消</button>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="full100">
+        <div class="changeLayerGrayBlock">
+            <div class="changeLayerGrayContainer">
+                <div class="changeLayerGrayArrow"></div>
+                <div class="fullSubtract">
+                    <h3>券名：满100元减10元</h3>
+                    <div class="fullSubtractInfo">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="full200">
+        <div class="changeLayerGrayBlock">
+            <div class="changeLayerGrayContainer">
+                <div class="changeLayerGrayArrow"></div>
+                <div class="fullSubtract">
+                    <h3>券名：满200元减30元</h3>
+                    <div class="fullSubtractInfo">
+                        
+                    </div>
+                </div>
             </div>
         </div>
     </script>
@@ -461,36 +711,63 @@
             $(".dateStart").val(new Date().Format("yyyy-MM-dd"));
             $(".dateEnd").val(new Date().Format("yyyy-MM-dd"));
 
-            new PopWindow('.ac-MayDayBreaks',{
+            new PopWindow('.ac-buySee',{
+                title:'购买送券活动详情',
+                width:570,
+                template:'#ac-buySee-template'            
+            }).init();
+
+            new PopWindow('.ac-systemSee',{
+                title:'系统送券活动详情',
+                width:570,
+                template:'#ac-systemSee-template'
+            }).init();
+
+            new PopWindow('.ac-userSee',{
                 title:'用户领券活动详情',
                 width:570,
-                template:'#ac-MayDayBreaks-template',
-                open:function(){
-                    var foldChange = $(".foldContent .foldFonts");
-                    var h = foldChange.height();
-                    foldChange.css({ height:"19px"});
-
-                    $(".foldType").click(function(){
-                        if($(this).hasClass("down"))
-                        {
-                            foldChange.animate({
-                                height: "19px",
-                                overflow: "hidden"
-                            }, 500);
-                            $(this).removeClass("down");
-                            $(this).text("展开");
-                        }
-                        else
-                        {
-                            foldChange.animate({
-                                height: h + "px" + " !important"
-                            }, 500);
-                            $(this).addClass("down");
-                            $(this).text("收起");
-                        }
-                    });
-                }
+                template:'#ac-userSee-template'
             }).init();
+
+            $(".commonModelWindow").delegate(".groupClick .foldMoreLink", "click", function(){
+                $(".groupClick .expandMoreLink").show();
+                $(".groupClick .foldMoreLink").hide();
+                $(this).parent().siblings(".foldFonts").css({
+                    "max-height":"19px"
+                });
+            });
+            $(".commonModelWindow").delegate(".groupClick .expandMoreLink", "click", function(){
+                $(".groupClick .expandMoreLink").hide();
+                $(".groupClick .foldMoreLink").show();
+                $(this).parent().siblings(".foldFonts").css({
+                    height: "auto",
+                    "max-height":"none"
+                });
+            });
+
+            $(".tgrid .full100").kendoTooltip({
+                position:"bottom", //left right top
+                wrapperClass:"lineWeight",
+                width:335,
+                content:function(){
+                    return $("#full100").html();
+                },
+                callout:false,
+                offsetY: -5,
+                offsetX: -2
+            });
+
+            $(".tgrid .full200").kendoTooltip({
+                position:"bottom", //left right top
+                wrapperClass:"lineWeight",
+                width:335,
+                content:function(){
+                    return $("#full200").html();
+                },
+                callout:false,
+                offsetY: -3,
+                offsetX: -2
+            });
 
 
         });

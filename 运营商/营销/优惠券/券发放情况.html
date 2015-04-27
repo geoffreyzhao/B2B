@@ -369,7 +369,10 @@
                                 <label>"携程"、</label>
                                 <label>“20元客户组”</label>
                             </span>
-                            <span class="foldType">展开</span>
+                            <span class="groupClick">
+                                <span class="foldType expandMoreLink">展开</span>
+                                <span class="foldType foldMoreLink" style="display:none;">收起</span>
+                            </span>
                         </div>
                     </td>
                 </tr>
@@ -447,33 +450,24 @@
             new PopWindow('.ac-MayDayBreaks',{
                 title:'用户领券活动详情',
                 width:570,
-                template:'#ac-MayDayBreaks-template',
-                open:function(){
-                    var foldChange = $(".foldContent .foldFonts");
-                    var h = foldChange.height();
-                    foldChange.css({ height:"19px"});
-
-                    $(".foldType").click(function(){
-                        if($(this).hasClass("down"))
-                        {
-                            foldChange.animate({
-                                height: "19px",
-                                overflow: "hidden"
-                            }, 500);
-                            $(this).removeClass("down");
-                            $(this).text("展开");
-                        }
-                        else
-                        {
-                            foldChange.animate({
-                                height: h + "px" + " !important"
-                            }, 500);
-                            $(this).addClass("down");
-                            $(this).text("收起");
-                        }
-                    });
-                }
+                template:'#ac-MayDayBreaks-template'
             }).init();
+
+            $(".commonModelWindow").delegate(".groupClick .foldMoreLink", "click", function(){
+                $(".groupClick .expandMoreLink").show();
+                $(".groupClick .foldMoreLink").hide();
+                $(this).parent().siblings(".foldFonts").css({
+                    "max-height":"19px"
+                });
+            });
+            $(".commonModelWindow").delegate(".groupClick .expandMoreLink", "click", function(){
+                $(".groupClick .expandMoreLink").hide();
+                $(".groupClick .foldMoreLink").show();
+                $(this).parent().siblings(".foldFonts").css({
+                    height: "auto",
+                    "max-height":"none"
+                });
+            });
 
 
         });
