@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="../scmstatic/css/tm_order.css">
 	<script type="text/javascript" src="../scmstatic/js/jquery.min.js"></script>
 	<script type="text/javascript" src="../scmstatic/js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="../scmstatic/js/fastclick.js"></script>
 	<script type="text/javascript" src="../scmstatic/js/common.js"></script>
 	<title>套餐预约</title>
 </head>
@@ -391,6 +392,52 @@
                     </tbody>
                 </table>
             </section>
+            <section class="setMealModel grayFonts">
+                <table>
+                    <colgroup>
+                        <col width="8%">
+                        <col width="38%">
+                        <col width="17%">
+                        <col width="17%">
+                        <col width="17%">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div class="placeFonts clearfix">
+                                <span class="placeStart">上海浦东</span>
+                                <span class="marginLeftRight">-</span>
+                                <span class="placeEnd">澳大利亚</span>
+                            </div>
+                            <div class="fontSize20 color999">2015-01-29</div>
+                        </td>
+                        <td class="color222">
+                            <div>08: 00</div>
+                            <div>10: 20</div>
+                        </td>
+                        <td>
+                            <div class="shippingSpace fontSize20">MU5379 <br>头等舱</div>
+                        </td>
+                        <td>
+                            <div class="stops">
+                                <span class="stopsBg">经停</span><br>
+                                <span>俄罗斯</span>
+                            </div>
+                            <div class="rightOrangeFonts">+500</div>
+                        </td>
+                    </tr>
+                    <tr class="noPadding oneLineShowIcon">
+                        <td colspan="5">
+                            <div class="positionIcon">
+                                <div class="lineStyle"></div>
+                                <div class="understock">库存不足</div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
         </section>
         
         <section class="hotelModelContent">
@@ -497,18 +544,40 @@
                 <a href="javascript:void(0);" class="orangeBtn">下一步</a>
             </div>
         </section>
+
+        <div class="window-container-center"></div>  <!--  生成弹窗时，依附此结构来定位弹窗位置  -->
+        <div data-role="popup" id="pickDateTip" class="tipPopStyle">请填写完成信息</div>
     
 	</div>   
     
 <script>
     $(function(){
-        $(".fightModelContent .setMealModel,.hotelModelContent .setMealModel").tap(function(){
+
+        FastClick.attach(document.body);
+
+        $(".fightModelContent .setMealModel,.hotelModelContent .setMealModel").click(function(){
             if ($(this).find("div.noSelectIcon").length != 0) {
                 $(this).addClass("current");
                 $(this).find("div.noSelectIcon").addClass("selectIcon");
                 $(this).siblings().removeClass("current");
                 $(this).siblings().find("div.noSelectIcon").removeClass("selectIcon");
             }            
+        });
+
+        $("#pickDateTip").popup({
+            theme: "b",
+            transition: "flip",
+            positionTo: ".window-container",
+            dismissible: false,
+            afteropen: function(){
+                setTimeout(function(){
+                    $("#pickDateTip").popup("close");
+                }, 1000);
+            }
+        });
+
+        $(".btnContent").click(function(){
+            $("#pickDateTip").popup("open");
         });
     });
 </script>
