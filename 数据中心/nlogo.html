@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>真旅数据中心 首页</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <meta content='text/html;charset=utf-8' http-equiv='content-type'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="../static/css/plusDataCenter/datacenter.css" media="screen" />
+    <link rel="stylesheet" href="../static/css/plusDataCenter/datacenter.home.css" media="screen" />
+
+    <script src="/static/js/jquery.cycle.all.js"></script>
+
+    <link rel="stylesheet" href="../static/css/plusDataCenter/bootstrap.min.css">
+    <link rel="shortcut icon" href="../static/images/datacenter/favicon.ico"/>
+
+
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/plusDataCenter/bootstrap.min.js"></script>
+
+    <script>
+        $(function(){
+//            $('.slides').cycle({fx:"fade",timeout: 2000,center:true,pause:true,pager:".slides-pager div",pagerEvent: "click.cycle"});
+
+            function togglePanel(){
+                var loginPanelState = 0; //偶数时为关闭;
+                var loginPanel = $(".login-panel");
+                var loginPanelTop = loginPanel.css('top');
+
+                $(".login:eq(0)").bind("click",function(e){
+                    if( loginPanelState%2 == 0){
+                        loginPanel.animate({top:"10px"},400,function(){
+                            $(this).animate({top:0},200)
+                        });
+
+                        $("input[name=username]").focus();
+                    }else{
+                        loginPanel.animate({top:loginPanelTop},400);
+                    }
+
+                    loginPanelState++;
+                });
+
+                $(document).on('click',function(e){
+                    if(!$.contains(loginPanel[0],e.target) && !$(e.target).hasClass('login')){
+                        console.log(loginPanelTop);
+                        loginPanelState = 0;
+                        loginPanel.animate({top:loginPanelTop},400);
+                    }
+                });
+            }
+
+            togglePanel();
+        });
+    </script>
+
+
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="main-wrapper container-fluid">
+    <header class="main-header row">
+        <div class="wrap">
+            <a class="logo col-lg-8 col-xs-5" href="/"><h1>真率数据中心</h1></a>
+            <div class="main-links col-lg-2 col-md-5 col-xs-6 col-sm-5">
+                <a herf="#" class="login hidetext"></a>
+                <div class="loginContainer">
+                    <div class="login-panel">
+                        <span class="arrow"></span>
+                        <ul>
+                            <li>
+                                <div class="input-wrap">
+                                    <i class="icon icon1"></i>
+                                    <input type="text"  name="username" value="marar@travelzen.com">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="input-wrap">
+                                    <i class="icon icon2"></i>
+                                    <input type="password" name="" value="fdsafdsa">
+                                </div>
+                            </li>
+                            <li>
+                                <label for="remmberMe"><span class="checkbox-wrap">
+                                <input type="checkbox" id="remmberMe" name="">
+                                <i class="icon icon3"></i>
+                        </span>
+                                    <span class="checkbox-text">记住我</span></label>
+                            </li>
+                            <li>
+                                <button class="btns btn-c1 btn-s1">登录</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="main-body">
+        <div class="row" style="background-color: #305d83">
+            <div class="col-lg-6 col-sm-12 col-xs-12 col-md-6" >
+                <div class="textDescript">
+                    <h1>统计分析</h1>
+                    <h1>statistics & analysis</h1>
+                    <h3>真旅网数据中心，深度挖掘产品数据，为真旅网产品、运营、推广提供数据支撑。经典数据指标体系，系统化分析架构。 </h3>
+                </div>
+                <!--<div class="slide-item slide1"></div>-->
+                <!--<div class="slide-item slide2"></div>-->
+                <!--<div class="slide-item slide3"></div>-->
+            </div>
+            <div class="col-lg-6 col-sm-12 col-xs-12 col-md-6">
+                <div class="slide2 pageDescript"></div>
+                <!--<div class="clearfix"></div>-->
+            </div>
+        </div>
+        <div class="home-links" style="height: auto;margin-left: 20px;">
+            <div class="row" style="margin-bottom: 90px;">
+                <h3>平台互链：</h3>
+                <ul class="clearfix">
+                    <li class="col-lg-1"></li>
+                    <li class="col-lg-2 col-xs-12"><a href="#" class="link1 hidetext" title="天地行">天地行</a></li>
+                    <li class="col-lg-2 col-xs-12"><a href="#" class="link2 hidetext" title="采购商">采购商</a></li>
+                    <li class="col-lg-2 col-xs-12"><a href="#" class="link3 hidetext" title="供应商">供应商</a></li>
+                    <li class="col-lg-2 col-xs-12"><a href="#" class="link4 hidetext" title="真旅网">真旅网</a></li>
+                    <li class="col-lg-2 col-xs-12"><a href="#" class="link5 hidetext" title="B2G">B2G</a></li>
+                    <li class="col-lg-1"></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+<footer class="main-footer" style="margin: 0;padding: 0;">
+    <center class="copyright">
+        Copyright &copy; 2013 天地行 All Rights Reserved.      沪ICP备08101503号
+    </center>
+</footer>
+</body>
+</html>
+
