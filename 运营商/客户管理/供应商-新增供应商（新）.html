@@ -152,22 +152,41 @@
                                     <td>xiayizhan@sohu.com</td>
                                 </tr>
                                 <tr>
-                                    <td>供应类型</td>
-                                    <td>
-                                        <select style="width: 120px;" data-role="dropdownlist">
+                                    <td style="vertical-align: top;padding-top:9px;">供应类型</td>
+                                    <td style="vertical-align: top;padding-top:6px;">
+                                        <select style="width: 120px;" data-role="dropdownlist" id="providerType">
                                             <option>普通供应商</option>
+                                            <option>高级供应商</option>
+                                            <option>OTA供应商</option>
+                                            <option>胜意供应商</option>
                                         </select>
                                     </td>
-                                    <td>支付方式</td>
-                                    <td>
-                                        <select style="width: 120px;" data-role="dropdownlist">
-                                            <option>授信支付</option>
-                                        </select>
+                                    <td style="vertical-align: top;padding-top:9px;">支付方式</td>
+                                    <td colspan="5">
+                                        <div class="payWays">
+                                            <select style="width: 120px;" data-role="dropdownlist" class="payWay normalPay">
+                                                <option>授信支付</option>
+                                            </select>
+                                            <div class="payWay OTAPay">
+                                                <div class="input-block">
+                                                    <input type="text" id="otaPayInput" style="width:190px;" maxlength="12" placeholder="最多12个字符"/>
+                                                    <a href="javascript:;" class="button_secondary adaptiveButton small addOtaPayItem">
+                                                        <span class="left"></span>
+                                                        <span class="center">添 加</span>
+                                                        <span class="right"></span>
+                                                    </a>
+                                                </div>
+                                                <div class="OTAPayList">
+                                                    <span>东方航空公司E卡最多十二<em></em></span>
+                                                    <span>东方航空公司E卡最多十二<em></em></span>
+                                                    <span>东方航空公司E卡最多十二<em></em></span>
+                                                    <span>东方航空公司E卡最多十二<em></em></span>
+                                                    <span>东方航空公司E卡最多十二<em></em></span>
+
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
                                 </tr>
                             </table>
                             <h4 class="businessLinkman">业务联系人</h4>
@@ -637,6 +656,33 @@
             template:'#ac-platformFee-template'
         }).init();
         
+
+        //  根据供应商 选择支付方式
+
+        $(".payWay.OTAPay").hide();
+
+        var dropdownlist = $("#providerType").data("kendoDropDownList");
+        dropdownlist.bind("change", dropdownlist_change);
+
+        function dropdownlist_change(e) {
+          var value = this.value();
+          if (value == "OTA供应商") {
+            $(".payWays .payWay").hide();
+            $(".payWay.OTAPay").show();
+          } else {
+            $(".payWays .payWay").hide();
+            $(".payWay.normalPay.k-dropdown").show();
+          }
+        }
+
+        $("body").delegate(".OTAPayList span em", "click", function(){
+            $(this).closest("span").remove();
+        });
+
+        $("body").delegate(".addOtaPayItem", "click", function(){
+            var text = $("#otaPayInput").val();
+            $(".OTAPayList").append("<span>"+text+"<em></em></span>");
+        });
         
     });
 </script>
