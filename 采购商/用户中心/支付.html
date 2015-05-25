@@ -58,6 +58,24 @@
                           </tr>
                      </tbody>
                </table>
+               <div class="voucherScorePayBlock">
+                  <div class="voucherBlock">
+                    <label class="useVoucher"><input type="checkbox" />使用代金券</label>
+                    <select id="voucherSelect" data-role="dropdownlist" style="width:160px">
+                      <option value="">10元（全场通用）</option>
+                      <option value="">20元（全场通用）</option>
+                      <option value="">100元（消费满10000）</option>
+                    </select>
+                  </div>
+                  <div class="scoreBlock">
+                    <label class="useScore"><input type="checkbox" />使用积分抵扣</label>
+                    <input type="text" style="width:154px;" class="scoreInput" disabled="disabled">
+                    <div class="scoreInfo">可使用积分<em class="scoreNum">2000</em>点，可抵扣<em class="moneyNum">20</em>元</div>
+                  </div>
+                  <div class="payMoney">
+                    付款金额：<em>27000.00</em>元
+                  </div>
+               </div>
           </div>
           <div class="payWay">
                <h2 class="payment">请选择支付方式：</h2>
@@ -517,6 +535,14 @@
                           <span class="right"></span>
                      </a>
                </div>
+               <div class="payBtn">
+                     <a class="adaptiveButton bigDisabled_btn ac-payAffirm">
+                          <span class="left"></span>
+                          <span class="center">确认付款</span>
+                          <span class="right"></span>
+                     </a>
+                     <span class="tip" style="color:#e94749;margin-left:10px;">支付时间超时，进入支付页面后请于2分钟内付款。若要继续付款，请重新进入支付页面。</span>
+               </div>
           </div>
           
           <div class="payWaySucceed">
@@ -673,6 +699,25 @@
       var li = $(this).closest("li");
       li.addClass("current");
       e.stopPropagation();
+    });
+
+    var voucherDropDownList = $("#voucherSelect").data("kendoDropDownList");
+    voucherDropDownList.enable(false);
+
+    $(".useVoucher").click(function(){
+      if ($(this).children("input[type='checkbox']").prop("checked")) {
+        voucherDropDownList.enable(true);
+      } else {
+        voucherDropDownList.enable(false);
+      }
+    });
+
+    $(".useScore").click(function(){
+      if ($(this).children("input[type='checkbox']").prop("checked")) {
+        $(".scoreInput").removeAttr("disabled");
+      } else {
+        $(".scoreInput").attr("disabled", "disabled");
+      }
     });
 		
 	});
