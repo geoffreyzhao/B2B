@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>供应商 财务 票券账户明细</title>
+<meta charset="utf-8" />
+<link href="/static/css/kendo.common.css" rel="stylesheet" />
+<link href="/static/css/kendo.gray.css" rel="stylesheet" />
+<link href="/static/css/common.css" rel="stylesheet" />
+<link href="/static/css/supplier_common.css" rel="stylesheet" />
+<link href="/static/css/supplier.css" rel="stylesheet" />
+<link href="/static/css/kendo.reset.css" rel="stylesheet" />
+<link href="/static/css/finance.css" rel="stylesheet" />
+
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/kendo.web.js"></script>
+<script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+<script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
+<script type="text/javascript" src="/static/js/global.js"></script>
+
+<!--[if IE]> 
+        <link rel="stylesheet" href="/static/css/ie.css" /> 
+        <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
+        <![endif]-->
+<script type="text/javascript" src="/static/js/sync.js"></script>
+<!-- @CLB@ -->
+</head>
+<body> 
+    <div class="bg-header-repeat">
+        <div class="bg-header-top"></div>
+        <div class="navi-split-line"></div>
+        <div class="main-header"></div>
+    </div>
+
+<div id="container" class="new-container">
+
+    <div class="header-top-center">
+        <div class="head-left">
+            <div class="supplier-logo"></div>
+        </div>
+        <ul class="first-navi">
+            <li class="first-navi-li"><a href="javascript:void(0);">国内机票</a></li>
+            <li class="first-navi-li"><a href="javascript:void(0);">国际机票</a></li>
+            <li class="first-navi-li" style="width:70px;"><a href="javascript:void(0);">旅游</a>             
+            </li>
+            <li class="first-navi-li"><a href="javascript:void(0);" style="width:70px;">邮轮</a></li>
+            <li class="first-navi-li  first-navi-active"><a href="javascript:void(0);">财务管理</a>
+                <ol class="second-navi">
+                    <li class="second-navi-li second-navi-active"><a href="javascript:void(0);">资金明细</a>
+                        <div class="navi-slide-hover" style="height:5px;"></div>
+                    </li>
+                </ol>
+            </li>
+        </ul>
+        <div class="head-right">
+            <ul class="feature">
+                <li class="notice-icon-active"></li>
+                <li class="split-line"></li>
+                <li class="person-info">
+                    <span class="person-icon"></span>
+                    <span class="person-name" title="zhaoshuaigeng12312321">zhaoshuaigeng12312321</span>
+                    <a class="logout" href="javascript:void(0);">退出</a>
+                    <span class="user-setting">设置</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="sub_menu_bar"></div>
+    <div id="mainContent" class="mainContent">
+        <div class="top-pass-block">
+            <ul class="third-navi">
+                <li class="third-navi-li"><a href="javascript:void(0);">客票明细</a></li>
+                <li class="third-navi-li">
+                    <a href="javascript:void(0);">收支明细</a>
+                </li>
+                <li class="third-navi-li">
+                    <a href="javascript:void(0);">自动结算明细</a>
+                </li>
+                <li class="third-navi-li">
+                    <a href="javascript:void(0);">交易明细</a>
+                </li>
+                <li class="third-navi-li third-navi-active">
+                    <a href="javascript:void(0);">票券账户明细</a>
+                </li>
+                <li class="third-navi-li">
+                    <a href="javascript:void(0);">票券收支明细</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="block1 block block-query clearfix">
+            <table>
+                <colgroup>
+                    <col width="70">
+                    <col width="140">
+                    <col width="70">
+                    <col width="140">
+                    <col width="70">
+                    <col width="140">
+                    <col width="70">
+                    <col width="140">
+                    <col />
+                </colgroup>
+                <tr>
+                    <th>客户名称</th>
+                    <td><input id="" style="width:120px" type="text" name=""></td>
+                    <th>账户类型</th>
+                    <td>
+                        <select style="width:122px" data-role="dropdownlist">
+                            <option value="">全部</option>
+                            <option value="">积分</option>
+                            <option value="">抵用券</option>
+                        </select>
+                    </td>
+                    <th>冻结状态</th>
+                    <td>
+                        <select style="width:122px" data-role="dropdownlist">
+                            <option value="">全部</option>
+                            <option value="">已冻结</option>
+                            <option value="">未冻结</option>
+                        </select>
+                    </td>
+                    <th>截止时间</th>
+                    <td><input class="datepicker hasDatepicker" style="width:110px;" id="" type="text"></td>
+                    <td> <button class="btns button_2_1">查 询</button> </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="block2 block block-query-result">
+            <div class="block-header clearfix">
+                <span style="float:left"></span>
+                <span style="float:right">
+                <button class="btns btn-ac-blue">导出Excel</button>
+                </span>
+            </div>
+
+            <!--  数据表格部分，参照之前页面，直接使用kendoGrid，不按照此处写法  -->
+            <table class="tgrid" role="grid">
+                <colgroup>
+                    <col width="200">
+                    <col width="140">
+                    <col width="140">
+                    <col width="140">
+                    <col width="140">
+                    <col width="70">
+                    <col width="">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>客户名称</th>
+                    <th>账户类型</th>
+                    <th>账户余额</th>
+                    <th>可用余额</th>
+                    <th>冻结余额</th>
+                    <th>账户冻结</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>易谦</td>
+                        <td>抵用券</td>
+                        <td>2500.00</td>
+                        <td><strong class="text1">2000.00</strong></td>
+                        <td>500.00</td>
+                        <td>否</td>
+                        <td><a href="javascript:;">冻结</a></td>
+                    </tr>
+                    <tr>
+                        <td>易谦</td>
+                        <td>积分</td>
+                        <td>2500.00</td>
+                        <td><strong class="text1">2000.00</strong></td>
+                        <td>500.00</td>
+                        <td>否</td>
+                        <td><a href="javascript:;">冻结</a></td>
+                    </tr>
+                    <tr>
+                        <td>易谦</td>
+                        <td>积分</td>
+                        <td>2500.00</td>
+                        <td><strong class="text1">2000.00</strong></td>
+                        <td>500.00</td>
+                        <td>否</td>
+                        <td><a href="javascript:;">冻结</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<div id="extFooter">
+    <div>
+        <p>
+        <a href="javascript:void(0);">关于我们</a>&nbsp;|
+        <a href="javascript:void(0);">微博</a>&nbsp;|
+        <a href="javascript:void(0);">服务条款</a>&nbsp;|
+        <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+        </p>
+        <p>客户服务热线:400-720-6666</p>
+    </div>
+</div>
+
+<script type="text/javascript">
+    kendo.init("body");
+</script>
+</body>
+</html>
