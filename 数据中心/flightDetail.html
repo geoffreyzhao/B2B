@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport' />
+    <meta content='text/html;charset=utf-8' http-equiv='content-type' />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>机票详细</title>
+    <link rel="stylesheet" href="../static/css/plusDataCenter/styles.css" charset="UTF-8" />
+    <link rel="stylesheet" href="../static/css/plusDataCenter/dashbord.css" charset="UTF-8" />
+    <link rel="stylesheet" href="../static/css/plusDataCenter/flightDetail.css" charset="UTF-8" />
+    <link rel="stylesheet" href="../static/css/plusDataCenter/bootstrap-datepicker3.min.css" charset="UTF-8" />
+
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/jquery-ui-1.10.3.custom.js"></script>
+    <script src="../static/js/global.js"></script>
+    <script src="../static/js/plusDataCenter/bootstrap.min.js"></script>
+    <script src="../static/js/plusDataCenter/kendo.core.min.js"></script>
+    <script src="../static/js/plusDataCenter/theme.js"></script>
+    <script src="../static/js/plusDataCenter/kendo.ui.core.min.js"></script>
+    <script src="../static/js/plusDataCenter/bootstrap-datepicker.js"></script>
+    <link rel="shortcut icon" href="../static/images/datacenter/favicon.ico"/>
+    <!--[if lt IE 9]>
+    <script src="../static/js/html5shiv.js" type="text/javascript"></script>
+    <script src="../static/js/respond.min.js" type="text/javascript"></script>
+    <![endif]-->
+    <!--[if lte IE 9]>
+    <script src="http://scpg.tdxinfo.com/js/html5.js"></script>
+    <![endif]-->
+
+ 
+  <style>
+    .choiceOne{
+      background-color: #e6e6e6;
+      border-color: #adadad;
+    }
+    .textDays{
+      margin-right: 10px;
+      margin-left: -25%;
+      font-size: 10px;
+    }
+    .wan{
+      font-style: normal;
+    }
+    .nowan{
+      font-style: normal;
+    }
+    .hpiece{
+      font-style: normal;
+    }
+    .textNumberT{
+      margin-left: 17px;
+    }
+    .textNumberS{
+      margin-left: -8px;
+    }
+    .text-panel{
+      margin-left: 20% !important;
+      font-size: 16px;
+      font-weight: 800;
+    }
+    .percentage {
+      font-size: 14px;
+    }
+    .uparrow {
+      margin-left: 0;
+    }
+
+    .downarrow {
+      margin-left: 0;
+    }
+    .text-error {
+      color: #dd3333 !important;
+    }
+  </style>
+
+</head>
+<body class='contrast-red ' style="padding: 0 !important;margin: 0 !important;">
+<header>
+    <nav class='navbar navbar-default'>
+        <a class='navbar-brand logo head-logo' href='index.html'></a>
+        <a class='toggle-nav btn pull-left snav' href='#'>
+          <i class="listPanel ztbar"></i>
+        </a>
+
+        <ul class='nav'>
+          <li class='dropdown dark user-menu'>
+            <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+              <span class='user-name '>
+                  <i class="userP person"></i>
+              </span>
+              <b class='caret'></b>
+            </a>
+            <ul class='dropdown-menu'>
+              <li><a href='#'>退出</a></li>
+            </ul>
+          </li>
+        </ul>
+    </nav>
+</header>
+<div id='wrapper'>
+    <div id='main-nav-bg'></div>
+    <!--<nav id='main-nav'>-->
+        <!--<div class='navigation'>-->
+            <!--<ul class='nav nav-stacked'>-->
+                <!--<li class=''>-->
+                  <!--<a class='dropdown-collapse ' href='#'>-->
+                    <!--<i class='dashbordtitle'></i>-->
+                    <!--<span class="nav-letter">Dashbord</span>-->
+                    <!--<i class='icon-angle-down angle-down'></i>-->
+                  <!--</a>-->
+                <!--</li>-->
+                <!--<li class='active'>-->
+                    <!--<a class="dropdown-collapse" href="#">-->
+                        <!--<i class='plane'></i>-->
+                        <!--<span class="nav-letter">机票</span>-->
+                        <!--<i class='icon-angle-down angle-down'></i>-->
+                    <!--</a>-->
+
+                    <!--<ul class='nav nav-stacked in' id="planeList">-->
+                      <!--<li class=''>-->
+                          <!--<a href='index.html'>-->
+                            <!--<i class='caretRight'></i>-->
+                            <!--<span>交易量统计</span>-->
+                          <!--</a>-->
+                      <!--</li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a class='dropdown-collapse ' href='#'>-->
+                        <!--<i class='hotel'></i>-->
+                        <!--<span class="nav-letter">酒店</span>-->
+                        <!--<i class='icon-angle-down angle-down'></i>-->
+                    <!--</a>-->
+                <!--</li>-->
+
+                <!--<li>-->
+                    <!--<a class='dropdown-collapse ' href='#'>-->
+                        <!--<i class='insurance'></i>-->
+                        <!--<span class="nav-letter">保险</span>-->
+                        <!--<i class='icon-angle-down angle-down'></i>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a class='dropdown-collapse ' href='#'>-->
+                        <!--<i class='ship'></i>-->
+                        <!--<span class="nav-letter">邮轮</span>-->
+                        <!--<i class='icon-angle-down angle-down'></i>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a class='dropdown-collapse ' href='#'>-->
+                        <!--<i class='travel'></i>-->
+                        <!--<span class="nav-letter">旅游</span>-->
+                        <!--<i class='icon-angle-down angle-down'></i>-->
+                    <!--</a>-->
+                <!--</li>-->
+
+                <!--<li>-->
+                    <!--<a class='dropdown-collapse' href='#'>-->
+                        <!--<i class='user'></i>-->
+                        <!--<span class="nav-letter">用户</span>-->
+                        <!--<i class='icon-angle-down angle-down'></i>-->
+                    <!--</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</nav>-->
+    <nav id='main-nav'>
+      <div class='navigation'>
+        <ul class='nav nav-stacked'>
+          <li>
+            <a class='dropdown-collapse ' href='#'>
+              <i class='dashbordtitle'></i>
+              <span class="nav-letter">Dashbord</span>
+              <i class='icon-angle-down angle-down'></i>
+            </a>
+          </li>
+
+          <li class='active'>
+            <a class="dropdown-collapse" href="#">
+              <i class='plane'></i>
+              <span class="nav-letter">机票</span>
+              <i class='icon-angle-down angle-down'></i>
+            </a>
+
+            <ul class='nav nav-stacked in' id="planeList">
+              <li class=''>
+                <a href='index.html'>
+                  <i class='caretRight'></i>
+                  <span>交易量统计</span>
+                </a>
+              </li>
+            </ul>
+            <!--<ul class='nav nav-stacked'>-->
+              <!--<li class='' th:each="planenav:${planeResult}">-->
+                <!--<a href='/datacenter/flightTradeSt' th:href="@{${planenav.url}}" >-->
+                  <!--<span th:text="${planenav.text}">交易量统计</span>-->
+                <!--</a>-->
+              <!--</li>-->
+            <!--</ul>-->
+          </li>
+          <li>
+            <a class="dropdown-collapse" href='#'>
+              <i class='hotel'></i>
+              <span class="nav-letter">酒店</span>
+              <i class='icon-angle-down angle-down'></i>
+              <span class="wait-text">待上线</span>
+            </a>
+            <ul class='nav nav-stacked'>
+              <li class='' th:each="hotelnav:${hotelResult}">
+                <a href='/datacenter/flightTradeSt' th:href="@{${hotelnav.url}}" >
+                  <span th:text="${hotelnav.text}">交易量统计</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a class="dropdown-collapse" href='#'>
+              <i class='insurance'></i>
+              <span class="nav-letter">保险</span>
+              <i class='icon-angle-down angle-down'></i>
+              <span class="wait-text">待上线</span>
+            </a>
+
+            <ul class='nav nav-stacked'>
+              <li class='' th:each="insurancenav:${insuranceResult}">
+                <a href='/datacenter/flightTradeSt' th:href="@{${insurancenav.url}}" >
+                  <span th:text="${insurancenav.text}">交易量统计</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a class='dropdown-collapse ' href='#'>
+              <i class='ship'></i>
+              <span class="nav-letter">邮轮</span>
+              <i class='icon-angle-down angle-down'></i>
+              <span class="wait-text">待上线</span>
+            </a>
+            <ul class='nav nav-stacked'>
+              <li class='' th:each="shipnav:${shiplResult}">
+                <a href='/datacenter/flightTradeSt' th:href="@{${shipnav.url}}" >
+                  <span th:text="${shipnav.text}">交易量统计</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a class='dropdown-collapse ' href='#'>
+              <i class='travel'></i>
+              <span class="nav-letter">旅游</span>
+              <i class='icon-angle-down angle-down'></i>
+              <span class="wait-text">待上线</span>
+            </a>
+            <ul class='nav nav-stacked'>
+              <li class='' th:each="travelnav:${travelResult}">
+                <a href='/datacenter/flightTradeSt' th:href="@{${travelnav.url}}" >
+                  <span th:text="${travelnav.text}">交易量统计</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a class='dropdown-collapse' href='#'>
+              <i class='user'></i>
+              <span class="nav-letter">用户</span>
+              <i class='icon-angle-down angle-down'></i>
+              <span class="wait-text">待上线</span>
+            </a>
+            <ul class='nav nav-stacked'>
+              <li class='' th:each="usernav:${userlResult}">
+                <a href='/datacenter/flightTradeSt' th:href="@{${usernav.url}}" >
+                  <span th:text="${usernav.text}">交易量统计</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <section id='content'>
+        <div class='container-fluid'>
+
+            <div class='row' id='content-wrapper'>
+                <div class='col-sm-12 sul col-xs-12'>
+
+                    <div id="choice-id" class='page-header page-header-with-buttons spage-header mpage-header'>
+                      <form  id="sform" action="/flightorders" method="post"  >
+                      <ul class="nav navbar-nav min-left choice-ul">
+                        <li class="every-li">
+                          <input type="text" id="startdate"  class="input-small daterange" name="startDate" id="startDate"  style="text-align: center;"/>
+                          <span style="color: #000000;font-size: 12px;">至</span>
+                          <input type="text" id="enddate" class="input-small daterange" name="endDate" id="endDate" style="text-align: center"/>
+                        </li>
+                        <li class="every-li left-li" id="dropdown1">
+                          <div class="btn-group" >
+                            <a class="btn dropdown-toggle choice-value btnColor" data-toggle="dropdown" href="#">
+                              <span class="placeholder">全部</span>
+                              <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" name="isDomestic">
+                              <li><a tabindex="-1" href="#" value="domestic">国内</a></li>
+                              <li><a tabindex="-1" href="#" value="international">国外</a></li>
+                              <li><a tabindex="-1" href="#" value="all">全部</a></li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="every-li left-li" id="dropdown2">
+                          <div class="btn-group">
+                            <a class="btn dropdown-toggle choice-value btnColor" data-toggle="dropdown" href="#">
+                              <span class="placeholder">全部</span>
+                              <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" name="regionCode">
+                              <li><a tabindex="-1" href="#" th:each="eregion:${regionmap}"
+                                     th:value="${eregion.regionCode}"
+                                     th:text="${eregion.regionName}">华东</a></li>
+                              <li><a tabindex="-1" href="#">华南</a></li>
+                              <li><a tabindex="-1" href="#">西南</a></li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="every-li">
+                            <button type="button" class="btn btn-lg btnColor searchTitle" id="searchButton">查  询</button>
+                        </li>
+                      </ul>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class='row'>
+                  <div class='col-sm-12'>
+                      <div class='box' >
+                          <div class='row'>
+                              <div class='col-sm-12 col-md-12 salse_orders'>
+                                  <div class='box'>
+                                    <div class='row' style="margin-top: 50px;">
+                                      <div class='col-sm-3'>
+                                        <div class='box-content box-statistic flightsumBack'>
+                                          <h4 class='text-primary'>张数
+                                              <span class="tooltipTickets tooltips" type="button" style="margin-left: 0px;">
+                                              </span>
+                                          </h4>
+                                          <h3 class='title text-primary text-panel'  th:each="dashbordResult :${dashbordResult}">
+                                            <em class="nowan" th:text="${dashbordResult.flightTickets}">311,7890</em>
+                                          </h3>
+                                          <div class=' icon-new align-right all backwidth tooltip1'>
+                                          </div>
+                                        </div>
+                                        </div>
+                                        <div class='col-sm-3'>
+                                        <div class='box-content box-statistic flightsumBack'>
+                                          <h4 class='text-primary'>销售额
+                                             <span class="tooltipSales tooltips" type="button" style="margin-left: 0px;">
+                                             </span>
+                                          </h4>
+                                          <h3 class='title text-primary text-panel'  th:each="dashbordResult :${dashbordResult}">
+                                            <em class="nowan" th:text="${dashbordResult.flightTickets}">311,7890</em>
+                                          </h3>
+                                          <div class='text-warning icon-new align-right allLast backwidth'>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class='col-sm-3'>
+                                        <div class='box-content box-statistic flightsumBack'>
+                                          <h4 class='text-primary'>成本
+                                             <span class="tooltipCost tooltips" type="button" style="margin-left: 0px;">
+                                             </span>
+                                          </h4>
+                                          <h3 class='title text-primary text-panel'  th:each="dashbordResult :${dashbordResult}">
+                                            <em class="nowan" th:text="${dashbordResult.flightTickets}">311,7890</em>
+                                          </h3>
+                                          <div class='text-primary icon-new align-right allWeek backwidth'>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class='col-sm-3'>
+                                        <div class='box-content box-statistic flightsumBack'>
+                                          <h4 class='text-primary'>利润
+                                            <span class="tooltipProfit tooltips" type="button" style="margin-left: 0px;">
+                                            </span>
+                                          </h4>
+                                          <h3 class='title text-primary text-panel'  th:each="dashbordResult :${dashbordResult}">
+                                            <em class="nowan" th:text="${dashbordResult.flightTickets}">311,7890</em>
+                                          </h3>
+                                          <div class='text-success icon-new align-right allMonth backwidth'>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                              </div>
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+
+            <div class='row'>
+
+              <div class='col-lg-6 col-md-6 col-sm-12 box '>
+                <div class='box-content sbox-content charts chartPostion '>
+                    <h4>TOP采购商
+                       <span class="tooltipPurchaser tooltips" type="button" style="margin-left: 0px;">
+                       </span>
+                    </h4>
+                    <div class="referral">
+                        <h5>
+                          第一
+                          <div class="pull-right" style="font-weight:400;">
+                            <span class="data">5232</span>
+                            56%
+                          </div>
+                        </h5>
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-danger" style="width: 56%;">
+                          </div>
+                        </div>
+                    </div>
+                    <div class="referral">
+                      <h5>
+                        第二
+                        <div class="pull-right" style="font-weight:400;">
+                          <span class="data">4256</span>
+                          44%
+                        </div>
+                      </h5>
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-danger" style="width: 44%;">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="referral">
+                      <h5>
+                        第三
+                        <div class="pull-right" style="font-weight:400;">
+                          <span class="data">4133</span>
+                          42%
+                        </div>
+                      </h5>
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-danger" style="width: 42%;">
+                        </div>
+                      </div>
+                    </div>
+                      <div class="referral">
+                                  <h5>
+                                    第四
+                                    <div class="pull-right" style="font-weight:400;">
+                                      <span class="data">3543</span>
+                                      38%
+                                    </div>
+                                  </h5>
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-success" style="width: 38%;">
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="referral">
+                                  <h5>
+                                    第五
+                                    <div class="pull-right" style="font-weight:400;">
+                                      <span class="data">3232</span>
+                                      34%
+                                    </div>
+                                  </h5>
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-success" style="width: 34%;">
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="referral">
+                                  <h5>
+                                    第六
+                                    <div class="pull-right" style="font-weight:400;">
+                                      <span class="data">3032</span>
+                                      30%
+                                    </div>
+                                  </h5>
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-success" style="width: 30%;">
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="referral">
+                                  <h5>
+                                    第七
+                                    <div class="pull-right" style="font-weight:400;">
+                                      <span class="data">2632</span>
+                                      28%
+                                    </div>
+                                  </h5>
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-success" style="width: 28%;">
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="referral">
+                                  <h5>
+                                    第八
+                                    <div class="pull-right" style="font-weight:400;">
+                                      <span class="data">2232</span>
+                                      24%
+                                    </div>
+                                  </h5>
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-success" style="width: 24%;">
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="referral">
+                                  <h5>
+                                    第九
+                                    <div class="pull-right" style="font-weight:400;">
+                                      <span class="data">1832</span>
+                                      20%
+                                    </div>
+                                  </h5>
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-success" style="width: 20%;">
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="referral">
+                                  <h5>
+                                    第十
+                                    <div class="pull-right" style="font-weight:400;">
+                                      <span class="data">1232</span>
+                                      18%
+                                    </div>
+                                  </h5>
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-success" style="width: 18%;">
+
+                          </div>
+                        </div>
+                      </div>
+                </div>
+              </div>
+
+              <div class='col-lg-6 col-md-6 col-sm-12 box'>
+                <div class='box-content sbox-content charts chartPostion'>
+                  <h4>TOP供应商
+                   <span class="tooltipProvider tooltips" type="button" style="margin-left: 0px;">
+                   </span>
+                  </h4>
+                  <div class="referral">
+                        <h5>
+                          第一
+                          <div class="pull-right" style="font-weight:400;">
+                            <span class="data">5232</span>
+                            56%
+                          </div>
+                        </h5>
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-danger" style="width: 56%;">
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="referral">
+                            <h5>
+                              第二
+                              <div class="pull-right" style="font-weight:400;">
+                                <span class="data">4256</span>
+                                44%
+                              </div>
+                            </h5>
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-danger" style="width: 44%;">
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="referral">
+                                <h5>
+                                  第三
+                                  <div class="pull-right" style="font-weight:400;">
+                                    <span class="data">4133</span>
+                                    42%
+                                  </div>
+                                </h5>
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-danger" style="width: 42%;">
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="referral">
+                                  <h5>
+                                    第四
+                                    <div class="pull-right" style="font-weight:400;">
+                                      <span class="data">3543</span>
+                                      38%
+                                    </div>
+                                  </h5>
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-info" style="width: 38%;">
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="referral">
+                                  <h5>
+                                    第五
+                                    <div class="pull-right" style="font-weight:400;">
+                                      <span class="data">3232</span>
+                                      34%
+                                    </div>
+                                  </h5>
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-info" style="width: 34%;">
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="referral">
+                                  <h5>
+                                    第六
+                                    <div class="pull-right" style="font-weight:400;">
+                                      <span class="data">3032</span>
+                                      30%
+                                    </div>
+                                  </h5>
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-info" style="width: 30%;">
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="referral">
+                                  <h5>
+                                    第七
+                                    <div class="pull-right" style="font-weight:400;">
+                                      <span class="data">2632</span>
+                                      28%
+                                    </div>
+                                  </h5>
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-info" style="width: 28%;">
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="referral">
+                                  <h5>
+                                    第八
+                                    <div class="pull-right" style="font-weight:400;">
+                                      <span class="data">2232</span>
+                                      24%
+                                    </div>
+                                  </h5>
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-info" style="width: 24%;">
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="referral">
+                                  <h5>
+                                    第九
+                                    <div class="pull-right" style="font-weight:400;">
+                                      <span class="data">1832</span>
+                                      20%
+                                    </div>
+                                  </h5>
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-info" style="width: 20%;">
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="referral">
+                                  <h5>
+                                    第十
+                                    <div class="pull-right" style="font-weight:400;">
+                                      <span class="data">1232</span>
+                                      18%
+                                    </div>
+                                  </h5>
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-info" style="width: 18%;">
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class='row topbox'>
+                  <div class='col-lg-6 col-md-6 col-sm-12 box'>
+                    <div class="choice choicePosition">
+                      <div class="btn-group switchDateAxisFS" data-toggle="buttons">
+                        <label class="btn btn-dm btn-default">
+                          <input type="radio" name="options" id="option1" value="day"/> 日
+                        </label>
+                        <label class="btn btn-dm btn-default">
+                          <input type="radio" name="options" id="option2" value="week"/> 周
+                        </label>
+                        <label class="btn btn-dm btn-default">
+                          <input type="radio" name="options" id="option3" value="month"/> 月
+                        </label>
+                      </div>
+                    </div>
+                      <div class='box-content sbox-content charts chartPostion'>
+                          <div id='stats-chart1'>
+                              <div id="ChartRate2" class="chartsNext"></div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class='col-lg-6 col-md-6 col-sm-12 box' >
+                          <div class="choice choicePosition">
+                              <div class="btn-group switchDateAxisFT" data-toggle="buttons">
+                                  <label class="btn btn-dm btn-default">
+                                      <input type="radio" name="options" id="option4" value="day"/> 日
+                                  </label>
+                                  <label class="btn btn-dm btn-default">
+                                      <input type="radio" name="options" id="option5" value="week"/> 月
+                                  </label>
+                                  <label class="btn btn-dm btn-default">
+                                      <input type="radio" name="options" id="option6" value="month"/> 周
+                                  </label>
+                              </div>
+                          </div>
+                      <div class='box-content sbox-content charts chartPostion'>
+                          <div id='stats-chart2'>
+                              <div id="ticketChartRate2" class="chartsNext"></div>
+                          </div>
+                      </div>
+                  </div>
+                <div class='col-lg-6 col-md-6 col-sm-12 box' >
+                  <div class="choice choicePosition">
+                    <div class="btn-group switchDateAxisFC" data-toggle="buttons">
+                      <label class="btn btn-dm btn-default">
+                        <input type="radio" name="options" id="option7" value="day"/> 日
+                      </label>
+                      <label class="btn btn-dm btn-default">
+                        <input type="radio" name="options" id="option8" value="week"/> 月
+                      </label>
+                      <label class="btn btn-dm btn-default">
+                        <input type="radio" name="options" id="option9" value="month"/> 周
+                      </label>
+                    </div>
+                  </div>
+                  <div class='box-content sbox-content charts chartPostion'>
+                    <div id='stats-chart3'>
+                      <div id="ChartRate" class="chartsNext"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class='col-lg-6 col-md-6 col-sm-12 box' >
+                  <div class="choice choicePosition">
+                    <div class="btn-group switchDateAxisFP" data-toggle="buttons">
+                      <label class="btn btn-dm btn-default">
+                        <input type="radio" name="options" id="option10" value="day"/> 日
+                      </label>
+                      <label class="btn btn-dm btn-default">
+                        <input type="radio" name="options" id="option11" value="week"/> 月
+                      </label>
+                      <label class="btn btn-dm btn-default">
+                        <input type="radio" name="options" id="option12" value="month"/> 周
+                      </label>
+                    </div>
+                  </div>
+                  <div class='box-content sbox-content charts chartPostion'>
+                    <div id='stats-chart4'>
+                      <div id="ticketChartRate" class="chartsNext"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            <footer id='footer'>
+                <div class='footer-wrapper'>
+                    <div class='row'>
+                        <div class='col-sm-6 text'>
+                            Copyright &copy; 2015 天地行 All Rights Reserved.      沪ICP备08101503号
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </section>
+</div>
+</body>
+<script>
+  $(function() {
+    $('.tooltipTickets').popover({
+      container: 'body',
+      html: true,
+      trigger: 'hover',
+      content: "<code>昨日（出票日期）的机票张数。</code>" +
+      "<code>百分比=昨日的机票张数/前日的机票张数。</code>"
+    });
+
+    $('.tooltipSales').popover({
+      container: 'body',
+      html: true,
+      trigger: 'hover',
+      content: "<code>昨日（出票日期）的机票销售额。</code>" +
+      "<code>百分比=昨日的机票销售额/前日的机票销售额。</code>"
+    });
+    $('.tooltipCost').popover({
+      container: 'body',
+      html: true,
+      trigger: 'hover',
+      content: "<code>昨日（出票日期）的机票成本=分润金额+成本+银行手续费。</code>" +
+      "<code>百分比=昨日的机票成本/前日的机票成本。</code>"
+    });
+    $('.tooltipProfit').popover({
+      container: 'body',
+      html: true,
+      trigger: 'hover',
+      content: "<code>昨日（出票日期）的机票利润=销售额-成本+平台费。</code>" +
+      "<code>百分比=昨日的机票利润/前日的机票利润。</code>"
+    });
+    $('.tooltipPurchaser').popover({
+      container: 'body',
+      html: true,
+      trigger: 'hover',
+      content: "<code>采购商购票张数</code>" +
+      "<code>百分比=购票张数/总购票张数。</code>"
+    });
+    $('.tooltipProvider').popover({
+      container: 'body',
+      html: true,
+      trigger: 'hover',
+      content: "<code>供应商供票张数</code>" +
+      "<code>百分比=供票张数/总供票张数。</code>"
+    });
+  });
+  </script>
+
+<script type="text/javascript">
+  $('.daterange').datepicker({
+    format: 'yyyy-mm-dd'
+  });
+</script>
+
+<script src="../static/js/plugins/echarts/echarts-plain.js"></script>
+<script type="text/javascript">
+
+  function customDropDown(ele){
+    this.dropdown=ele;
+    this.placeholder=this.dropdown.find(".placeholder");
+    this.options=this.dropdown.find("ul.dropdown-menu > li");
+    this.val='';
+    this.index=-1;//默认为-1;
+    this.initEvents();
+  }
+  customDropDown.prototype={
+    initEvents:function(){
+      var obj=this;
+      //这个方法可以不写，因为点击事件被Bootstrap本身就捕获了，显示下面下拉列表
+      obj.dropdown.on("click",function(event){
+        $(this).toggleClass("active");
+      });
+
+      //点击下拉列表的选项
+      obj.options.on("click",function(){
+        var opt=$(this);
+        obj.text=opt.find("a").text();
+        obj.val=opt.attr("value");
+        obj.index=opt.index();
+        obj.placeholder.text(obj.text);
+      });
+    },
+    getText:function(){
+      return this.text;
+    },
+    getValue:function(){
+      return this.val;
+    },
+    getIndex:function(){
+      return this.index;
+    }
+  }
+  $(document).ready(function(){
+    var mydropdown=new customDropDown($("#dropdown1"));
+    var mydropdown1=new customDropDown($("#dropdown2"));
+  });
+</script>
+<script>
+    $(function() {
+//        $('#choice-id').fixedBar();
+//        $("#area").kendoDropDownList();
+//        $("#busiType").kendoDropDownList();
+
+//        $('#choice-id').fixedBar();
+
+      Date.prototype.format = function (format) {
+        var o = {
+          "M+": this.getMonth() + 1, //month
+          "d+": this.getDate(), //day
+          "h+": this.getHours(), //hour
+          "m+": this.getMinutes(), //minute
+          "s+": this.getSeconds(), //second
+          "q+": Math.floor((this.getMonth() + 3) / 3), //quarter
+          "S": this.getMilliseconds() //millisecond
+        }
+        if (/(y+)/.test(format))
+          format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+          if (new RegExp("(" + k + ")").test(format))
+            format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+        return format;
+      }
+      function GetDateStr(AddDayCount) {
+        var dd = new Date();
+        dd.setDate(dd.getDate()+AddDayCount);//获取AddDayCount天后的日期
+        var y = dd.getFullYear();
+        var m = dd.getMonth()+1;//获取当前月份的日期
+        var d = dd.getDate();
+        return y+"-"+m+"-"+d;
+      }
+
+//      var date = new Date();
+//      date.setDate(date.geDate()-1);
+      var defaultdate = GetDateStr(-1);
+//      date.setDate(date.geDate()-1);
+      var defaultstart = GetDateStr(-2);
+      var startdate = document.getElementById('startdate');
+      var enddate = document.getElementById('enddate');
+      startdate.setAttribute("value",defaultstart);
+      enddate.setAttribute("value",defaultdate)
+
+      var ticketChartRate = echarts.init(document.getElementById("ticketChartRate"));
+      var ticketOptionRate = {
+        title : {
+          textStyle:{
+            color:'#49bf67',
+            fontSize: 16,
+            fontWeight:'bold'
+          }
+        },
+        tooltip : {
+          trigger: 'axis',
+          textStyle:{
+            color:'#49bf67',
+            fontSize: 14,
+            fontWeight:'bold'
+          }
+        },
+        legend: {
+          data:['机票利润']
+        },
+        toolbox: {
+          show : true,
+          feature : {
+            mark : {show: false},
+            dataView : {show: false, readOnly: false},
+            magicType : {show: false, type: ['line', 'bar']},
+            restore : {show: false},
+            saveAsImage : {show: false}
+          }
+        },
+        calculable : true,
+        xAxis : [
+          {
+            type : 'category',
+            data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+          }
+        ],
+        yAxis : [
+          {
+            type : 'value'
+          }
+        ],
+        series : [
+          {
+            name:'机票利润',
+            type:'line',
+            data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 635.6, 162.2, 32.6, 20.0, 6.4, 3.3],
+            itemStyle: {
+              normal: {
+                color:'#49bf67'
+              }
+            }
+
+          }
+        ]
+      };
+
+
+      // 为chart对象赋值option
+      ticketChartRate.setOption(ticketOptionRate);
+      $(window).resize(function(){
+        ticketChartRate.resize();
+      });
+
+      var ChartRate = echarts.init(document.getElementById("ChartRate"));
+      var idx = 1;
+      OptionRate = {
+        title : {
+          textStyle:{
+            color:'#12A3DC',
+            fontSize: 16,
+            fontWeight:'bold'
+          }
+        },
+        tooltip : {
+          trigger: 'axis',
+          textStyle:{
+            color:'#12A3DC',
+            fontSize: 14,
+            fontWeight:'bold'
+          }
+        },
+        legend: {
+          data:['机票成本']
+        },
+        toolbox: {
+          show : true,
+          feature : {
+            mark : {show: false},
+            dataView : {show: false, readOnly: false},
+            magicType : {show: false, type: ['line', 'line']},
+            restore : {show: false},
+            saveAsImage : {show: false}
+          }
+        },
+        calculable : true,
+        xAxis : [
+          {
+            type : 'category',
+            data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+          }
+        ],
+        yAxis : [
+          {
+            type : 'value'
+          }
+        ],
+        series : [
+          {
+            name:'机票成本',
+            type:'line',
+            data:[200, 49, 70, 232, 256, 767, 635, 462, 326, 200, 64, 33],
+            itemStyle: {
+              normal: {
+                color:'#12A3DC'
+              }
+            }
+
+          }
+        ]
+      };
+      // 为chart对象赋值option
+      ChartRate.setOption(OptionRate);
+      $(window).resize(function(){
+        ChartRate.resize();
+      });
+
+
+      var ticketChartRate2 = echarts.init(document.getElementById("ticketChartRate2"));
+      var ticketOptionRate2 = {
+        title : {
+          textStyle:{
+            color:'#49bf67',
+            fontSize: 16,
+            fontWeight:'bold'
+          }
+        },
+        tooltip : {
+          trigger: 'axis',
+          textStyle:{
+            color:'#49bf67',
+            fontSize: 14,
+            fontWeight:'bold'
+          }
+        },
+        legend: {
+          data:['机票张数']
+        },
+        toolbox: {
+          show : true,
+          feature : {
+            mark : {show: false},
+            dataView : {show: false, readOnly: false},
+            magicType : {show: false, type: ['line', 'bar']},
+            restore : {show: false},
+            saveAsImage : {show: false}
+          }
+        },
+        calculable : true,
+        xAxis : [
+          {
+            type : 'category',
+            axisLine: {
+              lineStyle: {
+                color: '#49bf67',
+                width: 2,
+                type: 'solid'
+              }
+            },
+            data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+          }
+        ],
+        yAxis : [
+          {
+            type : 'value',
+            axisLine: {
+              lineStyle: {
+                color: '#49bf67',
+                width: 2,
+                type: 'solid'
+              }
+            }
+          }
+        ],
+        series : [
+          {
+            name:'机票张数',
+            type:'line',
+            data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 635.6, 162.2, 32.6, 20.0, 6.4, 3.3],
+            itemStyle: {
+              normal: {
+                color:'#49bf67'
+              }
+            }
+          }
+        ]
+      };
+
+
+      // 为chart对象赋值option
+      ticketChartRate2.setOption(ticketOptionRate2);
+      $(window).resize(function(){
+        ticketChartRate2.resize();
+      });
+
+      var ChartRate2 = echarts.init(document.getElementById("ChartRate2"));
+      var idx = 1;
+      OptionRate2 = {
+        title : {
+          textStyle:{
+            color:'#12A3DC',
+            fontSize: 16,
+            fontWeight:'bold'
+          }
+        },
+        tooltip : {
+          trigger: 'axis',
+          textStyle:{
+            color:'#12A3DC',
+            fontSize: 14,
+            fontWeight:'bold'
+          }
+        },
+        legend: {
+          data:['机票销售额']
+        },
+        toolbox: {
+          show : true,
+          feature : {
+            mark : {show: false},
+            dataView : {show: false, readOnly: false},
+            magicType : {show: false, type: ['line', 'line']},
+            restore : {show: false},
+            saveAsImage : {show: false}
+          }
+        },
+        calculable : true,
+        xAxis : [
+          {
+            type : 'category',
+            data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+          }
+        ],
+        yAxis : [
+          {
+            type : 'value'
+          }
+        ],
+        series : [
+          {
+            name:'机票销售额',
+            type:'line',
+            data:[200, 49, 70, 232, 256, 767, 635, 462, 326, 200, 64, 33],
+            itemStyle: {
+              normal: {
+                color:'#12A3DC'
+              }
+            }
+          }
+        ]
+      };
+      // 为chart对象赋值option
+      ChartRate2.setOption(OptionRate2);
+      $(window).resize(function(){
+        ChartRate2.resize();
+      });
+
+    });
+</script>
+
+</html>
+
