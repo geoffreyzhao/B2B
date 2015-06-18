@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport' />
+    <meta content='text/html;charset=utf-8' http-equiv='content-type' />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>机票采购商详细</title>
+    <link rel="stylesheet" href="../static/css/plusDataCenter/styles.css" charset="UTF-8" />
+    <link rel="stylesheet" href="../static/css/plusDataCenter/dashbord.css" charset="UTF-8" />
+    <link rel="stylesheet" href="../static/css/plusDataCenter/flightDetail.css" charset="UTF-8" />
+    <link rel="stylesheet" href="../static/css/plusDataCenter/bootstrap-datepicker3.min.css" charset="UTF-8" />
+
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/jquery-ui-1.10.3.custom.js"></script>
+    <script src="../static/js/global.js"></script>
+    <script src="../static/js/plusDataCenter/bootstrap.min.js"></script>
+    <script src="../static/js/plusDataCenter/kendo.core.min.js"></script>
+    <script src="../static/js/plusDataCenter/theme.js"></script>
+    <script src="../static/js/plusDataCenter/kendo.ui.core.min.js"></script>
+    <script src="../static/js/plusDataCenter/bootstrap-datepicker.js"></script>
+    <link rel="shortcut icon" href="../static/images/datacenter/favicon.ico"/>
+    <!--[if lt IE 9]>
+    <script src="../static/js/html5shiv.js" type="text/javascript"></script>
+    <script src="../static/js/respond.min.js" type="text/javascript"></script>
+    <![endif]-->
+    <!--[if lte IE 9]>
+    <script src="http://scpg.tdxinfo.com/js/html5.js"></script>
+    <![endif]-->
+
+  <script src="../static/js/plusDataCenter/input_list.js"></script>
+
+  <style>
+    .choiceOne{
+      background-color: #e6e6e6;
+      border-color: #adadad;
+    }
+    .textDays{
+      margin-right: 10px;
+      margin-left: -25%;
+      font-size: 10px;
+    }
+    .wan{
+      font-style: normal;
+    }
+    .nowan{
+      font-style: normal;
+    }
+    .hpiece{
+      font-style: normal;
+    }
+    .textNumberT{
+      margin-left: 17px;
+    }
+    .textNumberS{
+      margin-left: -8px;
+    }
+    .text-panel{
+      margin-left: 0px !important;
+      font-size: 16px;
+      font-weight: 800;
+    }
+    .percentage {
+      font-size: 14px;
+    }
+    .uparrow {
+      margin-left: 0;
+    }
+
+    .downarrow {
+      margin-left: 0;
+    }
+    .text-error {
+      color: #dd3333 !important;
+    }
+    .progressSpan{
+      display: inline-block;
+      float: left;
+      width: 100%;
+    }
+    .progressDiv{
+      float: left;
+      display: inline-block;
+      width: 80%;
+      margin-bottom: 0px;
+    }
+    .tdSpan{
+      line-height: 40px;;
+    }
+
+    .choose{
+      background-color: white !important;
+    }
+
+    .profitLine{
+      line-height: 40px;;
+    }
+
+  </style>
+
+</head>
+<body class='contrast-red ' style="padding: 0 !important;margin: 0 !important;">
+<header>
+    <nav class='navbar navbar-default'>
+        <a class='navbar-brand logo head-logo' href='index.html'></a>
+        <a class='toggle-nav btn pull-left snav' href='#'>
+          <i class="listPanel ztbar"></i>
+        </a>
+
+        <ul class='nav'>
+          <li class='dropdown dark user-menu'>
+            <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+              <span class='user-name '>
+                  <i class="userP person"></i>
+              </span>
+              <b class='caret'></b>
+            </a>
+            <ul class='dropdown-menu'>
+              <li><a href='#'>退出</a></li>
+            </ul>
+          </li>
+        </ul>
+    </nav>
+</header>
+<div id='wrapper'>
+    <div id='main-nav-bg'></div>
+    <!--<nav id='main-nav'>-->
+        <!--<div class='navigation'>-->
+            <!--<ul class='nav nav-stacked'>-->
+                <!--<li class=''>-->
+                  <!--<a class='dropdown-collapse ' href='#'>-->
+                    <!--<i class='dashbordtitle'></i>-->
+                    <!--<span class="nav-letter">Dashbord</span>-->
+                    <!--<i class='icon-angle-down angle-down'></i>-->
+                  <!--</a>-->
+                <!--</li>-->
+                <!--<li class='active'>-->
+                    <!--<a class="dropdown-collapse" href="#">-->
+                        <!--<i class='plane'></i>-->
+                        <!--<span class="nav-letter">机票</span>-->
+                        <!--<i class='icon-angle-down angle-down'></i>-->
+                    <!--</a>-->
+
+                    <!--<ul class='nav nav-stacked in' id="planeList">-->
+                      <!--<li class=''>-->
+                          <!--<a href='index.html'>-->
+                            <!--<i class='caretRight'></i>-->
+                            <!--<span>交易量统计</span>-->
+                          <!--</a>-->
+                      <!--</li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a class='dropdown-collapse ' href='#'>-->
+                        <!--<i class='hotel'></i>-->
+                        <!--<span class="nav-letter">酒店</span>-->
+                        <!--<i class='icon-angle-down angle-down'></i>-->
+                    <!--</a>-->
+                <!--</li>-->
+
+                <!--<li>-->
+                    <!--<a class='dropdown-collapse ' href='#'>-->
+                        <!--<i class='insurance'></i>-->
+                        <!--<span class="nav-letter">保险</span>-->
+                        <!--<i class='icon-angle-down angle-down'></i>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a class='dropdown-collapse ' href='#'>-->
+                        <!--<i class='ship'></i>-->
+                        <!--<span class="nav-letter">邮轮</span>-->
+                        <!--<i class='icon-angle-down angle-down'></i>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a class='dropdown-collapse ' href='#'>-->
+                        <!--<i class='travel'></i>-->
+                        <!--<span class="nav-letter">旅游</span>-->
+                        <!--<i class='icon-angle-down angle-down'></i>-->
+                    <!--</a>-->
+                <!--</li>-->
+
+                <!--<li>-->
+                    <!--<a class='dropdown-collapse' href='#'>-->
+                        <!--<i class='user'></i>-->
+                        <!--<span class="nav-letter">用户</span>-->
+                        <!--<i class='icon-angle-down angle-down'></i>-->
+                    <!--</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</nav>-->
+    <nav id='main-nav'>
+      <div class='navigation'>
+        <ul class='nav nav-stacked'>
+          <li>
+            <a  href='dashbord.html'>
+              <i class='dashbordtitle'></i>
+              <span class="nav-letter">Dashbord</span>
+              <i class='icon-angle-down angle-down'></i>
+            </a>
+          </li>
+
+          <li class='active'>
+            <a class="dropdown-collapse" href="#">
+              <i class='plane'></i>
+              <span class="nav-letter">机票</span>
+              <i class='angle-down'></i>
+            </a>
+
+            <ul class='nav nav-stacked in' id="planeList">
+              <li class=''>
+                <a href='flightDetail.html' >
+                  <i class='caretRight'></i>
+                  <span style="font-size: 14px">机票详细信息</span>
+                </a>
+
+                <ul class='nav nav-stacked in' id="customerList">
+                  <li class=''>
+                    <a href='flightDetailC.html'>
+                      <i class='caretRed'></i>
+                      <span style="font-size: 10px">采购商详细</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <!--<ul class='nav nav-stacked'>-->
+              <!--<li class='' th:each="planenav:${planeResult}">-->
+                <!--<a href='/datacenter/flightTradeSt' th:href="@{${planenav.url}}" >-->
+                  <!--<span th:text="${planenav.text}">交易量统计</span>-->
+                <!--</a>-->
+              <!--</li>-->
+            <!--</ul>-->
+          </li>
+          <li>
+            <a class="dropdown-collapse" href='#'>
+              <i class='hotel'></i>
+              <span class="nav-letter">酒店</span>
+              <i class='icon-angle-down angle-down'></i>
+              <span class="wait-text">待上线</span>
+            </a>
+            <ul class='nav nav-stacked'>
+              <li class='' th:each="hotelnav:${hotelResult}">
+                <a href='/datacenter/flightTradeSt' th:href="@{${hotelnav.url}}" >
+                  <span th:text="${hotelnav.text}">交易量统计</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a class="dropdown-collapse" href='#'>
+              <i class='insurance'></i>
+              <span class="nav-letter">保险</span>
+              <i class='icon-angle-down angle-down'></i>
+              <span class="wait-text">待上线</span>
+            </a>
+
+            <ul class='nav nav-stacked'>
+              <li class='' th:each="insurancenav:${insuranceResult}">
+                <a href='/datacenter/flightTradeSt' th:href="@{${insurancenav.url}}" >
+                  <span th:text="${insurancenav.text}">交易量统计</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a class='dropdown-collapse ' href='#'>
+              <i class='ship'></i>
+              <span class="nav-letter">邮轮</span>
+              <i class='icon-angle-down angle-down'></i>
+              <span class="wait-text">待上线</span>
+            </a>
+            <ul class='nav nav-stacked'>
+              <li class='' th:each="shipnav:${shiplResult}">
+                <a href='/datacenter/flightTradeSt' th:href="@{${shipnav.url}}" >
+                  <span th:text="${shipnav.text}">交易量统计</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a class='dropdown-collapse ' href='#'>
+              <i class='travel'></i>
+              <span class="nav-letter">旅游</span>
+              <i class='icon-angle-down angle-down'></i>
+              <span class="wait-text">待上线</span>
+            </a>
+            <ul class='nav nav-stacked'>
+              <li class='' th:each="travelnav:${travelResult}">
+                <a href='/datacenter/flightTradeSt' th:href="@{${travelnav.url}}" >
+                  <span th:text="${travelnav.text}">交易量统计</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a class='dropdown-collapse' href='#'>
+              <i class='user'></i>
+              <span class="nav-letter">用户</span>
+              <i class='icon-angle-down angle-down'></i>
+              <span class="wait-text">待上线</span>
+            </a>
+            <ul class='nav nav-stacked'>
+              <li class='' th:each="usernav:${userlResult}">
+                <a href='/datacenter/flightTradeSt' th:href="@{${usernav.url}}" >
+                  <span th:text="${usernav.text}">交易量统计</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <section id='content'>
+        <div class='container-fluid'>
+
+            <div class='row' id='content-wrapper'>
+                <div class='col-sm-12 sul col-xs-12'>
+                    <div id="choice-id" class='page-header page-header-with-buttons spage-header mpage-header'>
+                      <form  id="sform" action="/flightorders" method="post"  >
+                      <ul class="nav navbar-nav min-left choice-ul">
+                        <li class="every-li">
+                          <input type="text" id="startdate"  class="input-small daterange" name="startDate" id="startDate"  style="text-align: center;"/>
+                          <span style="color: #000000;font-size: 12px;">至</span>
+                          <input type="text" id="enddate" class="input-small daterange" name="endDate" id="endDate" style="text-align: center"/>
+                        </li>
+                        <li class="every-li left-li">
+                          <span class="placeholder" text1="all" style="  display: inline-block;">采购商名称</span>
+                          <div class="parentCls" style="display: inline-block;vertical-align: middle;">
+                            <div style="width:150px;height:35px;border:1px solid #ccc;">
+                              <input type="text" class="inputElem" style="width:150px;height:35px;line-height:35px;"/>
+                            </div>
+                            <input type="hidden" class="hiddenCls"/>
+                          </div>
+
+                        </li>
+                        <li class="every-li">
+                            <button type="button" class="btn btn-lg btnColor searchTitle" id="searchButton">查  询</button>
+                        </li>
+                      </ul>
+                      </form>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+          <div class='row'>
+            <div class='col-sm-12'>
+              <div class='box' >
+                <div class='row'>
+                  <div class='col-sm-12 col-md-12 salse_orders'>
+                    <div class='box'>
+                      <div class='row' style="margin-top: 50px;">
+                        <div class='col-sm-3'>
+                          <div class='box-content box-statistic flightsumBack'>
+                            <h4 class='text-primary'>张数
+                                              <span class="tooltipTickets tooltips" type="button" style="margin-left: 0px;">
+                                              </span>
+                            </h4>
+                            <h3 class='title text-primary text-panel'  th:each="dashbordResult :${dashbordResult}">
+                              <em class="nowan" th:text="${dashbordResult.flightTickets}">311,7890</em>
+                            </h3>
+                            <div class=' icon-new align-right all backwidth tooltip1'>
+                            </div>
+                          </div>
+                        </div>
+                        <div class='col-sm-3'>
+                          <div class='box-content box-statistic flightsumBack'>
+                            <h4 class='text-primary'>销售额
+                                             <span class="tooltipSales tooltips" type="button" style="margin-left: 0px;">
+                                             </span>
+                            </h4>
+                            <h3 class='title text-primary text-panel'  th:each="dashbordResult :${dashbordResult}">
+                              <em class="nowan" th:text="${dashbordResult.flightTickets}">311,7890</em>
+                            </h3>
+                            <div class='text-warning icon-new align-right allLast backwidth'>
+                            </div>
+                          </div>
+                        </div>
+                        <div class='col-sm-3'>
+                          <div class='box-content box-statistic flightsumBack'>
+                            <h4 class='text-primary'>成本
+                                             <span class="tooltipCost tooltips" type="button" style="margin-left: 0px;">
+                                             </span>
+                            </h4>
+                            <h3 class='title text-primary text-panel'  th:each="dashbordResult :${dashbordResult}">
+                              <em class="nowan" th:text="${dashbordResult.flightTickets}">311,7890</em>
+                            </h3>
+                            <div class='text-primary icon-new align-right allWeek backwidth'>
+                            </div>
+                          </div>
+                        </div>
+                        <div class='col-sm-3'>
+                          <div class='box-content box-statistic flightsumBack'>
+                            <h4 class='text-primary'>利润
+                                            <span class="tooltipProfit tooltips" type="button" style="margin-left: 0px;">
+                                            </span>
+                            </h4>
+                            <h3 class='title text-primary text-panel'  th:each="dashbordResult :${dashbordResult}">
+                              <em class="nowan" th:text="${dashbordResult.flightTickets}">311,7890</em>
+                            </h3>
+                            <div class='text-success icon-new align-right allMonth backwidth'>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+            <div class='row'>
+
+              <div class='col-lg-12 col-md-12 col-sm-12 box '>
+                <div class='box-header boxtitle'>
+                  <div class='title' style="width: auto !important;margin-left: -20px;">
+                    <span class="chartsFlightTitle">采购TOP5概况</span>
+                    <span class="tooltipProfit tooltips" type="button" style="margin-left: 0px;">
+                                            </span>
+                  </div>
+                </div>
+                <div class='box-content sbox-content charts clearRadius'>
+                <!--<div class='box-content sbox-content charts chartPostion '>-->
+                  <table class="table table-bordered">
+                    <table class="table table-striped" style="font-size: 16px;">
+                      <thead>
+                      <tr>
+                        <th>航段</th>
+                        <th>张数</th>
+                        <th>销售额</th>
+                        <th>成本</th>
+                        <th>利润</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                        <td><span class="tdSpan">上海-北京</span>
+                        </td>
+                        <td>
+                          <span class="progressSpan" style="font-size: 16px;">425</span>
+                          <div class="progress progressDiv">
+                            <div class="progress-bar progress-bar-info" style="width: 26%;color: #000000;">
+                             <span class="progressSpan progressP" style="font-size: 12px;">26%</span>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <span class="progressSpan">14万</span>
+                          <div class="progress progressDiv">
+                            <div class="progress-bar progress-bar-info" style="width: 12%;color: #000000;">
+                              <span class="progressSpan progressP">12%</span>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <span class="progressSpan">12万</span>
+                          <div class="progress progressDiv">
+                            <div class="progress-bar progress-bar-info" style="width: 11%;color: #000000;">
+                              <span class="progressSpan progressP">11%</span>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <span class="progressSpan profitLine">8900</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><span class="tdSpan">上海-广州</span>
+                        </td>
+
+                        <td>
+                          <span class="progressSpan">230</span>
+                          <div class="progress progressDiv">
+                            <div class="progress-bar progress-bar-info" style="width: 23.5%;color: #000000;">
+                              <span class="progressSpan progressP">23.5%</span>
+                            </div>
+                          </div>
+                          </td>
+                        <td>
+                          <span class="progressSpan">12万</span>
+                          <div class="progress progressDiv">
+                            <div class="progress-bar progress-bar-info" style="width: 10.2%;color: #000000;">
+                              <span class="progressSpan progressP">10.2%</span>
+                            </div>
+                          </div>
+                          </td>
+                        <td>
+                          <span class="progressSpan">10万</span>
+                          <div class="progress progressDiv">
+                            <div class="progress-bar progress-bar-info" style="width: 10.2%;color: #000000;">
+                              <span class="progressSpan progressP">10.2%</span>
+                            </div>
+                          </div>
+
+                        </td>
+                        <td>
+                          <span class="progressSpan profitLine">9000</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><span class="tdSpan">北京-上海</span>
+                        </td>
+
+                        <td>
+                          <span class="progressSpan">180</span>
+                          <div class="progress progressDiv">
+                            <div class="progress-bar progress-bar-info" style="width: 3.8%;color: #000000;">
+                              <span class="progressSpan progressP">3.8%</span>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <span class="progressSpan">10万</span>
+                          <div class="progress progressDiv">
+                            <div class="progress-bar progress-bar-info" style="width: 8.6%;color: #000000;">
+                              <span class="progressSpan progressP">8.6%</span>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <span class="progressSpan">8万</span>
+                          <div class="progress progressDiv">
+                            <div class="progress-bar progress-bar-info" style="width: 5.5%;color: #000000;">
+                              <span class="progressSpan progressP">5.5%</span>
+                            </div>
+                          </div>
+
+                        </td>
+                        <td>
+                          <span class="progressSpan profitLine">20000</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><span class="tdSpan">广州-上海</span>
+                        </td>
+
+                        <td>
+                          <span class="progressSpan">150</span>
+                          <div class="progress progressDiv">
+                            <div class="progress-bar progress-bar-info" style="width: 10.6%;color: #000000;">
+                              <span class="progressSpan progressP">20.6%</span>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <span class="progressSpan">12万</span>
+                          <div class="progress progressDiv">
+                            <div class="progress-bar progress-bar-info" style="width: 7.4%;color: #000000;">
+                              <span class="progressSpan progressP">7.4%</span>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <span class="progressSpan">10万</span>
+                          <div class="progress progressDiv">
+                            <div class="progress-bar progress-bar-info" style="width: 6.9%;color: #000000;">
+                              <span class="progressSpan progressP">6.9%</span>
+                            </div>
+                          </div>
+
+                        </td>
+                        <td>
+                          <span class="progressSpan profitLine">19000</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><span class="tdSpan">成都-上海</span>
+                        </td>
+
+                        <td>
+                          <span class="progressSpan">100</span>
+                          <div class="progress progressDiv">
+                            <div class="progress-bar progress-bar-info" style="width: 4.9%;color: #000000;">
+                              <span class="progressSpan progressP">4.9%</span>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <span class="progressSpan">10万</span>
+                          <div class="progress progressDiv">
+                            <div class="progress-bar progress-bar-info" style="width: 5.9%;color: #000000;">
+                              <span class="progressSpan progressP">5.9%</span>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <span class="progressSpan">8万</span>
+                          <div class="progress progressDiv">
+                            <div class="progress-bar progress-bar-info" style="width: 2.9%;color: #000000;">
+                              <span class="progressSpan progressP">2.9%</span>
+                            </div>
+                          </div>
+
+                        </td>
+                        <td>
+                          <span class="progressSpan profitLine">20000</span>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </table>
+                </div>
+              </div>
+
+
+            </div>
+
+
+
+            <div class='row topbox'>
+
+                  <div class='col-lg-6 col-md-6 col-sm-12 box'>
+                    <div class='box-header boxtitle'>
+                      <div class='title' style="width: auto !important;margin-left: -20px;">
+                        <span class="chartsFlightTitle">航司</span>
+                        <span class="tooltipProfit tooltips" type="button" style="margin-left: 0px;">
+                                            </span>
+                      </div>
+                    </div>
+                      <div class='box-content sbox-content charts' style="border-radius: 0 0 5px 5px;padding: 20px;">
+                          <div id='stats-chart1'>
+                            <div id="ticketChartRate" style="height:500px;"></div> <!-- 航司饼图 -->
+
+                          </div>
+                      </div>
+                  </div>
+
+              <div class='col-lg-6 col-md-6 col-sm-12 box'>
+                <div class='box-header boxtitle'>
+                  <div class='title' style="width: auto !important;margin-left: -20px;">
+                    <span class="chartsFlightTitle">舱位</span>
+                    <span class="tooltipProfit tooltips" type="button" style="margin-left: 0px;">
+                                            </span>
+                  </div>
+                </div>
+                <div class='box-content sbox-content charts' style="border-radius: 0 0 5px 5px;padding: 20px;">
+                  <div id='stats-chart2'>
+                    <div id="cabinChartRate" style="height:500px;"></div> <!-- 仓位饼图 -->
+
+                  </div>
+                </div>
+              </div>
+              </div>
+
+
+            <footer id='footer'>
+                <div class='footer-wrapper'>
+                    <div class='row'>
+                        <div class='col-sm-6 text'>
+                            Copyright &copy; 2015 天地行 All Rights Reserved.      沪ICP备08101503号
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </section>
+</div>
+</body>
+<script>
+  $(function() {
+
+    $('.tooltipTickets').popover({
+      container: 'body',
+      html: true,
+      trigger: 'hover',
+      content: "<code>昨日（出票日期）的机票张数。</code>" +
+      "<code>百分比=昨日的机票张数/前日的机票张数。</code>"
+    });
+
+    $('.tooltipSales').popover({
+      container: 'body',
+      html: true,
+      trigger: 'hover',
+      content: "<code>昨日（出票日期）的机票销售额。</code>" +
+      "<code>百分比=昨日的机票销售额/前日的机票销售额。</code>"
+    });
+    $('.tooltipCost').popover({
+      container: 'body',
+      html: true,
+      trigger: 'hover',
+      content: "<code>昨日（出票日期）的机票成本=分润金额+成本+银行手续费。</code>" +
+      "<code>百分比=昨日的机票成本/前日的机票成本。</code>"
+    });
+    $('.tooltipProfit').popover({
+      container: 'body',
+      html: true,
+      trigger: 'hover',
+      content: "<code>昨日（出票日期）的机票利润=销售额-成本+平台费。</code>" +
+      "<code>百分比=昨日的机票利润/前日的机票利润。</code>"
+    });
+    $('.tooltipPurchaser').popover({
+      container: 'body',
+      html: true,
+      trigger: 'hover',
+      content: "<code>采购商购票张数</code>" +
+      "<code>百分比=购票张数/总购票张数。</code>"
+    });
+    $('.tooltipProvider').popover({
+      container: 'body',
+      html: true,
+      trigger: 'hover',
+      content: "<code>供应商供票张数</code>" +
+      "<code>百分比=供票张数/总供票张数。</code>"
+    });
+  });
+  </script>
+
+<script type="text/javascript">
+  $('.daterange').datepicker({
+    format: 'yyyy-mm-dd'
+  });
+</script>
+<script>
+  $(function() {
+    // 初始化
+    var auto = new AutoComplete({});
+  });
+</script>
+
+<script src="../static/js/plugins/echarts/echarts-plain.js"></script>
+<script type="text/javascript">
+
+  function customDropDown(ele){
+    this.dropdown=ele;
+    this.placeholder=this.dropdown.find(".placeholder");
+    this.options=this.dropdown.find("ul.dropdown-menu > li");
+    this.val='';
+    this.index=-1;//默认为-1;
+    this.initEvents();
+  }
+  customDropDown.prototype={
+    initEvents:function(){
+      var obj=this;
+      //这个方法可以不写，因为点击事件被Bootstrap本身就捕获了，显示下面下拉列表
+      obj.dropdown.on("click",function(event){
+        $(this).toggleClass("active");
+      });
+
+      //点击下拉列表的选项
+      obj.options.on("click",function(){
+        var opt=$(this);
+        obj.text=opt.find("a").text();
+        obj.val=opt.find("a").attr("value");
+        obj.index=opt.index();
+        obj.placeholder.text(obj.text);
+        obj.placeholder.attr("text1",obj.text);
+      });
+    },
+    getText:function(){
+      return this.text;
+    },
+    getValue:function(){
+      return this.val;
+    },
+    getIndex:function(){
+      return this.index;
+    }
+  }
+  $(document).ready(function(){
+    var mydropdown=new customDropDown($("#dropdown1"));
+    var mydropdown1=new customDropDown($("#dropdown2"));
+  });
+</script>
+
+<script>
+    $(function() {
+//        $('#choice-id').fixedBar();
+//        $("#area").kendoDropDownList();
+//        $("#busiType").kendoDropDownList();
+
+//        $('#choice-id').fixedBar();
+      Date.prototype.format = function (format) {
+        var o = {
+          "M+": this.getMonth() + 1, //month
+          "d+": this.getDate(), //day
+          "h+": this.getHours(), //hour
+          "m+": this.getMinutes(), //minute
+          "s+": this.getSeconds(), //second
+          "q+": Math.floor((this.getMonth() + 3) / 3), //quarter
+          "S": this.getMilliseconds() //millisecond
+        }
+        if (/(y+)/.test(format))
+          format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+          if (new RegExp("(" + k + ")").test(format))
+            format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+        return format;
+      }
+      function GetDateStr(AddDayCount) {
+        var dd = new Date();
+        dd.setDate(dd.getDate()+AddDayCount);//获取AddDayCount天后的日期
+        var y = dd.getFullYear();
+        var m = dd.getMonth()+1;//获取当前月份的日期
+        var mm ='';
+        if(m<10){
+          mm="0"+m;
+        }else{
+          mm = m;
+        }
+        var d = dd.getDate();
+        return y+"-"+mm+"-"+d;
+      }
+
+//      var date = new Date();
+//      date.setDate(date.geDate()-1);
+      var defaultdate = GetDateStr(-1);
+//      date.setDate(date.geDate()-1);
+      var defaultstart = GetDateStr(-2);
+      var startdate = document.getElementById('startdate');
+      var enddate = document.getElementById('enddate');
+      startdate.setAttribute("value",defaultstart);
+      enddate.setAttribute("value",defaultdate);
+      var type=$("#dropdown1 .placeholder").attr("text1");
+
+      var ticketChartRate = echarts.init(document.getElementById("ticketChartRate"));
+      var ticketOptionRate = {
+        title: {
+          x: 'center'
+        },
+        tooltip: {
+          trigger: 'item',
+          formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+          orient: 'horizontal',
+          y: 'top',
+          data: ['上海航空', '亚航', '首都航空', '中华航空', '国际航空', '天津航空']
+        },
+        toolbox: {
+          show: false,
+          feature: {
+//          mark: {show: true},
+//          dataView: {show: true, readOnly: false},
+            magicType: {
+              show: true,
+              type: ['pie', 'funnel'],
+              option: {
+                funnel: {
+                  x: '25%',
+                  width: '50%',
+                  funnelAlign: 'left',
+                  max: 1548
+                }
+              }
+            }
+//          restore: {show: true},
+//          saveAsImage: {show: true}
+          }
+        },
+        calculable: true,
+        series: [
+          {
+            name: '访问来源',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+              {value: 3350, name: '上海航空'},
+              {value: 310, name: '亚航'},
+              {value: 234, name: '首都航空'},
+              {value: 35, name: '中华航空'},
+              {value: 135, name: '国际航空'},
+              {value: 1548, name: '天津航空'}
+            ]
+          }
+        ]
+      };
+
+
+      // 为chart对象赋值option
+      ticketChartRate.setOption(ticketOptionRate);
+      $(window).resize(function(){
+        ticketChartRate.resize();
+      });
+
+
+
+      var cabinChartRate = echarts.init(document.getElementById("cabinChartRate"));
+      var cabinOptionRate = {
+        title: {
+          x: 'center'
+        },
+        tooltip: {
+          trigger: 'item',
+          formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+          orient: 'horizontal',
+          y: 'top',
+          data: ['经济舱', '头等舱', '公务舱', '5折公务舱', '9折经济舱', '8折头等舱']
+        },
+        toolbox: {
+          show: false,
+          feature: {
+//          mark: {show: true},
+//          dataView: {show: true, readOnly: false},
+            magicType: {
+              show: true,
+              type: ['pie', 'funnel'],
+              option: {
+                funnel: {
+                  x: '25%',
+                  width: '50%',
+                  funnelAlign: 'left',
+                  max: 1548
+                }
+              }
+            }
+//          restore: {show: true},
+//          saveAsImage: {show: true}
+          }
+        },
+        calculable: true,
+        series: [
+          {
+            name: '访问来源',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+              {value: 3350, name: '经济舱'},
+              {value: 310, name: '头等舱'},
+              {value: 234, name: '公务舱'},
+              {value: 35, name: '5折公务舱'},
+              {value: 135, name: '9折经济舱'},
+              {value: 1548, name: '8折头等舱'}
+            ]
+          }
+        ]
+      };
+
+
+      // 为chart对象赋值option
+      cabinChartRate.setOption(cabinOptionRate);
+      $(window).resize(function(){
+        cabinChartRate.resize();
+      });
+
+
+    });
+</script>
+
+</html>
+
