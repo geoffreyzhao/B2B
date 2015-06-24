@@ -1065,10 +1065,27 @@
     });
 
     $(".head-ad-banner").slideDown();
-
+    var timer = appToggleTimer();
     $(".close-ad-icon").click(function(){
         $(".head-ad-banner").slideUp();
+        clearInterval(timer);
     });
+
+    function appToggleTimer() {
+      var date = null,
+          hour = 0;
+
+      return setInterval(function(){
+        date = new Date(),
+        hour = date.getHours();
+
+        if (hour >= 16 && hour <= 20) {  //  显示时间为： 16:00至20:00
+          $(".head-ad-banner").slideDown();
+        } else {
+          $(".head-ad-banner").slideUp();
+        }
+      }, 1000);
+    }
 
 </script>
 
