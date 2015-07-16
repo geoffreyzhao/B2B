@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="../css/swiper.min.css">
+	<link rel="stylesheet" href="../css/zenlx_promotion.css">
+
+	<script type="text/javascript" src="../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/h5/swiper.min.js"></script>
+	<script> 
+	window.onload = function(){
+
+		setTimeout(function(){$('.slide1').find('.out').removeClass('out');},2000);
+		$('.transition-dot')
+
+
+		var oldpage=0;
+		var nowpage=0;
+		var mySwiper = new Swiper('.swiper-container', {
+			direction : 'vertical',
+			preloadImages:true,
+			loop : true,
+			onSlideChangeEnd:function(swiper){
+				nowpage=swiper.activeIndex;
+				if(nowpage>oldpage){
+					$('.swiper-slide').eq(nowpage).find('.out').removeClass('out');
+					oldpage=swiper.activeIndex;
+			    	console.log(swiper.activeIndex);
+				}
+				
+			} 
+		});
+
+
+
+
+	}
+	</script>
+</head>
+<body>
+	<div class="swiper-container">
+	  <div class="swiper-wrapper">
+	    <div class="swiper-slide slide1">
+	    	<img class="out transition" src="../images/mobile/character.png">
+	    	<div class="loading">
+		    	<span class="dotloading dot1 out transition-dot"></span>
+		    	<span class="dotloading dot2 out transition-dot"></span>
+		    	<span class="dotloading dot3 out transition-dot"></span>
+		    	<span class="dotloading dot4 out transition-dot"></span>
+		    	<span class="dotloading dot5 out transition-dot"></span>
+		    	<span class="dotloading dot6 out transition-dot"></span>
+	    	</div>
+	    </div>
+	    <div class="swiper-slide slide2">
+	    	<span>sssssss222222222222ss</span>
+	    </div>
+	    <div class="swiper-slide slide3">slider3</div>
+	  </div>
+	</div>
+	<script type="text/javascript">
+		/*  设置全局 html font-size  */
+		var root = document.getElementsByTagName("html")[0];
+		var w = window.innerWidth >= 750 ? 750 : window.innerWidth;
+		root.style.fontSize = (w / 375) * 20 + "px";
+	</script>
+</body>
+</html>
