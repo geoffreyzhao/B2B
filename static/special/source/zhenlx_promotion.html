@@ -12,10 +12,20 @@
 
 	<script type="text/javascript">
 		var root = document.getElementsByTagName("html")[0],
-			w = window.innerWidth >= 750 ? 750 : window.innerWidth;
+			w = window.innerWidth >= 750 ? 750 : window.innerWidth,
+			h = window.innerHeight >= 1334 ? 1334 : window.innerHeight,
+			base_ratio = 750 / 1334,
+			actual_ratio = window.innerWidth / window.innerHeight;
 
-		// root.style.fontSize = (w / 375) * 20 + "px";
-		root.style.fontSize = "20px";
+		if (actual_ratio >= base_ratio) {  // 宽屏，按高度算
+
+			root.style.fontSize = (h / 667) * 20 + "px";
+
+		} else if (actual_ratio < base_ratio) {  //  长屏，按宽度算
+
+			root.style.fontSize = (w / 375) * 20 + "px";
+		}
+
 		root.style.height = window.innerHeight + "px";
 	</script>
 </head>
@@ -24,11 +34,13 @@
 	<div class="swiper-container">
 	    <div class="swiper-wrapper">
 	        <div class="swiper-slide slide-5">
-	        	<img class="ani img-1" src="../images/mobile/character_5_1.png" alt="" swiper-animate-effect="bounceInLeft" swiper-animate-duration="1s" swiper-animate-delay="0.3s">
+	        	<div style="position: absolute;left:12%;width:17.5rem;height: 11.875rem;">
+	        		<img class="ani img-1" src="../images/mobile/character_5_1.png" alt="" swiper-animate-effect="bounceInLeft" swiper-animate-duration="1s" swiper-animate-delay="0.3s">
+	        		<img class="ani img-3" src="../images/mobile/dialog_5_1.png" alt="" swiper-animate-effect="bounceInRight" swiper-animate-duration="1s" swiper-animate-delay="0.5s">
+	        	</div>
 
 	        	<img class="ani img-2" src="../images/mobile/all-body.png" alt="" swiper-animate-effect="bounceInRight" swiper-animate-duration="1s" swiper-animate-delay="1.5s">
 
-	        	<img class="ani img-3" src="../images/mobile/dialog_5_1.png" alt="" swiper-animate-effect="bounceInRight" swiper-animate-duration="1s" swiper-animate-delay="0.5s">
 
 	        	<img class="ani img-4" src="../images/mobile/dialog_5_2.png" alt="" swiper-animate-effect="bounceInLeft" swiper-animate-duration="1s" swiper-animate-delay="2.8s">
 
