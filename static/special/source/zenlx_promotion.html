@@ -5,31 +5,65 @@
 	<title>Document</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<link rel="stylesheet" href="../css/swiper.min.css">
+	<link rel="stylesheet" href="../css/animate.min.css">
 	<link rel="stylesheet" href="../css/zenlx_promotion.css">
 
 	<script type="text/javascript" src="../../js/jquery.min.js"></script>
 	<script type="text/javascript" src="../../js/h5/swiper.min.js"></script>
+	<script type="text/javascript" src="../../js/h5/swiper.animate.min.js"></script>
 	<script> 
-	window.onload = function(){
+	window.onload = function(){	
+		setInterval(function(){
+			if($('.dotloading').hasClass('out')){
+				/*$('.slide1 .dotloading').each(function(){
+					$(this).addClass('transition-dot'+($(this).index+1));
+				})*/
+				$('.slide1').find('.dotloading').eq(0).addClass('transition-dot1');
+				$('.slide1').find('.dotloading').eq(1).addClass('transition-dot2');
+				$('.slide1').find('.dotloading').eq(2).addClass('transition-dot3');
+				$('.slide1').find('.dotloading').eq(3).addClass('transition-dot4');
+				$('.slide1').find('.dotloading').eq(4).addClass('transition-dot5');
+				$('.slide1').find('.dotloading').eq(5).addClass('transition-dot6');
+				$('.slide1').find('.dotloading').removeClass('out');
 
-		setTimeout(function(){$('.slide1').find('.out').removeClass('out');},2000);
-		$('.transition-dot')
-
-
+			}else{
+				$('.slide1').find('.dotloading').eq(0).removeClass('transition-dot1');
+				$('.slide1').find('.dotloading').eq(1).removeClass('transition-dot2');
+				$('.slide1').find('.dotloading').eq(2).removeClass('transition-dot3');
+				$('.slide1').find('.dotloading').eq(3).removeClass('transition-dot4');
+				$('.slide1').find('.dotloading').eq(4).removeClass('transition-dot5');
+				$('.slide1').find('.dotloading').eq(5).removeClass('transition-dot6');
+				$('.slide1').find('.dotloading').addClass('out');
+			}
+		},3000);
 		var oldpage=0;
 		var nowpage=0;
 		var mySwiper = new Swiper('.swiper-container', {
 			direction : 'vertical',
 			preloadImages:true,
 			loop : true,
+			onInit: function(swiper){ //Swiper2.x的初始化是onFirstInit
+    swiperAnimateCache(swiper); //隐藏动画元素 
+    swiperAnimate(swiper); //初始化完成开始动画
+  }, 
 			onSlideChangeEnd:function(swiper){
-				nowpage=swiper.activeIndex;
-				if(nowpage>oldpage){
-					$('.swiper-slide').eq(nowpage).find('.out').removeClass('out');
-					oldpage=swiper.activeIndex;
-			    	console.log(swiper.activeIndex);
-				}
-				
+				swiperAnimate(swiper);
+				/*nowpage=swiper.activeIndex;*/
+				/*if(nowpage>oldpage){*/
+					$('.swiper-slide').eq(swiper.activeIndex).find('.out').removeClass('out');
+					console.log(swiper.activeIndex);
+					console.log(swiper.previousIndex);
+					$('.swiper-slide').eq(swiper.previousIndex).find('.outin').addClass('out');
+					/*if(nowpage=1){
+						$('.swiper-slide').eq(nowpage).find('.out').removeClass('out');
+						oldpage=swiper.activeIndex;
+				    	console.log(swiper.activeIndex);
+					}else{*/
+						/*$('.swiper-slide').eq(nowpage-1).find('.out').removeClass('out');
+						oldpage=swiper.activeIndex;
+				    	console.log(swiper.activeIndex);*/
+					// }
+				// }
 			} 
 		});
 
@@ -43,27 +77,31 @@
 	<div class="swiper-container">
 	  <div class="swiper-wrapper">
 	    <div class="swiper-slide slide1">
-	    	<img class="out transition" src="../images/mobile/character.png">
+	    	<img class="out outin transition" src="../images/mobile/character.png">
+	    	<img class="hair out outin transition" src="../images/mobile/hair-moving.png">
 	    	<div class="loading">
-		    	<span class="dotloading dot1 out transition-dot"></span>
-		    	<span class="dotloading dot2 out transition-dot"></span>
-		    	<span class="dotloading dot3 out transition-dot"></span>
-		    	<span class="dotloading dot4 out transition-dot"></span>
-		    	<span class="dotloading dot5 out transition-dot"></span>
-		    	<span class="dotloading dot6 out transition-dot"></span>
+		    	<span class="dotloading dot1 out outin transition-dot1"></span>
+		    	<span class="dotloading dot2 out outin transition-dot2"></span>
+		    	<span class="dotloading dot3 out outin transition-dot3"></span>
+		    	<span class="dotloading dot4 out outin transition-dot4"></span>
+		    	<span class="dotloading dot5 out outin transition-dot5"></span>
+		    	<span class="dotloading dot6 out outin transition-dot6"></span>
 	    	</div>
 	    </div>
 	    <div class="swiper-slide slide2">
-	    	<span>sssssss222222222222ss</span>
+	    	<img src="../images/mobile/light.png" class="ani light" swiper-animate-effect="bounceInDown" swiper-animate-duration="0.3s" swiper-animate-delay="0.3s">
+	    	<img src="../images/mobile/character1.png" class="ani charactor1" swiper-animate-effect="bounceInDown" swiper-animate-duration="0.3s" swiper-animate-delay="0.5s">
+	    	<img src="../images/mobile/hairyellow-moving.png " class="ani hairyellow" swiper-animate-effect="fadeIn" swiper-animate-duration="2s" swiper-animate-delay="0.7s">
+	    	<img src="../images/mobile/dialog1.png" class="ani dialog1" swiper-animate-effect="bounceInRight" swiper-animate-duration="0.3s" swiper-animate-delay="1.5s">
+	    	<img src="../images/mobile/character2.png" class="ani character2" swiper-animate-effect="bounceInRight" swiper-animate-duration="0.3s" swiper-animate-delay="1.2s">
+	    	<img src="../images/mobile/hairyellow-moving.png " class="ani hairyellow1" swiper-animate-effect="fadeIn" swiper-animate-duration="0.3s" swiper-animate-delay="1.4s">
+	    	<img src="../images/mobile/though-small.png" class="ani though-small" swiper-animate-effect="bounceInRight" swiper-animate-duration="0.3s" swiper-animate-delay="1.6s">
+	    	<img src="../images/mobile/thought-big.png" class="ani though-big" swiper-animate-effect="bounceInRight" swiper-animate-duration="0.3s" swiper-animate-delay="1.6s">
+	    	<img src="../images/mobile/arrow.png" class="ani arrow" swiper-animate-effect="bounceInRight" swiper-animate-duration="1.5s" swiper-animate-delay="1s">
+	    	<img src="../images/mobile/arrow.png" class="ani arrow" swiper-animate-effect="bounceInRight" swiper-animate-duration="1.5s" swiper-animate-delay="1s">
 	    </div>
 	    <div class="swiper-slide slide3">slider3</div>
 	  </div>
 	</div>
-	<script type="text/javascript">
-		/*  设置全局 html font-size  */
-		var root = document.getElementsByTagName("html")[0];
-		var w = window.innerWidth >= 750 ? 750 : window.innerWidth;
-		root.style.fontSize = (w / 375) * 20 + "px";
-	</script>
 </body>
 </html>
