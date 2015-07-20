@@ -29,7 +29,12 @@
     <![endif]-->
 </head>
 <body>
-
+<div class="head-ad-banner">
+  <div class="head-ad-content">
+    <i class="close-ad-icon"></i>
+    <img src="../../static/images/store/app-dl-forward-small.png"/>
+  </div>
+</div>
 <div class="rightSliderContainer">
     <ul class="rightSlider">
         <li class="rs_news"><div class="newsNum">99</div></li>
@@ -1162,8 +1167,39 @@ $(function(){
             $(".customerCenterItemsPanel").slideDown("fast");
             $(".customerCenterContainer").removeClass("off");
 
-        })
+        });
+
+        $(".head-ad-banner").slideDown(500);
+        $(".internalSearchingBG").animate({
+            "top": "80px"
+        }, 500);
+
+            var timer = appToggleTimer();
+
+            $(".close-ad-icon").click(function(){
+                $(".head-ad-banner").slideUp(500);
+                $(".internalSearchingBG").animate({
+                    "top": "0"
+                }, 500);
+                clearInterval(timer);
+            });
     });
+
+    function appToggleTimer() {
+      var date = null,
+          hour = 0;
+
+      return setInterval(function(){
+        date = new Date(),
+        hour = date.getHours();
+
+        if (hour >= 16 && hour <= 20) {  //  显示时间为： 16:00至20:00
+          $(".head-ad-banner").slideDown();
+        } else {
+          $(".head-ad-banner").slideUp();
+        }
+      }, 1000);
+    }
 </script>
 
 </body>
