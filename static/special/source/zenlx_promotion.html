@@ -29,6 +29,9 @@
 		},
 		onTransitionEnd: function(swiper){
 			swiperAnimate(swiper);
+			if (swiper.activeIndex == 3 || swiper.activeIndex == 5) {
+				$(".slide-6 .youling").removeClass("active");
+			}
 		},
 		watchSlidesProgress: true,
 		onProgress: function(swiper){
@@ -47,6 +50,11 @@
 			for (var i = 0; i < swiper.slides.length; i++){
 				es = swiper.slides[i].style;
 				es.webkitTransitionDuration = es.MsTransitionDuration = es.msTransitionDuration = es.MozTransitionDuration = es.OTransitionDuration = es.transitionDuration = speed + 'ms';
+			}
+		},
+		onTransitionStart: function(swiper) {
+			if (swiper.activeIndex == 4) {
+				$(".slide-6 .youling").addClass("active");
 			}
 		}
 	}); 
@@ -182,10 +190,10 @@
         		<img class="ani img-2" src="../images/mobile/bug1.png" swiper-animate-effect="fadeOut" swiper-animate-duration="0.1s" swiper-animate-delay="0.8s">
         		<img class="ani img-3" src="../images/mobile/bug2.png" swiper-animate-effect="fadeIn" swiper-animate-duration="0.1s" swiper-animate-delay="1.1s">
         		<img class="ani img-4" src="../images/mobile/stars.png" swiper-animate-effect="flash" swiper-animate-duration="1s" swiper-animate-delay="1s">
-        		<img class="ani img-5" src="../images/mobile/youlin1.png">
-        		<img class="ani img-6" src="../images/mobile/youlin2.png">
-        		<img class="ani img-7" src="../images/mobile/youlin3.png">
-        		<img class="ani img-8" src="../images/mobile/youlin4.png">
+        		<img class="ani img-5  youling" src="../images/mobile/youlin1.png">
+        		<img class="ani img-6  youling" src="../images/mobile/youlin2.png">
+        		<img class="ani img-7  youling" src="../images/mobile/youlin3.png">
+        		<img class="ani img-8  youling" src="../images/mobile/youlin4.png">
         	</div>
         	<div class="block-2">
         		<img class="ani img-9" src="../images/mobile/text-1.png" alt="" swiper-animate-effect="rollIn" swiper-animate-duration="0.5" swiper-animate-delay="2s">
