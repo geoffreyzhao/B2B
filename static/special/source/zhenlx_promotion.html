@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="../css/swiper.min.css">
 	<link rel="stylesheet" href="../css/animate.min.css">
 	<link rel="stylesheet" href="../css/zhenlx_promotion.css">
+	<script type="text/javascript" src="../../js/jquery.min.js"></script>
 	<script type="text/javascript" src="../../js/h5/swiper.min.js"></script>
 	<script type="text/javascript" src="../../js/h5/swiper.animate.min.js"></script>
 	<script src="http://10.3.40.219:8080/target/target-script-min.js#anonymous"></script>
@@ -62,13 +63,13 @@
 
 	        		<img class="ani img-4" src="../images/mobile/stars.png" alt="" swiper-animate-effect="flash" swiper-animate-duration="1s" swiper-animate-delay="1s">
 
-	        		<img class="ani img-5" src="../images/mobile/youlin1.png" alt="">
+	        		<img class="ani img-5 youling" src="../images/mobile/youlin1.png" alt="">
 
-	        		<img class="ani img-6" src="../images/mobile/youlin2.png" alt="">
+	        		<img class="ani img-6 youling" src="../images/mobile/youlin2.png" alt="">
 
-	        		<img class="ani img-7" src="../images/mobile/youlin3.png" alt="">
+	        		<img class="ani img-7 youling" src="../images/mobile/youlin3.png" alt="">
 
-	        		<img class="ani img-8" src="../images/mobile/youlin4.png" alt="">
+	        		<img class="ani img-8 youling" src="../images/mobile/youlin4.png" alt="">
 	        	</div>
 
 	        	<div class="block-2">
@@ -120,6 +121,9 @@
 		},
 		onTransitionEnd: function(swiper){
 			swiperAnimate(swiper);
+			if (swiper.activeIndex == 0 || swiper.activeIndex == 2) {
+				$(".slide-6 .youling").removeClass("active");
+			}
 		},
 		watchSlidesProgress: true,
 		onProgress: function(swiper){
@@ -138,6 +142,11 @@
 			for (var i = 0; i < swiper.slides.length; i++){
 				es = swiper.slides[i].style;
 				es.webkitTransitionDuration = es.MsTransitionDuration = es.msTransitionDuration = es.MozTransitionDuration = es.OTransitionDuration = es.transitionDuration = speed + 'ms';
+			}
+		},
+		onTransitionStart: function(swiper) {
+			if (swiper.activeIndex == 1) {
+				$(".slide-6 .youling").addClass("active");
 			}
 		}
 	}); 
