@@ -16,6 +16,7 @@
 	window.onload = function(){	
 		setTimeout(function(){
 			$('.slide1box').hide();
+			audio.play();
 		},1500);
 		var mySwiper = new Swiper ('.swiper-container', {
 		direction : 'vertical',
@@ -58,10 +59,26 @@
 			}
 		}
 	}); 
-	}
+
+	var audio =  document.getElementById("music");
+	$('.musicbtn').on('click',function(){
+		 if(audio.paused){
+            audio.play();
+            this.style.backgroundImage="url(../images/mobile/music_play.png)";
+        }else{
+            audio.pause();
+            this.style.backgroundImage="url(../images/mobile/music_pause.png)";
+        }
+	});
+}
 	</script>
 </head>
 <body>
+<audio loop id="music">
+	<source src="music.mp3" type="audio/mpeg">
+</audio>
+<div class="musicbtn"></div>
+	
 	<div class="slide1box">
 		<div class="slide1-container">
 			<img class="character" src="../images/mobile/character.png"  >
@@ -76,7 +93,6 @@
 	    	</div>
 		</div>
 	</div>
-	
 	<div class="swiper-container">
 	  <div class="swiper-wrapper">    
 	    <div class="swiper-slide slide2">
@@ -161,12 +177,12 @@
 	    	</div>
 	    	<div class="slide4-containter5 ani" swiper-animate-effect="bounceInRight" swiper-animate-duration="0.3s" swiper-animate-delay="0.5s">
 		    	<img src="../images/mobile/character4_1.png" class="character4_1">
+		    	<!-- <div class="handbox">
+		    		<img src="../images/mobile/hand.png" class="hand">
+		    	</div> -->
 		    	<div class="handbox">
 		    		<img src="../images/mobile/hand.png" class="hand">
 		    	</div>
-		    	<!-- <div class="handbox ani"  swiper-animate-effect="bounce" swiper-animate-duration="0.3s" swiper-animate-delay="2s">
-		    		<img src="../images/mobile/hand.png" class="ani hand" swiper-animate-effect="pulse" swiper-animate-duration="0.3s" swiper-animate-delay="8s">
-		    	</div> -->
 		    	<img src="../images/mobile/hairyellow-moving.png" class="hairyellow4_1">
 	    	</div>
 	    	<div class="arrow-containter">
