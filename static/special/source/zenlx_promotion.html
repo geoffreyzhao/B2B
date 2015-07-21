@@ -8,15 +8,18 @@
 	<link rel="stylesheet" href="../css/animate.min.css">
 	<link rel="stylesheet" href="../css/zenlx_promotion.css">
 
-	<script type="text/javascript" src="../../js/jquery.min.js"></script>
-	<script type="text/javascript" src="../../js/h5/swiper.min.js"></script>
-	<script type="text/javascript" src="../../js/h5/swiper.animate.min.js"></script>
+	<script type="text/javascript" src="http://sc1.tdxinfo.com/js/jquery.min.js"></script>
+	<script type="text/javascript" src="http://sc1.tdxinfo.com/js/h5/swiper.min.js"></script>
+	<script type="text/javascript" src="http://sc1.tdxinfo.com/js/h5/swiper.animate.min.js"></script>
 	<script> 
 	$('.slide1box').css({"display":"block"});
 	window.onload = function(){	
 		setTimeout(function(){
 			$('.slide1box').hide();
 			audio.play();
+			if(navigator.userAgent.indexOf("Safari") > -1){
+				$('.musicbtn').css("background-image","url(../images/mobile/music_pause.png)");			
+			}
 		},1500);
 		var mySwiper = new Swiper ('.swiper-container', {
 		direction : 'vertical',
@@ -74,7 +77,7 @@
 	</script>
 </head>
 <body>
-<audio loop id="music">
+<audio loop id="music" preload="auto">
 	<source src="music.mp3" type="audio/mpeg">
 </audio>
 <div class="musicbtn"></div>
