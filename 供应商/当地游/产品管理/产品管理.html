@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <title>旅游 线路管理 线路管理</title>
+    <title>当地游 产品管理</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css">
     <link href="/static/css/kendo.common.css" rel="stylesheet" />
@@ -10,7 +10,7 @@
     <link href="/static/css/supplier.css" rel="stylesheet" />
     <link href="/static/css/kendo.reset.css" rel="stylesheet" />
     <link href="/static/css/supplier_common.css" rel="stylesheet" />
-    <link href="/static/css/supplierTravel.css" rel="stylesheet" />
+    <link href="/static/css/supplierProduct.css" rel="stylesheet" />
 
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/kendo.web.js"></script>
@@ -20,7 +20,6 @@
     <script type="text/javascript" src="/static/js/flight.js"></script>
     <script type="text/javascript" src="/static/js/jquery-ui-1.10.3.custom.js"></script>
     <script type="text/javascript" src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
-
     <script type="text/javascript" src="/static/js/supplier/supplier_travel.js"></script>
         
     <!--[if IE]>
@@ -50,23 +49,19 @@
             <ul class="first-navi">
                 <li class="first-navi-li"><a href="javascript:void(0);">国内机票</a></li>
                 <li class="first-navi-li"><a href="javascript:void(0);">国际机票</a></li>
-                <li class="first-navi-li first-navi-active" style="width:70px;"><a href="javascript:void(0);">旅游</a>
+                <li class="first-navi-li" style="width:50px;"><a href="javascript:void(0);">旅游</a></li>
+                <li class="first-navi-li" style="width:50px;"><a href="javascript:void(0);">签证</a></li>
+                <li class="first-navi-li first-navi-active" style="width:70px;"><a href="javascript:void(0);">当地游</a>
                     <ol class="second-navi">
-                        <li class="second-navi-li"><a href="javascript:void(0);">首页</a>
-                            <div class="navi-slide-hover"></div>
-                        </li>
-                        <li class="second-navi-li second-navi-active"><a href="javascript:void(0);">线路管理</a>
+                        <li class="second-navi-li second-navi-active"><a href="javascript:void(0);">产品管理</a>
                             <div class="navi-slide-hover" style="height:5px;"></div>
-                        </li>
-                        <li class="second-navi-li"><a href="javascript:void(0);">团管理</a>
-                            <div class="navi-slide-hover"></div>
                         </li>
                         <li class="second-navi-li"><a href="javascript:void(0);">订单管理</a>
                             <div class="navi-slide-hover"></div>
                         </li>
                     </ol>
                 </li>
-                <li class="first-navi-li"><a href="javascript:void(0);" style="width:70px;">邮轮</a></li>
+                <li class="first-navi-li"><a href="javascript:void(0);" style="width:50px;">邮轮</a></li>
                 <li class="first-navi-li"><a href="javascript:void(0);">财务管理</a></li>
                 <li class="user-setting-nav" style="display:none;">
                     <ol class="second-navi">
@@ -110,7 +105,7 @@
     <div id="mainContent" class="mainContent travelModule">
         <div class="top-pass-block">
             <ul class="third-navi">
-                <li class="third-navi-li third-navi-active"><a href="javascript:void(0);">全部线路</a></li>
+                <li class="third-navi-li third-navi-active"><a href="javascript:void(0);">全部产品</a></li>
                 <li class="third-navi-li">
                     <a href="javascript:void(0);">待提交</a>
                     <span class="small-info-tip">99+</span>
@@ -131,38 +126,27 @@
          <table class="searchTab">
              <colgroup>
                  <col width="65"/>
-                 <col width="120"/>
+                 <col width="210"/>
                  <col width="65"/>
-                 <col width="120"/>
+                 <col width="250"/>
                  <col width="65"/>
-                 <col width="120"/>
-                 <col width="100"/>
-                 <col width="195"/>
+                 <col width="210"/>
                  <col width=""/>
              </colgroup>
              <tr>
-                 <th>出发地</th>
-                 <td>
-                    <input type="text" id="depCity" />
-                 </td>
                  <th>目的地</th>
                  <td>
-                    <input type="text" id="destCity" />
+                    <input type="text" id="depCity" style="width: 150px;" />
                  </td>
-                 <th>线路编号</th>
+                 <th>产品编号</th>
                  <td>
-                     <input type="text" />
+                    <input type="text" id="destCity" style="width: 195px;" />
                  </td>
-                 <th>
-                     <select data-role="dropdownlist" style="width: 115px;">
-                         <option>售卖线路名称</option>
-                         <option>内部线路名称</option>
-                     </select>
-                 </th>
+                 <th>产品名称</th>
                  <td>
-                     <input type="text" style="width: 175px;" />
+                     <input type="text" style="width: 150px;" />
                  </td>
-                 <td rowspan="2">
+                 <td rowspan="3">
                      <a class="supplierButton brightRedBig_btn">
                          <span class="left"></span>
                          <span class="center center_1">查 询</span>
@@ -171,47 +155,51 @@
                  </td>
              </tr>
              <tr>
-                 <th>线路类型</th>
+                 <th>游玩类型</th>
                  <td>
-                     <select data-role="dropdownlist" style="width: 105px;">
-                         <option>全部</option>
-                         <option>出境游</option>
-                         <option>国内游</option>
-                         <option>周边游</option>
+                     <select data-role="dropdownlist" style="width: 155px;">
+                         <option>请选择</option>
+                         <option>半日游</option>
+                         <option>一日游</option>
                      </select>
                  </td>
-                 <th>线路形态</th>
+                 <th>游玩主题</th>
                  <td>
-                     <select data-role="dropdownlist" style="width: 105px;">
-                         <option>全部</option>
-                         <option>跟团游</option>
-                         <option>自由行</option>
-                         <option>半自助游</option>
-                         <option>当地游</option>
+                     <select data-role="dropdownlist" style="width: 200px;">
+                         <option>请选择</option>
+                         <option>门票</option>
                      </select>
                  </td>
-                 <th>线路状态</th>
-                 <td>
-                     <select data-role="dropdownlist" style="width: 105px;">
-                         <option>全部</option>
-                         <option>待提交</option>
-                         <option>审核中</option>
-                         <option>审核退回</option>
-                         <option>审核通过</option>
-                     </select>
-                 </td>
-                 <th>
-                    售卖状态
-                </th>
+                 <th>产品状态</th>
                 <td>
-                    <label style="margin-left:10px;"><input type="checkbox">售卖中</label>
-                    <label  style="margin-left:15px;"><input type="checkbox">已下线</label>
+                    <select data-role="dropdownlist" style="width: 155px;">
+                        <option>全部</option>
+                        <option>待提交</option>
+                        <option>审核通过</option>
+                        <option>审核退回</option>
+                        <option>已下线</option>
+                    </select>
                 </td>
+             </tr>
+             <tr>
+                 <th>售卖状态</th>
+                 <td>
+                     <label><input type="checkbox">售卖中</label>
+                     <label style="margin-left:15px;"><input type="checkbox">已下线</label>
+                 </td>
+                 <th>录入日期</th>
+                 <td>
+                     <input type="text" class="dpUlt datepicker hideDateTag" placeholder="2014-08-22" style="width: 87px;">
+                     <em> - </em>
+                     <input type="text" class="dpUlt datepicker hideDateTag" placeholder="2014-08-22" style="width: 87px;">
+                 </td>
+                 <th></th>
+                 <td></td>
              </tr>
          </table>
          <table class="commonTab">
          <colgroup>
-             <col width="120"/>
+             <col width="140"/>
              <col width="150"/>
              <col width="300"/>
              <col width="90"/>
@@ -220,225 +208,136 @@
          </colgroup>
          <thead>
          <tr>
-             <th>线路编号</th>
-             <th>类型/形态</th>
-             <th>售卖线路名称/内部线路名称</th>
-             <th>出发地</th>
+             <th>产品编号</th>
+             <th>类型/子类型</th>
+             <th>产品名称</th>
+             <th>目的地</th>
              <th>状态</th>
              <th>操作</th>
          </tr>
          </thead>
          <tbody>
          <tr>
-             <td>1000100000</td>
              <td>
-                 <i class="exitTravel"></i>
-                 <i class="freeWalker"></i>
+                 <a href="javascript:void(0);">150630093635844</a>
              </td>
              <td>
-                <div class="travel-status path-on-sale"></div>
-                <div class="travel-path-text">
+                 <i class="useCars"></i>
+                 <i class="airportPickUp"></i>
+             </td>
+             <td>
+                <div class="travelStatus path-on-sale"></div>
+                <a href="javascript:void(0);" class="travel-path-text">
                      <div class="lineLink">
-                         <a href="javascript:void(0);">美西8日游游游游游游游游游游游游游游游游游游游游游游游游游游游游游</a>
+                         <p>马六甲10小时一日游马六甲10小时一日游马六甲10小时一日游</p>
                      </div>
-                     <div class="lineName">汉子哈尼族</div>
-                </div>
+                </a>
              </td>
-             <td>上海</td>
+             <td>普吉岛</td>
              <td>待提交</td>
              <td>
-                 <a href="javascript:void(0);">发送审核</a>
+                 <a href="javascript:void(0);" class="ac-audit">发送审核</a>
                  <a href="javascript:void(0);">编辑 </a>
                  <a href="javascript:void(0);">复制</a>
-                 <a href="javascript:void(0);" class="ac-journal">日志</a>
+                 <a href="javascript:void(0);" class="ac-lineJournal">日志</a>
              </td>
          </tr>
          <tr>
-             <td>1000100000</td>
              <td>
-                 <i class="inlandTravel"></i>
-                 <i class="groupTravel"></i>
+                 <a href="javascript:void(0);">150630093635844</a>
              </td>
              <td>
-                 <div class="lineLink">
-                     <a href="javascript:void(0);">美西8日游游游游游游游</a>
-                 </div>
+                 <i class="useCars"></i>
+                 <i class="airportPickUp"></i>
              </td>
-             <td>上海</td>
-             <td>待提交</td>
              <td>
-                 <a href="javascript:void(0);">发送审核</a>
+                <div class="travelStatus path-on-sale"></div>
+                <a href="javascript:void(0);" class="travel-path-text">
+                     <div class="lineLink">
+                         <p>马六甲10小时一日游马六甲10小时一日游马六甲10小时一日游</p>
+                     </div>
+                </a>
+             </td>
+             <td>马来西亚</td>
+             <td class="greenFonts">审核通过</td>
+             <td>
+                 <a href="javascript:void(0);" class="ac-audit">放弃新版</a>
                  <a href="javascript:void(0);">编辑 </a>
                  <a href="javascript:void(0);">复制</a>
-                 <a href="javascript:void(0);" class="ac-journal">日志</a>
+                 <a href="javascript:void(0);" class="ac-lineJournal">日志</a>
              </td>
          </tr>
-         <tr>
-             <td>1000100000</td>
+         <tr class="grayFonts">
              <td>
-                 <i class="rimTravel"></i>
-                 <i class="localTravel"></i>
+                 <a href="javascript:void(0);" class="grayFontsLink">150630093635844</a>
              </td>
              <td>
-                 <div class="lineLink">
-                     <a href="javascript:void(0);">美西8日游游游游游游游游游游游游游游游游游游游游游游游游游游游游游</a>
-                 </div>
-                 <div class="lineName">汉子哈尼族</div>
-             </td>
-             <td>上海</td>
-             <td>
-                 <div class="redFonts">审核退回</div>
-                 <div>
-                     <a href="javascript:void(0);" style="font-size: 12px;">查看售卖中线路</a>
-                 </div>
+                 <i class="useCars grayUseCars"></i>
+                 <i class="airportPickUp grayAirportPickUp"></i>
              </td>
              <td>
+                <div class="travelStatus path-off-line"></div>
+                <a href="javascript:void(0);" class="travel-path-text">
+                     <div class="lineLink">
+                         <p>马六甲10小时一日游马六甲10小时一日游</p>
+                     </div>
+                </a>
+             </td>
+             <td>美国</td>
+             <td>已下线</td>
+             <td>
+                 <a href="javascript:void(0);">编辑 </a>
                  <a href="javascript:void(0);">复制</a>
+                 <a href="javascript:void(0);" class="ac-lineJournal">日志</a>
              </td>
          </tr>
          <tr>
-             <td>1000100000</td>
              <td>
-                 <i class="exitTravel"></i>
-                 <i class="semiSelfService"></i>
+                 <a href="javascript:void(0);">150630093635844</a>
              </td>
              <td>
-                 <div class="lineLink">
-                     <a href="javascript:void(0);">美西8日游游游游游游游游游游游游游游游游游游游游游游游游游游游游游</a>
-                 </div>
-                 <div class="lineName">赐给你赶快来</div>
+                 <i class="useCars"></i>
+                 <i class="airportPickUp"></i>
              </td>
-             <td>上海</td>
+             <td>
+                 <div class="travelStatus path-on-sale"></div>
+                 <a href="javascript:void(0);" class="travel-path-text">
+                     <div class="lineLink">
+                         <p>马六甲10小时一日游</p>
+                     </div>
+                 </a>
+             </td>
+             <td>普吉岛</td>
              <td class="greenFonts">审核通过</td>
              <td>
                  <a href="javascript:void(0);">编辑 </a>
                  <a href="javascript:void(0);">复制</a>
+                 <a href="javascript:void(0);" class="ac-lineJournal">日志</a>
              </td>
          </tr>
-         <tr class="grayFonts">
-             <td>1000100000</td>
+         <tr>
              <td>
-                 <i class="grayExitTravel"></i>
-                 <i class="graySemiSelfService"></i>
+                 <a href="javascript:void(0);">150630093635844</a>
              </td>
              <td>
-                <div class="travel-status path-off-line"></div>
-                 <div class="travel-path-text">
+                 <i class="useCars"></i>
+                 <i class="airportPickUp"></i>
+             </td>
+             <td>
+                 <div class="travelStatus path-on-sale"></div>
+                 <a href="javascript:void(0);" class="travel-path-text">
                      <div class="lineLink">
-                         <a href="javascript:void(0);">美西8日游游游游游游游游游游游游游游游游游游游游游游游游游游游游游</a>
+                         <p>马六甲10小时一日游</p>
                      </div>
-                     <div class="lineName">汉子哈尼族</div>
-                </div>
+                 </a>
              </td>
-             <td>上海</td>
+             <td>埃塞俄比亚</td>
+             <td class="redFonts">审核退回</td>
              <td>
-                 <div>已下线</div>
-                 <div>
-                     <a href="javascript:void(0);" style="font-size: 12px;">查看历史版本</a>
-                 </div>
-             </td>
-             <td>
-                 <a href="javascript:void(0);">发送审核</a>
+                 <a href="javascript:void(0);" class="ac-seeCause">查看原因</a>
                  <a href="javascript:void(0);">编辑 </a>
                  <a href="javascript:void(0);">复制</a>
-                 <a href="javascript:void(0);" class="ac-journal">日志</a>
-             </td>
-         </tr>
-         <tr>
-             <td>1000100000</td>
-             <td>
-                 <i></i>
-                 <i></i>
-             </td>
-             <td>
-                 <div class="lineLink">
-                    <a href="javascript:void(0);">美西8日游</a>
-                 </div>
-             </td>
-             <td>上海</td>
-             <td>待提交</td>
-             <td>
-                 <a href="javascript:void(0);">发送审核</a>
-                 <a href="javascript:void(0);">编辑 </a>
-                 <a href="javascript:void(0);">复制</a>
-                 <a href="javascript:void(0);" class="ac-journal">日志</a>
-             </td>
-         </tr>
-         <tr>
-             <td>1000100000</td>
-             <td>
-                 <i></i>
-                 <i></i>
-             </td>
-             <td>
-                 <div class="lineLink">
-                     <a href="javascript:void(0);">美西8日游</a>
-                 </div>
-             </td>
-             <td>上海</td>
-             <td>待提交</td>
-             <td>
-                 <a href="javascript:void(0);" class="ac-returnReasons">查看原因</a>
-                 <a href="javascript:void(0);">编辑 </a>
-                 <a href="javascript:void(0);">复制</a>
-             </td>
-         </tr>
-         <tr>
-             <td>1000100000</td>
-             <td>
-                 <i></i>
-                 <i></i>
-             </td>
-             <td>
-                 <div class="lineLink">
-                     <a href="javascript:void(0);">美西8日游</a>
-                 </div>
-             </td>
-             <td>上海</td>
-             <td>待提交</td>
-             <td>
-                 <a href="javascript:void(0);" class="ac-returnReasons">查看原因</a>
-                 <a href="javascript:void(0);">编辑 </a>
-                 <a href="javascript:void(0);">复制</a>
-                 <a href="javascript:void(0);" class="ac-journal">日志</a>
-             </td>
-         </tr>
-         <tr>
-             <td>1000100000</td>
-             <td>
-                 <i></i>
-                 <i></i>
-             </td>
-             <td>
-                 <div class="lineLink">
-                     <a href="javascript:void(0);">美西8日游</a>
-                 </div>
-             </td>
-             <td>上海</td>
-             <td>待提交</td>
-             <td>
-                 <a href="javascript:void(0);">发送审核</a>
-                 <a href="javascript:void(0);">编辑 </a>
-                 <a href="javascript:void(0);">复制</a>
-             </td>
-         </tr>
-         <tr>
-             <td>1000100000</td>
-             <td>
-                 <i></i>
-                 <i></i>
-             </td>
-             <td>
-                 <div class="lineLink">
-                     <a href="javascript:void(0);">美西8日游</a>
-                 </div>
-             </td>
-             <td>上海</td>
-             <td>待提交</td>
-             <td>
-                 <a href="javascript:void(0);">发送审核</a>
-                 <a href="javascript:void(0);">编辑 </a>
-                 <a href="javascript:void(0);">复制</a>
+                 <a href="javascript:void(0);" class="ac-lineJournal">日志</a>
              </td>
          </tr>
          </tbody>
@@ -479,176 +378,136 @@
         </div>
     </div>
 
-    <script type="text/x-kendo-template" id="ac-returnReasons-template">
-        <p class="causeContent">退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明
-            文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回
-            说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回说明文字退回
-            说明文字退回说明文字退回说明文字此处省略200字</p>
-        <div class="pullRightStyle">
+    <script type="text/x-kendo-template" id="ac-seeCause-template">
+        <p class="lineNumberWindow">产品编号 1487855555666 &nbsp; 马六甲10小时一日游</p>
+        <div class="seeContent">
+            <h3 class="title">退回原因：</h3>
+            <p>请核实该团期报价。与同类产品相差过大。请核实该团期报价。与同类产品相差过大。</p>
+        </div>
+        <div class="centerStyleBtn">
             <a class="supplierButton brightRedBig_btn">
                 <span class="left"></span>
-                <span class="center center_1">查 询</span>
+                <span class="center">确 定</span>
                 <span class="right"></span>
             </a>
         </div>
     </script>
 
-    <script type="text/x-kendo-template" id="ac-journal-template">
-        <table class="commonTab">
-            <colgroup>
-                <col width="350"/>
-                <col width="140"/>
-                <col width="70"/>
-            </colgroup>
-            <thead>
-            <th>操作记录</th>
-            <th>操作时间</th>
-            <th>操作人</th>
-            </thead>
-            <tbody>
-            <tr>
-                <td>
-                    <div class="limitWidth">操作记录操作记录操作记录操作记录操操作作记录操作记录操作记录操作</div>
-                </td>
-                <td>2014-09-21  18:01</td>
-                <td>客服</td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="limitWidth">操作记录操作记录操作记录操作记录操操作作记录操作记录操作记录操作</div>
-                </td>
-                <td>2014-09-21  18:01</td>
-                <td>admin</td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="limitWidth">操作记录操作记录操作记录操作记录</div>
-                </td>
-                <td>2014-09-21  18:01</td>
-                <td>admin</td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="limitWidth">操作记录操作记录操作记录操作记录</div>
-                </td>
-                <td>2014-09-21  18:01</td>
-                <td>admin</td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="limitWidth">操作记录操作记录操作记录操作记录</div>
-                </td>
-                <td>2014-09-21  18:01</td>
-                <td>admin</td>
-            </tr>
-            </tbody>
-        </table>
-        <div class="grid-table-pagination">
-              <span class="grid-table-count">
-                  共 <em>132</em> 条记录
-              </span>
-              <span>
-                  <a href="javascript:void(0);" class="prev">&nbsp;</a>
-              </span>
-              <span class="links">
-                  <a href="javascript:void(0);">1</a>
-                  <a href="javascript:void(0);">2</a>
-                  <a href="javascript:void(0);" class="current">3</a>
-                  <a href="javascript:void(0);">4</a>
-                  <a href="javascript:void(0);">5</a>
-                  <a href="javascript:void(0);" class="ellipsis">...</a>
-                  <a href="javascript:void(0);">50</a>
-              </span>
-              <span>
-                  <a href="javascript:void(0);" class="next">&nbsp;</a>
-              </span>
-        </div>
-        <div class="pullRightStyle">
-            <a class="supplierButton brightRedBig_btn">
-                <span class="left"></span>
-                <span class="center center_1">关 闭</span>
-                <span class="right"></span>
-            </a>
-        </div>
-    </script>
-
-    <!-- <script type="text/x-kendo-template" id="city_popup">
-        <div class="tcy_tabstrip">
-            <span class="tcy_title">
-                可直接输入中文的城市/机场/三字码
-            </span>
-            <ul>
-            <li id="hot_city" class="k-state-active">热门</li>
-            # for (var i=0; i<data.group.length; i++ ) { #
-            <li>#= data.group[i] #</li>
-            # } #
-            </ul>
-            <div id="hot_city_tab">
-                <ul class="tcy_list clearfix">
-
-                # for(var j=0;j<hotcitylist.length;j++){ #
-                #   var citylist_item = hotcitylist[j] #
-                    <li class="item" title="#= citylist_item.code #" data-code="#= citylist_item.code #">#= citylist_item.name #</li>
-                # } #
-                </ul>
-            </div>
-
-            # for(var i=0;i<data.citylist.length;i++){ #
-                # var citylist_item = data.citylist[i] #
-                <div class="city_tab">
-                    <ul class="tcy_list clearfix">
-                      # for(var k=0;k<data.group[i].length;k++){ #
-                        <li class="tcy_list_sep">#= data.group[i].split('')[k] #</li>
-                        # for(var j=0;j<citylist_item.value.length;j++){ #
-                            # var citylist_value_item = citylist_item.value[j]; #
-                            # if(citylist_value_item.py.slice(0,1) == data.group[i].split('')[k]) {#
-                                <li class="item" title="#= citylist_value_item.code #" data-code="#= citylist_value_item.code #">#= citylist_value_item.name #</li>
-                            # } #
-                        # } #
-                      # } #
-                    </ul>
+    <script type="text/x-kendo-template" id="ac-lineJournal-template">
+        <b class="addTitleContent">共<em>100</em>条记录</b>
+        <ul class="journalList">
+            <li>
+                <i class="journalIcon"></i>
+                <i class="journalLeftLine"></i>
+                <div class="journalTitle">
+                    <label>2013-06-24 &nbsp; 15:20</label>
+                    <em>潘小美</em>
                 </div>
-            # } #
+                <p class="journalP">操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作</p>
+            </li>
+            <li>
+                <i class="journalIcon"></i>
+                <i class="journalLeftLine"></i>
+                <div class="journalTitle">
+                    <label>2013-06-24 &nbsp; 15:20</label>
+                    <em>潘小美</em>
+                </div>
+                <p class="journalP">操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作</p>
+            </li>
+            <li>
+                <i class="journalIcon"></i>
+                <i class="journalLeftLine"></i>
+                <div class="journalTitle">
+                    <label>2013-06-24 &nbsp; 15:20</label>
+                    <em>潘小美</em>
+                </div>
+                <p class="journalP">操作操作操作操作操作操作操作操作操作操作操作作操作操作操作操作操作操作操作作操作操作操作</p>
+            </li>
+            <li>
+                <i class="journalIcon"></i>
+                <i class="journalLeftLine"></i>
+                <div class="journalTitle">
+                    <label>2013-06-24 &nbsp; 15:20</label>
+                    <em>潘小美</em>
+                </div>
+                <p class="journalP">操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作作操作操作操作</p>
+            </li>
+            <li>
+                <i class="journalIcon"></i>
+                <i class="journalLeftLine"></i>
+                <div class="journalTitle">
+                    <label>2013-06-24 &nbsp; 15:20</label>
+                    <em>潘小美</em>
+                </div>
+                <p class="journalP">操作操作操作操作操作操作操作操作操作操作操作操作操作操作操作</p>
+            </li>
+        </ul>
+    </script>
+
+    <script type="text/x-kendo-template" id="ac-audit-template">
+        <p class="auditWindowContent">确认本产品所有信息已录入完毕?</p>
+        <div class="centerStyleBtn">
+            <a class="supplierButton brightRedBig_btn ac-auditSure">
+                <span class="left"></span>
+                <span class="center">确 定</span>
+                <span class="right"></span>
+            </a>
+            <a href="javascript:void(0);" class="cancel">取 消</a>
         </div>
     </script>
 
-    <script type="text/javascript">
-        CityAutocomplete({
-            template: "#city_popup",
-            input: "#depCity",
-            // 以@分割热门非热门，以;分割条目，以|分割三字码拼音和中文
-            url:'/static/js/data.txt',
-            group: ["热门", "ABCDEF", "GHJ", "KLMN", "PQRSTW", "XYZ"]
-        });
-
-        CityAutocomplete({
-            template: "#city_popup",
-            input: "#destCity",
-            // 以@分割热门非热门，以;分割条目，以|分割三字码拼音和中文
-            url:'/static/js/data.txt',
-            group: ["热门", "ABCDEF", "GHJ", "KLMN", "PQRSTW", "XYZ"]
-        });
-    </script> -->
+    <script type="text/x-kendo-template" id="ac-auditSure-template">
+        <p class="auditWindowContent">请点击编辑继续录入图片或有效的售价信息。</p>
+        <div class="centerStyleBtn">
+            <a class="supplierButton brightRedBig_btn">
+                <span class="left"></span>
+                <span class="center">确 定</span>
+                <span class="right"></span>
+            </a>
+        </div>
+    </script>
     
     <script type="text/javascript">
         $(function(){
-            var ac_window = new PopWindow('.ac-returnReasons',{
-                title:'退回原因',
-                width:'550',
-                template:'#ac-returnReasons-template'
+            $(".lineLink").each(function(){
+                var divH = $(this).height();
+                var $p = $("p", $(this)).eq(0);
+                while ($p.outerHeight() > divH) {
+                    $p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
+                }
+            });
+
+            var ac_window = new PopWindow('.ac-lineJournal',{
+                title:'操作日志',
+                width:'600',
+                wrapperClass:'addTitleStyle',
+                template:'#ac-lineJournal-template'
             }).init();
 
-            var ac_window = new PopWindow('.ac-journal',{
-                title:'日志',
-                width:'600',
-                template:'#ac-journal-template'
+            var ac_window = new PopWindow('.ac-seeCause',{
+                title:'退回原因',
+                width:'450',
+                template:'#ac-seeCause-template'
+            }).init();
+
+            var ac_window = new PopWindow('.ac-audit',{
+                title:'发送审核',
+                width:'360',
+                template:'#ac-audit-template'
+            }).init();
+
+            var ac_window = new PopWindow('.ac-auditSure',{
+                title:'发送审核',
+                width:'360',
+                template:'#ac-auditSure-template'
             }).init();
 
             // 日期控件
+
             $.datepicker.regional[ "zh-CN" ];
             $(function(){
                 $( ".datepicker" ).datepicker({
-                    showDay:true,
+                    //showDay:true,
                     numberOfMonths:[1,2],
                     minDate :new Date(),
                     firstDay:0,
