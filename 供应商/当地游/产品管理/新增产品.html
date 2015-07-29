@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>当地游 产品管理 新增产品</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css">
+    <link rel="stylesheet" href="/static/css/kendo.common.min.css" />        
+    <link href="/static/css/kendo.common.css" rel="stylesheet" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" />
+    <link href="/static/css/common.css" rel="stylesheet" />
+    <link href="/static/css/supplier.css" rel="stylesheet" />
+    <link href="/static/css/supplier_common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link href="/static/css/supplierProduct.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
+    <script type="text/javascript" src="/static/js/scrollFix.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/flight.js"></script>
+    <script type="text/javascript" src="/static/js/supplier/supplier_travel.js"></script> 
+        
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+
+    <!--[if lt IE 8]> 
+    <link rel="stylesheet" href="/static/css/ie.css" /> 
+    <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
+    <![endif]-->
+    <script type="text/javascript" src="/static/js/supplier/supplier_sync.js"></script>
+    <!-- @CLB@ -->
+        <style type="text/css">
+            .lineWeight {
+                box-shadow:none;
+            }
+            .k-button.k-upload-button {
+                width: 188px;
+                height: 123px;
+                position: absolute;
+                left: -140px;
+                top: -70px;
+                opacity: 0;
+                background: none!important;                
+            }
+        </style>
+    </head>
+<body>
+    
+    <div class="bg-header-repeat">
+        <div class="bg-header-top"></div>
+        <div class="navi-split-line"></div>
+        <div class="main-header"></div>
+    </div>
+    <div id="container" class="new-container">
+        <div class="header-top-center">
+            <div class="head-left">
+                <div class="supplier-logo"></div>
+            </div>
+            <ul class="first-navi">
+                <li class="first-navi-li"><a href="javascript:void(0);">国内机票</a></li>
+                <li class="first-navi-li"><a href="javascript:void(0);">国际机票</a></li>
+                <li class="first-navi-li" style="width:50px;"><a href="javascript:void(0);">旅游</a></li>
+                <li class="first-navi-li" style="width:50px;"><a href="javascript:void(0);">签证</a></li>
+                <li class="first-navi-li first-navi-active" style="width:70px;"><a href="javascript:void(0);">当地游</a>
+                    <ol class="second-navi">
+                        <li class="second-navi-li second-navi-active"><a href="javascript:void(0);">产品管理</a>
+                            <div class="navi-slide-hover" style="height:5px;"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">订单管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                    </ol>
+                </li>
+                <li class="first-navi-li"><a href="javascript:void(0);" style="width:50px;">邮轮</a></li>
+                <li class="first-navi-li"><a href="javascript:void(0);">财务管理</a></li>
+                <li class="user-setting-nav" style="display:none;">
+                    <ol class="second-navi">
+                        <li class="second-navi-li"><a href="javascript:void(0);">我的账号</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">公司信息</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">员工管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">角色管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">账户设置</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);"><span style="font-size:14px;">OFFICE</span>管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                    </ol>
+                </li>
+            </ul>
+            <div class="head-right">
+                <ul class="feature">
+                    <li class="notice-icon-active"></li>
+                    <li class="split-line"></li>
+                    <li class="person-info">
+                        <span class="person-icon"></span>
+                        <span class="person-name" title="zhaoshuaigeng12312321">zhaoshuaigeng12312321</span>
+                        <a class="logout" href="javascript:void(0);">退出</a>
+                        <span class="user-setting">设置</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="sub_menu_bar"></div>    
+    
+         <div class="mainContent changeMainContent">
+             <div class="top-pass-block">
+                 <ul class="third-navi">
+                     <li class="third-navi-li third-navi-active"><a href="javascript:void(0);">新增当地游</a></li>
+                     <li class="third-navi-li">
+                         <a href="javascript:void(0);">详细信息</a>
+                     </li>
+                     <li class="third-navi-li">
+                         <a href="javascript:void(0);"> 销售管理</a>
+                     </li>
+                 </ul>
+             </div>
+             <div class="mainBodyHead" id="bodyTopFixed">
+                <span class="lineNum">产品编号：2356985455959849845</span>
+                <span class="mainBodyOper">
+                    <span>
+                        <a class="adaptiveButton brightBtn normalButton">
+                            <span class="left"></span>
+                            <span class="center center_2">保存信息</span>
+                            <span class="right"></span>
+                        </a>
+                    </span>
+                    <span>
+                        <a class="adaptiveButton brightBtn brightBtn-blue">
+                            <span class="left"></span>
+                            <span class="center center_2">提交审核</span>
+                            <span class="right"></span>
+                        </a>
+                    </span>
+                </span>
+             </div>
+             <table class="basicInfoTable">
+                 <colgroup>
+                     <col width="110">
+                     <col width="">
+                 </colgroup>
+                 <tbody>
+                 <tr class="firstTr">
+                     <th><em class="redFonts">*</em>产品名称</th>
+                     <td style="position:relative;">
+                        <input class="path-name" type="text" name="" style="width: 455px;"/>
+                        <span class="path-name-input-tip">
+                            <span class="tip-arrow tip-arrow-left"></span>
+                            <span>示例：美国东海岸+夏威夷+加拿大温哥华16日跟团游</span>
+                        </span>
+                        <div class="path-name-error-tip">
+                            <span class="error-arrow error-arrow-left"></span>
+                            <span>名称不得为空</span>
+                        </div>
+                     </td>
+                 </tr>
+                 <tr>
+                     <th>外部编码</th>
+                     <td><input type="text" name="" style="width: 455px;"/></td>
+                 </tr>
+                 <tr>
+                     <th><em class="redFonts">*</em>游玩类型</th>
+                     <td>
+                         <select data-role="dropdownlist" style="width: 105px;">
+                             <option>请选择</option>
+                             <option>当地玩乐</option>
+                             <option>游玩票务</option>
+                             <option>交通接驳</option>
+                             <option>通讯和其他</option>
+                         </select>
+                         <em> - </em>
+                         <select data-role="dropdownlist" style="width: 105px;">
+                             <option>请选择</option>
+                         </select>
+                     </td>
+                 </tr>
+                 <tr>
+                     <th><em class="redFonts">*</em>目的地</th>
+                     <td>
+                         <span class="placeBox">上海<i></i></span>
+                         <span class="placeBox">武汉<i></i></span>
+                         <span class="placeBox">天津<i></i></span>
+                         <span class="addPlaceBox ac-selectCity"><i></i>添加城市</span>
+                     </td>
+                 </tr>
+                 <tr>
+                     <th>游玩时长</th>
+                     <td>
+                         <select data-role="dropdownlist" style="width: 105px;">
+                             <option>0天</option>
+                             <option selected>1天</option>
+                             <option>2天</option>
+                         </select>
+                         <em> - </em>
+                         <select data-role="dropdownlist" style="width: 105px;">
+                             <option>0小时</option>
+                             <option selected>1小时</option>
+                             <option>2小时</option>
+                         </select>
+                     </td>
+                 </tr>
+                 <tr>
+                     <th class="verticalTop">游玩主题</th>
+                     <td>
+                         <div class="themeLabel">
+                             <span>海洋公园</span>
+                             <span>城市观光</span>
+                             <span class="current">户外运动</span>
+                             <span>自然风光</span>
+                             <span>餐饮美食</span>
+                             <span>观光大巴</span>
+                             <span>温泉SPA</span>
+                             <span>景点门票</span>
+                             <span>时尚购物</span>
+                             <span>当地探险</span>
+                             <span>移动wifi</span>
+                             <span>滑雪</span>
+                         </div>
+                     </td>
+                 </tr>
+                 <tr>
+                     <th class="verticalTop"><em class="redFonts">*</em>特色</th>
+                     <td>
+                         <textarea class="textareaMark"></textarea>
+                     </td>
+                 </tr>
+                 <tr>
+                     <th class="verticalTop">上传照片</th>
+                     <td>
+                         <ul class="uploadImgBlock">
+                             <li>
+                                 <img src="/static/images/supplier/uploadImg01.jpg"/>
+                                 <p><span>左移</span><span>右移</span><span class="last del-spot-picture">删除</span></p>
+                             </li>
+                             <li class="uploadingBox">
+                                 <div class="uploadBar"><span class="uploadinged"></span></div>
+                                 <div style="color: #0074d2;">上传中</div>
+                             </li>
+                             <li>
+                                 <img src="/static/images/supplier/uploadImg01.jpg"/>
+                                 <p><span>左移</span><span>右移</span><span class="last del-spot-picture">删除</span></p>
+                             </li>
+                             <li class="addImgBox">
+                                 <i></i>添加照片
+                                 <input type="file">
+                             </li>
+                             <li class="uploadImgWhiteBtn"></li>
+                         </ul>
+                         <ul class="uploadImgBlock">
+                             <li>
+                                 <img src="/static/images/supplier/uploadImg01.jpg"/>
+                                 <p><span>左移</span><span>右移</span><span class="last del-spot-picture">删除</span></p>
+                             </li>
+                         </ul>
+                     </td>
+                 </tr>
+                 </tbody>
+             </table>
+         </div>   
+    </div>
+    
+    <div id="extFooter">
+        <div>
+            <p>
+            <a href="javascript:void(0);">关于我们</a>&nbsp;|
+            <a href="javascript:void(0);">微博</a>&nbsp;|
+            <a href="javascript:void(0);">服务条款</a>&nbsp;|
+            <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+        
+    <script type="text/x-kendo-template" id="ac-selectCity-template">
+            <div>
+                <select style="width: 462px;" data-role="dropdownlist" id="cityDropdownlist">
+                    <option>请选择</option>
+                    <option>全部</option>
+                    <option>华南</option>
+                    <option>华东</option>
+                    <option>华北</option>
+                </select>
+            </div>
+            <ul class="selectCountry clearfix">
+                <li>上海<i class="closeIcon"></i></li>
+                <li>江苏<i class="closeIcon"></i></li>
+                <li>哈尔宾<i class="closeIcon"></i></li>
+                <li>南昌<i class="closeIcon"></i></li>
+                <li>广东<i class="closeIcon"></i></li>
+                <li class="current">浙江<i class="closeIcon"></i></li>
+            </ul>
+            <ul class="variousCities clearfix">
+                <li class="current">上海</li>
+                <li class="current">上海上海</li>
+                <li>上海上海 上海上海上海</li>
+                <li>上海上海上海上海</li>
+                <li>上海</li>
+                <li>上海</li>
+                <li>上海</li>
+                <li>上海上海 上海</li>
+                <li>上海上海上海上海</li>
+                <li>上海</li>
+                <li>上海</li>
+                <li>上海</li>
+                <li>上海上海上海上海上海</li>
+                <li>上海上海上海 上海</li>
+                <li>上海上海上海上海</li>
+                <li>上海</li>
+                <li>上海</li>
+                <li>上海上海</li>
+                <li>上海</li>
+                <li>上海上海上海上海</li>
+                <li>上海上海</li>
+                <li>上海上海上海上海上海上海</li>
+            </ul>
+            <div class="cityBtn clearfix">
+                <div class="selectBtn">
+                    <button>全选</button>
+                    <button>反选</button>
+                    <label>共选择<b class="redFonts">2</b>个城市</label>
+                </div>
+                <div class="rightOperationA">
+                    <a class="adaptiveButton brightRed_btn">
+                        <span class="left"></span>
+                        <span class="center" style="padding: 0 30px">确 定</span>
+                        <span class="right"></span>
+                    </a>
+                    <a href="javascript:void(0);" class="cancelA">取消</a>
+                </div>
+            </div>
+    </script>  
+        
+    
+<script>
+    $(function(){
+        $("#bodyTopFixed").fixedBar();
+
+        new PopWindow('.ac-selectCity',{
+            template:'#ac-selectCity-template',
+            title:'选择城市',
+            width:'500'
+        }).init();
+
+        $("#cityDropdownlist").kendoDropDownList({
+            height: '250'
+        });
+
+        // 删除上传照片
+        $(".del-spot-picture").click(function(){
+            $(this).parents('li').remove();
+        });
+
+        $("input[type='file']").kendoUpload({
+            localization: {
+                select: ""
+            },
+            showFileList: false
+        });
+
+        $("body").delegate('.uploadImgWhiteBtn', 'mouseenter', function(){
+            $(this).addClass("uploadImgBlueBtn");
+        }).delegate('.uploadImgWhiteBtn', 'mouseleave', function(){
+            $(this).removeClass("uploadImgBlueBtn");
+        });
+        
+        $(".themeLabel span").click(function(){
+            if($(".themeLabel span.current").length<3) {
+                $(this).addClass("current");
+            }
+        });
+        
+    })
+</script>
+
+</body>
+</html>
