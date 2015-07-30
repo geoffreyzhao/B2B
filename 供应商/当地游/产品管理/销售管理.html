@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>当地游 产品管理 销售管理</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css">
+    <link href="/static/css/kendo.common.css" rel="stylesheet" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" />
+    <link href="/static/css/common.css" rel="stylesheet" />
+    <link href="/static/css/supplier.css" rel="stylesheet" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link href="/static/css/supplier_common.css" rel="stylesheet" />
+    <link href="/static/css/supplierProduct.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="/static/js/scrollFix.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/flight.js"></script>
+    <script charset="utf-8" src="/static/js/kindeditor.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+    <script type="text/javascript" src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+    <script type="text/javascript" src="/static/js/supplier/supplier_travel.js"></script>
+        
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+        
+    <!--[if lt IE 8]> 
+    <link rel="stylesheet" href="/static/css/ie.css" /> 
+    <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
+    <![endif]-->
+    <script type="text/javascript" src="/static/js/supplier/supplier_sync.js"></script>
+    <!-- @CLB@ -->
+    </head>
+<body>
+
+    <div class="bg-header-repeat">
+        <div class="bg-header-top"></div>
+        <div class="navi-split-line"></div>
+        <div class="main-header"></div>
+    </div>
+
+    <div id="container" class="new-container">
+        <div class="header-top-center">
+            <div class="head-left">
+                <div class="supplier-logo"></div>
+            </div>
+            <ul class="first-navi">
+                <li class="first-navi-li"><a href="javascript:void(0);">国内机票</a></li>
+                <li class="first-navi-li"><a href="javascript:void(0);">国际机票</a></li>
+                <li class="first-navi-li" style="width:50px;"><a href="javascript:void(0);">旅游</a></li>
+                <li class="first-navi-li" style="width:50px;"><a href="javascript:void(0);">签证</a></li>
+                <li class="first-navi-li first-navi-active" style="width:70px;"><a href="javascript:void(0);">当地游</a>
+                    <ol class="second-navi">
+                        <li class="second-navi-li second-navi-active"><a href="javascript:void(0);">产品管理</a>
+                            <div class="navi-slide-hover" style="height:5px;"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">订单管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                    </ol>
+                </li>
+                <li class="first-navi-li"><a href="javascript:void(0);" style="width:50px;">邮轮</a></li>
+                <li class="first-navi-li"><a href="javascript:void(0);">财务管理</a></li>
+                <li class="user-setting-nav" style="display:none;">
+                    <ol class="second-navi">
+                        <li class="second-navi-li"><a href="javascript:void(0);">我的账号</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">公司信息</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">员工管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">角色管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">账户设置</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);"><span style="font-size:14px;">OFFICE</span>管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                    </ol>
+                </li>
+            </ul>
+            <div class="head-right">
+                <ul class="feature">
+                    <li class="notice-icon-active"></li>
+                    <li class="split-line"></li>
+                    <li class="person-info">
+                        <span class="person-icon"></span>
+                        <span class="person-name" title="zhaoshuaigeng12312321">zhaoshuaigeng12312321</span>
+                        <a class="logout" href="javascript:void(0);">退出</a>
+                        <span class="user-setting">设置</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="sub_menu_bar"></div>
+
+        <div class="mainContent changeMainContent">
+            <div class="top-pass-block">
+                <ul class="third-navi">
+                    <li class="third-navi-li"><a href="javascript:void(0);">新增当地游</a></li>
+                    <li class="third-navi-li">
+                        <a href="javascript:void(0);">详细信息</a>
+                    </li>
+                    <li class="third-navi-li third-navi-active">
+                        <a href="javascript:void(0);">销售管理</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="mainBodyHead" id="bodyTopFixed">
+               <div class="lineNum"><b>马六甲海峡10日当地游</b><span>产品编号：<em>2356985455959849845</em></span></div>
+               <span class="mainBodyOper">
+                   <span>
+                       <a class="adaptiveButton brightBtn normalButton">
+                           <span class="left"></span>
+                           <span class="center center_2">保存信息</span>
+                           <span class="right"></span>
+                       </a>
+                   </span>
+                   <span>
+                       <a class="adaptiveButton brightBtn brightBtn-blue">
+                           <span class="left"></span>
+                           <span class="center center_2">提交审核</span>
+                           <span class="right"></span>
+                       </a>
+                   </span>
+               </span>
+            </div>
+            <div class="saleInfo">
+                <div class="setGroupHead">
+                    <!-- <b>设置团期</b>
+                    <span><em>团号：</em><input type="text"/></span> -->
+                    <span class="tr-datepicker input-date">
+                            <em>日期 : </em> 
+                            <span class="tr-datepicker-bg">
+                                <input type="text" class="dpUlt datepicker" placeholder="2014-08-22"/> 
+                                <u>—</u>
+                                <input type="text" class="dpUlt datepicker" placeholder="2014-08-22"/>
+                            </span>
+                    </span>
+                    <span class="rectangeBtn rectangeBlue">搜索</span>
+                </div>
+                <div class="setGroupBar">
+                    <span class="addspan"><i></i>添加</span>
+                    <!-- <span class="batchEditspan"><i></i>批量编辑</span>
+                    <span class="batchDelspan"><i></i>批量删除</span> -->
+                </div>
+                 <!--列表内容 开始-->
+                <div style="position: relative" class="groupStageTabBox">
+                    <table class="groupStageTab">
+                        <colgroup>
+                            <col width="125"/>
+                            <col width="55"/>
+                            <col width="76"/>
+                            <col width="92"/>
+                            <col width="76"/>
+                            <col width="92"/>
+                            <col width="76"/>
+                            <col width="92"/>
+                            <col width="76"/>
+                            <col width="92"/>
+                            <col width="85"/>
+                            <col width="60"/>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>日期</th>
+                                <th>库存</th>
+                                <th class="deepergray">价格类别</th>
+                                <th class="deepergray">结算价<br>建议售卖价</th>
+                                <th>价格类别</th>
+                                <th>结算价<br>建议售卖价</th>
+                                <th class="deepergray">价格类别</th>
+                                <th class="deepergray">结算价<br>建议售卖价</th>
+                                <th>价格类别</th>
+                                <th>结算价<br>建议售卖价</th>
+                                <th class="deepergray">附加服务</th>
+                                <th class="deepergray">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox"/>2014-07-09</td>
+                                <td><span class="red">5</span></td>
+                                <td class="adultbg">12-99</td>
+                                <td class="adultbg">200/230</td>
+                                <td class="kidsbg">2-12</td>
+                                <td class="kidsbg">200/230</td>
+                                <td class="babybg">0-2</td>
+                                <td class="babybg">200/230</td>
+                                <td class="oldpeoplebg">64-99</td>
+                                <td class="oldpeoplebg">200/230</td>
+                                <td><a href="javascript:void(0);" class="blue underline">查看详情</a></td>
+                                <td><span  class="blue underline editGroup">编辑</span><br><span  class="blue underline delGroup">删除</span></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/>2014-07-09</td>
+                                <td><span>30</span></td>
+                                <td class="adultbg">12-99</td>
+                                <td class="adultbg">200/230</td>
+                                <td class="kidsbg">2-12</td>
+                                <td class="kidsbg">200/230</td>
+                                <td class="babybg">0-2</td>
+                                <td class="babybg">200/230</td>
+                                <td class="oldpeoplebg">64-99</td>
+                                <td class="oldpeoplebg">200/230</td>
+                                <td><a href="javascript:void(0);" class="blue">查看详情</a></td>
+                                <td><!-- <span  class="blue underline">编辑</span><br><span  class="blue underline">删除</span> --></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/>2014-07-09</td>
+                                <td><span>30</span></td>
+                                <td class="adultbg">12-99</td>
+                                <td class="adultbg">200/230</td>
+                                <td class="kidsbg">2-12</td>
+                                <td class="kidsbg">200/230</td>
+                                <td class="babybg">0-2</td>
+                                <td class="babybg">200/230</td>
+                                <td class="oldpeoplebg">64-99</td>
+                                <td class="oldpeoplebg">200/230</td>
+                                <td><a href="javascript:void(0);" class="blue">查看详情</a></td>
+                                <td><!-- <span  class="blue underline">编辑</span><br><span  class="blue underline">删除</span> --></td>
+                            </tr><tr>
+                                <td><input type="checkbox"/>2014-07-09</td>
+                                <td><span>30</span></td>
+                                <td class="adultbg">12-99</td>
+                                <td class="adultbg">200/230</td>
+                                <td class="kidsbg">2-12</td>
+                                <td class="kidsbg">200/230</td>
+                                <td class="babybg">0-2</td>
+                                <td class="babybg">200/230</td>
+                                <td class="oldpeoplebg">64-99</td>
+                                <td class="oldpeoplebg">200/230</td>
+                                <td><a href="javascript:void(0);" class="blue">查看详情</a></td>
+                                <td><!-- <span  class="blue underline">编辑</span><br><span  class="blue underline">删除</span> --></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"/>2014-07-09</td>
+                                <td><span>30</span></td>
+                                <td class="adultbg">12-99</td>
+                                <td class="adultbg">200/230</td>
+                                <td class="kidsbg">2-12</td>
+                                <td class="kidsbg">200/230</td>
+                                <td class="babybg">0-2</td>
+                                <td class="babybg">200/230</td>
+                                <td class="oldpeoplebg">64-99</td>
+                                <td class="oldpeoplebg">200/230</td>
+                                <td><a href="javascript:void(0);" class="blue">查看详情</a></td>
+                                <td><!-- <span  class="blue underline">编辑</span><br><span  class="blue underline">删除</span> --></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="personTypeBox">
+                        <div class="adultBox"><i>成人价</i></div><div class="kidsBox"><i>儿童价</i></div><div class="babyBox"><i>婴儿价</i></div><div class="oldpeopleBox"><i>长者价</i></div>
+                    </div>
+                </div>
+                <!--列表内容 结束-->
+                <div class="grid-table-pagination">
+                      <span class="grid-table-count">
+                          共 <em>132</em> 条记录
+                      </span>
+                      <span>
+                          <a href="javascript:void(0);" class="prev">&nbsp;</a>
+                          <!--<a href="#" class="prev noIcon">&nbsp;</a>-->  <!--加 class="noIcon" 将隐藏小箭头-->
+                      </span>
+                      <span class="links">
+                          <a href="javascript:void(0);">1</a>
+                          <a href="javascript:void(0);">2</a>
+                          <a href="javascript:void(0);" class="current">3</a>
+                          <a href="javascript:void(0);">4</a>
+                          <a href="javascript:void(0);">5</a>
+                          <a href="javascript:void(0);" class="ellipsis">...</a>
+                          <a href="javascript:void(0);">50</a>
+                      </span>
+                      <span>
+                          <a href="javascript:void(0);" class="next">&nbsp;</a>
+                      </span>
+                </div>
+            </div>  
+        </div>
+</div>
+
+    <div id="extFooter">
+        <div>
+            <p>
+            <a href="javascript:void(0);">关于我们</a>&nbsp;|
+            <a href="javascript:void(0);">微博</a>&nbsp;|
+            <a href="javascript:void(0);">服务条款</a>&nbsp;|
+            <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+</body>
+</html>
+
+<!-- 添加 -->
+<script type="text/x-kendo-template" id="addGrouptemplate">
+        <table class="groupWindowTable">
+            <colgroup>
+                <col width="50"/>
+                <col width="100"/>
+                <col width="90"/>
+                <col width="100"/>
+            </colgroup>
+            <tbody>
+            <tr>
+                <th>日期：</th>
+                <td><input type="text" style="width:85px;"/></td>
+                <td><span class="batchAddBlock"><i></i>批量添加</span></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>团号：</th>
+                <td><input type="text" style="width: 85px;"/></td>
+                <td>20140709</td>
+                <td><input type="checkbox"/>铁定成团</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="tableWrap">
+        <table class="groupWindowTable">
+            <colgroup>
+                <col width="50"/>
+                <col width="56"/>
+                <col width="120"/>
+                <col width="100"/>
+                <col width="100"/>
+                <col width="70"/>
+                <col width=""/>
+            </colgroup>
+            <tbody>
+            <tr>
+                <th><span class="adultIcon">成人</span></th>
+                <th>结算价：</th>
+                <td><input type="text"/>元</td>
+                <th>建议售卖价：</th>
+                <td><input type="text"/>元</td>
+                <th rowspan="2">库存：</th>
+                <td rowspan="2"><input type="text"/>个</td>
+            </tr>
+            <tr>
+                <th><span class="kidsIcon">儿童</span></th>
+                <th>结算价：</th>
+                <td><input type="text"/>元</td>
+                <th>建议售卖价：</th>
+                <td><input type="text"/>元</td>
+            </tr>
+            <tr>
+                <th></th>
+                <th>单房差：</th>
+                <td><input type="text"/>元</td>
+                <th>星级：</th>
+                <td>
+                    <select style="">
+                        <option>不限</option>
+                        <option>五星</option>
+                        <option>四星</option>
+                        <option>三星</option>
+                    </select>
+                </td>
+                <th>库存预警：</th>
+                <td><input type="text" />个</td>
+            </tr>
+            <tr>
+                <th colspan="2">提前预定：</th>
+                <td colspan="5"><input type="text"/>天<span>（工作日）</span></td>
+            </tr>
+            </tbody>
+        </table>
+        </div>        
+        
+        <div class="pullCenterStyle">
+            <a class="supplierButton brightRedBig_btn">
+                <span class="left"></span>
+                <span class="center">确 定</span>
+                <span class="right"></span>
+            </a>
+            <a href="javascript:void(0);" class="cancelA">取消</a>
+        </div>
+</script>
+<!-- 批量添加 -->
+<script type="text/x-kendo-template" id="batchAddBlocktemplate">
+    <table class="groupWindowTable">
+        <colgroup>
+            <col width="45"/>
+            <col width="250"/>
+        </colgroup>
+        <tbody>
+        <tr>
+            <td colspan="2" style="font-size: 12px;">如，日期范围内(不超过3个月)，每周一或周三</td>
+        </tr>
+        <tr>
+            <th>日期：</th>
+            <td>
+                <span class="tr-datepicker input-date">
+                <span class="tr-datepicker-bg">
+                    <input type="text" class="dpUlt datepicker" style="width:100px;"/> 
+                    <u>—</u>
+                    <input type="text" class="dpUlt datepicker" style="width:100px;"/> 
+                </span>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <th>星期：</th>
+            <td>
+                <div class="weekBar">
+                  <span>一</span>  
+                  <span class="currentWeek">二</span>  
+                  <span>三</span>  
+                  <span>四</span>  
+                  <span>五</span>  
+                  <span>六</span>  
+                  <span>日</span>  
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="pullCenterStyle">
+        <a class="supplierButton brightBtn-blue">
+            <span class="left"></span>
+            <span class="center">添 加</span>
+            <span class="right"></span>
+        </a>
+    </div>
+</script>
+<!-- 编辑 -->
+<script type="text/x-kendo-template" id="editGrouptemplate">
+    <table class="groupWindowTable">
+        <colgroup>
+            <col width="50"/>
+            <col width="100"/>
+            <col width="90"/>
+            <col width="100"/>
+        </colgroup>
+        <tbody>
+        <tr>
+            <th>日期：</th>
+            <td><input type="text" style="width:85px;" placeholder="2014-07-09"/></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>团号：</th>
+            <td colspan="2"><input type="text" style="width: 150px;" placeholder="HAWAI20140709-2 "/></td>
+            <td><input type="checkbox"/>铁定成团</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="tableWrap">
+        <table class="groupWindowTable">
+            <colgroup>
+                <col width="50"/>
+                <col width="56"/>
+                <col width="120"/>
+                <col width="90"/>
+                <col width="110"/>
+                <col width="80"/>
+                <col width=""/>
+            </colgroup>
+            <tbody>
+            <tr>
+                <th><span class="adultIcon">成人</span></th>
+                <th>结算价：</th>
+                <td><input type="text"/>元</td>
+                <th>建议售卖价：</th>
+                <td><input type="text"/>元</td>
+                <th>剩余库存：</th>
+                <td><span class="cf1">5</span></td>
+            </tr>
+            <tr>
+                <th><span class="kidsIcon">儿童</span></th>
+                <th>结算价：</th>
+                <td><input type="text"/>元</td>
+                <th>建议售卖价：</th>
+                <td><input type="text"/>元</td>
+                <th colspan="2" style="text-align: left;">
+                    <select>
+                        <option>添加库存</option>
+                        <option>减少库存</option>
+                    </select>
+                    <input type="text" placeholder="111"/> 个 
+                </th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>单房差：</th>
+                <td><input type="text"/>元</td>
+                <th>星级：</th>
+                <td>
+                    <select style="">
+                        <option>不限</option>
+                        <option>五星</option>
+                        <option>四星</option>
+                        <option>三星</option>
+                    </select>
+                </td>
+                <th>库存预警：</th>
+                <td><input type="text" />个</td>
+            </tr>
+            <tr>
+                <th colspan="2">提前预定：</th>
+                <td colspan="5"><input type="text"/>天<span>（工作日）</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pullCenterStyle">
+        <a class="supplierButton brightRedBig_btn">
+            <span class="left"></span>
+            <span class="center">确 定</span>
+            <span class="right"></span>
+        </a>
+        <a href="javascript:void(0);" class="cancelA">取消</a>
+    </div>
+</script>
+<!-- 删除 -->
+<script type="text/x-kendo-template" id="delGrouptemplate">
+    <table class="groupWindowTable" style="width:100%">
+        <tbody>
+        <tr>
+            <td style="text-align: center;">确定删除本条销售信息吗？</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="pullCenterStyle">
+        <a class="supplierButton brightRedBig_btn">
+            <span class="left"></span>
+            <span class="center">确 定</span>
+            <span class="right"></span>
+        </a>
+        <a href="javascript:void(0);" class="cancelA changeMargin">取消</a>
+    </div>
+</script>
+<script>
+	$(function(){
+		$("#bodyTopFixed").fixedBar();
+
+        $('.delbtn').click(function(){
+            $(this).parent('td').parent('tr').remove();
+        });
+
+        /*添加集合信息按钮点击*/
+        $('.addGatherInfo').click(function(){
+
+        })
+
+
+
+        var ac_window = new PopWindow('.addspan',{
+            title:'添加日期和价格',
+            width:'640',
+            template:'#addGrouptemplate'
+        }).init();
+
+        var ac_window = new PopWindow('.batchAddBlock',{
+            title:'批量添加',
+            width:'350',
+            template:'#batchAddBlocktemplate'
+        }).init();
+
+        var ac_window = new PopWindow('.editGroup',{
+            title:'编辑',
+            width:'640',
+            template:'#editGrouptemplate'
+        }).init();
+
+        var ac_window = new PopWindow('.delGroup',{
+            title:'删除',
+            width:'350',
+            template:'#delGrouptemplate'
+        }).init();
+
+
+        // 日期控件
+
+        $.datepicker.regional[ "zh-CN" ];
+        $(function(){
+            $( ".datepicker" ).datepicker({
+                //showDay:true,
+                numberOfMonths:[1,2],
+                minDate :new Date(),
+                firstDay:0,
+                showButtonPanel :true
+            });
+        });
+        
+	})
+</script>
