@@ -148,7 +148,7 @@
          			</tr>
          			<tr>
          				<th>有效日期</th>
-         				<td><input type="text" style="width:96px;"></td>
+         				<td><input type="text" class="dpUlt datepicker hideDateTag" placeholder="2014-08-22" style="width:96px;"></td>
          			</tr>
          			<tr>
          				<th>限制说明</th>
@@ -192,9 +192,9 @@
          			<tr>
          				<th>营业时间</th>
          				<td>
-         					<input type="text" style="width:95px;" value="2015-07-26">
+         					<input type="text" style="width:95px;" class="dpUlt datepicker hideDateTag" placeholder="2014-08-22">
          					<em> — </em>
-         					<input type="text" style="width:95px;" value="2015-07-26">
+         					<input type="text" style="width:95px;" class="dpUlt datepicker hideDateTag" placeholder="2014-08-22">
          				</td>
          			</tr>
          			<tr>
@@ -248,6 +248,18 @@
          						</thead>
          						<tbody>
          							<tr>
+                                        <td>08:30</td>
+                                        <td>香港</td>
+                                        <td>旺角维景酒店大堂旺角维景酒店大堂</td>
+                                        <td><span class="delbtn"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>08:30</td>
+                                        <td>香港</td>
+                                        <td>旺角维景酒店大堂旺角维景酒店大堂</td>
+                                        <td><span class="delbtn"></span></td>
+                                    </tr>
+                                    <tr>
          								<td>08:30</td>
          								<td>香港</td>
          								<td>旺角维景酒店大堂旺角维景酒店大堂</td>
@@ -308,5 +320,28 @@
 <script>
 	$(function(){
 		$("#bodyTopFixed").fixedBar();
+
+        $('.delbtn').click(function(){
+            $(this).parent('td').parent('tr').remove();
+        });
+
+        /*添加集合信息按钮点击*/
+        $('.addGatherInfo').click(function(){
+
+        })
+
+        // 日期控件
+
+            $.datepicker.regional[ "zh-CN" ];
+            $(function(){
+                $( ".datepicker" ).datepicker({
+                    //showDay:true,
+                    numberOfMonths:[1,2],
+                    minDate :new Date(),
+                    firstDay:0,
+                    showButtonPanel :true
+                });
+            });
+        
 	})
 </script>
