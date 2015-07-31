@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>运营商 产品管理 订单查询</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.common.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link href="/static/css/operatorCommonHeader.css" rel="stylesheet">
+    <link href="/static/css/operatorLocalTravel.css" rel="stylesheet" type="text/css"/>
+    
+    <script src="/static/js/jquery.min.js" type="text/javascript"></script>    
+    <script src="/static/js/kendo.web.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/static/js/scrollFix.js"></script>
+    <script type="text/javascript" src="/static/js/public.js"></script>
+
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/static/css/ie.css" />
+    <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/static/js/sync.js"></script>
+    <!-- @CLB@ -->
+    
+    <script>
+        $(function(){
+            kendo.init('body');
+        })
+    </script>
+    
+</head>
+<body>
+    <div id="head">
+        <div></div>
+    </div>
+    <div id="catalogue"></div>
+
+    <div class="main-wrapper" id="container">
+        <div class="logo">
+            <div class="clearfix">
+                <h1></h1>
+                <div class="profile">
+                    <a href="javascript:void(0)">你好,千颂伊</a>
+                    <a href="javascript:void(0)">退出</a>
+                </div>
+            </div>
+            <ul id="catalogue_menu">
+                <li class="">
+                    <a href="javascript:void(0)">国内机票</a>
+                </li>
+                <li><a href="javascript:void(0)">国际机票</a></li>
+                <li><a href="javascript:void(0)">酒店</a></li>
+                <li><a href="javascript:void(0)">打包产品</a></li>
+                <li><a href="javascript:void(0)">旅游</a></li>
+                <li class="current">
+                    <a href="javascript:void(0)">当地游</a>
+                    <ol class="subMenu">
+                        <li class="currentSubMenu"><a href="javascript:void(0)">产品管理</a></li>
+                        <li><a href="javascript:void(0)">售价维护</a></li>
+                        <li><a href="javascript:void(0)">订单查询</a></li>
+                    </ol>
+                </li>
+                <li><a href="javascript:void(0)">邮轮</a></li>
+                <li><a href="javascript:void(0)">签证</a></li>
+                <li><a href="javascript:void(0)">保险</a></li>
+                <li><a href="javascript:void(0)">短信</a></li>
+                <li><a href="javascript:void(0)">通用订单</a></li>
+                <li><a href="javascript:void(0)">票证</a></li>
+                <li><a href="javascript:void(0)">财务</a></li>
+                <li><a href="javascript:void(0)">客户</a></li>
+                <li><a href="javascript:void(0)">设置</a></li>
+            </ul>
+            <div class="headerMessage clearfix">
+                <div id="msgNum">
+                    <span>消息</span>
+                    <em>30</em>
+                </div>
+            </div>
+        </div>
+			<!-- start content -->
+        <section class="main-body clearfix">    
+            <div class="topFixedToolsBar">
+                <div class="fixedMenu nomargin">
+                  <a href="javascript:void(0);" class="current">订单查询</a>
+                </div>                  
+           </div>            
+            
+            <div class="information_div">
+               <table cellpadding="0" cellspacing="0" class="information_tab">
+                  <colgroup>
+                       <col width="70" />  
+                       <col width="200" /> 
+                       <col width="60" />
+                       <col width="270" /> 
+                       <col width="70" /> 
+                       <col width="220" />
+                       <col width="95" />
+                  </colgroup>
+                  <tr>
+                     <td>订单号</td>
+                     <td>
+                         <input type="text"style="width: 145px;">
+                     </td>
+                     <td>产品编号</td>
+                     <td>
+                         <input type="text" style="width:145px;">
+                     </td>
+                     <td>产品名称</td>
+                     <td>
+                         <input type="text" style="width: 118px;" />
+                     </td>
+                     <td rowspan="3">
+                         <a href="javascript:;" class="button_important adaptiveButton medium">
+                            <span class="left"></span>
+                            <span class="center" style="padding:0 25px;">查 询</span>
+                            <span class="right"></span>
+                        </a>
+                     </td>
+                  </tr> 
+                  <tr>
+                      <td>订单状态</td>
+                      <td>
+                          <select style="width:150px;" data-role="dropdownlist">
+                              <option>请选择</option>
+                              <option selected="">状态一</option>
+                              <option>状态二</option>
+                              <option>状态三</option>
+                              <option>状态四</option>
+                          </select>
+                          <!-- <em> - </em>
+                          <select style="width:75px;" data-role="dropdownlist">
+                              <option selected="">请选择</option>
+                              <option>半日游</option>
+                              <option>一日游</option>
+                          </select> -->
+                      </td>
+                      <td>创建日期</td>
+                      <td>
+                          <input type="text" class="datepicker" style="width:96px;" value="2013-09-30"/>
+                          <em> 至 </em>
+                          <input type="text" class="datepicker orange" style="width:96px;" value="2013-10-07"/>
+                      </td>
+                      <td>供应商名称</td>
+                      <td>
+                          <input type="text" style="width: 120px;"/>
+                          <button class="btns btn-search ac-search-user" role="window_trigger">查询</button>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>采购商名称</td>
+                      <td>
+                          <input type="text" style="width: 120px;"/>
+                          <button class="btns btn-search ac-search-user" role="window_trigger">查询</button>
+                      </td>
+                      <td>旅行日期</td>
+                      <td>
+                          <input type="text" class="datepicker" style="width:96px;" value="2013-09-30"/>
+                          <em> 至 </em>
+                          <input type="text" class="datepicker orange" style="width:96px;" value="2013-10-07"/>
+                      </td>
+                      <td></td>
+                      <td></td>
+                     <!--  <td>订单状态</td>
+                     <td>
+                         <select style="width:150px;" data-role="dropdownlist">
+                             <option>请选择</option>
+                             <option selected="">状态一</option>
+                             <option>状态二</option>
+                             <option>状态三</option>
+                             <option>状态四</option>
+                         </select>
+                         <em> - </em>
+                         <select style="width:75px;" data-role="dropdownlist">
+                             <option selected="">请选择</option>
+                             <option>半日游</option>
+                             <option>一日游</option>
+                         </select>
+                     </td> -->            
+                  </tr>
+               </table>              
+            </div>           
+              
+              <table class="tgrid" style="table-layout:fixed;">
+                  <colgroup>
+                      <col width="70"/>
+                      <col width="90"/>
+                      <col width="145"/>
+                      <col width="150"/>
+                      <col width="70"/>
+                      <col width="105"/>
+                      <col width="115"/>
+                      <col width="120"/>
+                      <col width="105"/>
+                  </colgroup>
+                  <thead>
+                      <tr>
+                          <th class="line_left" style="text-align:center;">操作</th>
+                          <th>订单状态</th>
+                          <th>订单号</th>
+                          <th>产品名称</th>
+                          <th>数量</th>
+                          <th>附加产品</th>
+                          <th>合计费用</th>
+                          <th>采购商名称</th>
+                          <th class="line_right">供应商名称  </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td style="text-align:center;">
+                             <a href="javascript:void(0);"></a>
+                          </td>
+                          <td>支付完成</td>
+                          <td><a href="javascript:void(0);">2014051600011904</a></td>
+                          <td><a href="javascript:void(0);">香港迪士尼门票</a></td>
+                          <td>2/1</td>
+                          <td><a href="javascript:void(0);">查看</a></td>
+                          <td class="f60">3725.00</td>
+                          <td>采购商A</td>
+                          <td>供应商A</td>
+                      </tr>
+                      <tr>
+                          <td style="text-align:center;">
+                             <a href="javascript:void(0);"></a>
+                          </td>
+                          <td>已取消</td>
+                          <td><a href="javascript:void(0);">2014051600011904</a></td>
+                          <td><a href="javascript:void(0);">香港迪士尼门票</a></td>
+                          <td>2/1</td>
+                          <td><a href="javascript:void(0);">查看</a></td>
+                          <td class="f60">3725.00</td>
+                          <td>采购商A</td>
+                          <td>供应商A</td>
+                      </tr>
+                      <tr>
+                          <td style="text-align:center;">
+                             <a href="javascript:void(0);">取消</a>
+                          </td>
+                          <td>创建</td>
+                          <td><a href="javascript:void(0);">2014051600011904</a></td>
+                          <td><a href="javascript:void(0);">香港迪士尼门票</a></td>
+                          <td>2/1</td>
+                          <td><a href="javascript:void(0);">查看</a></td>
+                          <td class="f60">3725.00</td>
+                          <td>采购商A</td>
+                          <td>供应商A</td>
+                      </tr>
+                      <tr>
+                          <td style="text-align:center;">
+                             <a href="javascript:void(0);"></a>
+                          </td>
+                          <td>支付失败</td>
+                          <td><a href="javascript:void(0);">2014051600011904</a></td>
+                          <td><a href="javascript:void(0);">香港迪士尼门票</a></td>
+                          <td>2/1</td>
+                          <td><a href="javascript:void(0);">查看</a></td>
+                          <td class="f60">3725.00</td>
+                          <td>采购商A</td>
+                          <td>供应商A</td>
+                      </tr>
+                      <tr>
+                          <td style="text-align:center;">
+                             <a href="javascript:void(0);">取消</a>
+                          </td>
+                          <td>创建</td>
+                          <td><a href="javascript:void(0);">2014051600011904</a></td>
+                          <td><a href="javascript:void(0);">香港迪士尼门票</a></td>
+                          <td>2/1</td>
+                          <td><a href="javascript:void(0);">查看</a></td>
+                          <td class="f60">3725.00</td>
+                          <td>采购商A</td>
+                          <td>供应商A</td>
+                      </tr>
+                      <tr>
+                          <td style="text-align:center;">
+                             <a href="javascript:void(0);"></a>
+                          </td>
+                          <td>支付失败</td>
+                          <td><a href="javascript:void(0);">2014051600011904</a></td>
+                          <td><a href="javascript:void(0);">香港迪士尼门票</a></td>
+                          <td>2/1</td>
+                          <td><a href="javascript:void(0);">查看</a></td>
+                          <td class="f60">3725.00</td>
+                          <td>采购商A</td>
+                          <td>供应商A</td>
+                      </tr>
+                      <tr>
+                          <td style="text-align:center;">
+                             <a href="javascript:void(0);">取消</a>
+                          </td>
+                          <td>创建</td>
+                          <td><a href="javascript:void(0);">2014051600011904</a></td>
+                          <td><a href="javascript:void(0);">香港迪士尼门票</a></td>
+                          <td>2/1</td>
+                          <td><a href="javascript:void(0);">查看</a></td>
+                          <td class="f60">3725.00</td>
+                          <td>采购商A</td>
+                          <td>供应商A</td>
+                      </tr>
+              </tbody>
+          </table>
+          
+          <div class="grid-table-pagination page">
+              <span class="grid-table-count">
+                  共 <em>132</em> 条记录
+              </span>
+              <span>
+                  <a href="#" class="prev">&nbsp;</a>
+              </span>
+              <span class="links">
+                  <a href="#">1</a>
+                  <a href="#">2</a>
+                  <a href="#" class="current">3</a>
+                  <a href="#">4</a>
+                  <a href="#">5</a>
+                  <a href="javascript:;">...</a>
+                  <a href="#">50</a>
+              </span>
+              <span>
+                  <a href="#" class="next">&nbsp;</a>
+              </span>
+          </div>
+        </section>
+    </div>
+    <!-- end of content -->
+    
+    <div id="extFooter">
+        <div>
+            <p>
+                <a href="javascript:void(0);">关于我们</a>&nbsp;|
+                <a href="javascript:void(0);">微博</a>&nbsp;|
+                <a href="javascript:void(0);">服务条款</a>&nbsp;|
+                <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+    
+</body>
+</html>
