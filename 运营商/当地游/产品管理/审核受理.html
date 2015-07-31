@@ -10,7 +10,7 @@
     <link href="/static/css/b2b.css" rel="stylesheet" type="text/css" />
     <link href="/static/css/kendo.reset.css" rel="stylesheet" />
     <link href="/static/css/operatorCommonHeader.css" rel="stylesheet">
-    <link href="/static/css/operatorLocalTravelProduct.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/operatorLocalTravel.css" rel="stylesheet" type="text/css"/>
     
     <script src="/static/js/jquery.min.js" type="text/javascript"></script>    
     <script src="/static/js/kendo.web.js" type="text/javascript"></script>
@@ -116,8 +116,77 @@
                             <span class="c2">【更多操作日志】</span>
                         </td>
                     </tr>
-                </table>               
+                </table>
             </div>
+            <div class="commonModule">
+                <ul class="informationList clearfix">
+                    <li class="current">基本信息</li>
+                    <li>详细信息</li>
+                    <li>售价信息</li>
+                </ul>
+                <section class="infoChangeContent">
+                    <div class="inforList">
+                        <table class="baseInfoTab">
+                            <colgroup>
+                                <col width="130">
+                                <col width="670">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th>采购商售卖名称：</th>
+                                <td>
+                                    <input type="text" placeholder="富士山、芦之湖、箱根一日游（东京出发，含新干线车票）" style="width: 320px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>目的地：</th>
+                                <td>东京</td>
+                            </tr>
+                            <tr>
+                                <th>游玩类别：</th>
+                                <td>一日游/景点</td>
+                            </tr>
+                            <tr>
+                                <th>游玩时长：</th>
+                                <td>0.5天3小时</td>
+                            </tr>
+                            <tr>
+                                <th>游玩主题：</th>
+                                <td>城市观光，海洋公园，户外活动</td>
+                            </tr>
+                            <tr>
+                                <th class="verticalTop">特色：</th>
+                                <td>从东京出发，游览日本最注明的景点。前往热门的富士山第五火车站，乘船观光芦之湖，乘坐空中缆车至苟月山山顶，观壮丽的大涌谷火山山谷。最后，乘坐新干线火车回东京，让您拥有一次无忧无虑的旅行</td>
+                            </tr>
+                            <tr>
+                                <th class="verticalTop">宣传图片：</th>
+                                <td>
+                                    <ul class="uploadImgBlock">
+                                        <li>
+                                            <img src="/static/images/supplier/uploadImg01.jpg"/>
+                                            <p><span>左移</span><span>右移</span><span class="last del-spot-picture">删除</span></p>
+                                        </li>
+                                        <li>
+                                            <img src="/static/images/supplier/uploadImg01.jpg"/>
+                                            <p><span>左移</span><span>右移</span><span class="last del-spot-picture">删除</span></p>
+                                        </li>
+                                        <li class="addImgBox">
+                                            <i></i>添加照片
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="inforList" style="display: none;">
+                        没内容
+                    </div>
+                    <div class="inforList" style="display: none;">
+                        等待中……
+                    </div>
+                </section>
+            </div>            
         </section>
     </div>
     <!-- end of content -->
@@ -138,8 +207,17 @@
     $(function(){
         kendo.init('body');
         
-        $(".actions").fixedBar();
+        $(".actions").scrollFix();
         
+        $(".informationList li").each(function(index){
+            $(this).click(function(){
+                $(".commonModule .inforList").hide();
+                $(".commonModule .inforList:eq(" + index + ")").show();
+                $(".informationList li").removeClass("current");
+                $(this).addClass("current");
+            });
+
+        });
     });
 </script>
 
