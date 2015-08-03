@@ -15,6 +15,7 @@
     <script src="/static/js/jquery.min.js" type="text/javascript"></script>    
     <script src="/static/js/kendo.web.js" type="text/javascript"></script>
     <script type="text/javascript" src="/static/js/scrollFix.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
     <script type="text/javascript" src="/static/js/public.js"></script>
 
     <!--[if IE]>
@@ -134,7 +135,7 @@
                     <tr>
                         <th>供应商</th>
                         <td>
-                            <a class="button_secondary adaptiveButton small" href="javascript:void(0);">
+                            <a class="button_secondary adaptiveButton small ac-selectSupplier" href="javascript:void(0);">
                                 <span class="left"></span>
                                 <span class="center center_1">选择供应商</span>
                                 <span class="right"></span>
@@ -400,17 +401,149 @@
             <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
+
+    <script type="text/x-kendo-template" id="ac-selectSupplier-template">
+        <div class="allSelectStyle">
+            <label class="allSelect">
+                <input type="checkbox" /> 全选
+            </label>
+        </div>
+        <div class="moreCheckbox">
+            <label>
+                <input type="checkbox"> KHN-PEK-SFO
+            </label>
+            <label>
+                <input type="checkbox"> BSP-HKG
+            </label>
+            <label>
+                <input type="checkbox"> KHN-PEK-SFOKHN-PEK-SFOKHN-PEK-SFO
+            </label>
+            <label>
+                <input type="checkbox"> BSP-HKG
+            </label>
+            <label>
+                <input type="checkbox"> KHN-PEK-SFO
+            </label>
+            <label>
+                <input type="checkbox"> BSP-HKG
+            </label>
+            <label>
+                <input type="checkbox"> KHN-PEK-SFO
+            </label>
+            <label>
+                <input type="checkbox"> BSP-HKG
+            </label>
+            <label>
+                <input type="checkbox"> KHN-PEK-SFO
+            </label>
+            <label>
+                <input type="checkbox"> BSP-HKG
+            </label>
+            <label>
+                <input type="checkbox"> KHN-PEK-SFO
+            </label>
+            <label>
+                <input type="checkbox"> BSP-HKG
+            </label>
+            <label>
+                <input type="checkbox"> KHN-PEK-SFO
+            </label>
+            <label>
+                <input type="checkbox"> BSP-HKG
+            </label>
+            <label>
+                <input type="checkbox"> KHN-PEK-SFO
+            </label>
+            <label>
+                <input type="checkbox"> BSP-HKG
+            </label>
+            <label>
+                <input type="checkbox"> KHN-PEK-SFO
+            </label>
+            <label>
+                <input type="checkbox"> BSP-HKG
+            </label>
+            <label>
+                <input type="checkbox"> KHN-PEK-SFO
+            </label>
+            <label>
+                <input type="checkbox"> BSP-HKG
+            </label>
+            <label>
+                <input type="checkbox"> KHN-PEK-SFO
+            </label>
+            <label>
+                <input type="checkbox"> BSP-HKG
+            </label>
+            <label>
+                <input type="checkbox"> KHN-PEK-SFO
+            </label>
+            <label>
+                <input type="checkbox"> BSP-HKG
+            </label>
+            <label>
+                <input type="checkbox"> KHN-PEK-SFO
+            </label>
+            <label>
+                <input type="checkbox"> BSP-HKG
+            </label>
+            <label>
+                <input type="checkbox"> KHN-PEK-SFO
+            </label>
+            <label>
+                <input type="checkbox"> BSP-HKG
+            </label>
+            <label>
+                <input type="checkbox"> KHN-PEK-SFO
+            </label>
+            <label>
+                <input type="checkbox"> BSP-HKG
+            </label>
+            <label>
+                <input type="checkbox"> KHN-PEK-SFO
+            </label>
+            <label>
+                <input type="checkbox"> BSP-HKG
+            </label>
+            <label>
+                <input type="checkbox"> KHN-PEK-SFO
+            </label>
+            <label>
+                <input type="checkbox"> BSP-HKG
+            </label>
+            <label>
+                <input type="checkbox"> KHN-PEK-SFO
+            </label>
+            <label>
+                <input type="checkbox"> BSP-HKG
+            </label>
+        </div>
+        <div class="compileOfferBtn">
+            <button class="large_button" type="button" name="a">确 定</button>
+            <button class="large_button disable" type="button" name="a">取 消</button>
+        </div>
+    </script>
     
 <script>
     $(function(){
         $(".visitCategory").click(function(){
-            $(this).parents(".checkboxModule").find(".classify input").prop("checked",$(this).find("input").prop("checked"));
+            $(this).parents(".checkboxModule").find(".classify input[type='checkbox']").prop("checked",$(this).find("input").prop("checked"));
         });
         
         $(".groupAllChecked").click(function(){
-            $(this).parents(".checkboxModule").find(".groupCheckbox input").prop("checked",$(this).find("input").prop("checked"));
+            $(this).parents(".checkboxModule").find(".groupCheckbox input[type='checkbox']").prop("checked",$(this).find("input").prop("checked"));
         });
+
+        var ac_window = new PopWindow('.ac-selectSupplier',{
+            title:'选择供应商',
+            width:'680',
+            template:'#ac-selectSupplier-template'
+        }).init();
         
+        $(".allSelect").click(function(){
+            $(this).parents(".allSelectStyle").siblings(".moreCheckbox").find("input[type='checkbox']").prop("checked",$(this).find("input").prop("checked"));
+        });
+
     });
 </script>
 
