@@ -125,7 +125,7 @@
                             <span class="font_tit font_gap">出发日期：</span>2014 - 06 - 08
                         </p>
                     </div>
-                    <div class="us-body">
+                    <div class="usBody">
                         <aside>
                             <ul class="tour_tab_change clearfix">
                                 <li class="currentState"><em><a href="javascript:void(0);">费用包含</a></em></li>
@@ -579,8 +579,8 @@
     $(function(){
         $(".tour_tab_change li").each(function(index){
             $(this).click(function(){
-                $(".us-body .tab").hide();
-                $(".us-body .tab:eq(" + index + ")").show();
+                $(".usBody .tab").hide();
+                $(".usBody .tab:eq(" + index + ")").show();
                 $(".tour_tab_change li").removeClass("currentState");
                 $(this).addClass("currentState");
             });
@@ -594,61 +594,6 @@
         });
     });
 </script>
-
-
-<script type="text/html" id="departureInfoTemplate">
-    <div class="departureInfoContainer">
-        <ul>
-            # for(var i=0;i<data.length;i++){ #
-            <li>
-                <span>#=data[i].type#</span>
-                <span>#=data[i].typetips#</span>
-                <span class="departureMoney">¥#=data[i].Price#起</span>
-            </li>
-            #}#
-        </ul>
-    </div>
-</script>
-
-
-
-<script>
-    $(function(){
-        var data=[{type:"美国个人旅游签证",typetips:"（中信银行代传递免面试，用于团队，上海送签）", Price:9865},
-                  {type:"加拿大个人旅游签证",typetips:"（中信银行代传递免面试，用于团队，上海送签）", Price:9865}];
-        
-        var departureFL=new FloatLayer({
-            trigger:".departureInfo",
-            template:"#departureInfoTemplate",
-            data:data
-        });
-
-
-        $(".departureInfoContainer li").click(function(){
-            var i=$(this).index();
-            departureFL.input.val(data[i].type);
-            departureFL.close();
-        })
-
-       
-
-        
-    });
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </body>
