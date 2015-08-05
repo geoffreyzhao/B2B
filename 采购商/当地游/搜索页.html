@@ -25,665 +25,357 @@
     <script src="/static/js/html5.js"></script>
     <script src="/static/js/vendor/IE7.min.js"></script>
     <![endif]-->
-    <style type="text/css">
-        .datepicker {
-            background-image: none;
-        }
-        .ui-datepicker-daywrapper {
-            display: none;
-        }
-        input[type="text"]:focus {
-            border: none;
-        }
-        input[name=departure_date]:focus {
-            border:1px solid #76cbe8;
-        }
-        .travel-filter-list input[type=text]:focus {
-            border:1px solid #76cbe8;
-        }
-    </style>
-    
+
 </head>
 <body>
-
 <div class="main-wrapper">
-<header class="main-header">
-    <a class="logo" href="/"><h1>天地行</h1></a>
-    <nav class="main-nav">
-        <ul class="clearfix">
-            <li class="first"><a href="#">国内机票</a></li>
-            <li><a href="#">国际机票</a></li>
-            <li><a href="#">保险</a></li>
-            <li><a href="#">酒店</a></li>
-            <li><a href="#">机 + 酒</a></li>
-            <li class="active"><a href="#">旅游</a></li>
-        </ul>
-    </nav>
-    <nav class="main-userInfo">
-        <span>你好，</span>
-        <span>Angle@66454</span>
-        <a href="#">退出</a>
-    </nav>
-    <nav class="main-links">
-        <ul class="clearfix">
-            <li class="first"><a href="#">订单管理</a></li>
-            <li><a href="#">分销管理</a></li>
-            <li><a href="#">电子钱包</a></li>
-            <li><a href="#">票据管理</a></li>
-            <li class="special"><a href="#">统计报表</a></li>
-            <li><i class="tellphone">400-720-6666</i></li>
-            <li><a href="#"> <i class="qq">QQ客服</i></a></li>
-        </ul>
-    </nav>
-</header>
+    <header class="main-header">
+        <a class="logo" href="/"><h1>天地行</h1></a>
+        <nav class="main-nav">
+            <ul class="clearfix">
+                <li class="first"><a href="#">国内机票</a></li>
+                <li><a href="#">国际机票</a></li>
+                <li><a href="#">保险</a></li>
+                <li><a href="#">酒店</a></li>
+                <li><a href="#">机 + 酒</a></li>
+                <li class="active"><a href="#">旅游</a></li>
+            </ul>
+        </nav>
+        <nav class="main-userInfo">
+            <span>你好，</span>
+            <span>Angle@66454</span>
+            <a href="#">退出</a>
+        </nav>
+        <nav class="main-links">
+            <ul class="clearfix">
+                <li class="first"><a href="#">订单管理</a></li>
+                <li><a href="#">分销管理</a></li>
+                <li><a href="#">电子钱包</a></li>
+                <li><a href="#">票据管理</a></li>
+                <li class="special"><a href="#">统计报表</a></li>
+                <li><i class="tellphone">400-720-6666</i></li>
+                <li><a href="#"> <i class="qq">QQ客服</i></a></li>
+            </ul>
+        </nav>
+    </header>
 
-<section class="tour_main-body clearfix"> 
-
-<!--<div class="tour_searchBar">
-    <span><i class="sign"></i><span class="font16">上海</span>出发</span>
-         <span class="font14">出发日期段
-         <label><input type="text" value="2013-09-11" name="departure_date" style="width:195px;"  class="datepicker"> 至
-             <input type="text" value="2013-09-11" name="departure_date" style="width:195px;"  class="datepicker">
-         </label>
-         <button class="adaptiveButton tour_blue_btn">搜&nbsp;&nbsp;索</button>
-         </span>
-</div>-->
-
-<div class="searchWrapper">
-    <div class="newSearch">
-        <div class="newSearchContent">
-            <div class="searchForm tab">
-               <span class="inputNoBgRow">
-                    <input type="text" value="" name=""/><button type="submit" class="btn">搜 索</button>
-               </span> 
+    <section class="tour_main-body clearfix"> 
+        <div class="searchWrapper">
+            <div class="newSearch">
+                <div class="newSearchContent">
+                    <div class="searchForm tab">
+                       <span class="inputNoBgRow">
+                            <input type="text" value="" name="" placeholder="请输入目的地、主题或关键字"/><button type="submit" class="btn">搜 索</button>
+                       </span> 
+                    </div>
+                </div>
+                
             </div>
         </div>
-        
-    </div>
-</div>
-<div class="travel-filter">
-    <div class="play_type travel-filter-nav">
-        <ul>
-            <li class="currentState"><a href="javascript:void(0);"><span>全部</span>（500）</a></li>
-            <li><a href="javascript:void(0);"><span><i class="ballTourIcon"></i>跟团游</span>（500）</a></li>
-            <li><a href="javascript:void(0);"><span><i class="halfselfIcon"></i>半自助</span>（500）</a></li>
-            <li><a href="javascript:void(0);"><span><i class="localTourIcon"></i>当地游</span>（500）</a></li>
-        </ul>
-    </div>
-    <div class="travel-filter-list">
-        <div class="play_all tab">
-        <ul class="">
-            <li>
-                <label class="filterTitle">出游天数：</label>
-                <div class="filterCheck">
-                    <span>6天</span>
-                    <span class="selectedSpan">8天</span>
-                    <span>10天</span>
-                    <span>14天</span>
-                    <span>18天</span>
-                </div>
-            </li>
-            <li>
-                <label class="filterTitle">钻级<i class="tipsIcon level-explain"></i> ：</label>
-                <div class="filterCheck">
-                    <span class="selectedSpan">2钻</span>
-                    <span>3钻</span>
-                    <span>4钻</span>
-                    <span>5钻</span>
-                    <span>6钻</span>
-                </div>
-            </li>
-            <li>
-                <label class="filterTitle">价&nbsp;&nbsp;&nbsp;&nbsp;格：</label>
-                <div class="priceRow">
-                    <em>￥</em><input type="text" placeholder="不限"/> <em>- ￥</em><input type="text" placeholder="不限"/><i class="sureBtn">确定</i>
-                </div>
-            </li>
-            <li class="selectedRow">
-                <label class="filterTitle">已选择：</label>
-                <div class="filterSelect">
-                    <div class="item">
-                        6天<a class="close" href="javascript:;">x</a>
-                    </div>
-                    <div class="item">
-                        3钻<a class="close" href="javascript:;">x</a>
-                    </div>
-                    <span class="clearAll">全部清除</span>
-                </div>
-            </li>
-        </ul>
-        </div>
 
-        <div class="play_ballTour tab" style="display: none;">
-            <ul class="">
-                <li>
-                    <label class="filterTitle">出游天数2：</label>
-                    <div class="filterCheck">
-                        <span>6天</span>
-                        <span class="selectedSpan">8天</span>
-                        <span>10天</span>
-                        <span>14天</span>
-                        <span>18天</span>
-                    </div>
-                </li>
-                <li>
-                    <label class="filterTitle">钻级<i class="tipsIcon"></i> ：</label>
-                    <div class="filterCheck">
-                        <span class="selectedSpan">2钻</span>
-                        <span>3钻</span>
-                        <span>4钻</span>
-                        <span>5钻</span>
-                        <span>6钻</span>
-                    </div>
-                </li>
-                <li>
-                    <label class="filterTitle">价&nbsp;&nbsp;&nbsp;&nbsp;格：</label>
-                    <div class="priceRow">
-                        <em>￥</em><input type="text" placeholder="不限" /> <em>- ￥</em><input type="text" placeholder="不限"/><i class="sureBtn">确定</i>
-                    </div>
-                </li>
-                <li class="selectedRow">
-                    <label class="filterTitle">已选择：</label>
-                    <div class="filterSelect">
-                        <div class="item">
-                            6天<a class="close" href="javascript:;">x</a>
+        <div class="travel-filter">
+            <div class="travel-filter-nav">
+                <!-- 已选区 -->
+                <div class="selectedItem">
+                    <span>已选择：</span>
+                </div>
+                <div class="filter_item_list">  
+                   <!-- 目的地 -->
+                   <div class="filter_item" id="area_filter_item">
+                       <div class="filter_item_tip">目的地：</div>
+                       <div class="filter_item_info_box">
+                           <div class="filter_item_info">
+                              <div class="left_margin current">亚洲</div>
+                              <div>欧洲</div>
+                              <div>北美洲</div>
+                              <div>大洋洲</div>
+                              <div>南美洲</div>
+                              <div>中东-非洲</div>
+                           </div>
+                           <!-- 亚洲 -->
+                           <div class="sub_filter_item_info">
+                              <div class="place">中国</div>
+                              <div class="place">台湾</div>
+                              <div class="place">日本</div>
+                              <div class="place">韩国</div>
+                              <div class="place">香港</div>
+                              <div class="place">柬埔寨</div>
+                           </div>
+                          
+                          <!-- 欧洲 -->
+                           <div class="sub_filter_item_info" style="display:none;">
+                              <div class="place">法国</div>
+                              <div class="place">意大利</div>
+                              <div class="place">英国</div>
+                              <div class="place">德国</div>
+                              <div class="place">希腊</div>
+                           </div>
+                           <!-- 北美洲 -->
+                           <div class="sub_filter_item_info" style="display:none;">
+                              <div class="place">美国</div>
+                              <div class="place">加拿大</div>
+                              <div class="place">华盛顿</div>
+                              <div class="place">墨西哥</div>
+                           </div>
+                            <!-- 大洋洲 -->
+                           <div class="sub_filter_item_info" style="display:none;">
+                              <div class="place">澳大利亚</div>
+                              <div class="place">新西兰</div>
+                              <div class="place">斐济</div>
+                              <div class="place">帕劳</div>
+                           </div>
+                           <!-- 南美洲 -->
+                           <div class="sub_filter_item_info" style="display:none;">
+                              <div class="place">阿根廷</div>
+                              <div class="place">伯利兹</div>
+                              <div class="place">巴西</div>
+                              <div class="place">智利</div>
+                              <div class="place">哥伦比亚</div>
+                              <div class="place">巴拿马</div>
+                              <div class="place">秘鲁</div>
+                           </div>
+                           <!-- 中东-非洲 -->
+                           <div class="sub_filter_item_info" style="display:none;">
+                              <div class="place">埃及</div>
+                              <div class="place">摩洛哥</div>
+                              <div class="place">南非</div>
+                              <div class="place">以色列</div>
+                              <div class="place">阿曼</div>
+                              <div class="place">阿联酋</div>
+                           </div>
+                           
+                       </div>
+                   </div>
+                   <!-- 类别 -->
+                   <div class="filter_item">
+                       <div class="filter_item_tip">类别：</div>
+                       <div class="filter_item_info_box">
+                           <div class="filter_item_info">
+                              <div class="current">全部</div>
+                              <div>特色体验</div>
+                              <div class=" selected_item">一日游<a class="selected_icon"></a></div>
+                              <div>当地美食</div>
+                              <div>交通/接送</div>
+                              <div>WiFi/通讯</div>                                    
+                           </div>
+                           <div class="sub_filter_item_info nopadding"></div>
+                           <div class="sub_filter_item_info" style="display:none;">
+                              <div>登山体验</div>
+                              <div>滑雪体验</div>
+                              <div>美食体验</div>
+                              <div>特色体验</div>                       
+                           </div>
+                       </div>
+                   </div>
+                   <!-- 主题 -->
+                   <div class="filter_item" id="theme_filter_item">
+                       <div class="filter_item_tip">主题(多选)：</div>
+                       <div class="filter_item_info_box">
+                           <div class="filter_item_info">
+                              <div class="current">全部</div>
+                              <div>城市风光</div>
+                              <div>门票</div>
+                              <div>餐饮美食</div>
+                              <div>当地交通</div>
+                              <div>温泉SPA</div>
+                              <div>导游服务</div>
+                              <div>餐饮美食</div>
+                              <div>当地交通</div>
+                              <span state="hide">更多</span>                                                             
+                           </div>
                         </div>
-                        <div class="item">
-                            3钻<a class="close" href="javascript:;">x</a>
+                   </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tour_main_listNew">
+            <div class="tour_resultInfoNew clearfix">
+                <span>共<span class="tour_resultNo">93</span>条线路满足条件</span>
+            </div>
+            <div class="tour_resultListNew">
+                <div class="tour_resultDiv">
+                    <div class="tour_resultDiv_left">
+                        <div class="tourImgBox">
+                            <img src="../../static/images/store/travl/travl_listImg01.jpg" alt=""/>
                         </div>
-                        <span class="clearAll">全部清除</span>
+                        <div class="textContent">
+                            <div class="contentTopBlock">
+                                <div class="fontTitleP">
+                                    <span class="fontBigTitle">中文导游：富士山芦苇湖半日游 中文导游：富士山芦苇湖半日游 富士山芦苇湖半日游</span>
+                                    <span class="tagGroup">
+                                        <em class="tag">自然风光</em>
+                                        <em class="tag">游船</em>
+                                    </span>
+                                </div>
+                                <div class="fontConP">
+                                    <span>目的地：<em>东京</em></span>
+                                    <span class="time">时长：<em>5时30m</em></span>
+                                    <p><span>特色：</span>从东京出发，游览日本最著名的景点，前往热门的富士山第五火车站，乘船观光芦苇湖，乘坐空中缆车至苟月山</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </li>
-            </ul>
+                    <div class="tour_resultDiv_right">
+                        <div class="ClearingPrice">
+                            <span class="tour_price_block"><span class="tour_price"><em>￥</em>1859</span>起</span>
+                            <a class="adaptiveButton mediumOrange_btn" href="javascript:void(0);">
+                                <span class="left"></span>
+                                <span class="center center_2">预定</span>
+                                <span class="right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tour_resultDiv">
+                    <div class="tour_resultDiv_left">
+                        <div class="tourImgBox">
+                            <img src="../../static/images/store/travl/travl_listImg02.jpg" alt=""/>
+                        </div>
+                        <div class="textContent">
+                            <div class="contentTopBlock">
+                                <div class="fontTitleP">
+                                    <span class="fontBigTitle">中文导游：富士山芦苇湖半日游</span>
+                                    <span class="tagGroup">
+                                        <em class="tag">自然风光</em>
+                                        <em class="tag">游船</em>
+                                    </span>
+                                </div>
+                                <div class="fontConP">
+                                    <span>目的地：<em>东京</em></span>
+                                    <span class="time">时长：<em>5时30m</em></span>
+                                    <p><span>特色：</span>从东京出发，游览日本最著名的景点，前往热门的富士山第五火车站，乘船观光芦苇湖，乘坐空中缆车至苟月山</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tour_resultDiv_right">
+                        <div class="ClearingPrice">
+                            <span class="tour_price_block"><span class="tour_price"><em>￥</em>1859</span>起</span>
+                            <a class="adaptiveButton mediumOrange_btn" href="javascript:void(0);">
+                                <span class="left"></span>
+                                <span class="center center_2">预定</span>
+                                <span class="right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tour_resultDiv">
+                    <div class="tour_resultDiv_left">
+                        <div class="tourImgBox">
+                            <img src="../../static/images/store/travl/travl_listImg03.jpg" alt=""/>
+                        </div>
+                        <div class="textContent">
+                            <div class="contentTopBlock">
+                                <div class="fontTitleP">
+                                    <span class="fontBigTitle">中文导游：富士山芦苇湖半日游 中文导游：富士山芦苇湖半日游 富士山芦苇湖半日游</span>
+                                    <span class="tagGroup">
+                                        <!-- <em class="tag">自然风光</em> -->
+                                        <em class="tag">游船</em>
+                                    </span>
+                                </div>
+                                <div class="fontConP">
+                                    <span>目的地：<em>东京</em></span>
+                                    <span class="time">时长：<em>5时30m</em></span>
+                                    <p><span>特色：</span>从东京出发，游览日本最著名的景点，前往热门的富士山第五火车站，乘船观光芦苇湖，乘坐空中缆车至苟月山</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tour_resultDiv_right">
+                        <div class="ClearingPrice">
+                            <span class="tour_price_block"><span class="tour_price"><em>￥</em>1859</span>起</span>
+                            <a class="adaptiveButton mediumOrange_btn" href="javascript:void(0);">
+                                <span class="left"></span>
+                                <span class="center center_2">预定</span>
+                                <span class="right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tour_resultDiv">
+                    <div class="tour_resultDiv_left">
+                        <div class="tourImgBox">
+                            <img src="../../static/images/store/travl/travl_listImg04.jpg" alt=""/>
+                        </div>
+                        <div class="textContent">
+                            <div class="contentTopBlock">
+                                <div class="fontTitleP">
+                                    <span class="fontBigTitle">中文导游：富士山芦苇湖半日游 中文导游：富士山芦苇湖半日游 富士山芦苇湖半日游</span>
+                                    <span class="tagGroup">
+                                        <em class="tag">自然风光</em>
+                                        <!-- <em class="tag">游船</em> -->
+                                    </span>
+                                </div>
+                                <div class="fontConP">
+                                    <span>目的地：<em>东京</em></span>
+                                    <span class="time">时长：<em>5时30m</em></span>
+                                    <p><span>特色：</span>从东京出发，游览日本最著名的景点，前往热门的富士山第五火车站，乘船观光芦苇湖，乘坐空中缆车至苟月山</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tour_resultDiv_right">
+                        <div class="ClearingPrice">
+                            <span class="tour_price_block"><span class="tour_price"><em>￥</em>1859</span>起</span>
+                            <a class="adaptiveButton mediumOrange_btn" href="javascript:void(0);">
+                                <span class="left"></span>
+                                <span class="center center_2">预定</span>
+                                <span class="right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination dotted_topbor clearfix" style="margin: 0;padding-bottom: 10px;padding-top: 10px;">
+                    <ul>
+                        <li><a href="#">上一页</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#" class="present">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li> <span>...</span> </li>
+                        <li><a href="#">60</a></li>
+                        <li><a href="#">下一页</a></li>
+                    </ul>
+                    <div>
+                        <span>共<em>132</em>条记录 &nbsp;&nbsp;&nbsp;共14页</span>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    
+    </section>    
+
+    <footer class="main-footer">
+        <center class="copyright">
+            Copyright &copy; 2014 天地行 All Rights Reserved.     沪ICP备08101503号
+        </center>
+    </footer>
 </div>
 
-
-
-<div class="tour_main_listNew">
-    <div class="tour_resultInfoNew clearfix">
-        <span>共<span class="tour_resultNo">93</span>条线路满足条件</span>
-    </div>
-
-    <div class="tour_resultListNew">
-        <div class="tour_resultDiv">
-            <div class="tour_resultDiv_left">
-                <div class="tourImgBox">
-                    <img src="../../static/images/store/travl/travl_listImg01.jpg" alt=""/>
-                </div>
-                <div class="textContent">
-                    <div class="contentTopBlock">
-                        <p class="fontTitleP">
-                            <span class="fontBigTitle">美国东西海岸夏威夷+加拿大18日游美国东西海岸夏威夷+加拿大1日游美国东西海岸夏威夷</span>
-                            <span class="tagGroup">
-                                <em class="tag groupTour">自然风光</em>
-                                <em class="tag groupTour">游船</em>
-                            </span>
-                        </p>
-                        
-                        <p class="fontConP">
-                            <span>目的地：<em>东京</em></span><span>时长：<em>5时30m</em></span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="tour_resultDiv_right">
-                <div class="marketPrice">
-                    <em>￥</em><span>18599</span>起
-                </div>
-                <div class="ClearingPrice">
-                    <span class="tour_price_block"><span class="tour_price"><em>￥</em>185999</span>起</span>
-                    <a class="adaptiveButton mediumOrange_btn">
-                        <span class="left"></span>
-                        <span class="center center_2">查看详情</span>
-                        <span class="right"></span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="tour_unfoldCon" id="unfoldCon" style="display: none;">
-                <!--日历-->
-                <div style="width: 360px;float: left; margin-right:10px; height: auto; overflow: hidden;">
-                    <div class="calendarOperation">
-                        <div class="calendarMonthLeft"></div>
-                        <div class="calendarDate cd1"></div>
-                    </div>
-                    <div class="calendar" class="calendarContainer" id="calendar01" >
-
-                    </div>
-                </div>
-
-                <div style="width: 360px; float: left">
-                    <div class="calendarOperation">
-
-                        <div class="calendarDate cd2"></div>
-                        <div class="calendarMonthRight"></div>
-                    </div>
-                    <div class="calendar" class="calendarContainer" id="calendar02">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="pagination dotted_topbor clearfix" style="margin: 0;padding-bottom: 10px;padding-top: 10px;">
-            <ul>
-                <li><a href="#">上一页</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#" class="present">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li> <span>...</span> </li>
-                <li><a href="#">60</a></li>
-                <li><a href="#">下一页</a></li>
-            </ul>
-            <div>
-                <span>共<em>132</em>条记录 &nbsp;&nbsp;&nbsp;共14页</span>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-</section>    
-
-
-<footer class="main-footer">
-    <center class="copyright">
-        Copyright &copy; 2014 天地行 All Rights Reserved.     沪ICP备08101503号
-    </center>
-</footer>
-</div>
-
-<script type="text/x-kendo-template" id="city_popup">
-    <div id="gn-tabstrip" class="tcy_tabstrip">
-<span class="tcy_title">
-    热门城市/国家（支持中文名/拼音/英文名/三字码）
-</span>
-        <ul>
-            <li id="hot_city" class="k-state-active">热门</li>
-            # for (var i=0; i<data.group.length; i++ ) { #
-            <li>#= data.group[i] #</li>
-            # } #
-        </ul>
-        <div id="hot_city_tab">
-            <ul class="tcy_list clearfix">
-
-                # for(var j=0;j<hotcitylist.length;j++){ #
-                # var citylist_item = hotcitylist[j] #
-                <li class="item" title="#= citylist_item.code #" data-code="#= citylist_item.code #">#= citylist_item.name #</li>
-                # } #
-            </ul>
-        </div>
-
-        # for(var i=0;i<data.citylist.length;i++){ #
-        # var citylist_item = data.citylist[i] #
-        <div class="city_tab">
-            <ul class="tcy_list clearfix">
-                # for(var k=0;k<data.group[i].length;k++){ #
-                <li class="tcy_list_sep">#= data.group[i].split('')[k] #</li>
-                # for(var j=0;j<citylist_item.value.length;j++){ #
-                # var citylist_value_item = citylist_item.value[j]; #
-                # if(citylist_value_item.py.slice(0,1) == data.group[i].split('')[k]) {#
-                <li class="item" title="#= citylist_value_item.code #" data-code="#= citylist_value_item.code #">#= citylist_value_item.name #</li>
-                # } #
-                # } #
-                # } #
-            </ul>
-        </div>
-
-        # } #
-    </div>
-</script>
-
-<script type="text/x-kendo-template" id="level-explainTemplate">
-    <div class="layerContainer">
-        <table class="diamondLevelPopwindow">
-            <colgroup>
-                <col width="90"/>
-                <col width="210"/>
-                <col width="190"/>
-                <col width="96"/>
-                <col width="145"/>
-                <col/>
-            </colgroup>
-            <thead>
-            <th><i class="diamondLevel-icon"></i>钻级</th>
-            <th><i class="hotel-icon"></i>酒店</th>
-            <th><i class="useCar-icon"></i>用车</th>
-            <th><i class="team-icon"></i>团队</th>
-            <th><i class="dinner-icon"></i>餐食</th>
-            <th><i class="flightSeat-icon"></i>座舱</th>
-            </thead>
-            <tbody>
-            <tr>
-                <td>
-                    <ul class="small-diamond-level" style="width:84px;">
-                        <li></li><li></li><li></li><li></li><li></li><li></li>
-                    </ul>
-                    <div class="diamond-level-title">6钻</div>
-                </td>
-                <td>全球高端品牌酒店或地标性酒店，入住天数至少占产品行程总入住天数的70%</td>
-                <td>旅游用车空座率不低于<span class="remark-orange">40%</span>或专用商务车配行李车，保证空间宽敞<span class="remark-gray">（景区特别要求用车除外）</span></td>
-                <td>每团最多<span class="remark-orange">15人</span></td>
-                <td>行程内包含的餐食50%为当地特色餐，有用餐专区</td>
-                <td>包含飞机、火车、轮船、汽车等,提供商务、头等舱，豪华舱房升舱的选择，不使用红眼航班</td>
-            </tr>
-            <tr>
-                <td>
-                    <ul class="small-diamond-level" style="width:70px;">
-                        <li></li><li></li><li></li><li></li><li></li>
-                    </ul>
-                    <div class="diamond-level-title">5钻</div>
-                </td>
-                <td>入住5星级酒店，或当地精品特色酒店，位于当地繁华市区或主要景点周边的酒店。入住天数至少占产品行程总入住天数的70%</td>
-                <td>旅游用车空座率不低于<span class="remark-orange">25%</span>或专用商务车配行李车<span class="remark-gray">（景区特别要求用车除外）</span></td>
-                <td>每团最多<span class="remark-orange">25人</span></td>
-                <td>行程内安排当地特色餐</td>
-                <td><span class="remark-gray">无</span></td>
-            </tr>
-            <tr>
-                <td>
-                    <ul class="small-diamond-level" style="width:56px;">
-                        <li></li><li></li><li></li><li></li>
-                    </ul>
-                    <div class="diamond-level-title">4钻</div>
-                </td>
-                <td>入住4星级酒店，入住天数至少占产品行程总入住天数的70%</td>
-                <td>旅游用车空座率不低于<span class="remark-orange">10%</span><span class="remark-gray">（景区特别要求用车除外）</span></td>
-                <td>每团最多<span class="remark-orange">35人</span></td>
-                <td><span class="remark-gray">无</span></td>
-                <td><span class="remark-gray">无</span></td>
-            </tr>
-            <tr>
-                <td>
-                    <ul class="small-diamond-level" style="width:42px;">
-                        <li></li><li></li><li></li>
-                    </ul>
-                    <div class="diamond-level-title">3钻</div>
-                </td>
-                <td>3星级或知名连锁经济型酒店或特色客栈、民宿，入住天数至少占产品行程总入住天数的70%</td>
-                <td>旅游用车每人一正座<span class="remark-gray">（景区特别要求用车除外）</span></td>
-                <td><span class="remark-gray">无</span></td>
-                <td><span class="remark-gray">无</span></td>
-                <td><span class="remark-gray">无</span></td>
-            </tr>
-            <tr>
-                <td>
-                    <ul class="small-diamond-level" style="width:28px;">
-                        <li></li><li></li>
-                    </ul><div class="diamond-level-title">2钻</div>
-                </td>
-                <td>3星级以下或当地经济型酒店、农家院，入住天数至少占产品行程总入住天数的70%</td>
-                <td>旅游用车每人一正座<span class="remark-gray">（景区特别要求用车除外）</span></td>
-                <td><span class="remark-gray">无</span></td>
-                <td><span class="remark-gray">无</span></td>
-                <td><span class="remark-gray">无</span></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</script>
-
-
-<script>
+<script type="text/javascript">
     $(function(){
-
-       
-
-        $(".customerCenterButton").hover(
-                function(){
-                    $(this).animate(
-                            {width:"100%"},
-                            200,
-                            function(){$(".customerCenterContainer").addClass("expanded");}
-                    )},
-                function(){
-                    if($(".customerCenterContainer").hasClass("off")){
-                        $(this).animate(
-                                {width:"90px"},
-                                200,
-                                function(){
-                                    $(".customerCenterContainer").removeClass("expanded");
-                                }
-                        )
-                    }
-                }
-        )
-        $(".customerCenterButton").click(function(){
-            if(!$(".customerCenterContainer").hasClass("off"))
-            {
-                $(".customerCenterContainer").addClass("off");
-                $(".customerCenterItemsPanel").hide();
-                $(this).animate({width:"90px"},200,function(){$(".customerCenterContainer").removeClass("expanded");})
-                return false;
-            }
-            $(".customerCenterButton").animate({width:"100%"},"fast");
-            $(".customerCenterItemsPanel").slideDown("fast");
-            $(".customerCenterContainer").removeClass("off");
-
+        /*div mouseover*/
+        $('.filter_item_info_box:eq(0) .filter_item_info>div').mouseover(function(){
+            $(this).addClass('current').siblings().removeClass('current');
+            $(this).parent().parent().children('.sub_filter_item_info').hide();
+            $(this).parent().parent().children('.sub_filter_item_info').eq($(this).index()).show();
+        });
+        /*目的地点击*/
+        $('.place').click(function(){
+            $('.selectedItem div.place').remove();
+            $(this).clone().appendTo($('.selectedItem'));
+            $('<span></span>').appendTo($('.selectedItem div'));
+            /*$(this).addClass('current').siblings().removeClass('current');*/
         });
 
-        function createCityAc(ele){
-            CityAutocomplete({
-                template: "#city_popup",
-                input: ele,
-                width: 200,
-                autocomplete:{
-                     placeholder:''
-                },
-//                以@分割热门非热门，以;分割条目，以|分割三字码拼音和中文
-                url:'/static/js/data.txt',
-                group: ["热门","ABCDEF", "GHJ", "KLMN", "PQSTW", "XYZ"]
-            });
-        }
+        $("body").delegate(".selectedItem div span","click",function(){
+            $(this).closest("div").remove();
+        });                                                     
 
-        createCityAc(".city_ac");
-
-        new PopWindow('.level-explain', {
-            template:'#level-explainTemplate',
-            title:'钻级说明',
-            width:'930'
-        }).init();
-
-        $(".newSearchTab li").each(function(index){
-            $(this).click(function(){
-                $(".newSearch .tab").hide();
-                $(".newSearch .tab:eq(" + index + ")").show();
-                $(".newSearchTab li").removeClass("selected");
-                $(this).addClass("selected");
-            });
-        });
-
-        $(".play_type li").each(function(index){
-            $(this).click(function(){
-                $(".travel-filter .tab").hide();
-                $(".travel-filter .tab:eq(" + index + ")").show();
-                $(".play_type li").removeClass("currentState");
-                $(this).addClass("currentState");
-            });
-        });
     });
+
 </script>
-
-
-
-
-<script id="calendarTemplate" type="text/x-kendo-template">
-    # if($.inArray(+data.date, data.dates) != -1){ #
-    # if(!eve[$.dateToString(data.date)]){ #
-    <div style="position:relative;height:38px">
-        <span class="calendar_date">#= data.value #</span>
-        <b class="holiday"></b>
-        # }else{ #
-        <div style="position:relative;height:38px" class="sale">
-            <span class="calendar_date">#= data.value #</span>
-            <span class="remainNum">余#= eve[$.dateToString(date)][0] #</span>
-            <span class="salePrice">￥#= eve[$.dateToString(date)][1] #</span>
-            <b class="edge"></b>
-            # } #
-            #}else{#
-            <div style="position:relative;height:38px">
-                <span class="calendar_date">#= data.value #</span>
-                #}#
-            </div>
-</script>
-
-<script type="text/html" id="testJsonStr">
-    {
-    "2014/5/02": [
-    {
-    "tourGroupId": "123",
-    "numberOfPlanSignUp": "123",
-    "adultPrice": "123",
-    "childPrice": "123",
-    "balancePrice": "123",
-    "signUpEndDate": "2013-10-29",
-    "hotelStarLevel": "3"
-    },
-    {
-    "tourGroupId": "22",
-    "numberOfPlanSignUp": "22",
-    "adultPrice": "22",
-    "childPrice": "22",
-    "balancePrice": "22",
-    "signUpEndDate": "2013-10-23",
-    "hotelStarLevel": "3"
-    }
-    ]
-    }
-</script>
-
-
-
-
-
-
-<script>
-    eve={"2014/07/12":[9,26089],"2014/07/23":[0,26026],"2014/5/2":"","2014/5/3":"","2014/5/4":"","2013/10/5":"","2013/10/6":"","2013/10/7":"","2013/10/22":[22,45678]};
-
-    $.dateToString = function (s, sep) {
-        var sep = sep || '/'
-        return [s.getFullYear(), (s.getMonth() < 9 ? "0" : "") + (s.getMonth() + 1), (s.getDate() < 10 ? "0" : "") + s.getDate()].join(sep);
-    };
-
-    var today = new Date(),
-            toDate=today;
-    var nextMonthDate=new Date(today.getFullYear(),toDate.getMonth()+1,toDate.getDate());
-
-    $(function(){
-//        var t=kendo.template($("#tripDetailAddContainer").html());
-
-
-
-
-
-        console.log(nextMonthDate);
-        var spDate=(function(){
-            var arr=[];
-            for(name in eve){
-                arr.push(+new Date(name));
-            }
-            return arr;
-        })();
-        var calendar=$("#calendar01").kendoCalendar({
-            culture:"zh-CN",
-            dates:spDate,
-            value:today,
-            footer:false,
-            month:{content:$("#calendarTemplate").html()}
-
-        }).data("kendoCalendar");
-
-        var calendar1=$("#calendar02").kendoCalendar({
-            culture:"zh-CN",
-            dates:spDate,
-            value:nextMonthDate,
-            footer:false,
-            month:{content:$("#calendarTemplate").html()}
-
-        }).data("kendoCalendar");
-
-        changeCalendarDateInfo(new Date());
-
-        $(".calendarMonthRight").click(function(){
-            if(!$(this).hasClass("disabled"))
-            {
-                toDate=toDate.DateAdd("m",+1);
-                nextMonthDate=nextMonthDate.DateAdd("m",+1);
-                calendar.navigate(toDate,"month");
-                calendar1.navigate(nextMonthDate,"month");
-                changeCalendarDateInfo(toDate);
-            }
-        })
-        $(".calendarMonthLeft").click(function(){
-            if(!$(this).hasClass("disabled"))
-            {
-                toDate=toDate.DateAdd("m",-1);
-                nextMonthDate=nextMonthDate.DateAdd("m",-1);
-                calendar.navigate(toDate,"month");
-                calendar1.navigate(nextMonthDate,"month");
-                changeCalendarDateInfo(toDate);
-            }
-        })
-
-
-
-
-    })
-
-    function changeCalendarDateInfo(toDate)
-    {
-        $(".calendarDate.cd1").html(toDate.getFullYear()+"年"+(toDate.getMonth()+1)+"月");
-        $(".calendarDate.cd2").html(nextMonthDate.getFullYear()+"年"+(nextMonthDate.getMonth()+1)+"月");
-    }
-
-    function getjqjr(year,month,day)
-    {
-        myCal=new CCC(year,month,day);
-        myLunarCal=myCal.lunar();
-        sTerm=myCal.solarTerm();
-        var tmp="";
-        tmp+=myCal.sFtvl()!=""?myCal.sFtvl()+"<br />":"";
-        tmp+=myCal.jqFtvl()!=""?myCal.jqFtvl()+"<br />":"";
-        tmp+=myLunarCal.lunFtvl()!=""?myLunarCal.lunFtvl()+"<br />":"";
-        return (tmp);
-    }
-
-    function hashDate(t)
-    {
-        t= t.replace(/0/g,'a');
-        t= t.replace(/1/g,'b');
-        t= t.replace(/2/g,'c');
-        t= t.replace(/3/g,'d');
-        t= t.replace(/4/g,'e');
-        t= t.replace(/5/g,'f');
-        t= t.replace(/6/g,'g');
-        t= t.replace(/7/g,'h');
-        t= t.replace(/8/g,'i');
-        t= t.replace(/9/g,'j');
-        return t;
-    }
-
-    function dehashDate(t)
-    {
-        t= t.replace(/a/g,'0');
-        t= t.replace(/b/g,'1');
-        t= t.replace(/c/g,'2');
-        t= t.replace(/d/g,'3');
-        t= t.replace(/e/g,'4');
-        t= t.replace(/f/g,'5');
-        t= t.replace(/g/g,'6');
-        t= t.replace(/h/g,'7');
-        t= t.replace(/i/g,'8');
-        t= t.replace(/j/g,'9');
-        return t;
-    }
-</script>
-
-
 </body>
 </html>
 
