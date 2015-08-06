@@ -76,9 +76,13 @@
         <div class="travel-filter">
             <div class="travel-filter-nav">
                 <!-- 已选区 -->
-                <div class="selectedItem">
-                    <span>已选择：</span>
+                <div class="selectedBox">
+                    <span class="selectedText">已选择：</span>
+                    <div class="selectedItem"></div>
+                    <span class="clearSelected">全部清除</span>
                 </div>
+                
+
                 <div class="filter_item_list">  
                    <!-- 目的地 -->
                    <div class="filter_item" id="area_filter_item">
@@ -94,8 +98,18 @@
                            </div>
                            <!-- 亚洲 -->
                            <div class="sub_filter_item_info">
-                              <div class="place">中国</div>
-                              <div class="place">台湾</div>
+                              <div class="place">中国
+                                    <div class="subPlace"  style="display:none;">北京</div>
+                                    <div class="subPlace"  style="display:none;">上海</div>
+                                    <div class="subPlace"  style="display:none;">深圳</div>
+                              </div>
+                              <div class="place">台湾
+                                    <div class="subPlace"  style="display:none;">台北</div>
+                                    <div class="subPlace"  style="display:none;">高雄</div>
+                                    <div class="subPlace"  style="display:none;">花莲</div>
+                                    <div class="subPlace"  style="display:none;">清水湾</div>
+                                    <div class="subPlace"  style="display:none;">台中</div>
+                              </div>
                               <div class="place">日本</div>
                               <div class="place">韩国</div>
                               <div class="place">香港</div>
@@ -160,17 +174,23 @@
                            </div>
                            <div class="sub_filter_item_info nopadding"></div>
                            <div class="sub_filter_item_info" style="display:none;">
-                              <div>登山体验</div>
-                              <div>滑雪体验</div>
-                              <div>美食体验</div>
-                              <div>特色体验</div>                       
+                              <div class="subClassity">登山体验</div>
+                              <div class="subClassity">滑雪体验</div>
+                              <div class="subClassity">美食体验</div>
+                              <div class="subClassity">特色体验</div>                       
+                           </div>
+                           <div class="sub_filter_item_info" style="display:none;">
+                              <div class="subClassity">一日游</div>
+                              <div class="subClassity">一日游</div>
+                              <div class="subClassity">一日游</div>
+                              <div class="subClassity">一日游</div>                       
                            </div>
                        </div>
                    </div>
                    <!-- 主题 -->
                    <div class="filter_item" id="theme_filter_item">
                        <div class="filter_item_tip">主题(多选)：</div>
-                       <div class="filter_item_info_box">
+                       <div class="filter_item_info_box themeBox">
                            <div class="filter_item_info">
                               <div class="current">全部</div>
                               <div>城市风光</div>
@@ -181,8 +201,22 @@
                               <div>导游服务</div>
                               <div>餐饮美食</div>
                               <div>当地交通</div>
-                              <span state="hide">更多</span>                                                             
+                              <div>城市风光</div>
+                              <div>门票</div>
+                              <div>餐饮美食</div>
+                              <div>当地交通</div>
+                              <div>温泉SPA</div>
+                              <div>导游服务</div>
+                              <div>餐饮美食</div>
+                              <div>当地交通</div>
+                              <div>餐饮美食</div>
+                              <div>当地交通</div>
+                              <div>温泉SPA</div>
+                              <div>导游服务</div>
+                              <div>餐饮美食</div>
+                              <div>当地交通</div>                                                           
                            </div>
+                           <span class="more">更多</span>
                         </div>
                    </div>
                 </div>
@@ -355,25 +389,123 @@
 
 <script type="text/javascript">
     $(function(){
-        /*div mouseover*/
-        $('.filter_item_info_box:eq(0) .filter_item_info>div').mouseover(function(){
-            $(this).addClass('current').siblings().removeClass('current');
-            $(this).parent().parent().children('.sub_filter_item_info').hide();
-            $(this).parent().parent().children('.sub_filter_item_info').eq($(this).index()).show();
+        showClearBtn();
+        /*已选择模块点击删除按钮*/
+        $("body").delegate(".selectedItem div span","click",function(){
+            $(this).closest("div").remove();            //移除当前点击的已选择项
         });
-        /*目的地点击*/
-        $('.place').click(function(){
-            $('.selectedItem div.place').remove();
-            $(this).clone().appendTo($('.selectedItem'));
-            $('<span></span>').appendTo($('.selectedItem div'));
-            /*$(this).addClass('current').siblings().removeClass('current');*/
+            /*已选择模块点击国家级目的地删除按钮*/
+        $("body").delegate(".selectedItem div.place span","click",function(){
+            $('.filter_item_info:eq(0) div.subPlace').remove();   //移除目的地模块内的地方级目的地
+            $('.selectedItem div.subPlace').remove();    //移除已选择模块内的地方级目的地
+            $('.filter_item_info:eq(0) div').show();   //显示洲级目的地
+            $('.sub_filter_item_info:eq(0)').show();   //显示国家级目的地
+        }); 
+            /*已选择模块点击地方级目的地删除按钮*/
+        $("body").delegate(".selectedItem div.subPlace span","click",function(){
+            $('.filter_item_info:eq(0) .subPlace').removeClass('current');    //目的地模块内的地方级目的地移除current
+        });
+            /*已选择模块点击子分类删除按钮*/
+        $("body").delegate(".selectedItem div.subClassity span","click",function(){
+            $('.filter_item_info_box:eq(1) .filter_item_info>div:first').trigger('click');  //点击子分类的删除按钮相当于点击了分类的“全部”
+        });
+            /*已选择模块点击主题删除按钮*/
+        $("body").delegate(".selectedItem div.theme span","click",function(){
+            var themeText=$(this).closest('.theme').text();        //获取已选择模块内当前点击删除的主题内的文字
+            $('.filter_item_info:eq(2) .theme').each(function(){   //遍历主题模块内的主题，若某一主题文字以当前点击的主题的文字相同，则移除其current
+                if($(this).text()===themeText){
+                    $(this).removeClass('current');
+                }
+            })
         });
 
-        $("body").delegate(".selectedItem div span","click",function(){
-            $(this).closest("div").remove();
-        });                                                     
+        /*洲级目的地 mouseover*/
+        $('.filter_item_info_box:eq(0) .filter_item_info>div').mouseover(function(){
+            $(this).addClass('current').siblings().removeClass('current');          //当前hover的目的地添加current ，其兄弟移除current
+            $(this).parent().parent().children('.sub_filter_item_info').hide();    //隐藏所有洲级的所有子级目的地
+            $(this).parent().parent().children('.sub_filter_item_info').eq($(this).index()).show();   //显示当前hover的洲级目的地的子级国家目的地
+        });
+        /*国家级目的地点击*/
+        $('.place').click(function(){
+            $('.selectedItem div.place').remove();        //移除已选择模块内的已选择的国家级目的地
+            $('<span></span>').appendTo($(this).clone().appendTo($('.selectedItem')));  //将当前点击的国家级目的地追加到已选择模块内
+            $(this).parent('.sub_filter_item_info').hide();    //隐藏所有的国家级目的地
+            $(this).parent().siblings('.filter_item_info').children('div').hide();   //隐藏洲级目的地
+            $(this).children('.subPlace').clone().appendTo($('.filter_item_info').eq(0));  //将当前的点击的国家目的地的子级地方级目的地追加到目的地
+            $('.filter_item_info:eq(0) .subPlace').show();    //显示已追加到目的地的地方级目的地（默认：display:none;）
+            showClearBtn();
+        });
+        /*目的地模块内地方级目的地点击*/
+        $("body").delegate('.filter_item_info:eq(0) .subPlace','click',function(){
+            $('.selectedItem div.subPlace').remove();    //移除已选择模块内的已选择的地方级目的地
+            $('<span></span>').appendTo($(this).clone().appendTo($('.selectedItem')));  //将当前的点击的地方级目的地追加到已选择模块内
+            $(this).addClass('current').siblings().removeClass('current');   //给当前点击的地方级目的地添加current,其兄弟移除current
+            showClearBtn();
+        });
+    
+        /*游玩分类项点击*/
+        $('.filter_item_info_box:eq(1) .filter_item_info>div').click(function(){
+            if($(this).hasClass('current')){
+                $(this).parent().parent().children('.sub_filter_item_info').eq($(this).index()).show(); //显示当前点击的分类的子分类
+            }else{
+                $('.selectedItem div.subClassity').remove();   //已选择模块中移除已经选择的子分类
+                $(this).addClass('current').siblings().removeClass('current');  //当前点击的分类添加current，其兄弟移除current
+                $('.subClassity').removeClass('current');      //所有分类的子分类移除current
+                $(this).parent().parent().children('.sub_filter_item_info').hide();   //隐藏所有的子分类
+                $(this).parent().parent().children('.sub_filter_item_info').eq($(this).index()).show();  //显示当前点击的分类的子分类
+            }
+        });                                                  
+        /*游玩分类项子分类点击*/
+        $('.subClassity').click(function(){
+            $(this).addClass('current').siblings().removeClass('current');   //给当前点击的子分类添加current ，其兄弟移除current
+            $('.selectedItem div.subClassity').remove();       //移除已选择模块内的所有子分类
+            $('<span></span>').appendTo($(this).clone().appendTo($('.selectedItem')));  //将当前点击的子分类追加到已选择模块内
+            $(this).parent().hide();   //隐藏当前点击的子分类所在的模块
+            showClearBtn();
+        });
+        /*主题点击多选*/
+        $('.filter_item_info_box:eq(2) .filter_item_info>div:first').click(function(){
+            $('.selectedItem div.theme').remove();
+            $('.filter_item_info_box:eq(2) .theme').removeClass('current theme');
+        });
+        $('.filter_item_info_box:eq(2) .filter_item_info>div:gt(0)').click(function(){
+            $(this).addClass('current');    //给当前点击的主题添加current
+            var themeText=$(this).text();    //获取当前点击的主题内的文字
+            $('.selectedItem div').each(function(){  //遍历已选择模块内的div，若某个div内的文字与当前点击的主题内的文字相同，则移除div（已选择模块）
+                if($(this).text()===themeText){
+                    $(this).remove();
+                }
+            })
+            $('<span></span>').appendTo($(this).addClass('theme').clone().appendTo($('.selectedItem')));  //将当前点击的主题追加到已选择模块内
+            showClearBtn();
+        })
+        /*更多收起点击*/
+        $("body").delegate('.more','click',function(){
+            if($('.themeBox').hasClass('changeHeight')){
+                $('.themeBox').removeClass('changeHeight');
+                $('.more').text('更多');
+            }else{
+                $('.themeBox').addClass('changeHeight');
+                $('.more').text('收起');
+            }
+        });
+        /*全部清除按钮点击*/
+        $('.clearSelected').click(function(){
+            $('.filter_item_info_box:eq(1) .filter_item_info>div:first').trigger('click');
+            $('.selectedItem div.place span').trigger('click');
+            $('.filter_item_info_box:eq(2) .filter_item_info>div:first').trigger('click');
+            $(this).hide();
+        })
 
     });
+
+    function showClearBtn() {
+        if ($(".selectedItem").html() == "") {
+            $(".clearSelected").hide();
+        } else {
+            $(".clearSelected").show();
+        }
+    }
 
 </script>
 </body>
