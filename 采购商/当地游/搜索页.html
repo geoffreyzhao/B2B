@@ -393,6 +393,7 @@
         /*已选择模块点击删除按钮*/
         $("body").delegate(".selectedItem div span","click",function(){
             $(this).closest("div").remove();            //移除当前点击的已选择项
+            showClearBtn();
         });
             /*已选择模块点击国家级目的地删除按钮*/
         $("body").delegate(".selectedItem div.place span","click",function(){
@@ -454,6 +455,7 @@
                 $(this).parent().parent().children('.sub_filter_item_info').hide();   //隐藏所有的子分类
                 $(this).parent().parent().children('.sub_filter_item_info').eq($(this).index()).show();  //显示当前点击的分类的子分类
             }
+            showClearBtn();
         });                                                  
         /*游玩分类项子分类点击*/
         $('.subClassity').click(function(){
@@ -467,6 +469,7 @@
         $('.filter_item_info_box:eq(2) .filter_item_info>div:first').click(function(){
             $('.selectedItem div.theme').remove();
             $('.filter_item_info_box:eq(2) .theme').removeClass('current theme');
+            showClearBtn();
         });
         $('.filter_item_info_box:eq(2) .filter_item_info>div:gt(0)').click(function(){
             $(this).addClass('current');    //给当前点击的主题添加current
@@ -494,7 +497,7 @@
             $('.filter_item_info_box:eq(1) .filter_item_info>div:first').trigger('click');
             $('.selectedItem div.place span').trigger('click');
             $('.filter_item_info_box:eq(2) .filter_item_info>div:first').trigger('click');
-            $(this).hide();
+            showClearBtn();
         })
 
     });
