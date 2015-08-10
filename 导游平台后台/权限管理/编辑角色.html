@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>天地行 导游平台后台 编辑角色</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/static/tourGuidePlatform/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/tourGuidePlatform/css/bootstrap.reset.css">
+    <link rel="stylesheet" type="text/css" href="/static/tourGuidePlatform/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/tourGuidePlatform/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/static/tourGuidePlatform/css/authority.css">
+
+    <script type="text/javascript" src="/static/tourGuidePlatform/js/base/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="/static/tourGuidePlatform/js/bootdist/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/tourGuidePlatform/js/vendor/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="/static/tourGuidePlatform/js/vendor/bootstrap-datepicker.zh-CN.min.js"></script>
+    <script type="text/javascript" src="/static/tourGuidePlatform/js/maintain/common.js"></script>
+
+    <!--[if lte IE 9]>
+    <script type="text/javascript" src="/static/tourGuidePlatform/js/base/html5.js"></script>
+    <script type="text/javascript" src="/static/tourGuidePlatform/js/base/respond.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div class="wrapper">
+    <header class="main-header">
+        <div class="stairMenuContent">
+            <div class="wrap clearfix">
+                <div class="navLeft">
+                    <a class="logo" href="/"></a>
+                    <ul class="stairMenu">
+                        <li class="first-level-nav">
+                            <a href="javascript:void(0);">审核中心</a>
+                            <div class="second-level-nav">
+                                <ul class="secondLevelList clearfix">
+                                    <li class="currentSecondLevelMenu">
+                                        <a href="javascript:void(0);">导游</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">领队</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">旅行社</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="first-level-nav">
+                            <a href="javascript:void(0);">导游管理</a>
+                            <div class="second-level-nav">
+                                <ul class="secondLevelList clearfix">
+                                    <li class="currentSecondLevelMenu">
+                                        <a href="javascript:void(0);">注册信息</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">档期信息</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="first-level-nav">
+                            <a href="javascript:void(0);">旅行社管理</a>
+                            <div class="second-level-nav">
+                                <ul class="secondLevelList clearfix">
+                                    <li class="currentSecondLevelMenu">
+                                        <a href="javascript:void(0);">注册信息</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">团信息</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="first-level-nav">
+                            <a href="javascript:void(0);">运营中心</a>
+                            <div class="second-level-nav">
+                                <ul class="secondLevelList clearfix">
+                                    <li class="currentSecondLevelMenu">
+                                        <a href="javascript:void(0);">申诉管理</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="first-level-nav currentStairMenu">
+                            <a href="javascript:void(0);">权限管理</a>
+                            <div class="second-level-nav">
+                                <ul class="secondLevelList clearfix">
+                                    <li class="currentSecondLevelMenu">
+                                        <a href="javascript:void(0);">角色维护</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">人员管理</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="headRightOperate">
+                    <span class="userContent">Hi，千颂伊</span>
+                    <label class="emailContent">
+                        <i class="emailIcon"></i>
+                        <span class="emailFonts">99</span>
+                    </label>
+                    <a href="javascript:void(0);" class="exitFonts">退出</a>
+                </div>
+            </div>
+        </div>
+        <div class="headSecondLevel"></div>
+    </header>
+    <div class="judge-container">
+        <div class="headSecondBlank clearfix">
+            <span>
+                <a class="backBtn" href="角色维护.html">&lt;&nbsp;返回</a>
+            </span>
+            <span class="head-btn">
+                <a href="javascript:void(0);" class="commonJudgeBtn redBtn" id="redBtn">保存角色</a>
+                <a href="角色维护.html" class="commonJudgeBtn greyBtn">取消</a>
+            </span>
+        </div>
+        <section class="contentBg">
+            <div class="roleMaintain">
+                <span class="roleName"><em class="redStar">*</em>角色名称</span><input type="text" id="roleName" placeholder="导游运营" style="width: 300px;">
+            </div>
+            <div class="roleOptions">
+                <h2>选择权限</h2>
+                <table class="addSpecilTable table-bordered">
+                    <colgroup>
+                        <col width="160">
+                        <col width="800">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>权限模块</th>
+                        <th>权限选择</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>审核中心</th>
+                        <td>
+                            <div class="checkboxContent">
+                                <span class="selectAll">
+                                    <label class="checkboxInfo">
+                                        <span class="checkboxIcon"></span>全选
+                                    </label>
+                                </span>
+                                <span class="selectContent">
+                                    <label class="checkboxInfo">
+                                        <span class="checkboxIcon"></span>导游审核
+                                    </label>
+                                    <label class="checkboxInfo">
+                                        <span class="checkboxIcon"></span>领队审核
+                                    </label>
+                                    <label class="checkboxInfo">
+                                        <span class="checkboxIcon"></span>旅行社审核
+                                    </label>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>导游管理</th>
+                        <td>
+                            <div class="checkboxContent">
+                                <span class="selectAll">
+                                    <label class="checkboxInfo">
+                                        <span class="checkboxIcon"></span>全选
+                                    </label>
+                                </span>
+                                <span class="selectContent">
+                                    <label class="checkboxInfo">
+                                        <span class="checkboxIcon"></span>导游/领队会员信息
+                                    </label>
+                                    <label class="checkboxInfo">
+                                        <span class="checkboxIcon"></span>档期信息
+                                    </label>
+                                </span>
+                            </div>
+                        </td>                       
+                    </tr>
+                    <tr>
+                        <th>旅行社管理</th>
+                        <td>
+                            <div class="checkboxContent">
+                                <span class="selectAll">
+                                    <label class="checkboxInfo">
+                                        <span class="checkboxIcon"></span>全选
+                                    </label>
+                                </span>
+                                <span class="selectContent">
+                                    <label class="checkboxInfo">
+                                        <span class="checkboxIcon"></span>旅行社会员信息
+                                    </label>
+                                    <label class="checkboxInfo">
+                                        <span class="checkboxIcon"></span>团信息
+                                    </label>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>运营中心</th>
+                        <td>
+                            <div class="checkboxContent">
+                                <span class="selectAll">
+                                    <label class="checkboxInfo">
+                                        <span class="checkboxIcon"></span>全选
+                                    </label>
+                                </span>
+                                <span class="selectContent">
+                                    <label class="checkboxInfo">
+                                        <span class="checkboxIcon"></span>申诉管理
+                                    </label>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>权限管理</th>
+                        <td>
+                            <div class="checkboxContent">
+                                <span class="selectAll">
+                                    <label class="checkboxInfo">
+                                        <span class="checkboxIcon"></span>全选
+                                    </label>
+                                </span>
+                                <span class="selectContent">
+                                    <label class="checkboxInfo">
+                                        <span class="checkboxIcon"></span>角色管理
+                                    </label>
+                                    <label class="checkboxInfo">
+                                        <span class="checkboxIcon"></span>人员管理
+                                    </label>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+    </div>
+    <footer>Copyright © 2015 天地行 All Rights Reserved. 沪ICP备08101503号</footer>
+</div>
+<!--保存选择权限模态框-->
+<div class="modal fade" id="conserveMaintain">
+    <div class="modal-dialog" style="width: 450px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">操作提示</h4>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center"><span class="conserve-icon"></span>保存成功！</p>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:void(0);" class="commonJudgeBtn confirmBtn" id="confirmBtn" data-dismiss="modal">确认</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function(){
+        $(".modal").modal({
+            backdrop:"static",
+            keyboard: false,
+            show: false
+        });
+        $("#redBtn").click(function(){
+            $("#conserveMaintain").modal("show");
+        });
+        $("#confirmBtn").click(function(){
+            var roleName = $("#roleName").val();
+            if(roleName == ""){
+                alert("你还没有填写角色名称。");
+            }else{
+                location.href="角色列表.html";
+            }
+        });
+
+
+        var tempNum = 0;
+        $(".selectAll .checkboxInfo").each(function(){
+            $(this).click(function(){
+                tempNum++;
+                var that = $(this)
+                if(tempNum%2!=0){
+                    $(that).addClass("active");
+                    $(that).parents(".selectAll").siblings(".selectContent").find(".checkboxInfo").addClass("active");
+                }else{
+                    $(that).removeClass("active");
+                    $(that).parents(".selectAll").siblings(".selectContent").find(".checkboxInfo").removeClass("active");
+                };
+            });
+        });
+
+    })
+</script>
+</body>
+</html>
