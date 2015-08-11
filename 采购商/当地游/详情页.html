@@ -643,12 +643,7 @@
         /*  切换月份 */      
         $("body").delegate("#priceCalendar .tabSwitchMonth li", "click", function(){
             $(this).addClass("tabCurrentMonth");
-            $(this).siblings("li").removeClass("tabCurrentMonth");
-            
-//            var index = $(this).index();
-//            $(this).parents(".tabSwitchMonth").siblings(".calendarTables").find(".calTable").hide();
-//            $(this).parents(".tabSwitchMonth").siblings(".calendarTables").find(".calTable").eq(index).show();
-            
+            $(this).siblings("li").removeClass("tabCurrentMonth");            
             showCurrentCalendar("#priceCalendar");
             addEnableTd();
         });
@@ -679,6 +674,14 @@
             offsetX:0,
             offsetY:56
         });*/
+
+        $("#priceCalendar .calTable").on("mouseenter", ".hasBorderTd", function(){
+            $(this).removeClass("hideContainer");
+        });
+
+        $("#priceCalendar .calTable").on("mouseleave", ".hasBorderTd", function(){
+            $(this).addClass("hideContainer");
+        });
 
         $("#priceCalendar .calTable").on("click", ".enableTd", function(){
             $(this).addClass("addClick");
