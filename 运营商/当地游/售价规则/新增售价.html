@@ -118,11 +118,16 @@
                     <tr>
                         <th>有效日期</th>
                         <td>
-                            <input type="text" class="datepicker" style="width: 95px;" placeholder="2015-09-30">
-                            <em>至</em>
-                            <input type="text" class="datepicker orange" style="width: 95px;" placeholder="2015-09-30">
+                            <label class="radioDate">
+                                <input type="radio" name="selectDate" checked>
+                                <span>
+                                    <input type="text" class="datepicker" style="width: 95px;" placeholder="2015-09-30">
+                                    <em>至</em>
+                                    <input type="text" class="datepicker orange" style="width: 95px;" placeholder="2015-09-30">
+                                </span>
+                            </label>
                             <label class="dateCheckbox">
-                                <input type="checkbox">&nbsp;长期有效
+                                <input type="radio" name="selectDate">&nbsp;长期有效
                             </label>
                         </td>
                     </tr>
@@ -588,6 +593,10 @@
         $(".newAddPriceStyle .closeBox").click(function(){
             $(this).parents(".newAddPriceStyle label").remove();
         });
+        
+        $(".radioDate").click(function(){
+            $(this).find("input[type='radio']").prop("checked",true);
+        });        
 
     });
 </script>
