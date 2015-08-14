@@ -149,7 +149,7 @@
                     </li>
                     <li>
                         <div class="moreDetails">
-                            从东京出发，游览日本最煮米鞥的景点。前往热门的富士山第五火车站，乘船观光芦之湖，乘坐空中缆车至苟月山丘山顶，观壮丽的大涌谷火山山谷。最后乘坐新干线火车回东京，让您拥有一次无忧无虑的旅行 让您拥有一次无忧无虑的旅行让您拥有一次无忧无虑的旅行
+                            从东京出发，游览日本最煮米鞥的景点。前往热门的富士山第五火车站，乘船观光芦之湖，乘坐空中缆车至苟月山丘山顶，观壮丽的大涌谷火山山谷。最后乘坐新干线火车回东京，让您拥有一次无忧无虑的旅行 让您拥有一次无忧无虑的旅行让您拥有一次无忧无虑的旅行,前往热门的富士山第五火车站前往热门的富士山第五火车站前往热门的富士山第五火车站
                         </div>
                         <div class="view-more-text">
                             <span>查看更多</span><i class="icon-arrow-down"></i>
@@ -752,12 +752,18 @@
         });
 
         //展开收起效果
+        if($(".moreDetails").height() > 75){
+            $(".view-more-text").show();
+        }else{
+            $(".view-more-text").hide();
+        }
         $("body").delegate(".view-more-text", "click", function(){
             if ($(this).find("i").hasClass("icon-arrow-down")) { // 当前为收起状态
                 $(this).find("i").removeClass("icon-arrow-down");
                 $(this).find("i").addClass("icon-arrow-up");
                 $(this).find("span").html("收起");
                 $(this).siblings(".moreDetails").css({
+                    maxHeight: "none",
                     height: "auto",
                     overflow: "visible"
                 });
@@ -766,6 +772,7 @@
                 $(this).find("i").addClass("icon-arrow-down");
                 $(this).find("span").html("查看更多");
                 $(this).siblings(".moreDetails").css({
+                    maxHeight: "90px",
                     height: "90px",
                     overflow: "hidden"
                 });
