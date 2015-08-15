@@ -245,12 +245,31 @@
                                         <option>标准阳台双人房</option>
                                     </select>
                                     <span class="roomDetail">房型详情</span>
-                                    <div class="roomCapacity">可入住人数<em>5</em>人</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><em class="redStar">*</em>可入住人数</th>
+                                <td>
+                                    <select class="roomCapacity">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                    <span>人</span>
                                 </td>
                             </tr>
                             <tr>
                                 <th><em class="redStar">*</em>库存</th>
-                                <td><input type="text" class="leftRoom">间</td>
+                                <td>
+                                    <input type="text" class="leftRoom"> 间
+                                    <div class="roomSurplus">
+                                        <span>已有房间</span>
+                                        <input class="addRoomBtn" type="text" value="15"> 间
+                                    </div>
+                                    
+                                </td>
                             </tr>
                             <tr>
                                 <th><em class="redStar">*</em>价格维护</th>
@@ -596,6 +615,14 @@
         </div>
     </script>
 
+    <script type="text/x-kendo-template" id="addRoomWindow">
+        <div class="addRoomWindow">
+            <div class="selectRoom">
+                
+            </div>
+        </div>
+    </script>
+
     <script type="text/x-kendo-template" id="selectedDateTemplate">
         # for (var i = 0; i < data.length; i++) { #
             <div class="selectedDateItem">
@@ -662,6 +689,13 @@
                 open: function(){
                     console.log("在这里准备数据");
                 }
+            }).init();
+
+
+            var changeRoomWindow = new PopWindow('.addRoomBtn',{
+                title:'添加已有房间',
+                width:'790',
+                template:'#addRoomWindow'
             }).init();
 
             // 双日历初始化            
