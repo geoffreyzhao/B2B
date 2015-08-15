@@ -302,22 +302,24 @@
             <div>
             <table cellpadding="0" cellspacing="0" class="routeTable dashedTab productInfoTable">
                 <colgroup>
-                    <col width="125"/>
-                    <col width="60"/>
-                    <col width="60"/>
-                    <col width="80"/>
-                    <col width="95"/>
-                    <col width="80"/>
-                    <col width="95"/>
-                    <col width="80"/>
-                    <col width="95"/>
-                    <col width="80"/>
-                    <col width="95"/>
+                    <col width="120"/>
+                    <col width="55"/>
+                    <col width="55"/>
+                    <col width="55"/>
+                    <col width="75"/>
+                    <col width="90"/>
+                    <col width="75"/>
+                    <col width="90"/>
+                    <col width="75"/>
+                    <col width="90"/>
+                    <col width="75"/>
+                    <col width="90"/>
                 </colgroup>
                 <thead>
                 <tr>
                     <th rowspan="3">房型</th>
                     <th rowspan="3">间数</th>
+                    <th rowspan="3">操作</th>
                     <th rowspan="3">房间</th>
                     <th colspan="8">入住旅客</th>
                 </tr>
@@ -344,7 +346,10 @@
                     <td rowspan="4">
                         <b class="fontWeight26">2</b>
                     </td>
-                    <td rowspan="2">第1间</td>
+                    <td rowspan="4">
+                        <a class="separateRoom" href="javascript:void(0);">分房</a>
+                    </td>
+                    <td rowspan="2">5123</td>
                     <td>小潘潘</td>
                     <td class="colorOrange">
                         <i class="fonts12">￥</i>
@@ -374,7 +379,7 @@
                     <td> </td>
                 </tr>
                 <tr>
-                    <td rowspan="2">第2间</td>
+                    <td rowspan="2">5124</td>
                     <td>小潘潘</td>
                     <td class="colorOrange">
                         <i class="fonts12">￥</i>
@@ -410,7 +415,10 @@
                     <td rowspan="3">
                         <b class="fontWeight26">2</b>
                     </td>
-                    <td rowspan="2">第1间</td>
+                    <td rowspan="3">
+                        <a class="separateRoom" href="javascript:void(0);">分房</a>
+                    </td>
+                    <td rowspan="2">5123</td>
                     <td>小潘潘</td>
                     <td class="colorOrange">
                         <i class="fonts12">￥</i>
@@ -440,7 +448,7 @@
                     <td> </td>
                 </tr>
                 <tr>
-                    <td>第2间</td>
+                    <td>5123</td>
                     <td></td>
                     <td class="colorOrange">
                         <i class="fonts12"></i>
@@ -463,7 +471,10 @@
                     <td rowspan="2">
                         <b class="fontWeight26">1</b>
                     </td>
-                    <td rowspan="2">第1间</td>
+                    <td rowspan="2">
+                        <a class="separateRoom" href="javascript:void(0);">分房</a>
+                    </td>
+                    <td rowspan="2">5124</td>
                     <td>小潘潘</td>
                     <td>已退团</td>
                     <td> </td>
@@ -1122,6 +1133,189 @@
         </div>
     </script>
 
+    <script type="text/x-kendo-template" id="addRoomWindow">
+        <div class="addRoomWindow">
+            <div class="selectRoom">
+                <ul class="selectNav clearfix">
+                    <li class="current">IC标准内舱房</li>
+                    <li style="margin-left:-1px;">IP高级内舱房</li>
+                    <li style="margin-left:-1px;">ID超高级内舱房</li>
+                </ul>
+                <div class="selectSubNav ICRoom">
+                    <table>
+                        <tr>
+                            <td>IC甲板1</td>
+                            <td>甲板2</td>
+                            <td>甲板3</td>
+                            <td>甲板4</td>
+                        </tr>
+                        <tr>
+                            <td>甲板5</td>
+                            <td class="current">甲板6</td>
+                            <td>甲板7</td>
+                            <td>甲板8</td>
+                        </tr>
+                        <tr>
+                            <td>甲板9</td>
+                            <td>甲板10</td>
+                            <td>甲板11</td>
+                            <td>甲板12</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="selectSubNav IDRoom">
+                    <table>
+                        <tr>
+                            <td>ID甲板1</td>
+                            <td>甲板2</td>
+                            <td>甲板3</td>
+                            <td>甲板4</td>
+                        </tr>
+                        <tr>
+                            <td>甲板5</td>
+                            <td>甲板6</td>
+                            <td>甲板7</td>
+                            <td>甲板8</td>
+                        </tr>
+                        <tr>
+                            <td>甲板9</td>
+                            <td>甲板10</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="selectSubNav IPRoom">
+                    <table>
+                        <tr>
+                            <td>IP甲板1</td>
+                            <td>甲板2</td>
+                            <td>甲板3</td>
+                            <td>甲板4</td>
+                        </tr>
+                        <tr>
+                            <td>甲板5</td>
+                            <td>甲板6</td>
+                            <td>甲板7</td>
+                            <td>甲板8</td>
+                        </tr>
+                        <tr>
+                            <td>甲板9</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="roomNo">
+                    <table cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td style="margin-left:0;margin-top:0;">5123</td>
+                            <td style="margin-top:0;">5124</td>
+                            <td style="margin-top:0;">5125</td>
+                            <td style="margin-top:0;">5126</td>
+                        </tr>
+                        <tr>
+                            <td style="margin-left:0;">5127</td>
+                            <td>5128</td>
+                            <td>5129</td>
+                            <td>5130</td>
+                        </tr>
+                        <tr>
+                            <td style="margin-left:0;">5131</td>
+                            <td>5132</td>
+                            <td>5133</td>
+                            <td>5134</td>
+                        </tr>
+                        <tr>
+                            <td style="margin-left:0;">5135</td>
+                            <td>5136</td>
+                            <td>5137</td>
+                            <td>5138</td>
+                        </tr>
+                        <tr>
+                            <td style="margin-left:0;">5139</td>
+                            <td>5140</td>
+                            <td>5141</td>
+                            <td>5142</td>
+                        </tr>
+                        <tr>
+                            <td style="margin-left:0;">5143</td>
+                            <td class="disabled">5144</td>
+                            <td>5145</td>
+                            <td>5146</td>
+                        </tr>
+                        <tr>
+                            <td style="margin-left:0;">5147</td>
+                            <td>5148</td>
+                            <td>5149</td>
+                            <td>5150</td>
+                        </tr>
+                        <tr>
+                            <td style="margin-left:0;">5151</td>
+                            <td>5152</td>
+                            <td>5153</td>
+                            <td>5154</td>
+                        </tr>
+                        <tr>
+                            <td style="margin-left:0;">5155</td>
+                            <td>5156</td>
+                            <td>5157</td>
+                            <td>5158</td>
+                        </tr>
+                        <tr>
+                            <td style="margin-left:0;">5159</td>
+                            <td>5160</td>
+                            <td>5161</td>
+                            <td>5162</td>
+                        </tr>
+                        <tr>
+                            <td style="margin-left:0;">5163</td>
+                            <td>5164</td>
+                            <td>5165</td>
+                            <td>5166</td>
+                        </tr>
+                        <tr>
+                            <td style="margin-left:0;">5167</td>
+                            <td>5168</td>
+                            <td>5169</td>
+                            <td>5170</td>
+                        </tr>
+                        <tr>
+                            <td style="margin-left:0;">5171</td>
+                            <td>5172</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="operBtn">
+                    <a href="javascript:;" class="adaptiveButton brightBtn brightBtn-blue confirmBtn">
+                        <span class="left"></span>
+                        <span class="center" style="padding:0 15px;">确 定</span>
+                        <span class="right"></span>
+                    </a>
+                    <a href="javascript:;" class="adaptiveButton brightBtn normalButton concelBtn">
+                        <span class="left"></span>
+                        <span class="center" style="padding:0 15px;">取 消</span>
+                        <span class="right"></span>
+                    </a>
+                    <a href="javascript:;" class="adaptiveButton brightBtn normalButton selectAllBtn">
+                        <span class="left"></span>
+                        <span class="center" style="padding:0 15px;">全 选</span>
+                        <span class="right"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="roomLocationImg">
+                <div class="locationimg">
+                    <img src="/static/images/operator/roomlocation.jpg" alt="">  
+                </div>
+                <img class="topimg" src="/static/images/operator/top.png" alt="" style="position:absolute;right:30px;top:10px;">
+                <img class="bottomimg" src="/static/images/operator/bottom.png" alt="" style="position:absolute;right:30px;bottom:10px;">
+            </div>
+        </div>
+    </script>
     
     <script>
         $(function(){
@@ -1175,6 +1369,43 @@
             $('#ac').fixedBar({
                 inverse:true
             });
+
+            var changeRoomWindow = new PopWindow('.separateRoom',{
+                title:'添加已有房间',
+                width:'790',
+                template:'#addRoomWindow'
+            }).init();
+
+            $('.selectSubNav table td').click(function(){
+                $('.selectSubNav table td').removeClass('current');
+                $(this).addClass('current');
+                $('.roomNo td').removeClass('current disabled');
+                /*$('.roomNo td').text('');*/
+            });
+
+            $('.selectNav li').click(function(){
+                $(this).addClass('current').siblings().removeClass('current');
+                $('.selectSubNav').eq($(this).index()).show().siblings('.selectSubNav').hide();
+            });
+            $('.roomNo td').click(function(){
+                if($(this).text()!==""){
+                        if($(this).hasClass('current')){
+                        $(this).removeClass('current');
+                    }else{
+                        $(this).addClass('current');
+                    }
+                }
+            });
+            $('.confirmBtn').click(function(){
+                
+            });
+            $('.concelBtn').click(function(){
+                $('.roomNo td').removeClass('current');
+            });
+            $('.selectAllBtn').click(function(){
+                $('.roomNo td').addClass('current');
+            });
+
         })
     </script>
 
