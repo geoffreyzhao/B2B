@@ -1166,7 +1166,7 @@
                 <div class="selectSubNav IDRoom">
                     <table>
                         <tr>
-                            <td>ID甲板1</td>
+                            <td>IP甲板1</td>
                             <td>甲板2</td>
                             <td>甲板3</td>
                             <td>甲板4</td>
@@ -1188,7 +1188,7 @@
                 <div class="selectSubNav IPRoom">
                     <table>
                         <tr>
-                            <td>IP甲板1</td>
+                            <td>ID甲板1</td>
                             <td>甲板2</td>
                             <td>甲板3</td>
                             <td>甲板4</td>
@@ -1379,20 +1379,30 @@
             $('.selectSubNav table td').click(function(){
                 $('.selectSubNav table td').removeClass('current');
                 $(this).addClass('current');
-                $('.roomNo td').removeClass('current disabled');
-                /*$('.roomNo td').text('');*/
+                var i=$(this).text();         //假数据
+                $('.roomNo td').each(function(){
+                    $(this).removeClass('current disabled');
+                    $('.roomNo td').text(i+$(this).index());      //插入假数据
+                })
             });
 
             $('.selectNav li').click(function(){
                 $(this).addClass('current').siblings().removeClass('current');
                 $('.selectSubNav').eq($(this).index()).show().siblings('.selectSubNav').hide();
+                var i=$(this).index();     //假数据
+                $('.roomNo td').each(function(){
+                    $(this).removeClass('current disabled');
+                    $('.roomNo td').text(i);      //插入假数据
+                })
             });
             $('.roomNo td').click(function(){
                 if($(this).text()!==""){
                         if($(this).hasClass('current')){
                         $(this).removeClass('current');
                     }else{
-                        $(this).addClass('current');
+                        if(!$(this).hasClass('disabled')){
+                            $(this).addClass('current');
+                        }
                     }
                 }
             });
