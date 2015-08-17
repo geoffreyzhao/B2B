@@ -141,7 +141,8 @@
                 <div class="saleContent">
                     <div class="asideNav">
                         <ul>
-                            <li class="asideNavItem"><span class="foldIcon"></span>内舱房
+                            <li class="asideNavItem">
+                                <span class="foldIcon"></span><em>内舱房</em>
                                 <ol class="asideSubNav">
                                     <li>内舱房类型1</li>
                                     <li>内舱房类型2</li>
@@ -150,7 +151,8 @@
                                     <li>内舱房类型5</li>
                                 </ol>
                             </li>
-                            <li class="asideNavItem"><span class="foldIcon"></span>海景房
+                            <li class="asideNavItem">
+                                <span class="foldIcon"></span><em>海景房</em>
                                 <ol class="asideSubNav">
                                     <li>海景套房1</li>
                                     <li>海景套房2</li>
@@ -160,7 +162,8 @@
                                     <li>海景套房6</li>
                                 </ol>
                             </li>
-                            <li class="asideNavItem"><span class="foldIcon"></span>阳台房
+                            <li class="asideNavItem">
+                                <span class="foldIcon"></span><em>阳台房</em>
                                 <ol class="asideSubNav">
                                     <li>全景阳台小型套房MS</li>
                                     <li>高级全景阳台小型套房MD</li>
@@ -171,7 +174,8 @@
                                     <li>豪华全景阳台家庭套房GS</li>
                                 </ol>
                             </li>
-                            <li class="asideNavItem"><span class="foldIcon"></span>套房
+                            <li class="asideNavItem">
+                                <span class="foldIcon"></span><em>套房</em>
                                 <ol class="asideSubNav">
                                     <li>套房类型1</li>
                                     <li>套房类型2</li>
@@ -385,8 +389,11 @@
             }
         });
 
-        $('.asideNavItem').click(function(){
-            var i=$(this).index();             //假数据
+        $('.asideNavItem em').click(function(){
+            $('.asideNavItem em').removeClass('current');
+            $('.asideSubNav li').removeClass('current');
+            $(this).addClass('current');
+            var i=$(this).parent().index();             //假数据
             $('.roomSurplusConT td').each(function(){
                 $(this).removeClass('current undisabled')
                 $(this).text(i+'(1/3)');                //插入假数据
@@ -395,12 +402,13 @@
         });
 
         $('.asideSubNav li').click(function(event){
+            $('.asideNavItem em').removeClass('current');
             $('.asideSubNav li').removeClass('current');
             $(this).addClass('current');
             var j=$(this).index()+$(this).parent().parent().index()+10;             //假数据
             $('.roomSurplusConT td').each(function(){
-                j=j+$(this).index();                            //假数据
                 $(this).removeClass('current undisabled');
+                j=j+$(this).index();                            //假数据
                 $(this).text(j+'(1/3)');                                 //插入假数据
             });
             event.stopPropagation();
@@ -411,8 +419,8 @@
             $(this).addClass('current');
             var j=$(this).index()+$(this).parent().parent().index()+10;    //假数据
             $('.roomSurplusConT td').each(function(){
-                j=j+$(this).index();                             //假数据
                 $(this).removeClass('current undisabled');
+                j=j+$(this).index();                             //假数据
                 $(this).text(j+'(1/3)');                          //插入假数据
             });
             event.stopPropagation();
