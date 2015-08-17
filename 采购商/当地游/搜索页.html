@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css">
     <link rel="stylesheet" href="/static/css/store_reset.css" media="all" />
     <link rel="stylesheet" href="/static/css/store.css" media="screen" />
-    <!-- <link rel="stylesheet" href="../../static/css/store_v2/store_travelCreate.css"/> -->
     <link rel="stylesheet" href="../../static/css/store_localTravel.css" media="screen" />
     <link rel="stylesheet" href="/static/css/kendo.common.min.css" />
     <link rel="stylesheet" href="/static/css/kendo.store.css" />
@@ -245,7 +244,9 @@
                                 <div class="fontConP">
                                     <span>目的地：<em>东京</em></span>
                                     <span class="time">时长：<em>5时30m</em></span>
-                                    <p><span>特色：</span>从东京出发，游览日本最著名的景点，前往热门的富士山第五火车站，乘船观光芦苇湖，乘坐空中缆车至苟月山</p>
+                                    <div class="secondLinesEllipsis">
+                                        <p><span>特色：</span>从东京出发，游览日本最著名的景点，前往热门的富士山第五火车站，乘船观光芦苇湖，从东京出发，游览日本最著名的景点，前往热门的富士山第五火车站，乘船观光芦苇湖，乘坐空中缆车至苟月山乘坐空中缆车至苟月山</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -278,7 +279,9 @@
                                 <div class="fontConP">
                                     <span>目的地：<em>东京</em></span>
                                     <span class="time">时长：<em>5时30m</em></span>
-                                    <p><span>特色：</span>从东京出发，游览日本最著名的景点，前往热门的富士山第五火车站，乘船观光芦苇湖，乘坐空中缆车至苟月山</p>
+                                    <div class="secondLinesEllipsis">
+                                        <p><span>特色：</span>从东京出发，游览日本最著名的景点，前往热门的富士山第五火车站，乘船观光芦苇湖，乘坐空中缆车至苟月山</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -311,7 +314,9 @@
                                 <div class="fontConP">
                                     <span>目的地：<em>东京</em></span>
                                     <span class="time">时长：<em>5时30m</em></span>
-                                    <p><span>特色：</span>从东京出发，游览日本最著名的景点，前往热门的富士山第五火车站，乘船观光芦苇湖，乘坐空中缆车至苟月山</p>
+                                    <div class="secondLinesEllipsis">
+                                        <p><span>特色：</span>从东京出发，游览日本最著名的景点，前往热门的富士山第五火车站，乘船观光芦苇湖，乘坐空中缆车至苟月山</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -344,7 +349,9 @@
                                 <div class="fontConP">
                                     <span>目的地：<em>东京</em></span>
                                     <span class="time">时长：<em>5时30m</em></span>
-                                    <p><span>特色：</span>从东京出发，游览日本最著名的景点，前往热门的富士山第五火车站，乘船观光芦苇湖，乘坐空中缆车至苟月山</p>
+                                    <div class="secondLinesEllipsis">
+                                        <p><span>特色：</span>从东京出发，游览日本最著名的景点，前往热门的富士山第五火车站，乘船观光芦苇湖，乘坐空中缆车至苟月山</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -499,6 +506,14 @@
             $('.filter_item_info_box:eq(2) .filter_item_info>div:first').trigger('click');
             showClearBtn();
         })
+
+        $(".secondLinesEllipsis").each(function(){
+            var divH = $(this).height();
+            var $p = $("p", $(this)).eq(0);
+            while ($p.outerHeight() > divH) {
+                $p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
+            }
+        });
 
     });
 
