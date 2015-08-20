@@ -11,6 +11,7 @@
     <script type="text/javascript" src="../static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../static/js/kendo.web.js"></script>
     <script type="text/javascript" src="../static/js/header.js"></script>
+    <script type="text/javascript" src="../static/js/global.js"></script>
     <script type="text/javascript" src="../static/js/supplier/supplier_sync.js"></script>
 
 <!--[if lt IE 8]> 
@@ -132,6 +133,18 @@
 
             <!-- 自定义页面 -->
             //@todo add code here
+            
+            <br>
+            <br>
+            <br>
+            <a class="supplierButton brightRedBig_btn ac-text">
+                <span class="left"></span>
+                <span class="center center_1">测试弹窗</span>
+                <span class="right"></span>
+            </a>
+            <br>
+            <br>
+            <br>
 
         </div>
 
@@ -148,6 +161,33 @@
             <p>客户服务热线:400-720-6666</p>
         </div>
     </div>
-        
+
+    <script type="text/x-kendo-template" id="textTemplate">
+        <div class="moreLineFonts">用来测试是否真的要删除？</div>
+        <div class="centerBtn">
+            <a class="supplierButton brightRedBig_btn">
+                <span class="left"></span>
+                <span class="center center_1">确 定</span>
+                <span class="right"></span>
+            </a>
+            <a href="javascript:void(0);" class="cancelA">取消</a>
+        </div>
+    </script>
+
+
+    <script type="text/javascript">
+
+        $(function(){
+
+            new PopWindow('.ac-text', {
+                title: '测试',
+                template: "#textTemplate",
+                width: 470
+            }).init();
+
+        });
+
+    </script>
+
 </body>
 </html>
