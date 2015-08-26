@@ -134,6 +134,8 @@
                             <option>进行中</option>
                             <option>已挂起</option>
                             <option>已结束</option>
+                            <option>待审核</option>
+                            <option>审核驳回</option>
                         </select>
                     </td>
                     <td rowspan="2">
@@ -225,6 +227,32 @@
                         <div>
                             <a href="javascript:void(0);" class="ac-systemSee">查看</a>
                             <a href="编辑系统送券.html">编辑</a>
+                            <a href="javascript:void(0);">删除</a>
+                        </div>
+                    </td>
+                    <td>活动名称活动名称活动名称活动名称</td>
+                    <td>系统送券</td>
+                    <td>
+                        <div>
+                            <a href="javascript:void(0);" class="full100">满100减10元</a>
+                        </div>
+                    </td>
+                    <td>去哪儿</td>
+                    <td>
+                        <div>2015-04-01至</div>
+                        <div>2015-04-05</div>
+                    </td>
+                    <td>
+                        <div>2015-04-01 &nbsp; 14:21:42</div>
+                        <div>张三</div>
+                    </td>
+                    <td>未开始</td>
+                </tr>
+                <tr>
+                    <td class="textAlginCenter">
+                        <div>
+                            <a href="javascript:void(0);" class="ac-systemSee">查看</a>
+                            <a href="javascript:void(0);" class="ac-systemReview">审核</a>
                             <a href="javascript:void(0);">删除</a>
                         </div>
                     </td>
@@ -740,6 +768,108 @@
         </div>
     </script>
 
+    <script type="text/x-kendo-template" id="ac-systemReview-template">
+        <div>
+            <table class="commonModelWindow">
+                <colgroup>
+                    <col width="75">
+                    <col width="415">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <th>规则名称：</th>
+                    <td>假日送券活动</td>
+                </tr>
+                <tr>
+                    <th class="verticalAlignTop">规则说明：</th>
+                    <td>
+                        天地行北京发布会现场天地行北京发布会现场天地行北京发布会现场天地行北京发布会现场天地行北京发布会现场天地行北京发布会现场天地行北京发布会现场天地行北京发布会现场天地行北京发布会现场
+                    </td>
+                </tr>
+                <tr>
+                    <th class="verticalAlignTop">规则对象：</th>
+                    <td>
+                        <div>共<em class="orangeFonts">132</em>个客户组</div>
+                        <div class="foldContent">
+                            <span class="foldFonts">
+                                <label>“机票全部”、</label>
+                                <label>“去哪儿”、</label>
+                                <label>"携程"、</label>
+                                <label>“20元客户组”、</label>
+                                <label>“20元客户组”、</label>
+                                <label>“机票全部”、</label>
+                                <label>“去哪儿”、</label>
+                                <label>"携程"、</label>
+                                <label>“20元客户组”、</label>
+                                <label>“20元客户组”、</label>
+                                <label>“机票全部”、</label>
+                                <label>“去哪儿”、</label>
+                                <label>"携程"、</label>
+                                <label>“20元客户组”、</label>
+                                <label>“20元客户组”、</label>
+                                <label>“机票全部”、</label>
+                                <label>“去哪儿”、</label>
+                                <label>"携程"、</label>
+                                <label>“20元客户组”、</label>
+                                <label>“20元客户组”、</label>
+                                <label>“机票全部”、</label>
+                                <label>“去哪儿”、</label>
+                                <label>"携程"、</label>
+                                <label>“20元客户组”、</label>
+                                <label>“20元客户组”、</label>
+                                <label>“机票全部”、</label>
+                                <label>“去哪儿”、</label>
+                                <label>"携程"、</label>
+                                <label>“20元客户组”</label>
+                            </span>
+                            <span class="groupClick">
+                                <span class="foldType expandMoreLink">展开</span>
+                                <span class="foldType foldMoreLink" style="display:none;">收起</span>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="verticalAlignTop">活动送券：</th>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+            <table class="grayCommonTab">
+                <colgroup>
+                    <col width="175">
+                    <col width="175">
+                    <col width="175">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>券名</th>
+                    <th>发放数量<br></th>
+                    <th>预计发行量<br><em class="fonts888">(发放数量*活动对象)</em></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="blueFonts">满100减10元</td>
+                    <td>10张/人</td>
+                    <td>30张</td>
+                </tr>
+                <tr>
+                    <td class="blueFonts">满200减30元</td>
+                    <td>10张/人</td>
+                    <td>30张</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="couponNum">活动预计发放总金额： <span>&yen;<i>1562</i></span></div>
+            <div class="btnCenterModel">
+                <button class="large_button" type="button" name="a">审核通过</button>
+                <button class="large_button" type="button" name="a">审核不通过</button>
+                <button class="large_button disable" type="button" name="a">取 消</button>
+            </div>
+        </div>
+    </script>
+
     <footer class="main-footer">
         <center>
             <a href="#">隐私问题</a>
@@ -788,6 +918,12 @@
                 title:'用户领券活动详情',
                 width:570,
                 template:'#ac-userSee-template'
+            }).init();
+
+             new PopWindow('.ac-systemReview',{
+                title:'系统送券审核',
+                width:570,
+                template:'#ac-systemReview-template'
             }).init();
 
             $(".commonModelWindow").delegate(".groupClick .foldMoreLink", "click", function(){
