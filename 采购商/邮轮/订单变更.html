@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>天地行 采购商 邮轮 订单变更</title>
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
-    <meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--<meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes"/>-->
     <link rel="stylesheet" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css" />     
     <link rel="stylesheet" href="/static/css/coin-slider-styles.css" />
     <link rel="stylesheet" href="/static/css/store_reset.css" media="all" />
@@ -15,13 +15,13 @@
     
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/kendo.web.js"></script>
-	<script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>  
+	<script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    
     <!--[if IE]>
     <script src="/static/js/html5.js"></script>
     <![endif]-->
-    <script src="/static/js/jquery-ui-1.10.3.custom.js"></script>
-    <script type="text/javascript" src="/static/js/global.js"></script>    
-    <script type="text/javascript" src="/static/js/store/store.js"></script>
     
     <script>
         $(function(){
@@ -117,10 +117,12 @@
                     <div class="small-plus">+</div>
                 </td>
                 <td>张三、李四</td>
-                <td>2</td>
+                <td>
+                    <span class="selectResult">1</span>
+                </td>
                 <td>
                     <div>
-                        <a href="javascript:void(0)">房型变更</a>
+                        <a href="javascript:void(0)" class="ac-change">房型变更</a>
                     </div>
                 </td>
             </tr>
@@ -130,19 +132,21 @@
                 <td>2</td>
                 <td>
                     <div class="small-reduce">-</div>
-                    <div class="small-operat-number">1</div>
+                    <div class="small-operat-number">2</div>
                     <div class="small-plus">+</div>
                 </td>
                 <td>
                     <div class="small-reduce">-</div>
-                    <div class="small-operat-number">1</div>
+                    <div class="small-operat-number">2</div>
                     <div class="small-plus">+</div>
                 </td>
                 <td>王五</td>
-                <td>2</td>
+                <td>
+                    <span class="selectResult">2</span>
+                </td>
                 <td>
                     <div>
-                        <a href="javascript:void(0)">房型变更</a>
+                        <a href="javascript:void(0)" class="ac-change">房型变更</a>
                     </div>
                     <div>
                         <a href="javascript:void(0)">撤销</a>
@@ -164,7 +168,9 @@
                     <div class="small-plus">+</div>
                 </td>
                 <td>王五</td>
-                <td>2</td>
+                <td>
+                    <span class="selectResult">1</span>
+                </td>
                 <td>
                     <div>
                         <a href="javascript:void(0)">撤销</a>
@@ -175,132 +181,119 @@
         </table>
     </div>
 
-    <div class="departure grayBgTab">
+    <div class="departure grayBgTab fonts14">
         <div class="chief">
-            <h3>退团旅客</h3>
-            <div class="changeBtn">
-                <button class="commonBtnBg blueBg ac-sureRetreatLeague">确认退团</button>
-                <button class="commonBtnBg cancelBtn ac-noRetreatLeague">取消退团</button>
-            </div>
+            <h3>变更旅客</h3>
         </div>
         <table cellpadding="0" cellspacing="0" class="route traveller noMarginTop">
             <colgroup>
-                <col width="55">
-                <col width="75">
-                <col width="125">
-                <col width="40">
-                <col width="85">
-                <col width="75">
                 <col width="80">
-                <col width="165">
-                <col width="95">
                 <col width="80">
-                <col width="85">
+                <col width="100">
+                <col width="80">
+                <col width="130">
+                <col width="110">
+                <col width="110">
+                <col width="110">
+                <col width="110">
             </colgroup>
             <thead>
             <tr class="noborder">
+                <th>房间序号</th>
                 <th>类型</th>
-                <th>姓名</th>
-                <th>英文姓名</th>
-                <th>性别</th>
-                <th>出生日期</th>
-                <th>国籍</th>
-                <th>证件类型</th>
-                <th>证件号码</th>
-                <th>手机号</th>
-                <th>退团手续费</th>
-                <th>退团状态</th>
+                <th><em class="redFonts fonts14">*</em>姓名</th>
+                <th><em class="redFonts fonts14">*</em>性别</th>
+                <th><em class="redFonts fonts14">*</em>出生日期</th>
+                <th>原房型</th>
+                <th>原价</th>
+                <th>变更房型</th>
+                <th>参考价</th>
             </tr>
             </thead>
             <tbody>
             <tr>
+                <td>第2间</td>
                 <td>
                     <span  class="boldFont16">
                         <em class="peopleType blueBg">成人</em>
                     </span>
                 </td>
-                <td class="boldFont16">詹小楠</td>
-                <td class="fonts14">xiaonan/zhan</td>
-                <td>女</td>
-                <td>1988/09/18</td>
+                <td class="boldFont16">
+                    <input type="text" style="width: 75px;">
+                </td>
+                <td>
+                    <select data-role="dropdownlist" style="width: 55px;">
+                        <option>男</option>
+                        <option>女</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" placeholder="请选择" class="datepicker" style="width: 100px;">
+                </td>
                 <td>----</td>
-                <td>港澳通行证</td>
-                <td class="boldFont12">3101011900101222333</td>
-                <td>13812998989</td>
                 <td>----</td>
-                <td class="fonts14 orangeFonts">退团待审核</td>
+                <td class="redFonts">阳台房</td>
+                <td>4500</td>
             </tr>
-            <tr class="dotted_top">
+            <tr class="dashed_top">
+                <td>第3间</td>
                 <td>
                     <span  class="boldFont16">
                         <em class="peopleType greenBg">儿童</em>
                     </span>
                 </td>
-                <td class="boldFont16">詹小楠</td>
-                <td class="fonts14">xiaonan/zhan</td>
-                <td>女</td>
-                <td>1988/09/18</td>
-                <td>----</td>
-                <td>港澳通行证</td>
-                <td class="boldFont12">G123454218</td>
-                <td>13812998989</td>
-                <td>----</td>
-                <td class="fonts14 orangeFonts">退团待审核</td>
+                <td class="boldFont16">李四</td>
+                <td>男</td>
+                <td>2015-08-21</td>
+                <td>4人阳台房</td>
+                <td>8000</td>
+                <td>4人套房</td>
+                <td>4500</td>
             </tr>
-            <tr class="dotted_top">
+            <tr class="dashed_top">
+                <td>第3间</td>
                 <td>
                     <span  class="boldFont16">
                         <em class="peopleType greenBg">儿童</em>
                     </span>
                 </td>
-                <td class="boldFont16">詹小楠</td>
-                <td class="fonts14">xiaonan/zhan</td>
-                <td>女</td>
-                <td>1988/09/18</td>
-                <td>中国大陆</td>
-                <td>身份证</td>
-                <td class="boldFont12">G123454218</td>
-                <td>13812998989</td>
-                <td class="fonts18">0</td>
-                <td class="fonts14 orangeFonts">退团待审核</td>
-            </tr>
-            <tr class="dotted_top">
-                <td>
-                    <span  class="boldFont16">
-                        <em class="peopleType blueBg">成人</em>
-                    </span>
-                </td>
-                <td class="boldFont16">詹小楠</td>
-                <td class="fonts14">xiaonan/zhan</td>
-                <td>女</td>
-                <td>1988/09/18</td>
-                <td>中国大陆</td>
-                <td>身份证</td>
-                <td class="boldFont12">G123454218</td>
-                <td>13812998989</td>
-                <td class="fonts18">+ 1800</td>
-                <td class="fonts14 grayFonts">已退团</td>
-            </tr>
-            <tr class="dotted_top">
-                <td>
-                    <span  class="boldFont16">
-                        <em class="peopleType greenBg">儿童</em>
-                    </span>
-                </td>
-                <td class="boldFont16">詹小楠</td>
-                <td class="fonts14">xiaonan/zhan</td>
-                <td>女</td>
-                <td>1988/09/18</td>
-                <td>中国大陆</td>
-                <td>港澳通行证</td>
-                <td class="boldFont12">G123454218</td>
-                <td>13812998989</td>
-                <td class="fonts18">- 600</td>
-                <td class="fonts14 grayFonts">退团待确认</td>
+                <td class="boldFont16">李四</td>
+                <td>男</td>
+                <td>2015-08-21</td>
+                <td>4人阳台房</td>
+                <td>8000</td>
+                <td>4人套房</td>
+                <td>4500</td>
             </tr>
             </tbody>
         </table>
-    </div>    
+    </div>
+    <div class="departure fonts14">
+        <table class="changeTab">
+            <colgroup>
+                <col width="9%">
+                <col width="">
+            </colgroup>
+            <tbody>
+            <tr>
+                <th class="verticalTop"><em class="redFonts fonts14">*</em>变更原因：</th>
+                <td>
+                    <textarea class="changeText" placeholder="请填写变更原因……"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <td style="text-align: center;">
+                    <a class="adaptiveButton brightOrange_btn">
+                        <span class="left"></span>
+                        <span class="center">确 定</span>
+                        <span class="right"></span>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </section>
 
 <footer class="main-footer">
@@ -321,61 +314,291 @@
 </footer>
 </div>
 
-<script type="text/x-kendo-template" id="costExplain">
-    <div class="layerGrayBlock">
-        <div class="layerGrayContainer">
-            <div class="layerGrayArrow"></div>
-            <div class="costExplainWindow">
-                <h3>费用包含</h3>
-                <div class="costExplainP">
-                    <p>1、歌诗达“大西洋号”5晚住宿；</p>
-                    <p>2、邮轮上提供的一日三餐、非收费的餐饮（下午茶、宵夜）；</p>
-                    <p>3、邮轮上的晚会、游戏、表演、娱乐活动等（注明收费的除外）；</p>
-                    <p>4、领队服务费；</p>
-                    <p>5、邮轮港务费税费；</p>
-                    <p>6、济州、釜山、福冈岸上观光。</p>
-                </div>
-                <h3>费用不包含</h3>
-                <div class="costExplainP">
-                    <p>1.邮轮专业保险70元/人</p>
-                    <p>2.邮轮服务费：成人：11美金/晚，共44美金；4周岁-13周岁：5.5美金/晚，共22美金；4周岁以下免服务费。（邮轮上支付）</p>
-                    <p>3.护照工本费及个人单房差。</p>
-                    <p>4.船上和岸上的个人消费及以上未提及的费用。</p>
-                </div>
-            </div>
+<script type="text/x-kendo-template" id="ac-change_template">
+    <div>
+        <div class="operat-room-model">
+            <span class="fontStyle1">高级内舱家庭房K</span>
+            <span class="fontStyle1">可入住人数：4人</span>
+        </div>
+        <table class="hotelRoom-style-table-fix2">
+            <colgroup>
+                <col width="22">
+                <col width="70">
+                <col width="185">
+                <col width="83">
+                <col width="74">
+                <col width="52">
+                <col width="14">
+                <col width="98">
+                <col width="97">
+                <col width="121">
+                <col width="96">
+                <col width="22">
+                <col width="48">
+            </colgroup>
+            <thead>
+            <tr>
+                <th></th>
+                <th>舱型</th>
+                <th class="roomTypePadding">房型</th>
+                <th>甲板</th>
+                <th>面积</th>
+                <th>可入住<p>人数</p></th>
+                <th class="hotel-style-grey1"></th>
+                <th class="hotel-style-grey1">
+                    <div>同舱1,2人价</div>
+                    <div></div>
+                </th>
+                <th class="hotel-style-grey1">
+                    <div class="adultTag-describe">同舱3,4人价</div>
+                    <div class="adultTag">成人</div>
+                </th>
+                <th class="hotel-style-grey1">
+                    <div class="adultTag-describe">同舱3,4人价</div>
+                    <div class="kidTag">儿童</div>
+                </th>
+                <th class="hotel-style-grey1">
+                    <span class="selectHeadFont">单人价</span>
+                </th>
+                <th></th>
+                <th>
+                    <span class="selectHeadFont">选择</span>
+                </th>
+            </tr>
+            </thead>
+        </table>
+        <table class="hotelRoom-style-table">
+            <colgroup>
+                <col width="22">
+                <col width="70">
+                <col width="185">
+                <col width="83">
+                <col width="74">
+                <col width="52">
+                <col width="14">
+                <col width="98">
+                <col width="97">
+                <col width="121">
+                <col width="96">
+                <col width="22">
+                <col width="48">
+            </colgroup>
+            <tbody>
+            <tr>
+                <td rowspan="3" class="solidBottomBorder"></td>
+                <td class="fontStyle1 solidBottomBorder solidRightBorder" rowspan="3">内舱房</td>
+                <td class="cabinStyleTdLineHeight roomTypePadding">
+                    <i class="pocketImg"></i>
+                    <a href="javascript:void(0)" class="cabinStyle">内舱双人房 AE11内舱双人房 AE1</a>
+                </td>
+                <td>
+                    <div class="deck-layer-info">
+                        5,6,7
+                    </div>
+                </td>
+                <td>
+                    13m<span class="square">2</span>
+                </td>
+                <td>3</td>
+                <td class="hotel-style-grey2"></td>
+                <td class="hotelRoom-price hotel-style-grey2">
+                    <em class="priceSign">￥</em><span>185999</span>
+                </td>
+                <td class="hotelRoom-price hotel-style-grey2 label-price-td">
+                    <em class="priceSign">￥</em><span>185999</span>
+                </td>
+                <td class="hotelRoom-price hotel-style-grey2 label-price-td">
+                    <em class="priceSign">￥</em><span>185999</span>
+                </td>
+                <td class="hotelRoom-price hotel-style-grey2">
+                    <em class="priceSign">￥</em><span>185999</span>
+                </td>
+                <td></td>
+                <td>
+                    <input type="radio" name="changeHouse" checked>
+                </td>
+            </tr>
+            <tr>
+                <td class="cabinStyleTdLineHeight roomTypePadding">
+                    <i class="pocketImg"></i>
+                    <a href="javascript:void(0)" class="cabinStyle">2单人房人房 AE1</a>
+                </td>
+                <td>
+                    <div class="deck-layer-info">5,6,7</div>
+                </td>
+                <td>
+                    13m<span class="square">2</span>
+                </td>
+                <td>3</td>
+                <td class="hotel-style-grey2"></td>
+                <td class="hotelRoom-price hotel-style-grey2"><em class="priceSign">￥</em><span>185999</span></td>
+                <td class="hotelRoom-price hotel-style-grey2 label-price-td">---</td>
+                <td class="hotelRoom-price hotel-style-grey2 label-price-td">---</td>
+                <td class="hotelRoom-price hotel-style-grey2"><em class="priceSign">￥</em><span>185999</span></td>
+                <td></td>
+                <td>
+                    <input type="radio" name="changeHouse">
+                </td>
+            </tr>
+            <tr class="solidBottomBorderTr">
+                <td class="cabinStyleTdLineHeight roomTypePadding">
+                    <i class="pocketImg"></i>
+                    <a href="javascript:void(0)" class="cabinStyle">3大床房 AE</a>
+                </td>
+                <td>
+                    <div class="deck-layer-info">
+                        5,6,7
+                    </div>
+                </td>
+                <td>
+                    13m<span class="square">2</span>
+                </td>
+                <td>3</td>
+                <td class="hotel-style-grey2"></td>
+                <td class="hotelRoom-price hotel-style-grey2"><em class="priceSign">￥</em><span>185999</span></td>
+                <td class="hotelRoom-price hotel-style-grey2 label-price-td"><em class="priceSign">￥</em><span>185999</span></td>
+                <td class="hotelRoom-price hotel-style-grey2 label-price-td"><em class="priceSign">￥</em><span>185999</span></td>
+                <td class="hotelRoom-price hotel-style-grey2"><em class="priceSign">￥</em><span>185999</span></td>
+                <td></td>
+                <td>
+                    <input type="radio" name="changeHouse">
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="4" class="solidBottomBorder"></td>
+                <td class="fontStyle1 solidBottomBorder solidRightBorder" rowspan="4">海景房</td>
+                <td class="cabinStyleTdLineHeight roomTypePadding">
+                    <i class="pocketImg"></i>
+                    <a href="javascript:void(0)" class="cabinStyle">标准海景双人房I</a>
+                </td>
+                <td>
+                    <div class="deck-layer-info">
+                        3层
+                    </div>
+                </td>
+                <td>
+                    17m<span class="square">2</span>
+                </td>
+                <td>2</td>
+                <td class="hotel-style-grey2"></td>
+                <td class="hotelRoom-price hotel-style-grey2">
+                    <em class="priceSign">￥</em><span>185999</span>
+                </td>
+                <td class="hotelRoom-price hotel-style-grey2 label-price-td">
+                    <em class="priceSign">￥</em><span>185999</span>
+                </td>
+                <td class="hotelRoom-price hotel-style-grey2 label-price-td">
+                    <em class="priceSign">￥</em><span>185999</span>
+                </td>
+                <td class="hotelRoom-price hotel-style-grey2">
+                    <em class="priceSign">￥</em><span>185999</span>
+                </td>
+                <td></td>
+                <td>
+                    <input type="radio" name="changeHouse">
+                </td>
+            </tr>
+            <tr>
+                <td class="cabinStyleTdLineHeight roomTypePadding">
+                    <i class="pocketImg"></i>
+                    <a href="javascript:void(0)" class="cabinStyle">标准海景家庭房H</a>
+                </td>
+                <td>
+                    <div class="deck-layer-info">3层</div>
+                </td>
+                <td>
+                    17m<span class="square">2</span>
+                </td>
+                <td>3</td>
+                <td class="hotel-style-grey2"></td>
+                <td class="hotelRoom-price hotel-style-grey2"><em class="priceSign">￥</em><span>185999</span></td>
+                <td class="hotelRoom-price hotel-style-grey2 label-price-td">---</td>
+                <td class="hotelRoom-price hotel-style-grey2 label-price-td">---</td>
+                <td class="hotelRoom-price hotel-style-grey2"><em class="priceSign">￥</em><span>185999</span></td>
+                <td></td>
+                <td>
+                    <input type="radio" name="changeHouse">
+                </td>
+            </tr>
+            <tr>
+                <td class="cabinStyleTdLineHeight roomTypePadding">
+                    <i class="pocketImg"></i>
+                    <a href="javascript:void(0)" class="cabinStyle">高级海景双人房G</a>
+                </td>
+                <td>
+                    <div class="deck-layer-info">
+                        8,9,10,11层
+                    </div>
+                </td>
+                <td>
+                    20m<span class="square">2</span>
+                </td>
+                <td>3</td>
+                <td class="hotel-style-grey2"></td>
+                <td class="hotelRoom-price hotel-style-grey2"><em class="priceSign">￥</em><span>185999</span></td>
+                <td class="hotelRoom-price hotel-style-grey2 label-price-td"><em class="priceSign">￥</em><span>185999</span></td>
+                <td class="hotelRoom-price hotel-style-grey2 label-price-td"><em class="priceSign">￥</em><span>185999</span></td>
+                <td class="hotelRoom-price hotel-style-grey2"><em class="priceSign">￥</em><span>185999</span></td>
+                <td></td>
+                <td>
+                    <input type="radio" name="changeHouse">
+                </td>
+            </tr>
+            <tr class="solidBottomBorderTr">
+                <td class="cabinStyleTdLineHeight roomTypePadding">
+                    <i class="pocketImg"></i>
+                    <a href="javascript:void(0)" class="cabinStyle">豪华海景房</a>
+                </td>
+                <td>
+                    <div class="deck-layer-info">
+                        8,9,10,11层
+                    </div>
+                </td>
+                <td>
+                    25m<span class="square">2</span>
+                </td>
+                <td>3</td>
+                <td class="hotel-style-grey2"></td>
+                <td class="hotelRoom-price hotel-style-grey2"><em class="priceSign">￥</em><span>185999</span></td>
+                <td class="hotelRoom-price hotel-style-grey2 label-price-td"><em class="priceSign">￥</em><span>185999</span></td>
+                <td class="hotelRoom-price hotel-style-grey2 label-price-td"><em class="priceSign">￥</em><span>185999</span></td>
+                <td class="hotelRoom-price hotel-style-grey2"><em class="priceSign">￥</em><span>185999</span></td>
+                <td></td>
+                <td>
+                    <input type="radio" name="changeHouse">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="textAlignCenter">
+            <a class="adaptiveButton brightOrange_btn">
+                <span class="left"></span>
+                <span class="center">确 定</span>
+                <span class="right"></span>
+            </a>
+            <a class="adaptiveButton bigDisabled_btn bigHaveHover">
+                <span class="left"></span>
+                <span class="center">取 消</span>
+                <span class="right"></span>
+            </a>
         </div>
     </div>
 </script>
 
 <script>    
     $(function(){
-        new PopWindow('.ac-retreatLeague',{
-            template:'#ac-retreatLeague_template',
-            title:'退团',
-            wrapperClass:'addTitleStyle',
-            width:'800'
+        $(".datepicker").datepicker({
+            changeYear: true,
+            changeMonth: true,
+            yearRange: "1900:2014"
+        });
+        
+        new PopWindow('.ac-change',{
+            template:'#ac-change_template',
+            title:'变更',
+            width:'1030'
         }).init();
-
-        var reduce = $(".reduce");
-        var plus = $(".plus");
-        reduce.on("click",function(){
-            var operatNumber = $(this).next();
-            var number = operatNumber.text();
-            number--;
-            if(number <= 0)
-            {
-                number = 0;
-                modifyHotelroomNote.show();
-            }
-            operatNumber.text(number);
-        });
-        plus.on("click",function(){
-            var operatNumber = $(this).prev();
-            var number = operatNumber.text();
-            number++;
-            operatNumber.text(number);
-        });
-
+        
         var smallReduce = $(".small-reduce");
         var smallPlus = $(".small-plus");
 
@@ -389,7 +612,6 @@
                 if(!$(this).hasClass("small-reduce-zero-font"))
                     $(this).addClass("small-reduce-zero-font");
             }
-
             smallOperatNumber.text(number);
         });
         smallPlus.on("click",function(){
