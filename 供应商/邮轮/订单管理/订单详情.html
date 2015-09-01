@@ -828,10 +828,10 @@
                         <col width="90">
                         <col width="60">
                         <col width="110">
-                        <col width="100">
-                        <col width="100">
-                        <col width="100">
-                        <col width="100">
+                        <col width="120">
+                        <col width="90">
+                        <col width="120">
+                        <col width="90">
                         <col width="100">
                         <col width="">
                     </colgroup>
@@ -862,8 +862,14 @@
                         <td>----</td>
                         <td>----</td>
                         <td>4人套房</td>
-                        <td>4000</td>
-                        <td>----</td>
+                        <td>
+                            <span>￥</span>
+                            <input type="text" value="4000" style="width: 55px;" onkeypress="return IsNum(event)">
+                        </td>
+                        <td>
+                            <span>￥</span>
+                            <input type="text" value="40" style="width: 55px;" onkeypress="return IsNum(event)">
+                        </td>
                         <td class="fonts14 fcf60">退团待受理</td>
                     </tr>
                     <tr class="dotted_top">
@@ -876,10 +882,18 @@
                         <td>女</td>
                         <td>1988/09/18</td>
                         <td>4人阳台房</td>
-                        <td>3000</td>
+                        <td>
+                            <span>￥</span>3000
+                        </td>
                         <td>4人套房</td>
-                        <td>4000</td>
-                        <td>----</td>
+                        <td>
+                            <span>￥</span>
+                            <input type="text" value="4000" style="width: 55px;" onkeypress="return IsNum(event)">
+                        </td>
+                        <td>
+                            <span>￥</span>
+                            <input type="text" value="40" style="width: 55px;" onkeypress="return IsNum(event)">
+                        </td>
                         <td class="fonts14 fcf60">退团待受理</td>
                     </tr>
                     <tr class="dotted_top">
@@ -892,10 +906,18 @@
                         <td>女</td>
                         <td>1988/09/18</td>
                         <td>4人阳台房</td>
-                        <td>3000</td>
+                        <td>
+                            <span>￥</span>3000
+                        </td>
                         <td>4人套房</td>
-                        <td>4000</td>
-                        <td>----</td>
+                        <td>
+                            <span>￥</span>
+                            <input type="text" value="4000" style="width: 55px;" onkeypress="return IsNum(event)">
+                        </td>
+                        <td>
+                            <span>￥</span>
+                            <input type="text" value="40" style="width: 55px;" onkeypress="return IsNum(event)">
+                        </td>
                         <td class="fonts14 fcf60">退团待受理</td>
                     </tr>
                     </tbody>
@@ -953,13 +975,17 @@
                     <em>退团费用</em>
                     <label>
                         <em class="fonts12">￥</em><b>- 300</b>
-                    </label> &nbsp;&nbsp;&nbsp;
+                    </label>&nbsp;+&nbsp;
+                    <em>变更费用</em>
+                    <label>
+                        <em class="fonts12">￥</em><b>- 300</b>
+                    </label> &nbsp;&nbsp;
                     <label class="moneyPosition">
                         <label>
-                            <em style="font-size: 16px;">合计合计</em>
+                            <em style="font-size: 16px;">合计</em>
                             <!--<em class="grayFonts">（含定金）：</em>-->
                             <strong class="totlePrice">
-                                <em style="font-size: 20px;"> ¥</em><b style="font-family: Arial">56000.00</b>
+                                <em style="font-size: 20px;"> ¥</em><b style="font-family: Arial">56000</b>
                             </strong>
                         </label>
                         <!--<em class="grayFonts earnest">定金：￥185999</em>-->
@@ -996,13 +1022,17 @@
                     <em>退团费用</em>
                     <label>
                         <em class="fonts12">￥</em><b>- 300</b>
-                    </label> &nbsp;&nbsp;&nbsp;
+                    </label>&nbsp;+&nbsp;
+                    <em>变更费用</em>
+                    <label>
+                        <em class="fonts12">￥</em><b>- 300</b>
+                    </label> &nbsp;&nbsp;
                     <label class="moneyPosition">
                         <label>
-                            <em style="font-size: 16px;">合计合计</em>
+                            <em style="font-size: 16px;">合计</em>
                             <!--<em class="grayFonts">（含定金）：</em>-->
                             <strong class="totlePrice">
-                                <em style="font-size: 20px;"> ¥</em><b style="font-family: Arial">56000.00</b>
+                                <em style="font-size: 20px;"> ¥</em><b style="font-family: Arial">56000</b>
                             </strong>
                         </label>
                         <!--<em class="grayFonts earnest">定金：￥185999</em>-->
@@ -1518,6 +1548,21 @@
             });
 
         })
+
+        //input只输入数字
+        function IsNum(e) {
+            var k = window.event ? e.keyCode : e.which;
+            if (((k >= 48) && (k <= 57)) || k == 8 || k == 0) {
+            } else {
+                if (window.event) {
+                    window.event.returnValue = false;
+                }
+                else {
+                    e.preventDefault();
+                }
+            }
+        }
+        
     </script>
 
 </body>

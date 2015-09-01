@@ -865,15 +865,15 @@
                         <col width="55">
                         <col width="65">
                         <col width="40">
+                        <col width="80">
                         <col width="100">
-                        <col width="70">
-                        <col width="70">
-                        <col width="70">
-                        <col width="70">
-                        <col width="70">
-                        <col width="70">
+                        <col width="65">
+                        <col width="65">
                         <col width="100">
-                        <col width="100">
+                        <col width="65">
+                        <col width="85">
+                        <col width="85">
+                        <col width="85">
                         <col width="">
                     </colgroup>
                     <thead>
@@ -910,14 +910,14 @@
                         <td>----</td>
                         <td>4人套房</td>
                         <td>￥2000</td>
-                        <td>￥3000</td>
                         <td>
                             <span>￥</span>
-                            <input type="text" style="width: 70px;">
+                            <input type="text" style="width: 55px;" onkeypress="return IsNum(event)">
                         </td>
+                        <td>￥30</td>
                         <td>
                             <span>￥</span>
-                            <input type="text" style="width: 70px;">
+                            <input type="text" style="width: 55px;" onkeypress="return IsNum(event)">
                         </td>
                         <td class="orangeFonts">变更待审核</td>
                     </tr>
@@ -937,14 +937,14 @@
                         <td>￥2000</td>
                         <td>4人套房</td>
                         <td>￥4000</td>
-                        <td>￥4000</td>
                         <td>
                             <span>￥</span>
-                            <input type="text" style="width: 70px;">
+                            <input type="text" style="width: 55px;" onkeypress="return IsNum(event)">
                         </td>
+                        <td>￥30</td>
                         <td>
                             <span>￥</span>
-                            <input type="text" style="width: 70px;">
+                            <input type="text" style="width: 55px;" onkeypress="return IsNum(event)">
                         </td>
                         <td class="orangeFonts">变更待审核</td>
                     </tr>
@@ -960,7 +960,7 @@
                     <tr>
                         <td class="fonts16">变更手续费说明：</td>
                         <td>
-                            <input type="text" value="退团测试，旅客2" style="width: 450px;">
+                            <textarea class="changeText" placeholder="退团测试，旅客2"></textarea>
                         </td>
                         <td>2014-05-13  10:30:25</td>
                     </tr>
@@ -1323,9 +1323,24 @@
         $('#ac').fixedBar({
             inverse:true
         });
-        
-        
+
     });
+    
+    
+    //input只输入数字
+    function IsNum(e) {
+        var k = window.event ? e.keyCode : e.which;
+        if (((k >= 48) && (k <= 57)) || k == 8 || k == 0) {
+        } else {
+            if (window.event) {
+                window.event.returnValue = false;
+            }
+            else {
+                e.preventDefault();
+            }
+        }
+    }
+    
  </script>
 
 </body>
