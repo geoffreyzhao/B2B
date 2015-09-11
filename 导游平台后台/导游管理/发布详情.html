@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天地行 导游平台后台 发布详情</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/static/tourGuidePlatform/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/tourGuidePlatform/css/bootstrap.reset.css">
+    <link rel="stylesheet" type="text/css" href="/static/tourGuidePlatform/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/tourGuidePlatform/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/static/tourGuidePlatform/css/priceCalendar.css">
+    <link rel="stylesheet" type="text/css" href="/static/tourGuidePlatform/css/tourGuideManagement.css">
+
+    <script type="text/javascript" src="/static/tourGuidePlatform/js/base/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="/static/tourGuidePlatform/js/bootdist/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/tourGuidePlatform/js/vendor/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="/static/tourGuidePlatform/js/vendor/bootstrap-datepicker.zh-CN.min.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/tourGuidePlatform/js/maintain/common.js"></script>
+
+    <!--[if lte IE 9]>
+    <script type="text/javascript" src="/static/tourGuidePlatform/js/base/html5.js"></script>
+    <script type="text/javascript" src="/static/tourGuidePlatform/js/base/respond.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+    <div class="wrapper">
+        <header class="main-header">
+            <div class="stairMenuContent">
+                <div class="wrap clearfix">
+                    <div class="navLeft">
+                        <a class="logo" href="/"></a>
+                        <ul class="stairMenu">
+                            <li class="first-level-nav">
+                                <a href="javascript:void(0);">审核中心</a>
+                                <div class="second-level-nav">
+                                    <ul class="secondLevelList clearfix">
+                                        <li class="currentSecondLevelMenu">
+                                            <a href="javascript:void(0);">导游</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">领队</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">旅行社</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="first-level-nav">
+                                <a href="javascript:void(0);">导游管理</a>
+                                <div class="second-level-nav">
+                                    <ul class="secondLevelList clearfix">
+                                        <li class="currentSecondLevelMenu">
+                                            <a href="javascript:void(0);">注册信息</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">档期信息</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="first-level-nav currentStairMenu">
+                                <a href="javascript:void(0);">旅行社管理</a>
+                                <div class="second-level-nav">
+                                    <ul class="secondLevelList clearfix">
+                                        <li class="currentSecondLevelMenu">
+                                            <a href="javascript:void(0);">注册信息</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">团信息</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="first-level-nav">
+                                <a href="javascript:void(0);">运营中心</a>
+                                <div class="second-level-nav">
+                                    <ul class="secondLevelList clearfix">
+                                        <li class="currentSecondLevelMenu">
+                                            <a href="javascript:void(0);">申诉管理</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="first-level-nav">
+                                <a href="javascript:void(0);">权限管理</a>
+                                <div class="second-level-nav">
+                                    <ul class="secondLevelList clearfix">
+                                        <li class="currentSecondLevelMenu">
+                                            <a href="javascript:void(0);">角色维护</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">人员管理</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="headRightOperate">
+                        <span class="userContent">Hi，千颂伊</span>
+                        <label class="emailContent">
+                            <i class="emailIcon"></i>
+                            <span class="emailFonts">99</span>
+                        </label>
+                        <a href="javascript:void(0);" class="exitFonts">退出</a>
+                    </div>
+                </div>
+            </div>
+            <div class="headSecondLevel"></div>
+        </header>
+        <div class="main-container clearfix">
+            <aside class="leftMenu positionLeft">  <!--leftMenu 开始-->
+                <a href="档期信息.html" class="returnFonts">
+                    <i class="returnIcon"></i>返回列表页
+                </a>
+                <ul class="menuChange">
+                    <li class="current">
+                        <a href="#issue">发布信息</a>
+                        <i class="rightArrow"></i>
+                    </li>
+                    <li>
+                        <a href="#massInfo">团信息</a>
+                        <i class="rightArrow"></i>
+                    </li>
+                    <li>
+                        <a href="#receiveEvaluate">受到的评价</a>
+                        <i class="rightArrow"></i>
+                    </li>
+                    <li>
+                        <a href="#makeEvaluate">做出的评价</a>
+                        <i class="rightArrow"></i>
+                    </li>
+                </ul>
+            </aside> <!--leftMenu 结束-->
+            <section class="rightModelContent padding20 rightMargin">
+                <div class="tourGuideName">
+                    <span>导游：</span>
+                    <a href="会员详情.html">戴倪飞</a>
+                </div>
+                <a href="javascript:void(0);" name="issue"></a>
+                <div class="titleContent borderBottom clearfix">
+                    <h3 class="titleFonts18">发布信息</h3>
+                </div>
+                <table class="noBorderTab">
+                    <colgroup>
+                        <col width="165">
+                        <col width="">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th>最后一次编辑时间：</th>
+                        <td>
+                            <pre>2015/7/16  11:07:28</pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>所在城市：</th>
+                        <td>
+                            <pre>上海</pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>服务城市：</th>
+                        <td>
+                            <pre>爱尔兰</pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>参考价格：</th>
+                        <td>
+                            <pre>1200-1500 元/天</pre>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!--日历-->
+                <div class="left-cal-block">
+                    <div class="price-calendar">
+                        <div class="calendar-operation-bar clearfix">
+                            <div class="cal-year-title">
+                                <span class="change-calendar-bigIcon-left change-calendar prev-year"></span>
+                                <span class="cal-year-text"><em class="num current">2015</em>年</span>
+                                <span class="change-calendar-bigIcon-right change-calendar next-year"></span>
+                            </div>
+                            <div class="cal-month-title">
+                                <span class="change-calendar-bigIcon-left change-calendar prev-month"></span>
+                                <span class="cal-month-text"><em class="num">1</em>月</span>
+                                <span class="change-calendar-bigIcon-right change-calendar next-month"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+                
+                <a href="javascript:void(0);" name="massInfo"></a>
+                <div class="titleContent borderBottom clearfix">
+                    <h3 class="titleFonts18">团信息</h3>
+                </div>
+                <div class="selectRadio">
+                    <div class="clearfix marginBottom10">
+                        <div class="checkboxContent pull-left">
+                            <span>当前团：<em class="color999">12</em></span>
+                            <span class="marginLeft30">业务：</span>
+                            <label class="checkboxInfo active">
+                                <span class="checkboxIcon"></span>报名
+                            </label>
+                            <label class="checkboxInfo">
+                                <span class="checkboxIcon"></span>预约
+                            </label>
+                        </div>
+                        <div class="pull-right">
+                            <div class="dropdown" style="width: 100px;">
+                                <a href="javascript:void(0);" data-toggle="dropdown" class="dropdownBtn" aria-expanded="false">
+                                    <span class="activeFonts">全部</span>
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="active"><a href="javascript:void(0);">全部</a></li>
+                                    <li><a href="javascript:void(0);">未查看</a></li>
+                                    <li><a href="javascript:void(0);">不合适</a></li>
+                                    <li><a href="javascript:void(0);">未确认</a></li>
+                                    <li><a href="javascript:void(0);">已确认</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="commonTab">
+                        <colgroup>
+                            <col width="100">
+                            <col width="200">
+                            <col width="100">
+                            <col width="100">
+                            <col width="100">
+                            <col width="100">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>时间</th>
+                            <th>团名称</th>
+                            <th>团编号</th>
+                            <th>业务</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>2015/8/20</td>
+                            <td>上海-东京五日游</td>
+                            <td>
+                                <a href="../旅行社管理/团详情.html">789789789</a>
+                            </td>
+                            <td>报名</td>
+                            <td>未查看</td>
+                            <td>
+                                <a href="javascript:void(0);" class="ac-seeWindow">查看</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2015/8/20</td>
+                            <td>上海-东京五日游</td>
+                            <td>
+                                <a href="../旅行社管理/团详情.html">789789789</a>
+                            </td>
+                            <td>报名</td>
+                            <td>未确认</td>
+                            <td>
+                                <a href="javascript:void(0);" class="ac-seeWindow">查看</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2015/8/20</td>
+                            <td>上海-东京五日游</td>
+                            <td>
+                                <a href="../旅行社管理/团详情.html">789789789</a>
+                            </td>
+                            <td>报名</td>
+                            <td>不合适</td>
+                            <td>
+                                <a href="javascript:void(0);" class="ac-seeWindow">查看</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2015/8/20</td>
+                            <td>上海-东京五日游</td>
+                            <td>
+                                <a href="../旅行社管理/团详情.html">789789789</a>
+                            </td>
+                            <td>报名</td>
+                            <td>已确认</td>
+                            <td>
+                                <a href="javascript:void(0);" class="ac-seeWindow">查看</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2015/8/20</td>
+                            <td>上海-东京五日游</td>
+                            <td>
+                                <a href="../旅行社管理/团详情.html">789789789</a>
+                            </td>
+                            <td>报名</td>
+                            <td>未点评</td>
+                            <td>
+                                <a href="javascript:void(0);" class="ac-seeWindow">查看</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2015/8/20</td>
+                            <td>上海-东京五日游</td>
+                            <td>
+                                <a href="../旅行社管理/团详情.html">789789789</a>
+                            </td>
+                            <td>报名</td>
+                            <td>已点评</td>
+                            <td>
+                                <a href="javascript:void(0);" class="ac-seeWindow">查看</a>
+                            </td>
+                        </tr>
+                        <tr class="unfoldTr">
+                            <td>2015/8/20</td>
+                            <td>上海-东京五日游</td>
+                            <td>
+                                <a href="../旅行社管理/团详情.html">789789789</a>
+                            </td>
+                            <td>报名</td>
+                            <td>不合适</td>
+                            <td>
+                                <a href="javascript:void(0);" class="ac-seeWindow">查看</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="seeTrMore">
+                        <span>查看更多</span>
+                        <i class="icon-arrow-down"></i>
+                    </div>
+                </div>
+                <div class="selectRadio">
+                    <div class="clearfix marginBottom10">
+                        <div class="checkboxContent pull-left">
+                            <span>历史团：<em class="color999">12</em></span>
+                            <span class="marginLeft30">业务：</span>
+                            <label class="checkboxInfo active">
+                                <span class="checkboxIcon"></span>报名
+                            </label>
+                            <label class="checkboxInfo">
+                                <span class="checkboxIcon"></span>预约
+                            </label>
+                        </div>
+                        <div class="pull-right">
+                            <div class="dropdown" style="width: 100px;">
+                                <a href="javascript:void(0);" data-toggle="dropdown" class="dropdownBtn" aria-expanded="false">
+                                    <span class="activeFonts">全部</span>
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="active"><a href="javascript:void(0);">全部</a></li>
+                                    <li><a href="javascript:void(0);">未查看</a></li>
+                                    <li><a href="javascript:void(0);">不合适</a></li>
+                                    <li><a href="javascript:void(0);">未确认</a></li>
+                                    <li><a href="javascript:void(0);">已确认</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="commonTab">
+                        <colgroup>
+                            <col width="100">
+                            <col width="200">
+                            <col width="100">
+                            <col width="100">
+                            <col width="100">
+                            <col width="100">
+                            <col width="100">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>时间</th>
+                            <th>团名称</th>
+                            <th>团编号</th>
+                            <th>业务</th>
+                            <th>业务状态</th>
+                            <th>上线状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>2015/8/20</td>
+                            <td>上海-东京五日游</td>
+                            <td>
+                                <a href="../旅行社管理/团详情.html">789789789</a>
+                            </td>
+                            <td>报名</td>
+                            <td>未查看</td>
+                            <td>已过期</td>
+                            <td>
+                                <a href="javascript:void(0);" class="ac-seeWindow">查看</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2015/8/20</td>
+                            <td>上海-东京五日游</td>
+                            <td>
+                                <a href="../旅行社管理/团详情.html">789789789</a>
+                            </td>
+                            <td>报名</td>
+                            <td>未确认</td>
+                            <td>已删除</td>
+                            <td>
+                                <a href="javascript:void(0);" class="ac-seeWindow">查看</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2015/8/20</td>
+                            <td>上海-东京五日游</td>
+                            <td>
+                                <a href="../旅行社管理/团详情.html">789789789</a>
+                            </td>
+                            <td>报名</td>
+                            <td>不合适</td>
+                            <td>已挂起</td>
+                            <td>
+                                <a href="javascript:void(0);" class="ac-seeWindow">查看</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2015/8/20</td>
+                            <td>上海-东京五日游</td>
+                            <td>
+                                <a href="../旅行社管理/团详情.html">789789789</a>
+                            </td>
+                            <td>报名</td>
+                            <td>已确认</td>
+                            <td>已完成</td>
+                            <td>
+                                <a href="javascript:void(0);" class="ac-seeWindow">查看</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2015/8/20</td>
+                            <td>上海-东京五日游</td>
+                            <td>
+                                <a href="../旅行社管理/团详情.html">789789789</a>
+                            </td>
+                            <td>报名</td>
+                            <td>未点评</td>
+                            <td>已完成</td>
+                            <td>
+                                <a href="javascript:void(0);" class="ac-seeWindow">查看</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2015/8/20</td>
+                            <td>上海-东京五日游</td>
+                            <td>
+                                <a href="../旅行社管理/团详情.html">789789789</a>
+                            </td>
+                            <td>报名</td>
+                            <td>已点评</td>
+                            <td>已完成</td>
+                            <td>
+                                <a href="javascript:void(0);" class="ac-seeWindow">查看</a>
+                            </td>
+                        </tr>
+                        <tr class="unfoldTr">
+                            <td>2015/8/20</td>
+                            <td>上海-东京五日游</td>
+                            <td>
+                                <a href="../旅行社管理/团详情.html">789789789</a>
+                            </td>
+                            <td>报名</td>
+                            <td>不合适</td>
+                            <td>已完成</td>
+                            <td>
+                                <a href="javascript:void(0);" class="ac-seeWindow">查看</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="seeTrMore">
+                        <span>查看更多</span>
+                        <i class="icon-arrow-down"></i>
+                    </div>
+                </div>
+                
+                <a href="javascript:void(0);" name="receiveEvaluate"></a>
+                <div class="titleContent borderBottom clearfix">
+                    <h3 class="titleFonts18">受到的评价</h3>
+                </div>
+                <div class="evaluateInfo">
+                    <div class="radioContent">
+                        <label class="radio active">
+                            <span class="radioIcon"></span>
+                            <span class="labelFonts">全部（5）</span>
+                        </label>
+                        <label class="radio">
+                            <span class="radioIcon"></span>
+                            <span class="labelFonts">好评（1）</span>
+                        </label>
+                        <label class="radio">
+                            <span class="radioIcon"></span>
+                            <span class="labelFonts">中评（2）</span>
+                        </label>
+                        <label class="radio">
+                            <span class="radioIcon"></span>
+                            <span class="labelFonts">差评（1）</span>
+                        </label>
+                    </div>
+                    <div class="evaluateModel">
+                        <div class="statusStyle">
+                            <span class="btnSize noAuditBtn">申诉中</span>
+                            <!--<span class="btnSize auditBtn">已审核</span>
+                            <span class="btnSize noSuccessBtn">未通过</span>-->
+                        </div>
+                        <table>
+                            <colgroup>
+                                <col width="75">
+                                <col width="200">
+                                <col width="85">
+                                <col width="">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <td>旅行社：</td>
+                                <td>
+                                    <a href="../旅行社管理/旅行社会员详情.html">上海长寿国际旅行社</a>
+                                </td>
+                                <td>点评日期：</td>
+                                <td>2015/7/16 &nbsp; 11:07:28</td>
+                            </tr>
+                            <tr>
+                                <td>团名称：</td>
+                                <td>上海--东京五日游</td>
+                                <td>团编号：</td>
+                                <td>
+                                    <a href="../旅行社管理/团详情.html">789789789</a>
+                                </td>
+                            </tr>
+                            <tr>                                
+                                <td>评分：</td>
+                                <td colspan="3">
+                                    <div class="commonStarLevelIcon starLevelIcon starLevel-4">
+                                        <span class="commonStarLevelIcon"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>标签：</td>
+                                <td colspan="3">
+                                    <span class="lightBlueLabel">线路超赞</span>
+                                    <span class="lightBlueLabel">旅行社实力强</span>
+                                    <span class="lightBlueLabel">线路超赞</span>
+                                    <span class="lightBlueLabel">旅行社实力强</span>
+                                    <span class="lightBlueLabel">旅行社实力强旅行社实力强</span>
+                                    <span class="lightBlueLabel">线路超赞</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>评价：</td>
+                                <td colspan="3">评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字。</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="evaluateModel">
+                        <div class="statusStyle">
+                            <!--<span class="btnSize noAuditBtn">申诉中</span>
+                            <span class="btnSize auditBtn">已审核</span>-->
+                            <span class="btnSize noSuccessBtn">未通过</span>
+                        </div>
+                        <table>
+                            <colgroup>
+                                <col width="75">
+                                <col width="200">
+                                <col width="85">
+                                <col width="">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <td>旅行社：</td>
+                                <td>
+                                    <a href="../旅行社管理/旅行社会员详情.html">上海长寿国际旅行社</a>
+                                </td>
+                                <td>点评日期：</td>
+                                <td>2015/7/16 &nbsp; 11:07:28</td>
+                            </tr>
+                            <tr>
+                                <td>团名称：</td>
+                                <td>上海--东京五日游</td>
+                                <td>团编号：</td>
+                                <td>
+                                    <a href="../旅行社管理/团详情.html">789789789</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>评分：</td>
+                                <td colspan="3">
+                                    <div class="commonStarLevelIcon starLevelIcon starLevel-4">
+                                        <span class="commonStarLevelIcon"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>标签：</td>
+                                <td colspan="3">
+                                    <span class="lightBlueLabel">线路超赞</span>
+                                    <span class="lightBlueLabel">旅行社实力强</span>
+                                    <span class="lightBlueLabel">线路超赞</span>
+                                    <span class="lightBlueLabel">旅行社实力强</span>
+                                    <span class="lightBlueLabel">旅行社实力强旅行社实力强</span>
+                                    <span class="lightBlueLabel">线路超赞</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>评价：</td>
+                                <td colspan="3">评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字。</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="evaluateModel">
+                        <div class="statusStyle">
+                            <!--<span class="btnSize noAuditBtn">申诉中</span>-->
+                            <span class="btnSize auditBtn">已审核</span>
+                            <!--<span class="btnSize noSuccessBtn">未通过</span>-->
+                        </div>
+                        <table>
+                            <colgroup>
+                                <col width="75">
+                                <col width="200">
+                                <col width="85">
+                                <col width="">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <td>旅行社：</td>
+                                <td>
+                                    <a href="../旅行社管理/旅行社会员详情.html">上海长寿国际旅行社</a>
+                                </td>
+                                <td>点评日期：</td>
+                                <td>2015/7/16 &nbsp; 11:07:28</td>
+                            </tr>
+                            <tr>
+                                <td>团名称：</td>
+                                <td>上海--东京五日游</td>
+                                <td>团编号：</td>
+                                <td>
+                                    <a href="../旅行社管理/团详情.html">789789789</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>评分：</td>
+                                <td colspan="3">
+                                    <div class="commonStarLevelIcon starLevelIcon starLevel-4">
+                                        <span class="commonStarLevelIcon"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>标签：</td>
+                                <td colspan="3">
+                                    <span class="lightBlueLabel">线路超赞</span>
+                                    <span class="lightBlueLabel">旅行社实力强</span>
+                                    <span class="lightBlueLabel">线路超赞</span>
+                                    <span class="lightBlueLabel">旅行社实力强</span>
+                                    <span class="lightBlueLabel">旅行社实力强旅行社实力强</span>
+                                    <span class="lightBlueLabel">线路超赞</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>评价：</td>
+                                <td colspan="3">评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字。</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="evaluateModel receiveUnfoldModel">
+                        <div class="statusStyle">
+                            <span class="btnSize noAuditBtn">申诉中</span>
+                            <!--<span class="btnSize auditBtn">已审核</span>
+                            <span class="btnSize noSuccessBtn">未通过</span>-->
+                        </div>
+                        <table>
+                            <colgroup>
+                                <col width="75">
+                                <col width="200">
+                                <col width="85">
+                                <col width="">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <td>旅行社：</td>
+                                <td>
+                                    <a href="../旅行社管理/旅行社会员详情.html">上海长寿国际旅行社</a>
+                                </td>
+                                <td>点评日期：</td>
+                                <td>2015/7/16 &nbsp; 11:07:28</td>
+                            </tr>
+                            <tr>
+                                <td>团名称：</td>
+                                <td>上海--东京五日游</td>
+                                <td>团编号：</td>
+                                <td>
+                                    <a href="../旅行社管理/团详情.html">789789789</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>评分：</td>
+                                <td colspan="3">
+                                    <div class="commonStarLevelIcon starLevelIcon starLevel-4">
+                                        <span class="commonStarLevelIcon"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>标签：</td>
+                                <td colspan="3">
+                                    <span class="lightBlueLabel">线路超赞</span>
+                                    <span class="lightBlueLabel">旅行社实力强</span>
+                                    <span class="lightBlueLabel">线路超赞</span>
+                                    <span class="lightBlueLabel">旅行社实力强</span>
+                                    <span class="lightBlueLabel">旅行社实力强旅行社实力强</span>
+                                    <span class="lightBlueLabel">线路超赞</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>评价：</td>
+                                <td colspan="3">评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字。</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="seeReceiveMore">
+                        <span>查看更多</span>
+                        <i class="icon-arrow-down"></i>
+                    </div>
+                </div>
+
+                <a href="#" name="makeEvaluate"></a>
+                <div class="titleContent borderBottom clearfix">
+                    <h3 class="titleFonts18">做出的评价</h3>
+                </div>
+                <div class="evaluateInfo">
+                    <div class="radioContent">
+                        <label class="radio active">
+                            <span class="radioIcon"></span>
+                            <span class="labelFonts">全部（5）</span>
+                        </label>
+                        <label class="radio">
+                            <span class="radioIcon"></span>
+                            <span class="labelFonts">好评（1）</span>
+                        </label>
+                        <label class="radio">
+                            <span class="radioIcon"></span>
+                            <span class="labelFonts">中评（2）</span>
+                        </label>
+                        <label class="radio">
+                            <span class="radioIcon"></span>
+                            <span class="labelFonts">差评（1）</span>
+                        </label>
+                    </div>
+                    <div class="evaluateModel">
+                        <table>
+                            <colgroup>
+                                <col width="85">
+                                <col width="200">
+                                <col width="60">
+                                <col width="">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <td>旅行社名：</td>
+                                <td>
+                                    <a href="../旅行社管理/旅行社会员详情.html">上海长寿国际旅行社</a>
+                                </td>
+                                <td>评分：</td>
+                                <td>
+                                    <div class="commonStarLevelIcon starLevelIcon starLevel-4">
+                                        <span class="commonStarLevelIcon"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>团名称：</td>
+                                <td>上海--东京五日游</td>
+                                <td>标签：</td>
+                                <td>
+                                    <span class="lightBlueLabel">导游超级帅</span>
+                                    <span class="lightBlueLabel">人文底蕴深厚</span>
+                                    <span class="lightBlueLabel">人文底蕴深厚人文底蕴深厚</span>
+                                    <span class="lightBlueLabel">旅行社实力强</span>
+                                    <span class="lightBlueLabel">导游超级帅导游超级帅</span>
+                                    <span class="lightBlueLabel">线路超赞</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>团编号：</td>
+                                <td>
+                                    <a href="../旅行社管理/团详情.html">789789789</a>
+                                </td>
+                                <td>评价：</td>
+                                <td>评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字。</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="evaluateModel">
+                        <table>
+                            <colgroup>
+                                <col width="85">
+                                <col width="200">
+                                <col width="60">
+                                <col width="">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <td>旅行社名：</td>
+                                <td>
+                                    <a href="../旅行社管理/旅行社会员详情.html">上海长寿国际旅行社</a>
+                                </td>
+                                <td>评分：</td>
+                                <td>
+                                    <div class="commonStarLevelIcon starLevelIcon starLevel-4">
+                                        <span class="commonStarLevelIcon"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>团名称：</td>
+                                <td>上海--东京五日游</td>
+                                <td>标签：</td>
+                                <td>
+                                    <span class="lightBlueLabel">导游超级帅</span>
+                                    <span class="lightBlueLabel">人文底蕴深厚</span>
+                                    <span class="lightBlueLabel">人文底蕴深厚人文底蕴深厚</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>团编号：</td>
+                                <td>
+                                    <a href="../旅行社管理/团详情.html">789789789</a>
+                                </td>
+                                <td>评价：</td>
+                                <td>评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字。</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="evaluateModel">
+                        <table>
+                            <colgroup>
+                                <col width="85">
+                                <col width="200">
+                                <col width="60">
+                                <col width="">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <td>旅行社名：</td>
+                                <td>
+                                    <a href="../旅行社管理/旅行社会员详情.html">上海长寿国际旅行社</a>
+                                </td>
+                                <td>评分：</td>
+                                <td>
+                                    <div class="commonStarLevelIcon starLevelIcon starLevel-4">
+                                        <span class="commonStarLevelIcon"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>团名称：</td>
+                                <td>上海--东京五日游</td>
+                                <td>标签：</td>
+                                <td>
+                                    <span class="lightBlueLabel">导游超级帅</span>
+                                    <span class="lightBlueLabel">人文底蕴深厚</span>
+                                    <span class="lightBlueLabel">人文底蕴深厚人文底蕴深厚</span>
+                                    <span class="lightBlueLabel">旅行社实力强</span>
+                                    <span class="lightBlueLabel">导游超级帅导游超级帅</span>
+                                    <span class="lightBlueLabel">线路超赞</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>团编号：</td>
+                                <td>
+                                    <a href="../旅行社管理/团详情.html">789789789</a>
+                                </td>
+                                <td>评价：</td>
+                                <td>评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字。</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="evaluateModel makeUnfoldModel">
+                        <table>
+                            <colgroup>
+                                <col width="85">
+                                <col width="200">
+                                <col width="60">
+                                <col width="">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <td>旅行社名：</td>
+                                <td>
+                                    <a href="../旅行社管理/旅行社会员详情.html">上海长寿国际旅行社</a>
+                                </td>
+                                <td>评分：</td>
+                                <td>
+                                    <div class="commonStarLevelIcon starLevelIcon starLevel-4">
+                                        <span class="commonStarLevelIcon"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>团名称：</td>
+                                <td>上海--东京五日游</td>
+                                <td>标签：</td>
+                                <td>
+                                    <span class="lightBlueLabel">人文底蕴深厚人文底蕴深厚</span>
+                                    <span class="lightBlueLabel">旅行社实力强</span>
+                                    <span class="lightBlueLabel">导游超级帅导游超级帅</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>团编号：</td>
+                                <td>
+                                    <a href="../旅行社管理/团详情.html">789789789</a>
+                                </td>
+                                <td>评价：</td>
+                                <td>评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字评价文字。</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="seeMakeMore">
+                        <span>查看更多</span>
+                        <i class="icon-arrow-down"></i>
+                    </div>
+                    
+                </div>    
+            </section>
+        </div>
+        <footer>Copyright © 2015 天地行 All Rights Reserved. 沪ICP备08101503号</footer>
+    </div>
+
+    <!--查看弹窗-->
+    <div class="modal fade" data-backdrop="static" data-keyboard="false" id="ac-seeWindowModal">
+        <div class="modal-dialog" style="width:480px;height:480px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">操作日志</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="logContent">
+                        <span class="btnSize noAuditBtn logStatus">报名</span>
+                        <table class="logDetailWin">
+                            <colgroup>
+                                <col width="50">
+                                <col width="130">
+                                <col width="70">
+                                <col width="">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th>导游：</th>
+                                <td>
+                                    <a href="javascript:void(0);">戴倪飞</a>
+                                </td>
+                                <th></th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>团名：</th>
+                                <td>
+                                    <a href="javascript:void(0);">上海东京五日游</a>
+                                </td>
+                                <th>旅行社名：</th>
+                                <td>
+                                    <a href="javascript:void(0);">上海长寿</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>等级：</th>
+                                <td>普通用户</td>
+                                <th></th>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="logTitle">操作日志：</div>
+                        <div class="logTab">
+                            <table class="commonTab">
+                                <colgroup>
+                                    <col width="40%">
+                                    <col width="">
+                                </colgroup>
+                                <thead>
+                                <tr>
+                                    <th>时间</th>
+                                    <th>事件</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>2015/7/15 14:14:14</td>
+                                    <td>戴倪飞  报名</td>
+                                </tr>
+                                <tr>
+                                    <td>2015/7/15 14:14:14</td>
+                                    <td>上海长寿  查看</td>
+                                </tr>
+                                <tr>
+                                    <td>2015/7/15 14:14:14</td>
+                                    <td>上海长寿  确认</td>
+                                </tr>
+                                <tr>
+                                    <td>2015/7/15 14:14:14</td>
+                                    <td>戴倪飞  取消</td>
+                                </tr>
+                                <tr>
+                                    <td>2015/7/15 14:14:14</td>
+                                    <td>上海长寿  确认取消</td>
+                                </tr>
+                                <tr>
+                                    <td>2015/7/15 14:14:14</td>
+                                    <td>戴倪飞  取消</td>
+                                </tr>
+                                <tr>
+                                    <td>2015/7/15 14:14:14</td>
+                                    <td>上海长寿  确认取消</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="commonButton red-fe6869Button" id="confirmAddSp" style="margin-right:10px;">确认</button>
+                    <button type="button" class="commonButton blue-45c8dcButton" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<script>
+    $(function(){
+
+        //查看更多
+        $("body").delegate(".seeTrMore", "click", function(){
+            if ($(this).find("i").hasClass("icon-arrow-down")) { // 当前为收起状态
+                $(this).find("i").removeClass("icon-arrow-down");
+                $(this).find("i").addClass("icon-arrow-up");
+                $(this).find("span").html("收起");
+                $(this).siblings(".commonTab").find(".unfoldTr").show(500);
+            } else if ($(this).find("i").hasClass("icon-arrow-up")) {
+                $(this).find("i").removeClass("icon-arrow-up");
+                $(this).find("i").addClass("icon-arrow-down");
+                $(this).find("span").html("查看更多");
+                $(this).siblings(".commonTab").find(".unfoldTr").hide(500);
+            }
+        });
+        
+        $("body").delegate(".seeReceiveMore", "click", function(){
+            if ($(this).find("i").hasClass("icon-arrow-down")) { // 当前为收起状态
+                $(this).find("i").removeClass("icon-arrow-down");
+                $(this).find("i").addClass("icon-arrow-up");
+                $(this).find("span").html("收起");
+                $(this).siblings(".receiveUnfoldModel").show(500);
+            } else if ($(this).find("i").hasClass("icon-arrow-up")) {
+                $(this).find("i").removeClass("icon-arrow-up");
+                $(this).find("i").addClass("icon-arrow-down");
+                $(this).find("span").html("查看更多");
+                $(this).siblings(".receiveUnfoldModel").hide(500);
+            }
+        });
+        
+        $("body").delegate(".seeMakeMore", "click", function(){
+            if ($(this).find("i").hasClass("icon-arrow-down")) { // 当前为收起状态
+                $(this).find("i").removeClass("icon-arrow-down");
+                $(this).find("i").addClass("icon-arrow-up");
+                $(this).find("span").html("收起");
+                $(this).siblings(".makeUnfoldModel").show(500);
+            } else if ($(this).find("i").hasClass("icon-arrow-up")) {
+                $(this).find("i").removeClass("icon-arrow-up");
+                $(this).find("i").addClass("icon-arrow-down");
+                $(this).find("span").html("查看更多");
+                $(this).siblings(".makeUnfoldModel").hide(500);
+            }
+        });
+        
+        //悬停
+        var a_pos = [];
+        var flag=true;
+        $(".menuChange a").each(function(index){
+            var href= $(this).attr("href");
+            a_pos.push($("a[name=" + href.substring(1) + "]").offset());
+        });
+
+        $(".menuChange a").click(function(e){
+            /*flag=false;
+            e.preventDefault();*/
+            $(this).closest("li").siblings().removeClass('current');
+            $(this).closest("li").addClass("current");
+            /*var i=$(this).closest("li").index();
+            i-=Math.round(i/2);
+            $("html,body").animate({"scrollTop":a_pos[i].top-42},1);*/
+        });
+
+        $(window).bind("scroll",function(e){
+            if(flag){
+                var that = $(".menuChange");
+                var currentPos = that.offset();
+                var i = 0;
+                for(i = a_pos.length - 1; i >=0 ; i--){
+                    if(currentPos.top >= a_pos[i].top-45){
+                        that.find("li").removeClass('current');
+                        $("li:eq(" + (i) + ")" , that).addClass("current");
+                        return false;
+                    }
+                }
+                that.find("li").removeClass('current');
+                $("li:first" , that).addClass("current");
+            }
+            flag=true;
+        });
+
+        $(".leftMenu").fixedBar();
+
+        $(".modal").modal({
+            backdrop: "static",
+            keyboard: false,
+            show: false
+        });
+        $(".ac-seeWindow").click(function () {
+            $("#ac-seeWindowModal").modal("show");
+        })
+        
+    });
+</script>
+
+    <!--日历JS-->
+<script>
+    $(function(){
+
+        // 触发验证
+        $(".oper-btn .save").click(function(){
+            $(".set-price-container").customValidate({
+                validateAll: true
+            });
+        });
+
+        //  定义日期数据格式
+
+        var data = [{
+            month: "2015-09",
+            monthData: [{
+                day: 22,
+                soldNum: 3,
+                totalNum: 10,
+                adultPrice: 1250,
+                childPrice: 850,
+                flightFlag: true,
+                hotelFlag: true,
+                isClosed: true,
+                canOrder: true
+            }, {
+                day: 23,
+                soldNum: 10,
+                totalNum: 10,
+                adultPrice: 1250,
+                childPrice: 850,
+                flightFlag: false,
+                hotelFlag: true,
+                isClosed: true,
+                canOrder: false
+            }, {
+                day: 24,
+                soldNum: 3,
+                totalNum: 10,
+                adultPrice: 1250,
+                childPrice: null,
+                flightFlag: true,
+                hotelFlag: false,
+                isClosed: false,
+                canOrder: false
+            }, {
+                day: 25,
+                soldNum: 3,
+                totalNum: 10,
+                adultPrice: 1250,
+                childPrice: 850,
+                flightFlag: true,
+                hotelFlag: true,
+                isClosed: false,
+                canOrder: true
+            }]
+        },
+            {
+                month: "2015-10",
+                monthData: [{
+                    day: 3,
+                    soldNum: 3,
+                    totalNum: 10,
+                    adultPrice: 1250,
+                    childPrice: 850,
+                    flightFlag: true,
+                    hotelFlag: true,
+                    isClosed: false,
+                    canOrder: true
+                }, {
+                    day: 6,
+                    soldNum: 10,
+                    totalNum: 10,
+                    adultPrice: 1250,
+                    childPrice: 850,
+                    flightFlag: false,
+                    hotelFlag: true,
+                    isClosed: false,
+                    canOrder: true
+                }]
+            }];
+
+        //  调用方法
+        //  param1: 包裹日历的外层容器元素;  param2: 填充日历所需要数据
+        //  以下独立出的 funntion 可自行封装在js文件中，引入js文件
+        genePriceCalendar(".price-calendar", data);
+
+    });
+
+    function genePriceCalendar(ele, data) {
+
+        $(ele).datepicker({
+            format: "yyyy-mm-dd",
+            language: "zh-CN",
+            weekStart: 0,
+            beforeShowDay: function(){
+                $(ele).find("td .active").removeClass("active");
+            }
+        });
+
+        var date = new Date();
+
+        setCalendarTitle(ele, date);
+        geneCalendarTdContent(date, data);
+
+        $(ele).find("tbody td").click(function(){
+            return false;  //  解除默认的td点击事件，否则会重写日历结构
+        });
+
+        $(".tdCont").click(function(event){
+            console.log('click tdCont');
+            $(this).parents("table").find(".tdCont").removeClass("current");
+            $(this).addClass("current");
+            event.stopPropagation();
+        });
+
+        $(".tdCont .left-btn").click(function(event){
+            console.log('delete');
+            event.stopPropagation();
+        });
+
+        $(".tdCont .right-btn").click(function(event){
+            console.log('open/close');
+            event.stopPropagation();
+        });
+
+        $(ele).find(".change-calendar").click(function(){
+            if ($(this).hasClass("prev-year")) {    //  前一年
+                date = moveMonth(date, -12);
+
+            } else if ($(this).hasClass("next-year")) {  //  后一年
+                date = moveMonth(date, 12);
+
+            } else if ($(this).hasClass("prev-month")) {  //  前一月
+                date = moveMonth(date, -1);
+
+            } else if ($(this).hasClass("next-month")) {  //  后一月
+                date = moveMonth(date, 1);
+
+            }
+
+            $(ele).datepicker("setDate", date);
+
+            /*  这部分代码可以封装成一个单独的方法， 初始化和每次日历翻动都需要用*/
+            /* wrap  start */
+            setCalendarTitle(ele, date);
+            geneCalendarTdContent(date, data);
+
+            $(ele).find("td.active").removeClass("active");  //  默认会选中日期，active会有样式
+            $(ele).find("tbody td").click(function(){
+                return false;  //  解除默认的td点击事件，否则会重写日历结构
+            });
+
+            $(".tdCont").click(function(event){
+                console.log('click tdCont');
+                $(this).parents("table").find(".tdCont").removeClass("current");
+                $(this).addClass("current");
+                event.stopPropagation();    //  同一个td内的很多元素都绑定点击事件，注意阻止事件冒泡
+            });
+
+            $(".tdCont .left-btn").click(function(event){
+                console.log('delete');
+                event.stopPropagation();
+            });
+
+            $(".tdCont .right-btn").click(function(event){
+                console.log('open/close');
+                event.stopPropagation();
+            });
+
+            /* wrap  end */
+        });
+    }
+
+    // 每次切换月份（含年份）都需要重新生成TD的内容
+    function geneCalendarTdContent(date, data) {
+
+        var y = date.getFullYear(),
+                m = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1),
+                monthStr = y + "-" + m,
+                monthDataArr = [];
+
+        //  如果没有数据，返回undefined
+        var monthDataObject = _.findWhere(data, {month: monthStr});
+
+        if (!!monthDataObject) {
+            monthDataArr = _.findWhere(data, {month: monthStr}).monthData;
+        }
+
+        $(".price-calendar .datepicker-days").find("tbody td").each(function(){
+            var dayText = $(this).html();
+
+            if ($(this).hasClass("old") || $(this).hasClass("new")) {
+                $(this).html("<div class='tdCont disabled'></div>");
+            } else {
+                $(this).html(geneTdContTemplate(y, m, dayText, monthDataArr));
+            }
+        });
+    }
+
+
+    // year, month 参数只为了给当前td确定具体的日期值  "year-month-day"
+    function geneTdContTemplate(year, month, day, monthDataArr) {
+
+        var template = "";
+
+        var tmp = _.findWhere(monthDataArr, {day: day*1});
+
+        if (tmp === undefined) {
+
+            template += "<div class='tdCont add'><div class='top-block clearfix'><span data-dayNum='" + year + "-" + month + "-" + day + "'>" + day +"</span></div>";
+        } else {
+
+            template += "<div class='tdCont edit'><div class='top-block clearfix'><span class='day' data-dayNum='" + year + "-" + month + "-" + day + "'>" + day +"</span>";
+
+            if (tmp.isClosed) {  //  显示关闭图标
+                template += "<span class='closed-icon'>关闭</span>";
+            } else {
+                template += "";
+            }
+
+            if (tmp.soldNum < tmp.totalNum) {  //  显示售卖数量
+                template += "<span class='stock'><em class='sold-num'>" + tmp.soldNum + "</em><em>/</em><em class='total-num'>" + tmp.totalNum +"</em></span></div>";
+            } else if (tmp.soldNum == tmp.totalNum) {  //  显示售完图标
+                template += "<span class='stock'><i class='stock-icon'>售完</i></span></div>";
+            }
+
+            if (tmp.adultPrice != 0 && !!tmp.adultPrice) {  //  显示成人价格
+                template += "<div class='middle-block'><span class='adult-price'>￥" + tmp.adultPrice + "</span>";
+            } else {
+                template += "<div class='middle-block'><span class='adult-price'></span>";
+            }
+
+            if (tmp.childPrice != 0 && !!tmp.childPrice) {   //  显示儿童价格
+                template += "<span class='child-price'>￥" + tmp.childPrice + "</span></div>";
+            } else {
+                template += "<span class='child-price'></span></div>";
+            }
+
+            if (tmp.flightFlag) {   //  显示机票图标              
+                template += "<div class='bottom-block'><span class='flight-icon'></span>";
+            } else {
+                template += "<div class='bottom-block'>";
+            }
+
+            if (tmp.hotelFlag) {   //   显示酒店图标
+                template += "<span class='hotel-icon'></span>";
+            }
+
+            template += "<div class='oper-btn'><span class='left-btn'>删除</span><span class='right-btn'>";
+
+            if (tmp.isClosed) {
+                template += "上线</span></div></div>";
+            } else {
+                template += "关闭</span></div></div>";
+            }
+
+        }
+
+        template += "</div>";
+        return template;
+    }
+
+    function moveMonth(date, dir) {
+
+        if (!(date instanceof Date)) {   //  如果date不是日期类型
+            return undefined;
+        }
+
+        if (!dir) {   // 如果 dir 参数为空，返回date
+            return (date instanceof Date) ? date : undefined;
+        }
+
+        var dir_num = parseInt(dir),
+                dir_absNum = Math.abs(dir_num),
+                year = date.getFullYear(),
+                month = date.getMonth(),
+                day = date.getDate(),
+                result_date;
+
+        if (dir_num < 0) {   //  日期往前滚
+            result_date = new Date(year, month - dir_absNum);
+
+        } else if (dir_num > 0) {  // 日期往后滚
+            result_date = new Date(year, month + dir_absNum);
+        }
+        return result_date;
+    }
+
+    function setCalendarTitle(ele, date) {
+
+        $(ele).find(".cal-year-text .num").html(date.getFullYear());
+        if (date.getFullYear() == new Date().getFullYear()) {
+            $(ele).find(".cal-year-text .num").addClass("current");
+        } else {
+            $(ele).find(".cal-year-text .num").removeClass("current");
+        }
+
+        $(ele).find(".cal-month-text .num").html(date.getMonth() + 1);
+        if (date.getMonth() == new Date().getMonth()) {
+            $(ele).find(".cal-month-text .num").addClass("current");
+        } else {
+            $(ele).find(".cal-month-text .num").removeClass("current");
+        }
+    }
+</script>
+
+</body>
+</html>
