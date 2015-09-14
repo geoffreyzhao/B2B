@@ -18,6 +18,7 @@
     <script type="text/javascript" src="/static/tourGuidePlatform/js/vendor/bootstrap-datepicker.min.js"></script>
     <script type="text/javascript" src="/static/tourGuidePlatform/js/vendor/bootstrap-datepicker.zh-CN.min.js"></script>
     <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/tourGuidePlatform/js/vendor/underscore.js"></script>
     <script type="text/javascript" src="/static/tourGuidePlatform/js/maintain/common.js"></script>
 
     <!--[if lte IE 9]>
@@ -375,7 +376,6 @@
                             <col width="100">
                             <col width="100">
                             <col width="100">
-                            <col width="100">
                         </colgroup>
                         <thead>
                         <tr>
@@ -383,8 +383,7 @@
                             <th>团名称</th>
                             <th>团编号</th>
                             <th>业务</th>
-                            <th>业务状态</th>
-                            <th>上线状态</th>
+                            <th>状态</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -397,7 +396,6 @@
                             </td>
                             <td>报名</td>
                             <td>未查看</td>
-                            <td>已过期</td>
                             <td>
                                 <a href="javascript:void(0);" class="ac-seeWindow">查看</a>
                             </td>
@@ -410,7 +408,6 @@
                             </td>
                             <td>报名</td>
                             <td>未确认</td>
-                            <td>已删除</td>
                             <td>
                                 <a href="javascript:void(0);" class="ac-seeWindow">查看</a>
                             </td>
@@ -423,7 +420,6 @@
                             </td>
                             <td>报名</td>
                             <td>不合适</td>
-                            <td>已挂起</td>
                             <td>
                                 <a href="javascript:void(0);" class="ac-seeWindow">查看</a>
                             </td>
@@ -436,7 +432,6 @@
                             </td>
                             <td>报名</td>
                             <td>已确认</td>
-                            <td>已完成</td>
                             <td>
                                 <a href="javascript:void(0);" class="ac-seeWindow">查看</a>
                             </td>
@@ -449,7 +444,6 @@
                             </td>
                             <td>报名</td>
                             <td>未点评</td>
-                            <td>已完成</td>
                             <td>
                                 <a href="javascript:void(0);" class="ac-seeWindow">查看</a>
                             </td>
@@ -462,7 +456,6 @@
                             </td>
                             <td>报名</td>
                             <td>已点评</td>
-                            <td>已完成</td>
                             <td>
                                 <a href="javascript:void(0);" class="ac-seeWindow">查看</a>
                             </td>
@@ -475,7 +468,6 @@
                             </td>
                             <td>报名</td>
                             <td>不合适</td>
-                            <td>已完成</td>
                             <td>
                                 <a href="javascript:void(0);" class="ac-seeWindow">查看</a>
                             </td>
@@ -1164,68 +1156,26 @@
             month: "2015-09",
             monthData: [{
                 day: 22,
-                soldNum: 3,
-                totalNum: 10,
-                adultPrice: 1250,
-                childPrice: 850,
-                flightFlag: true,
-                hotelFlag: true,
-                isClosed: true,
-                canOrder: true
+                bookFlag: false
             }, {
                 day: 23,
-                soldNum: 10,
-                totalNum: 10,
-                adultPrice: 1250,
-                childPrice: 850,
-                flightFlag: false,
-                hotelFlag: true,
-                isClosed: true,
-                canOrder: false
+                sureFlag: true
             }, {
                 day: 24,
-                soldNum: 3,
-                totalNum: 10,
-                adultPrice: 1250,
-                childPrice: null,
-                flightFlag: true,
-                hotelFlag: false,
-                isClosed: false,
-                canOrder: false
+                bookFlag: true
             }, {
                 day: 25,
-                soldNum: 3,
-                totalNum: 10,
-                adultPrice: 1250,
-                childPrice: 850,
-                flightFlag: true,
-                hotelFlag: true,
-                isClosed: false,
-                canOrder: true
+                deleteFlag: true
             }]
         },
             {
                 month: "2015-10",
                 monthData: [{
                     day: 3,
-                    soldNum: 3,
-                    totalNum: 10,
-                    adultPrice: 1250,
-                    childPrice: 850,
-                    flightFlag: true,
-                    hotelFlag: true,
-                    isClosed: false,
-                    canOrder: true
+                    deleteFlag: true
                 }, {
                     day: 6,
-                    soldNum: 10,
-                    totalNum: 10,
-                    adultPrice: 1250,
-                    childPrice: 850,
-                    flightFlag: false,
-                    hotelFlag: true,
-                    isClosed: false,
-                    canOrder: true
+                    bookFlag: true
                 }]
             }];
 
@@ -1256,12 +1206,12 @@
             return false;  //  解除默认的td点击事件，否则会重写日历结构
         });
 
-        $(".tdCont").click(function(event){
+        /*$(".tdCont").click(function(event){
             console.log('click tdCont');
             $(this).parents("table").find(".tdCont").removeClass("current");
             $(this).addClass("current");
             event.stopPropagation();
-        });
+        });*/
 
         $(".tdCont .left-btn").click(function(event){
             console.log('delete');
@@ -1300,12 +1250,12 @@
                 return false;  //  解除默认的td点击事件，否则会重写日历结构
             });
 
-            $(".tdCont").click(function(event){
-                console.log('click tdCont');
+            /*$(".tdCont").click(function(event){
+                //console.log('click tdCont');
                 $(this).parents("table").find(".tdCont").removeClass("current");
                 $(this).addClass("current");
                 event.stopPropagation();    //  同一个td内的很多元素都绑定点击事件，注意阻止事件冒泡
-            });
+            });*/
 
             $(".tdCont .left-btn").click(function(event){
                 console.log('delete');
@@ -1361,49 +1311,19 @@
         } else {
 
             template += "<div class='tdCont edit'><div class='top-block clearfix'><span class='day' data-dayNum='" + year + "-" + month + "-" + day + "'>" + day +"</span>";
-
-            if (tmp.isClosed) {  //  显示关闭图标
-                template += "<span class='closed-icon'>关闭</span>";
-            } else {
-                template += "";
+            
+            if (tmp.bookFlag) {   //   可预约
+                template += "<span class='bookFonts'>可预约</span>";
             }
 
-            if (tmp.soldNum < tmp.totalNum) {  //  显示售卖数量
-                template += "<span class='stock'><em class='sold-num'>" + tmp.soldNum + "</em><em>/</em><em class='total-num'>" + tmp.totalNum +"</em></span></div>";
-            } else if (tmp.soldNum == tmp.totalNum) {  //  显示售完图标
-                template += "<span class='stock'><i class='stock-icon'>售完</i></span></div>";
+            if (tmp.sureFlag) {   //   已确认
+                template += "<span class='sureFonts'>已确认</span>";
             }
 
-            if (tmp.adultPrice != 0 && !!tmp.adultPrice) {  //  显示成人价格
-                template += "<div class='middle-block'><span class='adult-price'>￥" + tmp.adultPrice + "</span>";
-            } else {
-                template += "<div class='middle-block'><span class='adult-price'></span>";
+            if (tmp.deleteFlag) {   //   已删除
+                template += "<span class='deleteFonts'>已删除</span>";
             }
-
-            if (tmp.childPrice != 0 && !!tmp.childPrice) {   //  显示儿童价格
-                template += "<span class='child-price'>￥" + tmp.childPrice + "</span></div>";
-            } else {
-                template += "<span class='child-price'></span></div>";
-            }
-
-            if (tmp.flightFlag) {   //  显示机票图标              
-                template += "<div class='bottom-block'><span class='flight-icon'></span>";
-            } else {
-                template += "<div class='bottom-block'>";
-            }
-
-            if (tmp.hotelFlag) {   //   显示酒店图标
-                template += "<span class='hotel-icon'></span>";
-            }
-
-            template += "<div class='oper-btn'><span class='left-btn'>删除</span><span class='right-btn'>";
-
-            if (tmp.isClosed) {
-                template += "上线</span></div></div>";
-            } else {
-                template += "关闭</span></div></div>";
-            }
-
+            
         }
 
         template += "</div>";
