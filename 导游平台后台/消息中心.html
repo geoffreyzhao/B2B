@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天地行 导游平台后台 消息中心</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/static/tourGuidePlatform/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/tourGuidePlatform/css/bootstrap.reset.css">
+    <link rel="stylesheet" type="text/css" href="/static/tourGuidePlatform/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/tourGuidePlatform/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/static/tourGuidePlatform/css/tourGuideManagement.css">
+
+    <script type="text/javascript" src="/static/tourGuidePlatform/js/base/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="/static/tourGuidePlatform/js/bootdist/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/tourGuidePlatform/js/vendor/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="/static/tourGuidePlatform/js/vendor/bootstrap-datepicker.zh-CN.min.js"></script>
+    <script type="text/javascript" src="/static/tourGuidePlatform/js/maintain/common.js"></script>
+
+    <!--[if lte IE 9]>
+    <script type="text/javascript" src="/static/tourGuidePlatform/js/base/html5.js"></script>
+    <script type="text/javascript" src="/static/tourGuidePlatform/js/base/respond.js"></script>
+    <![endif]-->
+        
+</head>
+<body>
+    <div class="wrapper">
+        <header class="main-header">
+            <div class="stairMenuContent">
+                <div class="wrap clearfix">
+                    <div class="navLeft">
+                        <a class="logo" href="/"></a>
+                        <ul class="stairMenu">
+                            <li class="first-level-nav">
+                                <a href="javascript:void(0);">审核中心</a>
+                                <div class="second-level-nav">
+                                    <ul class="secondLevelList clearfix">
+                                        <li class="currentSecondLevelMenu">
+                                            <a href="javascript:void(0);">导游</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">领队</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">旅行社</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="first-level-nav">
+                                <a href="javascript:void(0);">导游管理</a>
+                                <div class="second-level-nav">
+                                    <ul class="secondLevelList clearfix">
+                                        <li class="currentSecondLevelMenu">
+                                            <a href="javascript:void(0);">注册信息</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">档期信息</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="first-level-nav">
+                                <a href="javascript:void(0);">旅行社管理</a>
+                                <div class="second-level-nav">
+                                    <ul class="secondLevelList clearfix">
+                                        <li class="currentSecondLevelMenu">
+                                            <a href="javascript:void(0);">注册信息</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">团信息</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="first-level-nav">
+                                <a href="javascript:void(0);">运营中心</a>
+                                <div class="second-level-nav">
+                                    <ul class="secondLevelList clearfix">
+                                        <li class="currentSecondLevelMenu">
+                                            <a href="javascript:void(0);">申诉管理</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="first-level-nav">
+                                <a href="javascript:void(0);">权限管理</a>
+                                <div class="second-level-nav">
+                                    <ul class="secondLevelList clearfix">
+                                        <li class="currentSecondLevelMenu">
+                                            <a href="javascript:void(0);">角色维护</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0);">人员管理</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="headRightOperate">
+                        <span class="userContent">Hi，千颂伊</span>
+                        <label class="emailContent">
+                            <i class="emailIcon"></i>
+                            <span class="emailFonts">99</span>
+                        </label>
+                        <a href="javascript:void(0);" class="exitFonts">退出</a>
+                    </div>
+                </div>
+            </div>
+            <div class="headSecondLevel"></div>
+        </header>
+        <div class="main-container">
+            <section class="whiteBg">
+                <ul class="toggleTab">
+                    <li class="current">所有信息</li>
+                    <li>审核信息</li>
+                    <li>申诉信息</li>
+                    <li>用户建议</li>
+                </ul>
+                <ul class="searchList clearfix">
+                    <li>
+                        <table class="searchTab">
+                            <colgroup>
+                                <col width="90">
+                                <col width="330">
+                                <col width="90">
+                                <col width="270">
+                                <col width="110">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th>提交日期：</th>
+                                <td>
+                                    <input type="text" class="datepicker default hasIcon" readonly="readonly" style="width: 130px" />
+                                    <em> 至 </em>
+                                    <input type="text" class="datepicker default hasIcon" readonly="readonly" style="width: 130px" />
+                                </td>
+                                <th></th>
+                                <td>
+                                    <div class="checkboxContent">
+                                        <label class="checkboxInfo">
+                                            <span class="checkboxIcon"></span>查看
+                                        </label>
+                                        <label class="checkboxInfo">
+                                            <span class="checkboxIcon"></span>未查看
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="commonButton blue-45c8dcButton">查 询</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </li>
+                </ul>
+                <section class="clearfix">
+                    <div style="text-align:right;padding:8px 5px;">
+                        <a href="javascript:void(0);">导出Excel</a>
+                    </div>
+                    <table class="commonTab productTab">
+                        <colgroup>
+                            <col width="10%">
+                            <col width="25%">
+                            <col width="15%">
+                            <col width="15%">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>消息类型</th>
+                            <th>消息主题</th>
+                            <th>时间</th>
+                            <th>状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>审核信息</td>
+                            <td><a href="javascript:void(0);">导游-戴倪飞申请审核</a></td>
+                            <td>
+                                <span>2015/7/15</span>
+                                <span>14:14:14</span>
+                            </td>
+                            <td>
+                                <div class="fcf78c68">未查看</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>审核信息</td>
+                            <td><a href="javascript:void(0);">旅行社-上海长寿国际旅行社有限公司申请审核</a></td>
+                            <td>
+                                <span>2015/7/15</span>
+                                <span>14:14:14</span>
+                            </td>
+                            <td>
+                                <div class="fcf78c68">未查看</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>用户建议</td>
+                            <td><a class="ac-userSuggest" href="javascript:void(0);">建议该软件资料全一点建议该软件资料全一点建议该软件资料全......</a></td>
+                            <td>
+                                <span>2015/7/15</span>
+                                <span>14:14:14</span>
+                            </td>
+                            <td>
+                                <div class="fcf78c68">未查看</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>用户建议</td>
+                            <td><a class="ac-userSuggest" href="javascript:void(0);">建议该软件资料全一点建议该软件资料全一点建议该软件资料全......</a></td>
+                            <td>
+                                <span>2015/7/15</span>
+                                <span>14:14:14</span>
+                            </td>
+                            <td>
+                                <div class="fcf78c68">未查看</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>申诉信息</td>
+                            <td><a href="javascript:void(0);">申诉导游-戴倪飞点评信息虚假，恶意点评</a></td>
+                            <td>
+                                <span>2015/7/15</span>
+                                <span>14:14:14</span>
+                            </td>
+                            <td>
+                                <div class="fcf78c68">未查看</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>用户建议</td>
+                            <td><a class="ac-userSuggest" href="javascript:void(0);">建议该软件资料全一点建议该软件资料全一点建议该软件资料全......</a></td>
+                            <td>
+                                <span>2015/7/15</span>
+                                <span>14:14:14</span>
+                            </td>
+                            <td>
+                                <div>已查看</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>申诉信息</td>
+                            <td><a href="javascript:void(0);">申诉导游-戴倪飞点评信息虚假，恶意点评</a></td>
+                            <td>
+                                <span>2015/7/15</span>
+                                <span>14:14:14</span>
+                            </td>
+                            <td>
+                                <div>已查看</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>申诉信息</td>
+                            <td><a href="javascript:void(0);">申诉导游-戴倪飞点评信息虚假，恶意点评</a></td>
+                            <td>
+                                <span>2015/7/15</span>
+                                <span>14:14:14</span>
+                            </td>
+                            <td>
+                                <div>已查看</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>审核信息</td>
+                            <td><a href="javascript:void(0);">旅行社-上海长寿国际旅行社有限公司申请审核</a></td>
+                            <td>
+                                <span>2015/7/15</span>
+                                <span>14:14:14</span>
+                            </td>
+                            <td>
+                                <div>已查看</div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table style="display:none;" class="commonTab productTab">
+                        <colgroup>
+                            <col width="10%">
+                            <col width="25%">
+                            <col width="15%">
+                            <col width="15%">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>消息类型</th>
+                            <th>消息主题</th>
+                            <th>时间</th>
+                            <th>状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>审核信息</td>
+                            <td><a href="javascript:void(0);">导游-戴倪飞申请审核</a></td>
+                            <td>
+                                <span>2015/7/15</span>
+                                <span>14:14:14</span>
+                            </td>
+                            <td>
+                                <div class="fcf78c68">未查看</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>审核信息</td>
+                            <td><a href="javascript:void(0);">旅行社-上海长寿国际旅行社有限公司申请审核</a></td>
+                            <td>
+                                <span>2015/7/15</span>
+                                <span>14:14:14</span>
+                            </td>
+                            <td>
+                                <div class="fcf78c68">未查看</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>审核信息</td>
+                            <td><a href="javascript:void(0);">旅行社-上海长寿国际旅行社有限公司申请审核</a></td>
+                            <td>
+                                <span>2015/7/15</span>
+                                <span>14:14:14</span>
+                            </td>
+                            <td>
+                                <div>已查看</div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table style="display:none;" class="commonTab productTab">
+                        <colgroup>
+                            <col width="10%">
+                            <col width="25%">
+                            <col width="15%">
+                            <col width="15%">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>消息类型</th>
+                            <th>消息主题</th>
+                            <th>时间</th>
+                            <th>状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>申诉信息</td>
+                            <td><a href="javascript:void(0);">申诉导游-戴倪飞点评信息虚假，恶意点评</a></td>
+                            <td>
+                                <span>2015/7/15</span>
+                                <span>14:14:14</span>
+                            </td>
+                            <td>
+                                <div class="fcf78c68">未查看</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>申诉信息</td>
+                            <td><a href="javascript:void(0);">申诉导游-戴倪飞点评信息虚假，恶意点评</a></td>
+                            <td>
+                                <span>2015/7/15</span>
+                                <span>14:14:14</span>
+                            </td>
+                            <td>
+                                <div>已查看</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>申诉信息</td>
+                            <td><a href="javascript:void(0);">申诉导游-戴倪飞点评信息虚假，恶意点评</a></td>
+                            <td>
+                                <span>2015/7/15</span>
+                                <span>14:14:14</span>
+                            </td>
+                            <td>
+                                <div>已查看</div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table  style="display:none;" class="commonTab productTab">
+                        <colgroup>
+                            <col width="10%">
+                            <col width="25%">
+                            <col width="15%">
+                            <col width="15%">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>消息类型</th>
+                            <th>消息主题</th>
+                            <th>时间</th>
+                            <th>状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>用户建议</td>
+                            <td><a class="ac-userSuggest" href="javascript:void(0);">建议该软件资料全一点建议该软件资料全一点建议该软件资料全......</a></td>
+                            <td>
+                                <span>2015/7/15</span>
+                                <span>14:14:14</span>
+                            </td>
+                            <td>
+                                <div class="fcf78c68">未查看</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>用户建议</td>
+                            <td><a class="ac-userSuggest" href="javascript:void(0);">建议该软件资料全一点建议该软件资料全一点建议该软件资料全......</a></td>
+                            <td>
+                                <span>2015/7/15</span>
+                                <span>14:14:14</span>
+                            </td>
+                            <td>
+                                <div class="fcf78c68">未查看</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>用户建议</td>
+                            <td><a class="ac-userSuggest" href="javascript:void(0);">建议该软件资料全一点建议该软件资料全一点建议该软件资料全......</a></td>
+                            <td>
+                                <span>2015/7/15</span>
+                                <span>14:14:14</span>
+                            </td>
+                            <td>
+                                <div>已查看</div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="pagination">
+                        <span class="countNum">共 331 条记录，</span>
+                        <span class="pageNum">
+                            <span class="pageNumClick">每页 5 条 <i class="pageNumIcon"></i></span>
+                            <ul class="paginationNum" style="display: none;">
+                                <li class="active">
+                                    <a href="javascript:void(0);">5</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">10</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">20</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">30</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">40</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">50</a>
+                                </li>
+                            </ul>
+                        </span>
+                        <span class="pageSize">1/10</span>
+                        <span class="pageArrow">
+                            <a href="javascript:void(0);" class="firstPage disabled">
+                                <i></i>
+                            </a>
+                            <a href="javascript:void(0);" class="prevPage disabled">
+                                <i></i>
+                            </a>
+                            <a href="javascript:void(0);" class="nextPage">
+                                <i></i>
+                            </a>
+                            <a href="javascript:void(0);" class="lastPage">
+                                <i></i>
+                            </a>
+                        </span>
+                        <span>
+                            <span>跳转到</span>
+                            <input type="text" style="width: 45px;" class="pageToNum">
+                            <a href="javascript:void(0);" class="pageTo">
+                                <i></i>
+                            </a>
+                        </span>
+                    </div>
+                </section>
+            </section>
+            
+        </div>
+        <footer>Copyright © 2015 天地行 All Rights Reserved. 沪ICP备08101503号</footer>
+    </div>
+
+    <div class="modal fade" data-backdrop="static" data-keyboard="false" id="userSuggestModal">
+        <div class="modal-dialog" style="width:500px;height:380px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">用户建议信息处理</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="statusWindow">
+                        <table>
+                        <tr>
+                            <th>导游：</th>
+                            <td>
+                                <div class="contentTitle"><span>戴倪飞</span></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>
+                               <textarea class="userSuggestText" placeholder="建议内容：最多300字"></textarea> 
+                            </td>
+                        </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="commonButton red-fe6869Button" style="margin-right:10px;">确认</button>
+                    <button type="button" class="commonButton blue-45c8dcButton" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<script>
+    $(function(){
+        $(".radioList .radio").click(function(){
+            $(this).addClass("active");
+            $(this).siblings().removeClass("active");
+        });
+        
+        $(".allCheckbox").click(function(){
+            $(this).toggleClass("active");
+            if ($(this).hasClass("active")) {
+                $(this).parents("table").find(".checkbox").addClass("active");
+            } else {
+                $(this).parents("table").find(".checkbox").removeClass("active");
+            }
+        });
+
+        $('.toggleTab li').click(function(){
+            $(this).addClass('current').siblings().removeClass('current');
+            $('.productTab').eq($(this).index()).show().siblings('.productTab').hide();
+        })
+
+        //弹窗
+        $(".modal").modal({
+            backdrop: "static",
+            keyboard: false,
+            show: false
+        });
+        $(".ac-userSuggest").click(function () {
+            $("#userSuggestModal").modal("show");
+        })
+        
+    });
+</script>
+
+</body>
+</html>
