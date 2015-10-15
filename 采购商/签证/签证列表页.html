@@ -154,6 +154,68 @@
         <div class="play_all tab">
         <ul class="">
             <li>
+                <label class="filterTitle">签证目的地：</label>
+                <div class="filter_item_info_box">
+                    <div class="filter_item_info">
+                      <div class="left_margin">亚洲</div>
+                      <div>欧洲</div>
+                      <div>北美洲</div>
+                      <div>大洋洲</div>
+                      <div>南美洲</div>
+                      <div>中东-非洲</div>
+                   </div>
+                   <!-- 亚洲 -->
+                   <div class="sub_filter_item_info" style="display: block;">
+                       <div class="place">中国大陆</div>
+                       <div class="place">中国香港</div>
+                       <div class="place">中国台湾</div>
+                       <div class="place">泰国</div>
+                       <div class="place">柬埔寨</div>
+                   </div>
+                   <!-- 欧洲 -->
+                   <div class="sub_filter_item_info">
+                      <div class="place">法国</div>
+                      <div class="place">意大利</div>
+                      <div class="place">英国</div>
+                      <div class="place">德国</div>
+                      <div class="place">希腊</div>
+                   </div>
+                   <!-- 北美洲 -->
+                   <div class="sub_filter_item_info">
+                      <div class="place">美国</div>
+                      <div class="place">加拿大</div>
+                      <div class="place">华盛顿</div>
+                      <div class="place">墨西哥</div>
+                   </div>
+                    <!-- 大洋洲 -->
+                   <div class="sub_filter_item_info">
+                      <div class="place">澳大利亚</div>
+                      <div class="place">新西兰</div>
+                      <div class="place">斐济</div>
+                      <div class="place">帕劳</div>
+                   </div>
+                   <!-- 南美洲 -->
+                   <div class="sub_filter_item_info">
+                      <div class="place">阿根廷</div>
+                      <div class="place">伯利兹</div>
+                      <div class="place">巴西</div>
+                      <div class="place">智利</div>
+                      <div class="place">哥伦比亚</div>
+                      <div class="place">巴拿马</div>
+                      <div class="place">秘鲁</div>
+                   </div>
+                   <!-- 中东-非洲 -->
+                   <div class="sub_filter_item_info">
+                      <div class="place">埃及</div>
+                      <div class="place">摩洛哥</div>
+                      <div class="place">南非</div>
+                      <div class="place">以色列</div>
+                      <div class="place">阿曼</div>
+                      <div class="place">阿联酋</div>
+                   </div>
+                </div>
+            </li>
+            <li>
                 <label class="filterTitle">签证类型：</label>
                 <div class="filterCheck">
                     <span>个人旅游签证</span>
@@ -163,11 +225,11 @@
                 </div>
             </li>
             <li>
-                <label class="filterTitle">是否面试：</label>
+                <label class="filterTitle">供应商类型：</label>
                 <div class="filterCheck">
-                    <span class="selectedSpan">无需</span>
-                    <span>抽签</span>
-                    <span>需要</span>
+                    <span class="selectedSpan">金牌供应商</span>
+                    <span>优质供应商</span>
+                    <span>其他</span>
                 </div>
             </li>
             <li>
@@ -676,6 +738,47 @@
                 $(".travel-filter .tab:eq(" + index + ")").show();
                 $(".play_type li").removeClass("currentState");
                 $(this).addClass("currentState");
+            });
+        });
+
+        /*  签证目的地 交互  */
+        $(".filter_item_info > div").each(function(index){
+
+            var $this = $(this);
+
+            $this.mouseover(function(){
+                $(".sub_filter_item_info").hide().eq(index).show();
+            });
+
+            // $this.click(function(){
+            //     $(this).siblings("div").removeClass("current").end()
+            //            .addClass("current");
+
+            //     $(".sub_filter_item_info").children("div.place").removeClass("current");
+            // });
+
+            //$(".filter_item_info_box")
+            $(".filter_item_info_box").mouseleave(function(){
+                if ($(".filter_item_info > div.current").length > 0) {
+                    var i = $(".filter_item_info > div").index($(".filter_item_info > div.current").get(0));
+                    if (i >= 0) {
+                        $(".sub_filter_item_info").hide().eq(i).show();
+                    }
+                }
+            });
+        });
+
+        $(".sub_filter_item_info").each(function(index){
+
+            var $this = $(this);
+
+            $this.children("div").each(function(i){
+                $(this).click(function(){
+                    $(".sub_filter_item_info > div").removeClass("current");
+                    $(this).addClass("current");
+
+                    $(".filter_item_info > div").removeClass("current").eq(index).addClass("current");
+                });
             });
         });
     });
