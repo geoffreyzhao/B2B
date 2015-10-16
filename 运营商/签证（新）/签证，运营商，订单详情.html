@@ -785,7 +785,7 @@
             	<textarea name="" style="width:395px;height:150px;padding:10px;" placeholder="如需备注，可于此处添加"></textarea>
             </div>
             <div class="row" style="text-align:center;">
-                <button class="btns button_1_2">提 交</button> 
+                <button class="btns button_1_2 reviewsubbtn">提 交</button> 
             </div>
 </script> 
 
@@ -796,15 +796,16 @@
                         <button class="btns btn-blue-140" style="vertical-align:middle">上传已修改资料</button>
                         <input type="file">
                     </div>
-                    <div class="uploadedFile">
-	                    <i class="uploadedFileIcon"></i>
+                    <div class="reviewuploadedFile">
+	                    <i class="uploadedFileIconsmall"></i>
 	                    <span>签证材料打包.zip</span>
+	                    <i class="deleteuploaded"></i>
 	                </div>    
                 </div>
             	<textarea name="" style="width:395px;height:150px;padding:10px;" placeholder="如需备注，可于此处添加"></textarea>
             </div>
             <div class="row" style="text-align:center;">
-                <button class="btns button_1_2">提 交</button> 
+                <button class="btns button_1_2 unreviewsubbtn">提 交</button> 
             </div>
 </script>
 
@@ -870,7 +871,7 @@
 				        template: '#ac-unreviewpass-template'
 				    }).init();
 
-	    var uploading_win = new PopWindow(".uploadbtn",{
+	    var uploading_win = new PopWindow(".uploadbtnBox",{
             title:"上传文档",
             width:470,
             template:"#uploadingTemplate"
@@ -901,7 +902,25 @@
 
         $("body").delegate(".sureuploadsucbtn", "click", function(){
             upload_succes_win.close();
-           /* .show();*/
+            $('.uploadbtnBox').hide();
+            $('.reviewuploadedFile').show();
+        });
+
+        $("body").delegate(".deleteuploaded", "click", function(){
+            $('.reviewuploadedFile').hide();
+            $('.uploadbtnBox').show();
+        });
+
+        $("body").delegate(".reviewsubbtn", "click", function(){
+            reviewpass.close();
+            $('.ac-reviewpass').hide();
+            $('.ac-unreviewpass').hide();
+        });
+
+        $("body").delegate(".unreviewsubbtn", "click", function(){
+            unreviewpass.close();
+            $('.ac-reviewpass').hide();
+            $('.ac-unreviewpass').hide();
         });
 
 	    $(".visaOpera").click(function(){
