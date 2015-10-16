@@ -418,6 +418,91 @@
 	            </div>
         	</div>
 
+        	<div class="enroll panel">
+	            <div class="chief"> <h3>材料信息</h3></div>
+	            <div class="uploadedTab">
+                    <table>
+                        <colgroup>
+                            <col width="255">
+                            <col width="300">
+                            <col width="400">
+                        </colgroup>
+                        <tr>
+                            <td>
+                                <div class="uploadedFile">
+                                    <i class="uploadedFileIcon"></i>
+                                    <span>签证材料打包.zip</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="uploadedFile">
+                                    最后更新于：2013-11-15 07:20:15     
+                                </div>
+                            </td>
+                            <td style="border:none;">
+                                <div class="uploadedFile" style="padding-left:0;text-align:center;">
+                                    <!-- <div class="uploadbtnBox">
+                                             <a class="adaptiveButton mediumOrange_btn marginR">
+                                                 <span class="left"></span>
+                                                 <span class="center center_1">上 传</span>
+                                                 <span class="right"></span>
+                                             </a>
+                                             <input type="file">
+                                         </div>
+                                         <a class="adaptiveButton mediumOrange_btn ">
+                                                 <span class="left"></span>
+                                                 <span class="center center_1">下 载</span>
+                                                 <span class="right"></span>
+                                             </a> -->   
+                                    <button class="btns btn-blue ac-reviewpass" style="vertical-align:middle">审核通过</button>
+                                        <button class="btns btn-blue ac-unreviewpass" style="vertical-align:middle">审核不通过</button>
+                                        <a class="button_important adaptiveButton small">
+			                                    <span class="left"></span>
+			                                    <span class="center">下载</span>
+			                                    <span class="right"></span>
+			                           </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="operatelist">
+                        <div class="operateTitle">操作记录</div>
+                        <ul>
+                            <li class="visaPass">
+                                <div class="passTiltle">
+                                    <span class="operateTitle font14">签证材料确认，通过：</span>
+                                    <span class="operaDate"><em class="visaPassDate">2013-11-15 07:20:15</em>操作人：<em>客服</em></span>
+                                </div>
+                                <div class="passDetail">
+                                    <span class="remark">备注：</span>
+                                    <p>签证材料合格，请下载附件打印邮寄给供应商。</p>
+                                </div>
+                            </li>
+                            <li class="visaPass">
+                                <div class="passTiltle">
+                                    <span class="operateTitle font14">上传签证材料</span>
+                                    <span class="operaDate"><em class="visaPassDate">2013-11-15 07:20:15</em>操作人：<em>客服</em></span>
+                                </div>
+                            </li>
+                            <li class="visaPass" style="display:none;">
+                                <div class="passTiltle">
+                                    <span class="operateTitle font14">签证材料确认，不通过：</span>
+                                    <span class="operaDate"><em class="visaPassDate">2013-11-15 07:20:15</em>操作人：<em>客服</em></span>
+                                </div>
+                                <div class="passDetail">
+                                    <span class="remark">备注：</span>
+                                    <p>签证材料不合格，已在附件中标明，请下载附件修改好即可打印邮寄给供应商。</p>
+                                </div>
+                            </li>
+                            <li class="viewMore">
+                                <div class="visaOpera visaOperaAdd">查看全部</div>    
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+        	</div>
+			
+
 			
               <!--应收合计-->
 				 <div class="block block5 block-calc changeCalc">
@@ -695,6 +780,59 @@
             </div>
 </script>
 
+ <script type="text/x-kendo-template" id="ac-reviewpass-template">
+            <div>
+            	<textarea name="" style="width:395px;height:150px;padding:10px;" placeholder="如需备注，可于此处添加"></textarea>
+            </div>
+            <div class="row" style="text-align:center;">
+                <button class="btns button_1_2">提 交</button> 
+            </div>
+</script> 
+
+<script type="text/x-kendo-template" id="ac-unreviewpass-template">
+            <div>
+            	<div class="uploadbtn" >
+                    <div class="uploadbtnBox">
+                        <button class="btns btn-blue-140" style="vertical-align:middle">上传已修改资料</button>
+                        <input type="file">
+                    </div>
+                    <div class="uploadedFile">
+	                    <i class="uploadedFileIcon"></i>
+	                    <span>签证材料打包.zip</span>
+	                </div>    
+                </div>
+            	<textarea name="" style="width:395px;height:150px;padding:10px;" placeholder="如需备注，可于此处添加"></textarea>
+            </div>
+            <div class="row" style="text-align:center;">
+                <button class="btns button_1_2">提 交</button> 
+            </div>
+</script>
+
+<script type="text/x-kendo-template" id="uploadingTemplate">
+        <div class="uploading">
+            <span>正在上传...</span>
+        </div>
+</script>
+
+<script type="text/x-kendo-template" id="uploadSuccessTemplate">
+        <div class="uploading uploadSuccess">
+            <i class="uploadSuccessIcon"></i>
+            <span class="">上传成功！</span>
+        </div>
+        <div class="sureSubmitBtn sureuploadsucbtn" style="text-align: center;font-size:14px;">
+            <button class="btns button_1_2">确 定</button>
+        </div>
+</script>
+
+<script type="text/x-kendo-template" id="uploadfailTemplate">
+        <div class="uploading uploadFail">
+            <i class="uploadFailIcon"></i>
+            <span class="">上传失败！</span>
+        </div>
+        <div class="sureSubmitBtn reuploadbtn" style="text-align: center;font-size:14px;">
+            <button class="btns button_1_2">重新上传</button>
+        </div>
+</script>
 
 <script>
 	$(function(){
@@ -721,6 +859,64 @@
 				        width:468,
 				        template: '#ac-reject-reason-template'
 				    }).init();
+	    var reviewpass = new PopWindow('.ac-reviewpass',{
+				        title:'审核通过',
+				        width:468,
+				        template: '#ac-reviewpass-template'
+				    }).init();
+	    var unreviewpass = new PopWindow('.ac-unreviewpass',{
+				        title:'审核不通过',
+				        width:468,
+				        template: '#ac-unreviewpass-template'
+				    }).init();
+
+	    var uploading_win = new PopWindow(".uploadbtn",{
+            title:"上传文档",
+            width:470,
+            template:"#uploadingTemplate"
+        }).init();
+
+        var upload_succes_win = new PopWindow("noTrigger",{
+            title:"上传文档",
+            width:470,
+            template:"#uploadSuccessTemplate"
+        }).init();
+
+        var upload_fail_win = new PopWindow("noTrigger",{
+            title:"上传文档",
+            width:470,
+            template:"#uploadfailTemplate"
+        }).init();
+
+
+        $("body").delegate(".uploading", "click", function(){
+            uploading_win.close();
+            upload_fail_win.show();
+        });
+
+        $("body").delegate(".reuploadbtn button", "click", function(){
+            upload_fail_win.close();
+            upload_succes_win.show();
+        });
+
+        $("body").delegate(".sureuploadsucbtn", "click", function(){
+            upload_succes_win.close();
+           /* .show();*/
+        });
+
+	    $(".visaOpera").click(function(){
+            $(".operatelist .visaPass:gt(1)").slideToggle();
+            if($(this).hasClass("down"))
+            {
+                $(this).removeClass("down");
+                $(this).text("查看全部");
+            }
+            else
+            {
+                $(this).addClass("down");
+                $(this).text("收起");
+            }
+        });
 
 	    $(".cancel-review-return-btn").on("click",function(){
 
