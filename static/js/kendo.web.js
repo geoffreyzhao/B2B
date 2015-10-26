@@ -8946,10 +8946,6 @@ kendo_module({
                 text = "";
             }
 
-            if (this.element == undefined) {
-                console.log(this);
-            }
-
             this.element[innerText] = text;
         }
     });
