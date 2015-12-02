@@ -10491,7 +10491,7 @@ kendo_module({
                         if(checkPer.test(pcssObj.top)){
                             labelSetting.top = pcssObj.top;
                         }else{
-                            labelSetting.top = inputOffset.top + parseInt(pcssObj.top) + input.outerHeight();
+                            labelSetting.top = inputOffset.top + parseInt(pcssObj.top) + input.outerHeight() + 8;
                         }
 
                         if(checkPer.test(pcssObj.left)){
@@ -10513,8 +10513,14 @@ kendo_module({
                     messageLabel.css(labelSetting);
 
                     if (!lbl.replaceWith(messageLabel).length) {
-                        messageLabel.insertAfter(input);
+                        messageLabel.insertAfter(input);                        
                     }
+                    // bottom时，默认显示在输入框的中间位置，by: shuaigeng.zhao
+                    if (p == "bottom") {
+                        messageLabel.css({
+                            left: (labelSetting.left - (messageLabel.outerWidth() - input.outerWidth()) / 2) + "px"
+                        });
+                    };
                     messageLabel.show();
                 }
 
