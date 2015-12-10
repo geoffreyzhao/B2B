@@ -182,6 +182,47 @@
                 </table>
             </div>
             
+            <!-- 联系人信息 -->
+            <div class="tour_createOrder">
+                <!--<div class="chief"> <h3>联系信息</h3> </div>-->
+                <div class="chief">
+                    <h3 class="passenger-detail-title">联系人信息</h3>
+                    <div class="passenger-detail-title">
+                        <label class="editInfoLabel editLinkManLabel">编辑联系人信息</label>
+                    </div>
+                </div>
+                <div class="relatedOfHuman">
+                    <div>
+                        <em class="planeAndHotel-redStar">*</em>联系人
+                    </div>
+                    <input type="text" style="width:224px;" value="liuwei" class="editStatusInput"/>
+                    <span class="linkManRowCon">liuwei</span>
+                </div>
+                <div class="relatedOfHuman">
+                    <div>
+                        <em class="planeAndHotel-redStar">*</em>手机号码
+                    </div>
+                    <input type="text" style="width:224px;" value="18612345678" class="editStatusInput"/>
+                    <span class="linkManRowCon">18612345678</span>
+                    <span>(请保持手机畅通，订单信息将发送至您的手机)</span>
+                </div>
+                <div class="relatedOfHuman">
+                    <div>
+                        电邮号码
+                    </div>
+                    <input type="text" style="width:224px;" value="123@456.com" class="editStatusInput"/>
+                    <span class="linkManRowCon">123@456.com</span>
+                </div>
+                <div class="editStatus-saveBtn">
+                    <a class="adaptiveButton brightRed_btn">
+                        <span class="left"></span>
+                        <span class="center">保&nbsp;存</span>
+                        <span class="right"></span>
+                    </a>
+                </div>
+            </div>
+
+
             <!--旅客信息-->
             <div class="tour_createOrder">
                 <div class="chief">
@@ -752,7 +793,18 @@
             departureFL.close();
         })
 
-       
+       $(".editLinkManLabel").click(function(){
+            $(".relatedOfHuman .editStatusInput").show();
+            $(".relatedOfHuman .linkManRowCon").hide();
+            $(this).hide();
+            $(".editStatus-saveBtn").show();
+        });
+        $(".editStatus-saveBtn").click(function(){
+            $(".relatedOfHuman .editStatusInput").hide();
+            $(".relatedOfHuman .linkManRowCon").show();
+            $(".editLinkManLabel").show();
+            $(".editStatus-saveBtn").hide();
+        });
 
         
     });
