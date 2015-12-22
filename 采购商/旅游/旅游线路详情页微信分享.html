@@ -226,7 +226,7 @@
             </div>
             <div class="price">
                 <span>市场价<i>￥9999</i></span>
-                <span class="tel">电话预定 : 13222222222</span>
+                <span class="tel"><a href="tel:13125456846"></a>电话预定 : 13125456846</span>
             </div>
         </div>
     </div>
@@ -283,9 +283,12 @@
             $(".showRecommendedByPM .foldMoreLink").hide();
         });
 
-        $('.tdoi_title').each(function(){
-            $(this).fixedBar();
-        })
+        var next = new Array('.tripDetailContext','.tdoi_priceExplain_needKnow','.tdoi_bookingNote','.tdoi_visaInfo','.tdoi_otherInfo');
+        $('.tdoi_title').each(function(index){
+            $(this).fixedBar({
+                endAt:next[index]
+            });
+        });
 
 
     });
