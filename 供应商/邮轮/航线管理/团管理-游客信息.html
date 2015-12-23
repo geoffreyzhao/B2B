@@ -126,22 +126,22 @@
         </div>
         <table class="offSearchTab">
             <colgroup>
-                <col width="110">
-                <col width="190">
-                <col width="110">
-                <col width="190">
+                <col width="90">
+                <col width="180">
+                <col width="90">
+                <col width="180">
                 <col width="90">
                 <col width="200">
-                <col width="90">
+                <col width="">
             </colgroup>
             <tbody class="visitorTBody">
                 <tr>
-                    <th>最大入住人数</th>
+                    <th>订单号</th>
+                    <td><input type="text" class="groupManageInput"></td>
+                    <th>最大<br>入住人数</th>
                     <td><input type="text" class="groupManageInput"></td>
                     <th>房间</th>
-                    <td><input type="text" class="groupManageInput"></td>
-                    <th>代码</th>
-                    <td><input type="text" class="groupManageInput"></td>
+                    <td><input type="text" class="groupManageInput"></td>                
                     <td>
                         <a class="supplierButton brightRedBig_btn">
                             <span class="left"></span>
@@ -151,38 +151,48 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>领队号</th>
+                    <th>代码</th>
                     <td><input type="text" class="groupManageInput"></td>
-                    <th>姓名</th>
+                    <th>房型</th>
+                    <td><input type="text" class="groupManageInput"></td>
+                    <th>团号</th>
+                    <td><input type="text" class="groupManageInput"></td>
+                    <td></td>                   
+                </tr>
+                <tr>
+                    <th>中文名</th>
                     <td><input type="text" class="groupManageInput"></td>
                     <th>性别</th>
-                    <td colspan="2">
+                    <td>
                         <select class="gender">
                             <option>请选择</option>
                             <option>男</option>
                             <option>女</option>
                         </select>
                     </td>
-                </tr>
-                <tr>
                     <th>出生地</th>
                     <td><input type="text" class="groupManageInput"></td>
+                    <td></td>                 
+                </tr>
+                <tr>
                     <th>国籍</th>
                     <td><input type="text" class="groupManageInput"></td>
                     <th>证件号码</th>
-                    <td colspan="2"><input type="text" class="groupManageInput"></td>
-                </tr>
-                <tr>
+                    <td><input type="text" class="groupManageInput"></td>
                     <th>签发地</th>
                     <td><input type="text" class="groupManageInput"></td>
-                    <th>签发日期</th>
-                    <td colspan="4"><input type="text" class="datepicker groupManageInput"></td>
+                    <td></td>                  
                 </tr>
                 <tr>
-                    <th>失效日期</th>
-                    <td colspan="2"><input type="text" style="width:130px;" class="datepicker groupManageInput" placeholder="开始日期"> - <input type="text" style="width:130px;" class="datepicker groupManageInput" placeholder="结束日期"></td>
-                    <td colspan="3">游客信息状况<input type="checkbox" id="radiobox"><label for="radiobox">信息不全</label></td>
+                    <th>签发日期</th>
+                    <td colspan="6"><input type="text" style="width:130px;" class="datepicker groupManageInput" placeholder="开始日期"> - <input type="text" style="width:130px;" class="datepicker groupManageInput" placeholder="结束日期"></td>
                 </tr>
+                <tr>                    
+                    <th>失效日期</th>
+                    <td colspan="6"><input type="text" style="width:130px;" class="datepicker groupManageInput" placeholder="开始日期"> - <input type="text" style="width:130px;" class="datepicker groupManageInput" placeholder="结束日期">
+                        <span style="margin-left: 20px;">游客信息状况</span><input type="checkbox" id="radiobox"><label for="radiobox">信息不全</label>
+                    </td>
+                </tr>                
             </tbody>
         </table>
         <div class="block-header" style="text-align:right;">
@@ -411,7 +421,9 @@
                 <tbody>
                     <tr>
                         <th>领队号：</th>
-                        <td colspan="5"><input type="text"></td>
+                        <td><input type="text"></td>
+                        <th>出境名单：</th>
+                        <td colspan="3"><input type="text"></td>
                     </tr>
                     <tr>
                         <th>中文名：</th>
@@ -455,6 +467,12 @@
                         </td>
                         <th>失效日期：</th>
                         <td colspan="3"><input type="text" class="datepicker groupManageInput" placeholder=" yy-mm-dd"></td>
+                    </tr>
+                    <tr>
+                        <th>岸上观光：</th>
+                        <td><input type="text"></td>
+                        <th>护照：</th>
+                        <td colspan="3"><input type="text"></td>
                     </tr>
                     <tr>
                         <th style="vertical-align:top;padding-top:10px;">备注：</th>
@@ -629,6 +647,8 @@
             })
             $("#tbl>tbody>tr").find("td:first").css({width:fw,height:dh,position:'absolute',left:0,background:"#fff","padding-left":"10px","padding-top":"2px","margin-top":"1px"});
             $("#tbl>tbody>tr:first").find("td:first").css({"margin-top":0});
+
+            $("select").kendoDropDownList();
         })
 </script>
 
