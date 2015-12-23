@@ -1509,7 +1509,13 @@
             var changeRoomWindow = new PopWindow('.separateRoom',{
                 title:'添加已有房间',
                 width:'790',
-                template:'#addRoomWindow'
+                template:'#addRoomWindow',
+                open: function(){
+                    $("body").addClass("popwindow-open");
+                },
+                close: function(){
+                    $("body").removeClass("popwindow-open");  
+                }
             }).init();
 
             $('.selectSubNav table td').click(function(){
