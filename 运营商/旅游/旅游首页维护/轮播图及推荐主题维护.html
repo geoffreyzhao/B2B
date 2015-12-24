@@ -20,6 +20,7 @@
     <script type="text/javascript" src="/static/js/global.js"></script>
     <script type="text/javascript" src="/static/js/DateControl.js"></script>
     <script type="text/javascript" src="/static/js/jquery.cycle.all.js"></script>
+    <script charset="utf-8" src="/static/js/kindeditor.js"></script>
 
     <!--[if IE]>
     <script src="/static/js/html5.js"></script>
@@ -172,7 +173,7 @@
                                         <li><label>标签名称：</label><input type="text" value="华南"></li>
                                         <li><label>对应搜索城市：</label><input type="text" placeholder="输入地点"></li>
                                     </ul>
-                                    <div class="delProductTag"><i></i>删除标签</div>
+                                    <div class="delProductTag delTagTip"><i></i>删除标签</div>
                                     <table class="markItemTable">
                                         <colgroup>
                                             <col width="50"/>
@@ -232,7 +233,7 @@
                                         <li><label>标签名称：</label><input type="text" value="华北"></li>
                                         <li><label>对应搜索城市：</label><input type="text" placeholder="输入地点"></li>
                                     </ul>
-                                    <div class="delProductTag"><i></i>删除标签</div>
+                                    <div class="delProductTag delTagTip"><i></i>删除标签</div>
                                     <table class="markItemTable">
                                         <colgroup>
                                             <col width="50"/>
@@ -293,7 +294,7 @@
                                             <li><label>标签名称：</label><input type="text" value="华东"></li>
                                             <li><label>对应搜索城市：</label><input type="text" placeholder="输入地点"></li>
                                         </ul>
-                                        <div class="delProductTag"><i></i>删除标签</div>
+                                        <div class="delProductTag delTagTip"><i></i>删除标签</div>
                                         <table class="markItemTable">
                                             <colgroup>
                                                 <col width="50"/>
@@ -319,7 +320,7 @@
                                     </div>
                                 </div>
                                 <!-- 添加标签模板 E-->
-                                <div class="">
+                                <div class="addTagAndOper">
                                     <div class="addProductTagBox"><i></i>新增标签</div>
                                     <div class="productTabOper">
                                         <a class="large_button button_2_1">
@@ -334,7 +335,6 @@
                                         </a>
                                     </div>
                                 </div>
-
                             </div>
                             <div class="addMarkItem"><i></i>添加新栏目</div>
                         </div>
@@ -392,17 +392,13 @@
             </p>
         </div>
     </script>
-    <!-- 添加照片轮播图弹窗 -->
-    <script type="text/x-kendo-template" id="addImgBoxTemplate">
+    <!-- 删除标签提示弹窗 -->
+    <script type="text/x-kendo-template" id="delTagTipTemplate">
         <div class="WindowtipsContainer">
-            <div class="addImgDiv"><i></i>添加照片</div>
-            <p class="imgFontsTips"><em>*</em>上传图片尺寸1920*480 分辨率72 大小500kb以内</p>
-            <ul class="formInfoUl">
-                <li><label>名称：</label><input type="text" /></li>
-                <li><label>路径：</label><input type="text" /></li>
-                <li class="timeLi"><label>显示时间：</label><input type="text" /><input type="text" /></li>
-            </ul>
-
+            <p class="tipMsg">
+                <i class="failIcon"></i>
+                <span>确定删除该标签吗？</span>
+            </p>
             <p class="operBtn">
                 <a class="large_button button_2_1">
                     <span class="left"></span>
@@ -417,6 +413,154 @@
             </p>
         </div>
     </script>
+    <!-- 添加照片轮播图弹窗 -->
+    <script type="text/x-kendo-template" id="addImgBoxTemplate">
+        <div class="WindowtipsContainer">
+            <div class="uploadbtnBox">
+                <div class="addImgDiv"><i></i>添加照片</div>
+                <form action="">
+                    <input type="file" class="uploadInput">
+                </form>
+            </div>
+            <p class="imgFontsTips"><em>*</em>上传图片尺寸1920*480 分辨率72 大小500kb以内</p>
+            <ul class="formInfoUl">
+                <li><label>名称：</label><input type="text" /></li>
+                <li><label>路径：</label><input type="text" /></li>
+                <li class="timeLi"><label>显示时间：</label><input type="text" /><input type="text" /></li>
+            </ul>
+            <p class="operBtn">
+                <a class="large_button button_2_1">
+                    <span class="left"></span>
+                    <span class="center">确 认</span>
+                    <span class="right"></span>
+                </a>
+                <a class="large_button button_2_2">
+                    <span class="left"></span>
+                    <span class="center">取 消</span>
+                    <span class="right"></span>
+                </a>
+            </p>
+        </div>
+    </script>
+    <!-- 添加新栏目弹窗 -->
+    <script type="text/x-kendo-template" id="addColumeTemplate">
+        <div class="WindowtipsContainer">
+            <p class="columeTitleP">
+                <label>新栏目名称：</label>
+                <span><input type="text"/></span>
+            </p>
+            <p class="operBtn">
+                <a class="large_button button_2_1">
+                    <span class="left"></span>
+                    <span class="center">确 认</span>
+                    <span class="right"></span>
+                </a>
+                <a class="large_button button_2_2">
+                    <span class="left"></span>
+                    <span class="center">取 消</span>
+                    <span class="right"></span>
+                </a>
+            </p>
+        </div>
+    </script>
+    <!-- 添加产品信息弹窗 -->
+    <script type="text/x-kendo-template" id="addHotelInfoTemplate">
+        <div class="windowInfoContent">
+            <div class="productSearchBar">
+                <label>目的地：</label>
+                <span><input type="text"/></span>
+                <label>产品ID：</label>
+                <span><input type="text"/></span>
+                <a href="javascript:;" class="button_secondary adaptiveButton small positionBtn">
+                    <span class="left"></span>
+                    <span class="center">查 询</span>
+                    <span class="right"></span>
+                </a>
+            </div>
+            <table class="openWindowTable">
+                <colgroup>
+                    <col width="90"/>
+                    <col width="250"/>
+                    <col width="50"/>
+                    <col width="180"/>
+                    <col width="80"/>
+                    <col width=""/>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>产品ID</th>
+                    <th>产品标题</th>
+                    <th>钻级</th>
+                    <th>团期</th>
+                    <th>同行价</th>
+                    <th>选取</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>s123456</td>
+                    <td>【特惠门票】韩国济州岛乱打秀门票 超人气演出VIP席门票预定</td>
+                    <td>4</td>
+                    <td>11-12,11-13,11-14,11-15,11-16,11-17,</td>
+                    <td>¥3999</td>
+                    <td><input type="checkbox" name=""></td>
+                </tr>
+                <tr>
+                    <td>s123456</td>
+                    <td>【特惠门票】韩国济州岛乱打秀门票 超人气演出VIP席门票预定</td>
+                    <td>4</td>
+                    <td>11-12,11-13,11-14,11-15,11-16,11-17,</td>
+                    <td>¥3999</td>
+                    <td><input type="checkbox" name=""></td>
+                </tr>
+                <tr>
+                    <td>s123456</td>
+                    <td>【特惠门票】韩国济州岛乱打秀门票 超人气演出VIP席门票预定</td>
+                    <td>4</td>
+                    <td>11-12,11-13,11-14,11-15,11-16,11-17,</td>
+                    <td>¥3999</td>
+                    <td><input type="checkbox" name=""></td>
+                </tr>
+                <tr>
+                    <td>s123456</td>
+                    <td>【特惠门票】韩国济州岛乱打秀门票 超人气演出VIP席门票预定</td>
+                    <td>4</td>
+                    <td>11-12,11-13,11-14,11-15,11-16,11-17,</td>
+                    <td>¥3999</td>
+                    <td><input type="checkbox" name=""></td>
+                </tr>
+                <tr>
+                    <td>s123456</td>
+                    <td>【特惠门票】韩国济州岛乱打秀门票 超人气演出VIP席门票预定</td>
+                    <td>4</td>
+                    <td>11-12,11-13,11-14,11-15,11-16,11-17,</td>
+                    <td>¥3999</td>
+                    <td><input type="checkbox" name=""></td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="grid-table-pagination">
+                  <span class="grid-table-count">
+                      共 <em>132</em> 条记录
+                  </span>
+                  <span>
+                      <a href="javascript:void(0);" class="prev">&nbsp;</a>
+                  </span>
+                  <span class="links">
+                      <a href="javascript:void(0);">1</a>
+                      <a href="javascript:void(0);">2</a>
+                      <a href="javascript:void(0);" class="current">3</a>
+                      <a href="javascript:void(0);">4</a>
+                      <a href="javascript:void(0);">5</a>
+                      <a href="javascript:void(0);">...</a>
+                      <a href="javascript:void(0);">50</a>
+                  </span>
+                  <span>
+                      <a href="javascript:void(0);" class="next">&nbsp;</a>
+                  </span>
+            </div>
+        </div>
+    </script>
 
     <script>
         $(function(){
@@ -424,13 +568,21 @@
             //$(".editMarkItem").siblings(".columnItemBlockTit").css("display","block");
             $(".editColume").click(function(){
                 $(".columnItemBlockTit").css("display","block");
-                $(".addProductTagBox").css("display","block");
+                $(".addTagAndOper").css("display","block");
                 $(".markItem").addClass("editMarkItem");
             });
             //新增标签
             $(".addProductTagBox").click(function(){
                 $(".addProductTagTemplate").css("display","block");
                 $(this).before("<div class='addProductTagTemplate'>" + $(".addProductTagTemplate").html() + "</div>")
+            });
+            //编辑栏目中的取消
+            $(".addTagAndOper .large_button").click(function(){
+                $(".markItem").removeClass("editMarkItem");
+                $(".columnItemBlockTit").css("display","none");
+                $(".addTagAndOper").css("display","none");
+                $(".addProductTagTemplate").css("display","none");
+
             });
 
 
@@ -443,14 +595,35 @@
                 title:'删除提示',
                 width:'470'
             }).init();
+            // 删除栏目中的标签
+            new PopWindow('.delTagTip', {
+                template:'#delTagTipTemplate',
+                title:'删除提示',
+                width:'470'
+            }).init();
             // 添加照片轮播图
             new PopWindow('.addImgBox', {
                 template:'#addImgBoxTemplate',
                 title:'添加轮播图',
                 width:'470'
             }).init();
+            // 添加产品信息
+            new PopWindow('.add_product', {
+                template:'#addHotelInfoTemplate',
+                title:'添加产品',
+                width:'730'
+            }).init();
+            // 添加新栏目
+            new PopWindow('.addMarkItem', {
+                template:'#addColumeTemplate',
+                title:'添加新栏目',
+                width:'470'
+            }).init();
+
+            $(".uploadInput").kendoUpload();
         })
     </script>
+
 
 
 
