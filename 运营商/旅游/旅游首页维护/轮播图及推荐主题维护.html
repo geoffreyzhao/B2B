@@ -157,13 +157,22 @@
                             <div class="columnItemBlock">
                                 <h5>
                                     <b>特惠尾单</b>
-                                    <span><a href="javascript:;">挂起</a><a href="javascript:;">编辑</a><a href="javascript:;">删除</a></span>
+                                    <span>
+                                        <a href="javascript:;">挂起</a>
+                                        <a href="javascript:;" class="editColume">编辑</a>
+                                        <a href="javascript:;" class="delColumeTip">删除</a>
+                                    </span>
                                 </h5>
                                 <div class="columnItemBlockTit">
                                     <label>栏目标题：</label><input type="text" value="特惠尾单">
                                 </div>
                                 <div class="markItem">
                                     <h6>华南</h6>
+                                    <ul class="productTagUl">
+                                        <li><label>标签名称：</label><input type="text" value="华南"></li>
+                                        <li><label>对应搜索城市：</label><input type="text" placeholder="输入地点"></li>
+                                    </ul>
+                                    <div class="delProductTag"><i></i>删除标签</div>
                                     <table class="markItemTable">
                                         <colgroup>
                                             <col width="50"/>
@@ -212,9 +221,18 @@
                                         </tr>
                                         </tbody>
                                     </table>
+                                    <div class="addProductTr clearfix">
+                                        <a href="javascript:;" class="add_product">添加</a>
+                                    </div>
+                                    <div class="addProFontsTip"><em>*</em>最多添加5个产品</div>
                                 </div>
                                 <div class="markItem">
                                     <h6>华北</h6>
+                                    <ul class="productTagUl">
+                                        <li><label>标签名称：</label><input type="text" value="华北"></li>
+                                        <li><label>对应搜索城市：</label><input type="text" placeholder="输入地点"></li>
+                                    </ul>
+                                    <div class="delProductTag"><i></i>删除标签</div>
                                     <table class="markItemTable">
                                         <colgroup>
                                             <col width="50"/>
@@ -263,11 +281,62 @@
                                         </tr>
                                         </tbody>
                                     </table>
+                                    <div class="addProductTr clearfix">
+                                        <a href="javascript:;" class="add_product">添加</a>
+                                    </div>
+                                    <div class="addProFontsTip"><em>*</em>最多添加5个产品</div>
                                 </div>
+                                <!-- 添加标签模板 S-->
+                                <div class="addProductTagTemplate">
+                                    <div class="markItem editMarkItem">
+                                        <ul class="productTagUl">
+                                            <li><label>标签名称：</label><input type="text" value="华东"></li>
+                                            <li><label>对应搜索城市：</label><input type="text" placeholder="输入地点"></li>
+                                        </ul>
+                                        <div class="delProductTag"><i></i>删除标签</div>
+                                        <table class="markItemTable">
+                                            <colgroup>
+                                                <col width="50"/>
+                                                <col width="120"/>
+                                                <col width=""/>
+                                                <col width="70"/>
+                                            </colgroup>
+                                            <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>产品编号</th>
+                                                <th>产品标题</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                        <div class="addProductTr clearfix">
+                                            <a href="javascript:;" class="add_product">添加</a>
+                                        </div>
+                                        <div class="addProFontsTip"><em>*</em>最多添加5个产品</div>
+                                    </div>
+                                </div>
+                                <!-- 添加标签模板 E-->
+                                <div class="">
+                                    <div class="addProductTagBox"><i></i>新增标签</div>
+                                    <div class="productTabOper">
+                                        <a class="large_button button_2_1">
+                                            <span class="left"></span>
+                                            <span class="center">保 存</span>
+                                            <span class="right"></span>
+                                        </a>
+                                        <a class="large_button button_2_2">
+                                            <span class="left"></span>
+                                            <span class="center">取 消</span>
+                                            <span class="right"></span>
+                                        </a>
+                                    </div>
+                                </div>
+
                             </div>
-
                             <div class="addMarkItem"><i></i>添加新栏目</div>
-
                         </div>
                         <!-- recommend column end -->
 
@@ -302,43 +371,84 @@
         Copyright © 2014 天地行 All Rights Reserved.     沪ICP备08101503号
     </center>
 </footer>
-    <script type="text/x-kendo-template" id="ac_addInfo_template">
-        <div class="pop_addContent">
-            <table class="addContentTab">
-                <colgroup>
-                    <col width="100"/>
-                    <col width=""/>
-                </colgroup>
-                <tbody>
-                    <tr>
-                        <th>城市名称</th>
-                        <td><input type="text" style="width:200px;"/></td>
-                    </tr>
-                    <tr>
-                        <th>所在省份</th>
-                        <td><select style="width:201px;" data-role="dropdownlist">
-                            <option>全部</option>
-                            <option selected="selected">上海</option>
-                        </select></td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="bottom_btn">
-                <a href="javascript:;" class="bottom_btn_a">确 定</a>
-                <a href="javascript:;" class="bottom_btn_a_1">放 弃</a>
-            </div>
+    <!-- 删除推荐栏目提示弹窗 -->
+    <script type="text/x-kendo-template" id="delColumeTipTemplate">
+        <div class="WindowtipsContainer">
+            <p class="tipMsg">
+                <i class="failIcon"></i>
+                <span>确定删除该栏目吗？</span>
+            </p>
+            <p class="operBtn">
+                <a class="large_button button_2_1">
+                    <span class="left"></span>
+                    <span class="center">确 认</span>
+                    <span class="right"></span>
+                </a>
+                <a class="large_button button_2_2">
+                    <span class="left"></span>
+                    <span class="center">取 消</span>
+                    <span class="right"></span>
+                </a>
+            </p>
+        </div>
+    </script>
+    <!-- 添加照片轮播图弹窗 -->
+    <script type="text/x-kendo-template" id="addImgBoxTemplate">
+        <div class="WindowtipsContainer">
+            <div class="addImgDiv"><i></i>添加照片</div>
+            <p class="imgFontsTips"><em>*</em>上传图片尺寸1920*480 分辨率72 大小500kb以内</p>
+            <ul class="formInfoUl">
+                <li><label>名称：</label><input type="text" /></li>
+                <li><label>路径：</label><input type="text" /></li>
+                <li class="timeLi"><label>显示时间：</label><input type="text" /><input type="text" /></li>
+            </ul>
 
+            <p class="operBtn">
+                <a class="large_button button_2_1">
+                    <span class="left"></span>
+                    <span class="center">确 认</span>
+                    <span class="right"></span>
+                </a>
+                <a class="large_button button_2_2">
+                    <span class="left"></span>
+                    <span class="center">取 消</span>
+                    <span class="right"></span>
+                </a>
+            </p>
         </div>
     </script>
 
     <script>
         $(function(){
-            new PopWindow('.ac_addInfo',{
-                title:'添加国内城市',
-                template:'#ac_addInfo_template',
-                width:400
+            //栏目标题编辑出现
+            //$(".editMarkItem").siblings(".columnItemBlockTit").css("display","block");
+            $(".editColume").click(function(){
+                $(".columnItemBlockTit").css("display","block");
+                $(".addProductTagBox").css("display","block");
+                $(".markItem").addClass("editMarkItem");
+            });
+            //新增标签
+            $(".addProductTagBox").click(function(){
+                $(".addProductTagTemplate").css("display","block");
+                $(this).before("<div class='addProductTagTemplate'>" + $(".addProductTagTemplate").html() + "</div>")
+            });
+
+
+
+
+
+            // 删除推荐栏目
+            new PopWindow('.delColumeTip', {
+                template:'#delColumeTipTemplate',
+                title:'删除提示',
+                width:'470'
             }).init();
-            kendo.init($("body"));
+            // 添加照片轮播图
+            new PopWindow('.addImgBox', {
+                template:'#addImgBoxTemplate',
+                title:'添加轮播图',
+                width:'470'
+            }).init();
         })
     </script>
 

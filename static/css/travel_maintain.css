@@ -103,8 +103,9 @@
     padding:2px 3px 2px 5px;
 }
 .markItem {
-    margin-bottom: 10px;
     padding:0 20px;
+    margin: 0 10px;
+    position: relative;
 }
 .markItem h6 {
     font-size: 14px;
@@ -117,31 +118,50 @@
     border-left:1px solid #d7d7d7;
 }
 .markItemTable th {
-    background-color: #f0f0f0;
+    background-color: #f0f0f0!important;
     font-weight: normal;
     font-size: 14px;
 }
-.markItemTable th, .markItemTable td {
+.markItemTable th, .markItemTable td, .addProductTr {
     padding:10px 20px 10px 20px;
     border-right:1px solid #d7d7d7;
     border-bottom:1px solid #d7d7d7;
+    background-color: #f7f7f7;
 }
 .markItemTable tr :first-child {
     font-size: 14px;
 }
 .markItemTable th :last-child, .markItemTable tr :last-child {
     display: none;
-
-
 }
-.markItemTable .del_product {
+.editMarkItem .markItemTable th:last-child, .editMarkItem .markItemTable tr :last-child {
+    display:table-cell;
+}
+.editMarkItem .markItemTable tr :last-child {
+    padding-left:11px;
+}
+.editMarkItem .markItemTable th:last-child {
+    padding-left:20px!important;
+}
+.editMarkItem .addProductTr {
+    display: block;
+}
+.addProductTr {
+    border-left:1px solid #d7d7d7;
+    display: none;
+}
+.addProductTr .add_product {
+    float: right;
+    padding-right: 4px;
+}
+.markItemTable .del_product, .addProductTr .add_product {
     color: #0074d2;
     font-size: 12px!important;
 }
-.markItemTable .del_product:hover {
+.markItemTable .del_product:hover, .addProductTr .add_product:hover {
     text-decoration: underline;
 }
-.addMarkItem {
+.addMarkItem, .addProductTagBox {
     border: 1px solid #0074d2;
     color: #0074d2;
     font-size: 16px;
@@ -150,13 +170,13 @@
     line-height: 40px;
     margin: 15px 0;
 }
-.addMarkItem:hover {
+.addMarkItem:hover, .addProductTagBox:hover {
     border: 1px solid #0074d2;
     background: #0074d2;
     cursor: pointer;
     color: #fff;
 }
-.addMarkItem i {
+.addMarkItem i, .addProductTagBox i {
     background: url("../images/supplier/sale-add-hover.png") no-repeat;
     width:12px;
     height: 12px;
@@ -166,6 +186,195 @@
 .addMarkItem:hover i {
     background: url("../images/supplier/sale-add.png") no-repeat;
 }
+.addProductTagBox {
+    border: 1px solid #a5d5fd;
+    background-color: #f3fcff;
+    margin: 15px 10px;
+    display: none;
+}
+.addProductTagBox:hover {
+    background-color: #daeffe;
+    border: 1px solid #a5d5fd;
+    color: #0074d2;
+}
+.editMarkItem {
+    border:1px solid #a5d5fd;
+    background: #f3fcff;
+    padding:10px 10px;
+    margin: 0 10px 10px 10px;
+}
+.editMarkItem h6 {
+    display: none;
+}
+.addProFontsTip {
+    color: #999;
+    padding:10px 0 0 0;
+    display: none;
+}
+.addProFontsTip em {
+    color: red;
+    margin-right: 2px;
+    padding-top: 6px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.editMarkItem .addProFontsTip {
+    display: block;
+}
+.productTagUl {
+    margin-bottom: 10px;
+    display: none;
+}
+.productTagUl li {
+    padding: 0 0 10px 0;
+}
+.productTagUl label {
+    display: inline-block;
+    width:88px;
+    font-weight: bold;
+    font-size: 12px;
+}
+.productTagUl input[type=text] {
+    width:140px;
+    padding:0 0 0 3px;
+}
+.editMarkItem .productTagUl, .editMarkItem .delProductTag {
+    display: block;
+}
+.delProductTag {
+    display: none;
+    position: absolute;
+    top:10px;
+    right: 10px;
+    color: #ff6633;
+    font-size: 14px;
+}
+.delProductTag:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.delProductTag i {
+    background: url("../images/supplier/del_proTag.png") no-repeat;
+    width:16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.addProductTagTemplate {
+    display: none;
+}
+.addProductTagTemplate .addProductTr {
+    border-top:1px solid #d7d7d7;
+}
+.productTabOper {
+    padding:10px 0;
+    text-align: right;
+    border-top:1px solid #d3d3d3;
+    margin: 10px 0 0 0;
+}
+.productTabOper .button_2_1:hover {
+    color: #fff;
+}
+.productTabOper .button_2_2:hover {
+    color: #4f4f4f;
+}
+
+/* 弹窗 S*/
+.WindowtipsContainer {
+    text-align: center;
+    padding: 5px 25px;
+}
+.WindowtipsContainer .tipMsg {
+    font-size: 16px;
+    color: #666;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+.tipMsg .failIcon {
+    background: url("../images/operator/groupManage.png") no-repeat scroll -31px 0px rgba(0, 0, 0, 0);
+    display: inline-block;
+    width: 47px;
+    height: 47px;
+    position: relative;
+    top: 13px;
+    margin-right: 10px;
+    vertical-align: bottom;
+}
+.WindowtipsContainer .tipMsgP {
+    font-size: 14px;
+    color: #2c2c2c;
+    margin-bottom: 20px;
+}
+
+.WindowtipsContainer .addImgDiv {
+    border: 1px solid #0074d2;
+    width:331px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    padding: 50px 11px;
+    color: #0074d2;
+    font-size: 16px;
+    display: inline-block;
+}
+.WindowtipsContainer .addImgDiv:hover {
+    border: 1px solid #0074d2;
+    background: #0074d2;
+    cursor: pointer;
+    color: #fff;
+}
+.WindowtipsContainer .addImgDiv i {
+    background: url("../images/supplier/sprite-smallIcon.png") no-repeat 0 -24px;
+    display: inline-block;
+    width:19px;
+    height: 19px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+.WindowtipsContainer .addImgDiv:hover i {
+    background: url("../images/supplier/sprite-smallIcon.png") no-repeat -20px -24px;
+}
+.imgFontsTips {
+    text-align: left;
+    padding:10px 0 0 18px;
+}
+.imgFontsTips em {
+    color: red;
+    margin-right: 2px;
+    padding-top: 6px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.WindowtipsContainer .formInfoUl {
+    margin-bottom: 15px;
+
+}
+.WindowtipsContainer .formInfoUl li {
+    text-align: left;
+    padding: 12px 0 0 18px;
+}
+.WindowtipsContainer .formInfoUl label {
+    display: inline-block;
+    width:60px;
+}
+.WindowtipsContainer .formInfoUl input[type=text] {
+    width:294px;
+    padding:0 0 0 3px;
+}
+.WindowtipsContainer .formInfoUl .timeLi input[type=text] {
+    width:100px;
+    margin-right: 20px;
+}
+.WindowtipsContainer .button_2_1:hover {
+    color: #fff;
+}
+.WindowtipsContainer .button_2_2:hover {
+    color: #4f4f4f;
+}
+/* 弹窗 E*/
+
 /* 轮播图及推荐主题维护 E */
 
 
