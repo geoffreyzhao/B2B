@@ -3054,21 +3054,33 @@ a.progressCancel {
 .marginTop20{
     margin-top: 20px;
 }
+.ticketCommonModel{
+    margin-bottom: 20px;
+}
 .leftBodyContent{
+    width: 250px;
+    z-index: 12;
+}
+.leftBodyContent .fixedMenu{
+    float: left;
+    width: 250px;
+    margin-bottom: 20px;
     background-color: #f2f2f2;
     border: 2px solid #ff977a;
     border-right: none;
-    float: left;
-    position: fixed;
+    position: relative;
     z-index: 12;
 }
 .leftPlacesList{
     background-color: #ffffff;
-    float: left;
     width: 250px;
+    height: 574px;
+    box-sizing: content-box;
 }
 .leftPlacesList li{
     padding: 10px;
+    height: 50px;
+    box-sizing: content-box;
     border-top: 2px solid #ff977a;
     border-right: 2px solid #ff977a;
     position: relative;
@@ -3160,8 +3172,8 @@ a.progressCancel {
     top: 40%;
 }
 .leftPlacesList li.current{
-    border-right: 2px solid #f2f2f2;
     background-color: #f2f2f2;
+    border-right: 2px solid #f2f2f2;
 }
 .leftPlacesList li.current .arrowOrange{
     display: inline-block;
@@ -3170,7 +3182,14 @@ a.progressCancel {
 .leftTabsList{
     padding: 20px 20px 20px 30px;
     width: 540px;
-    float: left;
+    height: 534px;
+    box-sizing: content-box;
+    border: 2px solid #ff977a;
+    border-left: none;
+    background-color: #f2f2f2;
+    position: absolute;
+    top: -2px;
+    left: 250px;
     display: none;
 }
 .areaModelDivide{
@@ -3234,42 +3253,94 @@ a.progressCancel {
 
 .titleModel{
     padding: 10px 0 5px 0;
+    border: 1px solid #e7e5e5;
 }
 .titleModel.orangeLine{
     border-bottom: 2px solid #ff977a;
+}
+.titleModel.greenLine{
+    border-bottom: 2px solid #219502;
+}
+.titleModel.purpleLine{
+    border-bottom: 2px solid #334abe;
 }
 .titleModel .titleLeft{
     font-size: 18px;
     float: left;
     width: 200px;
+    margin-left: 20px;
 }
-.titleLeft .titleIcon{
+.orangeLine .titleLeft{
+    color: #fe4f1e;
+}
+.greenLine .titleLeft{
+    color: #219502;
+}
+.purpleLine .titleLeft{
+    color: #334abe;
+}
+.titleLeft b{
+    font-weight: bold;
+}
+.orangeLine .titleIcon,
+.greenLine .titleIcon,
+.purpleLine .titleIcon{
     display: inline-block;
-    width: 22px;
-    height: 21px;
     vertical-align: middle;
     margin-right: 5px;
-    background: url("../../images/store/smallIcon.png") no-repeat -56px -276px;
+    background: url("../../images/store/smallIcon.png") no-repeat;
+}
+.orangeLine .titleIcon{
+    width: 22px;
+    height: 21px;
+    background-position: -56px -276px;
+}
+.greenLine .titleIcon{
+    width: 24px;
+    height: 20px;
+    background-position: -83px -276px;
+}
+.purpleLine .titleIcon{
+    width: 22px;
+    height: 22px;
+    background-position: -112px -276px;    
 }
 .titleRightList{
     float: left;
-    width: 495px;
+    width: 475px;
     text-align: right;
 }
 .titleRightList li{
     display: inline-block;
     line-height: 25px;
     margin-right: 15px;
+    cursor: pointer;
     position: relative;
 }
-.titleRightList a{
+.titleRightList a,
+.titleRightList b{
     font-size: 14px;
     font-weight: bold;
     color: #666666;
+    text-decoration: none;
 }
 .titleRightList a:hover{
-    color: #fe4f1e;
     text-decoration: none;
+}
+.orangeLine .titleRightList a:hover,
+.orangeLine .titleRightList b:hover{
+    color: #fe4f1e;
+}
+.greenLine .titleRightList a:hover,
+.greenLine .titleRightList b:hover{
+    color: #219502;    
+}
+.purpleLine .titleRightList a:hover,
+.purpleLine .titleRightList b:hover{
+    color: #334abe;    
+}
+.moreFonts{
+    margin-left: 15px;
 }
 .titleRightList .commonTitleIcon{
     display: none;
@@ -3279,13 +3350,36 @@ a.progressCancel {
     background: url("../../images/store/smallIcon.png") no-repeat;
     position: absolute;
     bottom: -7px;
-    left: 30%;
+    left: 25%;
+}
+.titleRightList li.last .commonTitleIcon{
+    left: 15%;
 }
 .titleRightList li.current .commonTitleIcon.orangeArrow{
     display: inline-block;
     background-position: -138px -276px;
 }
-.tab.tabPadding{
+.titleRightList li.current .commonTitleIcon.greenArrow{
+    display: inline-block;
+    background-position: -155px -276px;
+}
+.titleRightList li.current .commonTitleIcon.purpleArrow{
+    display: inline-block;
+    background-position: -173px -276px;
+}
+.orangeLine .titleRightList li.current a,
+.greenLine .titleRightList li.current b{
+    color: #fe4f1e;
+}
+.greenLine .titleRightList li.current a,
+.greenLine .titleRightList li.current b{
+    color: #219502;
+}
+.purpleLine .titleRightList li.current a,
+.purpleLine .titleRightList li.current b{
+    color: #334abe;
+}
+.smallModelPadding{
     padding: 10px 0 15px 15px;
     border: 1px solid #e7e5e5;
     border-top: none;
@@ -3295,7 +3389,6 @@ a.progressCancel {
     width: 550px;
     color: #666666;
     padding-right: 20px;
-    border-right: 1px dashed #cfdde9;
 }
 .leftAdmissionTicket .twoLinesEllipsis{
     font-size: 16px;
@@ -3303,6 +3396,7 @@ a.progressCancel {
     max-height: 50px;
     line-height: 25px;
     color: #1673c4;
+    overflow: hidden;
     cursor: pointer;
 }
 .leftAdmissionTicket .twoLinesEllipsis a{
@@ -3387,10 +3481,10 @@ a.progressCancel {
     width: 110px;
     text-align: right;
     color: #999999;
+    border-left: 1px dashed #cfdde9;
 }
 .rightPrices .topBottomPrice{
-    padding-right: 12px;
-    padding-top: 5px;
+    padding: 7px 12px 0 0;
 }
 .topBottomPrice.borderBottom{
     border-bottom: 1px dashed #cfdde9;
@@ -3413,5 +3507,7 @@ a.progressCancel {
 .color333Fonts{
     color: #333333;
 }
-
+.admissionTicketModel{
+    margin: 20px 0;
+}
 /* 旅游首页新改版 end */
