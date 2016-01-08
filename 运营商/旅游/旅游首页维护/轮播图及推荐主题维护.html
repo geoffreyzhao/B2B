@@ -691,22 +691,29 @@
 
             
 
-            /*  上传预览    注：使用的是HTML5的新API属性，不支持IE10以下低端浏览器，chrome,firefox可正常使用  */
+            /*  上传预览    注：使用的是HTML5的新API属性，不支持IE，chrome,firefox可正常使用  */
 
             function reviewImg() {   //  方法可改造为接收参数，指定为某个容器内的input file
                 var upObj = document.getElementById("uploadInput"),
                     upSrc = window.URL.createObjectURL(upObj.files[0]);
 
-                // upObj.files[0].name  文件名后缀判断是否是图片
+                // upObj.files[0].name  可根据文件名后缀判断是否是图片
 
-                $("#uploadInput").after("<img id='reviewImg' style='width:353px;height:180px;position:absolute;top:0;left:0;'/>");
+                if ($("#uploadInput").next("img").length == 0) {    // 没有img结构则创建，有则更新src地址
+
+                    $("#uploadInput").after("<img id='reviewImg' style='width:353px;height:180px;position:absolute;top:0;left:0;'/>");
+                } else {
+
+                    $("#uploadInput").next("img").eq(0).attr("src", upSrc);
+                }
 
                 document.getElementById("reviewImg").src= upSrc;
             }
 
             function cleanReviewImg() {
-                document.getElementById("uploadInput").files[0] = null;  //  清除上传文件
                 $("#uploadInput").next("img").remove();   //  移除预览图
+                $("#uploadInput").remove();     //  清除 input file value
+                $(".uploadbtnBox").append('<input type="file" id="uploadInput" class="uploadInput">');
             }
         })
 
