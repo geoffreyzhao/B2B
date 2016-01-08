@@ -467,9 +467,7 @@
         <div class="WindowtipsContainer">
             <div class="uploadbtnBox">
                 <div class="addImgDiv"><i></i>添加照片</div>
-                <form action="">
-                    <input type="file" class="uploadInput">
-                </form>
+                <input type="file" id="uploadInput" class="uploadInput">
             </div>
             <p class="imgFontsTips"><em>*</em>上传图片尺寸1920*480 分辨率72 大小500kb以内</p>
             <ul class="formInfoUl">
@@ -661,7 +659,15 @@
             new PopWindow('.addImgBox', {
                 template:'#addImgBoxTemplate',
                 title:'添加轮播图',
-                width:'470'
+                width:'470',
+                open: function(){
+                    $("#uploadInput").change(function(){
+                        reviewImg();
+                    });
+                },
+                close: function() {
+                    cleanReviewImg();
+                }
             }).init();
             // 添加产品信息
             new PopWindow('.add_product', {
@@ -681,10 +687,32 @@
                 thisLi.remove();
             });
 
-            $(".uploadInput").kendoUpload();
+            // $(".uploadInput").kendoUpload();
+
+            
+
+            /*  上传预览    注：使用的是HTML5的新API属性，不支持IE10以下低端浏览器，chrome,firefox可正常使用  */
+
+            function reviewImg() {   //  方法可改造为接收参数，指定为某个容器内的input file
+                var upObj = document.getElementById("uploadInput"),
+                    upSrc = window.URL.createObjectURL(upObj.files[0]);
+
+                // upObj.files[0].name  文件名后缀判断是否是图片
+
+                $("#uploadInput").after("<img id='reviewImg' style='width:353px;height:180px;position:absolute;top:0;left:0;'/>");
+
+                document.getElementById("reviewImg").src= upSrc;
+            }
+
+            function cleanReviewImg() {
+                document.getElementById("uploadInput").files[0] = null;  //  清除上传文件
+                $("#uploadInput").next("img").remove();   //  移除预览图
+            }
         })
+
     </script>
 
 </body>
 </html>
+
 
