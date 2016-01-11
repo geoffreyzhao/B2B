@@ -10513,7 +10513,12 @@ kendo_module({
                     messageLabel.css(labelSetting);
 
                     if (!lbl.replaceWith(messageLabel).length) {
-                        messageLabel.insertAfter(input);                        
+                        // 如果是自动补全输入框，messageLabel要与自动补全结构同级
+                        if (input.parent("span").hasClass("k-autocomplete")) {
+                            messageLabel.insertAfter(input.parent("span.k-autocomplete"))
+                        } else {
+                            messageLabel.insertAfter(input);
+                        }
                     }
                     // bottom时，默认显示在输入框的中间位置，by: shuaigeng.zhao
                     if (p == "bottom") {
