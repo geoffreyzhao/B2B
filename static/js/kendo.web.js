@@ -10513,8 +10513,9 @@ kendo_module({
                     messageLabel.css(labelSetting);
 
                     if (!lbl.replaceWith(messageLabel).length) {
-                        // 如果是自动补全输入框，messageLabel要与自动补全结构同级
-                        if (input.parent("span").hasClass("k-autocomplete")) {
+                        // 如果是自动补全输入框(排除城市选择控件)，messageLabel要与自动补全结构同级
+                        if (input.parent("span").hasClass("k-autocomplete")
+                                && !input.parent("span").hasClass("city_ac")) {
                             messageLabel.insertAfter(input.parent("span.k-autocomplete"))
                         } else {
                             messageLabel.insertAfter(input);
