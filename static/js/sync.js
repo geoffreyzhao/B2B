@@ -38,16 +38,9 @@ $(function() {
     var screen_change = function(p){
         if(p == "fullscreen"){
             $("#container").css("width","100%");
-            setcookie("fs","fullscreen",86400,"/",location.host);
         }else{
             $("#container").css("width","980");
-            setcookie("fs","",-1,"/",location.host);
         }
-    }
-    if(getcookie("fs") == "fullscreen"){
-        screen_change("fullscreen");
-    }else{
-        screen_change("");
     }
 
 
