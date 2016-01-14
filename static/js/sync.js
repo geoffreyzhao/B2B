@@ -1,41 +1,3 @@
-function load_header() {
-	$.get(encodeURI("/运营商/同步头.html"), {},
-	function(data) {
-		$(".header").html(data);
-		init_header();
-	});
-}
-
-var cookiepre = '';
-
-function setcookie(cookieName, cookieValue, seconds, path, domain, secure) {
-	var expires = new Date();
-	if(cookieValue == '' || seconds < 0) {
-		cookieValue = '';
-		seconds = -2592000;
-	}
-	expires.setTime(expires.getTime() + seconds * 1000);
-	domain = !domain ? cookiedomain : domain;
-	path = !path ? cookiepath : path;
-	document.cookie = escape((cookiepre ? cookiepre : '') + cookieName) + '=' + escape(cookieValue)
-		+ (expires ? '; expires=' + expires.toGMTString() : '')
-		+ (path ? '; path=' + path : '/')
-		+ (domain ? '; domain=' + domain : '')
-		+ (secure ? '; secure' : '');
-}
-
-function getcookie(name, nounescape) {
-	name = (cookiepre ? cookiepre : '') + name;
-	var cookie_start = document.cookie.indexOf(name);
-	var cookie_end = document.cookie.indexOf(";", cookie_start);
-	if(cookie_start == -1) {
-		return '';
-	} else {
-		var v = document.cookie.substring(cookie_start + name.length + 1, (cookie_end > cookie_start ? cookie_end : document.cookie.length));
-		return !nounescape ? unescape(v) : v;
-	}
-}
-
 $(function() {
     /** 返回顶部 */
     /*
@@ -71,15 +33,6 @@ $(function() {
 	});
 
     /** 返回顶部结束 */
-
-	if (typeof(init_header) == "undefined") {
-		$.getScript("/static/js/header.js", function() {
-			load_header();
-		});
-	} else {
-		load_header();
-	}
-
 
 
     var screen_change = function(p){
