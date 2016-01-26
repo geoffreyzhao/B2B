@@ -153,6 +153,32 @@
                     <!-- <span class="batchEditspan"><i></i>批量编辑</span>
                     <span class="batchDelspan"><i></i>批量删除</span> -->
                 </div>
+                <div class="admissionTickets">
+                    <div class="admissionTicketsList">
+                        <a href="javascript:;">1日门票【电子票至2015年3月1日】<i></i></a>
+                        <span class="ticketsEdit">编辑</span><span class="delGroup">删除</span>
+                    </div>
+                    <div class="admissionTicketsList">
+                        <a href="javascript:;">5日迪士尼门票【电子票至2015年3月14日】<i></i></a>
+                        <span class="ticketsEdit">编辑</span><span class="delGroup">删除</span>
+                    </div>
+                    <div class="admissionTicketsList">
+                        <a href="javascript:;">1日门票【电子票至2015年12月16日】<i></i></a>
+                        <span class="ticketsEdit">编辑</span><span class="delGroup">删除</span>
+                    </div>
+                    <div class="admissionTicketsList">
+                        <a href="javascript:;">1日门票【电子票】<i></i></a>
+                        <span class="ticketsEdit">编辑</span><span class="delGroup">删除</span>
+                    </div>
+                    <div class="admissionTicketsList">
+                        <a href="javascript:;">1日admiss tickets joinKAKAKA【电子票至2015年3月1日】<i></i></a>
+                        <span class="ticketsEdit">编辑</span><span class="delGroup">删除</span>
+                    </div>
+                    <div class="admissionTicketsList">
+                        <a href="javascript:;">1日admiss tickets joinKAKAKA【电子票】<i></i></a>
+                        <span class="ticketsEdit">编辑</span><span class="delGroup">删除</span>
+                    </div>
+                </div>
                  <!--列表内容 开始-->
                 <div style="position: relative" class="groupStageTabBox">
                     <table class="groupStageTab">
@@ -461,6 +487,119 @@
         </a>
     </div>
 </script>
+<!-- 门票 编辑 -->
+<script type="text/x-kendo-template" id="ticketsEditTemplate">
+    <table class="groupWindowTable">
+        <colgroup>
+            <col width="70"/>
+            <col width="100"/>
+            <col width="400"/>
+        </colgroup>
+        <tbody>
+        <tr>
+            <th class="addtopPaddingB">套餐名称：</th>
+            <td class="addtopPaddingB" colspan="2"><input type="text" style="width:350px; height:14px;" placeholder="1日门票【电子票至2015年3月1日】"/></td>
+            <td class="addtopPaddingB"></td>
+        </tr>
+        <tr>
+            <th class="addtopPaddingB">日期：</th>
+            <td class="addtopPaddingB"><input type="text" class="datepicker" style="width:97px; height:14px;" placeholder="2015-08-08"/></td>
+            <td class="addtopPaddingB"><span class="batchAddBlock"><i></i> 批量添加</span></td>
+            <td class="addtopPaddingB"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="tableWrap changeMarginT">
+        <table class="groupWindowTable">
+            <colgroup>
+                <col width="95">
+                <col width="120">
+                <col width="120">
+                <col width="120">
+                <col width="125">
+            </colgroup>
+            <thead>
+            <tr class="addDatePriceHeader">
+                <td></td>
+                <td>价格类别</td>
+                <td>类别说明</td>
+                <td>结算价</td>
+                <td>建议销售价</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="addPricetr">
+                <td>价格一</td>
+                <td><input value="成人"  class="addPriceInput"></td>
+                <td><input value="12-99" class="addPriceInput"></td>
+                <td><input value="200" class="addPriceInput"></td>
+                <td><input value="200" class="addPriceInput"></td>
+            </tr>
+            <tr class="addPricetr">
+                <td>价格二</td>
+                <td><input value="儿童"  class="addPriceInput"></td>
+                <td><input value="12-99" class="addPriceInput"></td>
+                <td><input value="200" class="addPriceInput"></td>
+                <td><input value="200" class="addPriceInput"></td>
+            </tr>
+            <tr class="addPricetr">
+                <td>价格三</td>
+                <td><input value="婴儿"  class="addPriceInput"></td>
+                <td><input value="12-99" class="addPriceInput"></td>
+                <td><input value="200" class="addPriceInput"></td>
+                <td><input value="200" class="addPriceInput"></td>
+            </tr>
+            <tr class="addPricetr">
+                <td>价格四</td>
+                <td><input value="长者"  class="addPriceInput"></td>
+                <td><input value="12-99" class="addPriceInput"></td>
+                <td><input value="200" class="addPriceInput"></td>
+                <td><input value="200" class="addPriceInput"></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="unorderRule">
+            <select>
+                <option>选择退订规则</option>
+                <option>规则一</option>
+                <option>规则二</option>
+                <option>规则三</option>
+            </select>
+        </div>
+        <!--<div class="stock">
+            <span class="stockNum">总库存 <input type="text" > 件</span>
+            <span><input id="stockCheckbox" type="checkbox"> <label for="stockCheckbox"> 无线库存</label></span>
+        </div>-->
+        <div class="stock">
+            <span class="stockNum"><strong>库存：</strong></span>
+            <label><input name="stock" value="alone_stock" type="radio" checked>单独库存</label>
+            <label><input name="stock" value="all_stock"  type="radio">总库存</label>
+            <div class="alone_stock">
+                <span class="stockNum">总库存：<input type="text" ></span>
+                <label class="wx_stock"><input type="checkbox">无线库存</label>
+            </div>
+            <div class="all_stock" style="display: none;">
+                <div>
+                    <span class="stockNum">价格一：<input type="text" /></span><label class="wx_stock"><input type="checkbox">无线库存</label>
+                    <span class="stockNum">价格二：<input type="text" /></span><label class="wx_stock"><input type="checkbox">无线库存</label>
+                </div>
+                <div>
+                    <span class="stockNum">价格三：<input type="text" /></span><label class="wx_stock"><input type="checkbox">无线库存</label>
+                    <span class="stockNum">价格四：<input type="text" /></span><label class="wx_stock"><input type="checkbox">无线库存</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pullCenterStyle">
+        <a class="supplierButton brightRedBig_btn">
+            <span class="left"></span>
+            <span class="center">确 定</span>
+            <span class="right"></span>
+        </a>
+        <a href="javascript:void(0);" class="cancelA">取消</a>
+    </div>
+</script>
 <!-- 删除 -->
 <script type="text/x-kendo-template" id="delGrouptemplate">
     <table class="groupWindowTable" style="width:100%">
@@ -495,6 +634,12 @@
             width:'350',
             template:'#batchAddBlocktemplate'
         }).init();
+
+        var ac_window = new PopWindow('.ticketsEdit',{
+            title:'销售管理',
+            width:'640',
+            template:'#ticketsEditTemplate'
+        }).init();
         
         var ac_window = new PopWindow('.delGroup',{
             title:'删除',
@@ -512,6 +657,16 @@
                 firstDay:0,
                 showButtonPanel :true
             });
+        });
+
+        $("body").delegate("input[name='stock']", "click", function(){
+            if ($(this).val() == "alone_stock") {
+                $(".alone_stock").show();
+                $(".all_stock").hide();
+            } else if ($(this).val() == "all_stock") {
+                $(".all_stock").show();
+                $(".alone_stock").hide();
+            }
         });
         
 	})
