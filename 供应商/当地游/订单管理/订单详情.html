@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>当地游 订单详情</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="/static/css/smoothness/jquery-ui-1.10.3.custom.css">
+    <link href="/static/css/kendo.common.css" rel="stylesheet" />
+    <link href="/static/css/kendo.gray.css" rel="stylesheet" />
+    <link href="/static/css/common.css" rel="stylesheet" />
+    <link href="/static/css/supplier.css" rel="stylesheet" />
+    <link href="/static/css/kendo.reset.css" rel="stylesheet" />
+    <link href="/static/css/supplier_common.css" rel="stylesheet" />
+    <link href="/static/css/supplierLocalTravelOrder.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/kendo.web.js"></script>
+    <script type="text/javascript" src="/static/js/cultures/kendo.culture.zh-CN.min.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/jquery.fixedBar.js"></script>
+    <script type="text/javascript" src="/static/js/global.js"></script>
+    <script type="text/javascript" src="/static/js/flight.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui-1.10.3.custom.js"></script>
+    <script type="text/javascript" src="/static/js/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+    <script type="text/javascript" src="/static/js/supplier/supplier_travel.js"></script>
+        
+    <!--[if IE]>
+    <script src="/static/js/html5.js"></script>
+    <![endif]-->
+        
+    <!--[if lt IE 8]> 
+    <link rel="stylesheet" href="/static/css/ie.css" /> 
+    <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
+    <![endif]-->
+    <script type="text/javascript" src="/static/js/supplier/supplier_sync.js"></script>
+    <!-- @CLB@ -->
+        <script>
+            $(function(){
+                kendo.init('body');
+                lensf();
+            })
+        </script>
+    </head>
+<body>
+
+    <div class="bg-header-repeat">
+        <div class="bg-header-top"></div>
+        <div class="navi-split-line"></div>
+        <div class="main-header"></div>
+    </div>
+
+    <div id="container" class="new-container">
+        <div class="header-top-center">
+            <div class="head-left">
+                <div class="supplier-logo"></div>
+            </div>
+            <ul class="first-navi">
+                <li class="first-navi-li"><a href="javascript:void(0);">国内机票</a></li>
+                <li class="first-navi-li"><a href="javascript:void(0);">国际机票</a></li>
+                <li class="first-navi-li" style="width:50px;"><a href="javascript:void(0);">旅游</a></li>
+                <li class="first-navi-li" style="width:50px;"><a href="javascript:void(0);">签证</a></li>
+                <li class="first-navi-li first-navi-active" style="width:70px;"><a href="javascript:void(0);">当地游</a>
+                    <ol class="second-navi">
+                        <li class="second-navi-li"><a href="javascript:void(0);">产品管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li second-navi-active"><a href="javascript:void(0);">订单管理</a>
+                            <div class="navi-slide-hover" style="height:5px;"></div>
+                        </li>
+                    </ol>
+                </li>
+                <li class="first-navi-li"><a href="javascript:void(0);" style="width:50px;">邮轮</a></li>
+                <li class="first-navi-li"><a href="javascript:void(0);">财务管理</a></li>
+                <li class="user-setting-nav" style="display:none;">
+                    <ol class="second-navi">
+                        <li class="second-navi-li"><a href="javascript:void(0);">我的账号</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">公司信息</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">员工管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">角色管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);">账户设置</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                        <li class="second-navi-li"><a href="javascript:void(0);"><span style="font-size:14px;">OFFICE</span>管理</a>
+                            <div class="navi-slide-hover"></div>
+                        </li>
+                    </ol>
+                </li>
+            </ul>
+            <div class="head-right">
+                <ul class="feature">
+                    <li class="notice-icon-active"></li>
+                    <li class="split-line"></li>
+                    <li class="person-info">
+                        <span class="person-icon"></span>
+                        <span class="person-name" title="zhaoshuaigeng12312321">zhaoshuaigeng12312321</span>
+                        <a class="logout" href="javascript:void(0);">退出</a>
+                        <span class="user-setting">设置</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="sub_menu_bar"></div>
+
+        <div id="mainContent" class="mainOrderContent">
+            <div class="top-pass-block">
+                <ul class="third-navi">
+                    <li class="third-navi-li third-navi-active">
+                        <div class="navi-operation-back">
+                            <i></i>返回
+                        </div>
+                    </li>
+                    <li class="third-navi-li third-navi-active">
+                        <a class="blueFonts" href="javascript:void(0);"><i class="detailsIcon"></i>订单详情</a>
+                    </li>
+                </ul>
+                <!--<div class="nav-oper-btn">
+                    <div class="navi-operation">
+                        <span>操作1操作1</span>
+                    </div>
+                </div>-->
+            </div>
+            <!-- order flow -->
+            <div class="flow">
+                <div class="instr pull-right">
+                    <span class="highlightTravel first">创建</span>
+                    <span>支付</span>
+                    <span>确认</span>
+                    <span>完成</span>
+                    <span class="last">结算</span>
+                </div>
+                <!-- <div class="instr pull-right">
+                     <span class="first">创建</span>
+                     <span class="highlightTravel">支付</span>
+                     <span>确认</span>
+                     <span>完成</span>
+                     <span class="last">结算</span>
+                 </div>-->
+                <!--<div class="instr pull-right">
+                    <span class="first">创建</span>
+                    <span>支付</span>
+                    <span class="highlightTravel">确认</span>
+                    <span>完成</span>
+                    <span class="last">结算</span>
+                </div>-->
+                <!--<div class="instr pull-right">
+                    <span class="first">创建</span>
+                    <span>支付</span>
+                    <span>确认</span>
+                    <span class="highlightTravel">完成</span>
+                    <span class="last">结算</span>
+                </div>-->
+                <!--<div class="instr pull-right">
+                    <span class="first">创建</span>
+                    <span>支付</span>
+                    <span>确认</span>
+                    <span>完成</span>
+                    <span class="highlightTravel last">结算</span>
+                </div>-->
+            </div>
+            <div class="timeHover">
+                <label class="orderStatusFonts">
+                    审核退回
+                </label>
+                <span>退回原因退回原因退回原因</span>
+            </div>
+            <!-- order -->
+            <div class="orderListBlock">
+                <div class="order newOrder">
+                    <div class="orderStatus">
+                        <table class="endorseOrder newEndorseOrder">
+                            <colgroup>
+                                <col width="300"/>
+                                <col width="220"/>
+                                <col width="300"/>
+                                <col width="140"/>
+                            </colgroup>
+                            <tr>
+                                <th><span class="orderNO"><strong>订单号：31023242354364564</strong></span></th>
+                                <th colspan="2"></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="minWidthLabel">
+                                    <label><em class="lightGray888">下单时间：</em><i class="lightGray4040">2013-08-08 12:30</i></label>
+                                    <!--<label><em class="lightGray888">团号：</em><i class="lightGray4040">HAWA20140709</i></label>-->
+                                </td>
+                                <td><em class="lightGray888">状态：</em><b class="endorsing">已付定金</b></td>
+                            </tr>
+                            <!--<tr>
+                                <td colspan="3" style="padding-right: 40px;">
+                                    <label>
+                                        <em class="lightGray888 label-remarkTitle">备注：</em>
+                                        <div class="lightGray4040" style="margin-left: 40px;">订单备注，订单备注订单备注订单备注，订单备注订单备注，
+                                            订单备注，订单备注订单备注订单备注，订单备注订单备注，</div>
+                                    </label>
+                                </td>
+                                <td></td>
+                            </tr>-->
+                        </table>
+                    </div>
+                    <div class="order_trace newOrderTrace clearfix">
+                        <div class="trace">订单跟踪：</div>
+                        <ul class="traceList ">
+                            <li>
+                                <i class="orderIcon"></i>
+                                <i class="orderLine" style="top: 35%;"></i>
+                                <label class="traceCondition clearfix">
+                                    <span class="color333">退团</span>
+                                    <span class="color999">旅客【张小白】、【李金勇】、【李丽】退团，手续费为【￥10000】、【￥8000】、【5000】备注【机票已出】</span>
+                                </label>
+                                <label class="opUser">操作人：客服  &nbsp;&nbsp;&nbsp;  2013-11-15 07:20:15</label>
+                            </li>
+                            <li>
+                                <i class="orderIcon"></i>
+                                <i class="orderLine"></i>
+                                <label class="traceCondition clearfix">
+                                    <span class="color333">退团</span>
+                                    <span class="color999">旅客【张小白】、【李金勇】退团，手续费为【￥10000】、【￥8000】备注【机票已出】</span>
+                                </label>
+                                <label class="opUser">操作人：客服  &nbsp;&nbsp;&nbsp;  2013-11-15 07:20:15</label>
+                            </li>
+                            <li>
+                                <i class="orderIcon"></i>
+                                <i class="orderLine"></i>
+                                <label class="traceCondition clearfix">
+                                    <span class="color333">调价</span>
+                                    <span class="color999">调价金额为【￥-200】,原因【促销，满5000减200；促销，满5000减200；促销，满5000减200</span>
+                                </label>
+                                <label class="opUser">操作人：客服  &nbsp;&nbsp;&nbsp;  2013-11-15 07:20:15</label>
+                            </li>
+                            <li class="flexiBleContent">
+                                <i class="orderIcon"></i>
+                                <i class="orderLine"></i>
+                                <label class="traceCondition clearfix">
+                                    <span class="color333">退团</span>
+                                    <span class="color999">旅客【张小白】、【李金勇】、【李丽】退团，手续费为【￥10000】、【￥8000】、【5000】备注【机票已出】</span>
+                                </label>
+                                <label class="opUser">操作人：客服  &nbsp;&nbsp;&nbsp;  2013-11-15 07:20:15</label>
+                            </li>
+                            <li class="flexiBleContent">
+                                <i class="orderIcon"></i>
+                                <i class="orderLine"></i>
+                                <label class="traceCondition clearfix">
+                                    <span class="color333">退团</span>
+                                    <span class="color999">旅客【张小白】、【李金勇】退团，手续费为【￥1000】、【￥800】备注【机票已出】</span>
+                                </label>
+                                <div class="opUser">操作人：客服  &nbsp;&nbsp;&nbsp;  2013-11-15 07:20:15</div>
+                            </li>
+                            <li class="orderNoLine">
+                                <i class="orderLine"></i>
+                                <div class="orderFlexibleType">
+                                    查看全部
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="orderArrowUp"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- linkMan -->
+            <div class="orderListBlock">
+                <div class="chief">
+                    <h3>联系人信息</h3>
+                </div>
+                <table class="contact-person-info">
+                    <colgroup>
+                        <col width="100" />
+                        <col width="" />
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <td><em class="redStar">*</em>姓名：</td>
+                        <td>赵帅更</td>
+                    </tr>
+                    <tr>
+                        <td><em class="redStar">*</em>手机号码：</td>
+                        <td>18516235409</td>
+                    </tr>
+                    <tr>
+                        <td><em class="redStar">*</em>E-mail：</td>
+                        <td>1039597724@qq.com</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="remarkDiv">
+                    
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <div id="extFooter">
+        <div>
+            <p>
+            <a href="javascript:void(0);">关于我们</a>&nbsp;|
+            <a href="javascript:void(0);">微博</a>&nbsp;|
+            <a href="javascript:void(0);">服务条款</a>&nbsp;|
+            <a href="javascript:void(0);">隐私政策</a>&nbsp;|
+            </p>
+            <p>客户服务热线:400-720-6666</p>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    
+    <script type="text/javascript">
+        $(function(){
+            $(".timeHover").fixedBar();
+
+            $(".orderFlexibleType").click(function(){
+                $(".traceList .flexiBleContent").slideToggle();
+                if($(this).hasClass("down"))
+                {
+                    $(this).removeClass("down");
+                    $(this).text("查看全部");
+                }
+                else
+                {
+                    $(this).addClass("down");
+                    $(this).text("收起");
+                }
+            });
+
+            
+        });
+    </script>
+</body>
+</html>
