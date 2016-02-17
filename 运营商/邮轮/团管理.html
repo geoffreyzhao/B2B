@@ -276,6 +276,9 @@
                               <div>
                                   <a href="javascript:void(0);">新建规则</a>
                               </div>
+                              <div>
+                                  <a href="javascript:void(0);" class="ac-modifiedDate">修改停售日期</a>
+                              </div>
                           </td>
                       </tr>
                       <tr>
@@ -875,6 +878,17 @@
     </div>
 </script>
 
+<script type="text/x-kendo-template" id="ac-modifiedDate-template">
+    <div>
+        <span class="leftFontsWidth">停售日期：</span>
+        <input type="text" class="datepicker" style="width: 200px;">
+    </div>
+    <div class="sendWarrantBtn">
+        <button class="large_button" type="button" name="a">确 定</button>
+        <button class="large_button disable" type="button" name="a">取 消</button>
+    </div>
+</script>
+
 
     <script type="text/javascript">
         $(function(){
@@ -937,7 +951,7 @@
             title: false,
             width: 421,
             height:170,
-            template: "#ac-commitReview_template",
+            template: "#ac-commitReview_template"
         }).init();
         $(".commitReviewWin").parents(".k-window").css("padding-bottom","18px");
 
@@ -965,6 +979,12 @@
           template:'#download-warrant-template',
           width:580,
           height:262
+        }).init();
+
+        var modifiedDate = new PopWindow('.ac-modifiedDate',{
+          title:'修改停售日期',
+          template:'#ac-modifiedDate-template',
+          width:400
         }).init();
         
 
