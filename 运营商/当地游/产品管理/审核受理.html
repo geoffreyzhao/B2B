@@ -100,12 +100,28 @@
 
             <div class="information_div">
                 <h3>供应商修改点</h3>
-                <ul class="modifyPointBlock">
-                    <li>● 基本信息<span>（出发地、目的地）</span></li>
-                    <li>● 团期报价</li>
-                    <li>● 线路行程<span>（第1天、第2天）</span></li>
-                    <li>● 产品经理推荐</li>
-                </ul>
+                <div class="modifiedSetMeal">
+                    <ul class="modifyPointBlock">
+                        <li>
+                            <h6 class="color333">基本信息</h6>
+                            <div class="color999 marginTop7">出发地、目的地</div>
+                        </li>
+                        <li>
+                            <h6 class="color333">详线信息</h6>
+                            <div class="color999 marginTop7">费用包含、费用不包含</div>
+                        </li>
+                        <li>
+                            <h6 class="color333">售价信息</h6>
+                            <div class="color999 marginTop7">1日门票【电子票至2015年3月1日】：删除</div>
+                            <div class="color999 marginTop7">1日门票【电子票至2015年3月1日】：修改</div>
+                            <div class="color999 marginTop7">1日门票【电子票至2015年3月1日】：删除</div>
+                            <div class="color999 marginTop7">1日门票【电子票至2015年3月1日】：修改</div>
+                        </li>
+                    </ul>
+                    <div class="view-more-text">
+                        <span>查看更多</span><i class="icon-arrow-down"></i>
+                    </div>
+                </div>
             </div>
 
             <div class="information_div proInformationBlock">
@@ -848,6 +864,34 @@
             $(this).parents(".cancelSave").siblings(".editBtn").show();
             $(".grayTheadTab").find(".inputNum").hide();
             $(".grayTheadTab").find(".numSpan").show();
+        });
+
+        //展开收起效果
+        if($(".modifyPointBlock").height() > 140){
+            $(".view-more-text").show();
+        }else{
+            $(".view-more-text").hide();
+        }
+        $("body").delegate(".view-more-text", "click", function(){
+            if ($(this).find("i").hasClass("icon-arrow-down")) { // 当前为收起状态
+                $(this).find("i").removeClass("icon-arrow-down");
+                $(this).find("i").addClass("icon-arrow-up");
+                $(this).find("span").html("收起");
+                $(this).siblings(".modifyPointBlock").css({
+                    maxHeight: "none",
+                    height: "auto",
+                    overflow: "visible"
+                });
+            } else if ($(this).find("i").hasClass("icon-arrow-up")) {
+                $(this).find("i").removeClass("icon-arrow-up");
+                $(this).find("i").addClass("icon-arrow-down");
+                $(this).find("span").html("查看更多");
+                $(this).siblings(".modifyPointBlock").css({
+                    maxHeight: "160px",
+                    height: "160px",
+                    overflow: "hidden"
+                });
+            }
         });
         
     });
