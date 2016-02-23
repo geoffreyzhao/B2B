@@ -10,7 +10,6 @@
     <link href="../../static/css/kendo.reset.css" rel="stylesheet" />
     <link href="../../static/css/operatorCommonHeader.css" rel="stylesheet" />
     <link href="../../static/css/buyer.css" rel="stylesheet" type="text/css">
-    <link href="../../static/css/passengerLiner/passengerDeck.css" rel="stylesheet" />
     <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
     <script type="text/javascript" src="../../static/js/header.js"></script>
@@ -115,254 +114,222 @@
         </div>
 
         <div class="block">
-        <!--<div class="block-field">
-            <span style="margin-right:40px;">采购商类型</span>
-            <label><input type="radio"> 公司</label>
-            <input data-role="dropdownlist" style="width:120px;" data-source="['旅行社']"  />
-            &nbsp;&nbsp;&nbsp;
-            <label><input type="radio"> 个人</label>
-        </div>-->
-        <div class="block-field">
-            <div class="block-title">
-                <span>申请信息</span>
+            <div class="block-field">
+                <div class="block-title">
+                    <span>申请信息</span>
+                </div>
+                <table class="query_tab">
+                    <colgroup>
+                        <col width="80"/>
+                        <col width="180"/>
+                        <col width="100"/>
+                        <col width="150"/>
+                        <col width="80"/>
+                        <col width=""/>
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th>公司全称：</th>
+                            <td>上海铁路旅行社有限公司</td>
+                            <th>公司简称：</th>
+                            <td>铁路339</td>
+                            <th>申请金额：</th>
+                            <td>500000.00</td>
+                        </tr>
+                        <tr>
+                            <th>申请类型：</th>
+                            <td>订单融资</td>
+                            <th>实际控制人姓名：</th>
+                            <td>铁老大</td>
+                            <th>申请时间：</th>
+                            <td>2016-03-01</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <table class="query_tab">
-                <colgroup>
-                    <col width="80"/>
-                    <col width="150"/>
-                    <col width="100"/>
-                    <col width="150"/>
-                    <col width="80"/>
-                    <col width=""/>
-                </colgroup>
-                <tbody>
+            <div class="block-field">
+                <div class="block-title">
+                    <span>客户基本信息</span>
+                </div>
+                <table class="query_tab financeReviewTab">
+                    <colgroup>
+                        <col width="120"/>
+                        <col width="100"/>
+                        <col width="100"/>
+                        <col width="100"/>
+                        <col width="100"/>
+                        <col width=""/>
+                    </colgroup>
+                    <tbody>
                     <tr>
-                        <th>公司全称：</th>
-                        <td>上海铁路旅行社有限公司</td>
-                        <th>公司简称：</th>
-                        <td>铁路339</td>
-                        <th>申请金额：</th>
-                        <td>500000.00</td>
+                        <th><i class="redStar">*</i>企业性质</th>
+                        <td>
+                            <select style="width:100px;" name="property">
+                                <option value="">全部</option>
+                                <option value=""></option>
+                            </select>
+                        </td>
+                        <th><i class="redStar">*</i>上市公司</th>
+                        <td>
+                            <label style="margin-right:10px;"><input type="radio" name="onMarket" checked="checked"> 是</label>
+                            <label><input type="radio" name="onMarket"/> 否</label>
+                        </td>
+                        <th>企业上年销售额</th>
+                        <td><input type="text"/> 万元</td>
                     </tr>
                     <tr>
-                        <th>申请类型：</th>
-                        <td>订单融资</td>
-                        <th>实际控制人姓名：</th>
-                        <td>铁老大</td>
-                        <th>申请时间：</th>
-                        <td>2016-03-01</td>
+                        <th><i class="redStar">*</i>是否存在淡旺季</th>
+                        <td>
+                            <label style="margin-right:20px;"><input type="radio" name="shortSeason" checked="checked"/> 是</label>
+                            <label><input type="radio" name="shortSeason"/> 否</label>
+                        </td>
+                        <td colspan="4"></td>
                     </tr>
-                </tbody>
-            </table>
-        </div>
-
-
-        <div class="block-field">
-            <div class="block-title">
-                <span>联系方式</span>
+                    <tr>
+                        <th>旺季</th>
+                        <td colspan="5">
+                            <label class="monthMarginr"><input type="checkbox"/> 1月</label>
+                            <label class="monthMarginr"><input type="checkbox"/> 2月</label>
+                            <label class="monthMarginr"><input type="checkbox"/> 3月</label>
+                            <label class="monthMarginr"><input type="checkbox"/> 4月</label>
+                            <label class="monthMarginr"><input type="checkbox"/> 5月</label>
+                            <label class="monthMarginr"><input type="checkbox"/> 6月</label>
+                            <label class="monthMarginr"><input type="checkbox"/> 7月</label>
+                            <label class="monthMarginr"><input type="checkbox"/> 8月</label>
+                            <label class="monthMarginr"><input type="checkbox"/> 9月</label>
+                            <label class="monthMarginr"><input type="checkbox"/> 10月</label>
+                            <label class="monthMarginr"><input type="checkbox"/> 11月</label>
+                            <label class="monthMarginr"><input type="checkbox"/> 12月</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>淡季</th>
+                        <td colspan="5">
+                            <label class="monthMarginr"><input type="checkbox"/> 1月</label>
+                            <label class="monthMarginr"><input type="checkbox"/> 2月</label>
+                            <label class="monthMarginr"><input type="checkbox"/> 3月</label>
+                            <label class="monthMarginr"><input type="checkbox"/> 4月</label>
+                            <label class="monthMarginr"><input type="checkbox"/> 5月</label>
+                            <label class="monthMarginr"><input type="checkbox"/> 6月</label>
+                            <label class="monthMarginr"><input type="checkbox"/> 7月</label>
+                            <label class="monthMarginr"><input type="checkbox"/> 8月</label>
+                            <label class="monthMarginr"><input type="checkbox"/> 9月</label>
+                            <label class="monthMarginr"><input type="checkbox"/> 10月</label>
+                            <label class="monthMarginr"><input type="checkbox"/> 11月</label>
+                            <label class="monthMarginr"><input type="checkbox"/> 12月</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><i class="redStar">*</i>经营模式</th>
+                        <td>
+                            <label style="margin-right:10px;"><input type="radio" name="manageModel" checked="checked"/> 自营</label>
+                            <label><input type="radio" name="manageModel"/> 挂靠</label>
+                        </td>
+                        <td></td>
+                        <th>被挂靠企业名称</th>
+                        <td colspan="2"><input type="text"/></td>
+                    </tr>
+                    <tr>
+                        <th><i class="redStar">*</i>资质信息</th>
+                        <td colspan="5">
+                            <label style="margin-right:10px;"><input type="radio" checked="checked"name="qualifyInfo"/> 国内</label>
+                            <label style="margin-right:10px;"><input type="radio" name="qualifyInfo"/> 国际</label>
+                            <label><input type="radio" name="qualifyInfo"/> 其他</label>
+                            <em style="margin:0 5px 0 10px;">说明</em><input type="text" style="width:260px;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><i class="redStar">*</i>主要合作产品</th>
+                        <td colspan="5">
+                            <label class="productMarginr"><input type="checkbox"/> 国内机票</label>
+                            <label class="productMarginr"><input type="checkbox"/> 国际机票</label>
+                            <label class="productMarginr"><input type="checkbox"/> 酒店</label>
+                            <label class="productMarginr"><input type="checkbox"/> 旅游</label>
+                            <label class="productMarginr"><input type="checkbox"/> 邮轮</label>
+                            <label class="productMarginr"><input type="checkbox"/> 签证</label>
+                            <label class="productMarginr"><input type="checkbox"/> 当地游</label>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="clearfix">
-                <div class="col" style="width:460px;float:left;">
-                    <strong>负责人信息：</strong>
-                    <ul class="flat-list">
-                        <li style="width:150px;">
-                            <label class="vertical-head" style="width:50px;">姓名</label>
-                            <input style="width:90px;">
-                        </li>
-                        <li style="width:150px;">
-                            <label class="vertical-head" style="width:50px;">联系电话</label>
-                            <input style="width:90px;">
-                        </li>
-                        <li style="width:150px;">
-                            <label class="vertical-head" style="width:50px;">手机</label>
-                            <input style="width:90px;">
-                        </li>
-                        <li style="width:150px;">
-                            <label class="vertical-head" style="width:50px;">电子邮箱</label>
-                            <input style="width:90px;">
-                        </li>
-                        <li style="width:150px;">
-                            <label class="vertical-head" style="width:50px;">QQ</label>
-                            <input style="width:90px;">
-                        </li>
-                        <li style="width:150px;">
-                            <label class="vertical-head" style="width:50px;">传真</label>
-                            <input style="width:90px;">
-                        </li>
-                    </ul>
+            <div class="block-field">
+                <div class="block-title">
+                    <span>客户评价</span>
                 </div>
-                <div class="col" style="width:460px;float:left;">
-                    <strong>业务联系人信息：</strong>
-                    <ul class="flat-list">
-                        <li style="width:150px;">
-                            <label class="vertical-head" style="width:50px;">姓名</label>
-                            <input style="width:90px;">
-                        </li>
-                        <li style="width:150px;">
-                            <label class="vertical-head" style="width:50px;">联系电话</label>
-                            <input style="width:90px;">
-                        </li>
-                        <li style="width:150px;">
-                            <label class="vertical-head" style="width:50px;">手机</label>
-                            <input style="width:90px;">
-                        </li>
-                        <li style="width:150px;">
-                            <label class="vertical-head" style="width:50px;">电子邮箱</label>
-                            <input style="width:90px;">
-                        </li>
-                        <li style="width:150px;">
-                            <label class="vertical-head" style="width:50px;">QQ</label>
-                            <input style="width:90px;">
-                        </li>
-                        <li style="width:150px;">
-                            <label class="vertical-head" style="width:50px;">传真</label>
-                            <input style="width:90px;">
-                        </li>
-                    </ul>
-
+                <table class="query_tab financeReviewTab">
+                    <colgroup>
+                        <col width="190"/>
+                        <col width="120"/>
+                        <col width="120"/>
+                        <col width="120"/>
+                        <col width="120"/>
+                        <col width=""/>
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th><i class="redStar">*</i>当地同业地位</th>
+                        <td><label><input type="radio" checked="checked" name="industryStatus"/> 前三名</label></td>
+                        <td><label><input type="radio" name="industryStatus"/> 中等偏上</label></td>
+                        <td><label><input type="radio" name="industryStatus"/> 中等</label></td>
+                        <td><label><input type="radio" name="industryStatus"/> 中等偏下</label></td>
+                        <td><label><input type="radio" name="industryStatus"/> 较弱势</label></td>
+                    </tr>
+                    <tr>
+                        <th><i class="redStar">*</i>真旅同类型采购商中地位</th>
+                        <td><label><input type="radio" checked="checked" name="positionBuyer"/> 主要代理人</label></td>
+                        <td><label><input type="radio" name="positionBuyer"/> 一般代理人</label></td>
+                        <td colspan="3"><label><input type="radio" name="positionBuyer"/> 临时性代理人</label></td>
+                    </tr>
+                    <tr>
+                        <th><i class="redStar">*</i>合作配合度</th>
+                        <td><label><input type="radio" checked="checked" name="cooperation"/> 高</label></td>
+                        <td><label><input type="radio" name="cooperation"/> 中</label></td>
+                        <td colspan="3"><label><input type="radio" name="cooperation"/> 低</label></td>
+                    </tr>
+                    <tr>
+                        <th><i class="redStar">*</i>借款期内有无中断采购的可能</th>
+                        <td><label><input type="radio" checked="checked" name="interruptPossible"/> 肯定有</label></td>
+                        <td><label><input type="radio" name="interruptPossible"/> 可能有</label></td>
+                        <td colspan="3"><label><input type="radio" name="interruptPossible"/> 无</label></td>
+                    </tr>
+                    <tr>
+                        <th><i class="redStar">*</i>借款期内有无增加采购的可能</th>
+                        <td><label><input type="radio" checked="checked" name="addPossible"/> 肯定有</label></td>
+                        <td><label><input type="radio" name="addPossible"/> 可能有</label></td>
+                        <td colspan="3"><label><input type="radio" name="addPossible"/> 无</label></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="block-field">
+                <div class="block-title">
+                    <span>建议授信结果</span>
                 </div>
+                <table class="query_tab financeReviewTab">
+                    <colgroup>
+                        <col width="120"/>
+                        <col width="120"/>
+                        <col width="120"/>
+                        <col width=""/>
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th><i class="redStar">*</i>建议授信额度</th>
+                        <td><input type="text"/></td>
+                        <th><i class="redStar">*</i>授信意见</th>
+                        <td>
+                            <label><input type="radio" checked="checked" name="creditAdvice"/> 通过</label>
+                            <label><input type="radio" name="creditAdvice"/> 不通过</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="vertical-align: top;"><i class="redStar">*</i>意见</th>
+                        <td colspan="3" style="padding-top:10px;"><textarea></textarea></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-        </div>
-        <div class="block-field">
-            <div class="block-title">
-                <span>资质证书</span>
-                    <span class="block-module-action">
-                        <button class="btns btn-ac-blue ac-add-certificate">添加新证书</button>
-                    </span>
-            </div>
-            <ul class="flat-list">
-                <li style="padding-right:40px;">
-                    <label class="vertical-head">证书类型</label>
-                    <input style="width:120px;" data-role="dropdownlist" data-source="['营业执照']">
-                    <input style="width:120px;">
-                    <input type="file">
-                </li>
-            </ul>
-        </div>
-        <div class="block-field">
-            <div class="block-title">
-                <span>创建帐号</span>
-            </div>
-            <ul class="flat-list">
-                <li style="width:220px;">
-                    <label class="vertical-head">用户名</label>
-                    <input style="width:120px;">
-                </li>
-                <li>
-                    <label class="vertical-head">电子邮件</label>
-                    <input style="width:120px;">
-                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="#" style="color:#06c;">重置密码</a>
-                </li>
-            </ul>
-        </div>
-        <div class="block-field">
-            <div class="block-title">
-                <span>账户信息</span>
-            </div>
-            <div class="col">
-                <div class="row">
-                    <label class="vertical-head">账户类型：</label>
-                    <label style="margin-right:20px;"> <input type="radio" name="xxx"> 单笔</label>
-                    <label style="margin-right:20px;"> <input type="radio" name="xxx"> 预存</label>
-                    <label style="margin-right:20px;"> <input type="radio" name="xxx"> 授信</label>
-                    <label style="margin-right:20px;"> <input data-role="dropdownlist" style="width:124px;" data-value-field="value" data-text-field="text" data-source="[{value:'信用',text:'信用'},{value:'欠款',text:'欠款'},{value:'风险',text:'风险'}]"> </label>
-                </div>
-                <div class="row">
-                    <label class="vertical-head">授信金额：</label>
-                    <label style="margin-right:20px;"> <input type="text" name="xxx"> </label>
-                </div>
-                <div class="row">
-                    <label class="vertical-head">账期选择：</label>
-                    <label style="margin-right:20px;"> <input type="text" name="xxx"> </label>
-                </div>
-                <div class="row">
-                    <label class="vertical-head" style="padding-right:25px;">摘要：</label>
-                    <label>
-                        <textarea style="width:400px;height:50px;"></textarea>
-                    </label>
-                </div>
-            </div>
-        </div>
-
-        <div class="block-field">
-            <div class="block-title">
-                <span>内部设置</span>
-            </div>
-            <ul class="flat-list">
-                <li style="width:220px;">
-                    <label class="vertical-head">采购类型</label>
-                    <input data-role="dropdownlist" data-source="['冲量用户']" style="width:100px">
-                </li>
-                <li style="width:220px;">
-                    <label class="vertical-head">客户状态</label>
-                    <span>&nbsp;&nbsp;正常</span>
-                </li>
-                <li>
-                    <label class="vertical-head">备注</label>
-                    <input style="width:400px;">
-                </li>
-            </ul>
-        </div>
-        <div class="block-field">
-            <div class="block-title">
-                <span>行程单配置协议</span>
-                    <span class="block-module-action">
-                        <button class="btns btn-ac-blue ac-add-agreement">添加新协议</button>
-                    </span>
-            </div>
-            <ul class="flat-list">
-                <li style="padding-right:40px;">
-                    <label class="vertical-head">有效期</label>
-                    <input style="width:120px;" data-role="datepicker"> 至
-                    <input style="width:120px;" data-role="datepicker">
-                </li>
-                <li>
-                    <label class="vertical-head">附件</label>
-                    <input style="width:100;">
-                    <input type="file">
-                </li>
-            </ul>
-        </div>
-        <div class="block-field">
-            <div class="block-title">
-                <span>黑屏配置协议</span>
-                    <span class="block-module-action">
-                        <button class="btns btn-ac-blue ac-add-agreement">添加新协议</button>
-                    </span>
-            </div>
-            <ul class="flat-list">
-                <li style="padding-right:40px;">
-                    <label class="vertical-head">有效期</label>
-                    <input style="width:120px;" data-role="datepicker"> 至
-                    <input style="width:120px;" data-role="datepicker">
-                </li>
-                <li>
-                    <label class="vertical-head">附件</label>
-                    <input style="width:100;">
-                    <input type="file">
-                </li>
-            </ul>
-        </div>
-        <div class="block-field">
-            <div class="block-title">
-                <span>支票/汇款承诺配置协议</span>
-                    <span class="block-module-action">
-                        <button class="btns btn-ac-blue ac-add-agreement">添加新协议</button>
-                    </span>
-            </div>
-            <ul class="flat-list">
-                <li style="padding-right:40px;">
-                    <label class="vertical-head">有效期</label>
-                    <input style="width:120px;" data-role="datepicker"> 至
-                    <input style="width:120px;" data-role="datepicker">
-                </li>
-                <li>
-                    <label class="vertical-head">附件</label>
-                    <input style="width:100;">
-                    <input type="file">
-                </li>
-            </ul>
-        </div>
         </div>
 
         <!-- 舱位代码结束 -->
