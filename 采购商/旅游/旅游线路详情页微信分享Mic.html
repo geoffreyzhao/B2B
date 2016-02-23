@@ -13,6 +13,7 @@
     <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../static/js/global.js"></script>
     <script type="text/javascript" src="../../static/js/jquery.cycle.all.js"></script>
+    <script type="text/javascript" src="../../static/js/vendor/fastclick.js"></script>
 
     <script type="text/javascript">
         var root = document.getElementsByTagName("html")[0],
@@ -21,11 +22,6 @@
         root.style.fontSize = (w / 320) * 20 + "px";
         root.style.minHeight = window.innerHeight + "px";
     </script>
-
-    <!--[if IE]>
-    <script src="../../static/js/html5.js"></script>
-    <script src="../../static/js/vendor/IE7.min.js"></script>
-    <![endif]-->
 </head>
 <body>
 
@@ -45,35 +41,31 @@
                     </li>
                 </ul>
             </div>
-            <div class="tripInfoAndBooking_right">
-                <ul class="tripTopTitle">
-                    <li class="tripName" style="min-height:78px;">
-                        
-                        <span class="unimportantTxt87">线路编号：</span>1234567899987 <br>
-                        <span class="unimportantTxt87">出发地：</span>上海<br>
-                        <span class="unimportantTxt87">团期：</span>
-                        <span class="tourDate">
-                            <em>2015-12-17、</em>
-                            <em>2015-12-17、</em>
-                            <em>2015-12-17、</em>
-                            <em>2015-12-17、</em>
-                            <em>2015-12-17、</em>
-                            <em>2015-12-17、</em>
-                            <em>2015-12-17、</em>
-                            <em>2015-12-17、</em>
-                            <em>2015-12-17、</em>
-                            <em>2015-12-17、</em>
-                            <em>2015-12-17、</em>
-                            <em>2015-12-17、</em>
-                            <em>2015-12-17、</em>
-                            <em>2015-12-17、</em>
-                            <em>2015-12-17、</em>
-                            <em>2015-12-17、</em>
-                            <em>2015-12-17</em>
-                        </span>
-                        <span class="morenote">*更多出发日期请电话咨询产品联系人</span>
-                    </li>
+            <ul class="tripTopTitle" style="padding: 0 0.25rem 0.25rem;">
+                <li class="tripName" style="min-height:78px;">                        
+                    <span class="unimportantTxt87">线路编号：</span>1234567899987 <br>
+                    <span class="unimportantTxt87">出发地：</span>上海<br>
+                    <span class="unimportantTxt87">团期：</span>
+                </li>
+            </ul>
+            <div id="priceCalendar" style="padding: 0 0.1rem;">
+                <ul class="tabSwitchMonth">
                 </ul>
+                <div class="calendarTitle clearfix">
+                    <span>日</span>
+                    <span>一</span>
+                    <span>二</span>
+                    <span>三</span>
+                    <span>四</span>
+                    <span>五</span>
+                    <span>六</span>
+                </div>
+                <div class="clearfix"></div>
+                <div class="calendarTables">
+                </div>
+            </div>
+            <span class="morenote" style="padding: 0 0.25rem 0.25rem;">*更多出发日期请电话咨询产品联系人</span>
+            <div class="tripInfoAndBooking_right">                
                 <ul class="recommendedByPM unimportantTxt63">
                     <li style="">产品经理推荐</li>
                     <li><i class="icon-star"></i>尼亚加拉大瀑布-只有在加拿大才能观赏到的完美马蹄形瀑布。</li>
@@ -1887,27 +1879,6 @@
         </div>
     </div>
 </section>
-
-
- <!--body end-->
-
-<!--footer start-->
-<!-- <footer class="main-footer">
-    <center>
-        <a href="#">隐私问题</a>
-        <i class="bar">|</i>
-        <a href="#">常见问题</a>
-        <i class="bar">|</i>
-        <a href="#">关于我们</a>
-        <i class="bar">|</i>
-        <a href="#">媒体中心</a>
-        <i class="bar">|</i>
-        <a href="#">联系我们</a>
-    </center>
-    <center class="copyright">
-        Copyright &copy; 2014 天地行 All Rights Reserved. <br> 沪ICP备08101503号
-    </center>
-</footer> -->
 </div>
 
 <script type="text/javascript">
@@ -1945,6 +1916,149 @@
                 endAt:next[index]
             });
         });
+
+        // 生成日历部分（可参照PC端，去掉不需要的功能）
+        // ===============================================================================
+
+        var data = [
+            { month : "2016/02/01",   // 日期格式需要注意，不同浏览器下识别情况不同，写个通用的格式
+              info : [
+                { dayDate: 1, isMultiTour: true, leftNum: 10, price: 19950, tourFlag: '0' },
+                { dayDate: 2, isMultiTour: false, leftNum: 12, price: 16950, tourFlag: '1' },
+                { dayDate: 6, isMultiTour: true, leftNum: 25, price: 17850, tourFlag: '2' },
+                { dayDate: 12, isMultiTour: false, leftNum: 10, price: 19950, tourFlag: '1' },
+                { dayDate: 30, isMultiTour: false, leftNum: 9, price: 37850, tourFlag: '1' }
+              ]
+            },
+            { month : "2016/03/01",
+              info : [
+                { dayDate: 12, isMultiTour: true, leftNum: 10, price: 19950, tourFlag: '1' },
+                { dayDate: 13, isMultiTour: false, leftNum: 12, price: 16950, tourFlag: '1' },
+                { dayDate: 14, isMultiTour: true, leftNum: 0, price: 27850, tourFlag: '1' }
+              ]
+            },
+            { month : "2016/05/01",
+              info : [
+                { dayDate: 12, isMultiTour: true, leftNum: 10, price: 19950, tourFlag: '1' },
+                { dayDate: 13, isMultiTour: false, leftNum: 12, price: 16950, tourFlag: '1' },
+                { dayDate: 14, isMultiTour: true, leftNum: 0, price: 27850, tourFlag: '1' }
+              ]
+            }
+        ];
+
+        setTabSwitchMonth("#priceCalendar .tabSwitchMonth", data);
+
+        /*  切换月份 */      
+        $("body").delegate("#priceCalendar .tabSwitchMonth li", "click", function(){
+            $(this).addClass("tabCurrentMonth");
+            $(this).siblings("li").removeClass("tabCurrentMonth");
+
+            showCurrentCalendar("#priceCalendar");
+        });
+
+        // 生成日历
+        setCalendar(data, "#priceCalendar .calendarTables");        
+
+        // 显示当前月份日历
+        showCurrentCalendar("#priceCalendar"); 
+
+        function geneFormatDate(d) {
+            var tem = $(".priceCalendarPw .tabCurrentMonth").attr("name");
+            return tem.split('/')[0] + "-" + tem.split('/')[1] + "-" + d;
+        }
+
+        function geneTabSwitchMonth(data) {
+            var liStr = "";
+            for (var i = 0; i < data.length; i++) {
+                var temp = new Date(data[i].month);
+
+                if (temp.getFullYear() == new Date().getFullYear()) {
+                    liStr += "<li name='" + data[i].month + "'>" + (temp.getMonth() + 1) + "月</li>";
+                } else {
+                    liStr += "<li name='" + data[i].month + "'>" + temp.getFullYear() + "年" +
+                            (temp.getMonth() + 1) + "月</li>";
+                }
+            }
+            return liStr;
+        }
+
+        function setTabSwitchMonth(ele, data) {
+            $(ele).append(geneTabSwitchMonth(data));
+            $(ele).children("li").eq(0).addClass("tabCurrentMonth");
+        }
+
+        function setCalendar(data, ele) {
+            for (var i = 0; i < data.length; i++) {
+                var monthInfo = data[i];  // 获得当前月份的数据信息
+
+                var calStr = "<table class='calTable ct-" + data[i].month.split('/')[0] + "-" +
+                                data[i].month.split('/')[1] + "'><tr>";  // 拼接字符串生成表格日期内容
+
+                var curentMonthDate = new Date(monthInfo.month);
+                var nextMonthDate = new Date(curentMonthDate.getFullYear(), curentMonthDate.getMonth() + 1,
+                    curentMonthDate.getDate());
+                var monthDays = (nextMonthDate - curentMonthDate)/(1000*60*60*24);  // 获得当前月天数
+
+                var firstWeekDay = curentMonthDate.getDay();  // 获得当前月1号是周几, 范围0-6
+                var lastWeekDay = nextMonthDate.getDay() - 1 < 0 ? 6 : nextMonthDate.getDay() - 1; 
+                // 计算当月最后一天是周几，填补日历最后的空格
+
+                var currentDay = 1;  // 从1号开始排列当月的日期
+
+                for (var j = 0; j < firstWeekDay; j++) {  // 当月1号之前td为空
+                    calStr += "<td></td>";
+                }
+
+                for (; currentDay <= monthDays; currentDay++) {
+
+                    var w1 = firstWeekDay == 0 ? 7 : firstWeekDay;
+
+                    if (currentDay % 7 == (7 - w1) && currentDay != monthDays) {
+                        calStr += "<td>" + geneTdContent(currentDay, monthInfo) + "</td></tr><tr>";
+                    } else if (currentDay == monthDays) {
+                        calStr += "<td>" + geneTdContent(currentDay, monthInfo) + "</td>";
+                        for (var t = 0; t < 6 - lastWeekDay; t++) {
+                            calStr += "<td></td>";
+                        }
+                        calStr += "</tr></table>";
+                    } else {
+                        calStr += "<td>" + geneTdContent(currentDay, monthInfo) + "</td>";
+                    }
+                }
+                $(ele).append(calStr);
+            }
+        }
+
+        function showCurrentCalendar(ele) {
+            $(ele).find(".calendarTables table").hide();
+            $(ele).find(".tabSwitchMonth li").each(function(index){
+                if ($(this).hasClass("tabCurrentMonth")) {
+                    $(ele).find(".calendarTables table").eq(index).show();
+                }
+            });
+        }
+
+        function getDayInfo(currentDay, monthInfo) {
+            for (var i = 0; i < monthInfo.info.length; i++) {
+                if (monthInfo.info[i].dayDate == currentDay) {
+                    return monthInfo.info[i];
+                }
+            }
+            return null;
+        }
+
+        function geneTdContent(currentDay, monthInfo) {
+            var dayInfo = getDayInfo(currentDay, monthInfo);
+            var tdCont = "";
+            
+            if (!!dayInfo) {
+                tdCont += "<div class='hasBorderTd'><span class='dateDay'>" + dayInfo.dayDate + "</span>";
+                tdCont += "<span class='price'>¥"+dayInfo.price+"</span>";              
+            } else {
+                tdCont += "<span class='dateDay disa-dateDay'>" + currentDay + "</span>";
+            }
+            return tdCont;
+        }
         
     });
 </script>
