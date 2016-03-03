@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
 
     <link rel="stylesheet" href="../../static/css/smoothness/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../../static/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="../../static/css/kendo.store.css" />
     <link rel="stylesheet" href="../../static/css/store_reset.css" media="all" />
     <link rel="stylesheet" href="../../static/css/store.css" media="screen" />
     <link rel="stylesheet" href="../../static/css/store_hotel.css" media="screen" />
-    <link rel="stylesheet" href="../../static/css/kendo.common.min.css" />
-    <link rel="stylesheet" href="../../static/css/kendo.store.css" />
 
     <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../static/js/kendo.web.js"></script>
@@ -196,7 +196,7 @@
 
                             </td>
                         </tr>
-                        <tr>
+                        <!--<tr>
                             <th style="vertical-align:top;">礼包信息：</th>
                             <td>2014年4月1日~4月30日入住酒店，贈送酒店SPA服務，每間房贈送1次，入住時請與酒店前臺聯繫。</td>
                         </tr>
@@ -205,9 +205,112 @@
                             <td>
                                 <textarea name="" cols="60" rows="6" placeholder="请填写您的其他预订需求。" class="gray-border block_gap"></textarea>
                             </td>
-                        </tr>
+                        </tr>-->
                     </tbody>
                 </table>
+                <div class="loveChecked">
+                    <h3 class="loveTitle">特殊喜好（请直接勾选您的特殊喜好与要求，我们会把您的需求通知酒店，并尽量协助安排，但您的要求要视酒店情况能否满足）</h3>
+                    <div class="checkboxList">
+                        <label>
+                            <input type="checkbox" checked> 
+                            <em>立即到店</em>
+                        </label>
+                        <label>
+                            <input type="checkbox"> 
+                            <em>尽量大床房</em>
+                            <select style="width: 70px;" data-role="dropdownlist">
+                                <option>请选择</option>
+                            </select>
+                        </label>
+                        <label>
+                            <input type="checkbox"> 
+                            <em>尽量双床房</em>
+                            <select style="width: 70px;" data-role="dropdownlist">
+                                <option>请选择</option>
+                            </select>
+                        </label>
+                        <label>
+                            <input type="checkbox" checked> 
+                            <em>吸烟楼层</em>
+                        </label>
+                        <label>
+                            <input type="checkbox" checked> 
+                            <em>安静房间</em>
+                        </label>
+                        <label>
+                            <input type="checkbox" checked> 
+                            <em>尽量高层楼房</em>
+                        </label>
+                        <label>
+                            <input type="checkbox"> 
+                            <em>务必大床房</em>
+                            <select style="width: 70px;" data-role="dropdownlist">
+                                <option>请选择</option>
+                                <option>1间</option>
+                                <option>2间</option>
+                                <option selected>3间</option>
+                            </select>
+                        </label>
+                        <label>
+                            <input type="checkbox"> 
+                            <em>务必双床房</em>
+                            <select style="width: 70px;" data-role="dropdownlist">
+                                <option>请选择</option>
+                            </select>
+                        </label>
+                        <label>
+                            <input type="checkbox" checked> 
+                            <em>尽量无烟楼层</em>
+                        </label>
+                        <label>
+                            <input type="checkbox"> 
+                            <em>尽量有窗</em>
+                        </label>
+                        <label>
+                            <input type="checkbox"> 
+                            <em>残疾设施房间</em>
+                        </label>
+                        <label>
+                            <input type="checkbox"> 
+                            <em>连通房间</em>
+                        </label>
+                        <label>
+                            <input type="checkbox"> 
+                            <em>相同楼层</em>
+                        </label>
+                        <label>
+                            <input type="checkbox"> 
+                            <em>尽量相邻房间</em>
+                        </label>
+                        <label>
+                            <input type="checkbox"> 
+                            <em>尽量原房续住</em>
+                        </label>
+                    </div>
+                    <div class="filterCondition changeFilter clearfix">
+                        <div class="item">
+                            立即到店
+                            <a class="close" href="javascript:;">x</a>
+                        </div>
+                        <div class="item">
+                            尽量高层楼房
+                            <a class="close" href="javascript:;">x</a>
+                        </div>
+                        <div class="item">
+                            吸烟楼层
+                            <a class="close" href="javascript:;">x</a>
+                        </div>
+                        <div class="item">
+                            尽量无烟楼层
+                            <a class="close" href="javascript:;">x</a>
+                        </div>
+                        <div class="item">
+                            安静房间
+                            <a class="close" href="javascript:;">x</a>
+                        </div>
+                        <a href="javascript:;" class="clearAllFilterCondition">清空条件</a>
+                    </div>
+                </div>
             </section>
 
             <h3 class="h_order_title"><strong>联系人信息</strong></h3>
@@ -529,6 +632,7 @@ var view = {
 view.init();
 
 $(function(){
+    
     var change_date = new PopWindow("#change_date",{
         title:"修改入住日期",
         width:425,
