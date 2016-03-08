@@ -430,9 +430,11 @@
 
                     $reason.find("label").each(function(index){
                         if ($(this).find("input[type='checkbox']").prop("checked")) {
-                            result.push($(this).text());
+
                             if ($(this).siblings("input[type='text']").length > 0) {
-                                result.push($(this).siblings("input[type='text']").val());
+                                result.push($(this).text() + ":" + $(this).siblings("input[type='text']").val());
+                            } else {
+                                result.push($(this).text());
                             }
                         }
                     });
