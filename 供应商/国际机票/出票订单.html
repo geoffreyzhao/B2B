@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="/static/css/ie.css" /> 
         <script type="text/javascript" src="/static/js/vendor/IE7.min.js"></script> 
         <![endif]-->
-<script type="text/javascript" src="/static/js/supplier/supplier_sync.js"></script>
+<!-- <script type="text/javascript" src="/static/js/supplier/supplier_sync.js"></script> -->
 <!-- @CLB@ -->
 </head>
 <body> 
@@ -288,20 +288,96 @@
 
         <script type="text/x-kendo-template" id="ac-refuse-template">
             <div class="row">审核退回原因：</div>
-            <div class="row"><textarea id="" name="" style="width:400px;"></textarea></div>
-            <div class="row" style="text-align:right;">
+            <div class="row">
+                <select name="" data-role="dropdownlist" id="reasonDropdownlist">
+                    <option value="">同意退回</option>
+                    <option value="">补输信息</option>
+                    <option value="">授权</option>
+                    <option value="">供应变动</option>
+                    <option value="">编码问题</option>
+                    <option value="">提供材料</option>
+                    <option value="">条件不符</option>
+                    <option value="">价格政策</option>
+                    <option value="">其它原因</option>
+                </select>
+                <div class="reason-wrapper">
+                    <div class="reason-list">
+                        <div class="reason-item">
+                            <label><input type="checkbox" name="" value="">应客人要求退回</label>
+                        </div>
+                        <div class="reason-item">
+                            <label><input type="checkbox" name="" value="">DOCS编码</label>
+                            <label><input type="checkbox" name="" value="">DOCA编码</label>
+                            <label><input type="checkbox" name="" value="">OSI编码</label>
+                            <label><input type="checkbox" name="" value="">成人票或PNR（编码）</label>
+                            <input type="" name="" value="" placeholder="成人票或PNR编码">
+                        </div>
+                        <div class="reason-item">
+                            <input type="text" name="" value="" placeholder="OFFICE号">
+                            <input type="text" name="" value="" placeholder="OFFICE号">
+                        </div>
+                        <div class="reason-item">
+                            <label><input type="checkbox" name="" value="">暂无票本</label>
+                            <label><input type="checkbox" name="" value="">系统故障</label>
+                        </div>
+                        <div class="reason-item">
+                            <label><input type="checkbox" name="" value="">舱位预订错误</label>
+                            <label><input type="checkbox" name="" value="">称谓身份预订错误</label>
+                            <label><input type="checkbox" name="" value="">换编无位</label>
+                            <label><input type="checkbox" name="" value="">PNR信息与订单中的不一致</label>
+                            <label><input type="checkbox" name="" value="">PNR的价格过期，请预订新编</label>
+                            <label><input type="checkbox" name="" value="">位置已无，请预订新编</label>
+                            <label><input type="checkbox" name="" value="">已出票/假RR/假票号</label>
+                            <label><input type="checkbox" name="" value="">无法出票</label>
+                        </div>
+                        <div class="reason-item">
+                            <label><input type="checkbox" name="" value="">签证</label>
+                            <label><input type="checkbox" name="" value="">护照</label>
+                            <label><input type="checkbox" name="" value="">大编码</label>
+                            <label><input type="checkbox" name="" value="">其他</label>
+                        </div>
+                        <div class="reason-item">
+                            <label><input type="checkbox" name="" value="">儿童不单开</label>
+                            <label><input type="checkbox" name="" value="">年龄不适用</label>
+                            <label><input type="checkbox" name="" value="">外籍（宾）不适用</label>
+                            <label><input type="checkbox" name="" value="">代码共享不适用</label>
+                        </div>
+                        <div class="reason-item">
+                            <label><input type="checkbox" name="" value="">疑似拉位</label>
+                            <label><input type="checkbox" name="" value="">怀疑弃程</label>
+                            <label><input type="checkbox" name="" value="">拒开</label>
+                            <label><input type="checkbox" name="" value="">B2B无此运价</label>
+                            <label><input type="checkbox" name="" value="">官网无此运价</label>
+                            <label><input type="checkbox" name="" value="">价格不符</label>
+                            <label><input type="checkbox" name="" value="">Q值</label>
+                            <label><input type="checkbox" name="" value="">税金</label>
+                        </div>
+                        <div class="reason-item">
+                            <textarea name="" placeholder="其他原因"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="text-align: center;">
                 <button class="btns button_1_2">提 交</button> 
                 <button class="btns button_2_2">取 消</button> 
             </div>
         </script>
         <script>
-$(function(){
-    new PopWindow('.ac-refuse',{
-         title:'审核退回',
-         template:'#ac-refuse-template',
-         width:470
-    }).init();
-})
+            $(function(){
+                new PopWindow('.ac-refuse',{
+                     title:'审核退回',
+                     template:'#ac-refuse-template',
+                     width:470
+                }).init();
+
+                $("#reasonDropdownlist").kendoDropDownList({
+                    select: function(e){
+                        var index = e.item.index();
+                        $(".reason-item").hide().eq(index).show();
+                    }
+                });
+            })
         </script>
 
 
