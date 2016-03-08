@@ -287,77 +287,90 @@
         </div>
 
         <script type="text/x-kendo-template" id="ac-refuse-template">
-            <div class="row">审核退回原因：</div>
             <div class="row">
-                <select name="" data-role="dropdownlist" id="reasonDropdownlist">
-                    <option value="">同意退回</option>
-                    <option value="">补输信息</option>
-                    <option value="">授权</option>
-                    <option value="">供应变动</option>
-                    <option value="">编码问题</option>
-                    <option value="">提供材料</option>
-                    <option value="">条件不符</option>
-                    <option value="">价格政策</option>
-                    <option value="">其它原因</option>
-                </select>
-                <div class="reason-wrapper">
-                    <div class="reason-list">
-                        <div class="reason-item">
-                            <label><input type="checkbox" name="" value="">应客人要求退回</label>
-                        </div>
-                        <div class="reason-item">
-                            <label><input type="checkbox" name="" value="">DOCS编码</label>
-                            <label><input type="checkbox" name="" value="">DOCA编码</label>
-                            <label><input type="checkbox" name="" value="">OSI编码</label>
-                            <label><input type="checkbox" name="" value="">成人票或PNR（编码）</label>
-                            <input type="" name="" value="" placeholder="成人票或PNR编码">
-                        </div>
-                        <div class="reason-item">
-                            <input type="text" name="" value="" placeholder="OFFICE号">
-                            <input type="text" name="" value="" placeholder="OFFICE号">
-                        </div>
-                        <div class="reason-item">
-                            <label><input type="checkbox" name="" value="">暂无票本</label>
-                            <label><input type="checkbox" name="" value="">系统故障</label>
-                        </div>
-                        <div class="reason-item">
-                            <label><input type="checkbox" name="" value="">舱位预订错误</label>
-                            <label><input type="checkbox" name="" value="">称谓身份预订错误</label>
-                            <label><input type="checkbox" name="" value="">换编无位</label>
-                            <label><input type="checkbox" name="" value="">PNR信息与订单中的不一致</label>
-                            <label><input type="checkbox" name="" value="">PNR的价格过期，请预订新编</label>
-                            <label><input type="checkbox" name="" value="">位置已无，请预订新编</label>
-                            <label><input type="checkbox" name="" value="">已出票/假RR/假票号</label>
-                            <label><input type="checkbox" name="" value="">无法出票</label>
-                        </div>
-                        <div class="reason-item">
-                            <label><input type="checkbox" name="" value="">签证</label>
-                            <label><input type="checkbox" name="" value="">护照</label>
-                            <label><input type="checkbox" name="" value="">大编码</label>
-                            <label><input type="checkbox" name="" value="">其他</label>
-                        </div>
-                        <div class="reason-item">
-                            <label><input type="checkbox" name="" value="">儿童不单开</label>
-                            <label><input type="checkbox" name="" value="">年龄不适用</label>
-                            <label><input type="checkbox" name="" value="">外籍（宾）不适用</label>
-                            <label><input type="checkbox" name="" value="">代码共享不适用</label>
-                        </div>
-                        <div class="reason-item">
-                            <label><input type="checkbox" name="" value="">疑似拉位</label>
-                            <label><input type="checkbox" name="" value="">怀疑弃程</label>
-                            <label><input type="checkbox" name="" value="">拒开</label>
-                            <label><input type="checkbox" name="" value="">B2B无此运价</label>
-                            <label><input type="checkbox" name="" value="">官网无此运价</label>
-                            <label><input type="checkbox" name="" value="">价格不符</label>
-                            <label><input type="checkbox" name="" value="">Q值</label>
-                            <label><input type="checkbox" name="" value="">税金</label>
-                        </div>
-                        <div class="reason-item">
-                            <textarea name="" placeholder="其他原因"></textarea>
-                        </div>
-                    </div>
+                <div class="type-select">
+                    <label><input type="radio" name="type" value="" checked="">审核退回</label>                    
+                    <label><input type="radio" name="type" value="">暂不能出票</label>
                 </div>
             </div>
+            <div class="type1-block">
+                
+                <div class="row">
+                    <div class="reason-type-wrapper">
+                        <ul class="reason-type-list clearfix">
+                            <li><span>同意退回</span></li>
+                            <li><span>补输信息</span></li>
+                            <li><span>授权</span></li>
+                            <li><span>供应变动</span></li>
+                            <li><span>编码问题</span></li>
+                            <li><span>提供材料</span></li>
+                            <li><span>条件不符</span></li>
+                            <li><span>价格政策</span></li>
+                            <li><span>其它原因</span></li>
+                        </ul>
+                    </div>
+                    <div class="reason-wrapper">
+                        <div class="reason-list">
+                            <div class="reason-item">
+                                <label><input type="checkbox" name="" value="">应客人要求退回</label>
+                            </div>
+                            <div class="reason-item">
+                                <label><input type="checkbox" name="" value="">DOCS编码</label>
+                                <label><input type="checkbox" name="" value="">DOCA编码</label>
+                                <label><input type="checkbox" name="" value="">OSI编码</label>
+                                <span class="input-comp">
+                                    <label><input type="checkbox" name="" value="">成人票或PNR（编码）</label>
+                                    <input type="text" name="" value="" placeholder="成人票或PNR编码" style="width:150px;">
+                                </span>
+                            </div>
+                            <div class="reason-item">
+                                <input type="text" name="" value="" placeholder="OFFICE号">
+                                <input type="text" name="" value="" placeholder="OFFICE号">
+                            </div>
+                            <div class="reason-item">
+                                <label><input type="checkbox" name="" value="">暂无票本</label>
+                                <label><input type="checkbox" name="" value="">系统故障</label>
+                            </div>
+                            <div class="reason-item">
+                                <label><input type="checkbox" name="" value="">舱位预订错误</label>
+                                <label><input type="checkbox" name="" value="">称谓身份预订错误</label>
+                                <label><input type="checkbox" name="" value="">换编无位</label>
+                                <label><input type="checkbox" name="" value="">PNR信息与订单中的不一致</label>
+                                <label><input type="checkbox" name="" value="">PNR的价格过期，请预订新编</label>
+                                <label><input type="checkbox" name="" value="">位置已无，请预订新编</label>
+                                <label><input type="checkbox" name="" value="">已出票/假RR/假票号</label>
+                                <label><input type="checkbox" name="" value="">无法出票</label>
+                            </div>
+                            <div class="reason-item">
+                                <label><input type="checkbox" name="" value="">签证</label>
+                                <label><input type="checkbox" name="" value="">护照</label>
+                                <label><input type="checkbox" name="" value="">大编码</label>
+                                <label><input type="checkbox" name="" value="">其他</label>
+                            </div>
+                            <div class="reason-item">
+                                <label><input type="checkbox" name="" value="">儿童不单开</label>
+                                <label><input type="checkbox" name="" value="">年龄不适用</label>
+                                <label><input type="checkbox" name="" value="">外籍（宾）不适用</label>
+                                <label><input type="checkbox" name="" value="">代码共享不适用</label>
+                            </div>
+                            <div class="reason-item">
+                                <label><input type="checkbox" name="" value="">疑似拉位</label>
+                                <label><input type="checkbox" name="" value="">怀疑弃程</label>
+                                <label><input type="checkbox" name="" value="">拒开</label>
+                                <label><input type="checkbox" name="" value="">B2B无此运价</label>
+                                <label><input type="checkbox" name="" value="">官网无此运价</label>
+                                <label><input type="checkbox" name="" value="">价格不符</label>
+                                <label><input type="checkbox" name="" value="">Q值</label>
+                                <label><input type="checkbox" name="" value="">税金</label>
+                            </div>
+                            <div class="reason-item">
+                                <textarea name="" placeholder="其他原因" style="width: 100%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+            <div class="type2-block" style="display: none;">asdasdasdasda</div>
             <div class="row" style="text-align: center;">
                 <button class="btns button_1_2">提 交</button> 
                 <button class="btns button_2_2">取 消</button> 
@@ -368,16 +381,64 @@
                 new PopWindow('.ac-refuse',{
                      title:'审核退回',
                      template:'#ac-refuse-template',
-                     width:470
+                     width:570
                 }).init();
 
-                $("#reasonDropdownlist").kendoDropDownList({
-                    select: function(e){
-                        var index = e.item.index();
+                // $("#reasonDropdownlist").kendoDropDownList({
+                //     select: function(e){
+                //         var index = e.item.index();
+                //         $(".reason-item").hide().eq(index).show();
+                //     }
+                // });
+                $(".reason-type-wrapper li").each(function(index){
+                    $(this).click(function(){
+                        $(this).siblings('li').removeClass('current');
+                        $(this).addClass("current");
                         $(".reason-item").hide().eq(index).show();
-                    }
+                    });
+                });
+
+                $(".type-select label").each(function(index){
+                    $(this).click(function(){
+                        if (index == 0) {
+                            $(".type1-block").show();
+                            $(".type2-block").hide();
+                        } else if (index == 1) {
+                            $(".type1-block").hide();
+                            $(".type2-block").show();
+                        }
+                    });
                 });
             })
+
+            // 获取选中原因，返回类型为字符串数组
+            function getReasonText() {
+                var result = [];
+                result.push($(".reason-type-wrapper li.current span").html());
+                var $reason = $(".reason-item").eq($(".reason-type-list li.current").index());
+                if ($reason.find("label").length == 0) {
+
+                    $reason.find("input[type='text']").each(function(){
+                        result.push($(this).val());
+                    });
+
+                    $reason.find("textarea").each(function(){
+                        result.push($(this).val());
+                    });                    
+
+                } else {
+
+                    $reason.find("label").each(function(index){
+                        if ($(this).find("input[type='checkbox']").prop("checked")) {
+                            result.push($(this).text());
+                            if ($(this).siblings("input[type='text']").length > 0) {
+                                result.push($(this).siblings("input[type='text']").val());
+                            }
+                        }
+                    });
+                }
+                return result;
+            }
         </script>
 
 
