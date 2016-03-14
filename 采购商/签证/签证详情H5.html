@@ -78,7 +78,11 @@
         </section>
         <section class="visaTetailBlock noLRpadding">
             <ul class="changeList clearfix">
-                <li class="currentLi"><a href="#noticeContent" ><i></i>预定须知</a></li>
+                <!--<li class="currentLi"><a href="#noticeContent" ><i></i>预定须知</a></li>
+                <li><a href="#materialContent"><i></i>所需材料</a></li>
+                <li><a href="#otherContent"><i></i>其他</a></li>-->
+
+                <li><a href="#noticeContent" class="currentLi"><i></i>预定须知</a></li>
                 <li><a href="#materialContent"><i></i>所需材料</a></li>
                 <li><a href="#otherContent"><i></i>其他</a></li>
             </ul>
@@ -425,12 +429,12 @@
         $(function(){
             FastClick.attach(document.body);
 
-            $(".changeList li").each(function(){
+            /*$(".changeList a").each(function(){
                 $(this).click(function(){
                     $(this).addClass("currentLi");
-                    $(this).siblings("li").removeClass("currentLi");
+                    $(this).closest("li").siblings().find("a").removeClass("currentLi");
                 });
-            });
+            });*/
 
             $(".peopleSortT").each(function(){
                 $(this).click(function(){
@@ -440,11 +444,42 @@
                 });
             });
 
+            var a_pos = [];
+            var flag=true;
+            $(".changeList a").each(function(index){
+                var href= $(this).attr("href");
+                a_pos.push($("a[name=" + href.substring(1) + "]").offset());
+            });
 
+            $(".changeList a").click(function(e){
+                flag=false;
+                e.preventDefault();
+                $(this).closest("li").siblings().find("a").removeClass('currentLi');
+                $(this).addClass("currentLi");
+                var i=$(this).closest("li").index();
+                i-=Math.round(i/2);
+                $("html,body").animate({"scrollTop":a_pos[i].top-42},1);
+            });
 
-
+            $(window).bind("scroll",function(e){
+                if(flag){
+                    var that = $(".changeList");
+                    var currentPos = that.offset();
+                    var i = 0;
+                    //                console.dir(a_pos);
+                    for(i = a_pos.length - 1; i >=0 ; i--){
+                        if(currentPos.top >= a_pos[i].top-45){
+                            that.find("a").removeClass('currentLi');
+                            $("a:eq(" + (i) + ")" , that).addClass("currentLi");
+                            return false;
+                        }
+                    }
+                    that.find("a").removeClass('currentLi');
+                    $("a:first" , that).addClass("currentLi");
+                }
+                flag=true;
+            });
             $(".changeList").fixedBar();
-
         })
     </script>
 
