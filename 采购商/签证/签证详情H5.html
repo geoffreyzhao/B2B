@@ -81,14 +81,13 @@
                 <!--<li class="currentLi"><a href="#noticeContent" ><i></i>预定须知</a></li>
                 <li><a href="#materialContent"><i></i>所需材料</a></li>
                 <li><a href="#otherContent"><i></i>其他</a></li>-->
-
                 <li><a href="#noticeContent" class="currentLi"><i></i>预定须知</a></li>
                 <li><a href="#materialContent"><i></i>所需材料</a></li>
                 <li><a href="#otherContent"><i></i>其他</a></li>
             </ul>
             <div class="changeListCon">
-                <div class="itemCon">
-                    <a href="#" name="noticeContent" class="tdoi_title"></a>
+                <div class="itemCon noticeContentDiv">
+                    <!--<a href="#" name="noticeContent" class="tdoi_title"></a>-->
                     <h3><i class="commonIcon booking"></i>预定须知</h3>
                     <div class="bookingCon">
                         <p>1.您的签证申请是否成功，完全由该国的签证官根据您
@@ -105,8 +104,8 @@
                             何责任。</p>
                     </div>
                 </div>
-                <div class="itemCon">
-                    <a href="#" name="materialContent" class="tdoi_title"></a>
+                <div class="itemCon materialContentDiv">
+                    <!--<a href="#" name="materialContent" class="tdoi_title"></a>-->
                     <h3><i class="commonIcon materials"></i>所需材料</h3>
                     <div class="materialsCon">
                         <div class="peopleSort onTheJob">
@@ -406,11 +405,45 @@
                         </div>
                     </div>
                 </div>
-                <div class="itemCon">
-                    <a href="#" name="otherContent" class="tdoi_title"></a>
+                <div class="itemCon otherContentDiv">
+                    <!--<a href="#" name="otherContent" class="tdoi_title"></a>-->
                     <h3><i class="commonIcon other"></i>其他</h3>
                     <div class="otherCon">
                         <p>您的签证申请是否成功，完全由该国的签证官根据您
+                            递交的申请材料独立判断，本公司不得以任何方式的
+                            干预或交涉；本公司重申，在任何情况下，本公司都
+                            不承担由签证申请结果而导致被追溯任何赔偿的责任
+                            和义务。您的签证申请是否成功，完全由该国的签证官根据您
+                            递交的申请材料独立判断，本公司不得以任何方式的
+                            干预或交涉；本公司重申，在任何情况下，本公司都
+                            不承担由签证申请结果而导致被追溯任何赔偿的责任
+                            和义务。您的签证申请是否成功，完全由该国的签证官根据您
+                            递交的申请材料独立判断，本公司不得以任何方式的
+                            干预或交涉；本公司重申，在任何情况下，本公司都
+                            不承担由签证申请结果而导致被追溯任何赔偿的责任
+                            和义务。</p>
+                        <p>您的签证申请是否成功，完全由该国的签证官根据您
+                            递交的申请材料独立判断，本公司不得以任何方式的
+                            干预或交涉；本公司重申，在任何情况下，本公司都
+                            不承担由签证申请结果而导致被追溯任何赔偿的责任
+                            和义务。您的签证申请是否成功，完全由该国的签证官根据您
+                            递交的申请材料独立判断，本公司不得以任何方式的
+                            干预或交涉；本公司重申，在任何情况下，本公司都
+                            不承担由签证申请结果而导致被追溯任何赔偿的责任
+                            和义务。您的签证申请是否成功，完全由该国的签证官根据您
+                            递交的申请材料独立判断，本公司不得以任何方式的
+                            干预或交涉；本公司重申，在任何情况下，本公司都
+                            不承担由签证申请结果而导致被追溯任何赔偿的责任
+                            和义务。</p>
+                        <p>您的签证申请是否成功，完全由该国的签证官根据您
+                            递交的申请材料独立判断，本公司不得以任何方式的
+                            干预或交涉；本公司重申，在任何情况下，本公司都
+                            不承担由签证申请结果而导致被追溯任何赔偿的责任
+                            和义务。您的签证申请是否成功，完全由该国的签证官根据您
+                            递交的申请材料独立判断，本公司不得以任何方式的
+                            干预或交涉；本公司重申，在任何情况下，本公司都
+                            不承担由签证申请结果而导致被追溯任何赔偿的责任
+                            和义务。您的签证申请是否成功，完全由该国的签证官根据您
                             递交的申请材料独立判断，本公司不得以任何方式的
                             干预或交涉；本公司重申，在任何情况下，本公司都
                             不承担由签证申请结果而导致被追溯任何赔偿的责任
@@ -429,13 +462,6 @@
         $(function(){
             FastClick.attach(document.body);
 
-            /*$(".changeList a").each(function(){
-                $(this).click(function(){
-                    $(this).addClass("currentLi");
-                    $(this).closest("li").siblings().find("a").removeClass("currentLi");
-                });
-            });*/
-
             $(".peopleSortT").each(function(){
                 $(this).click(function(){
                     $(this).find(".arrowRight").toggle();
@@ -444,42 +470,96 @@
                 });
             });
 
-            var a_pos = [];
-            var flag=true;
-            $(".changeList a").each(function(index){
-                var href= $(this).attr("href");
-                a_pos.push($("a[name=" + href.substring(1) + "]").offset());
-            });
+           //
+            var clickFlag = false;
 
-            $(".changeList a").click(function(e){
-                flag=false;
-                e.preventDefault();
-                $(this).closest("li").siblings().find("a").removeClass('currentLi');
-                $(this).addClass("currentLi");
-                var i=$(this).closest("li").index();
-                i-=Math.round(i/2);
-                $("html,body").animate({"scrollTop":a_pos[i].top-42},1);
-            });
+            $(window).scroll(function(){
+                if ($(window).scrollTop() >= $(".deatilSummeryCon").height()) {
+                    $(".changeList").addClass("fixed_bar");
+                } else {
+                    $(".changeList").removeClass("fixed_bar");
+                }
 
-            $(window).bind("scroll",function(e){
-                if(flag){
-                    var that = $(".changeList");
-                    var currentPos = that.offset();
-                    var i = 0;
-                    //                console.dir(a_pos);
-                    for(i = a_pos.length - 1; i >=0 ; i--){
-                        if(currentPos.top >= a_pos[i].top-45){
-                            that.find("a").removeClass('currentLi');
-                            $("a:eq(" + (i) + ")" , that).addClass("currentLi");
-                            return false;
+                if (!clickFlag) {
+                    var h, h1, h2, h3;
+                    h = $(window).scrollTop();
+                    h1 = $(".deatilSummeryCon").height();
+                    h2 = $(".materialContentDiv").offset().top - $(".changeList").height();
+                    h3 = $(".otherContentDiv").offset().top - $(".changeList").height();
+
+                    var lastHeight = $(".otherContentDiv").height() - $(".changeList").height();
+
+                    if (h <= h2) {
+                        $(".changeList a").removeClass("currentLi");
+                        $(".changeList a").eq(0).addClass("currentLi");
+                    }
+
+                    if (lastHeight > $(window).height()) { // 可以滚动至最后一个条目
+                        if (h > h2 && h < h3) {
+                            $(".changeList a").removeClass("currentLi");
+                            $(".changeList a").eq(1).addClass("currentLi");
+                        } else if (h >= h3) {
+                            $(".changeList a").removeClass("currentLi");
+                            $(".changeList a").eq(2).addClass("currentLi");
+                        }
+                    } else {  //  滚动至屏幕底部时，才会触发第三个导航为当前导航
+
+                        if (h > h2 && h < ($("body").height() - $(window).height())) {
+                            $(".changeList a").removeClass("currentLi");
+                            $(".changeList a").eq(1).addClass("currentLi");
+                        } else if (h == ($("body").height() - $(window).height())) {
+                            $(".changeList a").removeClass("currentLi");
+                            $(".changeList a").eq(2).addClass("currentLi");
                         }
                     }
-                    that.find("a").removeClass('currentLi');
-                    $("a:first" , that).addClass("currentLi");
                 }
-                flag=true;
             });
-            $(".changeList").fixedBar();
+
+            $(".changeList li").each(function(index){
+                if (index == 0) {
+                    $(this).click(function(){
+                        clickFlag = true;
+                        $(this).siblings("li").find("a").removeClass("currentLi");
+                        $(this).find("a").addClass("currentLi");
+                        $("body").scrollTop($(".noticeContentDiv").height()-$(".changeList").height()/2);
+                        setTimeout(function(){
+                            clickFlag = false;
+                        }, 50);
+                    });
+                } else if (index == 1) {
+                    $(this).click(function(){
+                        clickFlag = true;
+                        $(this).siblings("li").find("a").removeClass("currentLi");
+                        $(this).find("a").addClass("currentLi");
+                        $("body").scrollTop($(".materialContentDiv").offset().top - ($(".changeList").height() - 1));
+                        setTimeout(function(){
+                            clickFlag = false;
+                        }, 50);
+                    });
+                } else if (index == 2) {
+                    $(this).click(function(){
+                        clickFlag = true;
+                        $(this).siblings("li").find("a").removeClass("currentLi");
+                        $(this).find("a").addClass("currentLi");
+                        var lastHeight = $(".otherContentDiv").height();
+                        if (lastHeight > $(window).height()) { // 可以滚动至最后一个条目
+                            $("body").scrollTop($(".otherContentDiv").offset().top - $(".changeList").height());
+                        } else {
+                            $("body").scrollTop($("body").height());
+                        }
+                        setTimeout(function(){
+                            clickFlag = false;
+                        }, 50);
+                    });
+                }
+            });
+
+
+
+
+
+
+
         })
     </script>
 
