@@ -180,6 +180,7 @@
          </div>
          <div class="price-operBar">
              <span class="addspan addPriceBtn"><i></i>添加</span>
+             <span class="batchEditspan"><i></i>批量编辑</span>
          </div>
          <!--list info start-->
          <div class="visaPriceInfo">
@@ -198,7 +199,7 @@
                  </colgroup>
                  <thead>
                  <tr>
-                     <th>日期</th>
+                     <th class="alignLeft"><input type="checkbox" class="checkAll" />日期</th>
                      <th class="adultBorderL">结算价</th>
                      <th>建议售卖价</th>
                      <th class="kidsBorderL">结算价</th>
@@ -212,10 +213,11 @@
                  </thead>
                  <tbody>
                  <tr>
-                     <td>
-                         <div>2014-01-01</div>
-                         <div>/</div>
-                         <div>2014-05-31</div>
+                     <td class="alignLeft">
+                        <div class="fl"><input type="checkbox" /></div>
+                         <div class="fl">2014-01-01</div>
+                         <!-- <div>/</div>
+                         <div>2014-05-31</div> -->
                      </td>
                      <td class="adultBorderL">
                          <label>1000</label>
@@ -257,10 +259,13 @@
                      </td>
                  </tr>
                  <tr>
-                     <td>
-                         <div>2014-01-01</div>
-                         <div>/</div>
-                         <div>2014-05-31</div>
+                     <td class="alignLeft">
+                        <div class="fl"><input type="checkbox" /></div>
+                        <div class="fl">
+                            <div>2014-01-01</div>
+                            <div style="text-align: center;">/</div>
+                            <div>2014-05-31</div>
+                        </div>                         
                      </td>
                      <td class="adultBorderL">
                          <label>1000</label>
@@ -647,7 +652,71 @@
         </div>
     </script>
 
-       
+    <script type="text/x-kendo-template" id="batchEditspantemplate">
+        <table class="groupWindowTable">
+            <colgroup>
+                <col width="150"/>
+            </colgroup>
+            <tbody>
+            <tr>
+                <td>已选择<span class="cf1">5</span>个团</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="tableWrap">
+            <table class="groupWindowTable">
+                <colgroup>
+                    <col width="80"/>
+                    <col width="70"/>
+                    <col width="120"/>
+                    <col width="90"/>
+                    <col width="150"/>
+                </colgroup>
+                <tbody>
+                <tr>
+                    <th style="text-align: left;"><span class="adultIcon">成人</span></th>
+                    <th><em class="redStar">*</em>结算价：</th>
+                    <td><input type="text"/>元</td>
+                    <th><em class="redStar">*</em>建议售卖价：</th>
+                    <td><input type="text"/>元</td>
+                </tr>
+                <tr>
+                    <th style="text-align: left;"><span class="kidsIcon">儿童</span><span> 0-6岁</span></th>
+                    <th>结算价：</th>
+                    <td><input type="text"/>元</td>
+                    <th>建议售卖价：</th>
+                    <td><input type="text"/>元</td>
+                </tr>
+                <tr>
+                    <th style="text-align: left;"><span style="padding-left: 40px;">6-12岁</span></th>
+                    <th>结算价：</th>
+                    <td><input type="text"/>元</td>
+                    <th>建议售卖价：</th>
+                    <td><input type="text"/>元</td>
+                </tr>
+                <tr class="hasBorder">
+                    <th colspan="3" style="text-align: left;"><em class="redStar">*</em>材料截止提前：<input type="text"/>天<span>（工作日）</span></th>
+                    <th>最长停留天数：</th>
+                    <td><input type="text"/>天<span>（自然日）</span></td>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                        <span>提示：如果材料提前5个工作日截止，则提前预约时间是5个工作日+一个自然日</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pullCenterStyle">
+            <a class="supplierButton brightRedBig_btn">
+                <span class="left"></span>
+                <span class="center">确 定</span>
+                <span class="right"></span>
+            </a>
+            <a href="javascript:void(0);" class="cancelA">取消</a>
+        </div>
+    </script>   
         
     
 <script>
@@ -715,6 +784,18 @@
 
             };
         });
+
+        $(".checkAll").click(function(){
+            $(".priceInfoTab tbody input[type='checkbox']").prop("checked", $(this).prop("checked"));
+        });
+
+        var ac_window = new PopWindow('.batchEditspan',{
+            title:'批量编辑',
+            width:'620',
+            template:'#batchEditspantemplate'
+        }).init();
+
+        $("select").kendoDropDownList();
         
     })
 </script>
